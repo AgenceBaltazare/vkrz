@@ -1,15 +1,25 @@
 <?php
 // CT
-function ct_gopened_init() {
-    // Action Réalisation
+function ct_tax_init() {
+    // Cat battle
     register_taxonomy(
-        'type_rea',
-        array('realisation', 'visite'),
+        'battle',
+        array('battle'),
         array(
-            'label' => 'Type',
-            'rewrite' => array( 'slug' => 'type-rea' ),
+            'label' => 'Category',
+            'rewrite' => array('slug' => 'cat-battle'),
             'hierarchical' => true,
         )
     );
+    // Tax battle
+    register_taxonomy(
+        'tax-battle',
+        array('battle'),
+        array(
+            'label' => 'Keywords',
+            'rewrite' => array('slug' => 'tax-battle'),
+            'hierarchical' => false,
+        )
+    );
 }
-add_action( 'init', 'ct_gopened_init' );
+add_action('init', 'ct_tax_init');
