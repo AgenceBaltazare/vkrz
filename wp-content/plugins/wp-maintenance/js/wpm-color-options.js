@@ -1,0 +1,1 @@
+var wpmOptions={defaultColor:!1,change:function(o,e){},clear:function(){},hide:!0,palettes:!0};jQuery(document).ready(function(o){o(".wpm-color-field").wpColorPicker(wpmOptions)});

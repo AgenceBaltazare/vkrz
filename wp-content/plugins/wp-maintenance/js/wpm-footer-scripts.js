@@ -1,0 +1,1 @@
+jQuery(document).ready(function(){var e=jQuery(".datepicker").pickadate({formatSubmit:"dd/mm/yyyy",container:"#container",closeOnSelect:!1,closeOnClear:!1,first_day:1,date_min:[2015,12,12]});e.pickadate("picker")});
