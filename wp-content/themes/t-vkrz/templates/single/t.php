@@ -26,6 +26,15 @@ $i=0; while ($contenders->have_posts()) : $contenders->the_post();
 
 $i++; endwhile;
 
+$nums_pairs = "";
+$nb_battle  = 0;
+for ($i = 0; $i <= count($list_contenders); $i++) {
+    for ($j = $i + 1; $j < count($list_contenders); $j++) {
+        $nums_pairs .= $list_contenders[$i] . "," . $list_contenders[$j] . "<br>";
+        $nb_battle++;
+    }
+}
+
 wp_reset_query();
 ?>
 <div class="main">
@@ -60,6 +69,7 @@ wp_reset_query();
                             </b>
                             <span>
                                 <?php the_field('question_t'); ?>
+                                <em><?php echo $nb_battle; ?> duels possibles</em>
                             </span>
                         </h1>
                     </div>

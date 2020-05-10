@@ -71,6 +71,11 @@ body {
   .title-battle span {
     font-size: 2.5em;
     letter-spacing: 2px; }
+    .title-battle span em {
+      font-style: normal;
+      font-size: 14px !important;
+      display: block;
+      margin-top: 10px; }
 
 .title-contender {
   margin: 10px 0 0;
