@@ -81,7 +81,12 @@ body {
   font-size: 1.5em;
   letter-spacing: 3px; }
 
+.link-contender a {
+  display: block;
+  text-align: center; }
 .link-contender img {
+  display: block;
+  margin: 0 auto;
   -webkit-transition: all .2s ease-in-out;
   -moz-transition: all .2s ease-in-out;
   -ms-transition: all .2s ease-in-out;

@@ -1,6 +1,7 @@
 <?php get_header(); ?>
 <?php
-$id_tournoi = get_the_ID();
+$id_tournoi         = get_the_ID();
+$list_contenders    = array();
 $all_votes = new WP_Query(array('post_type' => 'vote', 'posts_per_page' => -1, 'meta_query' => array(
     array(
         'key' => 'id_t_v',
@@ -8,7 +9,7 @@ $all_votes = new WP_Query(array('post_type' => 'vote', 'posts_per_page' => -1, '
         'compare' => '=',
     )
 )));
-$contenders = new WP_Query(array('post_type' => 'contender', 'posts_per_page' => '2', 'orderby' => 'rand', 'meta_query' => array(
+$contenders = new WP_Query(array('post_type' => 'contender', 'posts_per_page' => -1, 'orderby' => 'date', 'meta_query' => array(
     array(
         'key' => 'id_tournoi_c',
         'value' => $id_tournoi,
@@ -17,12 +18,11 @@ $contenders = new WP_Query(array('post_type' => 'contender', 'posts_per_page' =>
 )));
 $i=0; while ($contenders->have_posts()) : $contenders->the_post();
 
-    if($i==0){
-        $id_c_1 = get_the_ID();
-    }
-    elseif($i==1){
-        $id_c_2 = get_the_ID();
-    }
+    array_push($list_contenders, get_the_ID());
+
+    $rand_c = array_rand($list_contenders, 2);
+    $id_c_1 = $list_contenders[$rand_c[0]];
+    $id_c_2 = $list_contenders[$rand_c[1]];
 
 $i++; endwhile;
 
@@ -67,7 +67,7 @@ wp_reset_query();
             </div>
         </div>
     </div>
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="display_battle">
@@ -102,6 +102,8 @@ wp_reset_query();
                 </div>
             </div>
         </div>
+    </div>
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <div class="classement_t row">
@@ -124,7 +126,7 @@ wp_reset_query();
                     );
                     $i=1; while ($contenders->have_posts()) : $contenders->the_post(); ?>
 
-                        <div class="contenders_min col-2">
+                        <div class="contenders_min col">
 
                             <div class="rank">
                                 <h3>
