@@ -20,16 +20,16 @@ $rank_l = 1 / ( 1 + ( pow( 10 , ( $elo_v - $elo_l ) / 400 ) ) );
 $new_score_v = floor($elo_v + $k*(1 - $rank_v));
 $new_score_l = floor($elo_l + $k*(0 - $rank_l));
 
-/*
-echo "V : ".$elo_v."<br>";
+
+/*echo "V : ".$elo_v."<br>";
 echo "L : ".$elo_l."<br>";
 
 echo "V : ".$rank_v."<br>";
 echo "L : ".$rank_l."<br>";
 
 echo "V : ".$new_score_v."<br>";
-echo "L : ".$new_score_l."<br>";
-*/
+echo "L : ".$new_score_l."<br>";*/
+
 
 update_field('ELO_c', $new_score_v, $v);
 update_field('ELO_c', $new_score_l, $l);
