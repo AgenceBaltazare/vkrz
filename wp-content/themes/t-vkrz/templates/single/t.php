@@ -83,7 +83,6 @@ wp_reset_query();
                 <div class="display_battle">
                     <div class="row align-items-center">
                         <div class="col-5 link-contender">
-                        <ca>
                             <a href="<?php bloginfo('template_directory'); ?>/function/meca/do_elo.php/?t=<?php echo $id_tournoi; ?>&v=<?php echo $id_c_1; ?>&l=<?php echo $id_c_2; ?>">
                                 <?php
                                 echo get_the_post_thumbnail($id_c_1, 'full', array('class' => 'img-fluid'));
@@ -92,14 +91,7 @@ wp_reset_query();
                                     <?php echo get_the_title($id_c_1); ?>
                                 </h2>
                             </a>
-                        </ca>
                         </div>
-                        <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-                        <script>
-                            $( "ca" ).click(function() {
-                                alert("je suis dedans")
-                                });
-                        </script>
                         <div class="col-2">
                             <h4 class="text-center versus">
                                 VS
