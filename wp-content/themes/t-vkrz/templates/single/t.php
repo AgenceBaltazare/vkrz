@@ -92,7 +92,7 @@ wp_reset_query();
         <div class="row">
             <div class="col-md-12">
                 <div class="display_battle">
-                    <div class="row align-items-center">
+                    <div class="row align-items-center contenders-containers">
                         <div class="col-5 link-contender">
 	                        <?= formatContenderHtml($id_tournoi, $id_c_1, 1)?>
                         </div>
