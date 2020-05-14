@@ -1,6 +1,7 @@
 $(document).ready(function ($) {
     let contenders = $('.link-contender');
     let post_count = $('.display_votes h6');
+    let classement = $('.classement_t');
 
 
     contenders.click(function (e) {
@@ -26,11 +27,10 @@ $(document).ready(function ($) {
                 for(let i=0; i < data.contenders.length; i++){
                     let contender_index = i+1
                     $(`#c_${contender_index}`).html(data.contenders[i]);
-
                 }
                 post_count.text(data.vote_count_string);
+                classement.html(data.classement);
             });
 
     })
-
-})
+});

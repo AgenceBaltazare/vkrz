@@ -73,32 +73,17 @@ function vkzr_do_elo_vote() {
 	$contendersHtml = [];
 	$index          = 1;
 	while ( $contenders->have_posts() ) : $contenders->the_post();
-	    $contendersHtml[] = formatContenderHtml( $tournament, get_the_ID(), $index );
+		$contendersHtml[] = formatContenderHtml( $tournament, get_the_ID(), $index );
 		$index ++;
 	endwhile;
 
+
 	return die( json_encode( [
 		'contenders'        => $contendersHtml,
-		'vote_count_string' => $all_votes->post_count . " " . __( 'VOTES', 'vkrz' )
+		'vote_count_string' => $all_votes->post_count . " " . __( 'VOTES', 'vkrz' ),
+		'classement'        => getClassementHtml($tournament),
 
 	] ) );
 
 }
 
-function formatContenderHtml( $tournament, $v_id, $index ) {
-	ob_start();
-	?>
-    <a data-contender-tournament="<?= $tournament ?>"
-       data-contender-chosen="<?= $v_id ?>"
-       id="c_<?= $index ?>"
-    >
-		<?php
-		echo get_the_post_thumbnail( $v_id, 'full', array( 'class' => 'img-fluid' ) );
-		?>
-        <h2 class="title-contender">
-			<?php echo get_the_title( $v_id ); ?>
-        </h2>
-    </a>
-	<?php
-	return ob_get_clean();
-}

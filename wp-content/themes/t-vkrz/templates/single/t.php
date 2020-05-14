@@ -94,17 +94,7 @@ wp_reset_query();
                 <div class="display_battle">
                     <div class="row align-items-center">
                         <div class="col-5 link-contender">
-                            <a data-contender-tournament="<?= $id_tournoi ?>"
-                               data-contender-chosen="<?= $id_c_1 ?>"
-                                id="c_1"
-                            >
-								<?php
-								echo get_the_post_thumbnail( $id_c_1, 'full', array( 'class' => 'img-fluid' ) );
-								?>
-                                <h2 class="title-contender">
-									<?php echo get_the_title( $id_c_1 ); ?>
-                                </h2>
-                            </a>
+	                        <?= formatContenderHtml($id_tournoi, $id_c_1, 1)?>
                         </div>
                         <div class="col-2">
                             <h4 class="text-center versus">
@@ -112,16 +102,7 @@ wp_reset_query();
                             </h4>
                         </div>
                         <div class="col-5 link-contender">
-                            <a data-contender-tournament="<?= $id_tournoi ?>"
-                               data-contender-chosen="<?= $id_c_2 ?>"
-                               id="c_2">
-								<?php
-								echo get_the_post_thumbnail( $id_c_2, 'full', array( 'class' => 'img-fluid' ) );
-								?>
-                                <h2 class="title-contender">
-									<?php echo get_the_title( $id_c_2 ); ?>
-                                </h2>
-                            </a>
+                            <?= formatContenderHtml($id_tournoi, $id_c_2, 2)?>
                         </div>
                     </div>
                 </div>
@@ -132,52 +113,7 @@ wp_reset_query();
         <div class="row">
             <div class="col-md-12">
                 <div class="classement_t row">
-					<?php
-					$contenders = new WP_Query(
-						array(
-							'post_type'      => 'contender',
-							'posts_per_page' => - 1,
-							'meta_key'       => 'ELO_c',
-							'orderby'        => 'meta_value',
-							'order'          => 'DESC',
-							'meta_query'     => array(
-								array(
-									'key'     => 'id_tournoi_c',
-									'value'   => $id_tournoi,
-									'compare' => 'LIKE',
-								)
-							)
-						)
-					);
-					$i          = 1;
-					while ( $contenders->have_posts() ) : $contenders->the_post(); ?>
-
-                        <div class="contenders_min col">
-
-                            <div class="rank">
-                                <h3>
-									<?php echo $i; ?>
-                                </h3>
-                            </div>
-
-                            <div class="illu">
-								<?php if ( has_post_thumbnail() ) : ?>
-									<?php the_post_thumbnail( 'full', array( 'class' => 'img-fluid' ) ); ?>
-								<?php endif; ?>
-                            </div>
-                            <div class="name">
-                                <h5>
-									<?php the_title(); ?>
-                                </h5>
-                                <h6>
-									<?php the_field( 'ELO_c' ); ?>
-                                </h6>
-                            </div>
-
-                        </div>
-
-						<?php $i ++; endwhile;
-					wp_reset_query(); ?>
+                    <?= getClassementHtml($id_tournoi) ?>
                 </div>
             </div>
         </div>
