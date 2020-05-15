@@ -1,67 +1,89 @@
 <?php
 
-add_action( 'wp_ajax_vocajob_loadmore', 'vocajob_loadmore' );
-add_action( 'wp_ajax_nopriv_vocajob_loadmore', 'vocajob_loadmore' );
+add_action( 'wp_ajax_vkzr_do_elo_vote', 'vkzr_do_elo_vote' );
+add_action( 'wp_ajax_nopriv_vkzr_do_elo_vote', 'vkzr_do_elo_vote' );
 
-function vocajob_loadmore() {
-	$posts_already_on_page = $_POST['posts_on_page'];
+function vkzr_do_elo_vote() {
 
-	$random_fiches = new WP_Query(
-		array(
-			'post_type'      => 'post',
-			'orderby'        => 'rand',
-			'posts_per_page' => 40,
-			'post__not_in'   => $posts_already_on_page
-		) );
+	$tournament = $_POST['t'];
+	$winner     = $_POST['v'];
+	$looser     = $_POST['l'];
+	$k          = 16;
+	$u          = 0;
 
-	ob_start();
-	?>
-	<?php while ( $random_fiches->have_posts() ) : $random_fiches->the_post(); ?>
+	$elo_v = get_field( 'ELO_c', $winner );
+	$elo_l = get_field( 'ELO_c', $looser );
 
-        <div class="section__col col-12 col-md-4 col-lg-3">
+	$rank_v = 1 / ( 1 + ( pow( 10, ( $elo_l - $elo_v ) / 400 ) ) );
+	$rank_l = 1 / ( 1 + ( pow( 10, ( $elo_v - $elo_l ) / 400 ) ) );
 
-			<?php get_template_part( 'partial/min_metier' ); ?>
+	$new_score_v = floor( $elo_v + $k * ( 1 - $rank_v ) );
+	$new_score_l = floor( $elo_l + $k * ( 0 - $rank_l ) );
 
-        </div><!-- /.section__col col-12 col-md-6 col-lg-3 -->
 
-	<?php endwhile;
+	update_field( 'ELO_c', $new_score_v, $winner );
+	update_field( 'ELO_c', $new_score_l, $looser );
+
+//
+// Add vote
+//
+	if ( is_user_logged_in() ) {
+		$current_user = wp_get_current_user();
+		$u            = $current_user->ID;
+	}
+
+	$new_vote = array(
+		'post_type'   => 'vote',
+		'post_title'  => 'U:' . $u . ' T:' . $tournament . ' V:' . $winner . '(' . $elo_v . ')' . ' L:' . $looser . '(' . $elo_l . ')',
+		'post_status' => 'publish',
+	);
+	$id_vote  = wp_insert_post( $new_vote );
+
+	update_field( 'id_user_v', $u, $id_vote );
+	update_field( 'id_v_v', $winner, $id_vote );
+	update_field( 'elo_v_v', $elo_v, $id_vote );
+	update_field( 'id_l_v', $looser, $id_vote );
+	update_field( 'elo_l_v', $elo_l, $id_vote );
+	update_field( 'id_t_v', $tournament, $id_vote );
+
+	$all_votes  = new WP_Query( array(
+		'post_type'      => 'vote',
+		'posts_per_page' => - 1,
+		'meta_query'     => array(
+			array(
+				'key'     => 'id_t_v',
+				'value'   => $tournament,
+				'compare' => '=',
+			)
+		)
+	) );
+	$contenders = new WP_Query( array(
+		'post_type'      => 'contender',
+		'posts_per_page' => 2,
+		'orderby'        => 'rand',
+		'meta_query'     => array(
+			array(
+				'key'     => 'id_tournoi_c',
+				'value'   => (int) $tournament,
+				'compare' => '=',
+			)
+		)
+	) );
+
+	$contendersHtml = [];
+	$index          = 1;
+	while ( $contenders->have_posts() ) : $contenders->the_post();
+		$contendersHtml[] = formatContenderHtml( $tournament, get_the_ID(), $index );
+		$index ++;
+	endwhile;
+
 
 	return die( json_encode( [
-		'content'              => ob_get_clean(),
-		'hide_loadmore_button' => (int) $random_fiches->found_posts === (int) $random_fiches->post_count
+		'contenders'        => $contendersHtml,
+		'vote_count_string' => $all_votes->post_count . " " . __( 'VOTES', 'vkrz' ),
+		'classement'        => getClassementHtml($tournament),
+
 	] ) );
-}
-
-
-add_action( 'wp_ajax_vocajob_do_search', 'vocajob_search' );
-add_action( 'wp_ajax_nopriv_vocajob_do_search', 'vocajob_search' );
-function vocajob_search() {
-	$searchQuery = new WP_Query( array(
-		's' => sanitize_text_field( $_POST['s'] ),
-		//'post_type' => ['metier'] Mettre dans le tableau ce qui doit ressortir de la recherche
-	) );
-
-	ob_start();
-	?>
-    <div class="popup__row row">
-		<?php if ( $searchQuery->have_posts() ) : ?>
-			<?php while ( $searchQuery->have_posts() ) : $searchQuery->the_post(); ?>
-                <div class="popup__col col-12 col-md-6 col-lg-4">
-
-					<?php get_template_part( 'partial/min_metier' ); ?>
-
-                </div>
-			<?php endwhile; ?>
-		<?php else: ?>
-            <h2 style="color: #ffffff"><?= __( 'Pas de résultat pour votre recherche', 'vocajob' ) ?></h2>
-		<?php endif; ?>
-    </div>
-	<?php
-	wp_reset_postdata();
-
-	return die( json_encode( [
-			'content' => ob_get_clean()
-		]
-	) );
 
 }
+
