@@ -25,7 +25,6 @@
     <link href="https://fonts.googleapis.com/css?family=Staatliches" rel="stylesheet">
     <script src="https://kit.fontawesome.com/30edd5507e.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="<?php bloginfo( 'template_directory' ); ?>/assets/css/main.css">
-    <link rel="stylesheet" href="<?php bloginfo( 'template_directory' ); ?>/assets/css/contenders.css">
 
     <?php wp_head(); ?>
 </head>
