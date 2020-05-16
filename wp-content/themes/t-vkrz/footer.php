@@ -5,7 +5,40 @@
     const vkrz_ajaxurl = "<?= admin_url('admin-ajax.php') ?>";
 </script>
 <script src="<?php bloginfo('template_directory'); ?>/assets/js/contenders-ajax.js"></script>
+<script src="<?php bloginfo('template_directory'); ?>/assets/js/jquery.cookie.js"></script>
+<script type="text/javascript">
+    function setCookie(_name, _value, _days) {
+        var expiration = new Date();
+        expiration.setDate(expiration.getDate() + _days);
+        expiration.toUTCString();
+        document.cookie = _name+'='+_value+'; expires='+expiration+'; path=/';
+    }
 
+    function getCookie(_name) {
+        var keyValue = document.cookie.match('(^|;) ?' + _name + '=([^;]*)(;|$)');
+        return keyValue ? keyValue[2] : null;
+    }
+
+    function checkCookie() {
+        var has_vainkeurz_user_id = getCookie("vainkeurz_user_id");
+        if (!has_vainkeurz_user_id) {
+            setCookie('vainkeurz_user_id', '<?php echo uniqidReal(); ?>', 1000);
+        }
+    }
+    checkCookie();
+
+    $("body").keydown(function(e) {
+        if(e.keyCode == 37) { // left
+            $("#c_1").trigger( "click" );
+            preventDefault();
+        }
+        else if(e.keyCode == 39) { // right
+            $("#c_2").trigger( "click" );
+            preventDefault();
+        }
+    });
+
+</script>
 <?php wp_footer(); ?>
 </body>
 </html>

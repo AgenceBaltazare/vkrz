@@ -1,6 +1,7 @@
 $(document).ready(function ($) {
     let contenders = $('.link-contender');
     let post_count = $('.display_votes h6');
+    let user_votes = $('.display_users_votes h6');
     let classement = $('.classement_t');
 
 
@@ -33,6 +34,8 @@ $(document).ready(function ($) {
                 contenders.find('a').removeClass('leaving').addClass('entering');
 
                 post_count.text(data.vote_count_string);
+
+                user_votes.text(data.vote_user_count_string);
 
                 let responseClassement = $.parseHTML(data.classement).filter(function (el) {
                     return $(el).hasClass('contenders_min')
