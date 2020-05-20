@@ -8,7 +8,7 @@ function vkzr_do_elo_vote() {
 	$tournament = $_POST['t'];
 	$winner     = $_POST['v'];
 	$looser     = $_POST['l'];
-	$k          = 16;
+	$k          = 32;
 	$u          = 0;
 
 	$elo_v = get_field( 'ELO_c', $winner );

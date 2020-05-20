@@ -27,17 +27,6 @@
     }
     checkCookie();
 
-    $("body").keydown(function(e) {
-        if(e.keyCode == 37) { // left
-            $("#c_1").trigger( "click" );
-            preventDefault();
-        }
-        else if(e.keyCode == 39) { // right
-            $("#c_2").trigger( "click" );
-            preventDefault();
-        }
-    });
-
 </script>
 <?php wp_footer(); ?>
 </body>
