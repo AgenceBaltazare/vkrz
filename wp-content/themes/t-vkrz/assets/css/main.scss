@@ -145,6 +145,16 @@ body{
     font-size: 2em;
   }
 }
+.form{
+  text-align: center;
+  a{
+    display: block;
+    font-weight: normal;
+    font-size: 3em;
+    margin: 0 0 10px 0;
+    letter-spacing: 5px;
+  }
+}
 .versus{
   color: rgba(0, 0, 0, 0.7);
   text-transform: uppercase;
