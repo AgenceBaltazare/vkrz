@@ -3,6 +3,7 @@
 namespace AC\Settings\Column;
 
 use AC\Form\Element\Select;
+use AC\MetaType;
 use AC\Settings\Column;
 use AC\View;
 
@@ -16,7 +17,7 @@ abstract class Meta extends Column {
 	abstract protected function get_meta_keys();
 
 	protected function define_options() {
-		return array( 'field' );
+		return [ 'field' ];
 	}
 
 	/**
@@ -68,10 +69,10 @@ abstract class Meta extends Column {
 	 * @return View
 	 */
 	public function create_view() {
-		$view = new View( array(
+		$view = new View( [
 			'label'   => __( 'Field', 'codepress-admin-columns' ),
 			'setting' => $this->get_setting_field(),
-		) );
+		] );
 
 		return $view;
 	}
@@ -94,11 +95,8 @@ abstract class Meta extends Column {
 		return true;
 	}
 
-	/**
-	 * Get temp cache
-	 */
 	private function get_cache() {
-		wp_cache_get( $this->get_cache_key(), $this->get_cache_group() );
+		return wp_cache_get( $this->get_cache_key(), $this->get_cache_group() );
 	}
 
 	/**
@@ -115,13 +113,13 @@ abstract class Meta extends Column {
 	protected function get_meta_groups() {
 		global $wpdb;
 
-		$groups = array(
+		$groups = [
 			''  => __( 'Public', 'codepress-admin-columns' ),
 			'_' => __( 'Hidden', 'codepress-admin-columns' ),
-		);
+		];
 
 		// User only
-		if ( 'user' === $this->get_meta_type() ) {
+		if ( MetaType::USER === $this->get_meta_type() ) {
 
 			if ( is_multisite() ) {
 				foreach ( get_sites() as $site ) {
@@ -148,10 +146,10 @@ abstract class Meta extends Column {
 	 */
 	private function group_keys( $keys ) {
 		if ( ! $keys ) {
-			return array();
+			return [];
 		}
 
-		$grouped = array();
+		$grouped = [];
 
 		$groups = $this->get_meta_groups();
 
@@ -160,7 +158,7 @@ abstract class Meta extends Column {
 
 		foreach ( $groups as $prefix => $title ) {
 
-			$options = array();
+			$options = [];
 
 			foreach ( $keys as $k => $key ) {
 
@@ -173,10 +171,10 @@ abstract class Meta extends Column {
 			}
 
 			if ( $options ) {
-				$grouped[ $prefix ] = array(
+				$grouped[ $prefix ] = [
 					'title'   => $title,
 					'options' => $options,
-				);
+				];
 			}
 		}
 
@@ -184,17 +182,17 @@ abstract class Meta extends Column {
 
 		// Default group
 		if ( $keys ) {
-			$default = array(
+			$default = [
 				'title'   => $groups[''],
 				'options' => array_combine( $keys, $keys ),
-			);
+			];
 
 			array_unshift( $grouped, $default );
 		}
 
 		// Place the hidden group at the end
 		if ( isset( $grouped['_'] ) ) {
-			array_push( $grouped, $grouped['_'] );
+			$grouped[] = $grouped['_'];
 
 			unset( $grouped['_'] );
 		}

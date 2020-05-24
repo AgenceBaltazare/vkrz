@@ -2,11 +2,12 @@
 
 namespace ACA\ACF\Field;
 
-use ACA\ACF\Field;
-use ACA\ACF\Editing;
-use ACA\ACF\Sorting;
-use ACA\ACF\Filtering;
 use AC;
+use ACA\ACF\Editing;
+use ACA\ACF\Field;
+use ACA\ACF\Filtering;
+use ACA\ACF\Sorting;
+use ACP;
 
 class Textarea extends Field {
 
@@ -20,12 +21,16 @@ class Textarea extends Field {
 		return new Editing\Textarea( $this->column );
 	}
 
+	public function filtering() {
+		return new Filtering( $this->column );
+	}
+
 	public function sorting() {
 		return new Sorting( $this->column );
 	}
 
-	public function filtering() {
-		return new Filtering( $this->column );
+	public function search() {
+		return new ACP\Search\Comparison\Meta\Text( $this->get_meta_key(), $this->get_meta_type() );
 	}
 
 }

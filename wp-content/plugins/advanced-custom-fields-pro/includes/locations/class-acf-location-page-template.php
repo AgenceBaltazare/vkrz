@@ -82,20 +82,19 @@ class acf_location_page_template extends acf_location {
 	
 	function rule_values( $choices, $rule ) {
 		
-		// vars
+		// Default choices.
 		$choices = array(
 			'default' => apply_filters( 'default_page_template_title',  __('Default Template', 'acf') )
 		);
 		
+		// Load all templates, and merge in 'page' templates.
+		$post_templates = acf_get_post_templates();
+		if( isset($post_templates['page']) ) {
+			$choices = array_merge($choices, $post_templates['page']);
+		}
 		
-		// get templates and merge them in
-		$templates = wp_get_theme()->get_page_templates();
-		$choices = array_merge($choices, $templates);
-		
-		
-		// return choices
+		// Return choices.
 		return $choices;
-		
 	}
 	
 }

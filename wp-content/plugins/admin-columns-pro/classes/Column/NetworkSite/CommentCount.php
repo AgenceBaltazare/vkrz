@@ -8,8 +8,8 @@ use ACP\Settings;
 class CommentCount extends AC\Column {
 
 	public function __construct() {
-		$this->set_type( 'column-msite_commentcount' );
-		$this->set_label( __( 'Comments', 'codepress-admin-columns' ) );
+		$this->set_type( 'column-msite_commentcount' )
+		     ->set_label( __( 'Comments', 'codepress-admin-columns' ) );
 	}
 
 	public function get_value( $blog_id ) {

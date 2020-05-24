@@ -12,16 +12,16 @@ class EstimatedReadingTime extends Column {
 
 	public function __construct() {
 		$this->set_type( 'column-estimated_reading_time' );
-		$this->set_label( __( 'Estimated Reading Time', 'codepress-admin-columns' ) );
+		$this->set_label( __( 'Read Time', 'codepress-admin-columns' ) );
 	}
 
 	/**
 	 * Estimate read time in seconds
-	 * @since 2.3.3
 	 *
 	 * @param $post_id
 	 *
 	 * @return string Raw Post Content
+	 * @since 2.3.3
 	 */
 	public function get_raw_value( $post_id ) {
 		return ac_helper()->post->get_raw_field( 'post_content', $post_id );

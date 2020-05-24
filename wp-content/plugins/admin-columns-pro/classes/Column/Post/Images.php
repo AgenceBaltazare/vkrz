@@ -33,7 +33,7 @@ class Images extends AC\Column
 	 * @return string
 	 */
 	public function get_ajax_value( $id ) {
-		$items = array();
+		$items = [];
 
 		foreach ( $this->get_image_urls( $id ) as $url ) {
 			$size = ac_helper()->image->get_local_image_size( $url );
@@ -64,14 +64,14 @@ class Images extends AC\Column
 				$size_unit = $file_size[1];
 			}
 
-			$items[] = (object) array(
+			$items[] = (object) [
 				'file_size'       => $size_int,
 				'file_size_label' => $size_unit,
 				'dimensions'      => $dimensions,
 				'extension'       => $extension,
 				'link'            => $link,
 				'file_name'       => basename( $url ),
-			);
+			];
 
 		}
 
@@ -86,7 +86,7 @@ class Images extends AC\Column
 
 			<?php if ( $item->link ) : ?>
 				<a href="<?php echo esc_url( $item->link ); ?>" class="ac-image-info">
-				<?php echo ac_helper()->html->tooltip( ac_helper()->icon->dashicon( array( 'icon' => 'format-image' ) ), $item->file_name ); ?>
+				<?php echo ac_helper()->html->tooltip( ac_helper()->icon->dashicon( [ 'icon' => 'format-image' ] ), $item->file_name ); ?>
 			<?php else : ?>
 				<div class="ac-image-info">
 			<?php endif; ?>
@@ -141,7 +141,7 @@ class Images extends AC\Column
 	 * @return array
 	 */
 	public function get_raw_value( $id ) {
-		$sizes = array();
+		$sizes = [];
 
 		foreach ( $this->get_image_urls( $id ) as $url ) {
 			if ( $size = ac_helper()->image->get_local_image_size( $url ) ) {

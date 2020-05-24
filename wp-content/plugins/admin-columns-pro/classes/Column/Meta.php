@@ -14,9 +14,13 @@ abstract class Meta extends AC\Column\Meta
 	implements Sorting\Sortable, Editing\Editable, Filtering\Filterable {
 
 	/**
-	 * @return Sorting\Model\Meta
+	 * @return Sorting\Model\Meta|Sorting\Model\Disabled
 	 */
 	public function sorting() {
+		if ( ! $this->get_meta_key() ) {
+			return new Sorting\Model\Disabled( $this );
+		}
+
 		return new Sorting\Model\Meta( $this );
 	}
 
@@ -28,9 +32,13 @@ abstract class Meta extends AC\Column\Meta
 	}
 
 	/**
-	 * @return Filtering\Model\Meta
+	 * @return Filtering\Model\Meta|Filtering\Model\Disabled
 	 */
 	public function filtering() {
+		if ( ! $this->get_meta_key() ) {
+			return new Filtering\Model\Disabled( $this );
+		}
+
 		return new Filtering\Model\Meta( $this );
 	}
 

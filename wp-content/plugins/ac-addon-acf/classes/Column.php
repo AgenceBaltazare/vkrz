@@ -7,12 +7,11 @@ use ACP;
 
 /**
  * ACF Field for Advanced Custom Fields
- *
  * @since 1.1
  * @abstract
  */
 abstract class Column extends AC\Column\Meta
-	implements ACP\Editing\Editable, ACP\Filtering\Filterable, ACP\Sorting\Sortable, ACP\Export\Exportable, AC\Column\AjaxValue {
+	implements ACP\Editing\Editable, ACP\Filtering\Filterable, ACP\Sorting\Sortable, ACP\Export\Exportable, ACP\Search\Searchable, AC\Column\AjaxValue {
 
 	public function __construct() {
 		$this
@@ -46,6 +45,10 @@ abstract class Column extends AC\Column\Meta
 			$append = str_replace( chr( 194 ) . chr( 160 ), ' ', $append );
 
 			$value = $prepend . $value . $append;
+		}
+
+		if ( ! $value ) {
+			return $this->get_empty_char();
 		}
 
 		return $value;
@@ -87,6 +90,10 @@ abstract class Column extends AC\Column\Meta
 		return $this->get_field()->filtering();
 	}
 
+	public function search() {
+		return $this->get_field()->search();
+	}
+
 	public function sorting() {
 		return $this->get_field()->sorting();
 	}
@@ -110,7 +117,11 @@ abstract class Column extends AC\Column\Meta
 	public function get_acf_field_option( $property ) {
 		$field = $this->get_acf_field();
 
-		return $field && isset( $field[ $property ] ) ? $field[ $property ] : false;
+		if ( ! $field || ! array_key_exists( $property, $field ) ) {
+			return false;
+		}
+
+		return $field[ $property ];
 	}
 
 	/**
@@ -123,7 +134,7 @@ abstract class Column extends AC\Column\Meta
 	/**
 	 * Returns Field. By default it will return a Pro version Field, but when available this returns a Free version Field.
 	 *
-	 * @param string $type ACF field type
+	 * @param string $field_type ACF field type
 	 *
 	 * @return Field|false
 	 */
@@ -157,9 +168,7 @@ abstract class Column extends AC\Column\Meta
 
 	/**
 	 * Get Field hash
-	 *
 	 * @since 1.1
-	 *
 	 * @return string ACF field Hash (key)
 	 */
 	public function get_field_hash() {
@@ -172,6 +181,8 @@ abstract class Column extends AC\Column\Meta
 
 	/**
 	 * Get formatted ID for ACF
+	 *
+	 * @param int $id
 	 *
 	 * @since 1.2.2
 	 */

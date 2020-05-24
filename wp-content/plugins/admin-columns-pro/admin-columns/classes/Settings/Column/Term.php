@@ -18,22 +18,22 @@ class Term extends Settings\Column
 	}
 
 	protected function define_options() {
-		return array( 'term_property' );
+		return [ 'term_property' ];
 	}
 
 	public function create_view() {
 		$setting = $this
 			->create_element( 'select' )
-			->set_options( array(
+			->set_options( [
 				''     => __( 'Title' ),
 				'slug' => __( 'Slug' ),
 				'id'   => __( 'ID' ),
-			) );
+			] );
 
-		$view = new View( array(
+		$view = new View( [
 			'label'   => __( 'Display', 'codepress-admin-columns' ),
 			'setting' => $setting,
-		) );
+		] );
 
 		return $view;
 	}
@@ -57,26 +57,24 @@ class Term extends Settings\Column
 	}
 
 	public function format( $value, $original_value ) {
-		$term_id = $value;
+		$term = $value;
+
+		if ( is_int( $original_value ) ) {
+			$term = get_term( $term );
+		}
+
+		if ( ! $term || is_wp_error( $term ) ) {
+			return $value;
+		}
 
 		switch ( $this->get_term_property() ) {
 			case 'slug' :
-				$label = ac_helper()->taxonomy->get_term_field( 'slug', $term_id, $this->column->get_taxonomy() );
-
-				break;
+				return $term->slug;
 			case 'id' :
-				$label = $term_id;
-
-				break;
+				return $term->term_id;
 			default :
-				$label = ac_helper()->taxonomy->get_term_field( 'name', $term_id, $this->column->get_taxonomy() );
+				return $term->name;
 		}
-
-		if ( ! $label ) {
-			$label = false;
-		}
-
-		return ac_helper()->html->link( get_edit_term_link( $term_id, $this->column->get_taxonomy() ), $label );
 	}
 
 }

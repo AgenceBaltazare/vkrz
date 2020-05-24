@@ -2,11 +2,12 @@
 
 namespace ACA\ACF\Field;
 
-use ACA\ACF\Field;
-use ACA\ACF\Editing;
-use ACA\ACF\Sorting;
-use ACA\ACF\Filtering;
 use AC;
+use ACA\ACF\Editing;
+use ACA\ACF\Field;
+use ACA\ACF\Filtering;
+use ACA\ACF\Sorting;
+use ACP;
 
 class Text extends Field {
 
@@ -22,6 +23,10 @@ class Text extends Field {
 
 	public function sorting() {
 		return new Sorting( $this->column );
+	}
+
+	public function search() {
+		return new ACP\Search\Comparison\Meta\Text( $this->get_meta_key(), $this->get_meta_type() );
 	}
 
 	public function filtering() {

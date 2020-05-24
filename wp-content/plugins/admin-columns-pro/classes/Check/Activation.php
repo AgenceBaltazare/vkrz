@@ -8,76 +8,98 @@ use AC\Message;
 use AC\Registrable;
 use AC\Screen;
 use AC\Storage;
-use ACP\License;
+use ACP\LicenseKeyRepository;
+use ACP\LicenseRepository;
 
 class Activation
 	implements Registrable {
 
 	/**
-	 * @var License
+	 * @var string
 	 */
-	protected $license;
+	private $plugin_basename;
 
 	/**
-	 * @param License $license
+	 * @var LicenseRepository
 	 */
-	public function __construct( License $license ) {
-		$this->license = $license;
+	private $license_repository;
+
+	/**
+	 * @var LicenseKeyRepository
+	 */
+	private $license_key_repository;
+
+	public function __construct( $plugin_basename, LicenseRepository $license_repository, LicenseKeyRepository $license_key_repository ) {
+		$this->plugin_basename = $plugin_basename;
+		$this->license_repository = $license_repository;
+		$this->license_key_repository = $license_key_repository;
 	}
 
-	/**
-	 * @throws \Exception
-	 */
 	public function register() {
-		add_action( 'ac/screen', array( $this, 'display' ) );
+		add_action( 'ac/screen', [ $this, 'register_notice' ] );
 
 		$this->get_ajax_handler()->register();
 	}
 
 	/**
-	 * @param Screen $screen
-	 *
-	 * @throws \Exception
+	 * @return bool
 	 */
-	public function display( Screen $screen ) {
-		if ( ! $screen->has_screen() ) {
-			return;
+	private function show_message() {
+		$license_key = $this->license_key_repository->find();
+
+		if ( ! $license_key ) {
+			return true;
 		}
 
-		if ( ! current_user_can( Capabilities::MANAGE ) ) {
-			return;
+		$license = $this->license_repository->find( $license_key );
+
+		if ( ! $license ) {
+			return true;
 		}
 
-		if ( $this->license->is_active() ) {
-			return;
+		// An expired license has it's own message
+		if ( $license->is_expired() ) {
+			return false;
 		}
 
-		if ( $screen->is_plugin_screen() ) {
-
-			// Inline message on plugin page
-			$notice = new Message\Plugin( ACP()->get_basename() );
-			$notice->set_message( $this->get_message() )
-			       ->register();
-
-		} else if ( $screen->is_admin_screen( 'settings' ) ) {
-
-			// Permanent displayed on settings page
-			$this->register_notice( new Message\Notice() );
-
-		} else if ( $screen->is_admin_screen( 'columns' ) && $this->get_dismiss_option()->is_expired() ) {
-
-			// Dismissible on columns page
-			$this->register_notice( new Message\Notice\Dismissible( $this->get_ajax_handler() ) );
-		}
+		return ! $license->is_active();
 	}
 
 	/**
-	 * @param Message\Notice $notice
+	 * @param Screen $screen
 	 */
-	private function register_notice( Message\Notice $notice ) {
-		$notice->set_type( $notice::INFO )
-		       ->set_message( $this->get_message() )
-		       ->register();
+	public function register_notice( Screen $screen ) {
+		if ( ! $screen->has_screen() || ! current_user_can( Capabilities::MANAGE ) ) {
+			return;
+		}
+
+		if ( ! $this->show_message() ) {
+			return;
+		}
+
+		// Inline message on plugin page
+		if ( $screen->is_plugin_screen() ) {
+			$notice = new Message\Plugin( $this->get_message(), $this->plugin_basename );
+			$notice
+				->set_type( Message::INFO )
+				->register();
+		}
+
+		// Permanent message on admin page
+		if ( $screen->is_admin_screen() ) {
+			$notice = new Message\Notice( $this->get_message() );
+			$notice
+				->set_type( Message::INFO )
+				->register();
+		}
+
+		// Dismissible on list tables
+		if ( $screen->get_list_screen() && $this->get_dismiss_option()->is_expired() ) {
+			$notice = new Message\Notice\Dismissible( $this->get_message(), $this->get_ajax_handler() );
+			$notice
+				->set_type( Message::INFO )
+				->register();
+		}
 	}
 
 	/**
@@ -85,8 +107,8 @@ class Activation
 	 */
 	private function get_message() {
 		$message = sprintf(
-			__( "To enable automatic updates <a href='%s'>enter your license key</a>. If you don't have a licence key, please see <a href='%s' target='_blank'>details & pricing</a>.", 'codepress_admin_columns' ),
-			AC()->admin()->get_link( 'settings' ),
+			__( "To enable automatic updates <a href='%s'>enter your license key</a>. If you don't have a license key, please see <a href='%s' target='_blank'>details & pricing</a>.", 'codepress_admin_columns' ),
+			acp_get_license_page_url(),
 			ac_get_site_utm_url( 'pricing-purchase', 'plugins' )
 		);
 
@@ -98,15 +120,15 @@ class Activation
 	 */
 	private function get_ajax_handler() {
 		$handler = new Ajax\Handler();
-		$handler->set_action( 'ac_notice_dismiss_activation' )
-		        ->set_callback( array( $this, 'ajax_dismiss_notice' ) );
+		$handler
+			->set_action( 'ac_notice_dismiss_activation' )
+			->set_callback( [ $this, 'ajax_dismiss_notice' ] );
 
 		return $handler;
 	}
 
 	/**
 	 * @return Storage\Timestamp
-	 * @throws \Exception
 	 */
 	private function get_dismiss_option() {
 		return new Storage\Timestamp(
@@ -114,12 +136,11 @@ class Activation
 		);
 	}
 
-	/**
-	 * @throws \Exception
-	 */
 	public function ajax_dismiss_notice() {
 		$this->get_ajax_handler()->verify_request();
-		$this->get_dismiss_option()->save( time() + ( MONTH_IN_SECONDS * 4 ) );
+		$this->get_dismiss_option()->save( time() + ( MONTH_IN_SECONDS * 2 ) );
+
+		wp_die( 1 );
 	}
 
 }

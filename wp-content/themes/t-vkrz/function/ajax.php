@@ -123,9 +123,7 @@ function vkzr_do_elo_vote() {
 	return die( json_encode( [
 		'contenders'                => $contendersHtml,
 		'vote_count_string'         => $all_votes->post_count . " " . __( 'VOTES', 'vkrz' ),
-        'vote_user_count_string'    => $display_user_votes,
-		'classement'                => getClassementHtml($tournament),
-
+        'vote_user_count_string'    => $display_user_votes
 	] ) );
 
 }

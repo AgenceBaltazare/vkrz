@@ -6,11 +6,12 @@ use AC;
 use ACP\Editing;
 use ACP\Export;
 use ACP\Filtering;
+use ACP\Search;
 use ACP\Sorting;
 use WP_User;
 
 class Roles extends AC\Column\Meta
-	implements Editing\Editable, Filtering\Filterable, Sorting\Sortable, Export\Exportable {
+	implements Editing\Editable, Filtering\Filterable, Sorting\Sortable, Search\Searchable, Export\Exportable {
 
 	public function __construct() {
 		$this->set_type( 'column-roles' );
@@ -23,12 +24,10 @@ class Roles extends AC\Column\Meta
 		return $wpdb->get_blog_prefix() . 'capabilities'; // WPMU compatible
 	}
 
-	// Display
-
 	public function get_value( $user_id ) {
 		$user = new WP_User( $user_id );
 
-		$roles = array();
+		$roles = [];
 		foreach ( ac_helper()->user->translate_roles( $user->roles ) as $role => $label ) {
 			$roles[] = ac_helper()->html->tooltip( $label, $role );
 		}
@@ -50,6 +49,10 @@ class Roles extends AC\Column\Meta
 
 	public function filtering() {
 		return new Filtering\Model\User\Role( $this );
+	}
+
+	public function search() {
+		return new Search\Comparison\User\Role( $this->get_meta_key(), $this->get_meta_type() );
 	}
 
 	public function export() {

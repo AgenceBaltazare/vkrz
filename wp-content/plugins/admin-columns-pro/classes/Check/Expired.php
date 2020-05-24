@@ -8,28 +8,44 @@ use AC\Message;
 use AC\Registrable;
 use AC\Screen;
 use AC\Storage;
-use ACP\License;
+use ACP\LicenseKeyRepository;
+use ACP\LicenseRepository;
+use ACP\Type\License\Key;
+use ACP\Type\SiteUrl;
+use DateTime;
+use Exception;
 
-class Expired
-	implements Registrable {
+class Expired implements Registrable {
 
 	/**
-	 * @var License
+	 * @var LicenseRepository
 	 */
-	protected $license;
+	private $license_repository;
 
 	/**
-	 * @param License $license
+	 * @var LicenseKeyRepository
 	 */
-	public function __construct( License $license ) {
-		$this->license = $license;
+	private $license_key_repository;
+
+	/**
+	 * @var string
+	 */
+	private $plugin_basename;
+
+	/**
+	 * @var SiteUrl
+	 */
+	private $site_url;
+
+	public function __construct( LicenseRepository $license_repository, LicenseKeyRepository $license_key_repository, $plugin_basename, SiteUrl $site_url ) {
+		$this->license_repository = $license_repository;
+		$this->license_key_repository = $license_key_repository;
+		$this->plugin_basename = $plugin_basename;
+		$this->site_url = $site_url;
 	}
 
-	/**
-	 * @throws \Exception
-	 */
 	public function register() {
-		add_action( 'ac/screen', array( $this, 'display' ) );
+		add_action( 'ac/screen', [ $this, 'display' ] );
 
 		$this->get_ajax_handler()->register();
 	}
@@ -37,60 +53,68 @@ class Expired
 	/**
 	 * @param Screen $screen
 	 *
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function display( Screen $screen ) {
-		if ( ! $screen->has_screen() ) {
+		if ( ! $screen->has_screen() || ! current_user_can( Capabilities::MANAGE ) ) {
 			return;
 		}
 
-		if ( ! current_user_can( Capabilities::MANAGE ) ) {
+		$license_key = $this->license_key_repository->find();
+
+		if ( ! $license_key ) {
 			return;
 		}
 
-		if ( ! $this->license->is_active() || ! $this->license->is_expired() ) {
+		$license = $this->license_repository->find( $license_key );
+
+		if ( ! $license || ! $license->is_expired() || ! $license->get_expiry_date()->exists() ) {
 			return;
 		}
+
+		$message = $this->get_message( $license->get_expiry_date()->get_value(), $license->get_key() );
 
 		if ( $screen->is_plugin_screen() ) {
-
 			// Inline message on plugin page
-			$notice = new Message\Plugin( ACP()->get_basename() );
-			$notice->set_message( $this->get_message() )
-			       ->register();
-
-		} else if ( $screen->is_admin_screen( 'settings' ) ) {
-
+			$notice = new Message\Plugin( $message, $this->plugin_basename );
+		} else if ( $screen->is_admin_screen() ) {
 			// Permanent displayed on settings page
-			$this->register_notice( new Message\Notice() );
+			$notice = new Message\Notice( $message );
+		} else if ( $screen->is_list_screen() && $this->get_dismiss_option()->is_expired() ) {
+			// Dismissible on list table
+			$notice = new Message\Notice\Dismissible( $message, $this->get_ajax_handler() );
+		} else {
+			$notice = false;
+		}
 
-		} else if ( $screen->is_admin_screen( 'columns' ) && $this->get_dismiss_option()->is_expired() ) {
-
-			// Dismissable on columns page
-			$this->register_notice( new Message\Notice\Dismissible( $this->get_ajax_handler() ) );
+		if ( $notice instanceof Message ) {
+			$notice
+				->set_type( Message::WARNING )
+				->register();
 		}
 	}
 
 	/**
-	 * @param Message\Notice $notice
-	 */
-	private function register_notice( Message\Notice $notice ) {
-		$notice->set_type( $notice::WARNING )
-		       ->set_message( $this->get_message() )
-		       ->register();
-	}
-
-	/**
+	 * @param DateTime $expiration_date
+	 * @param Key      $license_key
+	 *
 	 * @return string
 	 */
-	private function get_message() {
-		$expired_on = date_i18n( get_option( 'date_format' ), $this->license->get_expiry_date() );
-		$my_account_link = ac_helper()->html->link( ac_get_site_utm_url( 'my-account', 'renewal' ), __( 'My Account Page', 'codepress-admin-columns' ) );
+	private function get_message( DateTime $expiration_date, Key $license_key ) {
+		$expired_on = ac_format_date( get_option( 'date_format' ), $expiration_date->getTimestamp() );
+
+		$link = add_query_arg(
+			[
+				'subscription_key' => $license_key->get_value(),
+				'site_url'         => $this->site_url->get_url(),
+			],
+			ac_get_site_utm_url( 'my-account/subscriptions', 'renewal' )
+		);
 
 		return sprintf(
 			__( 'Your Admin Columns Pro license has expired on %s. To receive updates, renew your license on the %s.', 'codepress-admin-columns' ),
-			$expired_on,
-			$my_account_link
+			'<strong>' . $expired_on . '</strong>',
+			sprintf( '<a href="%s">%s</a>', $link, __( 'My Account Page', 'codepress-admin-columns' ) )
 		);
 	}
 
@@ -99,15 +123,15 @@ class Expired
 	 */
 	protected function get_ajax_handler() {
 		$handler = new Ajax\Handler();
-		$handler->set_action( 'ac_notice_dismiss_expired' )
-		        ->set_callback( array( $this, 'ajax_dismiss_notice' ) );
+		$handler
+			->set_action( 'ac_notice_dismiss_expired' )
+			->set_callback( [ $this, 'ajax_dismiss_notice' ] );
 
 		return $handler;
 	}
 
 	/**
 	 * @return Storage\Timestamp
-	 * @throws \Exception
 	 */
 	protected function get_dismiss_option() {
 		return new Storage\Timestamp(
@@ -115,12 +139,9 @@ class Expired
 		);
 	}
 
-	/**
-	 * @throws \Exception
-	 */
 	public function ajax_dismiss_notice() {
 		$this->get_ajax_handler()->verify_request();
-		$this->get_dismiss_option()->save( time() + ( MONTH_IN_SECONDS * 4 ) );
+		$this->get_dismiss_option()->save( time() + MONTH_IN_SECONDS );
 	}
 
 }

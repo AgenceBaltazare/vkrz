@@ -32,7 +32,7 @@ class LinkCount extends AC\Column
 		$internal = count( $links[0] );
 		$external = count( $links[1] );
 
-		return sprintf( '%s / %s',
+		return sprintf( '%s | %s',
 			ac_helper()->html->tooltip( $internal, __( 'Internal Links', 'codepress-admin-columns' ) ),
 			ac_helper()->html->tooltip( $external, __( 'External Links', 'codepress-admin-columns' ) )
 		);
@@ -44,7 +44,7 @@ class LinkCount extends AC\Column
 	 * @return array|false
 	 */
 	public function get_raw_value( $id ) {
-		$internal_domains = apply_filters( 'ac/column/linkcount/domains', array( home_url() ) );
+		$internal_domains = apply_filters( 'ac/column/linkcount/domains', [ home_url() ] );
 
 		return ac_helper()->html->get_internal_external_links( get_post_field( 'post_content', $id ), $internal_domains );
 	}

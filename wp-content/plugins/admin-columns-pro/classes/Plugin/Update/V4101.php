@@ -47,7 +47,7 @@ class V4101 extends Update {
 		global $wpdb;
 
 		if ( ! $this->validate_key( $key ) ) {
-			return array();
+			return [];
 		}
 
 		$sql = $wpdb->prepare( "
@@ -60,7 +60,7 @@ class V4101 extends Update {
 		$results = $wpdb->get_results( $sql );
 
 		if ( ! $results ) {
-			return array();
+			return [];
 		}
 
 		return $results;
@@ -72,12 +72,12 @@ class V4101 extends Update {
 	private function migrate_site_and_user_specific_settings() {
 		global $wpdb;
 
-		$mapping = array(
+		$mapping = [
 			'ac_sortedby'             => 'sorted_by',
 			'cpac_layout_table'       => 'layout_table',
 			'cpac_layout_columns'     => 'layout_columns',
 			'cacie_editability_state' => 'editability_state',
-		);
+		];
 
 		foreach ( $mapping as $current => $new ) {
 			$sql_meta_key = $wpdb->esc_like( $current ) . '%' . $wpdb->esc_like( get_current_blog_id() );
@@ -104,9 +104,9 @@ class V4101 extends Update {
 	private function rename_user_specific_settings() {
 		global $wpdb;
 
-		$mapping = array(
+		$mapping = [
 			'acp_show_overflow_table' => 'show_overflow_table',
-		);
+		];
 
 		foreach ( $mapping as $current => $new ) {
 

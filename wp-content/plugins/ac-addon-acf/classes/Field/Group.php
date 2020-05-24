@@ -2,11 +2,11 @@
 
 namespace ACA\ACF\Field;
 
+use AC;
 use ACA\ACF\API;
 use ACA\ACF\Field;
 use ACA\ACF\Formattable;
 use ACA\ACF\Setting;
-use AC;
 
 class Group extends Field {
 
@@ -14,7 +14,7 @@ class Group extends Field {
 		$value = $this->get_raw_value( $id );
 		$field = $this->get_field();
 
-		if( ! $value ){
+		if ( ! $value ) {
 			return $this->column->get_empty_char();
 		}
 

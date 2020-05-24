@@ -2,10 +2,10 @@
 
 namespace ACA\ACF\Setting;
 
-use ACA\ACF\API;
-use ACA\ACF\Column;
 use AC;
 use AC\View;
+use ACA\ACF\API;
+use ACA\ACF\Column;
 
 /**
  * @property Column $column
@@ -41,7 +41,9 @@ class Subfield extends AC\Settings\Column {
 	public function get_sub_fields() {
 		$fields = array();
 
-		if ( $sub_fields = $this->column->get_field()->get( 'sub_fields' ) ) {
+		$sub_fields = $this->column->get_field()->get( 'sub_fields' );
+
+		if ( $sub_fields ) {
 			foreach ( $sub_fields as $sub_field ) {
 				if ( 'repeater' == $sub_field['type'] ) {
 					continue;

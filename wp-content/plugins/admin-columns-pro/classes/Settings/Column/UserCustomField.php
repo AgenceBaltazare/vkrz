@@ -2,6 +2,8 @@
 
 namespace ACP\Settings\Column;
 
+use AC\MetaType;
+
 class UserCustomField extends CustomField {
 
 	protected function get_post_type() {
@@ -9,7 +11,7 @@ class UserCustomField extends CustomField {
 	}
 
 	protected function get_meta_type() {
-		return 'user';
+		return MetaType::USER;
 	}
 
 }

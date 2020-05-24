@@ -12,7 +12,7 @@ class Status extends AC\Column {
 	}
 
 	public function get_value( $id ) {
-		$values = array();
+		$values = [];
 
 		$site = get_site( $id );
 
@@ -26,13 +26,13 @@ class Status extends AC\Column {
 	}
 
 	private function get_statuses() {
-		return array(
+		return [
 			'public'   => __( 'Public' ),
 			'archived' => __( 'Archived' ),
 			'spam'     => _x( 'Spam', 'site' ),
 			'deleted'  => __( 'Deleted' ),
 			'mature'   => __( 'Mature' ),
-		);
+		];
 	}
 
 }

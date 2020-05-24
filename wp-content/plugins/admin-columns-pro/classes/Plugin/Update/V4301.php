@@ -4,11 +4,12 @@ namespace ACP\Plugin\Update;
 
 use AC\Plugin\Update\V3201;
 use AC\Storage;
+use Exception;
 
 class V4301 extends V3201 {
 
 	/**
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function apply_update() {
 		$this->uppercase_class_files( ACP()->get_dir() . '/classes' );
@@ -20,7 +21,7 @@ class V4301 extends V3201 {
 	}
 
 	/**
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	private function update_notice_preference_renewal() {
 		$phase_key = 'cpac_hide_license_notice_phase';

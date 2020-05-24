@@ -11,16 +11,14 @@ class MetaDesc extends Editing\Model {
 	}
 
 	public function get_view_settings() {
-		return array(
+		return [
 			'type'        => 'textarea',
 			'placeholder' => __( 'Enter your SEO Meta Description', 'codepress-admin-columns' ),
-		);
+		];
 	}
 
 	public function save( $id, $value ) {
-		update_post_meta( $id, '_yoast_wpseo_metadesc', $value );
-
-		return $value;
+		return false !== update_post_meta( $id, '_yoast_wpseo_metadesc', $value );
 	}
 
 }

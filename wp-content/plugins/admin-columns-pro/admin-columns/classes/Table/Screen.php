@@ -3,13 +3,15 @@
 namespace AC\Table;
 
 use AC;
-use AC\Admin;
+use AC\Asset;
 use AC\Capabilities;
 use AC\Form;
 use AC\ListScreen;
+use AC\Registrable;
 use AC\Settings;
+use WP_Post;
 
-final class Screen {
+final class Screen implements Registrable {
 
 	/**
 	 * @var ListScreen $list_screen
@@ -24,72 +26,43 @@ final class Screen {
 	/**
 	 * @var Button[]
 	 */
-	private $buttons = array();
+	private $buttons = [];
 
 	/**
-	 * @var array $column_headings
+	 * @var Asset\Location\Absolute
 	 */
-	private $column_headings = array();
+	private $location;
 
-	/**
-	 * @param ListScreen $list_screen
-	 */
-	public function __construct( ListScreen $list_screen ) {
+	public function __construct( Asset\Location\Absolute $location, ListScreen $list_screen ) {
+		$this->location = $location;
 		$this->list_screen = $list_screen;
-
-		$this->init();
 	}
 
 	/**
 	 * Register hooks
 	 */
 	public function register() {
-		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
-		add_action( 'admin_footer', array( $this, 'admin_footer_scripts' ) );
-		add_action( 'admin_head', array( $this, 'admin_head_scripts' ) );
-		add_action( 'admin_head', array( $this, 'register_settings_button' ) );
-		add_filter( 'admin_body_class', array( $this, 'admin_class' ) );
-		add_filter( 'list_table_primary_column', array( $this, 'set_primary_column' ), 20 );
-		add_action( 'admin_footer', array( $this, 'render_actions' ) );
-		add_filter( 'screen_settings', array( $this, 'screen_options' ) );
-	}
+		$controller = new AC\ScreenController( $this->list_screen );
+		$controller->register();
 
-	/**
-	 */
-	public function init() {
-		// Init Values
-		$this->list_screen->set_manage_value_callback();
+		$render = new TableFormView( $this->list_screen->get_meta_type(), sprintf( '<input type="hidden" name="layout" value="%s">', $this->list_screen->get_layout_id() ) );
+		$render->register();
 
-		/**
-		 * Init Headings
-		 * @see get_column_headers() for filter location
-		 */
-		add_filter( "manage_" . $this->list_screen->get_screen_id() . "_columns", array( $this, 'add_headings' ), 200 );
-
-		/**
-		 * @since 3.0
-		 *
-		 * @param ListScreen
-		 */
-		do_action( 'ac/table/list_screen', $this->list_screen, $this );
-
-		/**
-		 * @since 3.2.5
-		 */
-		do_action( 'ac/table', $this );
+		add_action( 'admin_enqueue_scripts', [ $this, 'admin_scripts' ] );
+		add_action( 'admin_footer', [ $this, 'admin_footer_scripts' ] );
+		add_action( 'admin_head', [ $this, 'admin_head_scripts' ] );
+		add_action( 'admin_head', [ $this, 'register_settings_button' ] );
+		add_filter( 'admin_body_class', [ $this, 'admin_class' ] );
+		add_filter( 'list_table_primary_column', [ $this, 'set_primary_column' ], 20 );
+		add_action( 'admin_footer', [ $this, 'render_actions' ] );
+		add_filter( 'screen_settings', [ $this, 'screen_options' ] );
 	}
 
 	/**
 	 * @return Button[]
 	 */
 	public function get_buttons() {
-		$buttons = array();
-
-		foreach ( $this->buttons as $button ) {
-			$buttons = array_merge( $buttons, $button );
-		}
-
-		return $buttons;
+		return array_merge( [], ...$this->buttons );
 	}
 
 	/**
@@ -108,42 +81,40 @@ final class Screen {
 
 	/**
 	 * Set the primary columns for the Admin Columns columns. Used to place the actions bar.
-	 * @since 2.5.5
 	 *
 	 * @param $default
 	 *
 	 * @return int|null|string
+	 * @since 2.5.5
 	 */
 	public function set_primary_column( $default ) {
-		if ( $this->list_screen ) {
 
-			if ( ! $this->list_screen->get_column_by_name( $default ) ) {
-				$default = key( $this->list_screen->get_columns() );
-			}
+		if ( ! $this->list_screen->get_column_by_name( $default ) ) {
+			$default = key( $this->list_screen->get_columns() );
+		}
 
-			// If actions column is present, set it as primary
-			foreach ( $this->list_screen->get_columns() as $column ) {
-				if ( 'column-actions' == $column->get_type() ) {
-					$default = $column->get_name();
+		// If actions column is present, set it as primary
+		foreach ( $this->list_screen->get_columns() as $column ) {
+			if ( 'column-actions' === $column->get_type() ) {
+				$default = $column->get_name();
 
-					if ( $this->list_screen instanceof ListScreen\Media ) {
+				if ( $this->list_screen instanceof ListScreen\Media ) {
 
-						// Add download button to the actions column
-						add_filter( 'media_row_actions', array( $this, 'set_media_row_actions' ), 10, 2 );
-					}
+					// Add download button to the actions column
+					add_filter( 'media_row_actions', [ $this, 'set_media_row_actions' ], 10, 2 );
 				}
-			};
-
-			// Set inline edit data if the default column (title) is not present
-			if ( $this->list_screen instanceof ListScreen\Post && 'title' !== $default ) {
-				add_filter( 'page_row_actions', array( $this, 'set_inline_edit_data' ), 20, 2 );
-				add_filter( 'post_row_actions', array( $this, 'set_inline_edit_data' ), 20, 2 );
 			}
+		}
 
-			// Remove inline edit action if the default column (author) is not present
-			if ( $this->list_screen instanceof ListScreen\Comment && 'comment' !== $default ) {
-				add_filter( 'comment_row_actions', array( $this, 'remove_quick_edit_from_actions' ), 20, 2 );
-			}
+		// Set inline edit data if the default column (title) is not present
+		if ( $this->list_screen instanceof ListScreen\Post && 'title' !== $default ) {
+			add_filter( 'page_row_actions', [ $this, 'set_inline_edit_data' ], 20, 2 );
+			add_filter( 'post_row_actions', [ $this, 'set_inline_edit_data' ], 20, 2 );
+		}
+
+		// Remove inline edit action if the default column (author) is not present
+		if ( $this->list_screen instanceof ListScreen\Comment && 'comment' !== $default ) {
+			add_filter( 'comment_row_actions', [ $this, 'remove_quick_edit_from_actions' ], 20, 2 );
 		}
 
 		return $default;
@@ -152,16 +123,16 @@ final class Screen {
 	/**
 	 * Add a download link to the table screen
 	 *
-	 * @param array    $actions
-	 * @param \WP_Post $post
+	 * @param array   $actions
+	 * @param WP_Post $post
 	 *
 	 * @return array
 	 */
 	public function set_media_row_actions( $actions, $post ) {
-		$link_attributes = array(
+		$link_attributes = [
 			'download' => '',
 			'title'    => __( 'Download', 'codepress-admin-columns' ),
-		);
+		];
 		$actions['download'] = ac_helper()->html->link( wp_get_attachment_url( $post->ID ), __( 'Download', 'codepress-admin-columns' ), $link_attributes );
 
 		return $actions;
@@ -170,8 +141,8 @@ final class Screen {
 	/**
 	 * Sets the inline data when the title columns is not present on a AC\ListScreen_Post screen
 	 *
-	 * @param array    $actions
-	 * @param \WP_Post $post
+	 * @param array   $actions
+	 * @param WP_Post $post
 	 *
 	 * @return array
 	 */
@@ -196,14 +167,14 @@ final class Screen {
 
 	/**
 	 * Adds a body class which is used to set individual column widths
-	 * @since 1.4.0
 	 *
 	 * @param string $classes body classes
 	 *
 	 * @return string
+	 * @since 1.4.0
 	 */
 	public function admin_class( $classes ) {
-		$classes .= " ac-" . $this->list_screen->get_key();
+		$classes .= ' ac-' . $this->list_screen->get_key();
 
 		return apply_filters( 'ac/table/body_class', $classes, $this );
 	}
@@ -212,7 +183,17 @@ final class Screen {
 	 * @since 3.2.5
 	 */
 	public function register_settings_button() {
-		$edit_link = $this->get_edit_link();
+		if ( ! current_user_can( Capabilities::MANAGE ) ) {
+			return;
+		}
+
+		$edit_button = new Settings\Option\EditButton();
+
+		if ( ! $edit_button->is_enabled() ) {
+			return;
+		}
+
+		$edit_link = $this->list_screen->get_edit_link();
 
 		if ( ! $edit_link ) {
 			return;
@@ -232,21 +213,27 @@ final class Screen {
 	public function admin_scripts() {
 
 		// Tooltip
-		wp_register_script( 'jquery-qtip2', AC()->get_url() . "external/qtip2/jquery.qtip.min.js", array( 'jquery' ), AC()->get_version() );
-		wp_enqueue_style( 'jquery-qtip2', AC()->get_url() . "external/qtip2/jquery.qtip.min.css", array(), AC()->get_version() );
+		$script = new Asset\Script( 'jquery-qtip2', $this->location->with_suffix( 'external/qtip2/jquery.qtip.min.js' ), [ 'jquery' ] );
+		$script->register();
 
-		// Main
-		wp_enqueue_script( 'ac-table', AC()->get_url() . "assets/js/table.js", array( 'jquery', 'jquery-qtip2' ), AC()->get_version() );
-		wp_enqueue_style( 'ac-table', AC()->get_url() . "assets/css/table.css", array(), AC()->get_version() );
+		$style = new Asset\Style( 'jquery-qtip2', $this->location->with_suffix( 'external/qtip2/jquery.qtip.min.css' ) );
+		$style->enqueue();
 
-		wp_localize_script( 'ac-table', 'AC', array(
+		$script = new Asset\Script( 'ac-table', $this->location->with_suffix( 'assets/js/table.js' ), [ 'jquery', 'jquery-qtip2' ] );
+		$script->enqueue();
+
+		$style = new Asset\Style( 'ac-table', $this->location->with_suffix( 'assets/css/table.css' ) );
+		$style->enqueue();
+
+		wp_localize_script( 'ac-table', 'AC', [
 				'list_screen'  => $this->list_screen->get_key(),
 				'layout'       => $this->list_screen->get_layout_id(),
 				'column_types' => $this->get_column_types_mapping(),
 				'ajax_nonce'   => wp_create_nonce( 'ac-ajax' ),
 				'table_id'     => $this->list_screen->get_table_attr_id(),
 				'screen'       => $this->get_current_screen_id(),
-			)
+				'meta_type'    => $this->list_screen->get_meta_type(),
+			]
 		);
 
 		/**
@@ -277,7 +264,7 @@ final class Screen {
 	 * @return array
 	 */
 	private function get_column_types_mapping() {
-		$types = array();
+		$types = [];
 		foreach ( $this->list_screen->get_columns() as $column ) {
 			$types[ $column->get_name() ] = $column->get_type();
 		}
@@ -286,8 +273,8 @@ final class Screen {
 	}
 
 	/**
-	 * @deprecated 3.2.5
 	 * @return ListScreen
+	 * @deprecated 3.2.5
 	 */
 	public function get_current_list_screen() {
 		_deprecated_function( __METHOD__, '3.2.5', 'AC\Table\Screen::get_list_screen()' );
@@ -317,9 +304,11 @@ final class Screen {
 			/* @var Settings\Column\Width $setting */
 			$setting = $column->get_setting( 'width' );
 
-			if ( $width = $setting->get_display_width() ) {
-				$css_column_width .= ".ac-" . esc_attr( $this->list_screen->get_key() ) . " .wrap table th.column-" . esc_attr( $column->get_name() ) . " { width: " . $width . " !important; }";
-				$css_column_width .= "body.acp-overflow-table.ac-" . esc_attr( $this->list_screen->get_key() ) . " .wrap th.column-" . esc_attr( $column->get_name() ) . " { min-width: " . $width . " !important; }";
+			$width = $setting->get_display_width();
+
+			if ( $width ) {
+				$css_column_width .= '.ac-' . esc_attr( $this->list_screen->get_key() ) . ' .wrap table th.column-' . esc_attr( $column->get_name() ) . ' { width: ' . $width . ' !important; }';
+				$css_column_width .= 'body.acp-overflow-table.ac-' . esc_attr( $this->list_screen->get_key() ) . ' .wrap th.column-' . esc_attr( $column->get_name() ) . ' { min-width: ' . $width . ' !important; }';
 			}
 		}
 
@@ -339,24 +328,6 @@ final class Screen {
 	}
 
 	/**
-	 * @return string|false
-	 */
-	private function get_edit_link() {
-		if ( ! current_user_can( Capabilities::MANAGE ) ) {
-			return false;
-		}
-
-		/* @var Admin\Page\Settings $settings */
-		$settings = AC()->admin()->get_page( 'settings' );
-
-		if ( ! $settings->show_edit_button() ) {
-			return false;
-		}
-
-		return $this->list_screen->get_edit_link();
-	}
-
-	/**
 	 * Admin header scripts
 	 * @since 3.1.4
 	 */
@@ -365,10 +336,11 @@ final class Screen {
 
 		/**
 		 * Add header scripts that only apply to column screens.
-		 * @since 3.1.4
 		 *
 		 * @param ListScreen
 		 * @param self
+		 *
+		 * @since 3.1.4
 		 */
 		do_action( 'ac/admin_head', $this->list_screen, $this );
 	}
@@ -380,58 +352,13 @@ final class Screen {
 	public function admin_footer_scripts() {
 		/**
 		 * Add footer scripts that only apply to column screens.
-		 * @since 2.3.5
 		 *
 		 * @param ListScreen
 		 * @param self
+		 *
+		 * @since 2.3.5
 		 */
 		do_action( 'ac/admin_footer', $this->list_screen, $this );
-	}
-
-	/**
-	 * @since 2.0
-	 *
-	 * @param $columns
-	 *
-	 * @return array
-	 */
-	public function add_headings( $columns ) {
-		if ( empty( $columns ) ) {
-			return $columns;
-		}
-
-		// Store default headings
-		if ( ! AC()->is_doing_ajax() ) {
-			$this->list_screen->save_default_headings( $columns );
-		}
-
-		// Run once
-		if ( $this->column_headings ) {
-			return $this->column_headings;
-		}
-
-		// Nothing stored. Show default columns on screen.
-		if ( ! $this->list_screen->get_settings() ) {
-			return $columns;
-		}
-
-		// Add mandatory checkbox
-		if ( isset( $columns['cb'] ) ) {
-			$this->column_headings['cb'] = $columns['cb'];
-		}
-
-		// On first visit 'columns' can be empty, because they were put in memory before 'default headings'
-		// were stored. We force get_columns() to be re-populated.
-		if ( ! $this->list_screen->get_columns() ) {
-			$this->list_screen->reset();
-			$this->list_screen->reset_original_columns();
-		}
-
-		foreach ( $this->list_screen->get_columns() as $column ) {
-			$this->column_headings[ $column->get_name() ] = $column->get_custom_label();
-		}
-
-		return apply_filters( 'ac/headings', $this->column_headings, $this->list_screen );
 	}
 
 	/**
@@ -484,7 +411,7 @@ final class Screen {
 		?>
 
 		<fieldset class='acp-screen-option-prefs'>
-			<legend>Admin Columns</legend>
+			<legend><?= __( 'Admin Columns', 'codepress-admin-columns' ); ?></legend>
 			<?php
 
 			foreach ( $this->screen_options as $option ) {

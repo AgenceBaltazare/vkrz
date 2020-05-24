@@ -2,8 +2,8 @@
 
 namespace ACA\ACF\Field;
 
-use ACA\ACF\Field;
 use ACA\ACF\Editing;
+use ACA\ACF\Field;
 use ACA\ACF\Filtering;
 use ACA\ACF\Formattable;
 use ACP;
@@ -21,7 +21,9 @@ class File extends Field
 		$value = false;
 
 		if ( $attachment_id ) {
-			if ( $attachment = get_attached_file( $attachment_id ) ) {
+			$attachment = get_attached_file( $attachment_id );
+
+			if ( $attachment ) {
 				$value = ac_helper()->html->link( wp_get_attachment_url( $attachment_id ), esc_html( basename( $attachment ) ), array( 'target' => '_blank' ) );
 			} else {
 				$value = '<em>' . __( 'Invalid attachment', 'codepress-admin-columns' ) . '</em>';
@@ -41,6 +43,10 @@ class File extends Field
 
 	public function filtering() {
 		return new Filtering\File( $this->column );
+	}
+
+	public function search() {
+		return new ACP\Search\Comparison\Meta\Media( $this->get_meta_key(), $this->get_meta_type() );
 	}
 
 }

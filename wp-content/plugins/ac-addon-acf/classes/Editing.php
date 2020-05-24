@@ -3,6 +3,7 @@
 namespace ACA\ACF;
 
 use ACP;
+use WP_Error;
 
 /**
  * @property Column $column
@@ -26,11 +27,13 @@ class Editing extends ACP\Editing\Model {
 		}
 
 		$min = $field->get( 'min' );
+
 		if ( is_numeric( $min ) ) {
 			$data['range_min'] = $min;
 		}
 
 		$max = $field->get( 'max' );
+
 		if ( is_numeric( $max ) ) {
 			$data['range_max'] = $max;
 		}
@@ -38,15 +41,19 @@ class Editing extends ACP\Editing\Model {
 		if ( $step = $field->get( 'step' ) ) {
 			$data['range_step'] = $step;
 		}
+
 		if ( $required = $field->get( 'required' ) ) {
 			$data['required'] = $required;
 		}
+
 		if ( $maxlength = $field->get( 'maxlength' ) ) {
 			$data['maxlength'] = $maxlength;
 		}
-		if ( 'uploadedTo' == $field->get( 'library' ) ) {
+
+		if ( 'uploadedTo' === $field->get( 'library' ) ) {
 			$editable['attachment']['library']['uploaded_to_post'] = true;
 		}
+
 		if ( $field->get( 'multiple' ) ) {
 			$data['multiple'] = true;
 		}
@@ -57,7 +64,7 @@ class Editing extends ACP\Editing\Model {
 	/**
 	 * @param mixed $value
 	 *
-	 * @return true|\WP_Error
+	 * @return true|WP_Error
 	 */
 	protected function validate( $value ) {
 		$field = $this->column->get_acf_field();
@@ -67,7 +74,7 @@ class Editing extends ACP\Editing\Model {
 			$error = acf()->validation->get_error( $input );
 
 			if ( $error ) {
-				return new \WP_Error( 'not-validated', $error['message'] );
+				return new WP_Error( 'not-validated', $error['message'] );
 			}
 		}
 
@@ -79,11 +86,13 @@ class Editing extends ACP\Editing\Model {
 			$valid = $this->validate( $value );
 
 			if ( is_wp_error( $valid ) ) {
-				return $valid;
+				$this->set_error( $valid );
+
+				return false;
 			}
 		}
 
-		return update_field( $this->column->get_field_hash(), $value, $this->column->get_formatted_id( $id ) );
+		return false !== update_field( $this->column->get_field_hash(), $value, $this->column->get_formatted_id( $id ) );
 	}
 
 	public function get_edit_value( $id ) {
@@ -95,36 +104,6 @@ class Editing extends ACP\Editing\Model {
 		}
 
 		return $value;
-	}
-
-	/**
-	 * @param array $ajax_query ACF ajax query [ 'results' => array() ]
-	 *
-	 * @return array
-	 */
-	protected function format_choices( $ajax_query ) {
-		$options = array();
-
-		if ( empty( $ajax_query['results'] ) ) {
-			return array();
-		}
-
-		foreach ( $ajax_query['results'] as $choice ) {
-			if ( ! isset( $choice['id'] ) ) {
-				$options[ $choice['text'] ] = array(
-					'label'   => $choice['text'],
-					'options' => array(),
-				);
-
-				foreach ( $choice['children'] as $subchoice ) {
-					$options[ $choice['text'] ]['options'][ $subchoice['id'] ] = htmlspecialchars_decode( $subchoice['text'] );
-				}
-			} else {
-				$options[ $choice['id'] ] = htmlspecialchars_decode( $choice['text'] );
-			}
-		}
-
-		return $options;
 	}
 
 }

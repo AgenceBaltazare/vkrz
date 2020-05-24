@@ -2,9 +2,9 @@
 
 namespace ACA\ACF\Setting;
 
-use ACA\ACF\Column;
 use AC;
 use AC\View;
+use ACA\ACF\Column;
 
 /**
  * @property Column $column

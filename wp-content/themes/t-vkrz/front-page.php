@@ -1,5 +1,3 @@
-<?php get_header(); ?>
-
-
-
-<?php get_footer(); ?>
+<?php
+wp_redirect(get_permalink(5));
+?>

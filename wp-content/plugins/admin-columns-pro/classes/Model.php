@@ -40,7 +40,7 @@ abstract class Model {
 	public function set_data_type( $data_type ) {
 		$data_type = strtolower( $data_type );
 
-		if ( in_array( $data_type, array( 'string', 'numeric', 'date' ) ) ) {
+		if ( in_array( $data_type, [ 'string', 'numeric', 'date' ] ) ) {
 			$this->data_type = $data_type;
 		}
 

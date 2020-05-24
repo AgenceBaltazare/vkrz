@@ -2,38 +2,48 @@
 
 namespace ACP\Check;
 
-use AC;
 use AC\Message\Notice;
-use AC\Plugin;
+use AC\Registrable;
+use AC\Screen;
+use ACP\Admin\Feedback;
 
 class Beta
-	implements AC\Registrable {
+	implements Registrable {
 
 	/**
-	 * @var Plugin
+	 * @var Feedback
 	 */
-	protected $plugin;
+	private $feedback;
 
-	/**
-	 * @var Notice
-	 */
-	protected $notice;
-
-	public function __construct( Plugin $plugin ) {
-		$this->plugin = $plugin;
+	public function __construct( Feedback $feedback ) {
+		$this->feedback = $feedback;
 	}
 
 	public function register() {
-		if ( ! $this->plugin->is_beta() ) {
+		add_action( 'ac/screen', [ $this, 'register_notice' ] );
+	}
+
+	public function render() {
+		echo $this->feedback->render();
+	}
+
+	public function scripts() {
+		foreach ( $this->feedback->get_assets()->all() as $asset ) {
+			$asset->enqueue();
+		}
+	}
+
+	public function register_notice( Screen $screen ) {
+		if ( ! $screen->is_list_screen() && ! $screen->is_admin_screen() ) {
 			return;
 		}
 
-		$notice = new Notice();
+		$notice = new Notice( $this->get_message() );
 		$notice->set_type( Notice::WARNING )
-		       ->set_message( $this->get_message() )
-		       ->enqueue_scripts();
+		       ->register();
 
-		add_action( 'ac/settings/after_menu', array( $notice, 'display' ) );
+		add_action( 'admin_footer', [ $this, 'render' ] );
+		add_action( 'admin_enqueue_scripts', [ $this, 'scripts' ] );
 	}
 
 	/**
@@ -47,10 +57,12 @@ class Beta
 	 * @return string
 	 */
 	protected function get_message() {
-		return implode( ' ', array(
-			sprintf( __( 'You are using a beta version of %s.', 'codepress-admin-columns' ), $this->plugin->get_name() ),
-			sprintf( __( 'If you have feedback or have found a bug, please report it on <a href="%s" target="_blank">our forum</a>.', 'codepress-admin-columns' ), $this->get_feedback_link() ),
-		) );
+		return implode( ' ', [
+			sprintf( __( 'You are using a beta version of %s.', 'codepress-admin-columns' ), 'Admin Columns Pro' ),
+			sprintf( __( 'If you have feedback or have found a bug, please %s.', 'codepress-admin-columns' ),
+				sprintf( '<a href="#" data-ac-modal="feedback">%s</a>', __( 'leave us a message', 'codepress-admin-columns' ) )
+			),
+		] );
 	}
 
 }

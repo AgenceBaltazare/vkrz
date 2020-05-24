@@ -5,7 +5,9 @@ namespace ACP\ListScreen;
 use AC;
 use ACP\Column;
 use ACP\Editing;
+use ReflectionException;
 use WP_MS_Sites_List_Table;
+use WP_Site;
 
 class MSSite extends AC\ListScreenWP
 	implements Editing\ListScreen {
@@ -23,11 +25,10 @@ class MSSite extends AC\ListScreenWP
 	}
 
 	/**
-	 * @since 4.0
-	 *
 	 * @param int $site_id
 	 *
-	 * @return \WP_Site Site object
+	 * @return WP_Site Site object
+	 * @since 4.0
 	 */
 	protected function get_object( $site_id ) {
 		return get_site( $site_id );
@@ -39,11 +40,11 @@ class MSSite extends AC\ListScreenWP
 	public function get_list_table() {
 		require_once( ABSPATH . 'wp-admin/includes/class-wp-ms-sites-list-table.php' );
 
-		return new WP_MS_Sites_List_Table( array( 'screen' => $this->get_screen_id() ) );
+		return new WP_MS_Sites_List_Table( [ 'screen' => $this->get_screen_id() ] );
 	}
 
 	public function set_manage_value_callback() {
-		add_action( "manage_sites_custom_column", array( $this, 'manage_value' ), 100, 2 );
+		add_action( "manage_sites_custom_column", [ $this, 'manage_value' ], 100, 2 );
 	}
 
 	/**
@@ -53,11 +54,18 @@ class MSSite extends AC\ListScreenWP
 		return network_admin_url( 'sites.php' );
 	}
 
+	public function get_edit_link() {
+		return add_query_arg( [
+			'list_screen' => $this->get_key(),
+			'layout_id'   => $this->get_layout_id(),
+		], ac_get_admin_network_url( 'columns' ) );
+	}
+
 	/**
-	 * @since 2.4.7
-	 *
 	 * @param $column_name
 	 * @param $blog_id
+	 *
+	 * @since 2.4.7
 	 */
 	public function manage_value( $column_name, $blog_id ) {
 		echo $this->get_display_value_by_column_name( $column_name, $blog_id, null );
@@ -69,15 +77,15 @@ class MSSite extends AC\ListScreenWP
 
 	/**
 	 * Register custom columns
-	 * @throws \ReflectionException
+	 * @throws ReflectionException
 	 */
 	protected function register_column_types() {
 		$this->register_column_type( new Column\Actions() );
 		$this->register_column_types_from_dir( 'ACP\Column\NetworkSite' );
 	}
 
-	public function editing( $model ) {
-		return new Editing\Strategy\Site( $model );
+	public function editing() {
+		return new Editing\Strategy\Site();
 	}
 
 }

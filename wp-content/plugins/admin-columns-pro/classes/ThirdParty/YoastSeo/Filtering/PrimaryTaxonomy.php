@@ -10,7 +10,7 @@ class PrimaryTaxonomy extends Filtering\Model\Meta {
 	 * @return array
 	 */
 	public function get_filtering_data() {
-		$options = array();
+		$options = [];
 
 		foreach ( $this->get_meta_values() as $term_id ) {
 			$term = get_term_by( 'id', $term_id, $this->column->get_taxonomy() );
@@ -22,10 +22,10 @@ class PrimaryTaxonomy extends Filtering\Model\Meta {
 			$options[ $term_id ] = $term->name;
 		}
 
-		return array(
+		return [
 			'empty_option' => true,
 			'options'      => $options,
-		);
+		];
 	}
 
 }

@@ -22,11 +22,11 @@ class LatestComment extends AC\Column
 	}
 
 	public function get_raw_value( $post_id ) {
-		$comments = get_comments( array(
+		$comments = get_comments( [
 			'number'  => 1,
 			'fields'  => 'ids',
 			'post_id' => $post_id,
-		) );
+		] );
 
 		if ( empty( $comments ) ) {
 			return false;

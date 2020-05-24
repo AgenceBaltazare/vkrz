@@ -13,25 +13,25 @@ class FeaturedImageDisplay extends AC\Settings\Column
 	private $featured_image_display;
 
 	protected function define_options() {
-		return array(
+		return [
 			'featured_image_display' => 'true_false',
-		);
+		];
 	}
 
 	public function create_view() {
 		$select = $this->create_element( 'select' );
 
 		$select->set_attribute( 'data-refresh', 'column' )
-		       ->set_options( array(
+		       ->set_options( [
 			       'count'      => _x( 'Count', 'Number/count of items' ),
 			       'title'      => __( 'Title' ),
 			       'true_false' => __( 'True / False', 'codepress-admin-columns' ),
-		       ) );
+		       ] );
 
-		$view = new AC\View( array(
+		$view = new AC\View( [
 			'label'   => __( 'Field Type', 'codepress-admin-columns' ),
 			'setting' => $select,
-		) );
+		] );
 
 		return $view;
 	}
@@ -54,28 +54,24 @@ class FeaturedImageDisplay extends AC\Settings\Column
 	public function format( $value, $original_value ) {
 		switch ( $this->get_featured_image_display() ) {
 			case 'count':
-				$value = count( $value );
+				return count( $value );
 
-				break;
 			case 'title':
-				$values = array();
+				$values = [];
 
 				foreach ( $value as $id ) {
 					$post = get_post( $id );
 					$values[] = ac_helper()->html->link( get_edit_post_link( $post ), $post->post_title );
 				}
 
-				$value = implode( ac_helper()->html->divider(), $values );
+				return implode( ac_helper()->html->divider(), $values );
 
-				break;
 			case 'true_false':
-				$value = count( $value ) ? ac_helper()->icon->yes() : false;
+				return count( $value ) ? ac_helper()->icon->yes() : false;
 
-				break;
-
+			default :
+				return $value;
 		}
-
-		return $value;
 	}
 
 }

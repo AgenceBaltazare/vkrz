@@ -7,8 +7,8 @@ use AC;
 class LastUpdated extends AC\Column {
 
 	public function __construct() {
-		$this->set_type( 'lastupdated' );
-		$this->set_original( true );
+		$this->set_type( 'lastupdated' )
+		     ->set_original( true );
 	}
 
 	public function register_settings() {

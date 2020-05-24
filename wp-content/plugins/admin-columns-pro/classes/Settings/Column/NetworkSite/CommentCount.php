@@ -36,7 +36,7 @@ class CommentCount extends Column\CommentCount {
 	 * @return string
 	 */
 	private function get_comments_link( $blog_id, $comment_status = null ) {
-		return add_query_arg( array( 'comment_status' => $comment_status ), get_admin_url( $blog_id, 'edit-comments.php' ) );
+		return add_query_arg( [ 'comment_status' => $comment_status ], get_admin_url( $blog_id, 'edit-comments.php' ) );
 	}
 
 	/**
@@ -45,8 +45,8 @@ class CommentCount extends Column\CommentCount {
 	 * @param int    $blog_id
 	 * @param object $comments
 	 *
-	 * @see WP_List_Table::comments_bubble()
 	 * @return string
+	 * @see WP_List_Table::comments_bubble()
 	 */
 	protected function comments_bubble( $blog_id, $comments ) {
 		$approved_comments = $comments->approved;

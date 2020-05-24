@@ -3,23 +3,36 @@
 namespace ACP\Table;
 
 use AC;
+use AC\Asset;
 use AC\ListScreen;
+use AC\ListScreenRepository\Storage;
+use AC\Type\ListScreenId;
 
 /**
  * @since 4.0
  */
-class HorizontalScrolling {
+class HorizontalScrolling implements AC\Registrable {
+
+	/** @var Storage */
+	private $storage;
+
+	/** @var Asset\Location\Absolute */
+	private $location;
+
+	public function __construct( Storage $storage, Asset\Location\Absolute $location ) {
+		$this->storage = $storage;
+		$this->location = $location;
+	}
 
 	public function register() {
-		add_action( 'ac/table', array( $this, 'register_screen_option' ) );
-		add_action( 'ac/table_scripts', array( $this, 'scripts' ) );
-		add_filter( 'ac/table/body_class', array( $this, 'add_horizontal_scrollable_class' ), 10, 2 );
-
-		add_action( 'wp_ajax_acp_update_table_option_overflow', array( $this, 'update_table_option_overflow' ) );
+		add_action( 'ac/table', [ $this, 'register_screen_option' ] );
+		add_action( 'ac/table_scripts', [ $this, 'scripts' ] );
+		add_filter( 'ac/table/body_class', [ $this, 'add_horizontal_scrollable_class' ], 10, 2 );
+		add_action( 'wp_ajax_acp_update_table_option_overflow', [ $this, 'update_table_option_overflow' ] );
 	}
 
 	/**
-	 * @return AC\Preferences
+	 * @return AC\Preferences\Site
 	 */
 	public function preferences() {
 		return new AC\Preferences\Site( 'show_overflow_table' );
@@ -31,7 +44,7 @@ class HorizontalScrolling {
 	public function update_table_option_overflow() {
 		check_ajax_referer( 'ac-ajax' );
 
-		$list_screen = AC\ListScreenFactory::create( filter_input( INPUT_POST, 'list_screen' ), filter_input( INPUT_POST, 'layout' ) );
+		$list_screen = $this->storage->find( new ListScreenId( filter_input( INPUT_POST, 'layout' ) ) );
 
 		if ( ! $list_screen ) {
 			wp_die();
@@ -47,8 +60,15 @@ class HorizontalScrolling {
 	 *
 	 * @return bool
 	 */
-	private function is_overflow_table( $list_screen ) {
-		return (bool) $this->preferences()->get( $list_screen->get_storage_key() );
+	private function is_overflow_table( ListScreen $list_screen ) {
+		$preference = $this->preferences()->get( $list_screen->get_storage_key() );
+
+		// Load the list screen preference when user has not yet set their own preference.
+		if ( null === $preference ) {
+			$preference = 'on' === $list_screen->get_preference( 'horizontal_scrolling' );
+		}
+
+		return (bool) apply_filters( 'acp/horizontal_scrolling/enable', $preference, $list_screen );
 	}
 
 	/**
@@ -64,19 +84,39 @@ class HorizontalScrolling {
 	public function register_screen_option( $table ) {
 		$check_box = new AC\Form\Element\Checkbox( 'acp_overflow_list_screen_table' );
 
+		$label = __( 'Horizontal Scrolling', 'codepress-admin-columns' );
+
+		if ( $this->is_windows_browser() ) {
+			$label = sprintf( '%s (%s)', $label, __( 'hold down SHIFT key', 'codepress-admin-columns' ) );
+		}
+
 		$check_box->set_id( 'acp_overflow_list_screen_table' )
-		          ->set_options( array( 'yes' => __( 'Horizontal Scrolling', 'codepress-admin-columns' ) ) )
+		          ->set_options( [
+			          'yes' => $label,
+		          ] )
 		          ->set_value( $this->is_overflow_table( $table->get_list_screen() ) ? 'yes' : '' );
 
 		$table->register_screen_option( $check_box );
+	}
+
+	private function is_windows_browser() {
+		if ( ! isset( $_SERVER['HTTP_USER_AGENT'] ) ) {
+			return false;
+		}
+
+		return (bool) preg_match( '(win|microsoft)', strtolower( $_SERVER['HTTP_USER_AGENT'] ) );
 	}
 
 	/**
 	 * Load scripts
 	 */
 	public function scripts() {
-		wp_enqueue_style( 'ac-table-screen-option', ACP()->get_url() . 'assets/css/table-screen-options.css', array(), ACP()->get_version() );
-		wp_enqueue_script( 'ac-table-screen-option', ACP()->get_url() . 'assets/js/table-screen-options.js', array(), ACP()->get_version() );
+		$script = new Asset\Script( 'ac-horizontal-scrolling', $this->location->with_suffix( 'assets/core/js/horizontal-scrolling.js' ) );
+		$script->enqueue();
+
+		wp_localize_script( 'ac-horizontal-scrolling', 'ACP_Horizontal_Scrolling', [
+			'indicator_enabled' => apply_filters( 'acp/horizontal_scrolling/show_indicator', true ),
+		] );
 	}
 
 	/**

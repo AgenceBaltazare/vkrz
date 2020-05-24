@@ -19,7 +19,7 @@ abstract class Preferences {
 	 * Preferences of this user
 	 * @var array
 	 */
-	protected $data = array();
+	protected $data = [];
 
 	/**
 	 * Retrieves data from DB
@@ -72,11 +72,11 @@ abstract class Preferences {
 	/**
 	 * @param string $key
 	 *
-	 * @return mixed
+	 * @return mixed|null
 	 */
 	public function get( $key ) {
 		if ( ! isset( $this->data[ $key ] ) ) {
-			return false;
+			return null;
 		}
 
 		return $this->data[ $key ];
@@ -106,7 +106,7 @@ abstract class Preferences {
 	 * @return bool
 	 */
 	public function delete( $key, $save = true ) {
-		if ( ! $this->get( $key ) ) {
+		if ( null === $this->get( $key ) ) {
 			return false;
 		}
 

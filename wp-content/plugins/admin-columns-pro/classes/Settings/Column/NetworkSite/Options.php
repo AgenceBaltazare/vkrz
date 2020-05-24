@@ -34,7 +34,7 @@ class Options extends Column\Meta {
 	public function get_meta_keys() {
 		global $wpdb;
 
-		$keys = array();
+		$keys = [];
 
 		foreach ( get_sites() as $site ) {
 			$table = $wpdb->get_blog_prefix( $site->blog_id ) . 'options';

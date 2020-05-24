@@ -13,9 +13,10 @@ class Label extends Settings\Column {
 	private $label;
 
 	protected function define_options() {
-		return array(
-			'label' => $this->column->get_label(),
-		);
+		return [
+			'label'      => $this->column->get_label(),
+			'label_type' => 'text',
+		];
 	}
 
 	public function create_view() {
@@ -24,11 +25,13 @@ class Label extends Settings\Column {
 			->create_element( 'text' )
 			->set_attribute( 'placeholder', $this->column->get_label() );
 
-		$view = new View( array(
+		$view = new View( [
 			'label'   => __( 'Label', 'codepress-admin-columns' ),
 			'tooltip' => __( 'This is the name which will appear as the column header.', 'codepress-admin-columns' ),
 			'setting' => $setting,
-		) );
+		] );
+
+		$view->set_template( 'settings/setting-label' );
 
 		return $view;
 	}
@@ -42,13 +45,7 @@ class Label extends Settings\Column {
 	 * @return string
 	 */
 	private function convert_site_url( $label, $action = 'encode' ) {
-		$input = array( site_url(), '[cpac_site_url]' );
-
-		if ( 'decode' == $action ) {
-			$input = array_reverse( $input );
-		}
-
-		return stripslashes( str_replace( $input[0], $input[1], trim( $label ) ) );
+		return ac_convert_site_url( $label, $action );
 	}
 
 	/**

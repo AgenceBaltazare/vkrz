@@ -2,8 +2,8 @@
 
 namespace ACA\ACF\Field;
 
-use ACA\ACF\Field;
 use ACA\ACF\Editing;
+use ACA\ACF\Field;
 use ACA\ACF\Filtering;
 use ACA\ACF\Formattable;
 
@@ -40,11 +40,12 @@ class Link extends Field
 		return ac_helper()->html->link( $link['url'], $label );
 	}
 
+	public function filtering() {
+		return new Filtering\Link( $this->column );
+	}
+
 	public function editing() {
 		return new Editing\Link( $this->column );
 	}
 
-	public function filtering() {
-		return new Filtering\Link( $this->column );
-	}
 }

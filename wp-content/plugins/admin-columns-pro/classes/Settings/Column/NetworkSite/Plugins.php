@@ -11,20 +11,20 @@ class Plugins extends Settings\Column
 	private $plugin_display;
 
 	protected function define_options() {
-		return array( 'plugin_display' );
+		return [ 'plugin_display' ];
 	}
 
 	public function create_view() {
 
-		$options = array(
+		$options = [
 			'count' => __( 'Count', 'codepress-admin-columns' ),
 			'list'  => __( 'List', 'codepress-admin-columns' ),
-		);
+		];
 
-		$view = new View( array(
+		$view = new View( [
 			'label'   => __( 'Display Format', 'codepress-admin-columns' ),
 			'setting' => $this->create_element( 'select' )->set_options( $options ),
-		) );
+		] );
 
 		return $view;
 	}

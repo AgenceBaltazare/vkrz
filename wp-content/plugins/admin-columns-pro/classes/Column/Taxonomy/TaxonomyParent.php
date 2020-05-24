@@ -14,14 +14,30 @@ class TaxonomyParent extends AC\Column
 		$this->set_label( __( 'Parent', 'codepress-admin-columns' ) );
 	}
 
+	public function get_value( $id ) {
+		$term_parent_id = $this->get_raw_value( $id );
+
+		if ( ! $term_parent_id ) {
+			return $this->get_empty_char();
+		}
+
+		$parent = get_term( $term_parent_id, $this->get_taxonomy() );
+
+		if ( ! $parent || is_wp_error( $parent ) ) {
+			return $this->get_empty_char();
+		}
+
+		return $this->get_formatted_value( $parent, $parent );
+	}
+
 	public function get_raw_value( $term_id ) {
 		$term = get_term( $term_id, $this->get_taxonomy() );
 
-		if ( ! $term || is_wp_error( $term ) ) {
+		if ( ! $term || is_wp_error( $term ) || 0 === $term->parent ) {
 			return false;
 		}
 
-		return absint( $term->parent );
+		return (int) $term->parent;
 	}
 
 	public function editing() {
@@ -38,6 +54,7 @@ class TaxonomyParent extends AC\Column
 
 	public function register_settings() {
 		$this->add_setting( new AC\Settings\Column\Term( $this ) );
+		$this->add_setting( new AC\Settings\Column\TermLink( $this ) );
 	}
 
 }

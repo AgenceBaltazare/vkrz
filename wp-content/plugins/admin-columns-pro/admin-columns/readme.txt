@@ -2,10 +2,10 @@
 Contributors: codepress, tschutter, davidmosterd, engelen, dungengronovius
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ZDZRSYLQ4Z76J
 Tags: plugins, wordpress, admin, column, columns, custom columns, custom fields, image, dashboard, sortable, filters, posts, media, users, pages, posttypes, manage columns, wp-admin
-Requires at least: 4.5
-Tested up to: 4.9.8
-Requires PHP: 5.3
-Stable tag: 3.2.6
+Requires at least: 4.7
+Tested up to: 5.4
+Requires PHP: 5.6.20
+Stable tag: 4.1.6
 
 Customise columns on the administration screens for post(types), pages, media, comments, links and users with an easy to use drag-and-drop interface.
 
@@ -206,12 +206,156 @@ You can find a list of the available actions and filters (and examples on how to
 2. Posts Screen with the customized sortable columns.
 3. Settings page for the Media Library columns.
 4. Media Screen with the customized sortable columns.
-5. Settings page for Users columns.
+5. Settings page for Users columns../ch
 6. Users Screen with the customized sortable columns.
 7. Settings page showing the different displaying types for custom field.
 8. Posts Screen with custom fields.
 
 == Changelog ==
+
+= 4.1.6 =
+Release Date: April 22nd, 2020
+
+* [Improved] You can now display the column ID and Type by opening the screen options in top right
+* [Improved] The meta column will now display a zero (when available) instead of a dash
+* [Improved] Improved right-to-left (RTL) support
+* [Improved] First time loading columns is faster
+
+= 4.1.5 =
+Release Date: April 17th, 2020
+
+* [Fixed] Model auto close issue
+
+= 4.1.4 =
+Release Date: April 15th, 2020
+
+* [Added] Javascript Improvements
+
+= 4.1.3 =
+Release Date: April 10th, 2020
+
+* [Added] New media column: Download. For easy downloading of files.
+
+= 4.1.2 =
+Release Date: April 8th, 2020
+
+* [Fixed] PHP5.6 error when loading the settings page from the menu
+
+= 4.1.1 =
+Release Date: April 7th, 2020
+
+* [Added] Meta Box integration support
+
+= 4.1.0 =
+Release Date: March 30th, 2020
+
+* [Improved] The column type selector now uses select2
+* [Improved] The current `list screen ID` has been added to the URL when filtering a list table, making it easier to bookmark
+* [Improved] Our buttons on the list table now have the same style and colors as the default WordPress buttons.
+* [Added] Tooltips added to each feature of the custom field column
+* [Updated] The `Admin` class has been refactored
+* [Updated] The `ListScreenRepository` class has been refactored
+
+= 4.0.3 =
+Release Date: March 11th, 2020
+
+* [Updated] Saving column settings for the first time could result in extra database records.
+
+= 4.0.2 =
+Release Date: February 26th, 2020
+
+* [Updated] Fallback for wp_timezone when running WordPress < 5.3
+* [Updated] Languages for core version updated
+
+= 4.0.1 =
+Release Date: February 18th, 2020
+
+* [Fixed] Fatal error in Date helper that occurs in PHP 5.6
+* [Improved] Re-added the hook `ac/column/custom_field/use_text_input` to use a text field for the custom field column setting
+
+= 4.0.0 =
+Release Date: February 3rd, 2020
+
+* [Improved] Use wp_date for column value formatters instead of date_i18n
+* [Improved] Set link type for Taxonomy Columns
+* [Improved] It is not necessary anymore to load the overview page once in order to recognize the default columns
+
+= 3.4.8 =
+Release Date: November 19th, 2019
+
+* [Updated] The minimum version required to run Admin Columns is now PHP 5.6.20
+* [Improved] Adapted new WordPress interface styling
+* [Improved] Updated Select2 to 4.0.12 to prevent non closing drop-downs
+
+= 3.4.7 =
+Release Date: August 26th, 2019
+
+* [Added] Option to limit the amount of taxonomies that is shown in the column with show more button.
+* [Improved] Changed WordPress Date Format link
+* [Improved] Show more feature that is used in several columns
+* [Improved] Update Select2 version that fixes multiple selections bug
+
+= 3.4.6 =
+Release Date: August 21st, 2019
+
+* [Improved] Search the list of available custom fields in the drop down with Select2
+* [Improved] Change the label for Custom Field column Excerpt to Text
+* [Improved] Don't open column settings when column refreshes
+* [Improved] Setting for adding a link to related comments display
+
+= 3.4.5 =
+Release Date: July 16th, 2019
+
+* [Fixed] Javascript errors on admin pages for specific columns
+* [Fixed] Removed flickering for Pro modal
+* [Fixed] Styling issue on the WordPress Customize page
+* [Fixed] Re-init tooltips when a column is reloaded or added
+
+= 3.4.4 =
+Release Date: May 20th, 2019
+
+* [Fixed] Transient class fixed. Unchanged data did not update the timestamp resulting in invalidating the transient constantly
+
+= 3.4.3 =
+Release Date: May 10th, 2019
+
+* [Fixed] IE11 bug when adding new columns
+
+= 3.4.2 =
+Release Date: March 26th, 2019
+
+* [Improved] Prevent possible warning in User Registered column
+* [Improved] Give feedback on settings page when something went wrong
+* [Improved] Setting for link Media item to download or view
+
+= 3.4.1 =
+Release Date: February 18th, 2019
+
+* [Improved] Minor improvements in banners, missing links, etc
+
+= 3.4 =
+Release Date: January 23rd, 2019
+
+* [Fixed] Width setting Javascript errors
+* [Fixed] Show icons for Action column works again
+* [Improved] Show icon labels in the Screen Options menu when necessary
+
+= 3.3.1 =
+Release Date: November 7th, 2018
+
+* [Improved] Better external image support for Custom Field column
+
+= 3.3 =
+Release Date: October 31st, 2018
+
+* [Improved] Extra display for Path column to show the local path of a file
+
+= 3.2.7 =
+Release Date: September 25th, 2018
+
+* [Fixed] jQuery noConflict fixes for column settings page
+* [Improved] Post title column is now always available
+* [Improved] Disable autoloading for ACP options
 
 = 3.2.6 =
 Release Date: August 21th, 2018

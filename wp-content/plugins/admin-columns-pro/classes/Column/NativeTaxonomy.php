@@ -6,10 +6,11 @@ use AC;
 use ACP\Editing;
 use ACP\Export;
 use ACP\Filtering;
+use ACP\Search;
 use ACP\Sorting;
 
 class NativeTaxonomy extends AC\Column
-	implements Filtering\Filterable, Editing\Editable, Sorting\Sortable, Export\Exportable {
+	implements Filtering\Filterable, Editing\Editable, Sorting\Sortable, Export\Exportable, Search\Searchable {
 
 	public function __construct() {
 		$this->set_original( true );
@@ -33,6 +34,10 @@ class NativeTaxonomy extends AC\Column
 
 	public function export() {
 		return new Export\Model\Post\Taxonomy( $this );
+	}
+
+	public function search() {
+		return new Search\Comparison\Post\Taxonomy( $this->get_taxonomy() );
 	}
 
 }

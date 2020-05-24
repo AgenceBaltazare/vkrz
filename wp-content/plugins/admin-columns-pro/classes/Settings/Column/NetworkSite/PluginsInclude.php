@@ -14,19 +14,19 @@ class PluginsInclude extends Settings\Column
 	private $include_network;
 
 	protected function define_options() {
-		return array( 'include_network' );
+		return [ 'include_network' ];
 	}
 
 	public function create_view() {
 
-		$options = array(
+		$options = [
 			'include_network' => __( 'Include network plugins', 'codepress-admin-columns' ),
-		);
+		];
 
-		$view = new View( array(
+		$view = new View( [
 			'label'   => __( 'Plugins' ),
 			'setting' => $this->create_element( 'checkbox' )->set_options( $options ),
-		) );
+		] );
 
 		return $view;
 	}

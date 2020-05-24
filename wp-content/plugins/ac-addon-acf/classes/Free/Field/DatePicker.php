@@ -2,8 +2,8 @@
 
 namespace ACA\ACF\Free\Field;
 
-use ACA\ACF\Free;
 use ACA\ACF\Field;
+use ACA\ACF\Free;
 use ACP;
 
 class DatePicker extends Field\DatePicker {

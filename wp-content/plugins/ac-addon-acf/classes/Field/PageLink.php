@@ -8,7 +8,7 @@ use ACP;
 class PageLink extends PostObject {
 
 	public function editing() {
-		return new Editing\PageLink( $this->column );
+		return new Editing\PostObject( $this->column );
 	}
 
 	public function sorting() {

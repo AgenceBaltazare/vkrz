@@ -18,10 +18,11 @@ class Plugin extends Message {
 	protected $icon;
 
 	/**
+	 * @param string $message
 	 * @param string $plugin_basename
 	 */
-	public function __construct( $plugin_basename ) {
-		parent::__construct();
+	public function __construct( $message, $plugin_basename ) {
+		parent::__construct( $message );
 
 		$this->plugin_basename = $plugin_basename;
 		$this->type = self::WARNING;
@@ -29,10 +30,10 @@ class Plugin extends Message {
 	}
 
 	public function register() {
-		add_action( 'after_plugin_row_' . $this->plugin_basename, array( $this, 'display' ), 11 );
+		add_action( 'after_plugin_row_' . $this->plugin_basename, [ $this, 'display' ], 11 );
 	}
 
-	public function create_view() {
+	public function render() {
 		switch ( $this->type ) {
 			case self::SUCCESS :
 				$class = 'updated-message notice-success';
@@ -46,52 +47,45 @@ class Plugin extends Message {
 				$class = $this->type;
 		}
 
-		$status = is_plugin_active( $this->plugin_basename )
-			? 'active'
-			: '';
+		$is_plugin_active = is_multisite() && is_network_admin()
+			? is_plugin_active_for_network( $this->plugin_basename )
+			: is_plugin_active( $this->plugin_basename );
 
-		$data = array(
+		$status = $is_plugin_active
+			? 'active'
+			: 'inactive';
+
+		$data = [
 			'plugin_basename' => $this->plugin_basename,
 			'icon'            => $this->icon,
 			'class'           => $class,
 			'message'         => $this->message,
 			'type'            => $this->type,
 			'status'          => $status,
-		);
+		];
 
 		$view = new View( $data );
 		$view->set_template( 'message/plugin' );
 
-		return $view;
+		return $view->render();
 	}
 
 	/**
 	 * @return string
 	 */
 	protected function get_icon_by_current_type() {
-		$mapping = array(
+		$mapping = [
 			self::SUCCESS => '\f147',
 			self::WARNING => '\f348',
 			self::ERROR   => '\f534',
 			self::INFO    => '\f463',
-		);
+		];
 
 		if ( ! isset( $mapping[ $this->type ] ) ) {
 			return false;
 		}
 
 		return $mapping[ $this->type ];
-	}
-
-	/**
-	 * @param string $type
-	 *
-	 * @return $this
-	 */
-	public function set_type( $type ) {
-		$this->type = $type;
-
-		return $this;
 	}
 
 	/**

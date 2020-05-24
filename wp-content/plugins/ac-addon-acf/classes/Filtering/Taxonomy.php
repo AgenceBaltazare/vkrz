@@ -3,6 +3,7 @@
 namespace ACA\ACF\Filtering;
 
 use ACA\ACF\Filtering;
+use ACP\Filtering\Helper;
 
 class Taxonomy extends Filtering {
 
@@ -14,10 +15,11 @@ class Taxonomy extends Filtering {
 			$values = $this->get_meta_values();
 		}
 
-		return array(
+		// todo: ajax?
+		return [
 			'empty_option' => true,
-			'options'      => acp_filtering()->helper()->get_term_names( $values, $this->get_taxonomy() ),
-		);
+			'options'      => ( new Helper() )->get_term_names( $values, $this->get_taxonomy() ),
+		];
 	}
 
 	private function get_taxonomy() {

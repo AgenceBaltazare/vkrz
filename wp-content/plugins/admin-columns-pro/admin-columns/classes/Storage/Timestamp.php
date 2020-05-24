@@ -3,16 +3,18 @@
 namespace AC\Storage;
 
 use AC\Expirable;
-use Exception;
+use LogicException;
 
-final class Timestamp
-	implements KeyValuePair, Expirable {
+final class Timestamp implements KeyValuePair, Expirable {
 
 	/**
 	 * @var KeyValuePair
 	 */
-	protected $storage;
+	private $storage;
 
+	/**
+	 * @param KeyValuePair $storage
+	 */
 	public function __construct( KeyValuePair $storage ) {
 		$this->storage = $storage;
 	}
@@ -23,17 +25,11 @@ final class Timestamp
 	 * @return bool
 	 */
 	public function is_expired( $time = null ) {
-		$value = $this->get();
-
-		if ( false === $value ) {
-			return true;
-		}
-
 		if ( null === $time ) {
 			$time = time();
 		}
 
-		return $time > $value;
+		return $time > (int) $this->get();
 	}
 
 	/**
@@ -42,11 +38,16 @@ final class Timestamp
 	 * @return bool
 	 */
 	public function validate( $value ) {
-		return preg_match( '/^[1-9][0-9]*$/', $value );
+		return preg_match( '/^[1-9]\d*$/', $value );
 	}
 
-	public function get() {
-		return $this->storage->get();
+	/**
+	 * @param array $args
+	 *
+	 * @return mixed
+	 */
+	public function get( array $args = [] ) {
+		return $this->storage->get( $args );
 	}
 
 	public function delete() {
@@ -57,11 +58,11 @@ final class Timestamp
 	 * @param int $value
 	 *
 	 * @return bool
-	 * @throws Exception
+	 * @throws LogicException
 	 */
 	public function save( $value ) {
 		if ( ! $this->validate( $value ) ) {
-			throw new Exception( 'Value needs to be a positive integer' );
+			throw new LogicException( 'Value needs to be a positive integer.' );
 		}
 
 		return $this->storage->save( $value );

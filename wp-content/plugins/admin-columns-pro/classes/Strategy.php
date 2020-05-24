@@ -16,6 +16,6 @@ abstract class Strategy {
 	/**
 	 * @return Model
 	 */
-	public abstract function get_model();
+	abstract public function get_model();
 
 }

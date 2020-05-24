@@ -5,6 +5,7 @@ namespace AC\Message\Notice;
 use AC\Ajax\Handler;
 use AC\Ajax\NullHandler;
 use AC\Message\Notice;
+use AC\View;
 
 class Dismissible extends Notice {
 
@@ -13,23 +14,32 @@ class Dismissible extends Notice {
 	 */
 	protected $handler;
 
-	public function __construct( Handler $handler = null ) {
-		parent::__construct();
-
+	/**
+	 * @param string       $message
+	 * @param Handler|null $handler
+	 */
+	public function __construct( $message, Handler $handler = null ) {
 		if ( null === $handler ) {
 			$handler = new NullHandler();
 		}
 
 		$this->handler = $handler;
+
+		parent::__construct( $message );
 	}
 
-	public function create_view() {
-		$view = parent::create_view();
+	public function render() {
+		$data = [
+			'message'              => $this->message,
+			'type'                 => $this->type,
+			'id'                   => $this->id,
+			'dismissible_callback' => $this->handler->get_params(),
+		];
 
-		$view->set_template( 'message/notice/dismissible' )
-		     ->set( 'dismissible_callback', $this->handler->get_params() );
+		$view = new View( $data );
+		$view->set_template( 'message/notice/dismissible' );
 
-		return $view;
+		return $view->render();
 	}
 
 	/**
@@ -38,7 +48,7 @@ class Dismissible extends Notice {
 	public function enqueue_scripts() {
 		parent::enqueue_scripts();
 
-		wp_enqueue_script( 'ac-message', AC()->get_url() . 'assets/js/notice-dismissible.js', array(), AC()->get_version(), true );
+		wp_enqueue_script( 'ac-message', AC()->get_url() . 'assets/js/notice-dismissible.js', [], AC()->get_version(), true );
 	}
 
 }

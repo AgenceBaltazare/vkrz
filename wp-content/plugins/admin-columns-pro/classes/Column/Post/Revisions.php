@@ -32,7 +32,7 @@ class Revisions extends AC\Column
 	}
 
 	public function get_ajax_value( $post_id ) {
-		$result = array();
+		$result = [];
 
 		foreach ( wp_get_post_revisions( $post_id ) as $revision ) {
 			$result[] = '<div class="acp-row-revision">' . wp_post_revision_title_expanded( $revision ) . '</div>';

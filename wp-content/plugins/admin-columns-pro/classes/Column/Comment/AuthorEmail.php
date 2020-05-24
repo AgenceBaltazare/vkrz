@@ -5,13 +5,14 @@ namespace ACP\Column\Comment;
 use AC;
 use ACP\Editing;
 use ACP\Filtering;
+use ACP\Search;
 use ACP\Sorting;
 
 /**
  * @since 4.0
  */
 class AuthorEmail extends AC\Column\Comment\AuthorEmail
-	implements Editing\Editable, Filtering\Filterable, Sorting\Sortable {
+	implements Editing\Editable, Filtering\Filterable, Sorting\Sortable, Search\Searchable {
 
 	public function sorting() {
 		$model = new Sorting\Model( $this );
@@ -26,6 +27,10 @@ class AuthorEmail extends AC\Column\Comment\AuthorEmail
 
 	public function filtering() {
 		return new Filtering\Model\Comment\AuthorEmail( $this );
+	}
+
+	public function search() {
+		return new Search\Comparison\Comment\Email();
 	}
 
 }

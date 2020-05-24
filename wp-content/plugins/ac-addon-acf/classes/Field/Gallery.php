@@ -2,10 +2,11 @@
 
 namespace ACA\ACF\Field;
 
-use ACA\ACF\Field;
-use ACA\ACF\Editing;
-use ACA\ACF\Sorting;
 use AC;
+use ACA\ACF\Editing;
+use ACA\ACF\Field;
+use ACA\ACF\Sorting;
+use ACP;
 
 class Gallery extends Field {
 
@@ -15,6 +16,14 @@ class Gallery extends Field {
 
 	public function sorting() {
 		return new Sorting\Gallery( $this->column );
+	}
+
+	public function search() {
+		return new ACP\Search\Comparison\Meta\EmptyNotEmpty( $this->get_meta_key(), $this->get_meta_type() );
+	}
+
+	public function export() {
+		return new ACP\Export\Model\CustomField\Image( $this->column );
 	}
 
 	public function get_dependent_settings() {

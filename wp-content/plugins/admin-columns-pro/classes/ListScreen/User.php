@@ -16,8 +16,8 @@ class User extends AC\ListScreen\User
 		return new Sorting\Strategy\User( $model );
 	}
 
-	public function editing( $model ) {
-		return new Editing\Strategy\User( $model );
+	public function editing() {
+		return new Editing\Strategy\User();
 	}
 
 	public function filtering( $model ) {

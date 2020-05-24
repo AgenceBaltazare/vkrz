@@ -2,21 +2,24 @@
 
 namespace AC\ThirdParty;
 
+use AC\ListScreenTypes;
+use AC\Registrable;
+
 /**
  * WPML compatibility
  */
-class WPML {
+class WPML implements Registrable {
 
-	function __construct() {
+	function register() {
 
 		// display correct flags on the overview screens
-		add_action( 'ac/table/list_screen', array( $this, 'replace_flags' ) );
+		add_action( 'ac/table/list_screen', [ $this, 'replace_flags' ] );
 
 		// enable the translation of the column labels
-		add_action( 'wp_loaded', array( $this, 'register_column_labels' ), 99 );
+		add_action( 'wp_loaded', [ $this, 'register_column_labels' ], 99 );
 
 		// enable the WPML translation of column headings
-		add_filter( 'ac/headings/label', array( $this, 'register_translated_label' ), 100 );
+		add_filter( 'ac/headings/label', [ $this, 'register_translated_label' ], 100 );
 	}
 
 	public function replace_flags() {
@@ -46,7 +49,7 @@ class WPML {
 			return;
 		}
 
-		foreach ( AC()->get_list_screens() as $list_screen ) {
+		foreach ( ListScreenTypes::instance()->get_list_screens() as $list_screen ) {
 			foreach ( $list_screen->get_settings() as $column_name => $options ) {
 				do_action( 'wpml_register_single_string', 'Admin Columns', $options['label'], $options['label'] );
 			}

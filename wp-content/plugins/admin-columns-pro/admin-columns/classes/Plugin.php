@@ -3,8 +3,12 @@
 namespace AC;
 
 use ReflectionObject;
+use WP_Roles;
 
 abstract class Plugin extends Addon {
+
+	/** @var array */
+	private $data;
 
 	/**
 	 * Check if plugin is network activated
@@ -16,18 +20,22 @@ abstract class Plugin extends Addon {
 
 	/**
 	 * Calls get_plugin_data() for this plugin
-	 * @see get_plugin_data()
 	 * @return array
+	 * @see get_plugin_data()
 	 */
 	protected function get_data() {
 		require_once ABSPATH . 'wp-admin/includes/plugin.php';
 
-		return get_plugin_data( $this->get_file(), false, false );
+		if ( null === $this->data ) {
+			$this->data = get_plugin_data( $this->get_file(), false, false );
+		}
+
+		return $this->data;
 	}
 
 	/**
-	 * @since 3.2
 	 * @return false|string
+	 * @since 3.2
 	 */
 	public function get_name() {
 		return $this->get_header( 'Name' );
@@ -58,11 +66,24 @@ abstract class Plugin extends Addon {
 			return;
 		}
 
-		$updater = new Plugin\Updater( $this );
+		global $wp_roles;
 
-		if ( ! $updater->check_update_conditions() ) {
-			return;
+		if ( ! $wp_roles ) {
+			$wp_roles = new WP_Roles();
 		}
+
+		do_action( 'ac/capabilities/init', $wp_roles );
+
+		$installer = new Plugin\Installer();
+		$installer->install();
+
+		if ( current_user_can( Capabilities::MANAGE ) && ! is_network_admin() ) {
+			$this->run_updater();
+		}
+	}
+
+	private function run_updater() {
+		$updater = new Plugin\Updater\Site( $this );
 
 		$reflection = new ReflectionObject( $this );
 		$classes = Autoloader::instance()->get_class_names_from_dir( $reflection->getNamespaceName() . '\Plugin\Update' );
@@ -76,8 +97,8 @@ abstract class Plugin extends Addon {
 
 	/**
 	 * Check if a plugin is in beta
-	 * @since 3.2
 	 * @return bool
+	 * @since 3.2
 	 */
 	public function is_beta() {
 		return false !== strpos( $this->get_version(), 'beta' );
@@ -123,7 +144,7 @@ abstract class Plugin extends Addon {
 			$version = $this->get_version();
 		}
 
-		return update_option( $this->get_version_key(), $version );
+		return update_option( $this->get_version_key(), $version, false );
 	}
 
 	/**
@@ -132,14 +153,12 @@ abstract class Plugin extends Addon {
 	public function is_new_install() {
 		global $wpdb;
 
-		$sql = "
-			SELECT option_id
-			FROM {$wpdb->options}
-			WHERE option_name LIKE 'cpac_options_%'
-			LIMIT 1
-		";
+		if ( $this->get_stored_version() ) {
+			return false;
+		}
 
-		$results = $wpdb->get_results( $sql );
+		// Before version 3.0.5
+		$results = $wpdb->get_results( "SELECT option_id FROM {$wpdb->options} WHERE option_name LIKE 'cpac_options_%' LIMIT 1" );
 
 		return empty( $results );
 	}
@@ -149,8 +168,8 @@ abstract class Plugin extends Addon {
 	 *
 	 * @param $key
 	 *
-	 * @deprecated
 	 * @return false|string
+	 * @deprecated
 	 */
 	protected function get_plugin_header( $key ) {
 		_deprecated_function( __METHOD__, '3.2', 'AC\Plugin::get_header()' );
@@ -160,9 +179,9 @@ abstract class Plugin extends Addon {
 
 	/**
 	 * Calls get_plugin_data() for this plugin
-	 * @deprecated
-	 * @see get_plugin_data()
 	 * @return array
+	 * @see get_plugin_data()
+	 * @deprecated
 	 */
 	protected function get_plugin_data() {
 		_deprecated_function( __METHOD__, '3.2', 'AC\Plugin::get_data()' );

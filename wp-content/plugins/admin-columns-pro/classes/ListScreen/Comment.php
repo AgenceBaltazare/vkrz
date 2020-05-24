@@ -8,6 +8,7 @@ use ACP\Editing;
 use ACP\Export;
 use ACP\Filtering;
 use ACP\Sorting;
+use ReflectionException;
 
 class Comment extends AC\ListScreen\Comment
 	implements Sorting\ListScreen, Editing\ListScreen, Filtering\ListScreen, Export\ListScreen {
@@ -16,8 +17,8 @@ class Comment extends AC\ListScreen\Comment
 		return new Sorting\Strategy\Comment( $model );
 	}
 
-	public function editing( $model ) {
-		return new Editing\Strategy\Comment( $model );
+	public function editing() {
+		return new Editing\Strategy\Comment();
 	}
 
 	public function filtering( $model ) {
@@ -29,7 +30,7 @@ class Comment extends AC\ListScreen\Comment
 	}
 
 	/**
-	 * @throws \ReflectionException
+	 * @throws ReflectionException
 	 */
 	protected function register_column_types() {
 		parent::register_column_types();

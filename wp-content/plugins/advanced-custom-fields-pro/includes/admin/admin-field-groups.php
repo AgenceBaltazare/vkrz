@@ -334,21 +334,22 @@ class acf_admin_field_groups {
 			// loop
 			foreach( $sync_keys as $key ) {
 				
-				// append fields
-				if( acf_have_local_fields($key) ) {
-					
-					$this->sync[ $key ]['fields'] = acf_get_local_fields( $key );
-					
+				// Bail early if not found.
+				if( !isset($this->sync[ $key ]) ) {
+					continue;
 				}
 				
+				// Get field group.
+				$field_group = $this->sync[ $key ];
 				
-				// import
-				$field_group = acf_import_field_group( $this->sync[ $key ] );
+				// Append fields.
+				$field_group['fields'] = acf_get_fields( $field_group );
+				
+				// Import field group.
+				$field_group = acf_import_field_group( $field_group );
 									
-				
-				// append
+				// Append imported ID.
 				$new_ids[] = $field_group['ID'];
-				
 			}
 			
 			

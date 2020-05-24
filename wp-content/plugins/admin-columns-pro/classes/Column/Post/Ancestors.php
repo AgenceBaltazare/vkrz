@@ -7,12 +7,13 @@ use AC\Column;
 use AC\Settings;
 use ACP\Export;
 use ACP\Filtering;
+use ACP\Search;
 
 /**
  * @since 4.2
  */
 class Ancestors extends Column
-	implements Export\Exportable, Filtering\Filterable {
+	implements Export\Exportable, Filtering\Filterable, Search\Searchable {
 
 	public function __construct() {
 		$this->set_type( 'column-ancestors' );
@@ -78,4 +79,7 @@ class Ancestors extends Column
 		return new Export\Model\Post\Ancestors( $this );
 	}
 
+	public function search() {
+		return new Search\Comparison\Post\Ancestors();
+	}
 }

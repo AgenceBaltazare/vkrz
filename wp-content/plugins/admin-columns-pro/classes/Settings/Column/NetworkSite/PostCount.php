@@ -4,6 +4,7 @@ namespace ACP\Settings\Column\NetworkSite;
 
 use AC\Settings;
 use AC\View;
+use WP_Site;
 
 class PostCount extends Settings\Column
 	implements Settings\FormatValue {
@@ -13,7 +14,7 @@ class PostCount extends Settings\Column
 	private $post_status;
 
 	protected function define_options() {
-		return array( 'post_type', 'post_status' );
+		return [ 'post_type', 'post_status' ];
 	}
 
 	public function create_view() {
@@ -28,11 +29,11 @@ class PostCount extends Settings\Column
 			->create_element( 'select', 'post_type' )
 			->set_options( $options );
 
-		$view_post_type = new View( array(
+		$view_post_type = new View( [
 			'label'   => __( 'Post Type', 'codepress-admin-columns' ),
 			'setting' => $setting,
 			'for'     => $setting->get_id(),
-		) );
+		] );
 
 		$setting = $this
 			->create_element( 'select', 'post_status' )
@@ -43,16 +44,16 @@ class PostCount extends Settings\Column
 			$setting->set_description( sprintf( __( 'Does not include %s', 'codepress-admin-columns' ), ac_helper()->string->enumeration_list( $excluded ) ) );
 		}
 
-		$view_post_status = new View( array(
+		$view_post_status = new View( [
 			'label'   => __( 'Post Status', 'codepress-admin-columns' ),
 			'setting' => $setting,
 			'for'     => $setting->get_id(),
-		) );
+		] );
 
-		$view = new View( array(
+		$view = new View( [
 			'label'    => __( 'Display Options', 'codepress-admin-columns' ),
-			'sections' => array( $view_post_type, $view_post_status ),
-		) );
+			'sections' => [ $view_post_type, $view_post_status ],
+		] );
 
 		return $view;
 	}
@@ -83,10 +84,10 @@ class PostCount extends Settings\Column
 	private function get_distinct_db_values( $field ) {
 		global $wpdb;
 
-		$queries = array();
+		$queries = [];
 		foreach ( get_sites() as $site ) {
 
-			/* @var \WP_Site $site */
+			/* @var WP_Site $site */
 			$table = $wpdb->get_blog_prefix( $site->id ) . 'posts';
 
 			$field = '`' . sanitize_key( $field ) . '`';
@@ -106,14 +107,14 @@ class PostCount extends Settings\Column
 		$post_types = $this->get_cached_distinct_db_values( 'post_type' );
 
 		if ( ! $post_types ) {
-			return array();
+			return [];
 		}
 
 		natcasesort( $post_types );
 
 		$post_types = array_combine( $post_types, $post_types );
 
-		return array( '' => __( 'All post types', 'codepress-admin-columns' ) ) + $post_types;
+		return [ '' => __( 'All post types', 'codepress-admin-columns' ) ] + $post_types;
 	}
 
 	/**
@@ -123,7 +124,7 @@ class PostCount extends Settings\Column
 		$post_statuses = $this->get_cached_distinct_db_values( 'post_status' );
 
 		if ( ! $post_statuses ) {
-			return array();
+			return [];
 		}
 
 		$post_statuses[] = 'trash';
@@ -132,7 +133,7 @@ class PostCount extends Settings\Column
 		$post_statuses = array_combine( $post_statuses, $post_statuses );
 
 		// Exclude 'auto-draft', 'inherit'
-		$excluded = (array) get_post_stati( array( 'show_in_admin_status_list' => false ) );
+		$excluded = (array) get_post_stati( [ 'show_in_admin_status_list' => false ] );
 
 		foreach ( $excluded as $k => $status ) {
 			if ( isset( $post_statuses[ $status ] ) ) {
@@ -142,10 +143,10 @@ class PostCount extends Settings\Column
 
 		natcasesort( $post_statuses );
 
-		$options = array(
+		$options = [
 			           ''              => __( 'Any post status', 'codepress-admin-columns' ),
 			           'without_trash' => __( 'Any post status without Trash', 'codepress-admin-columns' ),
-		           ) + $post_statuses;
+		           ] + $post_statuses;
 
 		return $options;
 	}
@@ -158,13 +159,13 @@ class PostCount extends Settings\Column
 	private function get_exludeded_post_statuses() {
 
 		if ( 'without_trash' === $this->get_post_status() ) {
-			return (array) get_post_stati( array( 'show_in_admin_all_list' => false ) );
+			return (array) get_post_stati( [ 'show_in_admin_all_list' => false ] );
 		}
 		if ( ! $this->get_post_status() ) {
-			return (array) get_post_stati( array( 'show_in_admin_status_list' => false ) );
+			return (array) get_post_stati( [ 'show_in_admin_status_list' => false ] );
 		}
 
-		return array();
+		return [];
 	}
 
 	/**
@@ -212,7 +213,7 @@ class PostCount extends Settings\Column
 
 		$sql = "SELECT count(*) FROM {$table}";
 
-		$conditional = array();
+		$conditional = [];
 
 		// Exclude internal post status, like 'auto-draft' and 'inherit' or 'trash'
 		if ( $excluded = $this->get_exludeded_post_statuses() ) {
@@ -233,19 +234,19 @@ class PostCount extends Settings\Column
 			$sql .= " WHERE " . implode( " AND ", $conditional );
 		}
 
-		$value = $wpdb->get_var( $sql );
+		$new_value = $wpdb->get_var( $sql );
 
 		if ( $this->get_post_type() ) {
-			$url = add_query_arg( array( 'post_type' => $this->get_post_type() ), get_admin_url( $blog_id, 'edit.php' ) );
+			$url = add_query_arg( [ 'post_type' => $this->get_post_type() ], get_admin_url( $blog_id, 'edit.php' ) );
 
 			if ( $post_status ) {
-				$url = add_query_arg( array( 'post_status' => $post_status ), $url );
+				$url = add_query_arg( [ 'post_status' => $post_status ], $url );
 			}
 
-			$value = ac_helper()->html->link( $url, $value );
+			$new_value = ac_helper()->html->link( $url, $new_value );
 		}
 
-		return $value;
+		return $new_value;
 	}
 
 }

@@ -2,6 +2,8 @@
 
 namespace AC;
 
+use WP_List_Table;
+
 /**
  * @since 3.1
  */
@@ -9,7 +11,7 @@ abstract class ListScreenWP extends ListScreen {
 
 	/**
 	 * Class name of the \WP_List_Table instance
-	 * @see        \WP_List_Table
+	 * @see        WP_List_Table
 	 * @since      3.0
 	 * @deprecated 3.1
 	 * @var string
@@ -17,7 +19,7 @@ abstract class ListScreenWP extends ListScreen {
 	private $list_table_class;
 
 	/**
-	 * @return \WP_List_Table
+	 * @return WP_List_Table
 	 */
 	abstract protected function get_list_table();
 
@@ -41,47 +43,17 @@ abstract class ListScreenWP extends ListScreen {
 	}
 
 	/**
-	 * @return array [ $column_name => [ $orderby, $order ], ... ]
-	 */
-	public function get_default_sortable_columns() {
-		$sortables = array();
-
-		foreach ( $this->get_list_table()->get_sortable_columns() as $name => $data ) {
-			$data = (array) $data;
-
-			if ( ! isset( $data[1] ) ) {
-				$data[1] = false;
-			}
-
-			$sortables[ $name ] = $data;
-		}
-
-		return $sortables;
-	}
-
-	/**
-	 * Get default column headers
-	 * @see \WP_List_Table::get_columns()
-	 * @return array
-	 */
-	public function get_default_column_headers() {
-		$this->get_list_table();
-
-		return (array) get_column_headers( $this->get_screen_id() );
-	}
-
-	/**
-	 * @deprecated 3.1
 	 * @return string
+	 * @deprecated 3.1
 	 */
 	public function get_list_table_class() {
 		return $this->list_table_class;
 	}
 
 	/**
-	 * @deprecated 3.1
-	 *
 	 * @param string $list_table_class
+	 *
+	 * @deprecated 3.1
 	 */
 	public function set_list_table_class( $list_table_class ) {
 		_deprecated_function( __METHOD__, '3.1', 'AC\ListScreenWP::get_list_table()' );
@@ -90,16 +62,24 @@ abstract class ListScreenWP extends ListScreen {
 	}
 
 	/**
-	 * @deprecated 3.1.2
-	 *
 	 * @param int $id
 	 *
 	 * @return object
+	 * @deprecated 3.1.2
 	 */
 	protected function get_object_by_id( $id ) {
 		_deprecated_function( __METHOD__, '3.1.4', 'AC\ListScreenWP::get_object()' );
 
 		return $this->get_object( $id );
+	}
+
+	/**
+	 * @return array [ $column_name => [ $orderby, $order ], ... ]
+	 */
+	public function get_default_sortable_columns() {
+		_deprecated_function( __METHOD__, '4.0' );
+
+		return [];
 	}
 
 }

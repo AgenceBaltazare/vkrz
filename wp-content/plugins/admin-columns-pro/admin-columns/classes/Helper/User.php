@@ -2,6 +2,8 @@
 
 namespace AC\Helper;
 
+use WP_User;
+
 class User {
 
 	/**
@@ -38,7 +40,7 @@ class User {
 	 * @return array
 	 */
 	public function translate_roles( $role_names ) {
-		$roles = array();
+		$roles = [];
 
 		$wp_roles = wp_roles()->roles;
 
@@ -52,7 +54,7 @@ class User {
 	}
 
 	/**
-	 * @param int|\WP_User $user
+	 * @param int|WP_User  $user
 	 * @param false|string $format WP_user var, 'first_last_name' or 'roles'
 	 *
 	 * @return false|string
@@ -70,7 +72,7 @@ class User {
 
 			case 'first_last_name' :
 
-				$name_parts = array();
+				$name_parts = [];
 
 				if ( $user->first_name ) {
 					$name_parts[] = $user->first_name;
@@ -103,12 +105,13 @@ class User {
 	 * @return array Role nice names
 	 */
 	public function get_roles_names( $roles ) {
-		$translated = $this->get_roles();
+		$role_names = [];
 
-		$role_names = array();
 		foreach ( $roles as $role ) {
-			if ( isset( $translated[ $role ] ) ) {
-				$role_names[ $role ] = $translated[ $role ];
+			$name = $this->get_role_name( $role );
+
+			if ( $name ) {
+				$role_names[ $role ] = $name;
 			}
 		}
 
@@ -116,12 +119,26 @@ class User {
 	}
 
 	/**
-	 * @since 3.4.4
+	 * @param string $role
 	 *
+	 * @return string
+	 */
+	public function get_role_name( $role ) {
+		$roles = $this->get_roles();
+
+		if ( ! array_key_exists( $role, $roles ) ) {
+			return false;
+		}
+
+		return $roles[ $role ];
+	}
+
+	/**
 	 * @param int    $user_id
 	 * @param string $post_type
 	 *
 	 * @return string
+	 * @since 3.4.4
 	 */
 	public function get_postcount( $user_id, $post_type ) {
 		global $wpdb;
@@ -140,7 +157,7 @@ class User {
 	 * @return array Translatable roles
 	 */
 	public function get_roles() {
-		$roles = array();
+		$roles = [];
 		foreach ( wp_roles()->roles as $k => $role ) {
 			$roles[ $k ] = translate_user_role( $role['name'] );
 		}
@@ -154,7 +171,7 @@ class User {
 	 * @return array Role Names
 	 */
 	public function get_role_names( $roles ) {
-		$role_names = array();
+		$role_names = [];
 
 		$labels = $this->get_roles();
 

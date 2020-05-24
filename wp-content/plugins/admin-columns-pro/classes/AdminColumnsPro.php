@@ -3,11 +3,21 @@
 namespace ACP;
 
 use AC;
-use ACP\Admin\Page;
-use ACP\LayoutScreen;
-use ACP\License\API;
-use ACP\ListScreen;
+use AC\Asset\Location;
+use AC\Capabilities;
+use AC\ListScreenTypes;
+use AC\Request;
+use ACP\Admin;
+use ACP\Migrate;
+use ACP\Plugin\NetworkUpdate;
+use ACP\Plugin\Updater;
+use ACP\Settings;
+use ACP\Storage\ListScreen\DecoderFactory;
+use ACP\Storage\ListScreen\Encoder;
+use ACP\Storage\ListScreen\LegacyCollectionDecoder;
+use ACP\Storage\ListScreen\LegacyCollectionDecoderAggregate;
 use ACP\ThirdParty;
+use ACP\Updates\AddonInstaller;
 
 /**
  * The Admin Columns Pro plugin class
@@ -16,35 +26,9 @@ use ACP\ThirdParty;
 final class AdminColumnsPro extends AC\Plugin {
 
 	/**
-	 * Editing instance
-	 * @since 4.0
-	 * @var Editing\Addon
-	 */
-	private $editing;
-
-	/**
-	 * Filtering instance
-	 * @since 4.0
-	 * @var Filtering\Addon
-	 */
-	private $filtering;
-
-	/**
-	 * Sorting instance
-	 * @since 4.0
-	 * @var Sorting\Addon
-	 */
-	private $sorting;
-
-	/**
-	 * @var NetworkAdmin
+	 * @var AC\Admin
 	 */
 	private $network_admin;
-
-	/**
-	 * @var Table\HorizontalScrolling
-	 */
-	private $screen_options;
 
 	/**
 	 * @var API
@@ -57,8 +41,8 @@ final class AdminColumnsPro extends AC\Plugin {
 	private static $instance = null;
 
 	/**
-	 * @since 3.8
 	 * @return AdminColumnsPro
+	 * @since 3.8
 	 */
 	public static function instance() {
 		if ( null === self::$instance ) {
@@ -68,55 +52,144 @@ final class AdminColumnsPro extends AC\Plugin {
 		return self::$instance;
 	}
 
-	/**
-	 * ACP constructor.
-	 */
 	private function __construct() {
-		$this->editing = new Editing\Addon();
-		$this->sorting = new Sorting\Addon();
-		$this->filtering = new Filtering\Addon();
-		$this->network_admin = new NetworkAdmin();
-
-		$scrolling = new Table\HorizontalScrolling();
-		$scrolling->register();
-
-		// Configure API
 		$this->api = new API();
-		$this->api->set_url( ac_get_site_url() )
-		          ->set_proxy( 'https://api.admincolumns.com' );
+		$this->api
+			->set_url( ac_get_site_url() )
+			->set_proxy( 'https://api.admincolumns.com' )
+			->set_request_meta( [
+				'php_version' => PHP_VERSION,
+				'acp_version' => $this->get_version(),
+			] );
 
-		AC()->admin()->get_pages()->register_page( new Page\ExportImport() );
+		$storage = AC()->get_storage();
+		$list_screen_types = ListScreenTypes::instance();
+		$list_screen_encoder = new Encoder( $this->get_version() );
+		$list_screen_decoder_factory = new DecoderFactory( $list_screen_types );
 
-		Export\Addon::instance();
+		$legacy_collection_decoder = new LegacyCollectionDecoderAggregate( [
+			new LegacyCollectionDecoder\Version332( $list_screen_types ),
+			new LegacyCollectionDecoder\Version384( $list_screen_types ),
+			new LegacyCollectionDecoder\Version400( $list_screen_types ),
+		] );
 
-		new ThirdParty\Addon();
-		new LayoutScreen\Columns();
+		$license_key_repository = new LicenseKeyRepository( $this->is_network_active() );
+		$license_repository = new LicenseRepository( $this->is_network_active() );
 
-		$table = new LayoutScreen\Table();
-		$table->register();
+		$location = $this->get_asset_location();
+		$site_url = new Type\SiteUrl( $this->is_network_active() ? network_site_url() : site_url(), $this->is_network_active() );
 
-		$manager = new License\Manager( $this->api );
-		$manager->register();
+		$admin = ( new AdminFactory( AC()->admin(), $location, $storage, $license_repository, $license_key_repository, $site_url, $this->is_network_active() ) )->create();
 
-		$settings = new License\Settings( $this->api );
-		$settings->register();
+		$list_screen_order = new AC\Storage\ListScreenOrder();
 
-		add_action( 'init', array( $this, 'notice_checks' ) );
+		$plugins = $this->get_installed_plugins();
 
-		add_filter( 'plugin_action_links', array( $this, 'add_settings_link' ), 1, 2 );
-		add_filter( 'network_admin_plugin_action_links', array( $this, 'add_settings_link' ), 1, 2 );
+		$services = [
+			new Admin\Settings( $storage, $location ),
+			new QuickAdd\Addon( $storage, $location, new Request() ),
+			new Sorting\Addon( $storage, $location, $admin ),
+			new Editing\Addon( $storage, $location, new Request() ),
+			new Search\Addon( $storage, $location ),
+			new Export\Addon( $location ),
+			new Filtering\Addon( $storage, $location, new Request() ),
+			new ThirdParty\ACF\Addon(),
+			new ThirdParty\bbPress\Addon(),
+			new ThirdParty\WooCommerce\Addon(),
+			new ThirdParty\YoastSeo\Addon(),
+			new Table\Switcher( $storage, $location ),
+			new Table\HorizontalScrolling( $storage, $location ),
+			new Table\HideSearch(),
+			new Table\HideBulkActions(),
+			new Table\HideFilters(),
+			new ListScreens(),
+			new Localize( $this->get_dir() ),
+			new NativeTaxonomies(),
+			new IconPicker(),
+			new TermQueryInformation(),
+			new Migrate\Export\Request( $storage, new Migrate\Export\ResponseFactory( $list_screen_encoder ) ),
+			new Migrate\Import\Request( $storage, $list_screen_decoder_factory, $legacy_collection_decoder ),
+			new Controller\AjaxRequestListScreenUsers(),
+			new Controller\AjaxRequestListScreenOrder( $list_screen_order ),
+			new Controller\AjaxRequestFeedback( $this->get_version() ),
+			new Controller\ListScreenCreate( $storage, new Request(), $list_screen_order ),
+			new Controller\License( $this->api, $license_repository, $license_key_repository, $site_url, $plugins ),
+			new Updates( $this->api, $license_key_repository, $site_url, $plugins ),
+			new AddonInstaller( $this->api, $license_repository, $license_key_repository, $site_url ),
+			new Check\Activation( $this->get_basename(), $license_repository, $license_key_repository ),
+			new PluginActionLinks( $this->get_basename() ),
+			new Check\Expired( $license_repository, $license_key_repository, $this->get_basename(), $site_url ),
+			new Check\Renewal( $license_repository, $license_key_repository, $this->get_basename(), $site_url ),
+		];
 
+		$services[] = new Service\Storage(
+			$storage,
+			new ListScreenRepository\FileFactory( $list_screen_encoder, $list_screen_decoder_factory ),
+			new AC\EncodedListScreenDataFactory(),
+			$legacy_collection_decoder
+		);
+
+		if ( $this->is_beta() ) {
+			$services[] = new Check\Beta( new Admin\Feedback( $location ) );
+		}
+
+		foreach ( $services as $service ) {
+			if ( $service instanceof AC\Registrable ) {
+				$service->register();
+			}
+		}
+
+		add_action( 'init', [ $this, 'install' ], 1000 );
+		add_action( 'init', [ $this, 'install_network' ], 1000 );
+		add_action( 'ac/table_scripts', [ $this, 'table_scripts' ] );
+		add_filter( 'ac/view/templates', [ $this, 'templates' ] );
 		add_filter( 'ac/show_banner', '__return_false' );
 
-		add_action( 'ac/list_screen_groups', array( $this, 'register_list_screen_groups' ) );
+		// Register Network Admin
+		$this->network_admin = ( new AdminNetworkFactory( $location, $admin->get_location(), $storage, $license_repository, $license_key_repository, $site_url, $this ) )->create();
+		$this->network_admin->register();
+	}
 
-		add_action( 'ac/list_screens', array( $this, 'register_list_screens' ) );
-		add_action( 'ac/column_types', array( $this, 'register_columns' ) );
+	/**
+	 * @return Plugins
+	 */
+	private function get_installed_plugins() {
+		$plugins = [
+			new AC\PluginInformation( $this->get_basename() ),
+		];
 
-		add_action( 'ac/table_scripts', array( $this, 'table_scripts' ), 10, 1 );
+		$addons = new AC\Integrations();
 
-		// Updater
-		add_action( 'init', array( $this, 'install' ) );
+		foreach ( $addons->all() as $addon ) {
+			$plugin = new AC\PluginInformation( $addon->get_basename() );
+
+			if ( $plugin->is_installed() ) {
+				$plugins[] = $plugin;
+			}
+		}
+
+		return new Plugins( $plugins );
+	}
+
+	/**
+	 * @return Location\Absolute
+	 */
+	private function get_asset_location() {
+		return new Location\Absolute(
+			$this->get_url(),
+			$this->get_dir()
+		);
+	}
+
+	public function install_network() {
+		if ( ! current_user_can( Capabilities::MANAGE ) || ! is_network_admin() ) {
+			return;
+		}
+
+		$updater = new Updater\Network( $this->get_version() );
+
+		$updater->add_update( new NetworkUpdate\V5000( $updater->get_stored_version() ) )
+		        ->parse_updates();
 	}
 
 	/**
@@ -124,22 +197,6 @@ final class AdminColumnsPro extends AC\Plugin {
 	 */
 	public function get_api() {
 		return $this->api;
-	}
-
-	/**
-	 * Register notice checks
-	 */
-	public function notice_checks() {
-		$checks = array(
-			new Check\Activation( new License() ),
-			new Check\Beta( $this ),
-			new Check\Expired( new License() ),
-			new Check\Renewal( new License() ),
-		);
-
-		foreach ( $checks as $check ) {
-			$check->register();
-		}
 	}
 
 	/**
@@ -159,202 +216,67 @@ final class AdminColumnsPro extends AC\Plugin {
 	/**
 	 * @since 4.0
 	 */
-	public function editing() {
-		return $this->editing;
-	}
-
-	/**
-	 * @since 4.0
-	 */
-	public function filtering() {
-		return $this->filtering;
-	}
-
-	/**
-	 * @since 4.0
-	 */
-	public function sorting() {
-		return $this->sorting;
-	}
-
-	/**
-	 * @since 4.0
-	 *
-	 * @param AC\ListScreen $list_screen
-	 *
-	 * @return Layouts
-	 */
-	public function layouts( AC\ListScreen $list_screen ) {
-		return new Layouts( $list_screen );
-	}
-
-	/**
-	 * @since 4.0
-	 */
 	public function network_admin() {
 		return $this->network_admin;
 	}
 
 	/**
-	 * @since 4.0.12
+	 * @return void
 	 */
-	public function screen_options() {
-		return $this->screen_options;
+	public function table_scripts() {
+		$assets = [
+			new AC\Asset\Style( 'acp-table', $this->get_asset_location()->with_suffix( 'assets/core/css/table.css' ) ),
+			new AC\Asset\Script( 'acp-table', $this->get_asset_location()->with_suffix( 'assets/core/js/table.js' ) ),
+		];
+
+		foreach ( $assets as $asset ) {
+			$asset->enqueue();
+		}
 	}
 
 	/**
-	 * @since 1.0
-	 * @see   filter:plugin_action_links
-	 *
-	 * @param array  $links
-	 * @param string $file
+	 * @param array $templates
 	 *
 	 * @return array
 	 */
-	public function add_settings_link( $links, $file ) {
-		if ( $file === $this->get_basename() ) {
-			$url = AC()->admin()->get_link( 'columns' );
+	public function templates( $templates ) {
+		$templates[] = $this->get_dir() . 'templates';
 
-			if ( is_network_admin() ) {
-				$url = $this->network_admin->get_link();
-			}
-
-			array_unshift( $links, ac_helper()->html->link( $url, __( 'Settings' ) ) );
-		}
-
-		return $links;
+		return $templates;
 	}
 
 	/**
-	 * @return string
+	 * @since      4.0
+	 * @deprecated 4.5
 	 */
-	public function get_network_settings_url() {
-		return $this->network_admin()->get_link();
+	public function editing() {
+		_deprecated_function( __METHOD__, '4.5' );
 	}
 
 	/**
-	 * Get a list of taxonomies supported by Admin Columns
-	 * @since 1.0
-	 * @return array List of taxonomies
+	 * @deprecated 4.5
+	 * @since      4.0
 	 */
-	private function get_taxonomies() {
-		$taxonomies = get_taxonomies( array( 'show_ui' => true ) );
-
-		if ( isset( $taxonomies['post_format'] ) ) {
-			unset( $taxonomies['post_format'] );
-		}
-
-		if ( isset( $taxonomies['link_category'] ) && ! get_option( 'link_manager_enabled' ) ) {
-			unset( $taxonomies['link_category'] );
-		}
-
-		/**
-		 * Filter the post types for which Admin Columns is active
-		 * @since 2.0
-		 *
-		 * @param array $post_types List of active post type names
-		 */
-		return (array) apply_filters( 'acp/taxonomies', $taxonomies );
+	public function filtering() {
+		_deprecated_function( __METHOD__, '4.5' );
 	}
 
 	/**
-	 * @param AC\Groups $groups
+	 * @since      4.0
+	 * @deprecated 4.5
 	 */
-	public function register_list_screen_groups( $groups ) {
-		$groups->register_group( 'taxonomy', __( 'Taxonomy' ), 15 );
-		$groups->register_group( 'network', __( 'Network' ), 5 );
-	}
-
-	/**
-	 * @since 4.0
-	 *
-	 * @param AC\AdminColumns $admin_columns
-	 */
-	public function register_list_screens( $admin_columns ) {
-		$list_screens = array();
-
-		// Post types
-		foreach ( AC()->get_post_types() as $post_type ) {
-			$list_screens[] = new ListScreen\Post( $post_type );
-		}
-
-		$list_screens[] = new ListScreen\Media();
-		$list_screens[] = new ListScreen\Comment();
-
-		foreach ( $this->get_taxonomies() as $taxonomy ) {
-			$list_screens[] = new ListScreen\Taxonomy( $taxonomy );
-		}
-
-		$list_screens[] = new ListScreen\User();
-
-		if ( is_multisite() ) {
-
-			// Settings UI
-			if ( AC()->admin_columns_screen()->is_current_screen() ) {
-
-				// Main site
-				if ( is_main_site() ) {
-					$list_screens[] = new ListScreen\MSUser();
-					$list_screens[] = new ListScreen\MSSite();
-				}
-			} // Table screen
-			else {
-				$list_screens[] = new ListScreen\MSUser();
-				$list_screens[] = new ListScreen\MSSite();
-			}
-		}
-
-		foreach ( $list_screens as $list_screen ) {
-			$admin_columns->register_list_screen( $list_screen );
-		}
+	public function sorting() {
+		_deprecated_function( __METHOD__, '4.5' );
 	}
 
 	/**
 	 * @param AC\ListScreen $list_screen
-	 */
-	public function register_columns( AC\ListScreen $list_screen ) {
-		$this->register_column_native_taxonomies( $list_screen );
-
-		/**
-		 * @deprecated 4.1 Use 'ac/column_types'
-		 */
-		do_action( 'acp/column_types', $list_screen );
-	}
-
-	/**
-	 * Register Taxonomy columns that are set by WordPress. These native columns are registered
-	 * by setting 'show_admin_column' to 'true' as an argument in register_taxonomy();
-	 * Only supports Post Types.
-	 * @see register_taxonomy
 	 *
-	 * @param AC\ListScreen $list_screen
+	 * @since      4.0
+	 * @deprecated 5.0.0
 	 */
-	private function register_column_native_taxonomies( AC\ListScreen $list_screen ) {
-		if ( ! $list_screen instanceof AC\ListScreenPost ) {
-			return;
-		}
-
-		$taxonomies = get_taxonomies(
-			array(
-				'show_ui'           => 1,
-				'show_admin_column' => 1,
-				'_builtin'          => 0,
-			),
-			'object'
-		);
-
-		foreach ( $taxonomies as $taxonomy ) {
-			if ( in_array( $list_screen->get_post_type(), $taxonomy->object_type ) ) {
-				$column = new Column\NativeTaxonomy();
-				$column->set_type( 'taxonomy-' . $taxonomy->name );
-
-				$list_screen->register_column_type( $column );
-			}
-		}
-	}
-
-	public function table_scripts() {
-		wp_enqueue_style( 'acp-table', ACP()->get_url() . "assets/css/table.css", array(), AC()->get_version() );
+	public function layouts( AC\ListScreen $list_screen ) {
+		_deprecated_function( __METHOD__, '5.0.0' );
 	}
 
 }

@@ -10,7 +10,10 @@ class TrueFalse extends Editing {
 		$data = parent::get_view_settings();
 
 		$data['type'] = 'togglable';
-		$data['options'] = array( '0', '1' );
+		$data['options'] = array(
+			'0' => __( 'False', 'codepress-admin-columns' ),
+			'1' => __( 'True', 'codepress-admin-columns' ),
+		);
 
 		return $data;
 	}

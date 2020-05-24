@@ -4,8 +4,8 @@ namespace ACA\ACF\Field;
 
 use ACA\ACF\Column;
 use ACA\ACF\Editing;
-use ACA\ACF\Export;
 use ACA\ACF\Filtering;
+use ACA\ACF\Search;
 
 /**
  * @property Column $column
@@ -26,8 +26,8 @@ class Checkbox extends Select {
 		return new Filtering\Checkbox( $this->column );
 	}
 
-	public function export() {
-		return new Export\Select( $this->column );
+	public function search() {
+		return new Search\MultiSelect( $this->get_meta_key(), $this->get_meta_type(), $this->get_choices() );
 	}
 
 }

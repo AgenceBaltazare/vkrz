@@ -13,7 +13,7 @@ class PrimaryTaxonomy extends AC\Settings\Column {
 	private $primary_taxonomy;
 
 	protected function define_options() {
-		return array( 'primary_taxonomy' );
+		return [ 'primary_taxonomy' ];
 	}
 
 	public function create_view() {
@@ -21,10 +21,10 @@ class PrimaryTaxonomy extends AC\Settings\Column {
 		                ->set_attribute( 'data-label', 'update' )
 		                ->set_options( $this->get_taxonomies() );
 
-		$view = new View( array(
+		$view = new View( [
 			'label'   => __( 'Taxonomy' ),
 			'setting' => $setting,
-		) );
+		] );
 
 		return $view;
 	}
@@ -34,7 +34,7 @@ class PrimaryTaxonomy extends AC\Settings\Column {
 	 */
 	private function get_taxonomies() {
 		$taxonomies = get_object_taxonomies( $this->column->get_post_type(), 'objects' );
-		$options = array();
+		$options = [];
 
 		foreach ( $taxonomies as $taxonomy => $tax_object ) {
 			if ( ! $tax_object->hierarchical ) {

@@ -15,7 +15,7 @@ class Collection
 	 */
 	protected $items;
 
-	public function __construct( array $items = array() ) {
+	public function __construct( array $items = [] ) {
 		$this->items = $items;
 	}
 
@@ -53,6 +53,10 @@ class Collection
 		reset( $this->items );
 	}
 
+	public function first() {
+		return reset( $this->items );
+	}
+
 	public function current() {
 		return current( $this->items );
 	}
@@ -63,6 +67,10 @@ class Collection
 
 	public function next() {
 		return next( $this->items );
+	}
+
+	public function get_copy() {
+		return $this->items;
 	}
 
 	public function valid() {

@@ -2,6 +2,7 @@
 
 namespace AC;
 
+use DirectoryIterator;
 use FilesystemIterator;
 
 class Autoloader {
@@ -18,9 +19,9 @@ class Autoloader {
 	protected $prefixes;
 
 	protected function __construct() {
-		$this->prefixes = array();
+		$this->prefixes = [];
 
-		spl_autoload_register( array( $this, 'autoload' ) );
+		spl_autoload_register( [ $this, 'autoload' ] );
 	}
 
 	public static function instance() {
@@ -126,13 +127,13 @@ class Autoloader {
 		$path = realpath( $path );
 
 		if ( ! $path ) {
-			return array();
+			return [];
 		}
 
 		$iterator = new FilesystemIterator( $path, FilesystemIterator::SKIP_DOTS );
-		$classes = array();
+		$classes = [];
 
-		/* @var \DirectoryIterator $leaf */
+		/* @var DirectoryIterator $leaf */
 		foreach ( $iterator as $leaf ) {
 			// Exclude system files
 			if ( 0 === strpos( $leaf->getBasename(), '.' ) ) {

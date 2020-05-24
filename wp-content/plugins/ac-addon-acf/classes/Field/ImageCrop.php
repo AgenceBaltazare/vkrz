@@ -2,8 +2,8 @@
 
 namespace ACA\ACF\Field;
 
-use ACA\ACF\Field;
 use AC;
+use ACA\ACF\Field;
 
 /**
  * Third party field
@@ -11,7 +11,7 @@ use AC;
 class ImageCrop extends Field {
 
 	public function get_value( $id ) {
-		$value = get_field( $this->column->get_meta_key(), $this->column->get_formatted_id( $id ), true );
+		$value = get_field( $this->get_meta_key(), $this->column->get_formatted_id( $id ), true );
 
 		if ( 'object' == $this->column->get_acf_field_option( 'save_format' ) ) {
 			$value = $value['url'];

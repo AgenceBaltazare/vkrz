@@ -2,9 +2,10 @@
 
 namespace ACA\ACF\Setting;
 
-use ACA\ACF\Column;
 use AC;
 use AC\View;
+use ACA\ACF\Column;
+use ACA\ACF\Helper;
 
 /**
  * @property Column $column
@@ -40,6 +41,12 @@ abstract class Field extends AC\Settings\Column {
 		$view->set( 'label', __( 'Field', 'codepress-admin-columns' ) )
 		     ->set( 'setting', $setting );
 
+		$edit_link = ( new Helper() )->get_field_edit_link( $setting->get_value() );
+
+		if ( $edit_link ) {
+			$view->set( 'read_more', $edit_link );
+		}
+
 		return $view;
 	}
 
@@ -50,8 +57,9 @@ abstract class Field extends AC\Settings\Column {
 		$options = wp_cache_get( $this->column->get_list_screen()->get_storage_key(), 'ac-field-groups' );
 
 		if ( ! $options ) {
+			do_action( 'acp/acf/before_get_field_options', $this->column->get_list_screen() );
 			$options = $this->get_grouped_field_options();
-
+			do_action( 'acp/acf/after_get_field_options', $this->column->get_list_screen() );
 			wp_cache_add( $this->column->get_list_screen()->get_storage_key(), $options, 'ac-field-groups', 15 );
 		}
 

@@ -1,7 +1,55 @@
 == Changelog ==
 
+= 2.5.6 =
+Release Date: March 30th, 2020
+
+* [Added] Number Formatting for Numeric fields
+* [Dependency] Requires Admin Columns Pro 5.1
+
+= 2.5.5 =
+Release Date: August 26th, 2019
+
+* [Improved] It's now possible to set the number of items to be displayed for multiple item columns
+* [Fixed] Disabled editing revisioning for some ACF Field columns
+* [Fixed] Bulk Edit remove for ACF Multiselect fields gave an unexpected format
+* [Dependency] Requires Admin Columns Pro 4.7.1
+
+= 2.5.4 =
+Release Date: August 20th, 2019
+
+* [Improved] More date filters and better labels for date fields
+* [Improved] Export the url for ACF Images / Files
+* [Added] Better Bulk Edit support for Multiselect fields (replace/add/remove)
+
+= 2.5.3 =
+Release Date: July 23rd, 2019
+
+* [Added] Better Bulk Edit support for Taxonomy/PostObject/Relationship fields (replace/add/remove)
+
+= 2.5.2 =
+Release Date: March 5th, 2019
+
+* [Fixed] Handle ACF Legacy date save formats for editing
+
+= 2.5.1 =
+Release Date: February 27th, 2019
+
+* [Fixed] Possible warning for Repeater Field (count)
+
+= 2.5 =
+Release Date: January 24th, 2019
+
+* [Added] Made compatible with Admin Columns Pro 4.5, Bulk Editing
+* [Fixed] Fatal error for ACF Relation fields created with PHP
+* [Improved] Editing options for ACF Relation field are now grouped by Post Type
+
+= 2.4 =
+Release Date: October 31st, 2018
+
+* [Added] Smart Filtering
+
 = 2.3.2 =
-Release Date: September 12th, 2018
+Release Date: September 10th, 2018
 
 * [Added] Display support for ACF Group Field
 * [Improved] Recognize the initial sub field when adding a Group or Repeater field

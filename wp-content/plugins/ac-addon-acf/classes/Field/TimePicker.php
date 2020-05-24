@@ -2,8 +2,8 @@
 
 namespace ACA\ACF\Field;
 
-use ACA\ACF\Field;
 use ACA\ACF\Editing;
+use ACA\ACF\Field;
 use ACA\ACF\Setting;
 use ACA\ACF\Sorting;
 

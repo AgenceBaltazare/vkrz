@@ -3,6 +3,7 @@
 namespace ACA\ACF\Filtering;
 
 use ACA\ACF\Filtering;
+use ACP\Filtering\Helper;
 
 class PostObject extends Filtering {
 
@@ -14,10 +15,10 @@ class PostObject extends Filtering {
 			$values = $this->get_meta_values();
 		}
 
-		return array(
+		return [
 			'empty_option' => true,
-			'options'      => acp_filtering()->helper()->get_post_titles( $values ),
-		);
+			'options'      => ( new Helper() )->get_post_titles( $values ),
+		];
 	}
 
 }

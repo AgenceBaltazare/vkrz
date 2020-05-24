@@ -6,11 +6,12 @@ use AC;
 use ACP\Editing;
 use ACP\Export;
 use ACP\Filtering;
+use ACP\Search;
 use ACP\Settings;
 use ACP\Sorting;
 
 class AuthorName extends AC\Column\Post\AuthorName
-	implements Editing\Editable, Filtering\Filterable, Sorting\Sortable, Export\Exportable {
+	implements Editing\Editable, Filtering\Filterable, Sorting\Sortable, Export\Exportable, Search\Searchable {
 
 	public function sorting() {
 		if ( 'custom_field' === $this->get_user_setting_display() ) {
@@ -56,6 +57,23 @@ class AuthorName extends AC\Column\Post\AuthorName
 		$setting = $this->get_setting( 'user' );
 
 		return $setting->get_display_author_as();
+	}
+
+	public function search() {
+		switch ( $this->get_user_setting_display() ) {
+			case 'display_name' :
+			case 'first_name' :
+			case 'last_name' :
+			case 'nickname' :
+			case 'user_login' :
+			case 'user_email' :
+			case 'first_last_name' :
+			case 'user_nicename' :
+				return new Search\Comparison\Post\Author( $this->get_post_type() );
+			default:
+				return false;
+		}
+
 	}
 
 }

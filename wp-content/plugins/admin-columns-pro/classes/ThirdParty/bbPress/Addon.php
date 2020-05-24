@@ -4,28 +4,23 @@ namespace ACP\ThirdParty\bbPress;
 
 use AC;
 use ACP;
+use ReflectionException;
 
-final class Addon {
+final class Addon implements AC\Registrable {
 
-	public function __construct() {
-
-		// Columns
-		add_action( 'ac/column_types', array( $this, 'set_columns' ) );
-		add_action( 'ac/column_groups', array( $this, 'register_column_group' ) );
-
-		// Listscreen
-		add_action( 'ac/list_screen_groups', array( $this, 'register_list_screen_group' ) );
-		add_action( 'ac/list_screens', array( $this, 'register_list_screens' ), 11 );
-
-		// Editing
-		add_filter( 'ac/editing/role_group', array( $this, 'editing_role_group' ), 10, 2 );
+	public function register() {
+		add_action( 'ac/column_types', [ $this, 'set_columns' ] );
+		add_action( 'ac/column_groups', [ $this, 'register_column_group' ] );
+		add_action( 'ac/list_screen_groups', [ $this, 'register_list_screen_group' ] );
+		add_action( 'ac/list_screens', [ $this, 'register_list_screens' ], 11 );
+		add_filter( 'ac/editing/role_group', [ $this, 'editing_role_group' ], 10, 2 );
 
 	}
 
 	/**
 	 * @param AC\ListScreen $list_screen
 	 *
-	 * @throws \ReflectionException
+	 * @throws ReflectionException
 	 */
 	public function set_columns( $list_screen ) {
 		$list_screen->register_column_types_from_dir( __NAMESPACE__ . '\Column' );
@@ -46,9 +41,9 @@ final class Addon {
 	}
 
 	/**
-	 * @since 4.0
-	 *
 	 * @param AC\AdminColumns $admin_columns
+	 *
+	 * @since 4.0
 	 */
 	public function register_list_screens( $admin_columns ) {
 		foreach ( $this->get_post_types() as $post_type ) {
@@ -72,10 +67,10 @@ final class Addon {
 	 */
 	private function get_post_types() {
 		if ( ! $this->is_active() ) {
-			return array();
+			return [];
 		}
 
-		return array( 'forum', 'topic', 'reply' );
+		return [ 'forum', 'topic', 'reply' ];
 	}
 
 	/**

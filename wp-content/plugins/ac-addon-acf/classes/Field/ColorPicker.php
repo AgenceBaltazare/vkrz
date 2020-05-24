@@ -2,8 +2,8 @@
 
 namespace ACA\ACF\Field;
 
-use ACA\ACF\Field;
 use ACA\ACF\Editing;
+use ACA\ACF\Field;
 use ACA\ACF\Filtering;
 use ACA\ACF\Formattable;
 use ACP;
@@ -25,6 +25,10 @@ class ColorPicker extends Field
 
 	public function filtering() {
 		return new Filtering( $this->column );
+	}
+
+	public function search() {
+		return new ACP\Search\Comparison\Meta\Text( $this->get_meta_key(), $this->get_meta_type() );
 	}
 
 	public function sorting() {

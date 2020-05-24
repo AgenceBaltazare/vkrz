@@ -23,7 +23,7 @@ class PrimaryTaxonomy extends AC\Column\Meta
 			return $this->get_empty_char();
 		}
 
-		$term = array( get_term( $raw_value, $this->get_taxonomy() ) );
+		$term = [ get_term( $raw_value, $this->get_taxonomy() ) ];
 		$terms = ac_helper()->taxonomy->get_term_links( $term, $this->get_post_type() );
 
 		if ( empty( $terms ) ) {

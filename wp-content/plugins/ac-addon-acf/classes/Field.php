@@ -6,7 +6,7 @@ use AC;
 use ACP;
 
 class Field
-	implements ACP\Filtering\Filterable, ACP\Editing\Editable, ACP\Sorting\Sortable {
+	implements ACP\Editing\Editable, ACP\Filtering\Filterable, ACP\Sorting\Sortable, ACP\Search\Searchable {
 
 	/**
 	 * @var Column
@@ -23,10 +23,20 @@ class Field
 		$this->column->set_serialized( $this->get( 'multiple' ) );
 	}
 
+	/**
+	 * @param int $id
+	 *
+	 * @return mixed
+	 */
 	public function get_ajax_value( $id ) {
 		return null;
 	}
 
+	/**
+	 * @param int $id
+	 *
+	 * @return string
+	 */
 	public function get_value( $id ) {
 		return $this->column->get_formatted_value( $this->get_raw_value( $id ), $id );
 	}
@@ -39,12 +49,16 @@ class Field
 		return $this->column->get_separator();
 	}
 
-	public function filtering() {
-		return new ACP\Filtering\Model\Disabled( $this->column );
+	public function search() {
+		return false;
 	}
 
 	public function editing() {
 		return new Editing\Disabled( $this->column );
+	}
+
+	public function filtering() {
+		return new ACP\Filtering\Model\Disabled( $this->column );
 	}
 
 	public function sorting() {
@@ -73,13 +87,16 @@ class Field
 		return $this->column->get_acf_field_option( $property );
 	}
 
-	/**
-	 * Get link to field's group settings
-	 *
-	 * @return false|string
-	 */
-	public function get_edit_link() {
-		return get_edit_post_link( acf_get_field_group_id( $this->get( 'parent' ) ) );
+	protected function is_serialized() {
+		return $this->column->is_serialized();
+	}
+
+	protected function get_meta_key() {
+		return $this->column->get_meta_key();
+	}
+
+	protected function get_meta_type() {
+		return $this->column->get_meta_type();
 	}
 
 }

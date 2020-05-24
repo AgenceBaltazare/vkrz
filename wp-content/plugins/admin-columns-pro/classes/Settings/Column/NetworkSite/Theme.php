@@ -4,6 +4,7 @@ namespace ACP\Settings\Column\NetworkSite;
 
 use AC\Settings;
 use AC\View;
+use WP_Theme;
 
 class Theme extends Settings\Column
 	implements Settings\FormatValue {
@@ -11,7 +12,7 @@ class Theme extends Settings\Column
 	private $theme_status;
 
 	protected function define_options() {
-		return array( 'theme_status' => 'active' );
+		return [ 'theme_status' => 'active' ];
 	}
 
 	public function create_view() {
@@ -20,20 +21,20 @@ class Theme extends Settings\Column
 			->set_attribute( 'data-label', 'update' )
 			->set_options( $this->get_display_options() );
 
-		$view = new View( array(
+		$view = new View( [
 			'label'   => __( 'Display', 'codepress-admin-columns' ),
 			'setting' => $select,
-		) );
+		] );
 
 		return $view;
 	}
 
 	private function get_display_options() {
-		$options = array(
+		$options = [
 			'active'    => __( 'Active Theme', 'codepress-admin-columns' ),
 			'allowed'   => __( 'Allowed Themes', 'codepress-admin-columns' ),
 			'available' => __( 'Available Themes', 'codepress-admin-columns' ),
-		);
+		];
 
 		return $options;
 	}
@@ -62,26 +63,26 @@ class Theme extends Settings\Column
 
 		switch ( $this->get_theme_status() ) {
 			case 'active' :
-				$themes = array( $active_theme );
+				$themes = [ $active_theme ];
 
 				break;
 			case 'allowed' :
-				$themes = wp_get_themes( array( 'blog_id' => $blog_id, 'allowed' => 'site' ) );
+				$themes = wp_get_themes( [ 'blog_id' => $blog_id, 'allowed' => 'site' ] );
 
 				break;
 			case 'available' :
-				$themes = wp_get_themes( array( 'blog_id' => $blog_id, 'allowed' => true ) );
+				$themes = wp_get_themes( [ 'blog_id' => $blog_id, 'allowed' => true ] );
 
 				break;
 			default:
-				$themes = array();
+				$themes = [];
 		}
 
 		// Add Tooltip
 		foreach ( $themes as $k => $theme ) {
-			$tooltip = array();
+			$tooltip = [];
 
-			/* @var \WP_Theme $theme */
+			/* @var WP_Theme $theme */
 			if ( $theme->get_stylesheet() === $active_theme->get_stylesheet() ) {
 				$tooltip[] = __( 'Active', 'codepress-admin-columns' );
 			}
@@ -103,7 +104,7 @@ class Theme extends Settings\Column
 
 		if ( isset( $themes[ $active_stylesheet ] ) && count( $themes ) > 1 ) {
 			// Active first
-			$theme = array( $active_stylesheet => $themes[ $active_stylesheet ] );
+			$theme = [ $active_stylesheet => $themes[ $active_stylesheet ] ];
 			unset( $themes[ $active_stylesheet ] );
 			$themes = $theme + $themes;
 

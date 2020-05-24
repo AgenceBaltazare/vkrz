@@ -21,9 +21,9 @@ class Comment extends Settings\Column
 	}
 
 	protected function define_options() {
-		return array(
+		return [
 			'comment_property_display' => 'comment',
-		);
+		];
 	}
 
 	public function get_dependent_settings() {
@@ -31,16 +31,21 @@ class Comment extends Settings\Column
 		switch ( $this->get_comment_property_display() ) {
 
 			case 'date' :
-				return array( new Settings\Column\Date( $this->column ) );
+				return [
+					new Settings\Column\Date( $this->column ),
+					new Settings\Column\CommentLink( $this->column ),
+				];
 
 				break;
 			case 'comment' :
-				return array( new Settings\Column\StringLimit( $this->column ) );
+				return [
+					new Settings\Column\StringLimit( $this->column ),
+					new Settings\Column\CommentLink( $this->column ),
+				];
 
 				break;
-
 			default :
-				return array();
+				return [ new Settings\Column\CommentLink( $this->column ) ];
 		}
 	}
 
@@ -98,22 +103,22 @@ class Comment extends Settings\Column
 		               ->set_attribute( 'data-refresh', 'column' )
 		               ->set_options( $this->get_display_options() );
 
-		$view = new View( array(
+		$view = new View( [
 			'label'   => __( 'Display', 'codepress-admin-columns' ),
 			'setting' => $select,
-		) );
+		] );
 
 		return $view;
 	}
 
 	protected function get_display_options() {
-		$options = array(
+		$options = [
 			'comment'      => __( 'Comment' ),
 			'id'           => __( 'ID' ),
 			'author'       => __( 'Author' ),
 			'author_email' => __( 'Author Email', 'codepress-admin-column' ),
 			'date'         => __( 'Date' ),
-		);
+		];
 
 		natcasesort( $options );
 

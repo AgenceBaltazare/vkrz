@@ -6,9 +6,9 @@ use AC\Collection;
 use ACA\ACF\API;
 use ACA\ACF\Field;
 use ACA\ACF\Filtering;
-use ACA\ACF\Sorting;
-use ACA\ACF\Setting;
 use ACA\ACF\Formattable;
+use ACA\ACF\Setting;
+use ACA\ACF\Sorting;
 use ACP;
 
 class Repeater extends Field {
@@ -24,6 +24,12 @@ class Repeater extends Field {
 	}
 
 	public function get_row_count( $id ) {
+		$value = $this->get_raw_value( $id );
+
+		if( ! $value || empty( $value ) ){
+			return 0;
+		}
+
 		return count( $this->get_raw_value( $id ) );
 	}
 

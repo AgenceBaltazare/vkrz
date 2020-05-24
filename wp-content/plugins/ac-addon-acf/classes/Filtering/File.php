@@ -9,7 +9,9 @@ class File extends Filtering {
 	public function get_filtering_data() {
 		$options = array();
 
-		if ( $ids = $this->get_meta_values() ) {
+		$ids = $this->get_meta_values();
+
+		if ( $ids ) {
 			foreach ( $ids as $post_id ) {
 				$options[ $post_id ] = basename( get_attached_file( $post_id ) );
 			}
@@ -21,4 +23,4 @@ class File extends Filtering {
 		);
 	}
 
-}//1443321572
+}

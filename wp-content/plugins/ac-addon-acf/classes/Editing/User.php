@@ -2,10 +2,14 @@
 
 namespace ACA\ACF\Editing;
 
-use ACA\ACF\API;
 use ACA\ACF\Editing;
+use ACP;
+use ACP\Helper\Select;
+use ACP\Helper\Select\Formatter;
+use ACP\Helper\Select\Group;
 
-class User extends Editing {
+class User extends Editing
+	implements ACP\Editing\PaginatedOptions {
 
 	public function get_edit_value( $id ) {
 		$user_ids = parent::get_edit_value( $id );
@@ -31,33 +35,27 @@ class User extends Editing {
 
 		$field = $this->column->get_field();
 
-		if ( $field->get( 'multiple' ) ) {
-			$data['multiple'] = true;
-		} else if ( $field->get( 'allow_null' ) ) {
+		if ( $field->get( 'allow_null' ) ) {
 			$data['clear_button'] = true;
 		}
 
 		return $data;
 	}
 
-	public function get_ajax_options( $request ) {
+	public function get_paginated_options( $search, $paged, $id = null ) {
 
-		// ACF Free
-		if ( API::is_free() ) {
-			return acp_editing_helper()->get_users_list( array(
-				'search' => $request['search'],
-				'paged'  => $request['paged'],
-			) );
-		}
+		$entities = new Select\Entities\User( array(
+			'search' => $search,
+			'paged'  => $paged,
+			'role'   => $this->column->get_field()->get( 'role' ),
+		) );
 
-		// ACF Pro
-		$acf_field = new \acf_field_user();
-
-		return $this->format_choices( $acf_field->get_ajax_query( array(
-			's'         => $request['search'],
-			'paged'     => $request['paged'],
-			'field_key' => $this->column->get_field_hash(),
-		) ) );
+		return new Select\Options\Paginated(
+			$entities,
+			new Group\UserRole(
+				new Formatter\UserName( $entities )
+			)
+		);
 	}
 
 }

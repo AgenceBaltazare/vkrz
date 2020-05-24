@@ -17,13 +17,13 @@ class Plugins extends AC\Column {
 	}
 
 	public function get_raw_value( $blog_id ) {
-		$active_plugins = array();
+		$active_plugins = [];
 
 		$plugins = get_plugins();
 
-		if ( $site_plugins = ac_helper()->network->get_site_option( $blog_id, 'active_plugins' ) ) {
-			$site_plugins = unserialize( $site_plugins );
+		$site_plugins = maybe_unserialize( ac_helper()->network->get_site_option( $blog_id, 'active_plugins' ) );
 
+		if ( $site_plugins ) {
 			foreach ( $site_plugins as $basename ) {
 				if ( isset( $plugins[ $basename ] ) ) {
 					$active_plugins[ $basename ] = $plugins[ $basename ]['Name'];
@@ -35,8 +35,8 @@ class Plugins extends AC\Column {
 	}
 
 	public function register_settings() {
-		$this->add_setting( new Settings\Column\NetworkSite\PluginsInclude( $this ) );
-		$this->add_setting( new Settings\Column\NetworkSite\Plugins( $this ) );
+		$this->add_setting( new Settings\Column\NetworkSite\PluginsInclude( $this ) )
+		     ->add_setting( new Settings\Column\NetworkSite\Plugins( $this ) );
 	}
 
 }

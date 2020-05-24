@@ -33,7 +33,7 @@ final class AdvancedCustomFields extends AC\Plugin {
 		add_action( 'ac/column_groups', array( $this, 'register_column_groups' ) );
 		add_action( 'ac/column_types', array( $this, 'add_columns' ) );
 		add_action( 'ac/table_scripts/editing', array( $this, 'table_scripts_editing' ) );
-		add_action( 'ac/settings/scripts', array( $this, 'settings_scripts' ) );
+		add_action( 'ac/admin_scripts/columns', array( $this, 'settings_scripts' ) );
 	}
 
 	/**

@@ -2,13 +2,16 @@
 
 namespace ACP\ThirdParty\YoastSeo\Editing;
 
+use AC;
 use ACP;
 use ACP\Editing;
+use ACP\Helper\Select;
 
 /**
  * @property ACP\ThirdParty\YoastSeo\Column\PrimaryTaxonomy $column
  */
-class PrimaryTaxonomy extends Editing\Model\Meta {
+class PrimaryTaxonomy extends Editing\Model\Meta
+	implements Editing\PaginatedOptions {
 
 	/**
 	 * @param int $id
@@ -30,37 +33,32 @@ class PrimaryTaxonomy extends Editing\Model\Meta {
 
 		$term = get_term( $term, $this->column->get_taxonomy() );
 
-		return array(
+		return [
 			$term->term_id => $term->name,
-		);
+		];
 	}
 
 	public function get_view_settings() {
-		return array(
-			'type'          => 'select2_dropdown',
-			'multiple'      => false,
-			'ajax_populate' => true,
-		);
+		return [
+			'type'                   => 'select2_dropdown',
+			'multiple'               => false,
+			'ajax_populate'          => true,
+			self::VIEW_BULK_EDITABLE => false,
+		];
 	}
 
-	public function get_ajax_options( $request ) {
-		if ( $request['paged'] > 1 ) {
-			return array();
-		}
+	public function get_paginated_options( $search, $page, $id = null ) {
+		$entities = new Select\Entities\Taxonomy( [
+			'search'     => $search,
+			'page'       => $page,
+			'taxonomy'   => $this->column->get_taxonomy(),
+			'object_ids' => [ $id ],
+		] );
 
-		$terms = wp_get_post_terms( $request['object_id'], $this->column->get_taxonomy() );
-
-		if ( empty( $terms ) || is_wp_error( $terms ) ) {
-			return array();
-		}
-
-		$options = array();
-
-		foreach ( $terms as $term ) {
-			$options[ $term->term_id ] = $term->name;
-		}
-
-		return $options;
+		return new AC\Helper\Select\Options\Paginated(
+			$entities,
+			new Select\Formatter\TermName( $entities )
+		);
 	}
 
 }

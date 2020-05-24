@@ -4,8 +4,12 @@ namespace ACA\ACF\Editing;
 
 use ACA\ACF\API;
 use ACA\ACF\Editing;
+use acf_field_post_object;
+use ACP\Editing\PaginatedOptions;
+use ACP\Helper;
 
-class PostObject extends Editing {
+class PostObject extends Editing
+	implements PaginatedOptions {
 
 	public function get_edit_value( $post_id ) {
 		$values = array();
@@ -25,7 +29,7 @@ class PostObject extends Editing {
 		}
 
 		// ACF Pro
-		$acf_field = new \acf_field_post_object();
+		$acf_field = new acf_field_post_object;
 
 		foreach ( $ids as $id ) {
 			$values[ $id ] = html_entity_decode( $acf_field->get_post_title( $id, $this->column->get_acf_field(), $post_id ) );
@@ -34,6 +38,9 @@ class PostObject extends Editing {
 		return $values;
 	}
 
+	/**
+	 * @return array
+	 */
 	public function get_view_settings() {
 		$data = parent::get_view_settings();
 
@@ -41,51 +48,63 @@ class PostObject extends Editing {
 		$data['ajax_populate'] = true;
 		$data['store_values'] = false;
 
-		if ( $this->column->get_field()->get( 'multiple' ) ) {
-			$data['multiple'] = true;
-		} else if ( $this->column->get_field()->get( 'allow_null' ) ) {
+		if ( $this->column->get_field()->get( 'allow_null' ) ) {
 			$data['clear_button'] = true;
 		}
 
 		return $data;
 	}
 
-	public function get_ajax_options( $request ) {
-
-		// ACF Free
-		if ( API::is_free() ) {
-			return acp_editing_helper()->get_posts_list( array(
-				's'         => $request['search'],
-				'post_type' => $this->get_post_type(),
-				'paged'     => $request['paged'],
-			) );
-		}
-
-		// ACF Pro
-		$acf_field = new \acf_field_post_object();
-
-		$args = array(
-			's'         => $request['search'],
-			'field_key' => $this->column->get_field_hash(),
-			'post_id'   => $request['object_id'],
-			'paged'     => $request['paged'],
+	public function get_paginated_options( $s, $paged, $id = null ) {
+		$entities = new Helper\Select\Entities\Post( array(
+			's'         => $s,
+			'paged'     => $paged,
 			'post_type' => $this->get_post_type(),
-		);
+			'tax_query' => $this->get_tax_query(),
+		) );
 
-		return $this->format_choices( $acf_field->get_ajax_query( $args ) );
+		return new Helper\Select\Options\Paginated(
+			$entities,
+			new Helper\Select\Group\PostType(
+				new Helper\Select\Formatter\PostTitle( $entities )
+			)
+		);
 	}
 
 	/**
-	 * @return array
+	 * @return array|string
 	 */
 	protected function get_post_type() {
-		$post_types = $this->column->get_field()->get( 'post_type' );
+		$post_type = $this->column->get_field()->get( 'post_type' );
 
-		if ( ! $post_types || in_array( 'all', $post_types ) || in_array( 'any', $post_types ) ) {
-			$post_types = array( 'any' );
+		if ( ! $post_type || in_array( 'all', $post_type ) || in_array( 'any', $post_type ) ) {
+			$post_type = 'any';
 		}
 
-		return $post_types;
+		return $post_type;
+	}
+
+	/**
+	 * @return array|string
+	 */
+	protected function get_tax_query() {
+		$terms = acf_decode_taxonomy_terms( $this->column->get_field()->get( 'taxonomy' ) );
+
+		if ( ! $terms ) {
+			return array();
+		}
+
+		$tax_query = array();
+
+		foreach ( $terms as $k => $v ) {
+			$tax_query[] = array(
+				'taxonomy' => $k,
+				'field'    => 'slug',
+				'terms'    => $v,
+			);
+		}
+
+		return $tax_query;
 	}
 
 }

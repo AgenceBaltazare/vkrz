@@ -2,14 +2,13 @@
 
 namespace ACA\ACF\Setting;
 
+use AC;
 use ACA\ACF\Column;
-Use AC;
 
 /**
  * @property Column $column
  */
-class Date extends \AC\Settings\Column\Date
-	implements AC\Settings\FormatValue {
+class Date extends AC\Settings\Column\Date {
 
 	public function __construct( Column $column ) {
 		parent::__construct( $column );
@@ -41,7 +40,7 @@ class Date extends \AC\Settings\Column\Date
 		}
 
 		if ( 'acf' === $this->get_date_format() ) {
-			return date_i18n( $this->get_acf_date_format(), strtotime( $value ) );
+			return ac_format_date( $this->get_acf_date_format(), strtotime( $value ) );
 		}
 
 		return parent::format( strtotime( $value ), $original_value );

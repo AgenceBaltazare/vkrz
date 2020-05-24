@@ -14,16 +14,16 @@ class User extends AC\Settings\Column\User {
 		natcasesort( $options );
 
 		// Grouped options
-		return array(
-			array(
+		return [
+			[
 				'title'   => __( 'User', 'codepress-admin-columns' ),
 				'options' => $options,
-			),
-			array(
+			],
+			[
 				'title'   => __( 'Custom Field', 'codepress-admin-columns' ),
-				'options' => array( 'custom_field' => __( 'Custom Field', 'codepress-admin-columns' ) ),
-			),
-		);
+				'options' => [ 'custom_field' => __( 'Custom Field', 'codepress-admin-columns' ) ],
+			],
+		];
 	}
 
 	public function get_dependent_settings() {
@@ -31,10 +31,10 @@ class User extends AC\Settings\Column\User {
 		switch ( $this->get_display_author_as() ) {
 			case 'custom_field' :
 
-				return array( new UserCustomField( $this->column ) );
+				return [ new UserCustomField( $this->column ) ];
 			case 'gravatar' :
 
-				return array( new Gravatar( $this->column ) );
+				return [ new Gravatar( $this->column ) ];
 			default:
 
 				return parent::get_dependent_settings();
