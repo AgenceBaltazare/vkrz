@@ -105,11 +105,11 @@ wp_reset_query();
                             $intitule   = "1er";
                         }
                         elseif($i == 2){
-                            $class      = "col-4 offset-2";
+                            $class      = "col-sm-4 offset-sm-1 col-6";
                             $intitule   = "2ème";
                         }
                         elseif($i == 3){
-                            $class      = "col-4";
+                            $class      = "col-sm-4 col-6";
                             $intitule   = "3ème";
                         }
                         elseif($contenders->post_count == $i){
@@ -117,7 +117,7 @@ wp_reset_query();
                             $intitule   = "Dernier";
                         }
                         else{
-                            $class      = "col-md-3 col-sm-4 col-6 col-lg-2";
+                            $class      = "col-md-3 col-sm-4 col-4 col-lg-2";
                             $intitule   = $i;
                         }
                         ?>
@@ -131,7 +131,9 @@ wp_reset_query();
                             </div>
                             <div class="name">
                                 <h5>
-                                    <span><?php echo $intitule; ?>.</span> <?php the_title(); ?>
+                                    <span><?php echo $intitule; ?></span>
+                                    <br>
+                                    <?php the_title(); ?>
                                 </h5>
                                 <h6 class="none">
                                     <?php the_field( 'ELO_c' ); ?>
@@ -170,7 +172,7 @@ wp_reset_query();
                                 $intitule   = "Dernier";
                             }
                             else{
-                                $class      = "col-md-3 col-sm-4 col-6 col-lg-2";
+                                $class      = "col-md-3 col-sm-4 col-4 col-lg-2";
                                 $intitule   = $i;
                             }
                             ?>
@@ -184,7 +186,9 @@ wp_reset_query();
                                 </div>
                                 <div class="name">
                                     <h5>
-                                        <span><?php echo $intitule; ?>.</span> <?php the_title(); ?>
+                                        <span><?php echo $intitule; ?></span>
+                                        <br>
+                                        <?php the_title(); ?>
                                     </h5>
                                     <h6 class="none">
                                         <?php the_field( 'ELO_c' ); ?>
@@ -207,14 +211,14 @@ wp_reset_query();
         <header class="header">
             <div class="container-fluid">
                 <div class="row align-items-center">
-                    <div class="col-4">
+                    <div class="col-sm-4">
                         <div class="logo">
                             <a href="<?php bloginfo('url'); ?>/">
                                 <img src="<?php bloginfo('template_directory'); ?>/assets/img/logo-vainkeurz.png" alt="" class="img-fluid">
                             </a>
                         </div>
                     </div>
-                    <div class="col-8 text-right">
+                    <div class="col-sm-8 text-right">
                         <div class="display_users_votes">
                             <a href="https://baltazare1.typeform.com/to/j9n8JU" target="_blank" class="cta_2">
                                 ☝️ Donnez nous votre avis !
@@ -296,6 +300,18 @@ wp_reset_query();
 <?php else: ?>
 
     <div class="cta">
+
+        <div class="display_users_votes">
+            <h6>
+                <?php if ($nb_user_votes == 0) : ?>
+                    Aucun vote encore
+                <?php elseif ($nb_user_votes == 1) : ?>
+                    Bravo pour ton 1er vote
+                <?php else : ?>
+                    Vos votes : <?php echo $all_user_votes->post_count; ?>
+                <?php endif; ?>
+            </h6>
+        </div>
 
         <a href="<?php the_permalink(); ?>?classement=show">
             Voir le classement actuel

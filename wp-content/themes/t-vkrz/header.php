@@ -26,6 +26,7 @@
     <script src="https://kit.fontawesome.com/30edd5507e.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="<?php bloginfo( 'template_directory' ); ?>/assets/css/main.css">
     <link rel="stylesheet" href="<?php bloginfo( 'template_directory' ); ?>/assets/css/contenders.css">
+    <link rel="stylesheet" href="<?php bloginfo( 'template_directory' ); ?>/assets/css/responsive.css">
 
     <?php wp_head(); ?>
 
