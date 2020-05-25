@@ -33,11 +33,6 @@ $all_votes       = new WP_Query(array(
         )
     )
 ));
-$v=0; while ($all_votes->have_posts()) : $all_votes->the_post();
-
-    array_push($list_votes, get_field('id_user_v'));
-
-$v++; endwhile;
 
 $contenders      = new WP_Query(array(
     'post_type'      => 'contender',
@@ -70,17 +65,6 @@ for ($i = 0; $i <= count($list_contenders); $i++) {
     }
 }
 wp_reset_query();
-
-$count_uniqID = array_count_values($list_votes);
-asort($count_uniqID);
-$reverse_count_uniqID = array_reverse($count_uniqID);
-$it=1; foreach ($reverse_count_uniqID as $key => $value){
-    if($it == 1){
-        $id_biggest_voteur  = $key;
-        $id_most_votes      = $value;
-    }
-    $it++;
-}
 ?>
 <?php if(isset($_GET['classement']) && $_GET['classement'] == "show") : ?>
 
@@ -280,7 +264,7 @@ $it=1; foreach ($reverse_count_uniqID as $key => $value){
                             </div>
                             <div class="col-2">
                                 <div class="display_votes">
-                                    <h6 class="toshowpopover" data-container="body" data-toggle="popover" data-placement="top" data-content="Plus grosse série de votes : <?php echo $id_most_votes; ?>">
+                                    <h6>
                                         <?php echo $all_votes->post_count; ?> votes
                                     </h6>
                                 </div>
