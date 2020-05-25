@@ -87,7 +87,7 @@ wp_reset_query();
                             'posts_per_page' => 3,
                             'meta_key'       => 'ELO_c',
                             'orderby'        => 'meta_value',
-                            'order'          => 'DESC',
+                            'order'          => 'ASC',
                             'meta_query'     => array(
                                 array(
                                     'key'     => 'id_tournoi_c',
@@ -154,7 +154,7 @@ wp_reset_query();
                                 'meta_key'       => 'ELO_c',
                                 'orderby'        => 'meta_value',
                                 'offset'         => 3,
-                                'order'          => 'DESC',
+                                'order'          => 'ASC',
                                 'meta_query'     => array(
                                     array(
                                         'key'     => 'id_tournoi_c',
