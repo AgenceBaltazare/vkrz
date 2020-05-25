@@ -109,7 +109,7 @@ wp_reset_query();
                             $intitule   = "2ème";
                         }
                         elseif($i == 3){
-                            $class      = "col-sm-4 col-6";
+                            $class      = "col-sm-4 offset-sm-1 col-6";
                             $intitule   = "3ème";
                         }
                         elseif($contenders->post_count == $i){
@@ -135,7 +135,6 @@ wp_reset_query();
                                     <br>
                                     <?php the_title(); ?>
                                 </h5>
-                                <h4><?php the_field('ELO_c'); ?></h4>
                                 <h6 class="none">
                                     <?php the_field( 'ELO_c' ); ?>
                                 </h6>
@@ -191,7 +190,6 @@ wp_reset_query();
                                         <br>
                                         <?php the_title(); ?>
                                     </h5>
-                                    <h4><?php the_field('ELO_c'); ?></h4>
                                     <h6 class="none">
                                         <?php the_field( 'ELO_c' ); ?>
                                     </h6>
