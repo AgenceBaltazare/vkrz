@@ -27,6 +27,9 @@
     }
     checkCookie();
 
+    jQuery('.toshowpopover').popover({
+        container: 'body'
+    })
 </script>
 <?php wp_footer(); ?>
 </body>
