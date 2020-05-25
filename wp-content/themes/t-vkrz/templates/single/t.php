@@ -2,6 +2,7 @@
 <?php
 $id_tournoi      = get_the_ID();
 $list_contenders = array();
+$list_votes      = array();
 $all_user_votes       = new WP_Query(array(
     'post_type'      => 'vote',
     'posts_per_page' => -1,
@@ -20,6 +21,7 @@ $all_user_votes       = new WP_Query(array(
     )
 ));
 $nb_user_votes = $all_user_votes->post_count;
+
 $all_votes       = new WP_Query(array(
     'post_type'      => 'vote',
     'posts_per_page' => -1,
@@ -31,6 +33,12 @@ $all_votes       = new WP_Query(array(
         )
     )
 ));
+$v=0; while ($all_votes->have_posts()) : $all_votes->the_post();
+
+    array_push($list_votes, get_field('id_user_v'));
+
+$v++; endwhile;
+
 $contenders      = new WP_Query(array(
     'post_type'      => 'contender',
     'posts_per_page' => -1,
@@ -43,8 +51,7 @@ $contenders      = new WP_Query(array(
         )
     )
 ));
-$i               = 0;
-while ($contenders->have_posts()) : $contenders->the_post();
+$i=0; while ($contenders->have_posts()) : $contenders->the_post();
 
     array_push($list_contenders, get_the_ID());
 
@@ -52,8 +59,7 @@ while ($contenders->have_posts()) : $contenders->the_post();
     $id_c_1 = $list_contenders[$rand_c[0]];
     $id_c_2 = $list_contenders[$rand_c[1]];
 
-    $i++;
-endwhile;
+$i++; endwhile;
 
 $nums_pairs = "";
 $nb_battle  = 0;
@@ -64,8 +70,18 @@ for ($i = 0; $i <= count($list_contenders); $i++) {
     }
 }
 wp_reset_query();
-?>
 
+$count_uniqID = array_count_values($list_votes);
+asort($count_uniqID);
+$reverse_count_uniqID = array_reverse($count_uniqID);
+$it=1; foreach ($reverse_count_uniqID as $key => $value){
+    if($it == 1){
+        $id_biggest_voteur  = $key;
+        $id_most_votes      = $value;
+    }
+    $it++;
+}
+?>
 <?php if(isset($_GET['classement']) && $_GET['classement'] == "show") : ?>
 
     <div class="classement">
@@ -264,7 +280,7 @@ wp_reset_query();
                             </div>
                             <div class="col-2">
                                 <div class="display_votes">
-                                    <h6>
+                                    <h6 type="button" class="toshowpopover" data-container="body" data-toggle="popover" data-placement="top" data-content="Plus grosse série de votes : <?php echo $id_most_votes; ?>">
                                         <?php echo $all_votes->post_count; ?> votes
                                     </h6>
                                 </div>
