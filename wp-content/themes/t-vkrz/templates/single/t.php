@@ -146,7 +146,7 @@ $it=1; foreach ($reverse_count_uniqID as $key => $value){
                                 <?php endif; ?>
                             </div>
                             <div class="name">
-                                <h5>
+                                <h5 class="toshowpopover" data-container="body" data-toggle="popover" data-placement="top" data-content="ELO : <?php the_field('ELO_c'); ?>">
                                     <span><?php echo $intitule; ?></span>
                                     <br>
                                     <?php the_title(); ?>
@@ -201,7 +201,7 @@ $it=1; foreach ($reverse_count_uniqID as $key => $value){
                                     <?php endif; ?>
                                 </div>
                                 <div class="name">
-                                    <h5>
+                                    <h5 class="toshowpopover" data-container="body" data-toggle="popover" data-placement="top" data-content="ELO : <?php the_field('ELO_c'); ?>">
                                         <span><?php echo $intitule; ?></span>
                                         <br>
                                         <?php the_title(); ?>
@@ -280,7 +280,7 @@ $it=1; foreach ($reverse_count_uniqID as $key => $value){
                             </div>
                             <div class="col-2">
                                 <div class="display_votes">
-                                    <h6 type="button" class="toshowpopover" data-container="body" data-toggle="popover" data-placement="top" data-content="Plus grosse série de votes : <?php echo $id_most_votes; ?>">
+                                    <h6 class="toshowpopover" data-container="body" data-toggle="popover" data-placement="top" data-content="Plus grosse série de votes : <?php echo $id_most_votes; ?>">
                                         <?php echo $all_votes->post_count; ?> votes
                                     </h6>
                                 </div>
