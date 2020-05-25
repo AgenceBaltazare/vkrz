@@ -86,13 +86,13 @@ wp_reset_query();
                             'post_type'      => 'contender',
                             'posts_per_page' => 3,
                             'meta_key'       => 'ELO_c',
-                            'orderby'        => 'meta_value',
-                            'order'          => 'ASC',
+                            'orderby'        => 'meta_value_num',
+                            'order'          => 'DESC',
                             'meta_query'     => array(
                                 array(
                                     'key'     => 'id_tournoi_c',
                                     'value'   => $id_tournoi,
-                                    'compare' => 'LIKE',
+                                    'compare' => '=',
                                 )
                             )
                         )
@@ -135,6 +135,7 @@ wp_reset_query();
                                     <br>
                                     <?php the_title(); ?>
                                 </h5>
+                                <h4><?php the_field('ELO_c'); ?></h4>
                                 <h6 class="none">
                                     <?php the_field( 'ELO_c' ); ?>
                                 </h6>
@@ -152,14 +153,14 @@ wp_reset_query();
                                 'post_type'      => 'contender',
                                 'posts_per_page' => 1000,
                                 'meta_key'       => 'ELO_c',
-                                'orderby'        => 'meta_value',
+                                'orderby'        => 'meta_value_num',
                                 'offset'         => 3,
-                                'order'          => 'ASC',
+                                'order'          => 'DESC',
                                 'meta_query'     => array(
                                     array(
                                         'key'     => 'id_tournoi_c',
                                         'value'   => $id_tournoi,
-                                        'compare' => 'LIKE',
+                                        'compare' => '=',
                                     )
                                 )
                             )
@@ -190,6 +191,7 @@ wp_reset_query();
                                         <br>
                                         <?php the_title(); ?>
                                     </h5>
+                                    <h4><?php the_field('ELO_c'); ?></h4>
                                     <h6 class="none">
                                         <?php the_field( 'ELO_c' ); ?>
                                     </h6>
@@ -203,7 +205,6 @@ wp_reset_query();
             </div>
         </div>
     </div>
-
 
 <?php else: ?>
 
