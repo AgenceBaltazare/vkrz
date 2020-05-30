@@ -1,10 +1,18 @@
-<?php get_header(); ?>
 <?php
 $id_tournoi                      = get_field('id_tournoi_r');
 $uuiduser                        = get_field('uuid_user_r');
 $list_contenders_tournoi         = get_field('ranking_r');
 
-$id_contender_classement         = array_column($list_contenders_tournoi, 'id_global');
+function array_sort_by_column(&$arr, $col, $dir = SORT_DESC) {
+    $sort_col = array();
+    foreach ($arr as $key=> $row) {
+        $sort_col[$key] = $row[$col];
+    }
+    array_multisort($sort_col, $dir, $arr);
+}
+array_sort_by_column($list_contenders_tournoi, 'place');
+
+$user_contenders_classement      = array_column($list_contenders_tournoi, 'place', 'id_global');
 
 $all_user_votes       = new WP_Query(array(
     'post_type'      => 'vote',
@@ -18,13 +26,24 @@ $all_user_votes       = new WP_Query(array(
         ),
         array(
             'key'     => 'id_user_v',
-            'value'   => $_COOKIE["vainkeurz_user_id"],
+            'value'   => $uuiduser,
             'compare' => '=',
         )
     )
 ));
 $nb_user_votes = $all_user_votes->post_count;
 ?>
+
+<?php get_header(); ?>
+
+<?php
+if(get_field('cover_t', $id_tournoi)){
+    $illu       = wp_get_attachment_image_src(get_field('cover_t', $id_tournoi), 'full');
+    $illu_url   = $illu[0];
+}
+?>
+<body <?php body_class(array('cover', $body_class)); ?> style="background: url(<?php echo $illu_url; ?>) center center no-repeat">
+
 <?php if(get_field('done_r')): ?>
     <div class="classement">
         <div class="container-fluid">
@@ -32,7 +51,7 @@ $nb_user_votes = $all_user_votes->post_count;
                 <div class="col">
                     <div class="titre-classement text-center">
                         <h2>Votre classement</h2>
-                        <h3>Après <?php echo $nb_user_votes->post_count; ?> votes</h3>
+                        <h3>Après <?php echo $all_user_votes->post_count; ?> votes</h3>
                     </div>
                 </div>
             </div>
@@ -40,48 +59,30 @@ $nb_user_votes = $all_user_votes->post_count;
                 <div class="row">
                     <?php
 
-                    $i=1; foreach($id_contender_classement as $c) :
+                    $i=1; foreach($user_contenders_classement as $c => $p) : ?>
+                        <br>
+                        <div class="col-md-3">
 
-                        if($i == 1){
-                            $class      = "col-12";
-                            $intitule   = "1er";
-                        }
-                        elseif($i == 2){
-                            $class      = "col-sm-4 offset-sm-1 col-6";
-                            $intitule   = "2ème";
-                        }
-                        elseif($i == 3){
-                            $class      = "col-sm-4 offset-sm-1 col-6";
-                            $intitule   = "3ème";
-                        }
-                        elseif(count($id_contender_classement) == $i){
-                            $class      = "col-12";
-                            $intitule   = "Dernier";
-                        }
-                        else{
-                            $class      = "col-md-3 col-sm-4 col-4 col-lg-2";
-                            $intitule   = $i;
-                        }
-                        ?>
+                            <div class="contenders_min">
 
-                        <div class="contenders_min <?php echo $class; ?>">
+                                <div class="illu">
+                                    <?php
+                                    echo get_the_post_thumbnail($c, 'full', array('class' => 'img-fluid'));
+                                    ?>
+                                </div>
+                                <div class="name">
+                                    <h5>
+                                        <span><?php echo $i; ?></span>
+                                        <br>
+                                        <?php echo get_the_title($c); ?>
+                                    </h5>
+                                </div>
 
-                            <div class="illu">
-                                <?php
-                                echo get_the_post_thumbnail($c, 'full', array('class' => 'img-fluid'));
-                                ?>
-                            </div>
-                            <div class="name">
-                                <h5>
-                                    <span><?php echo $intitule; ?></span>
-                                    <br>
-                                    <?php echo get_the_title($c); ?>
-                                </h5>
                             </div>
 
                         </div>
 
-                        <?php $i++; endforeach; ?>
+                    <?php $i++; endforeach; ?>
                 </div>
             </div>
         </div>

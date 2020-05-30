@@ -11,8 +11,6 @@ function vkzr_do_elo_vote() {
 	$k          = 32;
 	$u          = 0;
 
-
-
 	$elo_v = get_field( 'ELO_c', $winner );
 	$elo_l = get_field( 'ELO_c', $looser );
 

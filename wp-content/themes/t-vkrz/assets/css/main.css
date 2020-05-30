@@ -56,26 +56,26 @@ body {
 .cover {
   background-size: cover !important; }
 
-.title-battle {
+.bloc-titre {
   margin: 20px 0 0;
   text-align: center;
   color: #fff;
   font-family: 'Staatliches', cursive;
   text-shadow: 2px 2px 0px #000; }
-  .title-battle b {
+  .bloc-titre h1 {
     display: block;
     font-weight: normal;
     font-size: 1em;
     margin: 0 0 10px 0;
     letter-spacing: 5px; }
-  .title-battle span {
+  .bloc-titre h2 {
     font-size: 2.5em;
     letter-spacing: 2px; }
-    .title-battle span em {
-      font-style: normal;
-      font-size: 14px !important;
-      display: block;
-      margin-top: 10px; }
+    .bloc-titre h2 span {
+      font-size: 15px;
+      position: relative;
+      top: -15px;
+      cursor: help; }
 
 .title-contender {
   margin: 10px 0 0;
@@ -212,5 +212,78 @@ body {
 .vardump {
   padding: 50px;
   background: #fff; }
+
+.none {
+  display: none; }
+
+.infos_tournoi {
+  text-align: center;
+  margin-top: 10px; }
+  .infos_tournoi li {
+    list-style-type: none;
+    display: inline-block;
+    color: #fff;
+    font-size: 16px;
+    margin: 0 15px;
+    cursor: help; }
+
+.a_step {
+  border-top: 5px solid;
+  border-right: 5px solid;
+  border-left: 5px solid;
+  position: relative; }
+
+.stepbar {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  padding: 15px; }
+  .stepbar h5 {
+    text-align: center;
+    color: #000;
+    text-transform: uppercase;
+    font-size: 20px; }
+    .stepbar h5 span {
+      font-weight: normal;
+      font-size: 15px;
+      text-transform: lowercase !important;
+      color: #333 !important; }
+
+.step_bar_1 {
+  background: #e1f5c7; }
+
+.step_bar_2 {
+  background: #f5eb72; }
+
+.step_bar_3 {
+  background: #f5b140; }
+
+.step_bar_4 {
+  background: #f56226; }
+
+.step_bar_5 {
+  background: #f51608; }
+
+.fin_tournoi_bar {
+  background: #f529c1; }
+
+.step_1 {
+  border-color: #e1f5c7; }
+
+.step_2 {
+  border-color: #f5eb72; }
+
+.step_3 {
+  border-color: #f5b140; }
+
+.step_4 {
+  border-color: #f56226; }
+
+.step_5 {
+  border-color: #f51608; }
+
+.fin_tournoi {
+  border-color: #f529c1; }
 
 /*# sourceMappingURL=main.css.map */

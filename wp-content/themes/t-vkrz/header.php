@@ -42,25 +42,3 @@
         })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
     </script>
 </head>
-
-<?php if(get_post_type() == "tournoi" || get_post_type() == "classement"): ?>
-
-    <?php
-    if(get_post_type() == "classement"){
-        $id_tournoi     = get_field('id_tournoi_r');
-    }
-    else{
-        $id_tournoi     = get_the_ID();
-    }
-    if(get_field('cover_t', $id_tournoi)){
-        $illu       = wp_get_attachment_image_src(get_field('cover_t', $id_tournoi), 'full');
-        $illu_url   = $illu[0];
-    }
-    ?>
-    <body <?php body_class('cover'); ?> style="background: url(<?php echo $illu_url; ?>) center center no-repeat">
-
-<?php else: ?>
-
-    <body <?php body_class(); ?>>
-
-<?php endif; ?>
