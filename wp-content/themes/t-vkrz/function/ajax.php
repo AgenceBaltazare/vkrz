@@ -11,6 +11,8 @@ function vkzr_do_elo_vote() {
 	$k          = 32;
 	$u          = 0;
 
+
+
 	$elo_v = get_field( 'ELO_c', $winner );
 	$elo_l = get_field( 'ELO_c', $looser );
 
@@ -24,9 +26,9 @@ function vkzr_do_elo_vote() {
 	update_field( 'ELO_c', $new_score_v, $winner );
 	update_field( 'ELO_c', $new_score_l, $looser );
 
-//
-// Add vote
-//
+    //
+    // Add vote
+    //
 	if ( is_user_logged_in() ) {
 		$is_logged  = "true";
 	}
@@ -43,7 +45,6 @@ function vkzr_do_elo_vote() {
     } else {
         $ip_user_v = $_SERVER['REMOTE_ADDR'];
     }
-
 	$new_vote = array(
 		'post_type'   => 'vote',
 		'post_title'  => 'U:' . $user_id_uniq . ' T:' . $tournament . ' V:' . $winner . '(' . $elo_v . ')' . ' L:' . $looser . '(' . $elo_l . ')',
@@ -102,7 +103,6 @@ function vkzr_do_elo_vote() {
 			)
 		)
 	));
-
 	$contendersHtml = [];
 	$index          = 1;
 	while ( $contenders->have_posts() ) : $contenders->the_post();
@@ -119,6 +119,30 @@ function vkzr_do_elo_vote() {
     else{
         $display_user_votes = "Vos votes : ".$all_user_votes->post_count;
     }
+
+
+    // Classement perso
+    $classement_perso = new WP_Query(array('post_type' => 'classement', 'orderby' => 'date', 'posts_per_page' => '1', 'meta_query' =>
+        array(
+            'relation'  => 'AND',
+            array(
+                'key'     => 'id_tournoi_r',
+                'value'   => $tournament,
+                'compare' => '=',
+            ),
+            array(
+                'key' => 'uuid_user_r',
+                'value' => $user_id_uniq,
+                'compare' => '=',
+            )
+        )
+    ));
+    while ($classement_perso->have_posts()) : $classement_perso->the_post();
+        $id_classement_user = get_the_ID();
+    endwhile;
+    $list_contenders_tournoi = get_field('ranking_r', $id_classement_user);
+
+
 
 	return die( json_encode( [
 		'contenders'                => $contendersHtml,

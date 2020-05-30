@@ -43,21 +43,19 @@
     </script>
 </head>
 
-<?php if(is_single() && get_post_type() == "tournoi"): ?>
+<?php if(get_post_type() == "tournoi" || get_post_type() == "classement"): ?>
 
     <?php
-    if (has_post_thumbnail()){
-        $illu = get_the_post_thumbnail_url(get_the_ID(), 'full');
+    if(get_post_type() == "classement"){
+        $id_tournoi     = get_field('id_tournoi_r');
     }
-    ?>
-    <?php
-        if(get_field('cover_t')){
-            $illu       = wp_get_attachment_image_src(get_field('cover_t'), 'full');
-            $illu_url   = $illu[0];
-        }
-        else{
-            $illu_url   = get_the_post_thumbnail_url(get_the_ID(), 'full');
-        }
+    else{
+        $id_tournoi     = get_the_ID();
+    }
+    if(get_field('cover_t', $id_tournoi)){
+        $illu       = wp_get_attachment_image_src(get_field('cover_t', $id_tournoi), 'full');
+        $illu_url   = $illu[0];
+    }
     ?>
     <body <?php body_class('cover'); ?> style="background: url(<?php echo $illu_url; ?>) center center no-repeat">
 
