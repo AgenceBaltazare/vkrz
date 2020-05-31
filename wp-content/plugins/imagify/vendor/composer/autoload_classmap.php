@@ -181,6 +181,7 @@ return array(
     'Imagify_Assets_Deprecated' => $baseDir . '/inc/deprecated/classes/class-imagify-assets-deprecated.php',
     'Imagify_Attachment' => $baseDir . '/inc/deprecated/classes/class-imagify-attachment.php',
     'Imagify_Auto_Optimization' => $baseDir . '/inc/classes/class-imagify-auto-optimization.php',
+    'Imagify_Auto_Optimization_Deprecated' => $baseDir . '/inc/deprecated/classes/class-imagify-auto-optimization-deprecated.php',
     'Imagify_Cron_Library_Size' => $baseDir . '/inc/classes/class-imagify-cron-library-size.php',
     'Imagify_Cron_Rating' => $baseDir . '/inc/classes/class-imagify-cron-rating.php',
     'Imagify_Cron_Sync_Files' => $baseDir . '/inc/classes/class-imagify-cron-sync-files.php',

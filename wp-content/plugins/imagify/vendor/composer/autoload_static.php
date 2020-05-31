@@ -7,7 +7,7 @@ namespace Composer\Autoload;
 use Composer\AutoloadWPMediaImagifyWordPressPlugin\ClassLoader as ClassLoaderWPMediaImagifyWordPressPlugin;
 
 
-class ComposerStaticInitb97c519d24d95afd7d57037f5b53badc
+class ComposerStaticInita19538743745730476abc209df8266cb
 {
     public static $prefixLengthsPsr4 = array (
         'I' => 
@@ -250,6 +250,7 @@ class ComposerStaticInitb97c519d24d95afd7d57037f5b53badc
         'Imagify_Assets_Deprecated' => __DIR__ . '/../..' . '/inc/deprecated/classes/class-imagify-assets-deprecated.php',
         'Imagify_Attachment' => __DIR__ . '/../..' . '/inc/deprecated/classes/class-imagify-attachment.php',
         'Imagify_Auto_Optimization' => __DIR__ . '/../..' . '/inc/classes/class-imagify-auto-optimization.php',
+        'Imagify_Auto_Optimization_Deprecated' => __DIR__ . '/../..' . '/inc/deprecated/classes/class-imagify-auto-optimization-deprecated.php',
         'Imagify_Cron_Library_Size' => __DIR__ . '/../..' . '/inc/classes/class-imagify-cron-library-size.php',
         'Imagify_Cron_Rating' => __DIR__ . '/../..' . '/inc/classes/class-imagify-cron-rating.php',
         'Imagify_Cron_Sync_Files' => __DIR__ . '/../..' . '/inc/classes/class-imagify-cron-sync-files.php',
@@ -283,9 +284,9 @@ class ComposerStaticInitb97c519d24d95afd7d57037f5b53badc
     public static function getInitializer(ClassLoaderWPMediaImagifyWordPressPlugin $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitb97c519d24d95afd7d57037f5b53badc::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitb97c519d24d95afd7d57037f5b53badc::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInitb97c519d24d95afd7d57037f5b53badc::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInita19538743745730476abc209df8266cb::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInita19538743745730476abc209df8266cb::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInita19538743745730476abc209df8266cb::$classMap;
 
         }, null, ClassLoaderWPMediaImagifyWordPressPlugin::class);
     }
