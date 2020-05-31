@@ -319,13 +319,14 @@ body {
       font-size: 20px;
       margin: 10px 5px 0 0; }
       .tournoi_min a h2 span {
-        margin-top: 10px; }
+        display: block; }
     .tournoi_min a p {
       color: #fff;
       text-transform: lowercase;
       font-weight: normal;
       font-size: 15px;
-      margin-top: 10px;
+      margin-top: 5px;
+      margin-bottom: 5px;
       font-family: 'Poppins', sans-serif; }
     .tournoi_min a .check {
       display: none; }

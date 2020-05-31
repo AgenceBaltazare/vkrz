@@ -379,7 +379,7 @@ $step_6_c : #f51608;
       font-size: 20px;
       margin: 10px 5px 0 0;
       span{
-        margin-top: 10px;
+        display: block;
       }
     }
     p{
@@ -387,7 +387,8 @@ $step_6_c : #f51608;
       text-transform: lowercase;
       font-weight: normal;
       font-size: 15px;
-      margin-top: 10px;
+      margin-top: 5px;
+      margin-bottom: 5px;
       font-family: 'Poppins', sans-serif;
     }
     .check{
