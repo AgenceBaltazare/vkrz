@@ -25,6 +25,19 @@
     margin: 50px 10px; }
 
   .cta .display_users_votes h6 {
-    display: block; } }
+    display: block; }
+
+  .display_battle {
+    margin-top: 75px; }
+
+  .share_rank {
+    text-align: center; }
+    .share_rank .cta-2 {
+      margin-bottom: 40px; }
+    .share_rank ul {
+      text-align: center; }
+      .share_rank ul li:first-child {
+        display: block;
+        margin-bottom: 15px; } }
 
 /*# sourceMappingURL=responsive.css.map */

@@ -358,36 +358,36 @@ if(get_field('cover_t')){
             </div>
         </div>
     </header>
-    <div class="container">
-        <div class="tournoi_infos">
-            <div class="row align-items-center">
-                <div class="col-12">
-                    <div class="bloc-titre">
-                        <h1>
-                            <b>
-                                <?php the_title(); ?>
-                            </b>
-                        </h1>
-                        <h2>
-                            <?php the_field('question_t'); ?>
-                            <span class="toshowpopover moreinfo" data-container="body" data-toggle="popover" data-placement="top" data-content="Prendre en compte la forme la plus puissante du perso">
+    <?php if($is_next_duel): ?>
+        <div class="container">
+            <div class="tournoi_infos">
+                <div class="row align-items-center">
+                    <div class="col-12">
+                        <div class="bloc-titre">
+                            <h1>
+                                <b>
+                                    <?php the_title(); ?>
+                                </b>
+                            </h1>
+                            <h2>
+                                <?php the_field('question_t'); ?>
+                                <span class="toshowpopover moreinfo" data-container="body" data-toggle="popover" data-placement="top" data-content="<?php the_field('precision_t'); ?>">
                                 <i class="fal fa-info-circle"></i>
                             </span>
-                        </h2>
-                        <ul class="infos_tournoi">
-                            <li class="toshowpopover" data-container="body" data-toggle="popover" data-placement="top" data-content="<?php echo $nb_contenders; ?> participants dans ce tournoi">
-                                <i class="fad fa-users-crown"></i> <?php echo $nb_contenders; ?>
-                            </li>
-                            <li class="toshowpopover" data-container="body" data-toggle="popover" data-placement="top" data-content="Vous devez voter environ <?php echo $nb_contenders * 3; ?> fois pour finir votre classement">
-                                <i class="fad fa-infinity"></i> <?php echo $nb_contenders * 3; ?>
-                            </li>
-                        </ul>
+                            </h2>
+                            <ul class="infos_tournoi">
+                                <li class="toshowpopover" data-container="body" data-toggle="popover" data-placement="top" data-content="<?php echo $nb_contenders; ?> participants dans ce tournoi">
+                                    <i class="fad fa-users-crown"></i> <?php echo $nb_contenders; ?>
+                                </li>
+                                <li class="toshowpopover" data-container="body" data-toggle="popover" data-placement="top" data-content="Vous devez voter environ <?php echo $nb_contenders * 3; ?> fois pour finir votre classement">
+                                    <i class="fad fa-infinity"></i> <?php echo $nb_contenders * 3; ?>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <?php if($is_next_duel): ?>
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -429,19 +429,31 @@ if(get_field('cover_t')){
             </div>
         </div>
     <?php else: ?>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h2 class="text-center">
-                        <a href="<?php the_permalink($id_classement_user); ?>">
-                            Votre classement personnel est terminé.
-                        </a>
-                    </h2>
+        <div class="finish_tournoi">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="text-center">
+                            <i class="fal fa-badge-check"></i>
+                            <br>
+                            Félicitations,
+                            <br>vous avez terminé le tournoi <b><?php the_title(); ?> : <?php the_field('question_t'); ?></b>
+                        </h2>
+                        <div class="more_links text-center">
+                            <a href="<?php the_permalink($id_classement_user); ?>" class="cta-1 cta_btn">
+                                <i class="fad fa-medal"></i> Voir votre classement
+                            </a>
+                            <div>
+                                <a href="<?php bloginfo('url'); ?>/" class="cta-2 cta_btn">
+                                    Retourner aux tournois
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     <?php endif; ?>
-
 </div>
 
 <div class="stepbar <?php echo $bar_step; ?>">
