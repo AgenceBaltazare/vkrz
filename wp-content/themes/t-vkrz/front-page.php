@@ -80,11 +80,11 @@
                                         <div class="cov-illu" style="background: url(<?php echo $illu; ?>) center center no-repeat"></div>
                                     </div>
                                 <?php endif; ?>
-                                <h2>
+                                <h2 class="eh">
                                     <b><?php the_title(); ?></b>
                                     <span><?php the_field('objectif_t'); ?></span>
                                 </h2>
-                                <p>
+                                <p class="eh">
                                     <?php the_field('precision_t'); ?>
                                 </p>
                             </a>

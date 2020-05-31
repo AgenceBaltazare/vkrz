@@ -322,7 +322,6 @@ body {
         display: block; }
     .tournoi_min a p {
       color: #fff;
-      text-transform: lowercase;
       font-weight: normal;
       font-size: 15px;
       margin-top: 5px;
