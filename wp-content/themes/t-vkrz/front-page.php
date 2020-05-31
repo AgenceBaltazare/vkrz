@@ -82,7 +82,7 @@
                                 <?php endif; ?>
                                 <h2>
                                     <b><?php the_title(); ?></b>
-                                    <br><?php the_field('objectif_t'); ?>
+                                    <span><?php the_field('objectif_t'); ?></span>
                                 </h2>
                                 <p>
                                     <?php the_field('precision_t'); ?>
