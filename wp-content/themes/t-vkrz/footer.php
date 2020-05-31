@@ -44,7 +44,9 @@
     jQuery(document).ready(function() {
 
         jQuery('.eh').equalHeights();
-
+        jQuery('.h2eh').equalHeights();
+        jQuery('.peh').equalHeights();
+        
     });
 </script>
 <?php wp_footer(); ?>
