@@ -72,12 +72,21 @@
                                         <div class="check">
                                             <i class="fal fa-badge-check"></i>
                                         </div>
-                                        <?php the_post_thumbnail('full', array('class'=>'img-fluid')); ?>
+                                        <?php
+                                            if (has_post_thumbnail()){
+                                                $illu = get_the_post_thumbnail_url(get_the_ID(), 'full');
+                                            }
+                                        ?>
+                                        <div class="cov-illu" style="background: url(<?php echo $illu; ?>) center center no-repeat"></div>
                                     </div>
                                 <?php endif; ?>
                                 <h2>
-                                    <b><?php the_title(); ?></b> : <?php the_field('objectif_t'); ?>
+                                    <b><?php the_title(); ?></b>
+                                    <br><?php the_field('objectif_t'); ?>
                                 </h2>
+                                <p>
+                                    <?php the_field('precision_t'); ?>
+                                </p>
                             </a>
                         </div>
                     </div>

@@ -452,4 +452,8 @@ body {
         .share_rank ul li a:hover {
           transform: scale(1.1); }
 
+.cov-illu {
+  min-height: 350px;
+  background-size: cover !important; }
+
 /*# sourceMappingURL=main.css.map */
