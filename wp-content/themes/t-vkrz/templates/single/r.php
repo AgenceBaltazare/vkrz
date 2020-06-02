@@ -95,7 +95,7 @@ if(get_field('cover_t', $id_tournoi)){
                                 <div class="name">
                                     <h5>
                                         <span><?php echo $i; ?></span>
-                                        <?php if($display_titre): ?>
+                                        <?php if(!$display_titre): ?>
                                             <br>
                                             <?php echo get_the_title($c); ?>
                                         <?php endif; ?>

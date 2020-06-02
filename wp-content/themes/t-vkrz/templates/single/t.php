@@ -398,7 +398,7 @@ if(get_field('cover_t')){
                                     <?php
                                     echo get_the_post_thumbnail($contender_1, 'full', array( 'class' => 'img-fluid'));
                                     ?>
-                                    <?php if(get_field('ne_pas_afficher_les_titres_t')): ?>
+                                    <?php if(!get_field('ne_pas_afficher_les_titres_t')): ?>
                                         <h2 class="title-contender">
                                             <?php echo get_the_title($contender_2); ?>
                                         </h2>
@@ -420,7 +420,7 @@ if(get_field('cover_t')){
                                     <?php
                                     echo get_the_post_thumbnail($contender_2, 'full', array( 'class' => 'img-fluid'));
                                     ?>
-                                    <?php if(get_field('ne_pas_afficher_les_titres_t')): ?>
+                                    <?php if(!get_field('ne_pas_afficher_les_titres_t')): ?>
                                         <h2 class="title-contender">
                                             <?php echo get_the_title($contender_2); ?>
                                         </h2>
