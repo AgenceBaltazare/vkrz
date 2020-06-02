@@ -2,6 +2,7 @@
 $id_tournoi                      = get_field('id_tournoi_r');
 $uuiduser                        = get_field('uuid_user_r');
 $list_contenders_tournoi         = get_field('ranking_r');
+$display_titre                   = get_field('ne_pas_afficher_les_titres_t', $id_tournoi);
 
 function array_sort_by_column(&$arr, $col, $dir = SORT_DESC) {
     $sort_col = array();
@@ -94,8 +95,10 @@ if(get_field('cover_t', $id_tournoi)){
                                 <div class="name">
                                     <h5>
                                         <span><?php echo $i; ?></span>
-                                        <br>
-                                        <?php echo get_the_title($c); ?>
+                                        <?php if($display_titre): ?>
+                                            <br>
+                                            <?php echo get_the_title($c); ?>
+                                        <?php endif; ?>
                                     </h5>
                                 </div>
 

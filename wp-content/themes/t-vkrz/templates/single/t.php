@@ -398,9 +398,11 @@ if(get_field('cover_t')){
                                     <?php
                                     echo get_the_post_thumbnail($contender_1, 'full', array( 'class' => 'img-fluid'));
                                     ?>
-                                    <h2 class="title-contender">
-                                        <?php echo get_the_title($contender_1); ?>
-                                    </h2>
+                                    <?php if(get_field('ne_pas_afficher_les_titres_t')): ?>
+                                        <h2 class="title-contender">
+                                            <?php echo get_the_title($contender_2); ?>
+                                        </h2>
+                                    <?php endif; ?>
                                 </a>
                             </div>
                             <div class="col-2">
@@ -418,9 +420,11 @@ if(get_field('cover_t')){
                                     <?php
                                     echo get_the_post_thumbnail($contender_2, 'full', array( 'class' => 'img-fluid'));
                                     ?>
-                                    <h2 class="title-contender">
-                                        <?php echo get_the_title($contender_2); ?>
-                                    </h2>
+                                    <?php if(get_field('ne_pas_afficher_les_titres_t')): ?>
+                                        <h2 class="title-contender">
+                                            <?php echo get_the_title($contender_2); ?>
+                                        </h2>
+                                    <?php endif; ?>
                                 </a>
                             </div>
                         </div>
