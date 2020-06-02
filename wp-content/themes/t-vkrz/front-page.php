@@ -25,7 +25,7 @@
         </div>
     </header>
 
-    <div class="container">
+    <div class="container-fluid">
         <div class="titre_home">
             <div class="row">
                 <div class="col">
