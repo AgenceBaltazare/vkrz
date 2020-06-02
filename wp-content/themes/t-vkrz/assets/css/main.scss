@@ -551,3 +551,26 @@ $step_6_c : #f51608;
   min-height: 350px;
   background-size: cover !important;
 }
+
+.cover_contenders{
+  margin-top: 50px;
+  text-align: center;
+  .cov-illu{
+    margin: 0 auto;
+    min-height: 340px;
+    border-radius: 10px;
+    background-size: cover !important;
+    margin-bottom: 30px;
+    box-shadow: 0 0 50px rgba(232, 232, 231, 0.5);
+  }
+}
+.bloc-contenders{
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -ms-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  &:hover{
+    transform: scale(1.05);
+  }
+}
