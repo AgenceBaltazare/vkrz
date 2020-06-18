@@ -9,6 +9,8 @@ function get_next_duel( $id_classement_user, $id_tournament, $id_winner = 0, $id
 	$next_duel               = [];
 	$current_date            = date( 'd/m/Y H:i:s' );
 	$list_contenders_tournoi = [];
+	$deja_sup_to             = [];
+
 	if ( ! $id_classement_user || empty( get_field( 'ranking_r', $id_classement_user ) ) ) {
 
 		// On boucle sur tous les participants du tournoi
@@ -191,7 +193,7 @@ function get_next_duel( $id_classement_user, $id_tournament, $id_winner = 0, $id
 		'all_votes_counts',
 		'nb_user_votes',
 		'nb_contenders',
-		''
+		'id_tournament'
 	);
 
 }
@@ -263,7 +265,7 @@ function all_user_votes_in_tournament( $id_tournament ) {
 		)
 	) );
 
-	return $all_user_votes->post_count;
+	return $all_user_votes->found_posts;
 }
 
 
@@ -282,14 +284,13 @@ function all_votes_in_tournament( $id_tournament ) {
 		)
 	) );
 
-	return $all_votes->post_count;
+	return $all_votes->found_posts;
 }
 
 function genrerate_tournament_response($tournament_infos){
 	extract($tournament_infos);
-
 	ob_start();
-
+	$id_tournoi = $id_tournament;
 	set_query_var( 'battle_vars', compact( 'contender_1', 'contender_2', 'id_tournoi', 'all_votes_counts' ) );
 	get_template_part( 'templates/parts/content', 'battle' );
 
@@ -306,14 +307,10 @@ function genrerate_tournament_response($tournament_infos){
 	$uservotes_html = ob_get_clean();
 
 	return die(json_encode( array(
-		'stepar_html' => $stepbar_html,
+		'stepbar_html' => $stepbar_html,
 		'contenders_html' => $contenders_html,
 		'uservotes_html' => $uservotes_html,
 		'all_votes_counts' => $all_votes_counts,
-		'nb_contenders' => $nb_contenders,
+		'is_next_duel' => $is_next_duel
 	) ));
-
-
-
-
 }

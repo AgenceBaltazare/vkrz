@@ -14,7 +14,7 @@ $nb_step                 = 5;
 
 $nb_user_votes  = all_user_votes_in_tournament($id_tournoi);
 
-$id_classement_user = get_or_create_ranking_if_not_exists($id_classement_user);
+$id_classement_user = get_or_create_ranking_if_not_exists($id_tournoi);
 extract(get_next_duel($id_classement_user, $id_tournoi));
 
 wp_reset_query();
