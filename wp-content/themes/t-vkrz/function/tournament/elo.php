@@ -6,8 +6,8 @@ function do_elo_ranking( $id_tournoi, $id_winner, $id_looser ) {
 	$eloRanking  = new VkrzELoRranking( $elo_winner, $elo_looser, 1, 0 );
 	$newRankings = $eloRanking->getNewRatings();
 
-	update_field( 'ELO_c', $newRankings['a'], $id_winner );
-	update_field( 'ELO_c', $newRankings['b'], $id_looser );
+	update_field( 'ELO_c', round($newRankings['a'], 2), $id_winner );
+	update_field( 'ELO_c', round($newRankings['b'], 2), $id_looser );
 
 	if ( is_user_logged_in() ) {
 		$is_logged = "true";
