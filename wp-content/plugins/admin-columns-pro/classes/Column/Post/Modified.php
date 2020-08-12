@@ -12,10 +12,7 @@ class Modified extends AC\Column\Post\Modified
 	implements Sorting\Sortable, Editing\Editable, Filtering\Filterable, Search\Searchable {
 
 	public function sorting() {
-		$model = new Sorting\Model( $this );
-		$model->set_orderby( 'modified' );
-
-		return $model;
+		return new Sorting\Model\OrderBy( 'modified' );
 	}
 
 	public function editing() {

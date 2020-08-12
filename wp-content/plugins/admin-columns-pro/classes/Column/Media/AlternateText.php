@@ -11,7 +11,7 @@ class AlternateText extends AC\Column\Media\AlternateText
 	implements Editing\Editable, Sorting\Sortable, Search\Searchable {
 
 	public function sorting() {
-		return new Sorting\Model( $this );
+		return new Sorting\Model\Post\Meta( $this->get_meta_key() );
 	}
 
 	public function editing() {

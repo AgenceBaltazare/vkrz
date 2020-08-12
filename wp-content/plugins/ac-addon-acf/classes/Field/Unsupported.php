@@ -8,9 +8,9 @@ use ACA\ACF\Setting;
 class Unsupported extends Field {
 
 	public function get_dependent_settings() {
-		return array(
+		return [
 			new Setting\Unsupported( $this->column ),
-		);
+		];
 	}
 
 }

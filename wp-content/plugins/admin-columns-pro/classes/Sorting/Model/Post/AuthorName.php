@@ -3,24 +3,13 @@
 namespace ACP\Sorting\Model\Post;
 
 use ACP;
-use ACP\Sorting\Model;
+use ACP\Sorting\FormatValue;
+use ACP\Sorting\Model\WarningAware;
 
-/**
- * @property ACP\Column\Post\AuthorName $column
- */
-class AuthorName extends Model\Post\Field {
+class AuthorName extends FieldFormat implements WarningAware {
 
-	public function __construct( $column ) {
-		parent::__construct( $column );
-
-		$this->set_field( 'post_author' );
-	}
-
-	protected function format( $value ) {
-		/** @var ACP\Settings\Column\User $setting */
-		$setting = $this->column->get_setting( 'user' );
-
-		return $setting->get_user_name( $value );
+	public function __construct( FormatValue $formatter ) {
+		parent::__construct( 'post_author', $formatter );
 	}
 
 }

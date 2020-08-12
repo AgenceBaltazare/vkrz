@@ -13,7 +13,7 @@ class Posts extends AC\Column\User\Posts
 	implements Sorting\Sortable, Export\Exportable {
 
 	public function sorting() {
-		return new Sorting\Model\User\PostCount( $this );
+		return new Sorting\Model\User\PostCount( [ 'post' ], [ 'publish', 'private' ] );
 	}
 
 	public function export() {

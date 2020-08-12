@@ -2,22 +2,14 @@
 
 namespace ACP\Sorting\Model\Post;
 
-use ACP\Sorting\Model;
+use ACP\Sorting\FormatValue\ContentTotalImageSize;
+use ACP\Sorting\Model\WarningAware;
+use ACP\Sorting\Type\DataType;
 
-class ImageFileSizes extends Model {
+class ImageFileSizes extends FieldFormat implements WarningAware {
 
-	public function get_sorting_vars() {
-		$this->set_data_type( 'numeric' );
-
-		$ids = [];
-
-		foreach ( $this->strategy->get_results() as $id ) {
-			$ids[ $id ] = array_sum( $this->column->get_raw_value( $id ) );
-		}
-
-		return [
-			'ids' => $this->sort( $ids ),
-		];
+	public function __construct() {
+		parent::__construct( 'post_content', new ContentTotalImageSize(), new DataType( DataType::NUMERIC ) );
 	}
 
 }

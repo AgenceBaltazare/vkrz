@@ -12,17 +12,17 @@ abstract class Field extends Setting\Field {
 	 * @return array Group list
 	 */
 	protected function get_option_groups( $group_ids ) {
-		$option_groups = array();
+		$option_groups = [];
 
 		foreach ( $group_ids as $group_id ) {
-			$options = array();
+			$options = [];
 
-			$fields = apply_filters( 'acf/field_group/get_fields', array(), $group_id );
+			$fields = apply_filters( 'acf/field_group/get_fields', [], $group_id );
 
 			$group = $this->get_acf_group_by_id( $group_id );
 
 			foreach ( $fields as $field ) {
-				if ( in_array( $field['type'], array( 'tab' ) ) ) {
+				if ( in_array( $field['type'], [ 'tab' ] ) ) {
 					continue;
 				}
 
@@ -33,10 +33,10 @@ abstract class Field extends Setting\Field {
 
 				natcasesort( $options );
 
-				$option_groups[ $group_id ] = array(
+				$option_groups[ $group_id ] = [
 					'title'   => $group['title'],
 					'options' => $options,
-				);
+				];
 			}
 		}
 
@@ -49,7 +49,7 @@ abstract class Field extends Setting\Field {
 	 * @return array|false Field group
 	 */
 	private function get_acf_group_by_id( $id ) {
-		$groups = apply_filters( 'acf/get_field_groups', array() );
+		$groups = apply_filters( 'acf/get_field_groups', [] );
 
 		foreach ( $groups as $group ) {
 			if ( $id == $group['id'] ) {

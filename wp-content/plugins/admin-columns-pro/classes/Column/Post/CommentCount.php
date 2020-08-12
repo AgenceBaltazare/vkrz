@@ -15,7 +15,7 @@ class CommentCount extends AC\Column\Post\CommentCount
 	implements Filtering\Filterable, Sorting\Sortable, Export\Exportable, Search\Searchable {
 
 	public function sorting() {
-		return new Sorting\Model\Post\CommentCount( $this );
+		return ( new Sorting\Model\Post\CommentCountFactory )->create( $this->get_setting( AC\Settings\Column\CommentCount::NAME )->get_value() );
 	}
 
 	public function filtering() {

@@ -26,8 +26,21 @@ class Author extends Field
 		return 'user_id';
 	}
 
+	/**
+	 * @return array
+	 */
+	private function get_user_ids() {
+		global $wpdb;
+
+		return $wpdb->get_col( "SELECT DISTINCT user_id FROM {$wpdb->prefix}comments;" );
+	}
+
 	public function get_values( $search, $paged ) {
-		$entities = new Select\Entities\User( compact( 'search', 'paged' ) );
+		$args = compact( 'search', 'paged' );
+
+		$args['include'] = $this->get_user_ids();
+
+		$entities = new Select\Entities\User( $args );
 
 		return new AC\Helper\Select\Options\Paginated(
 			$entities,

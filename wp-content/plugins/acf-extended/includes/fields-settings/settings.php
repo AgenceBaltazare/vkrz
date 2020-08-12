@@ -128,7 +128,7 @@ class acfe_field_settings{
             $field_type = $field['name'];
             
             // Exclude
-            if(in_array($field_type, array('message', 'accordion', 'tab', 'acfe_button', 'acfe_column', 'acfe_dynamic_message')))
+            if(in_array($field_type, array('message', 'accordion', 'tab', 'acfe_column', 'acfe_dynamic_message')))
                 continue;
             
             add_action('acf/render_field_settings/type=' . $field_type, array($this, 'render_field_settings'), 990);
@@ -226,6 +226,7 @@ class acfe_field_settings{
                     'layout'        => 'table',
                     'sub_fields'    => array(
                         array(
+                            'ID'            => false,
                             'label'         => 'Setting',
                             'name'          => 'acfe_settings_setting_type',
                             'key'           => 'acfe_settings_setting_type',
@@ -251,6 +252,7 @@ class acfe_field_settings{
                             )
                         ),
                         array(
+                            'ID'            => false,
                             'label'         => 'Setting name',
                             'name'          => 'acfe_settings_setting_name',
                             'key'           => 'acfe_settings_setting_name',
@@ -276,6 +278,7 @@ class acfe_field_settings{
                             )
                         ),
                         array(
+                            'ID'            => false,
                             'label'         => 'Operator / Value',
                             'name'          => 'acfe_settings_setting_operator',
                             'key'           => 'acfe_settings_setting_operator',
@@ -302,6 +305,7 @@ class acfe_field_settings{
                             ),
                         ),
                         array(
+                            'ID'            => false,
                             'label'         => 'Value',
                             'name'          => 'acfe_settings_setting_value',
                             'key'           => 'acfe_settings_setting_value',

@@ -35,7 +35,7 @@ class Settings implements Registrable {
 			return;
 		}
 
-		$collection->add( new HideOnScreen\QuickAdd(), 90 );
+		$collection->add( new HideOnScreen\QuickAdd(), 60 );
 	}
 
 }

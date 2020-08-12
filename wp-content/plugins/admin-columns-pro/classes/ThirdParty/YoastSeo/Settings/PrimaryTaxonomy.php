@@ -21,12 +21,10 @@ class PrimaryTaxonomy extends AC\Settings\Column {
 		                ->set_attribute( 'data-label', 'update' )
 		                ->set_options( $this->get_taxonomies() );
 
-		$view = new View( [
+		return new View( [
 			'label'   => __( 'Taxonomy' ),
 			'setting' => $setting,
 		] );
-
-		return $view;
 	}
 
 	/**

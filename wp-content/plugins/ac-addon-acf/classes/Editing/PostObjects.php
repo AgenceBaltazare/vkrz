@@ -2,8 +2,6 @@
 
 namespace ACA\ACF\Editing;
 
-use acf_field_post_object;
-
 class PostObjects extends PostObject {
 
 	/**

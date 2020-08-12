@@ -65,7 +65,11 @@ class Addon implements AC\Registrable {
 	 * @param AC\ListScreen $list_screen
 	 */
 	public function init_table( AC\ListScreen $list_screen ) {
-		$table = new Table\Screen( $list_screen, $this->location );
+		if ( ! $list_screen instanceof ListScreen ) {
+			return;
+		}
+
+		$table = new Table\Screen( $list_screen, $this->location, new NativeSortableRepository() );
 		$table->register();
 	}
 
@@ -75,15 +79,15 @@ class Addon implements AC\Registrable {
 	 * @param AC\Column $column
 	 */
 	public function register_column_settings( $column ) {
-		// Custom columns
-		if ( $column instanceof Sortable ) {
-			$column->sorting()->register_settings();
+		$model = ( new ModelFactory() )->create( $column );
+
+		if ( $model ) {
+			$column->add_setting( new Settings( $column ) );
 		}
 
-		// Native columns
-		$native = new NativeSortables( $column->get_list_screen() );
+		$native = new NativeSortableRepository();
 
-		if ( $native->is_sortable( $column->get_type() ) ) {
+		if ( $native->is_column_sortable( $column->get_list_screen()->get_key(), $column->get_type() ) ) {
 
 			$setting = new Settings( $column );
 			$setting->set_default( 'on' );

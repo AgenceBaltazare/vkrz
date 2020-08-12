@@ -14,7 +14,7 @@ class Media extends AC\ListScreen\Media
 	implements Sorting\ListScreen, Editing\ListScreen, Filtering\ListScreen, Export\ListScreen {
 
 	public function sorting( $model ) {
-		return new Sorting\Strategy\Post( $model );
+		return new Sorting\Strategy\Post( $model, $this->get_post_type() );
 	}
 
 	public function editing() {

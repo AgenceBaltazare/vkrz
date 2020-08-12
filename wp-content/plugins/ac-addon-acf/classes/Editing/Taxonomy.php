@@ -2,6 +2,7 @@
 
 namespace ACA\ACF\Editing;
 
+use AC;
 use ACA\ACF\Editing;
 use ACP;
 use ACP\Helper\Select;
@@ -17,6 +18,7 @@ class Taxonomy extends Editing
 		$data['ajax_populate'] = true;
 		$data['store_values'] = false;
 		$data['disable_revisioning'] = false;
+		$data['clear_button'] = empty( $data['required'] );
 
 		switch ( $this->column->get_acf_field_option( 'field_type' ) ) {
 			case 'checkbox' :
@@ -36,13 +38,13 @@ class Taxonomy extends Editing
 	}
 
 	public function get_paginated_options( $search, $page, $id = null ) {
-		$entities = new Select\Entities\Taxonomy( array(
+		$entities = new Select\Entities\Taxonomy( [
 			'search'   => $search,
 			'page'     => $page,
 			'taxonomy' => $this->get_taxonomy(),
-		) );
+		] );
 
-		return new Select\Options\Paginated(
+		return new AC\Helper\Select\Options\Paginated(
 			$entities,
 			new Formatter\TermName( $entities )
 		);
@@ -58,7 +60,7 @@ class Taxonomy extends Editing
 
 		$taxonomy = $this->get_taxonomy();
 
-		$values = array();
+		$values = [];
 		foreach ( ac_helper()->taxonomy->get_terms_by_ids( $term_ids, $taxonomy ) as $term ) {
 			$values[ $term->term_id ] = $term->name;
 		}

@@ -11,7 +11,7 @@ class Comment extends ACF\Column {
 	}
 
 	public function register_settings() {
-		$this->register_settings_by_type( 'Comment' );
+		$this->add_setting( $this->field_settings_factory->create( 'comment', $this ) );
 	}
 
 }

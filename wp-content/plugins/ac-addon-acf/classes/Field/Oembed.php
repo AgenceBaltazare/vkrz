@@ -23,9 +23,9 @@ class Oembed extends Field {
 	}
 
 	public function get_dependent_settings() {
-		return array(
+		return [
 			new Setting\Oembed( $this->column ),
-		);
+		];
 	}
 
 }

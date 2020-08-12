@@ -10,7 +10,7 @@ use ACP\Search\Value;
 class Datepicker extends Meta {
 
 	public function __construct( $meta_key, $type ) {
-		$operators = new Operators( array(
+		$operators = new Operators( [
 			Operators::EQ,
 			Operators::GT,
 			Operators::LT,
@@ -23,7 +23,7 @@ class Datepicker extends Meta {
 			Operators::PAST,
 			Operators::IS_EMPTY,
 			Operators::NOT_IS_EMPTY,
-		) );
+		] );
 
 		parent::__construct( $operators, $meta_key, $type, Value::DATE, new Date() );
 	}
@@ -45,15 +45,15 @@ class Datepicker extends Meta {
 	protected function get_meta_query( $operator, Value $value ) {
 		$value = $this->map_value( $value, $operator );
 
-		if ( in_array( $operator, array( Operators::FUTURE, Operators::PAST ) ) ) {
+		if ( in_array( $operator, [ Operators::FUTURE, Operators::PAST ] ) ) {
 			$compare = Operators::FUTURE === $operator ? '>' : '<';
 
-			return array(
+			return [
 				'key'     => $this->get_meta_key(),
 				'compare' => $compare,
 				'type'    => 'NUMERIC',
 				'value'   => date( 'Ymd' ),
-			);
+			];
 		}
 
 		return parent::get_meta_query( $operator, $value );

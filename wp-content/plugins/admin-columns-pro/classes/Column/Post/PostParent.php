@@ -16,7 +16,7 @@ class PostParent extends AC\Column\Post\PostParent
 	implements Sorting\Sortable, Editing\Editable, Filtering\Filterable, Export\Exportable, Search\Searchable {
 
 	public function sorting() {
-		return new Sorting\Model\Post\PostParent( $this );
+		return new Sorting\Model\Post\PostParent();
 	}
 
 	public function editing() {

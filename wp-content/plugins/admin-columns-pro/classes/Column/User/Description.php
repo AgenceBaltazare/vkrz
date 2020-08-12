@@ -11,10 +11,10 @@ use ACP\Sorting;
  * @since 2.0
  */
 class Description extends AC\Column\User\Description
-	implements Sorting\Sortable, Search\Searchable {
+	implements Sorting\Sortable, Search\Searchable, Editing\Editable {
 
 	public function sorting() {
-		return new Sorting\Model( $this );
+		return new Sorting\Model\User\Meta( $this->get_meta_key() );
 	}
 
 	public function editing() {

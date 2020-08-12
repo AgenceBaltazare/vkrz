@@ -12,7 +12,7 @@ class Description extends AC\Column\Media\Description
 	implements Editing\Editable, Filtering\Filterable, Sorting\Sortable, Search\Searchable {
 
 	public function sorting() {
-		return new Sorting\Model( $this );
+		return new Sorting\Model\Post\PostField( 'post_content' );
 	}
 
 	public function editing() {

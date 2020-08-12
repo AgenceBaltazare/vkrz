@@ -15,7 +15,7 @@ class Url extends AC\Column\User\Url
 	implements Editing\Editable, Filtering\Filterable, Sorting\Sortable, Search\Searchable {
 
 	public function sorting() {
-		return new Sorting\Model( $this );
+		return new Sorting\Model\User\UserField( 'user_url' );
 	}
 
 	public function editing() {

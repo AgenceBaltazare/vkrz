@@ -25,7 +25,7 @@ class Model extends Filtering\Cache {
 
 	public function put_if_expired() {
 		if ( $this->is_expired() ) {
-			$seconds = apply_filters( 'acp/filtering/cache/seconds', 10, $this->model );
+			$seconds = apply_filters( 'acp/filtering/cache/seconds', 300, $this->model );
 
 			$this->put( $this->model->get_filtering_data(), $seconds );
 		}

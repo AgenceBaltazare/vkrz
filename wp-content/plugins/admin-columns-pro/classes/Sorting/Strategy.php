@@ -4,25 +4,18 @@ namespace ACP\Sorting;
 
 use ACP;
 
-abstract class Strategy extends ACP\Strategy {
+abstract class Strategy {
 
 	/**
-	 * @var Model
+	 * @var AbstractModel
 	 */
 	protected $model;
 
 	/**
-	 * @param Model $model
+	 * @param AbstractModel $model
 	 */
-	public function __construct( Model $model ) {
+	public function __construct( AbstractModel $model ) {
 		$this->model = $model;
-	}
-
-	/**
-	 * @return Model
-	 */
-	public function get_model() {
-		return $this->model;
 	}
 
 	/**
@@ -40,6 +33,9 @@ abstract class Strategy extends ACP\Strategy {
 	 */
 	abstract public function get_results( array $data = [] );
 
+	/**
+	 * @return void
+	 */
 	abstract public function manage_sorting();
 
 	/**

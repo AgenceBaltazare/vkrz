@@ -15,7 +15,7 @@ class ShowToolbar extends AC\Column\User\ShowToolbar
 	implements Filtering\Filterable, Sorting\Sortable, Editing\Editable, Search\Searchable {
 
 	public function sorting() {
-		return new Sorting\Model( $this );
+		return new Sorting\Model\User\Meta( 'show_admin_bar_front' );
 	}
 
 	public function editing() {

@@ -5,7 +5,7 @@ namespace ACP\Sorting;
 interface ListScreen {
 
 	/**
-	 * @param Model $model
+	 * @param AbstractModel $model
 	 *
 	 * @return Strategy
 	 */

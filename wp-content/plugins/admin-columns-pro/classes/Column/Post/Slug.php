@@ -11,10 +11,7 @@ class Slug extends AC\Column\Post\Slug
 	implements Sorting\Sortable, Editing\Editable, Search\Searchable {
 
 	public function sorting() {
-		$model = new Sorting\Model\Post\Field( $this );
-		$model->set_field( 'post_name' );
-
-		return $model;
+		return new Sorting\Model\Post\PostField( 'post_name' );
 	}
 
 	public function editing() {

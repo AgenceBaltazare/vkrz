@@ -10,7 +10,7 @@ class EstimateReadingTime extends AC\Column\Post\EstimatedReadingTime
 	implements Sorting\Sortable, Export\Exportable {
 
 	public function sorting() {
-		return new Sorting\Model\Post\EstimateReadingTime( $this );
+		return new Sorting\Model\Post\EstimateReadingTime();
 	}
 
 	public function export() {

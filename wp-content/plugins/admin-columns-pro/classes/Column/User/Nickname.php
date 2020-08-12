@@ -14,7 +14,7 @@ class Nickname extends AC\Column\User\Nickname
 	implements Editing\Editable, Sorting\Sortable, Search\Searchable {
 
 	public function sorting() {
-		return new Sorting\Model\Meta( $this );
+		return new Sorting\Model\User\Meta( $this->get_meta_key() );
 	}
 
 	public function editing() {

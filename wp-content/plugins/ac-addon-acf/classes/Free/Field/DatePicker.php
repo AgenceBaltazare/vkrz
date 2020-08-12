@@ -9,7 +9,7 @@ use ACP;
 class DatePicker extends Field\DatePicker {
 
 	public function sorting() {
-		return new ACP\Sorting\Model\Value( $this->column );
+		return new ACP\Sorting\Model\Disabled();
 	}
 
 	public function editing() {
@@ -17,9 +17,9 @@ class DatePicker extends Field\DatePicker {
 	}
 
 	public function get_dependent_settings() {
-		return array(
+		return [
 			new Free\Setting\Date( $this->column ),
-		);
+		];
 	}
 
 }

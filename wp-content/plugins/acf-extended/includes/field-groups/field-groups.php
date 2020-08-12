@@ -33,18 +33,39 @@ add_filter('manage_edit-acf-field-group_columns', 'acfe_field_groups_column', 99
 function acfe_field_groups_column($columns){
     
     // Locations
-    $columns['acfe-locations'] = __('Locations');
+    if(acf_version_compare(acf_get_setting('version'),  '<', '5.9')){
     
-    // Load
-    $columns['acfe-local'] = __('Load');
+        $columns['acfe-locations'] = __('Locations');
+        
+    }
+    
+    if(acf_version_compare(acf_get_setting('version'),  '<', '5.9')){
+    
+        // Load
+        $columns['acfe-local'] = __('Load');
+        
+    }
     
     // PHP sync
-    if(acf_get_setting('acfe/php'))
-        $columns['acfe-autosync-php'] = __('PHP sync');
+    if(acf_get_setting('acfe/php')){
+    
+        $columns['acfe-autosync-php'] = __('PHP Sync');
+        
+    }
+    
+    if(acf_version_compare(acf_get_setting('version'),  '>=', '5.9')){
+        
+        // Load
+        $columns['acfe-local'] = __('Load');
+        
+    }
     
     // Json sync
-    if(acf_get_setting('json'))
-        $columns['acfe-autosync-json'] = __('Json sync');
+    if(acf_get_setting('json') && acf_version_compare(acf_get_setting('version'),  '<', '5.9')){
+    
+        $columns['acfe-autosync-json'] = __('Json Sync');
+        
+    }
     
     // Fix 'Sync' screen columns
     if(acf_maybe_get_GET('post_status') === 'sync'){
@@ -145,131 +166,8 @@ function acfe_field_groups_column_html($column, $post_id){
     elseif($column === 'acfe-locations'){
         
         $field_group = acf_get_field_group($post_id);
-        $choices = acf_get_location_rule_types();
         
-        if(!isset($field_group['location']) || empty($field_group['location']) ||empty($choices))
-            return;
-        
-        $final = array();
-        
-        $icon_default = 'admin-generic';
-            
-        $icons = array(
-            'edit' => array(
-                'post_type',
-                'post_template',
-                'post_status',
-                'post_format',
-                'post',
-            ),
-            'media-default' => array(
-                'page_template',
-                'page_type',
-                'page_parent',
-                'page',
-            ),
-            'admin-users' => array(
-                'current_user',
-                'user_form',
-            ),
-            'welcome-widgets-menus' => array(
-                'widget',
-                'nav_menu',
-                'nav_menu_item',
-            ),
-            'category' => array(
-                'taxonomy',
-                'post_category',
-                'post_taxonomy',
-            ),
-            'admin-comments' => array(
-                'comment',
-            ),
-            'paperclip' => array(
-                'attachment',
-            ),
-            'admin-settings' => array(
-                'options_page',
-            ),
-            'businessman' => array(
-                'current_user_role',
-                'user_role',
-            ),
-        );
-        
-        foreach($choices as $key => $sub_choices){
-            
-            foreach($sub_choices as $choice_slug => $choice_name){
-                
-                $final_icon = $icon_default;
-                foreach($icons as $icon => $icon_slugs){
-                    foreach($icon_slugs as $icon_slug){
-                        if($choice_slug != $icon_slug)
-                            continue;
-
-                        $final_icon = $icon;
-                        break(2);
-                    }
-                }
-                
-                $final[$choice_slug] = array(
-                    'name' => $choice_name,
-                    'icon' => $final_icon
-                );
-                
-            }
-            
-        }
-        
-        
-        
-        $html = array();
-        foreach($field_group['location'] as $or){
-            
-            foreach($or as $and){
-                
-                if(!isset($final[$and['param']])|| !isset($and['value']))
-                    continue;
-                
-                $final_name = $and['value'];
-                $values = acf_get_location_rule_values($and);
-                
-                if(!empty($values) && is_array($values)){
-                    
-                    foreach($values as $value_slug => $value_name){
-                        
-                        if($and['value'] != $value_slug)
-                            continue;
-                        
-                        if(is_array($value_name) && isset($value_name[$and['value']])){
-                            
-                            $final_name = $value_name[$and['value']];
-                            
-                        }else{
-                            
-                            $final_name = $value_name;
-                            
-                        }
-                        
-                        break;
-                        
-                    }
-                    
-                }
-                
-                $final_name = esc_html($final_name);
-                
-                $name = '<span class="acf-js-tooltip dashicons dashicons-' . $final[$and['param']]['icon'] . '" title="' . $final[$and['param']]['name'] . ' = ' . $final_name . '"></span>';
-                if($and['operator'] === '!=')
-                    $name = '<span class="acf-js-tooltip dashicons dashicons-' . $final[$and['param']]['icon'] . '" title="' . $final[$and['param']]['name'] . ' != ' . $final_name . '" style="color:#ccc;"></span>';
-                
-                $html[] = $name;
-                
-            }
-            
-        }
-        
-        echo implode(' ', $html);
+        acfe_render_field_group_locations_html($field_group);
         
     }
     
@@ -412,7 +310,11 @@ function hwk_post_type_exemple_row_actions($actions, $post){
     $actions['acfe-export-php'] = '<a href="' . admin_url('edit.php?post_type=acf-field-group&page=acf-tools&tool=export&action=php&keys=' . $field_group['key']) . '">PHP</a>';
     $actions['acfe-export-json'] = '<a href="' . admin_url('edit.php?post_type=acf-field-group&page=acf-tools&tool=export&action=json&keys=' . $field_group['key']) . '">Json</a>';
     
-    $actions['acfe-key'] = '<span style="color:#555;"><code style="font-size: 12px;">' . $field_group['key'] . '</code></span>';
+    if(acf_version_compare(acf_get_setting('version'),  '<', '5.9')){
+    
+        $actions['acfe-key'] = '<span style="color:#555;"><code style="font-size: 12px;">' . $field_group['key'] . '</code></span>';
+        
+    }
     
     //$actions['acfe-id'] = '<span style="color:#555;">ID: ' . $field_group['ID'] . '</span>';
     

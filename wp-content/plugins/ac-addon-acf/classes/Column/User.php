@@ -11,7 +11,7 @@ class User extends ACF\Column {
 	}
 
 	public function register_settings() {
-		$this->register_settings_by_type( 'User' );
+		$this->add_setting( $this->field_settings_factory->create( 'user', $this ) );
 	}
 
 }

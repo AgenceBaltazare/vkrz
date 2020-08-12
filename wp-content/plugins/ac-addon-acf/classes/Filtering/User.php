@@ -7,7 +7,7 @@ use ACA\ACF\Filtering;
 class User extends Filtering {
 
 	public function get_filtering_data() {
-		$options = array();
+		$options = [];
 
 		if ( $this->column->is_serialized() ) {
 			$values = $this->get_meta_values_unserialized();
@@ -19,10 +19,10 @@ class User extends Filtering {
 			$options[ $value ] = $this->column->get_formatted_value( $value );
 		}
 
-		return array(
+		return [
 			'empty_option' => true,
 			'options'      => $options,
-		);
+		];
 	}
 
 }

@@ -3,6 +3,7 @@
 namespace ACP\Column\CustomField;
 
 use AC\Column;
+use AC\Settings\Column\CustomFieldType;
 use ACP\Editing\Model;
 
 class EditingModelFactory {
@@ -17,45 +18,32 @@ class EditingModelFactory {
 
 		switch ( $type ) {
 
-			case 'array' :
+			case CustomFieldType::TYPE_ARRAY :
 				return new Model\Disabled( $column );
-
-			case 'checkmark' :
+			case CustomFieldType::TYPE_BOOLEAN :
 				return new Model\CustomField\Checkmark( $column );
-
-			case 'color' :
+			case CustomFieldType::TYPE_COLOR :
 				return new Model\CustomField\Color( $column );
-
-			case 'count' :
+			case CustomFieldType::TYPE_COUNT :
 				return new Model\Disabled( $column );
-
-			case 'date' :
+			case CustomFieldType::TYPE_DATE :
 				return new Model\CustomField\Date( $column );
-
-			case 'excerpt' :
+			case CustomFieldType::TYPE_TEXT :
 				return new Model\CustomField\Text( $column );
-
-			case 'has_content' :
+			case CustomFieldType::TYPE_NON_EMPTY :
 				return new Model\Disabled( $column );
-
-			case 'image' :
+			case CustomFieldType::TYPE_IMAGE :
 				return new Model\CustomField\Image( $column );
-
-			case 'library_id' :
+			case CustomFieldType::TYPE_MEDIA :
 				return new Model\CustomField\Media( $column );
-
-			case 'link' :
+			case CustomFieldType::TYPE_URL :
 				return new Model\CustomField( $column );
-
-			case 'numeric' :
-				return new Model\CustomField\Numeric( $column );
-
-			case 'title_by_id' :
+			case CustomFieldType::TYPE_NUMERIC :
+				return new Model\CustomField\Number( $column );
+			case CustomFieldType::TYPE_POST :
 				return new Model\CustomField\Post( $column );
-
-			case 'user_by_id' :
+			case CustomFieldType::TYPE_USER :
 				return new Model\CustomField\User( $column );
-
 			default :
 				return new Model\CustomField\Text( $column );
 		}

@@ -13,7 +13,7 @@ class Excerpt extends AC\Column\Post\Excerpt
 	implements Sorting\Sortable, Editing\Editable, Filtering\Filterable, Export\Exportable, Search\Searchable {
 
 	public function sorting() {
-		return new Sorting\Model\Value( $this );
+		return new Sorting\Model\Post\PostExcerpt();
 	}
 
 	public function filtering() {

@@ -2,10 +2,27 @@
 
 namespace ACP\Sorting\Model\User;
 
-use ACP\Sorting\Model;
+use ACP\Sorting\AbstractModel;
 use WP_User_Query;
 
-class PostCount extends Model {
+class PostCount extends AbstractModel {
+
+	/**
+	 * @var array
+	 */
+	private $post_types;
+
+	/**
+	 * @var string
+	 */
+	private $post_status;
+
+	public function __construct( array $post_types = null, array $post_status = null ) {
+		parent::__construct();
+
+		$this->post_types = $post_types;
+		$this->post_status = $post_status;
+	}
 
 	public function get_sorting_vars() {
 		add_action( 'pre_user_query', [ $this, 'pre_user_query_callback' ] );
@@ -13,35 +30,36 @@ class PostCount extends Model {
 		return [];
 	}
 
-	/**
-	 * @param WP_User_Query $query
-	 */
 	public function pre_user_query_callback( WP_User_Query $query ) {
 		global $wpdb;
 
 		$order = $this->get_order();
-		$join_type = acp_sorting_show_all_results() ? 'LEFT' : 'INNER';
 
-		$where = ' AND p.post_status = "publish" AND ( p.post_type = %s';
+		$join_type = $this->show_empty
+			? 'LEFT'
+			: 'INNER';
 
-		if ( acp_sorting_show_all_results() ) {
-			$where .= ' OR p.post_type IS NULL';
+		$query->query_fields .= ", COUNT( acsort_posts.ID ) AS acsort_postcount";
+		$query->query_from .= " $join_type JOIN {$wpdb->posts} AS acsort_posts ON acsort_posts.post_author = {$wpdb->users}.ID";
+
+		if ( $this->post_status ) {
+			$query->query_from .= sprintf( " AND acsort_posts.post_status IN ( %s )", $this->esc_sql_array( $this->post_status ) );
 		}
 
-		$where .= ' )';
+		if ( $this->post_types ) {
+			$query->query_from .= sprintf( " AND acsort_posts.post_type IN ( %s )", $this->esc_sql_array( $this->post_types ) );
+		}
 
-		$post_type_setting = $this->column->get_setting( 'post_type' );
-		$post_type = $post_type_setting ? $post_type_setting->get_value() : 'post';
-
-		$query->query_fields .= ", COUNT( p.post_author ) AS n";
-		$query->query_from .= " $join_type JOIN {$wpdb->posts} AS p ON p.post_author = {$wpdb->users}.ID";
-		$query->query_where .= $wpdb->prepare( $where, $post_type );
 		$query->query_orderby = "
 			GROUP BY {$wpdb->users}.ID
-			ORDER BY n $order, {$wpdb->users}.ID $order
+			ORDER BY acsort_postcount $order, {$wpdb->users}.ID $order
 		";
 
-		remove_action( 'pre_user_query', [ $this, __FUNCTION__ ] );
+		remove_action( "pre_user_query", [ $this, __FUNCTION__ ] );
+	}
+
+	private function esc_sql_array( $array ) {
+		return sprintf( "'%s'", implode( "','", array_map( 'esc_sql', $array ) ) );
 	}
 
 }

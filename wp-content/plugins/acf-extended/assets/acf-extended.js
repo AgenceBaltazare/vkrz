@@ -1,4 +1,7 @@
 (function($){
+
+    if(typeof acf === 'undefined')
+        return;
     
     // init
     var acfe = {};
@@ -181,6 +184,46 @@
         
         
     };
+
+    acfe.filters = [];
+
+    acfe.disableFilters = function(){
+
+        acfe.filters = [];
+
+    };
+
+    acfe.enableFilter = function(name){
+
+        if(acfe.filters.indexOf(name) === -1)
+            acfe.filters.push(name);
+
+    };
+
+    acfe.disableFilter = function(name){
+
+        for(var i = acfe.filters.length; i--;){
+
+            if(acfe.filters[i] !== name)
+                continue;
+
+            acfe.filters.splice(i, 1);
+
+        }
+
+    };
+
+    acfe.isFilterEnabled = function(name){
+
+        return acfe.filters.indexOf(name) > -1;
+
+    };
+
+    acfe.getFilters = function(){
+
+        return acfe.filters;
+
+    };
     
     acf.addAction('ready_field', function(field){
         
@@ -204,21 +247,21 @@
             
     });
     
-    acfe_form_move_instructions_above = function(field){
+    var acfe_form_move_instructions_above = function(field){
         
         var $instructions = field.$el.find('> .acf-label > .description');
         
         field.$el.find('> .acf-input').prepend($instructions);
             
-    }
+    };
     
-    acfe_form_move_instructions_below = function(field){
+    var acfe_form_move_instructions_below = function(field){
         
         var $instructions = field.$el.find('> .acf-label > .description');
         
         field.$el.find('> .acf-input').append($instructions);
             
-    }
+    };
     
     acf.addAction('new_field/name=acfe_form_updated_message',   acfe_form_move_instructions_below);
     acf.addAction('new_field/name=acfe_form_return',            acfe_form_move_instructions_below);
@@ -247,6 +290,216 @@
         
         field.$el.find('> .acf-input > .acf-repeater > .acf-actions > .acf-button').removeClass('button-primary');
             
+    });
+
+    function acfe_dev_meta_count(){
+
+        var $wp_meta_count = $('#acfe-wp-custom-fields .acfe_dev_meta_count');
+        var $acf_meta_count = $('#acfe-acf-custom-fields .acfe_dev_meta_count');
+
+        $wp_meta_count.text($('#acfe-wp-custom-fields tbody tr').length);
+        $acf_meta_count.text($('#acfe-acf-custom-fields tbody tr').length);
+
+    }
+
+    acf.addAction('prepare', function(){
+
+        var $acf_meta = $('#acfe-acf-custom-fields');
+        var $wp_meta = $('#acfe-wp-custom-fields');
+        var $bulk_actions = $('.acfe_dev_bulk_actions');
+
+        // Move Bulk Button
+        $('#acfe-wp-custom-fields .tablenav.bottom').insertAfter($wp_meta);
+        $('#acfe-acf-custom-fields .tablenav.bottom').insertAfter($acf_meta);
+
+        if(!$acf_meta.is(':visible') && !$wp_meta.is(':visible')){
+
+            $bulk_actions.hide();
+
+        }
+
+        // Bulk Delete
+        $('#acfe_bulk_deleta_meta_submit').click(function(e){
+
+            e.preventDefault();
+            var $this = $(this);
+
+            var action = $this.prevAll('.acfe_bulk_delete_meta_action').val();
+            var type = $this.prevAll('.acfe_bulk_delete_meta_type').val();
+            var nonce = $this.prevAll('.acfe_bulk_delete_meta_nonce').val();
+
+            if(action === 'delete'){
+
+                var ids = [];
+                var trs = [];
+
+                $('#acfe-wp-custom-fields input.acfe_bulk_delete_meta:checked').each(function(){
+
+                    ids.push($(this).val());
+                    trs.push($(this).closest('tr'));
+
+                });
+
+                $('#acfe-acf-custom-fields input.acfe_bulk_delete_meta:checked').each(function(){
+
+                    ids.push($(this).val());
+                    trs.push($(this).closest('tr'));
+
+                });
+
+                if(ids.length){
+
+                    var ajaxData = {
+                        action: 'acfe/bulk_delete_meta',
+                        ids: ids,
+                        type: type,
+                        _wpnonce: nonce,
+                    };
+
+                    $.ajax({
+                        url: acf.get('ajaxurl'),
+                        data: ajaxData,
+                        type: 'post',
+                        beforeSend: function(){
+
+                            $.each(trs, function(){
+
+                                $(this).css({backgroundColor:'#faafaa'}).fadeOut(350, function(){
+                                    $(this).remove();
+                                });
+
+                            });
+
+                            setTimeout(function(){
+
+                                if(!$('#acfe-wp-custom-fields tbody tr').length){
+
+                                    $wp_meta.remove();
+
+                                }
+
+                                if(!$('#acfe-acf-custom-fields tbody tr').length){
+
+                                    $acf_meta.remove();
+
+                                }
+
+                                if(!$('#acfe-wp-custom-fields tbody tr').length && !$('#acfe-acf-custom-fields tbody tr').length){
+
+                                    $bulk_actions.remove();
+
+                                }
+
+                                acfe_dev_meta_count();
+
+                            }, 351);
+
+                        },
+                        success: function(response){
+
+                            if(response !== '1'){
+
+                            }
+
+                        }
+                    });
+
+                }
+
+            }
+
+        });
+
+        // Single Delete
+        $('.acfe_delete_meta').click(function(e){
+
+            e.preventDefault();
+            var $this = $(this);
+            var $tr = $this.closest('tr');
+            var $tbody = $this.closest('tbody');
+            var $postbox = $this.closest('.postbox');
+
+            var ajaxData = {
+                action: 'acfe/delete_meta',
+                id: $this.attr('data-meta-id'),
+                key: $this.attr('data-meta-key'),
+                type: $this.attr('data-type'),
+                _wpnonce: $this.attr('data-nonce'),
+            };
+
+            $.ajax({
+                url: acf.get('ajaxurl'),
+                data: ajaxData,
+                type: 'post',
+                beforeSend: function(){
+
+                    var $tr = $this.closest('tr');
+
+                    $tr.css({backgroundColor:'#faafaa'}).fadeOut(350, function(){
+                        $(this).remove();
+                    });
+
+                    setTimeout(function(){
+
+                        if(!$tbody.find('tr').length){
+
+                            $postbox.remove();
+
+                        }
+
+                        if(!$('#acfe-wp-custom-fields tbody tr').length && !$('#acfe-acf-custom-fields tbody tr').length){
+
+                            $bulk_actions.remove();
+
+                        }
+
+                        acfe_dev_meta_count();
+
+                    }, 351);
+
+                },
+                success: function(response){
+
+                    if(response !== '1'){
+
+                        $tr.css({backgroundColor:''});
+                        $tr.show();
+
+                    }
+
+                }
+            });
+
+        });
+
+        /*
+         * Screen preference for builk actions
+         */
+        $('.hide-postbox-tog').bind('click.postboxes', function(){
+
+            var $el = $(this),
+                boxId = $el.val();
+
+            if(boxId !== 'acfe-wp-custom-fields' && boxId !== 'acfe-acf-custom-fields')
+                return;
+
+            if($el.prop('checked')){
+
+                if(!$bulk_actions.is(':visible'))
+                    $bulk_actions.show();
+
+            }else{
+
+                if((boxId === 'acfe-wp-custom-fields' && !$acf_meta.is(':visible')) || (boxId === 'acfe-acf-custom-fields' && !$wp_meta.is(':visible'))){
+
+                    $bulk_actions.hide();
+
+                }
+
+            }
+
+        });
+
     });
     
 })(jQuery);

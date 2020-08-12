@@ -16,7 +16,7 @@ class Categories extends AC\Column\Post\Categories
 	implements Sorting\Sortable, Editing\Editable, Filtering\Filterable, Export\Exportable, Search\Searchable {
 
 	public function sorting() {
-		return new Sorting\Model\Post\Taxonomy( $this );
+		return new Sorting\Model\Post\Taxonomy( $this->get_taxonomy() );
 	}
 
 	public function editing() {

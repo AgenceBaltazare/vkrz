@@ -17,11 +17,11 @@ class RepeaterDisplay extends AC\Settings\Column {
 	private $repeater_display;
 
 	protected function define_options() {
-		return array( 'repeater_display' => 'subfield' );
+		return [ 'repeater_display' => 'subfield' ];
 	}
 
 	public function get_dependent_settings() {
-		$settings = array();
+		$settings = [];
 
 		if ( 'subfield' === $this->get_repeater_display() ) {
 			$settings[] = new Subfield( $this->column );
@@ -37,15 +37,15 @@ class RepeaterDisplay extends AC\Settings\Column {
 
 		$setting
 			->set_attribute( 'data-refresh', 'column' )
-			->set_options( array(
+			->set_options( [
 				'subfield' => __( 'Subfield', 'codepress-admin-columns' ),
 				'count'    => __( 'Number of Rows', 'codepress-admin-columns' ),
-			) );
+			] );
 
-		$view = new View( array(
+		$view = new View( [
 			'label'   => __( 'Display', 'codepress-admin-columns' ),
 			'setting' => $setting,
-		) );
+		] );
 
 		return $view;
 	}

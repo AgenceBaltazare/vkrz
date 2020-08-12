@@ -26,7 +26,7 @@ class Post extends Setting\Field {
 		add_filter( 'acf/location/rule_match/post_status', '__return_true', 16 );
 		add_filter( 'acf/location/rule_match/post_taxonomy', '__return_true', 16 );
 
-		$groups = acf_get_field_groups( array( 'post_type' => $this->column->get_post_type() ) );
+		$groups = acf_get_field_groups( [ 'post_type' => $this->column->get_post_type() ] );
 
 		remove_filter( 'acf/location/rule_match/user_type', '__return_true', 16 );
 		remove_filter( 'acf/location/rule_match/page_type', '__return_true', 16 );

@@ -2,6 +2,7 @@
 
 namespace ACP\Sorting\Strategy;
 
+use ACP\Sorting\AbstractModel;
 use ACP\Sorting\Strategy;
 use WP_Query;
 
@@ -11,6 +12,17 @@ final class Post extends Strategy {
 	 * @var WP_Query $wp_query
 	 */
 	private $wp_query;
+
+	/**
+	 * @var string
+	 */
+	private $post_type;
+
+	public function __construct( AbstractModel $model, $post_type ) {
+		parent::__construct( $model );
+
+		$this->post_type = $post_type;
+	}
 
 	public function manage_sorting() {
 		add_action( 'pre_get_posts', [ $this, 'handle_sorting_request' ] );
@@ -23,15 +35,15 @@ final class Post extends Strategy {
 		$this->wp_query = $wp_query;
 	}
 
+	public function get_results( array $args = [] ) {
+		return $this->get_posts( $args );
+	}
+
 	/**
 	 * @return WP_Query
 	 */
-	public function get_wp_query() {
+	public function get_query() {
 		return $this->wp_query;
-	}
-
-	public function get_results( array $args = [] ) {
-		return $this->get_posts( $args );
 	}
 
 	public function get_order() {
@@ -69,6 +81,37 @@ final class Post extends Strategy {
 	}
 
 	/**
+	 * @return string
+	 */
+	public function get_post_type() {
+		return (string) $this->wp_query->get( 'post_type' );
+	}
+
+	/**
+	 * @return int
+	 */
+	public function get_author() {
+		return (int) $this->wp_query->get( 'author' );
+	}
+
+	/**
+	 * @rerturn array
+	 */
+	public function get_post_status() {
+		$status = $this->wp_query->get( 'post_status' );
+
+		if ( empty( $status ) ) {
+			return [];
+		}
+
+		if ( false !== strpos( $status, ',' ) ) {
+			return explode( ',', $status );
+		}
+
+		return [ $status ];
+	}
+
+	/**
 	 * Handle the sorting request on the post-type listing screens
 	 *
 	 * @param WP_Query $query
@@ -80,16 +123,13 @@ final class Post extends Strategy {
 			return;
 		}
 
-		$post_type = $this->get_column()->get_post_type();
-
-		// check screen conditions
-		if ( $query->get( 'post_type' ) !== $post_type ) {
+		if ( $query->get( 'post_type' ) !== $this->post_type ) {
 			return;
 		}
 
 		// set pagination vars
-		if ( ! is_post_type_hierarchical( $post_type ) ) {
-			$per_page = (int) get_user_option( 'edit_' . $post_type . '_per_page' );
+		if ( ! is_post_type_hierarchical( $this->post_type ) ) {
+			$per_page = (int) get_user_option( 'edit_' . $this->post_type . '_per_page' );
 
 			if ( ! $per_page ) {
 				$per_page = 20;

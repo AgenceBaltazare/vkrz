@@ -11,10 +11,7 @@ class ID extends AC\Column\Post\ID
 	implements Sorting\Sortable, Filtering\Filterable, Search\Searchable {
 
 	public function sorting() {
-		$model = new Sorting\Model( $this );
-		$model->set_orderby( 'ID' );
-
-		return $model;
+		return new Sorting\Model\OrderBy( 'ID' );
 	}
 
 	public function filtering() {

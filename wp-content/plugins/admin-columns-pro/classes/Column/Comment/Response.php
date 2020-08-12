@@ -19,7 +19,7 @@ class Response extends AC\Column\Comment\Response
 	}
 
 	public function sorting() {
-		return new Sorting\Model\Comment\Response( $this );
+		return new Sorting\Model\Comment\Response();
 	}
 
 	public function export() {

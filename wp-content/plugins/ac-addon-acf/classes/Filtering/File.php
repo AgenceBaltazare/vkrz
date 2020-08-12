@@ -7,7 +7,7 @@ use ACA\ACF\Filtering;
 class File extends Filtering {
 
 	public function get_filtering_data() {
-		$options = array();
+		$options = [];
 
 		$ids = $this->get_meta_values();
 
@@ -17,10 +17,10 @@ class File extends Filtering {
 			}
 		}
 
-		return array(
+		return [
 			'options'      => $options,
 			'empty_option' => true,
-		);
+		];
 	}
 
 }

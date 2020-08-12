@@ -5,8 +5,7 @@ namespace ACP\Sorting;
 interface Sortable {
 
 	/**
-	 * Return the sortable model for this column
-	 * @return Model
+	 * @return AbstractModel
 	 */
 	public function sorting();
 

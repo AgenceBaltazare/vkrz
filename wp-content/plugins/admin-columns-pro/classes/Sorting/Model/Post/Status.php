@@ -2,9 +2,9 @@
 
 namespace ACP\Sorting\Model\Post;
 
-use ACP\Sorting\Model;
+use ACP\Sorting\AbstractModel;
 
-class Status extends Model {
+class Status extends AbstractModel {
 
 	public function get_sorting_vars() {
 		add_filter( 'posts_orderby', [ $this, 'orderby_status' ] );
@@ -12,24 +12,22 @@ class Status extends Model {
 		return [];
 	}
 
-	public function orderby_status( $orderby_statement ) {
+	public function orderby_status() {
 		global $wpdb;
 
-		$stati = get_post_stati( null, 'objects' );
+		remove_filter( 'posts_orderby', [ $this, __FUNCTION__ ] );
+
 		$translated_stati = [];
 
-		foreach ( $stati as $key => $post_status ) {
-			$key = sanitize_key( $key );
+		foreach ( get_post_stati( null, 'objects' ) as $key => $post_status ) {
 			$translated_stati[ $key ] = $post_status->label;
 		}
 
 		natcasesort( $translated_stati );
 
-		$sorted_keys = array_map( function ( $val ) {
-			return sprintf( "'%s'", $val );
-		}, array_keys( $translated_stati ) );
+		$fields = implode( "','", array_map( 'esc_sql', array_keys( $translated_stati ) ) );
 
-		return sprintf( 'FIELD(%s, %s) %s', "{$wpdb->posts}.post_status", implode( ',', $sorted_keys ), $this->get_order() );
+		return sprintf( "FIELD( {$wpdb->posts}.post_status, '%s' ) %s", $fields, $this->get_order() );
 	}
 
 }

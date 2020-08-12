@@ -9,7 +9,7 @@ class WordCount extends AC\Column\Post\WordCount
 	implements Sorting\Sortable {
 
 	public function sorting() {
-		return new Sorting\Model( $this );
+		return new Sorting\Model\Post\WordCount();
 	}
 
 }

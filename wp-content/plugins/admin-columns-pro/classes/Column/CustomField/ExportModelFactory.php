@@ -3,6 +3,7 @@
 namespace ACP\Column\CustomField;
 
 use AC\Column;
+use AC\Settings\Column\CustomFieldType;
 use ACP\Export\Model;
 
 class ExportModelFactory {
@@ -17,45 +18,32 @@ class ExportModelFactory {
 
 		switch ( $type ) {
 
-			case 'array' :
+			case CustomFieldType::TYPE_ARRAY :
 				return new Model\Value( $column );
-
-			case 'checkmark' :
+			case CustomFieldType::TYPE_BOOLEAN :
 				return new Model\RawValue( $column );
-
-			case 'color' :
+			case CustomFieldType::TYPE_COLOR :
 				return new Model\RawValue( $column );
-
-			case 'count' :
+			case CustomFieldType::TYPE_COUNT :
 				return new Model\Value( $column );
-
-			case 'date' :
+			case CustomFieldType::TYPE_DATE :
 				return new Model\CustomField\Date( $column );
-
-			case 'excerpt' :
+			case CustomFieldType::TYPE_TEXT :
 				return new Model\RawValue( $column );
-
-			case 'has_content' :
+			case CustomFieldType::TYPE_NON_EMPTY :
 				return new Model\Value( $column );
-
-			case 'image' :
+			case CustomFieldType::TYPE_IMAGE :
 				return new Model\CustomField\Image( $column );
-
-			case 'library_id' :
+			case CustomFieldType::TYPE_MEDIA :
 				return new Model\CustomField\Image( $column );
-
-			case 'link' :
+			case CustomFieldType::TYPE_URL :
 				return new Model\RawValue( $column );
-
-			case 'numeric' :
+			case CustomFieldType::TYPE_NUMERIC :
 				return new Model\RawValue( $column );
-
-			case 'title_by_id' :
+			case CustomFieldType::TYPE_POST :
 				return new Model\StrippedValue( $column );
-
-			case 'user_by_id' :
+			case CustomFieldType::TYPE_USER :
 				return new Model\StrippedValue( $column );
-
 			default :
 				return new Model\RawValue( $column );
 		}

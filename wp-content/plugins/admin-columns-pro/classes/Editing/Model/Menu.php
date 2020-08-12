@@ -42,7 +42,7 @@ abstract class Menu extends Model {
 		$menus = [];
 
 		foreach ( $this->column->get_menus( $id ) as $menu ) {
-			$menus[ $menu->term_id ] = $menu->name;
+			$menus[] = $menu->term_id;
 		}
 
 		return $menus;
@@ -70,6 +70,7 @@ abstract class Menu extends Model {
 
 	public function save( $id, $menu_ids ) {
 		$transaction = new Transaction();
+		$menu_ids = empty( $menu_ids ) ? [] : $menu_ids;
 
 		$results = [];
 
@@ -107,6 +108,8 @@ abstract class Menu extends Model {
 				return false;
 			}
 		}
+
+		$transaction->commit();
 
 		return ! in_array( false, $results, true );
 	}

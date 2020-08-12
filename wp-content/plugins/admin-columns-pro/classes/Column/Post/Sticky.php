@@ -15,7 +15,7 @@ class Sticky extends AC\Column\Post\Sticky
 	implements Editing\Editable, Filtering\Filterable, Sorting\Sortable, Search\Searchable {
 
 	public function sorting() {
-		return new Sorting\Model\Post\Sticky( $this );
+		return new Sorting\Model\Post\Sticky();
 	}
 
 	public function editing() {

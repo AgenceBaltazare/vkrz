@@ -19,10 +19,7 @@ class Comment extends AC\Column\Comment\Comment
 	}
 
 	public function sorting() {
-		$model = new Sorting\Model( $this );
-		$model->set_orderby( 'comment_content' );
-
-		return $model;
+		return new Sorting\Model\OrderBy( 'comment_content' );
 	}
 
 	public function search() {

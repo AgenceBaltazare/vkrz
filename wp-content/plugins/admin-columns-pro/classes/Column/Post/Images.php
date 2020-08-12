@@ -18,7 +18,7 @@ class Images extends AC\Column
 	}
 
 	public function sorting() {
-		return new Sorting\Model\Post\ImageFileSizes( $this );
+		return new Sorting\Model\Post\ImageFileSizes();
 	}
 
 	public function export() {

@@ -3,7 +3,6 @@
 namespace ACP\Exception;
 
 use RuntimeException;
-use Throwable;
 
 final class DecoderNotFoundException extends RuntimeException {
 
@@ -12,10 +11,10 @@ final class DecoderNotFoundException extends RuntimeException {
 	 */
 	private $encoded_list_screen;
 
-	public function __construct( array $encoded_list_screen, $code = 0, Throwable $previous = null ) {
+	public function __construct( array $encoded_list_screen, $code = 0 ) {
 		$this->encoded_list_screen = $encoded_list_screen;
 
-		parent::__construct( 'Could not find a decoder for this ListScreen.', $code, $previous );
+		parent::__construct( 'Could not find a decoder for this ListScreen.', $code );
 	}
 
 	/**

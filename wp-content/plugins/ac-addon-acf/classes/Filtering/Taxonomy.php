@@ -15,7 +15,6 @@ class Taxonomy extends Filtering {
 			$values = $this->get_meta_values();
 		}
 
-		// todo: ajax?
 		return [
 			'empty_option' => true,
 			'options'      => ( new Helper() )->get_term_names( $values, $this->get_taxonomy() ),

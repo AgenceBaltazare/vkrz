@@ -30,7 +30,7 @@ class Admin implements Registrable {
 
 	public function add_hide_on_screen( HideOnScreenCollection $collection, AC\ListScreen $list_screen ) {
 		if ( $list_screen instanceof ListScreen ) {
-			$collection->add( new HideOnScreen\Export(), 60 );
+			$collection->add( new HideOnScreen\Export(), 50 );
 		}
 	}
 

@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Admin Columns Pro\n"
-"PO-Revision-Date: 2020-04-08 19:03+0000\n"
+"PO-Revision-Date: 2020-04-28 22:09+0000\n"
 "Last-Translator: Tobias Schutter <info@codepress.nl>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/codepress/admin-columns-pro/language/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -53,7 +53,7 @@ msgstr "Maak horizontaal scrollen de standaard wanneer gebruikers de tabel bezoe
 msgid ""
 "Users can change this preference by opening “screen options” on the table "
 "screen."
-msgstr ""
+msgstr "Gebruikers kunnen hun voorkeur aanpassen door \"scherm opties\" te openen op het tabel scherm."
 
 #: admin-columns-pro/classes/Admin/Settings.php:148
 msgid ""
@@ -66,7 +66,7 @@ msgid ""
 "When the columns do not fit on the screen you can horizontally scroll your "
 "columns by dragging the horizontal scrollbar or by swiping left or right "
 "with the mouse."
-msgstr ""
+msgstr "Wanneer de kolommen niet meer op het scherm passen dan kun je de kolommen horizontaal scrollen door de scrollbar te slepen of met je muis links of rechts te swipen."
 
 #: admin-columns-pro/classes/Admin/Settings.php175,
 #: admin-columns-pro/classes/Table/HorizontalScrolling.php87,
@@ -141,7 +141,7 @@ msgstr "Jouq Admin Columns Pro licentie veloopt in %s. %s "
 msgid ""
 "Your Admin Columns Pro license will expire in %s. In order get access to new"
 " features and receive security updates, please %s before %s."
-msgstr ""
+msgstr "Je Admin Columns Pro licentie zal verlopen in %s. Om toegang te houden tot nieuwe features and beveligings updates kun je %s voor %s."
 
 #: admin-columns-pro/classes/Controller/AjaxRequestFeedback.php:40
 msgid "Please insert a valid email so we can reply to your feedback."
@@ -194,15 +194,15 @@ msgstr "The opgevraagde bestand kon niet geladen worden."
 msgid ""
 "Creation of Admin Columns export directory failed. Please make sure that "
 "your uploads folder is writable."
-msgstr ""
+msgstr "Het aanmaken van de Admin Columns export folder is niet gelukt. Zorg ervoor dat je uploads folder schrijfrechten heeft."
 
 #: admin-columns-pro/classes/Export/Strategy.php:74
 msgid "Invalid value supplied for export counter."
-msgstr ""
+msgstr "Ongeldige waarde voor export teller"
 
 #: admin-columns-pro/classes/Export/Strategy.php:78
 msgid "Invalid value supplied for export hash."
-msgstr ""
+msgstr "Ongeldige waarde voor Export hash"
 
 #: admin-columns-pro/classes/Export/TableScreenOptions.php:53
 msgid "Show Export Button"
@@ -350,7 +350,7 @@ msgstr ""
 
 #: admin-columns-pro/classes/Search/TableScreen.php:157
 msgid "Click on a segment to load the filtered list."
-msgstr ""
+msgstr "Klik op een segment om het gefilterde overzicht te tonen"
 
 #: admin-columns-pro/classes/Search/TableScreen.php173,
 #: admin-columns-pro/templates/admin/create-list-screen.php22,
@@ -396,7 +396,7 @@ msgstr "Licentie is niet actief."
 
 #: admin-columns-pro/classes/Updates/AddonInstaller.php:72
 msgid "Enter your license key on <a href=\"%s\">the settings page</a>."
-msgstr ""
+msgstr "Vul je licentiecode in bij de <a href=\"%s\">de instellingen pagina </a>."
 
 #: admin-columns-pro/classes/Updates/AddonInstaller.php:93
 msgid "Install failed."
@@ -433,11 +433,11 @@ msgstr "optioneel"
 
 #: admin-columns-pro/templates/admin/list-screen-settings.php:18
 msgid "Conditionals"
-msgstr ""
+msgstr "Condities"
 
 #: admin-columns-pro/templates/admin/list-screen-settings.php:19
 msgid "Make this column set available only for specific users or roles."
-msgstr ""
+msgstr "Maak deze set beschikbaar voor specifieke gebruikers of rollen"
 
 #: admin-columns-pro/templates/admin/list-screen-settings.php26,
 #: admin-columns-pro/templates/admin/list-screens-sidebar.php73,
@@ -460,11 +460,11 @@ msgstr "Voorkeuren"
 #: admin-columns-pro/templates/admin/list-screen-settings.php:65
 msgid ""
 "Set default settings that users will see when they visit the list table."
-msgstr ""
+msgstr "Zet de standaard instellingen die gebruikers zien wanneer ze de kolomtabel bekijken."
 
 #: admin-columns-pro/templates/admin/list-screen-title.php:9
 msgid "Add title"
-msgstr ""
+msgstr "Voeg een titel toe"
 
 #: admin-columns-pro/templates/admin/list-screens-sidebar.php:16
 msgid "Column Sets"
@@ -514,13 +514,13 @@ msgstr "Verstuur terugkoppeling"
 
 #: admin-columns-pro/templates/admin/section-export.php:13
 msgid "Select the columns settings you would like to export."
-msgstr ""
+msgstr "Selecteer de kolommen om te exporteren."
 
 #: admin-columns-pro/templates/admin/section-export.php:14
 msgid ""
 "The result is a JSON file that can be imported in any WordPress install that"
 " uses Admin Columns Pro."
-msgstr ""
+msgstr "Het resultaat is een JSON bestand die kan worden geïmporteerd in elke WordPress site die gebruik maakt van Admin Columns Pro."
 
 #: admin-columns-pro/templates/admin/section-export.php:22
 msgid "Export To JSON"
@@ -583,7 +583,7 @@ msgstr "Activeer licentie"
 
 #: admin-columns-pro/templates/admin/section-license.php:64
 msgid "License key is defined in code but not yet activated."
-msgstr ""
+msgstr "De licentie is gedefinieerd in de code maar nog niet geactiveerd."
 
 #: admin-columns-pro/templates/admin/section-license.php:69
 msgid "Enter your license code"
@@ -635,7 +635,7 @@ msgstr "Pods"
 
 #: ac-addon-woocommerce/classes/Subscriptions.php:44
 msgid "WooCommerce Subscriptions"
-msgstr ""
+msgstr "WooCommerce Subscriptions"
 
 #: ac-addon-woocommerce/classes/TableScreen.php:78
 msgid "Replace"
@@ -643,15 +643,15 @@ msgstr "Vervang"
 
 #: ac-addon-woocommerce/classes/TableScreen.php:79
 msgid "Increase by"
-msgstr ""
+msgstr "Verhogen met"
 
 #: ac-addon-woocommerce/classes/TableScreen.php:80
 msgid "Decrease by"
-msgstr ""
+msgstr "Verlagen met"
 
 #: ac-addon-woocommerce/classes/TableScreen.php:81
 msgid "Set New"
-msgstr ""
+msgstr "Vervang"
 
 #: ac-addon-woocommerce/classes/TableScreen.php:82
 msgid "Regular"
@@ -671,13 +671,13 @@ msgstr "Aanbieding tot"
 
 #: ac-addon-woocommerce/classes/TableScreen.php:88
 msgid "Set the sale price based on the regular price"
-msgstr ""
+msgstr "Zet een verkoopprijs gebaseerd op de reguliere prijs."
 
 #: ac-addon-woocommerce/classes/TableScreen.php90,
 #: ac-addon-woocommerce/classes/Filtering/Product/Sale.php40,
 #: ac-addon-woocommerce/classes/Search/Product/Sale.php:26
 msgid "Scheduled"
-msgstr ""
+msgstr "Ingepland"
 
 #: ac-addon-woocommerce/classes/TableScreen.php:97
 msgid "No Rounding"
@@ -902,7 +902,7 @@ msgstr "settings scherm"
 
 #: admin-columns-pro/classes/Editing/Settings/BulkEditing.php:35
 msgid "Bulk Editing"
-msgstr ""
+msgstr "Bulk Editing"
 
 #: admin-columns-pro/classes/Editing/Settings/BulkEditing.php46,
 #: admin-columns-pro/classes/Export/Settings/Column.php63,
@@ -970,35 +970,35 @@ msgstr "Filter op"
 
 #: admin-columns-pro/classes/Migrate/Import/Request.php:90
 msgid "Uploaded file does not have a %s extension."
-msgstr ""
+msgstr "Het geüploade bestand heeft niet een %s extensie."
 
 #: admin-columns-pro/classes/Migrate/Import/Request.php:98
 msgid "Uploaded file is empty or not readable."
-msgstr ""
+msgstr "Het geüploade bestand is leeg of niet leesbaar."
 
 #: admin-columns-pro/classes/Migrate/Import/Request.php:106
 msgid "Error parsing the uploaded file."
-msgstr ""
+msgstr "Er is een fout opgetreden bij het lezen van het geüploade bestand."
 
 #: admin-columns-pro/classes/Migrate/Import/Request.php:118
 msgid "Error parsing the contents from the uploaded file."
-msgstr ""
+msgstr "Er is een fout opgetreden bij het lezen van het geüploade bestand."
 
 #: admin-columns-pro/classes/Migrate/Import/Request.php:132
 msgid "Column settings with id %s cannot be imported."
-msgstr ""
+msgstr "Kolominstellingen met ID %skonden niet worden geïmporteerd. "
 
 #: admin-columns-pro/classes/Migrate/Import/Request.php:139
 msgid "The uploaded file does not contain any column settings."
-msgstr ""
+msgstr "Het geüploade bestand bevat geen kolominstellingen. "
 
 #: admin-columns-pro/classes/Migrate/Import/Request.php:148
 msgid "Columns settings with id %s could be saved."
-msgstr ""
+msgstr "Kolom instellingen met id %s zijn niet opgeslagen."
 
 #: admin-columns-pro/classes/Migrate/Import/Request.php:168
 msgid "Successfully imported %s for %s."
-msgstr ""
+msgstr "Succesvol geïmporteerd %s voor %s."
 
 #: admin-columns-pro/classes/Migrate/Import/Request.php:169
 msgid "set"
@@ -1009,7 +1009,7 @@ msgstr[1] "sets"
 #: admin-columns-pro/classes/QuickAdd/Table/Loader.php70,
 #: admin-columns-pro/classes/QuickAdd/Admin/HideOnScreen/QuickAdd.php:11
 msgid "Quick Add"
-msgstr ""
+msgstr "Snel toevoegen"
 
 #: admin-columns-pro/classes/Search/Controller/Segment.php:63
 msgid "A segment with this name already exists."
@@ -1037,23 +1037,23 @@ msgstr "is vandaag"
 
 #: admin-columns-pro/classes/Search/Labels/Date.php:15
 msgid "is in the past"
-msgstr ""
+msgstr "in het verleden"
 
 #: admin-columns-pro/classes/Search/Labels/Date.php:16
 msgid "is in the future"
-msgstr ""
+msgstr "in de toekomst"
 
 #: admin-columns-pro/classes/Search/Labels/Date.php:17
 msgid "is less than"
-msgstr ""
+msgstr "is minder dan"
 
 #: admin-columns-pro/classes/Search/Labels/Date.php:18
 msgid "is more than"
-msgstr ""
+msgstr "is meer dan"
 
 #: admin-columns-pro/classes/Search/Labels/Date.php:19
 msgid "is within"
-msgstr ""
+msgstr "is binnen"
 
 #: admin-columns-pro/classes/Search/Settings/Column.php:32
 msgid "Smart Filtering"
@@ -1135,7 +1135,7 @@ msgstr "Licentie deactiveren"
 
 #: admin-columns-pro/templates/admin/partials/license-form-buttons.php:5
 msgid "Check license"
-msgstr ""
+msgstr "Licentie checken"
 
 #: ac-addon-acf/classes/Editing/TrueFalse.php14,
 #: ac-addon-acf/classes/Filtering/TrueFalse.php39,
@@ -1313,7 +1313,7 @@ msgstr "Heeft geen aankomende evenementa"
 
 #: ac-addon-events-calendar/classes/ImportListscreens/Message.php:43
 msgid "Enable our predefined column sets for %s?"
-msgstr ""
+msgstr "Activeer onze voorgedefinieerde kolom sets voor %s?"
 
 #: ac-addon-events-calendar/classes/Settings/EventDates.php:40
 msgid "Event Date"
@@ -1373,7 +1373,7 @@ msgstr ""
 
 #: ac-addon-types/classes/Settings/Relationship.php:26
 msgid "No relations available."
-msgstr ""
+msgstr "Geen relaties beschikbaar."
 
 #: ac-addon-types/classes/Settings/Relationship.php:30
 msgid "Relationship"
@@ -1394,45 +1394,45 @@ msgstr "Zoek variabel product"
 
 #: ac-addon-woocommerce/classes/ListTable/ProductVariation.php:296
 msgid "When you create a product variation, it will appear here."
-msgstr ""
+msgstr "Zodra je een product variatie aanmaakt wordt deze hier getoond."
 
 #: ac-addon-woocommerce/classes/PostType/ProductVariation.php45,
 #: ac-addon-woocommerce/classes/PostType/ProductVariation.php:47
 msgid "Product Variations"
-msgstr ""
+msgstr "Product variaties"
 
 #: ac-addon-woocommerce/classes/PostType/ProductVariation.php:46
 msgid "Product Variation"
-msgstr ""
+msgstr "Product variatie"
 
 #: ac-addon-woocommerce/classes/PostType/ProductVariation.php:48
 msgid "Add New"
-msgstr ""
+msgstr "Toevoegen"
 
 #: ac-addon-woocommerce/classes/PostType/ProductVariation.php:49
 msgid "Add new variation"
-msgstr ""
+msgstr "Nieuwe variatie toevoegen"
 
 #: ac-addon-woocommerce/classes/PostType/ProductVariation.php:50
 msgid "Edit"
-msgstr ""
+msgstr "Bewerken"
 
 #: ac-addon-woocommerce/classes/PostType/ProductVariation.php:51
 msgid "Edit variation"
-msgstr ""
+msgstr "Variatie bewerken"
 
 #: ac-addon-woocommerce/classes/PostType/ProductVariation.php:52
 msgid "New variation"
-msgstr ""
+msgstr "Nieuwe variatie"
 
 #: ac-addon-woocommerce/classes/PostType/ProductVariation.php53,
 #: ac-addon-woocommerce/classes/PostType/ProductVariation.php:54
 msgid "View variation"
-msgstr ""
+msgstr "Bekijk variatie"
 
 #: ac-addon-woocommerce/classes/PostType/ProductVariation.php:56
 msgid "No variations found"
-msgstr ""
+msgstr "Geen variaties gevonden"
 
 #: ac-addon-woocommerce/classes/PostType/ProductVariation.php:57
 msgid "No variations found in trash"
@@ -1516,7 +1516,7 @@ msgstr "<strong>{0} items</strong> geselecteerd voor Bulk Edit"
 
 #: admin-columns-pro/classes/Editing/Asset/Script/Table.php:97
 msgid "Done & Deselect All"
-msgstr ""
+msgstr "Klaar en alles deselecteren"
 
 #: admin-columns-pro/classes/Editing/Asset/Script/Table.php:100
 msgid "This will update {0} entries."
@@ -1578,7 +1578,7 @@ msgstr "Samenvatting is automatisch gegenereerd van de inhoud."
 
 #: admin-columns-pro/classes/Editing/Model/Post/Slug.php:16
 msgid "Enter slug"
-msgstr ""
+msgstr "Voeg slug toe"
 
 #: admin-columns-pro/classes/Editing/Model/Post/Sticky.php13,
 #: ac-addon-events-calendar/classes/Editing/Event/AllDayEvent.php28,
@@ -1725,7 +1725,7 @@ msgstr "Code"
 
 #: admin-columns-pro/classes/Migrate/Admin/Table/Export.php:54
 msgid "List Table"
-msgstr ""
+msgstr "Overzichtpagina"
 
 #: admin-columns-pro/classes/Migrate/Export/Response/File.php41,
 #: admin-columns-pro/classes/Migrate/Export/Response/Screen.php:33
@@ -1734,7 +1734,7 @@ msgstr ""
 
 #: admin-columns-pro/classes/QuickAdd/Table/Checkbox/ShowButton.php:11
 msgid "Show Quick Add Button"
-msgstr ""
+msgstr "Toon Snel Toevoegen knop"
 
 #: admin-columns-pro/classes/Search/Asset/Script/Table.php:41
 msgctxt "select placeholder"
@@ -1747,11 +1747,11 @@ msgstr "Filter toevoegen"
 
 #: admin-columns-pro/classes/Search/Asset/Script/Table.php:43
 msgid "days ago"
-msgstr ""
+msgstr "dagen geleden"
 
 #: admin-columns-pro/classes/Search/Asset/Script/Table.php:44
 msgid "days"
-msgstr ""
+msgstr "dagen"
 
 #: admin-columns-pro/classes/Search/Comparison/Media/UsedAsFeaturedImage.php:47
 msgid "In use"
@@ -1823,23 +1823,23 @@ msgstr "Site ingeschakeld"
 
 #: admin-columns-pro/classes/Settings/ListScreen/HideOnScreen/BulkActions.php:10
 msgid "Bulk Actions"
-msgstr ""
+msgstr "Acties"
 
 #: admin-columns-pro/classes/Settings/ListScreen/HideOnScreen/BulkEdit.php:10
 msgid "Bulk Edit"
-msgstr ""
+msgstr "Bulk Edit"
 
 #: admin-columns-pro/classes/Settings/ListScreen/HideOnScreen/Filters.php:10
 msgid "Filters"
-msgstr ""
+msgstr "Filters"
 
 #: admin-columns-pro/classes/Settings/ListScreen/HideOnScreen/SavedFilters.php:10
 msgid "Saved Filters"
-msgstr ""
+msgstr "Opgeslagen filters"
 
 #: admin-columns-pro/classes/Settings/ListScreen/HideOnScreen/Search.php:10
 msgid "Search"
-msgstr ""
+msgstr "Zoeken"
 
 #: admin-columns-pro/classes/Sorting/Admin/Section/ResetSorting.php:20
 msgid "Sorting Preferences"
@@ -1851,7 +1851,7 @@ msgstr "Dit hersteld alle sorteer voorkeuren voor alle gebruiken"
 
 #: admin-columns-pro/classes/ThirdParty/YoastSeo/Column/IsIndexed.php:27
 msgid "Implicit"
-msgstr ""
+msgstr "Impliciet"
 
 #: admin-columns-pro/classes/ThirdParty/YoastSeo/Column/PrimaryTaxonomy.php:15
 msgid "Primary Taxonomy"
@@ -1863,7 +1863,7 @@ msgstr "Vul uw SEO Focus Keywords in"
 
 #: admin-columns-pro/classes/ThirdParty/YoastSeo/Editing/IsIndexed.php:29
 msgid "Default for %s, currently: %s"
-msgstr ""
+msgstr "Standaard voor %s, momenteel: %s"
 
 #: admin-columns-pro/classes/ThirdParty/YoastSeo/Editing/MetaDesc.php:16
 msgid "Enter your SEO Meta Description"
@@ -1883,7 +1883,7 @@ msgstr "Heeft aangepaste SEO Titel"
 
 #: admin-columns-pro/classes/ThirdParty/YoastSeo/Search/IsIndexed.php:35
 msgid "Default for Post Type"
-msgstr ""
+msgstr "Standaard voor Post Type"
 
 #: ac-addon-buddypress/classes/Column/Group/Avatar.php:11
 msgid "Avatar"
@@ -2023,7 +2023,7 @@ msgstr "Is een taxonomy"
 
 #: ac-addon-woocommerce/classes/Column/Product/AvgOrderInterval.php:20
 msgid "Average Order Interval"
-msgstr ""
+msgstr "Gemiddelde bestelling interval"
 
 #: ac-addon-woocommerce/classes/Column/Product/BackordersAllowed.php:18
 msgid "Backorders Allowed"
@@ -2055,7 +2055,7 @@ msgstr "Hoogte"
 
 #: ac-addon-woocommerce/classes/Column/Product/LowOnStock.php:14
 msgid "Low on Stock"
-msgstr ""
+msgstr "Weinig op voorraad"
 
 #: ac-addon-woocommerce/classes/Column/Product/LowOnStock.php:35
 msgid "Current stock of %s is lower than the set threshold of  %s"
@@ -2064,7 +2064,7 @@ msgstr ""
 #: ac-addon-woocommerce/classes/Column/Product/OrderTotal.php14,
 #: ac-addon-woocommerce/classes/Column/ShopSubscription/TotalRevenue.php:15
 msgid "Total Revenue"
-msgstr ""
+msgstr "Totale omzet"
 
 #: ac-addon-woocommerce/classes/Column/Product/ProductParent.php:20
 msgid "Grouped By"
@@ -2112,31 +2112,31 @@ msgstr ""
 
 #: ac-addon-woocommerce/classes/Column/ProductSubscription/Period.php:21
 msgid "Price Period"
-msgstr ""
+msgstr "Prijsperiode"
 
 #: ac-addon-woocommerce/classes/Column/ProductVariation/Stock.php:38
 msgid "Stock managed by product"
-msgstr ""
+msgstr "Voorraadmanagement op productniveau"
 
 #: ac-addon-woocommerce/classes/Column/ShopCoupon/CouponDescription.php:19
 msgid "Description"
-msgstr ""
+msgstr "Omschrijving"
 
 #: ac-addon-woocommerce/classes/Column/ShopCoupon/EmailRestrictions.php:20
 msgid "Email Restrictions"
-msgstr ""
+msgstr "Uitgesloten emailadressen"
 
 #: ac-addon-woocommerce/classes/Column/ShopCoupon/ExcludeProducts.php:19
 msgid "Excluded Products"
-msgstr ""
+msgstr "Uitgesloten Producten"
 
 #: ac-addon-woocommerce/classes/Column/ShopCoupon/ExcludeProductsCategories.php:21
 msgid "Exclude Product Categories"
-msgstr ""
+msgstr "Uitgesloten Productcategorieën "
 
 #: ac-addon-woocommerce/classes/Column/ShopCoupon/FreeShipping.php:20
 msgid "Free Shipping"
-msgstr ""
+msgstr "Gratis verzending"
 
 #: ac-addon-woocommerce/classes/Column/ShopCoupon/FreeShipping.php:32
 msgid ""
@@ -2146,19 +2146,19 @@ msgstr "De gratis verzend methode moet geactiveerd zijn met de &quot;gebruikt co
 
 #: ac-addon-woocommerce/classes/Column/ShopCoupon/IncludeProducts.php:20
 msgid "Included Products"
-msgstr ""
+msgstr "Toegestane producten"
 
 #: ac-addon-woocommerce/classes/Column/ShopCoupon/Limit.php:14
 msgid "Coupon limit"
-msgstr ""
+msgstr "Kortingsbon limiet"
 
 #: ac-addon-woocommerce/classes/Column/ShopCoupon/MaximumAmount.php:18
 msgid "Maximum Amount"
-msgstr ""
+msgstr "Maximale besteding"
 
 #: ac-addon-woocommerce/classes/Column/ShopCoupon/MinimumAmount.php:18
 msgid "Minimum Amount"
-msgstr ""
+msgstr "Minimale besteding"
 
 #: ac-addon-woocommerce/classes/Column/ShopCoupon/Orders.php:17
 msgid "Orders"
@@ -2187,23 +2187,23 @@ msgstr "Order Korting"
 
 #: ac-addon-woocommerce/classes/Column/ShopOrder/IP.php:18
 msgid "Customer IP address"
-msgstr ""
+msgstr "IP adres klant"
 
 #: ac-addon-woocommerce/classes/Column/ShopOrder/OrderNumber.php:15
 msgid "Order Number"
-msgstr ""
+msgstr "Bestellingnummer"
 
 #: ac-addon-woocommerce/classes/Column/ShopOrder/PaymentMethod.php:16
 msgid "Payment Method"
-msgstr ""
+msgstr "Betaalmethode"
 
 #: ac-addon-woocommerce/classes/Column/ShopOrder/ProductCategories.php:19
 msgid "Product Categories"
-msgstr ""
+msgstr "Productcategorieën"
 
 #: ac-addon-woocommerce/classes/Column/ShopOrder/Purchased.php:19
 msgid "Purchased"
-msgstr ""
+msgstr "Gekocht"
 
 #: ac-addon-woocommerce/classes/Column/ShopOrder/Purchased.php:34
 msgid "%d item"
@@ -2213,28 +2213,28 @@ msgstr[1] ""
 
 #: ac-addon-woocommerce/classes/Column/ShopOrder/Totals.php:24
 msgid "Totals"
-msgstr ""
+msgstr "Totaal"
 
 #: ac-addon-woocommerce/classes/Column/ShopOrder/TotalWeight.php:15
 msgid "Total Order Weight"
-msgstr ""
+msgstr "Totaal bestelling gewicht"
 
 #: ac-addon-woocommerce/classes/Column/ShopSubscription/AutoRenewal.php:17
 msgid "Auto Renewal"
-msgstr ""
+msgstr "Automatische incasso"
 
 #: ac-addon-woocommerce/classes/Column/User/CustomerSince.php17,
 #: ac-addon-woocommerce/classes/Settings/ShopOrder/Customer.php:15
 msgid "Customer Since"
-msgstr ""
+msgstr "Klant Sinds"
 
 #: ac-addon-woocommerce/classes/Column/User/FirstOrder.php:17
 msgid "First Order"
-msgstr ""
+msgstr "Eerste bestelling"
 
 #: ac-addon-woocommerce/classes/Column/User/LastOrder.php:17
 msgid "Last Order"
-msgstr ""
+msgstr "Laatste bestelling"
 
 #: ac-addon-woocommerce/classes/Column/User/Orders.php:76
 msgid "items"
@@ -2242,7 +2242,7 @@ msgstr "items"
 
 #: ac-addon-woocommerce/classes/Column/User/Products.php:18
 msgid "Products"
-msgstr ""
+msgstr "Producten"
 
 #: ac-addon-woocommerce/classes/Column/User/TotalSales.php18,
 #: ac-addon-woocommerce/classes/Settings/ShopOrder/Customer.php:18
@@ -2261,13 +2261,13 @@ msgstr ""
 #: ac-addon-woocommerce/classes/Filtering/Product/SoldIndividually.php30,
 #: ac-addon-woocommerce/classes/Search/Product/SoldIndividually.php:24
 msgid "Sold Individually"
-msgstr ""
+msgstr "Individueel verkocht"
 
 #: ac-addon-woocommerce/classes/Editing/Product/SoldIndividually.php17,
 #: ac-addon-woocommerce/classes/Filtering/Product/SoldIndividually.php31,
 #: ac-addon-woocommerce/classes/Search/Product/SoldIndividually.php:25
 msgid "Not Sold Individually"
-msgstr ""
+msgstr "Niet individueel verkocht"
 
 #: ac-addon-woocommerce/classes/Editing/Product/TaxClass.php:18
 msgid "Standard"
@@ -2275,15 +2275,15 @@ msgstr "Standaard"
 
 #: ac-addon-woocommerce/classes/Editing/ProductVariation/Enabled.php:16
 msgid "Private"
-msgstr ""
+msgstr "Privé"
 
 #: ac-addon-woocommerce/classes/Editing/ProductVariation/Enabled.php:17
 msgid "Published"
-msgstr ""
+msgstr "Gepubliceerd"
 
 #: ac-addon-woocommerce/classes/Export/ShopCoupon/Usage.php:20
 msgid "Infinity"
-msgstr ""
+msgstr "Oneindig"
 
 #: ac-addon-woocommerce/classes/Filtering/Comment/ProductReview.php:32
 msgid "Exclude Product Reviews"
@@ -2296,33 +2296,33 @@ msgstr ""
 #: ac-addon-woocommerce/classes/Filtering/Product/Sale.php38,
 #: ac-addon-woocommerce/classes/Search/Product/Sale.php:24
 msgid "On Sale"
-msgstr ""
+msgstr "Afgeprijsd "
 
 #: ac-addon-woocommerce/classes/Filtering/Product/Sale.php39,
 #: ac-addon-woocommerce/classes/Search/Product/Sale.php:25
 msgid "Not on Sale"
-msgstr ""
+msgstr "Niet afgeprijsd"
 
 #: ac-addon-woocommerce/classes/Filtering/Product/ShortDescription.php:15
 msgid "Without Short Description"
-msgstr ""
+msgstr "Zonder korte bschrijving"
 
 #: ac-addon-woocommerce/classes/Filtering/Product/ShortDescription.php:16
 msgid "Has Short Description"
-msgstr ""
+msgstr "Heeft korte beschrijving"
 
 #: ac-addon-woocommerce/classes/Filtering/ProductVariation/Downloadable.php:11
 msgid "Is Downloadable"
-msgstr ""
+msgstr "Is downloadbaar"
 
 #: ac-addon-woocommerce/classes/Filtering/ProductVariation/Downloadable.php12,
 #: ac-addon-woocommerce/classes/Filtering/ProductVariation/Virtual.php:12
 msgid "Exclude %s"
-msgstr ""
+msgstr "Exclusief %s"
 
 #: ac-addon-woocommerce/classes/Filtering/ProductVariation/Virtual.php:11
 msgid "Is Virtual"
-msgstr ""
+msgstr "Is virtueel"
 
 #: ac-addon-woocommerce/classes/Filtering/Settings/ShowVariableProducts.php:49
 msgid ""
@@ -2331,7 +2331,7 @@ msgstr ""
 
 #: ac-addon-woocommerce/classes/Filtering/Settings/ShowVariableProducts.php:48
 msgid "Show variable products"
-msgstr ""
+msgstr "Toon variabele producten"
 
 #: ac-addon-woocommerce/classes/Filtering/ShopOrder/CustomerMessage.php:31
 msgid "Has customer message"
@@ -2339,15 +2339,15 @@ msgstr "Bevat klant bericht"
 
 #: ac-addon-woocommerce/classes/Search/Product/Featured.php:20
 msgid "Is featured"
-msgstr ""
+msgstr "Is uitgelicht"
 
 #: ac-addon-woocommerce/classes/Search/Product/Featured.php:21
 msgid "Is not featured"
-msgstr ""
+msgstr "Is niet uitgelicht"
 
 #: ac-addon-woocommerce/classes/Settings/Product/Attributes.php:30
 msgid "All attributes"
-msgstr ""
+msgstr "Alle attributen"
 
 #: ac-addon-woocommerce/classes/Settings/Product/Attributes.php:38
 msgid "Show Single"
@@ -2363,39 +2363,39 @@ msgstr "Werkt alleen voor taxonomy attributen"
 
 #: ac-addon-woocommerce/classes/Settings/Product/Period.php:34
 msgid "Period"
-msgstr ""
+msgstr "Periode"
 
 #: ac-addon-woocommerce/classes/Settings/Product/Period.php:35
 msgid "Select the time period from now"
-msgstr ""
+msgstr "Selecteer een periode "
 
 #: ac-addon-woocommerce/classes/Settings/Product/Period.php:44
 msgid "Last year"
-msgstr ""
+msgstr "Afgelopen jaar"
 
 #: ac-addon-woocommerce/classes/Settings/Product/Period.php:45
 msgid "Last quarter"
-msgstr ""
+msgstr "Afgelopen kwartaal"
 
 #: ac-addon-woocommerce/classes/Settings/Product/Period.php:46
 msgid "Last month"
-msgstr ""
+msgstr "Afgelopen maand"
 
 #: ac-addon-woocommerce/classes/Settings/Product/Period.php:47
 msgid "Last week"
-msgstr ""
+msgstr "Afgelopen week"
 
 #: ac-addon-woocommerce/classes/Settings/Product/UseIcon.php:40
 msgid "Use an icon?"
-msgstr ""
+msgstr "Icoon gebruiken?"
 
 #: ac-addon-woocommerce/classes/Settings/Product/UseIcon.php:41
 msgid "Use an icon instead of text for displaying the note."
-msgstr ""
+msgstr "Toon icoon in plaats van tekst."
 
 #: ac-addon-woocommerce/classes/Settings/ProductVariation/Variation.php:48
 msgid "Without label"
-msgstr ""
+msgstr "Zonder beschrijving"
 
 #: ac-addon-woocommerce/classes/Settings/ProductVariation/Variation.php:105
 msgid "Any"
@@ -2407,107 +2407,107 @@ msgstr ""
 
 #: ac-addon-woocommerce/classes/Settings/ShopOrder/IP.php:42
 msgid "IP Address"
-msgstr ""
+msgstr "IP-adres"
 
 #: ac-addon-woocommerce/classes/Settings/ShopOrder/IP.php:43
 msgid "IP Country Code"
-msgstr ""
+msgstr "IP-land"
 
 #: ac-addon-woocommerce/classes/Settings/ShopOrder/Product.php:26
 msgid "Product"
-msgstr ""
+msgstr "Product"
 
 #: ac-addon-woocommerce/classes/Settings/ShopOrder/Totals.php:39
 msgid "Total"
-msgstr ""
+msgstr "Totaal"
 
 #: ac-addon-woocommerce/classes/Settings/ShopOrder/Totals.php:40
 msgid "Subtotal"
-msgstr ""
+msgstr "Subtotaal"
 
 #: ac-addon-woocommerce/classes/Settings/ShopOrder/Totals.php:41
 msgid "Shipping Costs"
-msgstr ""
+msgstr "Verzendkosten"
 
 #: ac-addon-woocommerce/classes/Settings/ShopOrder/Totals.php:42
 msgid "Tax"
-msgstr ""
+msgstr "BTW"
 
 #: ac-addon-woocommerce/classes/Settings/ShopOrder/Totals.php:43
 msgid "Refunds"
-msgstr ""
+msgstr "Terugbetaling"
 
 #: ac-addon-woocommerce/classes/Settings/ShopOrder/Totals.php:44
 msgid "Discounts"
-msgstr ""
+msgstr "Kortingen"
 
 #: ac-addon-woocommerce/classes/Settings/ShopOrder/Totals.php45,
 #: ac-addon-woocommerce/classes/Field/ShopOrder/OrderDate/Paid.php:16
 msgid "Paid"
-msgstr ""
+msgstr "Betaald"
 
 #: ac-addon-woocommerce/classes/Settings/User/AddressType.php60,
 #: ac-addon-woocommerce/classes/Settings/User/Country.php:37
 msgid "Shipping"
-msgstr ""
+msgstr "Factuuradres"
 
 #: ac-addon-woocommerce/classes/Settings/User/AddressType.php61,
 #: ac-addon-woocommerce/classes/Settings/User/Country.php:38
 msgid "Billing"
-msgstr ""
+msgstr "Verzendadres"
 
 #: ac-addon-woocommerce/classes/Settings/User/Order.php:53
 msgid "Order number"
-msgstr ""
+msgstr "Bestellingnummer"
 
 #: ac-addon-woocommerce/classes/Settings/User/Products.php:42
 msgid "Total products purchased"
-msgstr ""
+msgstr "Totaal aantal producten gekocht"
 
 #: ac-addon-woocommerce/classes/Settings/User/Products.php:43
 msgid "Unique products purchased"
-msgstr ""
+msgstr "Unieke producten gekocht"
 
 #: ac-addon-woocommerce/classes/Settings/User/Ratings.php:42
 msgid "Amount of ratings given"
-msgstr ""
+msgstr "Aantal beoordelingen gegeven"
 
 #: ac-addon-woocommerce/classes/Settings/User/Ratings.php:43
 msgid "Average rating"
-msgstr ""
+msgstr "Gemiddelde beoordeling"
 
 #: ac-addon-woocommerce/classes/Column/ShopOrder/Address/Billing.php:15
 msgid "Billing Address"
-msgstr ""
+msgstr "Factuuradres"
 
 #: ac-addon-woocommerce/classes/Column/ShopOrder/Address/Shipping.php:16
 msgid "Shipping Address"
-msgstr ""
+msgstr "Verzendadres"
 
 #: ac-addon-woocommerce/classes/Editing/StorageModel/Product/Price.php:40
 msgid "Price can not be zero or lower."
-msgstr ""
+msgstr "Prijs kan niet nul of lager zijn."
 
 #: ac-addon-woocommerce/classes/Editing/StorageModel/Product/SalePrice.php:33
 msgid "Sale price can not be zero or lower."
-msgstr ""
+msgstr "Actieprijs kan niet nul of lager zijn."
 
 #: ac-addon-woocommerce/classes/Editing/StorageModel/Product/SalePrice.php:37
 msgid "Sale price can not be higher than the regular price."
-msgstr ""
+msgstr "Actieprijs kan niet hoger zijn dan de reguliere prijs."
 
 #: ac-addon-woocommerce/classes/Field/ShopOrder/OrderDate/Completed.php:16
 msgid "Completed"
-msgstr ""
+msgstr "Afgerond"
 
 #: ac-addon-woocommerce/classes/Field/ShopOrder/OrderDate/Created.php:15
 msgid "Created"
-msgstr ""
+msgstr "Aangemaakt"
 
 #: ac-addon-woocommerce/classes/Field/ShopOrder/OrderDate/Modified.php:15
 msgid "Modified"
-msgstr ""
+msgstr "Gewijzigd"
 
 #: ac-addon-woocommerce/classes/Field/ShopSubscription/SubscriptionDate/NextPayment.php:13
 msgid "Next Payment"
-msgstr ""
+msgstr "Volgende betaling"

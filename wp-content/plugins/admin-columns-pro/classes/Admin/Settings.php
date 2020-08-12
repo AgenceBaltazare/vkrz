@@ -7,10 +7,12 @@ use AC\Asset;
 use AC\Asset\Location;
 use AC\ListScreen;
 use AC\ListScreenCollection;
+use AC\ListScreenPost;
 use AC\ListScreenRepository\Sort;
 use AC\ListScreenRepository\Storage;
 use AC\Registrable;
 use AC\View;
+use ACP\ListScreen\Media;
 use ACP\Settings\ListScreen\HideOnScreen;
 use ACP\Settings\ListScreen\HideOnScreenCollection;
 use WP_User;
@@ -198,8 +200,24 @@ class Settings implements Registrable {
 		$collection = new HideOnScreenCollection();
 
 		$collection->add( new HideOnScreen\Filters(), 30 )
-		           ->add( new HideOnScreen\Search(), 40 )
+		           ->add( new HideOnScreen\Search(), 90 )
 		           ->add( new HideOnScreen\BulkActions(), 100 );
+
+		if ( $list_screen instanceof ListScreenPost ) {
+			$collection->add( new HideOnScreen\FilterPostDate(), 32 );
+
+			if ( is_object_in_taxonomy( $list_screen->get_post_type(), 'category' ) ) {
+				$collection->add( new HideOnScreen\FilterCategory(), 34 );
+			}
+
+			if ( post_type_supports( $list_screen->get_post_type(), 'post-formats' ) ) {
+				$collection->add( new HideOnScreen\FilterPostFormat(), 36 );
+			}
+
+			if ( $list_screen instanceof Media ) {
+				$collection->add( new HideOnScreen\FilterMediaItem(), 31 );
+			}
+		}
 
 		do_action( 'acp/admin/settings/hide_on_screen', $collection, $list_screen );
 
@@ -208,24 +226,35 @@ class Settings implements Registrable {
 		/** @var HideOnScreen $hide_on_screen */
 		foreach ( $collection->all() as $hide_on_screen ) {
 
+			$class = '';
+
+			if ( $hide_on_screen->get_dependent_on() ) {
+				$class = '-indent';
+			}
+
+			// do not indent smart filters
+			if ( 'hide_smart_filters' === $hide_on_screen->get_name() ) {
+				$class = '';
+			}
+
 			$checkboxes[] = $this->render_checkbox(
 				$hide_on_screen->get_name(),
 				$hide_on_screen->get_label(),
 				$hide_on_screen->is_hidden( $list_screen ),
-				$hide_on_screen->get_dependent_on()
+				$hide_on_screen->get_dependent_on(),
+				$class
 			);
 		}
 
 		return implode( $checkboxes );
 	}
 
-	private function render_checkbox( $name, $label, $is_checked, $dependent_on = [] ) {
+	private function render_checkbox( $name, $label, $is_checked, $dependent_on = [], $class = '' ) {
 		ob_start();
 		// the hidden field makes sure we also save the 'off' state. This allows us to set a 'default' value.
 		$attr_name = sprintf( 'settings[%s]', $name );
-
 		?>
-		<label data-setting="<?= $name; ?>" data-dependent="<?= implode( ',', $dependent_on ); ?>">
+		<label class="<?= esc_attr( $class ); ?>" data-setting="<?= $name; ?>" data-dependent="<?= implode( ',', $dependent_on ); ?>">
 			<input name="<?= $attr_name; ?>" type="hidden" value="off">
 			<input name="<?= $attr_name; ?>" type="checkbox" <?php checked( $is_checked ); ?>> <?= esc_html( $label ); ?>
 		</label>

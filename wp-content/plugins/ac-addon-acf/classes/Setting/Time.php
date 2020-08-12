@@ -23,13 +23,13 @@ class Time extends AC\Settings\Column\Time {
 	protected function get_custom_format_options() {
 		$label = __( 'ACF Time Format', 'codepress-admin-columns' );
 
-		$options = array(
+		$options = [
 			'acf' => $this->get_html_label(
 				$label,
 				$this->get_acf_date_format(),
 				sprintf( __( "%s uses the %s from it's field settings.", 'codepress-admin-columns' ), $label, '"' . __( 'Display Format', 'codepress-admin-columns' ) . '"' )
 			),
-		);
+		];
 
 		return ac_helper()->array->insert( parent::get_custom_format_options(), $options, 'wp_default' );
 	}

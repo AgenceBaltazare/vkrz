@@ -2,10 +2,13 @@
 
 namespace ACP\Sorting\Model\Media;
 
-class Width extends Dimensions {
+use ACP\Sorting\FormatValue;
+use ACP\Sorting\Type\DataType;
 
-	protected function get_aspect( $values ) {
-		return $this->get_width( $values );
+class Width extends AttachmentMetaData {
+
+	public function __construct() {
+		parent::__construct( new FormatValue\Width(), new DataType( DataType::NUMERIC ) );
 	}
 
 }

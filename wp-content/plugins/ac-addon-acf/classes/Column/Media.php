@@ -7,7 +7,7 @@ use ACA\ACF;
 class Media extends ACF\Column {
 
 	public function register_settings() {
-		$this->register_settings_by_type( 'Media' );
+		$this->add_setting( $this->field_settings_factory->create( 'media', $this ) );
 	}
 
 	public function get_formatted_id( $id ) {

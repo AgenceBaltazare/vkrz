@@ -30,10 +30,10 @@ final class AdvancedCustomFields extends AC\Plugin {
 	 * Register hooks
 	 */
 	public function register() {
-		add_action( 'ac/column_groups', array( $this, 'register_column_groups' ) );
-		add_action( 'ac/column_types', array( $this, 'add_columns' ) );
-		add_action( 'ac/table_scripts/editing', array( $this, 'table_scripts_editing' ) );
-		add_action( 'ac/admin_scripts/columns', array( $this, 'settings_scripts' ) );
+		add_action( 'ac/column_groups', [ $this, 'register_column_groups' ] );
+		add_action( 'ac/column_types', [ $this, 'add_columns' ] );
+		add_action( 'ac/table_scripts/editing', [ $this, 'table_scripts_editing' ] );
+		add_action( 'ac/admin_scripts/columns', [ $this, 'settings_scripts' ] );
 	}
 
 	/**
@@ -51,7 +51,7 @@ final class AdvancedCustomFields extends AC\Plugin {
 	 * @since 1.0
 	 */
 	public function add_columns( $list_screen ) {
-		$content_types = array( 'Post', 'Media', 'User', 'Comment', 'Taxonomy' );
+		$content_types = [ 'Post', 'Media', 'User', 'Comment', 'Taxonomy' ];
 
 		foreach ( $content_types as $content_type ) {
 			$instance = 'ACP\Listscreen\\' . $content_type;
@@ -67,12 +67,12 @@ final class AdvancedCustomFields extends AC\Plugin {
 	}
 
 	public function table_scripts_editing() {
-		wp_enqueue_script( 'ac-acf-table', $this->get_url() . 'assets/js/table.js', array( 'jquery' ), $this->get_version() );
+		wp_enqueue_script( 'ac-acf-table', $this->get_url() . 'assets/js/table.js', [ 'jquery' ], $this->get_version() );
 		wp_enqueue_style( 'ac-acf-table', $this->get_url() . 'assets/css/table.css' );
 	}
 
 	public function settings_scripts() {
-		wp_enqueue_script( 'ac-acf-settings', $this->get_url() . 'assets/js/admin.js', array( 'jquery' ), $this->get_version() );
+		wp_enqueue_script( 'ac-acf-settings', $this->get_url() . 'assets/js/admin.js', [ 'jquery' ], $this->get_version() );
 	}
 
 }

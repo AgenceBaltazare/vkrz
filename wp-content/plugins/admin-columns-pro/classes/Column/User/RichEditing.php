@@ -20,7 +20,7 @@ class RichEditing extends AC\Column\User\RichEditing
 	}
 
 	public function sorting() {
-		return new Sorting\Model( $this );
+		return new Sorting\Model\User\Meta( 'rich_editing' );
 	}
 
 	public function search() {

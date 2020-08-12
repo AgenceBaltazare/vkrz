@@ -10,6 +10,7 @@ use ACA\ACF\Formattable;
 use ACA\ACF\Search;
 use ACA\ACF\Sorting;
 use ACP;
+use ACP\Sorting\Model\MetaFormatFactory;
 
 class Taxonomy extends Field
 	implements Formattable {
@@ -18,14 +19,14 @@ class Taxonomy extends Field
 		parent::__construct( $column );
 
 		// Checkbox and Multi select are stored serialized
-		$this->column->set_serialized( in_array( $this->get( 'field_type' ), array( 'checkbox', 'multi_select' ) ) );
+		$this->column->set_serialized( in_array( $this->get( 'field_type' ), [ 'checkbox', 'multi_select' ] ) );
 	}
 
 	public function get_value( $id ) {
 		$term_ids = parent::get_value( $id );
 		$setting_limit = $this->column->get_setting( 'number_of_items' );
 
-		$values = array();
+		$values = [];
 
 		foreach ( ac_helper()->taxonomy->get_terms_by_ids( $term_ids, $this->get( 'taxonomy' ) ) as $term ) {
 			$values[] = $this->get_term_link( $term );
@@ -35,7 +36,7 @@ class Taxonomy extends Field
 	}
 
 	public function get_dependent_settings() {
-		$settings = array();
+		$settings = [];
 
 		if ( $this->is_serialized() ) {
 			$settings[] = new AC\Settings\Column\NumberOfItems( $this->column );
@@ -71,11 +72,7 @@ class Taxonomy extends Field
 	}
 
 	public function sorting() {
-		if ( $this->get( 'multiple' ) ) {
-			return new ACP\Sorting\Model\Value( $this->column );
-		}
-
-		return new Sorting( $this->column );
+		return ( new MetaFormatFactory() )->create( $this->get_meta_type(), $this->get_meta_key(), new Sorting\FormatValue\Taxonomy() );
 	}
 
 	public function export() {

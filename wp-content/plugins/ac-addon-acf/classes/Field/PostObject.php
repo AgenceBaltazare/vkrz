@@ -4,10 +4,15 @@ namespace ACA\ACF\Field;
 
 use AC;
 use AC\Collection;
+use AC\Settings\Column\Post;
 use ACA\ACF\Editing;
 use ACA\ACF\Field;
 use ACA\ACF\Filtering;
 use ACP;
+use ACP\Sorting\FormatValue\SerializedSettingFormatter;
+use ACP\Sorting\FormatValue\SettingFormatter;
+use ACP\Sorting\Model\MetaFormatFactory;
+use ACP\Sorting\Model\MetaRelatedPostFactory;
 
 class PostObject extends Field {
 
@@ -42,7 +47,21 @@ class PostObject extends Field {
 	}
 
 	public function sorting() {
-		return new ACP\Sorting\Model\Value( $this->column );
+		$setting = $this->column->get_setting( Post::NAME );
+
+		if ( ! $this->is_serialized() ) {
+			$model = ( new MetaRelatedPostFactory() )->create( $this->get_meta_type(), $setting->get_value(), $this->get_meta_key() );
+
+			if ( $model ) {
+				return $model;
+			}
+		}
+
+		$formatter = $this->is_serialized()
+			? new SerializedSettingFormatter( new SettingFormatter( $setting ) )
+			: new SettingFormatter( $setting );
+
+		return ( new MetaFormatFactory() )->create( $this->get_meta_type(), $this->get_meta_key(), $formatter );
 	}
 
 	/**
@@ -64,10 +83,10 @@ class PostObject extends Field {
 		$array_terms = acf_decode_taxonomy_terms( $taxonomy );
 
 		if ( ! $array_terms ) {
-			return array();
+			return [];
 		}
 
-		$terms = array();
+		$terms = [];
 		foreach ( $array_terms as $taxonomy => $term_slugs ) {
 			foreach ( $term_slugs as $term_slug ) {
 				$terms[] = get_term_by( 'slug', $term_slug, $taxonomy );
@@ -94,9 +113,9 @@ class PostObject extends Field {
 	}
 
 	public function get_dependent_settings() {
-		$settings = array(
+		$settings = [
 			new AC\Settings\Column\Post( $this->column ),
-		);
+		];
 
 		if ( $this->is_serialized() ) {
 			$settings[] = new AC\Settings\Column\NumberOfItems( $this->column );

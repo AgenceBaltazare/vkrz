@@ -9,6 +9,7 @@ use ACA\ACF\Filtering;
 use ACA\ACF\Search;
 use ACA\ACF\Setting;
 use ACP;
+use ACP\Sorting\Type\DataType;
 
 class DatePicker extends Field {
 
@@ -17,10 +18,7 @@ class DatePicker extends Field {
 	}
 
 	public function sorting() {
-		$model = new ACP\Sorting\Model\Meta( $this->column );
-		$model->set_data_type( 'numeric' );
-
-		return $model;
+		return ( new ACP\Sorting\Model\MetaFactory() )->create( $this->get_meta_type(), $this->get_meta_key(), new DataType( DataType::NUMERIC ) );
 	}
 
 	public function export() {
@@ -36,9 +34,9 @@ class DatePicker extends Field {
 	}
 
 	public function get_dependent_settings() {
-		return array(
+		return [
 			new Setting\Date( $this->column ),
-		);
+		];
 	}
 
 }

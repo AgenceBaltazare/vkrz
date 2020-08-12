@@ -2,27 +2,30 @@
 
 namespace ACA\ACF\Sorting;
 
-use ACA\ACF\Sorting;
+use ACP;
 
-class Repeater extends Sorting {
+class Repeater extends ACP\Sorting\AbstractModel {
 
-	public function __construct( $column ) {
-		parent::__construct( $column );
+	/**
+	 * @var string
+	 */
+	private $meta_key;
 
-		$this->set_data_type( 'numeric' );
+	public function __construct( $meta_key ) {
+		parent::__construct();
+
+		$this->meta_key = $meta_key;
 	}
 
 	public function get_sorting_vars() {
-		$field = $this->column->get_acf_field();
-
-		$ids = $this->strategy->get_results( array(
-			'meta_key' => $field['name'],
+		$ids = $this->strategy->get_results( [
+			'meta_key' => $this->meta_key,
 			'orderby'  => 'meta_value_num',
-		) );
+		] );
 
-		return array(
+		return [
 			'ids' => $ids,
-		);
+		];
 	}
 
 }

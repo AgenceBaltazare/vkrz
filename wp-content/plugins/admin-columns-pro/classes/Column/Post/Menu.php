@@ -8,11 +8,7 @@ use ACP\Export;
 use ACP\Sorting;
 
 class Menu extends AC\Column\Post\Menu
-	implements Sorting\Sortable, Editing\Editable, Export\Exportable {
-
-	public function sorting() {
-		return new Sorting\Model( $this );
-	}
+	implements Editing\Editable, Export\Exportable, Sorting\Sortable {
 
 	public function editing() {
 		return new Editing\Model\Post\Menu( $this );
@@ -20,6 +16,10 @@ class Menu extends AC\Column\Post\Menu
 
 	public function export() {
 		return new Export\Model\StrippedValue( $this );
+	}
+
+	public function sorting() {
+		return new Sorting\Model\Post\Menu();
 	}
 
 }

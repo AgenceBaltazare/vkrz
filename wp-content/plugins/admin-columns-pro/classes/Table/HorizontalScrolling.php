@@ -44,14 +44,15 @@ class HorizontalScrolling implements AC\Registrable {
 	public function update_table_option_overflow() {
 		check_ajax_referer( 'ac-ajax' );
 
-		$list_screen = $this->storage->find( new ListScreenId( filter_input( INPUT_POST, 'layout' ) ) );
+		$list_screen = filter_input( INPUT_POST, 'layout' )
+			? $this->storage->find( new ListScreenId( filter_input( INPUT_POST, 'layout' ) ) )
+			: null;
 
-		if ( ! $list_screen ) {
-			wp_die();
-		}
+		$key = null !== $list_screen
+			? $list_screen->get_storage_key()
+			: filter_input( INPUT_POST, 'list_screen' );
 
-		$this->preferences()->set( $list_screen->get_storage_key(), 'true' === filter_input( INPUT_POST, 'value' ) );
-
+		$this->preferences()->set( $key, 'true' === filter_input( INPUT_POST, 'value' ) );
 		exit;
 	}
 

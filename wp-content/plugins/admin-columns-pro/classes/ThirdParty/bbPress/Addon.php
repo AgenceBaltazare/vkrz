@@ -3,6 +3,7 @@
 namespace ACP\ThirdParty\bbPress;
 
 use AC;
+use AC\ListScreenTypes;
 use ACP;
 use ReflectionException;
 
@@ -41,17 +42,15 @@ final class Addon implements AC\Registrable {
 	}
 
 	/**
-	 * @param AC\AdminColumns $admin_columns
-	 *
 	 * @since 4.0
 	 */
-	public function register_list_screens( $admin_columns ) {
+	public function register_list_screens() {
 		foreach ( $this->get_post_types() as $post_type ) {
 
 			$list_screen = new ACP\ListScreen\Post( $post_type );
 			$list_screen->set_group( 'bbpress' );
 
-			$admin_columns->register_list_screen( $list_screen );
+			ListScreenTypes::instance()->register_list_screen( $list_screen );
 		}
 	}
 

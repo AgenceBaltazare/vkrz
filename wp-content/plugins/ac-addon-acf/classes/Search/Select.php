@@ -14,12 +14,12 @@ class Select extends Meta
 	private $choices;
 
 	public function __construct( $meta_key, $type, $choices ) {
-		$operators = new Operators( array(
+		$operators = new Operators( [
 			Operators::EQ,
 			Operators::NEQ,
 			Operators::IS_EMPTY,
 			Operators::NOT_IS_EMPTY,
-		) );
+		] );
 
 		$this->choices = $choices;
 

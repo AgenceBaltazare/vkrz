@@ -16,7 +16,7 @@ class Role extends AC\Column\User\Role
 	implements Editing\Editable, Filtering\Filterable, Sorting\Sortable, Export\Exportable, Search\Searchable {
 
 	public function sorting() {
-		return new Sorting\Model\User\Roles( $this );
+		return new Sorting\Model\User\Roles( $this->get_meta_key() );
 	}
 
 	public function editing() {

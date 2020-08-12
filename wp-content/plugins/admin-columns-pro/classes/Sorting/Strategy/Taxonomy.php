@@ -3,14 +3,27 @@
 namespace ACP\Sorting\Strategy;
 
 use ACP;
+use ACP\Sorting\AbstractModel;
+use ACP\Sorting\Strategy;
 use WP_Term_Query;
 
-class Taxonomy extends ACP\Sorting\Strategy {
+class Taxonomy extends Strategy {
 
 	/**
 	 * @var WP_Term_Query
 	 */
 	private $term_query;
+
+	/**
+	 * @var string
+	 */
+	private $taxonomy;
+
+	public function __construct( AbstractModel $model, $taxonomy ) {
+		parent::__construct( $model );
+
+		$this->taxonomy = $taxonomy;
+	}
 
 	public function manage_sorting() {
 		add_action( 'pre_get_terms', [ $this, 'handle_sorting_request' ] );
@@ -33,7 +46,7 @@ class Taxonomy extends ACP\Sorting\Strategy {
 	protected function get_terms( array $args = [] ) {
 		$defaults = [
 			'fields'     => 'ids',
-			'taxonomy'   => $this->get_column()->get_taxonomy(),
+			'taxonomy'   => $this->taxonomy,
 			'hide_empty' => false,
 		];
 
@@ -68,19 +81,9 @@ class Taxonomy extends ACP\Sorting\Strategy {
 			return false;
 		}
 
-		$list_screen = $this->get_column()->get_list_screen();
-
-		if ( ! $list_screen instanceof ACP\ListScreen\Taxonomy ) {
-			return false;
-		}
-
 		$taxonomies = $this->get_query_var( 'taxonomy' );
 
-		if ( empty( $taxonomies ) || ! in_array( $list_screen->get_taxonomy(), $taxonomies ) ) {
-			return false;
-		}
-
-		return true;
+		return ! ( empty( $taxonomies ) || ! in_array( $this->taxonomy, $taxonomies ) );
 	}
 
 	/**
@@ -112,16 +115,23 @@ class Taxonomy extends ACP\Sorting\Strategy {
 	}
 
 	/**
-	 * @param string $key
-	 *
-	 * @return null
+	 * @return string
 	 */
-	public function get_query_var( $key ) {
-		if ( ! $this->term_query instanceof WP_Term_Query || ! isset( $this->term_query->query_vars[ $key ] ) ) {
-			return null;
-		}
+	public function get_taxonomy() {
+		$taxonomy = $this->get_query_var( 'taxonomy' );
 
-		return $this->term_query->query_vars[ $key ];
+		return (string) $taxonomy[0];
+	}
+
+	/**
+	 * @param string $var
+	 *
+	 * @return string|array|null
+	 */
+	protected function get_query_var( $var ) {
+		return $this->term_query instanceof WP_Term_Query && isset( $this->term_query->query_vars[ $var ] )
+			? $this->term_query->query_vars[ $var ]
+			: null;
 	}
 
 }

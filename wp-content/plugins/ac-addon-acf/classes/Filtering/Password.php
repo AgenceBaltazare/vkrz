@@ -7,10 +7,10 @@ use ACA\ACF\Filtering;
 class Password extends Filtering {
 
 	public function get_filtering_data() {
-		return array(
+		return [
 			'empty_option' => true,
-			'options'      => array(),
-		);
+			'options'      => [],
+		];
 	}
 
 }

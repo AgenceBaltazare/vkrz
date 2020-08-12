@@ -6,7 +6,9 @@ use ACA\ACF\Editing;
 use ACA\ACF\Field;
 use ACA\ACF\Filtering;
 use ACA\ACF\Formattable;
+use ACA\ACF\Sorting;
 use ACP;
+use ACP\Sorting\Model\MetaFormatFactory;
 
 class File extends Field
 	implements Formattable {
@@ -24,7 +26,7 @@ class File extends Field
 			$attachment = get_attached_file( $attachment_id );
 
 			if ( $attachment ) {
-				$value = ac_helper()->html->link( wp_get_attachment_url( $attachment_id ), esc_html( basename( $attachment ) ), array( 'target' => '_blank' ) );
+				$value = ac_helper()->html->link( wp_get_attachment_url( $attachment_id ), esc_html( basename( $attachment ) ), [ 'target' => '_blank' ] );
 			} else {
 				$value = '<em>' . __( 'Invalid attachment', 'codepress-admin-columns' ) . '</em>';
 			}
@@ -38,7 +40,7 @@ class File extends Field
 	}
 
 	public function sorting() {
-		return new ACP\Sorting\Model( $this->column );
+		return ( new MetaFormatFactory() )->create( $this->get_meta_type(), $this->get_meta_key(), new Sorting\FormatValue\File() );
 	}
 
 	public function filtering() {

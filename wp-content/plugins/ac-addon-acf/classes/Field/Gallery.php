@@ -5,7 +5,6 @@ namespace ACA\ACF\Field;
 use AC;
 use ACA\ACF\Editing;
 use ACA\ACF\Field;
-use ACA\ACF\Sorting;
 use ACP;
 
 class Gallery extends Field {
@@ -15,7 +14,7 @@ class Gallery extends Field {
 	}
 
 	public function sorting() {
-		return new Sorting\Gallery( $this->column );
+		return new ACP\Sorting\Model\Disabled();
 	}
 
 	public function search() {
@@ -27,9 +26,9 @@ class Gallery extends Field {
 	}
 
 	public function get_dependent_settings() {
-		return array(
+		return [
 			new AC\Settings\Column\Images( $this->column ),
-		);
+		];
 	}
 
 }

@@ -7,13 +7,14 @@ use ACA\ACF\Editing;
 use ACA\ACF\Field;
 use ACA\ACF\Filtering;
 use ACP;
+use ACP\Sorting\Type\DataType;
 
 class Password extends Field {
 
 	public function get_dependent_settings() {
-		return array(
+		return [
 			new AC\Settings\Column\Password( $this->column ),
-		);
+		];
 	}
 
 	public function editing() {
@@ -25,7 +26,7 @@ class Password extends Field {
 	}
 
 	public function sorting() {
-		return new ACP\Sorting\Model\Meta( $this->column );
+		return ( new ACP\Sorting\Model\MetaFactory() )->create( $this->get_meta_type(), $this->get_meta_key() );
 	}
 
 	public function filtering() {

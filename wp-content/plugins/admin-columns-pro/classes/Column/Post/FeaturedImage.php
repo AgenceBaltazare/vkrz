@@ -18,10 +18,10 @@ class FeaturedImage extends AC\Column\Post\FeaturedImage
 
 	public function sorting() {
 		if ( 'filesize' === $this->get_display_value() ) {
-			return new Sorting\Model\Value( $this );
+			return new Sorting\Model\Post\FeaturedImageSize( $this->get_meta_key() );
 		}
 
-		return new Sorting\Model\Meta( $this );
+		return new Sorting\Model\Post\Meta( $this->get_meta_key() );
 	}
 
 	public function filtering() {

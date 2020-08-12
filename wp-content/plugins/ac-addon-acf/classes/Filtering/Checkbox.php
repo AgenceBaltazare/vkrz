@@ -5,7 +5,7 @@ namespace ACA\ACF\Filtering;
 class Checkbox extends Options {
 
 	public function get_filtering_data() {
-		$options = array();
+		$options = [];
 
 		$choices = (array) $this->column->get_field()->get( 'choices' );
 
@@ -15,10 +15,10 @@ class Checkbox extends Options {
 			}
 		}
 
-		return array(
+		return [
 			'empty_option' => true,
-			'options'      => $options
-		);
+			'options'      => $options,
+		];
 	}
 
 }

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Admin Columns Pro\n"
-"PO-Revision-Date: 2020-03-27 16:11+0000\n"
+"PO-Revision-Date: 2020-06-02 12:26+0000\n"
 "Last-Translator: Tobias Schutter <info@codepress.nl>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/codepress/admin-columns-pro/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"

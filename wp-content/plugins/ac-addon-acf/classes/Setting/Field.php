@@ -23,7 +23,7 @@ abstract class Field extends AC\Settings\Column {
 	abstract public function get_grouped_field_options();
 
 	protected function define_options() {
-		return array( 'field' );
+		return [ 'field' ];
 	}
 
 	public function create_view() {
@@ -78,7 +78,7 @@ abstract class Field extends AC\Settings\Column {
 			return;
 		}
 
-		$options = array();
+		$options = [];
 
 		// Flatten options
 		foreach ( $setting->get_options() as $values ) {
@@ -138,15 +138,15 @@ abstract class Field extends AC\Settings\Column {
 	 * @return array Group list
 	 */
 	protected function get_option_groups( $groups ) {
-		$option_groups = array();
+		$option_groups = [];
 
 		foreach ( $groups as $group_id => $group ) {
-			$options = array();
+			$options = [];
 
 			$fields = acf_get_fields( $group );
 
 			foreach ( $fields as $field ) {
-				if ( in_array( $field['type'], array( 'tab', 'message' ) ) ) {
+				if ( in_array( $field['type'], [ 'tab', 'message' ] ) ) {
 					continue;
 				}
 
@@ -173,10 +173,10 @@ abstract class Field extends AC\Settings\Column {
 
 				natcasesort( $options );
 
-				$option_groups[ $group_id ] = array(
+				$option_groups[ $group_id ] = [
 					'title'   => $group['title'],
 					'options' => $options,
-				);
+				];
 			}
 		}
 

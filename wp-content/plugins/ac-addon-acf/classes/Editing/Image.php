@@ -7,9 +7,9 @@ use ACA\ACF\Editing;
 class Image extends Editing {
 
 	public function get_view_settings() {
-		$data = array(
+		$data = [
 			'type' => 'media',
-		);
+		];
 
 		$data['attachment']['library']['type'] = 'image';
 

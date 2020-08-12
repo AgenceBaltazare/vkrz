@@ -6,12 +6,12 @@ class Users extends User {
 
 	public function get_view_settings() {
 		$field = $this->column->get_field();
-		$data = array(
+		$data = [
 			'type'                => 'acf_select2',
 			'ajax_populate'       => true,
 			'multiple'            => true,
 			'disable_revisioning' => 'true',
-		);
+		];
 
 		if ( $field->get( 'allow_null' ) ) {
 			$data['clear_button'] = true;
@@ -21,7 +21,7 @@ class Users extends User {
 	}
 
 	public function save( $id, $value ) {
-		if( ! isset( $value['values'] ) ){
+		if ( ! isset( $value['values'] ) ) {
 			return parent::save( $id, $value );
 		}
 

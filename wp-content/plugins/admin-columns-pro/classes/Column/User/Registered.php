@@ -12,10 +12,7 @@ class Registered extends AC\Column\User\Registered
 	implements Filtering\Filterable, Sorting\Sortable, Editing\Editable, Search\Searchable {
 
 	public function sorting() {
-		$model = new Sorting\Model( $this );
-		$model->set_orderby( 'registered' );
-
-		return $model;
+		return new Sorting\Model\OrderBy( 'registered' );
 	}
 
 	public function filtering() {

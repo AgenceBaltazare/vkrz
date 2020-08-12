@@ -15,7 +15,7 @@ class PageTemplate extends AC\Column\Post\PageTemplate
 	implements Filtering\Filterable, Sorting\Sortable, Editing\Editable, Search\Searchable {
 
 	public function sorting() {
-		return new Sorting\Model( $this );
+		return new Sorting\Model\Post\PageTemplate( $this->get_post_type(), $this->get_meta_key() );
 	}
 
 	public function editing() {

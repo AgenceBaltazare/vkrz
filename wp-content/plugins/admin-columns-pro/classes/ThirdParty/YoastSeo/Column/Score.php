@@ -5,6 +5,7 @@ namespace ACP\ThirdParty\YoastSeo\Column;
 use AC;
 use ACP\Export;
 use ACP\Sorting;
+use ACP\Sorting\Type\DataType;
 
 class Score extends AC\Column\Meta
 	implements Export\Exportable, Sorting\Sortable {
@@ -41,10 +42,7 @@ class Score extends AC\Column\Meta
 	 * @inheritDoc
 	 */
 	public function sorting() {
-		$model = new Sorting\Model\Meta( $this );
-		$model->set_data_type( 'numeric' );
-
-		return $model;
+		return ( new Sorting\Model\MetaFactory() )->create( $this->get_meta_type(), $this->get_meta_key(), new DataType( DataType::NUMERIC ) );
 	}
 
 }

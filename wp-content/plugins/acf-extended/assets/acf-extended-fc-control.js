@@ -149,8 +149,6 @@
             footer: acf.__('Close'),
             onOpen: function(){
                 
-                flexible.acfeEditorsInit($layout);
-                
             },
             onClose: function(){
                 
@@ -164,6 +162,63 @@
         });
         
     }
+
+    /*
+     * Layout: Toggle Action
+     */
+    model.events['click [data-acfe-flexible-control-toggle]'] = 'acfeLayoutToggle';
+    model.acfeLayoutToggle = function(e, $el){
+
+        // Get Flexible
+        var flexible = this;
+
+        // Vars
+        var $layout = $el.closest('.layout');
+
+        var $field = $layout.find('> .acfe-flexible-layout-toggle');
+
+        if(!$field.length)
+            return;
+
+        if($field.val() === '1'){
+
+            $layout.removeClass('acfe-flexible-layout-hidden');
+            $field.val('');
+
+        }else{
+
+            $layout.addClass('acfe-flexible-layout-hidden');
+            $field.val('1');
+
+        }
+
+    }
+
+    /*
+     * Layout: Toggle Spawn
+     */
+    acf.addAction('acfe/flexible/layouts', function($layout, flexible){
+
+        if(!flexible.has('acfeFlexibleToggle'))
+            return;
+
+        // Layout Closed
+        var $field = $layout.find('> .acfe-flexible-layout-toggle');
+
+        if(!$field.length)
+            return;
+
+        if($field.val() === '1'){
+
+            $layout.addClass('acfe-flexible-layout-hidden');
+
+        }else{
+
+            $layout.removeClass('acfe-flexible-layout-hidden');
+
+        }
+
+    });
     
     // Layout: Clone
     model.events['click [data-acfe-flexible-control-clone]'] = 'acfeCloneLayout';
@@ -247,9 +302,9 @@
         });
         
         // Append Temp Input
-        var $input = $('<input type="text" style="clip:rect(0,0,0,0);clip-path:rect(0,0,0,0);position:absolute;" value="" />').appendTo($el);
+        var $input = $('<input type="text" style="clip:rect(0,0,0,0);clip-path:rect(0,0,0,0);position:absolute;" value="" />').appendTo($('body'));
         $input.attr('value', data).select();
-        
+
         // Command: Copy
         if(document.execCommand('copy'))
             alert('Layout has been transferred to your clipboard');

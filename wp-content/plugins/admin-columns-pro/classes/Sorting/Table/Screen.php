@@ -8,10 +8,10 @@ use AC\Asset\Style;
 use AC\Table;
 use ACP;
 use ACP\Sorting\Asset\Script;
-use ACP\Sorting\ListScreen;
 use ACP\Sorting\ModelFactory;
+use ACP\Sorting\NativeSortableRepository;
 
-class Screen {
+class Screen implements AC\Registrable {
 
 	/**
 	 * @var AC\ListScreen
@@ -23,9 +23,15 @@ class Screen {
 	 */
 	private $location;
 
-	public function __construct( AC\ListScreen $list_screen, Location\Absolute $location ) {
+	/**
+	 * @var NativeSortableRepository
+	 */
+	private $native_sortable_repository;
+
+	public function __construct( AC\ListScreen $list_screen, Location\Absolute $location, NativeSortableRepository $native_sortable_repository ) {
 		$this->list_screen = $list_screen;
 		$this->location = $location;
+		$this->native_sortable_repository = $native_sortable_repository;
 	}
 
 	public function register() {
@@ -37,17 +43,18 @@ class Screen {
 		 */
 		add_filter( 'manage_' . $this->list_screen->get_screen_id() . '_sortable_columns', [ $this, 'add_sortable_headings' ] );
 
-		// After filtering
 		$this->init_sorting();
 		$this->handle_sorting();
-		$this->save_preference();
+
+		// Only save it as a preference if we reach `shutdown` (in case of an error )
+		add_action( 'shutdown', [ $this, 'save_preference' ] );
 	}
 
 	/**
 	 * @return Sorted
 	 */
 	private function sorted() {
-		return new Sorted( $this->list_screen, $this->preference(), (array) $_GET );
+		return new Sorted( $this->list_screen, $this->preference(), $this->native_sortable_repository, (array) $_GET );
 	}
 
 	/**
@@ -118,10 +125,27 @@ class Screen {
 	}
 
 	/**
+	 * @param AC\Column $column
+	 *
+	 * @return bool
+	 */
+	private function is_active_column( AC\Column $column ) {
+		$setting = $column->get_setting( 'sort' );
+
+		if ( ! $setting instanceof ACP\Sorting\Settings ) {
+			return false;
+		}
+
+		return $setting->is_active();
+	}
+
+	/**
 	 * @since 4.0
 	 */
 	public function handle_sorting() {
-		if ( ! $this->list_screen instanceof ListScreen ) {
+		$list_screen = $this->list_screen;
+
+		if ( ! $list_screen instanceof ACP\Sorting\ListScreen ) {
 			return;
 		}
 
@@ -131,17 +155,20 @@ class Screen {
 			return;
 		}
 
-		$model = ModelFactory::create( $column );
+		$model = ( new ModelFactory() )->create( $column );
 
 		if ( ! $model ) {
 			return;
 		}
 
-		if ( ! $model->is_active() ) {
+		if ( ! $this->is_active_column( $column ) ) {
 			return;
 		}
 
-		$model->get_strategy()->manage_sorting();
+		$strategy = $list_screen->sorting( $model );
+		$model->set_strategy( $strategy );
+
+		$strategy->manage_sorting();
 	}
 
 	/**
@@ -170,9 +197,7 @@ class Screen {
 
 		// Stores the default columns on the listings screen
 		if ( ! wp_doing_ajax() && current_user_can( AC\Capabilities::MANAGE ) ) {
-
-			$native = new ACP\Sorting\NativeSortables( $this->list_screen );
-			$native->store( $sortable_columns );
+			$this->native_sortable_repository->update( $this->list_screen->get_key(), $sortable_columns ?: [] );
 		}
 
 		if ( ! $this->list_screen->get_settings() ) {
@@ -185,23 +210,18 @@ class Screen {
 			return $sortable_columns;
 		}
 
-		// Columns that are active and have enabled sort will be added to the sortable headings.
 		foreach ( $columns as $column ) {
 
-			if ( $model = ModelFactory::create( $column ) ) {
+			if ( ! $this->is_active_column( $column ) ) {
+				unset( $sortable_columns[ $column->get_name() ] );
 
-				// Custom column
-				if ( $model->is_active() ) {
-					$sortable_columns[ $column->get_name() ] = $column->get_name();
-				}
-			} elseif ( isset( $sortable_columns[ $column->get_name() ] ) ) {
+				continue;
+			}
 
-				// Native column
-				$setting = $column->get_setting( 'sort' );
+			$model = ( new ModelFactory() )->create( $column );
 
-				if ( $setting instanceof ACP\Sorting\Settings && ! $setting->is_active() ) {
-					unset( $sortable_columns[ $column->get_name() ] );
-				}
+			if ( $model ) {
+				$sortable_columns[ $column->get_name() ] = $column->get_name();
 			}
 		}
 

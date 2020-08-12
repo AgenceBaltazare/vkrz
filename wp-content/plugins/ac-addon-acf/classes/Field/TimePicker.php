@@ -5,7 +5,7 @@ namespace ACA\ACF\Field;
 use ACA\ACF\Editing;
 use ACA\ACF\Field;
 use ACA\ACF\Setting;
-use ACA\ACF\Sorting;
+use ACP;
 
 class TimePicker extends Field {
 
@@ -14,12 +14,12 @@ class TimePicker extends Field {
 	}
 
 	public function sorting() {
-		return new Sorting( $this->column );
+		return ( new ACP\Sorting\Model\MetaFactory() )->create( $this->get_meta_type(), $this->get_meta_key() );
 	}
 
 	public function get_dependent_settings() {
-		return array(
+		return [
 			new Setting\Time( $this->column ),
-		);
+		];
 	}
 }

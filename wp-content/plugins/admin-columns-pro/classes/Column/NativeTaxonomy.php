@@ -29,7 +29,7 @@ class NativeTaxonomy extends AC\Column
 	}
 
 	public function sorting() {
-		return new Sorting\Model\Post\Taxonomy( $this );
+		return new Sorting\Model\Post\Taxonomy( $this->get_taxonomy() );
 	}
 
 	public function export() {

@@ -14,15 +14,11 @@ class AuthorName extends AC\Column\Post\AuthorName
 	implements Editing\Editable, Filtering\Filterable, Sorting\Sortable, Export\Exportable, Search\Searchable {
 
 	public function sorting() {
-		if ( 'custom_field' === $this->get_user_setting_display() ) {
-			return new Sorting\Model\Disabled( $this );
-		}
-
-		return new Sorting\Model\Post\AuthorName( $this );
+		return ( new Sorting\Model\Post\AuthorFactory() )->create( $this->get_user_setting()->get_value(), $this );
 	}
 
 	public function editing() {
-		if ( 'custom_field' === $this->get_user_setting_display() ) {
+		if ( 'custom_field' === $this->get_user_setting()->get_value() ) {
 			return new Editing\Model\Disabled( $this );
 		}
 
@@ -30,11 +26,11 @@ class AuthorName extends AC\Column\Post\AuthorName
 	}
 
 	public function filtering() {
-		if ( 'custom_field' === $this->get_user_setting_display() ) {
+		if ( 'custom_field' === $this->get_user_setting()->get_value() ) {
 			return new Filtering\Model\Disabled( $this );
 		}
 
-		if ( 'roles' === $this->get_user_setting_display() ) {
+		if ( 'roles' === $this->get_user_setting()->get_value() ) {
 			return new Filtering\Model\Post\Roles( $this );
 		}
 
@@ -50,25 +46,22 @@ class AuthorName extends AC\Column\Post\AuthorName
 	}
 
 	/**
-	 * @return string
+	 * @return AC\Settings\Column\User
 	 */
-	private function get_user_setting_display() {
-		/* @var AC\Settings\Column\User $setting */
-		$setting = $this->get_setting( 'user' );
-
-		return $setting->get_display_author_as();
+	private function get_user_setting() {
+		return $this->get_setting( AC\Settings\Column\User::NAME );
 	}
 
 	public function search() {
-		switch ( $this->get_user_setting_display() ) {
-			case 'display_name' :
-			case 'first_name' :
-			case 'last_name' :
-			case 'nickname' :
-			case 'user_login' :
-			case 'user_email' :
-			case 'first_last_name' :
-			case 'user_nicename' :
+		switch ( $this->get_user_setting()->get_value() ) {
+			case AC\Settings\Column\User::PROPERTY_DISPLAY_NAME :
+			case AC\Settings\Column\User::PROPERTY_FIRST_NAME :
+			case AC\Settings\Column\User::PROPERTY_LAST_NAME :
+			case AC\Settings\Column\User::PROPERTY_NICKNAME :
+			case AC\Settings\Column\User::PROPERTY_LOGIN :
+			case AC\Settings\Column\User::PROPERTY_EMAIL :
+			case AC\Settings\Column\User::PROPERTY_FULL_NAME :
+			case AC\Settings\Column\User::PROPERTY_NICENAME :
 				return new Search\Comparison\Post\Author( $this->get_post_type() );
 			default:
 				return false;

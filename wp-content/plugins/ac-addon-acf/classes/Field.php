@@ -62,7 +62,7 @@ class Field
 	}
 
 	public function sorting() {
-		return new ACP\Sorting\Model\Disabled( $this->column );
+		return new ACP\Sorting\Model\Disabled();
 	}
 
 	public function export() {
@@ -73,7 +73,7 @@ class Field
 	 * @return AC\Settings\Column[]
 	 */
 	public function get_dependent_settings() {
-		return array();
+		return [];
 	}
 
 	/**

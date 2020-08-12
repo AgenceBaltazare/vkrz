@@ -8,12 +8,13 @@ use AC\Settings;
 use ACP\Export;
 use ACP\Filtering;
 use ACP\Search;
+use ACP\Sorting;
 
 /**
  * @since 4.2
  */
 class Ancestors extends Column
-	implements Export\Exportable, Filtering\Filterable, Search\Searchable {
+	implements Export\Exportable, Filtering\Filterable, Search\Searchable, Sorting\Sortable {
 
 	public function __construct() {
 		$this->set_type( 'column-ancestors' );
@@ -82,4 +83,9 @@ class Ancestors extends Column
 	public function search() {
 		return new Search\Comparison\Post\Ancestors();
 	}
+
+	public function sorting() {
+		return new Sorting\Model\Post\Depth();
+	}
+
 }

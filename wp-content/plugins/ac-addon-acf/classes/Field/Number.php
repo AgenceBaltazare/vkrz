@@ -2,11 +2,12 @@
 
 namespace ACA\ACF\Field;
 
+use AC;
 use ACA\ACF\Editing;
 use ACA\ACF\Field;
 use ACA\ACF\Filtering;
 use ACP;
-use AC;
+use ACP\Sorting\Type\DataType;
 
 class Number extends Field {
 
@@ -22,10 +23,7 @@ class Number extends Field {
 	}
 
 	public function sorting() {
-		$model = new ACP\Sorting\Model\Meta( $this->column );
-		$model->set_data_type( 'numeric' );
-
-		return $model;
+		return ( new ACP\Sorting\Model\MetaFactory() )->create( $this->get_meta_type(), $this->get_meta_key(), new DataType( DataType::NUMERIC ) );
 	}
 
 	public function filtering() {
@@ -33,7 +31,7 @@ class Number extends Field {
 	}
 
 	public function search() {
-		return new ACP\Search\Comparison\Meta\Numeric( $this->get_meta_key(), $this->get_meta_type() );
+		return new ACP\Search\Comparison\Meta\Number( $this->get_meta_key(), $this->get_meta_type() );
 	}
 
 }

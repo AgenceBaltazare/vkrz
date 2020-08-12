@@ -2,15 +2,12 @@
 
 namespace ACP\Sorting\Model;
 
-use ACP\Sorting\Model;
+use ACP\Sorting\AbstractModel;
 
-class Disabled extends Model {
+class Disabled extends AbstractModel {
 
-	public function is_active() {
-		return false;
-	}
-
-	public function register_settings() {
+	public function get_sorting_vars() {
+		return [];
 	}
 
 }

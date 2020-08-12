@@ -15,10 +15,10 @@ class Editing extends ACP\Editing\Model {
 	}
 
 	public function get_view_settings() {
-		$data = array(
+		$data = [
 			'type'         => 'text',
 			'store_values' => true,
-		);
+		];
 
 		$field = $this->column->get_field();
 

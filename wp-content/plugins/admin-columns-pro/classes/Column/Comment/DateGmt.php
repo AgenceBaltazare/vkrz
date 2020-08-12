@@ -14,10 +14,7 @@ class DateGmt extends AC\Column\Comment\DateGmt
 	implements Filtering\Filterable, Sorting\Sortable, Search\Searchable {
 
 	public function sorting() {
-		$model = new Sorting\Model( $this );
-		$model->set_orderby( 'comment_date_gmt' );
-
-		return $model;
+		return new Sorting\Model\OrderBy( 'comment_date_gmt' );
 	}
 
 	public function filtering() {

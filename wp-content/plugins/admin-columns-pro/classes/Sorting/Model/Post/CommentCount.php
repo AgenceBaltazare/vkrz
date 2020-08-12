@@ -2,24 +2,54 @@
 
 namespace ACP\Sorting\Model\Post;
 
-use AC;
-use ACP\Sorting\Model;
+use ACP\Sorting\AbstractModel;
 
-class CommentCount extends Model {
+class CommentCount extends AbstractModel {
+
+	const STATUS_APPROVED = '1';
+	const STATUS_SPAM = 'spam';
+	const STATUS_TRASH = 'trash';
+	const STATUS_PENDING = '0';
+
+	/**
+	 * @var array
+	 */
+	private $stati;
+
+	public function __construct( array $stati = [] ) {
+		parent::__construct();
+
+		$this->stati = (array) $stati;
+	}
 
 	public function get_sorting_vars() {
-		$ids = [];
-
-		/* @var AC\Settings\Column\CommentCount $setting */
-		$setting = $this->column->get_setting( 'comment_count' );
-
-		foreach ( $this->strategy->get_results() as $id ) {
-			$ids[ $id ] = $setting->get_comment_count( $id );
-		}
+		add_filter( 'posts_clauses', [ $this, 'posts_fields_callback' ] );
 
 		return [
-			'ids' => $this->sort( $ids ),
+			'suppress_filters' => false,
 		];
+	}
+
+	public function posts_fields_callback( $clauses ) {
+		global $wpdb;
+
+		$join_type = $this->show_empty
+			? 'LEFT'
+			: 'INNER';
+
+		$clauses['fields'] .= ", COUNT( acsort_comments.comment_ID ) AS acsort_commentcount";
+		$clauses['join'] .= " {$join_type} JOIN {$wpdb->comments} AS acsort_comments ON acsort_comments.comment_post_ID = {$wpdb->posts}.ID";
+
+		if ( $this->stati ) {
+			$clauses['join'] .= sprintf( " AND acsort_comments.comment_approved IN ( '%s' )", implode( "','", array_map( 'esc_sql', $this->stati ) ) );
+		}
+
+		$clauses['groupby'] = "{$wpdb->posts}.ID";
+		$clauses['orderby'] = sprintf( "acsort_commentcount %s, %s", $this->get_order(), $clauses['orderby'] );
+
+		remove_filter( 'posts_clauses', [ $this, __FUNCTION__ ] );
+
+		return $clauses;
 	}
 
 }

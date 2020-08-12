@@ -4,14 +4,23 @@ namespace ACP\Sorting\Model;
 
 use AC;
 use ACP;
+use ACP\Sorting\AbstractModel;
+use ACP\Sorting\Type\DataType;
 
 /**
- * @property AC\Column\Meta $column
+ * @deprecated 5.2
  */
-class Meta extends ACP\Sorting\Model {
+class Meta extends AbstractModel {
 
-	public function __construct( AC\Column\Meta $column ) {
-		parent::__construct( $column );
+	/**
+	 * @var string
+	 */
+	protected $meta_key;
+
+	public function __construct( AC\Column\Meta $column, DataType $data_type = null ) {
+		parent::__construct( $data_type );
+
+		$this->meta_key = $column->get_meta_key();
 	}
 
 	/**
@@ -21,13 +30,12 @@ class Meta extends ACP\Sorting\Model {
 	 * @see   \WP_Meta_Query
 	 */
 	public function get_sorting_vars() {
-		$key = $this->column->get_meta_key();
 		$id = uniqid();
 		$vars = [
 			'meta_query' => [
 				$id => [
-					'key'     => $key,
-					'type'    => $this->get_data_type(),
+					'key'     => $this->meta_key,
+					'type'    => $this->data_type->get_value(),
 					'value'   => '',
 					'compare' => '!=',
 				],
@@ -35,7 +43,7 @@ class Meta extends ACP\Sorting\Model {
 			'orderby'    => $id,
 		];
 
-		if ( acp_sorting_show_all_results() ) {
+		if ( $this->show_empty ) {
 			$vars['meta_query'] = [
 				'relation' => 'OR',
 
@@ -43,18 +51,30 @@ class Meta extends ACP\Sorting\Model {
 				// the EXISTS and NOT EXISTS compares. Without $id it will not work when sorting is used
 				// in conjunction with filtering.
 				$id        => [
-					'key'     => $key,
-					'type'    => $this->get_data_type(),
+					'key'     => $this->meta_key,
+					'type'    => $this->data_type->get_value(),
 					'compare' => 'EXISTS',
 				],
 				[
-					'key'     => $key,
+					'key'     => $this->meta_key,
 					'compare' => 'NOT EXISTS',
 				],
 			];
 		}
 
 		return $vars;
+	}
+
+	/**
+	 * @param string $data_type_value
+	 *
+	 * @return $this
+	 * @deprecated 5.2
+	 */
+	public function set_data_type( $data_type_value ) {
+		$this->data_type = new DataType( $data_type_value );
+
+		return $this;
 	}
 
 }

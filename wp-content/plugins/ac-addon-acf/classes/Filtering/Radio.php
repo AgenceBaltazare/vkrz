@@ -7,7 +7,7 @@ use ACA\ACF\Filtering;
 class Radio extends Filtering {
 
 	public function get_filtering_data() {
-		$options = array();
+		$options = [];
 
 		$choices = (array) $this->column->get_field()->get( 'choices' );
 
@@ -17,10 +17,10 @@ class Radio extends Filtering {
 			}
 		}
 
-		return array(
+		return [
 			'empty_option' => true,
 			'options'      => $options,
-		);
+		];
 	}
 
 }

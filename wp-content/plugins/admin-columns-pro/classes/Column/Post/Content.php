@@ -24,10 +24,7 @@ class Content extends AC\Column\Post\Content
 	}
 
 	public function sorting() {
-		$model = new Sorting\Model\Post\Field( $this );
-		$model->set_field( 'post_content' );
-
-		return $model;
+		return new Sorting\Model\Post\PostContent();
 	}
 
 	public function export() {

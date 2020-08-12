@@ -30,7 +30,7 @@ class Link extends Field
 		$label = $link['title'];
 
 		if ( ! $label ) {
-			$label = str_replace( array( 'http://', 'https://' ), '', $link['url'] );
+			$label = str_replace( [ 'http://', 'https://' ], '', $link['url'] );
 		}
 
 		if ( '_blank' === $link['target'] ) {

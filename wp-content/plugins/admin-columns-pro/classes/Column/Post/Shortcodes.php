@@ -10,7 +10,7 @@ class Shortcodes extends AC\Column\Post\Shortcodes
 	implements Sorting\Sortable, Export\Exportable {
 
 	public function sorting() {
-		return new Sorting\Model( $this );
+		return new Sorting\Model\Post\Shortcodes();
 	}
 
 	public function export() {

@@ -53,7 +53,7 @@ class TableScreenOptions implements Registrable {
 		}
 
 		$check_box = new AC\Form\Element\Checkbox( 'acp_export_show_export_button' );
-		$check_box->set_options( [ 1 => __( 'Show Export Button', 'codepress-admin-columns' ) ] )
+		$check_box->set_options( [ 1 => __( 'Export Button', 'codepress-admin-columns' ) ] )
 		          ->set_value( $this->get_export_button_setting( $list_screen ) === 1 ? 1 : 0 );
 
 		$table->register_screen_option( $check_box );

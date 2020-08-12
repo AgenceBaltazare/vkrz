@@ -7,6 +7,7 @@ use ACP\Editing;
 use ACP\Export;
 use ACP\Filtering;
 use ACP\Search;
+use ACP\Settings;
 use ACP\Sorting;
 
 /**
@@ -16,10 +17,7 @@ class User extends AC\Column\Comment\User
 	implements Editing\Editable, Filtering\Filterable, Sorting\Sortable, Export\Exportable, Search\Searchable {
 
 	public function sorting() {
-		$model = new Sorting\Model( $this );
-		$model->set_orderby( 'user_id' );
-
-		return $model;
+		return ( new Sorting\Model\Comment\AuthorFactory() )->create( $this->get_setting( Settings\Column\User::NAME )->get_value(), $this );
 	}
 
 	public function editing() {

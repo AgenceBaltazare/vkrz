@@ -12,7 +12,7 @@ class Height extends AC\Column\Media\Height
 	implements Sorting\Sortable {
 
 	public function sorting() {
-		return new Sorting\Model\Media\Height( $this );
+		return new Sorting\Model\Media\Height();
 	}
 
 }

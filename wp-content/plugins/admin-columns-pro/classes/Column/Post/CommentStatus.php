@@ -17,7 +17,7 @@ class CommentStatus extends AC\Column\Post\CommentStatus
 	implements Editing\Editable, Filtering\Filterable, Sorting\Sortable, Search\Searchable {
 
 	public function sorting() {
-		return new Sorting\Model( $this );
+		return new Sorting\Model\Post\PostField( 'comment_status' );
 	}
 
 	public function editing() {

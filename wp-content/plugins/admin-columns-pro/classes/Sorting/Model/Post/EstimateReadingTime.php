@@ -2,26 +2,14 @@
 
 namespace ACP\Sorting\Model\Post;
 
-use ACP\Sorting\Model;
+use ACP\Sorting\FormatValue;
+use ACP\Sorting\Model\WarningAware;
+use ACP\Sorting\Type\DataType;
 
-class EstimateReadingTime extends Model {
+class EstimateReadingTime extends FieldFormat implements WarningAware {
 
-	public function __construct( $column ) {
-		parent::__construct( $column );
-
-		$this->set_data_type( 'numeric' );
-	}
-
-	public function get_sorting_vars() {
-		$ids = [];
-
-		foreach ( $this->strategy->get_results() as $id ) {
-			$ids[ $id ] = ac_helper()->string->word_count( $this->column->get_raw_value( $id ) );
-		}
-
-		return [
-			'ids' => $this->sort( $ids ),
-		];
+	public function __construct() {
+		parent::__construct( 'post_content', new FormatValue\WordCount(), new DataType( DataType::NUMERIC ) );
 	}
 
 }

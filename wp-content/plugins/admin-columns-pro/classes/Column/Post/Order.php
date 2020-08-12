@@ -11,10 +11,7 @@ class Order extends AC\Column\Post\Order
 	implements Sorting\Sortable, Editing\Editable, Search\Searchable {
 
 	public function sorting() {
-		$model = new Sorting\Model( $this );
-		$model->set_orderby( 'menu_order' );
-
-		return $model;
+		return new Sorting\Model\OrderBy( 'menu_order' );
 	}
 
 	public function editing() {

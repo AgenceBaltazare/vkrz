@@ -14,10 +14,7 @@ class ReplyTo extends AC\Column\Comment\ReplyTo
 	implements Filtering\Filterable, Sorting\Sortable, Search\Searchable {
 
 	public function sorting() {
-		$model = new Sorting\Model( $this );
-		$model->set_orderby( 'comment_parent' );
-
-		return $model;
+		return new Sorting\Model\OrderBy( 'comment_parent' );
 	}
 
 	public function filtering() {

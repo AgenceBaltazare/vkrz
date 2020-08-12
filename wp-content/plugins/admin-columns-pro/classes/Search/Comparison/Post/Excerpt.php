@@ -9,6 +9,7 @@ class Excerpt extends PostField {
 	public function __construct() {
 		$operators = new Operators( [
 			Operators::CONTAINS,
+			Operators::NOT_CONTAINS,
 			Operators::BEGINS_WITH,
 			Operators::ENDS_WITH,
 		] );

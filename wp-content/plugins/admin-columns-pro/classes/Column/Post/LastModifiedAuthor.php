@@ -15,7 +15,7 @@ class LastModifiedAuthor extends AC\Column\Post\LastModifiedAuthor
 	implements Filtering\Filterable, Sorting\Sortable, Export\Exportable, Search\Searchable {
 
 	public function sorting() {
-		return new Sorting\Model\Post\LastModifiedAuthor( $this );
+		return ( new Sorting\Model\Post\LastModifiedAuthorFactory() )->create( $this->get_user_setting_display() );
 	}
 
 	public function filtering() {

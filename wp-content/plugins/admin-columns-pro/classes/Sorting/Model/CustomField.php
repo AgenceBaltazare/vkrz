@@ -3,40 +3,105 @@
 namespace ACP\Sorting\Model;
 
 use AC;
-use ACP\Sorting\Model;
+use ACP\Sorting\AbstractModel;
+use ACP\Sorting\Sorter;
+use ACP\Sorting\Type\DataType;
 
 /**
- * @property AC\Column\CustomField $column
+ * @deprecated 5.2
  */
-class CustomField extends Model\Meta {
+class CustomField extends AbstractModel {
 
-	public function __construct( AC\Column\CustomField $column ) {
-		parent::__construct( $column );
+	/**
+	 * @var string
+	 */
+	protected $meta_type;
+
+	/**
+	 * @var string
+	 */
+	protected $meta_key;
+
+	/**
+	 * @var string
+	 */
+	protected $post_type;
+
+	public function __construct( AC\Column\CustomField $column, DataType $data_type = null ) {
+		parent::__construct( $data_type );
+
+		$this->meta_type = $column->get_meta_type();
+		$this->meta_key = $column->get_meta_key();
+		$this->post_type = $column->get_post_type();
 	}
 
-	public function get_sorting_vars() {
-		$ids = $this->strategy->get_results( parent::get_sorting_vars() );
+	protected function format_value( $value ) {
+		return maybe_unserialize( $value );
+	}
 
-		if( empty( $ids ) ){
-			return [];
+	private function get_sort_ids() {
+		$id = uniqid();
+		$vars = [
+			'meta_query' => [
+				$id => [
+					'key'     => $this->meta_key,
+					'type'    => $this->data_type->get_value(),
+					'value'   => '',
+					'compare' => '!=',
+				],
+			],
+			'orderby'    => $id,
+		];
+
+		if ( $this->show_empty ) {
+			$vars['meta_query'] = [
+				'relation' => 'OR',
+
+				// $id indicates which $key should be used for sorting. wp_query will use the $key for sorting, and applies both
+				// the EXISTS and NOT EXISTS compares. Without $id it will not work when sorting is used
+				// in conjunction with filtering.
+				$id        => [
+					'key'     => $this->meta_key,
+					'type'    => $this->data_type->get_value(),
+					'compare' => 'EXISTS',
+				],
+				[
+					'key'     => $this->meta_key,
+					'compare' => 'NOT EXISTS',
+				],
+			];
 		}
 
-		$query = new AC\Meta\QueryColumn( $this->column );
+		return $this->strategy->get_results( $vars );
+	}
+
+	private function get_meta_values( array $ids ) {
+		$query = new AC\Meta\QueryMeta( $this->meta_type, $this->meta_key, $this->post_type );
 		$query->select( 'id, meta_value' )
 		      ->where_in( $ids );
 
-		if ( acp_sorting_show_all_results() ) {
+		if ( $this->show_empty ) {
 			$query->left_join();
+		}
+
+		return $query->get();
+	}
+
+	public function get_sorting_vars() {
+		$ids = $this->get_sort_ids();
+
+		if ( empty( $ids ) ) {
+			return [];
 		}
 
 		$values = [];
 
-		foreach ( $query->get() as $result ) {
-			$values[ $result->id ] = maybe_unserialize( $result->meta_value );
+		foreach ( $this->get_meta_values( $ids ) as $object ) {
+			$values[ $object->id ] = $this->format_value( $object->meta_value );
 		}
 
 		return [
-			'ids' => $this->sort( $values ),
+			'ids' => ( new Sorter() )->sort( $values, $this->get_order(), $this->data_type, $this->show_empty ),
 		];
 	}
 

@@ -6,10 +6,13 @@ use AC;
 
 class User extends AC\Settings\Column\User {
 
+	const PROPERTY_META = 'custom_field';
+	const PROPERTY_GRAVATAR = 'gravatar';
+
 	protected function get_display_options() {
 		$options = parent::get_display_options();
 
-		$options['gravatar'] = __( 'Gravatar', 'codepress-admin-columns' );
+		$options[ self::PROPERTY_GRAVATAR ] = __( 'Gravatar', 'codepress-admin-columns' );
 
 		natcasesort( $options );
 
@@ -21,7 +24,7 @@ class User extends AC\Settings\Column\User {
 			],
 			[
 				'title'   => __( 'Custom Field', 'codepress-admin-columns' ),
-				'options' => [ 'custom_field' => __( 'Custom Field', 'codepress-admin-columns' ) ],
+				'options' => [ self::PROPERTY_META => __( 'Custom Field', 'codepress-admin-columns' ) ],
 			],
 		];
 	}
@@ -29,10 +32,10 @@ class User extends AC\Settings\Column\User {
 	public function get_dependent_settings() {
 
 		switch ( $this->get_display_author_as() ) {
-			case 'custom_field' :
+			case self::PROPERTY_META :
 
 				return [ new UserCustomField( $this->column ) ];
-			case 'gravatar' :
+			case self::PROPERTY_GRAVATAR :
 
 				return [ new Gravatar( $this->column ) ];
 			default:
@@ -44,12 +47,12 @@ class User extends AC\Settings\Column\User {
 	public function format( $user_id, $original_value ) {
 
 		switch ( $this->get_display_author_as() ) {
-			case 'custom_field' :
+			case self::PROPERTY_META :
 				/** @var UserCustomField $setting */
 				$setting = $this->column->get_setting( 'custom_field' );
 
 				return get_user_meta( $user_id, $setting->get_field(), true );
-			case 'gravatar':
+			case self::PROPERTY_GRAVATAR :
 
 				return get_avatar_url( $user_id );
 			default:

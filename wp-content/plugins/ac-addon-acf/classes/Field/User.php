@@ -9,6 +9,10 @@ use ACA\ACF\Field;
 use ACA\ACF\Filtering;
 use ACA\ACF\Search;
 use ACP;
+use ACP\Sorting\FormatValue\SerializedSettingFormatter;
+use ACP\Sorting\FormatValue\SettingFormatter;
+use ACP\Sorting\Model\MetaFormatFactory;
+use ACP\Sorting\Model\MetaRelatedUserFactory;
 
 class User extends Field {
 
@@ -24,9 +28,9 @@ class User extends Field {
 	}
 
 	public function get_dependent_settings() {
-		$settings = array(
+		$settings = [
 			new AC\Settings\Column\User( $this->column ),
-		);
+		];
 
 		if ( $this->is_serialized() ) {
 			$settings[] = new AC\Settings\Column\NumberOfItems( $this->column );
@@ -48,7 +52,21 @@ class User extends Field {
 	}
 
 	public function sorting() {
-		return new ACP\Sorting\Model\Value( $this->column );
+		$setting = $this->column->get_setting( AC\Settings\Column\User::NAME );
+
+		if ( ! $this->is_serialized() ) {
+			$model = ( new MetaRelatedUserFactory() )->create( $this->get_meta_type(), $setting->get_value(), $this->get_meta_key() );
+
+			if ( $model ) {
+				return $model;
+			}
+		}
+
+		$formatter = $this->is_serialized()
+			? new SerializedSettingFormatter( new SettingFormatter( $setting ) )
+			: new SettingFormatter( $setting );
+
+		return ( new MetaFormatFactory() )->create( $this->get_meta_type(), $this->get_meta_key(), $formatter );
 	}
 
 	public function search() {

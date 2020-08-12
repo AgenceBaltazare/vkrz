@@ -59,10 +59,10 @@ class Group extends Field {
 	}
 
 	public function get_dependent_settings() {
-		return array(
+		return [
 			new Setting\Subfield( $this->column ),
 			new AC\Settings\Column\BeforeAfter( $this->column ),
-		);
+		];
 	}
 
 	/**

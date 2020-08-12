@@ -22,7 +22,10 @@ final class Comment extends Strategy {
 		return $this;
 	}
 
-	public function get_comment_query() {
+	/**
+	 * @return WP_Comment_Query
+	 */
+	public function get_query() {
 		return $this->query;
 	}
 

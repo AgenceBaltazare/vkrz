@@ -14,7 +14,7 @@ class Attachment extends AC\Column\Post\Attachment
 	implements Editing\Editable, Sorting\Sortable, Export\Exportable {
 
 	public function sorting() {
-		return new Sorting\Model( $this );
+		return new Sorting\Model\Post\Attachment();
 	}
 
 	public function editing() {

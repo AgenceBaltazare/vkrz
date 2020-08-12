@@ -21,9 +21,9 @@ class ImageCrop extends Field {
 	}
 
 	public function get_dependent_settings() {
-		return array(
+		return [
 			new AC\Settings\Column\Image( $this->column ),
-		);
+		];
 	}
 
 }

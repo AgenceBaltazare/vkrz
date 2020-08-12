@@ -78,7 +78,7 @@ class Language extends AC\Column\Meta
 	}
 
 	public function sorting() {
-		return new Sorting\Model\Meta( $this );
+		return new Sorting\Model\User\Meta( $this->get_meta_key() );
 	}
 
 	public function search() {

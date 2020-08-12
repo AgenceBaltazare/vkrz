@@ -10,7 +10,7 @@ class AvailableSizes extends AC\Column\Media\AvailableSizes
 	implements Sorting\Sortable {
 
 	public function sorting() {
-		return new Sorting\Model\Media\AvailableSizes( $this );
+		return new Sorting\Model\Media\AvailableSizes();
 	}
 
 	public function export() {

@@ -6,6 +6,7 @@ use ACA\ACF\Editing;
 use ACA\ACF\Field;
 use ACA\ACF\Filtering;
 use ACP;
+use ACP\Sorting\Type\DataType;
 
 class Range extends Field {
 
@@ -14,9 +15,7 @@ class Range extends Field {
 	}
 
 	public function sorting() {
-		$model = new ACP\Sorting\Model\Meta( $this->column );
-
-		return $model->set_data_type( 'numeric' );
+		return ( new ACP\Sorting\Model\MetaFactory() )->create( $this->get_meta_type(), $this->get_meta_key(), new DataType( DataType::NUMERIC ) );
 	}
 
 	public function filtering() {
@@ -24,7 +23,7 @@ class Range extends Field {
 	}
 
 	public function search() {
-		return new ACP\Search\Comparison\Meta\Numeric( $this->get_meta_key(), $this->get_meta_type() );
+		return new ACP\Search\Comparison\Meta\Number( $this->get_meta_key(), $this->get_meta_type() );
 	}
 
 }

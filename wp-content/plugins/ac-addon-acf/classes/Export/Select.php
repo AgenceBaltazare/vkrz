@@ -18,7 +18,7 @@ class Select extends ACP\Export\Model {
 		$value = $this->column->get_raw_value( $id );
 		$choices = $this->column->get_field()->get( 'choices' );
 
-		$options = array();
+		$options = [];
 		foreach ( (array) $value as $value ) {
 			if ( isset( $choices[ $value ] ) ) {
 				$options[] = $choices[ $value ];

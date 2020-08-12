@@ -14,7 +14,7 @@ class Options extends Filtering {
 			$values = $this->get_meta_values();
 		}
 
-		$options = array();
+		$options = [];
 
 		$choices = (array) $this->column->get_field()->get( 'choices' );
 
@@ -24,10 +24,10 @@ class Options extends Filtering {
 			}
 		}
 
-		return array(
+		return [
 			'empty_option' => true,
 			'options'      => $options,
-		);
+		];
 	}
 
 }

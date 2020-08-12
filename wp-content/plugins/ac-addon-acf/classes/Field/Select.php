@@ -7,16 +7,20 @@ use ACA\ACF\Editing;
 use ACA\ACF\Export;
 use ACA\ACF\Field;
 use ACA\ACF\Filtering;
+use ACA\ACF\Formattable;
 use ACA\ACF\Search;
+use ACA\ACF\Sorting;
 use ACP;
+use ACP\Sorting\Model\MetaFormatFactory;
 
-class Select extends Field {
+class Select extends Field
+	implements Formattable {
 
 	public function get_value( $id ) {
 		$value = parent::get_value( $id );
 		$choices = $this->get_choices();
 
-		$options = array();
+		$options = [];
 		foreach ( (array) $value as $value ) {
 			if ( isset( $choices[ $value ] ) ) {
 				$options[] = $choices[ $value ];
@@ -28,14 +32,18 @@ class Select extends Field {
 		return ac_helper()->html->more( $options, $setting_limit ? $setting_limit->get_value() : false );
 	}
 
+	public function format( $values ) {
+		return implode( ', ', $values );
+	}
+
 	public function get_dependent_settings() {
 		if ( ! $this->column->get_field()->get( 'multiple' ) ) {
-			return array();
+			return [];
 		}
 
-		return array(
+		return [
 			new NumberOfItems( $this->column ),
-		);
+		];
 	}
 
 	public function editing() {
@@ -51,7 +59,15 @@ class Select extends Field {
 	}
 
 	public function sorting() {
-		return new ACP\Sorting\Model\Meta( $this->column );
+		if ( $this->column->get_field()->get( 'multiple' ) ) {
+			return ( new MetaFormatFactory )->create( $this->column->get_meta_type(), $this->column->get_meta_key(), new Sorting\FormatValue\Select( $this->get_choices() ) );
+		}
+
+		$choices = $this->get_choices();
+		natcasesort( $choices );
+		$sorted_choices = array_keys( $choices );
+
+		return ( new ACP\Sorting\Model\MetaMappingFactory )->create( $this->get_meta_type(), $this->get_meta_key(), $sorted_choices );
 	}
 
 	public function search() {

@@ -12,7 +12,7 @@ class PostObject extends Editing
 	implements PaginatedOptions {
 
 	public function get_edit_value( $post_id ) {
-		$values = array();
+		$values = [];
 		$ids = $this->column->get_raw_value( $post_id );
 
 		if ( ! $ids ) {
@@ -56,12 +56,12 @@ class PostObject extends Editing
 	}
 
 	public function get_paginated_options( $s, $paged, $id = null ) {
-		$entities = new Helper\Select\Entities\Post( array(
+		$entities = new Helper\Select\Entities\Post( [
 			's'         => $s,
 			'paged'     => $paged,
 			'post_type' => $this->get_post_type(),
 			'tax_query' => $this->get_tax_query(),
-		) );
+		] );
 
 		return new Helper\Select\Options\Paginated(
 			$entities,
@@ -91,17 +91,17 @@ class PostObject extends Editing
 		$terms = acf_decode_taxonomy_terms( $this->column->get_field()->get( 'taxonomy' ) );
 
 		if ( ! $terms ) {
-			return array();
+			return [];
 		}
 
-		$tax_query = array();
+		$tax_query = [];
 
 		foreach ( $terms as $k => $v ) {
-			$tax_query[] = array(
+			$tax_query[] = [
 				'taxonomy' => $k,
 				'field'    => 'slug',
 				'terms'    => $v,
-			);
+			];
 		}
 
 		return $tax_query;

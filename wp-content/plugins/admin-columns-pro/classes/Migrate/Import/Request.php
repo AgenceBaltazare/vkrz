@@ -145,7 +145,7 @@ final class Request implements Registrable {
 			try {
 				$this->storage->save( $list_screen );
 			} catch ( Exception $e ) {
-				$errors[] = sprintf( __( 'Columns settings with id %s could be saved.', 'codepress-admin-columns' ), $list_screen->get_id()->get_id() );
+				$errors[] = sprintf( __( 'Columns settings with id %s could not be saved.', 'codepress-admin-columns' ), $list_screen->get_id()->get_id() );
 			}
 		}
 

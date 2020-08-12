@@ -3,9 +3,10 @@
 namespace ACP\Column\User;
 
 use AC;
+use ACP\Sorting;
+use ACP\Sorting\Sortable;
 
-class UserPosts extends AC\Column
-	implements AC\Column\AjaxValue {
+class UserPosts extends AC\Column implements Sortable, AC\Column\AjaxValue {
 
 	public function __construct() {
 		$this->set_type( 'column-user_posts' )
@@ -19,7 +20,7 @@ class UserPosts extends AC\Column
 			return $this->get_empty_char();
 		}
 
-		$count = sprintf( _n( '%s item', '%s items', count( $posts ) ), count( $posts ) );
+		$count = sprintf( _n( '%s item', '%s items', number_format_i18n( count( $posts ) ) ), count( $posts ) );
 
 		return ac_helper()->html->get_ajax_toggle_box_link( $user_id, $count, $this->get_name(), __( 'Hide' ) );
 	}
@@ -35,8 +36,12 @@ class UserPosts extends AC\Column
 		return implode( ', ', $value );
 	}
 
+	private function get_selected_post_type() {
+		return $this->get_setting( 'post_type' )->get_post_type();
+	}
+
 	/**
-	 * @param $user_id
+	 * @param int $user_id
 	 *
 	 * @return array
 	 */
@@ -44,9 +49,27 @@ class UserPosts extends AC\Column
 		return get_posts( [
 			'fields'         => 'ids',
 			'author'         => $user_id,
-			'post_type'      => $this->get_setting( 'post_type' )->get_post_type(),
+			'post_type'      => $this->get_selected_post_type(),
 			'posts_per_page' => -1,
+			'post_status'    => [ 'publish', 'private' ],
 		] );
+	}
+
+	public function sorting() {
+		return new Sorting\Model\User\PostCount( $this->get_post_types(), [ 'publish', 'private' ] );
+	}
+
+	/**
+	 * @return array
+	 */
+	private function get_post_types() {
+		$post_type = $this->get_selected_post_type();
+
+		if ( 'any' === $post_type ) {
+			$post_type = get_post_types();
+		}
+
+		return (array) $post_type;
 	}
 
 	protected function register_settings() {

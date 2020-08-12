@@ -15,10 +15,7 @@ class Approved extends AC\Column\Comment\Approved
 	implements Editing\Editable, Filtering\Filterable, Sorting\Sortable, Search\Searchable {
 
 	public function sorting() {
-		$model = new Sorting\Model( $this );
-		$model->set_orderby( 'comment_approved' );
-
-		return $model;
+		return new Sorting\Model\OrderBy( 'comment_approved' );
 	}
 
 	public function editing() {

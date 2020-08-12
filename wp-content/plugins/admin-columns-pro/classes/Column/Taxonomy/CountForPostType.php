@@ -17,7 +17,7 @@ class CountForPostType extends AC\Column {
 
 	public function get_value( $id ) {
 		$raw_value = $this->get_raw_value( $id );
-		$count = $raw_value ?: 0;
+		$count = $raw_value ? number_format_i18n( $raw_value ) : 0;
 		$term = get_term( $id, $this->get_taxonomy() );
 
 		$url = add_query_arg( [ 'post_type' => $this->get_post_type_setting(), $this->get_taxonomy_param( $this->get_taxonomy() ) => $term->slug ], admin_url( 'edit.php' ) );

@@ -14,10 +14,7 @@ class AuthorIP extends AC\Column\Comment\AuthorIP
 	implements Filtering\Filterable, Sorting\Sortable, Search\Searchable {
 
 	public function sorting() {
-		$model = new Sorting\Model( $this );
-		$model->set_orderby( 'comment_author_IP' );
-
-		return $model;
+		return new Sorting\Model\OrderBy( 'comment_author_IP' );
 	}
 
 	public function filtering() {

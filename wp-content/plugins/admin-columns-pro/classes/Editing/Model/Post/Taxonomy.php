@@ -57,6 +57,7 @@ class Taxonomy extends Model implements PaginatedOptions {
 		}
 
 		$data['type'] = 'taxonomy';
+		$data['clear_button'] = true;
 
 		return $data;
 	}

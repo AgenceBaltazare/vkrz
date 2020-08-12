@@ -5,14 +5,15 @@ namespace ACP\ThirdParty\YoastSeo\Column;
 use AC;
 use ACP\Export;
 use ACP\Sorting;
+use ACP\Sorting\Type\DataType;
 
 class Readability extends AC\Column\Meta
 	implements Export\Exportable, Sorting\Sortable {
 
 	public function __construct() {
-		$this->set_original( true );
-		$this->set_group( 'yoast-seo' );
-		$this->set_type( 'wpseo-score-readability' );
+		$this->set_original( true )
+		     ->set_group( 'yoast-seo' )
+		     ->set_type( 'wpseo-score-readability' );
 	}
 
 	// The display value is handled by the native column
@@ -35,10 +36,7 @@ class Readability extends AC\Column\Meta
 	 * @inheritDoc
 	 */
 	public function sorting() {
-		$model = new Sorting\Model\Meta( $this );
-		$model->set_data_type( 'numeric' );
-
-		return $model;
+		return ( new Sorting\Model\MetaFactory() )->create( $this->get_meta_type(), $this->get_meta_key(), new DataType( DataType::NUMERIC ) );
 	}
 
 }

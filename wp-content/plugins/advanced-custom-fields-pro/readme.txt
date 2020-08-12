@@ -2,7 +2,7 @@
 Contributors: elliotcondon
 Tags: acf, advanced, custom, field, fields, form, repeater, content
 Requires at least: 4.7
-Tested up to: 5.4
+Tested up to: 5.5
 Requires PHP: 5.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -66,6 +66,21 @@ From your WordPress dashboard
 
 
 == Changelog ==
+
+= 5.8.13 =
+*Release Date - 10 August 2020*
+
+* Tweak - Added styling compatibility for WordPress 5.5.
+* Fix - Implemented new `wp_filter_content_tags()` function in "acf_the_content" filter.
+* i18n - Updated Arabic translation thanks to Karim Ramadan.
+
+= 5.8.12 =
+*Release Date - 10 June 2020*
+
+* Fix - Improved string escaping in Select2 drop-downs to address XSS concerns.
+* Fix - Fixed bug causing PHP error when updating the settings of a Checkbox field.
+* Fix - Fixed bug causing WYSIWYG field to hide when toggling between Document and Block tabs within the Block editor.
+* Fix - Fixed bug incorrectly validating the length of Text and Textarea field values that contained HTML entities.
 
 = 5.8.11 =
 *Release Date - 12 May 2020*

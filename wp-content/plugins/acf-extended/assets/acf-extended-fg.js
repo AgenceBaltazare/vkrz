@@ -4,6 +4,83 @@
         return;
 
     /*
+     * Field Attribute: data-after="field_name"
+     */
+    var fieldAfterManager = new acf.Model({
+
+        actions: {
+            'new_field' : 'onNewField'
+        },
+
+        onNewField: function(field){
+
+            // bail early if not after
+            if(!field.has('after'))
+                return;
+
+            // vars
+            var after = field.get('after');
+            var $sibling = field.$el.siblings('[data-name="' + after + '"]').first();
+
+            // bail early if no sibling
+            if(!$sibling.length)
+                return;
+
+            $sibling.after(field.$el);
+
+        }
+    });
+
+    /*
+     * Field Group Conditional Logic: Init fields
+     */
+    var conditionalLogicFields = new acf.Model({
+
+        wait: 'ready',
+
+        actions:{
+            'append':                           'onAppend',
+            'acfe/field_group/rule_refresh':    'refreshFields'
+        },
+
+        initialize: function(){
+            this.$el = $('#acf-field-group-locations');
+        },
+
+        onAppend: function($el){
+
+            if(!$el.is('.rule-group') && !$el.parent().parent().parent().is('.rule-group'))
+                return;
+
+            this.refreshFields();
+
+        },
+
+        refreshFields: function(){
+
+            var fields = acf.getFields({
+                parent: this.$('td.value')
+            });
+
+            $.each(fields, function(){
+
+                var field = this;
+
+                if(field.get('type') === 'date_picker' || field.get('type') === 'date_time_picker' || field.get('type') === 'time_picker'){
+
+                    field.$inputText().removeClass('hasDatepicker').removeAttr('id');
+
+                    field.initialize();
+
+                }
+
+            });
+
+        }
+
+    });
+
+    /*
      * ACF Extended: 0.8.4.5
      * Field Flexible Content: Fix duplicated "layout_settings" & "layout_title"
      */
@@ -24,7 +101,7 @@
         
         field.$('.acf-button').removeClass('button-primary');
         
-    }
+    };
     
     acf.addAction('new_field/name=acfe_meta', acfe_repeater_remove_primary_class);
     acf.addAction('new_field/name=acfe_settings', acfe_repeater_remove_primary_class);
@@ -58,11 +135,6 @@
             });
             
         });
-
-        /*
-         * Field Group: Advanced Settings
-         */
-        $('.acf-field[data-name="active"]').after($('.acf-field[data-name="acfe_form"]'));
     
     });
     

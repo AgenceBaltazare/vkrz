@@ -13,10 +13,7 @@ class ID extends AC\Column\Comment\ID
 	implements Sorting\Sortable, Search\Searchable {
 
 	public function sorting() {
-		$model = new Sorting\Model( $this );
-		$model->set_orderby( 'comment_ID' );
-
-		return $model;
+		return new Sorting\Model\OrderBy( 'comment_ID' );
 	}
 
 	public function search() {

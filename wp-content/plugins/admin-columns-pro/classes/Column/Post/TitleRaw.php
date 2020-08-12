@@ -14,10 +14,7 @@ class TitleRaw extends AC\Column\Post\TitleRaw
 	implements Sorting\Sortable, Editing\Editable, Search\Searchable {
 
 	public function sorting() {
-		$model = new Sorting\Model( $this );
-		$model->set_orderby( 'title' );
-
-		return $model;
+		return new Sorting\Model\OrderBy( 'title' );
 	}
 
 	public function editing() {

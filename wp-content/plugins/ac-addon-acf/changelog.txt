@@ -1,5 +1,27 @@
 == Changelog ==
 
+= 1.6.2 =
+Release Date: July 21st, 2020
+
+* [Added] Filter to load custom Field classes for unsupported Fields `acp/acf/field`
+* [Improved] Sorting for serialized field types
+* [Dependency] Requires Admin Columns Pro 5.2.1
+
+= 2.6.1 =
+Release Date: June 16th, 2020
+
+* [Added] Re-added missing field support for Repeater and Flexible content
+
+= 2.6 =
+Release Date: June 9th, 2020
+
+* [Improved] Performance improvements when sorting columns
+* [Added] Implemented WYSIWYG editing
+* [Improved] Show 0 values in columns
+* [Improved] Show clear button for Taxonomy field editing when the field is not required
+* [Improved] Better PHP 7 support
+* [Dependency] Requires Admin Columns Pro 5.2
+
 = 2.5.6 =
 Release Date: March 30th, 2020
 

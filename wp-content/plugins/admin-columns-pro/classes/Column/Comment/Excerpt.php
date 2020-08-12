@@ -14,10 +14,7 @@ class Excerpt extends AC\Column\Comment\Excerpt
 	implements Editing\Editable, Sorting\Sortable, Search\Searchable {
 
 	public function sorting() {
-		$model = new Sorting\Model( $this );
-		$model->set_orderby( 'comment_content' );
-
-		return $model;
+		return new Sorting\Model\OrderBy( 'comment_content' );
 	}
 
 	public function editing() {

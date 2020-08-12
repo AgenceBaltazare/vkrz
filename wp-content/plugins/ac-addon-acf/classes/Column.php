@@ -13,11 +13,30 @@ use ACP;
 abstract class Column extends AC\Column\Meta
 	implements ACP\Editing\Editable, ACP\Filtering\Filterable, ACP\Sorting\Sortable, ACP\Export\Exportable, ACP\Search\Searchable, AC\Column\AjaxValue {
 
+	/**
+	 * @var Free\FieldFactory|FieldFactory
+	 */
+	protected $field_factory;
+
+	/**
+	 * @var Free\FieldFactory|FieldFactory
+	 */
+	protected $field_settings_factory;
+
 	public function __construct() {
 		$this
 			->set_type( 'column-acf_field' )
 			->set_label( __( 'Advanced Custom Fields', 'codepress-admin-columns' ) )
 			->set_group( 'acf' );
+
+		$this->field_factory = API::is_free()
+			? new Free\FieldFactory()
+			: new FieldFactory();
+
+		$this->field_settings_factory = API::is_free()
+			? new Free\Setting\FieldFactory()
+			: new Setting\FieldFactory();
+
 	}
 
 	public function get_meta_key() {
@@ -47,7 +66,7 @@ abstract class Column extends AC\Column\Meta
 			$value = $prepend . $value . $append;
 		}
 
-		if ( ! $value ) {
+		if ( ! $value && ! in_array( $value, [ 0, '0' ], true ) ) {
 			return $this->get_empty_char();
 		}
 
@@ -56,30 +75,6 @@ abstract class Column extends AC\Column\Meta
 
 	public function get_raw_value( $id ) {
 		return $this->get_field()->get_raw_value( $id );
-	}
-
-	/**
-	 * @param string $type Comment, Post, Taxonomy, User or Media
-	 */
-	protected function register_settings_by_type( $type ) {
-		$class = 'ACA\ACF\Setting\Field\\' . $type;
-
-		// Free version specific
-		if ( API::is_free() ) {
-			$free_class = 'ACA\ACF\Free\Setting\Field\\' . $type;
-
-			if ( class_exists( $free_class ) ) {
-				$class = $free_class;
-			}
-		}
-
-		if ( class_exists( $class ) ) {
-
-			/* @var Setting\Field $setting */
-			$setting = new $class( $this );
-
-			$this->add_setting( $setting );
-		}
 	}
 
 	public function editing() {
@@ -128,7 +123,7 @@ abstract class Column extends AC\Column\Meta
 	 * @return Field
 	 */
 	public function get_field() {
-		return $this->get_field_by_type( $this->get_acf_field_option( 'type' ) );
+		return $this->field_factory->create( $this->get_acf_field_option( 'type' ), $this );
 	}
 
 	/**
@@ -136,40 +131,16 @@ abstract class Column extends AC\Column\Meta
 	 *
 	 * @param string $field_type ACF field type
 	 *
-	 * @return Field|false
+	 * @return Field
 	 */
 	public function get_field_by_type( $field_type ) {
-		if ( empty( $field_type ) ) {
-			return new Field( $this );
-		}
-
-		// Convert field type to field class name
-		$field_class_name = implode( array_map( 'ucfirst', explode( '_', str_replace( '-', '_', $field_type ) ) ) );
-
-		if ( API::is_free() ) {
-
-			// Free version specific
-			$type = 'ACA\ACF\Free\Field\\' . $field_class_name;
-
-			if ( class_exists( $type ) ) {
-				return new $type( $this );
-			}
-		}
-
-		// Specific field types
-		$type = 'ACA\ACF\Field\\' . $field_class_name;
-
-		if ( class_exists( $type ) ) {
-			return new $type( $this );
-		}
-
-		return new Field\Unsupported( $this );
+		return $this->field_factory->create( $field_type, $this );
 	}
 
 	/**
 	 * Get Field hash
-	 * @since 1.1
 	 * @return string ACF field Hash (key)
+	 * @since 1.1
 	 */
 	public function get_field_hash() {
 		if ( ! $this->get_setting( 'field' ) ) {

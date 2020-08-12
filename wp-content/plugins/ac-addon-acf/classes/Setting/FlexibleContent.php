@@ -17,21 +17,21 @@ class FlexibleContent extends AC\Settings\Column {
 	private $flex_display;
 
 	protected function define_options() {
-		return array( 'flex_display' => 'count' );
+		return [ 'flex_display' => 'count' ];
 	}
 
 	public function create_view() {
 		$setting = $this->create_element( 'select' );
 
-		$setting->set_options( array(
+		$setting->set_options( [
 			'count'     => __( 'Layout Type Count', 'codepress-admin-columns' ),
 			'structure' => __( 'Layout Structure', 'codepress-admin-columns' ),
-		) );
+		] );
 
-		$view = new View( array(
+		$view = new View( [
 			'label'   => __( 'Display', 'codepress-admin-columns' ),
 			'setting' => $setting,
-		) );
+		] );
 
 		return $view;
 	}

@@ -9,8 +9,8 @@ class acfe_form_email{
     
     function __construct(){
         
-        add_action('acfe/form/prepare/email',                               array($this, 'prepare'), 1, 3);
-        add_action('acfe/form/submit/email',                                array($this, 'submit'), 1, 3);
+        add_action('acfe/form/make/email',                                  array($this, 'make'), 10, 3);
+        add_action('acfe/form/submit/email',                                array($this, 'submit'), 10, 3);
         
         add_filter('acf/prepare_field/name=acfe_form_email_file',           array(acfe()->acfe_form, 'map_fields_deep'));
         
@@ -19,11 +19,22 @@ class acfe_form_email{
         
     }
     
-    function prepare($form, $current_post_id, $action){
+    function make($form, $current_post_id, $action){
         
         // Form
         $form_name = acf_maybe_get($form, 'form_name');
         $form_id = acf_maybe_get($form, 'form_id');
+    
+        // Prepare
+        $prepare = true;
+        $prepare = apply_filters('acfe/form/prepare/email',                          $prepare, $form, $current_post_id, $action);
+        $prepare = apply_filters('acfe/form/prepare/email/form=' . $form_name,       $prepare, $form, $current_post_id, $action);
+    
+        if(!empty($action))
+            $prepare = apply_filters('acfe/form/prepare/email/action=' . $action,    $prepare, $form, $current_post_id, $action);
+    
+        if($prepare === false)
+            return;
         
         // Fields
         $from = get_sub_field('acfe_form_email_from');
@@ -125,8 +136,8 @@ class acfe_form_email{
         );
         
         // Deprecated filters
-        $args = apply_filters('acfe/form/submit/email/args',                      $args, $form, $action);
-        $args = apply_filters('acfe/form/submit/email/args/form=' . $form_name,   $args, $form, $action);
+        $args = apply_filters_deprecated('acfe/form/submit/email/args',                      array($args, $form, $action), '0.8.1', 'acfe/form/submit/email_args');
+        $args = apply_filters_deprecated('acfe/form/submit/email/args/form=' . $form_name,   array($args, $form, $action), '0.8.1', 'acfe/form/submit/email_args/form=' . $form_name);
         
         // Filters
         $args = apply_filters('acfe/form/submit/email_args',                      $args, $form, $action);
@@ -135,7 +146,7 @@ class acfe_form_email{
         if(!empty($action)){
 	
 	        // Deprecated filter
-            $args = apply_filters('acfe/form/submit/email/args/action=' . $action, $args, $form, $action);
+            $args = apply_filters_deprecated('acfe/form/submit/email/args/action=' . $action, array($args, $form, $action), '0.8.1', 'acfe/form/submit/email_args/action=' . $action);
             
             // Filter
             $args = apply_filters('acfe/form/submit/email_args/action=' . $action, $args, $form, $action);
@@ -143,7 +154,7 @@ class acfe_form_email{
         }
         
         // Bail early if no args
-        if(!$args)
+        if($args === false)
             return;
 	
 	    // Check if Headers changed
@@ -189,7 +200,7 @@ class acfe_form_email{
 		    }
 		
 	    }
-         
+	    
         wp_mail($args['to'], $args['subject'], $args['content'], $args['headers'], $args['attachments']);
         
         do_action('acfe/form/submit/email',                     $args, $form, $action);
@@ -212,26 +223,22 @@ class acfe_form_email{
     }
     
     function submit($args, $form, $action){
-        
-        if(!empty($action)){
-        
-            // Custom Query Var
-            $custom_query_var = get_sub_field('acfe_form_custom_query_var');
-            
-            if(!empty($custom_query_var)){
-                
-                // Form name
-                $form_name = acf_maybe_get($form, 'form_name');
-                
-                $args = apply_filters('acfe/form/query_var/email',                    $args, $form, $action);
-                $args = apply_filters('acfe/form/query_var/email/form=' . $form_name, $args, $form, $action);
-                $args = apply_filters('acfe/form/query_var/email/action=' . $action,  $args, $form, $action);
-                
-                set_query_var($action, $args);
-            
-            }
-        
-        }
+    
+        // Form name
+        $form_name = acf_maybe_get($form, 'form_name');
+    
+        $args = apply_filters('acfe/form/query_var/email',                    $args, $form, $action);
+        $args = apply_filters('acfe/form/query_var/email/form=' . $form_name, $args, $form, $action);
+        $args = apply_filters('acfe/form/query_var/email/action=' . $action,  $args, $form, $action);
+    
+        // Query var
+        $query_var = acfe_form_unique_action_id($form, 'email');
+    
+        if(!empty($action))
+            $query_var = $action;
+    
+        // Set Query Var
+        set_query_var($query_var, $args);
         
     }
     

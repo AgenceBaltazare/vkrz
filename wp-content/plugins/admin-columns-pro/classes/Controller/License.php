@@ -102,8 +102,6 @@ class License implements Registrable {
 
 	public function handle_daily_update_subscription_details() {
 		$cache = new Storage\Timestamp(
-
-			// todo: use network transient when plugin is network activated
 			new Storage\Option( self::PERIODIC_CHECK_TRANSIENT_KEY )
 		);
 

@@ -15,10 +15,7 @@ class DatePublished extends AC\Column\Post\DatePublished
 	implements Sorting\Sortable, Filtering\Filterable, Editing\Editable, Search\Searchable {
 
 	public function sorting() {
-		$model = new Sorting\Model( $this );
-		$model->set_orderby( 'date' );
-
-		return $model;
+		return new Sorting\Model\OrderBy( 'date' );
 	}
 
 	public function filtering() {

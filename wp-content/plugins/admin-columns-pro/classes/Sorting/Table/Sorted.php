@@ -3,7 +3,7 @@
 namespace ACP\Sorting\Table;
 
 use AC;
-use ACP\Sorting;
+use ACP\Sorting\NativeSortableRepository;
 
 class Sorted {
 
@@ -32,10 +32,21 @@ class Sorted {
 	 */
 	private $preference;
 
-	public function __construct( AC\ListScreen $list_screen, Preference $preference, array $request_var = [] ) {
+	/**
+	 * @var NativeSortableRepository
+	 */
+	private $native_sortables;
+
+	public function __construct(
+		AC\ListScreen $list_screen,
+		Preference $preference,
+		NativeSortableRepository $native_sortables,
+		array $request_var = []
+	) {
 		$this->list_screen = $list_screen;
 		$this->preference = $preference;
 		$this->request = $request_var;
+		$this->native_sortables = $native_sortables;
 
 		$this->load();
 	}
@@ -99,12 +110,8 @@ class Sorted {
 	 * @return AC\Column|false
 	 */
 	public function get_column() {
-		$native = new Sorting\NativeSortables( $this->list_screen );
+		$column_name = $this->native_sortables->get_sortable_column_by_order_by( $this->list_screen->get_key(), $this->get_order_by() );
 
-		// Native columns
-		$column_name = $native->is_sortable( $this->get_order_by() );
-
-		// Custom columns
 		if ( ! $column_name ) {
 			$column_name = $this->get_order_by();
 		}

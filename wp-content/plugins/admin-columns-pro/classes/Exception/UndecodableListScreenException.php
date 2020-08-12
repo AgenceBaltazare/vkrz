@@ -3,7 +3,6 @@
 namespace ACP\Exception;
 
 use LogicException;
-use Throwable;
 
 final class UndecodableListScreenException extends LogicException {
 
@@ -12,10 +11,10 @@ final class UndecodableListScreenException extends LogicException {
 	 */
 	private $encoded_list_screen;
 
-	public function __construct( array $encoded_list_screen, $code = 0, Throwable $previous = null ) {
+	public function __construct( array $encoded_list_screen, $code = 0 ) {
 		$this->encoded_list_screen = $encoded_list_screen;
 
-		parent::__construct( 'Undecodable List Screen found.', $code, $previous );
+		parent::__construct( 'Undecodable List Screen found.', $code );
 	}
 
 	/**

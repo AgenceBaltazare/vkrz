@@ -12,7 +12,7 @@ class Width extends AC\Column\Media\Width
 	implements Sorting\Sortable {
 
 	public function sorting() {
-		return new Sorting\Model\Media\Width( $this );
+		return new Sorting\Model\Media\Width();
 	}
 
 }

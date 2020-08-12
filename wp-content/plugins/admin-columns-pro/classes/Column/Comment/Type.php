@@ -15,10 +15,7 @@ class Type extends AC\Column\Comment\Type
 	implements Editing\Editable, Filtering\Filterable, Sorting\Sortable, Search\Searchable {
 
 	public function sorting() {
-		$model = new Sorting\Model( $this );
-		$model->set_orderby( 'comment_type' );
-
-		return $model;
+		return new Sorting\Model\OrderBy( 'comment_type' );
 	}
 
 	public function editing() {

@@ -26,7 +26,7 @@ class Repeater extends Field {
 	public function get_row_count( $id ) {
 		$value = $this->get_raw_value( $id );
 
-		if( ! $value || empty( $value ) ){
+		if ( ! $value || empty( $value ) ) {
 			return 0;
 		}
 
@@ -65,9 +65,9 @@ class Repeater extends Field {
 	}
 
 	public function get_dependent_settings() {
-		return array(
+		return [
 			new Setting\RepeaterDisplay( $this->column ),
-		);
+		];
 	}
 
 	/**
@@ -97,10 +97,10 @@ class Repeater extends Field {
 
 	public function sorting() {
 		if ( 'count' === $this->get_repeater_display() ) {
-			return new Sorting\Repeater( $this->column );
+			return new Sorting\Repeater( $this->column->get_acf_field_option( 'name' ) );
 		}
 
-		return new ACP\Sorting\Model\Disabled( $this->column );
+		return new ACP\Sorting\Model\Disabled();
 	}
 
 	public function filtering() {

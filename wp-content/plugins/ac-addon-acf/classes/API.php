@@ -4,7 +4,6 @@ namespace ACA\ACF;
 
 /**
  * Class ACA_ACF_API
- *
  * Interface to the ACF API that works across the free and pro version
  */
 class API {

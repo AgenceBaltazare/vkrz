@@ -3,9 +3,9 @@ Contributors: codepress, tschutter, davidmosterd, engelen, dungengronovius
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ZDZRSYLQ4Z76J
 Tags: plugins, wordpress, admin, column, columns, custom columns, custom fields, image, dashboard, sortable, filters, posts, media, users, pages, posttypes, manage columns, wp-admin
 Requires at least: 4.7
-Tested up to: 5.4
+Tested up to: 5.4.2
 Requires PHP: 5.6.20
-Stable tag: 4.1.6
+Stable tag: 4.1.9
 
 Customise columns on the administration screens for post(types), pages, media, comments, links and users with an easy to use drag-and-drop interface.
 
@@ -212,6 +212,26 @@ You can find a list of the available actions and filters (and examples on how to
 8. Posts Screen with custom fields.
 
 == Changelog ==
+
+= 4.1.9 =
+Release Date: July 28th, 2020
+
+* [Updated] Column label translation support for WPML was updated for the latest version of WPML
+
+= 4.1.8 =
+Release Date: July 21st, 2020
+
+* [Added] New columns for the Users table: Fullname, Author Slug and Username / Login.
+* [Fixed] CSS conflict on overview pages where post type is 'Modal'
+
+= 4.1.7 =
+Release Date: June 9th, 2020
+
+* [Improved] Better Table overview recognition to prevent wrong loaded list screens
+* [Improved] The comments column on the users page will now link to the (filtered) comments table
+* [Improved] The post count column on the users page now has the option to select all post types
+* [Fixed] Renamed the user display option 'First and Last Name' to 'Full name'
+* [Fixed] The comment count column for the users page will now only count 'approved' and 'pending' comments when selecting 'All comments'
 
 = 4.1.6 =
 Release Date: April 22nd, 2020

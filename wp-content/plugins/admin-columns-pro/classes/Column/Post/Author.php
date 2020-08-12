@@ -15,10 +15,7 @@ class Author extends AC\Column\Post\Author
 	implements Editing\Editable, Sorting\Sortable, Export\Exportable, Search\Searchable {
 
 	public function sorting() {
-		$model = new Sorting\Model( $this );
-		$model->set_orderby( 'author' );
-
-		return $model;
+		return new Sorting\Model\OrderBy( 'author' );
 	}
 
 	public function editing() {

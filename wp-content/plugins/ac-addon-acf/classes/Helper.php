@@ -16,6 +16,10 @@ class Helper {
 			return null;
 		}
 
+		if ( ! function_exists( 'acf_get_raw_field_group' ) ) {
+			return null;
+		}
+
 		$group = acf_get_raw_field_group( $field['parent'] );
 
 		if ( empty( $group['ID'] ) ) {

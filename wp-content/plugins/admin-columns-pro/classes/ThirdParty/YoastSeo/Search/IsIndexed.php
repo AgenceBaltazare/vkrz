@@ -2,7 +2,7 @@
 
 namespace ACP\ThirdParty\YoastSeo\Search;
 
-use ACP\Helper\Select\Options;
+use AC;
 use ACP\Search\Comparison\Meta;
 use ACP\Search\Comparison\Values;
 use ACP\Search\Operators;
@@ -31,7 +31,7 @@ class IsIndexed extends Meta
 	}
 
 	public function get_values() {
-		return Options::create_from_array( [
+		return AC\Helper\Select\Options::create_from_array( [
 			0 => __( 'Default for Post Type', 'codepress-admin-columns' ),
 			1 => __( 'No' ),
 			2 => __( 'Yes' ),

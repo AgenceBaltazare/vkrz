@@ -13,7 +13,7 @@ class CommentCount extends AC\Column\User\CommentCount
 	implements Sorting\Sortable {
 
 	public function sorting() {
-		return new Sorting\Model\User\CommentCount( $this );
+		return new Sorting\Model\User\CommentCount();
 	}
 
 	public function editing() {

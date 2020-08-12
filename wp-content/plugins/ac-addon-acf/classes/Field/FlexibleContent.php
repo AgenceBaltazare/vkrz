@@ -9,7 +9,7 @@ use ACP;
 class FlexibleContent extends Field {
 
 	public function get_ajax_value( $id ) {
-		$results = array();
+		$results = [];
 		$field = $this->column->get_acf_field();
 		$labels = $this->get_layout_labels();
 
@@ -65,15 +65,15 @@ class FlexibleContent extends Field {
 
 		$labels = $this->get_layout_labels();
 
-		$layouts = array();
+		$layouts = [];
 		foreach ( $raw_value as $values ) {
-			$layouts[ $values['acf_fc_layout'] ] = array(
+			$layouts[ $values['acf_fc_layout'] ] = [
 				'count' => empty( $layouts[ $values['acf_fc_layout'] ] ) ? 1 : ++$layouts[ $values['acf_fc_layout'] ]['count'],
 				'label' => $labels[ $values['acf_fc_layout'] ],
-			);
+			];
 		}
 
-		$output = array();
+		$output = [];
 		foreach ( $layouts as $layout ) {
 			$label = $layout['label'];
 
@@ -88,9 +88,9 @@ class FlexibleContent extends Field {
 	}
 
 	public function get_dependent_settings() {
-		return array(
+		return [
 			new Setting\FlexibleContent( $this->column ),
-		);
+		];
 	}
 
 	public function export() {
@@ -119,7 +119,7 @@ class FlexibleContent extends Field {
 	 */
 	private function get_layout_labels() {
 		$field = $this->column->get_acf_field();
-		$labels = array();
+		$labels = [];
 
 		foreach ( $field['layouts'] as $layout ) {
 			$labels[ $layout['name'] ] = $layout['label'];

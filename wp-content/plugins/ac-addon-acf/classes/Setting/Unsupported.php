@@ -3,21 +3,22 @@
 namespace ACA\ACF\Setting;
 
 use AC;
+use ACA\ACF\Column;
 
 /**
- * @property \ACA\ACF\Column $column
+ * @property Column $column
  */
 class Unsupported extends AC\Settings\Column {
 
 	protected function define_options() {
-		return array( 'unsupported' );
+		return [ 'unsupported' ];
 	}
 
 	public function create_view() {
-		$view = new AC\View( array(
+		$view = new AC\View( [
 			'label'   => false,
 			'setting' => $this->get_message(),
-		) );
+		] );
 
 		return $view;
 	}

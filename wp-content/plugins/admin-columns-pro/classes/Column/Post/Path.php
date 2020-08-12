@@ -10,7 +10,9 @@ class Path extends AC\Column\Post\Path
 	implements Sorting\Sortable, Editing\Editable {
 
 	public function sorting() {
-		return new Sorting\Model( $this );
+		return is_post_type_hierarchical( $this->get_post_type() )
+			? new Sorting\Model\Post\Permalink()
+			: new Sorting\Model\Post\PostField( 'post_name' );
 	}
 
 	public function editing() {

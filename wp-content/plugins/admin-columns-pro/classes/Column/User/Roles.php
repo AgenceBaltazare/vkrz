@@ -14,8 +14,8 @@ class Roles extends AC\Column\Meta
 	implements Editing\Editable, Filtering\Filterable, Sorting\Sortable, Search\Searchable, Export\Exportable {
 
 	public function __construct() {
-		$this->set_type( 'column-roles' );
-		$this->set_label( __( 'Roles', 'codepress-admin-columns' ) );
+		$this->set_type( 'column-roles' )
+		     ->set_label( __( 'Roles', 'codepress-admin-columns' ) );
 	}
 
 	public function get_meta_key() {
@@ -44,7 +44,7 @@ class Roles extends AC\Column\Meta
 	}
 
 	public function sorting() {
-		return new Sorting\Model\User\Roles( $this );
+		return new Sorting\Model\User\Roles( $this->get_meta_key() );
 	}
 
 	public function filtering() {

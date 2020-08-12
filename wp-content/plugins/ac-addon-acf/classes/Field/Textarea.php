@@ -6,15 +6,14 @@ use AC;
 use ACA\ACF\Editing;
 use ACA\ACF\Field;
 use ACA\ACF\Filtering;
-use ACA\ACF\Sorting;
 use ACP;
 
 class Textarea extends Field {
 
 	public function get_dependent_settings() {
-		return array(
+		return [
 			new AC\Settings\Column\WordLimit( $this->column ),
-		);
+		];
 	}
 
 	public function editing() {
@@ -26,7 +25,7 @@ class Textarea extends Field {
 	}
 
 	public function sorting() {
-		return new Sorting( $this->column );
+		return ( new ACP\Sorting\Model\MetaFactory() )->create( $this->get_meta_type(), $this->get_meta_key() );
 	}
 
 	public function search() {

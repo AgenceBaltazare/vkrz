@@ -14,14 +14,12 @@ abstract class Meta extends AC\Column\Meta
 	implements Sorting\Sortable, Editing\Editable, Filtering\Filterable {
 
 	/**
-	 * @return Sorting\Model\Meta|Sorting\Model\Disabled
+	 * @return Sorting\AbstractModel
 	 */
 	public function sorting() {
-		if ( ! $this->get_meta_key() ) {
-			return new Sorting\Model\Disabled( $this );
-		}
-
-		return new Sorting\Model\Meta( $this );
+		return $this->get_meta_key() && $this->get_meta_type()
+			? ( new Sorting\Model\MetaFactory() )->create( $this->get_meta_type(), $this->get_meta_key() )
+			: new Sorting\Model\Disabled();
 	}
 
 	/**

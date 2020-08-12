@@ -15,10 +15,7 @@ class AuthorUrl extends AC\Column\Comment\AuthorUrl
 	implements Editing\Editable, Sorting\Sortable, Filtering\Filterable, Search\Searchable {
 
 	public function sorting() {
-		$model = new Sorting\Model( $this );
-		$model->set_orderby( 'comment_author_url' );
-
-		return $model;
+		return new Sorting\Model\OrderBy( 'comment_author_url' );
 	}
 
 	public function editing() {

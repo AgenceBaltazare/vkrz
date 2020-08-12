@@ -12,7 +12,7 @@ class Status extends AC\Column\Post\Status
 	implements Editing\Editable, Filtering\Filterable, Sorting\Sortable, Search\Searchable {
 
 	public function sorting() {
-		return new Sorting\Model\Post\Status( $this );
+		return new Sorting\Model\Post\Status();
 	}
 
 	public function editing() {

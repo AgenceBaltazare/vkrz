@@ -3,7 +3,6 @@
 namespace ACP\Exception;
 
 use RuntimeException;
-use Throwable;
 
 class FailedToCreateDirectoryException extends RuntimeException {
 
@@ -12,8 +11,8 @@ class FailedToCreateDirectoryException extends RuntimeException {
 	 */
 	private $path;
 
-	public function __construct( $path, $code = 0, Throwable $previous = null ) {
-		parent::__construct( sprintf( 'Could not create directory %s.', $path ), $code, $previous );
+	public function __construct( $path, $code = 0 ) {
+		parent::__construct( sprintf( 'Could not create directory %s.', $path ), $code );
 
 		$this->path = $path;
 	}

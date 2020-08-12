@@ -2,30 +2,26 @@
 
 namespace ACP\Sorting;
 
-use AC;
-use ACP\Sorting;
+use AC\Column;
+use ACP\Sorting\Model\Disabled;
 
 class ModelFactory {
 
 	/**
-	 * @param AC\Column $column
+	 * @param Column $column
 	 *
-	 * @return Sorting\Model|false
+	 * @return AbstractModel|null
 	 */
-	public static function create( AC\Column $column ) {
-		if ( ! $column instanceof Sorting\Sortable ) {
-			return false;
+	public function create( Column $column ) {
+		if ( ! $column instanceof Sortable ) {
+			return null;
 		}
 
-		$list_screen = $column->get_list_screen();
+		$model = apply_filters( 'acp/sorting/model', $column->sorting(), $column );
 
-		if ( ! $list_screen instanceof Sorting\ListScreen ) {
-			return false;
+		if ( $model instanceof Disabled ) {
+			return null;
 		}
-
-		$model = $column->sorting();
-
-		$model->set_strategy( $list_screen->sorting( $model ) );
 
 		return $model;
 	}

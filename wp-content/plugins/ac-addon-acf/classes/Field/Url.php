@@ -5,7 +5,6 @@ namespace ACA\ACF\Field;
 use ACA\ACF\Editing;
 use ACA\ACF\Field;
 use ACA\ACF\Filtering;
-use ACA\ACF\Sorting;
 use ACP;
 
 class Url extends Field {
@@ -13,7 +12,7 @@ class Url extends Field {
 	public function get_value( $id ) {
 		$url = parent::get_value( $id );
 
-		return ac_helper()->html->link( $url, str_replace( array( 'http://', 'https://' ), '', $url ) );
+		return ac_helper()->html->link( $url, str_replace( [ 'http://', 'https://' ], '', $url ) );
 	}
 
 	public function editing() {
@@ -25,7 +24,7 @@ class Url extends Field {
 	}
 
 	public function sorting() {
-		return new Sorting( $this->column );
+		return ( new ACP\Sorting\Model\MetaFactory() )->create( $this->get_meta_type(), $this->get_meta_key() );
 	}
 
 	public function search() {

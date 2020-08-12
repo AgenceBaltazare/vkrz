@@ -26,6 +26,16 @@ class HideOnScreenCollection {
 		return $this;
 	}
 
+	public function remove( HideOnScreen $hide_on_screen ) {
+		foreach ( $this->items as $k => $item ) {
+			if ( $item['item']->get_name() === $hide_on_screen->get_name() ) {
+				unset( $this->items[ $k ] );
+			}
+		}
+
+		return $this;
+	}
+
 	public function all( $sort_by = null ) {
 		switch ( $sort_by ) {
 			case self::SORT_LABEL :
@@ -40,7 +50,7 @@ class HideOnScreenCollection {
 	}
 
 	/**
-	 * @param HideOnScreen[] $groups
+	 * @param array $items
 	 *
 	 * @return array
 	 */

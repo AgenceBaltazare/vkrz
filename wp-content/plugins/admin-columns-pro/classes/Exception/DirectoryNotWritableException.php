@@ -3,7 +3,6 @@
 namespace ACP\Exception;
 
 use RuntimeException;
-use Throwable;
 
 class DirectoryNotWritableException extends RuntimeException {
 
@@ -12,8 +11,8 @@ class DirectoryNotWritableException extends RuntimeException {
 	 */
 	private $path;
 
-	public function __construct( $path, $code = 0, Throwable $previous = null ) {
-		parent::__construct( sprintf( 'Directory with path %s is not writable.', $path ), $code, $previous );
+	public function __construct( $path, $code = 0 ) {
+		parent::__construct( sprintf( 'Directory with path %s is not writable.', $path ), $code );
 
 		$this->path = $path;
 	}

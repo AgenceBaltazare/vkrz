@@ -15,12 +15,12 @@ class Taxonomy extends Meta
 	private $taxonomy;
 
 	public function __construct( $meta_key, $meta_type, $taxonomy ) {
-		$operators = new Operators( array(
+		$operators = new Operators( [
 			Operators::EQ,
 			Operators::NEQ,
 			Operators::IS_EMPTY,
 			Operators::NOT_IS_EMPTY,
-		) );
+		] );
 
 		$this->taxonomy = $taxonomy;
 
@@ -28,11 +28,11 @@ class Taxonomy extends Meta
 	}
 
 	public function get_values( $search, $paged ) {
-		$entities = new Select\Entities\Taxonomy( array(
+		$entities = new Select\Entities\Taxonomy( [
 			'page'     => $paged,
 			'search'   => $search,
 			'taxonomy' => $this->taxonomy,
-		) );
+		] );
 
 		return new Select\Options\Paginated(
 			$entities,

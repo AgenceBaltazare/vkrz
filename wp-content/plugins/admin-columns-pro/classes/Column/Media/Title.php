@@ -22,7 +22,6 @@ class Title extends AC\Column\Media\Title
 	}
 
 	public function search() {
-		// TODO David use case for meta & sql search (title and filename)
 		return new Search\Comparison\Post\Title();
 	}
 

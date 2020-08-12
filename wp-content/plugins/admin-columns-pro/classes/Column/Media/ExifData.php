@@ -10,7 +10,7 @@ class ExifData extends AC\Column\Media\ExifData
 	implements Sorting\Sortable, Export\Exportable {
 
 	public function sorting() {
-		return new Sorting\Model\Value( $this );
+		return new Sorting\Model\Media\Exif( $this->get_setting( AC\Settings\Column\ExifData::NAME )->get_value() );
 	}
 
 	public function export() {

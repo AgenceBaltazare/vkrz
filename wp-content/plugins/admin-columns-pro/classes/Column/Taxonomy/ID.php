@@ -26,10 +26,7 @@ class ID extends AC\Column
 	}
 
 	public function sorting() {
-		$model = new Sorting\Model( $this );
-		$model->set_orderby( 'ID' );
-
-		return $model;
+		return new Sorting\Model\OrderBy( 'ID' );
 	}
 
 	public function filtering() {

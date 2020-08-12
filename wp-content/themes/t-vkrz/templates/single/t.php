@@ -20,17 +20,14 @@ extract(get_next_duel($id_classement_user, $id_tournoi));
 wp_reset_query();
 
 ?>
-
 <?php get_header(); ?>
-
 <?php
 if ( get_field( 'cover_t' ) ) {
 	$illu     = wp_get_attachment_image_src( get_field( 'cover_t' ), 'full' );
 	$illu_url = $illu[0];
 }
 ?>
-<body <?php body_class( array( 'cover', 'a_step', $body_class ) ); ?>
-        style="background: url(<?php echo $illu_url; ?>) center center no-repeat">
+<body <?php body_class( array( 'cover', 'a_step', $body_class ) ); ?> style="background: url(<?php echo $illu_url; ?>) center center no-repeat">
 
 <div class="main">
 
@@ -67,8 +64,6 @@ if ( get_field( 'cover_t' ) ) {
 		echo '</pre>';
 		?>
     </div>
-
-
     <header class="header">
         <div class="container-fluid">
             <div class="row align-items-center">
@@ -173,5 +168,4 @@ if ( get_field( 'cover_t' ) ) {
     set_query_var( 'steps_var', compact( 'bar_step', 'current_step' ) );
     get_template_part( 'templates/parts/content', 'step-bar' );
 ?>
-
 <?php get_footer(); ?>

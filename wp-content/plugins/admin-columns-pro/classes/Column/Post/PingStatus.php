@@ -15,10 +15,7 @@ class PingStatus extends AC\Column\Post\PingStatus
 	implements Filtering\Filterable, Sorting\Sortable, Editing\Editable, Search\Searchable {
 
 	public function sorting() {
-		$model = new Sorting\Model\Post\Field( $this );
-		$model->set_field( 'ping_status' );
-
-		return $model;
+		return new Sorting\Model\Post\PostField( 'ping_status' );
 	}
 
 	public function editing() {

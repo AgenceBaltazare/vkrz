@@ -2,10 +2,13 @@
 
 namespace ACP\Sorting\Model\Media;
 
-class Height extends Dimensions {
+use ACP\Sorting\FormatValue;
+use ACP\Sorting\Type\DataType;
 
-	protected function get_aspect( $values ) {
-		return $this->get_height( $values );
+class Height extends AttachmentMetaData {
+
+	public function __construct() {
+		parent::__construct( new FormatValue\Height(), new DataType( DataType::NUMERIC ) );
 	}
 
 }

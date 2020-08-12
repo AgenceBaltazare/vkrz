@@ -170,7 +170,7 @@ class Taxonomy extends AC\ListScreenWP
 	}
 
 	public function sorting( $model ) {
-		return new Sorting\Strategy\Taxonomy( $model );
+		return new Sorting\Strategy\Taxonomy( $model, $this->get_taxonomy() );
 	}
 
 	public function export() {

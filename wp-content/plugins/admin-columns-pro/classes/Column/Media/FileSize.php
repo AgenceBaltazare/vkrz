@@ -13,7 +13,7 @@ class FileSize extends AC\Column\Media\FileSize
 	implements Sorting\Sortable, Export\Exportable {
 
 	public function sorting() {
-		return new Sorting\Model\Media\FileSize( $this );
+		return new Sorting\Model\Media\FileSize();
 	}
 
 	public function export() {

@@ -32,7 +32,7 @@ class Email extends Field {
 	}
 
 	public function sorting() {
-		return new ACP\Sorting\Model\Meta( $this->column );
+		return ( new ACP\Sorting\Model\MetaFactory() )->create( $this->get_meta_type(), $this->get_meta_key() );
 	}
 
 }

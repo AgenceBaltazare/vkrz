@@ -27,7 +27,7 @@ class Post extends Field {
 		add_filter( 'acf/location/rule_match/post_status', '__return_true', 16 );
 		add_filter( 'acf/location/rule_match/taxonomy', '__return_true', 16 );
 
-		$group_ids = apply_filters( 'acf/location/match_field_groups', array(), array( 'post_type' => $this->column->get_post_type() ) );
+		$group_ids = apply_filters( 'acf/location/match_field_groups', [], [ 'post_type' => $this->column->get_post_type() ] );
 
 		remove_filter( 'acf/location/rule_match/user_type', '__return_true', 16 );
 		remove_filter( 'acf/location/rule_match/page_type', '__return_true', 16 );

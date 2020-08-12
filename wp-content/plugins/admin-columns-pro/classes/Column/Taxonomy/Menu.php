@@ -8,7 +8,7 @@ use ACP\Export;
 use ACP\Sorting;
 
 class Menu extends AC\Column\Menu
-	implements Sorting\Sortable, Editing\Editable, Export\Exportable {
+	implements Editing\Editable, Export\Exportable, Sorting\Sortable {
 
 	public function get_item_type() {
 		return 'taxonomy';
@@ -18,16 +18,16 @@ class Menu extends AC\Column\Menu
 		return $this->get_taxonomy();
 	}
 
-	public function sorting() {
-		return new Sorting\Model( $this );
-	}
-
 	public function editing() {
 		return new Editing\Model\Taxonomy\Menu( $this );
 	}
 
 	public function export() {
 		return new Export\Model\StrippedValue( $this );
+	}
+
+	public function sorting() {
+		return new Sorting\Model\Taxonomy\Menu( $this->get_taxonomy() );
 	}
 
 }

@@ -8,11 +8,12 @@ use ACA\ACF\Filtering;
 use ACA\ACF\Search;
 use ACA\ACF\Setting;
 use ACP;
+use ACP\Sorting\Type\DataType;
 
 class DateTimePicker extends Field {
 
 	public function sorting() {
-		return new ACP\Sorting\Model\Meta( $this->column );
+		return ( new ACP\Sorting\Model\MetaFactory() )->create( $this->get_meta_type(), $this->get_meta_key(), new DataType( DataType::DATETIME ) );
 	}
 
 	public function search() {
@@ -28,9 +29,9 @@ class DateTimePicker extends Field {
 	}
 
 	public function get_dependent_settings() {
-		return array(
+		return [
 			new Setting\Date( $this->column ),
-		);
+		];
 	}
 
 }

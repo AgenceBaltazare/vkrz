@@ -18,7 +18,7 @@ class User extends Editing
 			return false;
 		}
 
-		$values = array();
+		$values = [];
 
 		foreach ( (array) $user_ids as $k => $user_id ) {
 			$values[ $user_id ] = ac_helper()->user->get_display_name( $user_id );
@@ -28,10 +28,10 @@ class User extends Editing
 	}
 
 	public function get_view_settings() {
-		$data = array(
+		$data = [
 			'type'          => 'select2_dropdown',
 			'ajax_populate' => true,
-		);
+		];
 
 		$field = $this->column->get_field();
 
@@ -44,11 +44,11 @@ class User extends Editing
 
 	public function get_paginated_options( $search, $paged, $id = null ) {
 
-		$entities = new Select\Entities\User( array(
+		$entities = new Select\Entities\User( [
 			'search' => $search,
 			'paged'  => $paged,
 			'role'   => $this->column->get_field()->get( 'role' ),
-		) );
+		] );
 
 		return new Select\Options\Paginated(
 			$entities,

@@ -18,7 +18,7 @@ class Subfield extends AC\Settings\Column {
 	private $sub_field;
 
 	protected function define_options() {
-		return array( 'sub_field' );
+		return [ 'sub_field' ];
 	}
 
 	public function create_view() {
@@ -29,17 +29,17 @@ class Subfield extends AC\Settings\Column {
 			->set_attribute( 'data-refresh', 'column' )
 			->set_options( $this->get_sub_fields() );
 
-		$view = new View( array(
+		$view = new View( [
 			'label'   => __( 'Subfield', 'codepress-admin-columns' ),
 			'tooltip' => __( 'Select a repeater sub field.', 'codepress-admin-columns' ),
 			'setting' => $setting,
-		) );
+		] );
 
 		return $view;
 	}
 
 	public function get_sub_fields() {
-		$fields = array();
+		$fields = [];
 
 		$sub_fields = $this->column->get_field()->get( 'sub_fields' );
 
@@ -86,7 +86,7 @@ class Subfield extends AC\Settings\Column {
 		$acf_field = API::get_field( $this->get_sub_field() );
 
 		if ( ! $acf_field ) {
-			return array();
+			return [];
 		}
 
 		return $this->column->get_field_by_type( $acf_field['type'] )->get_dependent_settings();

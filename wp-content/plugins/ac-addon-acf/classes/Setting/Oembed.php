@@ -14,15 +14,15 @@ class Oembed extends AC\Settings\Column
 	private $oembed;
 
 	protected function define_options() {
-		return array( 'oembed' );
+		return [ 'oembed' ];
 	}
 
 	public function format( $value, $original_value ) {
 		if ( 'video' == $this->get_oembed() ) {
-			$value = wp_oembed_get( $value, array(
+			$value = wp_oembed_get( $value, [
 				'width'  => 200,
 				'height' => 200,
-			) );
+			] );
 		}
 
 		return $value;
@@ -30,15 +30,15 @@ class Oembed extends AC\Settings\Column
 
 	public function create_view() {
 		$select = $this->create_element( 'select' );
-		$select->set_options( array(
+		$select->set_options( [
 			''      => __( 'Url' ), // default
 			'video' => __( 'Video' ),
-		) );
+		] );
 
-		$view = new View( array(
+		$view = new View( [
 			'label'   => __( 'Display format', 'codepress-admin-columns' ),
 			'setting' => $select,
-		) );
+		] );
 
 		return $view;
 	}

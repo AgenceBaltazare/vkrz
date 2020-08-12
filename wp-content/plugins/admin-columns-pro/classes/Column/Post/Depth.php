@@ -9,7 +9,7 @@ class Depth extends AC\Column\Post\Depth
 	implements Sorting\Sortable {
 
 	public function sorting() {
-		return new Sorting\Model( $this );
+		return new Sorting\Model\Post\Depth();
 	}
 
 }
