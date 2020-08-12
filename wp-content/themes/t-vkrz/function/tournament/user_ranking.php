@@ -244,7 +244,7 @@ function get_or_create_ranking_if_not_exists( $id_tournament ) {
 
 }
 
-
+// All total votes in the current tournoi by the current user
 function all_user_votes_in_tournament( $id_tournament ) {
 
 	$all_user_votes = new WP_Query( array(
@@ -268,10 +268,9 @@ function all_user_votes_in_tournament( $id_tournament ) {
 	return $all_user_votes->found_posts;
 }
 
-
+// All total votes in the current tournoi
 function all_votes_in_tournament( $id_tournament ) {
 
-// All total votes in the current tournoi
 	$all_votes = new WP_Query( array(
 		'post_type'      => 'vote',
 		'posts_per_page' => - 1,
@@ -286,6 +285,7 @@ function all_votes_in_tournament( $id_tournament ) {
 
 	return $all_votes->found_posts;
 }
+
 
 function genrerate_tournament_response($tournament_infos){
 	extract($tournament_infos);

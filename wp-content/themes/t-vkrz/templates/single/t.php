@@ -18,52 +18,17 @@ $id_classement_user = get_or_create_ranking_if_not_exists($id_tournoi);
 extract(get_next_duel($id_classement_user, $id_tournoi));
 
 wp_reset_query();
-
-?>
-<?php get_header(); ?>
-<?php
 if ( get_field( 'cover_t' ) ) {
-	$illu     = wp_get_attachment_image_src( get_field( 'cover_t' ), 'full' );
-	$illu_url = $illu[0];
+    $illu     = wp_get_attachment_image_src( get_field( 'cover_t' ), 'full' );
+    $illu_url = $illu[0];
 }
 ?>
+<?php get_header(); ?>
+
 <body <?php body_class( array( 'cover', 'a_step', $body_class ) ); ?> style="background: url(<?php echo $illu_url; ?>) center center no-repeat">
 
 <div class="main">
 
-    <div class="vardump none">
-		<?php
-		echo 'Nombre de contenders : ' . $nb_contenders;
-		$results = get_field( 'ranking_r', $id_classement_user );
-		echo '<pre>';
-		print_r( $results );
-		echo '</pre>';
-		var_dump( 'Gagnant : ' . $key_gagnant . '(' . $v . ')' );
-		echo '<br>';
-		var_dump( 'Perdant : ' . $key_perdant . '(' . $l . ')' );
-		echo '<br>';
-		echo 'Liste des plus fort : <pre>';
-		print_r( $deja_sup_to );
-		echo '</pre>';
-		echo '<br>';
-		var_dump( 'Nouvelle place : ' . $new_place );
-		echo '<br>';
-		echo 'Liste des places : <pre>';
-		print_r( $id_contender_next );
-		echo '</pre>';
-		echo '<br>';
-		echo 'Prochain participants possible: <pre>';
-		print_r( $clear_next_duel );
-		echo '</pre>';
-		echo '<br>';
-		echo 'Prochain duel: <pre>';
-		echo $contender_1 . ' VS ' . $contender_2 . '</pre>';
-		echo '<br>';
-		echo '<pre>';
-		print_r( $stade_steps . "/" . $nb_step . " " . $step_number . " " . $current_step );
-		echo '</pre>';
-		?>
-    </div>
     <header class="header">
         <div class="container-fluid">
             <div class="row align-items-center">
@@ -80,10 +45,10 @@ if ( get_field( 'cover_t' ) ) {
                         <a href="https://baltazare1.typeform.com/to/j9n8JU" target="_blank" class="cta_2">
                             ☝️ Donnez nous votre avis !
                         </a>
-	                    <?php
-	                    set_query_var( 'user_votes_vars', compact( 'nb_user_votes' ) );
-	                    get_template_part( 'templates/parts/content', 'user-votes' );
-	                    ?>
+                        <?php
+                        set_query_var( 'user_votes_vars', compact( 'nb_user_votes' ) );
+                        get_template_part( 'templates/parts/content', 'user-votes' );
+                        ?>
                     </div>
                 </div>
             </div>
@@ -136,6 +101,10 @@ if ( get_field( 'cover_t' ) ) {
                 </div>
             </div>
         </div>
+        <?php
+        set_query_var( 'steps_var', compact( 'bar_step', 'current_step' ) );
+        get_template_part( 'templates/parts/content', 'step-bar' );
+        ?>
 	<?php else: ?>
         <div class="finish_tournoi">
             <div class="container">
@@ -145,13 +114,22 @@ if ( get_field( 'cover_t' ) ) {
                             <i class="fal fa-badge-check"></i>
                             <br>
                             Félicitations,
-                            <br>vous avez terminé le tournoi <b><?php the_title(); ?>
-                                : <?php the_field( 'question_t' ); ?></b>
+                            <br>vous avez terminé ce tournoi
                         </h2>
                         <div class="more_links text-center">
-                            <a href="<?php the_permalink( $id_classement_user ); ?>" class="cta-1 cta_btn">
-                                <i class="fad fa-medal"></i> Voir votre classement
-                            </a>
+                            <ul class="list-unstyled list-inline">
+                                <li>
+                                    <a href="<?php the_permalink( $id_classement_user ); ?>" class="cta_2">
+                                        Voir votre classement
+                                    </a>
+                                </li>
+                                <br>
+                                <li>
+                                    <a href="<?php the_permalink(get_page_by_path('classement-elo')); ?>?id_tournoi=<?php echo $id_tournoi; ?>" target="_blank" class="cta-1 cta_btn">
+                                        Voir le classement global
+                                    </a>
+                                </li>
+                            </ul>
                             <div>
                                 <a href="<?php bloginfo( 'url' ); ?>/" class="cta-2 cta_btn">
                                     Retourner aux tournois
@@ -164,8 +142,5 @@ if ( get_field( 'cover_t' ) ) {
         </div>
 	<?php endif; ?>
 </div>
-<?php
-    set_query_var( 'steps_var', compact( 'bar_step', 'current_step' ) );
-    get_template_part( 'templates/parts/content', 'step-bar' );
-?>
+
 <?php get_footer(); ?>
