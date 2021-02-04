@@ -1,9 +1,4 @@
 <?php
-/**
- * Primary Term watcher.
- *
- * @package Yoast\YoastSEO\Watchers
- */
 
 namespace Yoast\WP\SEO\Integrations\Watchers;
 
@@ -15,6 +10,8 @@ use Yoast\WP\SEO\Integrations\Integration_Interface;
 use Yoast\WP\SEO\Repositories\Primary_Term_Repository;
 
 /**
+ * Primary Term watcher.
+ *
  * Watches Posts to save the primary term when set.
  */
 class Primary_Term_Watcher implements Integration_Interface {
@@ -48,7 +45,7 @@ class Primary_Term_Watcher implements Integration_Interface {
 	protected $primary_term_builder;
 
 	/**
-	 * @inheritDoc
+	 * Returns the conditionals based on which this loadable should be active.
 	 */
 	public static function get_conditionals() {
 		return [ Migrations_Conditional::class ];
@@ -77,7 +74,9 @@ class Primary_Term_Watcher implements Integration_Interface {
 	}
 
 	/**
-	 * @inheritDoc
+	 * Initializes the integration.
+	 *
+	 * This is the place to register hooks and filters.
 	 */
 	public function register_hooks() {
 		\add_action( 'save_post', [ $this, 'save_primary_terms' ] );

@@ -1,5 +1,77 @@
 == Changelog ==
 
+= 5.4.1 =
+Release Date: February 3rd, 2021
+
+* [Added] Support management for columns on the Reusable Blocks (Gutenberg) list table
+* [Fixed] The 'Standard' post format does now filter correctly
+* [Fixed] Fixed javascript Violation errors
+* [Improved] When the Saved Filters do not match the column settings, you'll now get a useful message instead of a fatal error
+* [Updated] Admin Columns Core changes ( 4.2.6 )
+* [Added] User Column: First and Last Post(type)
+* [Improved] It's now possible to select a post status for the Post Count column (User)
+
+= 5.4 =
+Release Date: December 15th, 2020
+
+* [Added] Option to hide the Quick Links menu on top of the list tables
+* [Improved] Exporting to CSV is faster and will no longer store temporary files on the file system
+* [Improved] You can now limit the number of shown items for the child pages column
+* [Fixed] Don't show the clear button for empty values
+* [Fixed] Permalinks will be urldecoded when exporting
+* [Improved] Export is faster and does not store temporary files on the file system anymore
+* [Improved] Limit the number of items for Child Pages column
+* [Updated] Admin Columns Core changes ( 4.2.5 )
+* [Fixed] The updater could give a PHP warning when there were no updates
+* [Fixed] Display a correct message when an integration is not installed
+
+= 5.3.3 =
+Release Date: December 9th, 2020
+
+* [Fixed] WordPress 5.6 compatibility issues
+
+= 5.3.2 =
+Release Date: October 6th, 2020
+
+* [Added] New Media Column: Title Only
+* [Added] New filter to toggle between the new Inline Editing styling `acp/editing/inline/deprecated_style` (default:false)
+* [Fixed] The pagination when sorting on the Media list table was ignored
+* [Fixed] The Filter button was not visible on the Taxonomy list tables when the standard filter drop downs were used
+* [Fixed] The Bulk Edit setting is no longer available for unsupported column types
+* [Improved] URL's for link related columns are now displayed correctly (urldecode)
+* [Improved] The inline edit controls are not visible on hover instead of being always visible
+* [Improved] When enabling inline editing on the list table, the table row height is no longer affected
+* [Improved] We added a clear filter button which removes all filters
+* [Improved] You can now remove roles on the user list table when using inline or bulk edit
+* [Updated] Admin Columns Core changes ( 4.2.3 )
+* [Added] Title only column added to Media list table
+* [Improved] Dashicons updates for icon picker in column settings
+* [Improved] New icons for action column added
+
+= 5.3.1 =
+Release Date: August 21st, 2020
+
+* [Fixed] Sorting for Media Exif information improved
+* [Improved] Add 'is empty' and 'is not empty' smart filtering operators for Excerpt column
+* [Improved] Remove filter in saved filter when a column does not exist anymore
+* [Updated] Admin Columns Core changes ( 4.2.1 )
+* [Fixed] JS error on table pages
+
+= 5.3 =
+Release Date: August 18th, 2020
+
+* [Fixed] Some saved filters gave a fatal error when it was using operators that did not exist anymore
+* [Fixed] Export did not work anymore since WordPress 5.5
+* [Fixed] IE11 issues for Smart Filtering
+* [Improved] The submenu with column sets on top of the column settings has been removed. It can be enabled again with the hook: add_filter( 'acp/admin/enable_submenu', '__return_true' );
+* [Added] We added the option to share filter segments with all users
+* [Added] New filter `acp/search/segments_list` which allow you to change the order of the saved filters and restrict them per user role.
+* [Updated] Admin Columns Core changes ( 4.2 )
+* [Added] New api function `ac_get_columns` to retrieve the available columns for Listscreen ID
+* [Added] New api function `ac_get_column` to retrieve a single column from a Listscreen based on its ID
+* [Added] Screen Option to show the Listscreen ID and Listscreen Name on the Column settings page
+* [Fixed] Fixed User helper that gave some PHP warnings when using in the Author column
+
 = 5.2.3 =
 Release Date: July 28th, 2020
 
@@ -362,7 +434,7 @@ Release Date: January 23th, 2019
 * [Fixed] Javascript error on the Media Grid Overview
 * [Fixed] Inline Editing for Taxonomy column with 'allow new category' option enabled
 * [Improved] Smart Filtering for Custom Field Post type
-* [Removed] Removed the acp/editing/save* filters as all models now return a boolean result
+* [Removed] Removed the `acp/editing/save` filter as all models now return a boolean result
 * [Changed] get_rows abstract method renamed to get_table_screen_rows
 * [Changed] Editing model is made abstract and now implements an abstract save method instead of public
 * [Updated] Admin Columns Core changes ( 3.4 )

@@ -211,28 +211,22 @@ final class Screen implements Registrable {
 	 * @since 2.2.4
 	 */
 	public function admin_scripts() {
-
-		// Tooltip
-		$script = new Asset\Script( 'jquery-qtip2', $this->location->with_suffix( 'external/qtip2/jquery.qtip.min.js' ), [ 'jquery' ] );
-		$script->register();
-
-		$style = new Asset\Style( 'jquery-qtip2', $this->location->with_suffix( 'external/qtip2/jquery.qtip.min.css' ) );
-		$style->enqueue();
-
-		$script = new Asset\Script( 'ac-table', $this->location->with_suffix( 'assets/js/table.js' ), [ 'jquery', 'jquery-qtip2' ] );
+		$script = new Asset\Script( 'ac-table', $this->location->with_suffix( 'assets/js/table.js' ), [ 'jquery' ] );
 		$script->enqueue();
 
 		$style = new Asset\Style( 'ac-table', $this->location->with_suffix( 'assets/css/table.css' ) );
 		$style->enqueue();
 
 		wp_localize_script( 'ac-table', 'AC', [
-				'list_screen'  => $this->list_screen->get_key(),
-				'layout'       => $this->list_screen->get_layout_id(),
-				'column_types' => $this->get_column_types_mapping(),
-				'ajax_nonce'   => wp_create_nonce( 'ac-ajax' ),
-				'table_id'     => $this->list_screen->get_table_attr_id(),
-				'screen'       => $this->get_current_screen_id(),
-				'meta_type'    => $this->list_screen->get_meta_type(),
+				'list_screen'      => $this->list_screen->get_key(),
+				'layout'           => $this->list_screen->get_layout_id(),
+				'column_types'     => $this->get_column_types_mapping(),
+				'ajax_nonce'       => wp_create_nonce( 'ac-ajax' ),
+				'table_id'         => $this->list_screen->get_table_attr_id(),
+				'screen'           => $this->get_current_screen_id(),
+				'meta_type'        => $this->list_screen->get_meta_type(),
+				'list_screen_link' => $this->get_list_screen_clear_link(),
+				'column_widths'    => $this->get_column_widths(),
 			]
 		);
 
@@ -245,6 +239,40 @@ final class Screen implements Registrable {
 		foreach ( $this->list_screen->get_columns() as $column ) {
 			$column->scripts();
 		}
+	}
+
+	/**
+	 * @return string
+	 */
+	private function get_list_screen_clear_link() {
+
+		$query_args_whitelist = [
+			'layout',
+			'orderby',
+			'order',
+		];
+
+		switch ( true ) {
+			case $this->list_screen instanceof ListScreen\Post :
+				$query_args_whitelist[] = 'post_status';
+				break;
+			case $this->list_screen instanceof ListScreen\User :
+				$query_args_whitelist[] = 'role';
+				break;
+			case $this->list_screen instanceof ListScreen\Comment :
+				$query_args_whitelist[] = 'comment_status';
+				break;
+		}
+
+		$args = [];
+
+		foreach ( $query_args_whitelist as $query_arg ) {
+			if ( isset( $_GET[ $query_arg ] ) ) {
+				$args[ $query_arg ] = $_GET[ $query_arg ];
+			}
+		}
+
+		return add_query_arg( $args, $this->list_screen->get_screen_link() );
 	}
 
 	/**
@@ -287,6 +315,28 @@ final class Screen implements Registrable {
 	 */
 	public function get_list_screen() {
 		return $this->list_screen;
+	}
+
+	/**
+	 *
+	 */
+	private function get_column_widths() {
+		$result = [];
+		if ( ! $this->list_screen->get_settings() ) {
+			return $result;
+		}
+
+		foreach ( $this->list_screen->get_columns() as $column ) {
+			/* @var Settings\Column\Width $setting */
+			$setting = $column->get_setting( 'width' );
+
+			$result[ $column->get_name() ] = [
+				'width'      => $setting->get_width(),
+				'width_unit' => $setting->get_width_unit(),
+			];
+		}
+
+		return $result;
 	}
 
 	/**

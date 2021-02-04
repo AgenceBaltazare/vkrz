@@ -33,7 +33,11 @@ class Select extends Field
 	}
 
 	public function format( $values ) {
-		return implode( ', ', $values );
+		if ( empty( $values ) ) {
+			return false;
+		}
+
+		return implode( ', ', (array) $values );
 	}
 
 	public function get_dependent_settings() {

@@ -1,29 +1,31 @@
 <?php
-/**
- * WPSEO plugin file.
- *
- * @package Yoast\WP\SEO\Integrations\Blocks
- */
 
 namespace Yoast\WP\SEO\Integrations\Blocks;
 
 use Yoast\WP\SEO\Integrations\Integration_Interface;
 
 /**
- * Breadcrumbs block class
+ * Dynamic_Block class.
  */
 abstract class Dynamic_Block implements Integration_Interface {
+
 	/**
-	 * @var string the name of the block.
+	 * The name of the block.
+	 *
+	 * @var string
 	 */
 	protected $block_name;
 
 	/**
-	 * @var string the editor script for the block.
+	 * The editor script for the block.
+	 *
+	 * @var string
 	 */
 	protected $script;
 
 	/**
+	 * Get conditionals.
+	 *
 	 * @inheritDoc
 	 */
 	public static function get_conditionals() {
@@ -31,26 +33,33 @@ abstract class Dynamic_Block implements Integration_Interface {
 	}
 
 	/**
+	 * Register hooks.
+	 *
 	 * @inheritDoc
 	 */
 	public function register_hooks() {
-		\add_action( 'init', [ $this, 'register_block' ] );
+		\add_action( 'init', [ $this, 'register_block' ], 11 );
 	}
 
 	/**
 	 * Registers the block.
+	 *
+	 * @return void
 	 */
 	public function register_block() {
-		\register_block_type( 'yoast-seo/' . $this->block_name, [
-			'editor_script'   => $this->script,
-			'render_callback' => [ $this, 'present' ],
-			'attributes' => [
-				'className' => [
-					'default' => '',
-					'type'    => 'string',
+		\register_block_type(
+			'yoast-seo/' . $this->block_name,
+			[
+				'editor_script'   => $this->script,
+				'render_callback' => [ $this, 'present' ],
+				'attributes'      => [
+					'className' => [
+						'default' => '',
+						'type'    => 'string',
+					],
 				],
-			],
-		] );
+			]
+		);
 	}
 
 	/**

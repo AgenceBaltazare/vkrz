@@ -7,8 +7,19 @@ use WP_Roles;
 
 abstract class Plugin extends Addon {
 
-	/** @var array */
+	/**
+	 * @var Installer|null
+	 */
+	private $installer;
+
+	/**
+	 * @var array
+	 */
 	private $data;
+
+	public function set_installer( Installer $installer ) {
+		$this->installer = $installer;
+	}
 
 	/**
 	 * Check if plugin is network activated
@@ -34,17 +45,16 @@ abstract class Plugin extends Addon {
 	}
 
 	/**
-	 * @return false|string
-	 * @since 3.2
+	 * @return string
 	 */
 	public function get_name() {
-		return $this->get_header( 'Name' );
+		return (string) $this->get_header( 'Name' );
 	}
 
 	/**
 	 * Return a plugin header from the plugin data
 	 *
-	 * @param $key
+	 * @param string $key
 	 *
 	 * @return false|string
 	 */
@@ -59,10 +69,30 @@ abstract class Plugin extends Addon {
 	}
 
 	/**
-	 * Apply updates to the database
+	 * @return bool
 	 */
+	private function can_install() {
+
+		// Run installer manually
+		if ( '1' === filter_input( INPUT_GET, 'ac-force-install' ) ) {
+			return true;
+		}
+
+		// Run installer when the current version is not equal to its stored version
+		if ( ! $this->is_version_equal( $this->get_stored_version() ) ) {
+			return true;
+		}
+
+		// Run installer when the current version can not be read from the plugin's header file
+		if ( ! $this->get_version() && ! $this->get_stored_version() ) {
+			return true;
+		}
+
+		return false;
+	}
+
 	public function install() {
-		if ( 0 === version_compare( $this->get_version(), $this->get_stored_version() ) ) {
+		if ( ! $this->can_install() ) {
 			return;
 		}
 
@@ -74,8 +104,9 @@ abstract class Plugin extends Addon {
 
 		do_action( 'ac/capabilities/init', $wp_roles );
 
-		$installer = new Plugin\Installer();
-		$installer->install();
+		if ( $this->installer instanceof Installer ) {
+			$this->installer->install();
+		}
 
 		if ( current_user_can( Capabilities::MANAGE ) && ! is_network_admin() ) {
 			$this->run_updater();
@@ -96,9 +127,7 @@ abstract class Plugin extends Addon {
 	}
 
 	/**
-	 * Check if a plugin is in beta
 	 * @return bool
-	 * @since 3.2
 	 */
 	public function is_beta() {
 		return false !== strpos( $this->get_version(), 'beta' );
@@ -108,7 +137,7 @@ abstract class Plugin extends Addon {
 	 * @return string
 	 */
 	public function get_version() {
-		return $this->get_header( 'Version' );
+		return (string) $this->get_header( 'Version' );
 	}
 
 	/**
@@ -126,10 +155,19 @@ abstract class Plugin extends Addon {
 	}
 
 	/**
+	 * @param string $version
+	 *
+	 * @return bool
+	 */
+	private function is_version_equal( $version ) {
+		return 0 === version_compare( $this->get_version(), $version );
+	}
+
+	/**
 	 * @return string
 	 */
 	public function get_stored_version() {
-		return get_option( $this->get_version_key() );
+		return (string) get_option( $this->get_version_key() );
 	}
 
 	/**
@@ -166,9 +204,9 @@ abstract class Plugin extends Addon {
 	/**
 	 * Return a plugin header from the plugin data
 	 *
-	 * @param $key
+	 * @param string $key
 	 *
-	 * @return false|string
+	 * @return string
 	 * @deprecated
 	 */
 	protected function get_plugin_header( $key ) {

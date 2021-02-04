@@ -11,8 +11,11 @@ use AC\ListScreenPost;
 use AC\ListScreenRepository\Sort;
 use AC\ListScreenRepository\Storage;
 use AC\Registrable;
+use AC\Type\Url;
 use AC\View;
+use ACP\ListScreen\Comment;
 use ACP\ListScreen\Media;
+use ACP\ListScreen\User;
 use ACP\Settings\ListScreen\HideOnScreen;
 use ACP\Settings\ListScreen\HideOnScreenCollection;
 use WP_User;
@@ -45,6 +48,10 @@ class Settings implements Registrable {
 	}
 
 	public function render_submenu_view( ListScreen $current_list_screen ) {
+		if ( ! apply_filters( 'acp/admin/enable_submenu', false ) ) {
+			return;
+		}
+
 		$list_screens = $this->get_list_screens( $current_list_screen->get_key() );
 
 		if ( $list_screens->count() <= 1 ) {
@@ -127,7 +134,7 @@ class Settings implements Registrable {
 		wp_enqueue_style( 'ac-select2' );
 		wp_enqueue_script( 'ac-select2' );
 
-		$script = new Asset\Script( 'acp-layouts', $this->location->with_suffix( 'assets/core/js/layouts.js' ) );
+		$script = new Asset\Script( 'acp-layouts', $this->location->with_suffix( 'assets/core/js/layouts.js' ), ['ac-admin-page-columns'] );
 		$script->enqueue();
 
 		wp_localize_script( 'acp-layouts', 'acp_layouts', [
@@ -206,6 +213,11 @@ class Settings implements Registrable {
 		if ( $list_screen instanceof ListScreenPost ) {
 			$collection->add( new HideOnScreen\FilterPostDate(), 32 );
 
+			// Exclude Media, but make sure to include all other post types
+			if ( ! in_array( $list_screen->get_post_type(), [ 'attachment' ] ) ) {
+				$collection->add( new HideOnScreen\SubMenu\PostStatus(), 80 );
+			}
+
 			if ( is_object_in_taxonomy( $list_screen->get_post_type(), 'category' ) ) {
 				$collection->add( new HideOnScreen\FilterCategory(), 34 );
 			}
@@ -217,6 +229,14 @@ class Settings implements Registrable {
 			if ( $list_screen instanceof Media ) {
 				$collection->add( new HideOnScreen\FilterMediaItem(), 31 );
 			}
+		}
+
+		if ( $list_screen instanceof User ) {
+			$collection->add( new HideOnScreen\SubMenu\Roles(), 80 );
+		}
+
+		if ( $list_screen instanceof Comment ) {
+			$collection->add( new HideOnScreen\SubMenu\CommentStatus(), 80 );
 		}
 
 		do_action( 'acp/admin/settings/hide_on_screen', $collection, $list_screen );
@@ -252,7 +272,7 @@ class Settings implements Registrable {
 	private function render_checkbox( $name, $label, $is_checked, $dependent_on = [], $class = '' ) {
 		ob_start();
 		// the hidden field makes sure we also save the 'off' state. This allows us to set a 'default' value.
-		$attr_name = sprintf( 'settings[%s]', $name );
+		$attr_name = $name;
 		?>
 		<label class="<?= esc_attr( $class ); ?>" data-setting="<?= $name; ?>" data-dependent="<?= implode( ',', $dependent_on ); ?>">
 			<input name="<?= $attr_name; ?>" type="hidden" value="off">
@@ -274,10 +294,10 @@ class Settings implements Registrable {
 				<?php _e( "Available sets are selectable from the overview screen. Users can have their own column view preference.", 'codepress-admin-columns' ); ?>
 			<p>
 			<p>
-				<img src="<?php echo esc_url( $this->location->get_url() ); ?>assets/core/images/layout-selector.png" alt=""/>
+				<img src="<?= esc_url( $this->location->get_url() ); ?>assets/core/images/layout-selector.png" alt=""/>
 			</p>
 			<p>
-				<a href="<?php echo esc_url( ac_get_site_utm_url( 'documentation/how-to/make-multiple-column-sets', 'column-sets' ) ); ?>" target="_blank"><?php _e( 'Online documentation', 'codepress-admin-columns' ); ?></a>
+				<a href="<?= esc_url( ( new Url\Documentation( Url\Documentation::ARTICLE_COLUMN_SETS ) )->get_url() ); ?>" target="_blank"><?php _e( 'Online documentation', 'codepress-admin-columns' ); ?></a>
 			</p>
 		</div>
 		<?php
@@ -290,7 +310,7 @@ class Settings implements Registrable {
 	 * @return AC\Form\Element\MultiSelect
 	 */
 	private function select_roles( array $roles = [], $is_disabled = false ) {
-		$select = new AC\Form\Element\MultiSelect( 'settings[roles][]', $this->get_grouped_role_names() );
+		$select = new AC\Form\Element\MultiSelect( 'roles[]', $this->get_grouped_role_names() );
 
 		$roles = array_map( 'strval', array_filter( $roles ) );
 
@@ -364,7 +384,7 @@ class Settings implements Registrable {
 			$options[ (string) $user_id ] = ac_helper()->user->get_display_name( $user_id );
 		}
 
-		$select = new AC\Form\Element\MultiSelect( 'settings[users][]', $options );
+		$select = new AC\Form\Element\MultiSelect( 'users[]', $options );
 
 		$select->set_value( $user_ids )
 		       ->set_attribute( 'class', 'users' )

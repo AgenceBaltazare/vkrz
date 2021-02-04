@@ -1,9 +1,4 @@
 <?php
-/**
- * Author watcher to save the meta data to an Indexable.
- *
- * @package Yoast\YoastSEO\Watchers
- */
 
 namespace Yoast\WP\SEO\Integrations\Watchers;
 
@@ -13,7 +8,7 @@ use Yoast\WP\SEO\Integrations\Integration_Interface;
 use Yoast\WP\SEO\Repositories\Indexable_Repository;
 
 /**
- * Watches an Author to save the meta information when updated.
+ * Watches an Author to save the meta information to an Indexable when updated.
  */
 class Indexable_Author_Watcher implements Integration_Interface {
 
@@ -32,7 +27,7 @@ class Indexable_Author_Watcher implements Integration_Interface {
 	protected $builder;
 
 	/**
-	 * @inheritDoc
+	 * Returns the conditionals based on which this loadable should be active.
 	 */
 	public static function get_conditionals() {
 		return [ Migrations_Conditional::class ];
@@ -50,7 +45,9 @@ class Indexable_Author_Watcher implements Integration_Interface {
 	}
 
 	/**
-	 * @inheritDoc
+	 * Initializes the integration.
+	 *
+	 * This is the place to register hooks and filters.
 	 */
 	public function register_hooks() {
 		\add_action( 'user_register', [ $this, 'build_indexable' ], \PHP_INT_MAX );

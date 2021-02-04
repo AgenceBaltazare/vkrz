@@ -39,7 +39,7 @@ final class Table extends Script {
 		Preference\EditState $edit_state,
 		Request $request
 	) {
-		parent::__construct( $handle, $location, [ 'jquery' ] );
+		parent::__construct( $handle, $location, [ 'jquery', 'ac-table' ] );
 
 		$this->list_screen = $list_screen;
 		$this->editable_data = $editable_data;
@@ -62,6 +62,7 @@ final class Table extends Script {
 			'inline_edit' => [
 				'persistent' => $this->is_persistent_editing(),
 				'active'     => $this->edit_state->is_active( $this->list_screen->get_key() ),
+				'version'    => apply_filters( 'acp/editing/inline/deprecated_style', false ) ? 'v1' : 'v2',
 			],
 			'bulk_edit'   => [
 				'updated_rows_per_iteration' => $this->get_updated_rows_per_iteration(),

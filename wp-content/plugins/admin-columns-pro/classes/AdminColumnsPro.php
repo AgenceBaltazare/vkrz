@@ -7,11 +7,15 @@ use AC\Asset\Location;
 use AC\Capabilities;
 use AC\ListScreenTypes;
 use AC\Request;
+use AC\Type\Url;
 use ACP\Admin;
 use ACP\Migrate;
+use ACP\Plugin;
 use ACP\Plugin\NetworkUpdate;
 use ACP\Plugin\Updater;
+use ACP\Search;
 use ACP\Settings;
+use ACP\Settings\ListScreen\HideOnScreen;
 use ACP\Storage\ListScreen\DecoderFactory;
 use ACP\Storage\ListScreen\Encoder;
 use ACP\Storage\ListScreen\LegacyCollectionDecoder;
@@ -55,7 +59,7 @@ final class AdminColumnsPro extends AC\Plugin {
 	private function __construct() {
 		$this->api = new API();
 		$this->api
-			->set_url( ac_get_site_url() )
+			->set_url( Url\Site::URL )
 			->set_proxy( 'https://api.admincolumns.com' )
 			->set_request_meta( [
 				'php_version' => PHP_VERSION,
@@ -100,6 +104,9 @@ final class AdminColumnsPro extends AC\Plugin {
 			new Table\Switcher( $storage, $location ),
 			new Table\HorizontalScrolling( $storage, $location ),
 			new Table\HideSearch(),
+			new Table\HideSubMenu( new HideOnScreen\SubMenu\CommentStatus() ),
+			new Table\HideSubMenu( new HideOnScreen\SubMenu\PostStatus() ),
+			new Table\HideSubMenu( new HideOnScreen\SubMenu\Roles() ),
 			new Table\HideBulkActions(),
 			new Table\HideFilters(),
 			new ListScreens(),
@@ -138,6 +145,8 @@ final class AdminColumnsPro extends AC\Plugin {
 				$service->register();
 			}
 		}
+
+		$this->set_installer( new Plugin\Installer() );
 
 		add_action( 'init', [ $this, 'install' ], 1000 );
 		add_action( 'init', [ $this, 'install_network' ], 1000 );

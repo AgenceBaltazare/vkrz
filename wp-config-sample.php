@@ -77,7 +77,7 @@ $table_prefix = 'wp_';
  *
  * En passant la valeur suivante à "true", vous activez l’affichage des
  * notifications d’erreurs pendant vos essais.
- * Il est fortemment recommandé que les développeurs d’extensions et
+ * Il est fortement recommandé que les développeurs d’extensions et
  * de thèmes se servent de WP_DEBUG dans leur environnement de
  * développement.
  *

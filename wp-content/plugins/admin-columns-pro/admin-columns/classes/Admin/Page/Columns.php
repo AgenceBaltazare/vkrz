@@ -19,6 +19,9 @@ use AC\Controller\ListScreenRequest;
 use AC\DefaultColumnsRepository;
 use AC\ListScreen;
 use AC\Message;
+use AC\Type\Url\Documentation;
+use AC\Type\Url\Site;
+use AC\Type\Url\UtmTags;
 use AC\View;
 
 class Columns extends Page implements Enqueueables, Helpable, Admin\ScreenOptions {
@@ -104,10 +107,20 @@ class Columns extends Page implements Enqueueables, Helpable, Admin\ScreenOption
 		return new ScreenOption\ColumnType( new Admin\Preference\ScreenOptions() );
 	}
 
+	private function get_list_screen_id() {
+		return new ScreenOption\ListScreenId( new Admin\Preference\ScreenOptions() );
+	}
+
+	private function get_list_screen_type() {
+		return new ScreenOption\ListScreenType( new Admin\Preference\ScreenOptions() );
+	}
+
 	public function get_screen_options() {
 		return [
 			$this->get_column_id(),
 			$this->get_column_type(),
+			$this->get_list_screen_id(),
+			$this->get_list_screen_type(),
 		];
 	}
 
@@ -123,10 +136,24 @@ class Columns extends Page implements Enqueueables, Helpable, Admin\ScreenOption
 			return $this->menu->render( true ) . $modal->render();
 		}
 
+		$classes = [];
+
+		if ( $list_screen->get_settings() ) {
+			$classes[] = 'stored';
+		}
+
+		if ( $this->get_list_screen_id()->is_active() ) {
+			$classes[] = 'show-list-screen-id';
+		}
+
+		if ( $this->get_list_screen_type()->is_active() ) {
+			$classes[] = 'show-list-screen-type';
+		}
+
 		ob_start();
 		?>
 
-		<div class="ac-admin<?= $list_screen->get_settings() ? ' stored' : ''; ?>" data-type="<?= esc_attr( $list_screen->get_key() ); ?>">
+		<div class="ac-admin <?= esc_attr( implode( ' ', $classes ) ); ?>" data-type="<?= esc_attr( $list_screen->get_key() ); ?>">
 			<div class="ac-admin__header">
 
 				<?= $this->menu->render(); ?>
@@ -171,11 +198,22 @@ class Columns extends Page implements Enqueueables, Helpable, Admin\ScreenOption
 
 						<?= new Banner(); ?>
 
-						<?= ( new View() )->set_template( 'admin/side-feedback' ); ?>
+						<?php
+						$view = new View( [
+							'documentation_url' => ( new UtmTags( new Documentation(), 'feedback-docs-button' ) )->get_url(),
+							'upgrade_url'       => ( new UtmTags( new Site( Site::PAGE_ABOUT_PRO ), 'feedback-purchase-button' ) )->get_url(),
+						] );
+						echo $view->set_template( 'admin/side-feedback' );
+						?>
 
 					<?php endif; ?>
 
-					<?= ( new View() )->set_template( 'admin/side-support' ); ?>
+					<?php
+					$view = new View( [
+						'documentation_url' => ( new UtmTags( new Documentation(), 'support' ) )->get_url(),
+					] );
+					echo $view->set_template( 'admin/side-support' );
+					?>
 
 				</div>
 
@@ -183,7 +221,7 @@ class Columns extends Page implements Enqueueables, Helpable, Admin\ScreenOption
 
 					<?= $this->show_read_only_notice( $list_screen ); ?>
 
-					<form method="post" id="listscreen_settings" class="<?= $list_screen->is_read_only() ? '-disabled' : ''; ?>">
+					<div id="listscreen_settings" data-form="listscreen" class="<?= $list_screen->is_read_only() ? '-disabled' : ''; ?>">
 						<?php
 
 						$classes = [];
@@ -217,7 +255,7 @@ class Columns extends Page implements Enqueueables, Helpable, Admin\ScreenOption
 						do_action( 'ac/settings/after_columns', $list_screen );
 
 						?>
-					</form>
+					</div>
 
 				</div>
 
@@ -233,7 +271,9 @@ class Columns extends Page implements Enqueueables, Helpable, Admin\ScreenOption
 
 		<?php
 
-		$modal = new View();
+		$modal = new View( [
+			'upgrade_url' => ( new UtmTags( new Site( Site::PAGE_ABOUT_PRO ), 'upgrade' ) )->get_url(),
+		] );
 
 		echo $modal->set_template( 'admin/modal-pro' );
 

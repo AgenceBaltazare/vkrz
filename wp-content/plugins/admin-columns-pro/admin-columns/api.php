@@ -6,6 +6,7 @@ use AC\Helper;
 use AC\ListScreen;
 use AC\ListScreenCollection;
 use AC\Type\ListScreenId;
+use AC\Type\Url;
 
 /**
  * @return AC\AdminColumns
@@ -24,25 +25,24 @@ function ac_is_pro_active() {
 }
 
 /**
- * Get the url where the Admin Columns website is hosted
- *
  * @param string $path
  *
  * @return string
  */
-function ac_get_site_url( $path = '' ) {
-	$url = 'https://www.admincolumns.com';
-
-	if ( ! empty( $path ) ) {
-		$url .= '/' . trim( $path, '/' ) . '/';
-	}
-
-	return $url;
+function ac_get_site_url( $path = null ) {
+	return ( new Url\Site( $path ) )->get_url();
 }
 
 /**
- * Url with utm tags
+ * @param string|null $path
  *
+ * @return string
+ */
+function ac_get_site_documentation_url( $path = null ) {
+	return ( new Url\Documentation( $path ) )->get_url();
+}
+
+/**
  * @param string $path
  * @param string $utm_medium
  * @param string $utm_content
@@ -50,30 +50,8 @@ function ac_get_site_url( $path = '' ) {
  *
  * @return string
  */
-function ac_get_site_utm_url( $path, $utm_medium, $utm_content = null, $utm_campaign = false ) {
-	$url = ac_get_site_url( $path );
-
-	if ( ! $utm_campaign ) {
-		$utm_campaign = 'plugin-installation';
-	}
-
-	$args = [
-		// Referrer: plugin
-		'utm_source'   => 'plugin-installation',
-
-		// Specific promotions or sales
-		'utm_campaign' => $utm_campaign,
-
-		// Marketing medium: banner, documentation or email
-		'utm_medium'   => $utm_medium,
-
-		// Used for differentiation of medium
-		'utm_content'  => $utm_content,
-	];
-
-	$args = array_map( 'sanitize_key', array_filter( $args ) );
-
-	return add_query_arg( $args, $url );
+function ac_get_site_utm_url( $path, $utm_medium, $utm_content = null, $utm_campaign = null ) {
+	return ( new Url\UtmTags( new Url\Site( $path ), $utm_medium, $utm_content, $utm_campaign ) )->get_url();
 }
 
 /**
@@ -181,6 +159,8 @@ function ac_get_list_screen( $id ) {
 }
 
 /**
+ * Usage: Load after or within the 'wp_loaded' action hook.
+ *
  * @param string $key e.g. post, page, wp-users, wp-media, wp-comments
  *
  * @return ListScreenCollection
@@ -188,6 +168,61 @@ function ac_get_list_screen( $id ) {
  */
 function ac_get_list_screens( $key ) {
 	return AC()->get_storage()->find_all( [ 'key' => $key ] );
+}
+
+/**
+ * Usage: Load after or within the 'wp_loaded' action hook.
+ *
+ * @param string $column_name
+ * @param string $list_screen_id
+ *
+ * @return AC\Column|null
+ * @since 4.2
+ */
+function ac_get_column( $column_name, $list_screen_id ) {
+	try {
+		$list_id = new ListScreenId( $list_screen_id );
+	} catch ( Exception $e ) {
+		return null;
+	}
+
+	$list_screen = AC()->get_storage()->find( $list_id );
+
+	if ( ! $list_screen ) {
+		return null;
+	}
+
+	$column = $list_screen->get_column_by_name( $column_name );
+
+	if ( ! $column ) {
+		return null;
+	}
+
+	return $column;
+}
+
+/**
+ * Usage: Load after or within the 'wp_loaded' action hook.
+ *
+ * @param string $list_screen_id
+ *
+ * @return AC\Column[]
+ * @since 4.2
+ */
+function ac_get_columns( $list_screen_id ) {
+	try {
+		$list_id = new ListScreenId( $list_screen_id );
+	} catch ( Exception $e ) {
+		return [];
+	}
+
+	$list_screen = AC()->get_storage()->find( $list_id );
+
+	if ( ! $list_screen ) {
+		return [];
+	}
+
+	return $list_screen->get_columns();
 }
 
 /**

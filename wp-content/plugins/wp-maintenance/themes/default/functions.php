@@ -9,7 +9,7 @@ function wpm_title_seo() {
 
 	$output = get_bloginfo( 'name', 'display' );
 
-	if ( !empty( $o['seo_title'] ) ) {
+	if ( (isset($o['enable_seo']) && $o['enable_seo']==1) && $o['seo_title']!='' ) {
 		$output = esc_attr( $o['seo_title'] );
 	}
 
@@ -37,26 +37,33 @@ function wpm_metadescription() {
 
 	$output = '<meta name="description" content="'.get_bloginfo( 'description', 'display' ).'">';
 
-	if ( !empty( $o['seo_description'] ) ) {
+	if ( (isset($o['enable_seo']) && $o['enable_seo']==1) && $o['seo_description']!='' ) {
 		$output = '<meta name="description" content="'.esc_attr( $o['seo_description'] ).'">';
 	}
 
 	return $output;
 }
 
-function wpm_copyrights() {
+function wpm_footer_text() {
+
 	// Récupère les paramètres sauvegardés
 	if(get_option('wp_maintenance_settings')) { extract(get_option('wp_maintenance_settings')); }
 	$o = get_option('wp_maintenance_settings');
 
 	$output = '';
 
-	if( isset($o['text_bt_maintenance']) && $o['text_bt_maintenance']!='' ) {
-		$output = nl2br(stripslashes($o['text_bt_maintenance']));
-	}
-	if( (isset($o['add_wplogin']) && $o['add_wplogin']==1) && (isset($o['add_wplogin_title']) && $o['add_wplogin_title']!='') ) {
-		$output .= '<br /><br /><a href="'.get_admin_url().'">'.str_replace('%DASHBOARD%', '--'.__('Dashboard', 'wp-maintenance'), $o['add_wplogin_title']).'</a>';
+	if( isset($o['enable_footer']) && $o['enable_footer'] == 1 ) {
 
+		$output .= '<footer>';
+
+		if( isset($o['text_bt_maintenance']) && $o['text_bt_maintenance']!='' ) {
+			$output .= esc_html(nl2br(stripslashes($o['text_bt_maintenance'])));
+		}
+		if( (isset($o['add_wplogin']) && $o['add_wplogin']==1) && (isset($o['add_wplogin_title']) && $o['add_wplogin_title']!='') ) {
+			$output .= '<br /><br /><a href="'.get_admin_url().'">'.str_replace('%DASHBOARD%', ' '.__('Dashboard', 'wp-maintenance'), esc_html($o['add_wplogin_title'])).'</a>';
+
+		}
+		$output .= '</footer>';
 	}
 
 	return $output;
@@ -72,8 +79,6 @@ function wpm_favicon() {
 	if ( !empty( $o['favicon'] ) ) {
 		$output .= "<!-- Favicon -->\n";
 		$output .= '<link href="'.esc_attr( $o['favicon'] ).'" rel="shortcut icon" type="image/x-icon" />';
-		
-		
 	}
 
 	return $output;
@@ -142,22 +147,9 @@ function wpm_customcss() {
 	// CSS
 	$output = '<style type="text/css">';
 	ob_start();
-
-	/* Si container activé */
-	if( isset($o['container_active']) && $o['container_active'] == 1 ) {
-
-		if( empty($o['container_opacity']) ) { $o['container_opacity'] = 0.5; }
-		if( empty($o['container_width']) ) { $o['container_width'] = 80; }
-		if( empty($o['container_color']) ) { $o['container_color'] = '#ffffff'; }
-		if( isset($o['container_color']) ) { $paramRGBColor = wpm_hex2rgb($o['container_color']); }
-	?>
-
-#sscontent {background-color: rgba(<?php echo $paramRGBColor['rouge']; ?>,<?php echo $paramRGBColor['vert']; ?>,<?php echo $paramRGBColor['bleu']; ?>, <?php echo $o['container_opacity']; ?>);padding:0.8em;margin-left:auto;margin-right:auto;width:<?php echo $o['container_width']; ?>%;}
-';
-
-	<?php	
-	}
 	
+	$addStyleGeneral = '';
+
 	/* Définition des couleurs par défault */
 	if( !isset($o['color_bg']) || $o['color_bg']=="") { $o['color_bg'] = "#f1f1f1"; }
 	if( !isset($o['color_txt']) || $o['color_txt']=="") { $o['color_txt'] = "#888888"; }
@@ -173,24 +165,23 @@ function wpm_customcss() {
 		"#_COLOR_TXT_BT" => $o['color_text_bottom'],
 		"#_COLORHEAD" => $o['color_bg_header'],
 	);
-	$output .= str_replace(array_keys($styleRemplacements), array_values($styleRemplacements), get_option('wp_maintenance_style'));
+	$remplaceStyle = str_replace(array_keys($styleRemplacements), array_values($styleRemplacements), get_option('wp_maintenance_style'));
+	$output .= wpm_compress($remplaceStyle);
 
-	/* Si on a activé une image ou pattern */
-	if( isset($o['b_enable_image']) && $o['b_enable_image']==1 ) {
+	/* Si on a activé un motif */
+	if( isset($o['b_enable_image']) && $o['b_enable_image'] == 2 ) {
 
-		/* Si on a une image de fond */
-		$optionBackground = '';
-		if( isset($o['b_pattern']) && $o['b_pattern']>0 ) { ?>
-body {
-background-image: url(<?php echo esc_url(WP_PLUGIN_URL.'/wp-maintenance/images/pattern'.$o['b_pattern'].'.png'); ?>);
-background-repeat: repeat;
-background-color: <?php echo $o['color_bg']; ?>
-<?php echo $optionBackground; ?>   
-}
-<?php 
+		$addStyleGeneral .= 'body {
+		background-image: url('.esc_url(WP_PLUGIN_URL.'/wp-maintenance/images/pattern'.$o['b_pattern'].'.png').');
+		background-repeat: repeat;
+		background-color: '.$o['color_bg'].';}';
+		
+	}
 
-		/* Si on a motif */
-		} elseif( isset($o['b_image']) && $o['b_image'] ) {
+	/* Si on a une image de fond */
+	if( isset($o['b_enable_image']) && $o['b_enable_image'] == 1 ) {
+
+		if( isset($o['b_image']) && $o['b_image'] ) {
 
 			if( empty($o['b_repeat_image']) ) { $o['b_repeat_image'] = 'repeat'; }
 			if( isset($o['b_fixed_image']) && $o['b_fixed_image']==1 ) {
@@ -198,122 +189,84 @@ background-color: <?php echo $o['color_bg']; ?>
 			} else {
 				$o['b_fixed_image'] = '';
 			}
-?>
-body {
-display: grid!important;
-background:url(<?php echo esc_url($o['b_image']); ?>) <?php echo $o['b_repeat_image']; ?> <?php echo $o['b_fixed_image']; ?>top center;
-background-size: cover;
--webkit-background-size: cover;
--moz-background-size: cover;
--o-background-size: cover;
-background-color: <?php echo $o['color_bg']; ?>;
-background-position: center;
-}
-<?php 	
+			$addStyleGeneral .= 'body {display: grid!important;background:url('.esc_url($o['b_image']).') '.$o['b_repeat_image'].' '.$o['b_fixed_image'].'top center;background-size: cover;
+			-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-color: '.$o['color_bg'].';background-position: center;}';
+
 			if( isset($o['b_opacity_image']) ) {
-?>
-				#wrapper { background-color: rgba(0,0,0,<?php echo esc_html($o['b_opacity_image']); ?>); }
-<?php 
+				$addStyleGeneral .= '#main { background-color: rgba(0,0,0,'.esc_html($o['b_opacity_image']).'); }';
 			} 
 		}
-	} else {
-?>
-body {
-background-color: <?php echo $o['color_bg']; ?>
-}
-<?php
+
+	} 
+
+	if( isset($o['b_enable_image']) && $o['b_enable_image']==0 ) {
+		$addStyleGeneral .= 'body {background-color: '.$o['color_bg'].';}';
+	} 
+
+	if( isset($o['color_bg_header']) && $o['color_bg_header']!='') {
+		$addStyleGeneral .= 'header { background-color:'.$o['color_bg_header'].';}';
 	}
-	?>
+	$addStyleGeneral .= '.wpm_social_icon {float:left;width:'.esc_html($oo['size']).'px;margin:0px 5px auto;}.wpm_social ul {margin: 10px 0;max-width: 100%;padding: 0;text-align: '.esc_html($oo['align']).';}';
 
-.wpm_social_icon {
-    float:left;
-    width:<?php echo esc_html($oo['size']); ?>px;
-    margin:0px 5px auto;
-}
-.wpm_social ul {
-    margin: 10px 0;
-    max-width: 100%;
-    padding: 0;
-    text-align: <?php echo esc_html($oo['align']); ?>;
-}
-
-	<?php /* Si container activé */
+	/* Si container activé */
 	if( isset($o['container_active']) && $o['container_active'] == 1 ) {
 
 		if( empty($o['container_opacity']) ) { $o['container_opacity'] = 0.5; }
 		if( empty($o['container_width']) ) { $o['container_width'] = 80; }
 		if( empty($o['container_color']) ) { $o['container_color'] = '#ffffff'; }
 		if( isset($o['container_color']) ) { $paramRGBColor = wpm_hex2rgb($o['container_color']); }
-	?>
-#sscontent {
-background-color: rgba(<?php echo esc_html($paramRGBColor['rouge']); ?>,<?php echo esc_html($paramRGBColor['vert']); ?>,<?php echo esc_html($paramRGBColor['bleu']); ?>, <?php echo esc_html($o['container_opacity']); ?>);
-padding:0.8em;
-margin-left:auto;
-margin-right:auto;
-width:<?php echo $o['container_width']; ?>%;
-}
+		$addStyleGeneral .= '#sscontent {background-color: rgba('.esc_html($paramRGBColor['rouge']).','.esc_html($paramRGBColor['vert']).','.esc_html($paramRGBColor['bleu']).', '.esc_html($o['container_opacity']).');padding:0.8em;margin-left:auto;margin-right:auto;width:'.$o['container_width'].'%;}';
 
-<?php	} ?>
+	}
 
-.wpm_newletter {
-    <?php if( isset($o['newletter_size']) ) { ?>font-size: <?php echo esc_html($o['newletter_size']); ?>px; <?php } ?>
-    <?php if( isset($o['newletter_font_style']) ) { ?>font-style: <?php echo esc_html($o['newletter_font_style']); ?>; <?php } ?>
-    <?php if( isset($o['newletter_font_weigth']) ) { ?>font-weight: <?php echo esc_html($o['newletter_font_weigth']); ?>; <?php } ?>
-    <?php if( isset($o['newletter_font_text']) ) { ?>font-family: <?php echo wpm_format_font($o['newletter_font_text']); ?>, serif; <?php } ?>
-}
+	$addStyleGeneral .= '.wpm_newletter {';
+    if( isset($o['newletter_size']) ) { $addStyleGeneral .= 'font-size:'.esc_html($o['newletter_size']).'px;'; } 
+    if( isset($o['newletter_font_style']) ) { $addStyleGeneral .= 'font-style:'.esc_html($o['newletter_font_style']).';'; } 
+    if( isset($o['newletter_font_weigth']) ) { $addStyleGeneral .= 'font-weight:'.esc_html($o['newletter_font_weigth']).';'; } 
+	if( isset($o['newletter_font_text']) ) { $addStyleGeneral .= 'font-family:'.wpm_format_font($o['newletter_font_text']).', serif;'; } 
+	$addStyleGeneral .= '}
+	h3 {';
+    if( isset($o['font_title']) ) { $addStyleGeneral .= 'font-family: '.wpm_format_font($o['font_title']).', serif;'; }
+    if( isset($o['font_title_size']) ) { $addStyleGeneral .= 'font-size: '.esc_html($o['font_title_size']).'px;'; }
+    if( isset($o['font_title_style']) ) { $addStyleGeneral .= 'font-style: '.esc_html($o['font_title_style']).';'; }
+    if( isset($o['font_title_weigth']) ) { $addStyleGeneral .= 'font-weight: '.esc_html($o['font_title_weigth']).';'; }
+    if( isset($o['color_title']) ) { $addStyleGeneral .= 'color:'.esc_html($o['color_title']).';'; }
+	$addStyleGeneral .= 'line-height: 100%;text-align:center;margin:0.5em auto;
+	}
+	p {';
+    if( isset($o['font_text']) ) { $addStyleGeneral .= 'font-family: '.wpm_format_font($o['font_text']).', serif;'; }
+    if( isset($o['font_text_size']) ) { $addStyleGeneral .= 'font-size: '.esc_html($o['font_text_size']).'px;'; }
+    if( isset($o['font_text_style']) ) { $addStyleGeneral .= 'font-style: '.esc_html($o['font_text_style']).';'; }
+    if( isset($o['font_text_weigth']) ) { $addStyleGeneral .= 'font-weight: '.esc_html($o['font_text_weigth']).';'; }
+    if( isset($o['color_txt']) ) { $addStyleGeneral .= 'color:'.esc_html($o['color_txt']).';'; }
+    $addStyleGeneral .= 'line-height: 100%;text-align:center;margin:0.5em auto;padding-left:2%;padding-right:2%;
+	}
+	footer  {';
+    if( isset($o['font_text_bottom']) ) { $addStyleGeneral .= 'font-family: '.wpm_format_font($o['font_text_bottom']).', serif;'; }
+    if( isset($o['font_bottom_style']) ) { $addStyleGeneral .= 'font-style: '.esc_html($o['font_bottom_style']).';'; }
+    if( isset($o['font_bottom_size']) ) { $addStyleGeneral .= 'font-size: '.esc_html($o['font_bottom_size']).'px;'; }
+    if( isset($o['font_bottom_weigth']) ) { $addStyleGeneral .= 'font-weight: '.esc_html($o['font_bottom_weigth']).';'; }
+	if( isset($o['color_text_bottom']) ) { $addStyleGeneral .= 'color: '.esc_html($o['color_text_bottom']).';'; }
+	if( isset($o['color_bg_bottom']) ) { $addStyleGeneral .= 'background:'.esc_html($o['color_bg_bottom']).';'; }
+    $addStyleGeneral .= 'text-decoration:none;
+	}
+	footer a:link {';
+    if( isset($o['color_text_bottom']) ) { $addStyleGeneral .= 'color:'.esc_html($o['color_text_bottom']).';'; }
+    if( isset($o['font_bottom_size']) ) { $addStyleGeneral .= 'font-size: '.esc_html($o['font_bottom_size']).'px;'; }
+    $addStyleGeneral .= 'text-decoration:none;
+	}
+	footer a:visited {';
+    if( isset($o['color_text_bottom']) ) { $addStyleGeneral .= 'olor:'.esc_html($o['color_text_bottom']).';'; }
+    if( isset($o['font_bottom_size']) ) { $addStyleGeneral .= 'font-size: '.esc_html($o['font_bottom_size']).'px;'; }
+    $addStyleGeneral .= 'text-decoration:none;
+	}
+	footer a:hover {
+    text-decoration:underline;';
+    if( isset($o['font_bottom_size']) ) { $addStyleGeneral .= 'font-size: '.esc_html($o['font_bottom_size']).'px;'; }
+	$addStyleGeneral .= '
+	}';
 
-h3 {
-    <?php if( isset($o['font_title']) ) { ?>font-family: <?php echo wpm_format_font($o['font_title']); ?>, serif; <?php } ?>
-    <?php if( isset($o['font_title_size']) ) { ?>font-size: <?php echo esc_html($o['font_title_size']); ?>px; <?php } ?>
-    <?php if( isset($o['font_title_style']) ) { ?>font-style: <?php echo esc_html($o['font_title_style']); ?>; <?php } ?>
-    <?php if( isset($o['font_title_weigth']) ) { ?>font-weight: <?php echo esc_html($o['font_title_weigth']); ?>; <?php } ?>
-    <?php if( isset($o['color_title']) ) { ?>color:<?php echo esc_html($o['color_title']); ?>; <?php } ?>
-    line-height: 100%;
-    text-align:center;
-    margin:0.5em auto;
-}
-p {
-    <?php if( isset($o['font_text']) ) { ?>font-family: <?php echo wpm_format_font($o['font_text']); ?>, serif;<?php } ?>
-    <?php if( isset($o['font_text_size']) ) { ?>font-size: <?php echo esc_html($o['font_text_size']); ?>px;<?php } ?>
-    <?php if( isset($o['font_text_style']) ) { ?>font-style: <?php echo esc_html($o['font_text_style']); ?>;<?php } ?>
-    <?php if( isset($o['font_text_weigth']) ) { ?>font-weight: <?php echo esc_html($o['font_text_weigth']); ?>;<?php } ?>
-    <?php if( isset($o['color_txt']) ) { ?>color:<?php echo esc_html($o['color_txt']); ?>;<?php } ?>
-    line-height: 100%;
-    text-align:center;
-    margin:0.5em auto;
-    padding-left:2%;
-    padding-right:2%;
-
-}
-<?php if( (isset($o['text_bt_maintenance']) && $o['text_bt_maintenance']!='') or ( (isset($o['add_wplogin']) && $o['add_wplogin']==1) && (isset($o['add_wplogin_title']) && $o['add_wplogin_title']!='') ) ) { ?>
-#footer {
-    <?php if( isset($o['color_bg_bottom']) ) { ?>background:<?php echo esc_html($o['color_bg_bottom']); ?>;<?php } ?>
-}
-<?php } ?>
-div.bloc {
-    <?php if( isset($o['font_text_bottom']) ) { ?>font-family: <?php echo wpm_format_font($o['font_text_bottom']); ?>, serif;<?php } ?>
-    <?php if( isset($o['font_bottom_style']) ) { ?>font-style: <?php echo esc_html($o['font_bottom_style']); ?>;<?php } ?>
-    <?php if( isset($o['font_bottom_size']) ) { ?>font-size: <?php echo esc_html($o['font_bottom_size']); ?>px;<?php } ?>
-    <?php if( isset($o['font_bottom_weigth']) ) { ?>font-weight: <?php echo esc_html($o['font_bottom_weigth']); ?>;<?php } ?>
-    <?php if( isset($o['color_text_bottom']) ) { ?>color: <?php echo esc_html($o['color_text_bottom']); ?>;<?php } ?>
-    text-decoration:none;
-}
-div.bloc a:link {
-    <?php if( isset($o['color_text_bottom']) ) { ?>color:<?php echo esc_html($o['color_text_bottom']); ?>;<?php } ?>
-    <?php if( isset($o['font_bottom_size']) ) { ?>font-size: <?php echo esc_html($o['font_bottom_size']); ?>px;<?php } ?>
-    text-decoration:none;
-}
-div.bloc a:visited {
-    <?php if( isset($o['color_text_bottom']) ) { ?>color:<?php echo esc_html($o['color_text_bottom']); ?>;<?php } ?>
-    <?php if( isset($o['font_bottom_size']) ) { ?>font-size: <?php echo esc_html($o['font_bottom_size']); ?>px;<?php } ?>
-    text-decoration:none;
-}
-div.bloc a:hover {
-    text-decoration:underline;
-    <?php if( isset($o['font_bottom_size']) ) { ?>font-size: <?php echo esc_html($o['font_bottom_size']); ?>px;<?php } ?>
-
-}
-<?php
+	$output .= wpm_compress($addStyleGeneral);
 	$output .= ob_get_clean();
 
 	$output .= '</style>'."\n";
@@ -327,10 +280,10 @@ function wpm_analytics() {
 	if(get_option('wp_maintenance_settings')) { extract(get_option('wp_maintenance_settings')); }
 	$o = get_option('wp_maintenance_settings');
 
-	$output = '<!-- analytics ici '.$o['code_analytics'].' -->';
+	$output = '<!-- analytics ici -->';
 
-	if( isset($o['code_analytics']) && $o['code_analytics']!='') {
-		$output = do_shortcode('[wpm_analytics enable="'.$o['code_analytics'].'"]');
+	if( isset($o['codeanalytics']) && $o['codeanalytics']!='') {
+		$output = stripslashes($o['codeanalytics']);
 	}
 
 	return $output;
@@ -357,11 +310,14 @@ function wpm_social_position($position = '') {
 	$o = get_option('wp_maintenance_social_options');
 
 	$output = '';
-	if( isset($o['position']) && $o['position']=='top' && isset($position) && $position=='top' ) {
-		$output = '<div id="header">'.do_shortcode('[wpm_social]').'</div>';
-	} 
-	if( isset($o['position']) && $o['position']=='bottom' && isset($position) && $position=='bottom') {
-		$output = do_shortcode('[wpm_social]');
+	if( isset($o['enable']) && $o['enable'] == 1 ) { 
+
+		if( isset($o['position']) && $o['position']=='top' && isset($position) && $position=='top' ) {
+			$output = '<header id="header" role="banner" class="pam">'.do_shortcode('[wpm_social]').'</header>';
+		} 
+		if( isset($o['position']) && $o['position']=='bottom' && isset($position) && $position=='bottom') {
+			$output = do_shortcode('[wpm_social]');
+		}
 	}
 
 	return $output;
@@ -405,7 +361,7 @@ function wpm_stylenewsletter() {
 	}
 
 	if( isset($output) && $output!='' ) {
-		return '<style type="text/css">'.sanitize_text_field($output).'</style>';
+		return '<style type="text/css">'.wpm_compress(sanitize_text_field($output)).'</style>';
 	} else {
 		return;
 	}

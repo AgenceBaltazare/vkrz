@@ -1,6 +1,12 @@
 == Changelog ==
 
-= 1.6.2 =
+= 2.6.3 =
+Release Date: September 1st, 2020
+
+* [Fixed] Repeater Select field now displays a correct value
+* [Dependency] Requires Admin Columns Pro 5.3
+
+= 2.6.2 =
 Release Date: July 21st, 2020
 
 * [Added] Filter to load custom Field classes for unsupported Fields `acp/acf/field`
