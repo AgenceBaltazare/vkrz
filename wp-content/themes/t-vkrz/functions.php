@@ -29,10 +29,5 @@ if ( defined( 'DOING_AJAX' ) && DOING_AJAX && is_admin() ) {
 }
 include( $templatepath . '/function/all.php' );
 include( $templatepath . '/function/meca.php' );
-include( $templatepath . '/function/tournament.php' );
-
-@ini_set( 'upload_max_size' , '64M' );
-@ini_set( 'post_max_size', '64M');
-@ini_set( 'max_execution_time', '300' );
 
 ?>
