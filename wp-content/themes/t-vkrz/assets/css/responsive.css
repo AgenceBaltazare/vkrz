@@ -1,0 +1,30 @@
+@media screen and (max-width: 768px) {
+  .header {
+    text-align: center; }
+
+  .display_users_votes {
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+    .display_users_votes h6 {
+      color: #fff;
+      font-size: 2em;
+      margin-right: 20px;
+      width: 100%;
+      display: none; }
+    .display_users_votes a {
+      width: 100%;
+      text-align: center;
+      margin-top: 10px; }
+
+  .contenders-containers .link-contender {
+    min-height: 250px;
+    position: relative; }
+
+  .title-battle {
+    margin: 50px 10px; }
+
+  .cta .display_users_votes h6 {
+    display: block; } }
+
+/*# sourceMappingURL=responsive.css.map */

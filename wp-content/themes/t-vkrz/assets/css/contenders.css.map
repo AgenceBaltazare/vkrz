@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AACE,sCAAgB;EACd,UAAU,EAAE,KAAK;EACjB,QAAQ,EAAE,QAAQ;EAElB,wCAAE;IACA,MAAM,EAAE,OAAO;IACf,OAAO,EAAE,KAAK;IACd,MAAM,EAAE,IAAI;IACZ,KAAK,EAAE,IAAI;IACX,UAAU,EAAE,gBAAgB",
+"sources": ["contenders.scss"],
+"names": [],
+"file": "contenders.css"
+}

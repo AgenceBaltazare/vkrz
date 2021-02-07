@@ -1,3 +1,215 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
 
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+a {
+  text-decoration: none; }
+  a:hover {
+    text-decoration: none; }
+
+/* ----------------------- */
+body {
+  height: 100%;
+  width: 100%;
+  min-height: 100vh;
+  font-family: 'Staatliches', cursive; }
+
+.cover {
+  background-size: cover !important; }
+
+.title-battle {
+  margin: 20px 0 0;
+  text-align: center;
+  color: #fff;
+  font-family: 'Staatliches', cursive;
+  text-shadow: 2px 2px 0px #000; }
+  .title-battle b {
+    display: block;
+    font-weight: normal;
+    font-size: 1em;
+    margin: 0 0 10px 0;
+    letter-spacing: 5px; }
+  .title-battle span {
+    font-size: 2.5em;
+    letter-spacing: 2px; }
+    .title-battle span em {
+      font-style: normal;
+      font-size: 14px !important;
+      display: block;
+      margin-top: 10px; }
+
+.title-contender {
+  margin: 10px 0 0;
+  text-align: center;
+  color: #fff;
+  font-family: 'Staatliches', cursive;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.6);
+  font-size: 1.5em;
+  letter-spacing: 3px; }
+
+.link-contender a {
+  display: block;
+  text-align: center; }
+.link-contender img {
+  display: block;
+  margin: 0 auto;
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -ms-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out; }
+.link-contender:hover a {
+  text-decoration: none; }
+.link-contender:hover img {
+  transform: scale(1.1); }
+
+.header {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 10px 0; }
+  .header .logo a {
+    display: block; }
+  .header .logo img {
+    max-height: 40px;
+    width: auto; }
+
+.display_votes {
+  text-align: center; }
+  .display_votes h6 {
+    color: #fff;
+    font-size: 1.3em; }
+
+.display_users_votes {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center; }
+  .display_users_votes h6 {
+    color: #fff;
+    font-size: 2em;
+    margin-right: 20px; }
+
+.versus {
+  color: rgba(0, 0, 0, 0.7);
+  text-transform: uppercase;
+  font-size: 2.5em; }
+
+.classement {
+  text-align: center;
+  color: #fff;
+  min-height: 100vh;
+  width: 100%;
+  padding: 50px 5px; }
+  .classement h2 {
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 40px;
+    letter-spacing: 5px;
+    margin-bottom: 10px; }
+  .classement h3 {
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 200 !important;
+    font-size: 20px;
+    letter-spacing: 2px; }
+  .classement .contenders_min {
+    margin-top: 20px;
+    margin-bottom: 40px; }
+  .classement .none {
+    display: none; }
+  .classement h5 span {
+    color: #e7be40; }
+  .classement .list-classement {
+    margin-top: 50px; }
+  .classement .reste-classement {
+    margin-top: 50px; }
+
+.cta {
+  bottom: 0;
+  position: fixed;
+  right: 0;
+  left: 0;
+  text-align: center; }
+  .cta a {
+    margin: 0 auto;
+    display: inline-block;
+    background: #fa5371;
+    padding: 15px 20px 10px;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 20px;
+    letter-spacing: 2px;
+    color: #fff;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+    cursor: pointer; }
+    .cta a:hover {
+      transform: scale(1.1); }
+
+.cta_2 {
+  display: inline-block;
+  padding: 15px 20px 10px;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 20px;
+  letter-spacing: 2px;
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -ms-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  cursor: pointer;
+  background: #fff;
+  color: #000; }
+  .cta_2:hover {
+    transform: scale(1.1);
+    color: #000; }
+
+.cta .display_users_votes h6 {
+  display: none; }
+
+.tournoi-template-default {
+  background: #000 !important; }
 
 /*# sourceMappingURL=main.css.map */
