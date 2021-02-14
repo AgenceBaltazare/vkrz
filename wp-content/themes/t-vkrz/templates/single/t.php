@@ -103,17 +103,29 @@ foreach($list_contenders as $key => $contender) {
 // On ajoute le gagnant dans la liste de ceux qui l'ont déjà battu
 if($v){
     array_push($deja_sup_to, $key_gagnant);
+
+    // On récupère la liste des participants battu par le perdant du duel
+    $list_sup_to_l = $list_contenders[$key_perdant]['superieur_to'];
+
 }
 // On ajoute le perdant dans la liste de ceux qui l'ont déjà battu
 if($l){
     array_push($deja_inf_to, $key_perdant);
+
+    // On récupère la liste des participants qui battent par le gagnant du duel
+    $list_inf_to_v = $list_contenders[$key_gagnant]['inferior_to'];
+
 }
 
-// On récupère la liste des participants battu par le perdant du duel
-$list_sup_to_l = $list_contenders[$key_perdant]['superieur_to'];
 
-// On récupère la liste des participants qui battent par le gagnant du duel
-$list_inf_to_v = $list_contenders[$key_gagnant]['inferior_to'];
+if(in_array($list_contenders[$key_perdant]['id'], $list_contenders[$key_gagnant]['inferior_to'])){
+    $list_contenders[$key_gagnant]['inferior_to'] = array_diff($list_contenders[$key_gagnant]['inferior_to'], $list_contenders[$key_perdant]['id']);
+}
+
+if(in_array($list_contenders[$key_gagnant]['id'], $list_contenders[$key_perdant]['superieur_to'])){
+    $list_contenders[$key_perdant]['superieur_to'] = array_diff($list_contenders[$key_perdant]['superieur_to'], $list_contenders[$key_gagnant]['id']);
+}
+
 
 // On boucle sur la liste des participant battant le perdant
 // Cela inclus le gagnant du duel + tout ceux qui ont déjà battu ce gagnant
@@ -133,9 +145,7 @@ foreach (array_unique($deja_sup_to) as $k){
 
     // On compte le nombre de personne que le participant bat
     $count_sup_of     = count($list_contenders[$k]['superieur_to']);
-    $count_inf_of     = count($list_contenders[$k]['inferior_to']);
-
-    $new_place        = $count_sup_of - $count_inf_of;
+    $new_place        = $count_sup_of;
 
     // On modifie la valeur de sa place avec cette nouvelle valeur
     $list_contenders[$k]['place']    = $new_place;
@@ -156,15 +166,6 @@ foreach (array_unique($deja_inf_to) as $k){
     // Puis modifie la liste "inferior_to" du perdant avec cette nouvelle liste
     $total_inf_to = array_merge($list_inf_to_v, $to_up_inf_to);
     $list_contenders[$k]['inferior_to'] = array_unique($total_inf_to);
-
-    // On compte le nombre de personne que le participant bat
-    $count_sup_of     = count($list_contenders[$k]['superieur_to']);
-    $count_inf_of     = count($list_contenders[$k]['inferior_to']);
-
-    $new_place        = $count_sup_of - $count_inf_of;
-
-    // On modifie la valeur de sa place avec cette nouvelle valeur
-    $list_contenders[$k]['place']    = $new_place;
 
 }
 
@@ -209,9 +210,7 @@ elseif($timeline >= $half && $timeline <= ($nb_c_php - 1 + $half)){
 }
 else{
 
-    // On inverse le tableau pour débuter avec les plus faibles
     $list_contenders_reverse = array_reverse($list_contenders);
-
 
     // On lance des boucles jusqu'à obtenir le tableau "$next_duel" avec deux valeurs
     // On lance autant de boucle que de participant-1
@@ -269,22 +268,6 @@ if(get_field('cover_t')){
 
 <div class="main">
 
-    <pre class="ba-white">
-    <?php
-    var_dump('Half: '.$half.'<br>');
-    var_dump('NB contenders: '.$nb_contenders.'<br>');
-    var_dump('C1: '.$next_duel[0].' - '.$key_c_1.'<br>');
-    var_dump('C2: '.$next_duel[1].' - '.$key_c_2.'<br>');
-    var_dump('ID Classement: '.$id_ranking.'<br>');
-    var_dump('NB votes: '.$sum_vote.'<br>');
-    var_dump('Timeline: '.$timeline.'<br>');
-    var_dump('Vote restant ? : '.$is_next_duel.'<br>');
-    print_r($list_contenders);
-    print_r($clear_c_at_same_place);
-    print_r($next_duel);
-    ?>
-</pre>
-
     <header class="header">
         <div class="container-fluid">
             <div class="row align-items-center">
@@ -297,18 +280,9 @@ if(get_field('cover_t')){
                 </div>
                 <div class="col-sm-8 text-right">
                     <div class="display_users_votes">
-                        <a href="https://baltazare1.typeform.com/to/j9n8JU" target="_blank" class="cta_2">
-                            ☝️ Donnez nous votre avis !
+                        <a href="<?php the_permalink($id_ranking); ?>" target="_blank" class="cta_2">
+                            Voir classement
                         </a>
-                        <h6>
-                            <?php if ($nb_user_votes == 0) : ?>
-                                Aucun vote encore
-                            <?php elseif ($nb_user_votes == 1) : ?>
-                                Bravo pour ton 1er vote
-                            <?php else : ?>
-                                Vos votes : <?php echo $nb_user_votes; ?>
-                            <?php endif; ?>
-                        </h6>
                     </div>
                 </div>
             </div>
@@ -318,26 +292,12 @@ if(get_field('cover_t')){
         <div class="tournoi_infos">
             <div class="row align-items-center">
                 <div class="col-12">
-                    <div class="bloc-titre">
+                    <div class="bloc-titre text-center">
                         <h1>
                             <b>
-                                <?php the_title(); ?>
+                                Timeline : <?php echo $timeline; ?>
                             </b>
                         </h1>
-                        <h2>
-                            <?php the_field('question_t'); ?>
-                            <span class="toshowpopover moreinfo" data-container="body" data-toggle="popover" data-placement="top" data-content="Prendre en compte la forme la plus puissante du perso">
-                                <i class="fal fa-info-circle"></i>
-                            </span>
-                        </h2>
-                        <ul class="infos_tournoi">
-                            <li class="toshowpopover" data-container="body" data-toggle="popover" data-placement="top" data-content="<?php echo $nb_contenders; ?> participants dans ce tournoi">
-                                <i class="fad fa-users-crown"></i> <?php echo $nb_contenders; ?>
-                            </li>
-                            <li class="toshowpopover" data-container="body" data-toggle="popover" data-placement="top" data-content="Vous devez voter environ <?php echo $nb_contenders * 3; ?> fois pour finir votre classement">
-                                <i class="fad fa-infinity"></i> <?php echo $nb_contenders * 3; ?>
-                            </li>
-                        </ul>
                     </div>
                 </div>
             </div>
@@ -393,7 +353,7 @@ if(get_field('cover_t')){
                 <div class="col-md-12">
                     <h2 class="text-center">
                         <a href="<?php the_permalink($id_ranking); ?>">
-                            Votre classement personnel est terminé.
+                            Votre classement personnel est terminé. <?php echo $id_ranking; ?>
                         </a>
                     </h2>
                 </div>
