@@ -8,7 +8,7 @@ $ranking = new WP_Query(
         'post_type'      => 'contender',
         'posts_per_page' => -1,
         'meta_key'       => 'ELO_c',
-        'orderby'        => 'meta_value',
+        'orderby'        => 'meta_value_num',
         'order'          => 'DESC',
         'meta_query'     => array(
             array(
@@ -22,16 +22,16 @@ $ranking = new WP_Query(
 ?>
 <html>
 <head>
-    <meta http-equiv="refresh" content="1;url=<?php the_permalink(); ?>" />
+    <!--<meta http-equiv="refresh" content="1;url=<?php the_permalink(); ?>" />-->
 </head>
 <body>
-<ol>
-<?php while ($ranking->have_posts()) : $ranking->the_post(); ?>
+<ul>
+<?php $i=0; while ($ranking->have_posts()) : $ranking->the_post(); ?>
     <li>
-        <?php the_title(); ?> - <?php the_field('ELO_c'); ?>
+        <?php echo $i; ?> -- <?php the_title(); ?> <b><?php the_ID(); ?></b> - <?php the_field('ELO_c'); ?> - (<?php the_field('difference_c'); ?>)
     </li>
-<?php endwhile; ?>
-</ol>
+<?php $i++; endwhile; ?>
+</ul>
 </body>
 </html>
 

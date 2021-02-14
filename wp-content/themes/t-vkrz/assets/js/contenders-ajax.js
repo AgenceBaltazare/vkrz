@@ -2,7 +2,7 @@ $(document).ready(function ($) {
     let contenders = $('.link-contender');
 
     contenders.click(function (e) {
-        e.preventDefault();
+        //e.preventDefault();
         let contender_a = $(this).find('a');
         var id_contender = contender_a.attr('id');
         if(id_contender == "c_1"){

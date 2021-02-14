@@ -1,33 +1,290 @@
-<?php get_header(); ?>
 <?php
+get_header();
+
+/* Variables */
 $id_tournoi      = get_the_ID();
 $list_contenders = array();
-$i               = 0;
-$contenders      = new WP_Query(array(
-    'post_type'      => 'contender',
-    'posts_per_page' => -1,
-    'orderby'        => 'date',
-    'meta_query'     => array(
+$c_at_same_place = array();
+$uuiduser        = $_COOKIE["vainkeurz_user_id"];
+$deja_sup_to     = array();
+$deja_inf_to     = array();
+$next_duel       = array();
+$sum_vote        = 0;
+$timeline        = 0;
+$key_gagnant     = 0;
+$key_perdant     = 0;
+$new_place       = 0;
+$is_next_duel    = true;
+
+if(isset($_GET['v']) && $_GET['v'] != ""){
+    $v              = $_GET['v'];
+}
+if(isset($_GET['l']) && $_GET['l'] != ""){
+    $l              = $_GET['l'];
+}
+
+if(isset($_GET['r']) && $_GET['r'] != ""){
+    $id_ranking  = $_GET['r'];
+}
+else{
+    $id_ranking = get_user_ranking($uuiduser, $id_tournoi);
+}
+
+if(empty(get_field('ranking_r', $id_ranking))){
+
+    $contenders = new WP_Query(
         array(
-            'key'     => 'id_tournoi_c',
-            'value'   => $id_tournoi,
-            'compare' => '=',
+            'post_type'      => 'contender',
+            'posts_per_page' => -1,
+            'meta_key'       => 'ELO_c',
+            'orderby'        => 'meta_value_num',
+            'order'          => 'DESC',
+            'meta_query'     => array(
+                array(
+                    'key'     => 'id_tournoi_c',
+                    'value'   => $id_tournoi,
+                    'compare' => 'LIKE',
+                )
+            )
         )
-    )
-));
-while ($contenders->have_posts()) : $contenders->the_post();
+    );
+    $i=0; while ($contenders->have_posts()) : $contenders->the_post();
 
-    array_push($list_contenders, get_the_ID());
+        array_push($list_contenders, array(
+            "id"                => $i,
+            "id_global"         => get_the_ID(),
+            "elo"               => get_field('ELO_c'),
+            "contender_name"    => get_the_title(),
+            "vote"              => 0,
+            "superieur_to"      => array(),
+            "inferior_to"       => array(),
+            "place"             => 0
+        ));
 
-endwhile;
+    $i++; endwhile;
 
-$rand_c = array_rand($list_contenders, 2);
-$id_c_1 = $list_contenders[$rand_c[0]];
-$id_c_2 = $list_contenders[$rand_c[1]];
+    update_field("ranking_r", $list_contenders, $id_ranking);
+}
+$list_contenders    = get_field('ranking_r', $id_ranking);
+$nb_contenders      = count($list_contenders);
+$nb_c_php           = $nb_contenders - 1;
+$half               = $nb_contenders / 2;
 
+// On boucle sur le ranking pour connaître la position dans le tableau du gagnant et du perdant
+foreach($list_contenders as $key => $contender) {
+    if($contender['id_global'] == $v){
+        $key_gagnant     = $key;
+        $contender['vote'] = 2;
+    }
+    if($contender['id_global'] == $l){
+        $key_perdant     = $key;
+        $contender['vote'] = 8;
+    }
+}
+
+if($v){
+    $list_contenders[$key_gagnant]['vote']++;
+}
+if($l){
+    $list_contenders[$key_perdant]['vote']++;
+}
+
+// On boucle sur le ranking pour connaître tous les participants qui ont l'ID du gagnant dans le tableau de leur paramètre "superieur_to"
+// On stocke dans la variable "$deja_sup_to" la liste des participants(keys) qui ont battu le gagnant
+foreach($list_contenders as $key => $contender) {
+    if(in_array($key_gagnant, $contender['superieur_to'])){
+        array_push($deja_sup_to, $key);
+    }
+    if(in_array($key_perdant, $contender['inferior_to'])){
+        array_push($deja_inf_to, $key);
+    }
+}
+
+// On ajoute le gagnant dans la liste de ceux qui l'ont déjà battu
+if($v){
+    array_push($deja_sup_to, $key_gagnant);
+}
+// On ajoute le perdant dans la liste de ceux qui l'ont déjà battu
+if($l){
+    array_push($deja_inf_to, $key_perdant);
+}
+
+// On récupère la liste des participants battu par le perdant du duel
+$list_sup_to_l = $list_contenders[$key_perdant]['superieur_to'];
+
+// On récupère la liste des participants qui battent par le gagnant du duel
+$list_inf_to_v = $list_contenders[$key_gagnant]['inferior_to'];
+
+// On boucle sur la liste des participant battant le perdant
+// Cela inclus le gagnant du duel + tout ceux qui ont déjà battu ce gagnant
+foreach (array_unique($deja_sup_to) as $k){
+
+    // On récupère la liste des participants que ce participant bat
+    $to_up_sup_to = $list_contenders[$k]['superieur_to'];
+
+    // On ajoute à cette liste, l'ID du perdant du duel
+    array_push($to_up_sup_to, $key_perdant);
+
+    // Si il s'agit du gagnant du duel alors on fusionne les deux liste des participants battu par le gagnant et le perdant
+    // Puis modifie la liste "superieur_to" du gagnant avec cette nouvelle liste
+    // Si c'est un autre participant qui a déjà battu le vainkeurz alors on ajoute juste
+    $total_sup_to = array_merge($list_sup_to_l, $to_up_sup_to);
+    $list_contenders[$k]['superieur_to'] = array_unique($total_sup_to);
+
+    // On compte le nombre de personne que le participant bat
+    $count_sup_of     = count($list_contenders[$k]['superieur_to']);
+    $count_inf_of     = count($list_contenders[$k]['inferior_to']);
+
+    $new_place        = $count_sup_of - $count_inf_of;
+
+    // On modifie la valeur de sa place avec cette nouvelle valeur
+    $list_contenders[$k]['place']    = $new_place;
+
+}
+
+// On boucle sur la liste des participant perdant contre le perdant
+// Cela inclus le perdant du duel + tout ceux qui battent déjà ce perdant
+foreach (array_unique($deja_inf_to) as $k){
+
+    // On récupère la liste des participants qui le battent
+    $to_up_inf_to = $list_contenders[$k]['inferior_to'];
+
+    // On ajoute à cette liste, l'ID du gagnant du duel
+    array_push($to_up_inf_to, $key_gagnant);
+
+    // Si il s'agit du perdant du duel alors on fusionne les deux liste des participants qui battent par le gagnant et le perdant
+    // Puis modifie la liste "inferior_to" du perdant avec cette nouvelle liste
+    $total_inf_to = array_merge($list_inf_to_v, $to_up_inf_to);
+    $list_contenders[$k]['inferior_to'] = array_unique($total_inf_to);
+
+    // On compte le nombre de personne que le participant bat
+    $count_sup_of     = count($list_contenders[$k]['superieur_to']);
+    $count_inf_of     = count($list_contenders[$k]['inferior_to']);
+
+    $new_place        = $count_sup_of - $count_inf_of;
+
+    // On modifie la valeur de sa place avec cette nouvelle valeur
+    $list_contenders[$k]['place']    = $new_place;
+
+}
+
+foreach($list_contenders as $item){
+
+    $sum_vote         = $sum_vote + $item['vote'];
+
+}
+$timeline             = $sum_vote / 2;
+
+// On enregistre la mise à jour du champs "Ranking" du classement en cours
+update_field("ranking_r", $list_contenders, $id_ranking);
+
+if($timeline == 0){
+
+    $key_c_1 = $nb_c_php;
+    $key_c_2 = $half - 1;
+
+    array_push($next_duel, $list_contenders[$key_c_1]['id_global']);
+    array_push($next_duel, $list_contenders[$key_c_2]['id_global']);
+
+}
+elseif($timeline != 0 && $timeline < $half){
+
+    $key_c_1 = $nb_contenders - $timeline - 1;
+    $key_c_2 = $nb_contenders - $half - $timeline - 1;
+
+    array_push($next_duel, $list_contenders[$key_c_1]['id_global']);
+    array_push($next_duel, $list_contenders[$key_c_2]['id_global']);
+
+}
+elseif($timeline >= $half && $timeline <= ($nb_c_php - 1 + $half)){
+
+    $list_contenders_reverse = array_reverse($list_contenders);
+
+    $key_c_1 = $half - ($nb_contenders - $timeline);
+    $key_c_2 = $half - ($nb_contenders - $timeline) + 1;
+
+    array_push($next_duel, $list_contenders_reverse[$key_c_1]['id_global']);
+    array_push($next_duel, $list_contenders_reverse[$key_c_2]['id_global']);
+
+}
+else{
+
+    // On inverse le tableau pour débuter avec les plus faibles
+    $list_contenders_reverse = array_reverse($list_contenders);
+
+
+    // On lance des boucles jusqu'à obtenir le tableau "$next_duel" avec deux valeurs
+    // On lance autant de boucle que de participant-1
+    for($s = 0; $s <= $nb_contenders-1; $s++){
+
+        // Si le tableau "$next_duel" est supérieur ou égal à deux valeurs alors on stop car nous pouvons faire un nouveau duel
+        // Sinon on le remet à zéro
+        if(count($c_at_same_place) >= 2){
+            $step_number = $s;
+            break;
+        }
+        else{
+            $c_at_same_place = array();
+        }
+
+        // On boucle sur tous les participant et on stocke leur ID global quand leur place est égal à l'incrémentation
+        foreach ($list_contenders_reverse as $d => $val){
+
+            if($val['place'] == $s){
+                array_push($c_at_same_place, $val['id_global']);
+            }
+
+        }
+
+    }
+
+    $clear_c_at_same_place = array_filter($c_at_same_place);
+
+    if(count($clear_c_at_same_place) >= 2){
+        $is_next_duel = true;
+        array_push($next_duel, $clear_c_at_same_place[0]);
+        array_push($next_duel, $clear_c_at_same_place[1]);
+    }
+    else{
+        $is_next_duel = false;
+        if(!get_field('done_r', $id_ranking)){
+            update_field('done_r', 'done', $id_ranking);
+            update_field('done_date_r', date('d/m/Y'), $id_ranking);
+        }
+    }
+
+}
 wp_reset_query();
 ?>
+
+<?php get_header(); ?>
+
+<?php
+if(get_field('cover_t')){
+    $illu       = wp_get_attachment_image_src(get_field('cover_t'), 'full');
+    $illu_url   = $illu[0];
+}
+?>
+<body <?php body_class(array('cover', 'a_step', $body_class)); ?> style="background: url(<?php echo $illu_url; ?>) center center no-repeat">
+
 <div class="main">
+
+    <pre class="ba-white">
+    <?php
+    var_dump('Half: '.$half.'<br>');
+    var_dump('NB contenders: '.$nb_contenders.'<br>');
+    var_dump('C1: '.$next_duel[0].' - '.$key_c_1.'<br>');
+    var_dump('C2: '.$next_duel[1].' - '.$key_c_2.'<br>');
+    var_dump('ID Classement: '.$id_ranking.'<br>');
+    var_dump('NB votes: '.$sum_vote.'<br>');
+    var_dump('Timeline: '.$timeline.'<br>');
+    var_dump('Vote restant ? : '.$is_next_duel.'<br>');
+    print_r($list_contenders);
+    print_r($clear_c_at_same_place);
+    print_r($next_duel);
+    ?>
+</pre>
+
     <header class="header">
         <div class="container-fluid">
             <div class="row align-items-center">
@@ -38,6 +295,22 @@ wp_reset_query();
                         </a>
                     </div>
                 </div>
+                <div class="col-sm-8 text-right">
+                    <div class="display_users_votes">
+                        <a href="https://baltazare1.typeform.com/to/j9n8JU" target="_blank" class="cta_2">
+                            ☝️ Donnez nous votre avis !
+                        </a>
+                        <h6>
+                            <?php if ($nb_user_votes == 0) : ?>
+                                Aucun vote encore
+                            <?php elseif ($nb_user_votes == 1) : ?>
+                                Bravo pour ton 1er vote
+                            <?php else : ?>
+                                Vos votes : <?php echo $nb_user_votes; ?>
+                            <?php endif; ?>
+                        </h6>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
@@ -46,54 +319,114 @@ wp_reset_query();
             <div class="row align-items-center">
                 <div class="col-12">
                     <div class="bloc-titre">
-                        <h1 class="title-battle">
+                        <h1>
                             <b>
                                 <?php the_title(); ?>
                             </b>
-                            <span>
-                            <?php the_field('question_t'); ?>
-                        </span>
                         </h1>
+                        <h2>
+                            <?php the_field('question_t'); ?>
+                            <span class="toshowpopover moreinfo" data-container="body" data-toggle="popover" data-placement="top" data-content="Prendre en compte la forme la plus puissante du perso">
+                                <i class="fal fa-info-circle"></i>
+                            </span>
+                        </h2>
+                        <ul class="infos_tournoi">
+                            <li class="toshowpopover" data-container="body" data-toggle="popover" data-placement="top" data-content="<?php echo $nb_contenders; ?> participants dans ce tournoi">
+                                <i class="fad fa-users-crown"></i> <?php echo $nb_contenders; ?>
+                            </li>
+                            <li class="toshowpopover" data-container="body" data-toggle="popover" data-placement="top" data-content="Vous devez voter environ <?php echo $nb_contenders * 3; ?> fois pour finir votre classement">
+                                <i class="fad fa-infinity"></i> <?php echo $nb_contenders * 3; ?>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="display_battle">
-                    <div class="row align-items-center contenders-containers">
-                        <div class="col-5 link-contender contender_1">
-                            <a data-contender-tournament="<?= $id_tournoi ?>" data-contender-chosen="<?= $id_c_1 ?>" data-contender-notchosen="<?= $id_c_2 ?>" id="c_1">
-                                <?php
-                                echo get_the_post_thumbnail( $id_c_1, 'full', array( 'class' => 'img-fluid' ) );
-                                ?>
-                                <h2 class="title-contender">
-                                    <?php echo get_the_title( $id_c_1 ); ?>
-                                </h2>
-                            </a>
-                        </div>
-                        <div class="col-2">
-                            <h4 class="text-center versus">
-                                VS
-                            </h4>
-                        </div>
-                        <div class="col-5 link-contender contender_2">
-                            <a data-contender-tournament="<?= $id_tournoi ?>" data-contender-chosen="<?= $id_c_2 ?>" data-contender-notchosen="<?= $id_c_1 ?>" id="c_2">
-                                <?php
-                                echo get_the_post_thumbnail( $id_c_2, 'full', array( 'class' => 'img-fluid' ) );
-                                ?>
-                                <h2 class="title-contender">
-                                    <?php echo get_the_title( $id_c_2 ); ?>
-                                </h2>
-                            </a>
+    <?php if($is_next_duel): ?>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="display_battle">
+                        <div class="row align-items-center contenders-containers">
+                            <div class="col-5 link-contender contender_1">
+                                <a href="<?php the_permalink($id_tournoi); ?>?r=<?php echo $id_ranking; ?>&v=<?php echo $next_duel[0]; ?>&l=<?php echo $next_duel[1]; ?>"
+                                   data-contender-tournament="<?= $id_tournoi ?>"
+                                   data-contender-chosen="<?= $next_duel[0] ?>"
+                                   data-contender-notchosen="<?= $next_duel[1] ?>"
+                                   id="c_1">
+                                    <?php
+                                    echo get_the_post_thumbnail( $next_duel[0], 'full', array( 'class' => 'img-fluid' ) );
+                                    ?>
+                                    <h2 class="title-contender">
+                                        <?php echo get_the_title( $next_duel[0] ); ?>
+                                    </h2>
+                                </a>
+                            </div>
+                            <div class="col-2">
+                                <h4 class="text-center versus">
+                                    VS
+                                </h4>
+                            </div>
+                            <div class="col-5 link-contender contender_2">
+                                <a href="<?php the_permalink($id_tournoi); ?>?r=<?php echo $id_ranking; ?>&v=<?php echo $next_duel[1]; ?>&l=<?php echo $next_duel[0]; ?>"
+                                   data-contender-tournament="<?= $id_tournoi ?>"
+                                   data-contender-chosen="<?= $next_duel[1] ?>"
+                                   data-contender-notchosen="<?= $next_duel[0] ?>"
+                                   id="c_1">
+                                    <?php
+                                    echo get_the_post_thumbnail( $next_duel[1], 'full', array( 'class' => 'img-fluid' ) );
+                                    ?>
+                                    <h2 class="title-contender">
+                                        <?php echo get_the_title( $next_duel[1] ); ?>
+                                    </h2>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    <?php else: ?>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="text-center">
+                        <a href="<?php the_permalink($id_ranking); ?>">
+                            Votre classement personnel est terminé.
+                        </a>
+                    </h2>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+
+</div>
+
+<div class="stepbar <?php echo $bar_step; ?>">
+    <h5>
+        <?php
+        if($bar_step == "step_bar_1"){
+            $step_name = "On prend son mal en patience le temps d'évacuer les plus faibles !";
+        }
+        elseif($bar_step == "step_bar_2"){
+            $step_name = "Bon il y a encore du monde à évacuer mais ça chauffe de plus en plus";
+        }
+        elseif($bar_step == "step_bar_3"){
+            $step_name = "Ça commence à être du sérieux.";
+        }
+        elseif($bar_step == "step_bar_4"){
+            $step_name = "Là ça devient chaud non ?";
+        }
+        elseif($bar_step == "step_bar_5"){
+            $step_name = "Que des chocs de titans !!!";
+        }
+        elseif($bar_step == "fin_tournoi_bar"){
+            $step_name = "Aie Aie Aie - nous y sommes - c'est le duel final !!!";
+        }
+        ?>
+        <?php echo $current_step; ?> - <span><?php echo $step_name; ?></span>
+    </h5>
 </div>
 
 <?php get_footer(); ?>

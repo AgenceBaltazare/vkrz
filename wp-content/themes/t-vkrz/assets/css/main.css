@@ -212,4 +212,10 @@ body {
 .tournoi-template-default {
   background: #000 !important; }
 
+.ba-white {
+  background: #fff !important;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: normal; }
+
 /*# sourceMappingURL=main.css.map */
