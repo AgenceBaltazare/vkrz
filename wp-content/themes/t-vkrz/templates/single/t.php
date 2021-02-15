@@ -179,25 +179,25 @@ $timeline             = $sum_vote / 2;
 // On enregistre la mise à jour du champs "Ranking" du classement en cours
 update_field("ranking_r", $list_contenders, $id_ranking);
 
-if($timeline == 0){
+if($timeline < $half){
 
-    $key_c_1 = $nb_c_php;
-    $key_c_2 = $half - 1;
-
+    if($timeline == 0){
+        var_dump('ETAPE 0');
+        $key_c_1 = $nb_c_php;
+        $key_c_2 = $half - 1;
+    }
+    else{
+        var_dump('ETAPE 1');
+        $key_c_1 = $nb_contenders - $timeline - 1;
+        $key_c_2 = $nb_contenders - $half - $timeline - 1;
+    }
     array_push($next_duel, $list_contenders[$key_c_1]['id_global']);
     array_push($next_duel, $list_contenders[$key_c_2]['id_global']);
 
 }
-elseif($timeline != 0 && $timeline < $half){
+elseif($timeline >= $half && $timeline <= 11){
 
-    $key_c_1 = $nb_contenders - $timeline - 1;
-    $key_c_2 = $nb_contenders - $half - $timeline - 1;
-
-    array_push($next_duel, $list_contenders[$key_c_1]['id_global']);
-    array_push($next_duel, $list_contenders[$key_c_2]['id_global']);
-
-}
-elseif($timeline >= $half && $timeline <= ($nb_c_php - 1 + $half)){
+    var_dump('ETAPE 2');
 
     $list_contenders_reverse = array_reverse($list_contenders);
 
@@ -210,6 +210,7 @@ elseif($timeline >= $half && $timeline <= ($nb_c_php - 1 + $half)){
 }
 else{
 
+    var_dump('ETAPE 3');
     $list_contenders_reverse = array_reverse($list_contenders);
 
     // On lance des boucles jusqu'à obtenir le tableau "$next_duel" avec deux valeurs
