@@ -15,8 +15,7 @@ $key_gagnant     = 0;
 $key_perdant     = 0;
 $new_place       = 0;
 $is_next_duel    = true;
-$list_w_r        = array();
-$list_l_r        = array();
+$timeline_e_1    = 0;
 
 if(isset($_GET['v']) && $_GET['v'] != ""){
     $v              = $_GET['v'];
@@ -69,6 +68,18 @@ if(empty(get_field('ranking_r', $id_ranking))){
     update_field("ranking_r", $list_contenders, $id_ranking);
 }
 $list_contenders    = get_field('ranking_r', $id_ranking);
+if(get_field('list_losers_r', $id_ranking)){
+    $list_l_r       = get_field('list_losers_r', $id_ranking);
+}
+else{
+    $list_l_r       = array();
+}
+if(get_field('list_winners_r', $id_ranking)){
+    $list_w_r       = get_field('list_winners_r', $id_ranking);
+}
+else{
+    $list_w_r       = array();
+}
 $nb_contenders      = count($list_contenders);
 $nb_c_php           = $nb_contenders - 1;
 $half               = $nb_contenders / 2;
@@ -77,11 +88,9 @@ $half               = $nb_contenders / 2;
 foreach($list_contenders as $key => $contender) {
     if($contender['id_global'] == $v){
         $key_gagnant     = $key;
-        $contender['vote'] = 2;
     }
     if($contender['id_global'] == $l){
         $key_perdant     = $key;
-        $contender['vote'] = 8;
     }
 }
 
@@ -122,18 +131,6 @@ if($l){
     $list_inf_to_v = $list_contenders[$key_gagnant]['inferior_to'];
 
 }
-
-$all_votes = new WP_Query(array('post_type' => 'vote', 'order' => 'DESC', 'orderby' => 'date', 'posts_per_page' => -1, 'meta_query' => array(
-    array(
-        'key' => 'id_t_v',
-        'value' => $id_tournoi,
-        'compare' => '=',
-    ),
-)));
-while ($all_votes->have_posts()) : $all_votes->the_post();
-    array_push($list_w_r, get_field('id_v_v'));
-    array_push($list_l_r, get_field('id_l_v'));
-endwhile;
 
 if(in_array($list_contenders[$key_perdant]['id'], $list_contenders[$key_gagnant]['inferior_to'])){
     $list_contenders[$key_gagnant]['inferior_to'] = array_diff($list_contenders[$key_gagnant]['inferior_to'], $list_contenders[$key_perdant]['id']);
@@ -196,51 +193,79 @@ $timeline             = $sum_vote / 2;
 // On enregistre la mise à jour du champs "Ranking" du classement en cours
 update_field("ranking_r", $list_contenders, $id_ranking);
 
-if($timeline < $half+1){
+if($timeline < $half + 1){
+    if($v){
+        // On l'ajoute à la liste des gagnants
+        array_push($list_w_r, $v);
+        update_field('list_winners_r', $list_w_r, $id_ranking);
+    }
+
+    if($l){
+        // On l'ajoute à la liste des perdants
+        array_push($list_l_r, $l);
+        update_field('list_losers_r', $list_l_r, $id_ranking);
+    }
+}
+
+if($timeline < $half){
+
+    $etape = 1;
+
 
     if($timeline == 0){
-        var_dump('ETAPE 0');
         $key_c_1 = $nb_c_php;
-        $key_c_2 = $half ;
+        $key_c_2 = $half - 1;
     }
     else{
-        var_dump('ETAPE 1');
         $key_c_1 = $nb_contenders - $timeline - 1;
-        $key_c_2 = $nb_contenders - $half - $timeline ;
+        $key_c_2 = $nb_contenders - $half - $timeline - 1;
     }
     array_push($next_duel, $list_contenders[$key_c_1]['id_global']);
     array_push($next_duel, $list_contenders[$key_c_2]['id_global']);
 
 }
-elseif($timeline < ($half - 1 + $half)){
+elseif($timeline < ($nb_contenders - 1)){
 
-    //
-    var_dump('ETAPE 2');
+    $etape = 2;
 
+    $nb_loosers     = count($list_l_r) - 1;
+    $inverse_looser = array_reverse($list_l_r);
 
-    $list_contenders_reverse = array_reverse($list_contenders);
-//faire s'affronter les losers
-    $key_c_1 = ($half - 1) - ($nb_contenders - $timeline);
-    $key_c_2 = $half - ($nb_contenders - $timeline) ;
+    $key_c_1 = $nb_loosers - ($timeline - $half);
+    $key_c_2 = $nb_loosers - ($timeline - $half) - 1;
 
-    array_push($next_duel, $list_contenders_reverse[$key_c_1]['id_global']);
-    array_push($next_duel, $list_contenders_reverse[$key_c_2]['id_global']);
+    array_push($next_duel, $inverse_looser[$key_c_1]);
+    array_push($next_duel, $inverse_looser[$key_c_2]);
+
 }
-if ($timeline < ($nb_contenders - 1 +$half)){
+elseif ($timeline < $nb_contenders){
 
-    var_dump('ETAPE 3');
+    $etape = 3;
 
-    $list_contenders_tournoi_reverse = array_reverse($list_contenders);
+    $nb_loosers      = count($list_l_r) - 1;
 
-    $key_c_1 = ($half - 1 ) - ($nb_contenders - $timeline);
-    $key_c_2 = ($half) - ($nb_contenders - $timeline) ;
+    $nb_winners      = count($list_w_r) - 1;
+    $inverse_winners = array_reverse($list_w_r);
 
-    array_push($next_duel, $list_contenders_tournoi_reverse[$key_c_1]['id_global']);
-    array_push($next_duel, $list_contenders_tournoi_reverse[$key_c_2]['id_global']);
+    array_push($next_duel, $list_l_r[$nb_loosers]);
+    array_push($next_duel, $inverse_winners[$nb_winners]);
+}
+elseif ($timeline < ($nb_contenders - 1 + $half)){
+
+    $etape = 4;
+
+    $nb_winners     = count($list_w_r) - 1;
+
+    $key_c_1 = $timeline - $nb_contenders;
+    $key_c_2 = $timeline - $nb_contenders + 1;
+
+    array_push($next_duel, $list_w_r[$key_c_1]);
+    array_push($next_duel, $list_w_r[$key_c_2]);
 }
 else{
 
-    var_dump('ETAPE 4');
+    $etape = 5;
+
     $list_contenders_reverse = array_reverse($list_contenders);
 
     // On lance des boucles jusqu'à obtenir le tableau "$next_duel" avec deux valeurs
@@ -295,14 +320,7 @@ if(get_field('cover_t')){
     $illu_url   = $illu[0];
 }
 ?>
-<body <?php body_class(array('cover', 'a_step', $body_class)); ?> style="background: url(<?php echo $illu_url; ?>) center center no-repeat">
-
-<pre>
-    <?php
-        print_r($list_l_r);
-        print_r($list_w_r);
-    ?>
-</pre>
+<body>
 
 <div class="main">
 
@@ -333,6 +351,10 @@ if(get_field('cover_t')){
                     <div class="bloc-titre text-center">
                         <h1>
                             <b>
+                                Etape : <?php echo $etape; ?>
+                            </b>
+                            <br>
+                            <b>
                                 Timeline : <?php echo $timeline; ?>
                             </b>
                         </h1>
@@ -357,7 +379,7 @@ if(get_field('cover_t')){
                                     echo get_the_post_thumbnail( $next_duel[0], 'full', array( 'class' => 'img-fluid' ) );
                                     ?>
                                     <h2 class="title-contender">
-                                        <?php echo get_the_title( $next_duel[0] ); ?>
+                                        <?php echo get_the_title( $next_duel[0] ); ?> - (<?php echo $next_duel[0]; ?>)
                                     </h2>
                                 </a>
                             </div>
@@ -376,7 +398,7 @@ if(get_field('cover_t')){
                                     echo get_the_post_thumbnail( $next_duel[1], 'full', array( 'class' => 'img-fluid' ) );
                                     ?>
                                     <h2 class="title-contender">
-                                        <?php echo get_the_title( $next_duel[1] ); ?>
+                                        <?php echo get_the_title( $next_duel[1] ); ?> - (<?php echo $next_duel[1]; ?>)
                                     </h2>
                                 </a>
                             </div>

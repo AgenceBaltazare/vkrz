@@ -2,8 +2,8 @@
 $id_ranking                      = get_the_ID();
 $id_tournoi                      = get_field('id_tournoi_r');
 $list_contenders_tournoi         = get_field('ranking_r');
-$list_w_r                        = get_field('list_winner_ranking', $id_ranking);
-$list_l_r                        = get_field('list_loser_ranking', $id_ranking);
+$list_w_r                        = get_field('list_winners_r');
+$list_l_r                        = get_field('list_losers_r');
 
 function array_sort_by_column(&$arr, $col, $dir = SORT_DESC) {
     $sort_col = array();
@@ -16,7 +16,6 @@ array_sort_by_column($list_contenders_tournoi, 'place');
 ?>
 <?php get_header(); ?>
 <body>
-<?php var_dump($list_l_r); ?>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-7">
@@ -118,17 +117,59 @@ array_sort_by_column($list_contenders_tournoi, 'place');
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-6">
-                <b>Liste des perdants :</b>
-                <?php foreach ($list_l_r as $item) : ?>
-                    <?php echo $item; ?> -
-                <?php endforeach; ?>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-6">
+                        <b>Liste des perdants :</b>
+                        <pre>
+                            <?php
+                                print_r($list_l_r);
+                            ?>
+                        </pre>
+                        <?php foreach ($list_l_r as $item) : ?>
+                            <?php echo $item; ?> -
+                        <?php endforeach; ?>
+                    </div>
+                    <div class="col-6">
+                        <b>Liste des gagnants :</b>
+                        <pre>
+                            <?php
+                            print_r($list_w_r);
+                            ?>
+                        </pre>
+                        <?php foreach ($list_w_r as $item) : ?>
+                            <?php echo $item; ?> -
+                        <?php endforeach; ?>
+                    </div>
+                </div>
             </div>
-            <div class="col-6">
-                <b>Liste des gagnants :</b>
-                <?php foreach ($list_w_r as $item) : ?>
-                    <?php echo $item; ?> -
-                <?php endforeach; ?>
+            <div class="col-md-6">
+                <?php
+                $ranking = new WP_Query(
+                    array(
+                        'post_type'      => 'contender',
+                        'posts_per_page' => -1,
+                        'meta_key'       => 'ELO_c',
+                        'orderby'        => 'meta_value_num',
+                        'order'          => 'DESC',
+                        'meta_query'     => array(
+                            array(
+                                'key'     => 'id_tournoi_c',
+                                'value'   => $id_tournoi,
+                                'compare' => 'LIKE',
+                            )
+                        )
+                    )
+                );
+                ?>
+                <h3>Classement ELO global</h3>
+                <ul>
+                    <?php $i=0; while ($ranking->have_posts()) : $ranking->the_post(); ?>
+                        <li>
+                            <?php echo $i; ?> -- <?php the_title(); ?> <b><?php the_ID(); ?></b> - <?php the_field('ELO_c'); ?> - (<?php the_field('difference_c'); ?>)
+                        </li>
+                    <?php $i++; endwhile; ?>
+                </ul>
             </div>
         </div>
     </div>
