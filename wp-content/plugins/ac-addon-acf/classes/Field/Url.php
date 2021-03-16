@@ -12,7 +12,7 @@ class Url extends Field {
 	public function get_value( $id ) {
 		$url = parent::get_value( $id );
 
-		return ac_helper()->html->link( $url, str_replace( [ 'http://', 'https://' ], '', $url ) );
+		return ac_helper()->html->link( $url, urldecode( str_replace( [ 'http://', 'https://' ], '', $url ) ) );
 	}
 
 	public function editing() {

@@ -2,72 +2,44 @@
 get_header();
 
 /* Variables */
-$id_tournoi      = get_the_ID();
+$id_tournament   = get_the_ID();
 $list_contenders = array();
 $c_at_same_place = array();
 $uuiduser        = $_COOKIE["vainkeurz_user_id"];
-$deja_sup_to     = array();
-$deja_inf_to     = array();
+$already_sup_to     = array();
+$already_inf_to     = array();
 $next_duel       = array();
 $sum_vote        = 0;
-$timeline        = 0;
-$key_gagnant     = 0;
-$key_perdant     = 0;
+$key_winner     = 0;
+$key_loser     = 0;
 $new_place       = 0;
 $is_next_duel    = true;
-$timeline_e_1    = 0;
+$timeline_1      = 0;
+$timeline_2      = 0;
 
+// Vainkeur
 if(isset($_GET['v']) && $_GET['v'] != ""){
     $v              = $_GET['v'];
 }
+
+// Perdant
 if(isset($_GET['l']) && $_GET['l'] != ""){
     $l              = $_GET['l'];
 }
 
+// ID ranking
 if(isset($_GET['r']) && $_GET['r'] != ""){
     $id_ranking  = $_GET['r'];
 }
 else{
-    $id_ranking = get_user_ranking($uuiduser, $id_tournoi);
+    $id_ranking = get_user_ranking($uuiduser, $id_tournament);
 }
 
-if(empty(get_field('ranking_r', $id_ranking))){
-
-    $contenders = new WP_Query(
-        array(
-            'post_type'      => 'contender',
-            'posts_per_page' => -1,
-            'meta_key'       => 'ELO_c',
-            'orderby'        => 'meta_value_num',
-            'order'          => 'DESC',
-            'meta_query'     => array(
-                array(
-                    'key'     => 'id_tournoi_c',
-                    'value'   => $id_tournoi,
-                    'compare' => 'LIKE',
-                )
-            )
-        )
-    );
-
-    $i=0; while ($contenders->have_posts()) : $contenders->the_post();
-
-        array_push($list_contenders, array(
-            "id"                => $i,
-            "id_global"         => get_the_ID(),
-            "elo"               => get_field('ELO_c'),
-            "contender_name"    => get_the_title(),
-            "vote"              => 0,
-            "superieur_to"      => array(),
-            "inferior_to"       => array(),
-            "place"             => 0
-        ));
-
-    $i++; endwhile;
-
-    update_field("ranking_r", $list_contenders, $id_ranking);
-}
+// List contenders
 $list_contenders    = get_field('ranking_r', $id_ranking);
+
+
+
 if(get_field('list_losers_r', $id_ranking)){
     $list_l_r       = get_field('list_losers_r', $id_ranking);
 }
@@ -87,21 +59,21 @@ $half               = $nb_contenders / 2;
 // On boucle sur le ranking pour connaître la position dans le tableau du gagnant et du perdant
 foreach($list_contenders as $key => $contender) {
     if($contender['id_global'] == $v){
-        $key_gagnant     = $key;
+        $key_winner     = $key;
     }
     if($contender['id_global'] == $l){
-        $key_perdant     = $key;
+        $key_loser     = $key;
     }
 }
 
 // On boucle sur le ranking pour connaître tous les participants qui ont l'ID du gagnant dans le tableau de leur paramètre "superieur_to"
-// On stocke dans la variable "$deja_sup_to" la liste des participants(keys) qui ont battu le gagnant
+// On stocke dans la variable "$already_sup_to" la liste des participants(keys) qui ont battu le gagnant
 foreach($list_contenders as $key => $contender) {
-    if(in_array($key_gagnant, $contender['superieur_to'])){
-        array_push($deja_sup_to, $key);
+    if(in_array($key_winner, $contender['superieur_to'])){
+        array_push($already_sup_to, $key);
     }
-    if(in_array($key_perdant, $contender['inferior_to'])){
-        array_push($deja_inf_to, $key);
+    if(in_array($key_loser, $contender['inferior_to'])){
+        array_push($already_inf_to, $key);
     }
 }
 
@@ -109,47 +81,47 @@ foreach($list_contenders as $key => $contender) {
 if($v){
 
     // On ajoute un vote au gagnant
-    $list_contenders[$key_gagnant]['vote']++;
+    $list_contenders[$key_winner]['vote']++;
 
     // ??
-    array_push($deja_sup_to, $key_gagnant);
+    array_push($already_sup_to, $key_winner);
 
     // On récupère la liste des participants battu par le perdant du duel
-    $list_sup_to_l = $list_contenders[$key_perdant]['superieur_to'];
+    $list_sup_to_l = $list_contenders[$key_loser]['superieur_to'];
 
 }
 // On ajoute le perdant dans la liste de ceux qui l'ont déjà battu
 if($l){
 
     // On ajoute un vote au perdant
-    $list_contenders[$key_perdant]['vote']++;
+    $list_contenders[$key_loser]['vote']++;
 
     // ??
-    array_push($deja_inf_to, $key_perdant);
+    array_push($already_inf_to, $key_loser);
 
     // On récupère la liste des participants qui battent par le gagnant du duel
-    $list_inf_to_v = $list_contenders[$key_gagnant]['inferior_to'];
+    $list_inf_to_v = $list_contenders[$key_winner]['inferior_to'];
 
 }
 
-if(in_array($list_contenders[$key_perdant]['id'], $list_contenders[$key_gagnant]['inferior_to'])){
-    $list_contenders[$key_gagnant]['inferior_to'] = array_diff($list_contenders[$key_gagnant]['inferior_to'], $list_contenders[$key_perdant]['id']);
+if(in_array($list_contenders[$key_loser]['id'], $list_contenders[$key_winner]['inferior_to'])){
+    $list_contenders[$key_winner]['inferior_to'] = array_diff($list_contenders[$key_winner]['inferior_to'], $list_contenders[$key_loser]['id']);
 }
 
-if(in_array($list_contenders[$key_gagnant]['id'], $list_contenders[$key_perdant]['superieur_to'])){
-    $list_contenders[$key_perdant]['superieur_to'] = array_diff($list_contenders[$key_perdant]['superieur_to'], $list_contenders[$key_gagnant]['id']);
+if(in_array($list_contenders[$key_winner]['id'], $list_contenders[$key_loser]['superieur_to'])){
+    $list_contenders[$key_loser]['superieur_to'] = array_diff($list_contenders[$key_loser]['superieur_to'], $list_contenders[$key_winner]['id']);
 }
 
 
 // On boucle sur la liste des participant battant le perdant
 // Cela inclus le gagnant du duel + tout ceux qui ont déjà battu ce gagnant
-foreach (array_unique($deja_sup_to) as $k){
+foreach (array_unique($already_sup_to) as $k){
 
     // On récupère la liste des participants que ce participant bat
     $to_up_sup_to = $list_contenders[$k]['superieur_to'];
 
     // On ajoute à cette liste, l'ID du perdant du duel
-    array_push($to_up_sup_to, $key_perdant);
+    array_push($to_up_sup_to, $key_loser);
 
     // Si il s'agit du gagnant du duel alors on fusionne les deux liste des participants battu par le gagnant et le perdant
     // Puis modifie la liste "superieur_to" du gagnant avec cette nouvelle liste
@@ -168,13 +140,13 @@ foreach (array_unique($deja_sup_to) as $k){
 
 // On boucle sur la liste des participant perdant contre le perdant
 // Cela inclus le perdant du duel + tout ceux qui battent déjà ce perdant
-foreach (array_unique($deja_inf_to) as $k){
+foreach (array_unique($already_inf_to) as $k){
 
     // On récupère la liste des participants qui le battent
     $to_up_inf_to = $list_contenders[$k]['inferior_to'];
 
     // On ajoute à cette liste, l'ID du gagnant du duel
-    array_push($to_up_inf_to, $key_gagnant);
+    array_push($to_up_inf_to, $key_winner);
 
     // Si il s'agit du perdant du duel alors on fusionne les deux liste des participants qui battent par le gagnant et le perdant
     // Puis modifie la liste "inferior_to" du perdant avec cette nouvelle liste
@@ -370,8 +342,8 @@ if(get_field('cover_t')){
                     <div class="display_battle">
                         <div class="row align-items-center contenders-containers">
                             <div class="col-5 link-contender contender_1">
-                                <a href="<?php the_permalink($id_tournoi); ?>?r=<?php echo $id_ranking; ?>&v=<?php echo $next_duel[0]; ?>&l=<?php echo $next_duel[1]; ?>"
-                                   data-contender-tournament="<?= $id_tournoi ?>"
+                                <a href="<?php the_permalink($id_tournament); ?>?r=<?php echo $id_ranking; ?>&v=<?php echo $next_duel[0]; ?>&l=<?php echo $next_duel[1]; ?>"
+                                   data-contender-tournament="<?= $id_tournament ?>"
                                    data-contender-chosen="<?= $next_duel[0] ?>"
                                    data-contender-notchosen="<?= $next_duel[1] ?>"
                                    id="c_1">
@@ -389,8 +361,8 @@ if(get_field('cover_t')){
                                 </h4>
                             </div>
                             <div class="col-5 link-contender contender_2">
-                                <a href="<?php the_permalink($id_tournoi); ?>?r=<?php echo $id_ranking; ?>&v=<?php echo $next_duel[1]; ?>&l=<?php echo $next_duel[0]; ?>"
-                                   data-contender-tournament="<?= $id_tournoi ?>"
+                                <a href="<?php the_permalink($id_tournament); ?>?r=<?php echo $id_ranking; ?>&v=<?php echo $next_duel[1]; ?>&l=<?php echo $next_duel[0]; ?>"
+                                   data-contender-tournament="<?= $id_tournament ?>"
                                    data-contender-chosen="<?= $next_duel[1] ?>"
                                    data-contender-notchosen="<?= $next_duel[0] ?>"
                                    id="c_1">

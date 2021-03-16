@@ -2,6 +2,7 @@
 
 namespace ACA\ACF\Search;
 
+use AC;
 use ACP\Helper\Select;
 use ACP\Helper\Select\Formatter;
 use ACP\Helper\Select\Group;
@@ -26,7 +27,7 @@ class User extends Meta
 	public function get_values( $search, $paged ) {
 		$entities = new Select\Entities\User( compact( 'search', 'paged' ) );
 
-		return new Select\Options\Paginated(
+		return new AC\Helper\Select\Options\Paginated(
 			$entities,
 			new Group\UserRole(
 				new Formatter\UserName( $entities )

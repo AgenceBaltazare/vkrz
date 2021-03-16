@@ -1,15 +1,24 @@
-# Translation of WordPress - 5.6.x - Development - Administration - Network Admin in French (France)
-# This file is distributed under the same license as the WordPress - 5.6.x - Development - Administration - Network Admin package.
+# Translation of WordPress - 5.7.x - Development - Administration - Network Admin in French (France)
+# This file is distributed under the same license as the WordPress - 5.7.x - Development - Administration - Network Admin package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-01-05 15:25:27+0000\n"
+"PO-Revision-Date: 2021-02-21 15:34:24+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: GlotPress/3.0.0-alpha.2\n"
 "Language: fr\n"
-"Project-Id-Version: WordPress - 5.6.x - Development - Administration - Network Admin\n"
+"Project-Id-Version: WordPress - 5.7.x - Development - Administration - Network Admin\n"
+
+#: wp-admin/network/settings.php:63
+msgid "<a href=\"https://wordpress.org/support/article/network-admin-settings-screen/\">Documentation on Network Settings</a>"
+msgstr "<a href=\"https://fr.wordpress.org/support/article/network-admin-settings-screen/\">Documentation de l’écran des réglages de l’administration du réseau</a>"
+
+#: wp-admin/network/site-info.php:184
+msgctxt "site"
+msgid "Public"
+msgstr "Public"
 
 #: wp-admin/includes/class-wp-ms-sites-list-table.php:293
 msgctxt "site"
@@ -99,11 +108,11 @@ msgstr[1] "Tous <span class=\"count\">(%s)</span>"
 
 #: wp-admin/network/upgrade.php:31
 msgid "<a href=\"https://wordpress.org/support/article/network-admin-updates-screen/\">Documentation on Upgrade Network</a>"
-msgstr "<a href=\"https://wordpress.org/support/article/network-admin-updates-screen/\">Documentation on Upgrade Network</a>"
+msgstr "<a href=\"https://wordpress.org/support/article/network-admin-updates-screen/\">Documentation sur la mise à jour d’un réseau (en anglais)</a>"
 
 #: wp-admin/network/index.php:55
 msgid "<a href=\"https://wordpress.org/support/article/network-admin/\">Documentation on the Network Admin</a>"
-msgstr "<a href=\"https://fr.wordpress.org/support/article/network-admin/\">Documentation sur l’administration d’un réseau de sites (en anglais)</a>"
+msgstr "<a href=\"https://fr.wordpress.org/support/article/network-admin/\">Documentation sur les réglages d’un réseau de sites</a>"
 
 #. translators: %s: Number of themes.
 #: wp-admin/includes/class-wp-ms-themes-list-table.php:406
@@ -119,11 +128,11 @@ msgstr "Principal"
 
 #: wp-admin/network.php:67 wp-admin/network.php:80
 msgid "<a href=\"https://wordpress.org/support/article/tools-network-screen/\">Documentation on the Network Screen</a>"
-msgstr "<a href=\"https://wordpress.org/support/article/tools-network-screen/\">Documentation sur l’écran Réseau de sites (en anglais)</a>"
+msgstr "<a href=\"https://wordpress.org/support/article/tools-network-screen/\">Documentation sur l’écran Créer un réseau de sites WordPress (en anglais)</a>"
 
 #: wp-admin/network.php:66 wp-admin/network.php:79
 msgid "<a href=\"https://wordpress.org/support/article/create-a-network/\">Documentation on Creating a Network</a>"
-msgstr "<a href=\"https://wordpress.org/support/article/create-a-network/\">Documentation sur la création d’un réseau multisite</a>"
+msgstr "<a href=\"https://fr.wordpress.org/support/article/create-a-network/\">Documentation sur la création d’un réseau multisite</a>"
 
 #. translators: %s: DO_NOT_UPGRADE_GLOBAL_TABLES
 #: wp-admin/includes/network.php:118
@@ -134,7 +143,7 @@ msgstr "La constante %s ne peut pas être définie lors de la création d’un r
 msgid "You are about to delete the following sites:"
 msgstr "Vous allez supprimer les sites suivants :"
 
-#: wp-admin/network/site-users.php:248
+#: wp-admin/network/site-users.php:243
 msgid "User could not be added to this site."
 msgstr "Le compte ne peut pas être ajouté à ce site."
 
@@ -230,7 +239,7 @@ msgstr "%1$s par %2$s"
 
 #: wp-admin/network/site-new.php:219
 msgid "Only lowercase letters (a-z), numbers, and hyphens are allowed."
-msgstr "Seuls les lettres minuscules (a-z), les nombres, et les traits d’union sont autorisés."
+msgstr "Uniquement des lettres minuscules non accentuées (a-z), des chiffres (0-9), et des traits d’union (-) sont autorisés."
 
 #. translators: %s: wp-config.php
 #: wp-admin/includes/network.php:540
@@ -472,7 +481,7 @@ msgstr "Indésirable"
 msgid "Archived"
 msgstr "Archivé"
 
-#: wp-admin/network/user-new.php:136 wp-admin/network/site-users.php:360
+#: wp-admin/network/user-new.php:136 wp-admin/network/site-users.php:355
 msgid "A password reset link will be sent to the user via email."
 msgstr "Un lien de réinitialisation de mot de passe sera envoyé par e-mail au compte."
 
@@ -582,15 +591,11 @@ msgstr "Le site demandé n’existe pas."
 
 #: wp-admin/network/user-new.php:29 wp-admin/network/users.php:230
 msgid "<a href=\"https://codex.wordpress.org/Network_Admin_Users_Screen\">Documentation on Network Users</a>"
-msgstr "<a href=\"https://wordpress.org/support/article/network-admin/#users\">Documentation sur les comptes du réseau</a>."
+msgstr "<a href=\"https://wordpress.org/support/article/network-admin/#users\">Documentation sur les comptes du réseau (en anglais)</a>."
 
 #: wp-admin/network/themes.php:323
 msgid "<a href=\"https://codex.wordpress.org/Network_Admin_Themes_Screen\">Documentation on Network Themes</a>"
-msgstr "<a href=\"https://wordpress.org/support/article/network-admin/#themes\">Documentation sur les thèmes du réseau</a>."
-
-#: wp-admin/network/settings.php:63
-msgid "<a href=\"https://codex.wordpress.org/Network_Admin_Settings_Screen\">Documentation on Network Settings</a>"
-msgstr "<a href=\"https://wordpress.org/support/article/network-admin-settings-screen/\">Documentation sur les réglages du réseau</a>."
+msgstr "<a href=\"https://wordpress.org/support/article/network-admin/#themes\">Documentation sur les thèmes du réseau (en anglais)</a>."
 
 #. translators: 1: Site URL, 2: Server error message.
 #: wp-admin/network/upgrade.php:98
@@ -753,27 +758,27 @@ msgstr "Autoriser les administrateurs ou administratrices de sites à ajouter de
 msgid "Super admins can no longer be added on the Options screen. You must now go to the list of existing users on Network Admin > Users and click on Username or the Edit action link below that name. This goes to an Edit User page where you can check a box to grant super admin privileges."
 msgstr "Les super-admins ne peuvent plus être ajoutés via l’écran des options. Vous devez aller à la liste des comptes (option « Comptes » du menu « Admin du réseau » et cliquer sur un identifiant ou sur le lien « Modifier » qui s’affiche en dessous. Vous arriverez alors à un écran vous permettant de modifier ce compte, où une case à cocher donne les droits de super-admin."
 
-#: wp-admin/network/site-users.php:269
+#: wp-admin/network/site-users.php:264
 msgid "Enter the username and email."
-msgstr "Saisir l’identifiant et l’adresse de messagerie."
+msgstr "Saisissez l’identifiant et l’adresse e-mail."
 
-#: wp-admin/network/site-users.php:266
+#: wp-admin/network/site-users.php:261
 msgid "User created."
 msgstr "Le compte a été créé."
 
-#: wp-admin/network/site-users.php:263
+#: wp-admin/network/site-users.php:258
 msgid "Select a user to remove."
 msgstr "Sélectionnez un compte à supprimer."
 
-#: wp-admin/network/site-users.php:257
+#: wp-admin/network/site-users.php:252
 msgid "Select a user to change role."
 msgstr "Sélectionnez un compte dont vous voulez changer le rôle."
 
-#: wp-admin/network/site-users.php:251
+#: wp-admin/network/site-users.php:246
 msgid "Enter the username of an existing user."
 msgstr "Saisir l’identifiant d’un compte existant."
 
-#: wp-admin/network/site-users.php:245
+#: wp-admin/network/site-users.php:240
 msgid "User is already a member of this site."
 msgstr "Ce compte est déjà membre de ce site."
 
@@ -847,7 +852,7 @@ msgid "Theme enabled."
 msgstr "Thème activé."
 
 #. translators: %s: Site title.
-#: wp-admin/network/site-info.php:126 wp-admin/network/site-users.php:204
+#: wp-admin/network/site-info.php:126 wp-admin/network/site-users.php:199
 #: wp-admin/network/site-themes.php:170 wp-admin/network/site-settings.php:83
 msgid "Edit Site: %s"
 msgstr "Modifier le site : %s"
@@ -882,7 +887,7 @@ msgstr "Un lien « Modifier » vers un nouvel écran de modification de site."
 msgid "Add New takes you to the Add New Site screen. You can search for a site by Name, ID number, or IP address. Screen Options allows you to choose how many sites to display on one page."
 msgstr "Ajouter vous envoie au formulaire en bas de cette page. Vous pouvez rechercher un site par le nom, l’identifiant ou l’adresse IP. Les options d’écran vous permettent de choisir le nombre de sites à afficher sur une même page."
 
-#: wp-admin/network/user-new.php:148 wp-admin/network/site-users.php:323
+#: wp-admin/network/user-new.php:148 wp-admin/network/site-users.php:318
 msgid "Add User"
 msgstr "Ajouter un compte"
 
@@ -1089,7 +1094,7 @@ msgstr "Survoler chaque site avec la souris révèle sept options (trois pour le
 
 #: wp-admin/network/settings.php:51
 msgid "Operational settings has fields for the network&#8217;s name and admin email."
-msgstr "Les réglages de fonctionnement permettent de modifier le nom du réseau, et l’adresse de messagerie de l’administrateur ou de l’administratrice."
+msgstr "Les réglages de fonctionnement permettent de modifier le nom du réseau, et l’adresse e-mail de l’administrateur ou de l’administratrice."
 
 #: wp-admin/network/users.php:223
 msgid "The bulk action will permanently delete selected users, or mark/unmark those selected as spam. Spam users will have posts removed and will be unable to sign up again with the same email addresses."
@@ -1170,11 +1175,11 @@ msgstr "Si votre navigateur ne lance pas automatiquement la page suivante, cliqu
 
 #: wp-admin/network/settings.php:284
 msgid "If you want to ban domains from site registrations. One domain per line."
-msgstr "Si vous souhaitez interdire la création de sites aux personnes dont l’adresse de messagerie est liée à certains noms de domaines. Un domaine par ligne."
+msgstr "Si vous souhaitez interdire la création de site aux personnes dont l’adresse e-mail est liée à certains noms de domaines. Un domaine par ligne."
 
 #: wp-admin/network/settings.php:266
 msgid "If you want to limit site registrations to certain domains. One domain per line."
-msgstr "Si vous souhaitez que les seules personnes habilitées à créer un site soient celles disposant d’une adresse de messagerie liée à certains noms de domaines. Un domaine par ligne."
+msgstr "Si vous souhaitez que les seules personnes habilitées à créer un site soient celles disposant d’une adresse e-mail liée à certains noms de domaines. Un domaine par ligne."
 
 #: wp-admin/network/site-new.php:40
 msgid "Can&#8217;t create an empty site."
@@ -1242,7 +1247,7 @@ msgstr "Une erreur s’est produite lors de la création du compte."
 
 #: wp-admin/network/settings.php:392
 msgid "Upload file types"
-msgstr "Types de fichiers "
+msgstr "Types des fichiers téléversés"
 
 #. translators: %s: Number of megabytes to limit uploads to.
 #: wp-admin/network/settings.php:380
@@ -1359,7 +1364,7 @@ msgstr "Langue par défaut"
 
 #: wp-admin/network/settings.php:402
 msgid "Max upload file size"
-msgstr "Taille maximale des fichiers"
+msgstr "Taille maximale des fichiers téléversés"
 
 #: wp-admin/network/settings.php:362
 msgid "First Comment URL"
@@ -1413,7 +1418,7 @@ msgstr "Notification d’inscription"
 msgid "Allow new registrations"
 msgstr "Autoriser les nouvelles inscriptions"
 
-#: wp-admin/network/site-users.php:272
+#: wp-admin/network/site-users.php:267
 msgid "Duplicated username or email address."
 msgstr "Identifiant ou adresse e-mail déjà utilisé(e)."
 

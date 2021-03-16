@@ -120,10 +120,10 @@ msgstr "Couleur d’arrière-plan"
 msgid "This theme requires WordPress 5.3 or newer. You are running version %s. Please upgrade."
 msgstr "Ce thème nécessite WordPress 5.3 ou plus récent. Vous utilisez la version %s. Veuillez mettre à niveau."
 
-#. translators: %: page number.
-#: image.php:46 template-parts/content/content-page.php:36
+#. translators: %: Page number.
+#: image.php:46 template-parts/content/content-single.php:30
+#: template-parts/content/content-page.php:36
 #: template-parts/content/content.php:36
-#: template-parts/content/content-single.php:30
 msgid "Page %"
 msgstr "Page %"
 
@@ -166,7 +166,7 @@ msgstr "XS"
 msgid "Leave a comment"
 msgstr "Laisser un commentaire"
 
-#. translators: %s: comment count number.
+#. translators: %s: Comment count number.
 #: comments.php:40
 msgctxt "Comments title"
 msgid "%s comment"
@@ -210,11 +210,6 @@ msgstr "« Auto-portrait » par Berthe Morisot"
 #: inc/block-patterns.php:84
 msgid "&#8220;Daffodils&#8221; by Berthe Morisot"
 msgstr "« Jonquilles » par Berthe Morisot"
-
-#: inc/starter-content.php:43 inc/block-patterns.php:72
-#: inc/block-patterns.php:107
-msgid "&#8220;Roses Tremieres&#8221; by Berthe Morisot"
-msgstr "« Rose trémières » par Berthe Morisot"
 
 #: inc/template-functions.php:399
 msgctxt "Post password form"
@@ -291,10 +286,6 @@ msgstr "Dans le bois de Boulogne"
 msgid "Villa with Orange Trees, Nice"
 msgstr "Villa avec orangers, Nice"
 
-#: inc/block-patterns.php:107
-msgid "Roses Tremieres"
-msgstr "Roses trémières"
-
 #: inc/block-patterns.php:96
 msgid "&#8220;Villa with Orange Trees, Nice&#8221; by Berthe Morisot"
 msgstr "« Villa dans les orangers, Nice » par Berthe Morisot"
@@ -329,7 +320,7 @@ msgstr "Jouer dans le sable"
 msgid "&#8220;Playing in the Sand&#8221; by Berthe Morisot"
 msgstr "« Jeu dans le sable » par Berthe Morisot"
 
-#. translators: %s: parent post.
+#. translators: %s: Parent post.
 #: image.php:59
 msgid "Published in %s"
 msgstr "Publié dans %s"
@@ -350,14 +341,8 @@ msgstr "Épais"
 msgid "On Archive Pages, posts show:"
 msgstr "Sur les pages d’archive, les publications affichent :"
 
-#. translators: 1: Link to authors posts. 2: Author name.
-#: template-parts/post/author-bio.php:20
-msgid "View all of %2$s's posts."
-msgstr "Afficher tous les articles de %2$s."
-
-#. translators: 1: Author name.
-#. translators: %s author name.
-#: template-parts/post/author-bio.php:15 inc/template-tags.php:49
+#. translators: %s: Author name.
+#: inc/template-tags.php:49 template-parts/post/author-bio.php:19
 msgid "By %s"
 msgstr "Par %s"
 
@@ -369,11 +354,6 @@ msgstr "Il semblerait que nous ne soyons pas en mesure de trouver votre contenu.
 msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
 msgstr "Désolé, mais rien ne correspond à vos critères de recherche. Veuillez réessayer avec d’autres mots-clés."
 
-#. translators: 1: link to WP admin new post page.
-#: template-parts/content/content-none.php:43
-msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
-msgstr "Prêt·e à publier votre premier article ? <a href=\"%1$s\">Lancez-vous ici</a>."
-
 #: single.php:40
 msgid "Previous post"
 msgstr "Publication précédente"
@@ -382,7 +362,7 @@ msgstr "Publication précédente"
 msgid "Next post"
 msgstr "Publication suivante"
 
-#. translators: %s: parent post link.
+#. translators: %s: Parent post link.
 #: single.php:25
 msgid "<span class=\"meta-nav\">Published in</span><span class=\"post-title\">%s</span>"
 msgstr "<span class=\"meta-nav\">Publié dans</span><span class=\"post-title\">%s</span>"
@@ -396,37 +376,37 @@ msgstr "Rechercher"
 msgid "Search&hellip;"
 msgstr "Rechercher…"
 
-#. translators: %d: the number of search results.
+#. translators: %d: The number of search results.
 #: search.php:33
 msgid "We found %d result for your search."
 msgid_plural "We found %d results for your search."
 msgstr[0] "Nous avons trouvé %d résultat pour votre recherche."
 msgstr[1] "Nous avons trouvé %d résultats pour votre recherche."
 
-#. translators: %s: search term.
+#. translators: %s: Search term.
 #: template-parts/content/content-none.php:22 search.php:21
 msgid "Results for \"%s\""
 msgstr "Résultats pour « %s »"
 
-#. translators: %s: list of tags.
+#. translators: %s: List of tags.
 #: inc/template-tags.php:118 inc/template-tags.php:162
 msgid "Tagged %s"
 msgstr "Étiqueté %s"
 
-#. translators: %s: list of categories.
+#. translators: %s: List of categories.
 #: inc/template-tags.php:108 inc/template-tags.php:152
 msgid "Categorized as %s"
 msgstr "Catégorisé comme %s"
 
-#. translators: used between list items, there is a space after the comma.
+#. translators: Used between list items, there is a space after the comma.
 #: inc/template-tags.php:104 inc/template-tags.php:114
 #: inc/template-tags.php:148 inc/template-tags.php:158
 msgid ", "
 msgstr ", "
 
 #. translators: %s: Name of current post. Only visible to screen readers.
-#: image.php:68 image.php:93 template-parts/content/content-page.php:48
-#: inc/template-tags.php:92 inc/template-tags.php:135
+#: inc/template-tags.php:92 inc/template-tags.php:135 image.php:68 image.php:93
+#: template-parts/content/content-page.php:48
 msgid "Edit %s"
 msgstr "Modifier %s"
 
@@ -548,15 +528,15 @@ msgctxt "Used before full size attachment link."
 msgid "Full size"
 msgstr "Taille originale"
 
-#. translators: %s: publish date.
+#. translators: %s: Publish date.
 #: inc/template-tags.php:29
 msgid "Published %s"
 msgstr "Publié le %s"
 
-#: image.php:43 template-parts/content/content-page.php:33
+#: comments.php:62 inc/template-tags.php:228 image.php:43
+#: template-parts/content/content-single.php:27
+#: template-parts/content/content-page.php:33
 #: template-parts/content/content.php:33
-#: template-parts/content/content-single.php:27 inc/template-tags.php:228
-#: comments.php:62
 msgid "Page"
 msgstr "Page"
 
@@ -568,8 +548,8 @@ msgstr "Fermer"
 msgid "Menu"
 msgstr "Menu"
 
-#: functions.php:76 template-parts/header/site-nav.php:13
-#: inc/starter-content.php:154
+#: inc/starter-content.php:154 functions.php:76
+#: template-parts/header/site-nav.php:13
 msgid "Primary menu"
 msgstr "Menu principal"
 
@@ -649,7 +629,7 @@ msgstr "Vert"
 msgid "Gray"
 msgstr "Gris"
 
-#: functions.php:223 inc/block-styles.php:107
+#: inc/block-styles.php:107 functions.php:223
 msgid "Dark gray"
 msgstr "Gris foncé"
 
@@ -690,7 +670,7 @@ msgstr "Très petit"
 msgid "Proudly powered by %s."
 msgstr "Fièrement propulsé par %s"
 
-#: functions.php:77 inc/starter-content.php:165 footer.php:24
+#: footer.php:24 inc/starter-content.php:165 functions.php:77
 msgid "Secondary menu"
 msgstr "Menu secondaire"
 

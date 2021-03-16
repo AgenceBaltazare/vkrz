@@ -162,7 +162,7 @@ msgstr "Dans"
 msgid "Join the Club"
 msgstr "Rejoignez le club"
 
-#: inc/starter-content.php:148 inc/block-patterns.php:45
+#: inc/block-patterns.php:45 inc/starter-content.php:148
 msgid "Members get access to exclusive exhibits and sales. Our memberships cost $99.99 and are billed annually."
 msgstr "Les adhérent·es ont accès à des expositions et des ventes exclusives. Notre abonnement coûtent $99.99 et est facturé annuellement."
 
@@ -186,7 +186,7 @@ msgstr "« Les cyborgs, comme l’a fait remarquer la philosophe Donna Haraway,
 msgid "From Signac to Matisse"
 msgstr "De Signac à Matisse"
 
-#: inc/starter-content.php:99 inc/block-patterns.php:168
+#: inc/block-patterns.php:168 inc/starter-content.php:99
 msgid "The Life I Deserve"
 msgstr "La vie que je mérite"
 
@@ -198,10 +198,10 @@ msgstr "1er octobre au 1er décembre"
 msgid "Theatre of Operations"
 msgstr "Théâtre des opérations"
 
-#: inc/starter-content.php:73 inc/starter-content.php:88
-#: inc/starter-content.php:105 inc/starter-content.php:120
 #: inc/block-patterns.php:78 inc/block-patterns.php:160
-#: inc/block-patterns.php:174
+#: inc/block-patterns.php:174 inc/starter-content.php:73
+#: inc/starter-content.php:88 inc/starter-content.php:105
+#: inc/starter-content.php:120
 msgid "Read More"
 msgstr "Lire la suite"
 
@@ -209,7 +209,7 @@ msgstr "Lire la suite"
 msgid "August 1 -- December 1"
 msgstr "1er août au 1er décembre"
 
-#: inc/starter-content.php:67 inc/block-patterns.php:154
+#: inc/block-patterns.php:154 inc/starter-content.php:67
 msgid "Works and Days"
 msgstr "Travaux et jours"
 
@@ -253,7 +253,7 @@ msgstr "Appliquer une couleur personnalisée aux boutons, liens, images mises en
 msgid "Primary Color"
 msgstr "Couleur principale"
 
-#: searchform.php:24 template-parts/modal-search.php:20
+#: template-parts/modal-search.php:20 searchform.php:24
 msgid "Search for:"
 msgstr "Rechercher :"
 
@@ -326,7 +326,7 @@ msgid "Footer"
 msgstr "Pied de page"
 
 #. translators: %s: Author name.
-#: inc/template-tags.php:357 template-parts/entry-author-bio.php:20
+#: template-parts/entry-author-bio.php:20 inc/template-tags.php:357
 msgid "By %s"
 msgstr "Par %s"
 
@@ -373,8 +373,8 @@ msgstr "Article épinglé"
 msgid "Tags"
 msgstr "Étiquettes"
 
-#: inc/template-tags.php:392 template-parts/entry-header.php:36
-#: template-parts/content-cover.php:70
+#: template-parts/content-cover.php:70 template-parts/entry-header.php:36
+#: inc/template-tags.php:392
 msgid "Categories"
 msgstr "Catégories"
 

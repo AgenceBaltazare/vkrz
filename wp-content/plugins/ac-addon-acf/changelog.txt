@@ -1,5 +1,13 @@
 == Changelog ==
 
+= 2.6.4 =
+Release Date: March 1st, 2021
+
+* [Improved] Better URL display for urlencoded URLs
+* [Improved] Better ACF field recognition for complex ACF Location settings
+* [Improved] Allow to clear value for Checkbox field
+* [Fixed] Prevent errors for nested group and repeater fields
+
 = 2.6.3 =
 Release Date: September 1st, 2020
 

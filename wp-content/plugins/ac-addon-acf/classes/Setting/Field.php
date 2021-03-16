@@ -158,7 +158,7 @@ abstract class Field extends AC\Settings\Column {
 				$label = $field['label'];
 
 				if ( ! $label ) {
-					$label = __( 'empty label', 'codepress-admin-columns' );
+					$label = $field['name'];
 				}
 
 				$options[ $field['key'] ] = $label;

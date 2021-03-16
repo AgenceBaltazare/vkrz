@@ -603,7 +603,7 @@ class WP_maintenance {
 
         /* Désactive le mode maintenance pour les IP définies */
         if( isset($paramIpAddress) ) {
-            $lienIpAddress = explode("\n", $paramIpAddress);
+            $lienIpAddress = explode("\r\n", $paramIpAddress);
             $ip_autorized = array();
             foreach($lienIpAddress as $ipAutorized) {
                 if( $ipAutorized!='' ) {

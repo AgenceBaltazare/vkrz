@@ -45,7 +45,7 @@ class Subfield extends AC\Settings\Column {
 
 		if ( $sub_fields ) {
 			foreach ( $sub_fields as $sub_field ) {
-				if ( 'repeater' == $sub_field['type'] ) {
+				if ( in_array( $sub_field['type'], [ 'repeater', 'group' ] ) ) {
 					continue;
 				}
 

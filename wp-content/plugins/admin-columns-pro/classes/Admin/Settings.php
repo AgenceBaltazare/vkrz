@@ -310,11 +310,12 @@ class Settings implements Registrable {
 	 * @return AC\Form\Element\MultiSelect
 	 */
 	private function select_roles( array $roles = [], $is_disabled = false ) {
-		$select = new AC\Form\Element\MultiSelect( 'roles[]', $this->get_grouped_role_names() );
+		$select = new AC\Form\Element\MultiSelect( 'roles', $this->get_grouped_role_names() );
 
 		$roles = array_map( 'strval', array_filter( $roles ) );
 
 		$select->set_value( $roles )
+		       ->set_attribute( 'multiple', true )
 		       ->set_attribute( 'class', 'roles' )
 		       ->set_attribute( 'style', 'width: 100%;' )
 		       ->set_attribute( 'id', 'listscreen_roles' );
@@ -384,11 +385,12 @@ class Settings implements Registrable {
 			$options[ (string) $user_id ] = ac_helper()->user->get_display_name( $user_id );
 		}
 
-		$select = new AC\Form\Element\MultiSelect( 'users[]', $options );
+		$select = new AC\Form\Element\MultiSelect( 'users', $options );
 
 		$select->set_value( $user_ids )
 		       ->set_attribute( 'class', 'users' )
 		       ->set_attribute( 'style', 'width: 100%;' )
+		       ->set_attribute( 'multiple', true )
 		       ->set_attribute( 'id', 'listscreen_users' );
 
 		if ( $is_disabled ) {
