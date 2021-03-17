@@ -1,7 +1,7 @@
 <?php
 $id_ranking                      = get_the_ID();
-$id_tournoi                      = get_field('id_tournoi_r');
-$list_contenders_tournoi         = get_field('ranking_r');
+$id_tournament                   = get_field('id_tournoi_r');
+$list_contenders_tournament      = get_field('ranking_r');
 $list_w_r                        = get_field('list_winners_r');
 $list_l_r                        = get_field('list_losers_r');
 
@@ -12,7 +12,7 @@ function array_sort_by_column(&$arr, $col, $dir = SORT_DESC) {
     }
     array_multisort($sort_col, $dir, $arr);
 }
-array_sort_by_column($list_contenders_tournoi, 'place');
+array_sort_by_column($list_contenders_tournament, 'place');
 ?>
 <?php get_header(); ?>
 <body>
@@ -23,6 +23,7 @@ array_sort_by_column($list_contenders_tournoi, 'place');
                     <thead>
                     <tr>
                         <th scope="col">Place</th>
+                        <th scope="col">Ratio</th>
                         <th scope="col">#</th>
                         <th scope="col">Nom</th>
                         <th scope="col">Supérieur à</th>
@@ -31,29 +32,32 @@ array_sort_by_column($list_contenders_tournoi, 'place');
                     </tr>
                     </thead>
                     <tbody>
-                    <?php foreach($list_contenders_tournoi as $c) : ?>
+                    <?php foreach($list_contenders_tournament as $c) : ?>
                         <tr>
                             <td>
                                 <?php echo $c['place']; ?>
                             </td>
                             <td>
+                                <?php echo $c['ratio']; ?>
+                            </td>
+                            <td>
                                 <?php echo $c['id']; ?>
                             </td>
                             <td>
-                                <?php echo get_the_title($c['id_global']); ?> - <em><?php echo $c['id_global']; ?></em>
+                                <?php echo get_the_title($c['id_wp']); ?> - <em><?php echo $c['id_wp']; ?></em>
                             </td>
                             <td>
-                                <?php foreach($c['superieur_to'] as $sup) : ?>
+                                <?php foreach($c['more_to'] as $sup) : ?>
                                     <?php echo $sup." "; ?>
                                 <?php endforeach; ?>
                             </td>
                             <td>
-                                <?php foreach($c['inferior_to'] as $inf) : ?>
+                                <?php foreach($c['less_to'] as $inf) : ?>
                                     <?php echo $inf." "; ?>
                                 <?php endforeach; ?>
                             </td>
                             <td>
-                                <?php the_field('ELO_c', $c['id_global']); ?>
+                                <?php the_field('ELO_c', $c['id_wp']); ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -72,8 +76,8 @@ array_sort_by_column($list_contenders_tournoi, 'place');
                 $all_votes = new WP_Query(array('post_type' => 'vote', 'order' => 'DESC', 'orderby' => 'date', 'posts_per_page' => $nb, 'meta_query' => array(
                     array(
                         'key' => 'id_t_v',
-                        'value' => $id_tournoi,
-                        'compare' => '=',
+                        'value' => $id_tournament,
+                        'compare' => 'LIKE',
                     ),
                 ))); ?>
                 <table class="table">
@@ -126,9 +130,6 @@ array_sort_by_column($list_contenders_tournoi, 'place');
                                 print_r($list_l_r);
                             ?>
                         </pre>
-                        <?php foreach ($list_l_r as $item) : ?>
-                            <?php echo $item; ?> -
-                        <?php endforeach; ?>
                     </div>
                     <div class="col-6">
                         <b>Liste des gagnants :</b>
@@ -137,13 +138,10 @@ array_sort_by_column($list_contenders_tournoi, 'place');
                             print_r($list_w_r);
                             ?>
                         </pre>
-                        <?php foreach ($list_w_r as $item) : ?>
-                            <?php echo $item; ?> -
-                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <?php
                 $ranking = new WP_Query(
                     array(
@@ -155,7 +153,7 @@ array_sort_by_column($list_contenders_tournoi, 'place');
                         'meta_query'     => array(
                             array(
                                 'key'     => 'id_tournoi_c',
-                                'value'   => $id_tournoi,
+                                'value'   => $id_tournament,
                                 'compare' => 'LIKE',
                             )
                         )
@@ -169,6 +167,22 @@ array_sort_by_column($list_contenders_tournoi, 'place');
                             <?php echo $i; ?> -- <?php the_title(); ?> <b><?php the_ID(); ?></b> - <?php the_field('ELO_c'); ?> - (<?php the_field('difference_c'); ?>)
                         </li>
                     <?php $i++; endwhile; ?>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <ul>
+                    <li>
+                        <b>NB votes</b> : <?php the_field('nb_votes_r', $id_ranking); ?>
+                    </li>
+                    <li>
+                        <b>Timeline main</b> : <?php the_field('timeline_main', $id_ranking); ?>
+                    </li>
+                    <li>
+                        <b>Timeline 2</b> : <?php the_field('timeline_2', $id_ranking); ?>
+                    </li>
+                    <li>
+                        <b>Timeline 4</b> : <?php the_field('timeline_4', $id_ranking); ?>
+                    </li>
                 </ul>
             </div>
         </div>
