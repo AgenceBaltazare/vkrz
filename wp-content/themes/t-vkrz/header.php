@@ -29,10 +29,6 @@
     <link rel="stylesheet" href="<?php bloginfo( 'template_directory' ); ?>/assets/css/contenders.css">
     <link rel="stylesheet" href="<?php bloginfo( 'template_directory' ); ?>/assets/css/responsive.css">
 
-    <?php if(get_post_type() == "classement"): ?>
-        <meta http-equiv="refresh" content="1;url=<?php the_permalink(); ?>" />
-    <?php endif; ?>
-
     <?php wp_head(); ?>
 
     <!-- Hotjar Tracking Code for https://vainkeurz.com/ -->

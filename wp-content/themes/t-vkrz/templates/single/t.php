@@ -16,8 +16,11 @@ wp_reset_query();
 
 get_header();
 
+if ( get_field( 'cover_t' ) ) {
+    $illu     = wp_get_attachment_image_src( get_field( 'cover_t' ), 'full' );
+    $illu_url = $illu[0];
+}
 ?>
-
 <body style="background: url(<?php echo $illu_url; ?>) center center no-repeat">
 
 <div class="main">
@@ -27,17 +30,13 @@ get_header();
             <div class="row align-items-center">
                 <div class="col-sm-4">
                     <div class="logo">
-                        <a href="<?php the_permalink(33); ?>">
-                            <img src="<?php bloginfo( 'template_directory' ); ?>/assets/img/logo-vainkeurz.png" alt=""
-                                 class="img-fluid">
+                        <a href="<?php bloginfo('url'); ?>/">
+                            <img src="<?php bloginfo( 'template_directory' ); ?>/assets/img/logo-vainkeurz.png" alt="" class="img-fluid">
                         </a>
                     </div>
                 </div>
                 <div class="col-sm-8 text-right">
                     <div class="display_users_votes">
-                        <a href="<?php the_permalink($id_ranking); ?>" target="_blank" class="cta_2">
-                            Voir classement
-                        </a>
                         <?php
                         set_query_var( 'user_votes_vars', compact( 'nb_user_votes' ) );
                         get_template_part( 'templates/parts/content', 'user-votes' );

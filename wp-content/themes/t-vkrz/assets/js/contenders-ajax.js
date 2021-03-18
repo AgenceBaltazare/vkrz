@@ -2,12 +2,14 @@ $(document).ready(function ($) {
     let contenders = $('.display_battle .link-contender');
     let ajaxRunning = false;
 
-    contenders.find('a').addClass('entering')
+    contenders.find('a').addClass('entering');
 
     $("body").keydown(function (e) {
-        return
+        return;
+        console.log('aaa');
         e.preventDefault();
         if (e.keyCode === 37) { // left
+            console.log('rdttre');
             $("#c_1").trigger("click");
         } else if (e.keyCode === 39) { // right
             $("#c_2").trigger("click");
@@ -39,8 +41,6 @@ $(document).ready(function ($) {
             })
                 .done(function (response) {
                     let data = JSON.parse(response);
-
-                    console.log(data);
                     $('.display_battle').html(data.contenders_html);
                     contenders = $('.display_battle .link-contender');
                     contenders.find('a').addClass('entering')
