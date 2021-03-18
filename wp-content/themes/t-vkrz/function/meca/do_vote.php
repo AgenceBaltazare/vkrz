@@ -1,5 +1,5 @@
 <?php
-function do_vote($v, $l, $id_ranking){
+function do_vote($id_winner, $id_looser, $id_ranking){
 
     $key_vainkeur    = 0;
     $key_loser       = 0;
@@ -13,46 +13,27 @@ function do_vote($v, $l, $id_ranking){
     if(!$list_l_r){
         $list_l_r    = array();
     }
-    $nb_loosers      = count($list_l_r);
     $nb_winners      = count($list_w_r);
-    $nb_votes_r      = get_field('nb_votes_r', $id_ranking);
+    $nb_loosers      = count($list_l_r);
     $list_contenders = get_field('ranking_r', $id_ranking);
-    $timeline_main   = get_field('timeline_main', $id_ranking);
+    $nb_contenders   = count($list_contenders);
+    $timeline_main = get_field('timeline_main', $id_ranking);
 
     // On ajoute un vote au compteur
-    $nb_votes_r = $nb_votes_r + 1;
-    update_field('nb_votes_r', $nb_votes_r, $id_ranking);
-
-    if($timeline_main == 2){
-        $timeline_2      = get_field('timeline_2', $id_ranking);
-        $timeline_2      = $timeline_2 + 1;
-        update_field('timeline_2', $timeline_2, $id_ranking);
-
-        if($timeline_2 == $nb_loosers){
-            update_field('timeline_main', 3, $id_ranking);
-        }
-    }
-    elseif($timeline_main == 3){
-        update_field('timeline_main', 4, $id_ranking);
-    }
-    elseif($timeline_main == 4){
-        $timeline_4      = get_field('timeline_4', $id_ranking);
-        $timeline_4      = $timeline_4 + 1;
-        update_field('timeline_4', $timeline_4, $id_ranking);
-
-        if($timeline_4 == $nb_winners){
-            update_field('timeline_main', 5, $id_ranking);
-        }
+    if($id_winner && $id_looser){
+        $nb_votes_r      = get_field('nb_votes_r', $id_ranking);
+        $nb_votes_r      = $nb_votes_r + 1;
+        update_field('nb_votes_r', $nb_votes_r, $id_ranking);
     }
 
     // On boucle sur le ranking pour connaître la position dans le tableau du gagnant et du perdant
     foreach($list_contenders as $key => $contender) {
 
-        if($contender['id_wp'] == $v){
+        if($contender['id_wp'] == $id_winner){
             $key_vainkeur     = $key;
         }
 
-        if($contender['id_wp'] == $l){
+        if($contender['id_wp'] == $id_looser){
             $key_loser     = $key;
         }
 
@@ -70,7 +51,7 @@ function do_vote($v, $l, $id_ranking){
     }
 
     // On ajoute le gagnant dans la liste de ceux qui l'ont déjà battu
-    if($v){
+    if($id_winner){
 
         array_push($already_sup_to, $key_vainkeur);
 
@@ -79,13 +60,13 @@ function do_vote($v, $l, $id_ranking){
 
         // On stocke les vainkeurz de l'étape 1
         if($timeline_main == 1){
-            array_push($list_w_r, $v);
+            array_push($list_w_r, $id_winner);
             update_field('list_winners_r', $list_w_r, $id_ranking);
         }
 
     }
     // On ajoute le perdant dans la liste de ceux qui l'ont déjà battu
-    if($l){
+    if($id_looser){
 
         array_push($already_inf_to, $key_loser);
 
@@ -94,7 +75,7 @@ function do_vote($v, $l, $id_ranking){
 
         // On stocke les perdants de l'étape 1
         if($timeline_main == 1){
-            array_push($list_l_r, $l);
+            array_push($list_l_r, $id_looser);
             update_field('list_losers_r', $list_l_r, $id_ranking);
         }
 
@@ -130,8 +111,8 @@ function do_vote($v, $l, $id_ranking){
 
     }
 
-// On boucle sur la liste des participant perdant contre le perdant
-// Cela inclus le perdant du duel + tout ceux qui battent déjà ce perdant
+    // On boucle sur la liste des participant perdant contre le perdant
+    // Cela inclus le perdant du duel + tout ceux qui battent déjà ce perdant
     foreach (array_unique($already_inf_to) as $k){
 
         // On récupère la liste des participants qui le battent
@@ -157,8 +138,9 @@ function do_vote($v, $l, $id_ranking){
 
     }
 
-// On enregistre la mise à jour du champs "Ranking" du classement en cours
+    // On enregistre la mise à jour du champs "Ranking" du classement en cours
     update_field("ranking_r", $list_contenders, $id_ranking);
 
+    mouv_timeline($nb_contenders, $nb_winners, $nb_loosers, $id_ranking);
 
 }

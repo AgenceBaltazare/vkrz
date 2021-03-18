@@ -33,4 +33,22 @@
       }
     }
   }
+  .display_battle{
+    margin-top: 75px;
+  }
+  .share_rank{
+    text-align: center;
+    .cta-2{
+      margin-bottom: 40px;
+    }
+    ul{
+      text-align: center;
+      li{
+        &:first-child{
+          display: block;
+          margin-bottom: 15px;
+        }
+      }
+    }
+  }
 }

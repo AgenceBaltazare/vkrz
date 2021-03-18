@@ -34,6 +34,39 @@ function cpt_init() {
     );
     register_post_type('tournoi', $args);
 
+    // Classement
+    $labels = array(
+        'name' => 'Classement',
+        'singular_name' => 'Classement',
+        'add_new' => 'Ajouter un classement',
+        'add_new_item' => 'Ajouter un classement',
+        'edit_item' => 'Editer un classement',
+        'new_item' => 'Nouveau classement',
+        'all_items' => 'Tous les classements',
+        'view_item' => 'Voir classement',
+        'search_items' => 'Chercher un classement',
+        'not_found' =>  'Aucun classement trouvé',
+        'not_found_in_trash' => 'Aucun classement trouvé dans la corbeille',
+        'menu_name' => 'Classements'
+    );
+    $args = array(
+        'labels' => $labels,
+        'public' => true,
+        'publicly_queryable' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'query_var' => true,
+        'rewrite' => array('slug' => 'r'),
+        'capability_type' => 'post',
+        'has_archive' => true,
+        'hierarchical' => false,
+        'menu_position' => null,
+        'menu_icon' => 'dashicons-editor-code',
+        'show_in_rest' => true,
+        'supports' => array('title')
+    );
+    register_post_type('classement', $args);
+
     // Contenders
     $labels = array(
         'name' => 'Contender',
@@ -66,39 +99,6 @@ function cpt_init() {
         'supports' => array('title', 'editor', 'thumbnail', 'author')
     );
     register_post_type('contender', $args);
-
-    // Classement
-    $labels = array(
-        'name' => 'Classement',
-        'singular_name' => 'Classement',
-        'add_new' => 'Ajouter un classement',
-        'add_new_item' => 'Ajouter un classement',
-        'edit_item' => 'Editer un classement',
-        'new_item' => 'Nouveau classement',
-        'all_items' => 'Tous les classements',
-        'view_item' => 'Voir classement',
-        'search_items' => 'Chercher un classement',
-        'not_found' =>  'Aucun classement trouvé',
-        'not_found_in_trash' => 'Aucun classement trouvé dans la corbeille',
-        'menu_name' => 'Classements'
-    );
-    $args = array(
-        'labels' => $labels,
-        'public' => true,
-        'publicly_queryable' => true,
-        'show_ui' => true,
-        'show_in_menu' => true,
-        'query_var' => true,
-        'rewrite' => array('slug' => 'r'),
-        'capability_type' => 'post',
-        'has_archive' => true,
-        'hierarchical' => false,
-        'menu_position' => null,
-        'menu_icon' => 'dashicons-editor-code',
-        'show_in_rest' => true,
-        'supports' => array('title', 'revisions')
-    );
-    register_post_type('classement', $args);
 
     // Votes
     $labels = array(

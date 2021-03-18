@@ -1,30 +1,57 @@
 $(document).ready(function ($) {
-    let contenders = $('.link-contender');
+    let contenders = $('.display_battle .link-contender');
+    let ajaxRunning = false;
 
-    contenders.click(function (e) {
-        //e.preventDefault();
-        let contender_a = $(this).find('a');
-        var id_contender = contender_a.attr('id');
-        if(id_contender == "c_1"){
-            $("#c_1").addClass('vainkeurz');
-            $("#c_2").addClass('leaving');
+    contenders.find('a').addClass('entering')
+
+    $("body").keydown(function (e) {
+        return
+        e.preventDefault();
+        if (e.keyCode === 37) { // left
+            $("#c_1").trigger("click");
+        } else if (e.keyCode === 39) { // right
+            $("#c_2").trigger("click");
         }
-        else if(id_contender == "c_2"){
-            $("#c_2").addClass('vainkeurz');
-            $("#c_1").addClass('leaving');
-        }
-        $.ajax({
-            method: "POST",
-            url: vkrz_ajaxurl,
-            data: {
-                action: 'vkzr_do_elo_vote',
-                t: contender_a.data('contender-tournament'),
-                v: contender_a.data('contender-chosen'),
-                l: contender_a.data('contender-notchosen'),
+    });
+
+    $(document).on('click', '.display_battle .link-contender', {}, function (e) {
+
+        e.preventDefault();
+
+        if (!ajaxRunning) {
+            ajaxRunning = true;
+            if ($(this).find('a').attr('id') === "c_1") {
+                $("#c_1").addClass('vainkeurz');
+                $("#c_2").addClass('leaving');
+            } else if ($(this).find('a').attr('id') === "c_2") {
+                $("#c_2").addClass('vainkeurz');
+                $("#c_1").addClass('leaving');
             }
-        })
-        .done(function (response) {
-            console.log(response);
-        });
+            $.ajax({
+                method: "POST",
+                url: vkrz_ajaxurl,
+                data: {
+                    action: 'vkzr_process_vote',
+                    id_tournament: $(this).find('a').data('id-tournament'),
+                    id_winner: $(this).find('a').data('id-winner'),
+                    id_looser: $(this).find('a').data('id-looser')
+                }
+            })
+                .done(function (response) {
+                    let data = JSON.parse(response);
+
+                    console.log(data);
+                    $('.display_battle').html(data.contenders_html);
+                    contenders = $('.display_battle .link-contender');
+                    contenders.find('a').addClass('entering')
+                    $('.display_users_votes h6').replaceWith(data.uservotes_html)
+
+                    if(!data.is_next_duel)
+                        location.reload()
+
+                }).always(function () {
+                ajaxRunning = false;
+            });
+        }
     })
 });

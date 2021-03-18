@@ -23,6 +23,7 @@
     <!-- Styles -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Staatliches" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;700;900&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/30edd5507e.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="<?php bloginfo( 'template_directory' ); ?>/assets/css/main.css">
     <link rel="stylesheet" href="<?php bloginfo( 'template_directory' ); ?>/assets/css/contenders.css">
@@ -46,27 +47,3 @@
         })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
     </script>
 </head>
-
-<?php if(is_single() && get_post_type() == "tournoi"): ?>
-
-    <?php
-    if (has_post_thumbnail()){
-        $illu = get_the_post_thumbnail_url(get_the_ID(), 'full');
-    }
-    ?>
-    <?php
-        if(get_field('cover_t')){
-            $illu       = wp_get_attachment_image_src(get_field('cover_t'), 'full');
-            $illu_url   = $illu[0];
-        }
-        else{
-            $illu_url   = get_the_post_thumbnail_url(get_the_ID(), 'full');
-        }
-    ?>
-    <body <?php body_class('cover'); ?> style="background: url(<?php echo $illu_url; ?>) center center no-repeat">
-
-<?php else: ?>
-
-    <body <?php body_class(); ?>>
-
-<?php endif; ?>

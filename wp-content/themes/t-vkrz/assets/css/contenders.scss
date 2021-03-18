@@ -4,11 +4,45 @@
     position: relative;
 
     a {
-      cursor: pointer;
       display: block;
       height: 100%;
       width: 100%;
+
+      position: absolute;
+      opacity: 0;
+      top: 50%;
+      left: 50%;
       transition: all 0.1s ease-in;
+    }
+  }
+
+  //LEFT CONTENDER
+  & > :nth-child(1) {
+    a {
+      transform: translate(-50%, -75%);
+      &.entering {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+      }
+      &.leaving {
+        transform: translate(-50%, -25%);
+        opacity: 0;
+      }
+    }
+  }
+
+  //RIGHT CONTENDER
+  & > :nth-child(3) {
+    a {
+      transform: translate(-50%, -25%);
+      &.entering {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+      }
+      &.leaving {
+        transform: translate(-50%, -75%);
+        opacity: 0;
+      }
     }
   }
 }

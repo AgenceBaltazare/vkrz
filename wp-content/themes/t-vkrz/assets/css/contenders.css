@@ -2,10 +2,29 @@
   min-height: 500px;
   position: relative; }
   .contenders-containers .link-contender a {
-    cursor: pointer;
     display: block;
     height: 100%;
     width: 100%;
+    position: absolute;
+    opacity: 0;
+    top: 50%;
+    left: 50%;
     transition: all 0.1s ease-in; }
+.contenders-containers > :nth-child(1) a {
+  transform: translate(-50%, -75%); }
+  .contenders-containers > :nth-child(1) a.entering {
+    transform: translate(-50%, -50%);
+    opacity: 1; }
+  .contenders-containers > :nth-child(1) a.leaving {
+    transform: translate(-50%, -25%);
+    opacity: 0; }
+.contenders-containers > :nth-child(3) a {
+  transform: translate(-50%, -25%); }
+  .contenders-containers > :nth-child(3) a.entering {
+    transform: translate(-50%, -50%);
+    opacity: 1; }
+  .contenders-containers > :nth-child(3) a.leaving {
+    transform: translate(-50%, -75%);
+    opacity: 0; }
 
 /*# sourceMappingURL=contenders.css.map */
