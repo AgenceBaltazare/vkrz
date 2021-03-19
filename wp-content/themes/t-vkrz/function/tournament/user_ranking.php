@@ -89,7 +89,7 @@ function get_next_duel( $id_ranking, $id_tournament) {
                 $list_sup_of_c1     = $contender['less_to'];
             }
 
-            if($contender['id_wp'] == $list_w_r[0]){
+            if($contender['id_wp'] == $list_w_r[count($list_w_r) - 5]){
                 $key_c2             = $key;
                 $list_inf_of_c2     = $contender['more_to'];
                 $list_sup_of_c2     = $contender['less_to'];
@@ -108,7 +108,7 @@ function get_next_duel( $id_ranking, $id_tournament) {
         else{
 
             array_push($next_duel, $list_l_r[$nb_loosers]);
-            array_push($next_duel, $list_w_r[0]);
+            array_push($next_duel, $list_w_r[count($list_w_r) - 5]);
 
         }
 

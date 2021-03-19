@@ -1,5 +1,4 @@
 <?php get_header(); ?>
-
 <body <?php body_class(array('defaut-ba')); ?>>
 
 <div class="main">

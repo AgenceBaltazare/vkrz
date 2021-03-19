@@ -21,7 +21,7 @@ if ( get_field( 'cover_t' ) ) {
     $illu_url = $illu[0];
 }
 ?>
-<body style="background: url(<?php echo $illu_url; ?>) center center no-repeat">
+<body <?php body_class(array( 'cover', 'a_step')); ?> style="background: url(<?php echo $illu_url; ?>) center center no-repeat">
 
 <div class="main">
 
