@@ -47,7 +47,7 @@ if ( get_field( 'cover_t' ) ) {
         </div>
     </header>
 	<?php if ( $is_next_duel ): ?>
-        <div class="container">
+        <div class="container-fluid">
             <div class="tournoi_infos">
                 <div class="row align-items-center">
                     <div class="col-12">
@@ -68,7 +68,7 @@ if ( get_field( 'cover_t' ) ) {
                 </div>
             </div>
         </div>
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
                     <div class="display_battle">
