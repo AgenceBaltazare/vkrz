@@ -88,19 +88,11 @@ body {
 
 .link-contender a {
   display: block;
-  text-align: center; }
+  text-align: center;
+  text-decoration: none; }
 .link-contender img {
   display: block;
-  margin: 0 auto;
-  -webkit-transition: all .2s ease-in-out;
-  -moz-transition: all .2s ease-in-out;
-  -ms-transition: all .2s ease-in-out;
-  -o-transition: all .2s ease-in-out;
-  transition: all .2s ease-in-out; }
-.link-contender:hover a {
-  text-decoration: none; }
-.link-contender:hover img {
-  transform: scale(1.1); }
+  margin: 0 auto; }
 
 .header {
   background: rgba(0, 0, 0, 0.2);
