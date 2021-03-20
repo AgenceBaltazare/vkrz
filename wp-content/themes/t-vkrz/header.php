@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="<?php bloginfo( 'template_directory' ); ?>/assets/css/responsive.css">
 
     <?php if(is_page(10744)): ?>
-        <meta http-equiv="refresh" content="1;url=<?php the_permalink(); ?>" />
+        <!--<meta http-equiv="refresh" content="1;url=<?php the_permalink(); ?>" />-->
     <?php endif; ?>
 
     <?php wp_head(); ?>
