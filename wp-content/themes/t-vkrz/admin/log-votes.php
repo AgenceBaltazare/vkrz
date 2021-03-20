@@ -44,7 +44,7 @@ array_sort_by_column($list_contenders_tournoi, 'place');
                             <?php echo $c['id']; ?>
                         </td>
                         <td>
-                            <?php echo get_the_title($c['id_global']); ?>
+                            <?php echo get_the_title($c['id_wp']); ?>
                         </td>
                         <td>
                             <?php foreach($c['superieur_to'] as $sup) : ?>
@@ -57,7 +57,7 @@ array_sort_by_column($list_contenders_tournoi, 'place');
                             <?php endforeach; ?>
                         </td>
                         <td>
-                            <?php the_field('ELO_c', $c['id_global']); ?>
+                            <?php the_field('ELO_c', $c['id_wp']); ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -91,8 +91,8 @@ array_sort_by_column($list_contenders_tournoi, 'place');
                 <tbody>
                 <?php $i=1; while ($all_votes->have_posts()) : $all_votes->the_post(); ?>
                     <?php
-                    $id_v = get_field('id_v_v');
-                    $id_l = get_field('id_l_v');
+                    $id_v = get_field('id_v_v', $id_ranking);
+                    $id_l = get_field('id_l_v', $id_ranking);
                     ?>
                     <tr>
                         <td>
