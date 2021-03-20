@@ -91,8 +91,8 @@ array_sort_by_column($list_contenders_tournoi, 'place');
                 <tbody>
                 <?php $i=1; while ($all_votes->have_posts()) : $all_votes->the_post(); ?>
                     <?php
-                    $id_v = get_field('id_v_v', $id_ranking);
-                    $id_l = get_field('id_l_v', $id_ranking);
+                    $id_v = get_field('id_v_v');
+                    $id_l = get_field('id_l_v');
                     ?>
                     <tr>
                         <td>
