@@ -30,7 +30,7 @@ $illu_url   = $illu[0];
             </div>
         </div>
     </div>
-    <div class="<?php if(get_field('c_rounded_t', $id_tournament)){ echo 'rounded'; } ?> <?php if(get_field('full_w_t', $id_tournament)){ echo 'container-fluid'; } else { echo 'container'; } ?>">
+    <div class="<?php if(get_field('c_rounded_t', $id_tournament)){ echo 'rounded'; } ?> <?php if(get_field('full_w_t', $id_tournament)){ echo 'container-cc'; } else { echo 'container'; } ?>">
         <div class="row">
             <div class="col-md-12">
                 <div class="display_battle">
