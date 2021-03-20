@@ -85,7 +85,7 @@ function cpt_init() {
     $args = array(
         'labels' => $labels,
         'public' => true,
-        'publicly_queryable' => true,
+        'publicly_queryable' => false,
         'show_ui' => true,
         'show_in_menu' => true,
         'query_var' => true,
@@ -95,8 +95,8 @@ function cpt_init() {
         'hierarchical' => false,
         'menu_position' => null,
         'menu_icon' => 'dashicons-universal-access',
-        'show_in_rest' => true,
-        'supports' => array('title', 'editor', 'thumbnail', 'author')
+        'show_in_rest' => false,
+        'supports' => array('title', 'thumbnail', 'author')
     );
     register_post_type('contender', $args);
 
@@ -118,7 +118,7 @@ function cpt_init() {
     $args = array(
         'labels' => $labels,
         'public' => true,
-        'publicly_queryable' => true,
+        'publicly_queryable' => false,
         'show_ui' => true,
         'show_in_menu' => true,
         'query_var' => true,
@@ -128,7 +128,7 @@ function cpt_init() {
         'hierarchical' => false,
         'menu_position' => null,
         'menu_icon' => 'dashicons-heart',
-        'show_in_rest' => true,
+        'show_in_rest' => false,
         'supports' => array('title', 'author')
     );
     register_post_type('vote', $args);
