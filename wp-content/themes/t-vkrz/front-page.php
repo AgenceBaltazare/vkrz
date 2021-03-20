@@ -61,7 +61,7 @@
                             <?php endif; ?>
                             <h2>
                                 <b><?php the_title(); ?></b>
-                                <span><?php the_field('objectif_t'); ?></span>
+                                <span><?php the_field('question_t'); ?></span>
                             </h2>
                             <p>
                                 <?php the_field('precision_t'); ?>
