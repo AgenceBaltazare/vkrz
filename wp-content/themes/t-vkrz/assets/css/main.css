@@ -456,4 +456,7 @@ body {
   justify-content: center;
   align-items: center; }
 
+body {
+  overflow-x: hidden; }
+
 /*# sourceMappingURL=main.css.map */

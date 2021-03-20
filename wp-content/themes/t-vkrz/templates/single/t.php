@@ -8,7 +8,9 @@ $illu       = wp_get_attachment_image_src(get_field('cover_t', $id_tournament), 
 $illu_url   = $illu[0];
 ?>
 <body <?php body_class('cover'); ?> style="background: url(<?php echo $illu_url; ?>) center center no-repeat">
+
 <?php get_template_part('templates/partials/header'); ?>
+
 <?php if ($is_next_duel): ?>
     <div class="container">
         <div class="tournoi_infos">
@@ -22,16 +24,13 @@ $illu_url   = $illu[0];
                         </h1>
                         <h2>
                             <?php the_field( 'question_t' ); ?>
-                            <span class="toshowpopover moreinfo" data-container="body" data-toggle="popover" data-placement="top" data-content="<?php the_field( 'precision_t' ); ?>">
-                                <i class="fal fa-info-circle"></i>
-                            </span>
                         </h2>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="<?php if(get_field('c_rounded_t', $id_tournament)){ echo 'rounded'; } ?> <?php if(get_field('full_w_t', $id_tournament)){ echo 'container-fluid'; } else { echo 'container'; } ?>">
         <div class="row">
             <div class="col-md-12">
                 <div class="display_battle">
@@ -47,7 +46,9 @@ $illu_url   = $illu[0];
     set_query_var('steps_var', compact('current_step'));
     get_template_part('templates/parts/content', 'step-bar');
     ?>
+
 <?php else: ?>
+
     <div class="finish_tournoi">
         <div class="container">
             <div class="row">
@@ -67,7 +68,7 @@ $illu_url   = $illu[0];
                             </li>
                             <li>
                                 <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_tournoi=<?php echo $id_tournament; ?>" class="cta_2 cta-1">
-                                    Voir le classement global
+                                    Voir le classement général
                                 </a>
                             </li>
                         </ul>

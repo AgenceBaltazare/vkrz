@@ -27,10 +27,6 @@
     }
     checkCookie();
 
-    jQuery('.toshowpopover').popover({
-        container: 'body'
-    });
-
     jQuery.fn.equalHeights = function(){
         var max_height = 0;
         jQuery(this).each(function(){
@@ -42,9 +38,7 @@
     };
 
     jQuery(document).ready(function() {
-
         jQuery('.eh').equalHeights();
-
     });
 </script>
 <?php wp_footer(); ?>

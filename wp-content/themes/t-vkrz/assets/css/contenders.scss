@@ -6,17 +6,12 @@
     a {
       height: 100%;
       width: 100%;
-      display: flex;
-      align-items: center;
-      flex-direction: column;
+      display: block;
       position: absolute;
       opacity: 0;
       top: 50%;
       left: 50%;
       transition: all 0.1s ease-in;
-      img{
-        border-radius: 50%;
-      }
     }
   }
 
@@ -51,4 +46,12 @@
   }
 }
 
+.rounded{
+  .cov-illu, img{
+    border-radius: 50%;
+  }
+}
 
+.jsa{
+  justify-content: space-around;
+}
