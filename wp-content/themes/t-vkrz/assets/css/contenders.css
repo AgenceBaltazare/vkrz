@@ -2,14 +2,18 @@
   min-height: 500px;
   position: relative; }
   .contenders-containers .link-contender a {
-    display: block;
     height: 100%;
     width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     position: absolute;
     opacity: 0;
     top: 50%;
     left: 50%;
     transition: all 0.1s ease-in; }
+    .contenders-containers .link-contender a img {
+      border-radius: 50%; }
 .contenders-containers > :nth-child(1) a {
   transform: translate(-50%, -75%); }
   .contenders-containers > :nth-child(1) a.entering {

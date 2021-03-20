@@ -230,7 +230,9 @@ body {
   bottom: 0;
   right: 0;
   left: 0;
-  padding: 15px; }
+  height: 10px;
+  background: #f00b6b;
+  width: 0; }
   .stepbar h5 {
     text-align: center;
     color: #000;

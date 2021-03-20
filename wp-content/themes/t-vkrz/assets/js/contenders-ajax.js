@@ -4,14 +4,10 @@ $(document).ready(function ($) {
 
     contenders.find('a').addClass('entering');
 
-    $("body").keydown(function (e) {
-        return;
-        console.log('aaa');
-        e.preventDefault();
-        if (e.keyCode === 37) { // left
-            console.log('rdttre');
+    $(window).keydown(function(e){
+        if (e.keyCode === 37) {
             $("#c_1").trigger("click");
-        } else if (e.keyCode === 39) { // right
+        } else if (e.keyCode === 39) {
             $("#c_2").trigger("click");
         }
     });
@@ -41,13 +37,19 @@ $(document).ready(function ($) {
             })
                 .done(function (response) {
                     let data = JSON.parse(response);
-                    $('.display_battle').html(data.contenders_html);
-                    contenders = $('.display_battle .link-contender');
-                    contenders.find('a').addClass('entering')
-                    $('.display_users_votes h6').replaceWith(data.uservotes_html)
+                    console.log(data.current_step);
+                    if(data.is_next_duel){
+                        $('.display_battle').html(data.contenders_html);
+                        contenders = $('.display_battle .link-contender');
+                        contenders.find('a').addClass('entering')
+                    }
+                    $('.stepbar').width(data.current_step + "%");
 
-                    if(!data.is_next_duel)
+                    $('.display_users_votes h6').replaceWith(data.uservotes_html);
+
+                    if(!data.is_next_duel){
                         location.reload()
+                    }
 
                 }).always(function () {
                 ajaxRunning = false;

@@ -63,7 +63,7 @@
                         }
                     }
                     ?>
-                    <div class="col-12 col-md">
+                    <div class="col-12 col-md-3">
                         <div class="tournoi_min <?php echo $done; ?>">
                             <a href="<?php the_permalink(); ?>" class="eh">
                                 <?php if (has_post_thumbnail()) : ?>

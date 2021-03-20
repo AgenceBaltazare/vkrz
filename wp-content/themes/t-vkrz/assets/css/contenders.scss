@@ -4,15 +4,19 @@
     position: relative;
 
     a {
-      display: block;
       height: 100%;
       width: 100%;
-
+      display: flex;
+      align-items: center;
+      flex-direction: column;
       position: absolute;
       opacity: 0;
       top: 50%;
       left: 50%;
       transition: all 0.1s ease-in;
+      img{
+        border-radius: 50%;
+      }
     }
   }
 
