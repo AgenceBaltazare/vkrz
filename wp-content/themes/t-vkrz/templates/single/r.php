@@ -1,8 +1,8 @@
 <?php
-$id_tournoi                      = get_field('id_tournoi_r');
+$id_tournament                   = get_field('id_tournoi_r');
 $uuiduser                        = get_field('uuid_user_r');
 $list_contenders_tournoi         = get_field('ranking_r');
-$display_titre                   = get_field('ne_pas_afficher_les_titres_t', $id_tournoi);
+$display_titre                   = get_field('ne_pas_afficher_les_titres_t', $id_tournament);
 
 function array_sort_by_column(&$arr, $col, $dir = SORT_DESC) {
     $sort_col = array();
@@ -22,7 +22,7 @@ $all_user_votes       = new WP_Query(array(
         'relation'   => 'AND',
         array(
             'key'     => 'id_t_v',
-            'value'   => $id_tournoi,
+            'value'   => $id_tournament,
             'compare' => '=',
         ),
         array(
@@ -33,32 +33,12 @@ $all_user_votes       = new WP_Query(array(
     )
 ));
 $nb_user_votes = $all_user_votes->post_count;
+get_header();
+$illu       = wp_get_attachment_image_src(get_field('cover_t', $id_tournament), 'full');
+$illu_url   = $illu[0];
 ?>
-
-<?php get_header(); ?>
-
-<?php
-if(get_field('cover_t', $id_tournoi)){
-    $illu       = wp_get_attachment_image_src(get_field('cover_t', $id_tournoi), 'full');
-    $illu_url   = $illu[0];
-}
-?>
-<body class="cover" style="background: url(<?php echo $illu_url; ?>) center center no-repeat">
-
-<header class="header">
-    <div class="container-fluid">
-        <div class="row align-items-center">
-            <div class="col-sm-4">
-                <div class="logo">
-                    <a href="<?php bloginfo('url'); ?>/">
-                        <img src="<?php bloginfo('template_directory'); ?>/assets/img/logo-vainkeurz.png" alt="" class="img-fluid">
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-
+<body <?php body_class('cover'); ?> style="background: url(<?php echo $illu_url; ?>) center center no-repeat">
+<?php get_template_part('templates/partials/header'); ?>
 <?php if(get_field('done_r')): ?>
     <div class="classement">
         <div class="container-fluid">
@@ -112,7 +92,7 @@ if(get_field('cover_t', $id_tournoi)){
                     <div class="titre-classement text-center">
                         <h2>Classement en cours de finalisation</h2>
                         <h3>
-                            <a href="<?php the_permalink($id_tournoi); ?>">
+                            <a href="<?php the_permalink($id_tournament); ?>">
                                 Cliquez ici pour revenir au tournoi
                             </a>
                         </h3>
@@ -136,7 +116,7 @@ if(get_field('cover_t', $id_tournoi)){
                     <?php
                     $id_post        = get_the_ID();
                     $url_post       = get_the_permalink();
-                    $title_post     = get_the_title($id_tournoi)." : ".get_field('question_t', $id_tournoi);
+                    $title_post     = get_the_title($id_tournament)." : ".get_field('question_t', $id_tournament);
                     $img_post       = $illu_url;
                     ?>
                     <ul>

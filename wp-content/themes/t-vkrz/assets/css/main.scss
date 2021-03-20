@@ -259,20 +259,6 @@ body{
   }
 }
 
-$largeur_border : 5px;
-$step_1_c : #e1f5c7;
-$step_2_c : #f5eb72;
-$step_3_c : #f5b140;
-$step_4_c : #f56226;
-$step_5_c : #f00b6a;
-$step_6_c : #f51608;
-
-.a_step{
-  border-top: $largeur_border solid;
-  border-right: $largeur_border solid;
-  border-left: $largeur_border solid;
-  position: relative;
-}
 .stepbar{
   position: fixed;
   bottom: 0;
@@ -294,46 +280,9 @@ $step_6_c : #f51608;
     }
   }
 }
-.step_bar_1{
-  background: $step_1_c;
-}
-.step_bar_2{
-  background: $step_2_c;
-}
-.step_bar_3{
-  background: $step_3_c;
-}
-.step_bar_4{
-  background: $step_4_c;
-}
-.step_bar_5{
-  background: $step_5_c;
-}
-.fin_tournoi_bar{
-  background: $step_6_c;
-}
-
-.step_1{
-  border-color: $step_1_c;
-}
-.step_2{
-  border-color: $step_2_c;
-}
-.step_3{
-  border-color: $step_3_c;
-}
-.step_4{
-  border-color: $step_4_c;
-}
-.step_5{
-  border-color: $step_5_c;
-}
-.fin_tournoi{
-  border-color: $step_6_c;
-}
 
 // Front page
-.defaut-ba{
+.home{
   background: #000;
 }
 
@@ -384,10 +333,10 @@ $step_6_c : #f51608;
       display: none;
     }
     &:hover{
-      border-color: $step_5_c;
+      border-color: #f00b6b;
       transform: scale(1.05);
       h2{
-        color: $step_5_c;
+        color: #f00b6b;
       }
     }
   }
@@ -570,4 +519,27 @@ $step_6_c : #f51608;
 .display_battle{
   margin-top: 70px;
   padding: 0 40px;
+}
+
+.more_links{
+  max-width: 800px;
+  margin: 0 auto;
+  ul{
+    display: flex;
+    justify-content: center;
+    li{
+      display: inline-block;
+      width: 46%;
+      margin: 0 1%;
+      a{
+        width: 100%;
+      }
+    }
+  }
+}
+
+.aaa{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

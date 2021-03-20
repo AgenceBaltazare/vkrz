@@ -6,40 +6,18 @@
 <?php
 if(isset($_GET['id_tournoi'])){
     $id_tournoi = $_GET['id_tournoi'];
+    $illu       = wp_get_attachment_image_src(get_field('cover_t', $id_tournoi), 'full');
+    $illu_url   = $illu[0];
 }
 else{
     header('Location: ' . get_bloginfo('url'));
 }
-$uuiduser                        = get_field('uuid_user_r');
-$display_titre                   = get_field('ne_pas_afficher_les_titres_t', $id_tournoi);
-if(get_field('cover_t', $id_tournoi)){
-    $illu       = wp_get_attachment_image_src(get_field('cover_t', $id_tournoi), 'full');
-    $illu_url   = $illu[0];
-}
+$display_titre = get_field('ne_pas_afficher_les_titres_t', $id_tournoi);
 ?>
 <?php get_header(); ?>
-<body <?php body_class(array('cover', $body_class)); ?> style="background: url(<?php echo $illu_url; ?>) center center no-repeat">
+<body <?php body_class('cover'); ?> style="background: url(<?php echo $illu_url; ?>) center center no-repeat">
 
-<header class="header">
-    <div class="container-fluid">
-        <div class="row align-items-center">
-            <div class="col-sm-4">
-                <div class="logo">
-                    <a href="<?php bloginfo('url'); ?>/">
-                        <img src="<?php bloginfo('template_directory'); ?>/assets/img/logo-vainkeurz.png" alt="" class="img-fluid">
-                    </a>
-                </div>
-            </div>
-            <div class="col-sm-8 text-right">
-                <div class="display_users_votes">
-                    <a href="https://baltazare1.typeform.com/to/j9n8JU" target="_blank" class="cta_2">
-                        ☝️ Donnez nous votre avis !
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
+<?php get_template_part('templates/partials/header'); ?>
 
 <div class="classement">
     <div class="container-fluid">
@@ -97,11 +75,6 @@ if(get_field('cover_t', $id_tournoi)){
             <div class="col-sm-12 col-md">
                 <a href="<?php bloginfo('url'); ?>/" class="cta-2 cta_btn">
                     <i class="fad fa-arrow-alt-to-left"></i> Retourner à la liste des tournois
-                </a>
-            </div>
-            <div class="col-sm-12 col-md">
-                <a href="<?php the_permalink($id_tournoi); ?>" class="cta-2 cta_btn">
-                    <i class="fad fa-arrow-alt-to-left"></i> Retourner au tournoi
                 </a>
             </div>
         </div>

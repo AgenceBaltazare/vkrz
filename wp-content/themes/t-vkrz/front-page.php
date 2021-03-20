@@ -1,29 +1,6 @@
 <?php get_header(); ?>
-<body <?php body_class(array('defaut-ba')); ?>>
-
-<div class="main">
-
-    <header class="header">
-        <div class="container-fluid">
-            <div class="row align-items-center">
-                <div class="col-sm-4">
-                    <div class="logo">
-                        <a href="<?php bloginfo('url'); ?>/">
-                            <img src="<?php bloginfo('template_directory'); ?>/assets/img/logo-vainkeurz.png" alt="" class="img-fluid">
-                        </a>
-                    </div>
-                </div>
-                <div class="col-sm-8 text-right">
-                    <div class="display_users_votes">
-                        <a href="https://baltazare1.typeform.com/to/j9n8JU" target="_blank" class="cta_2">
-                            ☝️ Donnez nous votre avis !
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
+<body <?php body_class('cover'); ?>>
+<?php get_template_part('templates/partials/header'); ?>
     <div class="container-fluid">
         <div class="titre_home">
             <div class="row">

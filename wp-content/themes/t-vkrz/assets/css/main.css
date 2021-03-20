@@ -219,12 +219,6 @@ body {
     margin: 0 15px;
     cursor: help; }
 
-.a_step {
-  border-top: 5px solid;
-  border-right: 5px solid;
-  border-left: 5px solid;
-  position: relative; }
-
 .stepbar {
   position: fixed;
   bottom: 0;
@@ -244,43 +238,7 @@ body {
       text-transform: lowercase !important;
       color: #333 !important; }
 
-.step_bar_1 {
-  background: #e1f5c7; }
-
-.step_bar_2 {
-  background: #f5eb72; }
-
-.step_bar_3 {
-  background: #f5b140; }
-
-.step_bar_4 {
-  background: #f56226; }
-
-.step_bar_5 {
-  background: #f00b6a; }
-
-.fin_tournoi_bar {
-  background: #f51608; }
-
-.step_1 {
-  border-color: #e1f5c7; }
-
-.step_2 {
-  border-color: #f5eb72; }
-
-.step_3 {
-  border-color: #f5b140; }
-
-.step_4 {
-  border-color: #f56226; }
-
-.step_5 {
-  border-color: #f00b6a; }
-
-.fin_tournoi {
-  border-color: #f51608; }
-
-.defaut-ba {
+.home {
   background: #000; }
 
 .titre_home h1 {
@@ -324,10 +282,10 @@ body {
     .tournoi_min a .check {
       display: none; }
     .tournoi_min a:hover {
-      border-color: #f00b6a;
+      border-color: #f00b6b;
       transform: scale(1.05); }
       .tournoi_min a:hover h2 {
-        color: #f00b6a; }
+        color: #f00b6b; }
   .tournoi_min.fini a {
     border: 5px solid #f5ee2a; }
     .tournoi_min.fini a h2 {
@@ -479,5 +437,23 @@ body {
 .display_battle {
   margin-top: 70px;
   padding: 0 40px; }
+
+.more_links {
+  max-width: 800px;
+  margin: 0 auto; }
+  .more_links ul {
+    display: flex;
+    justify-content: center; }
+    .more_links ul li {
+      display: inline-block;
+      width: 46%;
+      margin: 0 1%; }
+      .more_links ul li a {
+        width: 100%; }
+
+.aaa {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
 
 /*# sourceMappingURL=main.css.map */
