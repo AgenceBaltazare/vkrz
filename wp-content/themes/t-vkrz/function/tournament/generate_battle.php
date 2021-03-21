@@ -20,6 +20,7 @@ function genrerate_tournament_response($tournament_infos){
 
     return die(json_encode( array(
         'current_step' => $current_step,
+        'timeline_main' => $timeline_main,
         'stepbar_html' => $stepbar_html,
         'contenders_html' => $contenders_html,
         'uservotes_html' => $uservotes_html,

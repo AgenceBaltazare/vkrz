@@ -37,13 +37,15 @@ $(document).ready(function ($) {
             })
                 .done(function (response) {
                     let data = JSON.parse(response);
-                    console.log(data.current_step);
+
                     if(data.is_next_duel){
                         $('.display_battle').html(data.contenders_html);
                         contenders = $('.display_battle .link-contender');
                         contenders.find('a').addClass('entering')
                     }
                     $('.stepbar').width(data.current_step + "%");
+
+                    console.log(data.timeline_main);
 
                     $('.display_users_votes h6').replaceWith(data.uservotes_html);
 

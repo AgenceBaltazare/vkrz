@@ -101,7 +101,7 @@ function get_next_duel( $id_ranking, $id_tournament) {
         $c1_less_more = array_merge($list_inf_of_c1, $list_sup_of_c1);
         $c2_less_more = array_merge($list_inf_of_c2, $list_sup_of_c2);
 
-        if(in_array($key_c1, $c2_less_more) || in_array($key_c2, $c1_less_more)){
+        if(in_array($key_c1, $c2_less_more) || in_array($key_c2, $c1_less_more) || ($key_c1 == $key_c2)){
 
             update_field('timeline_main', 4, $id_ranking);
 
