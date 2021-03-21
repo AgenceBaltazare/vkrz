@@ -177,7 +177,21 @@ if(isset($_GET['id_ranking']) && $_GET['id_ranking'] != "") :
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-2">
+                <h3>Timeline</h3>
+                <ul class="list-unstyled">
+                    <li>
+                        Timeline Main : <b><?php the_field('timeline_main', $id_ranking); ?></b>
+                    </li>
+                    <li>
+                        Timeline 2 : <b><?php the_field('timeline_4', $id_ranking); ?></b>
+                    </li>
+                    <li>
+                        Timeline 4 : <b><?php the_field('timeline_4', $id_ranking); ?></b>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-4">
                 <?php
                 $ranking = new WP_Query(
                     array(
