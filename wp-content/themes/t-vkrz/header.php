@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<!--[if IE 7]><html class="ie ie7" <?php language_attributes(); ?>> <![endif]-->
-<!--[if IE 8]><html class="ie ie8" <?php language_attributes(); ?>><![endif]-->
-<!--[if !(IE 7) | !(IE 8)  ]><!--><html <?php language_attributes(); ?>><!--<![endif]-->
+<html class="loading dark-layout" lang="fr" data-layout="dark-layout" data-textdirection="ltr">
 <head>
     <!--[if lt IE 9]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -21,17 +19,21 @@
     <meta name="theme-color" content="#ffffff">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Staatliches" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;700;900&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/30edd5507e.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="<?php bloginfo( 'template_directory' ); ?>/assets/css/main.css">
-    <link rel="stylesheet" href="<?php bloginfo( 'template_directory' ); ?>/assets/css/contenders.css">
-    <link rel="stylesheet" href="<?php bloginfo( 'template_directory' ); ?>/assets/css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory'); ?>/app-assets/vendors/css/vendors.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory'); ?>/app-assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory'); ?>/app-assets/css/bootstrap-extended.css">
+    <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory'); ?>/app-assets/css/colors.css">
+    <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory'); ?>/app-assets/css/components.css">
+    <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory'); ?>/app-assets/css/themes/dark-layout.css">
+    <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory'); ?>/app-assets/css/themes/bordered-layout.css">
+    <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory'); ?>/app-assets/css/themes/semi-dark-layout.css">
+    <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory'); ?>/app-assets/css/core/menu/menu-types/vertical-menu.css">
 
-    <?php if(is_page(10744)): ?>
-        <!--<meta http-equiv="refresh" content="1;url=<?php the_permalink(); ?>" />-->
-    <?php endif; ?>
+    <!-- Context CSS -->
+
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory'); ?>/assets/css/style.css">
 
     <?php wp_head(); ?>
 

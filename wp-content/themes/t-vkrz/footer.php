@@ -1,11 +1,27 @@
-<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<div class="sidenav-overlay"></div>
+<div class="drag-target"></div>
+
+<!-- BEGIN: Footer-->
+<footer class="footer footer-static footer-light">
+    <p class="clearfix mb-0"><span class="float-md-left d-block d-md-inline-block mt-25">COPYRIGHT &copy; 2021<a class="ml-25" href="https://1.envato.market/pixinvent_portfolio" target="_blank">Pixinvent</a><span class="d-none d-sm-inline-block">, All rights Reserved</span></span><span class="float-md-right d-none d-md-block">Hand-crafted & Made with<i data-feather="heart"></i></span></p>
+</footer>
+<button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
+<!-- END: Footer-->
+
+<!-- JS -->
+<script src="<?php bloginfo('template_directory'); ?>/app-assets/vendors/js/vendors.min.js"></script>
+<script src="<?php bloginfo('template_directory'); ?>/app-assets/js/core/app-menu.js"></script>
+<script src="<?php bloginfo('template_directory'); ?>/app-assets/js/core/app.js"></script>
+
+<!-- Context JS -->
+<script src="<?php bloginfo('template_directory'); ?>/app-assets/js/scripts/pages/page-profile.js"></script>
+
+<!-- Custom JS-->
 <script>
     const vkrz_ajaxurl = "<?= admin_url('admin-ajax.php') ?>";
 </script>
-<script src="<?php bloginfo('template_directory'); ?>/assets/js/contenders-ajax.js"></script>
-<script src="<?php bloginfo('template_directory'); ?>/assets/js/jquery.cookie.js"></script>
+<script src="<?php bloginfo('template_directory'); ?>/function/ajax/contenders-ajax.js"></script>
+<script src="<?php bloginfo('template_directory'); ?>/function/ajax/jquery.cookie.js"></script>
 <script type="text/javascript">
     function setCookie(_name, _value, _days) {
         var expiration = new Date();

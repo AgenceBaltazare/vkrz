@@ -1,7 +1,25 @@
-# Created by .ignore support plugin (hsz.mobi)
-### WordPress template
 *.log
-.idea
+*.tmp
+*.sublime-project
+*.sublime-workspace
+_ai-cache
+
+
+#### Directory : dependancies
+wp-content/themes/node_modules/
+wp-content/themes/gulp-tasks/
+wp-content/themes/
+
+#### Dot Directory
+.idea/
+.sass-cache/
+
+
+#### Dot file
+.DS_Store
+
+
+#### WordPress
 .htaccess
 sitemap.xml
 sitemap.xml.gz
@@ -9,16 +27,8 @@ wp-config.php
 wp-content/advanced-cache.php
 wp-content/backup-db/
 wp-content/backups/
-wp-content/uploads/
-wp-content/uploads/*
 wp-content/blogs.dir/
 wp-content/cache/
 wp-content/upgrade/
+wp-content/uploads/
 wp-content/wp-cache-config.php
-wp-content/plugins/hello.php
-
-/readme.html
-/license.txt
-
-
-
