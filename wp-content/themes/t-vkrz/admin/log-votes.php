@@ -95,13 +95,7 @@ if(isset($_GET['id_ranking']) && $_GET['id_ranking'] != "") :
             <div class="col-md-1"></div>
             <div class="col-md-4">
                 <?php
-                if(isset($_GET['nb']) && $_GET['nb'] != ""){
-                    $nb = $_GET['nb'];
-                }
-                else{
-                    $nb = 50;
-                }
-                $all_votes = new WP_Query(array('post_type' => 'vote', 'order' => 'DESC', 'orderby' => 'date', 'posts_per_page' => $nb, 'meta_query' => array(
+                $all_votes = new WP_Query(array('post_type' => 'vote', 'order' => 'DESC', 'orderby' => 'date', 'posts_per_page' => -1, 'meta_query' => array(
                     array(
                         'key' => 'id_t_v',
                         'value' => $id_tournoi,

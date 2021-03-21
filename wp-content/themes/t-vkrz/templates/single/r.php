@@ -1,20 +1,11 @@
 <?php
+$id_ranking                      = get_the_ID();
 $id_tournament                   = get_field('id_tournoi_r');
 $uuiduser                        = get_field('uuid_user_r');
-$list_contenders_tournoi         = get_field('ranking_r');
 $display_titre                   = get_field('ne_pas_afficher_les_titres_t', $id_tournament);
 $rounded                         = get_field('c_rounded_t', $id_tournament);
 
-function array_sort_by_column(&$arr, $col, $dir = SORT_DESC) {
-    $sort_col = array();
-    foreach ($arr as $key=> $row) {
-        $sort_col[$key] = $row[$col];
-    }
-    array_multisort($sort_col, $dir, $arr);
-}
-array_sort_by_column($list_contenders_tournoi, 'place');
-
-$user_contenders_classement      = array_column($list_contenders_tournoi, 'place', 'id_wp');
+$user_ranking                    = get_user_ranking($id_ranking);
 
 $all_user_votes       = new WP_Query(array(
     'post_type'      => 'vote',
@@ -55,7 +46,7 @@ $illu_url   = $illu[0];
         <div class="list-classement">
             <div class="row align-items-center jsa">
                 <?php
-                $i=1; foreach($user_contenders_classement as $c => $p) : ?>
+                $i=1; foreach($user_ranking as $c => $p) : ?>
                     <?php if($i == 1): ?>
                         <div class="col-12 col-md-5">
                     <?php elseif($i == 2): ?>
@@ -73,7 +64,7 @@ $illu_url   = $illu[0];
                                     <?php $illu = get_the_post_thumbnail_url( $c, 'full' ); ?>
                                     <div class="cov-illu" style="background: url(<?php echo $illu; ?>) center center no-repeat"></div>
                                 <?php else: ?>
-                                    <?php echo get_the_post_thumbnail( $c, 'full', array( 'class' => 'img-fluid' ) ); ?>
+                                    <?php echo get_the_post_thumbnail($c, 'full', array('class' => 'img-fluid')); ?>
                                 <?php endif; ?>
                             </div>
                             <div class="name">

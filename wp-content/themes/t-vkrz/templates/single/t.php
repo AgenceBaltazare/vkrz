@@ -53,12 +53,23 @@ $illu_url   = $illu[0];
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="text-center">
-                        <i class="fal fa-badge-check"></i>
-                        <br>
-                        Bravo,
-                        <br>vous avez terminé ce tournoi
-                    </h2>
+                    <div class="d-flex">
+                        <div class="p1">
+                            <i class="fal fa-badge-check"></i>
+                        </div>
+                        <div class="p2">
+                            <h2>
+                                Bravo,
+                                <br>vous avez terminé ce tournoi
+                            </h2>
+                        </div>
+                    </div>
+                    <h4>
+                        <?php
+                        $id_vainkeur = get_user_vainkeur($id_ranking);
+                        echo get_the_title($id_vainkeur);
+                        ?>
+                    </h4>
                     <div class="more_links text-center">
                         <ul class="list-unstyled">
                             <li>
