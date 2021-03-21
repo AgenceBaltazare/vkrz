@@ -3,6 +3,12 @@ function mouv_timeline($nb_contenders, $nb_winners, $nb_loosers, $id_ranking){
 
     // NB votes
     $timeline_votes     = get_field('nb_votes_r', $id_ranking);
+    if($nb_contenders % 2 == 0){
+        $spaire = 5;
+    }
+    else{
+        $spaire = 6;
+    }
 
     // Timeline Main
     if($timeline_votes == $nb_contenders-5){
@@ -28,7 +34,7 @@ function mouv_timeline($nb_contenders, $nb_winners, $nb_loosers, $id_ranking){
         $timeline_4      = $timeline_4 + 1;
         update_field('timeline_4', $timeline_4, $id_ranking);
 
-        if($timeline_4 == $nb_winners){
+        if($timeline_4 == $spaire){
             update_field('timeline_main', 5, $id_ranking);
         }
     }

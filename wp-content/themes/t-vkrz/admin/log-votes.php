@@ -121,10 +121,11 @@ if(isset($_GET['id_ranking']) && $_GET['id_ranking'] != "") :
                         <?php
                         $id_v = get_field('id_v_v');
                         $id_l = get_field('id_l_v');
+                        $nb_votes = $all_votes->post_count;
                         ?>
                         <tr>
                             <td>
-                                <?php echo $i; ?>
+                                <?php echo 1 + $nb_votes - $i; ?>
                             </td>
                             <td>
                                 <b><?php echo get_the_title($id_v); ?></b>
@@ -149,11 +150,33 @@ if(isset($_GET['id_ranking']) && $_GET['id_ranking'] != "") :
     </div>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-2">
+                <?php
+                $nb_contenders      = count($list_contenders_tournoi);
+                if($nb_contenders % 2 == 0){
+                    // Paire
+                    $spaire = 5;
+                }
+                else{
+                    // Impaire
+                    $spaire = 6;
+                }
+                ?>
+                <h3>Infos tournoi</h3>
+                <ul>
+                    <li>
+                        NB participans : <b><?php echo $nb_contenders; ?></b>
+                    </li>
+                    <li>
+                        Paire : <b><?php echo $spaire; ?></b>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-4">
                 <div class="row">
                     <div class="col-6">
                         <b>Liste des perdants :</b>
-                        <ul>
+                        <ol>
                             <?php if($list_l_r): ?>
                                 <?php foreach($list_l_r as $item) : ?>
                                     <li>
@@ -161,11 +184,11 @@ if(isset($_GET['id_ranking']) && $_GET['id_ranking'] != "") :
                                     </li>
                                 <?php endforeach; ?>
                             <?php endif; ?>
-                        </ul>
+                        </ol>
                     </div>
                     <div class="col-6">
                         <b>Liste des gagnants :</b>
-                        <ul>
+                        <ol>
                             <?php if($list_w_r): ?>
                                 <?php foreach($list_w_r as $item) : ?>
                                     <li>
@@ -173,7 +196,7 @@ if(isset($_GET['id_ranking']) && $_GET['id_ranking'] != "") :
                                     </li>
                                 <?php endforeach; ?>
                             <?php endif; ?>
-                        </ul>
+                        </ol>
                     </div>
                 </div>
             </div>
@@ -184,7 +207,7 @@ if(isset($_GET['id_ranking']) && $_GET['id_ranking'] != "") :
                         Timeline Main : <b><?php the_field('timeline_main', $id_ranking); ?></b>
                     </li>
                     <li>
-                        Timeline 2 : <b><?php the_field('timeline_4', $id_ranking); ?></b>
+                        Timeline 2 : <b><?php the_field('timeline_2', $id_ranking); ?></b>
                     </li>
                     <li>
                         Timeline 4 : <b><?php the_field('timeline_4', $id_ranking); ?></b>
@@ -211,13 +234,13 @@ if(isset($_GET['id_ranking']) && $_GET['id_ranking'] != "") :
                 );
                 ?>
                 <h3>Classement ELO global</h3>
-                <ul>
+                <ol>
                     <?php $i=0; while ($ranking->have_posts()) : $ranking->the_post(); ?>
                         <li>
                             <?php echo $i; ?> -- <?php the_title(); ?> <b><?php the_ID(); ?></b> - <?php the_field('ELO_c'); ?>
                         </li>
                     <?php $i++; endwhile; ?>
-                </ul>
+                </ol>
             </div>
         </div>
     </div>

@@ -22,6 +22,14 @@ function get_next_duel( $id_ranking, $id_tournament) {
 
     // Count contenders
     $nb_contenders      = count($list_contenders);
+    if($nb_contenders % 2 == 0){
+        // Paire
+        $spaire = 5;
+    }
+    else{
+        // Impaire
+        $spaire = 6;
+    }
 
     // Timeline Main
     if($nb_contenders >= 10){
@@ -90,7 +98,7 @@ function get_next_duel( $id_ranking, $id_tournament) {
                 $list_sup_of_c1     = $contender['less_to'];
             }
 
-            if($contender['id_wp'] == $list_w_r[count($list_w_r) - 5]){
+            if($contender['id_wp'] == $list_w_r[count($list_w_r) - $spaire]){
                 $key_c2             = $key;
                 $list_inf_of_c2     = $contender['more_to'];
                 $list_sup_of_c2     = $contender['less_to'];
@@ -105,11 +113,43 @@ function get_next_duel( $id_ranking, $id_tournament) {
 
             update_field('timeline_main', 4, $id_ranking);
 
+            $timeline_4      = get_field('timeline_4', $id_ranking);
+
+            foreach($list_contenders as $key => $contender) {
+
+                if($contender['id_wp'] == $list_w_r[count($list_w_r) - ($spaire + $timeline_4 - 1)]){
+                    $key_c1             = $key;
+                    $key_c1_wp          = $contender['id_wp'];
+                    $list_inf_of_c1     = $contender['more_to'];
+                    $list_sup_of_c1     = $contender['less_to'];
+                }
+                if($contender['id_wp'] == $list_w_r[count($list_w_r) - ($spaire + $timeline_4)]){
+                    $key_c2             = $key;
+                    $key_c2_wp          = $contender['id_wp'];
+                    $list_inf_of_c2     = $contender['more_to'];
+                    $list_sup_of_c2     = $contender['less_to'];
+                }
+
+            }
+
+            $c1_less_more = array_merge($list_inf_of_c1, $list_sup_of_c1);
+            $c2_less_more = array_merge($list_inf_of_c2, $list_sup_of_c2);
+
+            if(in_array($key_c1, $c2_less_more) || in_array($key_c2, $c1_less_more)){
+
+                $timeline_4      = $timeline_4 + 1;
+                update_field('timeline_4', $timeline_4, $id_ranking);
+
+            }
+
+            array_push($next_duel, $key_c1_wp);
+            array_push($next_duel, $key_c2_wp);
+
         }
         else{
 
             array_push($next_duel, $list_l_r[$nb_loosers]);
-            array_push($next_duel, $list_w_r[count($list_w_r) - 5]);
+            array_push($next_duel, $list_w_r[count($list_w_r) - $spaire]);
 
         }
 
@@ -121,14 +161,15 @@ function get_next_duel( $id_ranking, $id_tournament) {
 
         foreach($list_contenders as $key => $contender) {
 
-            if($contender['id_wp'] == $list_w_r[$timeline_4 - 1]){
+            if($contender['id_wp'] == $list_w_r[count($list_w_r) - ($spaire - ($timeline_4 - 1))]){
                 $key_c1             = $key;
+                $key_c1_wp          = $contender['id_wp'];
                 $list_inf_of_c1     = $contender['more_to'];
                 $list_sup_of_c1     = $contender['less_to'];
             }
-
-            if($contender['id_wp'] == $list_w_r[$timeline_4]){
+            if($contender['id_wp'] == $list_w_r[count($list_w_r) - ($spaire - $timeline_4)]){
                 $key_c2             = $key;
+                $key_c2_wp          = $contender['id_wp'];
                 $list_inf_of_c2     = $contender['more_to'];
                 $list_sup_of_c2     = $contender['less_to'];
             }
@@ -145,8 +186,8 @@ function get_next_duel( $id_ranking, $id_tournament) {
 
         }
 
-        array_push($next_duel, $list_w_r[$timeline_4 - 1]);
-        array_push($next_duel, $list_w_r[$timeline_4]);
+        array_push($next_duel, $key_c1_wp);
+        array_push($next_duel, $key_c2_wp);
 
     }
 

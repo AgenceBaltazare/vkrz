@@ -81,7 +81,7 @@ function get_or_create_ranking_if_not_exists($id_tournament) {
             update_field('nb_votes_r', 0, $id_ranking);
             update_field('timeline_main', 1, $id_ranking);
             update_field('timeline_2', 0, $id_ranking);
-            update_field('timeline_4', 1, $id_ranking);
+            update_field('timeline_4', 0, $id_ranking);
 
         }
 
