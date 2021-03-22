@@ -157,9 +157,11 @@ function get_next_duel( $id_ranking, $id_tournament) {
         array_filter($c_at_same_ratio);
 
         if(count($c_at_same_ratio) >= 2){
+
             $is_same_ratio = true;
             array_push($next_duel, $c_at_same_ratio[0]);
             array_push($next_duel, $c_at_same_ratio[1]);
+
         }
 
 
@@ -249,7 +251,6 @@ function get_next_duel( $id_ranking, $id_tournament) {
     $all_votes_counts = all_votes_in_tournament($id_tournament);
     $nb_user_votes    = all_user_votes_in_tournament($id_ranking);
 
-    /*
     if($is_next_duel){
         $val1 = random_int(0, 1);
         if($val1 == 0){
@@ -261,9 +262,6 @@ function get_next_duel( $id_ranking, $id_tournament) {
         $contender_1      = $next_duel[$val1];
         $contender_2      = $next_duel[$val2];
     }
-    */
-    $contender_1      = $next_duel[0];
-    $contender_2      = $next_duel[1];
 
     $current_step = get_steps($id_ranking);
 
@@ -276,7 +274,8 @@ function get_next_duel( $id_ranking, $id_tournament) {
         'all_votes_counts',
         'nb_user_votes',
         'nb_contenders',
-        'id_tournament'
+        'id_tournament',
+        'id_ranking'
     );
 
 }

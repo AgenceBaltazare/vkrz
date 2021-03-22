@@ -30,16 +30,17 @@ $illu_url   = $illu[0];
                                         <?php the_field( 'question_t' ); ?>
                                     </h2>
                                 </div>
-                                <div class="current_rank">
-                                    <?php
-                                    $current_user_ranking = get_current_user_ranking($id_ranking);
-                                    foreach ($current_user_ranking as $contender) : ?>
-                                    
-                                        <h3>
-                                            <?php echo get_the_title($contender["id_wp"]); ?> (<?php echo $contender["place"]; ?>)
-                                        </h3>
-                                   
-                                    <?php endforeach; ?>
+                            </div>
+                        </div>
+                        <div class="display_current_user_rank d-none d-sm-block">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="current_rank">
+                                        <?php
+                                        set_query_var('current_user_ranking_var', compact('id_ranking'));
+                                        get_template_part('templates/parts/content', 'user-ranking');
+                                        ?>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -98,6 +99,7 @@ $illu_url   = $illu[0];
                     </div>
                 </div>
             <?php endif; ?>
+
         </div>
     </div>
 </div>

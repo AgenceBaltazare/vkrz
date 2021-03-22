@@ -93,7 +93,7 @@ html .content{
 
 .stepbar{
   position: fixed;
-  bottom: 0;
+  top: 0;
   right: 0;
   left: 0;
   height: 10px;
@@ -120,7 +120,7 @@ html .content{
   text-align: center;
   .cov-illu{
     margin: 0 auto;
-    min-height: 340px;
+    min-height: 440px;
     border-radius: 10px;
     background-size: cover !important;
     margin-bottom: 30px;
@@ -145,7 +145,8 @@ html .content{
     min-height: 500px;
     position: relative;
 
-    a {
+    .contender_zone{
+      cursor: url("../img/select.png"), pointer !important;
       height: 100%;
       width: 100%;
       display: block;
@@ -159,14 +160,14 @@ html .content{
 
   //LEFT CONTENDER
   & > :nth-child(1) {
-    a {
+    .contender_zone {
       transform: translate(-50%, -75%);
       &.entering {
         transform: translate(-50%, -50%);
         opacity: 1;
       }
       &.leaving {
-        transform: translate(-50%, -25%);
+        transform: translate(-50%, -75%);
         opacity: 0;
       }
     }
@@ -174,8 +175,8 @@ html .content{
 
   //RIGHT CONTENDER
   & > :nth-child(3) {
-    a {
-      transform: translate(-50%, -25%);
+    .contender_zone {
+      transform: translate(-50%, -75%);
       &.entering {
         transform: translate(-50%, -50%);
         opacity: 1;
@@ -275,6 +276,7 @@ html .content{
   }
 }
 
+
 // Provisoir
 html .content.app-content {
   padding: 40px;
@@ -282,4 +284,16 @@ html .content.app-content {
 .aaa{
   align-items: center;
   height: 90vh;
+}
+
+.current_ranking{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center;
+  margin: 0 0 20px 0;
+}
+
+.card-profile .card-body .profile-image-wrapper .profile-image img {
+  object-fit: cover;
 }

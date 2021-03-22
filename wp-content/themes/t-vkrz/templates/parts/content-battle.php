@@ -1,7 +1,7 @@
 <?php extract( $battle_vars ); ?>
 <div class="row align-items-center contenders-containers">
     <div class="col-sm-5 bloc-contenders link-contender_1 contender_1 cover_contenders link-contender">
-        <a href="#"
+        <div class="contender_zone"
            data-id-winner="<?= $contender_1 ?>"
            data-id-looser="<?= $contender_2?>"
            data-id-tournament="<?= $id_tournament ?>"
@@ -18,10 +18,10 @@
                     <?php echo get_the_title( $contender_1 ); ?>
                 </h2>
             <?php endif; ?>
-        </a>
+        </div>
     </div>
 
-    <div class="col-sm-2">
+    <div class="col-sm-2 d-none d-sm-block">
         <?php if($nb_user_votes): ?>
             <div class="display_votes">
                 <h6>
@@ -35,7 +35,7 @@
     </div>
 
     <div class="col-sm-5 bloc-contenders link-contender_2 contender_2 cover_contenders link-contender">
-        <a href="#"
+        <div class="contender_zone"
            data-id-winner="<?= $contender_2 ?>"
            data-id-looser="<?= $contender_1 ?>"
            data-id-tournament="<?= $id_tournament ?>"
@@ -52,6 +52,6 @@
                     <?php echo get_the_title( $contender_2 ); ?>
                 </h2>
             <?php endif; ?>
-        </a>
+        </div>
     </div>
 </div>

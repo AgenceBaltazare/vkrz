@@ -2,7 +2,7 @@ $(document).ready(function ($) {
     let contenders = $('.display_battle .link-contender');
     let ajaxRunning = false;
 
-    contenders.find('a').addClass('entering');
+    contenders.find('.contender_zone').addClass('entering');
 
     $(window).keydown(function(e){
         if (e.keyCode === 37) {
@@ -18,10 +18,10 @@ $(document).ready(function ($) {
 
         if (!ajaxRunning) {
             ajaxRunning = true;
-            if ($(this).find('a').attr('id') === "c_1") {
+            if ($(this).find('.contender_zone').attr('id') === "c_1") {
                 $("#c_1").addClass('vainkeurz');
                 $("#c_2").addClass('leaving');
-            } else if ($(this).find('a').attr('id') === "c_2") {
+            } else if ($(this).find('.contender_zone').attr('id') === "c_2") {
                 $("#c_2").addClass('vainkeurz');
                 $("#c_1").addClass('leaving');
             }
@@ -30,9 +30,9 @@ $(document).ready(function ($) {
                 url: vkrz_ajaxurl,
                 data: {
                     action: 'vkzr_process_vote',
-                    id_tournament: $(this).find('a').data('id-tournament'),
-                    id_winner: $(this).find('a').data('id-winner'),
-                    id_looser: $(this).find('a').data('id-looser')
+                    id_tournament: $(this).find('.contender_zone').data('id-tournament'),
+                    id_winner: $(this).find('.contender_zone').data('id-winner'),
+                    id_looser: $(this).find('.contender_zone').data('id-looser')
                 }
             })
                 .done(function (response) {
@@ -41,10 +41,11 @@ $(document).ready(function ($) {
                     if(data.is_next_duel){
                         $('.display_battle').html(data.contenders_html);
                         contenders = $('.display_battle .link-contender');
-                        contenders.find('a').addClass('entering')
+                        contenders.find('.contender_zone').addClass('entering')
                     }
                     $('.stepbar').width(data.current_step + "%");
                     $('.display_users_votes h6').replaceWith(data.uservotes_html);
+                    $('.current_rank').html(data.user_ranking_html);
 
                     if(!data.is_next_duel){
                         location.reload()

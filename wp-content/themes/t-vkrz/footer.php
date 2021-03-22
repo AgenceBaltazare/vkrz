@@ -16,6 +16,9 @@
 <script src="<?php bloginfo('template_directory'); ?>/function/ajax/contenders-ajax.js"></script>
 <script src="<?php bloginfo('template_directory'); ?>/function/ajax/jquery.cookie.js"></script>
 <script type="text/javascript">
+
+    jQuery('body').tooltip({selector: '[data-toggle="tooltip"]'});
+
     function setCookie(_name, _value, _days) {
         var expiration = new Date();
         expiration.setDate(expiration.getDate() + _days);

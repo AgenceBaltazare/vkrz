@@ -69,7 +69,7 @@ html .content {
 
 .stepbar {
   position: fixed;
-  bottom: 0;
+  top: 0;
   right: 0;
   left: 0;
   height: 10px;
@@ -95,7 +95,7 @@ html .content {
 
 .cover_contenders .cov-illu {
   margin: 0 auto;
-  min-height: 340px;
+  min-height: 440px;
   border-radius: 10px;
   background-size: cover !important;
   margin-bottom: 30px;
@@ -116,7 +116,8 @@ html .content {
   min-height: 500px;
   position: relative; }
 
-.contenders-containers .link-contender a {
+.contenders-containers .link-contender .contender_zone {
+  cursor: url("../img/select.png"), pointer !important;
   height: 100%;
   width: 100%;
   display: block;
@@ -126,25 +127,25 @@ html .content {
   left: 50%;
   transition: all 0.1s ease-in; }
 
-.contenders-containers > :nth-child(1) a {
+.contenders-containers > :nth-child(1) .contender_zone {
   transform: translate(-50%, -75%); }
 
-.contenders-containers > :nth-child(1) a.entering {
+.contenders-containers > :nth-child(1) .contender_zone.entering {
   transform: translate(-50%, -50%);
   opacity: 1; }
 
-.contenders-containers > :nth-child(1) a.leaving {
-  transform: translate(-50%, -25%);
+.contenders-containers > :nth-child(1) .contender_zone.leaving {
+  transform: translate(-50%, -75%);
   opacity: 0; }
 
-.contenders-containers > :nth-child(3) a {
-  transform: translate(-50%, -25%); }
+.contenders-containers > :nth-child(3) .contender_zone {
+  transform: translate(-50%, -75%); }
 
-.contenders-containers > :nth-child(3) a.entering {
+.contenders-containers > :nth-child(3) .contender_zone.entering {
   transform: translate(-50%, -50%);
   opacity: 1; }
 
-.contenders-containers > :nth-child(3) a.leaving {
+.contenders-containers > :nth-child(3) .contender_zone.leaving {
   transform: translate(-50%, -75%);
   opacity: 0; }
 
@@ -234,3 +235,13 @@ html .content.app-content {
 .aaa {
   align-items: center;
   height: 90vh; }
+
+.current_ranking {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center;
+  margin: 0 0 20px 0; }
+
+.card-profile .card-body .profile-image-wrapper .profile-image img {
+  object-fit: cover; }
