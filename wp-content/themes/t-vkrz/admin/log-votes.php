@@ -7,17 +7,11 @@
 if(isset($_GET['id_ranking']) && $_GET['id_ranking'] != "") :
     $id_ranking                      = $_GET['id_ranking'];
     $id_tournoi                      = get_field('id_tournoi_r', $id_ranking);
-    $list_contenders_tournoi         = get_field('ranking_r', $id_ranking);
+    $list_contenders                 = get_field('ranking_r', $id_ranking);
     $list_w_r                        = get_field('list_winners_r', $id_ranking);
     $list_l_r                        = get_field('list_losers_r', $id_ranking);
-    function array_sort_by_column(&$arr, $col, $dir = SORT_DESC) {
-        $sort_col = array();
-        foreach ($arr as $key=> $row) {
-            $sort_col[$key] = $row[$col];
-        }
-        array_multisort($sort_col, $dir, $arr);
-    }
-    array_sort_by_column($list_contenders_tournoi, 'place');
+    array_sort_by_column($list_contenders, 'place');
+    $user_ranking = array_column($list_contenders, 'place', 'id_wp');
 ?>
     <!DOCTYPE html>
     <head>
@@ -60,7 +54,7 @@ if(isset($_GET['id_ranking']) && $_GET['id_ranking'] != "") :
                     </tr>
                     </thead>
                     <tbody>
-                    <?php foreach($list_contenders_tournoi as $c) : ?>
+                    <?php foreach($list_contenders as $c) : ?>
                         <tr>
                             <td>
                                 <?php echo $c['place']; ?>
@@ -146,7 +140,7 @@ if(isset($_GET['id_ranking']) && $_GET['id_ranking'] != "") :
         <div class="row">
             <div class="col-md-2">
                 <?php
-                $nb_contenders      = count($list_contenders_tournoi);
+                $nb_contenders      = count($list_contenders);
                 if($nb_contenders % 2 == 0){
                     // Paire
                     $spaire = 5;
