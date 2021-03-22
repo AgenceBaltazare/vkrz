@@ -22,11 +22,13 @@
     </div>
 
     <div class="col-sm-2">
-        <div class="display_votes">
-            <h6>
-                <?php echo $all_votes_counts; ?> votes
-            </h6>
-        </div>
+        <?php if($nb_user_votes): ?>
+            <div class="display_votes">
+                <h6>
+                    <?php echo $nb_user_votes; ?> votes
+                </h6>
+            </div>
+        <?php endif; ?>
         <h4 class="text-center versus">
             VS
         </h4>

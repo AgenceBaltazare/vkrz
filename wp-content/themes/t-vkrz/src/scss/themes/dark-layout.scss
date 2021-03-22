@@ -113,7 +113,7 @@
 
   // main navbar and header navbar shadow(generic navbar)
   .header-navbar-shadow {
-    background: linear-gradient(180deg, rgba(22, 29, 49, 0.9) 44%, rgba(22, 29, 49, 0.43) 73%, rgba(22, 29, 49, 0));
+    background: linear-gradient(180deg, $theme-dark-card-bg 44%, $theme-dark-card-bg 73%, $theme-dark-card-bg);
   }
 
   // main header navbar dark style

@@ -18,6 +18,9 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 
+    <!-- External -->
+    <script src="https://kit.fontawesome.com/30edd5507e.js" crossorigin="anonymous"></script>
+
     <!-- Styles -->
     <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory'); ?>/app-assets/vendors/css/vendors.min.css">
     <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory'); ?>/app-assets/css/bootstrap.css">
@@ -49,3 +52,119 @@
         })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
     </script>
 </head>
+
+<!-- BEGIN: Body-->
+
+<?php
+    if(!is_front_page()){
+        $list_body_class = "vertical-layout vertical-menu-modern navbar-floating footer-static menu-collapsed";
+    }
+    else{
+        $list_body_class = "vertical-layout vertical-menu-modern navbar-floating footer-static";
+    }
+?>
+
+<body <?php body_class($list_body_class); ?> data-open="click" data-menu="vertical-menu-modern" data-col="">
+
+<!-- BEGIN: Header-->
+<!--
+<nav class="header-navbar navbar navbar-expand-lg align-items-center floating-nav navbar-dark navbar-shadow">
+    <div class="navbar-container d-flex content">
+        <div class="bookmark-wrapper d-flex align-items-center">
+            <ul class="nav navbar-nav d-xl-none">
+                <li class="nav-item"><a class="nav-link menu-toggle" href="javascript:void(0);"><i class="ficon" data-feather="menu"></i></a></li>
+            </ul>
+        </div>
+        <ul class="nav navbar-nav align-items-center ml-auto">
+            <li class="nav-item dropdown dropdown-user">
+                <a class="nav-link dropdown-toggle dropdown-user-link" id="dropdown-user" href="javascript:void(0);" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="user-nav d-sm-flex d-none">
+                        <span class="user-name font-weight-bolder">John Doe</span>
+                        <span class="user-status">Admin</span>
+                    </div>
+                    <span class="avatar">
+                            <img class="round" src="<?php bloginfo('template_directory'); ?>/app-assets/images/portrait/small/avatar-s-11.jpg" alt="avatar" height="40" width="40">
+                            <span class="avatar-status-online"></span>
+                        </span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-user">
+                    <a class="dropdown-item" href="page-profile.html">
+                        <i class="mr-50" data-feather="user"></i> Profile
+                    </a>
+                    <a class="dropdown-item" href="app-email.html">
+                        <i class="mr-50" data-feather="mail"></i> Inbox
+                    </a>
+                    <a class="dropdown-item" href="app-todo.html">
+                        <i class="mr-50" data-feather="check-square"></i> Task
+                    </a>
+                    <a class="dropdown-item" href="app-chat.html">
+                        <i class="mr-50" data-feather="message-square"></i> Chats
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="page-account-settings.html">
+                        <i class="mr-50" data-feather="settings"></i> Settings
+                    </a>
+                    <a class="dropdown-item" href="page-auth-login-v2.html">
+                        <i class="mr-50" data-feather="power"></i> Logout
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+-->
+<!-- END: Header-->
+
+
+<!-- BEGIN: Main Menu-->
+<div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true" style="touch-action: none; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+    <div class="navbar-header">
+        <ul class="nav navbar-nav flex-row">
+            <li class="nav-item mr-auto">
+                <a class="navbar-brand" href="<?php bloginfo('url'); ?>/">
+                    <h2 class="brand-text">
+                        <?php
+                        $id_vainkeur_elo   = get_elo_vainkeur(1798);
+                        $illu_vainkeur_elo = get_the_post_thumbnail_url($id_vainkeur_elo, 'full');
+                        ?>
+                        <img src="<?php echo $illu_vainkeur_elo; ?>" alt="VAINKEURZ logo" class="img-fluid">
+                    </h2>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="main-menu-content">
+        <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+            <li class=" navigation-header">
+                <span>Tournois</span> <i data-feather="more-horizontal"></i>
+            </li>
+            <li class=" nav-item">
+                <a class="d-flex align-items-center" href="<?php bloginfo('url'); ?>/">
+                    <i class="fal fa-swords"></i> <span class="menu-title text-truncate">Liste des tournois</span>
+                </a>
+            </li>
+            <!--
+            <li class=" navigation-header">
+                <span>Vue d'ensemble</span> <i data-feather="more-horizontal"></i>
+            </li>
+            <li class=" nav-item">
+                <a class="d-flex align-items-center" href="<?php the_permalink(); ?>">
+                    <i class="fal fa-trophy-alt"></i> <span class="menu-title text-truncate">Classements</span>
+                </a>
+            </li>
+            <li class=" navigation-header">
+                Vainkeurz <i data-feather="more-horizontal"></i>
+            </li>
+            <li class=" nav-item">
+                <a class="d-flex align-items-center" href="<?php the_permalink(); ?>">
+                    <i data-feather="mail"></i> <span class="menu-title text-truncate">Le projet</span>
+                </a>
+                <a class="d-flex align-items-center" href="<?php the_permalink(); ?>">
+                    <i data-feather="mail"></i> <span class="menu-title text-truncate">Participer</span>
+                </a>
+            </li>
+            -->
+        </ul>
+    </div>
+</div>
+<!-- END: Main Menu-->

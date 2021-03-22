@@ -44,9 +44,6 @@ $(document).ready(function ($) {
                         contenders.find('a').addClass('entering')
                     }
                     $('.stepbar').width(data.current_step + "%");
-
-                    console.log(data.timeline_main);
-
                     $('.display_users_votes h6').replaceWith(data.uservotes_html);
 
                     if(!data.is_next_duel){

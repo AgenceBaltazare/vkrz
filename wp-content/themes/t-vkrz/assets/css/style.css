@@ -9,3 +9,228 @@ NOTE:
 ------
 PLACE HERE YOUR OWN SCSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
 WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
+.cover {
+  background-size: cover !important; }
+
+.contain {
+  background-size: contain !important; }
+
+.dark-layout .main-menu {
+  background-color: #0a0921; }
+
+.dark-layout .main-menu-content .navigation-main {
+  background-color: #0a0921; }
+
+.min-tournoi .cov-illu {
+  min-height: 200px;
+  border-radius: 5px 5px 0 0; }
+
+html .content {
+  min-height: 100%; }
+
+.menu-collapsed .brand-text {
+  display: block !important; }
+
+.menu-collapsed .brand-text img {
+  max-width: 80px;
+  height: auto;
+  position: relative;
+  right: 37px; }
+
+.menu-collapsed .expanded img {
+  max-width: 100%;
+  height: auto;
+  position: inherit;
+  right: unset; }
+
+.single-tournoi .header-navbar, .single-classement .header-navbar {
+  background-color: rgba(255, 255, 255, 0.05); }
+
+.single-tournoi .tournoi-content {
+  text-align: center; }
+
+.single-tournoi .tournoi-content .tournoi-infos {
+  margin-bottom: 70px; }
+
+.single-tournoi .tournoi-content .tournoi-infos h1 {
+  color: #f4167f;
+  text-transform: uppercase;
+  font-size: 15px; }
+
+.single-tournoi .tournoi-content .tournoi-infos h2 {
+  color: #fff;
+  font-size: 30px; }
+
+.single-tournoi .tournoi-content .title-contender {
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 15px;
+  margin: 30px 0 0 0; }
+
+.stepbar {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 10px;
+  background: #f4167f;
+  width: 0;
+  transition: all 1s ease-in-out;
+  z-index: 999999; }
+
+.stepbar h5 {
+  text-align: center;
+  color: #000;
+  text-transform: uppercase;
+  font-size: 20px; }
+
+.stepbar h5 span {
+  font-weight: normal;
+  font-size: 15px;
+  text-transform: lowercase !important;
+  color: #333 !important; }
+
+.cover_contenders {
+  text-align: center; }
+
+.cover_contenders .cov-illu {
+  margin: 0 auto;
+  min-height: 340px;
+  border-radius: 10px;
+  background-size: cover !important;
+  margin-bottom: 30px;
+  box-shadow: 0 0 50px rgba(232, 232, 231, 0.5); }
+
+.rounded .cov-illu, .rounded img {
+  border-radius: 50%; }
+
+.bloc-contenders {
+  transition: all .4s ease-in-out;
+  position: relative;
+  top: 0; }
+
+.bloc-contenders:hover {
+  top: -10px; }
+
+.contenders-containers .link-contender {
+  min-height: 500px;
+  position: relative; }
+
+.contenders-containers .link-contender a {
+  height: 100%;
+  width: 100%;
+  display: block;
+  position: absolute;
+  opacity: 0;
+  top: 50%;
+  left: 50%;
+  transition: all 0.1s ease-in; }
+
+.contenders-containers > :nth-child(1) a {
+  transform: translate(-50%, -75%); }
+
+.contenders-containers > :nth-child(1) a.entering {
+  transform: translate(-50%, -50%);
+  opacity: 1; }
+
+.contenders-containers > :nth-child(1) a.leaving {
+  transform: translate(-50%, -25%);
+  opacity: 0; }
+
+.contenders-containers > :nth-child(3) a {
+  transform: translate(-50%, -25%); }
+
+.contenders-containers > :nth-child(3) a.entering {
+  transform: translate(-50%, -50%);
+  opacity: 1; }
+
+.contenders-containers > :nth-child(3) a.leaving {
+  transform: translate(-50%, -75%);
+  opacity: 0; }
+
+.card-congratulations {
+  background: linear-gradient(118deg, #0a0922, #1e2135);
+  color: #fff; }
+
+.jsa {
+  justify-content: space-around; }
+
+.share_rank {
+  position: fixed;
+  background: #f4167f;
+  padding: 10px 20px;
+  color: #000;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999; }
+
+.share_rank .cta_btn {
+  margin: 0;
+  padding: 0;
+  color: #000; }
+
+.share_rank .cta_btn:hover {
+  transform: scale(1.1);
+  color: #fff !important; }
+
+.share_rank ul {
+  margin: 0;
+  padding: 0;
+  text-align: right; }
+
+.share_rank ul li {
+  display: inline-block;
+  margin: 0 20px;
+  letter-spacing: 2px; }
+
+.share_rank ul li a {
+  display: block;
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -ms-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out; }
+
+.share_rank ul li a span {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid #000;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  color: #000;
+  -webkit-transition: color 0.4s, background 0.4s;
+  -o-transition: color 0.4s, background 0.4s;
+  transition: color 0.4s, background 0.4s; }
+
+.share_rank ul li a:hover {
+  transform: scale(1.1);
+  color: #fff !important; }
+
+.classement {
+  padding-bottom: 100px; }
+
+.name h5 {
+  text-transform: uppercase;
+  text-align: center; }
+
+.name h5 span {
+  color: #f4167f; }
+
+html .content.app-content {
+  padding: 40px; }
+
+.aaa {
+  align-items: center;
+  height: 90vh; }

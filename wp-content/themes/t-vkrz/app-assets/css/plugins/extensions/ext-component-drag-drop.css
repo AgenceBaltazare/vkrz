@@ -26,6 +26,6 @@
   font-size: 1.2rem; }
 
 .dark-layout .gu-mirror:not(.badge):not([class*='col-']) {
-  background-color: #283046;
+  background-color: #312673;
   border-color: #3b4253;
   box-shadow: 0 4px 24px 0 rgba(34, 41, 47, 0.24); }

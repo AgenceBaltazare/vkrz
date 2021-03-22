@@ -71,21 +71,21 @@
   stroke: #3b4253; }
 
 .dark-layout .apexcharts-canvas .apexcharts-radialbar .apexcharts-radialbar-track .apexcharts-radialbar-area {
-  stroke: #161d31; }
+  stroke: #0c0a27; }
 
 .dark-layout .apexcharts-canvas .apexcharts-radar-series polygon {
-  fill: #161d31;
+  fill: #0c0a27;
   stroke: #3b4253; }
 
 .dark-layout .apexcharts-canvas .apexcharts-datalabels-group .apexcharts-datalabel-value {
   fill: #fff; }
 
 .dark-layout .apexcharts-canvas .apexcharts-tooltip {
-  background: #283046;
+  background: #312673;
   border-color: #3b4253; }
 
 .dark-layout .apexcharts-canvas .apexcharts-tooltip .apexcharts-tooltip-title {
-  background: #283046 !important;
+  background: #312673 !important;
   border-color: #3b4253 !important;
   color: #fff; }
 
@@ -95,7 +95,7 @@
 
 .dark-layout .apexcharts-canvas .apexcharts-xaxistooltip,
 .dark-layout .apexcharts-canvas .apexcharts-yaxistooltip {
-  background: #161d31;
+  background: #0c0a27;
   border-color: #3b4253; }
 
 .dark-layout .apexcharts-canvas .apexcharts-xaxistooltip:after, .dark-layout .apexcharts-canvas .apexcharts-xaxistooltip:before,

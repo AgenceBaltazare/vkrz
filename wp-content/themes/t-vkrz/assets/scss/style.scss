@@ -9,3 +9,277 @@ NOTE:
 ------
 PLACE HERE YOUR OWN SCSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
 WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
+$c1: #0c0a27;
+$c2: #0a0921;
+$c3: #312673;
+$rose: #f4167f;
+
+.cover{
+  background-size: cover !important;
+}
+.contain{
+  background-size: contain !important;
+}
+
+.dark-layout{
+  .main-menu {
+    background-color: $c2;
+  }
+  .main-menu-content .navigation-main {
+    background-color: $c2;
+  }
+}
+
+.min-tournoi{
+  .cov-illu{
+    min-height: 200px;
+    border-radius: 5px 5px 0 0;
+  }
+}
+
+html .content{
+  min-height: 100%;
+}
+
+.menu-collapsed{
+  .brand-text{
+    display: block !important;
+    img{
+      max-width: 80px;
+      height: auto;
+      position: relative;
+      right: 37px;
+    }
+  }
+  .expanded{
+    img{
+      max-width: 100%;
+      height: auto;
+      position: inherit;
+      right: unset;
+    }
+  }
+}
+
+// Tournoi
+.single-tournoi, .single-classement {
+  .header-navbar {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+}
+.single-tournoi{
+  .tournoi-content{
+    text-align: center;
+    .tournoi-infos{
+      margin-bottom: 70px;
+      h1{
+        color: $rose;
+        text-transform: uppercase;
+        font-size: 15px;
+      }
+      h2{
+        color: #fff;
+        font-size: 30px;
+      }
+    }
+    .title-contender{
+      color: #fff;
+      text-transform: uppercase;
+      font-size: 15px;
+      margin: 30px 0 0 0;
+    }
+  }
+}
+
+.stepbar{
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 10px;
+  background: $rose;
+  width: 0;
+  transition: all 1s ease-in-out;
+  z-index: 999999;
+  h5{
+    text-align: center;
+    color: #000;
+    text-transform: uppercase;
+    font-size: 20px;
+    span{
+      font-weight: normal;
+      font-size: 15px;
+      text-transform: lowercase !important;
+      color: #333 !important;
+    }
+  }
+}
+
+// Contenders
+.cover_contenders{
+  text-align: center;
+  .cov-illu{
+    margin: 0 auto;
+    min-height: 340px;
+    border-radius: 10px;
+    background-size: cover !important;
+    margin-bottom: 30px;
+    box-shadow: 0 0 50px rgba(232, 232, 231, 0.5);
+  }
+}
+.rounded{
+  .cov-illu, img{
+    border-radius: 50%;
+  }
+}
+.bloc-contenders{
+  transition: all .4s ease-in-out;
+  position: relative;
+  top: 0;
+  &:hover{
+    top: -10px;
+  }
+}
+.contenders-containers {
+  .link-contender {
+    min-height: 500px;
+    position: relative;
+
+    a {
+      height: 100%;
+      width: 100%;
+      display: block;
+      position: absolute;
+      opacity: 0;
+      top: 50%;
+      left: 50%;
+      transition: all 0.1s ease-in;
+    }
+  }
+
+  //LEFT CONTENDER
+  & > :nth-child(1) {
+    a {
+      transform: translate(-50%, -75%);
+      &.entering {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+      }
+      &.leaving {
+        transform: translate(-50%, -25%);
+        opacity: 0;
+      }
+    }
+  }
+
+  //RIGHT CONTENDER
+  & > :nth-child(3) {
+    a {
+      transform: translate(-50%, -25%);
+      &.entering {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+      }
+      &.leaving {
+        transform: translate(-50%, -75%);
+        opacity: 0;
+      }
+    }
+  }
+}
+
+.card-congratulations {
+  background: linear-gradient(118deg, #0a0922, #1e2135);
+  color: #fff;
+}
+
+
+// Ranking
+.jsa{
+  justify-content: space-around;
+}
+.share_rank{
+  position: fixed;
+  background: $rose;
+  padding: 10px 20px;
+  color: #000;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  .cta_btn{
+    margin: 0;
+    padding: 0;
+    color: #000;
+    &:hover{
+      transform: scale(1.1);
+      color: #fff !important;
+    }
+  }
+  ul{
+    margin: 0;
+    padding: 0;
+    text-align: right;
+    li{
+      display: inline-block;
+      margin: 0 20px;
+      letter-spacing: 2px;
+      a{
+        display: block;
+        -webkit-transition: all .2s ease-in-out;
+        -moz-transition: all .2s ease-in-out;
+        -ms-transition: all .2s ease-in-out;
+        -o-transition: all .2s ease-in-out;
+        transition: all .2s ease-in-out;
+        span{
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          border: 2px solid #000;
+          display: flex;
+          -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+          -webkit-box-align: center;
+          -ms-flex-align: center;
+          align-items: center;
+          -webkit-box-pack: center;
+          -ms-flex-pack: center;
+          justify-content: center;
+          color: #000;
+          -webkit-transition: color 0.4s, background 0.4s;
+          -o-transition: color 0.4s, background 0.4s;
+          transition: color 0.4s, background 0.4s;
+        }
+        &:hover{
+          transform: scale(1.1);
+          color: #fff !important;
+        }
+      }
+    }
+  }
+}
+.classement{
+  padding-bottom: 100px;
+}
+
+.name{
+  h5{
+    text-transform: uppercase;
+    text-align: center;
+    span{
+      color: $rose;
+    }
+  }
+}
+
+// Provisoir
+html .content.app-content {
+  padding: 40px;
+}
+.aaa{
+  align-items: center;
+  height: 90vh;
+}

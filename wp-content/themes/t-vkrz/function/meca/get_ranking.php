@@ -54,7 +54,7 @@ function get_or_create_ranking_if_not_exists($id_tournament) {
                         array(
                             'key'     => 'id_tournoi_c',
                             'value'   => $id_tournament,
-                            'compare' => 'LIKE',
+                            'compare' => '=',
                         )
                     )
                 )

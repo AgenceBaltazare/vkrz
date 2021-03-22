@@ -314,7 +314,7 @@ function get_next_duel( $id_ranking, $id_tournament) {
     }
 
     $all_votes_counts = all_votes_in_tournament($id_tournament);
-    $nb_user_votes    = all_user_votes_in_tournament($id_tournament);
+    $nb_user_votes    = all_user_votes_in_tournament($id_ranking);
 
     if($is_next_duel){
         $val1 = random_int(0, 1);
