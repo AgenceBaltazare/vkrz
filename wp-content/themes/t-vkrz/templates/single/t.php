@@ -23,12 +23,23 @@ $illu_url   = $illu[0];
                                 <div class="bloc-titre">
                                     <h1>
                                         <b>
-                                            <?php the_title(); ?>
+                                            <?php the_title(); ?> - <?php echo $id_ranking; ?>
                                         </b>
                                     </h1>
                                     <h2>
                                         <?php the_field( 'question_t' ); ?>
                                     </h2>
+                                </div>
+                                <div class="current_rank">
+                                    <?php
+                                    $current_user_ranking = get_current_user_ranking($id_ranking);
+                                    foreach ($current_user_ranking as $contender) : ?>
+                                    
+                                        <h3>
+                                            <?php echo get_the_title($contender["id_wp"]); ?> (<?php echo $contender["place"]; ?>)
+                                        </h3>
+                                   
+                                    <?php endforeach; ?>
                                 </div>
                             </div>
                         </div>

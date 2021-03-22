@@ -52,41 +52,24 @@ function get_next_duel( $id_ranking, $id_tournament) {
 
     }
 
-    elseif($timeline_main == 2){
+    if($timeline_main == 2){
 
         $timeline_2      = get_field('timeline_2', $id_ranking);
+        $timeline        = $timeline_2;
+        $list            = $list_l_r;
 
-        foreach($list_contenders as $key => $contender) {
+        $next_duel       = check_battle_2($id_ranking, $list, $timeline, $timeline_main);
 
-            if($contender['id_wp'] == $list_l_r[$timeline_2 - 1]){
-                $key_c1             = $key;
-                $list_inf_of_c1     = $contender['more_to'];
-                $list_sup_of_c1     = $contender['less_to'];
-            }
+        if(count($next_duel) != 2){
 
-            if($contender['id_wp'] == $list_l_r[$timeline_2]){
-                $key_c2             = $key;
-                $list_inf_of_c2     = $contender['more_to'];
-                $list_sup_of_c2     = $contender['less_to'];
-            }
+            $timeline_main = 3;
+            update_field('timeline_main', 3, $id_ranking);
 
         }
 
-        $c1_less_more = array_merge($list_inf_of_c1, $list_sup_of_c1);
-        $c2_less_more = array_merge($list_inf_of_c2, $list_sup_of_c2);
-
-        if(in_array($key_c1, $c2_less_more) || in_array($key_c2, $c1_less_more)){
-
-            $timeline_2      = $timeline_2 + 1;
-            update_field('timeline_2', $timeline_2, $id_ranking);
-
-        }
-
-        array_push($next_duel, $list_l_r[$timeline_2 - 1]);
-        array_push($next_duel, $list_l_r[$timeline_2]);
     }
 
-    elseif($timeline_main == 3){
+    if($timeline_main == 3){
 
         $nb_loosers      = count($list_l_r) - 1;
 
@@ -112,38 +95,7 @@ function get_next_duel( $id_ranking, $id_tournament) {
         if(in_array($key_c1, $c2_less_more) || in_array($key_c2, $c1_less_more) || ($key_c1 == $key_c2)){
 
             update_field('timeline_main', 4, $id_ranking);
-
-            $timeline_4      = get_field('timeline_4', $id_ranking);
-
-            foreach($list_contenders as $key => $contender) {
-
-                if($contender['id_wp'] == $list_w_r[count($list_w_r) - ($spaire + $timeline_4 - 1)]){
-                    $key_c1             = $key;
-                    $key_c1_wp          = $contender['id_wp'];
-                    $list_inf_of_c1     = $contender['more_to'];
-                    $list_sup_of_c1     = $contender['less_to'];
-                }
-                if($contender['id_wp'] == $list_w_r[count($list_w_r) - ($spaire + $timeline_4)]){
-                    $key_c2             = $key;
-                    $key_c2_wp          = $contender['id_wp'];
-                    $list_inf_of_c2     = $contender['more_to'];
-                    $list_sup_of_c2     = $contender['less_to'];
-                }
-
-            }
-
-            $c1_less_more = array_merge($list_inf_of_c1, $list_sup_of_c1);
-            $c2_less_more = array_merge($list_inf_of_c2, $list_sup_of_c2);
-
-            if(in_array($key_c1, $c2_less_more) || in_array($key_c2, $c1_less_more)){
-
-                $timeline_4      = $timeline_4 + 1;
-                update_field('timeline_4', $timeline_4, $id_ranking);
-
-            }
-
-            array_push($next_duel, $key_c1_wp);
-            array_push($next_duel, $key_c2_wp);
+            $timeline_main = 4;
 
         }
         else{
@@ -155,43 +107,23 @@ function get_next_duel( $id_ranking, $id_tournament) {
 
     }
 
-    elseif($timeline_main == 4){
+    if($timeline_main == 4){
 
-        $timeline_4      = get_field('timeline_4', $id_ranking);
+        $timeline        = get_field('timeline_4', $id_ranking);
+        $list            = $list_w_r;
 
-        foreach($list_contenders as $key => $contender) {
+        $next_duel       = check_battle_4($id_ranking, $list, $timeline, $timeline_main, $spaire);
 
-            if($contender['id_wp'] == $list_w_r[count($list_w_r) - ($spaire - ($timeline_4 - 1))]){
-                $key_c1             = $key;
-                $key_c1_wp          = $contender['id_wp'];
-                $list_inf_of_c1     = $contender['more_to'];
-                $list_sup_of_c1     = $contender['less_to'];
-            }
-            if($contender['id_wp'] == $list_w_r[count($list_w_r) - ($spaire - $timeline_4)]){
-                $key_c2             = $key;
-                $key_c2_wp          = $contender['id_wp'];
-                $list_inf_of_c2     = $contender['more_to'];
-                $list_sup_of_c2     = $contender['less_to'];
-            }
+        if(count($next_duel) != 2){
+
+            $timeline_main = 5;
+            update_field('timeline_main', 5, $id_ranking);
 
         }
-
-        $c1_less_more = array_merge($list_inf_of_c1, $list_sup_of_c1);
-        $c2_less_more = array_merge($list_inf_of_c2, $list_sup_of_c2);
-
-        if(in_array($key_c1, $c2_less_more) || in_array($key_c2, $c1_less_more)){
-
-            $timeline_4      = $timeline_4 + 1;
-            update_field('timeline_4', $timeline_4, $id_ranking);
-
-        }
-
-        array_push($next_duel, $key_c1_wp);
-        array_push($next_duel, $key_c2_wp);
 
     }
 
-    elseif($timeline_main == 5){
+    if($timeline_main == 5){
 
         $is_same_ratio   = false;
         $is_same_place   = false;
@@ -200,68 +132,69 @@ function get_next_duel( $id_ranking, $id_tournament) {
 
         // On lance des boucles jusqu'à obtenir le tableau "$next_duel" avec deux valeurs
         // On lance autant de boucle que de participant-1
-
         for($s = 0; $s <= $nb_contenders-1; $s++){
 
             // Si le tableau "$next_duel" est supérieur ou égal à deux valeurs alors on stop car nous pouvons faire un nouveau duel
             // Sinon on le remet à zéro
-            if(count($c_at_same_place) >= 2){
+            if(count($c_at_same_ratio) >= 2){
                 break;
             }
             else{
-                $c_at_same_place = array();
+                $c_at_same_ratio = array();
             }
 
             // On boucle sur tous les participant et on stocke leur ID global quand leur place est égal à l'incrémentation
             foreach ($list_contenders as $d => $val){
 
-                if($val['place'] == $s){
-                    array_push($c_at_same_place, $val['id_wp']);
+                if($val['ratio'] == $s){
+                    array_push($c_at_same_ratio, $val['id_wp']);
                 }
 
             }
 
         }
 
-        array_filter($c_at_same_place);
+        array_filter($c_at_same_ratio);
 
-        if(count($c_at_same_place) >= 2){
-            $is_same_place = true;
-            array_push($next_duel, $c_at_same_place[0]);
-            array_push($next_duel, $c_at_same_place[1]);
+        if(count($c_at_same_ratio) >= 2){
+            $is_same_ratio = true;
+            array_push($next_duel, $c_at_same_ratio[0]);
+            array_push($next_duel, $c_at_same_ratio[1]);
         }
 
-        if(!$is_same_place){
+
+        if(!$is_same_ratio){
             // On lance des boucles jusqu'à obtenir le tableau "$next_duel" avec deux valeurs
             // On lance autant de boucle que de participant-1
+
             for($s = 0; $s <= $nb_contenders-1; $s++){
 
                 // Si le tableau "$next_duel" est supérieur ou égal à deux valeurs alors on stop car nous pouvons faire un nouveau duel
                 // Sinon on le remet à zéro
-                if(count($c_at_same_ratio) >= 2){
+                if(count($c_at_same_place) >= 2){
                     break;
                 }
                 else{
-                    $c_at_same_ratio = array();
+                    $c_at_same_place = array();
                 }
 
                 // On boucle sur tous les participant et on stocke leur ID global quand leur place est égal à l'incrémentation
                 foreach ($list_contenders as $d => $val){
 
-                    if($val['ratio'] == $s){
-                        array_push($c_at_same_ratio, $val['id_wp']);
+                    if($val['place'] == $s){
+                        array_push($c_at_same_place, $val['id_wp']);
                     }
 
                 }
 
             }
 
-            array_filter($c_at_same_ratio);
+            array_filter($c_at_same_place);
 
-            if(count($c_at_same_ratio) >= 2){
-                $is_same_ratio = true;
-                array_push($next_duel, $c_at_same_ratio[0]);
-                array_push($next_duel, $c_at_same_ratio[1]);
+            if(count($c_at_same_place) >= 2){
+                $is_same_place = true;
+                array_push($next_duel, $c_at_same_place[0]);
+                array_push($next_duel, $c_at_same_place[1]);
             }
         }
 
@@ -275,7 +208,7 @@ function get_next_duel( $id_ranking, $id_tournament) {
 
     }
 
-    elseif($timeline_main == 6){
+    if($timeline_main == 6){
 
         $c_at_same_place = array();
 
@@ -316,6 +249,7 @@ function get_next_duel( $id_ranking, $id_tournament) {
     $all_votes_counts = all_votes_in_tournament($id_tournament);
     $nb_user_votes    = all_user_votes_in_tournament($id_ranking);
 
+    /*
     if($is_next_duel){
         $val1 = random_int(0, 1);
         if($val1 == 0){
@@ -327,6 +261,9 @@ function get_next_duel( $id_ranking, $id_tournament) {
         $contender_1      = $next_duel[$val1];
         $contender_2      = $next_duel[$val2];
     }
+    */
+    $contender_1      = $next_duel[0];
+    $contender_2      = $next_duel[1];
 
     $current_step = get_steps($id_ranking);
 

@@ -6,4 +6,5 @@ require_once 'tournament/get_steps.php';
 require_once 'tournament/get_vainkeur.php';
 require_once 'tournament/see_ranking.php';
 require_once 'tournament/get_infos.php';
+require_once 'tournament/get_current_ranking.php';
 
