@@ -297,3 +297,7 @@ html .content.app-content {
 .card-profile .card-body .profile-image-wrapper .profile-image img {
   object-fit: cover;
 }
+.avatar img {
+  border-radius: 50%;
+  object-fit: cover;
+}
