@@ -7,6 +7,16 @@
             <div class="content-header row"></div>
             <div class="content-body">
 
+                <div class="pk">
+                    <h1>Créer & partage tes propres Tops ! 🖖</h1>
+                    <p>
+                        Voici quelques tournois pour tester le concept de VAINKEURZ.
+                        <br>
+                        Nous sommes curieux de savoir <b>ce que tu penses de tout ça</b>, si tu es motivé tu peux nous donner ton avis ici 👉
+                        <a href="https://baltazare1.typeform.com/to/j9n8JU" target="_blank">formulaire de 3min 😗</a>
+                    </p>
+                </div>
+
                 <div class="list-tournois">
                     <div class="row">
                         <?php $list_tournois = new WP_Query(array('post_type' => 'tournoi', 'orderby' => 'date', 'posts_per_page' => '-1')); ?>

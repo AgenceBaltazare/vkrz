@@ -44,7 +44,7 @@ html .content {
 
 .single-tournoi .tournoi-content .tournoi-infos h2 {
   color: #fff;
-  font-size: 30px; }
+  font-size: 60px; }
 
 .single-tournoi .tournoi-content .title-contender {
   color: #fff;
@@ -293,3 +293,6 @@ html .content.app-content {
   height: auto;
   position: inherit;
   right: unset; }
+
+.pk {
+  margin-bottom: 40px !important; }

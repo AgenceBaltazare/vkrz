@@ -23,7 +23,7 @@ $illu_url   = $illu[0];
                                 <div class="bloc-titre">
                                     <h1>
                                         <b>
-                                            <?php the_title(); ?>
+                                            <?php the_title(); ?> : Génère ton Top <?php echo get_numbers_of_contenders($id_tournament); ?> 👇
                                         </b>
                                     </h1>
                                     <h2>
