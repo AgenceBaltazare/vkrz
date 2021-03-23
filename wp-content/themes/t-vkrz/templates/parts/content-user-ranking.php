@@ -6,6 +6,9 @@ $nb_contenders        = count($list_contenders);
 ?>
 <div class="current_ranking">
     <div class="demo-inline-spacing">
+        <h3>
+            Votre classement
+        </h3>
         <div class="avatar-group">
         <?php
             for($j=1; $j<=$nb_contenders; $j++){

@@ -8,9 +8,10 @@ function check_battle_2($id_ranking, $list, $timeline, $timeline_main){
     $list_sup_of_c1  = array();
     $list_sup_of_c2  = array();
     $battle          = false;
+    $nb_list         = count($list);
     $next_duel       = array();
 
-    for($m=0; $m<=300; $m++){
+    for($m=0; $m<=$nb_list; $m++){
 
         if($battle == false){
 
@@ -77,7 +78,7 @@ function check_battle_4($id_ranking, $list, $timeline, $timeline_main, $spaire){
     $nb_list         = count($list);
     $next_duel       = array();
 
-    for($m=0; $m<=300; $m++){
+    for($m=0; $m<=$nb_list; $m++){
 
         if($battle == false){
 

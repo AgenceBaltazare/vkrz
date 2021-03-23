@@ -301,3 +301,15 @@ html .content.app-content {
   border-radius: 50%;
   object-fit: cover;
 }
+
+.demo-inline-spacing{
+  margin-top: 20px;
+  h3{
+    margin: 0 10px 0 0;
+    text-transform: uppercase;
+    font-size: 10px;
+  }
+  .avatar-group{
+    margin: 0;
+  }
+}

@@ -26,10 +26,10 @@ function mouv_timeline($nb_contenders, $nb_winners, $nb_loosers, $id_ranking){
             update_field('timeline_main', 3, $id_ranking);
         }
     }
-    elseif($timeline_main == 3){
+    if($timeline_main == 3){
         update_field('timeline_main', 4, $id_ranking);
     }
-    elseif($timeline_main == 4){
+    if($timeline_main == 4){
         $timeline_4      = get_field('timeline_4', $id_ranking);
         $timeline_4      = $timeline_4 + 1;
         update_field('timeline_4', $timeline_4, $id_ranking);

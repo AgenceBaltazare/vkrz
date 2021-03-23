@@ -249,3 +249,14 @@ html .content.app-content {
 .avatar img {
   border-radius: 50%;
   object-fit: cover; }
+
+.demo-inline-spacing {
+  margin-top: 20px; }
+
+.demo-inline-spacing h3 {
+  margin: 0 10px 0 0;
+  text-transform: uppercase;
+  font-size: 10px; }
+
+.demo-inline-spacing .avatar-group {
+  margin: 0; }
