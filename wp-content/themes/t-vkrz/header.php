@@ -129,6 +129,11 @@
                         ?>
                         <img src="<?php echo $illu_vainkeur_elo; ?>" alt="VAINKEURZ logo" class="img-fluid">
                     </h2>
+                    <div class="badge-beta">
+                        <span class="badge">
+                            BETA
+                        </span>
+                    </div>
                 </a>
             </li>
         </ul>

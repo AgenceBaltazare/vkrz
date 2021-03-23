@@ -28,21 +28,6 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 html .content {
   min-height: 100%; }
 
-.menu-collapsed .brand-text {
-  display: block !important; }
-
-.menu-collapsed .brand-text img {
-  max-width: 80px;
-  height: auto;
-  position: relative;
-  right: 37px; }
-
-.menu-collapsed .expanded img {
-  max-width: 100%;
-  height: auto;
-  position: inherit;
-  right: unset; }
-
 .single-tournoi .header-navbar, .single-classement .header-navbar {
   background-color: rgba(255, 255, 255, 0.05); }
 
@@ -268,3 +253,43 @@ html .content.app-content {
 
 .classement .contenders_min {
   margin: 30px 0; }
+
+.main-menu .navbar-header .navbar-brand .brand-text {
+  padding-left: 0 !important; }
+
+.navbar-brand {
+  position: relative; }
+
+.badge-beta {
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  width: 100%; }
+
+.badge-beta .badge {
+  background: #f4167f !important;
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase; }
+
+.menu-collapsed .brand-text {
+  display: block !important; }
+
+.menu-collapsed .brand-text img {
+  max-width: 80px;
+  height: auto;
+  position: relative;
+  right: 24px; }
+
+.menu-collapsed .badge-beta {
+  position: absolute;
+  bottom: -10px;
+  text-align: center;
+  width: 100%;
+  right: 22px; }
+
+.menu-collapsed .expanded img {
+  max-width: 100%;
+  height: auto;
+  position: inherit;
+  right: unset; }
