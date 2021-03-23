@@ -260,3 +260,7 @@ html .content.app-content {
 
 .demo-inline-spacing .avatar-group {
   margin: 0; }
+
+.illu .cov-illu {
+  min-height: 350px;
+  border-radius: 10px; }
