@@ -23,7 +23,7 @@ $illu_url   = $illu[0];
                                 <div class="bloc-titre">
                                     <h1>
                                         <b>
-                                            <?php the_title(); ?>
+                                            <?php the_title(); ?> - <?php echo $id_ranking; ?>
                                         </b>
                                     </h1>
                                     <h2>

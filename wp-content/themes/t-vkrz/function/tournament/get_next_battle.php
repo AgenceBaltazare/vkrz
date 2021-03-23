@@ -96,7 +96,6 @@ function get_next_duel( $id_ranking, $id_tournament) {
 
             update_field('timeline_main', 4, $id_ranking);
             $timeline_main = 4;
-            update_field('timeline_4', 1, $id_ranking);
 
         }
         else{
@@ -105,6 +104,7 @@ function get_next_duel( $id_ranking, $id_tournament) {
             array_push($next_duel, $list_w_r[count($list_w_r) - $spaire]);
 
         }
+        update_field('timeline_4', 1, $id_ranking);
 
     }
 
