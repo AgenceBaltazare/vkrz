@@ -263,7 +263,8 @@ html .content.app-content {
 
 .illu .cov-illu {
   min-height: 350px;
-  border-radius: 10px; }
+  border-radius: 10px;
+  background-size: cover !important; }
 
 .classement .contenders_min {
   margin: 30px 0; }
