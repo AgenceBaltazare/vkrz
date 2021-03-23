@@ -25,7 +25,11 @@
         <?php if($nb_user_votes): ?>
             <div class="display_votes">
                 <h6>
-                    <?php echo $nb_user_votes; ?> votes
+                    <?php if($nb_user_votes == 1): ?>
+                        <?php echo $nb_user_votes; ?> vote
+                    <?php else: ?>
+                        <?php echo $nb_user_votes; ?> votes
+                    <?php endif; ?>
                 </h6>
             </div>
         <?php endif; ?>
