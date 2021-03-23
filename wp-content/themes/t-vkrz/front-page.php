@@ -13,7 +13,7 @@
                         Voici quelques tournois pour tester le concept de VAINKEURZ.
                         <br>
                         Nous sommes curieux de savoir <b>ce que tu penses de tout ça</b>, si tu es motivé tu peux nous donner ton avis ici 👉
-                        <a href="https://baltazare1.typeform.com/to/j9n8JU" target="_blank">formulaire de 3min 😗</a>
+                        <a href="https://baltazare1.typeform.com/to/j9n8JU" target="_blank">petit formulaire easy 😗</a>
                     </p>
                 </div>
 
