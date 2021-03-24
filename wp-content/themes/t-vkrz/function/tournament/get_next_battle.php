@@ -126,7 +126,25 @@ function get_next_duel( $id_ranking, $id_tournament) {
 
     if($timeline_main == 5){
 
-        $is_same_ratio   = false;
+        $array_ratio = array();
+        $list_contenders = get_field('ranking_r', $id_ranking);
+        array_sort_by_column($list_contenders, 'ratio');
+        $user_ranking = array_column($list_contenders, 'ratio', 'id_wp');
+        
+        }
+        var_dump($user_ranking);
+        $timeline        = get_field('timeline_5', $id_ranking);
+        $list            = $array_ratio;
+        $next_duel       = check_battle_5($id_ranking, $list, $timeline, $timeline_main, $spaire);
+
+        if(count($next_duel) != 2){
+            if(!get_field('done_r', $id_ranking)){
+                update_field('done_r', 'done', $id_ranking);
+                update_field('done_date_r', date('d/m/Y'), $id_ranking);
+            }
+        }
+    }
+        /*$is_same_ratio   = false;
         $is_same_place   = false;
         $c_at_same_place = array();
         $c_at_same_ratio = array();
@@ -247,7 +265,7 @@ function get_next_duel( $id_ranking, $id_tournament) {
             }
         }
 
-    }
+    }*/
 
     $all_votes_counts = all_votes_in_tournament($id_tournament);
     $nb_user_votes    = all_user_votes_in_tournament($id_ranking);
@@ -278,5 +296,4 @@ function get_next_duel( $id_ranking, $id_tournament) {
         'id_tournament',
         'id_ranking'
     );
-
 }

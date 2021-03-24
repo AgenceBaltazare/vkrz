@@ -70,7 +70,7 @@ function get_or_create_ranking_if_not_exists($id_tournament) {
                     "more_to"           => array(),
                     "less_to"           => array(),
                     "place"             => 0,
-                    "ratio"             => 0
+                    "ratio"             => 0,
                 ));
 
                 $i++; endwhile;
@@ -82,6 +82,7 @@ function get_or_create_ranking_if_not_exists($id_tournament) {
             update_field('timeline_main', 1, $id_ranking);
             update_field('timeline_2', 0, $id_ranking);
             update_field('timeline_4', 0, $id_ranking);
+            update_field('timeline_5', 0, $id_ranking);
 
         }
 
