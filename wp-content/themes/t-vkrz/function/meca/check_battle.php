@@ -11,7 +11,7 @@ function check_battle_2($id_ranking, $list, $timeline, $timeline_main){
     $nb_list         = count($list);
     $next_duel       = array();
 
-    for($m=0; $m<=300; $m++){
+    for($m=0; $m<=$nb_list; $m++){
 
         if($battle == false){
 
@@ -78,7 +78,7 @@ function check_battle_4($id_ranking, $list, $timeline, $timeline_main, $spaire){
     $nb_list         = count($list);
     $next_duel       = array();
 
-    for($m=0; $m<=300; $m++){
+    for($m=0; $m<=$nb_list; $m++){
 
         if($battle == false){
 
@@ -132,30 +132,46 @@ function check_battle_4($id_ranking, $list, $timeline, $timeline_main, $spaire){
     return $next_duel;
 
 }
-function check_battle_5($id_ranking, $list, $timeline, $timeline_main, $spaire){
+function check_battle_5($id_ranking){
 
+    $array_ratio = array();
     $list_contenders = get_field('ranking_r', $id_ranking);
+    array_sort_by_column($list_contenders, 'ratio');
+    $user_ranking = array_column($list_contenders, 'ratio', 'id_wp');
+
+    foreach($user_ranking as $c => $p){
+        array_push($array_ratio, array(
+            "id_wp"             => $c,
+            "ratio"             => $p
+        ));
+    }
+
+    $array_ratio = array_reverse($array_ratio);
+    $list        = $array_ratio;
+
     $list_inf_of_c1  = array();
     $list_inf_of_c2  = array();
     $list_sup_of_c1  = array();
     $list_sup_of_c2  = array();
     $battle          = false;
-    $nb_list         = count($list);
+    $nb_list         = count($list_contenders);
     $next_duel       = array();
-    $rlist            = array_reverse($list);
+    $timeline        = 1;
 
-    for($m=0;$m<=300;$m++){
+
+
+    for($m=0;$m<=$nb_list;$m++){
         if($battle == false){
 
             foreach($list_contenders as $key => $contender) {
 
-                if($contender['id_wp'] == $rlist[$timeline - 1]){
+                if($contender['id_wp'] == $list[$timeline - 1]['id_wp']){
                     $key_c1             = $key;
                     $key_c1_wp          = $contender['id_wp'];
                     $list_inf_of_c1     = $contender['more_to'];
                     $list_sup_of_c1     = $contender['less_to'];
                 }
-                if($contender['id_wp'] == $rlist[$timeline]){
+                if($contender['id_wp'] == $list[$timeline]['id_wp']){
                     $key_c2             = $key;
                     $key_c2_wp          = $contender['id_wp'];
                     $list_inf_of_c2     = $contender['more_to'];
@@ -164,6 +180,7 @@ function check_battle_5($id_ranking, $list, $timeline, $timeline_main, $spaire){
 
             }
 
+            
             $c1_less_more = array_merge($list_inf_of_c1, $list_sup_of_c1);
             $c2_less_more = array_merge($list_inf_of_c2, $list_sup_of_c2);
 
@@ -172,16 +189,14 @@ function check_battle_5($id_ranking, $list, $timeline, $timeline_main, $spaire){
                 $battle = false;
 
                 $timeline      = $timeline + 1;
-                update_field('timeline_'.$timeline_main, $timeline, $id_ranking);
 
             }
             else{
 
                 $battle        = true;
-                $timeline      = get_field('timeline_'.$timeline_main, $id_ranking);
                 array_push($next_duel, $key_c1_wp);
                 array_push($next_duel, $key_c2_wp);
-                $timeline      = 0;
+                $timeline      = 1;
 
             }
 
