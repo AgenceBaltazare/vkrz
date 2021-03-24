@@ -156,22 +156,21 @@ function check_battle_5($id_ranking){
     $battle          = false;
     $nb_list         = count($list_contenders);
     $next_duel       = array();
-    $timeline        = 1;
+
+    for($m=1;$m<=$nb_list;$m++){
 
 
-
-    for($m=0;$m<=$nb_list;$m++){
         if($battle == false){
 
             foreach($list_contenders as $key => $contender) {
 
-                if($contender['id_wp'] == $list[$timeline - 1]['id_wp']){
+                if($contender['id_wp'] == $list[$m - 1]['id_wp']){
                     $key_c1             = $key;
                     $key_c1_wp          = $contender['id_wp'];
                     $list_inf_of_c1     = $contender['more_to'];
                     $list_sup_of_c1     = $contender['less_to'];
                 }
-                if($contender['id_wp'] == $list[$timeline]['id_wp']){
+                if($contender['id_wp'] == $list[$m]['id_wp']){
                     $key_c2             = $key;
                     $key_c2_wp          = $contender['id_wp'];
                     $list_inf_of_c2     = $contender['more_to'];
@@ -180,15 +179,14 @@ function check_battle_5($id_ranking){
 
             }
 
-            
             $c1_less_more = array_merge($list_inf_of_c1, $list_sup_of_c1);
             $c2_less_more = array_merge($list_inf_of_c2, $list_sup_of_c2);
 
             if(in_array($key_c1, $c2_less_more) || in_array($key_c2, $c1_less_more) || ($key_c1 == $key_c2)){
 
-                $battle = false;
+                var_dump($c2_less_more);
 
-                $timeline      = $timeline + 1;
+                $battle = false;
 
             }
             else{
@@ -196,9 +194,10 @@ function check_battle_5($id_ranking){
                 $battle        = true;
                 array_push($next_duel, $key_c1_wp);
                 array_push($next_duel, $key_c2_wp);
-                $timeline      = 1;
 
             }
+
+            var_dump($key_c1);
 
         }
         else{
@@ -208,7 +207,6 @@ function check_battle_5($id_ranking){
         }
 
     }
-
 
     return $next_duel;
 
