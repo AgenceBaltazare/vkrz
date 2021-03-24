@@ -10,8 +10,8 @@ if(isset($_GET['id_ranking']) && $_GET['id_ranking'] != "") :
     $list_contenders                 = get_field('ranking_r', $id_ranking);
     $list_w_r                        = get_field('list_winners_r', $id_ranking);
     $list_l_r                        = get_field('list_losers_r', $id_ranking);
-    array_sort_by_column($list_contenders, 'place');
-    $user_ranking = array_column($list_contenders, 'place', 'id_wp');
+    array_sort_by_column($list_contenders, 'ratio');
+    $user_ranking = array_column($list_contenders, 'ratio', 'id_wp');
 ?>
     <!DOCTYPE html>
     <head>

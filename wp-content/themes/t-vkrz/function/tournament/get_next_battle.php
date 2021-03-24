@@ -1,5 +1,5 @@
 <?php
-function get_next_duel( $id_ranking, $id_tournament) {
+function get_next_duel($id_ranking, $id_tournament) {
 
     $next_duel               = [];
     $is_next_duel            = true;
@@ -121,16 +121,26 @@ function get_next_duel( $id_ranking, $id_tournament) {
             update_field('timeline_main', 5, $id_ranking);
             $next_duel     = check_battle_5($id_ranking);
 
+            if(count($next_duel) != 2){
+
+                $is_next_duel = false;
+
+                if(!get_field('done_r', $id_ranking)){
+                    update_field('done_r', 'done', $id_ranking);
+                    update_field('done_date_r', date('d/m/Y'), $id_ranking);
+                }
+            }
+
         }
 
     }
 
     if($timeline_main == 5){
 
-        $next_duel     = check_battle_5($id_ranking, $timeline_main);
+        $timeline_main = 5;
+        update_field('timeline_main', 5, $id_ranking);
 
-        var_dump($next_duel);
-
+        $next_duel     = check_battle_5($id_ranking);
 
         if(count($next_duel) != 2){
 
@@ -141,8 +151,6 @@ function get_next_duel( $id_ranking, $id_tournament) {
                 update_field('done_date_r', date('d/m/Y'), $id_ranking);
             }
         }
-
-
 
     }
 

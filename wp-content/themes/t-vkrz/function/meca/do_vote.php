@@ -141,6 +141,6 @@ function do_vote($id_winner, $id_looser, $id_ranking){
     // On enregistre la mise à jour du champs "Ranking" du classement en cours
     update_field("ranking_r", $list_contenders, $id_ranking);
 
-    mouv_timeline($nb_contenders, $nb_winners, $nb_loosers, $id_ranking);
+    mouv_timeline($nb_contenders, $nb_loosers, $id_ranking);
 
 }

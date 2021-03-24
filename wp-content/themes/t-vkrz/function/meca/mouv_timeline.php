@@ -1,5 +1,5 @@
 <?php
-function mouv_timeline($nb_contenders, $nb_winners, $nb_loosers, $id_ranking){
+function mouv_timeline($nb_contenders, $nb_loosers, $id_ranking){
 
     // NB votes
     $timeline_votes     = get_field('nb_votes_r', $id_ranking);
