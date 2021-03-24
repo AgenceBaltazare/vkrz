@@ -127,11 +127,11 @@ function get_next_duel( $id_ranking, $id_tournament) {
 
     if($timeline_main == 5){
 
-        $next_duel     = check_battle_5($id_ranking);
+        $next_duel     = check_battle_5($id_ranking, $timeline_main);
 
         var_dump($next_duel);
 
-/*
+
         if(count($next_duel) != 2){
 
             $is_next_duel = false;
@@ -142,7 +142,7 @@ function get_next_duel( $id_ranking, $id_tournament) {
             }
         }
 
-*/
+
 
     }
 
