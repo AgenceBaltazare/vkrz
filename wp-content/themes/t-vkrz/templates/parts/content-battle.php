@@ -22,7 +22,7 @@
     </div>
 
     <div class="col-sm-2 d-none d-sm-block">
-        <?php if($nb_user_votes): ?>
+        <?php if(isset($nb_user_votes) && $nb_user_votes != ""): ?>
             <div class="display_votes">
                 <h6>
                     <?php if($nb_user_votes == 1): ?>
