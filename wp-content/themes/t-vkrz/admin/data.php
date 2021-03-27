@@ -205,7 +205,7 @@
                                     </div>
                                 </div>
                                 <h2 class="font-weight-bolder">
-                                    <?php echo round(get_vote_data('more-moy') * 100 / $nb_users); ?>%
+                                    <?php echo round(get_vote_data('more-moy', false) * 100 / $nb_users); ?>%
                                 </h2>
                                 <p class="card-text">+ moyenne</p>
                             </div>
@@ -220,7 +220,7 @@
                                     </div>
                                 </div>
                                 <h2 class="font-weight-bolder">
-                                    <?php echo round(get_vote_data('less-ten') * 100 / $nb_users); ?>%
+                                    <?php echo round(get_vote_data('less-ten', false) * 100 / $nb_users); ?>%
                                 </h2>
                                 <p class="card-text">< 15 votes </p>
                             </div>
@@ -235,7 +235,7 @@
                                     </div>
                                 </div>
                                 <h2 class="font-weight-bolder">
-                                    <?php echo get_vote_data('best-ninja'); ?>
+                                    <?php echo get_vote_data('best-ninja', false); ?>
                                 </h2>
                                 <p class="card-text">
                                     Meilleur
@@ -365,7 +365,7 @@
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <a href="<?php the_permalink(get_page_by_path('datas/list-ranking')); ?>?id_tournoi=<?php echo $id_tournament; ?>">
+                                                    <a href="<?php the_permalink(get_page_by_path('datas/list-ranking')); ?>?id_tournoi=<?php echo $id_tournament; ?>" target="_blank">
                                                         <i class="fal fa-user-ninja"></i><i class="fal fa-trophy-alt"></i>
                                                     </a>
                                                 </td>

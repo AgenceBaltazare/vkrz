@@ -206,7 +206,7 @@ $users_votes       = get_vote_data('list-user-vote', $id_tournament);
                                     </div>
                                 </div>
                                 <h2 class="font-weight-bolder">
-                                    <?php echo round(get_vote_data('more-moy') * 100 / $nb_users); ?>%
+                                    <?php echo round(get_vote_data('more-moy', $id_tournament) * 100 / $nb_users); ?>%
                                 </h2>
                                 <p class="card-text">+ moyenne</p>
                             </div>
@@ -221,7 +221,7 @@ $users_votes       = get_vote_data('list-user-vote', $id_tournament);
                                     </div>
                                 </div>
                                 <h2 class="font-weight-bolder">
-                                    <?php echo round(get_vote_data('less-ten') * 100 / $nb_users); ?>%
+                                    <?php echo round(get_vote_data('less-ten', $id_tournament) * 100 / $nb_users); ?>%
                                 </h2>
                                 <p class="card-text">< 15 votes </p>
                             </div>
@@ -236,7 +236,7 @@ $users_votes       = get_vote_data('list-user-vote', $id_tournament);
                                     </div>
                                 </div>
                                 <h2 class="font-weight-bolder">
-                                    <?php echo get_vote_data('best-ninja'); ?>
+                                    <?php echo get_vote_data('best-ninja', $id_tournament); ?>
                                 </h2>
                                 <p class="card-text">
                                     Meilleur

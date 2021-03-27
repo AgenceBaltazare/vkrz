@@ -127,9 +127,24 @@ function get_global_data($request, $id_tournament){
 
 }
 
-function get_vote_data($request, $id_tournament = false){
+function get_vote_data($request, $id_tournament){
 
-    $votes   = new WP_Query(array('post_type' => 'vote', 'posts_per_page' => '-1'));
+    if($id_tournament){
+        $votes = new WP_Query( array(
+            'post_type'      => 'vote',
+            'posts_per_page' => -1,
+            'meta_query'     => array(
+                array(
+                    'key'     => 'id_t_v',
+                    'value'   => $id_tournament,
+                    'compare' => '=',
+                )
+            )
+        ));
+    }
+    else{
+        $votes   = new WP_Query(array('post_type' => 'vote', 'posts_per_page' => '-1'));
+    }
 
     $list_uuid = array();
 
@@ -140,7 +155,13 @@ function get_vote_data($request, $id_tournament = false){
     endwhile;
 
     $users_votes        = array_count_values($list_uuid);
-    $moy_vote_by_user   = round(get_global_data('nb-vote', false) / get_global_data('nb-user', false));
+
+    if($id_tournament){
+        $moy_vote_by_user   = round(get_global_data('nb-vote', $id_tournament) / get_global_data('nb-user', $id_tournament));
+    }
+    else{
+        $moy_vote_by_user   = round(get_global_data('nb-vote', false) / get_global_data('nb-user', false));
+    }
 
     if($request == "moy-vote"){
 
