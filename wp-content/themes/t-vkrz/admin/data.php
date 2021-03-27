@@ -192,7 +192,7 @@
                                 <h2 class="font-weight-bolder">
                                     <?php echo round($nb_votes / $nb_users); ?>
                                 </h2>
-                                <p class="card-text">Votes moyen</p>
+                                <p class="card-text">Votes en moyenne</p>
                             </div>
                         </div>
                     </div>
@@ -365,7 +365,7 @@
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <a href="<?php the_permalink(get_page_by_path('datas/list-ranking')); ?>?id_tournoi=<?php echo $id_tournament; ?>" target="_blank">
+                                                    <a href="<?php the_permalink(get_page_by_path('data/list-ranking')); ?>?id_tournoi=<?php echo $id_tournament; ?>" target="_blank">
                                                         <i class="fal fa-user-ninja"></i><i class="fal fa-trophy-alt"></i>
                                                     </a>
                                                 </td>

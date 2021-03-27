@@ -193,7 +193,7 @@ $users_votes       = get_vote_data('list-user-vote', $id_tournament);
                                 <h2 class="font-weight-bolder">
                                     <?php echo round($nb_votes / $nb_users); ?>
                                 </h2>
-                                <p class="card-text">Votes moyen</p>
+                                <p class="card-text">Votes en moyenne</p>
                             </div>
                         </div>
                     </div>
