@@ -355,3 +355,24 @@ html .content.app-content {
 .pk{
   margin-bottom: 40px !important;
 }
+
+.dark-layout .card {
+  background-color: rgba(97, 84, 167, 0.11);
+  box-shadow: none;
+}
+
+html .content .content-wrapper .content-header-title{
+  border: none;
+}
+
+// DataPage
+.data-page{
+  .avatar-content{
+    i{
+      font-size: 20px;
+    }
+  }
+  .card-statistics .statistics-body {
+    padding: 2rem 2.4rem 2rem !important;
+  }
+}

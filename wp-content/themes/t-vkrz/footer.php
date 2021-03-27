@@ -8,6 +8,10 @@
 
 <!-- Context JS -->
 <script src="<?php bloginfo('template_directory'); ?>/app-assets/js/scripts/pages/page-profile.js"></script>
+<?php if(is_page(get_page_by_path('data'))): ?>
+    <script src="<?php bloginfo('template_directory'); ?>/app-assets/js/scripts/cards/card-analytics.js"></script>
+    <script src="<?php bloginfo('template_directory'); ?>/app-assets/vendors/js/charts/apexcharts.min.js"></script>
+<?php endif; ?>
 
 <!-- Custom JS-->
 <script>

@@ -1,3 +1,13 @@
+<?php
+global $uuiduser;
+$user_role = "visitor";
+if(is_user_logged_in()){
+    $current_user   = wp_get_current_user();
+    $user_info      = get_userdata($current_user->ID);
+    $user_role      = $user_info->roles[0];
+}
+$uuiduser           = $_COOKIE["vainkeurz_user_id"];
+?>
 <!DOCTYPE html>
 <html class="loading dark-layout" lang="fr" data-layout="dark-layout" data-textdirection="ltr">
 <head>
@@ -33,38 +43,63 @@
     <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory'); ?>/app-assets/css/core/menu/menu-types/vertical-menu.css">
 
     <!-- Context CSS -->
+    <?php if(is_page(get_page_by_path('data'))): ?>
+        <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory'); ?>/app-assets/css/core/menu/menu-types/vertical-menu.css">
+        <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory'); ?>/app-assets/css/plugins/charts/chart-apex.css">
+    <?php endif; ?>
 
 
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory'); ?>/assets/css/style.css">
+    
+    <?php if($user_role != "administrator"): ?>
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-5VVNJ52');</script>
+        <!-- End Google Tag Manager -->
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-KF4C954X96"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-KF4C954X96');
+        </script>
+        <!-- Hotjar Tracking Code for https://vainkeurz.com/ -->
+        <script>
+            (function(h,o,t,j,a,r){
+                h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+                h._hjSettings={hjid:1825930,hjsv:6};
+                a=o.getElementsByTagName('head')[0];
+                r=o.createElement('script');r.async=1;
+                r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+                a.appendChild(r);
+            })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+        </script>
+    <?php endif; ?>
 
     <?php wp_head(); ?>
-
-    <!-- Hotjar Tracking Code for https://vainkeurz.com/ -->
-    <script>
-        (function(h,o,t,j,a,r){
-            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-            h._hjSettings={hjid:1825930,hjsv:6};
-            a=o.getElementsByTagName('head')[0];
-            r=o.createElement('script');r.async=1;
-            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-            a.appendChild(r);
-        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-    </script>
 </head>
 
-<!-- BEGIN: Body-->
-
 <?php
-    if(!is_front_page()){
+    if(is_single()){
         $list_body_class = "vertical-layout vertical-menu-modern navbar-floating footer-static menu-collapsed";
     }
     else{
         $list_body_class = "vertical-layout vertical-menu-modern navbar-floating footer-static";
     }
 ?>
-
 <body <?php body_class($list_body_class); ?> data-open="click" data-menu="vertical-menu-modern" data-col="">
+
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5VVNJ52" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
 
 <!-- BEGIN: Header-->
 <!--
@@ -169,6 +204,16 @@
                 </a>
             </li>
             -->
+            <?php if($user_role == "administrator"): ?>
+                <li class=" navigation-header">
+                    <span>Data</span> <i data-feather="more-horizontal"></i>
+                </li>
+                <li class=" nav-item">
+                    <a class="d-flex align-items-center" href="<?php the_permalink(get_page_by_path('data')); ?>">
+                        <i class="fal fa-database"></i> <span class="menu-title text-truncate">Overview</span>
+                    </a>
+                </li>
+            <?php endif; ?>
         </ul>
     </div>
 </div>
