@@ -9,6 +9,10 @@ NOTE:
 ------
 PLACE HERE YOUR OWN SCSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
 WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap");
+body {
+  font-family: 'Lato', sans-serif !important; }
+
 .cover {
   background-size: cover !important; }
 
@@ -21,12 +25,8 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 .dark-layout .main-menu-content .navigation-main {
   background-color: #0a0921; }
 
-.min-tournoi .cov-illu {
-  min-height: 200px;
-  border-radius: 5px 5px 0 0; }
-
-html .content {
-  min-height: 100%; }
+.dark-layout .header-navbar-shadow {
+  background: linear-gradient(180deg, #0a0922 44%, #0c0a27 73%, #0c0a27); }
 
 .single-tournoi .header-navbar, .single-classement .header-navbar {
   background-color: rgba(255, 255, 255, 0.05); }
@@ -214,9 +214,6 @@ html .content {
 .name h5 span {
   color: #f4167f; }
 
-html .content.app-content {
-  padding: 40px; }
-
 .aaa {
   align-items: center;
   height: 90vh; }
@@ -309,3 +306,100 @@ html .content .content-wrapper .content-header-title {
 
 .data-page .card-statistics .statistics-body {
   padding: 2rem 2.4rem 2rem !important; }
+
+.card-nude {
+  background: transparent !important;
+  color: #fff; }
+
+.card-nude h1 {
+  text-transform: uppercase;
+  font-weight: 900; }
+
+.big-cat {
+  margin-bottom: 40px; }
+
+.big-cat .heading-cat {
+  margin-bottom: 20px; }
+
+.big-cat .heading-cat h2 {
+  font-weight: 900;
+  letter-spacing: 2px; }
+
+.min-tournoi {
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -ms-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  padding: 0; }
+
+.min-tournoi .cov-illu {
+  min-height: 200px;
+  border-radius: 5px 5px 0 0;
+  position: relative; }
+
+.min-tournoi .cov-illu .badge {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  z-index: 99; }
+
+.min-tournoi .cov-illu .voile {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  opacity: 0.2;
+  background: #0c0a27;
+  background: linear-gradient(200deg, #0c0a27 0%, rgba(12, 10, 39, 0) 100%);
+  transition: all .2s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column; }
+
+.min-tournoi .cov-illu .voile .spoun {
+  display: none;
+  text-align: center; }
+
+.min-tournoi .cov-illu .voile .spoun i {
+  font-size: 40px;
+  color: #fff; }
+
+.min-tournoi .cov-illu .voile .spoun h5 {
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #fff;
+  margin-top: 10px;
+  text-align: center; }
+
+.min-tournoi:hover {
+  transform: scale(1.1); }
+
+.min-tournoi:hover .cov-illu .badge {
+  display: none; }
+
+.min-tournoi:hover .cov-illu .voile {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  opacity: 0.9;
+  background: #0c0a27; }
+
+.min-tournoi:hover .cov-illu .voile .spoun {
+  display: block; }
+
+.min-tournoi .card-title {
+  margin: 0; }
+
+.text-rose {
+  color: #f4167f !important; }
+
+html .content.app-content {
+  padding-top: 40px;
+  padding-bottom: 100px;
+  margin-bottom: 100px;
+  height: 110vh; }

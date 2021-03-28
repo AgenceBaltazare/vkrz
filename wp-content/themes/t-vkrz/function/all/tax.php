@@ -1,25 +1,13 @@
 <?php
 function tax_init() {
 
-    # Secteur
+    # Catégorie tournoi
     register_taxonomy(
-        'secteur',
-        array('post'),
+        'categorie',
+        array('tournoi'),
         array(
-            'label'         => 'Secteurs',
-            'rewrite'       => array('slug' => 'secteur'),
-            'hierarchical'  => true,
-            'show_in_rest'  => true,
-        )
-    );
-
-    # Catégories parcours
-    register_taxonomy(
-        'categorie-parcours',
-        array('parcours'),
-        array(
-            'label'         => 'Categories',
-            'rewrite'       => array('slug' => 'categorie-parcours'),
+            'label'         => 'Catégories',
+            'rewrite'       => array('slug' => 'cat'),
             'hierarchical'  => true,
             'show_in_rest'  => true,
         )

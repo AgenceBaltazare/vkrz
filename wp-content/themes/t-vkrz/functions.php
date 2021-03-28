@@ -30,10 +30,7 @@ if ( defined( 'DOING_AJAX' ) && DOING_AJAX && is_admin() ) {
 include( $templatepath . '/function/all.php');
 include( $templatepath . '/function/meca.php');
 include( $templatepath . '/function/tournament.php');
-
-if($user_role != "administrator"){
-    include( $templatepath . '/function/data.php');
-}
+include( $templatepath . '/function/data.php');
 
 @ini_set( 'upload_max_size' , '64M' );
 @ini_set( 'post_max_size', '64M');

@@ -18,7 +18,7 @@ $illu       = wp_get_attachment_image_src(get_field('cover_t', $id_tournament), 
 $illu_url   = $illu[0];
 ?>
 <!-- BEGIN: Content-->
-<div class="app-content content cover" style="background: url(<?php echo $illu_url; ?>) center center no-repeat">
+<div class="app-content content cover">
     <div class="content-overlay"></div>
     <div class="content-wrapper">
         <div class="content-header row"></div>

@@ -38,7 +38,7 @@ function get_next_duel($id_ranking, $id_tournament) {
         }
     }
     else{
-        update_field('timeline_main', 6, $id_ranking);
+        update_field('timeline_main', 5, $id_ranking);
     }
     $timeline_main = get_field('timeline_main', $id_ranking);
 

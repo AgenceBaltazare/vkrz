@@ -1,5 +1,6 @@
 <?php
 global $uuiduser;
+global $user_role;
 $user_role = "visitor";
 if(is_user_logged_in()){
     $current_user   = wp_get_current_user();
@@ -44,8 +45,15 @@ $uuiduser           = $_COOKIE["vainkeurz_user_id"];
 
     <!-- Context CSS -->
     <?php if(is_page(get_page_by_path('data'))): ?>
+
         <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory'); ?>/app-assets/css/core/menu/menu-types/vertical-menu.css">
         <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory'); ?>/app-assets/css/plugins/charts/chart-apex.css">
+
+    <?php elseif(is_front_page()): ?>
+
+        <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory'); ?>/app-assets/css/plugins/extensions/ext-component-tree.css">
+        <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory'); ?>/app-assets/css/pages/app-file-manager.css">
+
     <?php endif; ?>
 
 
