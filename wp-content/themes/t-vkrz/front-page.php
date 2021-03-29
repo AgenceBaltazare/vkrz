@@ -38,7 +38,7 @@
             <div class="row">
                 <div class="col">
                     <h2 class="text-primary text-uppercase">
-                        <i class="fal fa-history"></i> Tops récents
+                        <i class="fal fa-random"></i> Tops au hasard
                         <small class="text-muted">Toutes catégories confondues</small>
                     </h2>
                 </div>
@@ -46,7 +46,7 @@
         </div>
         <div class="row">
             <?php
-            $tournois_in_cat = new WP_Query(array('post_type' => 'tournoi', 'orderby' => 'date', 'order' => 'ASC', 'posts_per_page' => 4));
+            $tournois_in_cat = new WP_Query(array('post_type' => 'tournoi', 'orderby' => 'rand', 'order' => 'ASC', 'posts_per_page' => 4));
             while ($tournois_in_cat->have_posts()) : $tournois_in_cat->the_post(); ?>
 
                 <?php
