@@ -47,7 +47,7 @@ if($user_ranking->have_posts()){
             <?php endif; ?>
             <div class="voile">
                 <div class="spoun">
-                    <i class="fal fa-swords"></i>
+                    ⚔️
                     <h5>Créer mon TOP</h5>
                 </div>
             </div>

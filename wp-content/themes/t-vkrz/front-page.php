@@ -105,7 +105,7 @@
                                         <i class="fal fa-swords"></i>
                                         <h5>Reprendre</h5>
                                     <?php else: ?>
-                                        <i class="fal fa-swords"></i>
+                                        🏆
                                         <h5>Créer mon TOP</h5>
                                     <?php endif; ?>
                                 </div>
@@ -223,7 +223,7 @@
                                             <i class="fal fa-swords"></i>
                                             <h5>Reprendre</h5>
                                         <?php else: ?>
-                                            <i class="fal fa-swords"></i>
+                                            🏆
                                             <h5>Créer mon TOP</h5>
                                         <?php endif; ?>
                                     </div>

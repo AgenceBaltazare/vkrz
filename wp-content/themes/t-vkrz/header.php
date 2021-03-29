@@ -188,7 +188,7 @@ $uuiduser           = $_COOKIE["vainkeurz_user_id"];
             </li>
             <li class=" nav-item">
                 <a class="d-flex align-items-center" href="<?php bloginfo('url'); ?>/">
-                    <i class="fal fa-swords"></i> <span class="menu-title text-truncate">Liste des tournois</span>
+                    🏆 <span class="menu-title text-truncate">Liste des tournois</span>
                 </a>
             </li>
             <!--
@@ -200,18 +200,15 @@ $uuiduser           = $_COOKIE["vainkeurz_user_id"];
                     <i class="fal fa-trophy-alt"></i> <span class="menu-title text-truncate">Classements</span>
                 </a>
             </li>
+            -->
             <li class=" navigation-header">
                 Vainkeurz <i data-feather="more-horizontal"></i>
             </li>
             <li class=" nav-item">
-                <a class="d-flex align-items-center" href="<?php the_permalink(); ?>">
-                    <i data-feather="mail"></i> <span class="menu-title text-truncate">Le projet</span>
-                </a>
-                <a class="d-flex align-items-center" href="<?php the_permalink(); ?>">
-                    <i data-feather="mail"></i> <span class="menu-title text-truncate">Participer</span>
+                <a class="d-flex align-items-center" href="https://baltazare1.typeform.com/to/j9n8JU" target="_blank">
+                    🙏   <span class="menu-title text-truncate">Donne ton avis</span>
                 </a>
             </li>
-            -->
             <?php if($user_role == "administrator"): ?>
                 <li class=" navigation-header">
                     <span>Data</span> <i data-feather="more-horizontal"></i>
