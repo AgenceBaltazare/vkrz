@@ -202,7 +202,7 @@ $uuiduser           = $_COOKIE["vainkeurz_user_id"];
             </li>
             -->
             <li class=" navigation-header">
-                Vainkeurz <i data-feather="more-horizontal"></i>
+                <span>Vainkeurz</span> <i data-feather="more-horizontal"></i>
             </li>
             <li class=" nav-item">
                 <a class="d-flex align-items-center" href="https://baltazare1.typeform.com/to/j9n8JU" target="_blank">
