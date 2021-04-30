@@ -14,7 +14,7 @@
                         <div id="t-listing"></div>
                         <h1 class="mb-1 text-white">🖖 Créer & partage tes propres Tops !</h1>
                         <p class="card-text mb-2">
-                            😗 Enchaîne les votes à chaque duel pour générer ton 🥇🥈🥉
+                             Enchaîne les votes à chaque duel pour générer ton 🥇🥈🥉
                             <br>
                             <!--
                             Si tu es motivé tu peux nous donner ton avis ici 👉
@@ -142,7 +142,7 @@
         $cat_url    = get_category_link($tournoi_cat->term_id);
         $cat_id     = $tournoi_cat->term_id;
         $cat_count  = $tournoi_cat->count;
-        
+
         $tournois_in_cat = new WP_Query(array('post_type' => 'tournoi', 'orderby' => 'date', 'order' => 'ASC', 'posts_per_page' => -1,
         'tax_query' => array(
             array(
