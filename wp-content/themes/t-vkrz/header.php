@@ -59,7 +59,7 @@ $uuiduser           = $_COOKIE["vainkeurz_user_id"];
 
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory'); ?>/assets/css/style.css">
-    
+
     <?php if($user_role != "administrator"): ?>
         <!-- Google Tag Manager -->
         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -188,9 +188,62 @@ $uuiduser           = $_COOKIE["vainkeurz_user_id"];
             </li>
             <li class=" nav-item">
                 <a class="d-flex align-items-center" href="<?php bloginfo('url'); ?>/">
-                    🏆 <span class="menu-title text-truncate">Liste des tournois</span>
+                      <i data-feather='folder'></i> <span class="menu-title text-truncate">Catégories</span>
                 </a>
-            </li>
+
+                <ul class="liste-categorie">
+
+                  <li>
+                    <a class="d-flex align-items-center" href="<?php echo  (get_category_link(4)); ?>">
+                    <i class="fal fa-curling" aria-hidden="true"></i> <span class="menu-title text-truncate">Sport</span>
+                    </a>
+
+                  </li>
+
+                  <li>
+                    <a class="d-flex align-items-center" href="<?php echo get_category_link(3); ?>">
+                  <i class="fal fa-user-ninja" aria-hidden="true"></i> <span class="menu-title text-truncate">Manga</span>
+                  <?php $category_ID = 3; ?>
+
+                    </a>
+                  </li>
+
+                  <li>
+                    <a class="d-flex align-items-center" href="<?php echo get_category_link(5); ?>">
+                    <i class="fal fa-tv-retro" aria-hidden="true"></i> <span class="menu-title text-truncate">TV</span>
+
+                    </a>
+                  </li>
+
+                  <li>
+                    <a class="d-flex align-items-center" href="<?php echo get_category_link(2); ?>">
+                    <i class="fal fa-headphones" aria-hidden="true"></i> <span class="menu-title text-truncate">Music</span>
+
+                    </a>
+                  </li>
+
+                  <li>
+                    <a class="d-flex align-items-center" href="<?php echo get_category_link(4); ?>">
+                      <!-- gamepad -->
+                    <i class= "fal fa-gamepad-alt" aria-hidden="true"></i>
+                    <span class="menu-title text-truncate">Jeux Video</span>
+
+                    </a>
+                  </li>
+
+
+
+                  <li>
+                    <a class="d-flex align-items-center" href="<?php echo get_category_link(6); ?>">
+                    <i class="fal fa-infinity" aria-hidden="true"></i> <span class="menu-title text-truncate">Autres</span>
+
+                    </a>
+                  </li>
+
+                </ul>
+              </li>
+
+
             <!--
             <li class=" navigation-header">
                 <span>Vue d'ensemble</span> <i data-feather="more-horizontal"></i>
@@ -202,7 +255,7 @@ $uuiduser           = $_COOKIE["vainkeurz_user_id"];
             </li>
             -->
             <li class=" navigation-header">
-                <span>Vainkeurz</span> <i data-feather="more-horizontal"></i>
+                Vainkeurz <i data-feather="more-horizontal"></i>
             </li>
             <li class=" nav-item">
                 <a class="d-flex align-items-center" href="https://baltazare1.typeform.com/to/j9n8JU" target="_blank">

@@ -476,3 +476,31 @@ html .content.app-content {
   margin-bottom: 100px;
   height: 110vh;
 }
+
+.list-categories{
+  text-align: center;
+  margin-bottom: 200px;
+  padding-bottom: 50px;
+}
+
+.first-cat{
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.btn-cat{
+    white-space: nowrap;
+    width: 250px;
+    margin: 30px 30px 0px;
+    border-radius: 10px;
+    background-color: #161335;
+    padding: 20px 40px 20px;
+  }
+
+  .gamepad{
+    height: 25px;
+  }
+
+  .contender_zone {
+    width: 300px !important;
+  }
