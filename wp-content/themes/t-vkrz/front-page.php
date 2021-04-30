@@ -281,6 +281,7 @@
 </li>
 
 <li>
+  <a href="<?php echo  (get_category_link(14)); ?>">
   <h2 class ="text-success btn-cat">
     <i class="fal fa-gamepad-alt" aria-hidden="true"></i>
   JEUX VIDÉO

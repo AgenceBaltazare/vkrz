@@ -28,6 +28,63 @@
     </div>
 </div>
 
+
+<div class="list-tournois">
+
+    <div class="big-cat">
+        <div class="heading-cat">
+            <div class="row">
+                <div class="col">
+                        <?php
+                        if (single_cat_title('',FALSE) == "Manga"){ ?>
+                          <h2 class ="text-warning text-uppercase">
+                            Manga
+                          </h2>
+
+                        <?php
+                        }
+                        elseif (single_cat_title('',FALSE) == "Sport"){?>
+                        <h2 class ="text-success text-uppercase">
+                        Sport
+                        </h2>
+
+                        <?php
+                        }
+                        elseif (single_cat_title('',FALSE) == "TV"){?>
+                        <h2 class ="text-rose text-uppercase">
+                        Tv
+                        </h2>
+
+                        <?php
+                        }
+                        elseif (single_cat_title('',FALSE) == "Music"){?>
+                        <h2 class ="text-info text-uppercase">
+                        Music
+                        </h2>
+
+
+                        <?php
+                        }
+                        elseif (single_cat_title('',FALSE) == "Jeux Vidéo"){?>
+                          <h2 class="text-defaut text-uppercase">
+                          Jeux Video
+                          </h2>
+
+                        <?php
+                        }
+                        elseif (single_cat_title('',FALSE) == "Autres"){?>
+                        <h2 class="text-defaut text-uppercase">
+                        Autres
+                        </h2>
+                        <?php
+                        }?>
+
+
+
+                    </h2>
+                </div>
+            </div>
+        </div>
 <div class="row">
         <?php while (have_posts()) : the_post(); ?>
 
@@ -111,3 +168,5 @@
 
         <?php endwhile; ?>
     </div>
+  </div>
+</div>

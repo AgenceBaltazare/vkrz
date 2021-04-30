@@ -223,7 +223,7 @@ $uuiduser           = $_COOKIE["vainkeurz_user_id"];
                   </li>
 
                   <li>
-                    <a class="d-flex align-items-center" href="<?php echo get_category_link(4); ?>">
+                    <a class="d-flex align-items-center" href="<?php echo get_category_link(14); ?>">
                       <!-- gamepad -->
                     <i class= "fal fa-gamepad-alt" aria-hidden="true"></i>
                     <span class="menu-title text-truncate">Jeux Video</span>
