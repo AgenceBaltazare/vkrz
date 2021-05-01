@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WordPress - 5.7.x - Development - Administration package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-03-15 19:00:32+0000\n"
+"PO-Revision-Date: 2021-04-28 18:07:16+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -27,105 +27,105 @@ msgstr "Europe/Paris"
 msgid "Continue"
 msgstr "Continuer"
 
-#: wp-admin/about.php:110
+#: wp-admin/about.php:143
 msgid "<strong>Buttons block:</strong> now you can choose a vertical or a horizontal layout. And you can set the width of a button to a preset percentage."
 msgstr "<strong>Bloc Boutons :</strong> Vous pouvez désormais choisir entre une disposition verticale ou horizontale des boutons. Et vous pouvez régler la largeur des boutons à un pourcentage prédéfini."
 
-#: wp-admin/about.php:206
+#: wp-admin/about.php:239
 msgid "Now it’s simple to let iframes lazy-load. By default, WordPress will add a <code>loading=\"lazy\"</code> attribute to iframe tags when both width and height are specified."
 msgstr "Dorénavant, les iframes pourront se charger en différé. Par défaut, WordPress ajoutera un attribut <code>loading=\"lazy\"</code> aux balises iframe lorsque leur largeur et leur hauteur seront spécifiées."
 
-#: wp-admin/about.php:204
+#: wp-admin/about.php:237
 msgid "In 5.7, jQuery gets more focused and less intrusive, with fewer messages in the console."
 msgstr "Avec WP 5.7, jQuery devient moins intrusif et retourne moins de messages dans la console de votre navigateur."
 
-#: wp-admin/about.php:197
+#: wp-admin/about.php:230
 msgid "The new Robots API lets you include the filter directives in the robots meta tag, and the API includes the <code>max-image-preview: large</code> directive by default. That means search engines can show bigger image previews, which can boost your traffic (unless the site is marked <em>not-public</em>)."
 msgstr "La nouvelle API Robots vous permet d’inclure des directives de filtrage dans la balise méta « robots », et l’API intègre par défaut la directive <code>max-image-preview: large</code>. Cela signifie que les moteurs de recherche peuvent maintenant afficher de plus grandes images de prévisualisation (à moins que le site ne soit pas public), ce qui peut améliorer votre trafic."
 
-#: wp-admin/about.php:140
+#: wp-admin/about.php:173
 msgid "Above, the Dashboard before and after the color update in 5.7."
 msgstr "Ci-dessus, le tableau de bord avant et après la mise à jour des couleurs sur WP 5.7."
 
-#: wp-admin/about.php:137
+#: wp-admin/about.php:170
 msgid "Dashboard with new color scheme."
 msgstr "Le tableau de bord avec le nouveau jeu de couleurs."
 
-#: wp-admin/about.php:135
+#: wp-admin/about.php:168
 msgid "Dashboard with old color scheme."
 msgstr "Le tableau de bord avec l’ancien jeu de couleurs."
 
-#: wp-admin/about.php:115
+#: wp-admin/about.php:148
 msgid "<strong>Social Icons block:</strong> now you can change the size of the icons."
 msgstr "<strong>Bloc d’icônes de réseaux sociaux :</strong> vous pouvez maintenant modifier la taille des icônes."
 
-#: wp-admin/about.php:205
+#: wp-admin/about.php:238
 msgid "Lazy-load your iframes"
 msgstr "Chargez vos iframes en différé"
 
-#: wp-admin/about.php:203
+#: wp-admin/about.php:236
 msgid "For years jQuery helped make things move on the screen in ways the basic tools couldn’t—but that keeps changing, and so does jQuery."
 msgstr "Pendant des années, jQuery a aidé à animer les choses à l’écran de façon très efficace — mais les choses évoluent sans cesse, et jQuery n’est pas en reste."
 
-#: wp-admin/about.php:202
+#: wp-admin/about.php:235
 msgid "Ongoing cleanup after update to jQuery 3.5.1"
 msgstr "Poursuite du nettoyage nécessaire après la mise à jour vers jQuery 3.5.1"
 
-#: wp-admin/about.php:194
+#: wp-admin/about.php:227
 msgid "New Robots API"
 msgstr "Nouvelle API Robots"
 
-#: wp-admin/about.php:193
+#: wp-admin/about.php:226
 msgid "Starting now, switching a site from HTTP to HTTPS is a one-click move. WordPress will automatically update database URLs when you make the switch. No more hunting and guessing!"
 msgstr "Le passage d’un site de HTTP à HTTPS se fait maintenant en un clic. WordPress mettra automatiquement à jour les URL en base de données lorsque vous passerez au HTTPS. Ne perdez plus votre temps à chercher les URL à modifier !"
 
-#: wp-admin/about.php:192
+#: wp-admin/about.php:225
 msgid "From HTTP to HTTPS in a single click"
 msgstr "De HTTP à HTTPS en un clic"
 
 #. translators: %s: Color palette dev note link.
-#: wp-admin/about.php:171
+#: wp-admin/about.php:204
 msgid "Find the new palette in the default WordPress Dashboard color scheme, and use it when you’re building themes, plugins, or any other components. For all the details, <a href=\"%s\">check out the Color Palette dev note</a>."
 msgstr "Vous découvrirez cette nouvelle palette de couleurs par défaut sur votre tableau de bord WordPress. Si vous créez des thèmes, des extensions ou tout autre composant, pensez à l’utiliser. Pour plus de détails, <a href=\"%s\">consultez la note de développement concernant cette palette de couleurs (en anglais)</a>."
 
-#: wp-admin/about.php:164
+#: wp-admin/about.php:197
 msgid "Half the range has a 4.5 or higher contrast ratio against black, and the other half maintains the same contrast against white."
 msgstr "La moitié de la plage a un rapport de contraste de 4,5 ou plus par rapport au noir, et l’autre moitié propose le même rapport de contraste par rapport au blanc."
 
-#: wp-admin/about.php:157
+#: wp-admin/about.php:190
 msgid "The colors are perceptually uniform from light to dark in each range, which means they start at white and get darker by the same amount with each step."
 msgstr "En terme de perception, les variations de couleurs sont uniformes du clair au foncé dans chaque plage, ce qui signifie qu’elles vont du plus clair vers le plus foncé avec les mêmes paliers."
 
 #. translators: %s: WCAG information link.
-#: wp-admin/about.php:150
+#: wp-admin/about.php:183
 msgid "This new streamlined color palette collapses all the colors that used to be in the WordPress source code down to seven core colors and a range of 56 shades that meet the <a href=\"%s\">WCAG 2.0 AA recommended contrast ratio</a> against white or black."
 msgstr "Cette nouvelle palette de couleurs simplifiée réduit le nombre de couleurs qui se trouvaient auparavant dans le cœur de WordPress à sept couleurs principales et une plage de 56 nuances conformes au rapport de contraste <a href=\"%s\">WCAG 2.0 AA recommandé</a>."
 
-#: wp-admin/about.php:128
+#: wp-admin/about.php:161
 msgid "A Simpler Default Color Palette"
 msgstr "Simplification de la palette de couleurs par défaut"
 
-#: wp-admin/about.php:105
+#: wp-admin/about.php:138
 msgid "<strong>Full-height alignment:</strong> have you ever wanted to make a block, like the Cover block, fill the whole window? Now you can."
 msgstr "<strong>Alignement en hauteur :</strong> avez-vous déjà voulu donner au bloc bannière une hauteur égale à la hauteur de la fenêtre ? Maintenant, vous pouvez."
 
-#: wp-admin/about.php:100
+#: wp-admin/about.php:133
 msgid "You can do more without writing custom code"
 msgstr "Vous pouvez faire plus, sans écrire la moindre ligne de code"
 
-#: wp-admin/about.php:86
+#: wp-admin/about.php:119
 msgid "<strong>Inserter drag-and-drop:</strong> drag blocks and block patterns from the inserter right into your post."
 msgstr "<strong>Outil d’insertion de blocs en glisser-déposer :</strong> glissez les blocs et les compositions de blocs de l’outil d’insertion directement dans votre publication."
 
-#: wp-admin/about.php:81
+#: wp-admin/about.php:114
 msgid "<strong>Reusable blocks:</strong> several enhancements make reusable blocks more stable and easier to use. And now they save automatically with the post when you click the Update button."
 msgstr "<strong>Blocs réutilisables :</strong> plusieurs améliorations rendent les blocs réutilisables plus stables et plus faciles à utiliser. Et maintenant, ils s’enregistrent automatiquement avec la publication lorsque vous enregistrez votre publication."
 
-#: wp-admin/about.php:76
+#: wp-admin/about.php:109
 msgid "<strong>Font-size adjustment in more places:</strong> now, font-size controls are right where you need them in the List and Code blocks. No more trekking to another screen to make that single change!"
 msgstr "<strong>Plus d’endroits pour gérer la taille des polices :</strong> les contrôles de la taille des polices sont maintenant disponibles là où vous en avez besoin, notamment sur les blocs liste et code. Plus besoin de se rendre sur un autre écran pour effectuer cette simple modification !"
 
-#: wp-admin/about.php:71
+#: wp-admin/about.php:104
 msgid "Now the editor is easier to use"
 msgstr "Maintenant, l’éditeur est plus simple à utiliser"
 
@@ -316,7 +316,7 @@ msgstr "<strong>Localisation d’évènements communautaires</strong> – adress
 
 #: wp-admin/erase-personal-data.php:35 wp-admin/export-personal-data.php:35
 msgid "<strong>Profile Information</strong> &mdash; user email address, username, display name, nickname, first name, last name, description/bio, and registration date."
-msgstr "<strong>Informations de profile</strong> &mdash ; adresse e-mail du compte, identifiant, nom d’affichage, surnom, prénom, nom, description/bio, et date d’inscription."
+msgstr "<strong>Informations de profile</strong> &mdash; adresse e-mail du compte, identifiant, nom d’affichage, surnom, prénom, nom, description/bio, et date d’inscription."
 
 #: wp-admin/erase-personal-data.php:34
 msgid "Personal data that is collected by WordPress and is deleted or anonymized include:"
@@ -361,27 +361,9 @@ msgid "Cannot send password reset, permission denied."
 msgstr "Impossible d’envoyer le lien de réinitialisation du mot de passe, autorisation refusée."
 
 #. translators: 1: post_max_size, 2: upload_max_filesize
-#: wp-admin/includes/class-wp-site-health.php:2186
+#: wp-admin/includes/class-wp-site-health.php:2156
 msgid "The setting for %1$s is currently configured as 0, this could cause some problems when trying to upload files through plugin or theme features that rely on various upload methods. It is recommended to configure this setting to a fixed value, ideally matching the value of %2$s, as some upload methods read the value 0 as either unlimited, or disabled."
 msgstr "Le réglage pour %1$s est actuellement configuré à 0, ce qui pourrait causer quelques problèmes lorsque vous essayez de téléverser des fichiers par le biais d’extensions ou de thèmes qui dépendent de différentes méthodes de téléversement. Il est recommandé de configurer ce réglage à une valeur fixe, correspondant idéalement à la valeur de %2$s, car certaines méthodes de téléversement lisent la valeur 0 comme étant soit illimitée, soit désactivée."
-
-#: wp-admin/includes/class-wp-site-health.php:1661
-msgid "Talk to your web host about resolving this HTTPS issue for your website."
-msgstr "Contactez votre hébergeur pour résoudre ce problème HTTPS sur votre site."
-
-#. translators: %s: URL to Settings > General > WordPress Address.
-#: wp-admin/includes/class-wp-site-health.php:1654
-msgid "Your <a href=\"%s\">WordPress Address</a> is set up to use HTTPS, but your website appears to be unavailable when using an HTTPS connection."
-msgstr "Votre <a href=\"%s\">adresse WordPress</a> est configurée pour utiliser le HTTPS, mais votre site semble être indisponible lorsque vous utilisez une connexion HTTPS."
-
-#. translators: %s: URL to Settings > General > WordPress Address.
-#: wp-admin/includes/class-wp-site-health.php:1645
-msgid "Your <a href=\"%s\">WordPress Address</a> is set up to use HTTPS, but the SSL certificate appears to be invalid."
-msgstr "Votre <a href=\"%s\">adresse WordPress</a> est configurée pour utiliser le HTTPS, mais le certificat SSL semble être non valide."
-
-#: wp-admin/includes/class-wp-site-health.php:1637
-msgid "There are problems with the HTTPS connection of your website"
-msgstr "Il y a des problèmes avec la connexion HTTPS de votre site"
 
 #: wp-admin/includes/class-wp-site-health.php:1622
 #: wp-admin/includes/class-wp-site-health.php:1629
@@ -490,7 +472,7 @@ msgstr "Impossible d’initier la confirmation pour la demande de données perso
 
 #: wp-admin/options-writing.php:210 wp-admin/options-writing.php:224
 msgid "https://wordpress.org/support/article/update-services/"
-msgstr "https://fr.wordpress.org/support/article/settings-writing-screen/#services-de-mises-%c3%a0-jour"
+msgstr "https://fr.wordpress.org/support/article/settings-writing-screen/#services-de-mises-a-jour"
 
 #. translators: %s: The server PHP version.
 #: wp-admin/includes/dashboard.php:1771
@@ -516,12 +498,12 @@ msgstr "PHP est le langage de programmation utilisé pour construire et mainteni
 msgid "Your website appears to use Basic Authentication, which is not currently compatible with Application Passwords."
 msgstr "Votre site semble utiliser l’authentification basique, qui n’est pas compatible avec les mots de passe d’application."
 
-#: wp-admin/includes/class-wp-site-health.php:2255
+#: wp-admin/includes/class-wp-site-health.php:2225
 msgid "https://developer.wordpress.org/rest-api/frequently-asked-questions/#why-is-authentication-not-working"
 msgstr "https://developer.wordpress.org/rest-api/frequently-asked-questions/#why-is-authentication-not-working"
 
 #. translators: %s: WordPress 5.7 Field Guide link.
-#: wp-admin/about.php:219
+#: wp-admin/about.php:252
 msgid "Check out the latest version of the WordPress Field Guide. It highlights developer notes for each change you may want to be aware of. <a href=\"%s\">WordPress 5.7 Field Guide.</a>"
 msgstr "Consultez le guide des changements techniques de WordPress 5.7. Il met en avant les notes de développement pour chaque modification que vous souhaiteriez approfondir : <a href=\"https://fr.wordpress.org/2021/02/24/les-changements-techniques-a-venir-sur-wordpress-5-7/\">guide des changements techniques de WordPress 5.7</a>"
 
@@ -592,7 +574,7 @@ msgstr "Ajouter un nouveau mot de passe d’application"
 msgid "Required to create an Application Password, but not to update the user."
 msgstr "Nécessaire pour créer un mot de passe d’application, mais pas pour mettre à jour le compte."
 
-#: wp-admin/about.php:232
+#: wp-admin/about.php:265
 msgid "Go to Updates"
 msgstr "Aller aux mises à jour"
 
@@ -783,31 +765,31 @@ msgstr "- %1$s (de la version %2$s à %3$s)"
 msgid "Current Header Video"
 msgstr "Vidéo d’en-tête actuelle"
 
-#: wp-admin/includes/class-wp-site-health.php:2367
+#: wp-admin/includes/class-wp-site-health.php:2337
 msgid "Authorization header"
 msgstr "En-tête d’autorisation"
 
-#: wp-admin/includes/class-wp-site-health.php:2256
+#: wp-admin/includes/class-wp-site-health.php:2226
 msgid "Learn how to configure the Authorization header."
 msgstr "En savoir plus sur la configuration des en-têtes d’autorisation."
 
-#: wp-admin/includes/class-wp-site-health.php:2250
+#: wp-admin/includes/class-wp-site-health.php:2220
 msgid "Flush permalinks"
 msgstr "Regénérer les permaliens"
 
-#: wp-admin/includes/class-wp-site-health.php:2235
+#: wp-admin/includes/class-wp-site-health.php:2205
 msgid "The authorization header is invalid."
 msgstr "L’en-tête d’autorisation est non valide."
 
-#: wp-admin/includes/class-wp-site-health.php:2233
+#: wp-admin/includes/class-wp-site-health.php:2203
 msgid "The authorization header is missing."
 msgstr "L’en-tête d’autorisation est manquant."
 
-#: wp-admin/includes/class-wp-site-health.php:2226
+#: wp-admin/includes/class-wp-site-health.php:2196
 msgid "The Authorization header comes from the third-party applications you approve. Without it, those apps cannot connect to your site."
 msgstr "L’en-tête d’autorisation provient des applications tierces que vous approuvez. Sans cela, ces applications ne peuvent pas se connecter à votre site."
 
-#: wp-admin/includes/class-wp-site-health.php:2218
+#: wp-admin/includes/class-wp-site-health.php:2188
 msgid "The Authorization header is working as expected."
 msgstr "L’en-tête d’autorisation fonctionne comme prévu."
 
@@ -941,7 +923,7 @@ msgid "You can choose whether or not your site will be crawled by robots, ping s
 msgstr "Vous pouvez choisir si votre site est parcouru par les robots et autres logiciels automatisés ou non. Si vous préférez que ces services ignorent votre site, cochez l’option « Demander aux moteurs de recherche de ne pas indexer ce site » et cliquez sur le bouton « Enregistrer les modifications » en bas de l’écran."
 
 #. translators: 1: post_max_size, 2: upload_max_filesize
-#: wp-admin/includes/class-wp-site-health.php:2175
+#: wp-admin/includes/class-wp-site-health.php:2145
 msgid "The \"%1$s\" value is smaller than \"%2$s\"."
 msgstr "La valeur « %1$s » est inférieure à « %2$s »."
 
@@ -949,7 +931,7 @@ msgstr "La valeur « %1$s » est inférieure à « %2$s »."
 msgid "Environment type"
 msgstr "Type d’environnement"
 
-#: wp-admin/about.php:214
+#: wp-admin/about.php:247
 msgid "Check the Field Guide for more!"
 msgstr "Consultez le guide de la version pour en savoir plus !"
 
@@ -973,39 +955,39 @@ msgstr "Cette mise à jour ne fonctionne pas avec votre version de WordPress et 
 msgid "Disallowed Comment Keys"
 msgstr "Clés de commentaires non autorisées"
 
-#: wp-admin/includes/class-wp-site-health.php:2337
+#: wp-admin/includes/class-wp-site-health.php:2307
 msgid "Plugin and theme auto-updates"
 msgstr "Mise à jour auto des extensions et thèmes"
 
-#: wp-admin/includes/class-wp-site-health.php:2635
+#: wp-admin/includes/class-wp-site-health.php:2605
 msgid "There appear to be no issues with plugin and theme auto-updates."
 msgstr "Il ne semble pas y avoir de problème avec les mises à jour automatiques des extensions et des thèmes."
 
-#: wp-admin/includes/class-wp-site-health.php:2629
+#: wp-admin/includes/class-wp-site-health.php:2599
 msgid "Auto-updates for themes appear to be disabled. This will prevent your site from receiving new versions automatically when available."
 msgstr "Les mises à jour automatiques des thèmes semblent désactivées. Cela empêche votre site de recevoir automatiquement les nouvelles versions lorsqu’elles sont disponible."
 
-#: wp-admin/includes/class-wp-site-health.php:2624
+#: wp-admin/includes/class-wp-site-health.php:2594
 msgid "Auto-updates for plugins appear to be disabled. This will prevent your site from receiving new versions automatically when available."
 msgstr "Les mises à jour automatiques des extensions semblent désactivées. Cela empêche votre site de recevoir automatiquement les nouvelles versions lorsqu’elles sont disponible."
 
-#: wp-admin/includes/class-wp-site-health.php:2619
+#: wp-admin/includes/class-wp-site-health.php:2589
 msgid "Auto-updates for plugins and themes appear to be disabled. This will prevent your site from receiving new versions automatically when available."
 msgstr "Les mises à jour automatiques des extensions et des thèmes semblent désactivées. Cela empêche votre site de recevoir automatiquement les nouvelles versions lorsqu’elles sont disponible."
 
-#: wp-admin/includes/class-wp-site-health.php:2610
+#: wp-admin/includes/class-wp-site-health.php:2580
 msgid "Auto-updates for plugins and/or themes appear to be disabled, but settings are still set to be displayed. This could cause auto-updates to not work as expected."
 msgstr "Les mises à jour automatiques des extensions et/ou des thèmes semblent désactivées, mais les réglages s’affichent tout de même. Cela pourrait empêcher les mises à jour automatiques de fonctionner comme prévu."
 
-#: wp-admin/includes/class-wp-site-health.php:1885
+#: wp-admin/includes/class-wp-site-health.php:1855
 msgid "Your site may have problems auto-updating plugins and themes"
 msgstr "Votre site semble avoir des problèmes avec les mises à jour automatiques des extensions et des thèmes."
 
-#: wp-admin/includes/class-wp-site-health.php:1874
+#: wp-admin/includes/class-wp-site-health.php:1844
 msgid "Plugin and theme auto-updates ensure that the latest versions are always installed."
 msgstr "Les mises à jour automatiques des extensions et des thèmes permettent de s’assurer qu’ils soient toujours installés dans leur dernière version disponible."
 
-#: wp-admin/includes/class-wp-site-health.php:1866
+#: wp-admin/includes/class-wp-site-health.php:1836
 msgid "Plugin and theme auto-updates appear to be configured correctly"
 msgstr "Les mises à jour automatiques des extensions et des thèmes semblent correctement configurées"
 
@@ -1022,26 +1004,26 @@ msgid "Sorry, you are not allowed to modify plugins."
 msgstr "Désolé, vous n’avez pas l’autorisation de modifier les extensions."
 
 #. translators: 1: post_max_size, 2: upload_max_filesize
-#: wp-admin/includes/class-wp-site-health.php:2196
+#: wp-admin/includes/class-wp-site-health.php:2166
 msgid "The setting for %1$s is smaller than %2$s, this could cause some problems when trying to upload files."
 msgstr "Le réglage de %1$s est inférieur à %2$s, ce qui pourrait causer des problèmes lors du téléversement de fichiers."
 
 #. translators: 1: file_uploads, 2: 0
-#: wp-admin/includes/class-wp-site-health.php:2161
+#: wp-admin/includes/class-wp-site-health.php:2131
 msgid "%1$s is set to %2$s. You won't be able to upload files on your site."
 msgstr "%1$s est réglé sur %2$s. Vous ne pourrez pas téléverser des fichiers sur votre site."
 
 #. translators: %s: ini_get()
-#: wp-admin/includes/class-wp-site-health.php:2149
+#: wp-admin/includes/class-wp-site-health.php:2119
 msgid "The %s function has been disabled, some media settings are unavailable because of this."
 msgstr "La fonction %s a été désactivée. De ce fait, certains réglages des médias ne sont pas disponibles."
 
 #. translators: 1: file_uploads, 2: php.ini
-#: wp-admin/includes/class-wp-site-health.php:2136
+#: wp-admin/includes/class-wp-site-health.php:2106
 msgid "The %1$s directive in %2$s determines if uploading files is allowed on your site."
 msgstr "La directive %1$s dans le fichier %2$s détermine si le téléversement de fichiers est autorisé sur votre site."
 
-#: wp-admin/includes/class-wp-site-health.php:2126
+#: wp-admin/includes/class-wp-site-health.php:2096
 msgid "Files can be uploaded."
 msgstr "Les fichiers peuvent être téléversés."
 
@@ -1051,7 +1033,7 @@ msgstr "Nombre maximal de fichiers autorisés."
 
 #: wp-admin/includes/class-wp-debug-data.php:566
 msgid "Max effective file size"
-msgstr "Taille de fichier effective maximale."
+msgstr "Taille de fichier effective maximale"
 
 #: wp-admin/includes/class-wp-debug-data.php:562
 msgid "Max size of an uploaded file"
@@ -1062,7 +1044,7 @@ msgid "Max size of post data allowed"
 msgstr "Taille maximale autorisée pour les données des publications"
 
 #: wp-admin/includes/class-wp-debug-data.php:553
-#: wp-admin/includes/class-wp-site-health.php:2333
+#: wp-admin/includes/class-wp-site-health.php:2303
 msgid "File uploads"
 msgstr "Téléversements de fichiers"
 
@@ -1407,7 +1389,7 @@ msgctxt "comment"
 msgid "Not spam"
 msgstr "N’est pas un indésirable"
 
-#: wp-admin/includes/class-wp-site-health.php:2305
+#: wp-admin/includes/class-wp-site-health.php:2275
 msgid "PHP Sessions"
 msgstr "Sessions PHP"
 
@@ -1834,14 +1816,14 @@ msgstr "Aucun commentaire trouvé dans la corbeille."
 msgid "File is empty. Please upload something more substantial. This error could also be caused by uploads being disabled in your %1$s file or by %2$s being defined as smaller than %3$s in %1$s."
 msgstr "Le fichier est vide. Veuillez téléverser quelque chose de plus substantiel. Cette erreur peut également être due au fait que les téléversements sont désactivés dans votre fichier %1$s ou que %2$s est défini comme inférieur à %3$s dans %1$s."
 
-#: wp-admin/includes/class-wp-site-health.php:2811
+#: wp-admin/includes/class-wp-site-health.php:2781
 #: wp-admin/js/site-health.js:336
 msgid "A test is unavailable"
 msgstr "Un test n’est pas disponible"
 
 #. translators: 1: The WordPress error message. 2: The WordPress error code.
-#: wp-admin/includes/class-wp-site-health.php:2075
-#: wp-admin/includes/class-wp-site-health.php:2686
+#: wp-admin/includes/class-wp-site-health.php:2045
+#: wp-admin/includes/class-wp-site-health.php:2656
 msgid "Error: %1$s (%2$s)"
 msgstr "Erreur : %1$s (%2$s)"
 
@@ -1928,7 +1910,7 @@ msgstr "Supprimer les demandes"
 msgid "Table prefix"
 msgstr "Préfixe de table"
 
-#: wp-admin/includes/class-wp-site-health.php:2301
+#: wp-admin/includes/class-wp-site-health.php:2271
 msgid "PHP Default Timezone"
 msgstr "Fuseau horaire par défaut de PHP"
 
@@ -1973,7 +1955,7 @@ msgstr "<a href=\"https://fr.wordpress.org/support/article/tools-export-screen/\
 
 #: wp-admin/plugin-install.php:109
 msgid "<a href=\"https://wordpress.org/support/article/plugins-add-new-screen/\">Documentation on Installing Plugins</a>"
-msgstr "<a href=\"https://wordpress.org/support/article/plugins-add-new-screen/\">Documentation sur l’installation d’extensions (en anglais)</a>"
+msgstr "<a href=\"https://fr.wordpress.org/support/article/plugins-add-new-screen/\">Documentation sur l’installation d’extensions</a>"
 
 #: wp-admin/edit.php:309
 msgid "<a href=\"https://wordpress.org/support/article/pages-screen/\">Documentation on Managing Pages</a>"
@@ -1985,7 +1967,7 @@ msgstr "<a href=\"https://fr.wordpress.org/support/article/posts-screen/\">Docum
 
 #: wp-admin/options-discussion.php:31
 msgid "<a href=\"https://wordpress.org/support/article/settings-discussion-screen/\">Documentation on Discussion Settings</a>"
-msgstr "<a href=\"https://wordpress.org/support/article/settings-discussion-screen/\">Documentation sur les réglages des commentaires (en anglais)</a>"
+msgstr "<a href=\"https://fr.wordpress.org/support/article/settings-discussion-screen/\">Documentation sur les réglages des commentaires</a>"
 
 #: wp-admin/theme-install.php:131
 msgid "<a href=\"https://wordpress.org/support/article/using-themes/#adding-new-themes\">Documentation on Adding New Themes</a>"
@@ -2100,7 +2082,7 @@ msgstr "<a href=\"https://wordpress.org/support/article/nginx/\">Documentation s
 
 #: wp-admin/options-permalink.php:212
 msgid "https://wordpress.org/support/article/using-permalinks/"
-msgstr "https://wordpress.org/support/article/using-permalinks/"
+msgstr "https://fr.wordpress.org/support/article/using-permalinks/"
 
 #: wp-admin/options-permalink.php:61
 msgid "<a href=\"https://wordpress.org/support/article/using-permalinks/\">Documentation on Using Permalinks</a>"
@@ -2108,7 +2090,7 @@ msgstr "<a href=\"https://fr.wordpress.org/support/article/using-permalinks/\">D
 
 #: wp-admin/options-permalink.php:60
 msgid "<a href=\"https://wordpress.org/support/article/settings-permalinks-screen/\">Documentation on Permalinks Settings</a>"
-msgstr "<a href=\"https://wordpress.org/support/article/settings-permalinks-screen/\">Documentation sur les réglages des permaliens (en anglais)</a>"
+msgstr "<a href=\"https://fr.wordpress.org/support/article/settings-permalinks-screen/\">Documentation sur les réglages des permaliens</a>"
 
 #: wp-admin/update-core.php:970
 msgid "<a href=\"https://wordpress.org/support/article/dashboard-updates-screen/\">Documentation on Updating WordPress</a>"
@@ -2116,7 +2098,7 @@ msgstr "<a href=\"https://fr.wordpress.org/support/article/dashboard-updates-scr
 
 #: wp-admin/nav-menus.php:658
 msgid "<a href=\"https://wordpress.org/support/article/appearance-menus-screen/\">Documentation on Menus</a>"
-msgstr "<a href=\"https://wordpress.org/support/article/appearance-menus-screen/\">Documentation sur les menus (en anglais)</a>"
+msgstr "<a href=\"https://fr.wordpress.org/support/article/appearance-menus-screen/\">Documentation sur les menus</a>"
 
 #: wp-admin/plugin-editor.php:143
 msgid "<a href=\"https://developer.wordpress.org/plugins/\">Documentation on Writing Plugins</a>"
@@ -2132,7 +2114,7 @@ msgstr "<a href=\"https://developer.wordpress.org/themes/basics/template-tags/\"
 
 #: wp-admin/theme-editor.php:53
 msgid "<a href=\"https://wordpress.org/support/article/editing-files/\">Documentation on Editing Files</a>"
-msgstr "<a href=\"https://wordpress.org/support/article/editing-files/\">Documentation sur la modification de fichiers (en anglais)</a>"
+msgstr "<a href=\"https://fr.wordpress.org/support/article/editing-files/\">Documentation sur la modification de fichiers</a>"
 
 #: wp-admin/theme-editor.php:52 wp-admin/themes.php:206
 msgid "<a href=\"https://wordpress.org/support/article/using-themes/\">Documentation on Using Themes</a>"
@@ -2170,17 +2152,17 @@ msgstr "https://fr.wordpress.org/support/article/giving-wordpress-its-own-direct
 
 #: wp-admin/options-general.php:48
 msgid "<a href=\"https://wordpress.org/support/article/settings-general-screen/\">Documentation on General Settings</a>"
-msgstr "<a href=\"https://wordpress.org/support/article/settings-general-screen/\">Documentation sur les réglages généraux (en anglais)</a>"
+msgstr "<a href=\"https://fr.wordpress.org/support/article/settings-general-screen/\">Documentation sur les réglages généraux</a>"
 
 #: wp-admin/includes/dashboard.php:1970
 msgid "https://wordpress.org/support/article/first-steps-with-wordpress/"
-msgstr "https://wordpress.org/support/article/first-steps-with-wordpress/"
+msgstr "https://fr.wordpress.org/support/article/first-steps-with-wordpress/"
 
 #: wp-admin/includes/file.php:324 wp-admin/theme-editor.php:323
 #: wp-admin/plugin-editor.php:296 wp-admin/options-permalink.php:366
 #: wp-admin/options-permalink.php:391 wp-admin/options-permalink.php:424
 msgid "https://wordpress.org/support/article/changing-file-permissions/"
-msgstr "https://wordpress.org/support/article/changing-file-permissions/"
+msgstr "https://fr.wordpress.org/support/article/changing-file-permissions/"
 
 #. translators: %s: Documentation URL.
 #: wp-admin/includes/file.php:323 wp-admin/theme-editor.php:322
@@ -2236,11 +2218,11 @@ msgid "Password protected"
 msgstr "Protégé par mot de passe"
 
 #. translators: %s: The name of the late cron event.
-#: wp-admin/includes/class-wp-site-health.php:1774
+#: wp-admin/includes/class-wp-site-health.php:1744
 msgid "The scheduled event, %s, is late to run. Your site still works, but this may indicate that scheduling posts or automated updates may not work as intended."
 msgstr "L'évènement planifié %s, est en retard. Votre site fonctionne toujours, mais cela peut indiquer que la planification des articles ou des mises à jour automatisées peuvent ne pas fonctionner comme prévu."
 
-#: wp-admin/includes/class-wp-site-health.php:1768
+#: wp-admin/includes/class-wp-site-health.php:1738
 msgid "A scheduled event is late"
 msgstr "Un évènement planifié est en retard"
 
@@ -2256,11 +2238,11 @@ msgstr "Votre version de WordPress (%s) est à jour"
 #: wp-admin/includes/ms.php:1160 wp-admin/network/site-new.php:32
 #: wp-admin/network/sites.php:45
 msgid "<a href=\"https://wordpress.org/support/article/network-admin-sites-screen/\">Documentation on Site Management</a>"
-msgstr "<a href=\"https://wordpress.org/support/article/network-admin-sites-screen/\">Documentation sur la gestion des sites (en anglais)</a>"
+msgstr "<a href=\"https://fr.wordpress.org/support/article/network-admin-sites-screen/\">Documentation sur la gestion des sites</a>"
 
 #: wp-admin/includes/meta-boxes.php:807
 msgid "https://wordpress.org/support/article/introduction-to-blogging/#managing-comments"
-msgstr "https://fr.wordpress.org/support/article/introduction-to-blogging/#grer-les-commentaires"
+msgstr "https://fr.wordpress.org/support/article/introduction-to-blogging/#gerer-les-commentaires"
 
 #: wp-admin/includes/meta-boxes.php:783
 msgid "https://wordpress.org/support/article/custom-fields/"
@@ -2363,7 +2345,7 @@ msgstr "Vue globale du rapport sur les exportations."
 
 #: wp-admin/options-writing.php:52
 msgid "<a href=\"https://wordpress.org/support/article/settings-writing-screen/\">Documentation on Writing Settings</a>"
-msgstr "<a href=\"https://wordpress.org/support/article/settings-writing-screen/\">Documentation sur les réglages d’écriture (en anglais)</a>"
+msgstr "<a href=\"https://fr.wordpress.org/support/article/settings-writing-screen/\">Documentation sur les réglages d’écriture</a>"
 
 #: wp-admin/edit-tags.php:311
 msgid "<a href=\"https://wordpress.org/support/article/posts-tags-screen/\">Documentation on Tags</a>"
@@ -2388,11 +2370,11 @@ msgstr "<strong>Avertissement : </strong> ces pages ne doivent pas être les mê
 
 #: wp-admin/options-reading.php:52
 msgid "<a href=\"https://wordpress.org/support/article/settings-reading-screen/\">Documentation on Reading Settings</a>"
-msgstr "<a href=\"https://wordpress.org/support/article/settings-reading-screen/\">Documentation sur les réglages de lecture (en anglais)</a>"
+msgstr "<a href=\"https://fr.wordpress.org/support/article/settings-reading-screen/\">Documentation sur les réglages de lecture</a>"
 
 #: wp-admin/options-reading.php:34 wp-admin/options-reading.php:171
 msgid "https://wordpress.org/support/article/wordpress-feeds/"
-msgstr "https://wordpress.org/support/article/wordpress-feeds/"
+msgstr "https://fr.wordpress.org/support/article/wordpress-feeds/"
 
 #. translators: %s: Site title.
 #: wp-admin/ms-delete-site.php:92
@@ -2680,12 +2662,12 @@ msgid "Sorry, you are not allowed to perform this action."
 msgstr "Désolé, vous n’avez pas l’autorisation d’effectuer cette action."
 
 #. translators: 1: Name of the constant used. 2: List of allowed hostnames.
-#: wp-admin/includes/class-wp-site-health.php:2001
+#: wp-admin/includes/class-wp-site-health.php:1971
 msgid "HTTP requests have been blocked by the %1$s constant, with some allowed hosts: %2$s."
 msgstr "Les requêtes HTTP ont été bloquées par la constante %1$s, avec certains hôtes autorisés : %2$s."
 
 #. translators: %s: Name of the constant used.
-#: wp-admin/includes/class-wp-site-health.php:1986
+#: wp-admin/includes/class-wp-site-health.php:1956
 msgid "HTTP requests have been blocked by the %s constant, with no allowed hosts."
 msgstr "Les requêtes HTTP ont été bloquées par la constante %s, avec aucun hôte autorisé."
 
@@ -2712,11 +2694,11 @@ msgstr "L’équipe Hébergement de WordPress maintient une liste des modules re
 #: wp-admin/includes/class-wp-site-health.php:1105
 #: wp-admin/includes/class-wp-site-health.php:1155
 #: wp-admin/includes/class-wp-site-health.php:1246
-#: wp-admin/includes/class-wp-site-health.php:1726
-#: wp-admin/includes/class-wp-site-health.php:1912
-#: wp-admin/includes/class-wp-site-health.php:1955
-#: wp-admin/includes/class-wp-site-health.php:2026
-#: wp-admin/includes/class-wp-site-health.php:2129
+#: wp-admin/includes/class-wp-site-health.php:1696
+#: wp-admin/includes/class-wp-site-health.php:1882
+#: wp-admin/includes/class-wp-site-health.php:1925
+#: wp-admin/includes/class-wp-site-health.php:1996
+#: wp-admin/includes/class-wp-site-health.php:2099
 msgid "Performance"
 msgstr "Performance"
 
@@ -2768,10 +2750,10 @@ msgstr[1] "Votre site a %d extensions inactives."
 #: wp-admin/includes/class-wp-site-health.php:1361
 #: wp-admin/includes/class-wp-site-health.php:1430
 #: wp-admin/includes/class-wp-site-health.php:1511
-#: wp-admin/includes/class-wp-site-health.php:1680
-#: wp-admin/includes/class-wp-site-health.php:1799
-#: wp-admin/includes/class-wp-site-health.php:1869
-#: wp-admin/includes/class-wp-site-health.php:2221
+#: wp-admin/includes/class-wp-site-health.php:1650
+#: wp-admin/includes/class-wp-site-health.php:1769
+#: wp-admin/includes/class-wp-site-health.php:1839
+#: wp-admin/includes/class-wp-site-health.php:2191
 msgid "Security"
 msgstr "Sécurité"
 
@@ -2874,200 +2856,200 @@ msgstr "Bon travail !"
 msgid "Secondary menu"
 msgstr "Menu secondaire"
 
-#: wp-admin/includes/class-wp-site-health.php:2707
+#: wp-admin/includes/class-wp-site-health.php:2677
 msgid "The loopback request to your site completed successfully."
 msgstr "La demande de bouclage vers votre site s’est bien terminée."
 
 #. translators: %d: The HTTP response code returned.
-#: wp-admin/includes/class-wp-site-health.php:2699
+#: wp-admin/includes/class-wp-site-health.php:2669
 msgid "The loopback request returned an unexpected http status code, %d, it was not possible to determine if this will prevent features from working as expected."
 msgstr "La requête de bouclage a renvoyé un code d’état HTTP inattendu, %d. Il n’a pas été possible de déterminer si cela peut empêcher des fonctionnalités de fonctionner comme prévu."
 
-#: wp-admin/includes/class-wp-site-health.php:2683
+#: wp-admin/includes/class-wp-site-health.php:2653
 msgid "The loopback request to your site failed, this means features relying on them are not currently working as expected."
 msgstr "La requête de bouclage sur votre site a échoué, ce qui signifie que les fonctionnalités qui s’appuient sur ces requêtes ne fonctionnent actuellement pas comme prévu."
 
-#: wp-admin/includes/class-wp-site-health.php:2475
+#: wp-admin/includes/class-wp-site-health.php:2445
 msgid "No scheduled events exist on this site."
 msgstr "Aucun évènement planifié n’existe sur ce site."
 
-#: wp-admin/includes/class-wp-site-health.php:2379
+#: wp-admin/includes/class-wp-site-health.php:2349
 msgid "REST API availability"
 msgstr "Disponibilité de l’API REST"
 
-#: wp-admin/includes/class-wp-site-health.php:2355
+#: wp-admin/includes/class-wp-site-health.php:2325
 msgid "Loopback request"
 msgstr "Demande de bouclage"
 
-#: wp-admin/includes/class-wp-site-health.php:2329
+#: wp-admin/includes/class-wp-site-health.php:2299
 msgid "Debugging enabled"
 msgstr "Débogage activé"
 
-#: wp-admin/includes/class-wp-site-health.php:2325
+#: wp-admin/includes/class-wp-site-health.php:2295
 msgid "HTTP Requests"
 msgstr "Requêtes HTTP"
 
-#: wp-admin/includes/class-wp-site-health.php:2321
+#: wp-admin/includes/class-wp-site-health.php:2291
 msgid "Scheduled events"
 msgstr "Évènements planifiés"
 
-#: wp-admin/includes/class-wp-site-health.php:2317
+#: wp-admin/includes/class-wp-site-health.php:2287
 msgid "Secure communication"
 msgstr "Communication sécurisée"
 
-#: wp-admin/includes/class-wp-site-health.php:2361
+#: wp-admin/includes/class-wp-site-health.php:2331
 msgid "HTTPS status"
 msgstr "État HTTPS"
 
-#: wp-admin/includes/class-wp-site-health.php:2313
+#: wp-admin/includes/class-wp-site-health.php:2283
 msgid "MySQL utf8mb4 support"
 msgstr "Prise en charge de utf8mb4 dans MySQL"
 
-#: wp-admin/includes/class-wp-site-health.php:2297
+#: wp-admin/includes/class-wp-site-health.php:2267
 msgid "PHP Extensions"
 msgstr "Extensions PHP"
 
-#: wp-admin/includes/class-wp-site-health.php:2309
+#: wp-admin/includes/class-wp-site-health.php:2279
 msgid "Database Server version"
 msgstr "Version du serveur de base de données"
 
-#: wp-admin/includes/class-wp-site-health.php:2293
+#: wp-admin/includes/class-wp-site-health.php:2263
 msgid "PHP Version"
 msgstr "Version de PHP"
 
-#: wp-admin/includes/class-wp-site-health.php:2289
+#: wp-admin/includes/class-wp-site-health.php:2259
 msgid "Theme Versions"
 msgstr "Version des thèmes"
 
-#: wp-admin/includes/class-wp-site-health.php:2285
+#: wp-admin/includes/class-wp-site-health.php:2255
 msgid "Plugin Versions"
 msgstr "Versions des extensions"
 
-#: wp-admin/includes/class-wp-site-health.php:2281
+#: wp-admin/includes/class-wp-site-health.php:2251
 msgid "WordPress Version"
 msgstr "Version de WordPress"
 
 #. translators: %s: The name of the query parameter being tested.
-#: wp-admin/includes/class-wp-site-health.php:2107
+#: wp-admin/includes/class-wp-site-health.php:2077
 msgid "The REST API did not process the %s query parameter correctly."
 msgstr "L’API REST n’a pas traité correctement le paramètre de la requête %s."
 
-#: wp-admin/includes/class-wp-site-health.php:2101
+#: wp-admin/includes/class-wp-site-health.php:2071
 msgid "The REST API did not behave correctly"
 msgstr "L’API REST ne s’est pas correctement comportée"
 
 #. translators: 1: The HTTP error code. 2: The HTTP error message.
-#: wp-admin/includes/class-wp-site-health.php:2090
+#: wp-admin/includes/class-wp-site-health.php:2060
 msgid "The REST API call gave the following unexpected result: (%1$d) %2$s."
 msgstr "L’appel à l’API REST a renvoyé le résultat inattendu suivant : (%1$d) %2$s."
 
-#: wp-admin/includes/class-wp-site-health.php:2084
+#: wp-admin/includes/class-wp-site-health.php:2054
 msgid "The REST API encountered an unexpected result"
 msgstr "L’API REST a rencontré un résultat inattendu"
 
-#: wp-admin/includes/class-wp-site-health.php:2072
+#: wp-admin/includes/class-wp-site-health.php:2042
 msgid "The REST API request failed due to an error."
 msgstr "La requête API REST a échoué à la suite d’une erreur."
 
-#: wp-admin/includes/class-wp-site-health.php:2066
+#: wp-admin/includes/class-wp-site-health.php:2036
 msgid "The REST API encountered an error"
 msgstr "L’API REST a rencontré une erreur"
 
-#: wp-admin/includes/class-wp-site-health.php:2031
+#: wp-admin/includes/class-wp-site-health.php:2001
 msgid "The REST API is one way WordPress, and other applications, communicate with the server. One example is the block editor screen, which relies on this to display, and save, your posts and pages."
 msgstr "L’API REST est l’une des façon pour WordPress ou d’autres applications de communiquer avec le serveur. Un exemple est l’écran de l’éditeur, qui s’appuie dessus pour afficher et enregistrer vos publications."
 
-#: wp-admin/includes/class-wp-site-health.php:2023
+#: wp-admin/includes/class-wp-site-health.php:1993
 msgid "The REST API is available"
 msgstr "L’API REST est disponible"
 
-#: wp-admin/includes/class-wp-site-health.php:1995
+#: wp-admin/includes/class-wp-site-health.php:1965
 msgid "HTTP requests are partially blocked"
 msgstr "Les requêtes HTTP sont partiellement bloquées"
 
-#: wp-admin/includes/class-wp-site-health.php:1980
+#: wp-admin/includes/class-wp-site-health.php:1950
 msgid "HTTP requests are blocked"
 msgstr "Les requêtes HTTP sont bloquées"
 
-#: wp-admin/includes/class-wp-site-health.php:1960
+#: wp-admin/includes/class-wp-site-health.php:1930
 msgid "It is possible for site maintainers to block all, or some, communication to other sites and services. If set up incorrectly, this may prevent plugins and themes from working as intended."
 msgstr "Il est possible pour les responsables du site de bloquer tout ou partie de la communication vers d’autres sites et services. Si la configuration est incorrecte, cela peut empêcher les extensions et thèmes de fonctionner comme prévu."
 
-#: wp-admin/includes/class-wp-site-health.php:1952
+#: wp-admin/includes/class-wp-site-health.php:1922
 msgid "HTTP requests seem to be working as expected"
 msgstr "Les requêtes HTTP semblent fonctionner comme prévu"
 
-#: wp-admin/includes/class-wp-site-health.php:1928
+#: wp-admin/includes/class-wp-site-health.php:1898
 msgid "Your site could not complete a loopback request"
 msgstr "Votre site n’a pas pu terminer la requête de bouclage"
 
-#: wp-admin/includes/class-wp-site-health.php:1917
+#: wp-admin/includes/class-wp-site-health.php:1887
 msgid "Loopback requests are used to run scheduled events, and are also used by the built-in editors for themes and plugins to verify code stability."
 msgstr "Les requêtes de bouclage sont utilisées pour lancer des évènements planifiés, ainsi que par les éditeurs de thèmes et d’extensions pour vérifier la stabilité du code."
 
-#: wp-admin/includes/class-wp-site-health.php:1909
+#: wp-admin/includes/class-wp-site-health.php:1879
 msgid "Your site can perform loopback requests"
 msgstr "Votre site peut lancer des requêtes de bouclage"
 
-#: wp-admin/includes/class-wp-site-health.php:1833
+#: wp-admin/includes/class-wp-site-health.php:1803
 msgid "Background updates may not be working properly"
 msgstr "Les mises à jour d’arrière-plan pourraient ne pas fonctionner correctement"
 
-#: wp-admin/includes/class-wp-site-health.php:1825
+#: wp-admin/includes/class-wp-site-health.php:1795
 msgid "Background updates are not working as expected"
 msgstr "Les mises à jour d’arrière-plan ne fonctionnent pas comme prévu"
 
-#: wp-admin/includes/class-wp-site-health.php:1822
+#: wp-admin/includes/class-wp-site-health.php:1792
 msgid "Passed"
 msgstr "Succès"
 
-#: wp-admin/includes/class-wp-site-health.php:1804
+#: wp-admin/includes/class-wp-site-health.php:1774
 msgid "Background updates ensure that WordPress can auto-update if a security update is released for the version you are currently using."
 msgstr "Les mises à jour d’arrière-plan assurent que WordPress peut se mettre à jour automatiquement si une mise à jour de sécurité est disponible pour la version que vous utilisez actuellement."
 
-#: wp-admin/includes/class-wp-site-health.php:1796
+#: wp-admin/includes/class-wp-site-health.php:1766
 msgid "Background updates are working"
 msgstr "Les mises à jour d’arrière-plan fonctionnent"
 
 #. translators: %s: The name of the failed cron event.
-#: wp-admin/includes/class-wp-site-health.php:1761
+#: wp-admin/includes/class-wp-site-health.php:1731
 msgid "The scheduled event, %s, failed to run. Your site still works, but this may indicate that scheduling posts or automated updates may not work as intended."
 msgstr "L’évènement planifié %s a échoué. Votre site fonctionne toujours, mais cela pourrait indiquer que les publications planifiées ou les mises à jour automatiques ne fonctionnent pas comme elles le devraient."
 
-#: wp-admin/includes/class-wp-site-health.php:1755
+#: wp-admin/includes/class-wp-site-health.php:1725
 msgid "A scheduled event has failed"
 msgstr "Un évènement planifié a échoué"
 
 #. translators: %s: The error message returned while from the cron scheduler.
-#: wp-admin/includes/class-wp-site-health.php:1748
+#: wp-admin/includes/class-wp-site-health.php:1718
 msgid "While trying to test your site&#8217;s scheduled events, the following error was returned: %s"
 msgstr "Lors du test des évènements planifiés de votre site, l’erreur suivante a été retournée : %s"
 
-#: wp-admin/includes/class-wp-site-health.php:1742
+#: wp-admin/includes/class-wp-site-health.php:1712
 msgid "It was not possible to check your scheduled events"
 msgstr "Il n’a pas été possible de vérifier vos évènements planifiés"
 
-#: wp-admin/includes/class-wp-site-health.php:1731
+#: wp-admin/includes/class-wp-site-health.php:1701
 msgid "Scheduled events are what periodically looks for updates to plugins, themes and WordPress itself. It is also what makes sure scheduled posts are published on time. It may also be used by various plugins to make sure that planned actions are executed."
 msgstr "Les évènements planifiés permettent de vérifier périodiquement les mises à jour d’extensions, de thèmes et de WordPress lui-même. Cela permet également de s’assurer que les publications planifiées sont publiées à temps. Ils sont également utilisés par diverses extensions pour exécuter des actions planifiées."
 
-#: wp-admin/includes/class-wp-site-health.php:1723
+#: wp-admin/includes/class-wp-site-health.php:1693
 msgid "Scheduled events are running"
 msgstr "Les évènements planifiés fonctionnent"
 
-#: wp-admin/includes/class-wp-site-health.php:1704
+#: wp-admin/includes/class-wp-site-health.php:1674
 msgid "Talk to your web host about OpenSSL support for PHP."
 msgstr "Demandez à votre hébergeur la prise en charge de OpenSSL pour PHP."
 
-#: wp-admin/includes/class-wp-site-health.php:1700
+#: wp-admin/includes/class-wp-site-health.php:1670
 msgid "Your site is unable to communicate securely with other services"
 msgstr "Votre site n’est pas en mesure de communiquer en toute sécurité avec d’autres services"
 
-#: wp-admin/includes/class-wp-site-health.php:1696
+#: wp-admin/includes/class-wp-site-health.php:1666
 msgid "Your site can communicate securely with other services"
 msgstr "Votre site peut communiquer en toute sécurité avec d’autres services"
 
-#: wp-admin/includes/class-wp-site-health.php:1685
+#: wp-admin/includes/class-wp-site-health.php:1655
 msgid "Securely communicating between servers are needed for transactions such as fetching files, conducting sales on store sites, and much more."
 msgstr "Des communications sécurisées entre serveurs sont nécessaires pour des transactions telles que le parcours de fichiers, la vente sur les boutiques en ligne, et plus encore."
 
@@ -3196,7 +3178,7 @@ msgstr "Le module obligatoire %s n’est pas installé, ou a été désactivé."
 
 #: wp-admin/includes/class-wp-site-health.php:1001
 #: wp-admin/includes/class-wp-site-health.php:1389
-#: wp-admin/includes/class-wp-site-health.php:1829
+#: wp-admin/includes/class-wp-site-health.php:1799
 msgid "Error"
 msgstr "Erreur"
 
@@ -3490,15 +3472,15 @@ msgstr "SUHOSIN est-il installé ?"
 #: wp-admin/includes/class-wp-debug-data.php:744
 #: wp-admin/includes/class-wp-debug-data.php:749
 msgid "cURL version"
-msgstr "version de cURL"
+msgstr "Version de cURL"
 
 #: wp-admin/includes/class-wp-debug-data.php:735
 msgid "PHP post max size"
-msgstr "PHP post max size"
+msgstr "Taille maximale d’envoi de PHP"
 
 #: wp-admin/includes/class-wp-debug-data.php:731
 msgid "Upload max filesize"
-msgstr "Upload max filesize"
+msgstr "Taille maximale de téléversement de fichier"
 
 #: wp-admin/includes/class-wp-debug-data.php:727
 msgid "Max input time"
@@ -3654,7 +3636,7 @@ msgstr "WordPress.org est accessible"
 
 #: wp-admin/includes/class-wp-debug-data.php:421
 #: wp-admin/includes/class-wp-debug-data.php:427
-#: wp-admin/includes/class-wp-site-health.php:2343
+#: wp-admin/includes/class-wp-site-health.php:2313
 msgid "Communication with WordPress.org"
 msgstr "Communication avec WordPress.org"
 
@@ -4020,7 +4002,7 @@ msgstr "Impossible d’installer"
 
 #. translators: %s: WordPress version.
 #: wp-admin/includes/update.php:302 wp-admin/install.php:238
-#: wp-admin/update-core.php:84 wp-admin/upgrade.php:80
+#: wp-admin/update-core.php:84 wp-admin/upgrade.php:80 wp-admin/about.php:91
 msgid "https://wordpress.org/support/wordpress-version/version-%s/"
 msgstr "https://wordpress.org/support/wordpress-version/version-%s/"
 
@@ -6427,7 +6409,7 @@ msgid "(Currently set to: %s)"
 msgstr "(Actuellement réglé sur : %s)"
 
 #. translators: %s: WordPress version number.
-#: wp-admin/about.php:333
+#: wp-admin/about.php:366
 msgid "<strong>Version %s</strong> addressed one security issue."
 msgstr "La <strong>version %s</strong> a corrigé un problème de sécurité."
 
@@ -6439,15 +6421,15 @@ msgstr "https://fr.gravatar.com/"
 msgid "Profile Picture"
 msgstr "Illustration du profil"
 
-#: wp-admin/about.php:330
+#: wp-admin/about.php:71 wp-admin/about.php:363
 msgid "Maintenance and Security Releases"
 msgstr "Mises à jour de maintenance et de sécurité"
 
-#: wp-admin/about.php:327
+#: wp-admin/about.php:360
 msgid "Security Releases"
 msgstr "Mises à jour de sécurité"
 
-#: wp-admin/about.php:324
+#: wp-admin/about.php:357
 msgid "Maintenance Releases"
 msgstr "Mises à jour de maintenance"
 
@@ -6709,7 +6691,7 @@ msgid "The %1$s plugin header is deprecated. Use %2$s instead."
 msgstr "L’en-tête d’extensions %1$s est obsolète. Utilisez plutôt %2$s."
 
 #: wp-admin/includes/class-wp-site-health.php:1009
-#: wp-admin/includes/class-wp-site-health.php:1837
+#: wp-admin/includes/class-wp-site-health.php:1807
 msgid "Warning"
 msgstr "Avertissement"
 
@@ -7310,7 +7292,7 @@ msgstr "Y-m-d H:i:s"
 
 #: wp-admin/nav-menus.php:630
 msgid "To add a custom link, <strong>expand the Custom Links section, enter a URL and link text, and click Add to Menu</strong>"
-msgstr "Pour ajouter un lien personnalisé <strong>ouvrez la section « Liens personnalisés », saisissez une adresse web et un texte pour le lien, et cliquez sur « Ajouter au menu »</strong>"
+msgstr "Pour ajouter un lien personnalisé <strong>ouvrez la section « Liens personnalisés », saisissez une URL et un texte pour le lien, et cliquez sur « Ajouter au menu »</strong>"
 
 #. translators: Do not translate USERNAME, URL_DELETE, SITENAME, SITEURL: those
 #. are placeholders.
@@ -8347,7 +8329,7 @@ msgstr "Mise à jour de la traduction de %1$s (%2$s)&#8230;"
 msgid "Update Translations"
 msgstr "Mettre à jour les traductions"
 
-#: wp-admin/includes/class-wp-site-health.php:2349
+#: wp-admin/includes/class-wp-site-health.php:2319
 msgid "Background updates"
 msgstr "Mises à jour en arrière-plan"
 
@@ -9005,7 +8987,7 @@ msgstr "En changeant de thème, il y a souvent des variations sur le nombre et l
 
 #: wp-admin/edit-tags.php:288
 msgid "<strong>Parent</strong> &mdash; Categories, unlike tags, can have a hierarchy. You might have a Jazz category, and under that have child categories for Bebop and Big Band. Totally optional. To create a subcategory, just choose another category from the Parent dropdown."
-msgstr "<strong>Parent</strong> &mdash; Les catégories, contrairement aux étiquettes, peuvent avoir une hiérarchie. Vous pouvez avoir une catégorie nommée « Jazz », et à l’intérieur, plusieurs catégories comme « Bebop » et « Big Band ». Le fait d’avoir une hiérarchie est totalement facultatif. Pour créer une sous-catégorie, choisissez juste une autre catégorie depuis la liste déroulante « Parente » ."
+msgstr "<strong>Parent</strong> &mdash; Les catégories, contrairement aux étiquettes, peuvent avoir une hiérarchie. Vous pouvez avoir une catégorie nommée « Jazz », et à l’intérieur, plusieurs catégories comme « Bebop » et « Big Band ». Le fait d’avoir une hiérarchie est totalement facultatif. Pour créer une sous-catégorie, choisissez juste une autre catégorie depuis la liste déroulante « Parente »."
 
 #: wp-admin/edit-form-advanced.php:374
 msgid "Several boxes on this screen contain settings for how your content will be published, including:"
@@ -9938,14 +9920,15 @@ msgstr "Saisissez l’adresse e-mail d’un compte existant sur votre réseau, a
 msgid "Show Toolbar when viewing site"
 msgstr "Afficher la barre d’outils lorsque vous visitez le site"
 
+#. translators: %s: HelpHub URL.
 #. translators: %s: Documentation URL.
-#: wp-admin/about.php:356
+#: wp-admin/about.php:88 wp-admin/about.php:389
 msgid "For more information, see <a href=\"%s\">the release notes</a>."
 msgstr "Pour plus d’informations, consultez les <a href=\"%s\">notes de publication</a>."
 
 #. translators: 1: WordPress version number, 2: Plural number of bugs. More
 #. than one security issue.
-#: wp-admin/about.php:350
+#: wp-admin/about.php:76 wp-admin/about.php:383
 msgid "<strong>Version %1$s</strong> addressed some security issues and fixed %2$s bug."
 msgid_plural "<strong>Version %1$s</strong> addressed some security issues and fixed %2$s bugs."
 msgstr[0] "La <strong>version %1$s</strong> a corrigé quelques problèmes de sécurité et %2$s bug."
@@ -9953,14 +9936,14 @@ msgstr[1] "La <strong>version %1$s</strong> a corrigé quelques problèmes de s�
 
 #. translators: 1: WordPress version number, 2: Plural number of bugs. Singular
 #. security issue.
-#: wp-admin/about.php:344
+#: wp-admin/about.php:377
 msgid "<strong>Version %1$s</strong> addressed a security issue and fixed %2$s bug."
 msgid_plural "<strong>Version %1$s</strong> addressed a security issue and fixed %2$s bugs."
 msgstr[0] "La <strong>version %1$s</strong> a corrigé un problème de sécurité et %2$s bug."
 msgstr[1] "La <strong>version %1$s</strong> a corrigé un problème de sécurité et %2$s bugs."
 
 #. translators: 1: WordPress version number, 2: Plural number of bugs.
-#: wp-admin/about.php:338
+#: wp-admin/about.php:371
 msgid "<strong>Version %1$s</strong> addressed %2$s bug."
 msgid_plural "<strong>Version %1$s</strong> addressed %2$s bugs."
 msgstr[0] "La <strong>version %1$s</strong> a corrigé %2$s bug."
@@ -9971,19 +9954,19 @@ msgid "Welcome to your WordPress Dashboard! This is the screen you will see when
 msgstr "Vous voici dans votre tableau de bord WordPress ! Cet écran s’affiche à chaque connexion à votre site. Il vous donne accès à l’ensemble des fonctionnalités de gestion de WordPress. Vous pouvez obtenir de l’aide pour n’importe quel écran en cliquant sur l’onglet « Aide » présent en haut à droite de chaque écran."
 
 #. translators: %s: WordPress version number.
-#: wp-admin/about.php:335
+#: wp-admin/about.php:368
 msgid "<strong>Version %s</strong> addressed some security issues."
 msgstr "La <strong>version %s</strong> a corrigé quelques problèmes de sécurité."
 
-#: wp-admin/about.php:329
+#: wp-admin/about.php:362
 msgid "Maintenance and Security Release"
 msgstr "Mise à jour de maintenance et de sécurité"
 
-#: wp-admin/about.php:326
+#: wp-admin/about.php:359
 msgid "Security Release"
 msgstr "Mise à jour de sécurité"
 
-#: wp-admin/about.php:323
+#: wp-admin/about.php:356
 msgid "Maintenance Release"
 msgstr "Mise à jour de maintenance"
 
@@ -10056,7 +10039,7 @@ msgstr "Cet écran vous donne accès à tous vos articles. Vous pouvez personnal
 #. translators: %s: URL to Add Plugins screen.
 #: wp-admin/import.php:228
 msgid "If the importer you need is not listed, <a href=\"%s\">search the plugin directory</a> to see if an importer is available."
-msgstr "Si l’outil d’importation dont vous avec besoin n’est pas présent, <a href=\"%s\">recherchez le dans le dépôt d’extensions</a> pour voir s’il s’y trouve."
+msgstr "Si l’outil d’importation dont vous avez besoin n’est pas listé, <a href=\"%s\">faites une recherche dans le répertoire officiel des extensions</a> pour voir s’il y en a un qui répond à votre besoin."
 
 #: wp-admin/edit-comments.php:181
 msgid "Moderating Comments"
@@ -10268,11 +10251,11 @@ msgstr "<strong>Modifier</strong> vous envoie sur l’écran de modification de 
 msgid "Because this is a multisite installation, you may add accounts that already exist on the Network by specifying a username or email, and defining a role. For more options, such as specifying a password, you have to be a Network Administrator and use the hover link under an existing user&#8217;s name to Edit the user profile under Network Admin > All Users."
 msgstr "Parce qu’il s’agit d’une installation multisite, vous pouvez ajouter des comptes qui existent déjà sur le Réseau, en indiquant un identifiant ou une adresse e-mail, et en assignant un rôle. Pour avoir plus d’options, telle que le choix du mot de passe, vous devez être Administrateur ou administratrice du Réseau, et utiliser les liens qui apparaissent au survol sous le nom de l’utilisateur ou de l’utilisatrice pour modifier son compte, depuis l’écran « Tous les comptes »."
 
-#: wp-admin/about.php:235
+#: wp-admin/about.php:268
 msgid "Go to Dashboard &rarr; Home"
 msgstr "Aller sur l’accueil"
 
-#: wp-admin/about.php:232
+#: wp-admin/about.php:265
 msgid "Go to Dashboard &rarr; Updates"
 msgstr "Aller sur Tableau de bord &rarr; Mises à jour"
 
@@ -12107,7 +12090,7 @@ msgstr "Mises à jour de WordPress"
 msgid "Edit menu item"
 msgstr "Modifier un élément du menu"
 
-#: wp-admin/about.php:235 wp-admin/includes/network.php:148
+#: wp-admin/about.php:268 wp-admin/includes/network.php:148
 msgid "Go to Dashboard"
 msgstr "Aller sur le tableau de bord"
 

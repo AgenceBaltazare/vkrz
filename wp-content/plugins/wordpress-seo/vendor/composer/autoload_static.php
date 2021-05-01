@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit2a05f275a08883e22be3d339dd824174
+class ComposerStaticInit5e0b0d75242db2980db07ef62faa199c
 {
     public static $prefixLengthsPsr4 = array (
         'C' => 
@@ -580,6 +580,7 @@ class ComposerStaticInit2a05f275a08883e22be3d339dd824174
         'Yoast\\WP\\SEO\\Builders\\Primary_Term_Builder' => __DIR__ . '/../..' . '/src/builders/primary-term-builder.php',
         'Yoast\\WP\\SEO\\Commands\\Command_Interface' => __DIR__ . '/../..' . '/src/commands/command-interface.php',
         'Yoast\\WP\\SEO\\Commands\\Index_Command' => __DIR__ . '/../..' . '/src/commands/index-command.php',
+        'Yoast\\WP\\SEO\\Conditionals\\Admin\\Doing_Post_Quick_Edit_Save_Conditional' => __DIR__ . '/../..' . '/src/conditionals/admin/doing-post-quick-edit-save-conditional.php',
         'Yoast\\WP\\SEO\\Conditionals\\Admin\\Estimated_Reading_Time_Conditional' => __DIR__ . '/../..' . '/src/conditionals/admin/estimated-reading-time-conditional.php',
         'Yoast\\WP\\SEO\\Conditionals\\Admin\\Post_Conditional' => __DIR__ . '/../..' . '/src/conditionals/admin/post-conditional.php',
         'Yoast\\WP\\SEO\\Conditionals\\Admin\\Posts_Overview_Or_Ajax_Conditional' => __DIR__ . '/../..' . '/src/conditionals/admin/posts-overview-or-ajax-conditional.php',
@@ -774,6 +775,7 @@ class ComposerStaticInit2a05f275a08883e22be3d339dd824174
         'Yoast\\WP\\SEO\\Integrations\\Watchers\\Indexable_Term_Watcher' => __DIR__ . '/../..' . '/src/integrations/watchers/indexable-term-watcher.php',
         'Yoast\\WP\\SEO\\Integrations\\Watchers\\Option_Titles_Watcher' => __DIR__ . '/../..' . '/src/integrations/watchers/option-titles-watcher.php',
         'Yoast\\WP\\SEO\\Integrations\\Watchers\\Option_Wpseo_Watcher' => __DIR__ . '/../..' . '/src/integrations/watchers/option-wpseo-watcher.php',
+        'Yoast\\WP\\SEO\\Integrations\\Watchers\\Primary_Category_Quick_Edit_Watcher' => __DIR__ . '/../..' . '/src/integrations/watchers/primary-category-quick-edit-watcher.php',
         'Yoast\\WP\\SEO\\Integrations\\Watchers\\Primary_Term_Watcher' => __DIR__ . '/../..' . '/src/integrations/watchers/primary-term-watcher.php',
         'Yoast\\WP\\SEO\\Integrations\\XMLRPC' => __DIR__ . '/../..' . '/src/integrations/xmlrpc.php',
         'Yoast\\WP\\SEO\\Loadable_Interface' => __DIR__ . '/../..' . '/src/loadable-interface.php',
@@ -908,9 +910,9 @@ class ComposerStaticInit2a05f275a08883e22be3d339dd824174
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit2a05f275a08883e22be3d339dd824174::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit2a05f275a08883e22be3d339dd824174::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit2a05f275a08883e22be3d339dd824174::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit5e0b0d75242db2980db07ef62faa199c::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit5e0b0d75242db2980db07ef62faa199c::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit5e0b0d75242db2980db07ef62faa199c::$classMap;
 
         }, null, ClassLoader::class);
     }
