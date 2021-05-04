@@ -1,0 +1,31 @@
+.dark-layout .swiper-slide {
+  background-color: transparent !important;
+}
+.dark-layout .card {
+  background-color: $c4;
+}
+.swiper-button-next, .swiper-button-prev{
+  width: 100px;
+  background: rgb(10,9,33);
+  background: linear-gradient(90deg, rgba(10,9,33,0) 26%, rgba(10,9,33,1) 66%);
+  top: 0;
+  height: 100%;
+  right: 0;
+  justify-content: flex-end;
+  &:after{
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.11) !important;
+    background-size: 24px !important;
+    height: 40px !important;
+    width: 40px !important;
+  }
+}
+.swiper-button-prev{
+  background: transparent;
+  width: 40px;
+  justify-content: flex-start;
+}
+.swiper-button-disabled{
+  display: none;
+}

@@ -8,7 +8,7 @@ function genrerate_tournament_response($tournament_infos){
     $contenders_html = ob_get_clean();
 
     ob_start();
-    set_query_var('current_user_ranking_var', compact('id_ranking'));
+    set_query_var('current_user_ranking_var', compact('id_ranking', 'id_tournament'));
     get_template_part( 'templates/parts/content', 'user-ranking' );
     $user_ranking_html = ob_get_clean();
 

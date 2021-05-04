@@ -230,9 +230,13 @@ $(function () {
       el: '.swiper-pagination',
       clickable: true
     },
+      navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev'
+      },
     breakpoints: {
       1024: {
-        slidesPerView: 4,
+        slidesPerView: 99,
         spaceBetween: 40
       },
       768: {

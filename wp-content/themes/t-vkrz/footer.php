@@ -50,19 +50,7 @@
     }
     checkCookie();
 
-    jQuery.fn.equalHeights = function(){
-        var max_height = 0;
-        jQuery(this).each(function(){
-            max_height = Math.max(jQuery(this).height(), max_height);
-        });
-        jQuery(this).each(function(){
-            jQuery(this).height(max_height);
-        });
-    };
 
-    jQuery(document).ready(function() {
-        jQuery('.eh').equalHeights();
-    });
 </script>
 <script>
     $(window).on('load', function() {

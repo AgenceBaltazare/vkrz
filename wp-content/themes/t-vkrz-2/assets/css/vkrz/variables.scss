@@ -1,0 +1,17 @@
+$c1: #0c0a27;
+$c2: #0a0921;
+$c3: #312673;
+$rose: #f4167f;
+$c4: rgba(97, 84, 167, 0.10);
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
+
+.text-rose{
+  color: $rose !important;
+}
+
+.big-cat .heading-cat h2 {
+  font-weight: 900;
+  letter-spacing: 2px;
+  margin: 20px 0 5px;
+}
