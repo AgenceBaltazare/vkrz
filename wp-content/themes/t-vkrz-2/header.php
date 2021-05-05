@@ -50,7 +50,6 @@ $uuiduser           = $_COOKIE["vainkeurz_user_id"];
     <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory'); ?>/assets/css/plugins/extensions/ext-component-swiper.css">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory'); ?>/assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory'); ?>/assets/css/vkrz/main.css">
 
     <?php if($user_role != "administrator"): ?>

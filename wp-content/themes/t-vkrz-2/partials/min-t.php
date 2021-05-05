@@ -40,7 +40,7 @@ if($user_ranking->have_posts()){
     <div class="min-tournoi card scaler">
         <?php
         if (has_post_thumbnail()){
-            $illu = get_the_post_thumbnail_url(get_the_ID(), 'full');
+            $illu = get_the_post_thumbnail_url(get_the_ID(), 'medium');
         }
         ?>
         <div class="cov-illu cover" style="background: url(<?php echo $illu; ?>) center center no-repeat">

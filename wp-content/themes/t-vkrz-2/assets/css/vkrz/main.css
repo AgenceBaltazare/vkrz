@@ -194,7 +194,7 @@ html .content {
     .contenders-containers .link-contender:hover {
       transform: scale(1.1); }
     .contenders-containers .link-contender .contender_zone {
-      cursor: url("../img/select.png"), pointer !important;
+      cursor: url("../../img/cursor.png"), pointer !important;
       height: 100%;
       width: 100%;
       display: block; }
