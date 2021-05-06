@@ -2,6 +2,9 @@
 $id_tournament           = get_the_ID();
 $id_ranking              = get_or_create_ranking_if_not_exists($id_tournament);
 extract(get_next_duel($id_ranking, $id_tournament));
+if(!$is_next_duel){
+    wp_redirect(get_the_permalink($id_ranking));
+}
 $illu       = wp_get_attachment_image_src(get_field('cover_t', $id_tournament), 'full');
 $illu_url   = $illu[0];
 foreach(get_the_terms($id_tournament, 'categorie' ) as $cat ) {
@@ -71,10 +74,6 @@ get_header();
                 set_query_var('steps_var', compact('current_step'));
                 get_template_part('templates/parts/content', 'step-bar');
                 ?>
-
-            <?php else: ?>
-
-                <?php wp_redirect(get_the_permalink($id_ranking)); ?>
 
             <?php endif; ?>
 

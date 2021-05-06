@@ -46,7 +46,7 @@
             </li>
             <li class="nav-item">
                 <a href="https://discord.gg/TnNDwqH3" class="d-flex align-items-center" target="_blank" >
-                    <span class="ico"><img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/discord.png" alt="" class="img-fluid"></span> Discord
+                    <span class="ico"><img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/discord.png" alt="" class="img-fluid"></span> <span class="menu-title text-truncate">Discord</span>
                 </a>
             </li>
         </ul>
