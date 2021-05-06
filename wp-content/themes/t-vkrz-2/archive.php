@@ -4,7 +4,7 @@
     <div class="header-navbar-shadow"></div>
     <div class="content-wrapper">
 
-        <div class="content-body">
+        <div class="content-body pt-1">
 
             <section class="list-tournois">
 
