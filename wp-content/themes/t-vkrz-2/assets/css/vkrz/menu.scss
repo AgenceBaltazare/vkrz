@@ -1,19 +1,22 @@
 // Menu
-.main-menu .navbar-header {
-  height: auto;
-  .navbar-brand {
-    position: relative;
-  }
-  .badge-beta{
-    position: absolute;
-    bottom: 0;
-    text-align: center;
-    width: 100%;
-    .badge{
-      background: $rose !important;
-      color: #fff;
-      font-weight: bold;
-      text-transform: uppercase;
+.main-menu {
+  border-right: 10px solid #14122f;
+  .navbar-header {
+    height: auto;
+    .navbar-brand {
+      position: relative;
+    }
+    .badge-beta{
+      position: absolute;
+      bottom: 0;
+      text-align: center;
+      width: 100%;
+      .badge{
+        background: $rose !important;
+        color: #fff;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
     }
   }
 }

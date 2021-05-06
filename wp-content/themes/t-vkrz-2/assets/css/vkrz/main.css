@@ -53,6 +53,9 @@
 .dark-layout .navbar-dark {
   background: rgba(97, 84, 167, 0.1); }
 
+html .content.app-content {
+  padding: calc(2rem + 3.45rem + 1.3rem) 2rem 0; }
+
 html .content.app-content .content-overlay {
   position: absolute;
   opacity: 0.85;
@@ -71,6 +74,25 @@ html .content.app-content .content-overlay {
 .ico {
   width: 30px;
   display: inline-block; }
+  .ico img {
+    max-width: 22px; }
+
+.breadcrumbs-top a {
+  color: #fff;
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -ms-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  display: inline-block;
+  position: relative;
+  left: 0; }
+  .breadcrumbs-top a .ico {
+    width: 20px;
+    display: inline-block; }
+  .breadcrumbs-top a:hover {
+    left: 3px;
+    color: #fff; }
 
 .ico2 {
   width: 45px;
@@ -94,20 +116,22 @@ html .content.app-content .content-overlay {
 html .content {
   min-height: 100%; }
 
-.main-menu .navbar-header {
-  height: auto; }
-  .main-menu .navbar-header .navbar-brand {
-    position: relative; }
-  .main-menu .navbar-header .badge-beta {
-    position: absolute;
-    bottom: 0;
-    text-align: center;
-    width: 100%; }
-    .main-menu .navbar-header .badge-beta .badge {
-      background: #f4167f !important;
-      color: #fff;
-      font-weight: bold;
-      text-transform: uppercase; }
+.main-menu {
+  border-right: 10px solid #14122f; }
+  .main-menu .navbar-header {
+    height: auto; }
+    .main-menu .navbar-header .navbar-brand {
+      position: relative; }
+    .main-menu .navbar-header .badge-beta {
+      position: absolute;
+      bottom: 0;
+      text-align: center;
+      width: 100%; }
+      .main-menu .navbar-header .badge-beta .badge {
+        background: #f4167f !important;
+        color: #fff;
+        font-weight: bold;
+        text-transform: uppercase; }
 
 .menu-collapsed .brand-text {
   display: block !important; }
@@ -128,28 +152,13 @@ html .content {
   font-size: 12px;
   margin-left: 10px; }
 
-.single-tournoi .header-navbar, .single-classement .header-navbar {
-  background-color: rgba(255, 255, 255, 0.05); }
-
 .single-tournoi .tournoi-content {
   text-align: center; }
-  .single-tournoi .tournoi-content .tournoi-infos {
-    margin-bottom: 70px; }
-    .single-tournoi .tournoi-content .tournoi-infos h1 {
-      color: #f4167f;
-      text-transform: uppercase;
-      font-size: 15px; }
-    .single-tournoi .tournoi-content .tournoi-infos h2 {
-      color: #fff;
-      font-size: 60px; }
   .single-tournoi .tournoi-content .title-contender {
     color: #fff;
     text-transform: uppercase;
     font-size: 15px;
     margin: 30px 0 0 0; }
-
-.contenders-containers {
-  justify-content: center; }
 
 .stepbar {
   position: fixed;
@@ -194,7 +203,7 @@ html .content {
     .contenders-containers .link-contender:hover {
       transform: scale(1.1); }
     .contenders-containers .link-contender .contender_zone {
-      cursor: url("../../img/cursor.png"), pointer !important;
+      cursor: url("../../images/vkrz/cursor.png"), pointer !important;
       height: 100%;
       width: 100%;
       display: block; }
@@ -269,67 +278,13 @@ html .content {
   .current_rank .demo-inline-spacing .avatar-group {
     margin: 0; }
 
-.jsa {
-  justify-content: space-around; }
-
-.share_rank {
-  position: fixed;
-  background: #f4167f;
-  padding: 10px 20px;
-  color: #000;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 99999; }
-  .share_rank .cta_btn {
-    margin: 0;
-    padding: 0;
-    color: #000; }
-    .share_rank .cta_btn:hover {
-      transform: scale(1.1);
-      color: #fff !important; }
-  .share_rank ul {
-    margin: 0;
-    padding: 0;
-    text-align: right; }
-    .share_rank ul li {
-      display: inline-block;
-      margin: 0 20px;
-      letter-spacing: 2px; }
-      .share_rank ul li a {
-        display: block;
-        -webkit-transition: all .2s ease-in-out;
-        -moz-transition: all .2s ease-in-out;
-        -ms-transition: all .2s ease-in-out;
-        -o-transition: all .2s ease-in-out;
-        transition: all .2s ease-in-out; }
-        .share_rank ul li a span {
-          width: 36px;
-          height: 36px;
-          border-radius: 50%;
-          border: 2px solid #000;
-          display: flex;
-          -ms-flex-wrap: wrap;
-          flex-wrap: wrap;
-          -webkit-box-align: center;
-          -ms-flex-align: center;
-          align-items: center;
-          -webkit-box-pack: center;
-          -ms-flex-pack: center;
-          justify-content: center;
-          color: #000;
-          -webkit-transition: color 0.4s, background 0.4s;
-          -o-transition: color 0.4s, background 0.4s;
-          transition: color 0.4s, background 0.4s; }
-        .share_rank ul li a:hover {
-          transform: scale(1.1);
-          color: #fff !important; }
-
-.classement {
-  padding-bottom: 100px; }
+.list-share a {
+  width: 45px;
+  height: 45px;
+  display: inline-block;
+  line-height: 43px;
+  padding: 0 !important;
+  font-size: 20px; }
 
 .name h5 {
   text-transform: uppercase;

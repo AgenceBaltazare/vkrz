@@ -2,20 +2,45 @@
 $id_tournament           = get_the_ID();
 $id_ranking              = get_or_create_ranking_if_not_exists($id_tournament);
 extract(get_next_duel($id_ranking, $id_tournament));
-get_header();
 $illu       = wp_get_attachment_image_src(get_field('cover_t', $id_tournament), 'full');
 $illu_url   = $illu[0];
+foreach(get_the_terms($id_tournament, 'categorie' ) as $cat ) {
+    $cat_id     = $cat->term_id;
+    $cat_name   = $cat->name;
+}
+get_header();
 ?>
 <div class="app-content content cover" style="background: url(<?php echo $illu_url; ?>) center center no-repeat">
     <div class="content-overlay"></div>
     <div class="content-wrapper">
-        <div class="content-header row"></div>
+        <div class="content-header row">
+            <div class="content-header-left col-12">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <div class="breadcrumb-wrapper">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="<?php bloginfo('url'); ?>/">
+                                        🏠 Home
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="<?php echo get_category_link($cat_id); ?>">
+                                        <span class="ico"><?php the_field('icone_cat', 'term_'.$cat_id); ?></span> <span class="menu-title text-truncate"><?php echo $cat_name; ?></span>
+                                    </a>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="content-body tournoi-content">
 
             <?php if ($is_next_duel): ?>
 
                 <div class="container-fluid">
-                    <div class="tournoi-infos">
+                    <div class="tournoi-infos mb-2">
                         <div class="display_current_user_rank d-none d-sm-block">
                             <div class="row">
                                 <div class="col-12">

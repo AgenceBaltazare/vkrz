@@ -1,5 +1,5 @@
 <?php extract( $battle_vars ); ?>
-<div class="row align-items-center contenders-containers">
+<div class="row align-items-center contenders-containers justify-content-center">
     <div class="col-sm-5 bloc-contenders link-contender_1 contender_1 cover_contenders link-contender">
         <div class="contender_zone animate__animated"
            data-id-winner="<?= $contender_1 ?>"

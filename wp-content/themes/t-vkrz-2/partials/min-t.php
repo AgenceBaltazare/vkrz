@@ -3,11 +3,15 @@ $state            = "";
 $id_tournament    = get_the_ID();
 $id_user_ranking  = 0;
 $uuiduser         = $_COOKIE["vainkeurz_user_id"];
+$illu             = get_the_post_thumbnail_url($id_tournament, 'medium');
 if(is_home()){
     $class        = "swiper-slide";
 }
-else{
+elseif(is_archive()){
     $class        = "col-md-4 col-xl-2 col-lg-3";
+}
+elseif(is_single() && (get_post_type() == "classement")){
+    $class        = "col-12";
 }
 $user_ranking     = new WP_Query(array('post_type' => 'classement', 'orderby' => 'date', 'posts_per_page' => '1', 'meta_query' =>
     array(
@@ -38,11 +42,6 @@ if($user_ranking->have_posts()){
 ?>
 <div class="<?php echo $class; ?>">
     <div class="min-tournoi card scaler">
-        <?php
-        if (has_post_thumbnail()){
-            $illu = get_the_post_thumbnail_url(get_the_ID(), 'medium');
-        }
-        ?>
         <div class="cov-illu cover" style="background: url(<?php echo $illu; ?>) center center no-repeat">
             <?php if($state == "done"): ?>
                 <div class="badge badge-success">Terminé</div>
@@ -52,24 +51,36 @@ if($user_ranking->have_posts()){
                 <div class="badge badge-primary">A faire</div>
             <?php endif; ?>
             <div class="voile">
-                <div class="spoun">
-                    ⚔️
-                    <h5>Créer mon TOP</h5>
-                </div>
+                <?php if($state == "done"): ?>
+                    <div class="spoun">
+                        🏆
+                        <h5>Voir mon TOP</h5>
+                    </div>
+                <?php elseif($state == "begin"): ?>
+                    <div class="spoun">
+                        ⚔️
+                        <h5>Terminer mon Top</h5>
+                    </div>
+                <?php else: ?>
+                    <div class="spoun">
+                        ⚔️
+                        <h5>Créer mon Top</h5>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
         <div class="card-body eh">
             <p class="card-text text-primary">
-                TOP <?php echo get_numbers_of_contenders($id_tournament); ?> : <?php the_title(); ?>
+                TOP <?php echo get_numbers_of_contenders($id_tournament); ?> : <?php echo get_the_title($id_tournament); ?>
             </p>
             <h4 class="card-title">
-                <?php the_field('question_t'); ?>
+                <?php the_field('question_t', $id_tournament); ?>
             </h4>
         </div>
         <?php if($state == "done"): ?>
             <a href="<?php the_permalink($id_user_ranking); ?>" class="stretched-link"></a>
         <?php else: ?>
-            <a href="<?php the_permalink(); ?>" class="stretched-link"></a>
+            <a href="<?php the_permalink($id_tournament); ?>" class="stretched-link"></a>
         <?php endif; ?>
     </div>
 </div>

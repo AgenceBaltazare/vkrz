@@ -44,6 +44,11 @@
                     <span class="ico">🙏</span> <span class="menu-title text-truncate">Donne ton avis</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="https://discord.gg/TnNDwqH3" class="d-flex align-items-center" target="_blank" >
+                    <span class="ico"><img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/discord.png" alt="" class="img-fluid"></span> Discord
+                </a>
+            </li>
         </ul>
     </div>
 </div>

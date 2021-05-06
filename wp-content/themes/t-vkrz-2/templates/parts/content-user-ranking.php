@@ -7,7 +7,7 @@ $nb_contenders        = count($list_contenders);
 <div class="current_ranking">
     <div class="demo-inline-spacing align-items-center">
         <h3>
-            Vote pour générer ton Top <?php echo get_numbers_of_contenders($id_tournament); ?> 👉
+            Vote pour générer ton Top <?php echo get_numbers_of_contenders($id_tournament); ?> <div class="ico">👉</div>
         </h3>
         <div class="avatar-group">
             <?php for($j=1; $j<=$nb_contenders; $j++) :

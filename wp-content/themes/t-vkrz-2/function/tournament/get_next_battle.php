@@ -170,9 +170,6 @@ function get_next_duel($id_ranking, $id_tournament) {
         $contender_1      = $next_duel[$val1];
         $contender_2      = $next_duel[$val2];
     }
-    else{
-        wp_redirect(get_the_permalink($id_ranking));
-    }
 
     $current_step = get_steps($id_ranking);
 

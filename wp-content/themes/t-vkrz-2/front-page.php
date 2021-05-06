@@ -55,14 +55,14 @@
                                     En gros, tu choisis un Top et ensuite tu votes en enchainant les duels jusqu'à finaliser ton classement 🥇🥈🥉
                                     <br><br>
                                     Ensuite, tu peux comparer tes classements à ceux de tes amis - si tu en as bien sûr. Et puis si tu n'en pas, 🤗 rejoins notre Discord.
-                                    <br><br>
-                                    Pour les amateurs de formules compliquées, nous utilisons notamment le classement ELO pour gérer les classements - mais pas que... 🤯
                                 </p>
+                                <!--
                                 <a href="<?php the_permalink(); ?>" class="btn btn-primary waves-effect">
                                     En savoir plus sur VKRZ
                                 </a>
+                                -->
                                 <a href="https://discord.gg/TnNDwqH3" class="ml-1 btn btn-outline-primary waves-effect" target="_blank" >
-                                    Nous rejoindre sur Discord
+                                    <span class="ico"><img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/discord.png" alt="" class="img-fluid"></span> Nous rejoindre sur Discord
                                 </a>
                             </div>
                         </div>

@@ -29,6 +29,42 @@ $uuiduser           = $_COOKIE["vainkeurz_user_id"];
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 
+    <?php if(is_home()): ?>
+
+        <title>
+            🔥 VAINKEURZ 👉 Créer et partage tes Tops !
+        </title>
+        <meta name="description" content="Meilleur site de la galaxie - sauf preuve du contraire - pour générer tes Tops facilement." />
+
+    <?php elseif(is_single() && (get_post_type() == "tournoi")): ?>
+
+        <title>
+            ⚔ TOP : <?php the_title(); ?> - <?php the_field( 'question_t' ); ?> 🔥 VAINKEURZ
+        </title>
+
+    <?php elseif(is_single() && (get_post_type() == "classement")): ?>
+
+        <?php $id_tournament = get_field('id_tournoi_r'); ?>
+        <title>
+            🏆 TOP : <?php echo get_the_title($id_tournament); ?> - <?php the_field( 'question_t', $id_tournament ); ?> 🔥 VAINKEURZ
+        </title>
+
+    <?php elseif(is_page(get_page_by_path('elo'))): ?>
+
+        <?php $id_tournament = $_GET['id_tournoi']; ?>
+        <title>
+            Classement mondial 👉 <?php echo get_the_title($id_tournament); ?> - <?php the_field( 'question_t', $id_tournament ); ?> 🔥 VAINKEURZ
+        </title>
+
+    <?php elseif(is_archive()): ?>
+
+        <?php $current_cat = get_queried_object(); ?>
+        <title>
+            Tous les Tops de la catégorie <?php echo $current_cat->name; ?> <?php the_field('icone_cat', 'term_'.$current_cat->term_id); ?>
+        </title>
+
+    <?php endif; ?>
+
     <!-- External -->
     <script src="https://kit.fontawesome.com/30edd5507e.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
