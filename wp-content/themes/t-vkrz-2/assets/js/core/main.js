@@ -20,3 +20,12 @@ $(window).on('load', function() {
         });
     }
 })
+
+$(window).scroll(function() {
+    var scroll = $(window).scrollTop();
+    if(scroll > 10) {
+        $('.menu-user').addClass('opfull');
+    } else {
+        $('.menu-user').removeClass('opfull');
+    }
+});

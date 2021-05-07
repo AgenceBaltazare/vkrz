@@ -1,24 +1,78 @@
-@media (min-width: 576px) {
+@media (max-width: 1400px) {
 
 
 }
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
 
 
 }
 
-@media (min-width: 992px) {
+@media (max-width: 992px) {
 
 
 }
 
-@media (min-width: 1200px) {
+@media (max-width: 1200px) {
 
 
 }
 
-@media (min-width: 1400px) {
+@media (max-width: 576px) {
 
+  html body .app-content {
+    padding: calc(2rem - 0.8rem + 7.45rem + 1.3rem) calc(2rem - 0.8rem) 0 calc(2rem - 0.8rem) !important;
+  }
 
+  .bookmark-wrapper{
+    flex-wrap: wrap;
+    h4{
+      flex-basis: 100%;
+      margin-top: 5px;
+      font-size: 13px;
+    }
+  }
+
+  .min-tournoi .cov-illu .badge {
+    position: absolute;
+    left: 5px;
+    right: auto;
+    top: 5px;
+    z-index: 99;
+  }
+
+  .home{
+    .logo{
+      max-width: 90px !important;
+      transition: all 0.3s ease-in-out;
+    }
+    .opfull{
+      .logo{
+        max-width: 60px !important;
+      }
+      h3, h4{
+        display: none;
+      }
+    }
+  }
+
+  .cat-min{
+    .card-header{
+      text-align: center;
+      flex-direction: column;
+      padding: 20px 10px 12px 10px;
+      .ico2{
+        display: block;
+        margin: 0 auto 10px;
+      }
+    }
+  }
+
+  .heading-cat{
+    small{
+      display: block;
+      margin: 5px 0 0 0;
+    }
+  }
+  
 }

@@ -1,5 +1,7 @@
 <?php get_header(); ?>
-
+<?php
+$list_t_already_done = get_user_tournament_list('t-done', $uuiduser);
+?>
 <!-- BEGIN: Content-->
 <div class="app-content content ">
     <div class="content-overlay"></div>
@@ -26,7 +28,7 @@
                     <div class="swiper-responsive-breakpoints swiper-container swiper-0">
                         <div class="swiper-wrapper">
                             <?php
-                            $tournois_in_cat = new WP_Query(array('post_type' => 'tournoi', 'orderby' => 'rand', 'order' => 'ASC', 'posts_per_page' => 10));
+                            $tournois_in_cat = new WP_Query(array('post_type' => 'tournoi', 'post__not_in' => $list_t_already_done, 'orderby' => 'rand', 'order' => 'ASC', 'posts_per_page' => 10));
                             while ($tournois_in_cat->have_posts()) : $tournois_in_cat->the_post(); ?>
 
                                 <?php get_template_part('partials/min-t'); ?>
@@ -61,7 +63,7 @@
                                     En savoir plus sur VKRZ
                                 </a>
                                 -->
-                                <a href="https://discord.gg/TnNDwqH3" class="ml-1 btn btn-outline-primary waves-effect" target="_blank" >
+                                <a href="https://discord.gg/TnNDwqH3" class="btn btn-outline-primary waves-effect" target="_blank" >
                                     <span class="ico"><img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/discord.png" alt="" class="img-fluid"></span> Nous rejoindre sur Discord
                                 </a>
                             </div>
@@ -78,7 +80,7 @@
                             ));
                             foreach($cat_t as $cat) : ?>
                                 <div class="col-6">
-                                    <div class="card scaler">
+                                    <div class="card scaler cat-min">
                                         <div class="card-header">
                                             <div>
                                                 <h2 class="font-weight-bolder mb-0">
@@ -105,8 +107,10 @@
                             <div class="row">
                                 <div class="col">
                                     <h2 class="text-primary text-uppercase">
-                                        <span class="ico"><?php the_field('icone_cat', 'term_'.$cat->term_id); ?></span> <?php echo $cat->name; ?>
-                                        <small class="text-muted"><?php echo $cat->description; ?></small>
+                                        <a href="<?php echo get_category_link($cat->term_id); ?>">
+                                            <span class="ico"><?php the_field('icone_cat', 'term_'.$cat->term_id); ?></span> <?php echo $cat->name; ?>
+                                            <small class="text-muted"><?php echo $cat->description; ?></small>
+                                        </a>
                                     </h2>
                                 </div>
                             </div>
@@ -116,7 +120,7 @@
                         <div class="swiper-responsive-breakpoints swiper-container swiper-<?php echo $swip; ?>">
                             <div class="swiper-wrapper">
                                 <?php
-                                $tournois_in_cat = new WP_Query(array('post_type' => 'tournoi', 'orderby' => 'rand', 'order' => 'ASC', 'posts_per_page' => 10,
+                                $tournois_in_cat = new WP_Query(array('post_type' => 'tournoi', 'post__not_in' => $list_t_already_done, 'orderby' => 'rand', 'order' => 'ASC', 'posts_per_page' => 10,
                                     'tax_query' => array(
                                         array(
                                             'taxonomy' => 'categorie',

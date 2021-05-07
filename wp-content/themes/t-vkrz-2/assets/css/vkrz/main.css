@@ -14,28 +14,38 @@
   background-color: rgba(97, 84, 167, 0.1); }
 
 .swiper-button-next, .swiper-button-prev {
-  width: 100px;
+  width: 50px;
   background: #0a0921;
-  background: linear-gradient(90deg, rgba(10, 9, 33, 0) 26%, #0a0921 66%);
+  background: linear-gradient(90deg, rgba(10, 9, 33, 0) 10%, #0a0921 40%);
   top: 0;
   height: 100%;
-  right: 0;
+  right: -2px;
   justify-content: flex-end; }
   .swiper-button-next:after, .swiper-button-prev:after {
     border-radius: 50%;
-    background-color: #fff;
+    background-color: #0c0a27;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.11) !important;
     background-size: 24px !important;
     height: 40px !important;
-    width: 40px !important; }
+    width: 40px !important;
+    padding: 0 !important;
+    position: relative;
+    right: 5px; }
 
 .swiper-button-prev {
   background: transparent;
   width: 40px;
-  justify-content: flex-start; }
+  justify-content: flex-start;
+  left: 5px; }
 
 .swiper-button-disabled {
   display: none; }
+
+.main-menu.menu-dark .navigation > li > a {
+  margin: 0 15px 0 10px; }
+
+.vertical-layout.vertical-menu-modern.menu-collapsed .main-menu:not(.expanded) .navigation-header {
+  margin-left: 1.8rem !important; }
 
 .cover {
   background-size: cover !important; }
@@ -70,6 +80,9 @@ html .content.app-content .content-overlay {
 
 .dark-layout .header-navbar-shadow {
   background: linear-gradient(180deg, #0a0922 44%, #0c0a27 73%, #0c0a27); }
+
+.opfull {
+  background: #13122f !important; }
 
 .ico {
   width: 30px;
@@ -109,12 +122,26 @@ html .content.app-content .content-overlay {
   transition: all .2s ease-in-out; }
   .scaler:hover {
     transform: scale(1.05); }
+    .scaler:hover .voile {
+      transform: scale(1.05); }
 
 .swiper-container {
   padding-top: 15px; }
 
 html .content {
   min-height: 100%; }
+
+.heading-cat a {
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -ms-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  display: block;
+  position: relative;
+  left: 0; }
+  .heading-cat a:hover {
+    left: 10px; }
 
 .main-menu {
   border-right: 10px solid #14122f; }
@@ -136,7 +163,7 @@ html .content {
 .menu-collapsed .brand-text {
   display: block !important; }
   .menu-collapsed .brand-text img {
-    max-width: 70px;
+    max-width: 60px;
     height: auto;
     position: relative;
     right: 30px; }
@@ -201,12 +228,15 @@ html .content {
     position: relative;
     transition: all 0.2s ease-in; }
     .contenders-containers .link-contender:hover {
-      transform: scale(1.1); }
+      transform: scale(1.03); }
     .contenders-containers .link-contender .contender_zone {
-      cursor: url("../../images/vkrz/cursor.png"), pointer !important;
       height: 100%;
       width: 100%;
       display: block; }
+  .contenders-containers .link-contender_1 .contender_zone {
+    cursor: url("../../images/vkrz/cursor_l.png"), pointer !important; }
+  .contenders-containers .link-contender_2 .contender_zone {
+    cursor: url("../../images/vkrz/cursor_r.png"), pointer !important; }
 
 .min-tournoi {
   -webkit-transition: all .2s ease-in-out;
@@ -291,5 +321,43 @@ html .content {
   text-align: center; }
   .name h5 span {
     color: #f4167f; }
+
+@media (max-width: 576px) {
+  html body .app-content {
+    padding: calc(2rem - 0.8rem + 7.45rem + 1.3rem) calc(2rem - 0.8rem) 0 calc(2rem - 0.8rem) !important; }
+
+  .bookmark-wrapper {
+    flex-wrap: wrap; }
+    .bookmark-wrapper h4 {
+      flex-basis: 100%;
+      margin-top: 5px;
+      font-size: 13px; }
+
+  .min-tournoi .cov-illu .badge {
+    position: absolute;
+    left: 5px;
+    right: auto;
+    top: 5px;
+    z-index: 99; }
+
+  .home .logo {
+    max-width: 90px !important;
+    transition: all 0.3s ease-in-out; }
+  .home .opfull .logo {
+    max-width: 60px !important; }
+  .home .opfull h3, .home .opfull h4 {
+    display: none; }
+
+  .cat-min .card-header {
+    text-align: center;
+    flex-direction: column;
+    padding: 20px 10px 12px 10px; }
+    .cat-min .card-header .ico2 {
+      display: block;
+      margin: 0 auto 10px; }
+
+  .heading-cat small {
+    display: block;
+    margin: 5px 0 0 0; } }
 
 /*# sourceMappingURL=main.css.map */

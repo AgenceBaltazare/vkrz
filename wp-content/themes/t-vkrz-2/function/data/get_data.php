@@ -1,25 +1,4 @@
 <?php
-function get_user_data($request, $uuiduser){
-
-    if($request == "nb-user-vote"){
-
-        $all_user_votes = new WP_Query(array('post_type' => 'vote', 'posts_per_page' => '-1', 'meta_query' => array(
-            array(
-                'key' => 'id_user_v',
-                'value' => $uuiduser,
-                'compare' => '=',
-            ),
-        )));
-
-        $result  = $all_user_votes->post_count;
-
-    }
-
-
-    return $result;
-
-}
-
 function get_global_data($request, $id_tournament){
 
     if($request == "nb-tournoi"){

@@ -86,7 +86,7 @@ get_header();
                                                             <?php echo get_the_post_thumbnail($c, 'full', array('class' => 'img-fluid')); ?>
                                                         <?php endif; ?>
                                                     </div>
-                                                    <div class="name">
+                                                    <div class="name eh">
                                                         <h5 class="mt-2">
                                                             <?php if($i == 1): ?>
                                                                 <span class="ico">🥇</span>

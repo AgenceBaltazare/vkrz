@@ -62,14 +62,24 @@
     transition: all 0.2s ease-in;
 
     &:hover{
-      transform: scale(1.1);
+      transform: scale(1.03);
     }
 
     .contender_zone{
-      cursor: url("../../images/vkrz/cursor.png"), pointer !important;
       height: 100%;
       width: 100%;
       display: block;
+    }
+  }
+
+  .link-contender_1{
+    .contender_zone{
+      cursor: url("../../images/vkrz/cursor_l.png"), pointer !important;
+    }
+  }
+  .link-contender_2{
+    .contender_zone{
+      cursor: url("../../images/vkrz/cursor_r.png"), pointer !important;
     }
   }
 }

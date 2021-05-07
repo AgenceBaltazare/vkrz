@@ -1,6 +1,13 @@
 <!-- BEGIN: Header-->
-<nav class="header-navbar navbar navbar-expand-lg align-items-center floating-nav navbar-dark navbar-shadow">
+<nav class="header-navbar navbar navbar-expand-lg align-items-center floating-nav navbar-dark navbar-shadow menu-user">
     <div class="navbar-container d-flex content align-items-center">
+
+        <div class="d-block d-sm-none">
+            <a href="<?php bloginfo('url'); ?>/">
+                <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/logo-vkrz.png" alt="VAINKEURZ logo" class="logo img-fluid">
+            </a>
+        </div>
+
         <div class="bookmark-wrapper d-flex align-items-baseline">
 
             <ul class="nav navbar-nav d-xl-none">

@@ -37,6 +37,9 @@ html .content.app-content .content-overlay{
 .dark-layout .header-navbar-shadow {
   background: linear-gradient(180deg, #0a0922 44%, #0c0a27 73%, #0c0a27);
 }
+.opfull{
+  background: #13122f !important;
+}
 .ico{
   width: 30px;
   display: inline-block;
@@ -82,6 +85,9 @@ html .content.app-content .content-overlay{
   transition: all .2s ease-in-out;
   &:hover{
     transform: scale(1.05);
+    .voile{
+      transform: scale(1.05);
+    }
   }
 }
 
@@ -91,4 +97,20 @@ html .content.app-content .content-overlay{
 
 html .content {
   min-height: 100%;
+}
+
+.heading-cat{
+  a{
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+    display: block;
+    position: relative;
+    left: 0;
+    &:hover{
+      left: 10px;
+    }
+  }
 }
