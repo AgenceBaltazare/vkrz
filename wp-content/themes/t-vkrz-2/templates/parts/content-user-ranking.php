@@ -2,14 +2,16 @@
 extract($current_user_ranking_var);
 $current_user_ranking = get_current_user_ranking($id_ranking);
 $list_contenders      = get_field('ranking_r', $id_ranking);
+$id_tournament        = get_field('id_tournoi_r', $id_ranking);
 $nb_contenders        = count($list_contenders);
 ?>
 <div class="current_ranking">
-    <div class="demo-inline-spacing align-items-center">
-        <h3>
-            Vote pour générer ton Top <?php echo get_numbers_of_contenders($id_tournament); ?> <div class="ico">👉</div>
+    <div class="demo-inline-spacing">
+        <h3 class="text-center t-question">
+            <?php the_field( 'question_t', $id_tournament ); ?> <br>
         </h3>
-        <div class="avatar-group">
+        <div class="avatar-group align-items-center mt-1">
+            <span class="ico2">‍👉</span>
             <?php for($j=1; $j<=$nb_contenders; $j++) :
 
                 $do_place             = false;
@@ -32,7 +34,11 @@ $nb_contenders        = count($list_contenders);
                 <?php if($do_place == false): ?>
                     <div class="avatar bg-secondary">
                         <div class="avatar-content">
-                            <?php echo $j; ?>
+                            <?php
+                            $delay = 0.25*$j."s";
+                            ?>
+                            <span class="lele1" style="animation-delay: <?php echo $delay; ?>;"><?php echo $j; ?></span>
+                            <span class="lele2" style="animation-delay: <?php echo $delay; ?>;">🤷🏻‍♂️</span>
                         </div>
                     </div>
                 <?php endif; ?>

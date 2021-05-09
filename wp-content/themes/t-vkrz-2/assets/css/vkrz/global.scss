@@ -17,6 +17,7 @@
   }
   .navbar-dark {
     background: $c4;
+    transition: all 0.5s ease-in-out;
   }
 }
 html .content.app-content {
@@ -33,9 +34,6 @@ html .content.app-content .content-overlay{
   bottom: 0;
   background-color: $c2;
   z-index: 0;
-}
-.dark-layout .header-navbar-shadow {
-  background: linear-gradient(180deg, #0a0922 44%, #0c0a27 73%, #0c0a27);
 }
 .opfull{
   background: #13122f !important;
@@ -113,4 +111,56 @@ html .content {
       left: 10px;
     }
   }
+}
+
+.t-titre-tournoi{
+  font-size: 18px;
+  color: #fff !important;
+}
+.t-question{
+  color: $rose !important;
+  font-size: 22px;
+}
+
+.lele2{
+  width: 0;
+  animation-name: appear2;
+  overflow: hidden;
+  animation: appear2 3s infinite ease-in-out;
+}
+
+
+@keyframes appear2 {
+  20%, 100% {
+    width: 0;
+  }
+  0% {
+    width: 0;
+  }
+  5% {
+    width: auto;
+  }
+}
+
+.lele1{
+  width: auto;
+  overflow: hidden;
+  animation: appear 3s infinite ease-in-out;
+}
+
+
+@keyframes appear {
+  20%, 100% {
+    width: auto;
+  }
+  0% {
+    width: auto;
+  }
+  5% {
+    width: 0;
+  }
+}
+
+.ico-size-2{
+  font-size: 20px;
 }

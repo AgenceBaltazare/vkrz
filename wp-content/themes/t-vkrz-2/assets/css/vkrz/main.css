@@ -47,6 +47,16 @@
 .vertical-layout.vertical-menu-modern.menu-collapsed .main-menu:not(.expanded) .navigation-header {
   margin-left: 1.8rem !important; }
 
+.demo-inline-spacing {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column; }
+
+.header-navbar .navbar-container ul.navbar-nav li.dropdown-cart .media-heading {
+  width: auto; }
+
 .cover {
   background-size: cover !important; }
 
@@ -61,7 +71,8 @@
 .dark-layout .main-menu-content .navigation-main {
   background-color: #0a0921; }
 .dark-layout .navbar-dark {
-  background: rgba(97, 84, 167, 0.1); }
+  background: rgba(97, 84, 167, 0.1);
+  transition: all 0.5s ease-in-out; }
 
 html .content.app-content {
   padding: calc(2rem + 3.45rem + 1.3rem) 2rem 0; }
@@ -77,9 +88,6 @@ html .content.app-content .content-overlay {
   bottom: 0;
   background-color: #0a0921;
   z-index: 0; }
-
-.dark-layout .header-navbar-shadow {
-  background: linear-gradient(180deg, #0a0922 44%, #0c0a27 73%, #0c0a27); }
 
 .opfull {
   background: #13122f !important; }
@@ -143,6 +151,42 @@ html .content {
   .heading-cat a:hover {
     left: 10px; }
 
+.t-titre-tournoi {
+  font-size: 18px;
+  color: #fff !important; }
+
+.t-question {
+  color: #f4167f !important;
+  font-size: 22px; }
+
+.lele2 {
+  width: 0;
+  animation-name: appear2;
+  overflow: hidden;
+  animation: appear2 3s infinite ease-in-out; }
+
+@keyframes appear2 {
+  20%, 100% {
+    width: 0; }
+  0% {
+    width: 0; }
+  5% {
+    width: auto; } }
+.lele1 {
+  width: auto;
+  overflow: hidden;
+  animation: appear 3s infinite ease-in-out; }
+
+@keyframes appear {
+  20%, 100% {
+    width: auto; }
+  0% {
+    width: auto; }
+  5% {
+    width: 0; } }
+.ico-size-2 {
+  font-size: 20px; }
+
 .main-menu {
   border-right: 10px solid #14122f; }
   .main-menu .navbar-header {
@@ -179,6 +223,22 @@ html .content {
   font-size: 12px;
   margin-left: 10px; }
 
+.min-t-thumb {
+  width: 60px;
+  margin-right: 10px; }
+
+.value-user-stats {
+  font-size: 1.07rem;
+  font-weight: 500;
+  line-height: 1.2; }
+
+.user-niveau {
+  width: 11px;
+  height: 11px;
+  position: absolute;
+  right: 0;
+  bottom: 0; }
+
 .single-tournoi .tournoi-content {
   text-align: center; }
   .single-tournoi .tournoi-content .title-contender {
@@ -189,7 +249,7 @@ html .content {
 
 .stepbar {
   position: fixed;
-  top: 0;
+  bottom: 0;
   right: 0;
   left: 0;
   height: 10px;
@@ -207,6 +267,15 @@ html .content {
       font-size: 15px;
       text-transform: lowercase !important;
       color: #333 !important; }
+  .stepbar .stepbar-content {
+    position: relative; }
+    .stepbar .stepbar-content span {
+      position: absolute;
+      right: 0;
+      top: -15px;
+      color: #f4177f;
+      font-size: 12px;
+      height: 15px; }
 
 .cover_contenders {
   text-align: center; }
@@ -304,17 +373,21 @@ html .content {
 .current_rank .demo-inline-spacing {
   justify-content: center; }
   .current_rank .demo-inline-spacing h3 {
-    margin: 0 20px 0 0; }
+    margin: 0; }
   .current_rank .demo-inline-spacing .avatar-group {
     margin: 0; }
 
-.list-share a {
-  width: 45px;
-  height: 45px;
-  display: inline-block;
-  line-height: 43px;
-  padding: 0 !important;
-  font-size: 20px; }
+.list-share {
+  flex-wrap: wrap; }
+  .list-share div {
+    margin-bottom: 5px; }
+  .list-share a {
+    width: 45px;
+    height: 45px;
+    display: inline-block;
+    line-height: 43px;
+    padding: 0 !important;
+    font-size: 20px; }
 
 .name h5 {
   text-transform: uppercase;
@@ -322,6 +395,10 @@ html .content {
   .name h5 span {
     color: #f4167f; }
 
+@media (min-width: 1200px) {
+  .col-xxl-2 {
+    flex: 0 0 16.66667%;
+    max-width: 16.66667%; } }
 @media (max-width: 576px) {
   html body .app-content {
     padding: calc(2rem - 0.8rem + 7.45rem + 1.3rem) calc(2rem - 0.8rem) 0 calc(2rem - 0.8rem) !important; }
@@ -340,13 +417,17 @@ html .content {
     top: 5px;
     z-index: 99; }
 
-  .home .logo {
+  .logo {
     max-width: 90px !important;
     transition: all 0.3s ease-in-out; }
-  .home .opfull .logo {
+
+  .opfull .logo {
     max-width: 60px !important; }
-  .home .opfull h3, .home .opfull h4 {
+  .opfull h3, .opfull h4 {
     display: none; }
+  .opfull .navbar-container {
+    flex-wrap: wrap;
+    justify-content: end !important; }
 
   .cat-min .card-header {
     text-align: center;

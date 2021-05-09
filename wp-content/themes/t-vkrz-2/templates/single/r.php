@@ -1,5 +1,7 @@
 <?php
 global $id_tournament;
+global $cat_id;
+global $cat_name;
 $id_ranking                      = get_the_ID();
 $id_tournament                   = get_field('id_tournoi_r');
 $uuiduser                        = get_field('uuid_user_r');
@@ -20,28 +22,6 @@ get_header();
 <div class="app-content content cover">
     <div class="content-overlay"></div>
     <div class="content-wrapper">
-        <div class="content-header row">
-            <div class="content-header-left col-12">
-                <div class="row breadcrumbs-top">
-                    <div class="col-12">
-                        <div class="breadcrumb-wrapper">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item">
-                                    <a href="<?php bloginfo('url'); ?>/">
-                                        🏠 Home
-                                    </a>
-                                </li>
-                                <li class="breadcrumb-item">
-                                    <a href="<?php echo get_category_link($cat_id); ?>">
-                                        <span class="ico"><?php the_field('icone_cat', 'term_'.$cat_id); ?></span> <span class="menu-title text-truncate"><?php echo $cat_name; ?></span>
-                                    </a>
-                                </li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="content-body mt-2">
             <div class="classement">
                 <div class="container-fluid">
@@ -73,7 +53,7 @@ get_header();
                                                             <?php echo get_the_post_thumbnail($c, 'full', array('class' => 'img-fluid')); ?>
                                                         <?php endif; ?>
                                                     </div>
-                                                    <div class="name eh">
+                                                    <div class="name eh2">
                                                         <h5 class="mt-2">
                                                             <?php if($i == 1): ?>
                                                                 <span class="ico">🥇</span>
@@ -82,7 +62,7 @@ get_header();
                                                             <?php elseif($i == 3): ?>
                                                                 <span class="ico">🥉</span>
                                                             <?php else: ?>
-                                                                <span><?php echo $i; ?> - </span>
+                                                                <span><?php echo $i; ?><br></span>
                                                             <?php endif; ?>
                                                             <?php if(!$display_titre): ?>
                                                                 <?php echo get_the_title($c); ?>
@@ -107,7 +87,7 @@ get_header();
                                             <span class="ico">😎</span> Partage ton Top
                                         </h4>
                                         <h6 class="card-subtitle text-muted mb-1">
-                                            Il est temps de revendiquer et assumer tes choix !
+                                            Il est temps de revendiquer et assumer ses choix !
                                         </h6>
                                         <div class="d-flex list-share align-items-center justify-content-around">
 

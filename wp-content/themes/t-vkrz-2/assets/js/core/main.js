@@ -10,6 +10,7 @@ jQuery.fn.equalHeights = function(){
 
 jQuery(document).ready(function() {
     jQuery('.eh').equalHeights();
+    jQuery('.eh2').equalHeights();
 });
 
 $(window).on('load', function() {

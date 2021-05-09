@@ -8,7 +8,7 @@ if(is_home()){
     $class        = "swiper-slide";
 }
 elseif(is_archive()){
-    $class        = "col-md-4 col-lg-3";
+    $class        = "col-md-4 col-lg-3 col-xxl-2";
 }
 elseif(is_single() && (get_post_type() == "classement")){
     $class        = "col-12";

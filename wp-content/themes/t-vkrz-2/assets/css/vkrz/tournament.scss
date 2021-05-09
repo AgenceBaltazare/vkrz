@@ -13,7 +13,7 @@
 // Stepbar
 .stepbar{
   position: fixed;
-  top: 0;
+  bottom: 0;
   right: 0;
   left: 0;
   height: 10px;
@@ -31,6 +31,17 @@
       font-size: 15px;
       text-transform: lowercase !important;
       color: #333 !important;
+    }
+  }
+  .stepbar-content{
+    position: relative;
+    span{
+      position: absolute;
+      right: 0;
+      top: -15px;
+      color: #f4177f;
+      font-size: 12px;
+      height: 15px;
     }
   }
 }
@@ -170,7 +181,7 @@
   .demo-inline-spacing {
     justify-content: center;
     h3 {
-      margin: 0 20px 0 0;
+      margin: 0;
     }
     .avatar-group {
       margin: 0;

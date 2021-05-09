@@ -52,6 +52,7 @@ $(document).ready(function ($) {
                         $('.contender_2 .contender_zone').addClass('animate__zoomIn');
                     }
                     $('.stepbar').width(data.current_step + "%");
+                    $('.stepbar span').html(data.current_step + "%");
                     $('.display_users_votes h6').replaceWith(data.uservotes_html);
                     $('.current_rank').html(data.user_ranking_html);
 

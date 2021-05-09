@@ -16,35 +16,13 @@ get_header();
 <div class="app-content content cover" style="background: url(<?php echo $illu_url; ?>) center center no-repeat">
     <div class="content-overlay"></div>
     <div class="content-wrapper">
-        <div class="content-header row">
-            <div class="content-header-left col-12">
-                <div class="row breadcrumbs-top">
-                    <div class="col-12">
-                        <div class="breadcrumb-wrapper">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item">
-                                    <a href="<?php bloginfo('url'); ?>/">
-                                        🏠 Home
-                                    </a>
-                                </li>
-                                <li class="breadcrumb-item">
-                                    <a href="<?php echo get_category_link($cat_id); ?>">
-                                        <span class="ico"><?php the_field('icone_cat', 'term_'.$cat_id); ?></span> <span class="menu-title text-truncate"><?php echo $cat_name; ?></span>
-                                    </a>
-                                </li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="content-body tournoi-content">
 
             <?php if ($is_next_duel): ?>
 
                 <div class="container-fluid">
                     <div class="tournoi-infos mb-2">
-                        <div class="display_current_user_rank d-none d-sm-block">
+                        <div class="display_current_user_rank">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="current_rank">

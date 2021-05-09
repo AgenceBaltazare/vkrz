@@ -53,7 +53,7 @@ get_header();
 
                     <div class="row">
 
-                        <div class="col-md-7 offset-md-1">
+                        <div class="col-xxl-8 col-md-7 offset-md-1">
 
                             <div class="list-classement">
 
@@ -86,7 +86,7 @@ get_header();
                                                             <?php echo get_the_post_thumbnail($c, 'full', array('class' => 'img-fluid')); ?>
                                                         <?php endif; ?>
                                                     </div>
-                                                    <div class="name eh">
+                                                    <div class="name eh2">
                                                         <h5 class="mt-2">
                                                             <?php if($i == 1): ?>
                                                                 <span class="ico">🥇</span>
@@ -95,7 +95,7 @@ get_header();
                                                             <?php elseif($i == 3): ?>
                                                                 <span class="ico">🥉</span>
                                                             <?php else: ?>
-                                                                <span><?php echo $i; ?> - </span>
+                                                                <span><?php echo $i; ?><br></span>
                                                             <?php endif; ?>
                                                             <?php if(!$display_titre): ?>
                                                                 <?php echo get_the_title($c); ?>
@@ -109,7 +109,7 @@ get_header();
                             </div>
                         </div>
 
-                        <div class="col-md-3 offset-md-1">
+                        <div class="col-xxl-2 col-md-3 offset-md-1">
 
                             <div class="related">
 

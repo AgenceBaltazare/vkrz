@@ -39,3 +39,15 @@
 .vertical-layout.vertical-menu-modern.menu-collapsed .main-menu:not(.expanded) .navigation-header {
   margin-left: 1.8rem !important;
 }
+
+.demo-inline-spacing {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+
+.header-navbar .navbar-container ul.navbar-nav li.dropdown-cart .media-heading {
+  width: auto;
+}

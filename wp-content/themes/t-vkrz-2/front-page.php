@@ -5,7 +5,6 @@ $list_t_already_done = get_user_tournament_list('t-done', $uuiduser);
 <!-- BEGIN: Content-->
 <div class="app-content content ">
     <div class="content-overlay"></div>
-    <div class="header-navbar-shadow"></div>
     <div class="content-wrapper">
 
         <div class="content-body">
@@ -64,7 +63,7 @@ $list_t_already_done = get_user_tournament_list('t-done', $uuiduser);
                                 </a>
                                 -->
                                 <a href="https://discord.gg/TnNDwqH3" class="btn btn-outline-primary waves-effect" target="_blank" >
-                                    <span class="ico"><img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/discord.png" alt="" class="img-fluid"></span> Nous rejoindre sur Discord
+                                    <span class="ico">🍻</span> Nous rejoindre sur Discord
                                 </a>
                             </div>
                         </div>

@@ -1,5 +1,9 @@
-@media (max-width: 1400px) {
+@media (min-width: 1200px) {
 
+  .col-xxl-2{
+    flex: 0 0 16.66667%;
+    max-width: 16.66667%;
+  }
 
 }
 
@@ -41,18 +45,21 @@
     z-index: 99;
   }
 
-  .home{
+
+  .logo{
+    max-width: 90px !important;
+    transition: all 0.3s ease-in-out;
+  }
+  .opfull{
     .logo{
-      max-width: 90px !important;
-      transition: all 0.3s ease-in-out;
+      max-width: 60px !important;
     }
-    .opfull{
-      .logo{
-        max-width: 60px !important;
-      }
-      h3, h4{
-        display: none;
-      }
+    h3, h4{
+      display: none;
+    }
+    .navbar-container{
+      flex-wrap: wrap;
+      justify-content: end !important;
     }
   }
 

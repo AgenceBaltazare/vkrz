@@ -1,4 +1,8 @@
 .list-share{
+  flex-wrap: wrap;
+  div{
+    margin-bottom: 5px;
+  }
   a{
     width: 45px;
     height: 45px;
