@@ -54,6 +54,8 @@ wp_reset_query(); wp_reset_postdata();
         <title>
             ⚔ TOP : <?php the_title(); ?> - <?php the_field( 'question_t' ); ?> 🔥 VAINKEURZ
         </title>
+        <meta name="description" content="<?php the_title(); ?>" />
+
 
     <?php elseif(is_single() && get_post_type() == "classement"): ?>
 
@@ -61,6 +63,16 @@ wp_reset_query(); wp_reset_postdata();
         <title>
             🏆 TOP : <?php echo get_the_title($id_tournament); ?> - <?php the_field( 'question_t', $id_tournament ); ?> 🔥 VAINKEURZ
         </title>
+        <meta name="description" content="<?php echo get_the_title($id_tournament); ?>" />
+
+        <link rel="canonical" href="https://vainkeurz.com/r/t14597-u1b86cafb238d0/" />
+        <meta property="og:locale" content="fr_FR" />
+        <meta property="og:image" content="<?php get_the_post_thumbnail_url($id_tournament, 'medium'); ?>" />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content="Viens checher mon <?php echo get_the_title($id_tournament); ?> <?php the_field( 'question_t', $id_tournament ); ?>" />
+        <meta property="og:url" content="<?php get_the_permalink(); ?>" />
+        <meta property="og:site_name" content="🔥 VAINKEURZ 👉" />
+        <meta name="twitter:card" content="summary_large_image" />
 
     <?php elseif(is_page(get_page_by_path('elo'))): ?>
 
@@ -68,6 +80,8 @@ wp_reset_query(); wp_reset_postdata();
         <title>
             Classement mondial 👉 <?php echo get_the_title($id_tournament); ?> - <?php the_field( 'question_t', $id_tournament ); ?> 🔥 VAINKEURZ
         </title>
+        <meta name="description" content="<?php echo get_the_title($id_tournament); ?>" />
+
 
     <?php elseif(is_archive()): ?>
 
@@ -75,6 +89,8 @@ wp_reset_query(); wp_reset_postdata();
         <title>
             Tous les Tops de la catégorie <?php echo $current_cat->name; ?> <?php the_field('icone_cat', 'term_'.$current_cat->term_id); ?>
         </title>
+        <meta name="description" content="Tous les Tops de la catégorie <?php echo $current_cat->name; ?>" />
+
 
     <?php endif; ?>
 
