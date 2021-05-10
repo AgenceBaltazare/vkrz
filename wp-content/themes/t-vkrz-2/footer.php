@@ -7,7 +7,7 @@ wp_reset_query(); wp_reset_postdata();
 <!-- BEGIN: Footer-->
 <footer class="footer footer-static footer-light">
     <p class="clearfix mb-0">
-        <span class="float-md-left d-block d-md-inline-block mt-25">COPYRIGHT &copy; <?php echo date('d/m/Y H:i:s'); ?> </span>
+        <span class="float-md-left d-block d-md-inline-block mt-25">COPYRIGHT &copy; <?php echo date('Y'); ?> </span>
     </p>
 </footer>
 <button class="btn btn-primary btn-icon scroll-top" type="button">
