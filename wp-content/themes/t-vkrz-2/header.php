@@ -69,10 +69,15 @@ wp_reset_query(); wp_reset_postdata();
         <meta property="og:locale" content="fr_FR" />
         <meta property="og:image" content="<?php get_the_post_thumbnail_url($id_tournament, 'medium'); ?>" />
         <meta property="og:type" content="article" />
-        <meta property="og:title" content="Viens checher mon <?php echo get_the_title($id_tournament); ?> <?php the_field( 'question_t', $id_tournament ); ?>" />
+        <meta property="og:title" content="<?php the_field( 'question_t', $id_tournament ); ?> " />
+        <meta property="og:description" content="Viens checker mon top <?php echo get_the_title($id_tournament); ?>" />
         <meta property="og:url" content="<?php get_the_permalink(); ?>" />
         <meta property="og:site_name" content="🔥 VAINKEURZ 👉" />
-        <meta name="twitter:card" content="summary_large_image" />
+
+        <meta name="twitter:title" content="<?php the_field( 'question_t', $id_tournament ); ?>  ">
+        <meta name="twitter:description" content="<?php the_field( 'question_t', $id_tournament ); ?>">
+        <meta name="twitter:image" content=" <?php get_the_post_thumbnail_url($id_tournament, 'medium'); ?>">
+        <meta name="twitter:card" content="summary_large_image">
 
     <?php elseif(is_page(get_page_by_path('elo'))): ?>
 
