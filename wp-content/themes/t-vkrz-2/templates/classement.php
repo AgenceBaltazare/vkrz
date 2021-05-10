@@ -5,6 +5,8 @@
 ?>
 <?php
 global $id_tournament;
+global $cat_id;
+global $cat_name;
 if(isset($_GET['id_tournoi'])){
     $id_tournament  = $_GET['id_tournoi'];
 }
@@ -25,41 +27,19 @@ get_header();
 <div class="app-content content cover">
     <div class="content-overlay"></div>
     <div class="content-wrapper">
-        <div class="content-header row">
-            <div class="content-header-left col-12">
-                <div class="row breadcrumbs-top">
-                    <div class="col-12">
-                        <div class="breadcrumb-wrapper">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item">
-                                    <a href="<?php bloginfo('url'); ?>/">
-                                        🏠 Home
-                                    </a>
-                                </li>
-                                <li class="breadcrumb-item">
-                                    <a href="<?php echo get_category_link($cat_id); ?>">
-                                        <span class="ico"><?php the_field('icone_cat', 'term_'.$cat_id); ?></span> <span class="menu-title text-truncate"><?php echo $cat_name; ?></span>
-                                    </a>
-                                </li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="content-body mt-2">
             <div class="classement">
                 <div class="container-fluid">
 
                     <div class="row">
 
-                        <div class="col-xxl-8 col-md-7 offset-md-1">
+                        <div class="col-xl-8 col-md-7 offset-md-1">
 
                             <div class="list-classement">
 
                                 <div class="row align-items-end justify-content-center">
 
-                                    <?php $contenders_tournament = new WP_Query(array('post_type' => 'contender', 'meta_key' => 'ELO_c', 'orderby' => 'meta_value', 'posts_per_page' => '-1', 'meta_query' => array(
+                                    <?php $contenders_tournament = new WP_Query(array('post_type' => 'contender', 'meta_key' => 'ELO_c', 'orderby' => 'meta_value_num', 'posts_per_page' => '-1', 'meta_query' => array(
                                         array(
                                             'key'     => 'id_tournoi_c',
                                             'value'   => $id_tournament,
@@ -80,10 +60,10 @@ get_header();
                                                 <div class="contenders_min <?php if(get_field('c_rounded_t', $id_tournament)){ echo 'rounded'; } ?> mb-3">
                                                     <div class="illu">
                                                         <?php if(get_field('visuel_cover_t', $id_tournament)): ?>
-                                                            <?php $illu = get_the_post_thumbnail_url( $c, 'full' ); ?>
+                                                            <?php $illu = get_the_post_thumbnail_url(get_the_ID(), 'full'); ?>
                                                             <div class="cov-illu" style="background: url(<?php echo $illu; ?>) center center no-repeat"></div>
                                                         <?php else: ?>
-                                                            <?php echo get_the_post_thumbnail($c, 'full', array('class' => 'img-fluid')); ?>
+                                                            <?php echo get_the_post_thumbnail(get_the_ID(), 'full', array('class' => 'img-fluid')); ?>
                                                         <?php endif; ?>
                                                     </div>
                                                     <div class="name eh2">
@@ -98,7 +78,7 @@ get_header();
                                                                 <span><?php echo $i; ?><br></span>
                                                             <?php endif; ?>
                                                             <?php if(!$display_titre): ?>
-                                                                <?php echo get_the_title($c); ?>
+                                                                <?php the_title(); ?>
                                                             <?php endif; ?>
                                                         </h5>
                                                     </div>
@@ -109,7 +89,7 @@ get_header();
                             </div>
                         </div>
 
-                        <div class="col-xxl-2 col-md-3 offset-md-1">
+                        <div class="col-xl-2 col-md-3 offset-md-1">
 
                             <div class="related">
 
@@ -122,7 +102,8 @@ get_header();
                                             C'est dans la même catégorie donc logiquement ça devrait t'intéresser !
                                         </h6>
                                         <?php
-                                        $related_tournoi = new WP_Query(array('post_type' => 'tournoi', 'orderby' => 'rand', 'order' => 'ASC', 'posts_per_page' => 3,
+                                        global $list_t_already_done;
+                                        $related_tournoi = new WP_Query(array('post_type' => 'tournoi', 'post__not_in' => $list_t_already_done, 'orderby' => 'rand', 'order' => 'ASC', 'posts_per_page' => 3,
                                             'tax_query' => array(
                                                 array(
                                                     'taxonomy' => 'categorie',

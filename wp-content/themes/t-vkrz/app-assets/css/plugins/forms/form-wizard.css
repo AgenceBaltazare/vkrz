@@ -135,13 +135,13 @@
   border-bottom: 1px solid rgba(59, 66, 83, 0.08); }
 
 .dark-layout .bs-stepper .bs-stepper-header .line {
-  color: #b4b7bd; }
+  color: #fff; }
 
 .dark-layout .bs-stepper .bs-stepper-header .step .step-trigger .bs-stepper-box {
   color: #babfc7; }
 
 .dark-layout .bs-stepper .bs-stepper-header .step .step-trigger .bs-stepper-label .bs-stepper-title {
-  color: #b4b7bd; }
+  color: #fff; }
 
 .dark-layout .bs-stepper .bs-stepper-header .step .step-trigger .bs-stepper-label .bs-stepper-subtitle {
   color: #676d7d; }

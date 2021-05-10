@@ -158,7 +158,7 @@
   background-color: #0c0a27; }
 
 .dark-layout .ql-editor.ql-blank:before {
-  color: #b4b7bd; }
+  color: #fff; }
 
 [data-textdirection='rtl'] .ql-snow .ql-picker:not(.ql-color-picker):not(.ql-icon-picker) i,
 [data-textdirection='rtl'] .ql-snow .ql-picker:not(.ql-color-picker):not(.ql-icon-picker) svg {

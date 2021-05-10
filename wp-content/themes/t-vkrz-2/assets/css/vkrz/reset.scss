@@ -51,3 +51,15 @@
 .header-navbar .navbar-container ul.navbar-nav li.dropdown-cart .media-heading {
   width: auto;
 }
+.dark-layout .dropdown-menu .dropdown-item:hover, .dark-layout .dropdown-menu .dropdown-item:focus {
+  background: transparent;
+}
+
+.dark-layout .table {
+  background-color: $c4;
+}
+.dark-layout .table:not(.table-dark):not(.table-light) thead:not(.thead-dark) th, .dark-layout .table:not(.table-dark):not(.table-light) tfoot:not(.thead-dark) th {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+}

@@ -1,8 +1,10 @@
 <?php
+global $uuiduser;
+global $user_role;
+global $user_id;
 $state            = "";
 $id_tournament    = get_the_ID();
 $id_user_ranking  = 0;
-$uuiduser         = $_COOKIE["vainkeurz_user_id"];
 $illu             = get_the_post_thumbnail_url($id_tournament, 'medium');
 if(is_home()){
     $class        = "swiper-slide";

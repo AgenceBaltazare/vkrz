@@ -141,7 +141,7 @@ get_header();
                                             C'est dans la même catégorie donc logiquement ça devrait t'intéresser !
                                         </h6>
                                         <?php
-                                        $list_t_already_done = get_user_tournament_list('t-done', $uuiduser);
+                                        global $list_t_already_done;
                                         $related_tournoi = new WP_Query(array('post_type' => 'tournoi', 'post__not_in' => $list_t_already_done, 'orderby' => 'rand', 'order' => 'ASC', 'posts_per_page' => 3,
                                             'tax_query' => array(
                                                 array(

@@ -57,6 +57,17 @@
 .header-navbar .navbar-container ul.navbar-nav li.dropdown-cart .media-heading {
   width: auto; }
 
+.dark-layout .dropdown-menu .dropdown-item:hover, .dark-layout .dropdown-menu .dropdown-item:focus {
+  background: transparent; }
+
+.dark-layout .table {
+  background-color: rgba(97, 84, 167, 0.1); }
+
+.dark-layout .table:not(.table-dark):not(.table-light) thead:not(.thead-dark) th, .dark-layout .table:not(.table-dark):not(.table-light) tfoot:not(.thead-dark) th {
+  background-color: transparent;
+  border: none;
+  color: #fff; }
+
 .cover {
   background-size: cover !important; }
 
@@ -97,6 +108,13 @@ html .content.app-content .content-overlay {
   display: inline-block; }
   .ico img {
     max-width: 22px; }
+
+.ico3 {
+  width: 20px;
+  display: inline-block; }
+
+.ico4 {
+  font-size: 30px; }
 
 .breadcrumbs-top a {
   color: #fff;
@@ -187,6 +205,12 @@ html .content {
 .ico-size-2 {
   font-size: 20px; }
 
+.icomax {
+  font-size: 60px; }
+
+.legende {
+  color: rgba(255, 255, 255, 0.5); }
+
 .main-menu {
   border-right: 10px solid #14122f; }
   .main-menu .navbar-header {
@@ -221,6 +245,9 @@ html .content {
 
 .bookmark-wrapper h4 {
   font-size: 12px;
+  margin-top: 5px; }
+
+.home .bookmark-wrapper h4 {
   margin-left: 10px; }
 
 .min-t-thumb {
@@ -238,6 +265,14 @@ html .content {
   position: absolute;
   right: 0;
   bottom: 0; }
+
+.avatar .avatar-picture {
+  display: block;
+  height: 40px;
+  width: 40px;
+  background-size: cover;
+  background-color: #5e50a6;
+  border-radius: 50%; }
 
 .single-tournoi .tournoi-content {
   text-align: center; }
@@ -284,8 +319,7 @@ html .content {
     min-height: 440px;
     border-radius: 10px;
     background-size: cover !important;
-    margin-bottom: 30px;
-    box-shadow: 0 0 50px rgba(232, 232, 231, 0.5); }
+    margin-bottom: 30px; }
 
 .rounded .cov-illu, .rounded img {
   border-radius: 50%; }
@@ -302,6 +336,8 @@ html .content {
       height: 100%;
       width: 100%;
       display: block; }
+      .contenders-containers .link-contender .contender_zone img {
+        border-radius: 10px; }
   .contenders-containers .link-contender_1 .contender_zone {
     cursor: url("../../images/vkrz/cursor_l.png"), pointer !important; }
   .contenders-containers .link-contender_2 .contender_zone {
@@ -322,7 +358,7 @@ html .content {
       position: absolute;
       right: 5px;
       top: 5px;
-      z-index: 99; }
+      z-index: 2; }
     .min-tournoi .cov-illu .voile {
       position: absolute;
       top: 0;
@@ -394,6 +430,19 @@ html .content {
   text-align: center; }
   .name h5 span {
     color: #f4167f; }
+
+.illu {
+  text-align: center; }
+  .illu img {
+    margin: 0 auto; }
+
+.avatar-picture-max {
+  display: block;
+  height: 100px;
+  width: 100px;
+  background-size: cover;
+  background-color: #5e50a6;
+  border-radius: 50%; }
 
 @media (min-width: 1200px) {
   .col-xxl-2 {

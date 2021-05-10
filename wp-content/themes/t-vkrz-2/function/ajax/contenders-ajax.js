@@ -51,8 +51,18 @@ $(document).ready(function ($) {
                         $('.contender_1 .contender_zone').addClass('animate__zoomIn');
                         $('.contender_2 .contender_zone').addClass('animate__zoomIn');
                     }
+
                     $('.stepbar').width(data.current_step + "%");
                     $('.stepbar span').html(data.current_step + "%");
+
+                    // +1 au compteur de votes du tournoi
+                    var current_user_t_votes = parseInt($('#rank-'+data.id_ranking+' span.value-span').html());
+                    $('#rank-'+data.id_ranking+' span.value-span').html(current_user_t_votes + 1);
+
+                    // +1 au compteur de votes global
+                    var current_user_total_votes = parseInt($('.user-total-vote-value').html());
+                    $('.user-total-vote-value').html(current_user_total_votes + 1);
+
                     $('.display_users_votes h6').replaceWith(data.uservotes_html);
                     $('.current_rank').html(data.user_ranking_html);
 

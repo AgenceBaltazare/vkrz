@@ -1,10 +1,13 @@
+<?php
+wp_reset_query(); wp_reset_postdata();
+?>
 <div class="sidenav-overlay"></div>
 <div class="drag-target"></div>
 
 <!-- BEGIN: Footer-->
 <footer class="footer footer-static footer-light">
     <p class="clearfix mb-0">
-        <span class="float-md-left d-block d-md-inline-block mt-25">COPYRIGHT &copy; 2021 </span>
+        <span class="float-md-left d-block d-md-inline-block mt-25">COPYRIGHT &copy; <?php echo date('d/m/Y H:i:s'); ?> </span>
     </p>
 </footer>
 <button class="btn btn-primary btn-icon scroll-top" type="button">
@@ -28,6 +31,28 @@
 </script>
 <script src="<?php bloginfo('template_directory'); ?>/function/ajax/contenders-ajax.js"></script>
 <script src="<?php bloginfo('template_directory'); ?>/function/ajax/jquery.cookie.js"></script>
+
+<script type="application/javascript">
+    function setCookie(_name, _value, _days) {
+        var expiration = new Date();
+        expiration.setDate(expiration.getDate() + _days);
+        expiration.toUTCString();
+        document.cookie = _name+'='+_value+'; expires='+expiration+'; path=/';
+    }
+
+    function getCookie(_name) {
+        var keyValue = document.cookie.match('(^|;) ?' + _name + '=([^;]*)(;|$)');
+        return keyValue ? keyValue[2] : null;
+    }
+
+    function checkCookie() {
+        var has_vainkeurz_user_id = getCookie("vainkeurz_user_id");
+        if (!has_vainkeurz_user_id) {
+            setCookie('vainkeurz_user_id', '<?php echo uniqidReal(); ?>', 1000);
+        }
+    }
+    checkCookie();
+</script>
 
 <?php wp_footer(); ?>
 

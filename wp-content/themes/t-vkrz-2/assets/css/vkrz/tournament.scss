@@ -55,7 +55,6 @@
     border-radius: 10px;
     background-size: cover !important;
     margin-bottom: 30px;
-    box-shadow: 0 0 50px rgba(232, 232, 231, 0.5);
   }
 }
 .rounded{
@@ -80,6 +79,11 @@
       height: 100%;
       width: 100%;
       display: block;
+
+      img{
+        border-radius: 10px;
+      }
+
     }
   }
 
@@ -111,7 +115,7 @@
       position: absolute;
       right: 5px;
       top: 5px;
-      z-index: 99;
+      z-index: 2;
     }
     .voile{
       position: absolute;

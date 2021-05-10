@@ -1,7 +1,4 @@
 <?php get_header(); ?>
-<?php
-$list_t_already_done = get_user_tournament_list('t-done', $uuiduser);
-?>
 <!-- BEGIN: Content-->
 <div class="app-content content ">
     <div class="content-overlay"></div>

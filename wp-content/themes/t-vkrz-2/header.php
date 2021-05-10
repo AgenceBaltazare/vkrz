@@ -1,13 +1,26 @@
 <?php
 global $uuiduser;
 global $user_role;
+global $current_user;
+global $user_id;
+global $list_t_already_done;
+global $list_t_begin;
 $user_role = "visitor";
 if(is_user_logged_in()){
     $current_user   = wp_get_current_user();
-    $user_info      = get_userdata($current_user->ID);
+    $user_id        = $current_user->ID;
+    $user_info      = get_userdata($user_id);
     $user_role      = $user_info->roles[0];
 }
-$uuiduser           = $_COOKIE["vainkeurz_user_id"];
+if(isset($_COOKIE["vainkeurz_user_id"])){
+    $uuiduser            = $_COOKIE["vainkeurz_user_id"];
+    $list_t_already_done = get_user_tournament_list('t-done', $uuiduser);
+    $list_t_begin        = get_user_tournament_list('t-begin', $uuiduser);
+}
+else{
+    $uuiduser       = "nouuiduser";
+}
+wp_reset_query(); wp_reset_postdata();
 ?>
 <!DOCTYPE html>
 <html class="loading dark-layout" lang="fr" data-layout="dark-layout" data-textdirection="ltr">
@@ -36,13 +49,13 @@ $uuiduser           = $_COOKIE["vainkeurz_user_id"];
         </title>
         <meta name="description" content="Meilleur site de la galaxie - sauf preuve du contraire - pour générer tes Tops facilement." />
 
-    <?php elseif(is_single() && (get_post_type() == "tournoi")): ?>
+    <?php elseif(is_single() && get_post_type() == "tournoi"): ?>
 
         <title>
             ⚔ TOP : <?php the_title(); ?> - <?php the_field( 'question_t' ); ?> 🔥 VAINKEURZ
         </title>
 
-    <?php elseif(is_single() && (get_post_type() == "classement")): ?>
+    <?php elseif(is_single() && get_post_type() == "classement"): ?>
 
         <?php $id_tournament = get_field('id_tournoi_r'); ?>
         <title>

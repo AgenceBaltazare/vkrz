@@ -17,14 +17,14 @@
   color: #676d7d; }
 
 .semi-dark-layout .main-menu-content .navigation-main .nav-item a {
-  color: #b4b7bd; }
+  color: #fff; }
 
 .semi-dark-layout .main-menu-content .navigation-main .nav-item.open a {
   background-color: #0c0a27; }
 
 .semi-dark-layout .main-menu-content .navigation-main .nav-item a:after,
 .semi-dark-layout .main-menu-content .navigation-main .nav-item a {
-  color: #b4b7bd; }
+  color: #fff; }
 
 .semi-dark-layout .main-menu-content .navigation-main .nav-item .menu-content {
   background-color: #312673; }

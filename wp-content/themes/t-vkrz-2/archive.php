@@ -1,22 +1,22 @@
 <?php get_header(); ?>
-<div class="app-content content ">
-    <div class="content-overlay"></div>
-    <div class="content-wrapper">
+    <div class="app-content content ">
+        <div class="content-overlay"></div>
+        <div class="content-wrapper">
 
-        <div class="content-body pt-1">
+            <div class="content-body pt-1">
 
-            <section class="list-tournois">
+                <section class="list-tournois">
 
-                <div class="row">
-                    <?php while (have_posts()) : the_post(); ?>
+                    <div class="row">
+                        <?php while (have_posts()) : the_post(); ?>
 
-                        <?php get_template_part('partials/min-t'); ?>
+                            <?php get_template_part('partials/min-t'); ?>
 
-                    <?php endwhile;?>
-                </div>
+                        <?php endwhile;?>
+                    </div>
 
-            </section>
+                </section>
+            </div>
         </div>
     </div>
-</div>
 <?php get_footer(); ?>

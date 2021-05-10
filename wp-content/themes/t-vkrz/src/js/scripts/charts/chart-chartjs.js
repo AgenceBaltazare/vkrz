@@ -41,7 +41,7 @@ $(window).on('load', function () {
 
   // Detect Dark Layout
   if ($('html').hasClass('dark-layout')) {
-    labelColor = '#b4b7bd';
+    labelColor = '#fff';
   }
 
   // Wrap charts with div of height according to their data-height

@@ -43,11 +43,11 @@
 
 .dark-layout .picker__holder .picker__header .picker__month,
 .dark-layout .picker__holder .picker__header .picker__year {
-  color: #b4b7bd; }
+  color: #fff; }
 
 .dark-layout .picker__holder .picker__header .picker__select--year,
 .dark-layout .picker__holder .picker__header .picker__select--month {
-  color: #b4b7bd;
+  color: #fff;
   background-color: #0c0a27;
   border-color: #3b4253; }
 
@@ -59,10 +59,10 @@
   border-color: #3b4253; }
 
 .dark-layout .picker__holder .picker__table thead tr .picker__weekday {
-  color: #b4b7bd; }
+  color: #fff; }
 
 .dark-layout .picker__holder .picker__table tbody tr td .picker__day {
-  color: #b4b7bd; }
+  color: #fff; }
 
 .dark-layout .picker__holder .picker__table tbody tr td .picker__day.picker__day--selected {
   color: #fff; }
@@ -72,7 +72,7 @@
   color: #fff; }
 
 .dark-layout .picker__holder .picker__table tbody tr td .picker__day.picker__day--disabled {
-  color: #b4b7bd;
+  color: #fff;
   opacity: 0.5;
   background: #312673; }
 
@@ -83,7 +83,7 @@
 .dark-layout .picker__holder .picker__footer .picker__button--clear,
 .dark-layout .picker__holder .picker__footer .picker__button--close {
   background-color: #0c0a27;
-  color: #b4b7bd; }
+  color: #fff; }
 
 .dark-layout .picker__holder .picker__footer .picker__button--today:hover,
 .dark-layout .picker__holder .picker__footer .picker__button--clear:hover,
@@ -103,7 +103,7 @@
 
 .dark-layout .picker--time .picker__holder .picker__list .picker__button--clear {
   background-color: #0c0a27;
-  color: #b4b7bd; }
+  color: #fff; }
 
 [dir='rtl'] .picker__nav--prev:before {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236e6b7b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-chevron-right'%3E%3Cpolyline points='9 18 15 12 9 6'%3E%3C/polyline%3E%3C/svg%3E"); }

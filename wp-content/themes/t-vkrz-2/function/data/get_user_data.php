@@ -2,7 +2,12 @@
 function get_user_data($request, $uuiduser = false){
 
     if(!$uuiduser){
-        $uuiduser = $_COOKIE["vainkeurz_user_id"];
+        if(isset($_COOKIE["vainkeurz_user_id"])){
+            $uuiduser       = $_COOKIE["vainkeurz_user_id"];
+        }
+        else{
+            $uuiduser       = "nouuiduser";
+        }
     }
 
     if($request == "nb-user-vote"){
@@ -26,7 +31,12 @@ function get_user_data($request, $uuiduser = false){
 function get_user_top($uuiduser = false, $id_tournament){
 
     if(!$uuiduser){
-        $uuiduser = $_COOKIE["vainkeurz_user_id"];
+        if(isset($_COOKIE["vainkeurz_user_id"])){
+            $uuiduser       = $_COOKIE["vainkeurz_user_id"];
+        }
+        else{
+            $uuiduser       = "nouuiduser";
+        }
     }
 
     $user_ranking = new WP_Query(array('post_type' => 'classement', 'posts_per_page' => '1', 'meta_query' => array(
@@ -57,7 +67,12 @@ function get_user_top($uuiduser = false, $id_tournament){
 function get_user_tournament_list($request, $uuiduser = false){
 
     if(!$uuiduser){
-        $uuiduser = $_COOKIE["vainkeurz_user_id"];
+        if(isset($_COOKIE["vainkeurz_user_id"])){
+            $uuiduser       = $_COOKIE["vainkeurz_user_id"];
+        }
+        else{
+            $uuiduser       = "nouuiduser";
+        }
     }
 
     if($request == "t-done"){
@@ -105,7 +120,51 @@ function get_user_tournament_list($request, $uuiduser = false){
             array_push($result, array(
                 "id_tournoi" => get_field('id_tournoi_r'),
                 "done"       => $done,
-                "nb_votes"    => get_field('nb_votes_r')
+                "nb_votes"   => get_field('nb_votes_r'),
+                "id_ranking" => get_the_ID(),
+            ));
+
+        endwhile;
+
+    }
+
+    return $result;
+
+}
+
+function get_user_ranking_list($request, $uuiduser = false){
+
+    if(!$uuiduser){
+        if(isset($_COOKIE["vainkeurz_user_id"])){
+            $uuiduser       = $_COOKIE["vainkeurz_user_id"];
+        }
+        else{
+            $uuiduser       = "nouuiduser";
+        }
+    }
+
+    if($request == "r-done"){
+
+        $result = array();
+        $all_user_ranking = new WP_Query(array('post_type' => 'classement', 'orderby' => 'date', 'order' => 'DESC', 'posts_per_page' => '-1', 'meta_query' => array(
+            'relation' => 'AND',
+            array(
+                'key' => 'uuid_user_r',
+                'value' => $uuiduser,
+                'compare' => '=',
+            ),
+            array(
+                'key' => 'done_r',
+                'value' => 'done',
+                'compare' => '=',
+            ),
+        )));
+        while ($all_user_ranking->have_posts()) : $all_user_ranking->the_post();
+
+            array_push($result, array(
+                "id_tournoi" => get_field('id_tournoi_r'),
+                "nb_votes"   => get_field('nb_votes_r'),
+                "id_ranking" => get_the_ID(),
             ));
 
         endwhile;
