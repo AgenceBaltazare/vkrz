@@ -61,11 +61,11 @@ wp_reset_query(); wp_reset_postdata();
 
         <?php $id_tournament = get_field('id_tournoi_r'); ?>
         <title>
-            🏆 TOP : <?php echo get_the_title($id_tournament); ?> - <?php the_field( 'question_t', $id_tournament ); ?> 🔥 VAINKEURZ
+            🏆 TOP test : <?php echo get_the_title($id_tournament); ?> - <?php the_field( 'question_t', $id_tournament ); ?> 🔥 VAINKEURZ
         </title>
         <meta name="description" content="<?php echo get_the_title($id_tournament); ?>" />
 
-        <link rel="canonical" href="https://vainkeurz.com/r/t14597-u1b86cafb238d0/" />
+        <link rel="canonical" href="<?php get_the_permalink(); ?>" />
         <meta property="og:locale" content="fr_FR" />
         <meta property="og:image" content="<?php get_the_post_thumbnail_url($id_tournament, 'medium'); ?>" />
         <meta property="og:type" content="article" />
