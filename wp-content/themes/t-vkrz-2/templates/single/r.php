@@ -92,8 +92,8 @@ get_header();
                                         <div class="d-flex list-share align-items-center justify-content-around">
 
                                             <div>
-                                                <a href="whatsapp://send?text=<?php echo $url_post; ?>" data-action="share/whatsapp/share" class="btn btn-icon btn-outline-primary">
-                                                    <i class="fab fa-whatsapp"></i>
+                                                <a class="btn btn-icon btn-outline-primary" rel="noopener nofollow external noreferrer" href="https://api.whatsapp.com/send?text=<?php echo $title_post; ?>&body=<?php echo $title_post; ?>:<?php echo $url_ranking; ?>" data-action="share/whatsapp/share" target="_blank" data-wpel-link="external">
+                                                    <i class="fa fa-whatsapp"></i>
                                                 </a>
                                             </div>
 
@@ -109,11 +109,8 @@ get_header();
                                                 </a>
                                             </div>
 
-                                            <div>
-                                                <a href="mailto:?subject=<?php echo $title_post; ?>&body=<?php echo $title_post; ?>:<?php echo $url_ranking; ?>" target="_blank" class="btn btn-icon btn-outline-primary">
-                                                    <i class="fas fa-envelope"></i>
-                                                </a>
-                                            </div>
+
+
 
 
                                         </div>
