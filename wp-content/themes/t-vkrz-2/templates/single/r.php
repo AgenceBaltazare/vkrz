@@ -92,19 +92,13 @@ get_header();
                                         <div class="d-flex list-share align-items-center justify-content-around">
 
                                             <div>
-                                                <a class="btn btn-icon btn-outline-primary" rel="noopener nofollow external noreferrer" href="https://api.whatsapp.com/send?text=<?php echo $title_post; ?>&body=<?php echo $title_post; ?>:<?php echo $url_ranking; ?>" data-action="share/whatsapp/share" target="_blank" data-wpel-link="external">
-                                                    <i class="fa fa-whatsapp"></i>
-                                                </a>
-                                            </div>
-
-                                            <div>
-                                                <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $url_ranking; ?>&quote=<?php echo $title_post; ?>" title="Share on Facebook" target="_blank" class="btn btn-icon btn-outline-primary">
+                                                <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $url_ranking; ?>&quote=Viens checker mon top <?php echo get_the_title($id_tournament); ?>" title="Share on Facebook" target="_blank" class="btn btn-icon btn-outline-primary">
                                                     <i class="fab fa-facebook-f"></i>
                                                 </a>
                                             </div>
 
                                             <div>
-                                                <a href="https://twitter.com/intent/tweet?source=<?php echo $url_ranking; ?>&text=<?php echo $title_post; ?>:%20<?php echo $url_ranking; ?>" target="_blank" title="Tweet" class="btn btn-icon btn-outline-primary">
+                                                <a href="https://twitter.com/intent/tweet?source=<?php echo $url_ranking; ?>&text=Viens checker mon top <?php echo get_the_title($id_tournament)?>:%20<?php echo $url_ranking; ?>" target="_blank" title="Tweet" class="btn btn-icon btn-outline-primary">
                                                     <i class="fab fa-twitter"></i>
                                                 </a>
                                             </div>
