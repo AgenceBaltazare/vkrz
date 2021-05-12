@@ -98,7 +98,7 @@ get_header();
                                             </div>
 
                                             <div>
-                                                <a href="https://twitter.com/intent/tweet?source=<?php echo $url_ranking; ?>&text=Viens checker mon top <?php echo get_the_title($id_tournament)?>:%20<?php echo $url_ranking; ?>" target="_blank" title="Tweet" class="btn btn-icon btn-outline-primary">
+                                                <a href="https://twitter.com/intent/tweet?source=<?php echo $url_ranking; ?>&text=Viens checker mon top <?php echo get_the_title($id_tournament)?>%20<?php echo $url_ranking; ?>" target="_blank" title="Tweet" class="btn btn-icon btn-outline-primary">
                                                     <i class="fab fa-twitter"></i>
                                                 </a>
                                             </div>

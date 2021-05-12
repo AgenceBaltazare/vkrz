@@ -65,6 +65,7 @@ wp_reset_query(); wp_reset_postdata();
         </title>
         <meta name="description" content="<?php echo get_the_title($id_tournament); ?>" />
 
+
         <link rel="canonical" href="<?php get_the_permalink(); ?>" />
         <meta property="og:locale" content="fr_FR" />
         <meta property="og:type" content="article" />
