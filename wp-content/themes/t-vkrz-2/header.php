@@ -71,7 +71,7 @@ wp_reset_query(); wp_reset_postdata();
         <meta property="og:type" content="article" />
         <meta property="og:image" content="<?php echo get_the_post_thumbnail_url($id_tournament, 'large'); ?>" />
         <meta property="og:title" content="<?php the_field( 'question_t', $id_tournament ); ?> " />
-        <meta property="og:description" content="Meilleur site de la galaxie - sauf preuve du contraire - pour générer tes Tops facilement." />
+        <meta property="og:description" content="Meilleur site de la galaxie - sauf preuve du contraire " />
         <meta property="og:url" content="<?php get_the_permalink(); ?>" />
         <meta property="og:site_name" content="🔥 VAINKEURZ 👉" />
 
