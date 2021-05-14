@@ -1,0 +1,150 @@
+/**
+ * Variables
+ */
+/**
+ * Grid breakpoints
+ *
+ * Define the minimum dimensions at which your layout will change,
+ * adapting to different screen sizes, for use in media queries.
+ **/
+/**
+ * Grid containers
+ *
+ * Define the maximum width of `.ur-container` for different screen sizes.
+ * scss-docs-start container-max-widths
+ **/
+.urcl-role-container {
+  margin-bottom: 1em; }
+  .urcl-role-container .urcl-role-logic-wrap {
+    background: #ffffff;
+    padding: 16px;
+    margin-bottom: 16px;
+    border-radius: 4px;
+    position: relative;
+    border: 1px solid #dee0e9; }
+    .urcl-role-container .urcl-role-logic-wrap .urcl-assign-role {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px; }
+      .urcl-role-container .urcl-role-logic-wrap .urcl-assign-role p {
+        margin: 0;
+        color: #2d3559; }
+      .urcl-role-container .urcl-role-logic-wrap .urcl-assign-role .urcl-user-role-field {
+        width: 160px;
+        margin: 0 8px;
+        line-height: 1.25; }
+    .urcl-role-container .urcl-role-logic-wrap .urcl-role-logic-box {
+      margin: 0 0 8px; }
+      .urcl-role-container .urcl-role-logic-wrap .urcl-role-logic-box .urcl-conditional-group,
+      .urcl-role-container .urcl-role-logic-wrap .urcl-role-logic-box .urcl-conditional-or-group {
+        display: flex;
+        align-items: center;
+        padding: 8px;
+        border-radius: 4px;
+        background: #f0f1f5; }
+        .urcl-role-container .urcl-role-logic-wrap .urcl-role-logic-box .urcl-conditional-group .urcl-form-group,
+        .urcl-role-container .urcl-role-logic-wrap .urcl-role-logic-box .urcl-conditional-or-group .urcl-form-group {
+          flex: 1; }
+        .urcl-role-container .urcl-role-logic-wrap .urcl-role-logic-box .urcl-conditional-group .urcl-operator,
+        .urcl-role-container .urcl-role-logic-wrap .urcl-role-logic-box .urcl-conditional-or-group .urcl-operator {
+          width: 120px;
+          margin: 0 8px; }
+        .urcl-role-container .urcl-role-logic-wrap .urcl-role-logic-box .urcl-conditional-group .urcl-value,
+        .urcl-role-container .urcl-role-logic-wrap .urcl-role-logic-box .urcl-conditional-or-group .urcl-value {
+          flex: 1;
+          margin-right: 8px; }
+        .urcl-role-container .urcl-role-logic-wrap .urcl-role-logic-box .urcl-conditional-group .add,
+        .urcl-role-container .urcl-role-logic-wrap .urcl-role-logic-box .urcl-conditional-or-group .add {
+          padding: 8px;
+          max-width: inherit;
+          flex: 0 0 auto; }
+        .urcl-role-container .urcl-role-logic-wrap .urcl-role-logic-box .urcl-conditional-group .remove:hover,
+        .urcl-role-container .urcl-role-logic-wrap .urcl-role-logic-box .urcl-conditional-or-group .remove:hover {
+          background: #ff4149;
+          border-color: #ff4149;
+          color: #ffffff; }
+    .urcl-role-container .urcl-role-logic-wrap .urcl-or-label {
+      color: #2d3559;
+      text-align: center;
+      font-weight: 600;
+      position: relative; }
+      .urcl-role-container .urcl-role-logic-wrap .urcl-or-label::before, .urcl-role-container .urcl-role-logic-wrap .urcl-or-label::after {
+        content: '';
+        display: block;
+        background: #dee0e9;
+        height: 1px;
+        position: absolute;
+        top: 50%; }
+      .urcl-role-container .urcl-role-logic-wrap .urcl-or-label::before {
+        left: 0;
+        right: 52%; }
+      .urcl-role-container .urcl-role-logic-wrap .urcl-or-label::after {
+        right: 0;
+        left: 52%; }
+    .urcl-role-container .urcl-role-logic-wrap .urcl-add-or-condition {
+      display: flex;
+      margin-left: auto; }
+    .urcl-role-container .urcl-role-logic-wrap .urcl-remove-condition {
+      position: absolute;
+      right: 16px;
+      top: 16px;
+      background: #dee0e9;
+      border: none;
+      border-radius: 50%;
+      height: 20px;
+      width: 20px;
+      cursor: pointer; }
+      .urcl-role-container .urcl-role-logic-wrap .urcl-remove-condition::before, .urcl-role-container .urcl-role-logic-wrap .urcl-remove-condition::after {
+        content: '';
+        height: 11px;
+        width: 2px;
+        display: block;
+        background: #676d8a;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        margin: 0 auto; }
+      .urcl-role-container .urcl-role-logic-wrap .urcl-remove-condition::before {
+        transform: translateY(-50%) rotate(45deg); }
+      .urcl-role-container .urcl-role-logic-wrap .urcl-remove-condition::after {
+        transform: translateY(-50%) rotate(-45deg); }
+      .urcl-role-container .urcl-role-logic-wrap .urcl-remove-condition:hover {
+        background: #b6bbcf; }
+        .urcl-role-container .urcl-role-logic-wrap .urcl-remove-condition:hover::before, .urcl-role-container .urcl-role-logic-wrap .urcl-remove-condition:hover::after {
+          background: #4c5477; }
+
+.urcl-conditional-logic__group {
+  margin-bottom: 12px; }
+.urcl-conditional-logic__rule {
+  position: relative; }
+  .urcl-conditional-logic__rule:not(:last-child) {
+    margin-bottom: 8px; }
+  .urcl-conditional-logic__rule__actions {
+    position: absolute;
+    top: 0;
+    right: 8px;
+    background: rgba(45, 53, 89, 0.65);
+    padding: 2px;
+    border-radius: 4px;
+    display: flex;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.2s ease; }
+    .urcl-conditional-logic__rule__actions .dashicons {
+      cursor: pointer;
+      font-size: 16px;
+      height: 16px;
+      width: 16px;
+      color: #ffffff;
+      line-height: 16px;
+      margin: 0 2px; }
+  .urcl-conditional-logic__rule:hover .urcl-conditional-logic__rule__actions {
+    top: -10px;
+    opacity: 1;
+    visibility: visible; }
+.urcl-conditional-logic__rule--no-gutter .urcl-conditional-logic__rule__param, .urcl-conditional-logic__rule--no-gutter .urcl-conditional-logic__rule__value {
+  flex: calc(50% - 40px);
+  margin: 0; }
+
+/*# sourceMappingURL=admin.css.map */

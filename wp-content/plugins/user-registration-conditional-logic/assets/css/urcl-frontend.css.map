@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,gBAAiB;EAChB,OAAO,EAAE,IAAI",
+"sources": ["urcl-frontend.scss"],
+"names": [],
+"file": "urcl-frontend.css"
+}

@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAEE,gDAAE;EACD,SAAS,EAAE,IAAI;EACf,YAAY,EAAE,GAAG;AAInB,iDAAO;EACN,OAAO,EAAE,eAAe",
+"sources": ["urcma-frontend.scss"],
+"names": [],
+"file": "urcma-frontend.css"
+}

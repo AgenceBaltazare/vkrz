@@ -86,3 +86,11 @@
     border-radius: 50%;
   }
 }
+
+.main-menu.menu-dark .navigation .navigation-header span {
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.45);
+}
+.dark-layout .main-menu-content .navigation-main li a {
+  color: #fff !important;
+}

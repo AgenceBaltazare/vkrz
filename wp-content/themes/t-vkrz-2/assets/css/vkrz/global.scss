@@ -5,12 +5,26 @@
   background-size: contain !important;
 }
 .dark-layout{
+  background: linear-gradient(35deg, $c1 40%, #230b36 100%) fixed;
   body{
-    background: $c2;
+    background: transparent;
     font-family: 'Lato', sans-serif !important;
   }
   .main-menu {
-    background-color: $c2;
+    background: linear-gradient(150deg, $c1, #471867, $c1, #230b36, $c1);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+  }
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
   }
   .main-menu-content .navigation-main {
     background-color: $c2;
@@ -19,6 +33,9 @@
     background: $c4;
     transition: all 0.5s ease-in-out;
   }
+}
+.dark-layout .main-menu-content .navigation-main {
+  background-color: transparent;
 }
 html .content.app-content {
   padding: calc(2rem + 3.45rem + 1.3rem) 2rem 0;
@@ -177,3 +194,17 @@ html .content {
 .legende{
   color: rgba(255, 255, 255, 0.5);
 }
+
+.main-menu{
+  position: relative;
+}
+.voile{
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: $c1;
+  opacity: 0.45;
+}
+

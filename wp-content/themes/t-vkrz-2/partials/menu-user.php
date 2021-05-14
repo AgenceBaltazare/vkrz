@@ -163,7 +163,6 @@ global $user_id;
 
                         <?php endforeach; ?>
                     </li>
-                    <!--
                     <li class="dropdown-menu-footer">
                         <div class="text-center mb-2 mt-1">
                             <h6 class="font-weight-bolder mb-0">
@@ -175,7 +174,6 @@ global $user_id;
                             Découvrir les niveaux 👀
                         </a>
                     </li>
-                    -->
                 </ul>
             </li>
             <li class="nav-item dropdown dropdown-notification mr-25">
@@ -239,17 +237,14 @@ global $user_id;
 
                             <?php endwhile; ?>
                         </li>
-                        <!--
                         <li class="dropdown-menu-footer">
                             <a class="btn btn-primary btn-block" href="javascript:void(0)">
                                 Voir tous mes Tops terminés
                             </a>
                         </li>
-                        -->
                     <?php endif; ?>
                 </ul>
             </li>
-            <!--
             <li class="nav-item dropdown dropdown-user ml-25">
                 <a class="nav-link dropdown-toggle dropdown-user-link" id="dropdown-user" href="javascript:void(0);" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="avatar">
@@ -268,24 +263,23 @@ global $user_id;
                             <span class="ico">⚙️</span> Paramètres
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('se-connecter')); ?>">
+                        <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('deconnexion')); ?>">
                             <span class="ico">👋</span> Déconnexion
                         </a>
                     <?php else: ?>
                         <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>?uuid=<?php echo $uuiduser; ?>">
-                            <span class="ico">🥷</span> Mon futur compte
+                            <span class="ico">🥷</span> Mon compte
                         </a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('se-connecter')); ?>">
                             <span class="ico">🤙</span> Se connecter
                         </a>
                         <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>">
-                            <span class="ico">🎉</span> Créer mon compte
+                            <span class="ico">🎉</span> S'inscrire
                         </a>
                     <?php endif; ?>
                 </div>
             </li>
-            -->
         </ul>
 
     </div>

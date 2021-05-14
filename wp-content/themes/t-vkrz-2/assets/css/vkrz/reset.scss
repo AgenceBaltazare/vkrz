@@ -5,30 +5,30 @@
   background-color: $c4;
 }
 .swiper-button-next, .swiper-button-prev{
-  width: 50px;
-  background: rgb(10,9,33);
-  background: linear-gradient(90deg, rgba(10,9,33,0) 10%, rgba(10,9,33,1) 40%);
-  top: 0;
+  width: 40px;
+  margin: 0;
+  background: transparent;
+  top: -26px;
   height: 100%;
-  right: -2px;
+  right: 0;
   justify-content: flex-end;
   &:after{
-    border-radius: 50%;
-    background-color: $c1;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.11) !important;
+    border-radius: 0;
+    background-color: $c3;
+    box-shadow: none !important;
     background-size: 24px !important;
     height: 40px !important;
     width: 40px !important;
     padding: 0 !important;
     position: relative;
-    right: 5px;
+    right: 0;
   }
 }
 .swiper-button-prev{
   background: transparent;
   width: 40px;
   justify-content: flex-start;
-  left: 5px;
+  left: 0;
 }
 .swiper-button-disabled{
   display: none;

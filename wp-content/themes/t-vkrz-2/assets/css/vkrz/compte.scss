@@ -6,3 +6,100 @@
   background-color: $c5;
   border-radius: 50%;
 }
+
+.auth-inner{
+  .brand-text{
+    max-width: 150px;
+    margin-right: 10px;
+  }
+}
+
+.dark-layout body.page-template-user{
+  background: linear-gradient(50deg, $c1, #471867, $c1, $c1);
+  background-size: 400% 400%;
+  animation: gradient 60s ease infinite;
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+}
+
+.dark-layout .auth-wrapper .auth-bg {
+  background-color: transparent;
+}
+
+.ur-frontend-form {
+  border: none !important;
+  padding: 0 !important;
+}
+.ur-frontend-form .ur-form-row .ur-form-grid {
+  padding: 0 5px !important;
+}
+
+.ur-frontend-field{
+  background: transparent !important;
+  border: 2px solid rgba(255, 255, 255, 0.2) !important;
+  padding: 20px 15px !important;
+  font-size: 15px !important;
+  border-radius: 10px !important;
+  color: #fff !important;
+  transition: all .2s ease-in-out;
+  &:focus{
+    border: 2px solid $rose !important;
+  }
+  &:valid{
+    border: 2px solid #fff !important;
+  }
+}
+
+.password-input-group{
+  width: 100%;
+}
+
+.ur-frontend-form .ur-button-container .ur-submit-button {
+  margin-right: auto;
+  margin-left: 0 !important;
+}
+.ur-submit-button{
+  width: auto;
+  min-height: 50px;
+  font-size: 16px;
+}
+.ur-frontend-form .ur-button-container {
+  padding: 0 !important;
+}
+.ur-frontend-form .ur-form-row .ur-form-grid .ur-field-item {
+  margin-bottom: 10px !important;
+  max-width: 550px;
+}
+
+.ur-frontend-form .ur-form-row .ur-form-grid .ur-field-item div{
+  flex-direction: column;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-box-shadow: 0 0 0 1000px transparent inset;
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+  -webkit-text-size-adjust: 100% !important;
+}
+
+.annonce{
+  padding: 0 3px;
+  font-size: 15px;
+}
+
+.gif2, .gif3{
+  display: none;
+}

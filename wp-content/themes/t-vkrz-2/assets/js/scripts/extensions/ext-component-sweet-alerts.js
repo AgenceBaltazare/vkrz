@@ -303,11 +303,12 @@ $(function () {
   if (warning.length) {
     warning.on('click', function () {
       Swal.fire({
-        title: 'Warning!',
+        title: 'S',
         text: ' You clicked the button!',
         icon: 'warning',
         customClass: {
-          confirmButton: 'btn btn-primary'
+          confirmButton: 'btn btn-primary',
+          cancelButton: 'btn btn-outline-danger ml-1'
         },
         buttonsStyling: false
       });

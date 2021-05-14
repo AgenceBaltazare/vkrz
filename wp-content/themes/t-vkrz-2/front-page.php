@@ -1,7 +1,6 @@
 <?php get_header(); ?>
 <!-- BEGIN: Content-->
 <div class="app-content content ">
-    <div class="content-overlay"></div>
     <div class="content-wrapper">
 
         <div class="content-body">
@@ -80,7 +79,11 @@
                                         <div class="card-header">
                                             <div>
                                                 <h2 class="font-weight-bolder mb-0">
-                                                    <span class="ico2"><?php the_field('icone_cat', 'term_'.$cat->term_id); ?></span> <?php echo $cat->name; ?>
+                                                    <span class="ico2 ">
+                                                        <span class="<?php if($cat->term_id == 2){echo 'rotating';} ?>">
+                                                            <?php the_field('icone_cat', 'term_'.$cat->term_id); ?>
+                                                        </span>
+                                                    </span> <?php echo $cat->name; ?>
                                                 </h2>
                                             </div>
                                             <div class="p-50 m-0 text-primary">
