@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WordPress - 5.7.x - Development - Administration package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-04-28 18:07:16+0000\n"
+"PO-Revision-Date: 2021-05-14 14:42:16+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -27,105 +27,105 @@ msgstr "Europe/Paris"
 msgid "Continue"
 msgstr "Continuer"
 
-#: wp-admin/about.php:143
+#: wp-admin/about.php:164
 msgid "<strong>Buttons block:</strong> now you can choose a vertical or a horizontal layout. And you can set the width of a button to a preset percentage."
 msgstr "<strong>Bloc Boutons :</strong> Vous pouvez désormais choisir entre une disposition verticale ou horizontale des boutons. Et vous pouvez régler la largeur des boutons à un pourcentage prédéfini."
 
-#: wp-admin/about.php:239
+#: wp-admin/about.php:260
 msgid "Now it’s simple to let iframes lazy-load. By default, WordPress will add a <code>loading=\"lazy\"</code> attribute to iframe tags when both width and height are specified."
 msgstr "Dorénavant, les iframes pourront se charger en différé. Par défaut, WordPress ajoutera un attribut <code>loading=\"lazy\"</code> aux balises iframe lorsque leur largeur et leur hauteur seront spécifiées."
 
-#: wp-admin/about.php:237
+#: wp-admin/about.php:258
 msgid "In 5.7, jQuery gets more focused and less intrusive, with fewer messages in the console."
 msgstr "Avec WP 5.7, jQuery devient moins intrusif et retourne moins de messages dans la console de votre navigateur."
 
-#: wp-admin/about.php:230
+#: wp-admin/about.php:251
 msgid "The new Robots API lets you include the filter directives in the robots meta tag, and the API includes the <code>max-image-preview: large</code> directive by default. That means search engines can show bigger image previews, which can boost your traffic (unless the site is marked <em>not-public</em>)."
 msgstr "La nouvelle API Robots vous permet d’inclure des directives de filtrage dans la balise méta « robots », et l’API intègre par défaut la directive <code>max-image-preview: large</code>. Cela signifie que les moteurs de recherche peuvent maintenant afficher de plus grandes images de prévisualisation (à moins que le site ne soit pas public), ce qui peut améliorer votre trafic."
 
-#: wp-admin/about.php:173
+#: wp-admin/about.php:194
 msgid "Above, the Dashboard before and after the color update in 5.7."
 msgstr "Ci-dessus, le tableau de bord avant et après la mise à jour des couleurs sur WP 5.7."
 
-#: wp-admin/about.php:170
+#: wp-admin/about.php:191
 msgid "Dashboard with new color scheme."
 msgstr "Le tableau de bord avec le nouveau jeu de couleurs."
 
-#: wp-admin/about.php:168
+#: wp-admin/about.php:189
 msgid "Dashboard with old color scheme."
 msgstr "Le tableau de bord avec l’ancien jeu de couleurs."
 
-#: wp-admin/about.php:148
+#: wp-admin/about.php:169
 msgid "<strong>Social Icons block:</strong> now you can change the size of the icons."
 msgstr "<strong>Bloc d’icônes de réseaux sociaux :</strong> vous pouvez maintenant modifier la taille des icônes."
 
-#: wp-admin/about.php:238
+#: wp-admin/about.php:259
 msgid "Lazy-load your iframes"
 msgstr "Chargez vos iframes en différé"
 
-#: wp-admin/about.php:236
+#: wp-admin/about.php:257
 msgid "For years jQuery helped make things move on the screen in ways the basic tools couldn’t—but that keeps changing, and so does jQuery."
 msgstr "Pendant des années, jQuery a aidé à animer les choses à l’écran de façon très efficace — mais les choses évoluent sans cesse, et jQuery n’est pas en reste."
 
-#: wp-admin/about.php:235
+#: wp-admin/about.php:256
 msgid "Ongoing cleanup after update to jQuery 3.5.1"
 msgstr "Poursuite du nettoyage nécessaire après la mise à jour vers jQuery 3.5.1"
 
-#: wp-admin/about.php:227
+#: wp-admin/about.php:248
 msgid "New Robots API"
 msgstr "Nouvelle API Robots"
 
-#: wp-admin/about.php:226
+#: wp-admin/about.php:247
 msgid "Starting now, switching a site from HTTP to HTTPS is a one-click move. WordPress will automatically update database URLs when you make the switch. No more hunting and guessing!"
 msgstr "Le passage d’un site de HTTP à HTTPS se fait maintenant en un clic. WordPress mettra automatiquement à jour les URL en base de données lorsque vous passerez au HTTPS. Ne perdez plus votre temps à chercher les URL à modifier !"
 
-#: wp-admin/about.php:225
+#: wp-admin/about.php:246
 msgid "From HTTP to HTTPS in a single click"
 msgstr "De HTTP à HTTPS en un clic"
 
 #. translators: %s: Color palette dev note link.
-#: wp-admin/about.php:204
+#: wp-admin/about.php:225
 msgid "Find the new palette in the default WordPress Dashboard color scheme, and use it when you’re building themes, plugins, or any other components. For all the details, <a href=\"%s\">check out the Color Palette dev note</a>."
 msgstr "Vous découvrirez cette nouvelle palette de couleurs par défaut sur votre tableau de bord WordPress. Si vous créez des thèmes, des extensions ou tout autre composant, pensez à l’utiliser. Pour plus de détails, <a href=\"%s\">consultez la note de développement concernant cette palette de couleurs (en anglais)</a>."
 
-#: wp-admin/about.php:197
+#: wp-admin/about.php:218
 msgid "Half the range has a 4.5 or higher contrast ratio against black, and the other half maintains the same contrast against white."
 msgstr "La moitié de la plage a un rapport de contraste de 4,5 ou plus par rapport au noir, et l’autre moitié propose le même rapport de contraste par rapport au blanc."
 
-#: wp-admin/about.php:190
+#: wp-admin/about.php:211
 msgid "The colors are perceptually uniform from light to dark in each range, which means they start at white and get darker by the same amount with each step."
 msgstr "En terme de perception, les variations de couleurs sont uniformes du clair au foncé dans chaque plage, ce qui signifie qu’elles vont du plus clair vers le plus foncé avec les mêmes paliers."
 
 #. translators: %s: WCAG information link.
-#: wp-admin/about.php:183
+#: wp-admin/about.php:204
 msgid "This new streamlined color palette collapses all the colors that used to be in the WordPress source code down to seven core colors and a range of 56 shades that meet the <a href=\"%s\">WCAG 2.0 AA recommended contrast ratio</a> against white or black."
 msgstr "Cette nouvelle palette de couleurs simplifiée réduit le nombre de couleurs qui se trouvaient auparavant dans le cœur de WordPress à sept couleurs principales et une plage de 56 nuances conformes au rapport de contraste <a href=\"%s\">WCAG 2.0 AA recommandé</a>."
 
-#: wp-admin/about.php:161
+#: wp-admin/about.php:182
 msgid "A Simpler Default Color Palette"
 msgstr "Simplification de la palette de couleurs par défaut"
 
-#: wp-admin/about.php:138
+#: wp-admin/about.php:159
 msgid "<strong>Full-height alignment:</strong> have you ever wanted to make a block, like the Cover block, fill the whole window? Now you can."
 msgstr "<strong>Alignement en hauteur :</strong> avez-vous déjà voulu donner au bloc bannière une hauteur égale à la hauteur de la fenêtre ? Maintenant, vous pouvez."
 
-#: wp-admin/about.php:133
+#: wp-admin/about.php:154
 msgid "You can do more without writing custom code"
 msgstr "Vous pouvez faire plus, sans écrire la moindre ligne de code"
 
-#: wp-admin/about.php:119
+#: wp-admin/about.php:140
 msgid "<strong>Inserter drag-and-drop:</strong> drag blocks and block patterns from the inserter right into your post."
 msgstr "<strong>Outil d’insertion de blocs en glisser-déposer :</strong> glissez les blocs et les compositions de blocs de l’outil d’insertion directement dans votre publication."
 
-#: wp-admin/about.php:114
+#: wp-admin/about.php:135
 msgid "<strong>Reusable blocks:</strong> several enhancements make reusable blocks more stable and easier to use. And now they save automatically with the post when you click the Update button."
 msgstr "<strong>Blocs réutilisables :</strong> plusieurs améliorations rendent les blocs réutilisables plus stables et plus faciles à utiliser. Et maintenant, ils s’enregistrent automatiquement avec la publication lorsque vous enregistrez votre publication."
 
-#: wp-admin/about.php:109
+#: wp-admin/about.php:130
 msgid "<strong>Font-size adjustment in more places:</strong> now, font-size controls are right where you need them in the List and Code blocks. No more trekking to another screen to make that single change!"
 msgstr "<strong>Plus d’endroits pour gérer la taille des polices :</strong> les contrôles de la taille des polices sont maintenant disponibles là où vous en avez besoin, notamment sur les blocs liste et code. Plus besoin de se rendre sur un autre écran pour effectuer cette simple modification !"
 
-#: wp-admin/about.php:104
+#: wp-admin/about.php:125
 msgid "Now the editor is easier to use"
 msgstr "Maintenant, l’éditeur est plus simple à utiliser"
 
@@ -503,7 +503,7 @@ msgid "https://developer.wordpress.org/rest-api/frequently-asked-questions/#why-
 msgstr "https://developer.wordpress.org/rest-api/frequently-asked-questions/#why-is-authentication-not-working"
 
 #. translators: %s: WordPress 5.7 Field Guide link.
-#: wp-admin/about.php:252
+#: wp-admin/about.php:273
 msgid "Check out the latest version of the WordPress Field Guide. It highlights developer notes for each change you may want to be aware of. <a href=\"%s\">WordPress 5.7 Field Guide.</a>"
 msgstr "Consultez le guide des changements techniques de WordPress 5.7. Il met en avant les notes de développement pour chaque modification que vous souhaiteriez approfondir : <a href=\"https://fr.wordpress.org/2021/02/24/les-changements-techniques-a-venir-sur-wordpress-5-7/\">guide des changements techniques de WordPress 5.7</a>"
 
@@ -574,7 +574,7 @@ msgstr "Ajouter un nouveau mot de passe d’application"
 msgid "Required to create an Application Password, but not to update the user."
 msgstr "Nécessaire pour créer un mot de passe d’application, mais pas pour mettre à jour le compte."
 
-#: wp-admin/about.php:265
+#: wp-admin/about.php:286
 msgid "Go to Updates"
 msgstr "Aller aux mises à jour"
 
@@ -931,7 +931,7 @@ msgstr "La valeur « %1$s » est inférieure à « %2$s »."
 msgid "Environment type"
 msgstr "Type d’environnement"
 
-#: wp-admin/about.php:247
+#: wp-admin/about.php:268
 msgid "Check the Field Guide for more!"
 msgstr "Consultez le guide de la version pour en savoir plus !"
 
@@ -4002,7 +4002,8 @@ msgstr "Impossible d’installer"
 
 #. translators: %s: WordPress version.
 #: wp-admin/includes/update.php:302 wp-admin/install.php:238
-#: wp-admin/update-core.php:84 wp-admin/upgrade.php:80 wp-admin/about.php:91
+#: wp-admin/update-core.php:84 wp-admin/upgrade.php:80 wp-admin/about.php:86
+#: wp-admin/about.php:112
 msgid "https://wordpress.org/support/wordpress-version/version-%s/"
 msgstr "https://wordpress.org/support/wordpress-version/version-%s/"
 
@@ -5614,11 +5615,11 @@ msgstr "Importer des articles depuis un flux RSS."
 
 #: wp-admin/includes/import.php:209
 msgid "Import posts and comments from a Movable Type or TypePad blog."
-msgstr "Importer les articles et commentaires depuis un blog Movable Type ou TypePad."
+msgstr "Importer des articles et commentaires depuis un blog Movable Type ou TypePad."
 
 #: wp-admin/includes/import.php:203
 msgid "Import posts from LiveJournal using their API."
-msgstr "Importer les articles depuis LiveJournal par le biais de leur API."
+msgstr "Importer des articles depuis LiveJournal via leur API."
 
 #: wp-admin/includes/import.php:197
 msgid "Convert existing categories to tags or tags to categories, selectively."
@@ -6409,7 +6410,7 @@ msgid "(Currently set to: %s)"
 msgstr "(Actuellement réglé sur : %s)"
 
 #. translators: %s: WordPress version number.
-#: wp-admin/about.php:366
+#: wp-admin/about.php:76 wp-admin/about.php:387
 msgid "<strong>Version %s</strong> addressed one security issue."
 msgstr "La <strong>version %s</strong> a corrigé un problème de sécurité."
 
@@ -6421,15 +6422,15 @@ msgstr "https://fr.gravatar.com/"
 msgid "Profile Picture"
 msgstr "Illustration du profil"
 
-#: wp-admin/about.php:71 wp-admin/about.php:363
+#: wp-admin/about.php:71 wp-admin/about.php:384
 msgid "Maintenance and Security Releases"
 msgstr "Mises à jour de maintenance et de sécurité"
 
-#: wp-admin/about.php:360
+#: wp-admin/about.php:381
 msgid "Security Releases"
 msgstr "Mises à jour de sécurité"
 
-#: wp-admin/about.php:357
+#: wp-admin/about.php:378
 msgid "Maintenance Releases"
 msgstr "Mises à jour de maintenance"
 
@@ -7777,7 +7778,7 @@ msgstr "Une fois que votre sélection est faite, vous pouvez l’ajuster en sais
 
 #: wp-admin/includes/image-edit.php:173
 msgid "The aspect ratio is the relationship between the width and height. You can preserve the aspect ratio by holding down the shift key while resizing your selection. Use the input box to specify the aspect ratio, e.g. 1:1 (square), 4:3, 16:9, etc."
-msgstr "Les proportions d’une image sont le rapport entre sa largeur et sa hauteur. Vous pouvez préserver les proportions en maintenant appuyée la touche Shift tandis que vous redimensionnez votre sélection. Utilisez le champ de saisie pour préciser la proportion à respecter, par exemple 1:1 (carré), 4:3, 16:9, etc."
+msgstr "Les proportions d’une image sont le rapport entre sa largeur et sa hauteur. Vous pouvez préserver les proportions en maintenant appuyée la touche Maj tandis que vous redimensionnez votre sélection. Utilisez le champ de saisie pour préciser la proportion à respecter, par exemple 1:1 (carré), 4:3, 16:9, etc."
 
 #: wp-admin/includes/image-edit.php:170
 msgid "To crop the image, click on it and drag to make your selection."
@@ -9922,13 +9923,13 @@ msgstr "Afficher la barre d’outils lorsque vous visitez le site"
 
 #. translators: %s: HelpHub URL.
 #. translators: %s: Documentation URL.
-#: wp-admin/about.php:88 wp-admin/about.php:389
+#: wp-admin/about.php:83 wp-admin/about.php:109 wp-admin/about.php:410
 msgid "For more information, see <a href=\"%s\">the release notes</a>."
 msgstr "Pour plus d’informations, consultez les <a href=\"%s\">notes de publication</a>."
 
 #. translators: 1: WordPress version number, 2: Plural number of bugs. More
 #. than one security issue.
-#: wp-admin/about.php:76 wp-admin/about.php:383
+#: wp-admin/about.php:97 wp-admin/about.php:404
 msgid "<strong>Version %1$s</strong> addressed some security issues and fixed %2$s bug."
 msgid_plural "<strong>Version %1$s</strong> addressed some security issues and fixed %2$s bugs."
 msgstr[0] "La <strong>version %1$s</strong> a corrigé quelques problèmes de sécurité et %2$s bug."
@@ -9936,14 +9937,14 @@ msgstr[1] "La <strong>version %1$s</strong> a corrigé quelques problèmes de s�
 
 #. translators: 1: WordPress version number, 2: Plural number of bugs. Singular
 #. security issue.
-#: wp-admin/about.php:377
+#: wp-admin/about.php:398
 msgid "<strong>Version %1$s</strong> addressed a security issue and fixed %2$s bug."
 msgid_plural "<strong>Version %1$s</strong> addressed a security issue and fixed %2$s bugs."
 msgstr[0] "La <strong>version %1$s</strong> a corrigé un problème de sécurité et %2$s bug."
 msgstr[1] "La <strong>version %1$s</strong> a corrigé un problème de sécurité et %2$s bugs."
 
 #. translators: 1: WordPress version number, 2: Plural number of bugs.
-#: wp-admin/about.php:371
+#: wp-admin/about.php:392
 msgid "<strong>Version %1$s</strong> addressed %2$s bug."
 msgid_plural "<strong>Version %1$s</strong> addressed %2$s bugs."
 msgstr[0] "La <strong>version %1$s</strong> a corrigé %2$s bug."
@@ -9954,19 +9955,19 @@ msgid "Welcome to your WordPress Dashboard! This is the screen you will see when
 msgstr "Vous voici dans votre tableau de bord WordPress ! Cet écran s’affiche à chaque connexion à votre site. Il vous donne accès à l’ensemble des fonctionnalités de gestion de WordPress. Vous pouvez obtenir de l’aide pour n’importe quel écran en cliquant sur l’onglet « Aide » présent en haut à droite de chaque écran."
 
 #. translators: %s: WordPress version number.
-#: wp-admin/about.php:368
+#: wp-admin/about.php:389
 msgid "<strong>Version %s</strong> addressed some security issues."
 msgstr "La <strong>version %s</strong> a corrigé quelques problèmes de sécurité."
 
-#: wp-admin/about.php:362
+#: wp-admin/about.php:383
 msgid "Maintenance and Security Release"
 msgstr "Mise à jour de maintenance et de sécurité"
 
-#: wp-admin/about.php:359
+#: wp-admin/about.php:380
 msgid "Security Release"
 msgstr "Mise à jour de sécurité"
 
-#: wp-admin/about.php:356
+#: wp-admin/about.php:377
 msgid "Maintenance Release"
 msgstr "Mise à jour de maintenance"
 
@@ -10251,11 +10252,11 @@ msgstr "<strong>Modifier</strong> vous envoie sur l’écran de modification de 
 msgid "Because this is a multisite installation, you may add accounts that already exist on the Network by specifying a username or email, and defining a role. For more options, such as specifying a password, you have to be a Network Administrator and use the hover link under an existing user&#8217;s name to Edit the user profile under Network Admin > All Users."
 msgstr "Parce qu’il s’agit d’une installation multisite, vous pouvez ajouter des comptes qui existent déjà sur le Réseau, en indiquant un identifiant ou une adresse e-mail, et en assignant un rôle. Pour avoir plus d’options, telle que le choix du mot de passe, vous devez être Administrateur ou administratrice du Réseau, et utiliser les liens qui apparaissent au survol sous le nom de l’utilisateur ou de l’utilisatrice pour modifier son compte, depuis l’écran « Tous les comptes »."
 
-#: wp-admin/about.php:268
+#: wp-admin/about.php:289
 msgid "Go to Dashboard &rarr; Home"
 msgstr "Aller sur l’accueil"
 
-#: wp-admin/about.php:265
+#: wp-admin/about.php:286
 msgid "Go to Dashboard &rarr; Updates"
 msgstr "Aller sur Tableau de bord &rarr; Mises à jour"
 
@@ -12090,7 +12091,7 @@ msgstr "Mises à jour de WordPress"
 msgid "Edit menu item"
 msgstr "Modifier un élément du menu"
 
-#: wp-admin/about.php:268 wp-admin/includes/network.php:148
+#: wp-admin/about.php:289 wp-admin/includes/network.php:148
 msgid "Go to Dashboard"
 msgstr "Aller sur le tableau de bord"
 

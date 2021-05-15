@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WordPress - 5.7.x - Development package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-04-23 14:57:54+0000\n"
+"PO-Revision-Date: 2021-05-10 09:59:27+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1756,7 +1756,7 @@ msgstr "Nom du bloc."
 
 #: wp-includes/meta.php:1374
 msgid "When registering a default meta value the data must match the type provided."
-msgstr "Lors de l’enregistrement d’une valeur de méta par défaut, les données doivent correspondre au type fourni."
+msgstr "Lors de l’enregistrement d’une valeur de métadonnée par défaut, les données doivent correspondre au type fourni."
 
 #: wp-includes/widgets/class-wp-widget-rss.php:106
 msgid "RSS Feed"
@@ -2318,7 +2318,7 @@ msgstr "Il y a eu une erreur critique sur ce site, activant ainsi le mode de ré
 
 #: wp-includes/class-wp-image-editor-imagick.php:643
 msgid "The image cannot be rotated because the embedded meta data cannot be updated."
-msgstr "L’image ne peut pas être tournée car que les métadonnées embarquées ne peuvent pas être mises à jour."
+msgstr "L’image ne peut pas être tournée car les métadonnées embarquées ne peuvent pas être mises à jour."
 
 #: wp-includes/user.php:3455
 msgid "User&#8217;s profile data."
@@ -6090,7 +6090,7 @@ msgstr "Champs métas."
 
 #: wp-includes/rest-api/fields/class-wp-rest-meta-fields.php:242
 msgid "Could not delete meta value from database."
-msgstr "La suppression de la valeur de la méta en base de données n’est pas possible."
+msgstr "La suppression de la valeur de la métadonnée en base de données n’est pas possible."
 
 #: wp-includes/rest-api/endpoints/class-wp-rest-users-controller.php:1546
 msgid "Limit result set to users matching at least one specific role provided. Accepts csv list or single role."
@@ -7782,7 +7782,7 @@ msgstr "L’identifiant du terme est partagé par plusieurs taxonomies"
 
 #: wp-includes/taxonomy.php:1277 wp-includes/taxonomy.php:1339
 msgid "Term meta cannot be added to terms that are shared between taxonomies."
-msgstr "Les méta de termes ne peuvent pas être ajoutés à des termes partagés entre plusieurs taxonomies."
+msgstr "Les métadonnées de termes ne peuvent pas être ajoutées à des termes partagés entre plusieurs taxonomies."
 
 #. translators: Month name, genitive.
 #: wp-includes/class-wp-locale.php:174

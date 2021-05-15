@@ -15,7 +15,7 @@ else{
 ?>
 <?php get_template_part('partials/head'); ?>
 
-<body <?php body_class('vertical-layout vertical-menu-modern blank-page navbar-floating footer-static'); ?> data-open="click" data-menu="vertical-menu-modern" data-col="blank-page">
+<body <?php body_class('vertical-layout vertical-menu-modern blank-page navbar-floating footer-static user-page'); ?> data-open="click" data-menu="vertical-menu-modern" data-col="blank-page">
 <div class="app-content content ">
     <div class="header-navbar-shadow"></div>
     <div class="content-wrapper">

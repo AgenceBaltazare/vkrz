@@ -14,7 +14,7 @@
   }
 }
 
-.dark-layout body.page-template-user{
+.dark-layout body.user-page{
   background: linear-gradient(50deg, $c1, #471867, $c1, $c1);
   background-size: 400% 400%;
   animation: gradient 60s ease infinite;
@@ -102,4 +102,52 @@ input:-webkit-autofill:active {
 
 .gif2, .gif3{
   display: none;
+}
+
+.bigup{
+  h1{
+    font-size: 3rem;
+  }
+}
+
+.alert-account {
+  color: #fff !important;
+  background: linear-gradient(90deg, rgba(244, 22, 127, 0.11), rgba(244, 22, 127, 0.2));
+  background-size: 400% 400%;
+  animation: gradient2 10s ease infinite;
+  @keyframes gradient2 {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+}
+
+.t-white{
+  color: #fff;
+}
+
+.scali{
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -ms-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  transform: scale(1);
+  display: inline-block;
+  &:hover{
+    transform: scale(2);
+  }
+}
+
+.btn-outline-white{
+  border-color: #fff;
+  &:hover{
+    background: #fff;
+  }
 }

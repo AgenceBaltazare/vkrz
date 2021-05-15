@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Akismet Spam Protection - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-02-08 00:37:00+0000\n"
+"PO-Revision-Date: 2021-05-07 11:24:07+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -303,7 +303,7 @@ msgstr "Merci de mettre à jour vos informations de paiement."
 
 #: views/notice.php:17
 msgid "<strong>Almost done</strong> - configure Akismet and say goodbye to spam"
-msgstr "<strong>C’est presque fini</strong> - configurez Akismet et dîtes adieu aux indésirables."
+msgstr "<strong>C’est presque fini</strong> - configurez Akismet et dites adieu aux indésirables."
 
 #: class.akismet-admin.php:1009
 msgid "Akismet has saved you %d minute!"
@@ -789,7 +789,7 @@ msgstr "Saisir/supprimer une clé d’API."
 
 #: views/config.php:70 class.akismet-admin.php:244
 msgid "API Key"
-msgstr "Clé d’API"
+msgstr "Clé de l’API"
 
 #: class.akismet-admin.php:232 class.akismet-admin.php:243
 #: class.akismet-admin.php:256

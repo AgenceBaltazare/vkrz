@@ -15,7 +15,7 @@ else{
 ?>
 <?php get_template_part('partials/head'); ?>
 
-<body <?php body_class('vertical-layout vertical-menu-modern blank-page navbar-floating footer-static'); ?> data-open="click" data-menu="vertical-menu-modern" data-col="blank-page">
+<body <?php body_class('vertical-layout vertical-menu-modern blank-page navbar-floating footer-static user-page'); ?> data-open="click" data-menu="vertical-menu-modern" data-col="blank-page">
 <div class="app-content content ">
     <div class="header-navbar-shadow"></div>
     <div class="content-wrapper">
@@ -26,13 +26,13 @@ else{
                     <div class="d-none d-lg-flex col-lg-4 align-items-center p-5">
                         <div class="w-100 d-lg-flex align-items-center justify-content-center px-5">
                             <div class="gif1 animate__animated">
-                                <img class="img-fluid" src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/login/14.gif" alt="Login V2" />
+                                <img class="img-fluid" src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/login/26.gif" alt="Login V2" />
                             </div>
                             <div class="gif2 animate__animated">
-                                <img class="img-fluid" src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/login/16.gif" alt="Login V2" />
+                                <img class="img-fluid" src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/login/27.gif" alt="Login V2" />
                             </div>
                             <div class="gif3 animate__animated">
-                                <img class="img-fluid" src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/login/8.gif" alt="Login V2" />
+                                <img class="img-fluid" src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/login/2.gif" alt="Login V2" />
                             </div>
                         </div>
                     </div>
@@ -47,17 +47,14 @@ else{
                                     </h2>
                                 </a>
                                 <h2 class="card-title font-weight-bold mb-1">
-                                    Créer ton compte <br>
-                                    pour enregistrer tes Tops <span class="ico">🤩</span>
+                                    Bienvenue <span class="ico">🖖</span>
                                 </h2>
                             </div>
 
                             <div class="w-100"></div>
 
                             <p class="annonce">
-                                Aujourd'hui, tu es un 🐣 mais avec de la volonté tu deviendras sans doute un 🐓
-                                <br>
-                                Et rien que pour ça, il te faut ce compte 👇
+
                             </p>
 
                             <div class="auth-register-form mt-2">
@@ -65,9 +62,9 @@ else{
                             </div>
 
                             <p class="text-left mt-2 already-account">
-                                <span>Tu as déjà un compte <span class="ico text-center">🥴</span></span>
-                                <a href="<?php the_permalink(get_page_by_path('connexion')); ?>">
-                                    <span>Cliquez ici pour te connecter</span>
+                                <span>Tu n'as pas encore de compte <span class="ico text-center">🥴</span></span>
+                                <a href="<?php the_permalink(get_page_by_path('creer-un-compte')); ?>">
+                                    <span>Cliquez ici pour te créer un compte</span>
                                 </a>
                             </p>
                             <!--

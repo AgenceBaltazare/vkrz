@@ -1,8 +1,8 @@
 $primary-color    : #f4167f;
 $secondary-color  : #fff;
-$tertiary-color   : #0c0a27;
+$tertiary-color   : #210951;
 
-$logo-url : '../img/logo-vainkeurz.png';
+$logo-url : '../images/vkrz/logo-vkrz.png';
 
 
 $background-color: $tertiary-color;
@@ -46,8 +46,20 @@ html {
 }
 
 body {
-  text-align: center;
-  background: $tertiary-color;
+  background: linear-gradient(50deg, #210951, #471867, #210951, #210951);
+  background-size: 400% 400%;
+  animation: gradient 60s ease infinite;
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
 }
 
 // scss-lint:disable all
