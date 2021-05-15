@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAAA;;GAEG;ACEH;;;;;IAKI;AAUJ;;;;;IAKI;ACnBD,uEAA0B;EACzB,KAAK,EAAE,IAAI;EACX,MAAM,EAAE,IAAI;EACZ,QAAQ,EAAE,KAAK;EACf,KAAK,EAAE,IAAI;EACX,MAAM,EAAE,IAAI;EACZ,UAAU,EAAE,kCAA4C;EACxD,OAAO,EAAE,CAAC;EAEV,kFAAW;IACV,SAAS,EAAE,IAAI;IACf,MAAM,EAAE,IAAI;IACZ,KAAK,EAAE,IAAI;IACX,QAAQ,EAAE,QAAQ;IAClB,IAAI,EAAE,CAAC;IACP,KAAK,EAAE,CAAC;IACR,MAAM,EAAE,MAAM;IACd,GAAG,EAAE,GAAG;IACR,SAAS,EAAE,gBAAgB;AAM7B,6EAAyB;EACxB,MAAM,EAAE,IAAI",
-"sources": ["../../../user-registration/assets/css/variables/_colors.scss","../../../user-registration/assets/css/variables/_grids.scss","customize-admin.scss"],
-"names": [],
-"file": "customize-admin.css"
-}

@@ -33,6 +33,8 @@ get_header();
                                                 <h1 class="mb-0 text-uppercase">
                                                     <?php if(is_author()): ?>
                                                         <?php echo $current_user->display_name; ?>
+                                                        <br>
+                                                        <small>#<?php echo $uuiduser; ?></small>
                                                     <?php else: ?>
                                                         #<?php echo $uuiduser; ?>
                                                     <?php endif; ?>
@@ -92,6 +94,10 @@ get_header();
             <section id="profile-info">
                 <div class="row">
                     <div class="col-md-12">
+                        <?php
+                        $list_r_done = get_user_ranking_list('r-done', $uuiduser);
+                        if($list_r_done) :
+                        ?>
                         <div class="card">
                             <div class="card-body p-0">
                                 <div class="table-responsive">
@@ -123,7 +129,6 @@ get_header();
                                         </thead>
                                         <tbody>
                                         <?php
-                                        $list_r_done = get_user_ranking_list('r-done', $uuiduser);
                                         foreach($list_r_done as $r_user) : ?>
 
                                             <tr>
@@ -178,6 +183,7 @@ get_header();
                                 </div>
                             </div>
                         </div>
+                        <?php endif; ?>
                     </div>
                 </div>
             </section>

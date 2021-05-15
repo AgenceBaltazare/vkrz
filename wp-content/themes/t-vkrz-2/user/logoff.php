@@ -33,11 +33,11 @@ else{
                         </div>
                         <div class="bigup w-100">
                             <h1>
-                                Ça rend malade de te voir partir comme ça ?
+                                Ça rend malade de te voir partir comme ça !
                             </h1>
                             <p class="text-center mt-2 already-account">
                                 <span>C'était une erreur <span class="ico text-center">😅</span></span>
-                                <a href="<?php the_permalink(get_page_by_path('connexion')); ?>">
+                                <a href="<?php the_permalink(get_page_by_path('se-connecter')); ?>">
                                     <span>Je veux me reconnecter</span>
                                 </a>
                             </p>

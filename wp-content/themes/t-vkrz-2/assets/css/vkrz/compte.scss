@@ -43,7 +43,7 @@
   padding: 0 5px !important;
 }
 
-.ur-frontend-field{
+.ur-frontend-field, .user-registration-Input{
   background: transparent !important;
   border: 2px solid rgba(255, 255, 255, 0.2) !important;
   padding: 20px 15px !important;
@@ -51,11 +51,11 @@
   border-radius: 10px !important;
   color: #fff !important;
   transition: all .2s ease-in-out;
-  &:focus{
-    border: 2px solid $rose !important;
-  }
   &:valid{
     border: 2px solid #fff !important;
+  }
+  &:focus{
+    border: 2px solid $rose !important;
   }
 }
 
@@ -100,7 +100,7 @@ input:-webkit-autofill:active {
   font-size: 15px;
 }
 
-.gif2, .gif3{
+.gif2, .gif3, .gif4{
   display: none;
 }
 
@@ -150,4 +150,45 @@ input:-webkit-autofill:active {
   &:hover{
     background: #fff;
   }
+}
+
+#user-registration {
+  background: transparent !important;
+  margin: 0 !important;
+  p{
+    margin: 0 0 10px 0;
+  }
+}
+
+.user-registration-Button{
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+  padding: 10px 20px;
+  line-height: 1.5;
+  text-align: center;
+  word-break: break-word;
+  white-space: normal;
+  border: none;
+  cursor: pointer;
+  transition: 0.35s all ease-out;
+  box-shadow: 0 1px 3px #b5bacf26;
+  border-color: #7367f0 !important;
+  background-color: #7367f0 !important;
+  color: #fff !important;
+  width: auto;
+  min-height: 50px;
+  font-size: 16px;
+  font-weight: 500;
+  display: block;
+  vertical-align: middle;
+  user-select: none;
+  border-radius: 0.358rem;
+  -webkit-appearance: button;
+  &:hover{
+    box-shadow: 0 8px 25px -8px #7367f0;
+  }
+}
+
+.user-registration-form{
+  max-width: 550px;
 }

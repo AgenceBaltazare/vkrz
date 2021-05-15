@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAAA;;;EAGE;AAEF;;EAEE;ACPF;;GAEG;ACEH;;;;;IAKI;AAUJ;;;;;IAKI;ACbJ;;;;IAII;AFfJ;;GAEG;ACEH;;;;;IAKI;AAUJ;;;;;IAKI;AEtBJ;;;IAGI;AAYJ;;;;IAII;ACdJ;;;GAGG;ALCH;;GAEG;AACH,oCAAqC;EAEnC,8BAAa;IACZ,OAAO,EAAE,YAAY;IACrB,OAAO,EAAE,IAAI;IACb,sBAAsB,EAAE,MAAM;IAC9B,cAAc,EAAE,MAAM;IACtB,4CAAa;MACZ,KAAK,EAAE,eAAe;MACtB,aAAa,EAAE,IAAI;MACnB,4DAAkB;QACjB,WAAW,EAAE,iBAAuB;MAErC,uDAAa;QACZ,aAAa,EAAE,CAAC;QAChB,WAAW,EAAE,MAAM;AAQxB,oCAAqC;EACpC,6DAA8D;IAC7D,OAAO,EAAE,KAAK;IACd,0GAA6C;MAC5C,OAAO,EAAE,KAAK",
-"sources": ["user-registration-smallscreen.scss","variables/_colors.scss","variables/_grids.scss","mixins/_breakpoints.scss","mixins/_grids.scss","mixins/_mixins.scss"],
-"names": [],
-"file": "user-registration-smallscreen.css"
-}

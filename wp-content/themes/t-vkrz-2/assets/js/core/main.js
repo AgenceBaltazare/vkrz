@@ -50,3 +50,12 @@ $('.already-account').mouseout(function() {
     $('.gif1').show();
 });
 
+
+$('.user-registration-LostPassword').mouseover(function() {
+    $('.gif1').hide();
+    $('.gif4').show().addClass('animate__tada');
+});
+$('.user-registration-LostPassword').mouseout(function() {
+    $('.gif4').hide();
+    $('.gif1').show();
+});

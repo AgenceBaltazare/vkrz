@@ -498,6 +498,9 @@ html .content {
   text-align: center; }
   .illu img {
     margin: 0 auto; }
+  .illu .cov-illu {
+    min-height: 200px;
+    background-size: cover !important; }
 
 .avatar-picture-max {
   display: block;
@@ -532,7 +535,7 @@ html .content {
 .ur-frontend-form .ur-form-row .ur-form-grid {
   padding: 0 5px !important; }
 
-.ur-frontend-field {
+.ur-frontend-field, .user-registration-Input {
   background: transparent !important;
   border: 2px solid rgba(255, 255, 255, 0.2) !important;
   padding: 20px 15px !important;
@@ -540,10 +543,10 @@ html .content {
   border-radius: 10px !important;
   color: #fff !important;
   transition: all .2s ease-in-out; }
-  .ur-frontend-field:focus {
-    border: 2px solid #f4167f !important; }
-  .ur-frontend-field:valid {
+  .ur-frontend-field:valid, .user-registration-Input:valid {
     border: 2px solid #fff !important; }
+  .ur-frontend-field:focus, .user-registration-Input:focus {
+    border: 2px solid #f4167f !important; }
 
 .password-input-group {
   width: 100%; }
@@ -581,7 +584,7 @@ input:-webkit-autofill:active {
   padding: 0 3px;
   font-size: 15px; }
 
-.gif2, .gif3 {
+.gif2, .gif3, .gif4 {
   display: none; }
 
 .bigup h1 {
@@ -617,6 +620,42 @@ input:-webkit-autofill:active {
   border-color: #fff; }
   .btn-outline-white:hover {
     background: #fff; }
+
+#user-registration {
+  background: transparent !important;
+  margin: 0 !important; }
+  #user-registration p {
+    margin: 0 0 10px 0; }
+
+.user-registration-Button {
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+  padding: 10px 20px;
+  line-height: 1.5;
+  text-align: center;
+  word-break: break-word;
+  white-space: normal;
+  border: none;
+  cursor: pointer;
+  transition: 0.35s all ease-out;
+  box-shadow: 0 1px 3px #b5bacf26;
+  border-color: #7367f0 !important;
+  background-color: #7367f0 !important;
+  color: #fff !important;
+  width: auto;
+  min-height: 50px;
+  font-size: 16px;
+  font-weight: 500;
+  display: block;
+  vertical-align: middle;
+  user-select: none;
+  border-radius: 0.358rem;
+  -webkit-appearance: button; }
+  .user-registration-Button:hover {
+    box-shadow: 0 8px 25px -8px #7367f0; }
+
+.user-registration-form {
+  max-width: 550px; }
 
 @media (min-width: 1200px) {
   .col-xxl-2 {

@@ -271,7 +271,7 @@ global $user_id;
                             <span class="ico">🥷</span> Mon compte
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('connexion')); ?>">
+                        <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('se-connecter')); ?>">
                             <span class="ico">🤙</span> Se connecter
                         </a>
                         <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>">

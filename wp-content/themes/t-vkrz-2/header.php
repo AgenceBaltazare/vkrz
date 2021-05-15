@@ -12,14 +12,9 @@ if(is_user_logged_in()){
     $user_info      = get_userdata($user_id);
     $user_role      = $user_info->roles[0];
 }
-if(isset($_COOKIE["vainkeurz_user_id"])){
-    $uuiduser            = $_COOKIE["vainkeurz_user_id"];
-    $list_t_already_done = get_user_tournament_list('t-done', $uuiduser);
-    $list_t_begin        = get_user_tournament_list('t-begin', $uuiduser);
-}
-else{
-    $uuiduser       = "nouuiduser";
-}
+$uuiduser            = deal_uuiduser();
+$list_t_already_done = get_user_tournament_list('t-done', $uuiduser);
+$list_t_begin        = get_user_tournament_list('t-begin', $uuiduser);
 wp_reset_query(); wp_reset_postdata();
 ?>
 <!DOCTYPE html>

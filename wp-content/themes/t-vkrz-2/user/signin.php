@@ -61,7 +61,7 @@ else{
                             </p>
 
                             <div class="auth-register-form mt-2">
-                                <?php echo do_shortcode('[user_registration_form id="26351"]'); ?>
+                                <?php echo do_shortcode('[wppb-register form_name="sign-in"]'); ?>
                             </div>
 
                             <p class="text-left mt-2 already-account">

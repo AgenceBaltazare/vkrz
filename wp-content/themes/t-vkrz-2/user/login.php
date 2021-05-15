@@ -34,6 +34,9 @@ else{
                             <div class="gif3 animate__animated">
                                 <img class="img-fluid" src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/login/2.gif" alt="Login V2" />
                             </div>
+                            <div class="gif4 animate__animated">
+                                <img class="img-fluid" src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/login/5.gif" alt="Login V2" />
+                            </div>
                         </div>
                     </div>
                     <div class="col-lg-8 auth-bg px-2 p-lg-5">
@@ -58,12 +61,12 @@ else{
                             </p>
 
                             <div class="auth-register-form mt-2">
-                                <?php echo do_shortcode('[user_registration_form id="26351"]'); ?>
+                                <?php echo do_shortcode('[user_registration_my_account] '); ?>
                             </div>
 
-                            <p class="text-left mt-2 already-account">
+                            <p class="text-left mt-4 already-account">
                                 <span>Tu n'as pas encore de compte <span class="ico text-center">🥴</span></span>
-                                <a href="<?php the_permalink(get_page_by_path('creer-un-compte')); ?>">
+                                <a href="<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>">
                                     <span>Cliquez ici pour te créer un compte</span>
                                 </a>
                             </p>
