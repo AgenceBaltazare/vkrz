@@ -143,7 +143,7 @@ global $user_id;
                                 <div class="media-body">
                                     <div class="media-heading">
                                         <h6 class="cart-item-title">
-                                            <a class="text-body" href="<?php the_permalink(); ?>">
+                                            <a class="text-body" href="<?php the_permalink($t_user['id_tournoi']); ?>">
                                                 <?php echo get_the_title($t_user['id_tournoi']); ?>
                                             </a>
                                         </h6>
@@ -239,13 +239,17 @@ global $user_id;
 
                             <?php endwhile; ?>
                         </li>
-                        <!--
                         <li class="dropdown-menu-footer">
-                            <a class="btn btn-primary btn-block" href="javascript:void(0)">
-                                Voir tous mes Tops terminés
-                            </a>
+                            <?php if(is_user_logged_in()): ?>
+                                <a class="btn btn-primary btn-block" href="<?php echo get_author_posts_url($user_id); ?>">
+                                    Voir tous mes Tops terminés
+                                </a>
+                            <?php else: ?>
+                                <a class="btn btn-primary btn-block" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>?uuid=<?php echo $uuiduser; ?>">
+                                    Voir tous mes Tops terminés
+                                </a>
+                            <?php endif; ?>
                         </li>
-                        -->
                     <?php endif; ?>
                 </ul>
             </li>

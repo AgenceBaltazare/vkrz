@@ -64,7 +64,7 @@ else{
 
                             <p class="text-left mt-2 already-account">
                                 <span>Tu as déjà un compte <span class="ico text-center">🥴</span></span>
-                                <a href="<?php the_permalink(get_page_by_path('connexion')); ?>">
+                                <a href="<?php the_permalink(get_page_by_path('se-connecter')); ?>">
                                     <span>Clique ici pour te connecter</span>
                                 </a>
                             </p>
