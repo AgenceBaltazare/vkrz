@@ -274,6 +274,10 @@ html .content {
   background: rgba(255, 255, 255, 0.4);
   display: block; }
 
+.main-menu .main-menu-content {
+  height: calc(100% - 220px) !important;
+  position: relative; }
+
 .main-menu {
   border-right: 10px solid #14122f; }
   .main-menu .navbar-header {

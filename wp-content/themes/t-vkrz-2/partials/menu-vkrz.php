@@ -16,7 +16,6 @@
             </li>
         </ul>
     </div>
-    <div class="shadow-bottom"></div>
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
             <li class="navigation-header">
