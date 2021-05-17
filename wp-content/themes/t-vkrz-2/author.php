@@ -17,7 +17,7 @@ get_header();
                                     J'ai déjà un compte
                                 </a>
                                 <a class="btn btn-primary waves-effect" href="<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>">
-                                    Excellent idée - je créer mon compte <span class="ico">🎉</span>
+                                    Excellente idée - je créé mon compte <span class="ico">🎉</span>
                                 </a>
                             </div>
                         </div>
