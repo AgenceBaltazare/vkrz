@@ -64,11 +64,23 @@ wp_reset_query(); wp_reset_postdata();
             Classement mondial 👉 <?php echo get_the_title($id_tournament); ?> - <?php the_field( 'question_t', $id_tournament ); ?> 🔥 VAINKEURZ
         </title>
 
-    <?php elseif(is_archive()): ?>
+    <?php elseif(is_archive() && !is_author()): ?>
 
         <?php $current_cat = get_queried_object(); ?>
         <title>
             Tous les Tops de la catégorie <?php echo $current_cat->name; ?> <?php the_field('icone_cat', 'term_'.$current_cat->term_id); ?>
+        </title>
+
+    <?php elseif(is_author()): ?>
+
+        <title>
+            Profil de <?php echo $current_user->display_name; ?> sur VAINKEURZ
+        </title>
+
+    <?php else: ?>
+
+        <title>
+            VAINKEURZ 🔥
         </title>
 
     <?php endif; ?>

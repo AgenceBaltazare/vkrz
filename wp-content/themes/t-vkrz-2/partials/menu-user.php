@@ -114,7 +114,7 @@ global $user_id;
         <ul class="nav navbar-nav align-items-center">
             <li class="nav-item dropdown dropdown-cart">
                 <a class="nav-link" href="javascript:void(0);" data-toggle="dropdown">
-                    <span class="ico text-right">💎</span>
+                    <span class="ico text-center">💎</span>
                     <span class="value-user-stats user-total-vote-value">
                         <?php
                         $nb_total_votes_user = get_user_data("nb-user-vote");
@@ -180,7 +180,7 @@ global $user_id;
             </li>
             <li class="nav-item dropdown dropdown-notification mr-25">
                 <a class="nav-link" href="javascript:void(0);" data-toggle="dropdown">
-                    <span class="ico text-right">🏆</span>
+                    <span class="ico text-center">🏆</span>
                     <span class="value-user-stats">
                         <?php
                         $list_t_already_done = get_user_tournament_list('t-done');
