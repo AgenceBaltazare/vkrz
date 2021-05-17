@@ -32,11 +32,11 @@ $(window).scroll(function() {
 });
 
 
-$('.user-registration .ur-submit-button').mouseover(function() {
+$('#wppb-register-user-sign-in #register').mouseover(function() {
     $('.gif1').hide();
     $('.gif2').show().addClass('animate__tada');
 });
-$('.user-registration .ur-submit-button').mouseout(function() {
+$('#wppb-register-user-sign-in #register').mouseout(function() {
     $('.gif2').hide();
     $('.gif1').show();
 });
@@ -49,7 +49,6 @@ $('.already-account').mouseout(function() {
     $('.gif3').hide();
     $('.gif1').show();
 });
-
 
 $('.user-registration-LostPassword').mouseover(function() {
     $('.gif1').hide();

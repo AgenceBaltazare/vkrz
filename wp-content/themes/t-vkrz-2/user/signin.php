@@ -55,9 +55,7 @@ else{
                             <div class="w-100"></div>
 
                             <p class="annonce">
-                                Aujourd'hui, tu es un 🐣 mais avec de la volonté tu deviendras sans doute un 🐓
-                                <br>
-                                Et rien que pour ça, il te faut ce compte 👇
+
                             </p>
 
                             <div class="auth-register-form mt-2">
@@ -67,7 +65,7 @@ else{
                             <p class="text-left mt-2 already-account">
                                 <span>Tu as déjà un compte <span class="ico text-center">🥴</span></span>
                                 <a href="<?php the_permalink(get_page_by_path('connexion')); ?>">
-                                    <span>Cliquez ici pour te connecter</span>
+                                    <span>Clique ici pour te connecter</span>
                                 </a>
                             </p>
                             <!--

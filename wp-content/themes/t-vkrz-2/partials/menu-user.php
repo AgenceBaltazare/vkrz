@@ -127,7 +127,7 @@ global $user_id;
                         <div class="dropdown-header d-flex">
                             <h4 class="notification-title mb-0 mr-auto">💎</h4>
                             <div class="badge badge-pill badge-light-primary">
-                                Enchaîne les votes pour monter en niveau !
+                                Enchaîne les votes pour gagner des 💎
                             </div>
                         </div>
                     </li>
@@ -163,6 +163,7 @@ global $user_id;
 
                         <?php endforeach; ?>
                     </li>
+                    <!--
                     <li class="dropdown-menu-footer">
                         <div class="text-center mb-2 mt-1">
                             <h6 class="font-weight-bolder mb-0">
@@ -174,6 +175,7 @@ global $user_id;
                             Découvrir les niveaux 👀
                         </a>
                     </li>
+                    -->
                 </ul>
             </li>
             <li class="nav-item dropdown dropdown-notification mr-25">
@@ -237,18 +239,28 @@ global $user_id;
 
                             <?php endwhile; ?>
                         </li>
+                        <!--
                         <li class="dropdown-menu-footer">
                             <a class="btn btn-primary btn-block" href="javascript:void(0)">
                                 Voir tous mes Tops terminés
                             </a>
                         </li>
+                        -->
                     <?php endif; ?>
                 </ul>
             </li>
             <li class="nav-item dropdown dropdown-user ml-25">
                 <a class="nav-link dropdown-toggle dropdown-user-link" id="dropdown-user" href="javascript:void(0);" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="avatar">
-                        <span class="avatar-picture" style="background-image: url(<?php bloginfo('template_directory'); ?>/assets/images/vkrz/ninja.png);"></span>
+                        <?php
+                        if(is_user_logged_in() && get_avatar_url($user_id, ['size' => '80'])){
+                            $avatar_url = get_avatar_url($user_id, ['size' => '80']);
+                        }
+                        else{
+                            $avatar_url = get_bloginfo('template_directory')."/assets/images/vkrz/ninja.png";
+                        }
+                        ?>
+                        <span class="avatar-picture" style="background-image: url(<?php echo $avatar_url; ?>);"></span>
                         <span class="user-niveau">
                             🐣
                         </span>

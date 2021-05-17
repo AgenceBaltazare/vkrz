@@ -1,5 +1,7 @@
 <?php
 global $uuiduser;
+global $current_user;
+global $user_id;
 get_header();
 ?>
 <div class="app-content content">
@@ -27,11 +29,19 @@ get_header();
                             <div class="card-body d-flex align-items-center">
                                 <div class="user-avatar-section">
                                     <div class="d-flex justify-content-start align-items-center">
-                                        <span class="avatar-picture-max" style="background-image: url(<?php bloginfo('template_directory'); ?>/assets/images/vkrz/ninja.png);"></span>
+                                        <?php 
+                                            if(is_user_logged_in() && get_avatar_url($user_id, ['size' => '80'])){
+                                                $avatar_url = get_avatar_url($user_id, ['size' => '80']);
+                                            }
+                                            else{
+                                                $avatar_url = get_bloginfo('template_directory')."/assets/images/vkrz/ninja.png";
+                                            }
+                                        ?>
+                                        <span class="avatar-picture-max" style="background-image: url(<?php echo $avatar_url; ?>);"></span>
                                         <div class="d-flex flex-column ml-2">
                                             <div class="user-info mb-1">
                                                 <h1 class="mb-0 text-uppercase">
-                                                    <?php if(is_author()): ?>
+                                                    <?php if(is_user_logged_in()): ?>
                                                         <?php echo $current_user->display_name; ?>
                                                         <br>
                                                         <small>#<?php echo $uuiduser; ?></small>

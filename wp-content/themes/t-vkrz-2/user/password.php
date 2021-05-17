@@ -1,6 +1,6 @@
 <?php
 /*
-    Template Name: Log In
+    Template Name: Password
 */
 ?>
 <?php
@@ -26,7 +26,7 @@ else{
                     <div class="d-none d-lg-flex col-lg-4 align-items-center p-5">
                         <div class="w-100 d-lg-flex align-items-center justify-content-center px-5">
                             <div class="gif1 animate__animated">
-                                <img class="img-fluid" src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/login/28.gif" alt="Login V2" />
+                                <img class="img-fluid" src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/login/26.gif" alt="Login V2" />
                             </div>
                             <div class="gif2 animate__animated">
                                 <img class="img-fluid" src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/login/27.gif" alt="Login V2" />
@@ -50,7 +50,7 @@ else{
                                     </h2>
                                 </a>
                                 <h2 class="card-title font-weight-bold mb-1">
-                                    Bienvenue <span class="ico">🖖</span>
+                                    Reset votre mot de passe <span class="ico">🖖</span>
                                 </h2>
                             </div>
 
@@ -61,31 +61,8 @@ else{
                             </p>
 
                             <div class="auth-register-form mt-2">
-                                <?php echo do_shortcode('[wppb-login form_name="log-in"]'); ?>
+                                <?php echo do_shortcode('[wppb-recover-password]'); ?>
                             </div>
-
-                            <p class="text-left mt-2">
-                                <a href="<?php the_permalink(get_page_by_path('mot-de-passe')); ?>">
-                                    <span>Mot de passe oublié ? <span class="ico text-center">🙃</span></span>
-                                </a>
-                            </p>
-
-                            <hr class="divider">
-
-                            <p class="text-left already-account">
-                                <span>Tu n'as pas encore de compte <span class="ico text-center">🥴</span></span>
-                                <a href="<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>">
-                                    <span>Clique ici pour te créer un compte</span>
-                                </a>
-                            </p>
-                            <!--
-                            <div class="divider my-2">
-                                <div class="divider-text">or</div>
-                            </div>
-                            <div class="auth-footer-btn d-flex justify-content-center">
-                                <?php do_action('oa_social_link'); ?>
-                            </div>
-                            -->
                         </div>
                     </div>
                     <!-- /Login-->

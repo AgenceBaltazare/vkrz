@@ -267,6 +267,13 @@ html .content {
   background: #0c0a27;
   opacity: 0.45; }
 
+.divider {
+  height: 1px;
+  width: 80%;
+  margin: 20px 0;
+  background: rgba(255, 255, 255, 0.4);
+  display: block; }
+
 .main-menu {
   border-right: 10px solid #14122f; }
   .main-menu .navbar-header {
@@ -525,60 +532,76 @@ html .content {
     background-position: 100% 50%; }
   100% {
     background-position: 0% 50%; } }
-.dark-layout .auth-wrapper .auth-bg {
-  background-color: transparent; }
-
-.ur-frontend-form {
-  border: none !important;
-  padding: 0 !important; }
-
-.ur-frontend-form .ur-form-row .ur-form-grid {
-  padding: 0 5px !important; }
-
-.ur-frontend-field, .user-registration-Input {
-  background: transparent !important;
-  border: 2px solid rgba(255, 255, 255, 0.2) !important;
-  padding: 20px 15px !important;
-  font-size: 15px !important;
-  border-radius: 10px !important;
-  color: #fff !important;
-  transition: all .2s ease-in-out; }
-  .ur-frontend-field:valid, .user-registration-Input:valid {
-    border: 2px solid #fff !important; }
-  .ur-frontend-field:focus, .user-registration-Input:focus {
-    border: 2px solid #f4167f !important; }
-
-.password-input-group {
-  width: 100%; }
-
-.ur-frontend-form .ur-button-container .ur-submit-button {
-  margin-right: auto;
-  margin-left: 0 !important; }
-
-.ur-submit-button {
-  width: auto;
-  min-height: 50px;
-  font-size: 16px; }
-
-.ur-frontend-form .ur-button-container {
-  padding: 0 !important; }
-
-.ur-frontend-form .ur-form-row .ur-form-grid .ur-field-item {
-  margin-bottom: 10px !important;
-  max-width: 550px; }
-
-.ur-frontend-form .ur-form-row .ur-form-grid .ur-field-item div {
-  flex-direction: column; }
-
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-  transition: background-color 5000s ease-in-out 0s;
-  -webkit-box-shadow: 0 0 0 1000px transparent inset;
+  transition: background-color 5000s ease-in-out 0s !important;
+  -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
   color: #fff !important;
   -webkit-text-fill-color: #fff !important;
   -webkit-text-size-adjust: 100% !important; }
+
+.wppb-user-forms {
+  max-width: 550px; }
+  .wppb-user-forms ul {
+    margin: 0;
+    padding: 0; }
+    .wppb-user-forms ul li {
+      list-style-type: none;
+      display: block;
+      margin-bottom: 20px; }
+  .wppb-user-forms input[type="text"], .wppb-user-forms input[type="email"], .wppb-user-forms input[type="password"] {
+    background: transparent !important;
+    border: 2px solid rgba(255, 255, 255, 0.2) !important;
+    padding: 20px 15px !important;
+    font-size: 15px !important;
+    border-radius: 10px !important;
+    color: #fff !important;
+    transition: all .2s ease-in-out; }
+    .wppb-user-forms input[type="text"]::placeholder, .wppb-user-forms input[type="email"]::placeholder, .wppb-user-forms input[type="password"]::placeholder {
+      color: rgba(255, 255, 255, 0.8); }
+    .wppb-user-forms input[type="text"]:valid, .wppb-user-forms input[type="email"]:valid, .wppb-user-forms input[type="password"]:valid {
+      border: 2px solid #fff !important; }
+    .wppb-user-forms input[type="text"]:focus, .wppb-user-forms input[type="email"]:focus, .wppb-user-forms input[type="password"]:focus {
+      border: 2px solid #f4167f !important;
+      transition: background-color 5000s ease-in-out 0s !important;
+      -webkit-box-shadow: none !important;
+      background: transparent !important;
+      outline: 0; }
+
+.wppb-send-credentials-checkbox, #select_user_to_edit_form, .wppb-description-delimiter, .file-type, .file-name, .login-remember {
+  display: none !important; }
+
+.wppb-avatar {
+  display: flex !important;
+  align-items: center; }
+  .wppb-avatar label {
+    color: #fff;
+    font-size: 16px;
+    margin-right: 20px;
+    margin-left: 5px;
+    width: 100% !important; }
+  .wppb-avatar input {
+    width: 100% !important; }
+  .wppb-avatar .wppb-attachment-link img {
+    border-radius: 50%; }
+  .wppb-avatar .upload-field-details {
+    text-align: center; }
+
+.wppb-remove-upload {
+  cursor: pointer !important;
+  display: block;
+  color: #5e50a6;
+  position: relative;
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -ms-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  left: 0; }
+  .wppb-remove-upload:hover {
+    left: 5px; }
 
 .annonce {
   padding: 0 3px;
@@ -621,13 +644,7 @@ input:-webkit-autofill:active {
   .btn-outline-white:hover {
     background: #fff; }
 
-#user-registration {
-  background: transparent !important;
-  margin: 0 !important; }
-  #user-registration p {
-    margin: 0 0 10px 0; }
-
-.user-registration-Button {
+.form-submit .submit, #wppb-submit {
   margin-right: 0 !important;
   margin-left: 0 !important;
   padding: 10px 20px;
@@ -651,11 +668,26 @@ input:-webkit-autofill:active {
   user-select: none;
   border-radius: 0.358rem;
   -webkit-appearance: button; }
-  .user-registration-Button:hover {
+  .form-submit .submit:hover, #wppb-submit:hover {
     box-shadow: 0 8px 25px -8px #7367f0; }
 
-.user-registration-form {
+.wppb-success {
+  color: #ffffff;
+  background: #ffd2e71c;
+  padding: 15px 20px; }
+
+.auth-bg {
+  background: transparent !important; }
+
+.wppb-error {
+  color: #ffffff;
+  background: rgba(244, 29, 27, 0.39);
+  padding: 15px 20px;
+  border-radius: 5px;
+  margin-bottom: 20px;
   max-width: 550px; }
+  .wppb-error a {
+    display: none; }
 
 @media (min-width: 1200px) {
   .col-xxl-2 {

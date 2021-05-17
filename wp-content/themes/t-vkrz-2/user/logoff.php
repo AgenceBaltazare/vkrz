@@ -38,7 +38,7 @@ else{
                             <p class="text-center mt-2 already-account">
                                 <span>C'était une erreur <span class="ico text-center">😅</span></span>
                                 <a href="<?php the_permalink(get_page_by_path('se-connecter')); ?>">
-                                    <span>Je veux me reconnecter</span>
+                                    <span>Me reconnecter</span>
                                 </a>
                             </p>
                         </div>

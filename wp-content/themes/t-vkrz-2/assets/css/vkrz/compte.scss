@@ -31,68 +31,92 @@
   }
 }
 
-.dark-layout .auth-wrapper .auth-bg {
-  background-color: transparent;
-}
-
-.ur-frontend-form {
-  border: none !important;
-  padding: 0 !important;
-}
-.ur-frontend-form .ur-form-row .ur-form-grid {
-  padding: 0 5px !important;
-}
-
-.ur-frontend-field, .user-registration-Input{
-  background: transparent !important;
-  border: 2px solid rgba(255, 255, 255, 0.2) !important;
-  padding: 20px 15px !important;
-  font-size: 15px !important;
-  border-radius: 10px !important;
-  color: #fff !important;
-  transition: all .2s ease-in-out;
-  &:valid{
-    border: 2px solid #fff !important;
-  }
-  &:focus{
-    border: 2px solid $rose !important;
-  }
-}
-
-.password-input-group{
-  width: 100%;
-}
-
-.ur-frontend-form .ur-button-container .ur-submit-button {
-  margin-right: auto;
-  margin-left: 0 !important;
-}
-.ur-submit-button{
-  width: auto;
-  min-height: 50px;
-  font-size: 16px;
-}
-.ur-frontend-form .ur-button-container {
-  padding: 0 !important;
-}
-.ur-frontend-form .ur-form-row .ur-form-grid .ur-field-item {
-  margin-bottom: 10px !important;
-  max-width: 550px;
-}
-
-.ur-frontend-form .ur-form-row .ur-form-grid .ur-field-item div{
-  flex-direction: column;
-}
-
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-  transition: background-color 5000s ease-in-out 0s;
-  -webkit-box-shadow: 0 0 0 1000px transparent inset;
+  transition: background-color 5000s ease-in-out 0s !important;
+  -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
   color: #fff !important;
   -webkit-text-fill-color: #fff !important;
   -webkit-text-size-adjust: 100% !important;
+}
+
+.wppb-user-forms{
+  max-width: 550px;
+  ul{
+    margin: 0;
+    padding: 0;
+    li{
+      list-style-type: none;
+      display: block;
+      margin-bottom: 20px;
+    }
+  }
+  input[type="text"], input[type="email"], input[type="password"]{
+    background: transparent !important;
+    border: 2px solid rgba(255, 255, 255, 0.2) !important;
+    padding: 20px 15px !important;
+    font-size: 15px !important;
+    border-radius: 10px !important;
+    color: #fff !important;
+    transition: all .2s ease-in-out;
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.8);
+    }
+    &:valid{
+      border: 2px solid #fff !important;
+    }
+    &:focus{
+      border: 2px solid $rose !important;
+      transition: background-color 5000s ease-in-out 0s !important;
+      -webkit-box-shadow: none !important;
+      background: transparent !important;
+      outline: 0;
+    }
+  }
+}
+
+.wppb-send-credentials-checkbox, #select_user_to_edit_form, .wppb-description-delimiter, .file-type, .file-name, .login-remember{
+  display: none !important;
+}
+.wppb-avatar{
+  display: flex !important;
+  align-items: center;
+  label{
+    color: #fff;
+    font-size: 16px;
+    margin-right: 20px;
+    margin-left: 5px;
+    width: 100% !important;
+  }
+  input{
+    width: 100% !important;
+  }
+  .wppb-attachment-link{
+    img{
+      border-radius: 50%;
+    }
+  }
+  .upload-field-details{
+    text-align: center;
+  }
+}
+
+.wppb-remove-upload{
+  cursor: pointer !important;
+  display: block;
+  color: $c5;
+  position: relative;
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -ms-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  left: 0;
+  &:hover{
+    left: 5px;
+  }
 }
 
 .annonce{
@@ -152,15 +176,7 @@ input:-webkit-autofill:active {
   }
 }
 
-#user-registration {
-  background: transparent !important;
-  margin: 0 !important;
-  p{
-    margin: 0 0 10px 0;
-  }
-}
-
-.user-registration-Button{
+.form-submit .submit, #wppb-submit{
   margin-right: 0 !important;
   margin-left: 0 !important;
   padding: 10px 20px;
@@ -188,7 +204,24 @@ input:-webkit-autofill:active {
     box-shadow: 0 8px 25px -8px #7367f0;
   }
 }
+.wppb-success{
+  color: #ffffff;
+  background: #ffd2e71c;
+  padding: 15px 20px;
+}
 
-.user-registration-form{
+.auth-bg{
+  background: transparent !important;
+}
+
+.wppb-error{
+  color: #ffffff;
+  background: rgba(244, 29, 27, 0.39);
+  padding: 15px 20px;
+  border-radius: 5px;
+  margin-bottom: 20px;
   max-width: 550px;
+  a{
+    display: none;
+  }
 }

@@ -12,7 +12,7 @@
                     <div class="col">
                         <div class="card">
                             <div class="card-body">
-                                <?php echo do_shortcode('[user_registration_form id="26400"]'); ?>
+                                <?php echo do_shortcode('[wppb-edit-profile form_name="edition-profil"]'); ?>
                             </div>
                         </div>
                     </div>
