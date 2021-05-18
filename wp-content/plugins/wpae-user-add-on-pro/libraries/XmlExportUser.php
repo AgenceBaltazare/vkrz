@@ -483,7 +483,7 @@ if (!class_exists('XmlExportUser')) {
                         $engine->init_available_data();
                         $engine->init_additional_data();
                         $snippets = $engine->get_fields_options($snippets);
-                        $articleData = self::prepare_data($user, $snippets, $xmlWriter = false, $acfs, $implode_delimiter, $preview);
+                        $articleData = self::prepare_data($user, $snippets, $xmlWriter, $acfs, $implode_delimiter, $preview);
                         $wpaeString = new WpaeString();
                         foreach ($articleData as $snippetName => $articleValue) {
                             if($wpaeString->isBetween($combineMultipleFieldsValue, "{".$snippetName."}", '[',']')) {
