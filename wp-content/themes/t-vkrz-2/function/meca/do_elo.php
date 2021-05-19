@@ -1,5 +1,8 @@
 <?php
 function do_elo_ranking( $id_tournoi, $id_winner, $id_looser ) {
+
+    $uuiduser = $_COOKIE['vainkeurz_user_id'];
+
 	include_once 'VkrzELoRranking.php';
 	$elo_winner = floor(get_field( 'ELO_c', $id_winner ));
 	$elo_looser = floor(get_field( 'ELO_c', $id_looser ));
@@ -24,12 +27,12 @@ function do_elo_ranking( $id_tournoi, $id_winner, $id_looser ) {
 	}
 	$new_vote = array(
 		'post_type'   => 'vote',
-		'post_title'  => 'U:' . $_COOKIE['vainkeurz_user_id'] . ' T:' . $id_tournoi . ' V:' . $id_winner . '(' . $newRankings['a'] . ')' . ' L:' . $id_looser . '(' . $newRankings['b'] . ')',
+		'post_title'  => 'U:' . $uuiduser . ' T:' . $id_tournoi . ' V:' . $id_winner . '(' . $newRankings['a'] . ')' . ' L:' . $id_looser . '(' . $newRankings['b'] . ')',
 		'post_status' => 'publish',
 	);
 	$id_vote  = wp_insert_post( $new_vote );
 
-	update_field( 'id_user_v', $_COOKIE['vainkeurz_user_id'], $id_vote );
+	update_field( 'id_user_v', $uuiduser, $id_vote );
 	update_field( 'ip_user_v', $ip_user_v, $id_vote );
 	update_field( 'id_v_v', $id_winner, $id_vote );
 	update_field( 'elo_v_v', $newRankings['a'], $id_vote );

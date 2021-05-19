@@ -278,6 +278,9 @@ html .content {
   height: calc(100% - 220px) !important;
   position: relative; }
 
+.avatar img {
+  object-fit: cover; }
+
 .main-menu {
   border-right: 10px solid #14122f; }
   .main-menu .navbar-header {

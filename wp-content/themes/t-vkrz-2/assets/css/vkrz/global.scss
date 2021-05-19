@@ -220,3 +220,9 @@ html .content {
   height: calc(100% - 220px) !important;
   position: relative;
 }
+
+.avatar{
+  img{
+    object-fit: cover;
+  }
+}

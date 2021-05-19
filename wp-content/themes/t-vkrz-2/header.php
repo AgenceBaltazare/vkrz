@@ -17,7 +17,7 @@ if(is_user_logged_in()){
         exit();
     }
 }
-$uuiduser            = deal_uuiduser();
+$uuiduser        = deal_uuiduser();
 $list_t_already_done = get_user_tournament_list('t-done', $uuiduser);
 $list_t_begin        = get_user_tournament_list('t-begin', $uuiduser);
 wp_reset_query(); wp_reset_postdata();

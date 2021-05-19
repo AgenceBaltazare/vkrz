@@ -1,5 +1,26 @@
 <?php
-    global $user_role;
+global $uuiduser;
+global $user_role;
+global $current_user;
+global $user_id;
+global $list_t_already_done;
+global $list_t_begin;
+$user_role = "visitor";
+if(is_user_logged_in()){
+    $current_user   = wp_get_current_user();
+    $user_id        = $current_user->ID;
+    $user_info      = get_userdata($user_id);
+    $user_role      = $user_info->roles[0];
+    if(is_page(get_page_by_path('mon-compte'))){
+        $profil_url = get_author_posts_url($user_id);
+        wp_redirect($profil_url);
+        exit();
+    }
+}
+$uuiduser        = deal_uuiduser();
+$list_t_already_done = get_user_tournament_list('t-done', $uuiduser);
+$list_t_begin        = get_user_tournament_list('t-begin', $uuiduser);
+wp_reset_query(); wp_reset_postdata();
 ?>
 <!DOCTYPE html>
 <html class="loading dark-layout" lang="fr" data-layout="dark-layout" data-textdirection="ltr">
@@ -15,6 +36,10 @@
     <link rel="mask-icon" href="<?php bloginfo('template_directory'); ?>/assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
+
+    <title>
+        VAINKEURZ 🔥
+    </title>
 
     <!-- External -->
     <script src="https://kit.fontawesome.com/30edd5507e.js" crossorigin="anonymous"></script>

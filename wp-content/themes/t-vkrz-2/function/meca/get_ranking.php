@@ -8,7 +8,7 @@
  */
 function get_or_create_ranking_if_not_exists($id_tournament) {
 
-    $uuiduser = $_COOKIE["vainkeurz_user_id"];
+    $uuiduser = $_COOKIE['vainkeurz_user_id'];
 
     if(isset($uuiduser) && $uuiduser != ""){
 
