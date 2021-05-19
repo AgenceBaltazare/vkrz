@@ -13,7 +13,7 @@ get_header();
                         <div class="alert-body d-flex align-items-center justify-content-between">
                             <span><strong>Pour sécuriser ta progression</strong> l'idéal serait de te créer un compte.</span>
                             <div class="btns-alert text-right">
-                                <a class="btn btn-outline-white waves-effect mr-1 t-white" href="<?php the_permalink(get_page_by_path('connexion')); ?>">
+                                <a class="btn btn-outline-white waves-effect mr-1 t-white" href="<?php the_permalink(get_page_by_path('se-connecter')); ?>">
                                     J'ai déjà un compte
                                 </a>
                                 <a class="btn btn-primary waves-effect" href="<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>">
