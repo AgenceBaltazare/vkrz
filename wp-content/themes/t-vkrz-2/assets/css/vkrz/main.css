@@ -408,24 +408,22 @@ html .content {
 .rounded .cov-illu, .rounded img {
   border-radius: 50%; }
 
-.contenders-containers {
-  min-height: 500px; }
-  .contenders-containers .link-contender {
-    max-width: 500px;
-    position: relative;
-    transition: all 0.2s ease-in; }
-    .contenders-containers .link-contender:hover {
-      transform: scale(1.03); }
-    .contenders-containers .link-contender .contender_zone {
-      height: 100%;
-      width: 100%;
-      display: block; }
-      .contenders-containers .link-contender .contender_zone img {
-        border-radius: 10px; }
-  .contenders-containers .link-contender_1 .contender_zone {
-    cursor: url("../../images/vkrz/cursor_l.png"), pointer !important; }
-  .contenders-containers .link-contender_2 .contender_zone {
-    cursor: url("../../images/vkrz/cursor_r.png"), pointer !important; }
+.contenders-containers .link-contender {
+  max-width: 500px;
+  position: relative;
+  transition: all 0.2s ease-in; }
+  .contenders-containers .link-contender:hover {
+    transform: scale(1.03); }
+  .contenders-containers .link-contender .contender_zone {
+    height: 100%;
+    width: 100%;
+    display: block; }
+    .contenders-containers .link-contender .contender_zone img {
+      border-radius: 10px; }
+.contenders-containers .link-contender_1 .contender_zone {
+  cursor: url("../../images/vkrz/cursor_l.png"), pointer !important; }
+.contenders-containers .link-contender_2 .contender_zone {
+  cursor: url("../../images/vkrz/cursor_r.png"), pointer !important; }
 
 .min-tournoi {
   -webkit-transition: all .2s ease-in-out;
@@ -492,7 +490,8 @@ html .content {
 
 .display_battle {
   overflow: hidden;
-  padding: 0 0 40px 0; }
+  padding: 20px 0 40px 0;
+  margin-top: -10px; }
 
 .current_rank .demo-inline-spacing {
   justify-content: center; }
@@ -770,5 +769,10 @@ input:-webkit-autofill:active {
   .heading-cat small {
     display: block;
     margin: 5px 0 0 0; } }
+@media (max-height: 800px) {
+  .contenders-containers .link-contender {
+    max-width: 350px;
+    position: relative;
+    transition: all 0.2s ease-in; } }
 
 /*# sourceMappingURL=main.css.map */

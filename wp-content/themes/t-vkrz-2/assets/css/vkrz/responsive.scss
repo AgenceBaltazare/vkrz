@@ -83,3 +83,14 @@
   }
   
 }
+
+
+@media (max-height: 800px) {
+
+  .contenders-containers .link-contender {
+    max-width: 350px;
+    position: relative;
+    transition: all 0.2s ease-in;
+  }
+
+}

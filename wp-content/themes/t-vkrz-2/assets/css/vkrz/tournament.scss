@@ -64,8 +64,6 @@
 }
 .contenders-containers {
 
-  min-height: 500px;
-
   .link-contender {
     max-width: 500px;
     position: relative;
@@ -182,7 +180,8 @@
 }
 .display_battle{
   overflow: hidden;
-  padding: 0 0 40px 0;
+  padding: 20px 0 40px 0;
+  margin-top: -10px;
 }
 .current_rank{
   .demo-inline-spacing {
