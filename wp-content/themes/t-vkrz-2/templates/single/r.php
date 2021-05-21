@@ -121,6 +121,20 @@ get_header();
                                 <div class="card">
                                     <div class="card-body">
                                         <h4 class="card-title">
+                                            <span class="ico">🙃</span> Tu t'attendais pas à ça ?
+                                        </h4>
+                                        <h6 class="card-subtitle text-muted mb-1">
+                                            T'inquiète on te laisse refaire le Top
+                                        </h6>
+                                        <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-idranking="<?php echo $id_ranking; ?>" id="confirm_delete" href="#" class="btn btn-outline-primary waves-effect btn-block">
+                                            Recommencer
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title">
                                             <span class="ico">🧐</span> Classement mondial
                                         </h4>
                                         <h6 class="card-subtitle text-muted mb-1">

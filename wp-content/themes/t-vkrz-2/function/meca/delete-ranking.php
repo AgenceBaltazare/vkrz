@@ -1,5 +1,4 @@
 <?php
-
 function delete_ranking($id_ranking){
 
     if(isset($id_ranking) && $id_ranking != ""){
