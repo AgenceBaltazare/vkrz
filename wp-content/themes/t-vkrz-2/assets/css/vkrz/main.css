@@ -37,6 +37,9 @@
   -o-animation: rotating 2s linear infinite;
   animation: rotating 2s linear infinite; }
 
+body {
+  height: auto !important; }
+
 .dark-layout .swiper-slide {
   background-color: transparent !important; }
 
@@ -130,7 +133,8 @@
   background-color: transparent; }
 
 html .content.app-content {
-  padding: calc(2rem + 3.45rem + 1.3rem) 2rem 0; }
+  padding: calc(2rem + 3.45rem + 1.3rem) 2rem 0;
+  height: 100vh; }
 
 html .content.app-content .content-overlay {
   position: absolute;
@@ -280,6 +284,9 @@ html .content {
 
 .avatar img {
   object-fit: cover; }
+
+.ico-reverse {
+  transform: scaleX(-1); }
 
 .main-menu {
   border-right: 10px solid #14122f; }
@@ -483,12 +490,34 @@ html .content {
     .min-tournoi .card-body h4 {
       font-size: 15px; }
 
+.display_battle {
+  overflow: hidden;
+  padding: 0 0 40px 0; }
+
 .current_rank .demo-inline-spacing {
   justify-content: center; }
   .current_rank .demo-inline-spacing h3 {
     margin: 0; }
   .current_rank .demo-inline-spacing .avatar-group {
     margin: 0; }
+
+.nav-tournament {
+  position: fixed;
+  bottom: 20px;
+  right: 0;
+  left: 85px; }
+  .nav-tournament .btn-outline-primary:hover {
+    background: #7367f0 !important;
+    color: #fff !important; }
+
+.share-t a {
+  display: inline-block;
+  min-width: 40px;
+  text-align: center; }
+
+.share-label {
+  display: inline-block;
+  color: #7367f0; }
 
 .list-share {
   flex-wrap: wrap; }

@@ -39,6 +39,7 @@
 }
 html .content.app-content {
   padding: calc(2rem + 3.45rem + 1.3rem) 2rem 0;
+  height: 100vh;
 }
 html .content.app-content .content-overlay{
   position: absolute;
@@ -225,4 +226,8 @@ html .content {
   img{
     object-fit: cover;
   }
+}
+
+.ico-reverse{
+  transform: scaleX(-1);
 }

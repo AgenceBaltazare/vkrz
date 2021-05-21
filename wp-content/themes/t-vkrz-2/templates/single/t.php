@@ -55,6 +55,44 @@ get_header();
 
             <?php endif; ?>
 
+            <div class="nav-tournament d-flex justify-content-center align-items-center">
+                <div class="btng">
+                    <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-idranking="<?php echo $id_ranking; ?>" id="confirm_delete" href="#" class="btn btn-outline-primary waves-effect">
+                        <span class="ico text-center">🙃</span> Recommencer
+                    </a>
+                </div>
+
+                <div class="btng mr-5 ml-5">
+                    <span class="share-label">
+                        Partager <span class="ico text-center">👉</span>
+                    </span>
+                    <div class="btn-group justify-content-center share-t" role="group">
+                        <?php
+                        $url_tournament   = get_permalink($id_tournament);
+                        $title_tournament = get_the_title($id_tournament);
+                        ?>
+                        <a href="https://twitter.com/intent/tweet?source=<?php echo $url_tournament; ?>&text=<?php echo $title_tournament; ?>:%20<?php echo $url_tournament; ?>" target="_blank" title="Tweet" class="btn btn-icon btn-outline-primary">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="whatsapp://send?text=<?php echo $url_tournament; ?>" data-action="share/whatsapp/share" class="btn btn-icon btn-outline-primary">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $url_tournament; ?>&quote=<?php echo $title_tournament; ?>" title="Share on Facebook" target="_blank" class="btn btn-icon btn-outline-primary">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="mailto:?subject=<?php echo $title_tournament; ?>&body=<?php echo $title_tournament; ?>:<?php echo $url_tournament; ?>" target="_blank" class="btn btn-icon btn-outline-primary">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="btng">
+                    <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_tournoi=<?php echo $id_tournament; ?>" class="btn btn-outline-primary waves-effect" target="_blank" >
+                        <span class="ico ico-reverse text-center">👀</span> Classement mondial
+                    </a>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

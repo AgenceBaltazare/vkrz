@@ -26,11 +26,11 @@ $(document).ready(function ($) {
             if ($(this).find('.contender_zone').attr('id') === "c_1") {
                 $("#c_1").addClass('vainkeurz');
                 $("#c_1").addClass('animate__headShake');
-                $("#c_2").addClass('animate__zoomOutDown');
+                $("#c_2").addClass('animate__fadeOutDown');
             } else if ($(this).find('.contender_zone').attr('id') === "c_2") {
                 $("#c_2").addClass('vainkeurz');
                 $("#c_2").addClass('animate__headShake');
-                $("#c_1").addClass('animate__zoomOutDown');
+                $("#c_1").addClass('animate__fadeOutDown');
             }
             $.ajax({
                 method: "POST",
