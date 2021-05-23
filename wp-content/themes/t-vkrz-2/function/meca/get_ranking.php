@@ -36,7 +36,7 @@ function get_or_create_ranking_if_not_exists($id_tournament) {
         else{
             $new_ranking = array(
                 'post_type'   => 'classement',
-                'post_title'  => 'T:' . $id_tournament .' U:' . $uuiduser,
+                'post_title'  => 'Top '.get_numbers_of_contenders($id_tournament).' - '.get_the_title($id_tournament),
                 'post_status' => 'publish',
             );
             $id_ranking  = wp_insert_post($new_ranking);

@@ -5,6 +5,7 @@ global $current_user;
 global $user_id;
 global $list_t_already_done;
 global $list_t_begin;
+global $id_tournament;
 $user_role = "visitor";
 if(is_user_logged_in()){
     $current_user   = wp_get_current_user();
@@ -52,14 +53,14 @@ wp_reset_query(); wp_reset_postdata();
     <?php elseif(is_single() && get_post_type() == "tournoi"): ?>
 
         <title>
-            ⚔ TOP : <?php the_title(); ?> - <?php the_field( 'question_t' ); ?> 🔥 VAINKEURZ
+            ⚔ TOP <?php echo get_numbers_of_contenders($id_tournament); ?> : <?php the_title(); ?> - <?php the_field( 'question_t' ); ?> 🔥 VAINKEURZ
         </title>
 
     <?php elseif(is_single() && get_post_type() == "classement"): ?>
 
         <?php $id_tournament = get_field('id_tournoi_r'); ?>
         <title>
-            🏆 TOP : <?php echo get_the_title($id_tournament); ?> - <?php the_field( 'question_t', $id_tournament ); ?> 🔥 VAINKEURZ
+            🏆 TOP <?php echo get_numbers_of_contenders($id_tournament); ?> : <?php echo get_the_title($id_tournament); ?> - <?php the_field( 'question_t', $id_tournament ); ?> 🔥 VAINKEURZ
         </title>
 
     <?php elseif(is_page(get_page_by_path('elo'))): ?>
