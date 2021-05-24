@@ -1,0 +1,45 @@
+.ico-master{
+  font-size: 85px;
+}
+.plus{
+  font-size: 25px;
+  margin: 0 10px;
+  opacity: 0.2;
+}
+.plan-price{
+  span{
+    display: flex;
+    align-items: center;
+  }
+  .ico{
+    font-size: 20px !important;
+    margin-left: 5px;
+  }
+}
+
+.dodo{
+  .basic-pricing{
+    background: linear-gradient(150deg, $c1, #471867, $c1, #230b36, $c1);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+  }
+  .ico-masterclass{
+    font-size: 185px;
+  }
+}
+.pricing-card .annual-plan .plan-price span {
+  font-size: 2.5rem;
+  line-height: 0.8;
+}
+.basic-pricing{
+  .card-text {
+    font-size: 15px;
+    opacity: 0.5;
+  }
+}
+
+.pricing-badge{
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}

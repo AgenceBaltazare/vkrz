@@ -17,8 +17,22 @@
 
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1700px) {
 
+  .basic-pricing{
+    .pricing-basic-value {
+      font-size: 1.5rem !important;
+      line-height: 0.8;
+    }
+    .card-text {
+      font-size: 15px;
+      opacity: 0.5;
+    }
+  }
+  .plus{
+    font-size: 20px;
+    margin: 0 5px;
+  }
 
 }
 

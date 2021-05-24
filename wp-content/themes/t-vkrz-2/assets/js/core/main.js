@@ -11,6 +11,7 @@ jQuery.fn.equalHeights = function(){
 jQuery(document).ready(function() {
     jQuery('.eh').equalHeights();
     jQuery('.eh2').equalHeights();
+    jQuery('.ico-master').equalHeights();
 });
 
 $(window).on('load', function() {

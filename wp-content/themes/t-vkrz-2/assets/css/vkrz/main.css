@@ -724,10 +724,56 @@ input:-webkit-autofill:active {
   .wppb-error a {
     display: none; }
 
+.ico-master {
+  font-size: 85px; }
+
+.plus {
+  font-size: 25px;
+  margin: 0 10px;
+  opacity: 0.2; }
+
+.plan-price span {
+  display: flex;
+  align-items: center; }
+.plan-price .ico {
+  font-size: 20px !important;
+  margin-left: 5px; }
+
+.dodo .basic-pricing {
+  background: linear-gradient(150deg, #0c0a27, #471867, #0c0a27, #230b36, #0c0a27);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite; }
+.dodo .ico-masterclass {
+  font-size: 185px; }
+
+.pricing-card .annual-plan .plan-price span {
+  font-size: 2.5rem;
+  line-height: 0.8; }
+
+.basic-pricing .card-text {
+  font-size: 15px;
+  opacity: 0.5; }
+
+.pricing-badge {
+  position: absolute;
+  right: 10px;
+  top: 10px; }
+
 @media (min-width: 1200px) {
   .col-xxl-2 {
     flex: 0 0 16.66667%;
     max-width: 16.66667%; } }
+@media (max-width: 1700px) {
+  .basic-pricing .pricing-basic-value {
+    font-size: 1.5rem !important;
+    line-height: 0.8; }
+  .basic-pricing .card-text {
+    font-size: 15px;
+    opacity: 0.5; }
+
+  .plus {
+    font-size: 20px;
+    margin: 0 5px; } }
 @media (max-width: 576px) {
   html body .app-content {
     padding: calc(2rem - 0.8rem + 7.45rem + 1.3rem) calc(2rem - 0.8rem) 0 calc(2rem - 0.8rem) !important; }
