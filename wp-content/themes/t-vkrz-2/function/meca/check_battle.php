@@ -132,6 +132,7 @@ function check_battle_4($id_ranking, $list, $timeline, $timeline_main, $spaire){
     return $next_duel;
 
 }
+
 function check_battle_5($id_ranking){
 
     $array_ratio = array();
