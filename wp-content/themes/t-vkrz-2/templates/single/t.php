@@ -72,17 +72,14 @@ get_header();
                         $url_tournament   = get_permalink($id_tournament);
                         $title_tournament = get_the_title($id_tournament);
                         ?>
-                        <a href="https://twitter.com/intent/tweet?source=<?php echo $url_tournament; ?>&text=<?php echo $title_tournament; ?>:%20<?php echo $url_tournament; ?>" target="_blank" title="Tweet" class="btn btn-icon btn-outline-primary">
+                        <a href="https://twitter.com/intent/tweet?source=<?php echo $url_tournament; ?>&text=Viens faire ton TOP <?php echo get_numbers_of_contenders($id_tournament); ?> <?php echo $title_tournament; ?> - <?php the_field('question_t', $id_tournament); ?> 👉 <?php echo $url_tournament; ?>" target="_blank" title="Tweet" class="btn btn-icon btn-outline-primary">
                             <i class="fab fa-twitter"></i>
                         </a>
                         <a href="whatsapp://send?text=<?php echo $url_tournament; ?>" data-action="share/whatsapp/share" class="btn btn-icon btn-outline-primary">
                             <i class="fab fa-whatsapp"></i>
                         </a>
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $url_tournament; ?>&quote=<?php echo $title_tournament; ?>" title="Share on Facebook" target="_blank" class="btn btn-icon btn-outline-primary">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $url_tournament; ?>&text=Viens faire ton TOP <?php echo get_numbers_of_contenders($id_tournament); ?> <?php echo $title_tournament; ?> - <?php the_field('question_t', $id_tournament); ?> 👉" title="Partager sur Facebook" target="_blank" class="btn btn-icon btn-outline-primary">
                             <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="mailto:?subject=<?php echo $title_tournament; ?>&body=<?php echo $title_tournament; ?>:<?php echo $url_tournament; ?>" target="_blank" class="btn btn-icon btn-outline-primary">
-                            <i class="fas fa-envelope"></i>
                         </a>
                     </div>
                 </div>

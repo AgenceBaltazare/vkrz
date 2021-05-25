@@ -89,31 +89,20 @@ get_header();
                                         <h6 class="card-subtitle text-muted mb-1">
                                             Il est temps de revendiquer et assumer ses choix !
                                         </h6>
-                                        <div class="d-flex list-share align-items-center justify-content-around">
-
-                                            <div>
-                                                <a href="whatsapp://send?text=<?php echo $url_post; ?>" data-action="share/whatsapp/share" class="btn btn-icon btn-outline-primary">
-                                                    <i class="fab fa-whatsapp"></i>
-                                                </a>
-                                            </div>
-
-                                            <div>
-                                                <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $url_ranking; ?>&quote=<?php echo $title_post; ?>" title="Share on Facebook" target="_blank" class="btn btn-icon btn-outline-primary">
-                                                    <i class="fab fa-facebook-f"></i>
-                                                </a>
-                                            </div>
-
-                                            <div>
-                                                <a href="https://twitter.com/intent/tweet?source=<?php echo $url_ranking; ?>&text=<?php echo $title_post; ?>:%20<?php echo $url_ranking; ?>" target="_blank" title="Tweet" class="btn btn-icon btn-outline-primary">
-                                                    <i class="fab fa-twitter"></i>
-                                                </a>
-                                            </div>
-
-                                            <div>
-                                                <a href="mailto:?subject=<?php echo $title_post; ?>&body=<?php echo $title_post; ?>:<?php echo $url_ranking; ?>" target="_blank" class="btn btn-icon btn-outline-primary">
-                                                    <i class="fas fa-envelope"></i>
-                                                </a>
-                                            </div>
+                                        <div class="btn-group justify-content-center share-t" role="group">
+                                            <?php
+                                            $url_tournament   = get_permalink($id_tournament);
+                                            $title_tournament = get_the_title($id_tournament);
+                                            ?>
+                                            <a href="https://twitter.com/intent/tweet?source=<?php echo $url_tournament; ?>&text=Voici mon TOP <?php echo get_numbers_of_contenders($id_tournament); ?> <?php echo $title_tournament; ?> - <?php the_field('question_t', $id_tournament); ?> 👉 <?php echo $url_tournament; ?>" target="_blank" title="Tweet" class="btn btn-icon btn-outline-primary">
+                                                <i class="fab fa-twitter"></i>
+                                            </a>
+                                            <a href="whatsapp://send?text=<?php echo $url_tournament; ?>" data-action="share/whatsapp/share" class="btn btn-icon btn-outline-primary">
+                                                <i class="fab fa-whatsapp"></i>
+                                            </a>
+                                            <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $url_tournament; ?>&text=Voici mon TOP <?php echo get_numbers_of_contenders($id_tournament); ?> <?php echo $title_tournament; ?> - <?php the_field('question_t', $id_tournament); ?> 👉" title="Partager sur Facebook" target="_blank" class="btn btn-icon btn-outline-primary">
+                                                <i class="fab fa-facebook-f"></i>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -126,7 +115,7 @@ get_header();
                                         <h6 class="card-subtitle text-muted mb-1">
                                             T'inquiète on te laisse refaire le Top
                                         </h6>
-                                        <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-idranking="<?php echo $id_ranking; ?>" id="confirm_delete" href="#" class="btn btn-outline-primary waves-effect btn-block">
+                                        <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-idranking="<?php echo $id_ranking; ?>" id="confirm_delete" href="#" class="btn btn-outline-primary waves-effect">
                                             Recommencer
                                         </a>
                                     </div>
@@ -140,7 +129,7 @@ get_header();
                                         <h6 class="card-subtitle text-muted mb-1">
                                             Tu peux comparer tes choix à ceux des autres humains.
                                         </h6>
-                                        <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_tournoi=<?php echo $id_tournament; ?>" class="btn btn-outline-primary btn-block waves-effect">
+                                        <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_tournoi=<?php echo $id_tournament; ?>" class="btn btn-outline-primary waves-effect">
                                             Voir le classement
                                         </a>
                                     </div>
