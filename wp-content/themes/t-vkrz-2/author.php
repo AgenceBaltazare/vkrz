@@ -169,7 +169,7 @@ get_header();
                                                     foreach($user_top3 as $top => $p): ?>
 
                                                         <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="top" data-original-title="<?php echo get_the_title($top); ?>" class="avatar pull-up">
-                                                            <?php $illu = get_the_post_thumbnail_url($top, 'full'); ?>
+                                                            <?php $illu = get_the_post_thumbnail_url($top, 'medium'); ?>
                                                             <img src="<?php echo $illu; ?>" alt="Avatar" height="32" width="32">
                                                         </div>
 
