@@ -38,13 +38,13 @@ function get_next_duel($id_ranking, $id_tournament) {
         }
     }
     else{
-        if($timeline_votes == 5){
-            update_field('timeline_main', 7, $id_ranking);
-            $timeline_main = 7;
-        }
-        else{
+        if($timeline_votes < $nb_contenders - 1){
             update_field('timeline_main', 6, $id_ranking);
             $timeline_main = 6;
+        }
+        else{
+            update_field('timeline_main', 7, $id_ranking);
+            $timeline_main = 7;
         }
     }
     $timeline_main = get_field('timeline_main', $id_ranking);
