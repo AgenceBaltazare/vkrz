@@ -83,7 +83,7 @@ wp_reset_query(); wp_reset_postdata();
         <title>
             TOP <?php echo get_numbers_of_contenders($id_tournament); ?> : <?php echo get_the_title($id_tournament); ?> - <?php the_field( 'question_t', $id_tournament ); ?> 🔥 VAINKEURZ
         </title>
-        <meta name="description" content="Découvre le TOP <?php echo get_numbers_of_contenders($id_tournament); ?> à propos de <?php echo get_the_title($id_tournament); ?>" />
+        <meta name="description" content="Découvre mon TOP <?php echo get_numbers_of_contenders($id_tournament); ?> à propos de <?php echo get_the_title($id_tournament); ?>" />
 
         <?php
         $api_key    = "3I6bGZa3zyHsiZL2toeoagtt";
@@ -111,19 +111,22 @@ wp_reset_query(); wp_reset_postdata();
         $banner = $base . $query."&s=" . $signature;
         ?>
 
-        <link rel="canonical" href="<?php get_the_permalink($id_ranking); ?>" />
+        <link rel="canonical" href="<?php echo get_the_permalink($id_ranking); ?>" />
         <meta property="og:locale" content="fr_FR" />
         <meta property="og:type" content="article" />
         <meta property="og:image" content="<?php echo $banner; ?>" />
         <meta property="og:title" content="TOP <?php echo get_numbers_of_contenders($id_tournament); ?> 🏆 <?php echo get_the_title($id_tournament); ?> - <?php the_field('question_t', $id_tournament); ?>" />
         <meta property="og:description" content="Découvre mon Top complet et fais ton propre classement !" />
-        <meta property="og:url" content="<?php get_the_permalink($id_ranking); ?>" />
+        <meta property="og:url" content="<?php echo get_the_permalink($id_ranking); ?>" />
         <meta property="og:site_name" content="VAINKEURZ" />
 
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@Vainkeurz">
+        <meta name="twitter:creator" content="@Vainkeurz">
         <meta name="twitter:title" content="TOP <?php echo get_numbers_of_contenders($id_tournament); ?> 🏆 <?php echo get_the_title($id_tournament); ?> - <?php the_field('question_t', $id_tournament); ?>" />
         <meta name="twitter:description" content="Découvre mon Top complet et fais ton propre classement !" />
         <meta name="twitter:image" content="<?php echo $banner; ?>" />
+        <meta name="twitter:domain" content="vainkeurz.com">
 
     <?php elseif(is_page(get_page_by_path('elo'))): ?>
 
