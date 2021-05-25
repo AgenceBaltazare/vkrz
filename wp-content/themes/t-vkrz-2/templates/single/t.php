@@ -2,7 +2,14 @@
 global $id_tournament;
 $id_tournament           = get_the_ID();
 $id_ranking              = get_or_create_ranking_if_not_exists($id_tournament);
-extract(get_next_duel($id_ranking, $id_tournament));
+
+if(get_field('ranking_t', $id_tournament) == "top3"){
+    extract(get_next_duel_3($id_ranking, $id_tournament));
+}
+else{
+    extract(get_next_duel($id_ranking, $id_tournament));
+}
+
 if(!$is_next_duel){
     wp_redirect(get_the_permalink($id_ranking));
 }
