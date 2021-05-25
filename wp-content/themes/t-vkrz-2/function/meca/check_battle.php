@@ -1,5 +1,60 @@
 <?php
 
+function get_contenders_top_3_2($id_ranking){
+
+    $list_inf        = array();
+    $list_contenders = get_field('ranking_r', $id_ranking);
+
+    foreach($list_contenders as $key => $contender) {
+
+        if(empty($contender['less_to'])){
+
+            array_push($list_inf, $contender['id_wp']);
+
+        }
+
+    }
+
+    return $list_inf;
+
+}
+function get_contenders_top_3_3($id_ranking){
+
+    $list_inf        = array();
+    $list_contenders = get_field('ranking_r', $id_ranking);
+
+    foreach($list_contenders as $key => $contender) {
+
+        if(count($contender['less_to']) == 1){
+
+            array_push($list_inf, $contender['id_wp']);
+
+        }
+
+    }
+
+    return $list_inf;
+
+}
+function get_contenders_top_3_4($id_ranking){
+
+    $list_inf        = array();
+    $list_contenders = get_field('ranking_r', $id_ranking);
+
+    foreach($list_contenders as $key => $contender) {
+
+        if(count($contender['less_to']) == 2){
+
+            array_push($list_inf, $contender['id_wp']);
+
+        }
+
+    }
+
+    return $list_inf;
+
+}
+
 function check_battle_2($id_ranking, $list, $timeline, $timeline_main){
 
     $list_contenders = get_field('ranking_r', $id_ranking);
