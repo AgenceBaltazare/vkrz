@@ -84,10 +84,6 @@ get_header();
                             <div class="related">
 
                                 <div class="card">
-                                    <img src="<?php echo $banner; ?>" alt="" class="img-fluid">
-                                </div>
-
-                                <div class="card">
                                     <div class="card-body">
                                         <h4 class="card-title">
                                             <span class="ico">😎</span> Partage ton Top
@@ -97,16 +93,16 @@ get_header();
                                         </h6>
                                         <div class="btn-group justify-content-center share-t" role="group">
                                             <?php
-                                            $url_tournament   = get_permalink($id_tournament);
+                                            $url_ranking      = get_permalink($id_ranking);
                                             $title_tournament = get_the_title($id_tournament);
                                             ?>
-                                            <a href="https://twitter.com/intent/tweet?source=<?php echo $url_tournament; ?>&text=Voici mon TOP <?php echo get_numbers_of_contenders($id_tournament); ?> <?php echo $title_tournament; ?> - <?php the_field('question_t', $id_tournament); ?> 👉 <?php echo $url_tournament; ?>" target="_blank" title="Tweet" class="btn btn-icon btn-outline-primary">
+                                            <a href="https://twitter.com/intent/tweet?source=<?php echo $url_ranking; ?>&text=Voici mon TOP <?php echo get_numbers_of_contenders($id_tournament); ?> <?php echo $title_tournament; ?> - <?php the_field('question_t', $id_tournament); ?> 👉 <?php echo $url_tournament; ?>" target="_blank" title="Tweet" class="btn btn-icon btn-outline-primary">
                                                 <i class="fab fa-twitter"></i>
                                             </a>
-                                            <a href="whatsapp://send?text=<?php echo $url_tournament; ?>" data-action="share/whatsapp/share" class="btn btn-icon btn-outline-primary">
+                                            <a href="whatsapp://send?text=<?php echo $url_ranking; ?>" data-action="share/whatsapp/share" class="btn btn-icon btn-outline-primary">
                                                 <i class="fab fa-whatsapp"></i>
                                             </a>
-                                            <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $url_tournament; ?>&text=Voici mon TOP <?php echo get_numbers_of_contenders($id_tournament); ?> <?php echo $title_tournament; ?> - <?php the_field('question_t', $id_tournament); ?> 👉" title="Partager sur Facebook" target="_blank" class="btn btn-icon btn-outline-primary">
+                                            <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $url_ranking; ?>" title="Partager sur Facebook" target="_blank" class="btn btn-icon btn-outline-primary">
                                                 <i class="fab fa-facebook-f"></i>
                                             </a>
                                         </div>
