@@ -6,6 +6,8 @@ global $user_id;
 global $list_t_already_done;
 global $list_t_begin;
 global $id_tournament;
+global $banner;
+global $id_ranking;
 $user_role = "visitor";
 if(is_user_logged_in()){
     $current_user   = wp_get_current_user();
@@ -74,17 +76,46 @@ wp_reset_query(); wp_reset_postdata();
 
     <?php elseif(is_single() && get_post_type() == "classement"): ?>
 
-        <?php $id_tournament = get_field('id_tournoi_r'); ?>
+        <?php
+        $id_tournament = get_field('id_tournoi_r');
+        $id_tournament = get_field('id_tournoi_r');
+        ?>
         <title>
             TOP <?php echo get_numbers_of_contenders($id_tournament); ?> : <?php echo get_the_title($id_tournament); ?> - <?php the_field( 'question_t', $id_tournament ); ?> 🔥 VAINKEURZ
         </title>
         <meta name="description" content="Découvre le TOP <?php echo get_numbers_of_contenders($id_tournament); ?> à propos de <?php echo get_the_title($id_tournament); ?>" />
 
+        <?php
+        $api_key    = "3I6bGZa3zyHsiZL2toeoagtt";
+        $base       = "https://on-demand.bannerbear.com/signedurl/9K5qxXae3MJyAGRDkj/image.jpg";
+        $user_top3  = get_user_top(false, $id_ranking);
+        $l=1;
+        foreach($user_top3 as $top => $p) {
+
+            if ($l == 1) {
+                $picture_contender_1 = get_the_post_thumbnail_url($top, 'full');
+                $name_contender_1    = get_the_title($top);
+            } elseif ($l == 2) {
+                $picture_contender_2 = get_the_post_thumbnail_url($top, 'full');
+                $name_contender_2    = get_the_title($top);
+            } elseif ($l == 3) {
+                $picture_contender_3 = get_the_post_thumbnail_url($top, 'full');
+                $name_contender_3    = get_the_title($top);
+            }
+
+            $l++; if($l==4) break;
+        }
+        $modifications = '[{"name":"h1","text":"TOP '.get_numbers_of_contenders($id_tournament).' '.get_the_title($id_tournament).'"},{"name":"h2","text":"Voici mon Top 3 👉"},{"name":"h1-question","text":"'.get_field('question_t', $id_tournament).'"}, {"name":"contenders_1","image_url":"'.$picture_contender_1.'"},{"name":"contenders_2","image_url":"'.$picture_contender_2.'"},{"name":"contenders_3","image_url":"'.$picture_contender_3.'"},{"name":"1","text":"🥇 '.$name_contender_1.'"},{"name":"2","text":"🥈 '.$name_contender_2.'"},{"name":"3","text":"🥉 '.$name_contender_3.'"}]';
+        $query = "?modifications=" . rtrim(strtr(base64_encode($modifications), '+/', '-_'), '=');
+        $signature = hash_hmac('sha256', $base.$query, $api_key);
+        $banner = $base . $query."&s=" . $signature;
+        ?>
+
         <link rel="canonical" href="<?php get_the_permalink($id_tournament); ?>" />
         <meta property="og:locale" content="fr_FR" />
         <meta property="og:type" content="article" />
-        <meta property="og:image" content="<?php echo get_the_post_thumbnail_url($id_tournament, 'large'); ?>" />
-        <meta property="og:title" content="TOP <?php echo get_numbers_of_contenders($id_tournament); ?> : <?php the_title(); ?>" />
+        <meta property="og:image" content="<?php echo $banner; ?>" />
+        <meta property="og:title" content="TOP <?php echo get_numbers_of_contenders($id_tournament); ?> : <?php get_the_title($id_tournament); ?>" />
         <meta property="og:description" content="<?php the_field('question_t', $id_tournament); ?>" />
         <meta property="og:url" content="<?php get_the_permalink($id_tournament); ?>" />
         <meta property="og:site_name" content="VAINKEURZ" />
@@ -92,7 +123,7 @@ wp_reset_query(); wp_reset_postdata();
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="TOP <?php echo get_numbers_of_contenders($id_tournament); ?>" />
         <meta name="twitter:description" content="<?php the_field('question_t', $id_tournament); ?>" />
-        <meta name="twitter:image" content="<?php echo get_the_post_thumbnail_url($id_tournament, 'large'); ?>" />
+        <meta name="twitter:image" content="<?php echo $banner; ?>" />
 
     <?php elseif(is_page(get_page_by_path('elo'))): ?>
 

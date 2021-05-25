@@ -2,6 +2,8 @@
 global $id_tournament;
 global $cat_id;
 global $cat_name;
+global $banner;
+global $id_ranking;
 $id_ranking                      = get_the_ID();
 $id_tournament                   = get_field('id_tournoi_r');
 $uuiduser                        = get_field('uuid_user_r');
@@ -80,6 +82,10 @@ get_header();
                         <div class="col-xl-2 col-md-3 offset-md-1">
 
                             <div class="related">
+
+                                <div class="card">
+                                    <img src="<?php echo $banner; ?>" alt="" class="img-fluid">
+                                </div>
 
                                 <div class="card">
                                     <div class="card-body">
