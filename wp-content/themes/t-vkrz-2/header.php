@@ -115,14 +115,14 @@ wp_reset_query(); wp_reset_postdata();
         <meta property="og:locale" content="fr_FR" />
         <meta property="og:type" content="article" />
         <meta property="og:image" content="<?php echo $banner; ?>" />
-        <meta property="og:title" content="TOP <?php echo get_numbers_of_contenders($id_tournament); ?> <?php get_the_title($id_tournament); ?>" />
-        <meta property="og:description" content="<?php the_field('question_t', $id_tournament); ?>" />
+        <meta property="og:title" content="TOP <?php echo get_numbers_of_contenders($id_tournament); ?> 🏆 <?php echo get_the_title($id_tournament); ?>" />
+        <meta property="og:description" content=""Découvre mon Top 👉 <?php the_field('question_t', $id_tournament); ?>" />
         <meta property="og:url" content="<?php get_the_permalink($id_tournament); ?>" />
         <meta property="og:site_name" content="VAINKEURZ" />
 
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="TOP <?php echo get_numbers_of_contenders($id_tournament); ?>" />
-        <meta name="twitter:description" content="<?php the_field('question_t', $id_tournament); ?>" />
+        <meta name="twitter:title" content="TOP <?php echo get_numbers_of_contenders($id_tournament); ?> 🏆 <?php echo get_the_title($id_tournament); ?>" />
+        <meta name="twitter:description" content="Découvre mon Top 👉 <?php the_field('question_t', $id_tournament); ?>" />
         <meta name="twitter:image" content="<?php echo $banner; ?>" />
 
     <?php elseif(is_page(get_page_by_path('elo'))): ?>
