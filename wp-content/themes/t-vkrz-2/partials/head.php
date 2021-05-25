@@ -64,6 +64,8 @@ wp_reset_query(); wp_reset_postdata();
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory'); ?>/assets/css/vkrz/main.css">
 
+    <meta name='robots' content='noindex, nofollow' />
+
     <?php if($user_role != "administrator"): ?>
         <!-- Google Tag Manager -->
         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
