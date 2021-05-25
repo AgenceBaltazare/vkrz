@@ -87,7 +87,8 @@ wp_reset_query(); wp_reset_postdata();
 
         <?php
         $api_key    = "3I6bGZa3zyHsiZL2toeoagtt";
-        $base       = "https://on-demand.bannerbear.com/signedurl/9K5qxXae3MJyAGRDkj/image.jpg";
+        $base_top3       = "https://on-demand.bannerbear.com/signedurl/9K5qxXae3MJyAGRDkj/image.jpg";
+        $base_top2       = "https://on-demand.bannerbear.com/signedurl/JjPlQ3XyKQoe6MNobr/image.jpg";
         $user_top3  = get_user_top(false, $id_ranking);
         $l=1;
         foreach($user_top3 as $top => $p) {
@@ -107,8 +108,15 @@ wp_reset_query(); wp_reset_postdata();
         }
         $modifications = '[{"name":"h1","text":"TOP '.get_numbers_of_contenders($id_tournament).' '.get_the_title($id_tournament).'"},{"name":"h2","text":"Voici mon Top 3 👉"},{"name":"h1-question","text":"'.get_field('question_t', $id_tournament).'"}, {"name":"contenders_1","image_url":"'.$picture_contender_1.'"},{"name":"contenders_2","image_url":"'.$picture_contender_2.'"},{"name":"contenders_3","image_url":"'.$picture_contender_3.'"},{"name":"1","text":"🥇 '.$name_contender_1.'"},{"name":"2","text":"🥈 '.$name_contender_2.'"},{"name":"3","text":"🥉 '.$name_contender_3.'"}]';
         $query = "?modifications=" . rtrim(strtr(base64_encode($modifications), '+/', '-_'), '=');
-        $signature = hash_hmac('sha256', $base.$query, $api_key);
-        $banner = $base . $query."&s=" . $signature;
+
+        if (get_numbers_of_contenders($id_tournament) < 3){
+            $signature = hash_hmac('sha256', $base_top2.$query, $api_key);
+            $banner = $base_top2 . $query."&s=" . $signature;
+        }
+        else{
+            $signature = hash_hmac('sha256', $base_top3.$query, $api_key);
+            $banner = $base_top3 . $query."&s=" . $signature;
+        }
         ?>
 
         <link rel="canonical" href="<?php echo get_the_permalink($id_ranking); ?>" />
