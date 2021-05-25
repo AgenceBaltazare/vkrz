@@ -96,7 +96,7 @@ get_header();
                                             $url_ranking      = get_permalink($id_ranking);
                                             $title_tournament = get_the_title($id_tournament);
                                             ?>
-                                            <a href="https://twitter.com/intent/tweet?url=<?php echo $url_ranking; ?>" rel="noopener" target="_blank" title="Tweet" class="btn btn-icon btn-outline-primary">
+                                            <a href="https://twitter.com/intent/tweet?text=Voici mon TOP <?php echo get_numbers_of_contenders($id_tournament); ?> <?php echo $title_tournament; ?>&via=vainkeurz&hashtags=VKRZ&url=<?php echo $url_ranking; ?>" target="_blank" title="Tweet" class="btn btn-icon btn-outline-primary">
                                                 <i class="fab fa-twitter"></i>
                                             </a>
                                             <a href="whatsapp://send?text=<?php echo $url_ranking; ?>" data-action="share/whatsapp/share" class="btn btn-icon btn-outline-primary">
