@@ -18,7 +18,7 @@ if(is_user_logged_in()){
         exit();
     }
 }
-$uuiduser        = deal_uuiduser();
+$uuiduser            = deal_uuiduser();
 $list_t_already_done = get_user_tournament_list('t-done', $uuiduser);
 $list_t_begin        = get_user_tournament_list('t-begin', $uuiduser);
 wp_reset_query(); wp_reset_postdata();
@@ -48,20 +48,51 @@ wp_reset_query(); wp_reset_postdata();
         <title>
             🔥 VAINKEURZ 👉 Créer et partage tes Tops !
         </title>
-        <meta name="description" content="Meilleur site de la galaxie - sauf preuve du contraire - pour générer tes Tops facilement." />
+        <meta name="description" content="Meilleur site de la galaxie d'après la Nasa pour faire ses Tops." />
 
     <?php elseif(is_single() && get_post_type() == "tournoi"): ?>
 
+        <?php $id_tournament = get_the_ID(); ?>
         <title>
-            ⚔ TOP <?php echo get_numbers_of_contenders($id_tournament); ?> : <?php the_title(); ?> - <?php the_field( 'question_t' ); ?> 🔥 VAINKEURZ
+            TOP <?php echo get_numbers_of_contenders($id_tournament); ?> : <?php the_title(); ?> 🔥 VAINKEURZ
         </title>
+        <meta name="description" content="<?php the_title(); ?> : <?php the_field( 'question_t' ); ?>" />
+    
+        <link rel="canonical" href="<?php get_the_permalink($id_tournament); ?>" />
+        <meta property="og:locale" content="fr_FR" />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content="<?php echo get_the_post_thumbnail_url($id_tournament, 'large'); ?>" />
+        <meta property="og:title" content="TOP <?php echo get_numbers_of_contenders($id_tournament); ?> : <?php the_title(); ?>" />
+        <meta property="og:description" content="<?php the_field('question_t', $id_tournament); ?>" />
+        <meta property="og:url" content="<?php get_the_permalink($id_tournament); ?>" />
+        <meta property="og:site_name" content="VAINKEURZ" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="TOP <?php echo get_numbers_of_contenders($id_tournament); ?>" />
+        <meta name="twitter:description" content="<?php the_field('question_t', $id_tournament); ?>" />
+        <meta name="twitter:image" content="<?php echo get_the_post_thumbnail_url($id_tournament, 'large'); ?>" />
 
     <?php elseif(is_single() && get_post_type() == "classement"): ?>
 
         <?php $id_tournament = get_field('id_tournoi_r'); ?>
         <title>
-            🏆 TOP <?php echo get_numbers_of_contenders($id_tournament); ?> : <?php echo get_the_title($id_tournament); ?> - <?php the_field( 'question_t', $id_tournament ); ?> 🔥 VAINKEURZ
+            TOP <?php echo get_numbers_of_contenders($id_tournament); ?> : <?php echo get_the_title($id_tournament); ?> - <?php the_field( 'question_t', $id_tournament ); ?> 🔥 VAINKEURZ
         </title>
+        <meta name="description" content="Découvre le TOP <?php echo get_numbers_of_contenders($id_tournament); ?> à propos de <?php echo get_the_title($id_tournament); ?>" />
+
+        <link rel="canonical" href="<?php get_the_permalink($id_tournament); ?>" />
+        <meta property="og:locale" content="fr_FR" />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content="<?php echo get_the_post_thumbnail_url($id_tournament, 'large'); ?>" />
+        <meta property="og:title" content="TOP <?php echo get_numbers_of_contenders($id_tournament); ?> : <?php the_title(); ?>" />
+        <meta property="og:description" content="<?php the_field('question_t', $id_tournament); ?>" />
+        <meta property="og:url" content="<?php get_the_permalink($id_tournament); ?>" />
+        <meta property="og:site_name" content="VAINKEURZ" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="TOP <?php echo get_numbers_of_contenders($id_tournament); ?>" />
+        <meta name="twitter:description" content="<?php the_field('question_t', $id_tournament); ?>" />
+        <meta name="twitter:image" content="<?php echo get_the_post_thumbnail_url($id_tournament, 'large'); ?>" />
 
     <?php elseif(is_page(get_page_by_path('elo'))): ?>
 
@@ -69,6 +100,7 @@ wp_reset_query(); wp_reset_postdata();
         <title>
             Classement mondial 👉 <?php echo get_the_title($id_tournament); ?> - <?php the_field( 'question_t', $id_tournament ); ?> 🔥 VAINKEURZ
         </title>
+        <meta name="description" content="Classement ELO du tournoi rassemblant les votes du monde entier." />
 
     <?php elseif(is_archive() && !is_author()): ?>
 
@@ -76,12 +108,14 @@ wp_reset_query(); wp_reset_postdata();
         <title>
             Tous les Tops de la catégorie <?php echo $current_cat->name; ?> <?php the_field('icone_cat', 'term_'.$current_cat->term_id); ?>
         </title>
+        <meta name="description" content="<?php echo $current_cat->description; ?>" />
 
     <?php elseif(is_author()): ?>
 
         <title>
             Profil de <?php echo $current_user->display_name; ?> sur VAINKEURZ
         </title>
+        <meta name="description" content="Tous les TOPs de ce champion et ses statistiques" />
 
     <?php else: ?>
 
