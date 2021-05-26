@@ -1,5 +1,5 @@
 <?php
-function mouv_timeline($nb_contenders, $nb_loosers, $id_ranking){
+function mouv_timeline($nb_contenders, $nb_loosers, $id_ranking, $id_tournament){
 
     // NB votes
     $timeline_votes     = get_field('nb_votes_r', $id_ranking);
@@ -9,6 +9,32 @@ function mouv_timeline($nb_contenders, $nb_loosers, $id_ranking){
     else{
         $spaire = 6;
     }
+    if(get_field('ranking_t', $id_tournament) == "top3"){
+
+    // Timeline Main
+    if($timeline_votes == intval(floor($nb_contenders / 2))){
+        update_field('timeline_main', 2, $id_ranking);
+    }
+    $timeline_main = get_field('timeline_main', $id_ranking);
+
+
+    if($timeline_main == 2){
+
+        update_field('timeline_main', 3, $id_ranking);
+        
+    }
+    if($timeline_main == 3){
+
+        update_field('timeline_main', 4, $id_ranking);
+    }
+    if($timeline_main == 4){
+
+        update_field('timeline_main', 5, $id_ranking);
+    }
+    
+    }
+
+    else{
 
     // Timeline Main
     if($timeline_votes == $nb_contenders-5){
@@ -38,6 +64,8 @@ function mouv_timeline($nb_contenders, $nb_loosers, $id_ranking){
             update_field('timeline_main', 5, $id_ranking);
         }
     }
+    }
+
 
     $timeline_main = get_field('timeline_main', $id_ranking);
 
