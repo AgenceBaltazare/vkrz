@@ -16,6 +16,7 @@ wp-content/themes/gulp-tasks/
 
 #### Dot file
 .DS_Store
+*.DS_Store
 
 
 #### WordPress
