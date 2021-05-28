@@ -21,7 +21,7 @@ foreach(get_the_terms($id_tournament, 'categorie' ) as $cat ) {
 get_header();
 ?>
 <!-- BEGIN: Content-->
-<div class="app-content content cover">
+<div class="app-content content cover" xmlns="http://www.w3.org/1999/html">
     <div class="content-overlay"></div>
     <div class="content-wrapper">
         <div class="content-body mt-2">
@@ -105,6 +105,19 @@ get_header();
                                             <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $url_ranking; ?>" title="Partager sur Facebook" target="_blank" class="btn btn-icon btn-outline-primary">
                                                 <i class="fab fa-facebook-f"></i>
                                             </a>
+
+
+
+                                            <button onclick="copyToClipboard()" title="Copier le lien" target="_blank" class="btn btn-icon btn-outline-primary">
+                                                <i class="fas fa-link"></i>
+                                            </button>
+
+                                            <script>
+
+
+                                            </script>
+
+
                                         </div>
                                     </div>
                                 </div>
