@@ -58,7 +58,11 @@ function get_user_top($uuiduser = false, $id_tournament){
 
     endwhile;
 
-    $user_ranking = get_user_ranking($user_ranking_id);
+    if($user_ranking->have_posts()){
+
+        $user_ranking = get_user_ranking($user_ranking_id);
+
+    }
 
     return $user_ranking;
 

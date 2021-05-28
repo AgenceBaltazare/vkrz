@@ -44,7 +44,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="https://discord.gg/5FayAUnm" class="d-flex align-items-center" target="_blank" >
+                <a href="https://discord.gg/PhjrFtwx" class="d-flex align-items-center" target="_blank" >
                     <span class="ico ico-size-2">🍻</span> <span class="menu-title text-truncate">Discord</span>
                 </a>
             </li>
