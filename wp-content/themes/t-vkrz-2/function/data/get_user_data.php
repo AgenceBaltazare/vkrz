@@ -39,7 +39,7 @@ function get_user_top($uuiduser = false, $id_tournament){
         }
     }
 
-    $user_ranking = new WP_Query(array('post_type' => 'classement', 'posts_per_page' => '1', 'meta_query' => array(
+    $user_ranking_loop = new WP_Query(array('post_type' => 'classement', 'posts_per_page' => '1', 'meta_query' => array(
         'relation' => 'AND',
         array(
             'key' => 'uuid_user_r',
@@ -52,13 +52,13 @@ function get_user_top($uuiduser = false, $id_tournament){
             'compare' => '=',
         ),
     )));
-    while ($user_ranking->have_posts()) : $user_ranking->the_post();
+    while ($user_ranking_loop->have_posts()) : $user_ranking_loop->the_post();
 
         $user_ranking_id = get_the_ID();
 
     endwhile;
 
-    if($user_ranking->have_posts()){
+    if($user_ranking_loop->have_posts()){
 
         $user_ranking = get_user_ranking($user_ranking_id);
 
