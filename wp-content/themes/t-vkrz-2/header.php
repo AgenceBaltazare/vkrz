@@ -107,13 +107,13 @@ wp_reset_query(); wp_reset_postdata();
         foreach($user_top3 as $top => $p) {
 
             if ($l == 1) {
-                $picture_contender_1 = get_the_post_thumbnail_url($top, 'full');
+                $picture_contender_1 = get_the_post_thumbnail_url($top, 'medium');
                 $name_contender_1    = get_the_title($top);
             } elseif ($l == 2) {
-                $picture_contender_2 = get_the_post_thumbnail_url($top, 'full');
+                $picture_contender_2 = get_the_post_thumbnail_url($top, 'medium');
                 $name_contender_2    = get_the_title($top);
             } elseif ($l == 3) {
-                $picture_contender_3 = get_the_post_thumbnail_url($top, 'full');
+                $picture_contender_3 = get_the_post_thumbnail_url($top, 'medium');
                 $name_contender_3    = get_the_title($top);
             }
 
