@@ -55,8 +55,6 @@ function get_next_duel($id_ranking, $id_tournament) {
 
         }
 
-
-
         if($timeline_main == 2){
 
             $list_inf       = get_contenders_top_3_2($id_ranking);
