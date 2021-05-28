@@ -57,7 +57,7 @@
                                     En savoir plus sur VKRZ
                                 </a>
                                 -->
-                                <a href="https://discord.gg/5FayAUnm" class="btn btn-outline-primary waves-effect" target="_blank" >
+                                <a href="https://discord.gg/PhjrFtwx" class="btn btn-outline-primary waves-effect" target="_blank">
                                     <span class="ico">🍻</span> Nous rejoindre sur Discord
                                 </a>
                             </div>
