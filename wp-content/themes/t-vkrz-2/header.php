@@ -52,6 +52,22 @@ wp_reset_query(); wp_reset_postdata();
         </title>
         <meta name="description" content="Meilleur site de la galaxie d'après la Nasa pour faire ses Tops." />
 
+        <meta property="og:locale" content="fr_FR" />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/logo-vkrz.png;" />
+
+
+        <meta property="og:title" content=" 🔥 VAINKEURZ 👉 Créer et partage tes Tops !" />
+        <meta property="og:description" content="Meilleur site de la galaxie d'après la Nasa pour faire ses Tops." />
+        <meta property="og:url" content="https://vainkeurz.com/" />
+        <meta property="og:site_name" content="VAINKEURZ" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content=" 🔥 VAINKEURZ 👉 Créer et partage tes Tops !" />
+        <meta name="twitter:description" content="Meilleur site de la galaxie d'après la Nasa pour faire ses Tops." />
+        <meta name="twitter:image" content="<?php echo get_the_post_thumbnail_url($id_tournament, 'large'); ?>" />
+
+
     <?php elseif(is_single() && get_post_type() == "tournoi"): ?>
 
         <?php $id_tournament = get_the_ID(); ?>
@@ -87,7 +103,8 @@ wp_reset_query(); wp_reset_postdata();
 
         <?php
         $api_key    = "3I6bGZa3zyHsiZL2toeoagtt";
-        $base       = "https://on-demand.bannerbear.com/signedurl/9K5qxXae3MJyAGRDkj/image.jpg";
+        $base_top3       = "https://on-demand.bannerbear.com/signedurl/9K5qxXae3MJyAGRDkj/image.jpg";
+        $base_top2       = "https://on-demand.bannerbear.com/signedurl/JjPlQ3XyKQoe6MNobr/image.jpg";
         $user_top3  = get_user_top(false, $id_ranking);
         $l=1;
         foreach($user_top3 as $top => $p) {
@@ -105,10 +122,22 @@ wp_reset_query(); wp_reset_postdata();
 
             $l++; if($l==4) break;
         }
-        $modifications = '[{"name":"h1","text":"TOP '.get_numbers_of_contenders($id_tournament).' '.get_the_title($id_tournament).'"},{"name":"h2","text":"Voici mon Top 3 👉"},{"name":"h1-question","text":"'.get_field('question_t', $id_tournament).'"}, {"name":"contenders_1","image_url":"'.$picture_contender_1.'"},{"name":"contenders_2","image_url":"'.$picture_contender_2.'"},{"name":"contenders_3","image_url":"'.$picture_contender_3.'"},{"name":"1","text":"🥇 '.$name_contender_1.'"},{"name":"2","text":"🥈 '.$name_contender_2.'"},{"name":"3","text":"🥉 '.$name_contender_3.'"}]';
-        $query = "?modifications=" . rtrim(strtr(base64_encode($modifications), '+/', '-_'), '=');
-        $signature = hash_hmac('sha256', $base.$query, $api_key);
-        $banner = $base . $query."&s=" . $signature;
+
+
+        if (get_numbers_of_contenders($id_tournament) < 3){
+            $modifications = '[{"name":"h1","text":"TOP '.get_numbers_of_contenders($id_tournament).' '.get_the_title($id_tournament).'"},{"name":"h2","text":"Voici mon Top 2 👉"},{"name":"h1-question","text":"'.get_field('question_t', $id_tournament).'"}, {"name":"contenders_1","image_url":"'.$picture_contender_1.'"},{"name":"contenders_2","image_url":"'.$picture_contender_2.'"},{"name":"1","text":"🥇 '.$name_contender_1.'"},{"name":"2","text":"🥈 '.$name_contender_2.'"}]';
+            $query = "?modifications=" . rtrim(strtr(base64_encode($modifications), '+/', '-_'), '=');
+            $signature = hash_hmac('sha256', $base_top2.$query, $api_key);
+            $banner = $base_top2 . $query."&s=" . $signature;
+            echo get_the_title($id_tournament);
+
+        }
+        else{
+            $modifications = '[{"name":"h1","text":"TOP '.get_numbers_of_contenders($id_tournament).' '.get_the_title($id_tournament).'"},{"name":"h2","text":"Voici mon Top 3 👉"},{"name":"h1-question","text":"'.get_field('question_t', $id_tournament).'"}, {"name":"contenders_1","image_url":"'.$picture_contender_1.'"},{"name":"contenders_2","image_url":"'.$picture_contender_2.'"},{"name":"contenders_3","image_url":"'.$picture_contender_3.'"},{"name":"1","text":"🥇 '.$name_contender_1.'"},{"name":"2","text":"🥈 '.$name_contender_2.'"},{"name":"3","text":"🥉 '.$name_contender_3.'"}]';
+            $query = "?modifications=" . rtrim(strtr(base64_encode($modifications), '+/', '-_'), '=');
+            $signature = hash_hmac('sha256', $base_top3.$query, $api_key);
+            $banner = $base_top3 . $query."&s=" . $signature;
+        }
         ?>
 
         <link rel="canonical" href="<?php echo get_the_permalink($id_ranking); ?>" />
