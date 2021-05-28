@@ -70,7 +70,7 @@ wp_reset_query(); wp_reset_postdata();
         <meta property="og:site_name" content="VAINKEURZ" />
 
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="TOP <?php echo get_numbers_of_contenders($id_tournament); ?>" />
+        <meta name="twitter:title" content="TOP <?php echo get_numbers_of_contenders($id_tournament); ?> ⚔️ <?php the_title(); ?>" />
         <meta name="twitter:description" content="<?php the_field('question_t', $id_tournament); ?>" />
         <meta name="twitter:image" content="<?php echo get_the_post_thumbnail_url($id_tournament, 'large'); ?>" />
 
