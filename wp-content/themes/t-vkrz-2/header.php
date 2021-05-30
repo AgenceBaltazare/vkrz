@@ -53,9 +53,9 @@ wp_reset_query(); wp_reset_postdata();
         <meta name="description" content="Meilleur site de la galaxie d'après la Nasa pour faire ses Tops." />
 
         <meta property="og:locale" content="fr_FR" />
-        <meta property="fb:app_id" content="458083104324596">
         <meta property="og:type" content="article" />
         <meta property="og:image" content="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/logo-vkrz.png;" />
+
 
         <meta property="og:title" content=" 🔥 VAINKEURZ 👉 Créer et partage tes Tops !" />
         <meta property="og:description" content="Meilleur site de la galaxie d'après la Nasa pour faire ses Tops." />
@@ -77,7 +77,6 @@ wp_reset_query(); wp_reset_postdata();
         <meta name="description" content="<?php the_title(); ?> : <?php the_field( 'question_t' ); ?>" />
 
         <link rel="canonical" href="<?php get_the_permalink($id_tournament); ?>" />
-        <meta property="fb:app_id" content="458083104324596">
         <meta property="og:locale" content="fr_FR" />
         <meta property="og:type" content="article" />
         <meta property="og:image" content="<?php echo get_the_post_thumbnail_url($id_tournament, 'large'); ?>" />
@@ -87,7 +86,7 @@ wp_reset_query(); wp_reset_postdata();
         <meta property="og:site_name" content="VAINKEURZ" />
 
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="TOP <?php echo get_numbers_of_contenders($id_tournament); ?> ⚔️ <?php the_title(); ?>" />
+        <meta name="twitter:title" content="TOP <?php echo get_numbers_of_contenders($id_tournament); ?>" />
         <meta name="twitter:description" content="<?php the_field('question_t', $id_tournament); ?>" />
         <meta name="twitter:image" content="<?php echo get_the_post_thumbnail_url($id_tournament, 'large'); ?>" />
 
@@ -104,7 +103,7 @@ wp_reset_query(); wp_reset_postdata();
 
         <?php
         $api_key    = "3I6bGZa3zyHsiZL2toeoagtt";
-        $base_top3       = "https://on-demand.bannerbear.com/signedurl/LR7D41MVLLPVB8OGab/image.jpg";
+        $base_top3       = "https://on-demand.bannerbear.com/signedurl/9K5qxXae3MJyAGRDkj/image.jpg";
         $base_top2       = "https://on-demand.bannerbear.com/signedurl/LR7D41MVLLPVB8OGab/image.jpg";
         $user_top3  = get_user_top(false, $id_ranking);
         $l=1;
@@ -142,7 +141,6 @@ wp_reset_query(); wp_reset_postdata();
         ?>
 
         <link rel="canonical" href="<?php echo get_the_permalink($id_ranking); ?>" />
-        <meta property="fb:app_id" content="458083104324596">
         <meta property="og:locale" content="fr_FR" />
         <meta property="og:type" content="article" />
         <meta property="og:image" content="<?php echo $banner; ?>" />
@@ -166,7 +164,6 @@ wp_reset_query(); wp_reset_postdata();
             Classement mondial 👉 <?php echo get_the_title($id_tournament); ?> - <?php the_field( 'question_t', $id_tournament ); ?> 🔥 VAINKEURZ
         </title>
         <meta name="description" content="Classement ELO du tournoi rassemblant les votes du monde entier." />
-        <meta property="fb:app_id" content="458083104324596">
 
     <?php elseif(is_archive() && !is_author()): ?>
 
@@ -175,7 +172,6 @@ wp_reset_query(); wp_reset_postdata();
             Tous les Tops de la catégorie <?php echo $current_cat->name; ?> <?php the_field('icone_cat', 'term_'.$current_cat->term_id); ?>
         </title>
         <meta name="description" content="<?php echo $current_cat->description; ?>" />
-        <meta property="fb:app_id" content="458083104324596">
 
     <?php elseif(is_author()): ?>
 
@@ -183,7 +179,6 @@ wp_reset_query(); wp_reset_postdata();
             Profil de <?php echo $current_user->display_name; ?> sur VAINKEURZ
         </title>
         <meta name="description" content="Tous les TOPs de ce champion et ses statistiques" />
-        <meta property="fb:app_id" content="458083104324596">
 
     <?php else: ?>
 
@@ -248,12 +243,12 @@ wp_reset_query(); wp_reset_postdata();
 </head>
 
 <?php
-    if(is_single()){
-        $list_body_class = "vertical-layout vertical-menu-modern navbar-floating footer-static menu-collapsed";
-    }
-    else{
-        $list_body_class = "vertical-layout vertical-menu-modern navbar-floating footer-static";
-    }
+if(is_single()){
+    $list_body_class = "vertical-layout vertical-menu-modern navbar-floating footer-static menu-collapsed";
+}
+else{
+    $list_body_class = "vertical-layout vertical-menu-modern navbar-floating footer-static";
+}
 ?>
 <body <?php body_class($list_body_class); ?> data-open="click" data-menu="vertical-menu-modern" data-col="">
 <noscript>
@@ -263,3 +258,4 @@ wp_reset_query(); wp_reset_postdata();
 <?php get_template_part('partials/menu-user'); ?>
 
 <?php get_template_part('partials/menu-vkrz'); ?>
+
