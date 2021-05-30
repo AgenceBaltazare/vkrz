@@ -44,6 +44,14 @@ wp_reset_query(); wp_reset_postdata();
     <link rel="mask-icon" href="<?php bloginfo('template_directory'); ?>/assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
+    <meta property="fb:app_id" content="458083104324596">
+    <meta property="og:site_name" content="VAINKEURZ" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:type" content="article" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@Vainkeurz">
+    <meta name="twitter:creator" content="@Vainkeurz">
+    <meta name="twitter:domain" content="vainkeurz.com">
 
     <?php if(is_home()): ?>
 
@@ -51,22 +59,13 @@ wp_reset_query(); wp_reset_postdata();
             🔥 VAINKEURZ 👉 Créer et partage tes Tops !
         </title>
         <meta name="description" content="Meilleur site de la galaxie d'après la Nasa pour faire ses Tops." />
-
-        <meta property="og:locale" content="fr_FR" />
-        <meta property="og:type" content="article" />
         <meta property="og:image" content="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/logo-vkrz.png;" />
-
-
         <meta property="og:title" content=" 🔥 VAINKEURZ 👉 Créer et partage tes Tops !" />
         <meta property="og:description" content="Meilleur site de la galaxie d'après la Nasa pour faire ses Tops." />
         <meta property="og:url" content="https://vainkeurz.com/" />
-        <meta property="og:site_name" content="VAINKEURZ" />
-
-        <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content=" 🔥 VAINKEURZ 👉 Créer et partage tes Tops !" />
         <meta name="twitter:description" content="Meilleur site de la galaxie d'après la Nasa pour faire ses Tops." />
         <meta name="twitter:image" content="<?php echo get_the_post_thumbnail_url($id_tournament, 'large'); ?>" />
-
 
     <?php elseif(is_single() && get_post_type() == "tournoi"): ?>
 
@@ -77,15 +76,10 @@ wp_reset_query(); wp_reset_postdata();
         <meta name="description" content="<?php the_title(); ?> : <?php the_field( 'question_t' ); ?>" />
 
         <link rel="canonical" href="<?php get_the_permalink($id_tournament); ?>" />
-        <meta property="og:locale" content="fr_FR" />
-        <meta property="og:type" content="article" />
         <meta property="og:image" content="<?php echo get_the_post_thumbnail_url($id_tournament, 'large'); ?>" />
         <meta property="og:title" content="TOP <?php echo get_numbers_of_contenders($id_tournament); ?> : <?php the_title(); ?>" />
         <meta property="og:description" content="<?php the_field('question_t', $id_tournament); ?>" />
         <meta property="og:url" content="<?php get_the_permalink($id_tournament); ?>" />
-        <meta property="og:site_name" content="VAINKEURZ" />
-
-        <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="TOP <?php echo get_numbers_of_contenders($id_tournament); ?>" />
         <meta name="twitter:description" content="<?php the_field('question_t', $id_tournament); ?>" />
         <meta name="twitter:image" content="<?php echo get_the_post_thumbnail_url($id_tournament, 'large'); ?>" />
@@ -102,60 +96,46 @@ wp_reset_query(); wp_reset_postdata();
         <meta name="description" content="Découvre mon TOP <?php echo get_numbers_of_contenders($id_tournament); ?> à propos de <?php echo get_the_title($id_tournament); ?>" />
 
         <?php
-        $api_key    = "3I6bGZa3zyHsiZL2toeoagtt";
-        $base_top3       = "https://on-demand.bannerbear.com/signedurl/9K5qxXae3MJyAGRDkj/image.jpg";
-        $base_top2       = "https://on-demand.bannerbear.com/signedurl/LR7D41MVLLPVB8OGab/image.jpg";
-        $user_top3  = get_user_top(false, $id_ranking);
+        $user_top3  = get_user_top(false, $id_tournament);
         $l=1;
         foreach($user_top3 as $top => $p) {
 
             if ($l == 1) {
-                $picture_contender_1 = get_the_post_thumbnail_url($top, 'full');
+                $picture_contender_1 = get_the_post_thumbnail_url($top, 'medium');
                 $name_contender_1    = get_the_title($top);
             } elseif ($l == 2) {
-                $picture_contender_2 = get_the_post_thumbnail_url($top, 'full');
+                $picture_contender_2 = get_the_post_thumbnail_url($top, 'medium');
                 $name_contender_2    = get_the_title($top);
             } elseif ($l == 3) {
-                $picture_contender_3 = get_the_post_thumbnail_url($top, 'full');
+                $picture_contender_3 = get_the_post_thumbnail_url($top, 'medium');
                 $name_contender_3    = get_the_title($top);
             }
 
             $l++; if($l==4) break;
         }
-
-
-        if (get_numbers_of_contenders($id_tournament) < 3){
+        if(get_numbers_of_contenders($id_tournament) < 3){
+            $api_key = "3I6bGZa3zyHsiZL2toeoagtt";
+            $base = "https://on-demand.bannerbear.com/signedurl/nYaKxNMeoDRVW9BXPl/image.jpg";
             $modifications = '[{"name":"h1","text":"TOP '.get_numbers_of_contenders($id_tournament).' '.get_the_title($id_tournament).'"},{"name":"h2","text":"Voici mon Top 2 👉"},{"name":"h1-question","text":"'.get_field('question_t', $id_tournament).'"}, {"name":"contenders_1","image_url":"'.$picture_contender_1.'"},{"name":"contenders_2","image_url":"'.$picture_contender_2.'"},{"name":"1","text":"🥇 '.$name_contender_1.'"},{"name":"2","text":"🥈 '.$name_contender_2.'"}]';
-            $query = "?modifications=" . rtrim(strtr(base64_encode($modifications), '+/', '-_'), '=');
-            $signature = hash_hmac('sha256', $base_top2.$query, $api_key);
-            $banner = $base_top2 . $query."&s=" . $signature;
-            echo get_the_title($id_tournament);
-
         }
         else{
+            $api_key    = "3I6bGZa3zyHsiZL2toeoagtt";
+            $base       = "https://on-demand.bannerbear.com/signedurl/9K5qxXae3MJyAGRDkj/image.jpg";
             $modifications = '[{"name":"h1","text":"TOP '.get_numbers_of_contenders($id_tournament).' '.get_the_title($id_tournament).'"},{"name":"h2","text":"Voici mon Top 3 👉"},{"name":"h1-question","text":"'.get_field('question_t', $id_tournament).'"}, {"name":"contenders_1","image_url":"'.$picture_contender_1.'"},{"name":"contenders_2","image_url":"'.$picture_contender_2.'"},{"name":"contenders_3","image_url":"'.$picture_contender_3.'"},{"name":"1","text":"🥇 '.$name_contender_1.'"},{"name":"2","text":"🥈 '.$name_contender_2.'"},{"name":"3","text":"🥉 '.$name_contender_3.'"}]';
-            $query = "?modifications=" . rtrim(strtr(base64_encode($modifications), '+/', '-_'), '=');
-            $signature = hash_hmac('sha256', $base_top3.$query, $api_key);
-            $banner = $base_top3 . $query."&s=" . $signature;
         }
+        $query = "?modifications=" . rtrim(strtr(base64_encode($modifications), '+/', '-_'), '=');
+        $signature = hash_hmac('sha256', $base.$query, $api_key);
+        $banner = $base . $query."&s=" . $signature;
         ?>
 
         <link rel="canonical" href="<?php echo get_the_permalink($id_ranking); ?>" />
-        <meta property="og:locale" content="fr_FR" />
-        <meta property="og:type" content="article" />
         <meta property="og:image" content="<?php echo $banner; ?>" />
         <meta property="og:title" content="TOP <?php echo get_numbers_of_contenders($id_tournament); ?> 🏆 <?php echo get_the_title($id_tournament); ?> - <?php the_field('question_t', $id_tournament); ?>" />
         <meta property="og:description" content="Découvre mon Top complet et fais ton propre classement !" />
         <meta property="og:url" content="<?php echo get_the_permalink($id_ranking); ?>" />
-        <meta property="og:site_name" content="VAINKEURZ" />
-
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@Vainkeurz">
-        <meta name="twitter:creator" content="@Vainkeurz">
         <meta name="twitter:title" content="TOP <?php echo get_numbers_of_contenders($id_tournament); ?> 🏆 <?php echo get_the_title($id_tournament); ?> - <?php the_field('question_t', $id_tournament); ?>" />
         <meta name="twitter:description" content="Découvre mon Top complet et fais ton propre classement !" />
         <meta name="twitter:image" content="<?php echo $banner; ?>" />
-        <meta name="twitter:domain" content="vainkeurz.com">
 
     <?php elseif(is_page(get_page_by_path('elo'))): ?>
 
