@@ -120,7 +120,7 @@ wp_reset_query(); wp_reset_postdata();
         }
         else{
             $api_key    = "3I6bGZa3zyHsiZL2toeoagtt";
-            $base       = "https://on-demand.bannerbear.com/signedurl/9K5qxXae3MJyAGRDkj/image.jpg";
+            $base       = "https://on-demand.bannerbear.com/signedurl/LR7D41MVLLPVB8OGab/image.jpg";
             $modifications = '[{"name":"h1","text":"TOP '.get_numbers_of_contenders($id_tournament).' '.get_the_title($id_tournament).'"},{"name":"h2","text":"Voici mon Top 3 👉"},{"name":"h1-question","text":"'.get_field('question_t', $id_tournament).'"}, {"name":"contenders_1","image_url":"'.$picture_contender_1.'"},{"name":"contenders_2","image_url":"'.$picture_contender_2.'"},{"name":"contenders_3","image_url":"'.$picture_contender_3.'"},{"name":"1","text":"🥇 '.$name_contender_1.'"},{"name":"2","text":"🥈 '.$name_contender_2.'"},{"name":"3","text":"🥉 '.$name_contender_3.'"}]';
         }
         $query = "?modifications=" . rtrim(strtr(base64_encode($modifications), '+/', '-_'), '=');
