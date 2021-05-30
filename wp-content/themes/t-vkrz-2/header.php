@@ -108,7 +108,7 @@ wp_reset_query(); wp_reset_postdata();
         foreach($user_top3 as $top => $p) {
 
             if ($l == 1) {
-                $picture_contender_1 = get_the_post_thumbnail_url($top, 'medium');
+                $picture_contender_1 = "https://vainkeurz.com/wp-content/uploads/2021/03/9.jpg";
                 $name_contender_1    = get_the_title($top);
             } elseif ($l == 2) {
                 $picture_contender_2 = get_the_post_thumbnail_url($top, 'medium');
