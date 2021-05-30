@@ -53,9 +53,9 @@ wp_reset_query(); wp_reset_postdata();
         <meta name="description" content="Meilleur site de la galaxie d'après la Nasa pour faire ses Tops." />
 
         <meta property="og:locale" content="fr_FR" />
+        <meta property="fb:app_id" content="458083104324596">
         <meta property="og:type" content="article" />
         <meta property="og:image" content="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/logo-vkrz.png;" />
-
 
         <meta property="og:title" content=" 🔥 VAINKEURZ 👉 Créer et partage tes Tops !" />
         <meta property="og:description" content="Meilleur site de la galaxie d'après la Nasa pour faire ses Tops." />
@@ -77,6 +77,7 @@ wp_reset_query(); wp_reset_postdata();
         <meta name="description" content="<?php the_title(); ?> : <?php the_field( 'question_t' ); ?>" />
     
         <link rel="canonical" href="<?php get_the_permalink($id_tournament); ?>" />
+        <meta property="fb:app_id" content="458083104324596">
         <meta property="og:locale" content="fr_FR" />
         <meta property="og:type" content="article" />
         <meta property="og:image" content="<?php echo get_the_post_thumbnail_url($id_tournament, 'large'); ?>" />
@@ -135,6 +136,7 @@ wp_reset_query(); wp_reset_postdata();
         ?>
 
         <link rel="canonical" href="<?php echo get_the_permalink($id_ranking); ?>" />
+        <meta property="fb:app_id" content="458083104324596">
         <meta property="og:locale" content="fr_FR" />
         <meta property="og:type" content="article" />
         <meta property="og:image" content="<?php echo $banner; ?>" />
@@ -158,6 +160,7 @@ wp_reset_query(); wp_reset_postdata();
             Classement mondial 👉 <?php echo get_the_title($id_tournament); ?> - <?php the_field( 'question_t', $id_tournament ); ?> 🔥 VAINKEURZ
         </title>
         <meta name="description" content="Classement ELO du tournoi rassemblant les votes du monde entier." />
+        <meta property="fb:app_id" content="458083104324596">
 
     <?php elseif(is_archive() && !is_author()): ?>
 
@@ -166,6 +169,7 @@ wp_reset_query(); wp_reset_postdata();
             Tous les Tops de la catégorie <?php echo $current_cat->name; ?> <?php the_field('icone_cat', 'term_'.$current_cat->term_id); ?>
         </title>
         <meta name="description" content="<?php echo $current_cat->description; ?>" />
+        <meta property="fb:app_id" content="458083104324596">
 
     <?php elseif(is_author()): ?>
 
@@ -173,6 +177,7 @@ wp_reset_query(); wp_reset_postdata();
             Profil de <?php echo $current_user->display_name; ?> sur VAINKEURZ
         </title>
         <meta name="description" content="Tous les TOPs de ce champion et ses statistiques" />
+        <meta property="fb:app_id" content="458083104324596">
 
     <?php else: ?>
 
