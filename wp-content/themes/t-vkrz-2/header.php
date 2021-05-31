@@ -8,17 +8,13 @@ global $list_t_begin;
 global $id_tournament;
 global $banner;
 global $id_ranking;
+global $champion;
 $user_role = "visitor";
 if(is_user_logged_in()){
     $current_user   = wp_get_current_user();
     $user_id        = $current_user->ID;
     $user_info      = get_userdata($user_id);
     $user_role      = $user_info->roles[0];
-    if(is_page(get_page_by_path('mon-compte'))){
-        $profil_url = get_author_posts_url($user_id);
-        wp_redirect($profil_url);
-        exit();
-    }
 }
 $uuiduser            = deal_uuiduser();
 $list_t_already_done = get_user_tournament_list('t-done', $uuiduser);
@@ -156,7 +152,7 @@ wp_reset_query(); wp_reset_postdata();
     <?php elseif(is_author()): ?>
 
         <title>
-            Profil de <?php echo $current_user->display_name; ?> sur VAINKEURZ
+            Profil de <?php echo $champion->display_name; ?> sur VAINKEURZ
         </title>
         <meta name="description" content="Tous les TOPs de ce champion et ses statistiques" />
 

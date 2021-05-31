@@ -552,6 +552,21 @@ html .content {
   background-color: #5e50a6;
   border-radius: 50%; }
 
+.avatartop3 {
+  width: 30px;
+  height: 30px;
+  transform: scale(1);
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -ms-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out; }
+  .avatartop3 img {
+    width: 100%;
+    height: auto; }
+  .avatartop3:hover {
+    transform: scale(2); }
+
 .auth-inner .brand-text {
   max-width: 150px;
   margin-right: 10px; }

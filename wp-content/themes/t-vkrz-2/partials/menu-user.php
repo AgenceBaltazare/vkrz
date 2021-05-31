@@ -272,7 +272,7 @@ global $user_id;
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-user">
                     <?php if(is_user_logged_in()): ?>
-                        <a class="dropdown-item" href="<?php echo get_author_posts_url($user_id); ?>">
+                        <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>?uuid=<?php echo $uuiduser; ?>">
                             <span class="ico">🐣</span> Mon compte
                         </a>
                         <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('parametres')); ?>">

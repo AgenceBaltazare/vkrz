@@ -2,36 +2,25 @@
 global $uuiduser;
 global $current_user;
 global $user_id;
+global $champion_id;
+$champion        = get_user_by( 'slug', get_query_var( 'author_name' ) );
+$champion_id     = $champion->ID;
+$uuidchampion    = get_field('uuiduser_user', 'user_'.$champion_id);
 get_header();
 ?>
 <div class="app-content content">
     <div class="content-wrapper">
         <div class="content-body">
             <section class="app-user-view">
-                <?php if(!is_user_logged_in()): ?>
-                    <div role="alert" aria-live="polite" aria-atomic="true" class="alert alert-account" data-v-aa799a9e="">
-                        <div class="alert-body d-flex align-items-center justify-content-between">
-                            <span><strong>Pour sécuriser ta progression</strong> l'idéal serait de te créer un compte.</span>
-                            <div class="btns-alert text-right">
-                                <a class="btn btn-outline-white waves-effect mr-1 t-white" href="<?php the_permalink(get_page_by_path('se-connecter')); ?>">
-                                    J'ai déjà un compte
-                                </a>
-                                <a class="btn btn-primary waves-effect" href="<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>">
-                                    Excellente idée - je créé mon compte <span class="ico">🎉</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                <?php endif; ?>
                 <div class="row match-height">
                     <div class="col-md-6">
                         <div class="card user-card">
                             <div class="card-body d-flex align-items-center">
                                 <div class="user-avatar-section">
                                     <div class="d-flex justify-content-start align-items-center">
-                                        <?php 
-                                            if(is_user_logged_in() && get_avatar_url($user_id, ['size' => '80'])){
-                                                $avatar_url = get_avatar_url($user_id, ['size' => '80']);
+                                        <?php
+                                            if(get_avatar_url($champion_id, ['size' => '80'])){
+                                                $avatar_url = get_avatar_url($champion_id, ['size' => '80']);
                                             }
                                             else{
                                                 $avatar_url = get_bloginfo('template_directory')."/assets/images/vkrz/ninja.png";
@@ -41,13 +30,7 @@ get_header();
                                         <div class="d-flex flex-column ml-2">
                                             <div class="user-info mb-1">
                                                 <h1 class="mb-0 text-uppercase">
-                                                    <?php if(is_user_logged_in()): ?>
-                                                        <?php echo $current_user->display_name; ?>
-                                                        <br>
-                                                        <small>#<?php echo $uuiduser; ?></small>
-                                                    <?php else: ?>
-                                                        #<?php echo $uuiduser; ?>
-                                                    <?php endif; ?>
+                                                    <?php echo $champion->display_name; ?>
                                                 </h1>
                                             </div>
                                         </div>
@@ -63,7 +46,7 @@ get_header();
                                     <span class="ico4">💎</span>
                                 </div>
                                 <h2 class="font-weight-bolder">
-                                    <?php echo get_user_data("nb-user-vote", $uuiduser); ?>
+                                    <?php echo get_user_data("nb-user-vote", $uuidchampion); ?>
                                 </h2>
                                 <p class="card-text legende">Votes</p>
                             </div>
@@ -77,7 +60,7 @@ get_header();
                                 </div>
                                 <h2 class="font-weight-bolder">
                                     <?php
-                                    $list_t_already_done = get_user_tournament_list('t-done', $uuiduser);
+                                    $list_t_already_done = get_user_tournament_list('t-done', $uuidchampion);
                                     echo count($list_t_already_done);
                                     ?>
                                 </h2>
@@ -105,7 +88,7 @@ get_header();
                 <div class="row">
                     <div class="col-md-12">
                         <?php
-                        $list_r_done = get_user_ranking_list('r-done', $uuiduser);
+                        $list_r_done = get_user_ranking_list('r-done', $uuidchampion);
                         if($list_r_done) :
                         ?>
                         <div class="card">
@@ -113,29 +96,28 @@ get_header();
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th class="">
-                                                ⚔️<br>
-                                                Tous les Tops terminés
-                                            </th>
-                                            <th class="text-center">
-                                                💎<br>
-                                                Votes
-                                            </th>
-                                            <th class="">
-                                                🥇🥈🥉<br>
-                                                Podium
-                                            </th>
-                                            <th class="text-center">
-                                                🏆<br>
-                                                Top complet
-                                            </th>
-                                            <th class="text-center">
-                                                🌍<br>
-                                                Top mondial
-                                            </th>
-                                        </tr>
+                                            <tr>
+                                                <th class="">
+                                                    ⚔️<br>
+                                                    Tous les Tops terminés
+                                                </th>
+                                                <th class="text-center">
+                                                    💎<br>
+                                                    Votes
+                                                </th>
+                                                <th class="">
+                                                    🥇🥈🥉<br>
+                                                    Podium
+                                                </th>
+                                                <th class="text-center">
+                                                    🏆<br>
+                                                    Top complet
+                                                </th>
+                                                <th class="text-center">
+                                                    🌍<br>
+                                                    Top mondial
+                                                </th>
+                                            </tr>
                                         </thead>
                                         <tbody>
                                         <?php
@@ -143,14 +125,11 @@ get_header();
 
                                             <tr>
                                                 <td>
-                                                    Top <?php echo get_numbers_of_contenders($r_user['id_tournoi']); ?>
-                                                </td>
-                                                <td>
                                                     <div class="media-body">
                                                         <div class="media-heading">
                                                             <h6 class="cart-item-title mb-0">
                                                                 <a class="text-body" href="<?php the_permalink($r_user['id_tournoi']); ?>">
-                                                                    <?php echo get_the_title($r_user['id_tournoi']); ?>
+                                                                    Top <?php echo get_numbers_of_contenders($r_user['id_tournoi']); ?> - <?php echo get_the_title($r_user['id_tournoi']); ?>
                                                                 </a>
                                                             </h6>
                                                             <small class="cart-item-by legende">
@@ -164,16 +143,16 @@ get_header();
                                                 </td>
                                                 <td>
                                                     <?php
-                                                    $user_top3 = get_user_top(false, $r_user['id_tournoi']);
+                                                    $user_top3 = get_user_top($uuidchampion, $r_user['id_tournoi']);
                                                     $l=1;
                                                     foreach($user_top3 as $top => $p): ?>
 
-                                                        <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="top" data-original-title="<?php echo get_the_title($top); ?>" class="avatar pull-up">
-                                                            <?php $illu = get_the_post_thumbnail_url($top, 'medium'); ?>
-                                                            <img src="<?php echo $illu; ?>" alt="Avatar" height="32" width="32">
+                                                        <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="<?php echo get_the_title($top); ?>" class="avatartop3 avatar pull-up">
+                                                            <?php $illu = get_the_post_thumbnail_url($top, 'thumbnail'); ?>
+                                                            <img src="<?php echo $illu; ?>" alt="Avatar">
                                                         </div>
 
-                                                        <?php $l++; if($l==4) break; endforeach; ?>
+                                                    <?php $l++; if($l==4) break; endforeach; ?>
                                                 </td>
                                                 <td class="text-center">
                                                     <a href="<?php the_permalink($r_user['id_ranking']); ?>" class="scali">
