@@ -171,6 +171,33 @@ function get_user_ranking_list($request, $uuiduser = false){
 
     }
 
+    if($request == "r-begin"){
+
+        $result = array();
+        $all_user_ranking = new WP_Query(array('post_type' => 'classement', 'orderby' => 'date', 'order' => 'DESC', 'posts_per_page' => '-1', 'meta_query' => array(
+            'relation' => 'AND',
+            array(
+                'key' => 'uuid_user_r',
+                'value' => $uuiduser,
+                'compare' => '=',
+            ),
+            array(
+                'key' => 'done_r',
+                'compare' => 'NOT EXISTS',
+            ),
+        )));
+        while ($all_user_ranking->have_posts()) : $all_user_ranking->the_post();
+
+            array_push($result, array(
+                "id_tournoi" => get_field('id_tournoi_r'),
+                "nb_votes"   => get_field('nb_votes_r'),
+                "id_ranking" => get_the_ID(),
+            ));
+
+        endwhile;
+
+    }
+
     if($request == "r-all"){
 
         $result = array();

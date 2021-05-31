@@ -48,7 +48,7 @@
                                 <p class="card-text mb-2">
                                     C'est le site qui te demande de faire des choix que tu voulais pas faire. Comme de choisir entre Végéta et Sangoku, NOS et Adémo... 🥴
                                     <br><br>
-                                    En gros, tu choisis un Top et ensuite tu votes en enchainant les duels jusqu'à finaliser ton classement 🥇🥈🥉
+                                    En gros, tu choisis un Top et tu votes en enchainant les duels jusqu'à finaliser ton classement 🥇🥈🥉
                                     <br><br>
                                     Ensuite, tu peux comparer tes classements à ceux de tes amis - si tu en as bien sûr. Et puis si tu n'en pas, 🤗 rejoins notre Discord.
                                 </p>

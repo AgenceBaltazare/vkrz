@@ -142,6 +142,7 @@ get_header();
                                         </div>
                                     <?php endif; ?>
 
+                                    <!--
                                     <div class="card">
                                         <div class="card-body">
                                             <h4 class="card-title">
@@ -155,6 +156,7 @@ get_header();
                                             </a>
                                         </div>
                                     </div>
+                                    -->
 
                                     <?php
                                         global $list_t_already_done;

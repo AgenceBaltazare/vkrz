@@ -113,10 +113,12 @@ get_header();
                                                     🏆<br>
                                                     Top complet
                                                 </th>
+                                                <!--
                                                 <th class="text-center">
                                                     🌍<br>
                                                     Top mondial
                                                 </th>
+                                                -->
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -159,11 +161,13 @@ get_header();
                                                         <span class="ico">👀</span>
                                                     </a>
                                                 </td>
+                                                <!--
                                                 <td class="text-center">
                                                     <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_tournoi=<?php echo $r_user['id_tournoi']; ?>" class="scali">
                                                         <span class="ico">👀</span>
                                                     </a>
                                                 </td>
+                                                -->
                                             </tr>
 
                                         <?php endforeach; ?>

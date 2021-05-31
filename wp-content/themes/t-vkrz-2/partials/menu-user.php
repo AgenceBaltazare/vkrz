@@ -1,5 +1,6 @@
 <?php
 global $uuiduser;
+global $current_user;
 global $user_id;
 ?>
 <nav class="header-navbar navbar navbar-expand-lg align-items-center floating-nav navbar-dark navbar-shadow menu-user">
@@ -117,7 +118,7 @@ global $user_id;
                     <span class="ico text-center">💎</span>
                     <span class="value-user-stats user-total-vote-value">
                         <?php
-                        $nb_total_votes_user = get_user_data("nb-user-vote");
+                        $nb_total_votes_user = get_user_data("nb-user-vote", $uuiduser);
                         echo $nb_total_votes_user;
                         ?>
                     </span>
@@ -133,7 +134,7 @@ global $user_id;
                     </li>
                     <li class="scrollable-container media-list">
                         <?php
-                        $list_t_begin = get_user_tournament_list('t-begin');
+                        $list_t_begin = get_user_tournament_list('t-begin', $uuiduser);
                         foreach($list_t_begin as $t_user) : ?>
 
                             <div class="media align-items-center">
@@ -183,7 +184,7 @@ global $user_id;
                     <span class="ico text-center">🏆</span>
                     <span class="value-user-stats">
                         <?php
-                        $list_t_already_done = get_user_tournament_list('t-done');
+                        $list_t_already_done = get_user_tournament_list('t-done', $uuiduser);
                         echo count($list_t_already_done);
                         ?>
                     </span>
