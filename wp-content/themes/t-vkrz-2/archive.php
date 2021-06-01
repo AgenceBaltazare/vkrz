@@ -2,9 +2,17 @@
     <div class="app-content content">
         <div class="content-wrapper">
 
-            <div class="content-body pt-1">
+            <div class="content-body">
 
-                <section class="list-tournois">
+                <div class="intro-mobile">
+                    <?php $current_cat = get_queried_object(); ?>
+                    <div class="tournament-heading text-center">
+                        <h3 class="mb-0 t-titre-tournoi"><span class="ico"><?php the_field('icone_cat', 'term_'.$current_cat->term_id); ?></span> <?php echo $current_cat->name; ?></h3>
+                        <h4 class="mb-0"><?php echo $current_cat->description; ?></h4>
+                    </div>
+                </div>
+
+                <section class="list-tournois mt-1">
 
                     <div class="row">
                         <?php while (have_posts()) : the_post(); ?>

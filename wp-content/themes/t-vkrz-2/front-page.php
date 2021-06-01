@@ -5,6 +5,11 @@
 
         <div class="content-body">
 
+            <div class="intro-mobile">
+                <h3 class="mb-0">🖖 Bienvenue</h3>
+                <h4 class="mb-0">Créer & partage tes propres Tops en enchainant les votes !</h4>
+            </div>
+
             <section class="list-tournois">
 
                 <div class="big-cat">

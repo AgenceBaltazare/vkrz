@@ -19,6 +19,15 @@ get_header();
     <div class="content-wrapper">
         <div class="content-body tournoi-content">
 
+            <div class="intro-mobile">
+                <div class="tournament-heading text-center">
+                    <h3 class="mb-0 t-titre-tournoi">Top <?php echo get_numbers_of_contenders(get_the_ID()); ?> <span class="ico">⚔️</span> <?php the_title(); ?></h3>
+                    <h4 class="text-center t-question">
+                        <?php the_field( 'question_t', $id_tournament ); ?> <br>
+                    </h4>
+                </div>
+            </div>
+
             <?php if ($is_next_duel): ?>
 
                 <div class="container-fluid">
@@ -84,7 +93,7 @@ get_header();
                     </div>
                 </div>
 
-                <div class="btng">
+                <div class="btng hide-xs">
                     <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_tournoi=<?php echo $id_tournament; ?>" class="btn btn-outline-primary waves-effect" target="_blank" >
                         <span class="ico ico-reverse text-center">👀</span> Classement mondial
                     </a>

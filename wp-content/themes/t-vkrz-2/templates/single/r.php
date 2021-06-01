@@ -22,10 +22,17 @@ get_header();
 ?>
     <!-- BEGIN: Content-->
     <div class="app-content content cover" xmlns="http://www.w3.org/1999/html">
-    <div class="content-overlay"></div>
     <div class="content-wrapper">
-    <div class="content-body mt-2">
-    <div class="classement">
+    <div class="content-body">
+
+    <div class="intro-mobile">
+        <div class="tournament-heading text-center">
+            <h3 class="mb-0 t-titre-tournoi">Top <?php echo get_numbers_of_contenders($id_tournament); ?> <span class="ico text-center">🏆</span> <?php echo get_the_title($id_tournament); ?></h3>
+            <h4 class="mb-0"><?php the_field('question_t', $id_tournament ); ?></h4>
+        </div>
+    </div>
+
+    <div class="classement mt-2">
         <div class="container-fluid">
 
             <div class="row">

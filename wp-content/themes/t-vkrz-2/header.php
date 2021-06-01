@@ -49,6 +49,10 @@ wp_reset_query(); wp_reset_postdata();
     <meta name="twitter:creator" content="@Vainkeurz">
     <meta name="twitter:domain" content="vainkeurz.com">
 
+    <?php if(is_page(26626)): ?>
+        <meta name='robots' content='noindex, nofollow' />
+    <?php endif; ?>
+
     <?php if(is_home()): ?>
 
         <title>

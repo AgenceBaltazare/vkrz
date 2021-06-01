@@ -50,7 +50,7 @@ else{
                                     </h2>
                                 </a>
                                 <h2 class="card-title font-weight-bold mb-1">
-                                    Reset votre mot de passe <span class="ico">🖖</span>
+                                    Reset ton mot de passe <span class="ico">🖖</span>
                                 </h2>
                             </div>
 
@@ -72,14 +72,4 @@ else{
     </div>
 </div>
 
-<script src="<?php bloginfo('template_directory'); ?>/assets/vendors/js/vendors.min.js"></script>
-<script src="<?php bloginfo('template_directory'); ?>/assets/vendors/js/extensions/sweetalert2.all.min.js"></script>
-<script src="<?php bloginfo('template_directory'); ?>/assets/vendors/js/extensions/polyfill.min.js"></script>
-<script src="<?php bloginfo('template_directory'); ?>/assets/js/core/app-menu.js"></script>
-<script src="<?php bloginfo('template_directory'); ?>/assets/js/core/app.js"></script>
-<script src="<?php bloginfo('template_directory'); ?>/assets/js/scripts/extensions/ext-component-sweet-alerts.js"></script>
-<script src="<?php bloginfo('template_directory'); ?>/assets/js/core/main.js"></script>
-
-<?php wp_footer(); ?>
-</body>
-</html>
+<?php get_footer(); ?>

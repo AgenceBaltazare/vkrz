@@ -296,6 +296,19 @@ html .content {
   display: inline-block;
   width: 10px; }
 
+.intro-mobile {
+  display: none;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  margin: 0 0 30px 0;
+  padding: 30px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05); }
+  .intro-mobile h4 {
+    font-size: 14px;
+    margin: 10px 0 0 0; }
+
 .main-menu {
   border-right: 10px solid #14122f; }
   .main-menu .navbar-header {
@@ -822,16 +835,40 @@ input:-webkit-autofill:active {
   .plus {
     font-size: 20px;
     margin: 0 5px; } }
-@media (max-width: 576px) {
+@media (max-width: 768px) {
+  .intro-mobile {
+    display: block; }
+
+  .display_current_user_rank {
+    display: none; }
+
+  .hide-xs {
+    display: none; }
+
+  .nav-tournament {
+    left: 0;
+    flex-direction: column; }
+    .nav-tournament .btng {
+      margin-bottom: 10px; }
+
+  .auth-wrapper {
+    padding-top: 70px; }
+
+  .user-avatar-section .content-avatar-name {
+    flex-direction: column;
+    text-align: center; }
+    .user-avatar-section .content-avatar-name h1 {
+      margin-top: 15px; }
+    .user-avatar-section .content-avatar-name .ml-2, .user-avatar-section .content-avatar-name .mr-1 {
+      margin: 0 !important; }
+    .user-avatar-section .content-avatar-name .btn {
+      margin-bottom: 10px !important; }
+
   html body .app-content {
     padding: calc(2rem - 0.8rem + 7.45rem + 1.3rem) calc(2rem - 0.8rem) 0 calc(2rem - 0.8rem) !important; }
 
   .bookmark-wrapper {
-    flex-wrap: wrap; }
-    .bookmark-wrapper h4 {
-      flex-basis: 100%;
-      margin-top: 5px;
-      font-size: 13px; }
+    display: none !important; }
 
   .min-tournoi .cov-illu .badge {
     position: absolute;
@@ -841,7 +878,7 @@ input:-webkit-autofill:active {
     z-index: 99; }
 
   .logo {
-    max-width: 90px !important;
+    max-width: 60px !important;
     transition: all 0.3s ease-in-out; }
 
   .opfull .logo {

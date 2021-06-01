@@ -33,7 +33,7 @@ get_header();
                             <div class="card user-card">
                                 <div class="card-body d-flex align-items-center">
                                     <div class="user-avatar-section">
-                                        <div class="d-flex justify-content-start align-items-center">
+                                        <div class="d-flex justify-content-start align-items-center content-avatar-name">
                                             <?php
                                             if(is_user_logged_in() && get_avatar_url($user_id, ['size' => '80'])){
                                                 $avatar_url = get_avatar_url($user_id, ['size' => '80']);

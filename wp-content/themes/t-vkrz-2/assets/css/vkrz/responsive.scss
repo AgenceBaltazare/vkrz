@@ -36,19 +36,54 @@
 
 }
 
-@media (max-width: 576px) {
+@media (max-width: 768px) {
+
+  .intro-mobile{
+    display: block;
+  }
+
+  .display_current_user_rank{
+    display: none;
+  }
+
+  .hide-xs{
+    display: none;
+  }
+
+  .nav-tournament{
+    left: 0;
+    flex-direction: column;
+    .btng{
+      margin-bottom: 10px;
+    }
+  }
+
+  .auth-wrapper{
+    padding-top: 70px;
+  }
+
+  .user-avatar-section{
+    .content-avatar-name{
+      flex-direction: column;
+      text-align: center;
+      h1{
+        margin-top: 15px;
+      }
+      .ml-2, .mr-1{
+        margin: 0 !important;
+      }
+      .btn{
+        margin-bottom: 10px !important;
+      }
+    }
+  }
 
   html body .app-content {
     padding: calc(2rem - 0.8rem + 7.45rem + 1.3rem) calc(2rem - 0.8rem) 0 calc(2rem - 0.8rem) !important;
   }
 
   .bookmark-wrapper{
-    flex-wrap: wrap;
-    h4{
-      flex-basis: 100%;
-      margin-top: 5px;
-      font-size: 13px;
-    }
+    display: none !important;
   }
 
   .min-tournoi .cov-illu .badge {
@@ -61,7 +96,7 @@
 
 
   .logo{
-    max-width: 90px !important;
+    max-width: 60px !important;
     transition: all 0.3s ease-in-out;
   }
   .opfull{
