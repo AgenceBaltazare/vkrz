@@ -3,8 +3,8 @@
     <div class="col-sm-5 col-6 bloc-contenders link-contender_1 contender_1 cover_contenders link-contender">
         <div class="contender_zone animate__animated"
            data-id-winner="<?= $contender_1 ?>"
-           data-id-looser="<?= $contender_2?>"
-           data-id-tournament="<?= $id_tournament ?>"
+           data-id-looser="<?= $contender_2 ?>"
+           data-id-tournament="<?= $id_tournament ?>" data-id-ranking="<?= $id_ranking ?>"
            id="c_1"
         >
             <?php if(get_field('visuel_cover_t', $id_tournament)): ?>
@@ -42,7 +42,7 @@
         <div class="contender_zone animate__animated"
            data-id-winner="<?= $contender_2 ?>"
            data-id-looser="<?= $contender_1 ?>"
-           data-id-tournament="<?= $id_tournament ?>"
+           data-id-tournament="<?= $id_tournament ?>" data-id-ranking="<?= $id_ranking ?>"
            id="c_2"
         >
             <?php if(get_field('visuel_cover_t', $id_tournament)): ?>

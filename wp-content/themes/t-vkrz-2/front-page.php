@@ -58,7 +58,13 @@
                                 </a>
                                 -->
                                 <a href="https://discord.gg/PhjrFtwx" class="btn btn-outline-primary waves-effect" target="_blank">
-                                    <span class="ico">🍻</span> Nous rejoindre sur Discord
+                                    Discord
+                                </a>
+                                <a href="https://twitter.com/Vainkeurz" class="btn btn-outline-primary waves-effect" target="_blank">
+                                    Twitter
+                                </a>
+                                <a href="https://www.facebook.com/vainkeurz" class="btn btn-outline-primary waves-effect" target="_blank">
+                                    Facebook
                                 </a>
                             </div>
                         </div>

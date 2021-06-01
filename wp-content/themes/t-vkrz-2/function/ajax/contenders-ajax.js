@@ -38,6 +38,7 @@ $(document).ready(function ($) {
                 data: {
                     action: 'vkzr_process_vote',
                     id_tournament: $(this).find('.contender_zone').data('id-tournament'),
+                    id_ranking: $(this).find('.contender_zone').data('id-ranking'),
                     id_winner: $(this).find('.contender_zone').data('id-winner'),
                     id_looser: $(this).find('.contender_zone').data('id-looser')
                 }

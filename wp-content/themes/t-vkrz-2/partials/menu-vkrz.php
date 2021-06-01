@@ -43,10 +43,23 @@
                     <span class="ico">🙏</span> <span class="menu-title text-truncate">Donne ton avis</span>
                 </a>
             </li>
+            <li class="navigation-header">
+                <span>Nous suivre</span> <i data-feather="more-horizontal"></i>
+            </li>
             <li class="nav-item">
-                <a href="https://discord.gg/PhjrFtwx" class="d-flex align-items-center" target="_blank" >
-                    <span class="ico ico-size-2">🍻</span> <span class="menu-title text-truncate">Discord</span>
-                </a>
+                <div class="rs-menu">
+                    <div class="btn-group justify-content-center share-t" role="group">
+                        <a href="https://discord.gg/PhjrFtwx" class="btn btn-icon btn-outline-primary" target="_blank">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                        <a href="https://twitter.com/Vainkeurz" target="_blank" class="btn btn-icon btn-outline-primary">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://www.facebook.com/vainkeurz" target="_blank" class="btn btn-icon btn-outline-primary">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </div>
+                </div>
             </li>
         </ul>
     </div>

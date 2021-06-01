@@ -1,5 +1,5 @@
 <?php
-function do_vote($id_winner, $id_looser, $id_ranking){
+function do_vote($id_winner, $id_looser, $id_ranking, $id_tournament){
 
     $key_vainkeur    = 0;
     $key_loser       = 0;

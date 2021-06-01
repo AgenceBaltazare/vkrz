@@ -30,8 +30,14 @@ $(window).scroll(function() {
     } else {
         $('.menu-user').removeClass('opfull');
     }
-});
 
+    if($(window).scrollTop() + $(window).height() == $(document).height()) {
+        $('.nav-tournament, .stepbar').addClass('disapear');
+    }
+    else{
+        $('.nav-tournament, .stepbar').removeClass('disapear');
+    }
+});
 
 $('#wppb-register-user-sign-in #register').mouseover(function() {
     $('.gif1').hide();

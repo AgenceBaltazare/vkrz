@@ -3,7 +3,7 @@ function genrerate_tournament_response($tournament_infos){
     extract($tournament_infos);
 
     ob_start();
-    set_query_var( 'battle_vars', compact( 'contender_1', 'contender_2', 'id_tournament', 'nb_user_votes' ) );
+    set_query_var( 'battle_vars', compact( 'contender_1', 'contender_2', 'id_tournament', 'nb_user_votes', 'id_ranking' ) );
     get_template_part( 'templates/parts/content', 'battle' );
     $contenders_html = ob_get_clean();
 

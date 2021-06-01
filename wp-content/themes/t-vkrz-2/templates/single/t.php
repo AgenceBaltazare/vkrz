@@ -42,7 +42,7 @@ get_header();
                         <div class="col-md-12">
                             <div class="display_battle">
                                 <?php
-                                set_query_var('battle_vars', compact('contender_1', 'contender_2', 'id_tournament', 'all_votes_counts'));
+                                set_query_var('battle_vars', compact('contender_1', 'contender_2', 'id_tournament', 'all_votes_counts', 'id_ranking'));
                                 get_template_part('templates/parts/content', 'battle');
                                 ?>
                             </div>

@@ -3,7 +3,7 @@ add_action( 'wp_ajax_vkzr_process_vote', 'vkzr_process_vote' );
 add_action( 'wp_ajax_nopriv_vkzr_process_vote', 'vkzr_process_vote' );
 
 function vkzr_process_vote() {
-	do_elo_ranking( $_POST['id_tournament'], $_POST['id_winner'], $_POST['id_looser'] );
+	do_elo_ranking( $_POST['id_tournament'], $_POST['id_winner'], $_POST['id_looser'], $_POST['id_ranking'] );
 	$tournanment_infos = do_user_ranking( $_POST['id_tournament'], $_POST['id_winner'], $_POST['id_looser'] );
 	genrerate_tournament_response($tournanment_infos);
 }

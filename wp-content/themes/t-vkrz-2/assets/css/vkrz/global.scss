@@ -38,8 +38,8 @@
   background-color: transparent;
 }
 html .content.app-content {
-  padding: calc(2rem + 3.45rem + 1.3rem) 2rem 0;
-  height: 100vh;
+  padding: calc(2rem + 3.45rem + 1.3rem) 2rem 10rem;
+  min-height: 100vh;
 }
 html .content.app-content .content-overlay{
   position: absolute;
@@ -230,4 +230,14 @@ html .content {
 
 .ico-reverse{
   transform: scaleX(-1);
+}
+
+.disapear{
+  transition: all .1s ease-in-out;
+  opacity: 0 !important;
+}
+
+.space{
+  display: inline-block;
+  width: 10px;
 }

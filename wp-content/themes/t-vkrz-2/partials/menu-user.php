@@ -223,7 +223,7 @@ global $user_id;
                                         <div class="user_rank">
                                             <div class="avatar-group align-items-center">
                                                 <?php
-                                                $user_top3 = get_user_top(false, get_the_id());
+                                                $user_top3 = get_user_top($uuiduser, get_the_id());
                                                 $l=1;
                                                 foreach($user_top3 as $top => $p): ?>
 
@@ -241,15 +241,9 @@ global $user_id;
                             <?php endwhile; ?>
                         </li>
                         <li class="dropdown-menu-footer">
-                            <?php if(is_user_logged_in()): ?>
-                                <a class="btn btn-primary btn-block" href="<?php echo get_author_posts_url($user_id); ?>">
-                                    Voir tous mes Tops terminés
-                                </a>
-                            <?php else: ?>
-                                <a class="btn btn-primary btn-block" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>?uuid=<?php echo $uuiduser; ?>">
-                                    Voir tous mes Tops terminés
-                                </a>
-                            <?php endif; ?>
+                            <a class="btn btn-primary btn-block" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>?uuid=<?php echo $uuiduser; ?>">
+                                Voir tous mes Tops terminés
+                            </a>
                         </li>
                     <?php endif; ?>
                 </ul>

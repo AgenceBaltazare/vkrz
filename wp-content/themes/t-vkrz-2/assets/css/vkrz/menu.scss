@@ -30,6 +30,9 @@
       right: 30px;
     }
   }
+  .rs-menu{
+    display: none;
+  }
   .badge-beta {
     display: none;
   }
@@ -39,6 +42,9 @@
       height: auto;
       position: inherit;
       right: unset;
+    }
+    .rs-menu{
+      display: block;
     }
   }
 }
@@ -93,4 +99,20 @@
 }
 .dark-layout .main-menu-content .navigation-main li a {
   color: #fff !important;
+}
+
+.dark-layout .main-menu-content .navigation-main li a.btn-outline-primary {
+  border: 1px solid #7367f0 !important;
+  background-color: transparent !important;
+  color: #7367f0 !important;
+  text-align: center !important;
+}
+.dark-layout .main-menu-content .navigation-main .nav-item a.btn-outline-primary i, .dark-layout .main-menu-content .navigation-main .nav-item a.btn-outline-primary svg{
+  color: #7367f0 !important;
+  margin: 0 auto;
+  text-align: center !important;
+}
+.rs-menu{
+  margin: 0 15px 0 10px;
+  padding: 10px 15px 10px 15px;
 }

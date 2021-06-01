@@ -133,8 +133,8 @@ body {
   background-color: transparent; }
 
 html .content.app-content {
-  padding: calc(2rem + 3.45rem + 1.3rem) 2rem 0;
-  height: 100vh; }
+  padding: calc(2rem + 3.45rem + 1.3rem) 2rem 10rem;
+  min-height: 100vh; }
 
 html .content.app-content .content-overlay {
   position: absolute;
@@ -288,6 +288,14 @@ html .content {
 .ico-reverse {
   transform: scaleX(-1); }
 
+.disapear {
+  transition: all .1s ease-in-out;
+  opacity: 0 !important; }
+
+.space {
+  display: inline-block;
+  width: 10px; }
+
 .main-menu {
   border-right: 10px solid #14122f; }
   .main-menu .navbar-header {
@@ -312,6 +320,8 @@ html .content {
     height: auto;
     position: relative;
     right: 30px; }
+.menu-collapsed .rs-menu {
+  display: none; }
 .menu-collapsed .badge-beta {
   display: none; }
 .menu-collapsed .expanded img {
@@ -319,6 +329,8 @@ html .content {
   height: auto;
   position: inherit;
   right: unset; }
+.menu-collapsed .expanded .rs-menu {
+  display: block; }
 
 .bookmark-wrapper h4 {
   font-size: 12px;
@@ -357,6 +369,21 @@ html .content {
 
 .dark-layout .main-menu-content .navigation-main li a {
   color: #fff !important; }
+
+.dark-layout .main-menu-content .navigation-main li a.btn-outline-primary {
+  border: 1px solid #7367f0 !important;
+  background-color: transparent !important;
+  color: #7367f0 !important;
+  text-align: center !important; }
+
+.dark-layout .main-menu-content .navigation-main .nav-item a.btn-outline-primary i, .dark-layout .main-menu-content .navigation-main .nav-item a.btn-outline-primary svg {
+  color: #7367f0 !important;
+  margin: 0 auto;
+  text-align: center !important; }
+
+.rs-menu {
+  margin: 0 15px 0 10px;
+  padding: 10px 15px 10px 15px; }
 
 .single-tournoi .tournoi-content {
   text-align: center; }
@@ -773,6 +800,12 @@ input:-webkit-autofill:active {
   position: absolute;
   right: 10px;
   top: 10px; }
+
+.blog-detail-wrapper h1 {
+  color: #f4167f; }
+.blog-detail-wrapper h2 {
+  font-size: 20px;
+  margin: 40px 0 20px 0; }
 
 @media (min-width: 1200px) {
   .col-xxl-2 {
