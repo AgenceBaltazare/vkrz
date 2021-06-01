@@ -191,7 +191,7 @@ wp_reset_query(); wp_reset_postdata();
     <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory'); ?>/assets/css/pages/page-pricing.css">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory'); ?>/assets/css/vkrz/main.css">
+    <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory'); ?>/assets/css/vkrz/main.css?<?php echo time(); ?>">
 
     <?php if($user_role != "administrator"): ?>
         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':

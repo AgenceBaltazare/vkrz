@@ -36,14 +36,14 @@
 
 
 <!-- VKRZ -->
-<script src="<?php bloginfo('template_directory'); ?>/assets/js/core/main.js"></script>
+<script src="<?php bloginfo('template_directory'); ?>/assets/js/core/main.js?<?php echo time(); ?>"></script>
 
 <!-- Custom JS-->
 <script>
     const vkrz_ajaxurl  = "<?= admin_url('admin-ajax.php') ?>";
     const vkrz_template = "<?= get_bloginfo('template_directory'); ?>";
 </script>
-<script src="<?php bloginfo('template_directory'); ?>/function/ajax/contenders-ajax.js"></script>
+<script src="<?php bloginfo('template_directory'); ?>/function/ajax/contenders-ajax.js?<?php echo time(); ?>"></script>
 <script src="<?php bloginfo('template_directory'); ?>/function/ajax/meca.js"></script>
 
 <?php wp_footer(); ?>
