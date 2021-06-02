@@ -97,7 +97,7 @@ get_header();
                                         <div class="card">
                                             <div class="card-body">
                                                 <h4 class="card-title">
-                                                    <span class="ico">😎</span> Partage ton Top
+                                                    <span class="ico">😎</span> Partage ton classement
                                                 </h4>
                                                 <h6 class="card-subtitle text-muted mb-1">
                                                     Il est temps de revendiquer et assumer ses choix !
@@ -116,9 +116,52 @@ get_header();
                                                     <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $url_ranking; ?>" title="Partager sur Facebook" target="_blank" class="btn btn-icon btn-outline-primary">
                                                         <i class="fab fa-facebook-f"></i>
                                                     </a>
+
+                                                    <a href="javascript:copyToClipboard();" data-toggle="tooltip" data-placement="top" title="Copier le lien" class="btn btn-icon btn-outline-primary">
+                                                        <i class="fas fa-link"></i>
+                                                    </a>
+
+
                                                 </div>
                                             </div>
                                         </div>
+
+
+
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h4 class="card-title">
+                                                    <span class="ico">🤪</span> Fais tourner le Top
+                                                </h4>
+                                                <h6 class="card-subtitle text-muted mb-1">
+                                                    Plus on est de fou plus on .. TOP !
+                                                </h6>
+                                                <div class="btn-group justify-content-center share-t" role="group">
+                                                    <?php
+                                                    $title_tournament = get_the_title($id_tournament);
+                                                    ?>
+                                                    <a href="https://twitter.com/intent/tweet?text=J'ai fait mon TOP <?php echo get_numbers_of_contenders($id_tournament); ?> <?php echo $title_tournament; ?> maintenant c'est à vous 🤪🤪 &via=vainkeurz&hashtags=VKRZ&url=<?php the_permalink($id_tournament);; ?>" target="_blank" title="Tweet" class="btn btn-icon btn-outline-primary">
+                                                        <i class="fab fa-twitter"></i>
+                                                    </a>
+                                                    <a href="whatsapp://send?text=<?php the_permalink($id_tournament);; ?>" data-action="share/whatsapp/share" class="btn btn-icon btn-outline-primary">
+                                                        <i class="fab fa-whatsapp"></i>
+                                                    </a>
+                                                    <a href="https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink($id_tournament);; ?>" title="Partager sur Facebook" target="_blank" class="btn btn-icon btn-outline-primary">
+                                                        <i class="fab fa-facebook-f"></i>
+                                                    </a>
+
+                                                    <a href="javascript:copyToClipboard();" data-toggle="tooltip" data-placement="top" title="Copier le lien" class="btn btn-icon btn-outline-primary">
+                                                        <i class="fas fa-link"></i>
+                                                    </a>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
 
                                         <div class="card">
                                             <div class="card-body">
