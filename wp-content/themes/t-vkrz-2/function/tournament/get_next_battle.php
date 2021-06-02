@@ -71,8 +71,8 @@ function get_next_duel($id_ranking, $id_tournament) {
             }
             else{
 
-                $key_c_1 = $list_inf[0];
-                $key_c_2 = $list_inf[1];
+                $key_c_1 = $list_inf[$nb_list_inf-2];
+                $key_c_2 = $list_inf[$nb_list_inf-1];
                 array_push($next_duel, $key_c_1);
                 array_push($next_duel, $key_c_2);
 
@@ -94,8 +94,8 @@ function get_next_duel($id_ranking, $id_tournament) {
             }
             else{
 
-                $key_c_1 = $list_inf[0];
-                $key_c_2 = $list_inf[1];
+                $key_c_1 = $list_inf[$nb_list_inf-2];
+                $key_c_2 = $list_inf[$nb_list_inf-1];
                 array_push($next_duel, $key_c_1);
                 array_push($next_duel, $key_c_2);
 
@@ -122,8 +122,8 @@ function get_next_duel($id_ranking, $id_tournament) {
             }
             else{
 
-                $key_c_1 = $list_inf[0];
-                $key_c_2 = $list_inf[1];
+                $key_c_1 = $list_inf[$nb_list_inf-2];
+                $key_c_2 = $list_inf[$nb_list_inf-1];
                 array_push($next_duel, $key_c_1);
                 array_push($next_duel, $key_c_2);
 
