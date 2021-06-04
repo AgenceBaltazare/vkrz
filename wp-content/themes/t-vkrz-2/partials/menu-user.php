@@ -291,6 +291,7 @@ global $user_id;
                             <span class="ico">🎉</span> S'inscrire
                         </a>
                     <?php endif; ?>
+                    
                 </div>
             </li>
         </ul>

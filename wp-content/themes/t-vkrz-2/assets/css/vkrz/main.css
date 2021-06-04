@@ -896,7 +896,7 @@ input:-webkit-autofill:active {
     left: 5px;
     right: auto;
     top: 5px;
-    z-index: 99; }
+    z-index: 9; }
 
   .logo {
     max-width: 60px !important;
