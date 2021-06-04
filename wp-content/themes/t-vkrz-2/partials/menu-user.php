@@ -136,17 +136,18 @@ global $user_id;
                         <?php
                         $list_t_begin = get_user_tournament_list('t-begin', $uuiduser);
                         foreach($list_t_begin as $t_user) : ?>
-
+                            <a class="text-body" href="<?php the_permalink($t_user['id_tournoi']); ?>">
                             <div class="media align-items-center">
                                 <div class="min-t-thumb">
                                     <?php echo get_the_post_thumbnail($t_user['id_tournoi'], 'thumbnail', array('class'=>'d-block rounded mr-1 img-fluid')); ?>
                                 </div>
                                 <div class="media-body">
+
                                     <div class="media-heading">
                                         <h6 class="cart-item-title">
-                                            <a class="text-body" href="<?php the_permalink($t_user['id_tournoi']); ?>">
+
                                                 <?php echo get_the_title($t_user['id_tournoi']); ?>
-                                            </a>
+
                                         </h6>
                                         <small class="cart-item-by">
                                             <?php if($t_user['done'] == true): ?>
@@ -161,6 +162,7 @@ global $user_id;
                                     </h5>
                                 </div>
                             </div>
+                            </a>
 
                         <?php endforeach; ?>
                     </li>
@@ -289,6 +291,7 @@ global $user_id;
                             <span class="ico">🎉</span> S'inscrire
                         </a>
                     <?php endif; ?>
+                    
                 </div>
             </li>
         </ul>

@@ -31,9 +31,6 @@
 <script src="<?php bloginfo('template_directory'); ?>/assets/vendors/js/extensions/swiper.min.js"></script>
 <script src="<?php bloginfo('template_directory'); ?>/assets/js/scripts/extensions/ext-component-swiper.js"></script>
 
-<!-- Général -->
-<script src="<?php bloginfo('template_directory'); ?>/assets/js/scripts/extensions/ext-component-sweet-alerts.js"></script>
-
 
 <!-- VKRZ -->
 <script src="<?php bloginfo('template_directory'); ?>/assets/js/core/main.js"></script>

@@ -7,7 +7,7 @@
 
             <div class="intro-mobile">
                 <h3 class="mb-0">🖖 Bienvenue</h3>
-                <h4 class="mb-0">Créer & partage tes propres Tops en enchainant les votes !</h4>
+                <h4 class="mb-0">Créer & partage tes propres Tops en enchaînant les votes !</h4>
             </div>
 
             <section class="list-tournois">
@@ -51,9 +51,9 @@
                                     <span class="ico">🧐</span> VAINKEURZ, c'est quoi ?
                                 </h4>
                                 <p class="card-text mb-2">
-                                    C'est le site qui te demande de faire des choix que tu voulais pas faire. Comme de choisir entre Végéta et Sangoku, NOS et Adémo... 🥴
+                                    C'est le site qui te demande de faire des choix que tu ne voulais pas faire. Comme de choisir entre Végéta et Sangoku, NOS et Adémo... 🥴
                                     <br><br>
-                                    En gros, tu choisis un Top et tu votes en enchainant les duels jusqu'à finaliser ton classement 🥇🥈🥉
+                                    En gros, tu choisis un Top et tu votes en enchaînant les duels jusqu'à finaliser ton classement 🥇🥈🥉
                                     <br><br>
                                     Ensuite, tu peux comparer tes classements à ceux de tes amis - si tu en as bien sûr. Et puis si tu n'en pas, 🤗 rejoins notre Discord.
                                 </p>
