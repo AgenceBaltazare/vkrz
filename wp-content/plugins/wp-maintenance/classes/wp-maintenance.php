@@ -145,6 +145,26 @@ class WP_maintenance {
             add_option('wp_maintenance_style', wpm_print_style());
         }
 
+        $wpParamSocialOption = array(
+
+            'enable' => 0,
+            'texte' => 'Follow me on',
+            'style' => 'style1',
+            'size' => 64,
+            'position' => 'bottom',
+            'align' => 'center',
+            'theme' => ''
+        );
+
+        $getParamSocialOption = get_option('wp_maintenance_social_options');
+        if ( empty($getParamSocialOption) ) {
+            foreach ($wpParamSocialOption as $key => $option) {
+                $wpParamSocialOption[$key] = $option;
+            }
+            add_option('wp_maintenance_social_options', $wpParamSocialOption);
+        }
+        
+
     }
 
     public static function wpm_dashboard_remove() {

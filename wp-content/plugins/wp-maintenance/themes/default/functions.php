@@ -57,7 +57,7 @@ function wpm_footer_text() {
 		$output .= '<footer>';
 
 		if( isset($o['text_bt_maintenance']) && $o['text_bt_maintenance']!='' ) {
-			$output .= esc_html(nl2br(stripslashes($o['text_bt_maintenance'])));
+			$output .= nl2br(stripslashes($o['text_bt_maintenance']));
 		}
 		if( (isset($o['add_wplogin']) && $o['add_wplogin']==1) && (isset($o['add_wplogin_title']) && $o['add_wplogin_title']!='') ) {
 			$output .= '<br /><br /><a href="'.get_admin_url().'">'.str_replace('%DASHBOARD%', ' '.__('Dashboard', 'wp-maintenance'), esc_html($o['add_wplogin_title'])).'</a>';

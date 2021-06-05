@@ -513,8 +513,6 @@
 <?php __("Enter the minimum characters the password should have. Leave empty for no minimum limit", "profile-builder"); ?>
 <?php __("Minimum Password Strength:", "profile-builder"); ?>
 <?php __("Disabled", "profile-builder"); ?>
-<?php __("Use ajax on conditional fields:", "profile-builder"); ?>
-<?php __("For large conditional forms select \"Yes\" for an improved page performance", "profile-builder"); ?>
 <?php __("Form Fields", "profile-builder"); ?>
 <?php __("Manage Form Fields", "profile-builder"); ?>
 <?php __("Choose one of the supported field types", "profile-builder"); ?>
@@ -550,9 +548,9 @@
 <?php __("reCAPTCHA Type", "profile-builder"); ?>
 <?php __("Choose the <a href=\"https://developers.google.com/recaptcha/docs/versions\" target=\"_blank\">type of reCAPTCHA</a> you wish to add to this site.<br/>Please note that the Invisible reCAPTCHA is a type of reCAPTCHA v2.", "profile-builder"); ?>
 <?php __("Site Key", "profile-builder"); ?>
-<?php __("The site key from Google, <a href=\"http://www.google.com/recaptcha\" target=\"_blank\">www.google.com/recaptcha</a>", "profile-builder"); ?>
+<?php __("The site key from Google, <a href=\"https://www.google.com/recaptcha/admin/create\" target=\"_blank\">https://www.google.com/recaptcha/admin/create</a>", "profile-builder"); ?>
 <?php __("Secret Key", "profile-builder"); ?>
-<?php __("The secret key from Google, <a href=\"http://www.google.com/recaptcha\" target=\"_blank\">www.google.com/recaptcha</a>", "profile-builder"); ?>
+<?php __("The secret key from Google, <a href=\"https://www.google.com/recaptcha/admin/create\" target=\"_blank\">https://www.google.com/recaptcha/admin/create</a>", "profile-builder"); ?>
 <?php __("Display on PB forms", "profile-builder"); ?>
 <?php __("PB Login", "profile-builder"); ?>
 <?php __("PB Register", "profile-builder"); ?>
@@ -1231,6 +1229,7 @@
 <?php __("the ID of the user", "profile-builder"); ?>
 <?php __("the URL sanitized version of the username, the user nicename can be safely used in URLs since it can't contain special characters or spaces.", "profile-builder"); ?>
 <?php __("the URL of the previously visited page", "profile-builder"); ?>
+<?php __("the default URL set by WordPress after login", "profile-builder"); ?>
 <?php __("You can't add duplicate redirects!", "profile-builder"); ?>
 <?php __("Admin Email Customizer", "profile-builder"); ?>
 <?php __("Admin Email Customizer Settings", "profile-builder"); ?>
@@ -1564,7 +1563,7 @@
 <?php __("That username is already activated!", "profile-builder"); ?>
 <?php __("New subscriber on %1$s.<br/><br/>Username:%2$s<br/>Email:%3$s<br/>", "profile-builder"); ?>
 <?php __("[%1$s] Your new account information", "profile-builder"); ?>
-<?php __("Welcome to %1$s!<br/><br/><br/>Your username is: %2$s and the password: %3$s.<br/><br/>Access your account: %4$s ", "profile-builder"); ?>
+<?php __("Welcome to %1$s!<br/><br/><br/>Your username is: %2$s and the password: %3$s<br/><br/>Access your account: %4$s ", "profile-builder"); ?>
 <?php __("Welcome to %1$s!<br/><br/><br/>Your username is: %2$s and your password is the one that you have selected during registration.<br/><br/>Access your account: %3$s ", "profile-builder"); ?>
 <?php __("The \"Admin Approval\" feature was activated at the time of registration, so please remember that you need to approve this user before he/she can log in!", "profile-builder"); ?>
 <?php __("This login widget lets you add a login form in the sidebar.", "profile-builder"); ?>
@@ -1744,6 +1743,9 @@
 <?php __("Disable automatic scrolling after submit", "profile-builder"); ?>
 <?php __("By default, after each form submission the page will automatically scroll to the form message.", "profile-builder"); ?>
 <?php __("If you check this option, automatic scrolling will be disabled.", "profile-builder"); ?>
+<?php __("Use ajax on conditional fields:", "profile-builder"); ?>
+<?php __("For large conditional forms.", "profile-builder"); ?>
+<?php __("Select \"Yes\" for improved page performance.", "profile-builder"); ?>
 <?php __("Enable Compare shortcode", "profile-builder"); ?>
 <?php __("You can read more info about this shortcode by following <a href=\"https://www.cozmoslabs.com/docs/profile-builder-2/developers-knowledge-base/shortcodes/compare-shortcode/\">this url</a>.", "profile-builder"); ?>
 <?php __("Enable Usermeta shortcode", "profile-builder"); ?>

@@ -91,6 +91,7 @@ function wppb_handle_approve_unapprove_cases(){
 
 			}elseif ( $todo == 'delete' ){
 				require_once( ABSPATH.'wp-admin/includes/user.php' );
+                wp_remove_object_terms( $userID, array('pending'), 'user_status' );
 				wp_delete_user( $userID );
 				
 				die( __( "User successfully deleted!", "profile-builder" ) );

@@ -3,8 +3,8 @@ Contributors: Florent73
 Donate link: https://paypal.me/restezconnectes/20/
 Tags: Maintenance, Construction, Launch, Coming soon
 Requires at least: 3.0
-Tested up to: 5.7
-Stable tag: 6.0.2
+Tested up to: 5.6
+Stable tag: 6.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -70,6 +70,10 @@ Yes. Thank you for submitting your changes to update the plugin.
 You can translate WP Maintenance on [__translate.wordpress.org__](https://translate.wordpress.org/projects/wp-plugins/wp-maintenance).
 
 == Changelog ==
+
+= 6.0.3 =
+* Bug fixed Error Notice
+* Bugs minors resolved
 
 = 6.0.2 =
 * Bug fixed IP authorized

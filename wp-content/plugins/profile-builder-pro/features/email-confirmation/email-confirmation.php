@@ -340,29 +340,6 @@ function wppb_signup_user( $username, $user_email, $meta = '' ) {
 
 	$user_email = sanitize_email( $user_email );
 	$activation_key = substr( md5( time() . rand() . $user_email ), 0, 16 );
-
-    // Save the file uploaded with the simple upload filed
-    // It will have no author until the user's email is confirmed
-    $fields = get_option( 'wppb_manage_fields' );
-    foreach ( $fields as $field ){
-        if( $field['field'] == 'Upload' && (isset( $field[ 'simple-upload' ] ) && $field['simple-upload'] == 'yes') ) {
-            foreach ( $meta as $meta_name => $value ){
-                if ( $field['meta-name'] === $meta_name ){
-                    $field_name = 'simple_upload_' . $meta_name;
-                    if( isset($_FILES[$field_name]) &&
-                        $_FILES[$field_name]['size'] !== 0 &&
-                        !(wppb_belongs_to_repeater_with_conditional_logic($field) && !isset($request_data[wppb_handle_meta_name($field['meta-name'])])) &&
-                        !(isset($field['conditional-logic-enabled']) &&
-                            $field['conditional-logic-enabled'] == 'yes' &&
-                            !isset($request_data[wppb_handle_meta_name($field['meta-name'])])) &&
-                        wppb_valid_simple_upload($field, $_FILES[$field_name])) {
-                        $meta[$meta_name] = wppb_save_simple_upload_file( $field_name );
-                    }
-                }
-            }
-        }
-    }
-
     $meta = serialize( $meta );
 
 	// change User Registered date and time according to timezone selected in WordPress settings
@@ -622,7 +599,7 @@ function wppb_notify_user_registration_email( $bloginfo, $user_name, $email, $se
 		if( !$send_password )
 			$user_message_content = sprintf( __( 'Welcome to %1$s!<br/><br/><br/>Your username is: %2$s and your password is the one that you have selected during registration.<br/><br/>Access your account: %3$s ', 'profile-builder' ), $user_message_from, $user_name, $site_url );
 		else
-			$user_message_content = sprintf( __( 'Welcome to %1$s!<br/><br/><br/>Your username is: %2$s and the password: %3$s.<br/><br/>Access your account: %4$s ', 'profile-builder' ), $user_message_from, $user_name, $password, $site_url );
+			$user_message_content = sprintf( __( 'Welcome to %1$s!<br/><br/><br/>Your username is: %2$s and the password: %3$s<br/><br/>Access your account: %4$s ', 'profile-builder' ), $user_message_from, $user_name, $password, $site_url );
 
         if ( $password === __( 'Your selected password at signup', 'profile-builder' ) ) {
             $password = NULL;

@@ -42,6 +42,9 @@ div.wppb-serial-notification p{
 	color: #5693d3;
 	text-decoration: none;
 }
+.wppb-review-notice button.notice-dismiss{
+	display: none;
+}
 
 
 /* hide menu items */

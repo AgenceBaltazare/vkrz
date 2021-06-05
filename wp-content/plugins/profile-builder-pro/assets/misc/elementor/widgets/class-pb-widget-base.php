@@ -305,3 +305,4 @@ abstract class PB_Elementor_Widget extends \Elementor\Widget_Base {
         }
     }
 }
+

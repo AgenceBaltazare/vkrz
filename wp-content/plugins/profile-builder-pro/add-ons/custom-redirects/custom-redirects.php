@@ -351,6 +351,7 @@ function wppb_cr_replace_tags( $redirect_url, $wppb_cr_username = NULL ) {
 		'{{user_id}}' => ( isset( $wppb_cr_username->ID ) ? $wppb_cr_username->ID : ( $wppb_cr_username = NULL ) ),
 		'{{user_nicename}}' => ( isset( $wppb_cr_username->user_nicename ) ? $wppb_cr_username->user_nicename : ( $wppb_cr_username = NULL ) ),
 		'{{http_referer}}' => ( isset( $_POST['wppb_referer_url'] ) ? esc_url_raw( $_POST['wppb_referer_url'] ) : NULL ),
+        '{{redirect_to}}' => ( isset( $_GET['redirect_to'] ) ? esc_url_raw( $_GET['redirect_to'] ) : NULL ),
 	) );
 
 	foreach( $wppb_cr_tags as $key => $value ) {

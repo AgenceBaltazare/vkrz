@@ -260,6 +260,7 @@ function wppb_add_content_before_custom_redirects_info(){
 		<li><strong>{{user_id}}</strong> - <?php _e("the ID of the user", 'profile-builder'); ?></li>
 		<li><strong>{{user_nicename}}</strong> - <?php _e("the URL sanitized version of the username, the user nicename can be safely used in URLs since it can't contain special characters or spaces.", 'profile-builder'); ?></li>
 		<li><strong>{{http_referer}}</strong> - <?php _e("the URL of the previously visited page", 'profile-builder'); ?></li>
+        <li><strong>{{redirect_to}}</strong> - <?php _e("the default URL set by WordPress after login", 'profile-builder'); ?></li>
 	</ol>
 
 <?php

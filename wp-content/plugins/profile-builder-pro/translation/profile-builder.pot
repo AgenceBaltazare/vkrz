@@ -697,11 +697,11 @@ msgstr ""
 msgid "Display Social Connect buttons:"
 msgstr ""
 
-#: ../pb-add-on-social-connect/index.php:326, admin/general-settings.php:143, admin/general-settings.php:156, admin/general-settings.php:171, admin/general-settings.php:220, admin/general-settings.php:267, admin/general-settings.php:341, admin/manage-fields.php:190, admin/private-website.php:70, admin/private-website.php:137, admin/private-website.php:150, add-ons/multiple-forms/edit-profile-forms.php:206, add-ons/multiple-forms/register-forms.php:229, add-ons/multiple-forms/register-forms.php:230, add-ons/user-listing/userlisting.php:2451, features/content-restriction/content-restriction.php:89, admin/advanced-settings/includes/forms/placeholder-labels.php:135, admin/advanced-settings/includes/views/view-admin.php:18, admin/advanced-settings/includes/views/view-admin.php:34, admin/advanced-settings/includes/views/view-admin.php:50, admin/advanced-settings/includes/views/view-admin.php:69, admin/advanced-settings/includes/views/view-fields.php:18, admin/advanced-settings/includes/views/view-fields.php:66, admin/advanced-settings/includes/views/view-fields.php:181, admin/advanced-settings/includes/views/view-fields.php:197, admin/advanced-settings/includes/views/view-fields.php:217, admin/advanced-settings/includes/views/view-fields.php:240, admin/advanced-settings/includes/views/view-fields.php:261, admin/advanced-settings/includes/views/view-fields.php:279, admin/advanced-settings/includes/views/view-forms.php:19, admin/advanced-settings/includes/views/view-forms.php:148, admin/advanced-settings/includes/views/view-forms.php:165, admin/advanced-settings/includes/views/view-forms.php:180, admin/advanced-settings/includes/views/view-forms.php:200, admin/advanced-settings/includes/views/view-forms.php:217, admin/advanced-settings/includes/views/view-forms.php:255, admin/advanced-settings/includes/views/view-forms.php:276, admin/advanced-settings/includes/views/view-forms.php:296, admin/advanced-settings/includes/views/view-forms.php:318, admin/advanced-settings/includes/views/view-forms.php:340, admin/advanced-settings/includes/views/view-shortcodes.php:16, admin/advanced-settings/includes/views/view-shortcodes.php:32, admin/advanced-settings/includes/views/view-shortcodes.php:48, admin/advanced-settings/includes/views/view-shortcodes.php:64, admin/advanced-settings/includes/views/view-userlisting.php:53, admin/advanced-settings/includes/views/view-userlisting.php:75
+#: ../pb-add-on-social-connect/index.php:326, admin/general-settings.php:143, admin/general-settings.php:156, admin/general-settings.php:171, admin/general-settings.php:220, admin/general-settings.php:267, admin/manage-fields.php:190, admin/private-website.php:70, admin/private-website.php:137, admin/private-website.php:150, add-ons/multiple-forms/edit-profile-forms.php:206, add-ons/multiple-forms/register-forms.php:229, add-ons/multiple-forms/register-forms.php:230, add-ons/user-listing/userlisting.php:2451, features/content-restriction/content-restriction.php:89, admin/advanced-settings/includes/forms/placeholder-labels.php:135, admin/advanced-settings/includes/views/view-admin.php:18, admin/advanced-settings/includes/views/view-admin.php:34, admin/advanced-settings/includes/views/view-admin.php:50, admin/advanced-settings/includes/views/view-admin.php:69, admin/advanced-settings/includes/views/view-fields.php:18, admin/advanced-settings/includes/views/view-fields.php:66, admin/advanced-settings/includes/views/view-fields.php:181, admin/advanced-settings/includes/views/view-fields.php:197, admin/advanced-settings/includes/views/view-fields.php:217, admin/advanced-settings/includes/views/view-fields.php:240, admin/advanced-settings/includes/views/view-fields.php:261, admin/advanced-settings/includes/views/view-fields.php:279, admin/advanced-settings/includes/views/view-forms.php:19, admin/advanced-settings/includes/views/view-forms.php:148, admin/advanced-settings/includes/views/view-forms.php:165, admin/advanced-settings/includes/views/view-forms.php:180, admin/advanced-settings/includes/views/view-forms.php:200, admin/advanced-settings/includes/views/view-forms.php:217, admin/advanced-settings/includes/views/view-forms.php:255, admin/advanced-settings/includes/views/view-forms.php:276, admin/advanced-settings/includes/views/view-forms.php:296, admin/advanced-settings/includes/views/view-forms.php:318, admin/advanced-settings/includes/views/view-forms.php:340, admin/advanced-settings/includes/views/view-forms.php:360, admin/advanced-settings/includes/views/view-shortcodes.php:16, admin/advanced-settings/includes/views/view-shortcodes.php:32, admin/advanced-settings/includes/views/view-shortcodes.php:48, admin/advanced-settings/includes/views/view-shortcodes.php:64, admin/advanced-settings/includes/views/view-userlisting.php:53, admin/advanced-settings/includes/views/view-userlisting.php:75
 msgid "Yes"
 msgstr ""
 
-#: ../pb-add-on-social-connect/index.php:327, admin/general-settings.php:157, admin/general-settings.php:172, admin/general-settings.php:221, admin/general-settings.php:266, admin/general-settings.php:340, admin/private-website.php:69, admin/private-website.php:136, admin/private-website.php:151, add-ons/multiple-forms/edit-profile-forms.php:206, add-ons/multiple-forms/register-forms.php:229, add-ons/multiple-forms/register-forms.php:230, features/content-restriction/content-restriction.php:88, admin/advanced-settings/includes/forms/placeholder-labels.php:136
+#: ../pb-add-on-social-connect/index.php:327, admin/general-settings.php:157, admin/general-settings.php:172, admin/general-settings.php:221, admin/general-settings.php:266, admin/private-website.php:69, admin/private-website.php:136, admin/private-website.php:151, add-ons/multiple-forms/edit-profile-forms.php:206, add-ons/multiple-forms/register-forms.php:229, add-ons/multiple-forms/register-forms.php:230, features/content-restriction/content-restriction.php:88, admin/advanced-settings/includes/forms/placeholder-labels.php:136
 msgid "No"
 msgstr ""
 
@@ -741,7 +741,7 @@ msgstr ""
 msgid "Before you can access your account an administrator has to approve it. You will be notified via email."
 msgstr ""
 
-#: ../pb-add-on-social-connect/index.php:392, features/admin-approval/admin-approval.php:193
+#: ../pb-add-on-social-connect/index.php:392, features/admin-approval/admin-approval.php:194
 msgid "<strong>ERROR</strong>: Your account has to be confirmed by an administrator before you can log in."
 msgstr ""
 
@@ -2074,14 +2074,6 @@ msgstr ""
 msgid "Disabled"
 msgstr ""
 
-#: admin/general-settings.php:336
-msgid "Use ajax on conditional fields:"
-msgstr ""
-
-#: admin/general-settings.php:344
-msgid "For large conditional forms select \"Yes\" for an improved page performance"
-msgstr ""
-
 #: admin/manage-fields.php:18
 msgid "Form Fields"
 msgstr ""
@@ -2223,7 +2215,7 @@ msgid "Site Key"
 msgstr ""
 
 #: admin/manage-fields.php:198
-msgid "The site key from Google, <a href=\"http://www.google.com/recaptcha\" target=\"_blank\">www.google.com/recaptcha</a>"
+msgid "The site key from Google, <a href=\"https://www.google.com/recaptcha/admin/create\" target=\"_blank\">https://www.google.com/recaptcha/admin/create</a>"
 msgstr ""
 
 #: admin/manage-fields.php:199
@@ -2231,7 +2223,7 @@ msgid "Secret Key"
 msgstr ""
 
 #: admin/manage-fields.php:199
-msgid "The secret key from Google, <a href=\"http://www.google.com/recaptcha\" target=\"_blank\">www.google.com/recaptcha</a>"
+msgid "The secret key from Google, <a href=\"https://www.google.com/recaptcha/admin/create\" target=\"_blank\">https://www.google.com/recaptcha/admin/create</a>"
 msgstr ""
 
 #: admin/manage-fields.php:200
@@ -4398,7 +4390,7 @@ msgstr ""
 msgid "Disable the WordPress REST-API for non-logged in users when Private Website is enabled"
 msgstr ""
 
-#: admin/private-website.php:162, features/functions.php:948, features/content-restriction/content-restriction.php:162, assets/lib/class-mustache-templates/class-mustache-templates.php:392, assets/lib/wck-api/wordpress-creation-kit.php:405, admin/advanced-settings/includes/views/view-admin.php:101, admin/advanced-settings/includes/views/view-fields.php:293, admin/advanced-settings/includes/views/view-forms.php:356, admin/advanced-settings/includes/views/view-shortcodes.php:77, admin/advanced-settings/includes/views/view-userlisting.php:91
+#: admin/private-website.php:162, features/functions.php:948, features/content-restriction/content-restriction.php:162, assets/lib/class-mustache-templates/class-mustache-templates.php:392, assets/lib/wck-api/wordpress-creation-kit.php:405, admin/advanced-settings/includes/views/view-admin.php:101, admin/advanced-settings/includes/views/view-fields.php:293, admin/advanced-settings/includes/views/view-forms.php:376, admin/advanced-settings/includes/views/view-shortcodes.php:77, admin/advanced-settings/includes/views/view-userlisting.php:91
 msgid "Save Changes"
 msgstr ""
 
@@ -4810,7 +4802,7 @@ msgstr ""
 msgid "Your email was successfully confirmed."
 msgstr ""
 
-#: front-end/register.php:125, features/email-confirmation/email-confirmation.php:686
+#: front-end/register.php:125, features/email-confirmation/email-confirmation.php:663
 msgid "Before you can access your account, an administrator needs to approve it. You will be notified via email."
 msgstr ""
 
@@ -4818,7 +4810,7 @@ msgstr ""
 msgid "This username is already activated!"
 msgstr ""
 
-#: front-end/register.php:71, features/email-confirmation/email-confirmation.php:485
+#: front-end/register.php:71, features/email-confirmation/email-confirmation.php:462
 msgid "Could not create user!"
 msgstr ""
 
@@ -4986,7 +4978,11 @@ msgstr ""
 msgid "the URL of the previously visited page"
 msgstr ""
 
-#: add-ons/custom-redirects/custom_redirects_admin.php:357, add-ons/custom-redirects/custom_redirects_admin.php:351, add-ons/custom-redirects/custom_redirects_admin.php:345
+#: add-ons/custom-redirects/custom_redirects_admin.php:263
+msgid "the default URL set by WordPress after login"
+msgstr ""
+
+#: add-ons/custom-redirects/custom_redirects_admin.php:358, add-ons/custom-redirects/custom_redirects_admin.php:352, add-ons/custom-redirects/custom_redirects_admin.php:346
 msgid "You can't add duplicate redirects!"
 msgstr ""
 
@@ -5034,7 +5030,7 @@ msgstr ""
 msgid "Email Subject"
 msgstr ""
 
-#: add-ons/email-customizer/admin-email-customizer.php:84, features/email-confirmation/email-confirmation.php:559
+#: add-ons/email-customizer/admin-email-customizer.php:84, features/email-confirmation/email-confirmation.php:536
 msgid "A new subscriber has (been) registered!"
 msgstr ""
 
@@ -5171,7 +5167,7 @@ msgstr ""
 msgid "The users selected password at signup"
 msgstr ""
 
-#: add-ons/email-customizer/email-customizer.php:583, add-ons/email-customizer/email-customizer.php:590, add-ons/email-customizer/email-customizer.php:604, features/email-confirmation/email-confirmation.php:617
+#: add-ons/email-customizer/email-customizer.php:583, add-ons/email-customizer/email-customizer.php:590, add-ons/email-customizer/email-customizer.php:604, features/email-confirmation/email-confirmation.php:594
 msgid "Your selected password at signup"
 msgstr ""
 
@@ -5968,15 +5964,15 @@ msgstr ""
 msgid "Do you want to"
 msgstr ""
 
-#: features/admin-approval/admin-approval.php:64, features/admin-approval/admin-approval.php:112
+#: features/admin-approval/admin-approval.php:64, features/admin-approval/admin-approval.php:113
 msgid "Your session has expired! Please refresh the page and try again."
 msgstr ""
 
-#: features/admin-approval/admin-approval.php:101, features/admin-approval/admin-approval.php:147, features/email-confirmation/email-confirmation.php:134
+#: features/admin-approval/admin-approval.php:102, features/admin-approval/admin-approval.php:148, features/email-confirmation/email-confirmation.php:134
 msgid "You either don't have permission for that action or there was an error!"
 msgstr ""
 
-#: features/admin-approval/admin-approval.php:96
+#: features/admin-approval/admin-approval.php:97
 msgid "User successfully deleted!"
 msgstr ""
 
@@ -5984,67 +5980,67 @@ msgstr ""
 msgid "User successfully unapproved!"
 msgstr ""
 
-#: features/admin-approval/admin-approval.php:80, features/admin-approval/admin-approval.php:356
+#: features/admin-approval/admin-approval.php:80, features/admin-approval/admin-approval.php:357
 msgid "User successfully approved!"
 msgstr ""
 
-#: features/admin-approval/admin-approval.php:143
+#: features/admin-approval/admin-approval.php:144
 msgid "Users successfully deleted!"
 msgstr ""
 
-#: features/admin-approval/admin-approval.php:135
+#: features/admin-approval/admin-approval.php:136
 msgid "Users successfully unapproved!"
 msgstr ""
 
-#: features/admin-approval/admin-approval.php:125
+#: features/admin-approval/admin-approval.php:126
 msgid "Users successfully approved!"
 msgstr ""
 
-#: features/admin-approval/admin-approval.php:171
+#: features/admin-approval/admin-approval.php:172
 msgid "Your account on %1$s has been unapproved!"
 msgstr ""
 
-#: features/admin-approval/admin-approval.php:172, features/admin-approval/admin-approval.php:175
+#: features/admin-approval/admin-approval.php:173, features/admin-approval/admin-approval.php:176
 msgid "unapproved"
 msgstr ""
 
-#: features/admin-approval/admin-approval.php:174
+#: features/admin-approval/admin-approval.php:175
 msgid "An administrator has just unapproved your account on %1$s (%2$s)."
 msgstr ""
 
-#: features/admin-approval/admin-approval.php:163
+#: features/admin-approval/admin-approval.php:164
 msgid "Your account on %1$s has been approved!"
 msgstr ""
 
-#: features/admin-approval/admin-approval.php:164, features/admin-approval/admin-approval.php:167
+#: features/admin-approval/admin-approval.php:165, features/admin-approval/admin-approval.php:168
 msgid "approved"
 msgstr ""
 
-#: features/admin-approval/admin-approval.php:166
+#: features/admin-approval/admin-approval.php:167
 msgid "An administrator has just approved your account on %1$s (%2$s)."
 msgstr ""
 
-#: features/admin-approval/admin-approval.php:205
+#: features/admin-approval/admin-approval.php:206
 msgid "Your account has to be confirmed by an administrator before you can use the \"Password Recovery\" feature."
 msgstr ""
 
-#: features/admin-approval/admin-approval.php:240
+#: features/admin-approval/admin-approval.php:241
 msgid "Your account has been successfully created!"
 msgstr ""
 
-#: features/admin-approval/admin-approval.php:314
+#: features/admin-approval/admin-approval.php:315
 msgid "Something went wrong!"
 msgstr ""
 
-#: features/admin-approval/admin-approval.php:310
+#: features/admin-approval/admin-approval.php:311
 msgid "User not approved!"
 msgstr ""
 
-#: features/admin-approval/admin-approval.php:295
+#: features/admin-approval/admin-approval.php:296
 msgid "Do you wish to approve the registration?"
 msgstr ""
 
-#: features/admin-approval/admin-approval.php:335
+#: features/admin-approval/admin-approval.php:336
 msgid "The approval link is not valid! Please <a href=\"%s\"> log in </a> to approve the user manually. "
 msgstr ""
 
@@ -6348,39 +6344,39 @@ msgstr ""
 msgid "There was an error performing that action!"
 msgstr ""
 
-#: features/email-confirmation/email-confirmation.php:441
+#: features/email-confirmation/email-confirmation.php:418
 msgid "[%1$s] Activate %2$s"
 msgstr ""
 
-#: features/email-confirmation/email-confirmation.php:444
+#: features/email-confirmation/email-confirmation.php:421
 msgid "To activate your user, please click the following link:<br><br>%s%s%s<br><br>After you activate it you will receive yet *another email* with your login."
 msgstr ""
 
-#: features/email-confirmation/email-confirmation.php:511
+#: features/email-confirmation/email-confirmation.php:488
 msgid "There was an error while trying to activate the user"
 msgstr ""
 
-#: features/email-confirmation/email-confirmation.php:488
+#: features/email-confirmation/email-confirmation.php:465
 msgid "That username is already activated!"
 msgstr ""
 
-#: features/email-confirmation/email-confirmation.php:562
+#: features/email-confirmation/email-confirmation.php:539
 msgid "New subscriber on %1$s.<br/><br/>Username:%2$s<br/>Email:%3$s<br/>"
 msgstr ""
 
-#: features/email-confirmation/email-confirmation.php:613
+#: features/email-confirmation/email-confirmation.php:590
 msgid "[%1$s] Your new account information"
 msgstr ""
 
-#: features/email-confirmation/email-confirmation.php:625
-msgid "Welcome to %1$s!<br/><br/><br/>Your username is: %2$s and the password: %3$s.<br/><br/>Access your account: %4$s "
+#: features/email-confirmation/email-confirmation.php:602
+msgid "Welcome to %1$s!<br/><br/><br/>Your username is: %2$s and the password: %3$s<br/><br/>Access your account: %4$s "
 msgstr ""
 
-#: features/email-confirmation/email-confirmation.php:623
+#: features/email-confirmation/email-confirmation.php:600
 msgid "Welcome to %1$s!<br/><br/><br/>Your username is: %2$s and your password is the one that you have selected during registration.<br/><br/>Access your account: %3$s "
 msgstr ""
 
-#: features/email-confirmation/email-confirmation.php:678
+#: features/email-confirmation/email-confirmation.php:655
 msgid "The \"Admin Approval\" feature was activated at the time of registration, so please remember that you need to approve this user before he/she can log in!"
 msgstr ""
 
@@ -7092,6 +7088,18 @@ msgstr ""
 
 #: admin/advanced-settings/includes/views/view-forms.php:348
 msgid "If you check this option, automatic scrolling will be disabled."
+msgstr ""
+
+#: admin/advanced-settings/includes/views/view-forms.php:356
+msgid "Use ajax on conditional fields:"
+msgstr ""
+
+#: admin/advanced-settings/includes/views/view-forms.php:364
+msgid "For large conditional forms."
+msgstr ""
+
+#: admin/advanced-settings/includes/views/view-forms.php:367
+msgid "Select \"Yes\" for improved page performance."
 msgstr ""
 
 #: admin/advanced-settings/includes/views/view-shortcodes.php:12

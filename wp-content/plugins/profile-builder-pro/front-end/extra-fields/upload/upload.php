@@ -253,7 +253,7 @@ function wppb_save_upload_value( $field, $user_id, $request_data, $form_location
 add_action( 'wppb_save_form_field', 'wppb_save_upload_value', 10, 4 );
 add_action( 'wppb_backend_save_form_field', 'wppb_save_upload_value', 10, 4 );
 
-function wppb_save_simple_upload_file ($field_name ){
+function wppb_save_simple_upload_file ( $field_name ){
     require_once(ABSPATH . 'wp-admin/includes/file.php');
     $upload_overrides = array('test_form' => false);
     $file = wp_handle_upload($_FILES[$field_name], $upload_overrides);
@@ -278,6 +278,27 @@ function wppb_save_simple_upload_file ($field_name ){
         return '';
     }
 }
+
+/* save file when ec and simple upload are enabled */
+function wppb_add_upload_for_user_signup( $field_value, $field, $request_data ){
+
+    // Save the file uploaded with the simple upload filed
+    // It will have no author until the user's email is confirmed
+    if( $field['field'] == 'Upload' && (isset( $field[ 'simple-upload' ] ) && $field['simple-upload'] === 'yes') ) {
+        $field_name = 'simple_upload_' . $field['meta-name'];
+
+        if( isset($_FILES[$field_name]) &&
+            $_FILES[$field_name]['size'] !== 0 &&
+            !(wppb_belongs_to_repeater_with_conditional_logic($field) && !isset($request_data[wppb_handle_meta_name($field['meta-name'])])) &&
+            !(isset($field['conditional-logic-enabled']) && $field['conditional-logic-enabled'] == 'yes' && !isset($request_data[wppb_handle_meta_name($field['meta-name'])])) &&
+            wppb_valid_simple_upload($field, $_FILES[$field_name])) {
+            return wppb_save_simple_upload_file( $field_name );
+        }
+    }
+
+    return '';
+}
+add_filter( 'wppb_add_to_user_signup_form_field_upload', 'wppb_add_upload_for_user_signup', 10, 3 );
 
 /* handle field validation */
 function wppb_check_upload_value( $message, $field, $request_data, $form_location ){

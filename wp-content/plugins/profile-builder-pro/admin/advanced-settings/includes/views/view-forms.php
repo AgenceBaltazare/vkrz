@@ -351,6 +351,26 @@
             </td>
         </tr>
 
+        <?php if( wppb_conditional_fields_exists() ): ?>
+            <tr>
+                <th scope="row"><?php _e( 'Use ajax on conditional fields:', 'profile-builder' );?></th>
+
+                <td>
+                    <label><input type="checkbox" name="wppb_toolbox_forms_settings[ajax-conditional-logic]"<?php echo ( ( isset( $settings['ajax-conditional-logic'] ) && ( $settings['ajax-conditional-logic'] == 'yes' ) ) ? ' checked' : '' );?> value="yes">
+                        <?php _e( 'Yes', 'profile-builder' ); ?>
+                    </label>
+                    <ul>
+                        <li class="description">
+                            <?php _e( 'For large conditional forms.', 'profile-builder' ); ?>
+                        </li>
+                        <li class="description">
+                            <?php _e( 'Select "Yes" for improved page performance.', 'profile-builder' ); ?>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        <?php endif; ?>
+
     </table>
 
     <?php submit_button( __( 'Save Changes', 'profile-builder' ) ); ?>

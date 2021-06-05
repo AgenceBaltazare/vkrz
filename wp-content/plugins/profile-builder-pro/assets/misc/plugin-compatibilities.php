@@ -71,7 +71,7 @@
                 $result = cptch_register_check(new WP_Error());
 
                 if ($result->get_error_message('captcha_error'))
-                    echo '<p class="wppb-error">' . $result->get_error_message('captcha_error') . '</p>';                
+                    echo '<p class="wppb-error">' . $result->get_error_message('captcha_error') . '</p>';
 
             }
 
@@ -275,7 +275,7 @@
         }
 
         /****************************************************
-         * Plugin Name: WPML 
+         * Plugin Name: WPML
          * Compatibility with wp_login_form() that wasn't getting the language code in the site url
          ****************************************************/
         add_filter( 'site_url', 'wppb_wpml_login_form_compatibility', 10, 4 );

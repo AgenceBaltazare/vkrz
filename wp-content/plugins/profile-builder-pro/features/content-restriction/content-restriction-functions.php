@@ -49,6 +49,8 @@ function wppb_get_restriction_content_message( $message_type = '', $post_id = 0 
         $wppb_content_restriction_message = apply_filters( 'wppb_get_restriction_content_message_default', $wppb_content_restriction_message, $message_type, $wppb_content_restriction_settings );
     }
 
+    $wppb_content_restriction_message = '<span class="wppb-content-restriction-message">' . $wppb_content_restriction_message . '</span>';
+
     $custom_message_enabled = get_post_meta( $post_id, 'wppb-content-restrict-messages-enabled', true );
 
     if( ! empty( $post_id ) && ! empty( $custom_message_enabled ) ) {

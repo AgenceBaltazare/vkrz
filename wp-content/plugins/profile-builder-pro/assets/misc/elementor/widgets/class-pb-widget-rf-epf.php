@@ -381,7 +381,7 @@ abstract class PB_Elementor_Register_Edit_Profile_Widget extends PB_Elementor_Wi
                 case 'Default - Username':
                     $field_meta = 'default_username';
                     $targets = $this->handle_placeholder_labels_active( $targets );
-                    $targets['input'] = '';
+                    $targets['username'] = '';
                     break;
                 case 'Default - E-mail':
                     $field_meta = 'default_email';
@@ -570,6 +570,12 @@ abstract class PB_Elementor_Register_Edit_Profile_Widget extends PB_Elementor_Wi
                         case 'input':
                             $sections[$target] = [
                                 'selector' => $form_class . ' #wppb-form-element-' . $form_field['id'] . ' #' . $field_meta,
+                                'section_name' => 'Input',
+                            ];
+                            break;
+                        case 'username':
+                            $sections[$target] = [
+                                'selector' => $form_class . ' #wppb-form-element-' . $form_field['id'] . ' #username',
                                 'section_name' => 'Input',
                             ];
                             break;

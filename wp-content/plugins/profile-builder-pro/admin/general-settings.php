@@ -330,22 +330,6 @@ function wppb_general_settings_content() {
 					</select>
 				</td>
 			</tr>
-			<?php if( wppb_conditional_fields_exists() && apply_filters( 'wppb_allow_conditional_fields_ajax', false ) ): ?>
-			<tr>
-				<th scope="row">
-					<?php _e( 'Use ajax on conditional fields:', 'profile-builder' );?>
-				</th>
-				<td>
-					<select name="wppb_general_settings[conditional_fields_ajax]" class="wppb-select" id="wppb_settings_conditional_fields_ajax" onchange="wppb_display_page_select(this.value)">
-                        <option value="no" <?php if ( $wppb_generalSettings['conditional_fields_ajax'] === 'no' ) echo 'selected'; ?>><?php _e( 'No', 'profile-builder' ); ?></option>
-                        <option value="yes" <?php if ( $wppb_generalSettings['conditional_fields_ajax'] === 'yes' ) echo 'selected'; ?>><?php _e( 'Yes', 'profile-builder' ); ?></option>
-					</select>
-                    <ul>
-                        <li class="description"><?php _e( 'For large conditional forms select "Yes" for an improved page performance', 'profile-builder' ); ?> </li>
-                    </ul>
-				</td>
-			</tr>
-            <?php endif; ?>
 
 			<?php do_action( 'wppb_extra_general_settings', $wppb_generalSettings ); ?>
 		</table>

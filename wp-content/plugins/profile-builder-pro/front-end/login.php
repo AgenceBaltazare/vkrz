@@ -446,13 +446,13 @@ function wppb_front_end_login( $atts ){
                 $i = 0;
                 if (!empty($register_url)) {
                     if ( wppb_check_missing_http( $register_url ) ) $register_url = "http://" . $register_url;
-                    $login_form .= '<a href="' . esc_url($register_url) . '">'. apply_filters('wppb_login_register_text', __('Register','profile-builder')) .'</a>';
+                    $login_form .= '<a class="login-register" href="' . esc_url($register_url) . '">'. apply_filters('wppb_login_register_text', __('Register','profile-builder')) .'</a>';
                     $i++;
                 }
                 if (!empty($lostpassword_url)) {
                     if ($i != 0) $login_form .= ' | ';
                     if ( wppb_check_missing_http( $lostpassword_url ) ) $lostpassword_url = "http://" . $lostpassword_url;
-                    $login_form .= '<a href="'. esc_url($lostpassword_url) .'">'. apply_filters('wppb_login_lostpass_text', __('Lost your password?','profile-builder')) .'</a>';
+                    $login_form .= '<a class="login-lost-password" href="'. esc_url($lostpassword_url) .'">'. apply_filters('wppb_login_lostpass_text', __('Lost your password?','profile-builder')) .'</a>';
                 }
                 $login_form .= '</p>';
         }
