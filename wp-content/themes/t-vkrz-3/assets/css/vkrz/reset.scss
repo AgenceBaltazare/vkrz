@@ -66,3 +66,10 @@ body {
   border: none;
   color: #fff;
 }
+
+.vertical-layout.vertical-menu-modern.menu-collapsed .header-navbar.floating-nav {
+  width: calc(100vw - (100vw - 100%) - 4.4rem - 74px); }
+
+.vertical-layout.vertical-menu-modern.menu-collapsed .header-navbar.navbar-static-top {
+  width: calc(100vw - (100vw - 100%) - 74px);
+  left: 74px; }

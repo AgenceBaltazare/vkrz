@@ -154,13 +154,6 @@
 .vertical-layout.vertical-menu-modern.menu-collapsed .footer {
   margin-left: 80px; }
 
-.vertical-layout.vertical-menu-modern.menu-collapsed .header-navbar.floating-nav {
-  width: calc(100vw - (100vw - 100%) - 4.4rem - 74px); }
-
-.vertical-layout.vertical-menu-modern.menu-collapsed .header-navbar.navbar-static-top {
-  width: calc(100vw - (100vw - 100%) - 74px);
-  left: 74px; }
-
 .vertical-layout.vertical-menu-modern .toggle-icon,
 .vertical-layout.vertical-menu-modern .collapse-toggle-icon {
   margin-right: 0.425rem; }
