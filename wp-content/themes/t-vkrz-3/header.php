@@ -68,14 +68,7 @@ $uuiduser            = deal_uuiduser();
         </script>
     <?php endif; ?>
 
-    <!-- Scripts -->
-    <script>
-        const vkrz_ajaxurl  = "<?= admin_url('admin-ajax.php') ?>";
-        const vkrz_template = "<?= get_bloginfo('template_directory'); ?>";
-    </script>
-
     <?php wp_head(); ?>
-
 </head>
 <?php
 if(is_single()){

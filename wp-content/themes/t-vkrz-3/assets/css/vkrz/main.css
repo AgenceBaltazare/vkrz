@@ -478,7 +478,9 @@ html .content {
     width: 100%;
     display: block; }
     .contenders-containers .link-contender .contender_zone img {
-      border-radius: 10px; }
+      border-radius: 10px;
+      max-width: 100%;
+      height: auto; }
 .contenders-containers .link-contender_1 .contender_zone {
   cursor: url("../../images/vkrz/cursor_l.png"), pointer !important; }
 .contenders-containers .link-contender_2 .contender_zone {
@@ -513,7 +515,8 @@ html .content {
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-direction: column; }
+      flex-direction: column;
+      z-index: 1; }
       .min-tournoi .cov-illu .voile .spoun {
         display: none;
         text-align: center; }

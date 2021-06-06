@@ -21,6 +21,12 @@
     </p>
 </footer>
 
+<!-- Scripts -->
+<script>
+    const vkrz_ajaxurl  = "https://vainkeurz.com/wp-admin/admin-ajax.php";
+    const vkrz_template = "https://vainkeurz.com/wp-content/themes/t-vkrz-3";
+</script>
+
 <?php wp_footer(); ?>
 
 </body>
