@@ -596,7 +596,9 @@ html .content {
 .illu {
   text-align: center; }
   .illu img {
-    margin: 0 auto; }
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto; }
   .illu .cov-illu {
     min-height: 200px;
     background-size: cover !important; }
