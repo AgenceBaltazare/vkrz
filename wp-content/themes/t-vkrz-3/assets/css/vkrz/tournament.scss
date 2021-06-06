@@ -60,6 +60,8 @@
 .rounded{
   .cov-illu, img{
     border-radius: 50%;
+    max-width: 100%;
+    height: auto;
   }
 }
 .contenders-containers {
@@ -80,6 +82,8 @@
 
       img{
         border-radius: 10px;
+        max-width: 100%;
+        height: auto;
       }
 
     }

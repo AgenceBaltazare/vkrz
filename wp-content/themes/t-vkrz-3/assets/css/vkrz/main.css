@@ -463,7 +463,9 @@ html .content {
     margin-bottom: 30px; }
 
 .rounded .cov-illu, .rounded img {
-  border-radius: 50%; }
+  border-radius: 50%;
+  max-width: 100%;
+  height: auto; }
 
 .contenders-containers .link-contender {
   max-width: 500px;
