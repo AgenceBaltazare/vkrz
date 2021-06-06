@@ -115,65 +115,6 @@ get_header();
                 <!-- profile info section -->
                 <section id="profile-info">
                     <div class="row">
-                        <div class="col-md-5">
-                            <?php
-                            $list_r_begin = $user_full_data[0]['list_user_ranking_begin'];
-                            if($list_r_begin): ?>
-                                <div class="card">
-                                    <div class="card-body p-0">
-                                        <div class="table-responsive">
-                                            <table class="table">
-                                                <thead>
-                                                <tr>
-                                                    <th class="">
-                                                        ⚔️<br>
-                                                        Tous les Tops à finir
-                                                    </th>
-                                                    <th class="text-center">
-                                                        💎<br>
-                                                        Votes
-                                                    </th>
-                                                    <th class="text-center">
-
-                                                    </th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <?php
-                                                foreach($list_r_begin as $r_user) : ?>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="media-body">
-                                                                <div class="media-heading">
-                                                                    <h6 class="cart-item-title mb-0">
-                                                                        <a class="text-body" href="<?php the_permalink($r_user['id_tournoi']); ?>">
-                                                                            Top <?php echo $r_user['nb_top']; ?> - <?php echo get_the_title($r_user['id_tournoi']); ?>
-                                                                        </a>
-                                                                    </h6>
-                                                                    <small class="cart-item-by legende">
-                                                                        <?php the_field('question_t', $r_user['id_tournoi']); ?>
-                                                                    </small>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td class="text-center">
-                                                            <?php echo $r_user['nb_votes']; ?> <span class="ico3">💎</span>
-                                                        </td>
-                                                        <td>
-                                                            <a class="btn btn-outline-primary waves-effect mr-1" href="<?php the_permalink($r_user['id_tournoi']); ?>">
-                                                                Finir le Top
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-
-                                                <?php endforeach; ?>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            <?php endif; ?>
-                        </div>
                         <div class="col-md-7">
                             <?php
                             $list_r_done = $user_full_data[0]['list_user_ranking_done'];
@@ -239,6 +180,65 @@ get_header();
                                                         <td class="text-center">
                                                             <a href="<?php the_permalink($r_user['id_ranking']); ?>" class="scali">
                                                                 <span class="ico">👀</span>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+
+                                                <?php endforeach; ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                        <div class="col-md-5">
+                            <?php
+                            $list_r_begin = $user_full_data[0]['list_user_ranking_begin'];
+                            if($list_r_begin): ?>
+                                <div class="card">
+                                    <div class="card-body p-0">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                <tr>
+                                                    <th class="">
+                                                        ⚔️<br>
+                                                        Tous les Tops à finir
+                                                    </th>
+                                                    <th class="text-center">
+                                                        💎<br>
+                                                        Votes
+                                                    </th>
+                                                    <th class="text-center">
+
+                                                    </th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <?php
+                                                foreach($list_r_begin as $r_user) : ?>
+                                                    <tr>
+                                                        <td>
+                                                            <div class="media-body">
+                                                                <div class="media-heading">
+                                                                    <h6 class="cart-item-title mb-0">
+                                                                        <a class="text-body" href="<?php the_permalink($r_user['id_tournoi']); ?>">
+                                                                            Top <?php echo $r_user['nb_top']; ?> - <?php echo get_the_title($r_user['id_tournoi']); ?>
+                                                                        </a>
+                                                                    </h6>
+                                                                    <small class="cart-item-by legende">
+                                                                        <?php the_field('question_t', $r_user['id_tournoi']); ?>
+                                                                    </small>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <?php echo $r_user['nb_votes']; ?> <span class="ico3">💎</span>
+                                                        </td>
+                                                        <td>
+                                                            <a class="btn btn-outline-primary waves-effect mr-1" href="<?php the_permalink($r_user['id_tournoi']); ?>">
+                                                                Finir le Top
                                                             </a>
                                                         </td>
                                                     </tr>
