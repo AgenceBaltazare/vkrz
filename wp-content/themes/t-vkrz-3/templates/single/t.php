@@ -6,6 +6,7 @@ extract(get_next_duel($id_ranking, $id_tournament));
 if(!$is_next_duel){
     wp_redirect(get_the_permalink($id_ranking));
 }
+wp_reset_postdata();
 get_header();
 global $top_url;
 global $top_title;
