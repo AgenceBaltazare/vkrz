@@ -1,15 +1,6 @@
 <?php
 global $uuiduser;
-global $user_role;
-global $current_user;
 global $user_id;
-global $list_t_already_done;
-global $list_t_begin;
-global $id_tournament;
-global $banner;
-global $id_ranking;
-global $champion;
-$user_role = "visitor";
 if(is_user_logged_in()){
     $current_user   = wp_get_current_user();
     $user_id        = $current_user->ID;
@@ -17,9 +8,6 @@ if(is_user_logged_in()){
     $user_role      = $user_info->roles[0];
 }
 $uuiduser            = deal_uuiduser();
-$list_t_already_done = get_user_tournament_list('t-done', $uuiduser);
-$list_t_begin        = get_user_tournament_list('t-begin', $uuiduser);
-wp_reset_query(); wp_reset_postdata();
 ?>
 <!DOCTYPE html>
 <html class="loading dark-layout" lang="fr" data-layout="dark-layout" data-textdirection="ltr">
@@ -48,125 +36,11 @@ wp_reset_query(); wp_reset_postdata();
     <meta name="twitter:site" content="@Vainkeurz">
     <meta name="twitter:creator" content="@Vainkeurz">
     <meta name="twitter:domain" content="vainkeurz.com">
-
     <?php if(is_page(26626)): ?>
         <meta name='robots' content='noindex, nofollow' />
     <?php endif; ?>
 
-    <?php if(is_home()): ?>
-
-        <title>
-            🔥 VAINKEURZ 👉 Créer et partage tes Tops !
-        </title>
-        <meta name="description" content="Meilleur site de la galaxie d'après la Nasa pour faire ses Tops." />
-        <meta property="og:image" content="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/logo_twitter.png" />
-        <meta property="og:title" content=" 🔥 VAINKEURZ 👉 Créer et partage tes Tops !" />
-        <meta property="og:description" content="Meilleur site de la galaxie d'après la Nasa pour faire ses Tops." />
-        <meta property="og:url" content="https://vainkeurz.com/" />
-        <meta name="twitter:title" content=" 🔥 VAINKEURZ 👉 Créer et partage tes Tops !" />
-        <meta name="twitter:description" content="Meilleur site de la galaxie d'après la Nasa pour faire ses Tops." />
-        <meta name="twitter:image" content="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/logo_twitter.png" />
-
-    <?php elseif(is_single() && get_post_type() == "tournoi"): ?>
-
-        <?php $id_tournament = get_the_ID(); ?>
-        <title>
-            TOP <?php echo get_numbers_of_contenders($id_tournament); ?> : <?php the_title(); ?> 🔥 VAINKEURZ
-        </title>
-        <meta name="description" content="<?php the_title(); ?> : <?php the_field( 'question_t' ); ?>" />
-
-        <link rel="canonical" href="<?php get_the_permalink($id_tournament); ?>" />
-        <meta property="og:image" content="<?php echo get_the_post_thumbnail_url($id_tournament, 'large'); ?>" />
-        <meta property="og:title" content="TOP <?php echo get_numbers_of_contenders($id_tournament); ?> : <?php the_title(); ?>" />
-        <meta property="og:description" content="<?php the_field('question_t', $id_tournament); ?>" />
-        <meta property="og:url" content="<?php get_the_permalink($id_tournament); ?>" />
-        <meta name="twitter:title" content="TOP <?php echo get_numbers_of_contenders($id_tournament); ?>" />
-        <meta name="twitter:description" content="<?php the_field('question_t', $id_tournament); ?>" />
-        <meta name="twitter:image" content="<?php echo get_the_post_thumbnail_url($id_tournament, 'large'); ?>" />
-
-    <?php elseif(is_single() && get_post_type() == "classement"): ?>
-
-        <?php
-        $id_tournament = get_field('id_tournoi_r');
-        $id_tournament = get_field('id_tournoi_r');
-        ?>
-        <title>
-            TOP <?php echo get_numbers_of_contenders($id_tournament); ?> : <?php echo get_the_title($id_tournament); ?> - <?php the_field( 'question_t', $id_tournament ); ?> 🔥 VAINKEURZ
-        </title>
-        <meta name="description" content="Découvre mon TOP <?php echo get_numbers_of_contenders($id_tournament); ?> à propos de <?php echo get_the_title($id_tournament); ?>" />
-
-        <?php
-        $user_top3  = get_user_top(false, $id_tournament);
-        $l=1;
-        foreach($user_top3 as $top => $p) {
-
-            if ($l == 1) {
-                $picture_contender_1 = get_the_post_thumbnail_url($top, 'medium');
-                $name_contender_1    = get_the_title($top);
-            } elseif ($l == 2) {
-                $picture_contender_2 = get_the_post_thumbnail_url($top, 'medium');
-                $name_contender_2    = get_the_title($top);
-            } elseif ($l == 3) {
-                $picture_contender_3 = get_the_post_thumbnail_url($top, 'medium');
-                $name_contender_3    = get_the_title($top);
-            }
-
-            $l++; if($l==4) break;
-        }
-        if(get_numbers_of_contenders($id_tournament) < 3){
-            $api_key = "3I6bGZa3zyHsiZL2toeoagtt";
-            $base = "https://on-demand.bannerbear.com/signedurl/nYaKxNMeoDRVW9BXPl/image.jpg";
-            $modifications = '[{"name":"h1","text":"TOP '.get_numbers_of_contenders($id_tournament).' '.get_the_title($id_tournament).'"},{"name":"h2","text":"Voici mon Top 2 👉"},{"name":"h1-question","text":"'.get_field('question_t', $id_tournament).'"}, {"name":"contenders_1","image_url":"'.$picture_contender_1.'"},{"name":"contenders_2","image_url":"'.$picture_contender_2.'"},{"name":"1","text":"🥇 '.$name_contender_1.'"},{"name":"2","text":"🥈 '.$name_contender_2.'"}]';
-        }
-        else{
-            $api_key    = "3I6bGZa3zyHsiZL2toeoagtt";
-            $base       = "https://on-demand.bannerbear.com/signedurl/LR7D41MVLLPVB8OGab/image.jpg";
-            $modifications = '[{"name":"h1","text":"TOP '.get_numbers_of_contenders($id_tournament).' '.get_the_title($id_tournament).'"},{"name":"h2","text":"Voici mon Top 3 👉"},{"name":"h1-question","text":"'.get_field('question_t', $id_tournament).'"}, {"name":"contenders_1","image_url":"'.$picture_contender_1.'"},{"name":"contenders_2","image_url":"'.$picture_contender_2.'"},{"name":"contenders_3","image_url":"'.$picture_contender_3.'"},{"name":"1","text":"🥇 '.$name_contender_1.'"},{"name":"2","text":"🥈 '.$name_contender_2.'"},{"name":"3","text":"🥉 '.$name_contender_3.'"}]';
-        }
-        $query = "?modifications=" . rtrim(strtr(base64_encode($modifications), '+/', '-_'), '=');
-        $signature = hash_hmac('sha256', $base.$query, $api_key);
-        $banner = $base . $query."&s=" . $signature;
-        ?>
-
-        <link rel="canonical" href="<?php echo get_the_permalink($id_ranking); ?>" />
-        <meta property="og:image" content="<?php echo $banner; ?>" />
-        <meta property="og:title" content="TOP <?php echo get_numbers_of_contenders($id_tournament); ?> 🏆 <?php echo get_the_title($id_tournament); ?> - <?php the_field('question_t', $id_tournament); ?>" />
-        <meta property="og:description" content="Découvre mon Top complet et fais ton propre classement !" />
-        <meta property="og:url" content="<?php echo get_the_permalink($id_ranking); ?>" />
-        <meta name="twitter:title" content="TOP <?php echo get_numbers_of_contenders($id_tournament); ?> 🏆 <?php echo get_the_title($id_tournament); ?> - <?php the_field('question_t', $id_tournament); ?>" />
-        <meta name="twitter:description" content="Découvre mon Top complet et fais ton propre classement !" />
-        <meta name="twitter:image" content="<?php echo $banner; ?>" />
-
-    <?php elseif(is_page(get_page_by_path('elo'))): ?>
-
-        <?php $id_tournament = $_GET['id_tournoi']; ?>
-        <title>
-            Classement mondial 👉 <?php echo get_the_title($id_tournament); ?> - <?php the_field( 'question_t', $id_tournament ); ?> 🔥 VAINKEURZ
-        </title>
-        <meta name="description" content="Classement ELO du tournoi rassemblant les votes du monde entier." />
-
-    <?php elseif(is_archive() && !is_author()): ?>
-
-        <?php $current_cat = get_queried_object(); ?>
-        <title>
-            Tous les Tops de la catégorie <?php echo $current_cat->name; ?> <?php the_field('icone_cat', 'term_'.$current_cat->term_id); ?>
-        </title>
-        <meta name="description" content="<?php echo $current_cat->description; ?>" />
-
-    <?php elseif(is_author()): ?>
-
-        <title>
-            Profil de <?php echo $champion->display_name; ?> sur VAINKEURZ
-        </title>
-        <meta name="description" content="Tous les TOPs de ce champion et ses statistiques" />
-
-    <?php else: ?>
-
-        <title>
-            VAINKEURZ 🔥
-        </title>
-
-    <?php endif; ?>
+    <?php get_template_part('partials/meta'); ?>
 
     <?php if($user_role != "administrator"): ?>
         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -193,6 +67,12 @@ wp_reset_query(); wp_reset_postdata();
             })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
         </script>
     <?php endif; ?>
+
+    <!-- Scripts -->
+    <script>
+        const vkrz_ajaxurl  = "<?= admin_url('admin-ajax.php') ?>";
+        const vkrz_template = "<?= get_bloginfo('template_directory'); ?>";
+    </script>
 
     <?php wp_head(); ?>
 

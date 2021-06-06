@@ -1,11 +1,6 @@
 <?php
 global $uuiduser;
 global $user_role;
-global $current_user;
-global $user_id;
-global $list_t_already_done;
-global $list_t_begin;
-$user_role = "visitor";
 if(is_user_logged_in()){
     $current_user   = wp_get_current_user();
     $user_id        = $current_user->ID;
@@ -18,9 +13,6 @@ if(is_user_logged_in()){
     }
 }
 $uuiduser        = deal_uuiduser();
-$list_t_already_done = get_user_tournament_list('t-done', $uuiduser);
-$list_t_begin        = get_user_tournament_list('t-begin', $uuiduser);
-wp_reset_query(); wp_reset_postdata();
 ?>
 <!DOCTYPE html>
 <html class="loading dark-layout" lang="fr" data-layout="dark-layout" data-textdirection="ltr">

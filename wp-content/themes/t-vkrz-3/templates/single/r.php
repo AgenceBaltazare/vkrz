@@ -1,46 +1,48 @@
 <?php
-global $id_tournament;
-global $cat_id;
-global $cat_name;
-global $banner;
-global $id_ranking;
+get_header();
 global $uuiduser;
-$id_ranking                      = get_the_ID();
-$id_tournament                   = get_field('id_tournoi_r');
+global $id_tournament;
+global $top_number;
+global $id_ranking;
+global $top_url;
+global $top_title;
+global $top_question;
+global $top_img;
+global $top_number;
+global $user_full_data;
 $display_titre                   = get_field('ne_pas_afficher_les_titres_t', $id_tournament);
 $rounded                         = get_field('c_rounded_t', $id_tournament);
 $user_ranking                    = get_user_ranking($id_ranking);
-$url_ranking                     = get_the_permalink();
-$title_post                      = get_the_title($id_tournament)." : ".get_field('question_t', $id_tournament);
+$url_ranking                     = get_the_permalink($id_ranking);
+$title_post                      = $top_title." : ".$top_question;
 $illu                            = wp_get_attachment_image_src(get_field('cover_t', $id_tournament), 'full');
 $illu_url                        = $illu[0];
 foreach(get_the_terms($id_tournament, 'categorie' ) as $cat ) {
     $cat_id     = $cat->term_id;
     $cat_name   = $cat->name;
 }
-get_header();
 ?>
-    <!-- BEGIN: Content-->
-    <div class="app-content content cover" xmlns="http://www.w3.org/1999/html">
+<!-- BEGIN: Content-->
+<div class="app-content content cover" xmlns="http://www.w3.org/1999/html">
     <div class="content-wrapper">
     <div class="content-body">
 
     <div class="intro-mobile">
         <div class="tournament-heading text-center">
-            <h3 class="mb-0 t-titre-tournoi">Top <?php echo get_numbers_of_contenders($id_tournament); ?> <span class="ico text-center">🏆</span> <?php echo get_the_title($id_tournament); ?></h3>
-            <h4 class="mb-0"><?php the_field('question_t', $id_tournament ); ?></h4>
+            <h3 class="mb-0 t-titre-tournoi">
+                Top <?php echo $top_number; ?> <span class="ico text-center">🏆</span> <?php echo $top_title; ?>
+            </h3>
+            <h4 class="mb-0">
+                <?php echo $top_question; ?>
+            </h4>
         </div>
     </div>
 
     <div class="classement mt-2">
         <div class="container-fluid">
-
             <div class="row">
-
                 <div class="col-xl-8 col-md-7 offset-md-1">
-
                     <div class="list-classement">
-
                         <div class="row align-items-end justify-content-center">
                             <?php
                             $i=1; foreach($user_ranking as $c => $p) : ?>
@@ -83,17 +85,13 @@ get_header();
                                         <?php $i++; endforeach; ?>
                                     </div>
                                 </div>
-
                             </div>
 
                             <div class="col-xl-2 col-md-3 offset-md-1">
 
                                 <div class="related">
 
-                                    <?php
-                                    $user_ranking_list = array();
-                                    $user_ranking_list = get_user_ranking_list("r-all", $uuiduser);
-                                    if(in_array($id_ranking, $user_ranking_list)): ?>
+                                    <?php if(get_field('uuid_user_r') == $uuiduser): ?>
                                         <div class="card">
                                             <div class="card-body">
                                                 <h4 class="card-title">
@@ -105,9 +103,8 @@ get_header();
                                                 <div class="btn-group justify-content-center share-t" role="group">
                                                     <?php
                                                     $url_ranking      = get_permalink($id_ranking);
-                                                    $title_tournament = get_the_title($id_tournament);
                                                     ?>
-                                                    <a href="https://twitter.com/intent/tweet?text=Voici mon TOP <?php echo get_numbers_of_contenders($id_tournament); ?> <?php echo $title_tournament; ?>&via=vainkeurz&hashtags=VKRZ&url=<?php echo $url_ranking; ?>" target="_blank" title="Tweet" class="btn btn-icon btn-outline-primary">
+                                                    <a href="https://twitter.com/intent/tweet?text=Voici mon TOP <?php echo $top_number; ?> <?php echo $top_title; ?>&via=vainkeurz&hashtags=VKRZ&url=<?php echo $url_ranking; ?>" target="_blank" title="Tweet" class="btn btn-icon btn-outline-primary">
                                                         <i class="fab fa-twitter"></i>
                                                     </a>
                                                     <a href="whatsapp://send?text=<?php echo $url_ranking; ?>" data-action="share/whatsapp/share" class="btn btn-icon btn-outline-primary">
@@ -116,52 +113,35 @@ get_header();
                                                     <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $url_ranking; ?>" title="Partager sur Facebook" target="_blank" class="btn btn-icon btn-outline-primary">
                                                         <i class="fab fa-facebook-f"></i>
                                                     </a>
-
-                                                    <a href="javascript:copyToClipboard();" data-toggle="tooltip" data-placement="top" title="Copier le lien" class="btn btn-icon btn-outline-primary">
-                                                        <i class="fas fa-link"></i>
-                                                    </a>
-
-
                                                 </div>
                                             </div>
                                         </div>
 
+                                    <?php endif; ?>
 
-
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <h4 class="card-title">
-                                                    <span class="ico">🤪</span> Fais tourner le Top
-                                                </h4>
-                                                <h6 class="card-subtitle text-muted mb-1">
-                                                    Plus on est de fou plus on .. TOP !
-                                                </h6>
-                                                <div class="btn-group justify-content-center share-t" role="group">
-                                                    <?php
-                                                    $title_tournament = get_the_title($id_tournament);
-                                                    ?>
-                                                    <a href="https://twitter.com/intent/tweet?text=J'ai fait mon TOP <?php echo get_numbers_of_contenders($id_tournament); ?> <?php echo $title_tournament; ?> maintenant c'est à vous 🤪🤪 &via=vainkeurz&hashtags=VKRZ&url=<?php the_permalink($id_tournament);; ?>" target="_blank" title="Tweet" class="btn btn-icon btn-outline-primary">
-                                                        <i class="fab fa-twitter"></i>
-                                                    </a>
-                                                    <a href="whatsapp://send?text=<?php the_permalink($id_tournament);; ?>" data-action="share/whatsapp/share" class="btn btn-icon btn-outline-primary">
-                                                        <i class="fab fa-whatsapp"></i>
-                                                    </a>
-                                                    <a href="https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink($id_tournament);; ?>" title="Partager sur Facebook" target="_blank" class="btn btn-icon btn-outline-primary">
-                                                        <i class="fab fa-facebook-f"></i>
-                                                    </a>
-
-                                                    <a href="javascript:copyToClipboard();" data-toggle="tooltip" data-placement="top" title="Copier le lien" class="btn btn-icon btn-outline-primary">
-                                                        <i class="fas fa-link"></i>
-                                                    </a>
-
-
-                                                </div>
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h4 class="card-title">
+                                                <span class="ico">🤪</span> Fais tourner le Top
+                                            </h4>
+                                            <h6 class="card-subtitle text-muted mb-1">
+                                                Plus on est de fou plus on .. TOP !
+                                            </h6>
+                                            <div class="btn-group justify-content-center share-t" role="group">
+                                                <a href="https://twitter.com/intent/tweet?text=J'ai fait mon TOP <?php echo $top_number; ?> <?php echo $top_title; ?> maintenant c'est à vous 🤪🤪 &via=vainkeurz&hashtags=VKRZ&url=<?php echo $top_url; ?>" target="_blank" title="Tweet" class="btn btn-icon btn-outline-primary">
+                                                    <i class="fab fa-twitter"></i>
+                                                </a>
+                                                <a href="whatsapp://send?text=<?php echo $top_url; ?>" data-action="share/whatsapp/share" class="btn btn-icon btn-outline-primary">
+                                                    <i class="fab fa-whatsapp"></i>
+                                                </a>
+                                                <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $top_url; ?>" title="Partager sur Facebook" target="_blank" class="btn btn-icon btn-outline-primary">
+                                                    <i class="fab fa-facebook-f"></i>
+                                                </a>
                                             </div>
                                         </div>
+                                    </div>
 
-
-
-
+                                    <?php if(get_field('uuid_user_r') == $uuiduser): ?>
 
                                         <div class="card">
                                             <div class="card-body">
@@ -176,7 +156,9 @@ get_header();
                                                 </a>
                                             </div>
                                         </div>
+
                                     <?php else: ?>
+
                                         <div class="card">
                                             <div class="card-body">
                                                 <h4 class="card-title">
@@ -185,14 +167,14 @@ get_header();
                                                 <h6 class="card-subtitle text-muted mb-1">
                                                     Il est temps d'exprimer et de revendiquer ton propre avis !
                                                 </h6>
-                                                <a href="<?php the_permalink($id_tournament); ?>" class="btn btn-outline-primary waves-effect">
+                                                <a href="<?php echo $top_url; ?>" class="btn btn-outline-primary waves-effect">
                                                     Faire mon propre Top
                                                 </a>
                                             </div>
                                         </div>
+
                                     <?php endif; ?>
 
-                                    <!--
                                     <div class="card">
                                         <div class="card-body">
                                             <h4 class="card-title">
@@ -201,16 +183,23 @@ get_header();
                                             <h6 class="card-subtitle text-muted mb-1">
                                                 Tu peux comparer tes choix à ceux des autres humains.
                                             </h6>
-                                            <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_tournoi=<?php echo $id_tournament; ?>" class="btn btn-outline-primary waves-effect">
+                                            <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_tournament; ?>" class="btn btn-outline-primary waves-effect">
                                                 Voir le classement
                                             </a>
                                         </div>
                                     </div>
-                                    -->
 
                                     <?php
-                                        global $list_t_already_done;
-                                        $related_tournoi = new WP_Query(array('post_type' => 'tournoi', 'post__not_in' => $list_t_already_done, 'orderby' => 'rand', 'order' => 'ASC', 'posts_per_page' => 3,
+                                        $list_t_already_done = $user_full_data[0]['user_tops_done_ids'];
+                                        $related_tournoi = new WP_Query(array(
+                                            'post_type' => 'tournoi',
+                                            'post__not_in' => $list_t_already_done,
+                                            'orderby' => 'rand',
+                                            'order' => 'ASC',
+                                            'posts_per_page' => 3,
+                                            'ignore_sticky_posts'    => true,
+                                            'update_post_meta_cache' => false,
+                                            'no_found_rows'          => true,
                                             'tax_query' => array(
                                                 array(
                                                     'taxonomy' => 'categorie',
@@ -229,27 +218,23 @@ get_header();
                                                 <h6 class="card-subtitle text-muted mb-1">
                                                     C'est dans la même catégorie donc logiquement ça devrait t'intéresser !
                                                 </h6>
+                                                <div class="row">
+                                                    <?php while ($related_tournoi->have_posts()) : $related_tournoi->the_post(); ?>
 
-                                                <?php while ($related_tournoi->have_posts()) : $related_tournoi->the_post(); ?>
+                                                        <?php get_template_part('partials/min-t'); ?>
 
-                                                    <?php get_template_part('partials/min-t'); ?>
-
-                                                <?php endwhile; ?>
+                                                    <?php endwhile; ?>
+                                                </div>
                                             </div>
                                         </div>
                                     <?php endif; ?>
-
                                 </div>
-
                             </div>
-
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- END: Content-->
-
+<!-- END: Content-->
 <?php get_footer(); ?>

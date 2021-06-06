@@ -1,4 +1,8 @@
-<?php get_header(); ?>
+<?php
+get_header();
+global $user_full_data;
+$list_t_already_done = $user_full_data[0]['user_tops_done_ids'];
+?>
 <!-- BEGIN: Content-->
 <div class="app-content content ">
     <div class="content-wrapper">
@@ -28,7 +32,16 @@
                     <div class="swiper-responsive-breakpoints swiper-container swiper-0">
                         <div class="swiper-wrapper">
                             <?php
-                            $tournois_in_cat = new WP_Query(array('post_type' => 'tournoi', 'post__not_in' => $list_t_already_done, 'orderby' => 'rand', 'order' => 'ASC', 'posts_per_page' => 10));
+                            $tournois_in_cat = new WP_Query(array(
+                                'ignore_sticky_posts'    => true,
+                                'update_post_meta_cache' => false,
+                                'no_found_rows'          => true,
+                                'post_type'              => 'tournoi',
+                                'post__not_in'           => $list_t_already_done,
+                                'orderby'                => 'rand',
+                                'order'                  => 'ASC',
+                                'posts_per_page'         => 10
+                            ));
                             while ($tournois_in_cat->have_posts()) : $tournois_in_cat->the_post(); ?>
 
                                 <?php get_template_part('partials/min-t'); ?>
@@ -40,7 +53,6 @@
                     </div>
                 </div>
             </section>
-
 
             <section id="vkrz-intro">
                 <div class="row match-height">
@@ -62,13 +74,13 @@
                                     En savoir plus sur VKRZ
                                 </a>
                                 -->
-                                <a href="https://discord.gg/PhjrFtwx" class="btn btn-outline-primary waves-effect" target="_blank">
+                                <a href="https://discord.gg/PhjrFtwx" class="btn btn-outline-primary waves-effect mr-1" target="_blank">
                                     Discord
                                 </a>
-                                <a href="https://twitter.com/Vainkeurz" class="btn btn-outline-primary waves-effect" target="_blank">
+                                <a href="https://twitter.com/Vainkeurz" class="btn btn-outline-primary waves-effect mr-1" target="_blank">
                                     Twitter
                                 </a>
-                                <a href="https://www.facebook.com/vainkeurz" class="btn btn-outline-primary waves-effect" target="_blank">
+                                <a href="https://www.facebook.com/vainkeurz" class="btn btn-outline-primary waves-effect mr-1" target="_blank">
                                     Facebook
                                 </a>
                             </div>
@@ -111,48 +123,57 @@
 
             <section class="list-tournois">
                 <?php $swip = 1; foreach($cat_t as $cat) : ?>
-                    <div class="big-cat">
-                        <div class="heading-cat">
-                            <div class="row">
-                                <div class="col">
-                                    <h2 class="text-primary text-uppercase">
-                                        <a href="<?php echo get_category_link($cat->term_id); ?>">
-                                            <span class="ico"><?php the_field('icone_cat', 'term_'.$cat->term_id); ?></span> <?php echo $cat->name; ?>
-                                            <small class="text-muted"><?php echo $cat->description; ?></small>
-                                        </a>
-                                    </h2>
+                    <?php
+                    $tournois_in_cat = new WP_Query(array(
+                        'post_type' => 'tournoi',
+                        'post__not_in' => $list_t_already_done,
+                        'orderby' => 'rand',
+                        'order' => 'ASC',
+                        'posts_per_page' => 10,
+                        'ignore_sticky_posts'    => true,
+                        'update_post_meta_cache' => false,
+                        'no_found_rows'          => true,
+                        'tax_query' => array(
+                            array(
+                                'taxonomy' => 'categorie',
+                                'field'    => 'term_id',
+                                'terms'    => $cat->term_id,
+                            ),
+                        )
+                    ));
+                    if($tournois_in_cat->have_posts()): ?>
+                        <div class="big-cat">
+                            <div class="heading-cat">
+                                <div class="row">
+                                    <div class="col">
+                                        <h2 class="text-primary text-uppercase">
+                                            <a href="<?php echo get_category_link($cat->term_id); ?>">
+                                                <span class="ico"><?php the_field('icone_cat', 'term_'.$cat->term_id); ?></span> <?php echo $cat->name; ?>
+                                                <small class="text-muted"><?php echo $cat->description; ?></small>
+                                            </a>
+                                        </h2>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div id="component-swiper-responsive-breakpoints">
-                        <div class="swiper-responsive-breakpoints swiper-container swiper-<?php echo $swip; ?>">
-                            <div class="swiper-wrapper">
-                                <?php
-                                $tournois_in_cat = new WP_Query(array('post_type' => 'tournoi', 'post__not_in' => $list_t_already_done, 'orderby' => 'rand', 'order' => 'ASC', 'posts_per_page' => 10,
-                                    'tax_query' => array(
-                                        array(
-                                            'taxonomy' => 'categorie',
-                                            'field'    => 'term_id',
-                                            'terms'    => $cat->term_id,
-                                        ),
-                                    )
-                                ));
-                                while ($tournois_in_cat->have_posts()) : $tournois_in_cat->the_post(); ?>
+                        <div id="component-swiper-responsive-breakpoints">
+                            <div class="swiper-responsive-breakpoints swiper-container swiper-<?php echo $swip; ?>">
+                                <div class="swiper-wrapper">
+                                    <?php
+                                    while ($tournois_in_cat->have_posts()) : $tournois_in_cat->the_post(); ?>
 
-                                    <?php get_template_part('partials/min-t'); ?>
+                                        <?php get_template_part('partials/min-t'); ?>
 
-                                <?php endwhile;?>
+                                    <?php endwhile;?>
+                                </div>
+                                <?php if($cat->count > 2): ?>
+                                    <div class="swiper-button-next swiper-button-next-<?php echo $swip; ?>"></div>
+                                    <div class="swiper-button-prev swiper-button-prev-<?php echo $swip; ?>"></div>
+                                <?php endif; ?>
                             </div>
-                            <?php if($cat->count > 2): ?>
-                                <div class="swiper-button-next swiper-button-next-<?php echo $swip; ?>"></div>
-                                <div class="swiper-button-prev swiper-button-prev-<?php echo $swip; ?>"></div>
-                            <?php endif; ?>
                         </div>
-                    </div>
-                <?php $swip++; endforeach; ?>
+                <?php endif; $swip++; endforeach; ?>
             </section>
-
         </div>
     </div>
 </div>

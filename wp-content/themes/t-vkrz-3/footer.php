@@ -21,11 +21,6 @@
     </p>
 </footer>
 
-<!-- Scripts -->
-<script>
-    const vkrz_ajaxurl  = "<?= admin_url('admin-ajax.php') ?>";
-    const vkrz_template = "<?= get_bloginfo('template_directory'); ?>";
-</script>
 <?php wp_footer(); ?>
 
 </body>

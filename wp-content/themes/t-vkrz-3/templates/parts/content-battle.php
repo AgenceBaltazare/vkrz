@@ -25,10 +25,12 @@
         <?php if(isset($nb_user_votes) && $nb_user_votes != ""): ?>
             <div class="display_votes">
                 <h6>
-                    <?php if($nb_user_votes == 1): ?>
-                        <?php echo $nb_user_votes; ?> vote
-                    <?php else: ?>
-                        <?php echo $nb_user_votes; ?> votes
+                    <?php if ($nb_user_votes == 0) : ?>
+                        Aucun vote encore
+                    <?php elseif ($nb_user_votes == 1) : ?>
+                        Bravo pour ton 1er vote
+                    <?php else : ?>
+                        Tes votes : <?php echo $nb_user_votes; ?>
                     <?php endif; ?>
                 </h6>
             </div>

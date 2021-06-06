@@ -71,5 +71,3 @@ function get_numbers_of_ranking_done($id_tournament) {
 
     return $nb_ranking_done;
 }
-
-?>

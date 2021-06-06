@@ -6,6 +6,7 @@ global $champion_id;
 $champion        = get_user_by( 'slug', get_query_var( 'author_name' ) );
 $champion_id     = $champion->ID;
 $uuidchampion    = get_field('uuiduser_user', 'user_'.$champion_id);
+$user_full_data  = get_user_full_data($uuidchampion);
 get_header();
 ?>
 <div class="app-content content">
@@ -46,7 +47,10 @@ get_header();
                                     <span class="ico4">💎</span>
                                 </div>
                                 <h2 class="font-weight-bolder">
-                                    <?php echo get_user_data("nb-user-vote", $uuidchampion); ?>
+                                    <?php
+                                    $nb_user_votes = $user_full_data[0]['nb_user_votes'];
+                                    echo $nb_user_votes;
+                                    ?>
                                 </h2>
                                 <p class="card-text legende">Votes</p>
                             </div>
@@ -60,8 +64,8 @@ get_header();
                                 </div>
                                 <h2 class="font-weight-bolder">
                                     <?php
-                                    $list_t_already_done = get_user_tournament_list('t-done', $uuidchampion);
-                                    echo count($list_t_already_done);
+                                    $list_t_done = $user_full_data[0]['list_user_ranking_done'];
+                                    echo count($list_t_done);
                                     ?>
                                 </h2>
                                 <p class="card-text legende">Tops terminés</p>
@@ -88,8 +92,8 @@ get_header();
                 <div class="row">
                     <div class="col-md-12">
                         <?php
-                        $list_r_done = get_user_ranking_list('r-done', $uuidchampion);
-                        if($list_r_done) :
+                        $list_t_done = $user_full_data[0]['list_user_ranking_done'];
+                        if($list_t_done) :
                         ?>
                         <div class="card">
                             <div class="card-body p-0">
@@ -113,25 +117,22 @@ get_header();
                                                     🏆<br>
                                                     Top complet
                                                 </th>
-                                                <!--
                                                 <th class="text-center">
                                                     🌍<br>
                                                     Top mondial
                                                 </th>
-                                                -->
                                             </tr>
                                         </thead>
                                         <tbody>
                                         <?php
-                                        foreach($list_r_done as $r_user) : ?>
-
+                                        foreach($list_t_done as $r_user) : ?>
                                             <tr>
                                                 <td>
                                                     <div class="media-body">
                                                         <div class="media-heading">
                                                             <h6 class="cart-item-title mb-0">
                                                                 <a class="text-body" href="<?php the_permalink($r_user['id_tournoi']); ?>">
-                                                                    Top <?php echo get_numbers_of_contenders($r_user['id_tournoi']); ?> - <?php echo get_the_title($r_user['id_tournoi']); ?>
+                                                                    Top <?php echo $r_user['nb_top']; ?> - <?php echo get_the_title($r_user['id_tournoi']); ?>
                                                                 </a>
                                                             </h6>
                                                             <small class="cart-item-by legende">
@@ -145,7 +146,7 @@ get_header();
                                                 </td>
                                                 <td>
                                                     <?php
-                                                    $user_top3 = get_user_top($uuidchampion, $r_user['id_tournoi']);
+                                                    $user_top3 = get_user_ranking($r_user['id_ranking']);
                                                     $l=1;
                                                     foreach($user_top3 as $top => $p): ?>
 
@@ -161,15 +162,12 @@ get_header();
                                                         <span class="ico">👀</span>
                                                     </a>
                                                 </td>
-                                                <!--
                                                 <td class="text-center">
-                                                    <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_tournoi=<?php echo $r_user['id_tournoi']; ?>" class="scali">
+                                                    <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $r_user['id_tournoi']; ?>" class="scali">
                                                         <span class="ico">👀</span>
                                                     </a>
                                                 </td>
-                                                -->
                                             </tr>
-
                                         <?php endforeach; ?>
                                         </tbody>
                                     </table>

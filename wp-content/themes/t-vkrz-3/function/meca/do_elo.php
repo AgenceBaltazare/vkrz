@@ -14,7 +14,7 @@ function do_elo_ranking( $id_tournoi, $id_winner, $id_looser, $id_ranking ) {
 
 	$new_vote = array(
 		'post_type'   => 'vote',
-		'post_title'  => 'U:' . $uuiduser . ' T:' . $id_tournoi . ' V:' . $id_winner . '(' . $newRankings['a'] . ')' . ' L:' . $id_looser . '(' . $newRankings['b'] . ')',
+		'post_title'  => 'U:' . $uuiduser . ' T:' . $id_tournoi . ' V:' . $id_winner . ' L:' . $id_looser,
 		'post_status' => 'publish',
 	);
 	$id_vote  = wp_insert_post( $new_vote );

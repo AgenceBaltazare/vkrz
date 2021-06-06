@@ -30,7 +30,6 @@ function genrerate_tournament_response($tournament_infos){
         'stepbar_html'      => $stepbar_html,
         'contenders_html'   => $contenders_html,
         'uservotes_html'    => $uservotes_html,
-        'all_votes_counts'  => $all_votes_counts,
         'nb_user_votes'     => $nb_user_votes,
         'user_ranking_html' => $user_ranking_html,
         'is_next_duel'      => $is_next_duel

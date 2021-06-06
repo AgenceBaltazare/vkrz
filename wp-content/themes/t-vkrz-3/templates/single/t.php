@@ -1,18 +1,19 @@
 <?php
 global $id_tournament;
-$id_tournament           = get_the_ID();
-$id_ranking              = get_or_create_ranking_if_not_exists($id_tournament);
+$id_tournament = get_the_ID();
+$id_ranking    = get_or_create_ranking_if_not_exists($id_tournament);
 extract(get_next_duel($id_ranking, $id_tournament));
 if(!$is_next_duel){
     wp_redirect(get_the_permalink($id_ranking));
 }
+get_header();
+global $top_url;
+global $top_title;
+global $top_question;
+global $top_img;
+global $top_number;
 $illu       = wp_get_attachment_image_src(get_field('cover_t', $id_tournament), 'full');
 $illu_url   = $illu[0];
-foreach(get_the_terms($id_tournament, 'categorie' ) as $cat ) {
-    $cat_id     = $cat->term_id;
-    $cat_name   = $cat->name;
-}
-get_header();
 ?>
 <div class="app-content content cover" style="background: url(<?php echo $illu_url; ?>) center center no-repeat">
     <div class="content-overlay"></div>
@@ -21,9 +22,9 @@ get_header();
 
             <div class="intro-mobile">
                 <div class="tournament-heading text-center">
-                    <h3 class="mb-0 t-titre-tournoi">Top <?php echo get_numbers_of_contenders(get_the_ID()); ?> <span class="ico">⚔️</span> <?php the_title(); ?></h3>
+                    <h3 class="mb-0 t-titre-tournoi">Top <?php echo $top_number; ?> <span class="ico">⚔️</span> <?php echo $top_title; ?></h3>
                     <h4 class="text-center t-question">
-                        <?php the_field( 'question_t', $id_tournament ); ?> <br>
+                        <?php echo $top_url; ?> <br>
                     </h4>
                 </div>
             </div>
@@ -51,7 +52,7 @@ get_header();
                         <div class="col-md-12">
                             <div class="display_battle">
                                 <?php
-                                set_query_var('battle_vars', compact('contender_1', 'contender_2', 'id_tournament', 'all_votes_counts', 'id_ranking'));
+                                set_query_var('battle_vars', compact('contender_1', 'contender_2', 'id_tournament', 'id_ranking'));
                                 get_template_part('templates/parts/content', 'battle');
                                 ?>
                             </div>
@@ -77,24 +78,20 @@ get_header();
                         Partager <span class="ico text-center">👉</span>
                     </span>
                     <div class="btn-group justify-content-center share-t" role="group">
-                        <?php
-                        $url_tournament   = get_permalink($id_tournament);
-                        $title_tournament = get_the_title($id_tournament);
-                        ?>
-                        <a href="https://twitter.com/intent/tweet?source=<?php echo $url_tournament; ?>&text=Viens faire ton TOP <?php echo get_numbers_of_contenders($id_tournament); ?> <?php echo $title_tournament; ?> - <?php the_field('question_t', $id_tournament); ?> 👉 <?php echo $url_tournament; ?>" target="_blank" title="Tweet" class="btn btn-icon btn-outline-primary">
+                        <a href="https://twitter.com/intent/tweet?source=<?php echo $top_url; ?>&text=Viens faire ton TOP <?php echo $top_number; ?> <?php echo $top_title; ?> - <?php echo $top_question; ?> 👉 <?php echo $top_url; ?>" target="_blank" title="Tweet" class="btn btn-icon btn-outline-primary">
                             <i class="fab fa-twitter"></i>
                         </a>
-                        <a href="whatsapp://send?text=<?php echo $url_tournament; ?>" data-action="share/whatsapp/share" class="btn btn-icon btn-outline-primary">
+                        <a href="whatsapp://send?text=<?php echo $top_url; ?>" data-action="share/whatsapp/share" class="btn btn-icon btn-outline-primary">
                             <i class="fab fa-whatsapp"></i>
                         </a>
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $url_tournament; ?>&text=Viens faire ton TOP <?php echo get_numbers_of_contenders($id_tournament); ?> <?php echo $title_tournament; ?> - <?php the_field('question_t', $id_tournament); ?> 👉" title="Partager sur Facebook" target="_blank" class="btn btn-icon btn-outline-primary">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $top_url; ?>&text=Viens faire ton TOP <?php echo $top_number; ?> <?php echo $top_title; ?> - <?php echo $top_question; ?> 👉" title="Partager sur Facebook" target="_blank" class="btn btn-icon btn-outline-primary">
                             <i class="fab fa-facebook-f"></i>
                         </a>
                     </div>
                 </div>
 
                 <div class="btng hide-xs">
-                    <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_tournoi=<?php echo $id_tournament; ?>" class="btn btn-outline-primary waves-effect" target="_blank" >
+                    <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_tournament; ?>" class="btn btn-outline-primary waves-effect" target="_blank" >
                         <span class="ico ico-reverse text-center">👀</span> Classement mondial
                     </a>
                 </div>

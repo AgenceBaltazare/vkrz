@@ -1,6 +1,4 @@
 <?php
-
-// Sort ranking
 function array_sort_by_column(&$arr, $col, $dir = SORT_DESC) {
     $sort_col = array();
     foreach ($arr as $key=> $row) {

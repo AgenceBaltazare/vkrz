@@ -2,13 +2,8 @@
 /*
     Template Name: Classement
 */
-?>
-<?php
-global $id_tournament;
-global $cat_id;
-global $cat_name;
-if(isset($_GET['id_tournoi'])){
-    $id_tournament  = $_GET['id_tournoi'];
+if(isset($_GET['id_top'])){
+    $id_tournament  = $_GET['id_top'];
 }
 else{
     header('Location: ' . get_bloginfo('url'));
@@ -39,7 +34,9 @@ get_header();
 
                                 <div class="row align-items-end justify-content-center">
 
-                                    <?php $contenders_tournament = new WP_Query(array('post_type' => 'contender', 'meta_key' => 'ELO_c', 'orderby' => 'meta_value_num', 'posts_per_page' => '-1', 'meta_query' => array(
+                                    <?php
+                                    $id_tournament = $_GET['id_top'];
+                                    $contenders_tournament = new WP_Query(array('post_type' => 'contender', 'meta_key' => 'ELO_c', 'orderby' => 'meta_value_num', 'posts_per_page' => '-1', 'meta_query' => array(
                                         array(
                                             'key'     => 'id_tournoi_c',
                                             'value'   => $id_tournament,
@@ -95,28 +92,7 @@ get_header();
 
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="card-title">
-                                            <span class="ico">🤩</span> D'autres Tops
-                                        </h4>
-                                        <h6 class="card-subtitle text-muted mb-1">
-                                            C'est dans la même catégorie donc logiquement ça devrait t'intéresser !
-                                        </h6>
-                                        <?php
-                                        global $list_t_already_done;
-                                        $related_tournoi = new WP_Query(array('post_type' => 'tournoi', 'post__not_in' => $list_t_already_done, 'orderby' => 'rand', 'order' => 'ASC', 'posts_per_page' => 3,
-                                            'tax_query' => array(
-                                                array(
-                                                    'taxonomy' => 'categorie',
-                                                    'field'    => 'term_id',
-                                                    'terms'    => $cat_id,
-                                                ),
-                                            )
-                                        ));
-                                        while ($related_tournoi->have_posts()) : $related_tournoi->the_post(); ?>
 
-                                            <?php get_template_part('partials/min-t'); ?>
-
-                                        <?php endwhile; ?>
                                     </div>
                                 </div>
                             </div>

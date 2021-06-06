@@ -22,17 +22,14 @@ function get_next_duel($id_ranking, $id_tournament) {
     // Count contenders
     $nb_contenders      = count($list_contenders);
     if($nb_contenders % 2 == 0){
-        // Paire
         $spaire = 5;
     }
     else{
-        // Impaire
         $spaire = 6;
     }
 
 
     if(get_field('ranking_t', $id_tournament) == "top3"){
-
 
         $half_nb_conterders = intval(floor($nb_contenders / 2));
         $timeline_main = get_field('timeline_main', $id_ranking);
@@ -40,8 +37,8 @@ function get_next_duel($id_ranking, $id_tournament) {
         if($timeline_main == 1){
 
             if($timeline_votes == $half_nb_conterders){
-                update_field('timeline_main', 2, $id_ranking);
                 $timeline_main = 2;
+                update_field('timeline_main', $timeline_main, $id_ranking);
             }
             else{
 
@@ -62,8 +59,9 @@ function get_next_duel($id_ranking, $id_tournament) {
 
             if($nb_list_inf == 1){
 
-                update_field('timeline_main', 3, $id_ranking);
                 $timeline_main = 3;
+                update_field('timeline_main', $timeline_main, $id_ranking);
+
             }
             else{
 
@@ -84,8 +82,8 @@ function get_next_duel($id_ranking, $id_tournament) {
 
             if($nb_list_inf == 1){
 
-                update_field('timeline_main', 4, $id_ranking);
                 $timeline_main = 4;
+                update_field('timeline_main', $timeline_main, $id_ranking);
 
             }
             else{
@@ -108,11 +106,6 @@ function get_next_duel($id_ranking, $id_tournament) {
             if($nb_list_inf == 1){
 
                 $is_next_duel = false;
-
-                if(!get_field('done_r', $id_ranking)){
-                    update_field('done_r', 'done', $id_ranking);
-                    update_field('done_date_r', date('d/m/Y H:i:s'), $id_ranking);
-                }
 
             }
             else{
@@ -139,12 +132,12 @@ function get_next_duel($id_ranking, $id_tournament) {
         }
         else{
             if($timeline_votes < $nb_contenders - 1){
-                update_field('timeline_main', 6, $id_ranking);
                 $timeline_main = 6;
+                update_field('timeline_main', $timeline_main, $id_ranking);
             }
             else{
-                update_field('timeline_main', 7, $id_ranking);
                 $timeline_main = 7;
+                update_field('timeline_main', $timeline_main, $id_ranking);
             }
         }
         $timeline_main = get_field('timeline_main', $id_ranking);
@@ -170,7 +163,7 @@ function get_next_duel($id_ranking, $id_tournament) {
             if(count($next_duel) != 2){
 
                 $timeline_main = 3;
-                update_field('timeline_main', 3, $id_ranking);
+                update_field('timeline_main', $timeline_main, $id_ranking);
 
             }
 
@@ -201,8 +194,8 @@ function get_next_duel($id_ranking, $id_tournament) {
 
             if(in_array($key_c1, $c2_less_more) || in_array($key_c2, $c1_less_more) || ($key_c1 == $key_c2)){
 
-                update_field('timeline_main', 4, $id_ranking);
                 $timeline_main = 4;
+                update_field('timeline_main', $timeline_main, $id_ranking);
 
             }
             else{
@@ -225,17 +218,13 @@ function get_next_duel($id_ranking, $id_tournament) {
             if(count($next_duel) != 2){
 
                 $timeline_main = 5;
-                update_field('timeline_main', 5, $id_ranking);
+                update_field('timeline_main', $timeline_main, $id_ranking);
                 $next_duel     = check_battle_5($id_ranking);
 
                 if(count($next_duel) != 2){
 
                     $is_next_duel = false;
 
-                    if(!get_field('done_r', $id_ranking)){
-                        update_field('done_r', 'done', $id_ranking);
-                        update_field('done_date_r', date('d/m/Y H:i:s'), $id_ranking);
-                    }
                 }
 
             }
@@ -244,8 +233,7 @@ function get_next_duel($id_ranking, $id_tournament) {
 
         if($timeline_main == 5){
 
-            $timeline_main = 5;
-            update_field('timeline_main', 5, $id_ranking);
+            update_field('timeline_main', $timeline_main, $id_ranking);
 
             $next_duel     = check_battle_5($id_ranking);
 
@@ -253,18 +241,13 @@ function get_next_duel($id_ranking, $id_tournament) {
 
                 $is_next_duel = false;
 
-                if(!get_field('done_r', $id_ranking)){
-                    update_field('done_r', 'done', $id_ranking);
-                    update_field('done_date_r', date('d/m/Y H:i:s'), $id_ranking);
-                }
             }
 
         }
 
         if($timeline_main == 6){
 
-            $timeline_main = 6;
-            update_field('timeline_main', 6, $id_ranking);
+            update_field('timeline_main', $timeline_main, $id_ranking);
 
             $key_c_1 = $nb_contenders - (2 + $timeline_votes);
             $key_c_2 = $nb_contenders - (1 + $timeline_votes);
@@ -277,8 +260,7 @@ function get_next_duel($id_ranking, $id_tournament) {
 
         if($timeline_main == 7){
 
-            $timeline_main = 7;
-            update_field('timeline_main', 7, $id_ranking);
+            update_field('timeline_main', $timeline_main, $id_ranking);
 
             $next_duel     = check_battle_5($id_ranking);
 
@@ -286,22 +268,22 @@ function get_next_duel($id_ranking, $id_tournament) {
 
                 $is_next_duel = false;
 
-                if(!get_field('done_r', $id_ranking)){
-                    update_field('done_r', 'done', $id_ranking);
-                    update_field('done_date_r', date('d/m/Y H:i:s'), $id_ranking);
-                }
             }
 
         }
 
-
     }
 
-    $all_votes_counts = all_votes_in_tournament($id_tournament);
-    $nb_user_votes    = all_user_votes_in_tournament($id_ranking);
+    $nb_user_votes    = get_field('nb_votes_r', $id_ranking);
 
+    if(!$is_next_duel){
 
-    if($is_next_duel){
+        update_field('done_r', 'done', $id_ranking);
+        update_field('done_date_r', date('d/m/Y H:i:s'), $id_ranking);
+
+    }
+    else{
+
         $val1 = random_int(0, 1);
         if($val1 == 0){
             $val2 = 1;
@@ -311,6 +293,7 @@ function get_next_duel($id_ranking, $id_tournament) {
         }
         $contender_1      = $next_duel[$val1];
         $contender_2      = $next_duel[$val2];
+
     }
 
     $current_step = get_steps($id_ranking);
@@ -321,7 +304,6 @@ function get_next_duel($id_ranking, $id_tournament) {
         'contender_2',
         'current_step',
         'timeline_main',
-        'all_votes_counts',
         'nb_user_votes',
         'nb_contenders',
         'id_tournament',

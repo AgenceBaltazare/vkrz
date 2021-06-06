@@ -1,10 +1,7 @@
 <?php
 global $uuiduser;
-global $user_role;
-global $user_id;
 $state            = "";
 $id_tournament    = get_the_ID();
-$id_user_ranking  = 0;
 $illu             = get_the_post_thumbnail_url($id_tournament, 'medium');
 if(is_home()){
     $class        = "swiper-slide";
@@ -12,34 +9,42 @@ if(is_home()){
 elseif(is_archive()){
     $class        = "col-md-4 col-lg-3 col-xxl-2";
 }
-elseif(is_single() && (get_post_type() == "classement")){
+else{
     $class        = "col-12";
 }
-$user_ranking     = new WP_Query(array('post_type' => 'classement', 'orderby' => 'date', 'posts_per_page' => '1', 'meta_query' =>
-    array(
-        'relation'  => 'AND',
+$user_ranking     = new WP_Query(array(
+    'post_type' => 'classement',
+    'posts_per_page' => '1',
+    'ignore_sticky_posts'    => true,
+    'update_post_meta_cache' => false,
+    'fields'                 => 'ids',
+    'no_found_rows'          => true,
+    'meta_query' =>
         array(
-            'key'     => 'id_tournoi_r',
-            'value'   => $id_tournament,
-            'compare' => '=',
-        ),
-        array(
-            'key' => 'uuid_user_r',
-            'value' => $uuiduser,
-            'compare' => '=',
+            'relation'  => 'AND',
+            array(
+                'key'     => 'id_tournoi_r',
+                'value'   => $id_tournament,
+                'compare' => '=',
+            ),
+            array(
+                'key' => 'uuid_user_r',
+                'value' => $uuiduser,
+                'compare' => '=',
+            )
         )
     )
-));
+);
 if($user_ranking->have_posts()){
     while ($user_ranking->have_posts()) : $user_ranking->the_post();
         $id_user_ranking = get_the_ID();
+        if(get_field('done_r')){
+            $state  = "done";
+        }
+        else{
+            $state = "begin";
+        }
     endwhile;
-    if(get_field('done_r', $id_user_ranking)){
-        $state  = "done";
-    }
-    else{
-        $state = "begin";
-    }
 }
 ?>
 <div class="<?php echo $class; ?>">

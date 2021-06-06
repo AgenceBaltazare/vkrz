@@ -2,6 +2,13 @@
 global $uuiduser;
 global $current_user;
 global $user_id;
+global $id_tournament;
+global $top_question;
+global $top_number;
+global $top_title;
+global $user_full_data;
+global $nb_user_votes;
+$user_full_data = get_user_full_data($uuiduser);
 ?>
 <nav class="header-navbar navbar navbar-expand-lg align-items-center floating-nav navbar-dark navbar-shadow menu-user">
     <div class="navbar-container d-flex content align-items-center justify-content-between">
@@ -35,7 +42,6 @@ global $user_id;
 
                                             <li class="breadcrumb-item">
                                                 <?php
-                                                $id_tournament = get_field('id_tournoi_r');
                                                 foreach(get_the_terms($id_tournament, 'categorie') as $cat ) {
                                                     $cat_id     = $cat->term_id;
                                                     $cat_name   = $cat->name;
@@ -49,12 +55,10 @@ global $user_id;
                                         <?php elseif(!is_author() && is_archive() || is_page(get_page_by_path('elo'))): ?>
 
                                             <?php
-                                            global $cat_id;
-                                            global $cat_name;
-                                            if(!$cat_name){
-                                                $current_cat = get_queried_object();
-                                                $cat_name    = $current_cat->name;
-                                                $cat_id      = $current_cat->term_id;
+                                            if(is_archive()){
+                                                global $current_cat;
+                                                global $cat_name;
+                                                global $cat_id;
                                             }
                                             ?>
                                             <li class="breadcrumb-item">
@@ -83,29 +87,34 @@ global $user_id;
             <?php elseif(is_single() && (get_post_type() == "tournoi")): ?>
 
                 <div class="tournament-heading text-center">
-                    <h3 class="mb-0 t-titre-tournoi">Top <?php echo get_numbers_of_contenders(get_the_ID()); ?> <span class="ico">⚔️</span> <?php the_title(); ?></h3>
+                    <h3 class="mb-0 t-titre-tournoi">Top <?php echo $top_number; ?> <span class="ico">⚔️</span> <?php echo $top_title; ?></h3>
                 </div>
 
             <?php elseif(is_single() && (get_post_type() == "classement")): ?>
 
-                <?php $id_tournament = get_field('id_tournoi_r'); ?>
                 <div class="tournament-heading text-center">
-                    <h3 class="mb-0 t-titre-tournoi">Top <?php echo get_numbers_of_contenders($id_tournament); ?> <span class="ico text-center">🏆</span> <?php echo get_the_title($id_tournament); ?></h3>
-                    <h4 class="mb-0"><?php the_field('question_t', $id_tournament ); ?></h4>
+                    <h3 class="mb-0 t-titre-tournoi">
+                        Top <?php echo $top_number; ?> <span class="ico text-center">🏆</span> <?php echo $top_title; ?>
+                    </h3>
+                    <h4 class="mb-0">
+                        <?php echo $top_question; ?>
+                    </h4>
                 </div>
 
             <?php elseif(is_page(get_page_by_path('elo'))): ?>
 
-                <?php $id_tournament = $_GET['id_tournoi']; ?>
+                <?php $id_tournament = $_GET['id_top']; ?>
                 <div class="tournament-heading text-center">
                     <h3 class="mb-0 t-titre-tournoi">Top <?php echo get_numbers_of_contenders($id_tournament); ?> mondial <span class="ico text-center">🏆</span> <?php echo get_the_title($id_tournament); ?></h3>
+                    <h4 class="mb-0">
+                        <?php the_field('question_t', $id_tournament); ?>
+                    </h4>
                 </div>
 
             <?php elseif(is_archive()): ?>
 
-                <?php $current_cat = get_queried_object(); ?>
                 <div class="tournament-heading text-center">
-                    <h3 class="mb-0 t-titre-tournoi"><span class="ico"><?php the_field('icone_cat', 'term_'.$current_cat->term_id); ?></span> <?php echo $current_cat->name; ?></h3>
+                    <h3 class="mb-0 t-titre-tournoi"><span class="ico"><?php the_field('icone_cat', 'term_'.$cat_id); ?></span> <?php echo $cat_name; ?></h3>
                     <h4 class="mb-0"><?php echo $current_cat->description; ?></h4>
                 </div>
 
@@ -115,11 +124,11 @@ global $user_id;
         <ul class="nav navbar-nav align-items-center">
             <li class="nav-item dropdown dropdown-cart">
                 <a class="nav-link" href="javascript:void(0);" data-toggle="dropdown">
-                    <span class="ico text-center">💎</span>
+                    💎
                     <span class="value-user-stats user-total-vote-value">
                         <?php
-                        $nb_total_votes_user = get_user_data("nb-user-vote", $uuiduser);
-                        echo $nb_total_votes_user;
+                        $nb_user_votes = $user_full_data[0]['nb_user_votes'];
+                        echo $nb_user_votes;
                         ?>
                     </span>
                 </a>
@@ -134,60 +143,53 @@ global $user_id;
                     </li>
                     <li class="scrollable-container media-list">
                         <?php
-                        $list_t_begin = get_user_tournament_list('t-begin', $uuiduser);
-                        foreach($list_t_begin as $t_user) : ?>
+                        $list_t_all = $user_full_data[0]['list_user_ranking_all'];
+                        foreach($list_t_all as $t_user) : ?>
                             <a class="text-body" href="<?php the_permalink($t_user['id_tournoi']); ?>">
-                            <div class="media align-items-center">
-                                <div class="min-t-thumb">
-                                    <?php echo get_the_post_thumbnail($t_user['id_tournoi'], 'thumbnail', array('class'=>'d-block rounded mr-1 img-fluid')); ?>
-                                </div>
-                                <div class="media-body">
-
-                                    <div class="media-heading">
-                                        <h6 class="cart-item-title">
-
-                                                <?php echo get_the_title($t_user['id_tournoi']); ?>
-
-                                        </h6>
-                                        <small class="cart-item-by">
-                                            <?php if($t_user['done'] == true): ?>
-                                                <div class="badge badge-success">Terminé</div>
-                                            <?php else: ?>
-                                                <div class="badge badge-warning">En cours</div>
-                                            <?php endif; ?>
-                                        </small>
+                                <div class="media align-items-center">
+                                    <div class="min-t-thumb">
+                                        <?php echo get_the_post_thumbnail($t_user['id_tournoi'], 'thumbnail', array('class'=>'d-block rounded mr-1 img-fluid')); ?>
                                     </div>
-                                    <h5 class="cart-item-price" id="rank-<?php echo $t_user['id_ranking']; ?>">
-                                        <span class="value-span"><?php echo $t_user['nb_votes']; ?></span> <span class="ico3">💎</span>
-                                    </h5>
+                                    <div class="media-body">
+                                        <div class="media-heading">
+                                            <h6 class="cart-item-title">
+                                                <?php echo get_the_title($t_user['id_tournoi']); ?>
+                                            </h6>
+                                            <small class="cart-item-by">
+                                                <?php if($t_user['done'] == true): ?>
+                                                    <div class="badge badge-success">Terminé</div>
+                                                <?php else: ?>
+                                                    <div class="badge badge-warning">En cours</div>
+                                                <?php endif; ?>
+                                            </small>
+                                        </div>
+                                        <h5 class="cart-item-price" id="rank-<?php echo $t_user['id_ranking']; ?>">
+                                            <span class="value-span"><?php echo $t_user['nb_votes']; ?></span> <span class="ico3">💎</span>
+                                        </h5>
+                                    </div>
                                 </div>
-                            </div>
                             </a>
-
                         <?php endforeach; ?>
                     </li>
-                    <!--
                     <li class="dropdown-menu-footer">
-                        <div class="text-center mb-2 mt-1">
+                        <div class="text-center mb-2">
                             <h6 class="font-weight-bolder mb-0">
-                                Encore <?php echo 5000 - $nb_total_votes_user; ?> 💎 pour passer au niveau 🐓
+                                Encore <?php echo 5000 - $nb_user_votes; ?> 💎 pour passer au niveau 🐓
                             </h6>
                         </div>
-
-                        <a class="btn btn-primary btn-block" href="<?php the_permalink(); ?>">
+                        <a class="btn btn-primary btn-block" href="<?php the_permalink(get_page_by_path('evolution')); ?>">
                             Découvrir les niveaux 👀
                         </a>
                     </li>
-                    -->
                 </ul>
             </li>
             <li class="nav-item dropdown dropdown-notification mr-25">
                 <a class="nav-link" href="javascript:void(0);" data-toggle="dropdown">
-                    <span class="ico text-center">🏆</span>
                     <span class="value-user-stats">
+                        🏆
                         <?php
-                        $list_t_already_done = get_user_tournament_list('t-done', $uuiduser);
-                        echo count($list_t_already_done);
+                        $list_t_done = $user_full_data[0]['list_user_ranking_done'];
+                        echo count($list_t_done);
                         ?>
                     </span>
                 </a>
@@ -196,7 +198,7 @@ global $user_id;
                         <div class="dropdown-header d-flex">
                             <h4 class="notification-title mb-0 mr-auto">🏆</h4>
                             <div class="badge badge-pill badge-light-primary">
-                                <?php if(count($list_t_already_done) >= 1): ?>
+                                <?php if(count($list_t_done) >= 1): ?>
                                     Mes Tops terminés
                                 <?php else: ?>
                                     Aucun Tops terminés <span class="ico">😑</span>
@@ -204,28 +206,26 @@ global $user_id;
                             </div>
                         </div>
                     </li>
-                    <?php if(count($list_t_already_done) >= 1): ?>
+                    <?php if(count($list_t_done) >= 1): ?>
                         <li class="scrollable-container media-list">
                             <?php
-                            $related_tournoi = new WP_Query(array('post_type' => 'tournoi', 'post__in' => $list_t_already_done, 'orderby' => 'date', 'order' => 'ASC', 'posts_per_page' => -1));
-                            while ($related_tournoi->have_posts()) : $related_tournoi->the_post(); ?>
-
-                                <a class="d-flex" href="<?php the_permalink(); ?>">
+                            foreach($list_t_done as $t_user) : ?>
+                                <a class="d-flex" href="<?php the_permalink($t_user['id_ranking']); ?>">
                                     <div class="media d-flex align-items-start">
                                         <div class="media-body">
                                             <p class="media-heading">
                                             <span class="font-weight-bolder">
-                                                Top <?php echo get_numbers_of_contenders(get_the_id()); ?> <span class="ico text-center">⚔️</span> <?php the_title(); ?>
+                                                Top <?php echo $t_user['nb_top']; ?> <span class="ico text-center">⚔️</span> <?php echo get_the_title($t_user['id_tournoi']); ?>
                                             </span>
                                             </p>
                                             <small class="notification-text">
-                                                <?php the_field('question_t'); ?>
+                                                <?php the_field('question_t', $t_user['id_tournoi']); ?>
                                             </small>
                                         </div>
                                         <div class="user_rank">
                                             <div class="avatar-group align-items-center">
                                                 <?php
-                                                $user_top3 = get_user_top($uuiduser, get_the_id());
+                                                $user_top3 = get_user_ranking($t_user['id_ranking']);
                                                 $l=1;
                                                 foreach($user_top3 as $top => $p): ?>
 
@@ -239,8 +239,7 @@ global $user_id;
                                         </div>
                                     </div>
                                 </a>
-
-                            <?php endwhile; ?>
+                            <?php endforeach; ?>
                         </li>
                         <li class="dropdown-menu-footer">
                             <a class="btn btn-primary btn-block" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>?uuid=<?php echo $uuiduser; ?>">
@@ -299,4 +298,3 @@ global $user_id;
     </div>
 </nav>
 <!-- END: Header-->
-<?php wp_reset_query(); wp_reset_postdata(); ?>
