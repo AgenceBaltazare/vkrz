@@ -124,7 +124,7 @@ $user_full_data = get_user_full_data($uuiduser);
         <ul class="nav navbar-nav align-items-center">
             <li class="nav-item dropdown dropdown-cart">
                 <a class="nav-link" href="javascript:void(0);" data-toggle="dropdown">
-                    💎
+                    <span class="ico text-center">💎</span>
                     <span class="value-user-stats user-total-vote-value">
                         <?php
                         $nb_user_votes = $user_full_data[0]['nb_user_votes'];
@@ -171,6 +171,7 @@ $user_full_data = get_user_full_data($uuiduser);
                             </a>
                         <?php endforeach; ?>
                     </li>
+                    <!--
                     <li class="dropdown-menu-footer">
                         <div class="text-center mb-2">
                             <h6 class="font-weight-bolder mb-0">
@@ -181,12 +182,13 @@ $user_full_data = get_user_full_data($uuiduser);
                             Découvrir les niveaux 👀
                         </a>
                     </li>
+                    -->
                 </ul>
             </li>
             <li class="nav-item dropdown dropdown-notification mr-25">
                 <a class="nav-link" href="javascript:void(0);" data-toggle="dropdown">
                     <span class="value-user-stats">
-                        🏆
+                        <span class="ico text-center">🏆</span>
                         <?php
                         $list_t_done = $user_full_data[0]['list_user_ranking_done'];
                         echo count($list_t_done);
