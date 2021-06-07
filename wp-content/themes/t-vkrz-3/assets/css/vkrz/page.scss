@@ -53,3 +53,47 @@
     margin: 40px 0 20px 0;
   }
 }
+
+.apropos{
+  h1{
+    font-weight: 600;
+    font-size: 2.5rem;
+    margin: 0;
+    text-transform: uppercase;
+    img{
+      max-width: 210px;
+      transform: rotate(7deg);
+    }
+  }
+  .infoabout{
+    margin: 0 0 20px;
+    font-size: 13px;
+    color: #a29d9d;
+  }
+  .card-text{
+    h2{
+      background: rgba(255, 255, 255, 0.05);
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 20px;
+      margin: 60px 0 20px 0;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    img{
+      border-radius: 10px;
+      max-width: 100%;
+      height: auto;
+    }
+  }
+  p {
+    line-height: 2rem;
+    font-size: 16px;
+    font-weight: 400;
+  }
+}
+
+.space{
+  display: inline-block;
+  width: 5px;
+}
