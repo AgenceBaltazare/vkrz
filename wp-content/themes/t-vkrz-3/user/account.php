@@ -143,7 +143,7 @@ get_header();
                                                     </th>
                                                     <th class="text-center">
                                                         🌍<br>
-                                                        Top mondial
+                                                        Mondial
                                                     </th>
                                                     <th class="text-center">
                                                         🥷<br>
@@ -154,54 +154,55 @@ get_header();
                                                 <tbody>
                                                 <?php
                                                 foreach($list_r_done as $r_user) : ?>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="media-body">
-                                                                <div class="media-heading">
-                                                                    <h6 class="cart-item-title mb-0">
-                                                                        <a class="text-body" href="<?php the_permalink($r_user['id_tournoi']); ?>">
-                                                                            Top <?php echo $r_user['nb_top']; ?> - <?php echo get_the_title($r_user['id_tournoi']); ?>
-                                                                        </a>
-                                                                    </h6>
-                                                                    <small class="cart-item-by legende">
-                                                                        <?php the_field('question_t', $r_user['id_tournoi']); ?>
-                                                                    </small>
+                                                    <?php if($r_user['nb_votes'] > 0): ?>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="media-body">
+                                                                    <div class="media-heading">
+                                                                        <h6 class="cart-item-title mb-0">
+                                                                            <a class="text-body" href="<?php the_permalink($r_user['id_tournoi']); ?>">
+                                                                                Top <?php echo $r_user['nb_top']; ?> - <?php echo get_the_title($r_user['id_tournoi']); ?>
+                                                                            </a>
+                                                                        </h6>
+                                                                        <small class="cart-item-by legende">
+                                                                            <?php the_field('question_t', $r_user['id_tournoi']); ?>
+                                                                        </small>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </td>
-                                                        <td class="text-center">
-                                                            <?php echo $r_user['nb_votes']; ?> <span class="ico3">💎</span>
-                                                        </td>
-                                                        <td>
-                                                            <?php
-                                                            $user_top3 = get_user_ranking($r_user['id_ranking']);
-                                                            $l=1;
-                                                            foreach($user_top3 as $top => $p): ?>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <?php echo $r_user['nb_votes']; ?> <span class="ico3">💎</span>
+                                                            </td>
+                                                            <td>
+                                                                <?php
+                                                                $user_top3 = get_user_ranking($r_user['id_ranking']);
+                                                                $l=1;
+                                                                foreach($user_top3 as $top => $p): ?>
 
-                                                                <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="<?php echo get_the_title($top); ?>" class="avatartop3 avatar pull-up">
-                                                                    <?php $illu = get_the_post_thumbnail_url($top, 'thumbnail'); ?>
-                                                                    <img src="<?php echo $illu; ?>" alt="Avatar">
-                                                                </div>
+                                                                    <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="<?php echo get_the_title($top); ?>" class="avatartop3 avatar pull-up">
+                                                                        <?php $illu = get_the_post_thumbnail_url($top, 'thumbnail'); ?>
+                                                                        <img src="<?php echo $illu; ?>" alt="Avatar">
+                                                                    </div>
 
-                                                            <?php $l++; if($l==4) break; endforeach; ?>
-                                                        </td>
-                                                        <td class="text-center">
-                                                            <a href="<?php the_permalink($r_user['id_ranking']); ?>" class="scali">
-                                                                <span class="ico">👀</span>
-                                                            </a>
-                                                        </td>
-                                                        <td class="text-center">
-                                                            <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $r_user['id_tournoi']; ?>" class="scali" data-toggle="tooltip" data-placement="right" title="" data-original-title="Des Tops sont identiques au tien">
-                                                                <span class="ico">👀</span>
-                                                            </a>
-                                                        </td>
-                                                        <td class="text-center">
+                                                                    <?php $l++; if($l==4) break; endforeach; ?>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <a href="<?php the_permalink($r_user['id_ranking']); ?>" class="scali">
+                                                                    <span class="ico">👀</span>
+                                                                </a>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $r_user['id_tournoi']; ?>" class="scali" data-toggle="tooltip" data-placement="right" title="" data-original-title="Des Tops sont identiques au tien">
+                                                                    <span class="ico">👀</span>
+                                                                </a>
+                                                            </td>
+                                                            <td class="text-center">
                                                             <span data-toggle="tooltip" data-placement="right" title="" data-original-title="Des Tops sont identiques au tien">
                                                                 <?php echo get_user_percent($uuiduser, $r_user['id_tournoi']); ?>%
                                                             </span>
-                                                        </td>
-                                                    </tr>
-
+                                                            </td>
+                                                        </tr>
+                                                    <?php endif; ?>
                                                 <?php endforeach; ?>
                                                 </tbody>
                                             </table>
