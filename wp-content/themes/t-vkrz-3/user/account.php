@@ -256,7 +256,7 @@ get_header();
                                                         </td>
                                                         <td>
                                                             <a class="btn btn-outline-primary waves-effect mr-1" href="<?php the_permalink($r_user['id_tournoi']); ?>">
-                                                                Finir le Top
+                                                                Terminer
                                                             </a>
                                                         </td>
                                                     </tr>
