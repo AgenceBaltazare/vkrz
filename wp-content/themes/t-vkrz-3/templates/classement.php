@@ -3,9 +3,6 @@
     Template Name: Classement
 */
 global $uuiduser;
-global $top_number;
-global $top_question;
-global $top_title;
 if(isset($_GET['id_top'])){
     $id_tournament  = $_GET['id_top'];
 }
@@ -17,6 +14,9 @@ $rounded            = get_field('c_rounded_t', $id_tournament);
 $illu               = wp_get_attachment_image_src(get_field('cover_t', $id_tournament), 'full');
 $illu_url           = $illu[0];
 get_header();
+$top_title     = get_the_title($id_tournament);
+$top_question  = get_field('question_t', $id_tournament);
+$top_number    = get_numbers_of_contenders($id_tournament);
 ?>
 <div class="app-content content cover" style="background: url(<?php echo $illu_url; ?>) center center no-repeat">
     <div class="content-overlay"></div>

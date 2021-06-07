@@ -197,7 +197,7 @@ get_header();
                                                                 </a>
                                                             </td>
                                                             <td class="text-center">
-                                                            <span data-toggle="tooltip" data-placement="right" title="" data-original-title="Des Tops sont identiques au tien">
+                                                            <span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="<?php echo get_user_percent($uuiduser, $r_user['id_tournoi']); ?>% des Tops sont identiques au tien">
                                                                 <?php echo get_user_percent($uuiduser, $r_user['id_tournoi']); ?>%
                                                             </span>
                                                             </td>
