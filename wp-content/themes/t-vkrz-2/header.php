@@ -65,7 +65,7 @@ wp_reset_query(); wp_reset_postdata();
         <meta property="og:url" content="https://vainkeurz.com/" />
         <meta name="twitter:title" content=" 🔥 VAINKEURZ 👉 Créer et partage tes Tops !" />
         <meta name="twitter:description" content="Meilleur site de la galaxie d'après la Nasa pour faire ses Tops." />
-        <meta name="twitter:image" content="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/logo_twitter.png" />
+        <meta name="twitter:image" content="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/logo_twitter.jpg" />
 
     <?php elseif(is_single() && get_post_type() == "tournoi"): ?>
 

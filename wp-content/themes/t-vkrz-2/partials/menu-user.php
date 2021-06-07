@@ -78,7 +78,7 @@ global $user_id;
             <?php if(is_home()): ?>
 
                 <h3 class="mb-0">🖖 Bienvenue</h3>
-                <h4 class="mb-0">Créer & partage tes propres Tops en enchainant les votes !</h4>
+                <h4 class="mb-0">Créer & partage tes propres Tops en enchaînant les votes !</h4>
 
             <?php elseif(is_single() && (get_post_type() == "tournoi")): ?>
 
@@ -291,7 +291,7 @@ global $user_id;
                             <span class="ico">🎉</span> S'inscrire
                         </a>
                     <?php endif; ?>
-                    
+
                 </div>
             </li>
         </ul>
