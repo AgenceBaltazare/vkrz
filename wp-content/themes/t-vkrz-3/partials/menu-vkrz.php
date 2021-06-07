@@ -56,7 +56,7 @@
             <li class="nav-item">
                 <div class="rs-menu">
                     <div class="btn-group justify-content-center share-t" role="group">
-                        <a href="https://discord.gg/PhjrFtwx" class="btn btn-icon btn-outline-primary" target="_blank">
+                        <a href="https://discord.gg/y5J4Ykr6RN" class="btn btn-icon btn-outline-primary" target="_blank">
                             <i class="fab fa-discord"></i>
                         </a>
                         <a href="https://twitter.com/Vainkeurz" target="_blank" class="btn btn-icon btn-outline-primary">

@@ -74,7 +74,7 @@ $list_t_already_done = $user_full_data[0]['user_tops_done_ids'];
                                     En savoir plus sur VKRZ
                                 </a>
                                 -->
-                                <a href="https://discord.gg/PhjrFtwx" class="btn btn-outline-primary waves-effect mr-1" target="_blank">
+                                <a href="https://discord.gg/y5J4Ykr6RN" class="btn btn-outline-primary waves-effect mr-1" target="_blank">
                                     Discord
                                 </a>
                                 <a href="https://twitter.com/Vainkeurz" class="btn btn-outline-primary waves-effect mr-1" target="_blank">
