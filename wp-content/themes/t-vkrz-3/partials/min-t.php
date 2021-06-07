@@ -66,7 +66,7 @@ if($user_ranking->have_posts()){
                 <?php elseif($state == "begin"): ?>
                     <div class="spoun">
                         ⚔️
-                        <h5>Terminer mon Top</h5>
+                        <h5>Terminer</h5>
                     </div>
                 <?php else: ?>
                     <div class="spoun">

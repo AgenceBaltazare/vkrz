@@ -1,75 +1,978 @@
-/*
-Error: wrong number of arguments (1 for 3) for `rgb'
-        on line 196 of global.scss
-        from line 3 of main.scss
+.text-rose {
+  color: #f4167f !important; }
 
-Backtrace:
-global.scss:196
-main.scss:3
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/script/tree/funcall.rb:311:in `reformat_argument_error'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/script/tree/funcall.rb:158:in `rescue in _perform'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/script/tree/funcall.rb:127:in `_perform'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/script/tree/node.rb:50:in `perform'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:398:in `visit_prop'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `visit'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/stack.rb:79:in `block in with_base'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/stack.rb:135:in `with_frame'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/stack.rb:79:in `with_base'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `visit'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:440:in `block (2 levels) in visit_rule'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:440:in `map'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:440:in `block in visit_rule'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:438:in `visit_rule'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `visit'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/stack.rb:79:in `block in with_base'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/stack.rb:135:in `with_frame'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/stack.rb:79:in `with_base'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `visit'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:325:in `block (2 levels) in visit_import'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:325:in `map'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:325:in `block in visit_import'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/stack.rb:88:in `block in with_import'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/stack.rb:135:in `with_frame'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/stack.rb:88:in `with_import'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:322:in `visit_import'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `visit'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/stack.rb:79:in `block in with_base'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/stack.rb:135:in `with_frame'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/stack.rb:79:in `with_base'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `visit'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:52:in `map'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:52:in `visit_children'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:167:in `block in visit_children'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:166:in `visit_children'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `block in visit'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:186:in `visit_root'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `visit'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:157:in `visit'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:10:in `visit'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/root_node.rb:36:in `css_tree'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/engine.rb:389:in `_render_with_sourcemap'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/engine.rb:307:in `render_with_sourcemap'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:462:in `update_stylesheet'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:209:in `each'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/plugin.rb:82:in `update_stylesheets'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/exec/sass_scss.rb:338:in `watch_or_update'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/exec/sass_scss.rb:51:in `process_result'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/exec/base.rb:50:in `parse'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/exec/base.rb:18:in `parse!'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/bin/scss:13:in `<top (required)>'
-/usr/local/bin/scss:23:in `load'
-/usr/local/bin/scss:23:in `<main>'
-*/
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Error: wrong number of arguments (1 for 3) for `rgb'\A         on line 196 of global.scss\A         from line 3 of main.scss"; }
+.big-cat .heading-cat h2 {
+  font-weight: 900;
+  letter-spacing: 2px;
+  margin: 20px 0 5px; }
+
+@-webkit-keyframes rotating /* Safari and Chrome */ {
+  from {
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  to {
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg); } }
+@keyframes rotating {
+  from {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  to {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg); } }
+.rotating {
+  display: inline-block;
+  -webkit-animation: rotating 2s linear infinite;
+  -moz-animation: rotating 2s linear infinite;
+  -ms-animation: rotating 2s linear infinite;
+  -o-animation: rotating 2s linear infinite;
+  animation: rotating 2s linear infinite; }
+
+body {
+  height: auto !important; }
+
+.dark-layout .swiper-slide {
+  background-color: transparent !important; }
+
+.dark-layout .card {
+  background-color: rgba(97, 84, 167, 0.1); }
+
+.swiper-button-next, .swiper-button-prev {
+  width: 40px;
+  margin: 0;
+  background: transparent;
+  top: -26px;
+  height: 100%;
+  right: 0;
+  justify-content: flex-end; }
+  .swiper-button-next:after, .swiper-button-prev:after {
+    border-radius: 0;
+    background-color: #312673;
+    box-shadow: none !important;
+    background-size: 24px !important;
+    height: 40px !important;
+    width: 40px !important;
+    padding: 0 !important;
+    position: relative;
+    right: 0; }
+
+.swiper-button-prev {
+  background: transparent;
+  width: 40px;
+  justify-content: flex-start;
+  left: 0; }
+
+.swiper-button-disabled {
+  display: none; }
+
+.main-menu.menu-dark .navigation > li > a {
+  margin: 0 15px 0 10px; }
+
+.vertical-layout.vertical-menu-modern.menu-collapsed .main-menu:not(.expanded) .navigation-header {
+  margin-left: 1.8rem !important; }
+
+.demo-inline-spacing {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column; }
+
+.header-navbar .navbar-container ul.navbar-nav li.dropdown-cart .media-heading {
+  width: auto; }
+
+.dark-layout .dropdown-menu .dropdown-item:hover, .dark-layout .dropdown-menu .dropdown-item:focus {
+  background: transparent; }
+
+.dark-layout .table {
+  background-color: rgba(97, 84, 167, 0.1); }
+
+.dark-layout .table:not(.table-dark):not(.table-light) thead:not(.thead-dark) th, .dark-layout .table:not(.table-dark):not(.table-light) tfoot:not(.thead-dark) th {
+  background-color: transparent;
+  border: none;
+  color: #fff; }
+
+.cover {
+  background-size: cover !important; }
+
+.contain {
+  background-size: contain !important; }
+
+.dark-layout {
+  background: linear-gradient(35deg, #0c0a27 40%, #230b36 100%) fixed; }
+  .dark-layout body {
+    background: transparent;
+    font-family: 'Lato', sans-serif !important; }
+  .dark-layout .main-menu {
+    background: linear-gradient(150deg, #0c0a27, #471867, #0c0a27, #230b36, #0c0a27);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite; }
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%; }
+  50% {
+    background-position: 100% 50%; }
+  100% {
+    background-position: 0% 50%; } }
+  .dark-layout .main-menu-content .navigation-main {
+    background-color: #0a0921; }
+  .dark-layout .navbar-dark {
+    background: rgba(97, 84, 167, 0.1);
+    transition: all 0.5s ease-in-out; }
+
+.dark-layout .main-menu-content .navigation-main {
+  background-color: transparent; }
+
+html .content.app-content {
+  padding: calc(2rem + 3.45rem + 1.3rem) 2rem 10rem;
+  min-height: 100vh; }
+
+html .content.app-content .content-overlay {
+  position: absolute;
+  opacity: 0.85;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #0a0921;
+  z-index: 0; }
+
+.opfull {
+  background: #13122f !important; }
+
+.ico {
+  width: 30px;
+  display: inline-block; }
+  .ico img {
+    max-width: 22px; }
+
+.ico3 {
+  width: 20px;
+  display: inline-block; }
+
+.ico4 {
+  font-size: 30px; }
+
+.breadcrumbs-top a {
+  color: #fff;
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -ms-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  display: inline-block;
+  position: relative;
+  left: 0; }
+  .breadcrumbs-top a .ico {
+    width: 20px;
+    display: inline-block; }
+  .breadcrumbs-top a:hover {
+    left: 3px;
+    color: #fff; }
+
+.ico2 {
+  width: 45px;
+  display: inline-block; }
+
+.card-text {
+  font-size: 15px; }
+
+.scaler {
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -ms-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out; }
+  .scaler:hover {
+    transform: scale(1.05); }
+    .scaler:hover .voile {
+      transform: scale(1.05); }
+
+.swiper-container {
+  padding-top: 15px; }
+
+html .content {
+  min-height: 100%; }
+
+.heading-cat a {
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -ms-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  display: block;
+  position: relative;
+  left: 0; }
+  .heading-cat a:hover {
+    left: 10px; }
+
+.t-titre-tournoi {
+  font-size: 18px;
+  color: #fff !important; }
+
+.t-question {
+  color: #f4167f !important;
+  font-size: 22px; }
+
+.lele2 {
+  width: 0;
+  animation-name: appear2;
+  overflow: hidden;
+  animation: appear2 3s infinite ease-in-out; }
+
+@keyframes appear2 {
+  20%, 100% {
+    width: 0; }
+  0% {
+    width: 0; }
+  5% {
+    width: auto; } }
+.lele1 {
+  width: auto;
+  overflow: hidden;
+  animation: appear 3s infinite ease-in-out; }
+
+@keyframes appear {
+  20%, 100% {
+    width: auto; }
+  0% {
+    width: auto; }
+  5% {
+    width: 0; } }
+.ico-size-2 {
+  font-size: 20px; }
+
+.icomax {
+  font-size: 60px; }
+
+.legende {
+  color: #6a686d; }
+
+.main-menu {
+  position: relative; }
+
+.voile {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: #0c0a27;
+  opacity: 0.45; }
+
+.divider {
+  height: 1px;
+  width: 80%;
+  margin: 20px 0;
+  background: rgba(255, 255, 255, 0.4);
+  display: block; }
+
+.main-menu .main-menu-content {
+  height: calc(100% - 220px) !important;
+  position: relative; }
+
+.avatar img {
+  object-fit: cover; }
+
+.ico-reverse {
+  transform: scaleX(-1); }
+
+.disapear {
+  transition: all .1s ease-in-out;
+  opacity: 0 !important; }
+
+.space {
+  display: inline-block;
+  width: 10px; }
+
+.intro-mobile {
+  display: none;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  margin: 0 0 30px 0;
+  padding: 30px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05); }
+  .intro-mobile h4 {
+    font-size: 14px;
+    margin: 10px 0 0 0; }
+
+.hide-lg {
+  display: none; }
+
+.nav-toggle {
+  width: 100%;
+  margin-right: 15px; }
+  .nav-toggle a {
+    border: 1px solid;
+    width: 100%;
+    display: flex;
+    padding: 10px !important;
+    color: #7367ef;
+    text-transform: uppercase;
+    text-align: center;
+    border-radius: 5px; }
+    .nav-toggle a svg {
+      margin-right: 10px; }
+
+.main-menu {
+  border-right: 10px solid #14122f; }
+  .main-menu .navbar-header {
+    height: auto; }
+    .main-menu .navbar-header .navbar-brand {
+      position: relative; }
+    .main-menu .navbar-header .badge-beta {
+      position: absolute;
+      bottom: 0;
+      text-align: center;
+      width: 100%; }
+      .main-menu .navbar-header .badge-beta .badge {
+        background: #f4167f !important;
+        color: #fff;
+        font-weight: bold;
+        text-transform: uppercase; }
+
+.menu-collapsed .brand-text {
+  display: block !important; }
+  .menu-collapsed .brand-text img {
+    max-width: 60px;
+    height: auto;
+    position: relative;
+    right: 30px; }
+.menu-collapsed .rs-menu {
+  display: none; }
+.menu-collapsed .badge-beta {
+  display: none; }
+.menu-collapsed .expanded img {
+  max-width: 100%;
+  height: auto;
+  position: inherit;
+  right: unset; }
+.menu-collapsed .expanded .rs-menu {
+  display: block; }
+
+.bookmark-wrapper h4 {
+  font-size: 12px;
+  margin-top: 5px; }
+
+.home .bookmark-wrapper h4 {
+  margin-left: 10px; }
+
+.min-t-thumb {
+  width: 60px;
+  margin-right: 10px; }
+
+.value-user-stats {
+  font-size: 1.07rem;
+  font-weight: 500;
+  line-height: 1.2; }
+
+.user-niveau {
+  width: 11px;
+  height: 11px;
+  position: absolute;
+  right: 0;
+  bottom: 0; }
+
+.avatar .avatar-picture {
+  display: block;
+  height: 40px;
+  width: 40px;
+  background-size: cover;
+  background-color: #5e50a6;
+  border-radius: 50%; }
+
+.main-menu.menu-dark .navigation .navigation-header span {
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.45); }
+
+.dark-layout .main-menu-content .navigation-main li a {
+  color: #fff !important; }
+
+.dark-layout .main-menu-content .navigation-main li a.btn-outline-primary {
+  border: 1px solid #7367f0 !important;
+  background-color: transparent !important;
+  color: #7367f0 !important;
+  text-align: center !important; }
+
+.dark-layout .main-menu-content .navigation-main .nav-item a.btn-outline-primary i, .dark-layout .main-menu-content .navigation-main .nav-item a.btn-outline-primary svg {
+  color: #7367f0 !important;
+  margin: 0 auto;
+  text-align: center !important; }
+
+.rs-menu {
+  margin: 0 15px 0 10px;
+  padding: 10px 15px 10px 15px; }
+
+.single-tournoi .tournoi-content {
+  text-align: center; }
+  .single-tournoi .tournoi-content .title-contender {
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 15px;
+    margin: 30px 0 0 0; }
+
+.stepbar {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 10px;
+  background: #f4167f;
+  width: 0;
+  transition: all 1s ease-in-out;
+  z-index: 999999; }
+  .stepbar h5 {
+    text-align: center;
+    color: #000;
+    text-transform: uppercase;
+    font-size: 20px; }
+    .stepbar h5 span {
+      font-weight: normal;
+      font-size: 15px;
+      text-transform: lowercase !important;
+      color: #333 !important; }
+  .stepbar .stepbar-content {
+    position: relative; }
+    .stepbar .stepbar-content span {
+      position: absolute;
+      right: 0;
+      top: -15px;
+      color: #f4177f;
+      font-size: 12px;
+      height: 15px; }
+
+.cover_contenders {
+  text-align: center; }
+  .cover_contenders .cov-illu {
+    margin: 0 auto;
+    min-height: 440px;
+    border-radius: 10px;
+    background-size: cover !important;
+    margin-bottom: 30px; }
+
+.rounded .cov-illu, .rounded img {
+  border-radius: 50%;
+  max-width: 100%;
+  height: auto; }
+.rounded .contenders-containers .link-contender .contender_zone img {
+  border-radius: 50%;
+  max-width: 100%;
+  height: auto; }
+
+.contenders-containers .link-contender {
+  max-width: 500px;
+  position: relative;
+  transition: all 0.2s ease-in; }
+  .contenders-containers .link-contender:hover {
+    transform: scale(1.03); }
+  .contenders-containers .link-contender .contender_zone {
+    height: 100%;
+    width: 100%;
+    display: block; }
+    .contenders-containers .link-contender .contender_zone img {
+      border-radius: 10px;
+      max-width: 100%;
+      height: auto; }
+.contenders-containers .link-contender_1 .contender_zone {
+  cursor: url("../../images/vkrz/cursor_l.png"), pointer !important; }
+.contenders-containers .link-contender_2 .contender_zone {
+  cursor: url("../../images/vkrz/cursor_r.png"), pointer !important; }
+
+.min-tournoi {
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -ms-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  padding: 0; }
+  .min-tournoi .cov-illu {
+    min-height: 120px;
+    border-radius: 5px 5px 0 0;
+    position: relative; }
+    .min-tournoi .cov-illu .badge {
+      position: absolute;
+      right: 5px;
+      top: 5px;
+      z-index: 2; }
+    .min-tournoi .cov-illu .voile {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      opacity: 0.2;
+      background: #0c0a27;
+      background: linear-gradient(200deg, #0c0a27 0%, rgba(12, 10, 39, 0) 100%);
+      transition: all .2s ease-in-out;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      z-index: 1; }
+      .min-tournoi .cov-illu .voile .spoun {
+        display: none;
+        text-align: center; }
+        .min-tournoi .cov-illu .voile .spoun i {
+          font-size: 40px;
+          color: #fff; }
+        .min-tournoi .cov-illu .voile .spoun h5 {
+          font-weight: 700;
+          text-transform: uppercase;
+          color: #fff;
+          margin-top: 10px;
+          text-align: center; }
+  .min-tournoi:hover .cov-illu .badge {
+    display: none; }
+  .min-tournoi:hover .cov-illu .voile {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    opacity: 0.9;
+    background: #0c0a27; }
+    .min-tournoi:hover .cov-illu .voile .spoun {
+      display: block; }
+  .min-tournoi .card-title {
+    margin: 0; }
+  .min-tournoi .card-body {
+    padding: 10px; }
+    .min-tournoi .card-body p {
+      margin-bottom: 5px; }
+    .min-tournoi .card-body h4 {
+      font-size: 15px; }
+
+.display_battle {
+  overflow: hidden;
+  padding: 20px 0 40px 0;
+  margin-top: -10px; }
+
+.current_rank .demo-inline-spacing {
+  justify-content: center; }
+  .current_rank .demo-inline-spacing h3 {
+    margin: 0; }
+  .current_rank .demo-inline-spacing .avatar-group {
+    margin: 0; }
+
+.nav-tournament {
+  position: fixed;
+  bottom: 20px;
+  right: 0;
+  left: 85px; }
+  .nav-tournament .btn-outline-primary:hover {
+    background: #7367f0 !important;
+    color: #fff !important; }
+
+.share-t a {
+  display: inline-block;
+  min-width: 40px;
+  text-align: center; }
+
+.share-label {
+  display: inline-block;
+  color: #7367f0; }
+
+.list-share {
+  flex-wrap: wrap; }
+  .list-share div {
+    margin-bottom: 5px; }
+  .list-share a {
+    width: 45px;
+    height: 45px;
+    display: inline-block;
+    line-height: 43px;
+    padding: 0 !important;
+    font-size: 20px; }
+
+.name h5 {
+  text-transform: uppercase;
+  text-align: center; }
+  .name h5 span {
+    color: #f4167f; }
+
+.illu {
+  text-align: center; }
+  .illu img {
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto; }
+  .illu .cov-illu {
+    min-height: 200px;
+    background-size: cover !important; }
+
+.avatar-picture-max {
+  display: block;
+  height: 100px;
+  width: 100px;
+  background-size: cover;
+  background-color: #5e50a6;
+  border-radius: 50%; }
+
+.avatartop3 {
+  width: 30px;
+  height: 30px;
+  transform: scale(1);
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -ms-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out; }
+  .avatartop3 img {
+    width: 100%;
+    height: auto; }
+  .avatartop3:hover {
+    transform: scale(2); }
+
+.auth-inner .brand-text {
+  max-width: 150px;
+  margin-right: 10px; }
+
+.dark-layout body.user-page {
+  background: linear-gradient(50deg, #0c0a27, #471867, #0c0a27, #0c0a27);
+  background-size: 400% 400%;
+  animation: gradient 60s ease infinite; }
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%; }
+  50% {
+    background-position: 100% 50%; }
+  100% {
+    background-position: 0% 50%; } }
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s !important;
+  -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+  -webkit-text-size-adjust: 100% !important; }
+
+.wppb-user-forms {
+  max-width: 550px; }
+  .wppb-user-forms ul {
+    margin: 0;
+    padding: 0; }
+    .wppb-user-forms ul li {
+      list-style-type: none;
+      display: block;
+      margin-bottom: 20px; }
+  .wppb-user-forms input[type="text"], .wppb-user-forms input[type="email"], .wppb-user-forms input[type="password"] {
+    background: transparent !important;
+    border: 2px solid rgba(255, 255, 255, 0.2) !important;
+    padding: 20px 15px !important;
+    font-size: 15px !important;
+    border-radius: 10px !important;
+    color: #fff !important;
+    transition: all .2s ease-in-out; }
+    .wppb-user-forms input[type="text"]::placeholder, .wppb-user-forms input[type="email"]::placeholder, .wppb-user-forms input[type="password"]::placeholder {
+      color: rgba(255, 255, 255, 0.8); }
+    .wppb-user-forms input[type="text"]:valid, .wppb-user-forms input[type="email"]:valid, .wppb-user-forms input[type="password"]:valid {
+      border: 2px solid #fff !important; }
+    .wppb-user-forms input[type="text"]:focus, .wppb-user-forms input[type="email"]:focus, .wppb-user-forms input[type="password"]:focus {
+      border: 2px solid #f4167f !important;
+      transition: background-color 5000s ease-in-out 0s !important;
+      -webkit-box-shadow: none !important;
+      background: transparent !important;
+      outline: 0; }
+
+.wppb-send-credentials-checkbox, #select_user_to_edit_form, .wppb-description-delimiter, .file-type, .file-name, .login-remember {
+  display: none !important; }
+
+.wppb-avatar {
+  display: flex !important;
+  align-items: center; }
+  .wppb-avatar label {
+    color: #fff;
+    font-size: 16px;
+    margin-right: 20px;
+    margin-left: 5px;
+    width: 100% !important; }
+  .wppb-avatar input {
+    width: 100% !important; }
+  .wppb-avatar .wppb-attachment-link img {
+    border-radius: 50%; }
+  .wppb-avatar .upload-field-details {
+    text-align: center; }
+
+.wppb-remove-upload {
+  cursor: pointer !important;
+  display: block;
+  color: #5e50a6;
+  position: relative;
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -ms-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  left: 0; }
+  .wppb-remove-upload:hover {
+    left: 5px; }
+
+.annonce {
+  padding: 0 3px;
+  font-size: 15px; }
+
+.gif2, .gif3, .gif4 {
+  display: none; }
+
+.bigup h1 {
+  font-size: 3rem; }
+
+.alert-account {
+  color: #fff !important;
+  background: linear-gradient(90deg, rgba(244, 22, 127, 0.11), rgba(244, 22, 127, 0.2));
+  background-size: 400% 400%;
+  animation: gradient2 10s ease infinite; }
+@keyframes gradient2 {
+  0% {
+    background-position: 0% 50%; }
+  50% {
+    background-position: 100% 50%; }
+  100% {
+    background-position: 0% 50%; } }
+.t-white {
+  color: #fff; }
+
+.scali {
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -ms-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  transform: scale(1);
+  display: inline-block; }
+  .scali:hover {
+    transform: scale(2); }
+
+.btn-outline-white {
+  border-color: #fff; }
+  .btn-outline-white:hover {
+    background: #fff; }
+
+.form-submit .submit, #wppb-submit {
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+  padding: 10px 20px;
+  line-height: 1.5;
+  text-align: center;
+  word-break: break-word;
+  white-space: normal;
+  border: none;
+  cursor: pointer;
+  transition: 0.35s all ease-out;
+  box-shadow: 0 1px 3px #b5bacf26;
+  border-color: #7367f0 !important;
+  background-color: #7367f0 !important;
+  color: #fff !important;
+  width: auto;
+  min-height: 50px;
+  font-size: 16px;
+  font-weight: 500;
+  display: block;
+  vertical-align: middle;
+  user-select: none;
+  border-radius: 0.358rem;
+  -webkit-appearance: button; }
+  .form-submit .submit:hover, #wppb-submit:hover {
+    box-shadow: 0 8px 25px -8px #7367f0; }
+
+.wppb-success {
+  color: #ffffff;
+  background: #ffd2e71c;
+  padding: 15px 20px; }
+
+.auth-bg {
+  background: transparent !important; }
+
+.wppb-error {
+  color: #ffffff;
+  background: rgba(244, 29, 27, 0.39);
+  padding: 15px 20px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  max-width: 550px; }
+  .wppb-error a {
+    display: none; }
+
+.ico-master {
+  font-size: 85px; }
+
+.plus {
+  font-size: 25px;
+  margin: 0 10px;
+  opacity: 0.2; }
+
+.plan-price span {
+  display: flex;
+  align-items: center; }
+.plan-price .ico {
+  font-size: 20px !important;
+  margin-left: 5px; }
+
+.dodo .basic-pricing {
+  background: linear-gradient(150deg, #0c0a27, #471867, #0c0a27, #230b36, #0c0a27);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite; }
+.dodo .ico-masterclass {
+  font-size: 185px; }
+
+.pricing-card .annual-plan .plan-price span {
+  font-size: 2.5rem;
+  line-height: 0.8; }
+
+.basic-pricing .card-text {
+  font-size: 15px;
+  opacity: 0.5; }
+
+.pricing-badge {
+  position: absolute;
+  right: 10px;
+  top: 10px; }
+
+.blog-detail-wrapper h1 {
+  color: #f4167f; }
+.blog-detail-wrapper h2 {
+  font-size: 20px;
+  margin: 40px 0 20px 0; }
+
+.apropos h1 {
+  font-weight: 600;
+  font-size: 2.5rem;
+  margin: 0;
+  text-transform: uppercase; }
+  .apropos h1 img {
+    max-width: 210px;
+    transform: rotate(7deg); }
+.apropos .infoabout {
+  margin: 0 0 20px;
+  font-size: 13px;
+  color: #a29d9d; }
+.apropos .card-text h2 {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 20px;
+  margin: 60px 0 20px 0;
+  text-transform: uppercase;
+  font-weight: 600; }
+.apropos .card-text img {
+  border-radius: 10px;
+  max-width: 100%;
+  height: auto; }
+.apropos p {
+  line-height: 2rem;
+  font-size: 16px;
+  font-weight: 400; }
+
+.space {
+  display: inline-block;
+  width: 5px; }
+
+.card-footer {
+  padding-right: 0;
+  padding-left: 0;
+  padding-bottom: 0; }
+
+@media (min-width: 1200px) {
+  .col-xxl-2 {
+    flex: 0 0 16.66667%;
+    max-width: 16.66667%; } }
+@media (max-width: 1700px) {
+  .basic-pricing .pricing-basic-value {
+    font-size: 1.5rem !important;
+    line-height: 0.8; }
+  .basic-pricing .card-text {
+    font-size: 15px;
+    opacity: 0.5; }
+
+  .plus {
+    font-size: 20px;
+    margin: 0 5px; } }
+@media (max-width: 768px) {
+  .intro-mobile {
+    display: block; }
+
+  .display_current_user_rank {
+    display: none; }
+
+  .hide-xs {
+    display: none; }
+
+  .hide-lg {
+    display: block; }
+
+  .nav-tournament {
+    left: 0;
+    flex-direction: column; }
+    .nav-tournament .btng {
+      margin-bottom: 10px; }
+
+  .auth-wrapper {
+    padding-top: 70px; }
+
+  .user-avatar-section .content-avatar-name {
+    flex-direction: column;
+    text-align: center; }
+    .user-avatar-section .content-avatar-name h1 {
+      margin-top: 15px; }
+    .user-avatar-section .content-avatar-name .ml-2, .user-avatar-section .content-avatar-name .mr-1 {
+      margin: 0 !important; }
+    .user-avatar-section .content-avatar-name .btn {
+      margin-bottom: 10px !important; }
+
+  html body .app-content {
+    padding: calc(2rem - 0.8rem + 7.45rem + 1.3rem) calc(2rem - 0.8rem) 0 calc(2rem - 0.8rem) !important; }
+
+  .bookmark-wrapper {
+    display: none !important; }
+
+  .min-tournoi .cov-illu .badge {
+    position: absolute;
+    left: 5px;
+    right: auto;
+    top: 5px;
+    z-index: 9; }
+
+  .logo {
+    max-width: 60px !important;
+    transition: all 0.3s ease-in-out; }
+
+  .opfull .logo {
+    max-width: 60px !important; }
+  .opfull h3, .opfull h4 {
+    display: none; }
+  .opfull .navbar-container {
+    flex-wrap: wrap;
+    justify-content: end !important; }
+
+  .cat-min .card-header {
+    text-align: center;
+    flex-direction: column;
+    padding: 20px 10px 12px 10px; }
+    .cat-min .card-header .ico2 {
+      display: block;
+      margin: 0 auto 10px; }
+
+  .heading-cat small {
+    display: block;
+    margin: 5px 0 0 0; } }
+@media (max-height: 800px) {
+  .contenders-containers .link-contender {
+    max-width: 350px;
+    position: relative;
+    transition: all 0.2s ease-in; } }
+
+/*# sourceMappingURL=main.css.map */
