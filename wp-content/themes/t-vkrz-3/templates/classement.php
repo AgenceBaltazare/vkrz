@@ -3,6 +3,9 @@
     Template Name: Classement
 */
 global $uuiduser;
+global $top_number;
+global $top_question;
+global $top_title;
 if(isset($_GET['id_top'])){
     $id_tournament  = $_GET['id_top'];
 }
@@ -19,6 +22,18 @@ get_header();
     <div class="content-overlay"></div>
     <div class="content-wrapper">
         <div class="content-body mt-2">
+
+            <div class="intro-mobile">
+                <div class="tournament-heading text-center">
+                    <h3 class="mb-0 t-titre-tournoi">
+                        Top <?php echo $top_number; ?> <span class="ico text-center">🏆</span> <?php echo $top_title; ?>
+                    </h3>
+                    <h4 class="mb-0">
+                        <?php echo $top_question; ?>
+                    </h4>
+                </div>
+            </div>
+
             <div class="classement">
                 <div class="container-fluid">
 

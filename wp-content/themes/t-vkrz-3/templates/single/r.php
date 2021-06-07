@@ -23,7 +23,8 @@ foreach(get_the_terms($id_tournament, 'categorie' ) as $cat ) {
 }
 ?>
 <!-- BEGIN: Content-->
-<div class="app-content content cover" xmlns="http://www.w3.org/1999/html">
+<div class="app-content content cover" style="background: url(<?php echo $illu_url; ?>) center center no-repeat">
+    <div class="content-overlay"></div>
     <div class="content-wrapper">
     <div class="content-body">
 
