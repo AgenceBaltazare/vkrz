@@ -23,7 +23,7 @@
 
 <!-- Scripts -->
 <script>
-    const vkrz_ajaxurl  = "https://vainkeurz.com/wp-admin/admin-ajax.php";
+    const vkrz_ajaxurl  = "<?= admin_url('admin-ajax.php') ?>";
 </script>
 
 <?php wp_footer(); ?>

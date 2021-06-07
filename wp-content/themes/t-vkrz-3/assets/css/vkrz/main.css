@@ -466,6 +466,10 @@ html .content {
   border-radius: 50%;
   max-width: 100%;
   height: auto; }
+.rounded .contenders-containers .link-contender .contender_zone img {
+  border-radius: 50%;
+  max-width: 100%;
+  height: auto; }
 
 .contenders-containers .link-contender {
   max-width: 500px;
@@ -876,6 +880,11 @@ input:-webkit-autofill:active {
 .space {
   display: inline-block;
   width: 5px; }
+
+.card-footer {
+  padding-right: 0;
+  padding-left: 0;
+  padding-bottom: 0; }
 
 @media (min-width: 1200px) {
   .col-xxl-2 {

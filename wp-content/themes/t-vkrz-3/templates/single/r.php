@@ -84,6 +84,7 @@ foreach(get_the_terms($id_tournament, 'categorie' ) as $cat ) {
                                         </div>
                                         <?php $i++; endforeach; ?>
                                     </div>
+
                                 </div>
                             </div>
 
@@ -102,7 +103,7 @@ foreach(get_the_terms($id_tournament, 'categorie' ) as $cat ) {
                                                 </h6>
                                                 <div class="btn-group justify-content-center share-t" role="group">
                                                     <?php
-                                                    $url_ranking      = get_permalink($id_ranking);
+                                                    $url_ranking = get_permalink($id_ranking);
                                                     ?>
                                                     <a href="https://twitter.com/intent/tweet?text=Voici mon TOP <?php echo $top_number; ?> <?php echo $top_title; ?>&via=vainkeurz&hashtags=VKRZ&url=<?php echo $url_ranking; ?>" target="_blank" title="Tweet" class="btn btn-icon btn-outline-primary">
                                                         <i class="fab fa-twitter"></i>
@@ -175,16 +176,18 @@ foreach(get_the_terms($id_tournament, 'categorie' ) as $cat ) {
 
                                     <?php endif; ?>
 
-                                    <div class="card">
+                                    <div class="card text-center">
                                         <div class="card-body">
-                                            <h4 class="card-title">
-                                                <span class="ico">🧐</span> Classement mondial
-                                            </h4>
-                                            <h6 class="card-subtitle text-muted mb-1">
-                                                Tu peux comparer tes choix à ceux des autres humains.
-                                            </h6>
-                                            <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_tournament; ?>" class="btn btn-outline-primary waves-effect">
-                                                Voir le classement
+                                            <h2 class="font-weight-bolder">
+                                                <?php echo get_user_percent($uuiduser, $id_tournament); ?>% <small>des</small> <span class="ico4">🥷</span>
+                                            </h2>
+                                            <p class="card-text legende">
+                                                ont le même classement que toi !
+                                            </p>
+                                        </div>
+                                        <div class="card-footer">
+                                            <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_tournament; ?>" class="btn btn-outline-primary waves-effect mb-1">
+                                                Voir le classement mondial
                                             </a>
                                         </div>
                                     </div>

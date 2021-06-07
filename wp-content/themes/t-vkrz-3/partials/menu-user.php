@@ -52,7 +52,7 @@ $user_full_data = get_user_full_data($uuiduser);
                                                 </a>
                                             </li>
 
-                                        <?php elseif(!is_author() && is_archive() || is_page(get_page_by_path('elo'))): ?>
+                                        <?php elseif(!is_author() && is_archive()): ?>
 
                                             <?php
                                             if(is_archive()){
@@ -62,6 +62,20 @@ $user_full_data = get_user_full_data($uuiduser);
                                             }
                                             ?>
                                             <li class="breadcrumb-item">
+                                                <a href="<?php echo get_category_link($cat_id); ?>">
+                                                    <span class="ico"><?php the_field('icone_cat', 'term_'.$cat_id); ?></span> <span class="menu-title text-truncate"><?php echo $cat_name; ?></span>
+                                                </a>
+                                            </li>
+
+                                        <?php elseif(is_page(get_page_by_path('elo'))): ?>
+
+                                            <li class="breadcrumb-item">
+                                                <?php
+                                                foreach(get_the_terms($id_tournament, 'categorie') as $cat ) {
+                                                    $cat_id     = $cat->term_id;
+                                                    $cat_name   = $cat->name;
+                                                }
+                                                ?>
                                                 <a href="<?php echo get_category_link($cat_id); ?>">
                                                     <span class="ico"><?php the_field('icone_cat', 'term_'.$cat_id); ?></span> <span class="menu-title text-truncate"><?php echo $cat_name; ?></span>
                                                 </a>
@@ -111,7 +125,7 @@ $user_full_data = get_user_full_data($uuiduser);
                     </h4>
                 </div>
 
-            <?php elseif(is_archive()): ?>
+            <?php elseif(!is_author() && is_archive()): ?>
 
                 <div class="tournament-heading text-center">
                     <h3 class="mb-0 t-titre-tournoi"><span class="ico"><?php the_field('icone_cat', 'term_'.$cat_id); ?></span> <?php echo $cat_name; ?></h3>
