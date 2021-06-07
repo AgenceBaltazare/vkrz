@@ -127,7 +127,7 @@ get_header();
                                                 <tr>
                                                     <th class="">
                                                         ⚔️<br>
-                                                        Tous les Tops terminés
+                                                        Les Tops terminés
                                                     </th>
                                                     <th class="text-center">
                                                         💎<br>
@@ -142,8 +142,12 @@ get_header();
                                                         Complet
                                                     </th>
                                                     <th class="text-center">
+                                                        🌍<br>
+                                                        Top mondial
+                                                    </th>
+                                                    <th class="text-center">
                                                         🥷<br>
-                                                        Identique
+                                                        Identiques
                                                     </th>
                                                 </tr>
                                                 </thead>
@@ -156,7 +160,7 @@ get_header();
                                                                 <div class="media-heading">
                                                                     <h6 class="cart-item-title mb-0">
                                                                         <a class="text-body" href="<?php the_permalink($r_user['id_tournoi']); ?>">
-                                                                            <?php echo get_the_id(); ?> Top <?php echo $r_user['nb_top']; ?> - <?php echo get_the_title($r_user['id_tournoi']); ?>
+                                                                            Top <?php echo $r_user['nb_top']; ?> - <?php echo get_the_title($r_user['id_tournoi']); ?>
                                                                         </a>
                                                                     </h6>
                                                                     <small class="cart-item-by legende">
@@ -187,7 +191,12 @@ get_header();
                                                             </a>
                                                         </td>
                                                         <td class="text-center">
-                                                            <span class="" data-toggle="tooltip" data-placement="left" title="" data-original-title="Des Tops sont identiques au tien">
+                                                            <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $r_user['id_tournoi']; ?>" class="scali" data-toggle="tooltip" data-placement="right" title="" data-original-title="Des Tops sont identiques au tien">
+                                                                <span class="ico">👀</span>
+                                                            </a>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <span data-toggle="tooltip" data-placement="right" title="" data-original-title="Des Tops sont identiques au tien">
                                                                 <?php echo get_user_percent($uuiduser, $r_user['id_tournoi']); ?>%
                                                             </span>
                                                         </td>
@@ -213,7 +222,7 @@ get_header();
                                                 <tr>
                                                     <th class="">
                                                         ⚔️<br>
-                                                        Tous les Tops à finir
+                                                        Les Tops à finir
                                                     </th>
                                                     <th class="text-center">
                                                         💎<br>
