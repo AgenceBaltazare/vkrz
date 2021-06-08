@@ -124,14 +124,14 @@ function get_user_percent($uuiduser, $id_tournament){
             $current_user_top3       = get_user_ranking($current_user_id_ranking);
         }
 
-        array_push($list_ranking_of_t, array(
-            "id_ranking"    => get_the_id(),
-            "uuid_user"     => get_field('uuid_user_r')
-        ));
+        if(get_field('uuid_user_r') != $uuiduser) {
+            array_push($list_ranking_of_t, array(
+                "id_ranking" => get_the_id(),
+                "uuid_user" => get_field('uuid_user_r')
+            ));
+        }
 
     endwhile;
-
-
 
     foreach($list_ranking_of_t as $rank){
 

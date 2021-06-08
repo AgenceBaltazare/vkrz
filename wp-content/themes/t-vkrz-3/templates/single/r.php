@@ -180,10 +180,10 @@ foreach(get_the_terms($id_tournament, 'categorie' ) as $cat ) {
                                     <div class="card text-center">
                                         <div class="card-body">
                                             <h2 class="font-weight-bolder">
-                                                <?php echo get_user_percent($uuiduser, $id_tournament); ?>% <small>des</small> <span class="ico4">🥷</span>
+                                                <?php echo get_user_percent(get_field('uuid_user_r'), $id_tournament); ?>% <small>des</small> <span class="ico4">🥷</span>
                                             </h2>
                                             <p class="card-text legende">
-                                                ont le même classement que toi !
+                                                ont le même classement !
                                             </p>
                                         </div>
                                         <div class="card-footer">
