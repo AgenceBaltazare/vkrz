@@ -109,7 +109,7 @@ get_header();
                                     </div>
                                     <div class="user-level">
                                         <span class="icomax">
-                                            <?php echo get_user_level($uuiduser, $nb_user_votes); ?>
+                                            <?php echo $info_user_level['level_ico']; ?>
                                         </span>
                                     </div>
                                     <p class="card-text legende">Niveau actuel</p>

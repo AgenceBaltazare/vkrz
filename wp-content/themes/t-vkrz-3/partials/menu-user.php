@@ -8,6 +8,7 @@ global $top_number;
 global $top_title;
 global $user_full_data;
 global $nb_user_votes;
+global $info_user_level;
 $user_full_data  = get_user_full_data($uuiduser);
 $nb_user_votes   = $user_full_data[0]['nb_user_votes'];
 $info_user_level = get_user_level($uuiduser, $user_id, $nb_user_votes);

@@ -69,20 +69,20 @@ $list_t_already_done = $user_full_data[0]['user_tops_done_ids'];
                                     <br><br>
                                     Ensuite, tu peux comparer tes classements à ceux de tes amis - si tu en as bien sûr. Et puis si tu n'en pas, 🤗 rejoins notre Discord.
                                 </p>
-                                <!--
-                                <a href="<?php the_permalink(); ?>" class="btn btn-primary waves-effect">
-                                    En savoir plus sur VKRZ
+                                <a href="<?php the_permalink(104853); ?>" class="btn btn-primary waves-effect">
+                                    Découvrir l'histoire de VAINKEURZ
                                 </a>
-                                -->
-                                <a href="https://discord.gg/y5J4Ykr6RN" class="btn btn-outline-primary waves-effect mr-1" target="_blank">
-                                    Discord
-                                </a>
-                                <a href="https://twitter.com/Vainkeurz" class="btn btn-outline-primary waves-effect mr-1" target="_blank">
-                                    Twitter
-                                </a>
-                                <a href="https://www.facebook.com/vainkeurz" class="btn btn-outline-primary waves-effect mr-1" target="_blank">
-                                    Facebook
-                                </a>
+                                <div class="mt-1">
+                                    <a href="https://discord.gg/y5J4Ykr6RN" class="btn btn-outline-primary waves-effect mr-1" target="_blank">
+                                        Discord
+                                    </a>
+                                    <a href="https://twitter.com/Vainkeurz" class="btn btn-outline-primary waves-effect mr-1" target="_blank">
+                                        Twitter
+                                    </a>
+                                    <a href="https://www.facebook.com/vainkeurz" class="btn btn-outline-primary waves-effect mr-1" target="_blank">
+                                        Facebook
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
