@@ -1,13 +1,11 @@
 <?php
-global $uuiduser;
-global $current_user;
-global $user_id;
-global $champion_id;
 $champion        = get_user_by( 'slug', get_query_var( 'author_name' ) );
 $champion_id     = $champion->ID;
+get_header();
 $uuidchampion    = get_field('uuiduser_user', 'user_'.$champion_id);
 $user_full_data  = get_user_full_data($uuidchampion);
-get_header();
+$nb_champion_votes   = $user_full_data[0]['nb_user_votes'];
+$info_champion_level = get_user_level($uuidchampion, $champion_id, $nb_champion_votes);
 ?>
 <div class="app-content content">
     <div class="content-wrapper">
@@ -47,10 +45,7 @@ get_header();
                                     <span class="ico4">💎</span>
                                 </div>
                                 <h2 class="font-weight-bolder">
-                                    <?php
-                                    $nb_user_votes = $user_full_data[0]['nb_user_votes'];
-                                    echo $nb_user_votes;
-                                    ?>
+                                    <?php echo $nb_champion_votes; ?>
                                 </h2>
                                 <p class="card-text legende">Votes</p>
                             </div>
@@ -75,9 +70,16 @@ get_header();
                     <div class="col-sm-2">
                         <div class="card text-center">
                             <div class="card-body">
+                                <div class="pricing-badge text-right">
+                                    <div class="badge badge-pill badge-light-primary">
+                                        <a href="<?php the_permalink(get_page_by_path('evolution')); ?>">
+                                            ?
+                                        </a>
+                                    </div>
+                                </div>
                                 <div class="user-level">
                                     <span class="icomax">
-                                        🐣
+                                        <?php echo $info_champion_level['level_ico']; ?>
                                     </span>
                                 </div>
                                 <p class="card-text legende">Niveau actuel</p>

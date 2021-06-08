@@ -34,7 +34,7 @@
 .basic-pricing{
   .card-text {
     font-size: 15px;
-    opacity: 0.5;
+    color: #9b989f;
   }
 }
 
@@ -102,4 +102,15 @@
   padding-right: 0;
   padding-left: 0;
   padding-bottom: 0;
+}
+
+.evolution{
+  h1{
+    color: $rose;
+    font-weight: 600;
+    font-size: 2.5rem;
+    margin: 0;
+    text-transform: uppercase;
+    text-align: center;
+  }
 }

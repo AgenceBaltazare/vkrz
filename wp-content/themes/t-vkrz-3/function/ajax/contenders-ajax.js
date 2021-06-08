@@ -64,6 +64,14 @@ $(document).ready(function ($) {
                     var current_user_total_votes = parseInt($('.user-total-vote-value').html());
                     $('.user-total-vote-value').html(current_user_total_votes + 1);
 
+                    // -1 au décompte du prochain niveau
+                    var current_decompte_vote = parseInt($('.decompte_vote').html());
+                    $new_decompte_vote_val = current_decompte_vote - 1;
+                    if($new_decompte_vote_val <= 0){
+                        $new_decompte_vote_val = 0;
+                    }
+                    $('.decompte_vote').html($new_decompte_vote_val);
+
                     $('.display_users_votes h6').replaceWith(data.uservotes_html);
                     $('.current_rank').html(data.user_ranking_html);
 

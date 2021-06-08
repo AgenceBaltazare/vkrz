@@ -26,7 +26,7 @@
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
             <li class="navigation-header">
-                <span data-i18n="">Catégorie de Tops</span> <i data-feather="more-horizontal"></i>
+                <span data-i18n="">Catégories de Tops</span> <i data-feather="more-horizontal"></i>
             </li>
             <?php
             $cat_t = get_terms( array(
@@ -44,6 +44,16 @@
             <?php endforeach; ?>
             <li class="navigation-header">
                 <span>Vainkeurz</span> <i data-feather="more-horizontal"></i>
+            </li>
+            <li class="nav-item">
+                <a class="d-flex align-items-center" href="<?php the_permalink(104853); ?>">
+                    <span class="ico">🦙</span> <span class="menu-title text-truncate">A propos</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="d-flex align-items-center" href="<?php the_permalink(get_page_by_path('evolutio')); ?>">
+                    <span class="ico">🚀</span> <span class="menu-title text-truncate">Les niveaux</span>
+                </a>
             </li>
             <li class="nav-item">
                 <a class="d-flex align-items-center" href="https://baltazare1.typeform.com/to/j9n8JU" target="_blank">

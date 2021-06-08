@@ -326,6 +326,14 @@ html .content {
     .nav-toggle a svg {
       margin-right: 10px; }
 
+.pricing-card .badge.badge-light-primary {
+  background-color: rgba(244, 22, 127, 0.11);
+  color: #f4167f !important; }
+.pricing-card .card.dodocard {
+  border: 2px solid #7367ef; }
+.pricing-card .card.popular {
+  border: 2px solid #f4167f; }
+
 .main-menu {
   border-right: 10px solid #14122f; }
   .main-menu .navbar-header {
@@ -835,7 +843,7 @@ input:-webkit-autofill:active {
 
 .basic-pricing .card-text {
   font-size: 15px;
-  opacity: 0.5; }
+  color: #9b989f; }
 
 .pricing-badge {
   position: absolute;
@@ -886,6 +894,14 @@ input:-webkit-autofill:active {
   padding-left: 0;
   padding-bottom: 0; }
 
+.evolution h1 {
+  color: #f4167f;
+  font-weight: 600;
+  font-size: 2.5rem;
+  margin: 0;
+  text-transform: uppercase;
+  text-align: center; }
+
 @media (min-width: 1200px) {
   .col-xxl-2 {
     flex: 0 0 16.66667%;
@@ -895,8 +911,7 @@ input:-webkit-autofill:active {
     font-size: 1.5rem !important;
     line-height: 0.8; }
   .basic-pricing .card-text {
-    font-size: 15px;
-    opacity: 0.5; }
+    font-size: 15px; }
 
   .plus {
     font-size: 20px;

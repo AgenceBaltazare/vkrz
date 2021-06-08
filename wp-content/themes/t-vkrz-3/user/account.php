@@ -100,10 +100,17 @@ get_header();
                         <div class="col-sm-2">
                             <div class="card text-center">
                                 <div class="card-body">
+                                    <div class="pricing-badge text-right">
+                                        <div class="badge badge-pill badge-light-primary">
+                                            <a href="<?php the_permalink(get_page_by_path('evolution')); ?>">
+                                                ?
+                                            </a>
+                                        </div>
+                                    </div>
                                     <div class="user-level">
-                                    <span class="icomax">
-                                        🐣
-                                    </span>
+                                        <span class="icomax">
+                                            <?php echo get_user_level($uuiduser, $nb_user_votes); ?>
+                                        </span>
                                     </div>
                                     <p class="card-text legende">Niveau actuel</p>
                                 </div>
@@ -112,12 +119,23 @@ get_header();
                     </div>
                 </section>
 
+                <?php
+                $list_r_done = $user_full_data[0]['list_user_ranking_done'];
+                $list_r_begin = $user_full_data[0]['list_user_ranking_begin'];
+                ?>
                 <!-- profile info section -->
                 <section id="profile-info">
                     <div class="row">
-                        <div class="col-md-7">
+                        <?php
+                        if($list_r_begin){
+                            $classcol = 7;
+                        }
+                        else{
+                            $classcol = 12;
+                        }
+                        ?>
+                        <div class="col-md-<?php echo $classcol; ?>">
                             <?php
-                            $list_r_done = $user_full_data[0]['list_user_ranking_done'];
                             if($list_r_done) : ?>
                                 <div class="card">
                                     <div class="card-body p-0">
@@ -213,7 +231,6 @@ get_header();
                         </div>
                         <div class="col-md-5">
                             <?php
-                            $list_r_begin = $user_full_data[0]['list_user_ranking_begin'];
                             if($list_r_begin): ?>
                                 <div class="card">
                                     <div class="card-body p-0">

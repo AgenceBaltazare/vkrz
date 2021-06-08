@@ -8,7 +8,9 @@ global $top_number;
 global $top_title;
 global $user_full_data;
 global $nb_user_votes;
-$user_full_data = get_user_full_data($uuiduser);
+$user_full_data  = get_user_full_data($uuiduser);
+$nb_user_votes   = $user_full_data[0]['nb_user_votes'];
+$info_user_level = get_user_level($uuiduser, $user_id, $nb_user_votes);
 ?>
 <nav class="header-navbar navbar navbar-expand-lg align-items-center floating-nav navbar-dark navbar-shadow menu-user">
     <div class="navbar-container d-flex content align-items-center justify-content-between">
@@ -140,10 +142,7 @@ $user_full_data = get_user_full_data($uuiduser);
                 <a class="nav-link" href="javascript:void(0);" data-toggle="dropdown">
                     <span class="ico text-center">💎</span>
                     <span class="value-user-stats user-total-vote-value">
-                        <?php
-                        $nb_user_votes = $user_full_data[0]['nb_user_votes'];
-                        echo $nb_user_votes;
-                        ?>
+                        <?php echo $nb_user_votes; ?>
                     </span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
@@ -185,18 +184,20 @@ $user_full_data = get_user_full_data($uuiduser);
                             </a>
                         <?php endforeach; ?>
                     </li>
-                    <!--
                     <li class="dropdown-menu-footer">
                         <div class="text-center mb-2">
                             <h6 class="font-weight-bolder mb-0">
-                                Encore <?php echo 5000 - $nb_user_votes; ?> 💎 pour passer au niveau 🐓
+                                <?php if(is_user_logged_in()): ?>
+                                    Encore <span class="decompte_vote"><?php echo $info_user_level['votes_restant']; ?></span> 💎 pour passer au niveau <?php echo $info_user_level['next_level']; ?>
+                                <?php else: ?>
+                                    Il faut avoir un compte pour monter en niveau 🚀
+                                <?php endif; ?>
                             </h6>
                         </div>
                         <a class="btn btn-primary btn-block" href="<?php the_permalink(get_page_by_path('evolution')); ?>">
-                            Découvrir les niveaux 👀
+                            Découvre les niveaux 👀
                         </a>
                     </li>
-                    -->
                 </ul>
             </li>
             <li class="nav-item dropdown dropdown-notification mr-25">
@@ -278,7 +279,7 @@ $user_full_data = get_user_full_data($uuiduser);
                         ?>
                         <span class="avatar-picture" style="background-image: url(<?php echo $avatar_url; ?>);"></span>
                         <span class="user-niveau">
-                            🐣
+                            <?php echo $info_user_level['level_ico']; ?>
                         </span>
                     </span>
                 </a>
