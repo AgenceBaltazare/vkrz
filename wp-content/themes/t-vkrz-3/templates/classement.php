@@ -107,7 +107,6 @@ $top_number    = get_numbers_of_contenders($id_tournament);
                                     $list_ranking_of_t      = array();
                                     $date_of_t              = 0;
                                     $current_user_have_r    = false;
-                                    $count_same_ranking     = 0;
                                     $all_ranking_of_t       = new WP_Query(array(
                                         'post_type' => 'classement',
                                         'orderby' => 'date',
@@ -151,13 +150,6 @@ $top_number    = get_numbers_of_contenders($id_tournament);
                                         ));
 
                                     $c++; endwhile;
-                                    foreach($list_ranking_of_t as $rank){
-
-                                        if(get_user_ranking($rank['id_ranking']) == $current_user_top3){
-                                            $count_same_ranking++;
-                                        }
-
-                                    }
                                     $nb_tops = $all_ranking_of_t->post_count;
                                     ?>
                                     <div class="row">
@@ -217,7 +209,7 @@ $top_number    = get_numbers_of_contenders($id_tournament);
                                     <div class="card text-center">
                                         <div class="card-body">
                                             <h2 class="font-weight-bolder">
-                                                <?php echo round($count_same_ranking * 100 / $nb_tops); ?>% <small>des</small> <span class="ico4">🥷</span>
+                                                <?php echo get_user_percent($uuiduser, $id_tournament); ?>% <small>des</small> <span class="ico4">🥷</span>
                                             </h2>
                                             <p class="card-text legende">
                                                 ont le même classement que toi !
