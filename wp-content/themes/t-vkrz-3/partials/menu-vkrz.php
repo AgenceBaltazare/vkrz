@@ -51,7 +51,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="d-flex align-items-center" href="<?php the_permalink(get_page_by_path('evolutio')); ?>">
+                <a class="d-flex align-items-center" href="<?php the_permalink(get_page_by_path('evolution')); ?>">
                     <span class="ico">🚀</span> <span class="menu-title text-truncate">Les niveaux</span>
                 </a>
             </li>
