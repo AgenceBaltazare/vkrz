@@ -209,10 +209,10 @@ $top_number    = get_numbers_of_contenders($id_tournament);
                                     <div class="card text-center">
                                         <div class="card-body">
                                             <h2 class="font-weight-bolder">
-                                                <?php echo get_user_percent($uuiduser, $id_tournament); ?>% <small>des</small> <span class="ico4">🥷</span>
+                                                <?php echo get_user_percent($uuiduser, $id_tournament); ?>% <small>des Tops</small>
                                             </h2>
                                             <p class="card-text legende">
-                                                ont le même classement que toi !
+                                                sont identiques au tient !
                                             </p>
                                         </div>
                                     </div>

@@ -44,7 +44,7 @@ else{
                                             <h3>Niveau 0</h3>
                                             <?php if(is_user_logged_in()): ?>
                                                 <p class="card-text eh2">
-                                                    Maintenant que tu fais parti des champions, il te reste pour éclore et passer au niveau 1.
+                                                    Maintenant que tu fais parti de l'équipage, il te faut 50 💎 pour éclore et passer au niveau 1.
                                                 </p>
                                             <?php else: ?>
                                                 <p class="card-text eh2">
@@ -260,39 +260,6 @@ else{
                                                     <div class="need">
                                                         <span class="pricing-basic-value font-weight-bolder text-primary">100 000<span class="ico">💎</span></span>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-6 offset-sm-3 mt-3">
-                                <div class="dodo">
-                                    <div class="card dodocard basic-pricing text-center">
-                                        <div class="card-body">
-                                            <div class="pricing-trial-content d-flex justify-content-between align-items-center">
-                                                <div class="text-center text-md-left mt-2">
-                                                    <h3 class="text-primary">Qui est le BOSS de VAINKEURZ ?</h3>
-                                                    <h5 class="mt-2">
-                                                        C'est le champion avec le plus de 💎
-                                                        <br> <br>
-                                                        Il est le Dodo - le seul et l'unique - le champion tout en haut
-                                                    </h5>
-                                                    <button class="btn btn-primary mt-2">
-                                                        A découvrir prochainement
-                                                    </button>
-                                                    <div class="mt-2">
-                                                        <small>
-                                                            Si tu es chaud en dev et souhaite contribuer, <a href="https://discord.gg/VKt2GsG43N" target="_blank">n'hésite pas à nous rejoindre ici !</a>
-                                                        </small>
-                                                    </div>
-                                                </div>
-
-                                                <div class="dodo-img">
-                                                    <span class="ico-masterclass">
-                                                        🦤
-                                                    </span>
                                                 </div>
                                             </div>
                                         </div>
