@@ -16,7 +16,7 @@
                                         Curieux d'en savoir plus <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/vainkeurz-text.png" alt="" class="img-fluid"> ?
                                     </h1>
                                     <h2 class="infoabout">
-                                        ⏲ <span class="space"></span> Temps de lecture estimé : <b>je vais pas te mentir, c'est dense</b>
+                                        ⏲ <span class="space"></span> Temps de lecture estimé : <b>je vais pas te mentir c'est dense - mais tu peux arriver au bout 💪</b>
                                     </h2>
                                     <div class="card-text mb-2 mt-2">
                                         <?php while (have_posts()) : the_post(); ?>
