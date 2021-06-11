@@ -214,6 +214,9 @@ $top_number    = get_numbers_of_contenders($id_tournament);
                                             <p class="card-text legende">
                                                 sont identiques au tient !
                                             </p>
+                                            <a href="<?php the_permalink($current_user_id_ranking); ?>" class="btn btn-outline-primary waves-effect">
+                                                Mon classement
+                                            </a>
                                         </div>
                                     </div>
                                 <?php endif; ?>
@@ -254,9 +257,6 @@ $top_number    = get_numbers_of_contenders($id_tournament);
                                             <div class="card-footer">
                                                 <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-idranking="<?php echo $current_user_id_ranking; ?>" id="confirm_delete" href="#" class="mr-1 btn btn-outline-primary waves-effect">
                                                     Recommencer
-                                                </a>
-                                                <a href="<?php the_permalink($current_user_id_ranking); ?>" class="btn btn-outline-primary waves-effect">
-                                                    Mon classement
                                                 </a>
                                             </div>
                                         </div>

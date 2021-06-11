@@ -337,6 +337,9 @@ html .content {
 .t-rose {
   color: #f4167f; }
 
+.classement .profile-suggestion .card-footer {
+  text-align: center !important; }
+
 .main-menu {
   border-right: 10px solid #14122f; }
   .main-menu .navbar-header {
@@ -1018,5 +1021,11 @@ input:-webkit-autofill:active {
     max-width: 350px;
     position: relative;
     transition: all 0.2s ease-in; } }
+@media only screen and (max-width: 955px) and (min-width: 768px) {
+  .classement .infoelo .col-sm-6 .card-body {
+    padding: 5px 0px !important; } }
+@media only screen and (max-width: 1212px) and (min-width: 1200px) {
+  .classement .infoelo .col-sm-6 .card-body {
+    padding: 5px 0px !important; } }
 
 /*# sourceMappingURL=main.css.map */
