@@ -183,7 +183,7 @@ foreach(get_the_terms($id_tournament, 'categorie' ) as $cat ) {
                                                 <?php echo get_user_percent(get_field('uuid_user_r'), $id_tournament); ?>% <small>des Tops</small>
                                             </h2>
                                             <p class="card-text legende">
-                                                sont identiques au tient !
+                                                sont identiques à celui-ci !
                                             </p>
                                         </div>
                                         <div class="card-footer">

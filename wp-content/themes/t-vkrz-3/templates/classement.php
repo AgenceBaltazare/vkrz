@@ -212,7 +212,7 @@ $top_number    = get_numbers_of_contenders($id_tournament);
                                                 <?php echo get_user_percent($uuiduser, $id_tournament); ?>% <small>des Tops</small>
                                             </h2>
                                             <p class="card-text legende">
-                                                sont identiques au tient !
+                                                sont identiques à celui-ci !
                                             </p>
                                         </div>
                                     </div>
