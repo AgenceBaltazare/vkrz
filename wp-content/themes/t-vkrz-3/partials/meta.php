@@ -4,13 +4,13 @@
         🔥 VAINKEURZ 👉 Créer et partage tes Tops !
     </title>
     <meta name="description" content="Meilleur site de la galaxie d'après la NASA pour faire ses Tops." />
-    <meta property="og:image" content="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/share/share_vkrz.jpg" />
+    <meta property="og:image" content="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/share/share_vkrz_banner.jpg" />
     <meta property="og:title" content=" 🔥 VAINKEURZ 👉 Créer et partage tes Tops !" />
     <meta property="og:description" content="Meilleur site de la galaxie d'après la NASA pour faire ses Tops." />
     <meta property="og:url" content="https://vainkeurz.com/" />
     <meta name="twitter:title" content=" 🔥 VAINKEURZ 👉 Créer et partage tes Tops !" />
     <meta name="twitter:description" content="Meilleur site de la galaxie d'après la NASA pour faire ses Tops." />
-    <meta name="twitter:image" content="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/share/share_vkrz.jpg" />
+    <meta name="twitter:image" content="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/share/share_vkrz_banner.jpg" />
 
 <?php elseif(is_single() && get_post_type() == "tournoi"): ?>
 
