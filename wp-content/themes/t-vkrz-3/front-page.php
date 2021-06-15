@@ -73,7 +73,7 @@ $list_t_already_done = $user_full_data[0]['user_tops_done_ids'];
                                     Découvrir l'histoire de VAINKEURZ
                                 </a>
                                 <div class="mt-1">
-                                    <a href="https://discord.gg/y5J4Ykr6RN" class="btn btn-outline-primary waves-effect mr-1" target="_blank">
+                                    <a href="https://discord.gg/w882sUnrhE" class="btn btn-outline-primary waves-effect mr-1" target="_blank">
                                         Discord
                                     </a>
                                     <a href="https://twitter.com/Vainkeurz" class="btn btn-outline-primary waves-effect mr-1" target="_blank">
