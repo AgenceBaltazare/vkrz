@@ -210,7 +210,7 @@ get_header();
                                                                 </a>
                                                             </td>
                                                             <td class="text-center">
-                                                                <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $r_user['id_tournoi']; ?>" class="scali" data-toggle="tooltip" data-placement="right" title="" data-original-title="Des Tops sont identiques au tien">
+                                                                <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $r_user['id_tournoi']; ?>" class="scali">
                                                                     <span class="ico">👀</span>
                                                                 </a>
                                                             </td>
