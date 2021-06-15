@@ -64,9 +64,7 @@ $top_datas     = get_tournoi_data($id_tournament, $uuiduser);
                                         <div class="card">
                                             <div class="card-header">
                                                 <h4 class="card-title pt-1 pb-1">
-                                                    Liste de tous les Tops <?php echo $top_number; ?> <span class="ico text-center">🏆</span> <?php echo $top_title; ?>
-                                                    <br><br>
-                                                    <span class="t-rose"><?php echo $top_question; ?></span>
+                                                    Depuis le <?php echo $top_datas[0]['date_of_t']; ?>, <?php echo $top_datas[0]['nb_votes']; ?>💎 ont générés <?php echo $top_datas[0]['nb_tops']; ?> 🏆
                                                 </h4>
                                             </div>
                                             <div class="table-responsive">
@@ -74,7 +72,7 @@ $top_datas     = get_tournoi_data($id_tournament, $uuiduser);
                                                     <thead>
                                                     <tr>
                                                         <th>
-                                                            Depuis le <?php echo $top_datas[0]['date_of_t']; ?>, <?php echo $top_datas[0]['nb_votes']; ?>💎 ont générés <?php echo $top_datas[0]['nb_tops']; ?> 🏆
+                                                            Champions
                                                         </th>
                                                         <th>Podium</th>
                                                         <th>Actions</th>
