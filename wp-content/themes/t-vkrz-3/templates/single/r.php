@@ -97,12 +97,31 @@ foreach(get_the_terms($id_tournament, 'categorie' ) as $cat ) {
                                         <div class="card">
                                             <div class="card-body">
                                                 <h4 class="card-title">
+                                                    <span class="ico">🔮</span> Rejoins l'élite des champions
+                                                </h4>
+                                                <h6 class="card-subtitle text-muted mb-1">
+                                                    Propose tes tops et confronte les autres champions !
+                                                </h6>
+                                                <div class="btn-group justify-content-center share-t w-100" role="group">
+                                                    <a href="https://discord.gg/w882sUnrhE" title="Rejoinds notre discord" target="_blank" class="btn btn-icon btn-outline-primary">
+                                                        <i class="fab fa-discord fa-lg"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    <?php endif; ?>
+
+                                    <?php if(get_field('uuid_user_r') == $uuiduser): ?>
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h4 class="card-title">
                                                     <span class="ico">😎</span> Partage ton classement
                                                 </h4>
                                                 <h6 class="card-subtitle text-muted mb-1">
                                                     Il est temps de revendiquer et assumer ses choix !
                                                 </h6>
-                                                <div class="btn-group justify-content-center share-t" role="group">
+                                                <div class="btn-group justify-content-center share-t w-100" role="group">
                                                     <?php
                                                     $url_ranking = get_permalink($id_ranking);
                                                     ?>
@@ -129,7 +148,7 @@ foreach(get_the_terms($id_tournament, 'categorie' ) as $cat ) {
                                             <h6 class="card-subtitle text-muted mb-1">
                                                 Plus on est de fou plus on .. TOP !
                                             </h6>
-                                            <div class="btn-group justify-content-center share-t" role="group">
+                                            <div class="btn-group justify-content-center share-t w-100" role="group">
                                                 <a href="https://twitter.com/intent/tweet?text=J'ai fait mon TOP <?php echo $top_number; ?> <?php echo $top_title; ?> maintenant c'est à vous 🤪🤪 &via=vainkeurz&hashtags=VKRZ&url=<?php echo $top_url; ?>" target="_blank" title="Tweet" class="btn btn-icon btn-outline-primary">
                                                     <i class="fab fa-twitter"></i>
                                                 </a>
@@ -145,7 +164,7 @@ foreach(get_the_terms($id_tournament, 'categorie' ) as $cat ) {
 
                                     <?php if(get_field('uuid_user_r') == $uuiduser): ?>
 
-                                        <div class="card">
+                                        <div class="card text-center">
                                             <div class="card-body">
                                                 <h4 class="card-title">
                                                     <span class="ico">🙃</span> Tu t'attendais pas à ça ?
@@ -153,9 +172,11 @@ foreach(get_the_terms($id_tournament, 'categorie' ) as $cat ) {
                                                 <h6 class="card-subtitle text-muted mb-1">
                                                     T'inquiète on te laisse refaire le Top
                                                 </h6>
-                                                <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-idranking="<?php echo $id_ranking; ?>" id="confirm_delete" href="#" class="btn btn-outline-primary waves-effect">
-                                                    Recommencer
-                                                </a>
+                                            </div>
+                                            <div class="card-footer">
+                                            <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-idranking="<?php echo $id_ranking; ?>" id="confirm_delete" href="#" class="btn btn-outline-primary waves-effect mb-1">
+                                                Recommencer
+                                            </a>
                                             </div>
                                         </div>
 
@@ -186,7 +207,7 @@ foreach(get_the_terms($id_tournament, 'categorie' ) as $cat ) {
                                                 sont identiques à celui-ci !
                                             </p>
                                         </div>
-                                        <div class="card-footer">
+                                        <div class="card-footer" id="clt">
                                             <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_tournament; ?>" class="btn btn-outline-primary waves-effect mb-1">
                                                 Voir le classement mondial
                                             </a>

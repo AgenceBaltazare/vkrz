@@ -8,7 +8,7 @@
             <a class="ml-25" href="mailto:vainkeurz@gmail.com">Nous contacter</a>
         </span>
         <span class="float-md-right d-none d-md-block">
-            <a href="https://discord.gg/PhjrFtwx" class="btn-footer" target="_blank">
+            <a href="https://discord.gg/w882sUnrhE" class="btn-footer" target="_blank">
                 Discord
             </a>
             <span class="space"></span>

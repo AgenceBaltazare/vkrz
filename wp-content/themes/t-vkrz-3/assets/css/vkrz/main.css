@@ -337,6 +337,16 @@ html .content {
 .t-rose {
   color: #f4167f; }
 
+.classement .profile-suggestion .card-footer {
+  text-align: center !important; }
+
+#clt {
+  padding-left: 1.5rem !important;
+  padding-right: 1.5rem !important; }
+
+#vkrz-intro .col-md-5 .mt-1 a {
+  margin-top: 1rem; }
+
 .main-menu {
   border-right: 10px solid #14122f; }
   .main-menu .navbar-header {
@@ -818,6 +828,9 @@ input:-webkit-autofill:active {
   .wppb-error a {
     display: none; }
 
+.app-user-view .btns-alert .btn-primary {
+  margin-top: 0.71rem !important; }
+
 .ico-master {
   font-size: 85px; }
 
@@ -968,14 +981,21 @@ input:-webkit-autofill:active {
     max-width: 60px !important;
     transition: all 0.3s ease-in-out; }
 
-  .opfull .logo {
-    max-width: 60px !important; }
-  .opfull h3, .opfull h4 {
-    display: none; }
-  .opfull .navbar-container {
-    flex-wrap: wrap;
-    justify-content: end !important; }
+  /*
+  .opfull{
+    .logo{
+      max-width: 60px !important;
+    }
+    h3, h4{
+      display: none;
+    }
+    .navbar-container{
+      flex-wrap: wrap;
+      justify-content: end !important;
+    }
+  }
 
+   */
   .cat-min .card-header {
     text-align: center;
     flex-direction: column;
@@ -986,11 +1006,33 @@ input:-webkit-autofill:active {
 
   .heading-cat small {
     display: block;
-    margin: 5px 0 0 0; } }
+    margin: 5px 0 0 0; }
+
+  .main-menu .main-menu-content {
+    height: calc(100% - 310px) !important; }
+
+  .vertical-layout .header-navbar .navbar-container ul.navbar-nav li.dropdown .dropdown-menu {
+    top: 80px !important;
+    margin-top: 0px !important; }
+
+  .apropos .card-text h2 {
+    text-align: center; }
+
+  .header-navbar .navbar-container ul.navbar-nav li .media-list {
+    max-height: 22rem; } }
+@media (max-width: 425px) {
+  .app-user-view .btns-alert .btn-outline-white {
+    margin-right: 0px !important; } }
 @media (max-height: 800px) {
   .contenders-containers .link-contender {
     max-width: 350px;
     position: relative;
     transition: all 0.2s ease-in; } }
+@media only screen and (max-width: 955px) and (min-width: 768px) {
+  .classement .infoelo .col-sm-6 .card-body {
+    padding: 5px 0px !important; } }
+@media only screen and (max-width: 1212px) and (min-width: 1200px) {
+  .classement .infoelo .col-sm-6 .card-body {
+    padding: 5px 0px !important; } }
 
 /*# sourceMappingURL=main.css.map */
