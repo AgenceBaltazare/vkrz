@@ -84,6 +84,20 @@ $info_user_level = get_user_level($uuiduser, $user_id, $nb_user_votes);
                                                 </a>
                                             </li>
 
+                                        <?php elseif(is_page(get_page_by_path('liste-des-tops'))): ?>
+
+                                            <li class="breadcrumb-item">
+                                                <?php
+                                                foreach(get_the_terms($id_tournament, 'categorie') as $cat ) {
+                                                    $cat_id     = $cat->term_id;
+                                                    $cat_name   = $cat->name;
+                                                }
+                                                ?>
+                                                <a href="<?php echo get_category_link($cat_id); ?>">
+                                                    <span class="ico"><?php the_field('icone_cat', 'term_'.$cat_id); ?></span> <span class="menu-title text-truncate"><?php echo $cat_name; ?></span>
+                                                </a>
+                                            </li>
+
                                         <?php endif; ?>
                                     </ol>
                                 </div>
@@ -123,6 +137,16 @@ $info_user_level = get_user_level($uuiduser, $user_id, $nb_user_votes);
                 <?php $id_tournament = $_GET['id_top']; ?>
                 <div class="tournament-heading text-center">
                     <h3 class="mb-0 t-titre-tournoi">Top <?php echo get_numbers_of_contenders($id_tournament); ?> mondial <span class="ico text-center">🏆</span> <?php echo get_the_title($id_tournament); ?></h3>
+                    <h4 class="mb-0">
+                        <?php the_field('question_t', $id_tournament); ?>
+                    </h4>
+                </div>
+
+            <?php elseif(is_page(get_page_by_path('liste-des-tops'))): ?>
+
+                <?php $id_tournament = $_GET['id_top']; ?>
+                <div class="tournament-heading text-center">
+                    <h3 class="mb-0 t-titre-tournoi">Tous les Tops <?php echo get_numbers_of_contenders($id_tournament); ?> <span class="ico text-center">🏆</span> <?php echo get_the_title($id_tournament); ?></h3>
                     <h4 class="mb-0">
                         <?php the_field('question_t', $id_tournament); ?>
                     </h4>

@@ -41,6 +41,7 @@ $top_datas     = get_tournoi_data($id_tournament, $uuiduser);
                 $all_users_ranks_of_t       = new WP_Query(array(
                     'post_type' => 'classement',
                     'posts_per_page' => '-1',
+                    'post_status' => 'publish',
                     'ignore_sticky_posts'    => true,
                     'update_post_meta_cache' => false,
                     'no_found_rows'          => true,
@@ -62,12 +63,14 @@ $top_datas     = get_tournoi_data($id_tournament, $uuiduser);
                                     <div class="col-12">
                                         <div class="card">
                                             <div class="card-header">
-                                                <h4 class="card-title">
-                                                    Liste de tous les Tops <?php echo $top_number; ?> <span class="ico text-center">🏆</span> <?php echo $top_title; ?> - <span class="t-rose"><?php echo $top_question; ?></span>
+                                                <h4 class="card-title pt-1 pb-1">
+                                                    Liste de tous les Tops <?php echo $top_number; ?> <span class="ico text-center">🏆</span> <?php echo $top_title; ?>
+                                                    <br><br>
+                                                    <span class="t-rose"><?php echo $top_question; ?></span>
                                                 </h4>
                                             </div>
                                             <div class="table-responsive">
-                                                <table class="table table-striped table-borderless table-hover-animation">
+                                                <table class="table">
                                                     <thead>
                                                     <tr>
                                                         <th>
