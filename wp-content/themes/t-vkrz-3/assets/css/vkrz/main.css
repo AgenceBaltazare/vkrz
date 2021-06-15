@@ -421,7 +421,7 @@ html .content {
 }
 
 .t-rose {
-  color: #f4167f;
+  color: #f4167f !important;
 }
 
 .classement .profile-suggestion .card-footer {

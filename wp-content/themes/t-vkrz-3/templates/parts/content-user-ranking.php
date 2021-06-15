@@ -7,9 +7,6 @@ $nb_contenders        = count($list_contenders);
 ?>
 <div class="current_ranking">
     <div class="demo-inline-spacing">
-        <h3 class="text-center t-question">
-            <?php the_field( 'question_t', $id_tournament ); ?> <br>
-        </h3>
         <div class="avatar-group align-items-center mt-1">
             <span class="ico2">‍👉</span>
             <?php for($j=1; $j<=$nb_contenders; $j++) :
