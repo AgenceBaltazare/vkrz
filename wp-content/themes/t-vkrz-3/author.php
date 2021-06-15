@@ -1,4 +1,6 @@
 <?php
+global $champion;
+global $champion_id;
 $champion        = get_user_by( 'slug', get_query_var( 'author_name' ) );
 $champion_id     = $champion->ID;
 get_header();

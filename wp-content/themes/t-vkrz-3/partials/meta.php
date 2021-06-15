@@ -32,7 +32,6 @@
         TOP <?php echo $top_number; ?> : <?php echo $top_title; ?> 🔥 VAINKEURZ
     </title>
     <meta name="description" content="<?php echo $top_title; ?> : <?php echo $top_question; ?>" />
-
     <link rel="canonical" href="<?php echo $top_url; ?>" />
     <meta property="og:image" content="<?php echo $top_img; ?>" />
     <meta property="og:title" content="TOP <?php echo $top_number; ?> : <?php echo $top_title; ?>" />
@@ -143,11 +142,21 @@
 
     <?php
     global $champion;
+    global $champion_id;
+    $avatar_url     = get_avatar_url($champion_id);
     ?>
     <title>
         Profil de <?php echo $champion->display_name; ?> sur VAINKEURZ
     </title>
-    <meta name="description" content="Tous les TOPs de ce champion et ses statistiques" />
+    <meta name="description" content="Tous les Tops de <?php echo $champion->display_name; ?> et ses statistiques." />
+    <meta name="description" content="Tous les Tops de <?php echo $champion->display_name; ?> et ses statistiques." />
+    <meta property="og:image" content="<?php echo $avatar_url; ?>" />
+    <meta property="og:title" content="Profil VAINKEURZ de <?php echo $champion->display_name; ?>" />
+    <meta property="og:description" content="Tous les Tops de <?php echo $champion->display_name; ?> et ses statistiques." />
+    <meta property="og:url" content="https://vainkeurz.com/" />
+    <meta name="twitter:title" content="Profil VAINKEURZ de <?php echo $champion->display_name; ?>" />
+    <meta name="twitter:description" content="Tous les Tops de <?php echo $champion->display_name; ?> et ses statistiques." />
+    <meta name="twitter:image" content="<?php echo $avatar_url; ?>" />
 
 <?php elseif(is_page()): ?>
 
