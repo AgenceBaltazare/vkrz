@@ -9,7 +9,11 @@
                     </h2>
                     <div class="badge-beta">
                         <span class="badge">
-                            BETA
+                            <?php
+                            $template_data       = wp_get_theme();
+                            $template_version    = $template_data['Version'];
+                            ?>
+                            BETA <?php echo $template_version; ?>
                         </span>
                     </div>
                 </a>

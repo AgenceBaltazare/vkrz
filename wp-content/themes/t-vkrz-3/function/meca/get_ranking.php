@@ -1,7 +1,9 @@
 <?php
-function get_or_create_ranking_if_not_exists($id_tournament) {
+function get_or_create_ranking_if_not_exists($id_tournament, $uuiduser = false) {
 
-    $uuiduser = $_COOKIE['vainkeurz_user_id'];
+    if(!$uuiduser){
+        $uuiduser = $_COOKIE['vainkeurz_user_id'];
+    }
 
     if(isset($uuiduser) && $uuiduser != ""){
 
