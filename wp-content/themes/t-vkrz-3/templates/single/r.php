@@ -211,6 +211,9 @@ foreach(get_the_terms($id_tournament, 'categorie' ) as $cat ) {
                                             <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_tournament; ?>" class="btn btn-outline-primary waves-effect mb-1">
                                                 Voir le classement mondial
                                             </a>
+                                            <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_tournament; ?>" class="btn btn-outline-primary waves-effect">
+                                                Guetter les Tops
+                                            </a>
                                         </div>
                                     </div>
 

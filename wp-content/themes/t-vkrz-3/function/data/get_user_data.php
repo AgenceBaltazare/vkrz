@@ -80,6 +80,7 @@ function get_user_full_data($uuiduser){
     endwhile;
 
     wp_reset_postdata();
+    wp_reset_query();
 
     array_push($result, array(
         "nb_user_votes"             => $count_user_votes,
