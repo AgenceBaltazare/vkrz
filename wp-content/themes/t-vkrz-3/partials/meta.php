@@ -116,6 +116,14 @@
     </title>
     <meta name="description" content="Classement ELO du tournoi rassemblant les votes du monde entier." />
 
+<?php elseif(is_page(get_page_by_path('liste-des-tops'))): ?>
+
+    <?php $id_tournament = $_GET['id_top']; ?>
+    <title>
+        Tous les Tops 👉 <?php echo get_the_title($id_tournament); ?> - <?php the_field( 'question_t', $id_tournament ); ?> 🔥 VAINKEURZ
+    </title>
+    <meta name="description" content="Découvre tous les Tops générés sur VAINKEURZ" />
+
 <?php elseif(is_archive() && !is_author()): ?>
 
     <?php

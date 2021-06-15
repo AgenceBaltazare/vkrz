@@ -198,3 +198,66 @@ function get_vote_data($request, $id_tournament){
     }
 
 }
+
+function get_tournoi_data($id_tournament, $uuiduser){
+
+    $result                 = array();
+    $count_votes_of_t       = 0;
+    $list_ranking_of_t      = array();
+    $date_of_t              = 0;
+    $current_user_have_r    = false;
+
+    $all_ranking_of_t = new WP_Query(array(
+        'post_type' => 'classement',
+        'orderby' => 'date',
+        'order' => 'ASC',
+        'posts_per_page' => '-1',
+        'ignore_sticky_posts' => true,
+        'update_post_meta_cache' => false,
+        'no_found_rows' => true,
+        'meta_query' => array(
+            'meta_query' => array(
+                'relation' => 'AND',
+                array(
+                    'key' => 'nb_votes_r',
+                    'value' => 0,
+                    'compare' => '>',
+                ),
+                array(
+                    'key' => 'id_tournoi_r',
+                    'value' => $id_tournament,
+                    'compare' => '=',
+                )
+            )
+        )
+    ));
+    $c = 1;
+    while ($all_ranking_of_t->have_posts()) : $all_ranking_of_t->the_post();
+
+        if ($c == 1) {
+            $date_of_t = get_the_date('d F Y');
+        }
+        $count_votes_of_t = $count_votes_of_t + get_field('nb_votes_r');
+
+        if (get_field('uuid_user_r') == $uuiduser) {
+            $current_user_have_r = true;
+            $current_user_id_ranking = get_the_id();
+            $current_user_top3 = get_user_ranking($current_user_id_ranking);
+        }
+
+        array_push($list_ranking_of_t, array(
+            "id_ranking" => get_the_id(),
+            "uuid_user" => get_field('uuid_user_r')
+        ));
+
+    $c++; endwhile;
+
+    array_push($result, array(
+        "date_of_t" => $date_of_t,
+        "nb_tops"   => $all_ranking_of_t->post_count,
+        "nb_votes"  => $count_votes_of_t
+    ));
+
+    return $result;
+
+}
