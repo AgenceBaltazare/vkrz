@@ -141,6 +141,29 @@
     </title>
     <meta name="description" content="Tous les TOPs de ce champion et ses statistiques" />
 
+<?php elseif(is_page()): ?>
+
+    <title>
+        <?php
+            if(get_field('titre_seo')){
+                the_field('titre_seo');
+            }
+            else{
+                the_title();
+            }
+        ?>
+    </title>
+    <meta name="description" content="
+        <?php
+        if(get_field('description_seo')){
+            the_field('description_seo');
+        }
+        else{
+            the_excerpt();
+        }
+        ?>
+    "/>
+
 <?php else: ?>
 
     <title>

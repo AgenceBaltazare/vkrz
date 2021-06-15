@@ -196,6 +196,21 @@
 	float:left;
 }
 
+#wppb-login-wrap .login-remember {
+	display: flex;
+	align-items: center;
+}
+
+#wppb-login-wrap .login-remember input {
+	cursor: pointer;
+}
+
+#wppb-login-wrap .login-remember label {
+	padding-left: 8px;
+	margin-bottom: 0px;
+	cursor: pointer;
+}
+
 .wppb-form-field.wppb-timepicker select {
     width: auto;
     margin-right: 5px;

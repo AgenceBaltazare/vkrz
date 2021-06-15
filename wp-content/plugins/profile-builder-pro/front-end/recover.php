@@ -251,6 +251,8 @@ function wppb_send_admin_password_reset_email( $user ){
 function wppb_front_end_password_recovery(){
     global $wppb_shortcode_on_front;
     $wppb_shortcode_on_front = true;
+    global $wppb_password_recovery_shortcode_on_front;
+    $wppb_password_recovery_shortcode_on_front = true;
     $password_email_sent = false;
     $password_changed_success = false;
 

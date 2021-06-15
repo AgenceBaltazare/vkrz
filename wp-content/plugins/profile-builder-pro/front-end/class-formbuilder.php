@@ -42,6 +42,9 @@ class Profile_Builder_Form_Creator{
         global $wppb_shortcode_on_front;
         $wppb_shortcode_on_front = true;
 
+        global $wppb_register_edit_profile_shortcode_on_front;
+        $wppb_register_edit_profile_shortcode_on_front = true;
+
 		if( empty( $this->args['form_fields'] ) )
 			$this->args['form_fields'] = apply_filters( 'wppb_change_form_fields', get_option( 'wppb_manage_fields' ), $this->args );
 
@@ -142,55 +145,57 @@ class Profile_Builder_Form_Creator{
 	}
 
     function wppb_form_logic() {
-        if( $this->args['form_type'] == 'register' ){
-            $registration = apply_filters ( 'wppb_register_setting_override', true );//used to be get_option( 'users_can_register' )
+        if( isset( $this->args['form_type'] ) ) {
+            if( $this->args['form_type'] == 'register' ){
+                $registration = apply_filters ( 'wppb_register_setting_override', true );//used to be get_option( 'users_can_register' )
 
-            if ( !is_user_logged_in() ){
-                if ( !$registration )
-                    echo apply_filters( 'wppb_register_pre_form_message', '<p class="alert" id="wppb_register_pre_form_message">'.esc_html(__( 'Only an administrator can add new users.', 'profile-builder')).'</p>' );
+                if ( !is_user_logged_in() ){
+                    if ( !$registration )
+                        echo apply_filters( 'wppb_register_pre_form_message', '<p class="alert" id="wppb_register_pre_form_message">'.esc_html(__( 'Only an administrator can add new users.', 'profile-builder')).'</p>' );
 
-                elseif ( $registration ){
-                    $this->wppb_form_content( apply_filters( 'wppb_register_pre_form_message', '' ) );
-                }
-
-            }else{
-                $current_user_capability = apply_filters ( 'wppb_registration_user_capability', 'create_users' );
-
-                if ( current_user_can( $current_user_capability ) && $registration )
-                    $this->wppb_form_content( apply_filters( 'wppb_register_pre_form_message', '<p class="alert" id="wppb_register_pre_form_message">'.esc_html(__( 'Users can register themselves or you can manually create users here.', 'profile-builder')). '<img src="'.WPPB_PLUGIN_URL.'assets/images/pencil_delete.png" title="'.esc_attr(__( 'This message is only visible by administrators', 'profile-builder' )).'"/>' . '</p>' ) );
-
-                elseif ( current_user_can( $current_user_capability ) && !$registration )
-                    $this->wppb_form_content( apply_filters( 'wppb_register_pre_form_message', '<p class="alert" id="wppb_register_pre_form_message">'.esc_html(__( 'Users cannot currently register themselves, but you can manually create users here.', 'profile-builder')). '<img src="'.WPPB_PLUGIN_URL.'assets/images/pencil_delete.png" title="'.esc_attr(__( 'This message is only visible by administrators', 'profile-builder' )).'"/>' . '</p>' ) );
-
-                elseif ( !current_user_can( $current_user_capability ) ){
-                    global $user_ID;
-
-                    $userdata = get_userdata( $user_ID );
-                    $display_name = ( ( $userdata->data->display_name == '' ) ? $userdata->data->user_login : $userdata->data->display_name );
-
-                    $wppb_general_settings = get_option( 'wppb_general_settings' );
-                    if ( isset( $wppb_general_settings['loginWith'] ) && ( $wppb_general_settings['loginWith'] == 'email' ) )
-                        $display_name = $userdata->data->user_email;
-
-                    if( empty( $this->args['logout_redirect_url'] ) ) {
-                        $this->args['logout_redirect_url'] = get_permalink();
+                    elseif ( $registration ){
+                        $this->wppb_form_content( apply_filters( 'wppb_register_pre_form_message', '' ) );
                     }
 
-                    // CHECK FOR REDIRECT
-                    $this->args['logout_redirect_url'] = wppb_get_redirect_url( $this->args['redirect_priority'], 'after_logout', $this->args['logout_redirect_url'], $userdata );
-                    $this->args['logout_redirect_url'] = apply_filters( 'wppb_after_logout_redirect_url', $this->args['logout_redirect_url'] );
+                }else{
+                    $current_user_capability = apply_filters ( 'wppb_registration_user_capability', 'create_users' );
 
-                    echo apply_filters( 'wppb_register_pre_form_message', '<p class="alert" id="wppb_register_pre_form_message">'.sprintf( __( "You are currently logged in as %1s. You don't need another account. %2s", 'profile-builder' ), '<a href="'.get_author_posts_url( $user_ID ).'" title="'.$display_name.'">'.$display_name.'</a>', '<a href="'.wp_logout_url( $this->args['logout_redirect_url'] ).'" title="'.__( 'Log out of this account.', 'profile-builder' ).'">'.__( 'Logout', 'profile-builder' ).'  &raquo;</a>' ).'</p>', $user_ID );
+                    if ( current_user_can( $current_user_capability ) && $registration )
+                        $this->wppb_form_content( apply_filters( 'wppb_register_pre_form_message', '<p class="alert" id="wppb_register_pre_form_message">'.esc_html(__( 'Users can register themselves or you can manually create users here.', 'profile-builder')). '<img src="'.WPPB_PLUGIN_URL.'assets/images/pencil_delete.png" title="'.esc_attr(__( 'This message is only visible by administrators', 'profile-builder' )).'"/>' . '</p>' ) );
+
+                    elseif ( current_user_can( $current_user_capability ) && !$registration )
+                        $this->wppb_form_content( apply_filters( 'wppb_register_pre_form_message', '<p class="alert" id="wppb_register_pre_form_message">'.esc_html(__( 'Users cannot currently register themselves, but you can manually create users here.', 'profile-builder')). '<img src="'.WPPB_PLUGIN_URL.'assets/images/pencil_delete.png" title="'.esc_attr(__( 'This message is only visible by administrators', 'profile-builder' )).'"/>' . '</p>' ) );
+
+                    elseif ( !current_user_can( $current_user_capability ) ){
+                        global $user_ID;
+
+                        $userdata = get_userdata( $user_ID );
+                        $display_name = ( ( $userdata->data->display_name == '' ) ? $userdata->data->user_login : $userdata->data->display_name );
+
+                        $wppb_general_settings = get_option( 'wppb_general_settings' );
+                        if ( isset( $wppb_general_settings['loginWith'] ) && ( $wppb_general_settings['loginWith'] == 'email' ) )
+                            $display_name = $userdata->data->user_email;
+
+                        if( empty( $this->args['logout_redirect_url'] ) ) {
+                            $this->args['logout_redirect_url'] = get_permalink();
+                        }
+
+                        // CHECK FOR REDIRECT
+                        $this->args['logout_redirect_url'] = wppb_get_redirect_url( $this->args['redirect_priority'], 'after_logout', $this->args['logout_redirect_url'], $userdata );
+                        $this->args['logout_redirect_url'] = apply_filters( 'wppb_after_logout_redirect_url', $this->args['logout_redirect_url'] );
+
+                        echo apply_filters( 'wppb_register_pre_form_message', '<p class="alert" id="wppb_register_pre_form_message">'.sprintf( __( "You are currently logged in as %1s. You don't need another account. %2s", 'profile-builder' ), '<a href="'.get_author_posts_url( $user_ID ).'" title="'.$display_name.'">'.$display_name.'</a>', '<a href="'.wp_logout_url( $this->args['logout_redirect_url'] ).'" title="'.__( 'Log out of this account.', 'profile-builder' ).'">'.__( 'Logout', 'profile-builder' ).'  &raquo;</a>' ).'</p>', $user_ID );
+                    }
                 }
+
+            }elseif ( $this->args['form_type'] == 'edit_profile' ){
+                if ( !is_user_logged_in() )
+                    echo apply_filters( 'wppb_edit_profile_user_not_logged_in_message', '<p class="warning" id="wppb_edit_profile_user_not_logged_in_message">'.esc_html(__( 'You must be logged in to edit your profile.', 'profile-builder' )) .'</p>' );
+
+                elseif ( is_user_logged_in() )
+                    $this->wppb_form_content( apply_filters( 'wppb_edit_profile_logged_in_user_message', '' ) );
+
             }
-
-        }elseif ( $this->args['form_type'] == 'edit_profile' ){
-            if ( !is_user_logged_in() )
-                echo apply_filters( 'wppb_edit_profile_user_not_logged_in_message', '<p class="warning" id="wppb_edit_profile_user_not_logged_in_message">'.esc_html(__( 'You must be logged in to edit your profile.', 'profile-builder' )) .'</p>' );
-
-            elseif ( is_user_logged_in() )
-                $this->wppb_form_content( apply_filters( 'wppb_edit_profile_logged_in_user_message', '' ) );
-
         }
     }
 

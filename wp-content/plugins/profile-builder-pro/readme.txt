@@ -7,7 +7,7 @@ custom registration, custom registration form, custom registration page, extra u
 front-end register, front-end registration, frontend edit profile, edit profileregistration, customize profile, user fields, builder, profile builder, custom fields, avatar
 Requires at least: 3.1
 Tested up to: 5.7
-Stable tag: 3.4.6
+Stable tag: 3.4.7
 
 
 Login, registration and edit profile shortcodes for the front-end. Also you can choose what fields should be displayed or add custom ones.
@@ -101,6 +101,16 @@ This plugin only adds/removes fields in the front-end. The default information-f
 
 
 == Changelog ==
+= 3.4.7 =
+* Feature: Added {{unapprove_url}} and {{{unnaprove_link}}} tags to the Admin Email Customizer
+* Fix: Default placeholder for URL field so it can be replaced using the general filter
+* Fix: HTML for the Login form Remember Me checkbox. Improved CSS
+* Fix: A notice in relation to Elementor
+* Fix: Only load Conditional Logic assets when there is an Edit Profile or register form on the page
+* Misc: Use WP Timzeone when saving users last profile update date with the Toolbox option
+* Misc: Allow Login form strings to be changed using the Labels Edit functionality
+* Misc: Added a filter over the Content Restriction redirect url
+
 = 3.4.6 =
 * Feature: Add support for the `redirect_to` shortcode parameter to Custom Redirects
 * Feature: Added an option in Advanced Settings to enable the AJAX implementation of Conditional Logic

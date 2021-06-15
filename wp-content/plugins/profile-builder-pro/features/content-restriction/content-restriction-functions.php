@@ -176,9 +176,9 @@ function wppb_content_restriction_post_redirect() {
 
     // Redirect
     nocache_headers();
-    wp_redirect( wppb_add_missing_http( $redirect_url ) );
+    wp_redirect( apply_filters( 'wppb_restricted_post_redirect_url', wppb_add_missing_http( $redirect_url ) ) );
     exit;
-
+    
 }
 add_action( 'template_redirect', 'wppb_content_restriction_post_redirect' );
 
@@ -311,4 +311,3 @@ function wppb_content_restriction_shortcode( $atts, $content = null ) {
 
 }
 add_shortcode( 'wppb-restrict', 'wppb_content_restriction_shortcode' );
-

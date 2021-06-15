@@ -143,8 +143,8 @@ Class PB_Conditional_Fields {
 
 	/* function that handles the js on the front end for fields */
 	function frontend_conditional_handle(){
-		global $wppb_shortcode_on_front;
-		if( !empty( $wppb_shortcode_on_front ) && $wppb_shortcode_on_front === true ){
+        global $wppb_register_edit_profile_shortcode_on_front;
+		if( !empty( $wppb_register_edit_profile_shortcode_on_front ) && $wppb_register_edit_profile_shortcode_on_front === true ){
 
             $wppb_toolbox_forms_settings = get_option('wppb_toolbox_forms_settings');
             if (isset($wppb_toolbox_forms_settings['ajax-conditional-logic']) && $wppb_toolbox_forms_settings['ajax-conditional-logic'] === 'yes') {

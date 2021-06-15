@@ -52,6 +52,8 @@ function wppb_email_customizer_generate_default_meta_merge_tags( $special_merge_
 	if ( $special_merge_tags == 'admin_approval' ){
         $merge_tags[] = array( 'name' => 'approve_url', 'type' => 'ec_approve_url', 'label' => __( 'Approve User Url', 'profile-builder' )  );
         $merge_tags[] = array( 'name' => 'approve_link', 'type' => 'ec_approve_link', 'unescaped' => true, 'label' => __( 'Approve User Link', 'profile-builder' )  );
+        $merge_tags[] = array( 'name' => 'unapprove_url', 'type' => 'ec_unapprove_url', 'label' => __( 'Unapprove User Url', 'profile-builder' )  );
+        $merge_tags[] = array( 'name' => 'unapprove_link', 'type' => 'ec_unapprove_link', 'unescaped' => true, 'label' => __( 'Unapprove User Link', 'profile-builder' )  );
     }
 
     if ( $special_merge_tags == 'epaa_notification' ){
@@ -842,7 +844,7 @@ function wppb_ec_replace_approve_user_link( $value, $merge_tag_name, $merge_tag,
 
     if( ! empty ( $extra_data['user_id'] ) ) {
 
-        $approve_url = wppb_ec_get_approve_url( $extra_data['user_id'] );
+		$approve_url = add_query_arg( 'pbaction', 'approve', wppb_ec_get_approve_url( $extra_data['user_id'] ) );
 
         if ( !empty($approve_url) )
 
@@ -868,7 +870,7 @@ function wppb_ec_replace_approve_user_url( $value, $merge_tag_name, $merge_tag, 
 
     if( ! empty ( $extra_data['user_id'] ) ) {
 
-        $approve_url = wppb_ec_get_approve_url( $extra_data['user_id'] );
+        $approve_url = add_query_arg( 'pbaction', 'approve', wppb_ec_get_approve_url( $extra_data['user_id'] ) );
 
         if ( !empty( $approve_url ) )
             return $approve_url;
@@ -876,6 +878,58 @@ function wppb_ec_replace_approve_user_url( $value, $merge_tag_name, $merge_tag, 
     }
 }
 add_filter( 'mustache_variable_ec_approve_url', 'wppb_ec_replace_approve_user_url', 10, 4 );
+
+/**
+ * Function that filters and returns the approve user link in the (Admin) Email Customizer.
+ * This allows the admin to approve directly from his email a newly registered user.
+ *
+ * @since v.3.4.7
+ *
+ * @param string $value
+ * @param string $merge_tag_name
+ * @param string $merge_tag
+ * @param array $extra_data
+ *
+ * @return string
+ */
+function wppb_ec_replace_unapprove_user_link( $value, $merge_tag_name, $merge_tag, $extra_data ){
+
+    if( ! empty ( $extra_data['user_id'] ) ) {
+
+        $approve_url = add_query_arg( 'pbaction', 'unapprove', wppb_ec_get_approve_url( $extra_data['user_id'] ) );
+
+        if ( !empty($approve_url) )
+
+            return '<a href="' . $approve_url . '" target="_blank">' . $approve_url . '</a>';
+    }
+}
+add_filter( 'mustache_variable_ec_unapprove_link', 'wppb_ec_replace_unapprove_user_link', 10, 4 );
+
+
+/**
+ * Function that filters and returns the approve user url in the (Admin) Email Customizer.
+ *
+ * @since v.3.4.7
+ *
+ * @param string $value
+ * @param string $merge_tag_name
+ * @param string $merge_tag
+ * @param array $extra_data
+ *
+ * @return string
+ */
+function wppb_ec_replace_unapprove_user_url( $value, $merge_tag_name, $merge_tag, $extra_data ){
+
+    if( ! empty ( $extra_data['user_id'] ) ) {
+
+        $approve_url = add_query_arg( 'pbaction', 'unapprove', wppb_ec_get_approve_url( $extra_data['user_id'] ) );
+
+        if ( !empty( $approve_url ) )
+            return $approve_url;
+
+    }
+}
+add_filter( 'mustache_variable_ec_unapprove_url', 'wppb_ec_replace_unapprove_user_url', 10, 4 );
 
 /**
  * Function that returns the approve user url to include in the admin email

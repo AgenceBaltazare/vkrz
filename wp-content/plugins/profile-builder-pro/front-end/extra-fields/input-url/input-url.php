@@ -5,7 +5,7 @@ function wppb_input_url_handler( $output, $form_location, $field, $user_id, $fie
 		$item_title = apply_filters( 'wppb_'.$form_location.'_input_custom_field_'.$field['id'].'_item_title', wppb_icl_t( 'plugin profile-builder-pro', 'custom_field_'.$field['id'].'_title_translation', $field['field-title'] ) );
 		$item_description = wppb_icl_t( 'plugin profile-builder-pro', 'custom_field_'.$field['id'].'_description_translation', $field['description'] );
 
-		$extra_attr = apply_filters( 'wppb_extra_attribute', '', $field, $form_location );
+		$extra_attr = apply_filters( 'wppb_extra_attribute', 'placeholder="https://example.com"', $field, $form_location );
 
         if( $form_location != 'register' )
 		    $input_value = ( ( wppb_user_meta_exists ( $user_id, $field['meta-name'] ) != null ) ? get_user_meta( $user_id, $field['meta-name'], true ) : $field['default-value'] );
@@ -22,7 +22,7 @@ function wppb_input_url_handler( $output, $form_location, $field, $user_id, $fie
 
             $output = '
 				<label for="'.$field['meta-name'].'">'.$item_title.$error_mark.'</label>
-				<input class="extra_field_input '. apply_filters( 'wppb_fields_extra_css_class', '', $field ) .'" name="'.$field['meta-name'].'" maxlength="'. apply_filters( 'wppb_maximum_character_length', 70, $field ) .'" type="url" id="'.$field['meta-name'].'" placeholder="https://example.com" value="'. esc_attr( wp_unslash( $input_value ) ) .'" '. $extra_attr .'/>';
+				<input class="extra_field_input '. apply_filters( 'wppb_fields_extra_css_class', '', $field ) .'" name="'.$field['meta-name'].'" maxlength="'. apply_filters( 'wppb_maximum_character_length', 70, $field ) .'" type="url" id="'.$field['meta-name'].'" value="'. esc_attr( wp_unslash( $input_value ) ) .'" '. $extra_attr .'/>';
             if( !empty( $item_description ) )
                 $output .= '<span class="wppb-description-delimiter">'.$item_description.'</span>';
 

@@ -100,19 +100,19 @@ function wppb_process_login(){
  */
 function wppb_login_form( $args = array() ) {
 	$defaults = array(
-		'echo' => true,
+		'echo'           => true,
 		// Default 'redirect' value takes the user back to the request URI.
-		'redirect' => esc_url( ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] ),
-		'form_id' => 'wppb-loginform',
-		'label_username' => __( 'Username or Email Address' ),
-		'label_password' => __( 'Password' ),
-		'label_remember' => __( 'Remember Me' ),
-		'label_log_in' => __( 'Log In' ),
-		'id_username' => 'user_login',
-		'id_password' => 'user_pass',
-		'id_remember' => 'rememberme',
-		'id_submit' => 'wp-submit',
-		'remember' => true,
+		'redirect'       => esc_url( ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] ),
+		'form_id'        => 'wppb-loginform',
+		'label_username' => __( 'Username or Email Address', 'profile-builder' ),
+		'label_password' => __( 'Password', 'profile-builder' ),
+		'label_remember' => __( 'Remember Me', 'profile-builder' ),
+		'label_log_in'   => __( 'Log In', 'profile-builder' ),
+		'id_username'    => 'user_login',
+		'id_password'    => 'user_pass',
+		'id_remember'    => 'rememberme',
+		'id_submit'      => 'wp-submit',
+		'remember'       => true,
 		'value_username' => '',
 		// Set 'value_remember' to true to default the "Remember me" checkbox to checked.
 		'value_remember' => false,
@@ -162,7 +162,7 @@ function wppb_login_form( $args = array() ) {
 				<input type="password" name="pwd" id="' . esc_attr( $args['id_password'] ) . '" class="input" value="" size="20" />
 			</p>
 			' . $login_form_middle . '
-			' . ( $args['remember'] ? '<p class="login-remember"><label><input name="rememberme" type="checkbox" id="' . esc_attr( $args['id_remember'] ) . '" value="forever"' . ( $args['value_remember'] ? ' checked="checked"' : '' ) . ' /> ' . esc_html( $args['label_remember'] ) . '</label></p>' : '' ) . '
+			' . ( $args['remember'] ? '<p class="login-remember"><input name="rememberme" type="checkbox" id="' . esc_attr( $args['id_remember'] ) . '" value="forever"' . ( $args['value_remember'] ? ' checked="checked"' : '' ) . ' /><label for="' . esc_attr( $args['id_remember'] ) . '">' . esc_html( $args['label_remember'] ) . '</label></p>' : '' ) . '
 			<p class="login-submit">
 				<input type="submit" name="wp-submit" id="' . esc_attr( $args['id_submit'] ) . '" class="'. apply_filters( 'wppb_login_submit_class', "button button-primary" ) . '" value="' . esc_attr( $args['label_log_in'] ) . '" />
 				<input type="hidden" name="redirect_to" value="' . esc_url( $args['redirect'] ) . '" />
@@ -375,6 +375,8 @@ add_filter( 'login_redirect', 'wppb_login_redirect', 20, 3 );
 function wppb_front_end_login( $atts ){
     global $wppb_shortcode_on_front;
     $wppb_shortcode_on_front = true;
+    global $wppb_login_shortcode_on_front;
+    $wppb_login_shortcode_on_front = true;
 	/* define a global so we now we have the shortcode login present */
 	global $wppb_login_shortcode;
 	$wppb_login_shortcode = true;

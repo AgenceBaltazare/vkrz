@@ -1144,6 +1144,9 @@
 <?php __("User to edit:", "profile-builder"); ?>
 <?php __("Select User", "profile-builder"); ?>
 <?php __("Something went wrong. Please try again!", "profile-builder"); ?>
+<?php __("Username or Email Address", "profile-builder"); ?>
+<?php __("Remember Me", "profile-builder"); ?>
+<?php __("Log In", "profile-builder"); ?>
 <?php __("ERROR", "profile-builder"); ?>
 <?php __("The password you entered is incorrect.", "profile-builder"); ?>
 <?php __("Invalid username.", "profile-builder"); ?>
@@ -1267,6 +1270,8 @@
 <?php __("Reset Link", "profile-builder"); ?>
 <?php __("Approve User Url", "profile-builder"); ?>
 <?php __("Approve User Link", "profile-builder"); ?>
+<?php __("Unapprove User Url", "profile-builder"); ?>
+<?php __("Unapprove User Link", "profile-builder"); ?>
 <?php __("Approved Fields", "profile-builder"); ?>
 <?php __("Unapproved Fields", "profile-builder"); ?>
 <?php __("Modified Fields", "profile-builder"); ?>
@@ -1480,6 +1485,7 @@
 <?php __("Your account has been successfully created!", "profile-builder"); ?>
 <?php __("Something went wrong!", "profile-builder"); ?>
 <?php __("User not approved!", "profile-builder"); ?>
+<?php __("Do you wish to unapprove the registration?", "profile-builder"); ?>
 <?php __("Do you wish to approve the registration?", "profile-builder"); ?>
 <?php __("The approval link is not valid! Please <a href=\"%s\"> log in </a> to approve the user manually. ", "profile-builder"); ?>
 <?php __("delete this user?", "profile-builder"); ?>
