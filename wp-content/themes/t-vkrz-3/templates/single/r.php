@@ -164,7 +164,7 @@ foreach(get_the_terms($id_tournament, 'categorie' ) as $cat ) {
 
                                     <?php if(get_field('uuid_user_r') == $uuiduser): ?>
 
-                                        <div class="card">
+                                        <div class="card text-center">
                                             <div class="card-body">
                                                 <h4 class="card-title">
                                                     <span class="ico">🙃</span> Tu t'attendais pas à ça ?
@@ -172,9 +172,11 @@ foreach(get_the_terms($id_tournament, 'categorie' ) as $cat ) {
                                                 <h6 class="card-subtitle text-muted mb-1">
                                                     T'inquiète on te laisse refaire le Top
                                                 </h6>
-                                                <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-idranking="<?php echo $id_ranking; ?>" id="confirm_delete" href="#" class="btn btn-outline-primary waves-effect">
-                                                    Recommencer
-                                                </a>
+                                            </div>
+                                            <div class="card-footer">
+                                            <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-idranking="<?php echo $id_ranking; ?>" id="confirm_delete" href="#" class="btn btn-outline-primary waves-effect mb-1">
+                                                Recommencer
+                                            </a>
                                             </div>
                                         </div>
 
@@ -205,7 +207,7 @@ foreach(get_the_terms($id_tournament, 'categorie' ) as $cat ) {
                                                 sont identiques au tient !
                                             </p>
                                         </div>
-                                        <div class="card-footer">
+                                        <div class="card-footer" id="clt">
                                             <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_tournament; ?>" class="btn btn-outline-primary waves-effect mb-1">
                                                 Voir le classement mondial
                                             </a>
