@@ -1,5 +1,4 @@
 <?php
-get_header();
 global $id_tournament;
 global $uuiduser;
 $id_tournament = get_the_ID();
@@ -9,6 +8,7 @@ if(!$is_next_duel){
     wp_redirect(get_the_permalink($id_ranking));
 }
 wp_reset_postdata();
+get_header();
 global $top_url;
 global $top_title;
 global $top_question;

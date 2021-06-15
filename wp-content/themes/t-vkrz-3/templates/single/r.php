@@ -97,14 +97,14 @@ foreach(get_the_terms($id_tournament, 'categorie' ) as $cat ) {
                                         <div class="card">
                                             <div class="card-body">
                                                 <h4 class="card-title">
-                                                    <span class="ico">🔮</span> Rejoins l'élite des champions
+                                                    <span class="ico">🔮</span> Rejoins l'élite
                                                 </h4>
                                                 <h6 class="card-subtitle text-muted mb-1">
                                                     Propose tes tops et confronte les autres champions !
                                                 </h6>
                                                 <div class="btn-group justify-content-center share-t w-100" role="group">
                                                     <a href="https://discord.gg/w882sUnrhE" title="Rejoinds notre discord" target="_blank" class="btn btn-icon btn-outline-primary">
-                                                        <i class="fab fa-discord fa-lg"></i>
+                                                        <i class="fab fa-discord fa-lg mr-1"></i> Discord de VAINKEURZ
                                                     </a>
                                                 </div>
                                             </div>
