@@ -143,7 +143,7 @@
     <?php
     global $champion;
     global $champion_id;
-    $avatar_url     = get_avatar_url($champion_id);
+    $avatar_url     = get_avatar_url($champion_id, ['size' => '200']);
     ?>
     <title>
         Profil de <?php echo $champion->display_name; ?> sur VAINKEURZ
