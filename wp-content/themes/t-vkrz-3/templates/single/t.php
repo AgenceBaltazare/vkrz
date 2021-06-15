@@ -1,6 +1,14 @@
 <?php
 global $id_tournament;
 global $uuiduser;
+global $user_id;
+$user_role = "visitor";
+if(is_user_logged_in()){
+    $current_user   = wp_get_current_user();
+    $user_id        = $current_user->ID;
+    $user_info      = get_userdata($user_id);
+    $user_role      = $user_info->roles[0];
+}
 $uuiduser      = deal_uuiduser();
 $id_tournament = get_the_ID();
 $id_ranking    = get_or_create_ranking_if_not_exists($id_tournament, $uuiduser);
