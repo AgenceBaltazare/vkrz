@@ -1,6 +1,7 @@
 <?php
 global $id_tournament;
 global $uuiduser;
+$uuiduser      = deal_uuiduser();
 $id_tournament = get_the_ID();
 $id_ranking    = get_or_create_ranking_if_not_exists($id_tournament, $uuiduser);
 extract(get_next_duel($id_ranking, $id_tournament));

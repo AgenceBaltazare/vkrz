@@ -8,7 +8,9 @@ if(is_user_logged_in()){
     $user_info      = get_userdata($user_id);
     $user_role      = $user_info->roles[0];
 }
-$uuiduser           = deal_uuiduser();
+if(get_post_type() == "tournoi"){
+    $uuiduser           = deal_uuiduser();
+}
 ?>
 <!DOCTYPE html>
 <html class="loading dark-layout" lang="fr" data-layout="dark-layout" data-textdirection="ltr">
