@@ -1,9 +1,6 @@
 <?php
 global $uuiduser;
 global $user_id;
-if(get_post_type() != "tournoi" || !is_single()){
-    $uuiduser           = deal_uuiduser();
-}
 $user_role = "visitor";
 if(is_user_logged_in()){
     $current_user   = wp_get_current_user();
@@ -12,6 +9,9 @@ if(is_user_logged_in()){
     $user_email     = $current_user->user_email;
     $user_info      = get_userdata($user_id);
     $user_role      = $user_info->roles[0];
+}
+if(get_post_type() != "tournoi" || !is_single()){
+    $uuiduser           = deal_uuiduser();
 }
 ?>
 <!DOCTYPE html>
