@@ -41,6 +41,9 @@ get_header();
                                                         <thead>
                                                         <tr>
                                                             <th>
+                                                                #
+                                                            </th>
+                                                            <th>
                                                                 Champions
                                                             </th>
                                                             <th>Votes</th>
@@ -49,9 +52,20 @@ get_header();
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                        <?php foreach($users_list as $user): ?>
+                                                        <?php $r=1; foreach($users_list as $user): ?>
                                                             <tr>
 
+                                                                <td>
+                                                                    <?php if($r == 1): ?>
+                                                                        <span class="ico">🥇</span>
+                                                                    <?php elseif($r == 2): ?>
+                                                                        <span class="ico">🥈</span>
+                                                                    <?php elseif($r == 3): ?>
+                                                                        <span class="ico">🥉</span>
+                                                                    <?php else: ?>
+                                                                        #<?php echo $r; ?>
+                                                                    <?php endif; ?>
+                                                                </td>
                                                                 <td>
                                                                     <?php
                                                                     $champion_id    = $user['user_id'];
@@ -84,7 +98,7 @@ get_header();
                                                                     </a>
                                                                 </td>
                                                             </tr>
-                                                            <?php endforeach; ?>
+                                                            <?php $r++; endforeach; ?>
                                                         </tbody>
                                                     </table>
                                                 </div>
