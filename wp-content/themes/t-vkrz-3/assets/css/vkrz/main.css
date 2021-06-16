@@ -136,7 +136,7 @@ body {
 }
 .dark-layout body {
   background: transparent;
-  font-family: "Lato", sans-serif !important;
+  font-family: "Libre Franklin", sans-serif !important;
 }
 .dark-layout .main-menu {
   background: linear-gradient(150deg, #0c0a27, #471867, #0c0a27, #230b36, #0c0a27);
@@ -459,6 +459,10 @@ html .content {
 
 .dark-layout .table.table-hover-animation tbody tr {
   background-color: rgba(33, 30, 58, 0.38);
+}
+
+.t-max {
+  font-size: 18px !important;
 }
 
 .main-menu {

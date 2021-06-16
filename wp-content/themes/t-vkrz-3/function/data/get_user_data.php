@@ -145,6 +145,9 @@ function get_user_percent($uuiduser, $id_tournament){
 
     $percent = round($count_same_ranking * 100 / $nb_tops);
 
+    $all_ranking_of_t->reset_postdata();
+    wp_reset_query();
+
     return $percent;
 
 }

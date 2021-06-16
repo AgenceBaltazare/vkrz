@@ -119,7 +119,7 @@ $info_user_level = get_user_level($uuiduser, $user_id, $nb_user_votes);
 
                 <div class="tournament-heading text-center">
                     <h3 class="mb-0 t-titre-tournoi">Top <?php echo $top_number; ?> <span class="ico">⚔️</span> <?php echo $top_title; ?></h3>
-                    <h4 class="mb-0 t-rose">
+                    <h4 class="mb-0 t-rose t-max">
                         <?php echo $top_question; ?>
                     </h4>
                 </div>

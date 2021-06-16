@@ -3,7 +3,7 @@ global $uuiduser;
 $state            = "";
 $id_tournament    = get_the_ID();
 $illu             = get_the_post_thumbnail_url($id_tournament, 'medium');
-if(is_home()){
+if(is_home() || is_single()){
     $class        = "swiper-slide";
 }
 elseif(is_archive()){

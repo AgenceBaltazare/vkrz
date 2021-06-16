@@ -1,15 +1,17 @@
 <?php
-if(get_post_type() != "tournoi"){
-    global $uuiduser;
-    global $user_id;
-    $user_role = "visitor";
-    if(is_user_logged_in()){
-        $current_user   = wp_get_current_user();
-        $user_id        = $current_user->ID;
-        $user_info      = get_userdata($user_id);
-        $user_role      = $user_info->roles[0];
-    }
+global $uuiduser;
+global $user_id;
+if(get_post_type() != "tournoi" || !is_single()){
     $uuiduser           = deal_uuiduser();
+}
+$user_role = "visitor";
+if(is_user_logged_in()){
+    $current_user   = wp_get_current_user();
+    $user_id        = $current_user->ID;
+    $user_name      = $current_user->display_name;
+    $user_email     = $current_user->user_email;
+    $user_info      = get_userdata($user_id);
+    $user_role      = $user_info->roles[0];
 }
 ?>
 <!DOCTYPE html>
@@ -71,7 +73,10 @@ if(get_post_type() != "tournoi"){
     <?php endif; ?>
 
     <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="ec6a3187-bf39-4eb5-a90d-dda00a2995c8";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
-
+    <script>
+        $crisp.push(["set", "user:email", ["<?php echo $user_email; ?>"]]);
+        $crisp.push(["set", "user:nickname", ["<?php echo $user_name; ?>"]]);
+    </script>
     <?php wp_head(); ?>
 </head>
 <?php

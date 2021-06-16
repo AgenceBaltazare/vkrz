@@ -8,7 +8,7 @@
   background: linear-gradient(35deg, $c1 40%, #230b36 100%) fixed;
   body{
     background: transparent;
-    font-family: 'Lato', sans-serif !important;
+    font-family: 'Libre Franklin', sans-serif !important;
   }
   .main-menu {
     background: linear-gradient(150deg, $c1, #471867, $c1, #230b36, $c1);
@@ -328,4 +328,8 @@ html .content {
 }
 .dark-layout .table.table-hover-animation tbody tr {
   background-color: rgb(33 30 58 / 38%);
+}
+
+.t-max{
+  font-size: 18px !important;
 }

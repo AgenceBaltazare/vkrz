@@ -261,3 +261,44 @@ function get_tournoi_data($id_tournament, $uuiduser){
     return $result;
 
 }
+
+function get_vkrz_users(){
+
+    $result = array();
+
+    $user_query = new WP_User_Query(array( 'number' => -1));
+    $users_list = $user_query->get_results();
+
+    foreach($users_list as $user){
+
+        $user_ID    = $user->ID;
+        $user_info  = get_userdata($user_ID);
+
+        $avatar_url = get_avatar_url($user_ID, ['size' => '80']);
+        if(!$avatar_url){
+            $avatar_url = get_bloginfo('template_directory')."/assets/images/vkrz/ninja.png";
+        }
+
+        $uuidchampion    = get_field('uuiduser_user', 'user_'.$user_ID);
+        $user_full_data  = get_user_full_data($uuidchampion);
+        $nb_user_votes   = $user_full_data[0]['nb_user_votes'];
+        $nb_user_tops    = $user_full_data[0]['list_user_ranking_done'];
+        $info_user_level = get_user_level($uuidchampion, $user_ID, $nb_user_votes);
+        $user_level = $info_user_level['level_ico'];
+
+        array_push($result, array(
+            "user_id"       => $user_ID,
+            "user_name"     => $user_info->display_name,
+            "user_level"    => $user_level,
+            "user_votes"    => $nb_user_votes,
+            "user_tops"     => count($nb_user_tops),
+            "user_avatar"   => $avatar_url
+        ));
+
+    }
+
+    array_multisort( array_column($result, "user_votes"), SORT_DESC, $result );
+
+    return $result;
+
+}
