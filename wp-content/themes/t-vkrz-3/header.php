@@ -70,6 +70,8 @@ if(get_post_type() != "tournoi"){
         </script>
     <?php endif; ?>
 
+    <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="ec6a3187-bf39-4eb5-a90d-dda00a2995c8";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+
     <?php wp_head(); ?>
 </head>
 <?php
