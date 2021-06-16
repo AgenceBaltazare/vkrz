@@ -60,6 +60,11 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="d-flex align-items-center" href="<?php the_permalink(get_page_by_path('liste-des-champions')); ?>">
+                    <span class="ico">👑</span> <span class="menu-title text-truncate">Liste des champions</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="d-flex align-items-center" href="https://baltazare1.typeform.com/to/j9n8JU" target="_blank">
                     <span class="ico">🙏</span> <span class="menu-title text-truncate">Donne ton avis</span>
                 </a>

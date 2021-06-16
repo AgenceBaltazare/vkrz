@@ -33,7 +33,7 @@ get_header();
                                             <div class="card">
                                                 <div class="card-header">
                                                     <h4 class="card-title pt-1 pb-1">
-                                                        Voici les <?php echo count($users_list); ?> membres de VAINKEURZ
+                                                        Voici les <?php echo count($users_list); ?> champions de VAINKEURZ
                                                     </h4>
                                                 </div>
                                                 <div class="table-responsive">
