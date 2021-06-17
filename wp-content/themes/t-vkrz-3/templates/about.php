@@ -13,7 +13,7 @@
                             <div class="card">
                                 <div class="card-body apropos">
                                     <h1>
-                                        Curieux d'en savoir plus <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/vainkeurz-text.png" alt="" class="img-fluid"> ?
+                                        Curieux d'en savoir plus <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/vainkeurz.png" alt="" class="img-fluid"> ?
                                     </h1>
                                     <h2 class="infoabout">
                                         ⏲ <span class="space"></span> Temps de lecture estimé : <b>je vais pas te mentir c'est dense - mais tu peux arriver au bout 💪</b>
