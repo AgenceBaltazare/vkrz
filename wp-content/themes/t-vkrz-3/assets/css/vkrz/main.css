@@ -465,6 +465,10 @@ html .content {
   font-size: 18px !important;
 }
 
+.mt-05 {
+  margin-top: 20px;
+}
+
 .main-menu {
   border-right: 10px solid #14122f;
 }
@@ -818,6 +822,12 @@ html .content {
 .illu .cov-illu {
   min-height: 200px;
   background-size: cover !important;
+}
+
+.single-classement .list-tournois {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 25px 50px;
+  border-radius: 10px;
 }
 
 .avatar-picture-max {

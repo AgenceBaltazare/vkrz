@@ -65,7 +65,15 @@ $top_number    = get_numbers_of_contenders($id_tournament);
                                         <?php else: ?>
                                             <div class="col-md-2 col-4">
                                         <?php endif; ?>
-                                                <div class="contenders_min <?php if(get_field('c_rounded_t', $id_tournament)){ echo 'rounded'; } ?> mb-3">
+                                                <?php
+                                                if($i >= 4){
+                                                    $d = 3;
+                                                }
+                                                else{
+                                                    $d = $i-1;
+                                                }
+                                                ?>
+                                                <div class="animate__jackInTheBox animate__animated animate__delay-<?php echo $d; ?>s contenders_min <?php if(get_field('c_rounded_t', $id_tournament)){ echo 'rounded'; } ?> mb-3">
                                                     <div class="illu">
                                                         <?php if(get_field('visuel_cover_t', $id_tournament)): ?>
                                                             <?php $illu = get_the_post_thumbnail_url(get_the_ID(), 'full'); ?>
@@ -206,7 +214,7 @@ $top_number    = get_numbers_of_contenders($id_tournament);
                                 </div>
 
                                 <?php if($current_user_have_r): ?>
-                                    <div class="card text-center">
+                                    <div class="card">
                                         <div class="card-body">
                                             <h2 class="font-weight-bolder">
                                                 <?php echo get_user_percent($uuiduser, $id_tournament); ?>% <small>des Tops</small>
@@ -215,7 +223,7 @@ $top_number    = get_numbers_of_contenders($id_tournament);
                                                 sont identiques à celui-ci !
                                             </p>
                                             <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_tournament; ?>" class="btn btn-outline-primary waves-effect">
-                                                Guetter les <?php echo $nb_tops; ?> Tops
+                                                Voir les <?php echo $nb_tops; ?> Tops
                                             </a>
                                         </div>
                                     </div>

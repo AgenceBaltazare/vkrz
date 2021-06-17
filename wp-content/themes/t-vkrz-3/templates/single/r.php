@@ -57,8 +57,16 @@ foreach($list_cat as $cat ) {
                                 <div class="col-5 col-md-3">
                                 <?php else: ?>
                                 <div class="col-md-2 col-4">
-                                    <?php endif; ?>
-                                    <div class="contenders_min <?php if(get_field('c_rounded_t', $id_tournament)){ echo 'rounded'; } ?> mb-3">
+                                <?php endif; ?>
+                                    <?php
+                                    if($i >= 4){
+                                        $d = 3;
+                                    }
+                                    else{
+                                        $d = $i-1;
+                                    }
+                                    ?>
+                                    <div class="animate__jackInTheBox animate__animated animate__delay-<?php echo $d; ?>s contenders_min <?php if(get_field('c_rounded_t', $id_tournament)){ echo 'rounded'; } ?> mb-3">
                                         <div class="illu">
                                             <?php if(get_field('visuel_cover_t', $id_tournament)): ?>
                                                 <?php $illu = get_the_post_thumbnail_url( $c, 'full' ); ?>
@@ -156,7 +164,7 @@ foreach($list_cat as $cat ) {
 
                     <div class="related">
 
-                        <div class="card text-center">
+                        <div class="card">
                             <div class="card-body">
                                 <h2 class="font-weight-bolder">
                                     <?php echo get_user_percent(get_field('uuid_user_r'), $id_tournament); ?>% <small>des Tops</small>
@@ -169,8 +177,8 @@ foreach($list_cat as $cat ) {
                                 <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_tournament; ?>" class="btn btn-outline-primary waves-effect mb-1">
                                     Voir le classement mondial
                                 </a>
-                                <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_tournament; ?>" class="btn btn-outline-primary waves-effect">
-                                    Guetter les Tops
+                                <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_tournament; ?>" class="btn btn-outline-primary waves-effect mb-1">
+                                    Voir tous les Tops
                                 </a>
                             </div>
                         </div>
@@ -227,7 +235,7 @@ foreach($list_cat as $cat ) {
 
                         <?php if(get_field('uuid_user_r') == $uuiduser): ?>
 
-                            <div class="card text-center">
+                            <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">
                                         <span class="ico">🙃</span> Tu t'attendais pas à ça ?
@@ -235,11 +243,9 @@ foreach($list_cat as $cat ) {
                                     <h6 class="card-subtitle text-muted mb-1">
                                         T'inquiète on te laisse refaire le Top
                                     </h6>
-                                </div>
-                                <div class="card-footer">
-                                <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-idranking="<?php echo $id_ranking; ?>" id="confirm_delete" href="#" class="btn btn-outline-primary waves-effect mb-1">
-                                    Recommencer
-                                </a>
+                                    <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-idranking="<?php echo $id_ranking; ?>" id="confirm_delete" href="#" class="btn btn-outline-primary waves-effect mb-1">
+                                        Recommencer
+                                    </a>
                                 </div>
                             </div>
 
@@ -268,7 +274,7 @@ foreach($list_cat as $cat ) {
                                         <span class="ico">🔮</span> Rejoins l'élite
                                     </h4>
                                     <h6 class="card-subtitle text-muted mb-1">
-                                        Propose tes tops et confronte les autres champions !
+                                        Propose-nous tes idées de tops et de fonctionnalités !
                                     </h6>
                                     <div class="btn-group justify-content-center share-t w-100" role="group">
                                         <a href="https://discord.gg/w882sUnrhE" title="Rejoinds notre discord" target="_blank" class="btn btn-icon btn-outline-primary">

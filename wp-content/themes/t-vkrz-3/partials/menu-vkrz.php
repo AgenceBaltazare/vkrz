@@ -47,11 +47,11 @@
                 </li>
             <?php endforeach; ?>
             <li class="navigation-header">
-                <span>Vainkeurz</span> <i data-feather="more-horizontal"></i>
+                <span>VAINKEURZ</span> <i data-feather="more-horizontal"></i>
             </li>
             <li class="nav-item">
                 <a class="d-flex align-items-center" href="<?php the_permalink(104853); ?>">
-                    <span class="ico">🦙</span> <span class="menu-title text-truncate">A propos</span>
+                    <span class="ico">🦙</span> <span class="menu-title text-truncate">Historique, genre...</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -61,7 +61,7 @@
             </li>
             <li class="nav-item">
                 <a class="d-flex align-items-center" href="<?php the_permalink(get_page_by_path('liste-des-champions')); ?>">
-                    <span class="ico">👑</span> <span class="menu-title text-truncate">Liste des champions</span>
+                    <span class="ico">👑</span> <span class="menu-title text-truncate">Les champions</span>
                 </a>
             </li>
             <li class="nav-item">
