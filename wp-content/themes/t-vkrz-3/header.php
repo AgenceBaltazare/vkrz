@@ -2,15 +2,15 @@
 global $uuiduser;
 global $user_id;
 $user_role = "visitor";
-if(is_user_logged_in()){
-    $current_user   = wp_get_current_user();
-    $user_id        = $current_user->ID;
-    $user_name      = $current_user->display_name;
-    $user_email     = $current_user->user_email;
-    $user_info      = get_userdata($user_id);
-    $user_role      = $user_info->roles[0];
-}
 if(get_post_type() != "tournoi" || !is_single()){
+    if(is_user_logged_in()){
+        $current_user   = wp_get_current_user();
+        $user_id        = $current_user->ID;
+        $user_name      = $current_user->display_name;
+        $user_email     = $current_user->user_email;
+        $user_info      = get_userdata($user_id);
+        $user_role      = $user_info->roles[0];
+    }
     $uuiduser           = deal_uuiduser();
 }
 ?>
