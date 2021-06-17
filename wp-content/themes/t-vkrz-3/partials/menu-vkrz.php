@@ -51,7 +51,7 @@
             </li>
             <li class="nav-item">
                 <a class="d-flex align-items-center" href="<?php the_permalink(104853); ?>">
-                    <span class="ico">🦙</span> <span class="menu-title text-truncate">Historique, genre...</span>
+                    <span class="ico">🦙</span> <span class="menu-title text-truncate">Historik</span>
                 </a>
             </li>
             <li class="nav-item">
