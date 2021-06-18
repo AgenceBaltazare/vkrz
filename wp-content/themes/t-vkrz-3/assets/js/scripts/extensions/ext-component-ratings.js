@@ -52,6 +52,7 @@ $(function () {
 
   // Multi Color Ratings
   // --------------------------------------------------------------------
+multiColor = $('.multi-color-ratings');
   if (multiColor.length) {
     multiColor.rateYo({
       rtl: isRtl,
@@ -59,7 +60,7 @@ $(function () {
         startColor: '#ea5455',
         endColor: '#7367f0'
       }
-    });
+    })
   }
 
   // Half Star Ratings
