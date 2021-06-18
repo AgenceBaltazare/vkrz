@@ -199,7 +199,7 @@ foreach($list_cat as $cat ) {
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">
-                                    <span class="ico">🙏</span> As-tu apprécier ce Top ?
+                                    <span class="ico">🙏</span> As-tu apprécié ce Top ?
                                 </h4>
                                 <h6 class="card-subtitle text-muted mb-1">
                                     Vos retours nous aident beaucoup à améliorer VAINKEURZ !
