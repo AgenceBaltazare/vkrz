@@ -133,6 +133,39 @@ function cpt_init() {
     );
     register_post_type('vote', $args);
 
+    // Ratings
+    $labels = array(
+        'name' => 'Notes',
+        'singular_name' => 'Note',
+        'add_new' => 'Ajouter une note',
+        'add_new_item' => 'Ajouter une note',
+        'edit_item' => 'Editer une note',
+        'new_item' => 'Nouvelle note',
+        'all_items' => 'Toutes les notes',
+        'view_item' => 'Voir note',
+        'search_items' => 'Chercher note',
+        'not_found' =>  'Aucune note trouvée',
+        'not_found_in_trash' => 'Aucune note trouvée dans la corbeille',
+        'menu_name' => 'Notes'
+    );
+    $args = array(
+        'labels' => $labels,
+        'public' => true,
+        'publicly_queryable' => false,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'query_var' => true,
+        'rewrite' => array('slug' => 'n'),
+        'capability_type' => 'post',
+        'has_archive' => true,
+        'hierarchical' => false,
+        'menu_position' => null,
+        'menu_icon' => 'dashicons-star-half',
+        'show_in_rest' => false,
+        'supports' => array('title', 'author')
+    );
+    register_post_type('note', $args);
+
 }
 add_action( 'init', 'cpt_init' );
 

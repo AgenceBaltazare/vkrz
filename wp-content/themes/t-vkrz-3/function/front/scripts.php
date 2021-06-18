@@ -30,11 +30,13 @@ function load_css_js() {
     wp_enqueue_script('polyfill', get_template_directory_uri().'/assets/vendors/js/extensions/polyfill.min.js', array(), null, true);
     wp_enqueue_script('swiper', get_template_directory_uri().'/assets/vendors/js/extensions/swiper.min.js', array(), null, true);
     wp_enqueue_script('component-swiper', get_template_directory_uri().'/assets/js/scripts/extensions/ext-component-swiper.js', array(), null, true);
+    wp_enqueue_script('modals', get_template_directory_uri().'/assets/js/scripts/components/components-modals.js', array(), null, true);
     wp_enqueue_script('app', get_template_directory_uri().'/assets/js/core/app.js', array(), null, true);
     wp_enqueue_script('app-menu', get_template_directory_uri().'/assets/js/core/app-menu.js', array(), null, true);
     wp_enqueue_script('main', get_template_directory_uri().'/assets/js/core/main.js', array(), $template_version, true);
     wp_enqueue_script('contenders-ajax', get_template_directory_uri().'/function/ajax/contenders-ajax.js', array(), $template_version, true);
     wp_enqueue_script('meca', get_template_directory_uri().'/function/ajax/meca.js', array(), $template_version, true);
+    wp_enqueue_script('note', get_template_directory_uri().'/function/ajax/note-t.js', array(), $template_version, true);
 
 }
 add_action('wp_enqueue_scripts', 'load_css_js');

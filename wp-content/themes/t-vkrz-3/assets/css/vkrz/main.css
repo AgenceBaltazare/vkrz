@@ -469,6 +469,16 @@ html .content {
   margin-top: 20px;
 }
 
+.related .ico {
+  width: 20px;
+}
+.related .card .card-title {
+  font-size: 1.1rem;
+}
+.related h6 {
+  font-size: 0.9rem;
+}
+
 .main-menu {
   border-right: 10px solid #14122f;
 }
@@ -826,8 +836,45 @@ html .content {
 
 .single-classement .list-tournois {
   background: rgba(255, 255, 255, 0.05);
-  padding: 25px 50px;
+  padding: 5px 25px 0;
   border-radius: 10px;
+}
+
+.star {
+  opacity: 0.4;
+  font-size: 20px;
+  transition: opacity 0.35s;
+  cursor: pointer;
+  transform: scale(1);
+  display: inline-block;
+}
+.star:hover {
+  transform: scale(1.2);
+}
+.star.active {
+  opacity: 1;
+}
+.star.activechoice {
+  opacity: 1;
+}
+
+.startchoicedone {
+  font-size: 20px;
+  display: none;
+}
+.startchoicedone .ico {
+  font-size: 20px;
+  width: 15px;
+}
+
+.contenders_min:not(.rounded) .illu img {
+  border-radius: 10px;
+}
+
+.merci {
+  display: none;
+  padding: 20px;
+  text-align: center;
 }
 
 .avatar-picture-max {
