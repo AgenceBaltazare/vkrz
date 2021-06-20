@@ -98,3 +98,14 @@ div.dataTables_wrapper div.dataTables_filter label, div.dataTables_wrapper div.d
   background-color: #20143a;
   color: #fff;
 }
+
+.dark-layout .modal .modal-content, .dark-layout .modal .modal-body, .dark-layout .modal .modal-footer {
+  background-color: #20143a;
+  border-color: #20143a;
+}
+.modal .modal-footer {
+  padding: 0 1.4rem .8rem 1.4rem;
+}
+.dark-layout .modal .modal-header, .dark-layout .modal .modal-header[class*='bg-'] {
+  background-color: #170c31;
+}

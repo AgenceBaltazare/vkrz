@@ -38,7 +38,6 @@
     <script src="<?php bloginfo('template_directory'); ?>/assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js"></script>
     <script src="<?php bloginfo('template_directory'); ?>/assets/vendors/js/tables/datatable/dataTables.responsive.min.js"></script>
     <script src="<?php bloginfo('template_directory'); ?>/assets/vendors/js/tables/datatable/responsive.bootstrap.min.js"></script>
-    <script type="text/javascript" src="dataTables.scrollingPagination.js"></script>
     <script>
         $('.invoice-list-table').DataTable({
             autoWidth: false,

@@ -129,6 +129,16 @@ div.dataTables_wrapper div.dataTables_filter label, div.dataTables_wrapper div.d
   background-color: #20143a;
   color: #fff; }
 
+.dark-layout .modal .modal-content, .dark-layout .modal .modal-body, .dark-layout .modal .modal-footer {
+  background-color: #20143a;
+  border-color: #20143a; }
+
+.modal .modal-footer {
+  padding: 0 1.4rem .8rem 1.4rem; }
+
+.dark-layout .modal .modal-header, .dark-layout .modal .modal-header[class*='bg-'] {
+  background-color: #170c31; }
+
 .cover {
   background-size: cover !important; }
 
@@ -936,6 +946,20 @@ input:-webkit-autofill:active {
 
 .app-user-view .btns-alert .btn-primary {
   margin-top: 0.71rem !important; }
+
+.invoice-list-wrapper .star {
+  font-size: 14px; }
+.invoice-list-wrapper .startchoicedone {
+  font-size: 14px;
+  text-align: right; }
+  .invoice-list-wrapper .startchoicedone .ico {
+    font-size: 14px;
+    width: 15px; }
+.invoice-list-wrapper td, .invoice-list-wrapper th {
+  padding: 10px 15px 8px !important; }
+
+.ico-action {
+  font-size: 17px; }
 
 .ico-master {
   font-size: 85px; }

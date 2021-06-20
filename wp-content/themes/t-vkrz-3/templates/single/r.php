@@ -40,7 +40,7 @@ foreach($list_cat as $cat ) {
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
-                                    <textarea class="form-control" id="commentairezone" rows="4" placeholder="Ton commenaire..."></textarea>
+                                    <textarea class="form-control commentairezone" rows="4" placeholder="Ton commenaire..."></textarea>
                                     <p class="merci">
                                         Un grand Merci pour ce retour <span class="ico">🙏</span>
                                     </p>
@@ -49,7 +49,7 @@ foreach($list_cat as $cat ) {
                         </div>
                     </div>
                     <div class="modal-footer text-center">
-                        <button type="submit" class="btn btn-primary mr-1 waves-effect waves-float waves-light">Valider</button>
+                        <button type="submit" class="tohidecta btn btn-primary mr-1 waves-effect waves-float waves-light">Valider</button>
                     </div>
                 </form>
             </div>
@@ -223,7 +223,7 @@ foreach($list_cat as $cat ) {
                                                 <span class="star star-4" data-star="4">⭐️</span>
                                                 <span class="star star-5" data-star="5">⭐️</span>
                                             </div>
-                                            <div class="startchoicedone">
+                                            <div class="startchoicedone toshow-<?php echo $id_tournament; ?>">
                                                 <span class="star_number"></span>
                                                 <span class="ico">⭐️</span>
                                             </div>

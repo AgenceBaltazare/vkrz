@@ -3,8 +3,9 @@ $(document).ready(function ($) {
     let ajaxRunning = false;
 
     $(".star").hover(function() {
-        position = $(this).data('star');
-        $('.star').each(function(){
+        position    = $(this).data('star');
+        parentStar  = $(this).parent('.starchoice');
+        parentStar.find($('.star')).each(function(){
             if($(this).data('star') <= position){
                 $(this).addClass('active');
             }
@@ -22,11 +23,16 @@ $(document).ready(function ($) {
 
         e.preventDefault();
 
-        var starchoice = $(this).data('star');
+        var starchoice   = $(this).data('star');
 
-        $('.starchoice').hide();
-        $('.startchoicedone').fadeIn();
-        $('.startchoicedone').find('.star_number').html(starchoice);
+        parentStar  = $(this).parent('.starchoice');
+
+        var id_t         = parentStar.data('id-tournament');
+
+        parentStar.hide();
+
+        $('.toshow-'+id_t).fadeIn();
+        $('.toshow-'+id_t).find('.star_number').html(starchoice);
 
         if (!ajaxRunning) {
             ajaxRunning = true;
@@ -35,8 +41,8 @@ $(document).ready(function ($) {
                 url: vkrz_ajaxurl,
                 data: {
                     action: 'vkzr_process_note',
-                    id_tournament: $('.starchoice').data('id-tournament'),
-                    uuiduser: $('.starchoice').data('uuiduser'),
+                    id_tournament: parentStar.data('id-tournament'),
+                    uuiduser: parentStar.data('uuiduser'),
                     star: starchoice
                 }
             })
@@ -53,11 +59,12 @@ $(document).ready(function ($) {
 
         e.preventDefault();
 
-        CommentForm = $('.form-note #commentairezone');
+        CommentForm    = $(this);
+        CommentFormVal = $(this).find('.commentairezone').val();
 
-        var commentaire_note = $('.form-note #commentairezone').val();
-        $('#commentairezone').hide();
-        $('.merci').fadeIn();
+        CommentForm.find('.commentairezone').hide();
+        CommentForm.find('.tohidecta').hide();
+        CommentForm.find('.merci').fadeIn();
 
         if (!ajaxRunning) {
             ajaxRunning = true;
@@ -68,7 +75,7 @@ $(document).ready(function ($) {
                     action: 'vkzr_process_commentaire_note',
                     id_tournament: $(this).data('id-tournament'),
                     uuiduser: $(this).data('uuiduser'),
-                    commentaire_note : commentaire_note
+                    commentaire_note : CommentFormVal
                 }
             })
             .done(function (response) {

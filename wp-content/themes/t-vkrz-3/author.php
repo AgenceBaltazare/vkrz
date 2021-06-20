@@ -129,7 +129,7 @@ $info_champion_level = get_user_level($uuidchampion, $champion_id, $nb_champion_
                                                                 <div class="media-body">
                                                                     <div class="media-heading">
                                                                         <h6 class="cart-item-title mb-0">
-                                                                            <a class="text-body" href="<?php the_permalink($r_user['id_tournoi']); ?>" data-toggle="tooltip" data-placement="top" title="<?php the_field('question_t', $r_user['id_tournoi']); ?>" data-original-title="<?php the_field('question_t', $r_user['id_tournoi']); ?>">
+                                                                            <a class="text-body" href="<?php the_permalink($r_user['id_tournoi']); ?>">
                                                                                 Top <?php echo $r_user['nb_top']; ?> - <?php echo get_the_title($r_user['id_tournoi']); ?>
                                                                             </a>
                                                                         </h6>
