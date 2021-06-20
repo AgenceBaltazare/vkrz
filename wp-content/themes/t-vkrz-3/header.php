@@ -77,6 +77,8 @@ if(get_post_type() != "tournoi" || !is_single()){
         $crisp.push(["set", "user:email", ["<?php echo $user_email; ?>"]]);
         $crisp.push(["set", "user:nickname", ["<?php echo $user_name; ?>"]]);
     </script>
+
+    <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory'); ?>/css/plugins/charts/chart-apex.min.css">
     <?php wp_head(); ?>
 </head>
 <?php

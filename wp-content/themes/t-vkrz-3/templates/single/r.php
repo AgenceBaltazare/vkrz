@@ -194,7 +194,7 @@ foreach($list_cat as $cat ) {
 
             <div class="col-md-3 offset-md-1">
 
-                <?php if(get_field('uuid_user_r') == $uuiduser): ?>
+                <?php if(get_field('uuid_user_r', $id_ranking) == $uuiduser): ?>
                     <div class="related animate__backInDown animate__animated animate__delay-3s">
                         <div class="dorating">
                             <div class="card">
@@ -258,7 +258,7 @@ foreach($list_cat as $cat ) {
                         </div>
                     </div>
 
-                    <?php if(get_field('uuid_user_r') == $uuiduser): ?>
+                    <?php if(get_field('uuid_user_r', $id_ranking) == $uuiduser): ?>
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">
@@ -308,7 +308,7 @@ foreach($list_cat as $cat ) {
                         </div>
                     </div>
 
-                    <?php if(get_field('uuid_user_r') == $uuiduser): ?>
+                    <?php if(get_field('uuid_user_r', $id_ranking) == $uuiduser): ?>
 
                         <div class="card">
                             <div class="card-body">
@@ -342,7 +342,7 @@ foreach($list_cat as $cat ) {
 
                     <?php endif; ?>
 
-                    <?php if(get_field('uuid_user_r') == $uuiduser): ?>
+                    <?php if(get_field('uuid_user_r', $id_ranking) == $uuiduser): ?>
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">

@@ -119,6 +119,42 @@ get_header();
                     </div>
                 </section>
 
+                <!--
+                <section class="stats_user">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row avg-sessions pt-50">
+                                        <?php
+                                        $cat_t = get_terms( array(
+                                            'taxonomy'      => 'categorie',
+                                            'orderby'       => 'count',
+                                            'order'         => 'DESC',
+                                            'hide_empty'    => true,
+                                        ));
+                                        foreach($cat_t as $cat) : ?>
+                                            <div class="col-3 mt-1 mb-1">
+                                                <p class="mb-50">
+                                                    <span class="ico2 ">
+                                                        <span class="<?php if($cat->term_id == 2){echo 'rotating';} ?>">
+                                                            <?php the_field('icone_cat', 'term_'.$cat->term_id); ?>
+                                                        </span>
+                                                    </span> <?php echo $cat->name; ?>
+                                                </p>
+                                                <div class="progress progress-bar-primary" style="height: 6px">
+                                                    <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="50" aria-valuemax="100" style="width: 50%"></div>
+                                                </div>
+                                            </div>
+                                        <?php endforeach; ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                -->
+
                 <?php
                 $list_r_done = $user_full_data[0]['list_user_ranking_done'];
                 $list_r_begin = $user_full_data[0]['list_user_ranking_begin'];

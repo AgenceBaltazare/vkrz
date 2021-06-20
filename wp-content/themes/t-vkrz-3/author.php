@@ -99,87 +99,85 @@ $info_champion_level = get_user_level($uuidchampion, $champion_id, $nb_champion_
                         $list_t_done = $user_full_data[0]['list_user_ranking_done'];
                         if($list_t_done) :
                         ?>
-                        <div class="card">
-                            <div class="card-body p-0">
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th class="">
-                                                    ⚔️<br>
-                                                    Tous les Tops terminés
-                                                </th>
-                                                <th class="text-center">
-                                                    💎<br>
-                                                    Votes
-                                                </th>
-                                                <th class="">
-                                                    🥇🥈🥉<br>
-                                                    Podium
-                                                </th>
-                                                <th class="text-center">
-                                                    🏆<br>
-                                                    Top complet
-                                                </th>
-                                                <th class="text-center">
-                                                    🌍<br>
-                                                    Top mondial
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        <?php
-                                        foreach($list_t_done as $r_user) : ?>
-                                            <?php if($r_user['nb_votes'] > 0): ?>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card invoice-list-wrapper">
+                                        <div class="card-datatable table-responsive">
+                                            <table class="invoice-list-table table">
+                                                <thead>
                                                 <tr>
-                                                    <td>
-                                                        <div class="media-body">
-                                                            <div class="media-heading">
-                                                                <h6 class="cart-item-title mb-0">
-                                                                    <a class="text-body" href="<?php the_permalink($r_user['id_tournoi']); ?>">
-                                                                        Top <?php echo $r_user['nb_top']; ?> - <?php echo get_the_title($r_user['id_tournoi']); ?>
-                                                                    </a>
-                                                                </h6>
-                                                                <small class="cart-item-by legende">
-                                                                    <?php the_field('question_t', $r_user['id_tournoi']); ?>
-                                                                </small>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <?php echo $r_user['nb_votes']; ?> <span class="ico3">💎</span>
-                                                    </td>
-                                                    <td>
-                                                        <?php
-                                                        $user_top3 = get_user_ranking($r_user['id_ranking']);
-                                                        $l=1;
-                                                        foreach($user_top3 as $top => $p): ?>
-
-                                                            <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="<?php echo get_the_title($top); ?>" class="avatartop3 avatar pull-up">
-                                                                <?php $illu = get_the_post_thumbnail_url($top, 'thumbnail'); ?>
-                                                                <img src="<?php echo $illu; ?>" alt="Avatar">
-                                                            </div>
-
-                                                        <?php $l++; if($l==4) break; endforeach; ?>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <a href="<?php the_permalink($r_user['id_ranking']); ?>" class="scali">
-                                                            <span class="ico">👀</span>
-                                                        </a>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $r_user['id_tournoi']; ?>" class="scali">
-                                                            <span class="ico">👀</span>
-                                                        </a>
-                                                    </td>
+                                                    <th class="">
+                                                        <span class="t-rose"><?php echo count($list_t_done); ?></span> Tops terminés
+                                                    </th>
+                                                    <th class="text-center">
+                                                        💎
+                                                    </th>
+                                                    <th class="">
+                                                        🥇🥈🥉
+                                                    </th>
+                                                    <th>
+                                                        👀
+                                                    </th>
                                                 </tr>
-                                            <?php endif; ?>
-                                        <?php endforeach; ?>
-                                        </tbody>
-                                    </table>
+                                                </thead>
+                                                <tbody>
+                                                <?php
+                                                foreach($list_t_done as $r_user) : ?>
+                                                    <?php if($r_user['nb_votes'] > 0): ?>
+                                                        <tr id="top-<?php echo $r_user['id_ranking']; ?>">
+                                                            <td>
+                                                                <div class="media-body">
+                                                                    <div class="media-heading">
+                                                                        <h6 class="cart-item-title mb-0">
+                                                                            <a class="text-body" href="<?php the_permalink($r_user['id_tournoi']); ?>" data-toggle="tooltip" data-placement="top" title="<?php the_field('question_t', $r_user['id_tournoi']); ?>" data-original-title="<?php the_field('question_t', $r_user['id_tournoi']); ?>">
+                                                                                Top <?php echo $r_user['nb_top']; ?> - <?php echo get_the_title($r_user['id_tournoi']); ?>
+                                                                            </a>
+                                                                        </h6>
+                                                                        <small class="cart-item-by legende">
+                                                                            <?php the_field('question_t', $r_user['id_tournoi']); ?>
+                                                                        </small>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <?php echo $r_user['nb_votes']; ?> <span class="ico3">💎</span>
+                                                            </td>
+                                                            <td>
+                                                                <?php
+                                                                $user_top3 = get_user_ranking($r_user['id_ranking']);
+                                                                $l=1;
+                                                                foreach($user_top3 as $top => $p): ?>
+
+                                                                    <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="<?php echo get_the_title($top); ?>" class="avatartop3 avatar pull-up">
+                                                                        <?php $illu = get_the_post_thumbnail_url($top, 'thumbnail'); ?>
+                                                                        <img src="<?php echo $illu; ?>" alt="Avatar">
+                                                                    </div>
+
+                                                                    <?php $l++; if($l==4) break; endforeach; ?>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex align-items-center col-actions">
+                                                                    <a class="mr-1" href="<?php the_permalink($r_user['id_ranking']); ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir le Top complet">
+                                                                        <span class="ico">
+                                                                            🏆
+                                                                        </span>
+                                                                    </a>
+                                                                    <a class="mr-1" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $r_user['id_tournoi']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir le classement mondial">
+                                                                        <span class="ico">
+                                                                            🌍
+                                                                        </span>
+                                                                    </a>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    <?php endif; ?>
+                                                <?php endforeach; ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         <?php endif; ?>
                     </div>
                 </div>
