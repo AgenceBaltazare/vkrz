@@ -1,5 +1,15 @@
 == Changelog ==
 
+= 5.5.3 =
+Release Date: June 18th, 2021
+
+* [Added] Added Media columns: Artist and Album
+* [Improved] A more compact (horizontal) view for the Screen Options on the table screen
+* [Fixed] Sticky Headers could give an error when Screen Options were removed from the screen
+* [Fixed] Resetting sorting did not work correctly for column settings that were never stored
+* [Updated] Admin Columns Core changes ( 4.3.2 )
+* [Fixed] Column date setting gave an error when the default date format was empty
+
 = 5.5.2 =
 Release Date: June 11th, 2021
 

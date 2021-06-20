@@ -74,8 +74,11 @@ $top_datas     = get_tournoi_data($id_tournament, $uuiduser);
                                                         <th>
                                                             Champions
                                                         </th>
+                                                        <th>
+                                                            Date
+                                                        </th>
                                                         <th>Podium</th>
-                                                        <th>Actions</th>
+                                                        <th></th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
@@ -86,7 +89,7 @@ $top_datas     = get_tournoi_data($id_tournament, $uuiduser);
                                                                     <?php
                                                                     $champion_id    = get_post_field('post_author', get_the_ID());
                                                                     $champion_data  = get_user_by('ID', $champion_id);
-                                                                    $id_rank         = get_the_ID();
+                                                                    $id_rank        = get_the_ID();
                                                                     ?>
                                                                     <span class="avatar">
                                                                         <?php
@@ -119,9 +122,12 @@ $top_datas     = get_tournoi_data($id_tournament, $uuiduser);
                                                                         <?php else: ?>
                                                                             <i>Anonyme</i>
                                                                         <?php endif; ?>
+                                                                        (<?php echo $uuidchampion; ?>)
                                                                     </span>
                                                                 </td>
-                                                                
+                                                                <td>
+                                                                    <?php echo get_the_date('d/m/Y'); ?>
+                                                                </td>
                                                                 <td>
                                                                     <?php
                                                                     $user_top3 = get_user_ranking($id_rank);

@@ -15,6 +15,8 @@ if(is_user_logged_in()){
     $user_info      = get_userdata($user_id);
     $user_role      = $user_info->roles[0];
 }
+global $user_name;
+global $user_email;
 $uuiduser      = deal_uuiduser();
 $id_tournament = get_the_ID();
 $id_ranking    = get_or_create_ranking_if_not_exists($id_tournament, $uuiduser);

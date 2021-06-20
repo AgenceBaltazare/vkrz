@@ -1,5 +1,8 @@
 <?php
 global $uuiduser;
+global $user_full_data;
+global $list_t_done;
+$list_t_begin     = $user_full_data[0]['list_user_ranking_begin'];
 $state            = "";
 $id_tournament    = get_the_ID();
 $illu             = get_the_post_thumbnail_url($id_tournament, 'medium');
@@ -12,40 +15,17 @@ elseif(is_archive()){
 else{
     $class        = "col-12";
 }
-$user_ranking     = new WP_Query(array(
-    'post_type' => 'classement',
-    'posts_per_page' => '1',
-    'ignore_sticky_posts'    => true,
-    'update_post_meta_cache' => false,
-    'fields'                 => 'ids',
-    'no_found_rows'          => true,
-    'meta_query' =>
-        array(
-            'relation'  => 'AND',
-            array(
-                'key'     => 'id_tournoi_r',
-                'value'   => $id_tournament,
-                'compare' => '=',
-            ),
-            array(
-                'key' => 'uuid_user_r',
-                'value' => $uuiduser,
-                'compare' => '=',
-            )
-        )
-    )
-);
-if($user_ranking->have_posts()){
-    while ($user_ranking->have_posts()) : $user_ranking->the_post();
-        $id_user_ranking = get_the_ID();
-        if(get_field('done_r')){
-            $state  = "done";
-        }
-        else{
-            $state = "begin";
-        }
-    endwhile;
+
+if(array_search($id_tournament, array_column($list_t_done, 'id_tournoi')) !== false) {
+    $state = "done";
 }
+elseif(array_search($id_tournament, array_column($list_t_begin, 'id_tournoi')) !== false) {
+    $state = "begin";
+}
+else{
+    $state = "todo";
+}
+
 ?>
 <div class="<?php echo $class; ?>">
     <div class="min-tournoi card scaler">

@@ -9,7 +9,9 @@ global $top_title;
 global $user_full_data;
 global $nb_user_votes;
 global $info_user_level;
+global $list_t_done;
 $user_full_data  = get_user_full_data($uuiduser);
+$list_t_done     = $user_full_data[0]['list_user_ranking_done'];
 $nb_user_votes   = $user_full_data[0]['nb_user_votes'];
 $info_user_level = get_user_level($uuiduser, $user_id, $nb_user_votes);
 ?>
@@ -235,10 +237,7 @@ $info_user_level = get_user_level($uuiduser, $user_id, $nb_user_votes);
                 <a class="nav-link" href="javascript:void(0);" data-toggle="dropdown">
                     <span class="value-user-stats">
                         <span class="ico text-center">🏆</span>
-                        <?php
-                        $list_t_done = $user_full_data[0]['list_user_ranking_done'];
-                        echo count($list_t_done);
-                        ?>
+                        <?php echo count($list_t_done); ?>
                     </span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">

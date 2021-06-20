@@ -1,6 +1,8 @@
 <?php
 global $uuiduser;
 global $user_id;
+global $user_name;
+global $user_email;
 $user_role = "visitor";
 if(get_post_type() != "tournoi" || !is_single()){
     if(is_user_logged_in()){
@@ -41,6 +43,7 @@ if(get_post_type() != "tournoi" || !is_single()){
     <meta name="twitter:site" content="@Vainkeurz">
     <meta name="twitter:creator" content="@Vainkeurz">
     <meta name="twitter:domain" content="vainkeurz.com">
+
     <?php if(is_page(26626)): ?>
         <meta name='robots' content='noindex, nofollow' />
     <?php endif; ?>

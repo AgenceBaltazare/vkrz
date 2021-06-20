@@ -101,10 +101,10 @@ foreach($list_cat as $cat ) {
                                 <div class="animate__jackInTheBox animate__animated animate__delay-<?php echo $d; ?>s contenders_min <?php if(get_field('c_rounded_t', $id_tournament)){ echo 'rounded'; } ?> mb-3">
                                     <div class="illu">
                                         <?php if(get_field('visuel_cover_t', $id_tournament)): ?>
-                                            <?php $illu = get_the_post_thumbnail_url( $c, 'full' ); ?>
+                                            <?php $illu = get_the_post_thumbnail_url( $c, 'large' ); ?>
                                             <div class="cov-illu" style="background: url(<?php echo $illu; ?>) center center no-repeat"></div>
                                         <?php else: ?>
-                                            <?php echo get_the_post_thumbnail($c, 'full', array('class' => 'img-fluid')); ?>
+                                            <?php echo get_the_post_thumbnail($c, 'large', array('class' => 'img-fluid')); ?>
                                         <?php endif; ?>
                                     </div>
                                     <div class="name eh2">
@@ -208,7 +208,7 @@ foreach($list_cat as $cat ) {
                                     <div class=card-stars">
                                         <?php
                                         $note = get_note($id_tournament, $uuiduser);
-                                        if($note[0]["note"] > 0): ?>
+                                        if(isset($note[0]["note"]) && $note[0]["note"] > 0): ?>
                                             <div class="startchoicedone" style="display: block; !important">
                                                 <span class="star_number">
                                                     <?php echo $note[0]["note"]; ?>
