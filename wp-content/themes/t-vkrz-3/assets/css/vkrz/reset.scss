@@ -66,3 +66,35 @@ body {
   border: none;
   color: #fff;
 }
+
+.dark-layout .nav-tabs .nav-item .nav-link.active, .dark-layout .nav-pills .nav-item .nav-link.active, .dark-layout .nav-tabs.nav-justified .nav-item .nav-link.active {
+  background-color: transparent;
+}
+
+.dataTables_length, .dataTables_info{
+  display: none;
+}
+.dataTables_filter{
+  text-align: right;
+  padding: 10px;
+  float: right;
+  label{
+    max-width: 100%;
+    width: 270px;
+    margin: 0 10px 0 0;
+  }
+}
+.pagination{
+  display: none;
+  text-align: right;
+  float: right;
+  padding: 0 20px 0 0;
+}
+div.dataTables_wrapper div.dataTables_filter label, div.dataTables_wrapper div.dataTables_length label {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.dark-layout input.form-control, .dark-layout .custom-file-label, .dark-layout textarea.form-control {
+  background-color: #20143a;
+  color: #fff;
+}

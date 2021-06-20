@@ -57,7 +57,7 @@ html .content.app-content .content-overlay{
   background: #13122f !important;
 }
 .ico{
-  width: 30px;
+  width: 20px;
   display: inline-block;
   img{
     max-width: 22px;
@@ -69,6 +69,11 @@ html .content.app-content .content-overlay{
 }
 .ico4{
   font-size: 30px;
+}
+.main-menu-content{
+  .ico{
+    width: 30px;
+  }
 }
 .breadcrumbs-top{
   a{
@@ -339,13 +344,31 @@ html .content {
 }
 
 .related{
-  .ico{
-    width: 20px;
-  }
   .card .card-title {
     font-size: 1.1rem;
   }
   h6 {
     font-size: 0.9rem;
+  }
+}
+
+.tournament-heading{
+  position: relative;
+  &:after{
+    border-top: 2px solid $rose;
+    display: block;
+    content: "";
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    left: -20px;
+  }
+}
+
+.media{
+  .notification-text{
+    line-height: 15px !important;
+    display: inline-block;
+    margin: 0 !important;
   }
 }

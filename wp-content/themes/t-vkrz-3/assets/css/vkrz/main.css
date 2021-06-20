@@ -123,6 +123,42 @@ body {
   color: #fff;
 }
 
+.dark-layout .nav-tabs .nav-item .nav-link.active, .dark-layout .nav-pills .nav-item .nav-link.active, .dark-layout .nav-tabs.nav-justified .nav-item .nav-link.active {
+  background-color: transparent;
+}
+
+.dataTables_length, .dataTables_info {
+  display: none;
+}
+
+.dataTables_filter {
+  text-align: right;
+  padding: 10px;
+  float: right;
+}
+.dataTables_filter label {
+  max-width: 100%;
+  width: 270px;
+  margin: 0 10px 0 0;
+}
+
+.pagination {
+  display: none;
+  text-align: right;
+  float: right;
+  padding: 0 20px 0 0;
+}
+
+div.dataTables_wrapper div.dataTables_filter label, div.dataTables_wrapper div.dataTables_length label {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.dark-layout input.form-control, .dark-layout .custom-file-label, .dark-layout textarea.form-control {
+  background-color: #20143a;
+  color: #fff;
+}
+
 .cover {
   background-size: cover !important;
 }
@@ -189,7 +225,7 @@ html .content.app-content .content-overlay {
 }
 
 .ico {
-  width: 30px;
+  width: 20px;
   display: inline-block;
 }
 .ico img {
@@ -203,6 +239,10 @@ html .content.app-content .content-overlay {
 
 .ico4 {
   font-size: 30px;
+}
+
+.main-menu-content .ico {
+  width: 30px;
 }
 
 .breadcrumbs-top a {
@@ -469,14 +509,30 @@ html .content {
   margin-top: 20px;
 }
 
-.related .ico {
-  width: 20px;
-}
 .related .card .card-title {
   font-size: 1.1rem;
 }
 .related h6 {
   font-size: 0.9rem;
+}
+
+.tournament-heading {
+  position: relative;
+}
+.tournament-heading:after {
+  border-top: 2px solid #f4167f;
+  display: block;
+  content: "";
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  left: -20px;
+}
+
+.media .notification-text {
+  line-height: 15px !important;
+  display: inline-block;
+  margin: 0 !important;
 }
 
 .main-menu {
@@ -1234,6 +1290,10 @@ input:-webkit-autofill:active {
   .col-xxl-2 {
     flex: 0 0 16.66667%;
     max-width: 16.66667%;
+  }
+
+  .mb-xs {
+    margin-bottom: 10px;
   }
 }
 @media (max-width: 1700px) {

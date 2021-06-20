@@ -19,3 +19,17 @@ function delete_ranking($id_ranking){
     )));
 
 }
+
+function delete_real_ranking($id_ranking){
+
+    if(isset($id_ranking) && $id_ranking != ""){
+
+        wp_trash_post($id_ranking);
+
+    }
+
+    return die(json_encode( array(
+        'id_ranking'        => $id_ranking,
+    )));
+
+}

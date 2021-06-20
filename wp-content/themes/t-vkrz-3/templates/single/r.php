@@ -194,49 +194,51 @@ foreach($list_cat as $cat ) {
 
             <div class="col-md-3 offset-md-1">
 
-                <div class="related animate__backInDown animate__animated animate__delay-3s">
-                    <div class="dorating">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">
-                                    <span class="ico">🙏</span> As-tu apprécié ce Top ?
-                                </h4>
-                                <h6 class="card-subtitle text-muted mb-1">
-                                    Vos retours nous aident beaucoup à améliorer VAINKEURZ !
-                                </h6>
-                                <div class=card-stars">
-                                    <?php
-                                    $note = get_note($id_tournament, $uuiduser);
-                                    if($note[0]["note"] > 0): ?>
-                                        <div class="startchoicedone" style="display: block; !important">
-                                            <span class="star_number">
-                                                <?php echo $note[0]["note"]; ?>
-                                            </span>
-                                            <span class="ico">⭐️</span>
+                <?php if(get_field('uuid_user_r') == $uuiduser): ?>
+                    <div class="related animate__backInDown animate__animated animate__delay-3s">
+                        <div class="dorating">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">
+                                        <span class="ico">🙏</span> As-tu apprécié ce Top ?
+                                    </h4>
+                                    <h6 class="card-subtitle text-muted mb-1">
+                                        Vos retours nous aident beaucoup à améliorer VAINKEURZ !
+                                    </h6>
+                                    <div class=card-stars">
+                                        <?php
+                                        $note = get_note($id_tournament, $uuiduser);
+                                        if($note[0]["note"] > 0): ?>
+                                            <div class="startchoicedone" style="display: block; !important">
+                                                <span class="star_number">
+                                                    <?php echo $note[0]["note"]; ?>
+                                                </span>
+                                                <span class="ico">⭐️</span>
+                                            </div>
+                                        <?php else: ?>
+                                            <div class="starchoice" data-id-tournament="<?php echo $id_tournament; ?>" data-uuiduser="<?php echo $uuiduser; ?>">
+                                                <span class="star star-1" data-star="1">⭐️</span>
+                                                <span class="star star-2" data-star="2">⭐️</span>
+                                                <span class="star star-3" data-star="3">⭐️</span>
+                                                <span class="star star-4" data-star="4">⭐️</span>
+                                                <span class="star star-5" data-star="5">⭐️</span>
+                                            </div>
+                                            <div class="startchoicedone">
+                                                <span class="star_number"></span>
+                                                <span class="ico">⭐️</span>
+                                            </div>
+                                        <?php endif; ?>
+                                        <div class="commentbox mt-1">
+                                            <a href="#" class="btn btn-outline-primary waves-effect" data-toggle="modal" data-target="#commentModal">
+                                                Ajouter un commentaire
+                                            </a>
                                         </div>
-                                    <?php else: ?>
-                                        <div class="starchoice" data-id-tournament="<?php echo $id_tournament; ?>" data-uuiduser="<?php echo $uuiduser; ?>">
-                                            <span class="star star-1" data-star="1">⭐️</span>
-                                            <span class="star star-2" data-star="2">⭐️</span>
-                                            <span class="star star-3" data-star="3">⭐️</span>
-                                            <span class="star star-4" data-star="4">⭐️</span>
-                                            <span class="star star-5" data-star="5">⭐️</span>
-                                        </div>
-                                        <div class="startchoicedone">
-                                            <span class="star_number"></span>
-                                            <span class="ico">⭐️</span>
-                                        </div>
-                                    <?php endif; ?>
-                                    <div class="commentbox mt-1">
-                                        <a href="#" class="btn btn-outline-primary waves-effect" data-toggle="modal" data-target="#commentModal">
-                                            Ajouter un commentaire
-                                        </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                <?php endif; ?>
 
                 <div class="related animate__fadeInRight animate__animated animate__delay-4s">
 
@@ -316,7 +318,7 @@ foreach($list_cat as $cat ) {
                                 <h6 class="card-subtitle text-muted mb-1">
                                     T'inquiète on te laisse refaire le Top
                                 </h6>
-                                <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-idranking="<?php echo $id_ranking; ?>" id="confirm_delete" href="#" class="btn btn-outline-primary waves-effect mb-1">
+                                <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-idranking="<?php echo $id_ranking; ?>" href="#" class="confirm_delete btn btn-outline-primary waves-effect mb-1">
                                     Recommencer
                                 </a>
                             </div>

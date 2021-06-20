@@ -193,9 +193,12 @@ $info_user_level = get_user_level($uuiduser, $user_id, $nb_user_votes);
                                     </div>
                                     <div class="media-body">
                                         <div class="media-heading">
-                                            <h6 class="cart-item-title">
+                                            <h6 class="cart-item-title mb-0">
                                                 <?php echo get_the_title($t_user['id_tournoi']); ?>
                                             </h6>
+                                            <small class="notification-text">
+                                                <?php the_field('question_t', $t_user['id_tournoi']); ?>
+                                            </small>
                                             <small class="cart-item-by">
                                                 <?php if($t_user['done'] == true): ?>
                                                     <div class="badge badge-success">Terminé</div>

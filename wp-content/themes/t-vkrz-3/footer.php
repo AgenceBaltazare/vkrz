@@ -30,5 +30,36 @@
 
 <?php wp_footer(); ?>
 
+<script src="<?php bloginfo('template_directory'); ?>/assets/vendors/js/tables/datatable/datatables.min.js"></script>
+<script src="<?php bloginfo('template_directory'); ?>/assets/vendors/js/tables/datatable/datatables.buttons.min.js"></script>
+<script src="<?php bloginfo('template_directory'); ?>/assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js"></script>
+<script src="<?php bloginfo('template_directory'); ?>/assets/vendors/js/tables/datatable/dataTables.responsive.min.js"></script>
+<script src="<?php bloginfo('template_directory'); ?>/assets/vendors/js/tables/datatable/responsive.bootstrap.min.js"></script>
+<script type="text/javascript" src="dataTables.scrollingPagination.js"></script>
+<script>
+    $('.invoice-list-table').DataTable({
+        autoWidth: false,
+        lengthMenu: [5000],
+        language: {
+            search: "_INPUT_",
+            searchPlaceholder: "Rechercher...",
+            processing:     "Traitement en cours...",
+            info:           "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
+            infoEmpty:      "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
+            infoFiltered:   "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+            infoPostFix:    "",
+            loadingRecords: "Chargement en cours...",
+            zeroRecords:    "Aucun &eacute;l&eacute;ment &agrave; afficher 😩",
+            emptyTable:     "Aucun résultat trouvé 😩",
+            paginate: {
+                first:      "Premier",
+                previous:   "Pr&eacute;c&eacute;dent",
+                next:       "Suivant",
+                last:       "Dernier"
+            },
+        }
+    });
+</script>
+
 </body>
 </html>

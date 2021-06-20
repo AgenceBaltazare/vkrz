@@ -85,7 +85,7 @@ $illu_url   = $illu[0];
 
             <div class="nav-tournament d-flex justify-content-center align-items-center">
                 <div class="btng">
-                    <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-idranking="<?php echo $id_ranking; ?>" id="confirm_delete" href="#" class="btn btn-outline-primary waves-effect">
+                    <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-idranking="<?php echo $id_ranking; ?>" href="#" class="confirm_delete btn btn-outline-primary waves-effect">
                         <span class="ico text-center">🙃</span> Recommencer
                     </a>
                 </div>
