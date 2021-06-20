@@ -38,6 +38,7 @@ function get_user_full_data($uuiduser){
     while ($user_all_ranking->have_posts()) : $user_all_ranking->the_post();
 
         $count_user_votes = $count_user_votes + get_field('nb_votes_r');
+        $id_tournament    = get_field('id_tournoi_r');
 
         if(get_field('done_r') == "done"){
             $done = true;
@@ -46,9 +47,14 @@ function get_user_full_data($uuiduser){
             $done = false;
         }
 
+        foreach (get_the_terms($id_tournament, 'categorie') as $cat) {
+            $cat_id = $cat->term_id;
+        }
+
         if(get_field('done_r') == "done"){
             array_push($user_ranking_done, array(
-                "id_tournoi" => get_field('id_tournoi_r'),
+                "id_tournoi" => $id_tournament,
+                "cat_t"      => $cat_id,
                 "nb_top"     => count(get_field('ranking_r')),
                 "done"       => $done,
                 "nb_votes"   => get_field('nb_votes_r'),

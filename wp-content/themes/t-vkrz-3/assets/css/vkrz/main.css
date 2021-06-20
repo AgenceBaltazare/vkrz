@@ -1209,6 +1209,11 @@ input:-webkit-autofill:active {
   margin: 0 5px 0 0;
 }
 
+.infosmall {
+  float: right;
+  text-align: right;
+}
+
 .ico-master {
   font-size: 85px;
 }

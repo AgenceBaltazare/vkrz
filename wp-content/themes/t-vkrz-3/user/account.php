@@ -72,7 +72,7 @@ $list_t_begin  = $user_full_data[0]['list_user_ranking_begin'];
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-sm-2 col-6">
                         <div class="card text-center">
                             <div class="card-body">
                                 <div class="mb-1">
@@ -85,7 +85,7 @@ $list_t_begin  = $user_full_data[0]['list_user_ranking_begin'];
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-sm-2 col-6">
                         <div class="card text-center">
                             <div class="card-body">
                                 <div class="mb-1">
@@ -119,8 +119,7 @@ $list_t_begin  = $user_full_data[0]['list_user_ranking_begin'];
                     </div>
                 </div>
             </section>
-
-            <!--
+            
             <section class="stats_user">
                 <div class="row">
                     <div class="col-12">
@@ -135,16 +134,39 @@ $list_t_begin  = $user_full_data[0]['list_user_ranking_begin'];
                                         'hide_empty'    => true,
                                     ));
                                     foreach($cat_t as $cat) : ?>
-                                        <div class="col-3 mt-1 mb-1">
+                                        <?php
+                                        $tops_in_cat = $cat->count;
+                                        $id_cat      = $cat->term_id;
+                                        $count_top_done_in_cat = 0; 
+                                        foreach($list_t_done as $top_done){
+                                            if($id_cat == $top_done['cat_t']){
+                                                $count_top_done_in_cat++;
+                                            }
+                                        }
+                                        $percent_done_cat = round($count_top_done_in_cat * 100 / $tops_in_cat);
+                                        if($percent_done_cat >= 100){
+                                            $classbar = "success";
+                                        }
+                                        elseif($percent_done_cat < 100 && $percent_done_cat >= 25){
+                                            $classbar = "primary";
+                                        }
+                                        else{
+                                            $classbar = "warning";
+                                        }
+                                        ?>
+                                        <div class="col-md-3 mt-1 mb-1">
                                             <p class="mb-50">
-                                                <span class="ico2 ">
+                                                <span class="ico2">
                                                     <span class="<?php if($cat->term_id == 2){echo 'rotating';} ?>">
                                                         <?php the_field('icone_cat', 'term_'.$cat->term_id); ?>
                                                     </span>
-                                                </span> <?php echo $cat->name; ?>
+                                                </span>
+                                                <?php echo $cat->name; ?>
+                                                <small class="infosmall text-<?php echo $classbar; ?>"><?php echo $count_top_done_in_cat; ?> sur <?php echo $tops_in_cat; ?>
+                                                </small>
                                             </p>
-                                            <div class="progress progress-bar-primary" style="height: 6px">
-                                                <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="50" aria-valuemax="100" style="width: 50%"></div>
+                                            <div class="progress progress-bar-<?php echo $classbar; ?>" style="height: 6px">
+                                                <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $percent_done_cat; ?>" aria-valuemin="<?php echo $percent_done_cat; ?>" aria-valuemax="100" style="width: <?php echo $percent_done_cat; ?>%"></div>
                                             </div>
                                         </div>
                                     <?php endforeach; ?>
@@ -154,7 +176,6 @@ $list_t_begin  = $user_full_data[0]['list_user_ranking_begin'];
                     </div>
                 </div>
             </section>
-            -->
 
             <section id="basic-tabs-components">
                 <ul class="nav nav-tabs" role="tablist">
