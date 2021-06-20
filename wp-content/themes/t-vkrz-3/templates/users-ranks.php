@@ -55,116 +55,110 @@ $top_datas     = get_tournoi_data($id_tournament, $uuiduser);
                 ));
                 ?>
                 <section id="profile-info">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <?php
-                            if($all_users_ranks_of_t->have_posts()) : ?>
-                                <div class="row" id="table-bordered">
-                                    <div class="col-12">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <h4 class="card-title pt-1 pb-1">
-                                                    Depuis le <?php echo $top_datas[0]['date_of_t']; ?>, <?php echo $top_datas[0]['nb_votes']; ?>💎 ont générés <?php echo $top_datas[0]['nb_tops']; ?> 🏆
-                                                </h4>
-                                            </div>
-                                            <div class="table-responsive">
-                                                <table class="table">
-                                                    <thead>
+                    <?php
+                    if($all_users_ranks_of_t->have_posts()) : ?>
+                        <div class="row" id="table-bordered">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title pt-1 pb-1">
+                                            Depuis le <?php echo $top_datas[0]['date_of_t']; ?>, <?php echo $top_datas[0]['nb_votes']; ?>💎 ont générés <?php echo $top_datas[0]['nb_tops']; ?> 🏆
+                                        </h4>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th>
+                                                    Champions
+                                                </th>
+                                                <th>Podium</th>
+                                                <th></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php while ($all_users_ranks_of_t->have_posts()) : $all_users_ranks_of_t->the_post(); ?>
                                                     <tr>
-                                                        <th>
-                                                            Champions
-                                                        </th>
-                                                        <th>
-                                                            Date
-                                                        </th>
-                                                        <th>Podium</th>
-                                                        <th></th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <?php while ($all_users_ranks_of_t->have_posts()) : $all_users_ranks_of_t->the_post(); ?>
-                                                            <tr>
-                                                                
-                                                                <td>
+
+                                                        <td>
+                                                            <?php
+                                                            $id_rank        = get_the_ID();
+                                                            $uuid_user_r    = get_field('uuid_user_r', $id_rank);
+                                                            $champion_id    = find_vkrz_user($uuid_user_r);
+                                                            $champion_data  = get_user_by('ID', $champion_id);
+                                                            ?>
+                                                            <span class="avatar">
+                                                                <?php
+                                                                if($champion_data){
+                                                                    $avatar_url = get_avatar_url($champion_id, ['size' => '80']);
+                                                                }
+                                                                else{
+                                                                    $avatar_url = get_bloginfo('template_directory')."/assets/images/vkrz/ninja.png";
+                                                                }
+                                                                ?>
+                                                                <span class="avatar-picture" style="background-image: url(<?php echo $avatar_url; ?>);"></span>
+                                                                <?php if($champion_data): ?>
+                                                                    <span class="user-niveau">
                                                                     <?php
-                                                                    $champion_id    = get_post_field('post_author', get_the_ID());
-                                                                    $champion_data  = get_user_by('ID', $champion_id);
-                                                                    $id_rank        = get_the_ID();
+                                                                    $uuidchampion    = get_field('uuiduser_user', 'user_'.$champion_id);
+                                                                    $user_full_data  = get_user_full_data($uuidchampion);
+                                                                    $nb_user_votes   = $user_full_data[0]['nb_user_votes'];
+                                                                    $info_user_level = get_user_level($uuidchampion, $champion_id, $nb_user_votes);
+                                                                    echo $info_user_level['level_ico'];
                                                                     ?>
-                                                                    <span class="avatar">
-                                                                        <?php
-                                                                        if($champion_data){
-                                                                            $avatar_url = get_avatar_url($champion_id, ['size' => '80']);
-                                                                        }
-                                                                        else{
-                                                                            $avatar_url = get_bloginfo('template_directory')."/assets/images/vkrz/ninja.png";
-                                                                        }
-                                                                        ?>
-                                                                        <span class="avatar-picture" style="background-image: url(<?php echo $avatar_url; ?>);"></span>
-                                                                        <?php if($champion_data): ?>
-                                                                            <span class="user-niveau">
-                                                                            <?php
-                                                                            $uuidchampion    = get_field('uuiduser_user', 'user_'.$champion_id);
-                                                                            $user_full_data  = get_user_full_data($uuidchampion);
-                                                                            $nb_user_votes   = $user_full_data[0]['nb_user_votes'];
-                                                                            $info_user_level = get_user_level($uuidchampion, $champion_id, $nb_user_votes);
-                                                                            echo $info_user_level['level_ico'];
-                                                                            ?>
-                                                                        </span>
-                                                                        <?php endif; ?>
+                                                                </span>
+                                                                <?php endif; ?>
+                                                            </span>
+                                                            <span class="font-weight-bold championname">
+                                                                <?php if($champion_data): ?>
+                                                                     <?php echo $champion_data->display_name; ?>
+                                                                    <span class="votechamp">
+                                                                        - <?php echo $nb_user_votes; ?> <span class="ico">💎</span>
                                                                     </span>
-                                                                    <span class="font-weight-bold championname">
-                                                                        <?php if($champion_data): ?>
-                                                                             <?php echo $champion_data->display_name; ?>
-                                                                            <span class="votechamp">
-                                                                                - <?php echo $nb_user_votes; ?> <span class="ico">💎</span>
-                                                                            </span>
-                                                                        <?php else: ?>
-                                                                            <i>Anonyme</i>
-                                                                        <?php endif; ?>
-                                                                        (<?php echo $uuidchampion; ?>)
-                                                                    </span>
-                                                                </td>
-                                                                <td>
-                                                                    <?php echo get_the_date('d/m/Y'); ?>
-                                                                </td>
-                                                                <td>
-                                                                    <?php
-                                                                    $user_top3 = get_user_ranking($id_rank);
-                                                                    $l=1;
-                                                                    foreach($user_top3 as $top => $p): ?>
+                                                                <?php else: ?>
+                                                                    <i>Anonyme</i>
+                                                                <?php endif; ?>
+                                                                <!--
+                                                                UUID    : <?php the_field('uuid_user_r', $id_rank); ?>
+                                                                ID rank : <?php echo $id_rank; ?>
+                                                                Date    : <?php echo get_the_date('d/m/Y - H:i:s', $id_rank); ?>
+                                                                -->
+                                                            </span>
+                                                        </td>
+                                                        <td>
+                                                            <?php
+                                                            $user_top3 = get_user_ranking($id_rank);
+                                                            $l=1;
+                                                            foreach($user_top3 as $top => $p): ?>
 
-                                                                        <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="<?php echo get_the_title($top); ?>" class="avatartop3 avatar pull-up">
-                                                                            <?php $illu = get_the_post_thumbnail_url($top, 'thumbnail'); ?>
-                                                                            <img src="<?php echo $illu; ?>" alt="Avatar">
-                                                                        </div>
+                                                                <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="<?php echo get_the_title($top); ?>" class="avatartop3 avatar pull-up">
+                                                                    <?php $illu = get_the_post_thumbnail_url($top, 'thumbnail'); ?>
+                                                                    <img src="<?php echo $illu; ?>" alt="Avatar">
+                                                                </div>
 
-                                                                    <?php $l++; if($l==4) break; endforeach; ?>
-                                                                </td>
+                                                            <?php $l++; if($l==4) break; endforeach; ?>
+                                                        </td>
 
-                                                                <td>
-                                                                    <?php if($champion_data): ?>
-                                                                        <a href="<?php echo esc_url(get_author_posts_url($champion_id)); ?>" class="mr-1 btn btn-outline-primary waves-effect">
-                                                                            <span class="ico ico-reverse">👀</span> Guetter tous ses Tops !
-                                                                        </a>
-                                                                    <?php endif; ?>
-                                                                </td>
+                                                        <td>
+                                                            <?php if($champion_data): ?>
+                                                                <a href="<?php echo esc_url(get_author_posts_url($champion_id)); ?>" class="mr-1 btn btn-outline-primary waves-effect">
+                                                                    <span class="ico ico-reverse">👀</span> Guetter tous ses Tops !
+                                                                </a>
+                                                            <?php endif; ?>
+                                                        </td>
 
-                                                            </tr>    
-                                                        <?php endwhile; ?>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
+                                                    </tr>
+                                                <?php endwhile; ?>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
-                            <?php endif; ?>
+                            </div>
                         </div>
-                    </div>
+                    <?php endif; ?>
                 </section>
             </div>
         </div>
-
     </div>
     </div>
 </div>

@@ -194,6 +194,13 @@ $top_number    = get_numbers_of_contenders($id_tournament);
                                         <div class="col-sm-6">
                                             <div class="card text-center">
                                                 <div class="card-body">
+                                                    <div class="pricing-badge text-right">
+                                                        <div class="badge badge-pill badge-light-primary">
+                                                            <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_tournament; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir les <?php echo $nb_tops; ?> Tops">
+                                                                👀
+                                                            </a>
+                                                        </div>
+                                                    </div>
                                                     <div class="mb-1">
                                                         <span class="ico4">🏆</span>
                                                     </div>
@@ -212,22 +219,6 @@ $top_number    = get_numbers_of_contenders($id_tournament);
                                         </div>
                                     </div>
                                 </div>
-
-                                <?php if($current_user_have_r): ?>
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h2 class="font-weight-bolder">
-                                                <?php echo get_user_percent($uuiduser, $id_tournament); ?>% <small>des Tops</small>
-                                            </h2>
-                                            <p class="card-text legende">
-                                                sont identiques à celui-ci !
-                                            </p>
-                                            <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_tournament; ?>" class="btn btn-outline-primary waves-effect">
-                                                Voir les <?php echo $nb_tops; ?> Tops
-                                            </a>
-                                        </div>
-                                    </div>
-                                <?php endif; ?>
 
                                 <?php if($current_user_id_ranking): ?>
                                     <div class="card">

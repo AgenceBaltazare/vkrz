@@ -172,6 +172,10 @@ div.dataTables_wrapper div.dataTables_filter label, div.dataTables_wrapper div.d
   background-color: #170c31;
 }
 
+.table-responsive {
+  overflow-x: inherit;
+}
+
 .cover {
   background-size: cover !important;
 }
@@ -1201,6 +1205,8 @@ input:-webkit-autofill:active {
 
 .ico-action {
   font-size: 17px;
+  display: inline-block;
+  margin: 0 5px 0 0;
 }
 
 .ico-master {

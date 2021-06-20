@@ -240,13 +240,13 @@ $list_t_begin  = $user_full_data[0]['list_user_ranking_begin'];
                                                         <td class="text-center">
                                                             <div class="d-flex align-items-center col-actions">
                                                                 <a href="<?php the_permalink($r_user['id_tournoi']); ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Continuer le Top">
-                                                                    <span class="ico ico-action">▶️</span>
+                                                                    <span class="ico-action">▶️</span>
                                                                 </a>
                                                                 <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-idranking="<?php echo $r_user['id_ranking']; ?>" class="confirm_delete" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Recommencer le Top">
-                                                                    <span class="ico ico-action">🆕</span>
+                                                                    <span class="ico-action">🆕</span>
                                                                 </a>
                                                                 <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Le Top sera supprimé définitivement 😱" data-idranking="<?php echo $r_user['id_ranking']; ?>" class="confirmDeleteReal" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Abandonner le Top">
-                                                                    <span class="ico ico-action">🚮</span>
+                                                                    <span class="ico-action">🚮</span>
                                                                 </a>
                                                             </div>
                                                         </td>
@@ -374,13 +374,13 @@ $list_t_begin  = $user_full_data[0]['list_user_ranking_begin'];
                                                                 </a>
                                                                 <div class="dropdown-menu dropdown-menu-right">
                                                                     <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-idranking="<?php echo $r_user['id_ranking']; ?>" class="confirm_delete dropdown-item" href="#">
-                                                                        <span class="ico ico-action">🆕</span> Recommencer
+                                                                        <span class="ico-action">🆕</span> Recommencer
                                                                     </a>
                                                                     <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Le Top sera supprimé définitivement 😱" data-idranking="<?php echo $r_user['id_ranking']; ?>" class="confirmDeleteReal dropdown-item" href="#">
-                                                                        <span class="ico ico-action">🚮</span> Supprimer
+                                                                        <span class="ico-action">🚮</span> Supprimer
                                                                     </a>
                                                                     <a href="#" class="dropdown-item" data-toggle="modal" data-target="#commentModal-<?php echo $r_user['id_tournoi']; ?>">
-                                                                        <span class="ico ico-action">🆓</span> Commenter
+                                                                        <span class="ico-action">🆓</span> Commenter
                                                                     </a>
                                                                 </div>
                                                             </div>

@@ -109,3 +109,7 @@ div.dataTables_wrapper div.dataTables_filter label, div.dataTables_wrapper div.d
 .dark-layout .modal .modal-header, .dark-layout .modal .modal-header[class*='bg-'] {
   background-color: #170c31;
 }
+
+.table-responsive {
+  overflow-x: inherit;
+}

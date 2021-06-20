@@ -85,6 +85,13 @@ $info_user_level = get_user_level($uuiduser, $user_id, $nb_user_votes);
                                                     <span class="ico"><?php the_field('icone_cat', 'term_'.$cat_id); ?></span> <span class="menu-title text-truncate"><?php echo $cat_name; ?></span>
                                                 </a>
                                             </li>
+                                            <li class="breadcrumb-item">
+                                                <a href="<?php the_permalink($id_tournament); ?>">
+                                                    <span class="menu-title text-truncate">
+                                                        <?php echo get_the_title($id_tournament); ?>
+                                                    </span>
+                                                </a>
+                                            </li>
 
                                         <?php elseif(is_page(get_page_by_path('liste-des-tops'))): ?>
 
@@ -97,6 +104,13 @@ $info_user_level = get_user_level($uuiduser, $user_id, $nb_user_votes);
                                                 ?>
                                                 <a href="<?php echo get_category_link($cat_id); ?>">
                                                     <span class="ico"><?php the_field('icone_cat', 'term_'.$cat_id); ?></span> <span class="menu-title text-truncate"><?php echo $cat_name; ?></span>
+                                                </a>
+                                            </li>
+                                            <li class="breadcrumb-item">
+                                                <a href="<?php the_permalink($id_tournament); ?>">
+                                                    <span class="menu-title text-truncate">
+                                                        <?php echo get_the_title($id_tournament); ?>
+                                                    </span>
                                                 </a>
                                             </li>
 
@@ -151,7 +165,7 @@ $info_user_level = get_user_level($uuiduser, $user_id, $nb_user_votes);
 
                 <?php $id_tournament = $_GET['id_top']; ?>
                 <div class="tournament-heading text-center">
-                    <h3 class="mb-0 t-titre-tournoi">Tous les Tops <?php echo get_numbers_of_contenders($id_tournament); ?> <span class="ico text-center">🏆</span> <?php echo get_the_title($id_tournament); ?></h3>
+                    <h3 class="mb-0 t-titre-tournoi">Liste des Tops <?php echo get_numbers_of_contenders($id_tournament); ?> <span class="ico text-center">🏆</span> <?php echo get_the_title($id_tournament); ?></h3>
                     <h4 class="mb-0">
                         <?php the_field('question_t', $id_tournament); ?>
                     </h4>
