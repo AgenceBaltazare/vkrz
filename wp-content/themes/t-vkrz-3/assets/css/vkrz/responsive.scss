@@ -146,7 +146,7 @@
   }
 
   .vertical-layout .header-navbar .navbar-container ul.navbar-nav li.dropdown .dropdown-menu {
-    top: 80px !important;
+    top: 61px !important;
     margin-top: 0px !important;
   }
 
@@ -246,5 +246,8 @@
   }
   .tournoi-template-default .cover_contenders .cov-illu  {
     min-height: 391px !important;
+  }
+  .vertical-layout .header-navbar .navbar-container ul.navbar-nav li.dropdown .dropdown-menu {
+    top: 42px !important;
   }
 }

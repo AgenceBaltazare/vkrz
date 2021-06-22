@@ -1157,7 +1157,7 @@ input:-webkit-autofill:active {
     height: calc(100% - 310px) !important; }
 
   .vertical-layout .header-navbar .navbar-container ul.navbar-nav li.dropdown .dropdown-menu {
-    top: 80px !important;
+    top: 61px !important;
     margin-top: 0px !important; }
 
   .apropos .card-text h2 {
@@ -1222,6 +1222,9 @@ input:-webkit-autofill:active {
     padding: 15px !important; }
 
   .tournoi-template-default .cover_contenders .cov-illu {
-    min-height: 391px !important; } }
+    min-height: 391px !important; }
+
+  .vertical-layout .header-navbar .navbar-container ul.navbar-nav li.dropdown .dropdown-menu {
+    top: 42px !important; } }
 
 /*# sourceMappingURL=main.css.map */
