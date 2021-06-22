@@ -1184,7 +1184,7 @@ input:-webkit-autofill:active {
     padding: 15px 15px;
     margin: 0px; }
 
-  .header-navbar .navbar-container, .navbar-floating .navbar-container {
+  .tournoi-template-default .header-navbar .navbar-container, .navbar-floating .navbar-container {
     padding: 0px; }
 
   .tournoi-template-default .display_battle {

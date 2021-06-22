@@ -182,48 +182,35 @@
 
 
 @media only screen and (max-width: 955px) and (min-width: 768px){
-
   .classement .infoelo .col-sm-6 .card-body{
     padding: 5px 0px !important;
   }
-
 }
 
 @media only screen and (max-width: 1212px) and (min-width: 1200px){
-
   .classement .infoelo .col-sm-6 .card-body{
     padding: 5px 0px !important;
   }
-
 }
 
-
-
-
 @media (max-width: 425px) {
-
   .tournoi-template-default .intro-mobile {
     padding: 15px 15px;
     margin: 0px;
   }
-
-  .header-navbar .navbar-container, .navbar-floating .navbar-container {
+  .tournoi-template-default .header-navbar .navbar-container, .navbar-floating .navbar-container {
     padding: 0px;
   }
-
   .tournoi-template-default .display_battle {
     padding-top: 5px !important;
   }
-
   html body .tournoi-template-default .app-content {
     padding: calc(2rem - 0.8rem + 7.45rem) calc(2rem - 0.8rem) 0 calc(2rem - 0.8rem) !important;
   }
-
   .tournoi-template-default .cover_contenders .contender_zone .cov-illu {
     background-size: auto 100% !important;
     min-height: 280px !important;
   }
-
 }
 
 @media (max-width: 425px){
@@ -250,11 +237,9 @@
   html .tournoi-template-default .app-content {
     padding: calc(2rem - 0.8rem + 4.45rem + 1.3rem) calc(2rem - 0.8rem) 0 calc(2rem - 0.8rem) !important;
   }
-
   .tournoi-template-default .display_battle{
     padding-top: 10px !important;
   }
-
   .tournoi-template-default .intro-mobile{
     margin: 0px !important;
     padding: 15px !important;
