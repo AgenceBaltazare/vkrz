@@ -41,10 +41,9 @@ $illu_url   = $illu[0];
 
             <div class="intro-mobile">
                 <div class="tournament-heading text-center">
-                    <h3 class="mb-0 t-titre-tournoi">Top <?php echo $top_number; ?> <span class="ico">⚔️</span> <?php echo $top_title; ?></h3>
-                    <h4 class="text-center t-question">
-                        <?php echo $top_question; ?> <br>
-                    </h4>
+                    <h3 class="mb-0 t-titre-tournoi">Top <?php echo $top_number; ?> <span class="ico">⚔️</span> <?php echo $top_title; ?>
+                        <?php echo $top_question; ?>
+                    </h3>
                 </div>
             </div>
 

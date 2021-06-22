@@ -196,3 +196,70 @@
   }
 
 }
+
+
+
+
+@media (max-width: 425px) {
+
+  .tournoi-template-default .intro-mobile {
+    padding: 15px 15px;
+    margin: 0px;
+  }
+
+  .header-navbar .navbar-container, .navbar-floating .navbar-container {
+    padding: 0px;
+  }
+
+  .tournoi-template-default .display_battle {
+    padding-top: 5px !important;
+  }
+
+  html body .tournoi-template-default .app-content {
+    padding: calc(2rem - 0.8rem + 7.45rem) calc(2rem - 0.8rem) 0 calc(2rem - 0.8rem) !important;
+  }
+
+  .tournoi-template-default .cover_contenders .contender_zone .cov-illu {
+    background-size: auto 100% !important;
+    min-height: 280px !important;
+  }
+
+}
+
+@media (max-width: 425px){
+  html .tournoi-template-default .app-content {
+    padding: calc(2rem - 0.8rem + 5.45rem + 1.3rem) calc(2rem - 0.8rem) 0 calc(2rem - 0.8rem) !important;
+  }
+  .tournoi-template-default .col-md-12 {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .avatar .avatar-picture {
+    height: 34px;
+    width: 34px;
+  }
+}
+
+@media only screen and (max-width: 1024px) and (min-width: 770px) {
+  .tournoi-template-default .cover_contenders .cov-illu {
+    min-height: 387px;
+  }
+}
+
+@media (max-width: 768px) {
+  html .tournoi-template-default .app-content {
+    padding: calc(2rem - 0.8rem + 4.45rem + 1.3rem) calc(2rem - 0.8rem) 0 calc(2rem - 0.8rem) !important;
+  }
+
+  .tournoi-template-default .display_battle{
+    padding-top: 10px !important;
+  }
+
+  .tournoi-template-default .intro-mobile{
+    margin: 0px !important;
+    padding: 15px !important;
+  }
+  .tournoi-template-default .cover_contenders .cov-illu  {
+    min-height: 391px !important;
+  }
+}
