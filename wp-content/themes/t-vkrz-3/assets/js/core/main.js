@@ -24,7 +24,7 @@ $(window).on('load', function() {
 });
 
 window.onload=function() {
-    
+
     var copyBtn = document.querySelector('.sharelinkbtn');
     if(copyBtn){
         copyBtn.addEventListener('click', function (event) {
