@@ -5,7 +5,6 @@ global $id_tournament;
 global $id_ranking;
 global $is_next_duel;
 global $id_tournament;
-global $id_ranking;
 global $is_next_duel;
 if(is_user_logged_in()){
     $current_user   = wp_get_current_user();
@@ -20,9 +19,11 @@ global $user_email;
 $uuiduser      = deal_uuiduser();
 $id_tournament = get_the_ID();
 $id_ranking    = get_or_create_ranking_if_not_exists($id_tournament, $uuiduser);
-extract(get_next_duel($id_ranking, $id_tournament));
-if(!$is_next_duel){
-    wp_redirect(get_the_permalink($id_ranking).'?state=done');
+if($id_ranking){
+    extract(get_next_duel($id_ranking, $id_tournament));
+    if(!$is_next_duel){
+        wp_redirect(get_the_permalink($id_ranking));
+    }
 }
 wp_reset_postdata();
 get_header();
@@ -39,16 +40,60 @@ $illu_url   = $illu[0];
     <div class="content-wrapper">
         <div class="content-body tournoi-content">
 
-            <div class="intro-mobile">
-                <div class="tournament-heading text-center">
-                    <h3 class="mb-0 t-titre-tournoi">Top <?php echo $top_number; ?> <span class="ico">⚔️</span> <?php echo $top_title; ?></h3>
-                    <h4 class="text-center t-question">
-                        <?php echo $top_question; ?> <br>
-                    </h4>
-                </div>
-            </div>
+            <?php if(!$id_ranking): ?>
 
-            <?php if ($is_next_duel): ?>
+                <div class="content-intro">
+                    <?php
+                    $illu          = get_the_post_thumbnail_url($id_tournament, 'large');
+                    $top_datas     = get_tournoi_data($id_tournament, $uuiduser);
+                    ?>
+                    <div class="intro">
+                        <div class="card animate__animated animate__flipInX">
+                            <div class="card-header">
+                                <h4 class="card-title">
+                                    Top <?php echo $top_number; ?> <span class="ico">⚔️</span> <?php echo $top_title; ?>
+                                </h4>
+                                <h5 class="card-subtitle t-rose animate__animated animate__flash">
+                                    <?php echo $top_question; ?>
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="voilebg" style="background-image: url(<?php echo $illu; ?>);"></div>
+                                <?php if(get_field('precision_t', $id_tournament)): ?>
+                                    <p class="card-text">
+                                        <?php the_field('precision_t', $id_tournament); ?>
+                                    </p>
+                                <?php endif; ?>
+                                <div class="cta-complet">
+                                    <a href="#" id="begin_t" data-tournament="<?php echo $id_tournament; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light">
+                                        Débuter mon Top <?php echo $top_number; ?>
+                                    </a>
+                                    <small>
+                                        <?php
+                                        $min = ($top_number - 5) * 2 + 6;
+                                        $max = $min * 2;
+                                        ?>
+                                        Prévoir entre <?php echo $min; ?> et <?php echo $max; ?> votes pour finir ce Top
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="card-infos mt-1 animate__fadeInUp animate__animated animate__delay-2s">
+                            Depuis le <?php echo $top_datas[0]['date_of_t']; ?>, <?php echo $top_datas[0]['nb_votes']; ?> votes 💎 ont générés <?php echo $top_datas[0]['nb_tops']; ?> Tops 🏆
+                        </p>
+                    </div>
+                </div>
+
+            <?php else: ?>
+
+                <div class="intro-mobile">
+                    <div class="tournament-heading text-center">
+                        <h3 class="mb-0 t-titre-tournoi">Top <?php echo $top_number; ?> <span class="ico">⚔️</span> <?php echo $top_title; ?></h3>
+                        <h4 class="text-center t-question">
+                            <?php echo $top_question; ?> <br>
+                        </h4>
+                    </div>
+                </div>
 
                 <div class="container-fluid">
                     <div class="tournoi-infos mb-2">
@@ -83,38 +128,38 @@ $illu_url   = $illu[0];
                 get_template_part('templates/parts/content', 'step-bar');
                 ?>
 
-            <?php endif; ?>
+                <div class="nav-tournament d-flex justify-content-center align-items-center">
+                    <div class="btng">
+                        <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-idranking="<?php echo $id_ranking; ?>" href="#" class="confirm_delete btn btn-outline-primary waves-effect">
+                            <span class="ico text-center">🙃</span> Recommencer
+                        </a>
+                    </div>
 
-            <div class="nav-tournament d-flex justify-content-center align-items-center">
-                <div class="btng">
-                    <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-idranking="<?php echo $id_ranking; ?>" href="#" class="confirm_delete btn btn-outline-primary waves-effect">
-                        <span class="ico text-center">🙃</span> Recommencer
-                    </a>
-                </div>
-
-                <div class="btng mr-5 ml-5">
+                    <div class="btng mr-5 ml-5">
                     <span class="share-label">
                         Partager <span class="ico text-center">👉</span>
                     </span>
-                    <div class="btn-group justify-content-center share-t" role="group">
-                        <a href="https://twitter.com/intent/tweet?source=<?php echo $top_url; ?>&text=Viens faire ton TOP <?php echo $top_number; ?> <?php echo $top_title; ?> - <?php echo $top_question; ?> 👉 <?php echo $top_url; ?>" target="_blank" title="Tweet" class="btn btn-icon btn-outline-primary">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="whatsapp://send?text=<?php echo $top_url; ?>" data-action="share/whatsapp/share" class="btn btn-icon btn-outline-primary">
-                            <i class="fab fa-whatsapp"></i>
-                        </a>
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $top_url; ?>&text=Viens faire ton TOP <?php echo $top_number; ?> <?php echo $top_title; ?> - <?php echo $top_question; ?> 👉" title="Partager sur Facebook" target="_blank" class="btn btn-icon btn-outline-primary">
-                            <i class="fab fa-facebook-f"></i>
+                        <div class="btn-group justify-content-center share-t" role="group">
+                            <a href="https://twitter.com/intent/tweet?source=<?php echo $top_url; ?>&text=Viens faire ton TOP <?php echo $top_number; ?> <?php echo $top_title; ?> - <?php echo $top_question; ?> 👉 <?php echo $top_url; ?>" target="_blank" title="Tweet" class="btn btn-icon btn-outline-primary">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="whatsapp://send?text=<?php echo $top_url; ?>" data-action="share/whatsapp/share" class="btn btn-icon btn-outline-primary">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $top_url; ?>&text=Viens faire ton TOP <?php echo $top_number; ?> <?php echo $top_title; ?> - <?php echo $top_question; ?> 👉" title="Partager sur Facebook" target="_blank" class="btn btn-icon btn-outline-primary">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="btng hide-xs">
+                        <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_tournament; ?>" class="btn btn-outline-primary waves-effect" target="_blank" >
+                            <span class="ico ico-reverse text-center">👀</span> Classement mondial
                         </a>
                     </div>
                 </div>
 
-                <div class="btng hide-xs">
-                    <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_tournament; ?>" class="btn btn-outline-primary waves-effect" target="_blank" >
-                        <span class="ico ico-reverse text-center">👀</span> Classement mondial
-                    </a>
-                </div>
-            </div>
+            <?php endif; ?>
 
         </div>
     </div>

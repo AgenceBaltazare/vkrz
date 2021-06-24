@@ -11,3 +11,4 @@ require_once('meca/mouv_timeline.php');
 require_once 'meca/user_ranking.php';
 require_once 'meca/check_battle.php';
 require_once 'meca/deal-uuiduser.php';
+require_once 'meca/begin_t.php';

@@ -240,7 +240,7 @@ foreach($list_cat as $cat ) {
                     </div>
                 <?php endif; ?>
 
-                <div class="related animate__fadeInRight animate__animated animate__delay-4s">
+                <div class="related animate__fadeInUp animate__animated animate__delay-4s">
 
                     <div class="card">
                         <div class="card-body">

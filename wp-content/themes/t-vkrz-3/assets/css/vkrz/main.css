@@ -544,6 +544,11 @@ html .content {
   margin: 0 !important;
 }
 
+.btn-max {
+  padding: 20px 40px;
+  font-size: 20px;
+}
+
 .main-menu {
   border-right: 10px solid #14122f;
 }
@@ -861,6 +866,50 @@ html .content {
 .share-label {
   display: inline-block;
   color: #7367f0;
+}
+
+.content-intro {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+}
+.content-intro .intro {
+  max-width: 750px;
+  margin: 0 auto;
+}
+.content-intro .card .card-header {
+  flex-direction: column;
+}
+.content-intro .card .card-header .card-title {
+  margin-bottom: 20px;
+}
+.content-intro .card .card-header .card-subtitle {
+  font-size: 25px;
+}
+.content-intro .card .card-body {
+  position: relative;
+  padding: 60px 20px;
+}
+.content-intro .card .card-body .voilebg {
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  opacity: 0.15;
+}
+.content-intro .card .card-body .cta-complet {
+  flex-direction: column;
+  display: inline-flex;
+}
+.content-intro .card .card-body .cta-complet small {
+  margin-top: 15px;
+}
+.content-intro .card-infos {
+  text-align: right;
+  color: rgba(255, 255, 255, 0.6);
+  position: relative;
 }
 
 .list-share {
