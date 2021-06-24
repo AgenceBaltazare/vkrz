@@ -1,6 +1,11 @@
 <?php
 function begin_t($id_tournament, $uuiduser){
 
+    global $utm;
+    if(!$utm){
+        $utm = $_COOKIE['vainkeurz_user_utm'];
+    }
+
 
     $new_ranking = array(
         'post_type'   => 'classement',
@@ -53,6 +58,7 @@ function begin_t($id_tournament, $uuiduser){
     update_field('timeline_2', 0, $id_ranking);
     update_field('timeline_4', 0, $id_ranking);
     update_field('timeline_5', 0, $id_ranking);
+    update_field('utm_campaign_r', $utm, $id_ranking);
 
     return $id_ranking;
 

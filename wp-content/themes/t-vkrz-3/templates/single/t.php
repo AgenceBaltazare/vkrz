@@ -6,6 +6,7 @@ global $id_ranking;
 global $is_next_duel;
 global $id_tournament;
 global $is_next_duel;
+global $utm;
 if(is_user_logged_in()){
     $current_user   = wp_get_current_user();
     $user_id        = $current_user->ID;
@@ -17,6 +18,7 @@ if(is_user_logged_in()){
 global $user_name;
 global $user_email;
 $uuiduser      = deal_uuiduser();
+$utm           = deal_utm();
 $id_tournament = get_the_ID();
 $id_ranking    = get_or_create_ranking_if_not_exists($id_tournament, $uuiduser);
 if($id_ranking){
