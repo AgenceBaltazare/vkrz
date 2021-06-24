@@ -3,6 +3,7 @@ global $uuiduser;
 global $user_id;
 global $user_name;
 global $user_email;
+global $utm;
 $user_role = "visitor";
 if(get_post_type() != "tournoi" || !is_single()){
     if(is_user_logged_in()){
@@ -14,6 +15,7 @@ if(get_post_type() != "tournoi" || !is_single()){
         $user_role      = $user_info->roles[0];
     }
     $uuiduser           = deal_uuiduser();
+    $utm                = deal_utm();
 }
 ?>
 <!DOCTYPE html>

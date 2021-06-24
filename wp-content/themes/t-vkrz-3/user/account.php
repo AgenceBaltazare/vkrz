@@ -19,7 +19,7 @@ $list_t_begin  = $user_full_data[0]['list_user_ranking_begin'];
                 <?php if(!is_user_logged_in()): ?>
                     <div role="alert" aria-live="polite" aria-atomic="true" class="alert alert-account" data-v-aa799a9e="">
                         <div class="alert-body d-flex align-items-center justify-content-between">
-                            <span><strong><span class="ico">💾</span>Pour sauvegarder ta progression</strong> l'idéal serait de te créer un compte.</span>
+                            <span><span class="ico">💾</span> Pour sauvegarder et retrouver sur tout tes supports ta progression l'idéal serait de te créer un compte.</span>
                             <div class="btns-alert text-right">
                                 <a class="btn btn-outline-white waves-effect mr-1 t-white" href="<?php the_permalink(get_page_by_path('se-connecter')); ?>">
                                     J'ai déjà un compte
