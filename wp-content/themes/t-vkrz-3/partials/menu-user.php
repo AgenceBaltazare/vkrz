@@ -10,6 +10,7 @@ global $user_full_data;
 global $nb_user_votes;
 global $info_user_level;
 global $list_t_done;
+global $id_ranking;
 $user_full_data  = get_user_full_data($uuiduser);
 $list_t_done     = $user_full_data[0]['list_user_ranking_done'];
 $nb_user_votes   = $user_full_data[0]['nb_user_votes'];
@@ -133,12 +134,18 @@ $info_user_level = get_user_level($uuiduser, $user_id, $nb_user_votes);
 
             <?php elseif(is_single() && (get_post_type() == "tournoi")): ?>
 
-                <div class="tournament-heading text-center">
-                    <h3 class="mb-0 t-titre-tournoi">Top <?php echo $top_number; ?> <span class="ico">⚔️</span> <?php echo $top_title; ?></h3>
-                    <h4 class="mb-0 t-rose t-max">
-                        <?php echo $top_question; ?>
-                    </h4>
-                </div>
+                <?php if($id_ranking): ?>
+                    <div class="tournament-heading text-center">
+                        <h3 class="mb-0 t-titre-tournoi">Top <?php echo $top_number; ?> <span class="ico">⚔️</span> <?php echo $top_title; ?></h3>
+                        <h4 class="mb-0 t-rose t-max">
+                            <?php echo $top_question; ?>
+                        </h4>
+                    </div>
+                <?php else: ?>
+                    <div class="tournament-heading text-center">
+                        <h3 class="mb-0 t-titre-tournoi">Introduction</h3>
+                    </div>
+                <?php endif; ?>
 
             <?php elseif(is_single() && (get_post_type() == "classement")): ?>
 

@@ -30,3 +30,9 @@ add_action( 'wp_ajax_nopriv_vkzr_process_commentaire_note', 'vkzr_process_commen
 function vkzr_process_commentaire_note() {
     do_commentaire_note($_POST['id_tournament'], $_POST['uuiduser'], $_POST['commentaire_note']);
 }
+
+add_action( 'wp_ajax_vkzr_begin_t', 'vkzr_begin_t' );
+add_action( 'wp_ajax_nopriv_vkzr_begin_t', 'vkzr_begin_t' );
+function vkzr_begin_t() {
+    begin_t($_POST['id_tournament'], $_POST['uuiduser']);
+}

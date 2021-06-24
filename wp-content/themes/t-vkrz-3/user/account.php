@@ -181,12 +181,12 @@ $list_t_begin  = $user_full_data[0]['list_user_ranking_begin'];
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active" id="homeIcon-tab" data-toggle="tab" href="#tab1" aria-controls="home" role="tab" aria-selected="true">
-                            Les Tops à terminer
+                            Mes Tops à terminer
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="profileIcon-tab" data-toggle="tab" href="#tab2" aria-controls="profile" role="tab" aria-selected="false">
-                            Les Tops terminés
+                            Mes Tops terminés
                         </a>
                     </li>
                 </ul>

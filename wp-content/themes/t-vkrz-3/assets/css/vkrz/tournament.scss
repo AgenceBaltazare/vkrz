@@ -231,3 +231,50 @@
   display: inline-block;
   color: #7367f0;
 }
+
+.content-intro{
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  .intro{
+    max-width: 750px;
+    margin: 0 auto;
+  }
+  .card{
+    .card-header{
+      flex-direction: column;
+      .card-title{
+        margin-bottom: 20px;
+      }
+      .card-subtitle{
+        font-size: 25px;
+      }
+    }
+    .card-body{
+      position: relative;
+      padding: 60px 20px;
+      .voilebg{
+        background-size: cover;
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        opacity: 0.15;
+      }
+      .cta-complet{
+        flex-direction: column;
+        display: inline-flex;
+        small{
+          margin-top: 15px;
+        }
+      }
+    }
+  }
+  .card-infos{
+    text-align: right;
+    color: rgba(255, 255, 255, 0.6);
+    position: relative;
+  }
+}
+
