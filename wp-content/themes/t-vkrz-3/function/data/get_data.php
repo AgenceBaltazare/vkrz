@@ -204,7 +204,7 @@ function get_tournoi_data($id_tournament, $uuiduser){
     $result                 = array();
     $count_votes_of_t       = 0;
     $list_ranking_of_t      = array();
-    $date_of_t              = 0;
+    $date_of_t              = get_the_date('d F Y', $id_tournament);
     $current_user_have_r    = false;
 
     $all_ranking_of_t = new WP_Query(array(
@@ -234,9 +234,6 @@ function get_tournoi_data($id_tournament, $uuiduser){
     $c = 1;
     while ($all_ranking_of_t->have_posts()) : $all_ranking_of_t->the_post();
 
-        if ($c == 1) {
-            $date_of_t = get_the_date('d F Y');
-        }
         $count_votes_of_t = $count_votes_of_t + get_field('nb_votes_r');
 
         if (get_field('uuid_user_r') == $uuiduser) {
@@ -250,7 +247,7 @@ function get_tournoi_data($id_tournament, $uuiduser){
             "uuid_user" => get_field('uuid_user_r')
         ));
 
-    $c++; endwhile;
+    endwhile;
 
     array_push($result, array(
         "date_of_t" => $date_of_t,
