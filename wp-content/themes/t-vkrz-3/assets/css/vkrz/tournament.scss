@@ -237,7 +237,8 @@
   display: flex;
   align-items: center;
   .intro{
-    max-width: 750px;
+    width: 750px;
+    max-width: 100%;
     margin: 0 auto;
   }
   .card{

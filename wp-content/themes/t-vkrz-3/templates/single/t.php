@@ -60,7 +60,7 @@ $illu_url   = $illu[0];
                             <div class="card-body">
                                 <div class="voilebg" style="background-image: url(<?php echo $illu; ?>);"></div>
                                 <?php if(get_field('precision_t', $id_tournament)): ?>
-                                    <p class="card-text">
+                                    <p class="card-text mb-4">
                                         <?php the_field('precision_t', $id_tournament); ?>
                                     </p>
                                 <?php endif; ?>
@@ -73,7 +73,11 @@ $illu_url   = $illu[0];
                                         $min = ($top_number - 5) * 2 + 6;
                                         $max = $min * 2;
                                         ?>
-                                        Prévoir entre <?php echo $min; ?> et <?php echo $max; ?> votes pour finir ce Top
+                                        <?php if($top_number < 3): ?>
+                                            Un seul vote suffira pour finir ce Top
+                                        <?php else: ?>
+                                            Prévoir entre <?php echo $min; ?> et <?php echo $max; ?> votes pour finir ce Top
+                                        <?php endif; ?>
                                     </small>
                                 </div>
                             </div>
