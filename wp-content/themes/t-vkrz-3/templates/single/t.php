@@ -153,6 +153,10 @@ $illu_url   = $illu[0];
                             <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $top_url; ?>&text=Viens faire ton TOP <?php echo $top_number; ?> <?php echo $top_title; ?> - <?php echo $top_question; ?> 👉" title="Partager sur Facebook" target="_blank" class="btn btn-icon btn-outline-primary">
                                 <i class="fab fa-facebook-f"></i>
                             </a>
+                            <a href="javascript: void(0)" class="sharelinkbtn2 btn btn-icon btn-outline-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copier le lien du Top">
+                                <input type="text" value="<?php echo $top_url; ?>" class="input_to_share2">
+                                <i class="far fa-link"></i>
+                            </a>
                         </div>
                     </div>
 

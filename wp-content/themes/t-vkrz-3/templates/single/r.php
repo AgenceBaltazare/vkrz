@@ -240,7 +240,7 @@ foreach($list_cat as $cat ) {
                     </div>
                 <?php endif; ?>
 
-                <div class="related animate__fadeInUp animate__animated animate__delay-4s">
+                <div class="related animate__fadeInUp animate__animated animate__delay-0s">
 
                     <div class="card">
                         <div class="card-body">
@@ -280,6 +280,10 @@ foreach($list_cat as $cat ) {
                                     <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $url_ranking; ?>" title="Partager sur Facebook" target="_blank" class="btn btn-icon btn-outline-primary">
                                         <i class="fab fa-facebook-f"></i>
                                     </a>
+                                    <a href="javascript: void(0)" class="sharelinkbtn btn btn-icon btn-outline-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copier le lien de ton Top">
+                                        <input type="text" value="<?php echo $url_ranking; ?>" class="input_to_share">
+                                        <i class="far fa-link"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -303,6 +307,10 @@ foreach($list_cat as $cat ) {
                                 </a>
                                 <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $top_url; ?>" title="Partager sur Facebook" target="_blank" class="btn btn-icon btn-outline-primary">
                                     <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="javascript: void(0)" class="sharelinkbtn2 btn btn-icon btn-outline-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copier le lien du Top">
+                                    <input type="text" value="<?php echo $top_url; ?>" class="input_to_share2">
+                                    <i class="far fa-link"></i>
                                 </a>
                             </div>
                         </div>

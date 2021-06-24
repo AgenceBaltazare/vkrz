@@ -549,6 +549,16 @@ html .content {
   font-size: 20px;
 }
 
+.input_to_share {
+  position: absolute;
+  left: -99999999px;
+}
+
+.input_to_share2 {
+  position: absolute;
+  left: -99999999px;
+}
+
 .main-menu {
   border-right: 10px solid #14122f;
 }
