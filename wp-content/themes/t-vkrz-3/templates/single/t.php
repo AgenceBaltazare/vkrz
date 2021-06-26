@@ -23,7 +23,7 @@ $utm           = deal_utm();
 $id_tournament = get_the_ID();
 $id_ranking    = get_or_create_ranking_if_not_exists($id_tournament, $uuiduser);
 if($id_ranking){
-    extract(get_next_duel($id_ranking, $id_tournament, $typetop));
+    extract(get_next_duel($id_ranking, $id_tournament));
     if(!$is_next_duel){
         wp_redirect(get_the_permalink($id_ranking));
     }
@@ -90,7 +90,12 @@ $illu_url   = $illu[0];
                                                 Débuter mon Top 3
                                             </a>
                                             <small>
-                                                Prévoir environ <?php echo round($top_number*1.1); ?> votes pour finir ce Top
+                                                <?php
+                                                $max = (floor($top_number/2))+(3*((round($top_number/2))-1));
+                                                $min = (floor($top_number/2))+((round($top_number/2))-1)+3;
+                                                $moy = ($max+$min) / 2;
+                                                ?>
+                                                Prévoir environ <?php echo round($moy); ?> votes pour finir ce Top
                                             </small>
                                         </div>
                                     <?php endif; ?>

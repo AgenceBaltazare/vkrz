@@ -39,6 +39,7 @@ function get_user_full_data($uuiduser){
 
         $count_user_votes = $count_user_votes + get_field('nb_votes_r');
         $id_tournament    = get_field('id_tournoi_r');
+        $typetop          = get_field('type_top_r');
 
         if(get_field('done_r') == "done"){
             $done = true;
@@ -51,11 +52,20 @@ function get_user_full_data($uuiduser){
             $cat_id = $cat->term_id;
         }
 
+
+        if($typetop == "top3"){
+            $nb_top = 3;
+        }
+        else{
+            $nb_top = count(get_field('ranking_r'));
+        }
+
         if(get_field('done_r') == "done"){
             array_push($user_ranking_done, array(
                 "id_tournoi" => $id_tournament,
                 "cat_t"      => $cat_id,
-                "nb_top"     => count(get_field('ranking_r')),
+                "typetop"    => $typetop,
+                "nb_top"     => $nb_top,
                 "done"       => $done,
                 "nb_votes"   => get_field('nb_votes_r'),
                 "id_ranking" => get_the_ID(),
@@ -66,7 +76,8 @@ function get_user_full_data($uuiduser){
             if(get_field('nb_votes_r') >= 1) {
                 array_push($user_ranking_begin, array(
                     "id_tournoi" => get_field('id_tournoi_r'),
-                    "nb_top"     => count(get_field('ranking_r')),
+                    "typetop"    => $typetop,
+                    "nb_top"     => $nb_top,
                     "done"       => $done,
                     "nb_votes"   => get_field('nb_votes_r'),
                     "id_ranking" => get_the_ID(),
@@ -76,7 +87,8 @@ function get_user_full_data($uuiduser){
         if(get_field('nb_votes_r') >= 1) {
             array_push($user_ranking_all, array(
                 "id_tournoi" => get_field('id_tournoi_r'),
-                "nb_top"     => count(get_field('ranking_r')),
+                "typetop"    => $typetop,
+                "nb_top"     => $nb_top,
                 "done"       => $done,
                 "nb_votes"   => get_field('nb_votes_r'),
                 "id_ranking" => get_the_ID(),

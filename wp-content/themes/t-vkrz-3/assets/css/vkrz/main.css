@@ -176,6 +176,12 @@ div.dataTables_wrapper div.dataTables_filter label, div.dataTables_wrapper div.d
   overflow-x: inherit;
 }
 
+.dark-layout pre {
+  background-color: #ffffff !important;
+  border: 0;
+  position: relative;
+}
+
 .cover {
   background-size: cover !important;
 }

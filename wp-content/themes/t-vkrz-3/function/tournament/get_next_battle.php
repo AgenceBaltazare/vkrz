@@ -1,5 +1,5 @@
 <?php
-function get_next_duel($id_ranking, $id_tournament, $typetop = false){
+function get_next_duel($id_ranking, $id_tournament){
 
     $next_duel          = [];
     $is_next_duel       = true;
@@ -7,6 +7,7 @@ function get_next_duel($id_ranking, $id_tournament, $typetop = false){
     $contender_2        = 0;
 
     $next_duel          = array();
+    $typetop            = get_field('type_top_r', $id_ranking);
 
     $list_w_r           = get_field('list_winners_r', $id_ranking);
     if (!$list_w_r) {
@@ -247,9 +248,7 @@ function get_next_duel($id_ranking, $id_tournament, $typetop = false){
 
     }
 
-    $all_votes_counts = all_votes_in_tournament($id_tournament);
     $nb_user_votes = all_user_votes_in_tournament($id_ranking);
-
 
     if ($is_next_duel) {
         $val1 = random_int(0, 1);
@@ -270,7 +269,6 @@ function get_next_duel($id_ranking, $id_tournament, $typetop = false){
         'contender_2',
         'current_step',
         'timeline_main',
-        'all_votes_counts',
         'nb_user_votes',
         'nb_contenders',
         'id_tournament',

@@ -11,6 +11,12 @@ $(document).ready(function ($) {
         var uuiduser        = laucher.data('uuiduser');
         var typetop         = laucher.data('typetop');
 
+        if(typetop == "top3"){
+            $('.cta-complet').hide();
+        }
+        else{
+            $('.cta-top3').hide();
+        }
         laucher.html('Préparation du Top en cours...');
 
         if (!ajaxRunning) {
