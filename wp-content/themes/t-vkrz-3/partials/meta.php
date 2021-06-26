@@ -16,17 +16,25 @@
 
     <?php
     global $id_tournament;
+    global $id_ranking;
     global $top_url;
     global $top_title;
     global $top_question;
     global $top_img;
     global $top_number;
+    global $typetop;
     $id_tournament = get_the_ID();
     $top_url       = get_the_permalink($id_tournament);
     $top_title     = get_the_title($id_tournament);
     $top_question  = get_field('question_t', $id_tournament);
     $top_img       = get_the_post_thumbnail_url($id_tournament, 'large');
-    $top_number    = get_numbers_of_contenders($id_tournament);
+    $typetop       = get_field('type_top_r', $id_ranking);
+    if($typetop == "top3"){
+        $top_number = 3;
+    }
+    else{
+        $top_number = get_numbers_of_contenders($id_tournament);
+    }
     ?>
     <title>
         TOP <?php echo $top_number; ?> : <?php echo $top_title; ?> 🔥 VAINKEURZ
@@ -52,13 +60,20 @@
     global $top_question;
     global $top_img;
     global $top_number;
+    global $typetop;
     $id_ranking    = get_the_ID();
     $id_tournament = get_field('id_tournoi_r');
     $top_url       = get_the_permalink($id_tournament);
     $top_title     = get_the_title($id_tournament);
     $top_question  = get_field('question_t', $id_tournament);
     $top_img       = get_the_post_thumbnail_url($id_tournament, 'large');
-    $top_number    = get_numbers_of_contenders($id_tournament);
+    $typetop       = get_field('type_top_r', $id_ranking);
+    if($typetop == "top3"){
+        $top_number = 3;
+    }
+    else{
+        $top_number = get_numbers_of_contenders($id_tournament);
+    }
     ?>
     <title>
         TOP <?php echo $top_number; ?> : <?php echo get_the_title($id_tournament); ?> - <?php the_field( 'question_t', $id_tournament ); ?> 🔥 VAINKEURZ

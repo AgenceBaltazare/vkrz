@@ -12,6 +12,7 @@ global $top_number;
 global $user_full_data;
 $display_titre                   = get_field('ne_pas_afficher_les_titres_t', $id_tournament);
 $rounded                         = get_field('c_rounded_t', $id_tournament);
+$typetop                         = get_field('type_top_r', $id_ranking);
 $user_ranking                    = get_user_ranking($id_ranking);
 $url_ranking                     = get_the_permalink($id_ranking);
 $title_post                      = $top_title." : ".$top_question;

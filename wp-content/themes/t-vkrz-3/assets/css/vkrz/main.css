@@ -544,11 +544,6 @@ html .content {
   margin: 0 !important;
 }
 
-.btn-max {
-  padding: 20px 40px;
-  font-size: 20px;
-}
-
 .input_to_share {
   position: absolute;
   left: -99999999px;
@@ -557,6 +552,10 @@ html .content {
 .input_to_share2 {
   position: absolute;
   left: -99999999px;
+}
+
+.avatar-group .avatar .avatar-content {
+  background-color: #6f63e8 !important;
 }
 
 .main-menu {
@@ -910,11 +909,23 @@ html .content {
   bottom: 0;
   opacity: 0.15;
 }
-.content-intro .card .card-body .cta-complet {
+.content-intro .card .card-body .choosecta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.content-intro .card .card-body .choosecta .cta-begin {
   flex-direction: column;
   display: inline-flex;
+  margin: 0 20px;
 }
-.content-intro .card .card-body .cta-complet small {
+.content-intro .card .card-body .choosecta .cta-begin .btn-max {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 100%;
+  font-size: 20px;
+}
+.content-intro .card .card-body .choosecta .cta-begin small {
   margin-top: 15px;
 }
 .content-intro .card-infos {

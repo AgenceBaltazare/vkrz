@@ -263,11 +263,23 @@
         bottom: 0;
         opacity: 0.15;
       }
-      .cta-complet{
-        flex-direction: column;
-        display: inline-flex;
-        small{
-          margin-top: 15px;
+      .choosecta{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .cta-begin{
+          flex-direction: column;
+          display: inline-flex;
+          margin: 0 20px;
+          .btn-max{
+            padding-top: 10px;
+            padding-bottom: 10px;
+            width: 100%;
+            font-size: 20px;
+          }
+          small{
+            margin-top: 15px;
+          }
         }
       }
     }

@@ -1,15 +1,21 @@
 <?php
-function begin_t($id_tournament, $uuiduser){
+function begin_t($id_tournament, $uuiduser, $typetop){
 
     global $utm;
     if(!$utm){
         $utm = $_COOKIE['vainkeurz_user_utm'];
     }
 
+    if($typetop == "top3"){
+        $title_rank = 'Podium '.get_the_title($id_tournament);
+    }
+    else{
+        $title_rank = 'Top '.get_numbers_of_contenders($id_tournament).' - '.get_the_title($id_tournament);
+    }
 
     $new_ranking = array(
         'post_type'   => 'classement',
-        'post_title'  => 'Top '.get_numbers_of_contenders($id_tournament).' - '.get_the_title($id_tournament),
+        'post_title'  => $title_rank,
         'post_status' => 'publish',
     );
     $id_ranking  = wp_insert_post($new_ranking);
@@ -50,6 +56,7 @@ function begin_t($id_tournament, $uuiduser){
 
     $i++; endwhile;
 
+    update_field('type_top_r', $typetop, $id_ranking);
     update_field('uuid_user_r', $uuiduser, $id_ranking);
     update_field('id_tournoi_r', $id_tournament, $id_ranking);
     update_field('ranking_r', $list_contenders, $id_ranking);

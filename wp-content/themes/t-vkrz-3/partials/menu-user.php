@@ -172,7 +172,7 @@ $info_user_level = get_user_level($uuiduser, $user_id, $nb_user_votes);
 
                 <?php $id_tournament = $_GET['id_top']; ?>
                 <div class="tournament-heading text-center">
-                    <h3 class="mb-0 t-titre-tournoi">Liste des Tops <?php echo get_numbers_of_contenders($id_tournament); ?> <span class="ico text-center">🏆</span> <?php echo get_the_title($id_tournament); ?></h3>
+                    <h3 class="mb-0 t-titre-tournoi">Liste des Tops <span class="ico text-center">🏆</span> <?php echo get_the_title($id_tournament); ?></h3>
                     <h4 class="mb-0">
                         <?php the_field('question_t', $id_tournament); ?>
                     </h4>

@@ -100,39 +100,6 @@ function cpt_init() {
     );
     register_post_type('contender', $args);
 
-    // Votes
-    $labels = array(
-        'name' => 'Votes',
-        'singular_name' => 'Vote',
-        'add_new' => 'Ajouter un vote',
-        'add_new_item' => 'Ajouter un vote',
-        'edit_item' => 'Editer un vote',
-        'new_item' => 'Nouveau vote',
-        'all_items' => 'Tous les votes',
-        'view_item' => 'Voir vote',
-        'search_items' => 'Chercher un vote',
-        'not_found' =>  'Aucun vote trouvé',
-        'not_found_in_trash' => 'Aucun vote trouvé dans la corbeille',
-        'menu_name' => 'Votes'
-    );
-    $args = array(
-        'labels' => $labels,
-        'public' => true,
-        'publicly_queryable' => false,
-        'show_ui' => true,
-        'show_in_menu' => true,
-        'query_var' => true,
-        'rewrite' => array('slug' => 'v'),
-        'capability_type' => 'post',
-        'has_archive' => true,
-        'hierarchical' => false,
-        'menu_position' => null,
-        'menu_icon' => 'dashicons-heart',
-        'show_in_rest' => false,
-        'supports' => array('title', 'author')
-    );
-    register_post_type('vote', $args);
-
     // Ratings
     $labels = array(
         'name' => 'Notes',
