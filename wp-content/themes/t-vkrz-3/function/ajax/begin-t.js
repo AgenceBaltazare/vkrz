@@ -2,14 +2,21 @@ $(document).ready(function ($) {
 
     let ajaxRunning = false;
 
-    $(document).on('click', '#begin_t', {}, function (e) {
+    $(document).on('click', '.laucher_t', {}, function (e) {
 
         e.preventDefault();
 
         var laucher         = $(this);
         var id_tournament   = laucher.data('tournament');
         var uuiduser        = laucher.data('uuiduser');
+        var typetop         = laucher.data('typetop');
 
+        if(typetop == "top3"){
+            $('.cta-complet').hide();
+        }
+        else{
+            $('.cta-top3').hide();
+        }
         laucher.html('Préparation du Top en cours...');
 
         if (!ajaxRunning) {
@@ -20,17 +27,18 @@ $(document).ready(function ($) {
                 data: {
                     action: 'vkzr_begin_t',
                     id_tournament: id_tournament,
-                    uuiduser: uuiduser
+                    uuiduser: uuiduser,
+                    typetop: typetop,
                 }
             })
-                .done(function (response) {
+            .done(function (response) {
 
-                    location.reload()
+                location.reload()
 
-                })
-                .always(function () {
-                    ajaxRunning = false;
-                });
+            })
+            .always(function () {
+                ajaxRunning = false;
+            });
         }
     });
 });

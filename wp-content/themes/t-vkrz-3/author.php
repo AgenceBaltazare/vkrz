@@ -1,11 +1,11 @@
 <?php
 global $champion;
 global $champion_id;
-$champion        = get_user_by( 'slug', get_query_var( 'author_name' ) );
-$champion_id     = $champion->ID;
+$champion            = get_user_by( 'slug', get_query_var( 'author_name' ) );
+$champion_id         = $champion->ID;
 get_header();
-$uuidchampion    = get_field('uuiduser_user', 'user_'.$champion_id);
-$user_full_data  = get_user_full_data($uuidchampion);
+$uuidchampion        = get_field('uuiduser_user', 'user_'.$champion_id);
+$user_full_data      = get_user_full_data($uuidchampion);
 $nb_champion_votes   = $user_full_data[0]['nb_user_votes'];
 $info_champion_level = get_user_level($uuidchampion, $champion_id, $nb_champion_votes);
 ?>
@@ -157,7 +157,15 @@ $info_champion_level = get_user_level($uuidchampion, $champion_id, $nb_champion_
                                                             </td>
                                                             <td>
                                                                 <div class="d-flex align-items-center col-actions">
-                                                                    <a class="mr-1" href="<?php the_permalink($r_user['id_ranking']); ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir le Top complet">
+                                                                    <?php
+                                                                    if($r_user['typetop'] == "top3"){
+                                                                        $wording = "Voir le Top 3";
+                                                                    }
+                                                                    else{
+                                                                        $wording = "Voir le Top complet";
+                                                                    }
+                                                                    ?>
+                                                                    <a class="mr-1" href="<?php the_permalink($r_user['id_ranking']); ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="<?php echo $wording; ?>">
                                                                         <span class="ico">
                                                                             🏆
                                                                         </span>

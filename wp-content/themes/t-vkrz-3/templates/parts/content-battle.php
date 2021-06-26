@@ -1,7 +1,7 @@
 <?php extract( $battle_vars ); ?>
 <div class="row align-items-center contenders-containers justify-content-center">
     <div class="col-sm-5 col-6 bloc-contenders link-contender_1 contender_1 cover_contenders link-contender">
-        <div class="contender_zone animate__animated"
+        <div class="contender_zone animate__animated animate__slideInDown"
            data-id-winner="<?= $contender_1 ?>"
            data-id-looser="<?= $contender_2 ?>"
            data-id-tournament="<?= $id_tournament ?>" data-id-ranking="<?= $id_ranking ?>"
@@ -41,7 +41,7 @@
     </div>
 
     <div class="col-sm-5 col-6 bloc-contenders link-contender_2 contender_2 cover_contenders link-contender">
-        <div class="contender_zone animate__animated"
+        <div class="contender_zone animate__animated animate__slideInUp"
            data-id-winner="<?= $contender_2 ?>"
            data-id-looser="<?= $contender_1 ?>"
            data-id-tournament="<?= $id_tournament ?>" data-id-ranking="<?= $id_ranking ?>"

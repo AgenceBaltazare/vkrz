@@ -7,6 +7,7 @@ global $is_next_duel;
 global $id_tournament;
 global $is_next_duel;
 global $utm;
+global $typetop;
 if(is_user_logged_in()){
     $current_user   = wp_get_current_user();
     $user_id        = $current_user->ID;
@@ -66,21 +67,38 @@ $illu_url   = $illu[0];
                                         <?php the_field('precision_t', $id_tournament); ?>
                                     </p>
                                 <?php endif; ?>
-                                <div class="cta-complet">
-                                    <a href="#" id="begin_t" data-tournament="<?php echo $id_tournament; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light">
-                                        Débuter mon Top <?php echo $top_number; ?>
-                                    </a>
-                                    <small>
-                                        <?php
-                                        $min = ($top_number - 5) * 2 + 6;
-                                        $max = $min * 2;
-                                        ?>
-                                        <?php if($top_number < 3): ?>
-                                            Un seul vote suffira pour finir ce Top
-                                        <?php else: ?>
-                                            Prévoir entre <?php echo $min; ?> et <?php echo $max; ?> votes pour finir ce Top
-                                        <?php endif; ?>
-                                    </small>
+                                <div class="choosecta">
+                                    <div class="cta-begin cta-complet">
+                                        <a href="#" id="begin_t" data-typetop="complet" data-tournament="<?php echo $id_tournament; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
+                                            Débuter mon Top Complet
+                                        </a>
+                                        <small>
+                                            <?php
+                                            $min = ($top_number - 5) * 2 + 6;
+                                            $max = $min * 2;
+                                            ?>
+                                            <?php if($top_number < 3): ?>
+                                                Un seul vote suffira pour finir ce Top
+                                            <?php else: ?>
+                                                Prévoir entre <?php echo $min; ?> et <?php echo $max; ?> votes pour finir ce Top
+                                            <?php endif; ?>
+                                        </small>
+                                    </div>
+                                    <?php if($top_number > 10): ?>
+                                        <div class="cta-begin cta-top3">
+                                            <a href="#" id="begin_top3" data-typetop="top3" data-tournament="<?php echo $id_tournament; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
+                                                Débuter mon Top 3
+                                            </a>
+                                            <small>
+                                                <?php
+                                                $max = (floor($top_number/2))+(3*((round($top_number/2))-1));
+                                                $min = (floor($top_number/2))+((round($top_number/2))-1)+3;
+                                                $moy = ($max+$min) / 2;
+                                                ?>
+                                                Prévoir environ <?php echo round($moy); ?> votes pour finir ce Top
+                                            </small>
+                                        </div>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>
@@ -101,22 +119,24 @@ $illu_url   = $illu[0];
                     </div>
                 </div>
 
-                <div class="container-fluid">
-                    <div class="tournoi-infos mb-2">
-                        <div class="display_current_user_rank">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="current_rank">
-                                        <?php
-                                        set_query_var('current_user_ranking_var', compact('id_ranking', 'id_tournament'));
-                                        get_template_part('templates/parts/content', 'user-ranking');
-                                        ?>
+                <?php if($typetop != "top3"): ?>
+                    <div class="container-fluid">
+                        <div class="tournoi-infos mb-2">
+                            <div class="display_current_user_rank">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="current_rank">
+                                            <?php
+                                            set_query_var('current_user_ranking_var', compact('id_ranking', 'id_tournament'));
+                                            get_template_part('templates/parts/content', 'user-ranking');
+                                            ?>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                <?php endif; ?>
                 <div class="<?php if(get_field('c_rounded_t', $id_tournament)){ echo 'rounded'; } ?> <?php if(get_field('full_w_t', $id_tournament)){ echo 'container container-cc'; } else { echo 'container'; } ?>">
                     <div class="row">
                         <div class="col-md-12">

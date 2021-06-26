@@ -64,10 +64,6 @@ else{
                 <?php the_field('question_t', $id_tournament); ?>
             </h4>
         </div>
-        <?php if($state == "done"): ?>
-            <a href="<?php the_permalink($id_user_ranking); ?>" class="stretched-link"></a>
-        <?php else: ?>
-            <a href="<?php the_permalink($id_tournament); ?>" class="stretched-link"></a>
-        <?php endif; ?>
+        <a href="<?php the_permalink($id_tournament); ?>" class="stretched-link"></a>
     </div>
 </div>

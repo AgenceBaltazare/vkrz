@@ -11,7 +11,7 @@ $nb_contenders        = count($list_contenders);
             <span class="ico2">‍👉</span>
             <?php for($j=1; $j<=$nb_contenders; $j++) :
 
-                $do_place             = false;
+                $do_place = false;
 
                 foreach($current_user_ranking as $contender) :
 

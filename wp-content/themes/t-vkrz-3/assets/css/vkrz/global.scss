@@ -366,11 +366,6 @@ html .content {
   }
 }
 
-.btn-max{
-  padding: 20px 40px;
-  font-size: 20px;
-}
-
 .input_to_share{
   position: absolute;
   left: -99999999px;
@@ -378,4 +373,7 @@ html .content {
 .input_to_share2{
   position: absolute;
   left: -99999999px;
+}
+.avatar-group .avatar .avatar-content {
+  background-color: #6f63e8 !important;
 }

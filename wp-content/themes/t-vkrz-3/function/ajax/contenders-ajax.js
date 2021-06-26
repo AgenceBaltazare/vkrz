@@ -2,9 +2,6 @@ $(document).ready(function ($) {
     let contenders = $('.display_battle .link-contender');
     let ajaxRunning = false;
 
-    $('.contender_1 .contender_zone').addClass('animate__slideInDown');
-    $('.contender_2 .contender_zone').addClass('animate__slideInUp');
-
     $(window).keydown(function(e){
         if (e.keyCode === 37) {
             $("#c_1").trigger("click");

@@ -372,7 +372,15 @@ $list_t_begin  = $user_full_data[0]['list_user_ranking_begin'];
                                                         </td>
                                                         <td>
                                                             <div class="d-flex align-items-center col-actions">
-                                                                <a class="mr-1" href="<?php the_permalink($r_user['id_ranking']); ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir le Top complet">
+                                                                <?php
+                                                                if($r_user['typetop'] == "top3"){
+                                                                    $wording = "Voir le Top 3";
+                                                                }
+                                                                else{
+                                                                    $wording = "Voir le Top complet";
+                                                                }
+                                                                ?>
+                                                                <a class="mr-1" href="<?php the_permalink($r_user['id_ranking']); ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="<?php echo $wording; ?>">
                                                                     <span class="ico">
                                                                         🏆
                                                                     </span>

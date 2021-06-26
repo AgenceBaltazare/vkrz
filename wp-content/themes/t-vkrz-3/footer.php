@@ -31,7 +31,6 @@
 <?php wp_footer(); ?>
 
 <?php if(is_author() || is_page(27040)): ?>
-    <script src="<?php bloginfo('template_directory'); ?>/assets/vendors/js/charts/apexcharts.min.js"></script>
     <script src="<?php bloginfo('template_directory'); ?>/assets/js/scripts/cards/card-analytics.js"></script>
     <script src="<?php bloginfo('template_directory'); ?>/assets/vendors/js/tables/datatable/datatables.min.js"></script>
     <script src="<?php bloginfo('template_directory'); ?>/assets/vendors/js/tables/datatable/datatables.buttons.min.js"></script>
