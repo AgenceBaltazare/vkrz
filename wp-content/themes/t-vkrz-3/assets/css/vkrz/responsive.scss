@@ -158,6 +158,21 @@
     max-height: 22rem;
   }
 
+  .card-developer-meetup .card-cta .choosecta .cta-begin {
+    display: flex;
+    flex-direction: column;
+    margin: 0 5px;
+  }
+
+  .card-developer-meetup .card-cta .choosecta .cta-begin a {
+    font-size: 13px;
+    padding: 8px 10px;
+  }
+
+  .infos-card-t-c{
+    margin-top: 20px;
+  }
+
 }
 
 

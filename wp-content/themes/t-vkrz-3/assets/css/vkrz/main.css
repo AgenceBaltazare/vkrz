@@ -182,6 +182,40 @@ div.dataTables_wrapper div.dataTables_filter label, div.dataTables_wrapper div.d
   position: relative;
 }
 
+.chat-widget .chat-app-window .user-chats {
+  background-color: rgba(97, 84, 167, 0.1) !important;
+}
+.chat-widget .chat-app-window .chats .chat-body {
+  margin: 10px 0 0 0;
+}
+.chat-widget .chat-app-window .chats .chat-body .chat-content {
+  max-width: 100% !important;
+}
+.chat-widget .chat-app-window .chats .chat-body .chat-content p {
+  max-width: 100%;
+  font-size: 11px;
+  line-height: 14px;
+}
+.chat-widget .chat-app-window .chats .chat-left .chat-body .chat-content {
+  background-color: rgba(19, 18, 47, 0.75) !important;
+  text-align: left;
+}
+.chat-widget .chat-app-form {
+  display: flex;
+  flex-direction: column;
+  height: auto !important;
+  padding: 10px !important;
+  background: #13122f;
+}
+.chat-widget .chat-app-form input {
+  background-color: #f0f0f2;
+  color: #13122f;
+  padding: 0 0 0 4px !important;
+}
+.chat-widget .chat-app-form button {
+  margin-top: 10px;
+}
+
 .cover {
   background-size: cover !important;
 }
@@ -888,7 +922,7 @@ html .content {
 }
 
 .content-intro {
-  min-height: 60vh;
+  min-height: 80vh;
   display: flex;
   align-items: center;
 }
@@ -897,51 +931,89 @@ html .content {
   max-width: 100%;
   margin: 0 auto;
 }
-.content-intro .card .card-header {
-  flex-direction: column;
+
+.card-developer-meetup .meetup-img-wrapper {
+  min-height: 220px;
+  background-position: center;
 }
-.content-intro .card .card-header .card-title {
-  margin-bottom: 20px;
+.card-developer-meetup .meetup-img-wrapper .badge {
+  background: #312673;
+  color: #fff !important;
+  margin: 10px;
+  font-size: 10px;
+  font-weight: 400;
+  padding: 5px 12px;
 }
-.content-intro .card .card-header .card-subtitle {
-  font-size: 25px;
+.card-developer-meetup .meetup-header .card-title {
+  font-size: 22px;
 }
-.content-intro .card .card-body {
-  position: relative;
-  padding: 60px 20px;
+.card-developer-meetup .meetup-header .card-text {
+  font-size: 28px;
 }
-.content-intro .card .card-body .voilebg {
-  background-size: cover;
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  opacity: 0.15;
+.card-developer-meetup .meetings {
+  justify-content: space-around;
 }
-.content-intro .card .card-body .choosecta {
-  display: flex;
-  align-items: center;
+.card-developer-meetup .infos-card-t {
   justify-content: center;
 }
-.content-intro .card .card-body .choosecta .cta-begin {
+.card-developer-meetup .infos-card-t .avatar {
+  margin-right: 10px;
+}
+.card-developer-meetup .infos-card-t .ico {
+  font-size: 30px;
+  width: auto;
+}
+.card-developer-meetup .infos-card-t .content-body {
+  display: flex;
   flex-direction: column;
-  display: inline-flex;
+}
+.card-developer-meetup .infos-card-t .link-creator {
+  position: relative;
+  top: -2px;
+}
+.card-developer-meetup .infos-card-t a {
+  color: #fff;
+  transform: scale(1);
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+.card-developer-meetup .infos-card-t a:hover {
+  transform: scale(1.1);
+}
+.card-developer-meetup .infos-card-t.info-card-t-v .ico {
+  position: relative;
+  top: -3px;
+}
+.card-developer-meetup .infos-card-t.info-card-t-v .content-body small {
+  margin-top: -2px;
+  margin-left: 2px;
+}
+.card-developer-meetup .list-contenders-wording {
+  margin-right: 25px;
+}
+.card-developer-meetup .card-footer {
+  padding: 30px 20px 20px;
+}
+.card-developer-meetup .card-cta {
+  padding: 0 20px 20px;
+}
+.card-developer-meetup .card-cta .choosecta {
+  display: flex;
+  justify-content: space-around;
+}
+.card-developer-meetup .card-cta .choosecta .cta-begin {
+  display: flex;
+  flex-direction: column;
   margin: 0 20px;
 }
-.content-intro .card .card-body .choosecta .cta-begin .btn-max {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  width: 100%;
-  font-size: 20px;
-}
-.content-intro .card .card-body .choosecta .cta-begin small {
-  margin-top: 15px;
-}
-.content-intro .card-infos {
-  text-align: right;
-  color: rgba(255, 255, 255, 0.6);
-  position: relative;
+.card-developer-meetup .card-cta .choosecta .cta-begin a {
+  display: inline-block;
+  margin: 0 auto 10px;
+  text-transform: uppercase;
+  max-width: 350px;
 }
 
 .list-share {
@@ -1529,6 +1601,21 @@ input:-webkit-autofill:active {
 
   .header-navbar .navbar-container ul.navbar-nav li .media-list {
     max-height: 22rem;
+  }
+
+  .card-developer-meetup .card-cta .choosecta .cta-begin {
+    display: flex;
+    flex-direction: column;
+    margin: 0 5px;
+  }
+
+  .card-developer-meetup .card-cta .choosecta .cta-begin a {
+    font-size: 13px;
+    padding: 8px 10px;
+  }
+
+  .infos-card-t-c {
+    margin-top: 20px;
   }
 }
 @media (max-width: 425px) {

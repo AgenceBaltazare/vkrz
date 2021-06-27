@@ -1,7 +1,7 @@
 <?php
 global $champion;
 global $champion_id;
-$champion            = get_user_by( 'slug', get_query_var( 'author_name' ) );
+$champion            = get_user_by('slug', get_query_var('author_name'));
 $champion_id         = $champion->ID;
 get_header();
 $uuidchampion        = get_field('uuiduser_user', 'user_'.$champion_id);
@@ -103,7 +103,7 @@ $info_champion_level = get_user_level($uuidchampion, $champion_id, $nb_champion_
                                 <div class="col-12">
                                     <div class="card invoice-list-wrapper">
                                         <div class="card-datatable table-responsive">
-                                            <table class="invoice-list-table table">
+                                            <table class="invoice-list-table table table-c5">
                                                 <thead>
                                                 <tr>
                                                     <th class="">

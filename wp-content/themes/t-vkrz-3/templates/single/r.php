@@ -249,7 +249,7 @@ foreach($list_cat as $cat ) {
                         <div class="card-body">
                             <h2 class="font-weight-bolder mb-0">
                                 <?php
-                                $similar = get_user_percent(get_field('uuid_user_r'), $id_tournament);
+                                $similar = get_user_percent(get_field('uuid_user_r', $id_ranking), $id_tournament);
                                 if($similar[0]['percent'] == 0){
                                     $wording_similar = "0% <small>des Podiums identiques à celui-ci !</small>";
                                 }
@@ -262,7 +262,7 @@ foreach($list_cat as $cat ) {
                         </div>
                         <div class="card-footer" id="clt">
                             <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_tournament; ?>" class="btn btn-outline-primary waves-effect mb-1">
-                                Classement mondial
+                                Classement mondial <?php echo get_field('uuid_user_r', $id_ranking); ?>
                             </a>
                             <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_tournament; ?>" class="btn btn-outline-primary waves-effect mb-1">
                                 Voir les <?php echo $top_datas[0]['nb_tops']; ?> Tops
@@ -338,7 +338,7 @@ foreach($list_cat as $cat ) {
                                 <h6 class="card-subtitle text-muted mb-1">
                                     T'inquiète on te laisse refaire le Top
                                 </h6>
-                                <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-idranking="<?php echo $id_ranking; ?>" href="#" class="confirm_delete btn btn-outline-primary waves-effect mb-1">
+                                <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-idranking="<?php echo $id_ranking; ?>" href="#" class="confirm_delete btn btn-outline-primary waves-effect">
                                     Recommencer
                                 </a>
                             </div>
@@ -362,23 +362,6 @@ foreach($list_cat as $cat ) {
 
                     <?php endif; ?>
 
-                    <?php if(get_field('uuid_user_r', $id_ranking) == $uuiduser): ?>
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">
-                                    <span class="ico">🔮</span> Rejoins l'élite
-                                </h4>
-                                <h6 class="card-subtitle text-muted mb-1">
-                                    Propose-nous tes idées de tops et de fonctionnalités !
-                                </h6>
-                                <div class="btn-group justify-content-center share-t w-100" role="group">
-                                    <a href="https://discord.gg/w882sUnrhE" title="Rejoinds notre discord" target="_blank" class="btn btn-icon btn-outline-primary">
-                                        <i class="fab fa-discord fa-lg mr-1"></i> Discord de VAINKEURZ
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    <?php endif; ?>
                 </div>
             </div>
         </div>

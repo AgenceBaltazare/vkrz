@@ -119,3 +119,47 @@ div.dataTables_wrapper div.dataTables_filter label, div.dataTables_wrapper div.d
   border: 0;
   position: relative;
 }
+
+.chat-widget{
+  .chat-app-window{
+    .user-chats{
+      background-color: rgba(97, 84, 167, 0.1) !important;
+    }
+    .chats{
+      .chat-body {
+        margin: 10px 0 0 0;
+        .chat-content {
+          max-width: 100% !important;
+          p{
+            max-width: 100%;
+            font-size: 11px;
+            line-height: 14px;
+          }
+        }
+      }
+      .chat-left{
+        .chat-body {
+          .chat-content {
+            background-color: rgba(19, 18, 47, 0.75) !important;
+            text-align: left;
+          }
+        }
+      }
+    }
+  }
+  .chat-app-form{
+    display: flex;
+    flex-direction: column;
+    height: auto !important;
+    padding: 10px !important;
+    background: #13122f;
+    input{
+      background-color: #f0f0f2;
+      color: #13122f;
+      padding: 0 0 0 4px !important;
+    }
+    button{
+      margin-top: 10px;
+    }
+  }
+}

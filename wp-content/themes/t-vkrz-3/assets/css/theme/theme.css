@@ -8823,19 +8823,12 @@ body.dark-layout {
     background-color: #283046;
     border-color: #3b4253; }
 
-.dark-layout .chat-widget .user-chats {
-    background-color: #384056 !important; }
-
-.dark-layout .chat-widget .card-header,
-.dark-layout .chat-widget .chat-app-form {
-    background-color: #283046; }
-
 .dark-layout .chat-widget .chat-app-window .user-chats .chat-left .chat-content {
     background-color: #283046 !important;
     color: #fff !important; }
 
 .dark-layout .chat-widget .chat-app-window .user-chats .avatar img {
-    border-color: #161d31; }
+    border: none !important; }
 
 .dark-layout .kanban-application .kanban-wrapper .kanban-container .kanban-board .kanban-board-header .kanban-title-board {
     color: #fff; }

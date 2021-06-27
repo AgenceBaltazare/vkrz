@@ -196,7 +196,7 @@ $list_t_begin  = $user_full_data[0]['list_user_ranking_begin'];
                             <div class="col-12">
                                 <div class="card invoice-list-wrapper">
                                     <div class="card-datatable table-responsive">
-                                        <table class="invoice-list-table table">
+                                        <table class="invoice-list-table table table-c5">
                                             <thead>
                                             <tr>
                                                 <th class="">
@@ -286,7 +286,7 @@ $list_t_begin  = $user_full_data[0]['list_user_ranking_begin'];
                             <div class="col-12">
                                 <div class="card invoice-list-wrapper">
                                     <div class="card-datatable table-responsive">
-                                        <table class="invoice-list-table table">
+                                        <table class="invoice-list-table table table-c7">
                                             <thead>
                                             <tr>
                                                 <th class="">

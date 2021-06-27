@@ -96,7 +96,13 @@ $top_datas     = get_tournoi_data($id_tournament, $uuiduser);
                                                                     $avatar_url = get_bloginfo('template_directory')."/assets/images/vkrz/ninja.png";
                                                                 }
                                                                 ?>
-                                                                <span class="avatar-picture" style="background-image: url(<?php echo $avatar_url; ?>);"></span>
+                                                                <?php if($champion_data): ?>
+                                                                    <a href="<?php echo esc_url(get_author_posts_url($champion_id)); ?>">
+                                                                        <span class="avatar-picture" style="background-image: url(<?php echo $avatar_url; ?>);"></span>
+                                                                    </a>
+                                                                <?php else: ?>
+                                                                    <span class="avatar-picture" style="background-image: url(<?php echo $avatar_url; ?>);"></span>
+                                                                <?php endif; ?>
                                                                 <?php if($champion_data): ?>
                                                                     <span class="user-niveau">
                                                                     <?php
@@ -111,7 +117,9 @@ $top_datas     = get_tournoi_data($id_tournament, $uuiduser);
                                                             </span>
                                                             <span class="font-weight-bold championname">
                                                                 <?php if($champion_data): ?>
-                                                                     <?php echo $champion_data->display_name; ?>
+                                                                    <a href="<?php echo esc_url(get_author_posts_url($champion_id)); ?>">
+                                                                         <?php echo $champion_data->display_name; ?>
+                                                                    </a>
                                                                     <span class="votechamp">
                                                                         - <?php echo $nb_user_votes; ?> <span class="ico">💎</span>
                                                                     </span>
@@ -140,11 +148,9 @@ $top_datas     = get_tournoi_data($id_tournament, $uuiduser);
                                                         </td>
 
                                                         <td>
-                                                            <?php if($champion_data): ?>
-                                                                <a href="<?php echo esc_url(get_author_posts_url($champion_id)); ?>" class="mr-1 btn btn-outline-primary waves-effect">
-                                                                    <span class="ico ico-reverse">👀</span> Guetter tous ses Tops !
-                                                                </a>
-                                                            <?php endif; ?>
+                                                            <a href="<?php the_permalink($id_rank); ?>" class="mr-1 btn btn-outline-primary waves-effect">
+                                                                <span class="ico">🏆</span> Voir le Top complet
+                                                            </a>
                                                         </td>
 
                                                     </tr>

@@ -377,3 +377,31 @@ function find_vkrz_user($uuid_user_r){
     return $result;
 
 }
+
+function get_creator_data($creator_id = false, $id_tournament = false){
+
+    $result             = array();
+    $list_creator_tops  = array();
+
+    if(!$creator_id){
+        $creator_id = get_post_field('post_author', $id_tournament);
+    }
+    $creator_data   = get_user_by('ID', $creator_id);
+
+    $list_tops = new WP_Query(array('post_type' => 'tournoi', 'orderby' => 'date', 'author' => $creator_id, 'posts_per_page' => '-1'));
+    while ($list_tops->have_posts()) : $list_tops->the_post();
+        array_push($list_creator_tops, get_the_ID());
+    endwhile;
+
+    array_push($result, array(
+        "creator_id"        => $creator_id,
+        "creator_link"      => get_author_posts_url($creator_id),
+        "creator_name"      => $creator_data->display_name,
+        "creator_nb_tops"   => count($list_creator_tops),
+        "creator_tops"      => $list_creator_tops,
+        "creator_uuid"      => get_field('uuiduser_user', 'user_'.$creator_id)
+    ));
+
+    return $result;
+
+}

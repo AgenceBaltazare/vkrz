@@ -232,62 +232,105 @@
   color: #7367f0;
 }
 
-.content-intro{
-  min-height: 60vh;
+.content-intro {
+  min-height: 80vh;
   display: flex;
   align-items: center;
-  .intro{
+  .intro {
     width: 750px;
     max-width: 100%;
     margin: 0 auto;
   }
-  .card{
-    .card-header{
+}
+
+.card-developer-meetup{
+  .meetup-img-wrapper{
+    min-height: 220px;
+    background-position: center;
+    .badge{
+      background: $c3;
+      color: #fff !important;
+      margin: 10px;
+      font-size: 10px;
+      font-weight: 400;
+      padding: 5px 12px;
+    }
+  }
+  .meetup-header{
+    .card-title{
+      font-size: 22px;
+    }
+    .card-text{
+      font-size: 28px;
+    }
+  }
+  .meetings{
+    justify-content: space-around;
+  }
+  .infos-card-t{
+    justify-content: center;
+    .avatar{
+      margin-right: 10px;
+    }
+    .ico{
+      font-size: 30px;
+      width: auto;
+    }
+    .content-body{
+      display: flex;
       flex-direction: column;
-      .card-title{
-        margin-bottom: 20px;
-      }
-      .card-subtitle{
-        font-size: 25px;
+    }
+    .link-creator{
+      position: relative;
+      top: -2px;
+    }
+    a{
+      color: #fff;
+      transform: scale(1);
+      -webkit-transition: all .2s ease-in-out;
+      -moz-transition: all .2s ease-in-out;
+      -ms-transition: all .2s ease-in-out;
+      -o-transition: all .2s ease-in-out;
+      transition: all .2s ease-in-out;
+      &:hover{
+        transform: scale(1.1);
       }
     }
-    .card-body{
-      position: relative;
-      padding: 60px 20px;
-      .voilebg{
-        background-size: cover;
-        position: absolute;
-        top: 0;
-        right: 0;
-        left: 0;
-        bottom: 0;
-        opacity: 0.15;
+    &.info-card-t-v{
+      .ico{
+        position: relative;
+        top: -3px;
       }
-      .choosecta{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        .cta-begin{
-          flex-direction: column;
-          display: inline-flex;
-          margin: 0 20px;
-          .btn-max{
-            padding-top: 10px;
-            padding-bottom: 10px;
-            width: 100%;
-            font-size: 20px;
-          }
-          small{
-            margin-top: 15px;
-          }
+      .content-body{
+        small{
+          margin-top: -2px;
+          margin-left: 2px;
         }
       }
     }
   }
-  .card-infos{
-    text-align: right;
-    color: rgba(255, 255, 255, 0.6);
-    position: relative;
+  .list-contenders-wording{
+    margin-right: 25px;
+  }
+  .card-footer{
+    padding: 30px 20px 20px;
+  }
+  .card-cta{
+    padding: 0 20px 20px;
+    .choosecta{
+      display: flex;
+      justify-content: space-around;
+      .cta-begin{
+        display: flex;
+        flex-direction: column;
+        margin: 0 20px;
+        a{
+          display: inline-block;
+          margin: 0 auto 10px;
+          text-transform: uppercase;
+          max-width: 350px;
+        }
+      }
+    }
   }
 }
-

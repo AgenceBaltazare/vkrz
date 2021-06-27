@@ -16,6 +16,9 @@ function load_css_js() {
     wp_enqueue_style('ext-sweet-alerts', get_template_directory_uri().'/assets/css/plugins/extensions/ext-component-sweet-alerts.css', array(), null);
     wp_enqueue_style('page-pricing', get_template_directory_uri().'/assets/css/pages/page-pricing.css', array(), null);
     wp_enqueue_style('vertical-menu', get_template_directory_uri().'/assets/css/theme/vertical-menu.css', array(), null);
+    if(get_post_type() == "tournoi"){
+        wp_enqueue_style('chat', get_template_directory_uri().'/assets/css/pages/app-chat-list.min.css', array(), null);
+    }
     wp_enqueue_style('main', get_template_directory_uri().'/assets/css/vkrz/main.css', array(), $template_version);
 
     // Scripts
