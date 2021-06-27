@@ -564,6 +564,10 @@ html .content {
   background-color: #6f63e8 !important;
 }
 
+.cp {
+  cursor: pointer !important;
+}
+
 .main-menu {
   border-right: 10px solid #14122f;
 }

@@ -248,7 +248,16 @@ foreach($list_cat as $cat ) {
                     <div class="card">
                         <div class="card-body">
                             <h2 class="font-weight-bolder mb-0">
-                                <?php echo get_user_percent(get_field('uuid_user_r'), $id_tournament); ?>% <small>des Tops identiques à celui-ci !</small>
+                                <?php
+                                $similar = get_user_percent(get_field('uuid_user_r'), $id_tournament);
+                                if($similar[0]['percent'] == 0){
+                                    $wording_similar = "0% <small>des Podiums identiques à celui-ci !</small>";
+                                }
+                                else{
+                                    $wording_similar = $similar[0]['percent']."% <small>des Podiums identiques à celui-ci !</small>";
+                                }
+                                ?>
+                                <?php echo $wording_similar; ?>
                             </h2>
                         </div>
                         <div class="card-footer" id="clt">

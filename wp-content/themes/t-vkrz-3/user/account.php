@@ -301,6 +301,9 @@ $list_t_begin  = $user_full_data[0]['list_user_ranking_begin'];
                                                 <th class="">
                                                     🥇🥈🥉
                                                 </th>
+                                                <th class="cp">
+                                                    👯‍ <i class="fal fa-sort-alt"></i>
+                                                </th>
                                                 <th>
                                                     👀
                                                 </th>
@@ -367,6 +370,20 @@ $list_t_begin  = $user_full_data[0]['list_user_ranking_begin'];
                                                                 </div>
 
                                                             <?php $l++; if($l==4) break; endforeach; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php
+                                                            $similar = get_user_percent($r_user['uuid_user'], $r_user['id_tournoi']);
+                                                            if($similar[0]['nb_similar'] == 0){
+                                                                $wording_similar = "Aucun podium identique à celui-ci";
+                                                            }
+                                                            else{
+                                                                $wording_similar = $similar[0]['nb_similar']." podiums identiques à celui-ci";
+                                                            }
+                                                            ?>
+                                                            <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="<?php echo $wording_similar; ?>">
+                                                                <?php echo $similar[0]['percent']; ?>%
+                                                            </div>
                                                         </td>
                                                         <td>
                                                             <div class="d-flex align-items-center col-actions">

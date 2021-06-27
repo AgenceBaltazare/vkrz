@@ -41,6 +41,14 @@
         $('.invoice-list-table').DataTable({
             autoWidth: false,
             lengthMenu: [5000],
+            columns: [
+                { orderable: false },
+                { orderable: false },
+                { orderable: false },
+                null,
+                { orderable: false },
+            ],
+            order: [[1, 'asc']],
             language: {
                 search: "_INPUT_",
                 searchPlaceholder: "Rechercher...",
