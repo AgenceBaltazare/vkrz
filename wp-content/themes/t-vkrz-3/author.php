@@ -115,6 +115,9 @@ $info_champion_level = get_user_level($uuidchampion, $champion_id, $nb_champion_
                                                     <th class="">
                                                         🥇🥈🥉
                                                     </th>
+                                                    <th class="text-center cp">
+                                                        👯 <i class="fal fa-sort-alt"></i>
+                                                    </th>
                                                     <th>
                                                         👀
                                                     </th>
@@ -153,9 +156,23 @@ $info_champion_level = get_user_level($uuidchampion, $champion_id, $nb_champion_
                                                                         <img src="<?php echo $illu; ?>" alt="Avatar">
                                                                     </div>
 
-                                                                    <?php $l++; if($l==4) break; endforeach; ?>
+                                                                <?php $l++; if($l==4) break; endforeach; ?>
                                                             </td>
-                                                            <td>
+                                                            <td class="text-center">
+                                                                <?php
+                                                                $similar = get_user_percent($r_user['uuid_user'], $r_user['id_tournoi']);
+                                                                if($similar[0]['nb_similar'] == 0){
+                                                                    $wording_similar = "Aucun podium identique à celui-ci";
+                                                                }
+                                                                else{
+                                                                    $wording_similar = $similar[0]['nb_similar']." podiums identiques à celui-ci";
+                                                                }
+                                                                ?>
+                                                                <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="<?php echo $wording_similar; ?>">
+                                                                    <?php echo $similar[0]['percent']; ?>%
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center">
                                                                 <div class="d-flex align-items-center col-actions">
                                                                     <?php
                                                                     if($r_user['typetop'] == "top3"){

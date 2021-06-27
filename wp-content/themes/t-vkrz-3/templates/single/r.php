@@ -221,8 +221,6 @@ foreach($list_cat as $cat ) {
                                                 <span class="star star-1" data-star="1">⭐️</span>
                                                 <span class="star star-2" data-star="2">⭐️</span>
                                                 <span class="star star-3" data-star="3">⭐️</span>
-                                                <span class="star star-4" data-star="4">⭐️</span>
-                                                <span class="star star-5" data-star="5">⭐️</span>
                                             </div>
                                             <div class="startchoicedone toshow-<?php echo $id_tournament; ?>">
                                                 <span class="star_number"></span>
@@ -231,7 +229,7 @@ foreach($list_cat as $cat ) {
                                         <?php endif; ?>
                                         <div class="commentbox mt-1">
                                             <a href="#" class="btn btn-outline-primary waves-effect" data-toggle="modal" data-target="#commentModal">
-                                                Ajouter un commentaire
+                                                Nous laisser un commentaire
                                             </a>
                                         </div>
                                     </div>
@@ -243,10 +241,23 @@ foreach($list_cat as $cat ) {
 
                 <div class="related animate__fadeInUp animate__animated animate__delay-4s">
 
+                    <?php
+                    $top_datas     = get_tournoi_data($id_tournament, $uuiduser);
+                    ?>
+
                     <div class="card">
                         <div class="card-body">
                             <h2 class="font-weight-bolder mb-0">
-                                <?php echo get_user_percent(get_field('uuid_user_r'), $id_tournament); ?>% <small>des Tops identiques à celui-ci !</small>
+                                <?php
+                                $similar = get_user_percent(get_field('uuid_user_r'), $id_tournament);
+                                if($similar[0]['percent'] == 0){
+                                    $wording_similar = "0% <small>des Podiums identiques à celui-ci !</small>";
+                                }
+                                else{
+                                    $wording_similar = $similar[0]['percent']."% <small>des Podiums identiques à celui-ci !</small>";
+                                }
+                                ?>
+                                <?php echo $wording_similar; ?>
                             </h2>
                         </div>
                         <div class="card-footer" id="clt">
@@ -254,7 +265,7 @@ foreach($list_cat as $cat ) {
                                 Classement mondial
                             </a>
                             <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_tournament; ?>" class="btn btn-outline-primary waves-effect mb-1">
-                                Tous les Tops
+                                Voir les <?php echo $top_datas[0]['nb_tops']; ?> Tops
                             </a>
                         </div>
                     </div>

@@ -68,6 +68,7 @@ function get_user_full_data($uuiduser){
                 "nb_top"     => $nb_top,
                 "done"       => $done,
                 "nb_votes"   => get_field('nb_votes_r'),
+                "uuid_user"  => get_field('uuid_user_r'),
                 "id_ranking" => get_the_ID(),
             ));
             array_push($user_tops_done_ids, get_field('id_tournoi_r'));
@@ -80,6 +81,7 @@ function get_user_full_data($uuiduser){
                     "nb_top"     => $nb_top,
                     "done"       => $done,
                     "nb_votes"   => get_field('nb_votes_r'),
+                    "uuid_user"  => get_field('uuid_user_r'),
                     "id_ranking" => get_the_ID(),
                 ));
             }
@@ -91,6 +93,7 @@ function get_user_full_data($uuiduser){
                 "nb_top"     => $nb_top,
                 "done"       => $done,
                 "nb_votes"   => get_field('nb_votes_r'),
+                "uuid_user"  => get_field('uuid_user_r'),
                 "id_ranking" => get_the_ID(),
             ));
         }
@@ -114,6 +117,7 @@ function get_user_full_data($uuiduser){
 
 function get_user_percent($uuiduser, $id_tournament){
 
+    $result                 = array();
     $list_ranking_of_t      = array();
     $count_same_ranking     = 0;
     $all_ranking_of_t       = new WP_Query(array(
@@ -140,13 +144,13 @@ function get_user_percent($uuiduser, $id_tournament){
 
         if(get_field('uuid_user_r') == $uuiduser){
             $current_user_id_ranking = get_the_id();
-            $current_user_top3       = get_user_ranking($current_user_id_ranking);
+            $current_user_top3       = get_user_ranking($current_user_id_ranking, 3);
         }
 
         if(get_field('uuid_user_r') != $uuiduser) {
             array_push($list_ranking_of_t, array(
                 "id_ranking" => get_the_id(),
-                "uuid_user" => get_field('uuid_user_r')
+                "uuid_user"  => get_field('uuid_user_r')
             ));
         }
 
@@ -154,20 +158,26 @@ function get_user_percent($uuiduser, $id_tournament){
 
     foreach($list_ranking_of_t as $rank){
 
-        if(get_user_ranking($rank['id_ranking']) == $current_user_top3){
+        if(get_user_ranking($rank['id_ranking'], 3) == $current_user_top3){
             $count_same_ranking++;
         }
 
     }
+
     $nb_tops = $all_ranking_of_t->post_count;
 
     $percent = round($count_same_ranking * 100 / $nb_tops);
 
     $all_ranking_of_t->reset_postdata();
+
     wp_reset_query();
 
-    return $percent;
+    array_push($result, array(
+        "percent" => $percent,
+        "nb_similar" => $count_same_ranking + 1,
+    ));
 
+    return $result;
 }
 
 function get_user_level($uuiduser, $user_id = false, $nb_user_votes = false){

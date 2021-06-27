@@ -301,6 +301,9 @@ $list_t_begin  = $user_full_data[0]['list_user_ranking_begin'];
                                                 <th class="">
                                                     🥇🥈🥉
                                                 </th>
+                                                <th class="cp">
+                                                    👯‍ <i class="fal fa-sort-alt"></i>
+                                                </th>
                                                 <th>
                                                     👀
                                                 </th>
@@ -344,8 +347,6 @@ $list_t_begin  = $user_full_data[0]['list_user_ranking_begin'];
                                                                         <span class="star star-1" data-star="1">⭐️</span>
                                                                         <span class="star star-2" data-star="2">⭐️</span>
                                                                         <span class="star star-3" data-star="3">⭐️</span>
-                                                                        <span class="star star-4" data-star="4">⭐️</span>
-                                                                        <span class="star star-5" data-star="5">⭐️</span>
                                                                     </div>
                                                                     <div class="startchoicedone toshow-<?php echo $r_user['id_tournoi']; ?>">
                                                                         <span class="star_number"></span>
@@ -369,6 +370,20 @@ $list_t_begin  = $user_full_data[0]['list_user_ranking_begin'];
                                                                 </div>
 
                                                             <?php $l++; if($l==4) break; endforeach; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php
+                                                            $similar = get_user_percent($r_user['uuid_user'], $r_user['id_tournoi']);
+                                                            if($similar[0]['nb_similar'] == 0){
+                                                                $wording_similar = "Aucun podium identique à celui-ci";
+                                                            }
+                                                            else{
+                                                                $wording_similar = $similar[0]['nb_similar']." podiums identiques à celui-ci";
+                                                            }
+                                                            ?>
+                                                            <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="<?php echo $wording_similar; ?>">
+                                                                <?php echo $similar[0]['percent']; ?>%
+                                                            </div>
                                                         </td>
                                                         <td>
                                                             <div class="d-flex align-items-center col-actions">
