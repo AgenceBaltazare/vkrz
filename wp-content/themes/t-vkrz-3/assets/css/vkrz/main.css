@@ -953,6 +953,10 @@ html .content {
 .card-developer-meetup .meetings {
   justify-content: space-around;
 }
+.card-developer-meetup .avatar-group {
+  margin: 20px;
+  justify-content: center;
+}
 .card-developer-meetup .infos-card-t {
   justify-content: center;
 }
@@ -992,7 +996,7 @@ html .content {
   margin-left: 2px;
 }
 .card-developer-meetup .list-contenders-wording {
-  margin-right: 25px;
+  margin-right: 20px;
 }
 .card-developer-meetup .card-footer {
   padding: 30px 20px 20px;

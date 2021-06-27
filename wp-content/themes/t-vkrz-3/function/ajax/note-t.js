@@ -79,7 +79,7 @@ $(document).ready(function ($) {
                 }
             })
             .done(function (response) {
-                $('.modal').delay(1500).modal('hide');
+                $('.modal').delay(2500).modal('hide');
             })
             .always(function () {
                 ajaxRunning = false;

@@ -261,7 +261,7 @@ foreach($list_cat as $cat ) {
                             </h2>
                         </div>
                         <div class="card-footer" id="clt">
-                            <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_tournament; ?>" class="btn btn-outline-primary waves-effect mb-1">
+                            <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_tournament; ?>" class="btn btn-outline-primary waves-effect mb-1 mr-1">
                                 Classement 🌏
                             </a>
                             <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_tournament; ?>" class="btn btn-outline-primary waves-effect mb-1">
@@ -355,7 +355,7 @@ foreach($list_cat as $cat ) {
                                     Il est temps d'exprimer et de revendiquer ton propre avis !
                                 </h6>
                                 <a href="<?php echo $top_url; ?>" class="btn btn-outline-primary waves-effect">
-                                    Faire mon propre Top
+                                    Faire mon 🏆
                                 </a>
                             </div>
                         </div>
