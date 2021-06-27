@@ -344,8 +344,6 @@ $list_t_begin  = $user_full_data[0]['list_user_ranking_begin'];
                                                                         <span class="star star-1" data-star="1">⭐️</span>
                                                                         <span class="star star-2" data-star="2">⭐️</span>
                                                                         <span class="star star-3" data-star="3">⭐️</span>
-                                                                        <span class="star star-4" data-star="4">⭐️</span>
-                                                                        <span class="star star-5" data-star="5">⭐️</span>
                                                                     </div>
                                                                     <div class="startchoicedone toshow-<?php echo $r_user['id_tournoi']; ?>">
                                                                         <span class="star_number"></span>
