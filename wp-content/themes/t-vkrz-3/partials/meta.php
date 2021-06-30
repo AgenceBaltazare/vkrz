@@ -114,13 +114,13 @@
     $banner = $base . $query."&s=" . $signature;
     ?>
 
-    <link rel="canonical" href="<?php echo $top_url; ?>" />
+    <link rel="canonical" href="<?php echo get_the_permalink($id_ranking); ?>" />
     <meta property="og:image" content="<?php echo $banner; ?>" />
     <meta property="og:title" content="TOP <?php echo $top_number; ?> 🏆 <?php echo $top_title; ?> - <?php echo $top_question; ?>" />
-    <meta property="og:description" content="Découvre mon Top complet et fais ton propre classement !" />
-    <meta property="og:url" content="<?php echo $top_url; ?>" />
+    <meta property="og:description" content="Découvre mon Top et fais ton propre classement !" />
+    <meta property="og:url" content="<?php echo get_the_permalink($id_ranking); ?>" />
     <meta name="twitter:title" content="TOP <?php echo $top_number; ?> 🏆 <?php echo $top_title; ?> - <?php echo $top_question; ?>" />
-    <meta name="twitter:description" content="Découvre mon Top complet et fais ton propre classement !" />
+    <meta name="twitter:description" content="Découvre mon Top et fais ton propre classement !" />
     <meta name="twitter:image" content="<?php echo $banner; ?>" />
 
 <?php elseif(is_page(get_page_by_path('elo'))): ?>
