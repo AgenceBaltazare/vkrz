@@ -67,6 +67,7 @@
     $top_title     = get_the_title($id_tournament);
     $top_question  = get_field('question_t', $id_tournament);
     $top_img       = get_the_post_thumbnail_url($id_tournament, 'large');
+    $top_cover     = wp_get_attachment_image_src(get_field('cover_t', $id_tournament), 'large');;
     $typetop       = get_field('type_top_r', $id_ranking);
     if($typetop == "top3"){
         $top_number = 3;
@@ -106,7 +107,7 @@
     else{
         $api_key    = "3I6bGZa3zyHsiZL2toeoagtt";
         $base       = "https://on-demand.bannerbear.com/signedurl/LR7D41MVLLPVB8OGab/image.jpg";
-        $modifications = '[{"name":"h1","text":"TOP '.$top_number.' '.$top_title.'"},{"name":"h2","text":"Voici mon Top 3 👉"},{"name":"h1-question","text":"'.$top_question.'"}, {"name":"contenders_1","image_url":"'.$picture_contender_1.'"},{"name":"contenders_2","image_url":"'.$picture_contender_2.'"},{"name":"contenders_3","image_url":"'.$picture_contender_3.'"},{"name":"1","text":"🥇 '.$name_contender_1.'"},{"name":"2","text":"🥈 '.$name_contender_2.'"},{"name":"3","text":"🥉 '.$name_contender_3.'"}]';
+        $modifications = '[{"name":"background","image_url":"'.$top_cover[0].'"},{"name":"h1-2","text":"TOP '.$top_number.' '.$top_title.'"},{"name":"h1","text":"TOP '.$top_number.' '.$top_title.'"},{"name":"h2","text":"VOICI MON TOP 3 👉"},{"name":"contenders_1","image_url":"'.$picture_contender_1.'"},{"name":"contenders_2","image_url":"'.$picture_contender_2.'"},{"name":"contenders_3","image_url":"'.$picture_contender_3.'"},{"name":"1","text":"🥇 '.$name_contender_1.'"},{"name":"2","text":"🥈 '.$name_contender_2.'"},{"name":"3","text":"🥉 '.$name_contender_3.'"},{"name":"h1-question-2","text":"'.$top_question.'"},{"name":"h1-question","text":"'.$top_question.'"}]';
     }
     $query = "?modifications=" . rtrim(strtr(base64_encode($modifications), '+/', '-_'), '=');
     $signature = hash_hmac('sha256', $base.$query, $api_key);
