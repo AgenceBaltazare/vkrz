@@ -136,10 +136,8 @@ $illu_url   = $illu[0];
                                 <div class="row meetings align-items-center">
                                     <div class="col">
                                         <div class="infos-card-t info-card-t-v d-flex align-items-center">
-                                            <div class="avatar mr-1">
-                                                <div class="avatar-content">
-                                                    <span class="ico">💎</span>
-                                                </div>
+                                            <div class="mr-1">
+                                                <span class="ico">💎</span>
                                             </div>
                                             <div class="content-body text-left">
                                                 <h4 class="mb-0">
@@ -151,10 +149,8 @@ $illu_url   = $illu[0];
                                     </div>
                                     <div class="col">
                                         <div class="infos-card-t d-flex align-items-center">
-                                            <div class="avatar mr-1">
-                                                <div class="avatar-content">
-                                                    <span class="ico">🏆</span>
-                                                </div>
+                                            <div class="mr-1">
+                                                <span class="ico">🏆</span>
                                             </div>
                                             <div class="content-body text-left">
                                                 <h4 class="mb-0">
@@ -169,22 +165,20 @@ $illu_url   = $illu[0];
                                         $creator_data = get_creator_data(false, $id_tournament);
                                         ?>
                                         <div class="infos-card-t d-flex align-items-center infos-card-t-c">
-                                            <div class="avatar mr-1">
-                                                <div class="avatar-content">
-                                                    <a href="<?php echo $creator_data[0]['creator_link']; ?>" target="_blank">
-                                                        <div class="avatar me-50">
-                                                            <?php
-                                                            if(get_avatar_url($creator_data[0]['creator_id'], ['size' => '80'])){
-                                                                $avatar_url = get_avatar_url($creator_data[0]['creator_id'], ['size' => '80']);
-                                                            }
-                                                            else{
-                                                                $avatar_url = get_bloginfo('template_directory')."/assets/images/vkrz/ninja.png";
-                                                            }
-                                                            ?>
-                                                            <img src="<?php echo $avatar_url; ?>" alt="Avatar" width="38" height="38">
-                                                        </div>
-                                                    </a>
-                                                </div>
+                                            <div class="">
+                                                <a href="<?php echo $creator_data[0]['creator_link']; ?>" target="_blank">
+                                                    <div class="avatar me-50">
+                                                        <?php
+                                                        if(get_avatar_url($creator_data[0]['creator_id'], ['size' => '80'])){
+                                                            $avatar_url = get_avatar_url($creator_data[0]['creator_id'], ['size' => '80']);
+                                                        }
+                                                        else{
+                                                            $avatar_url = get_bloginfo('template_directory')."/assets/images/vkrz/ninja.png";
+                                                        }
+                                                        ?>
+                                                        <img src="<?php echo $avatar_url; ?>" alt="Avatar" width="38" height="38">
+                                                    </div>
+                                                </a>
                                             </div>
                                             <div class="content-body text-left">
                                                 <small class="text-muted">Conçu par</small>

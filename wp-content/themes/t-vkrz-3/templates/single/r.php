@@ -262,10 +262,10 @@ foreach($list_cat as $cat ) {
                         </div>
                         <div class="card-footer" id="clt">
                             <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_tournament; ?>" class="btn btn-outline-primary waves-effect mb-1 mr-1">
-                                Classement 🌏
+                                Classement mondial
                             </a>
                             <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_tournament; ?>" class="btn btn-outline-primary waves-effect mb-1">
-                                Voir les <?php echo $top_datas[0]['nb_tops']; ?> 🏆
+                                Voir les <?php echo $top_datas[0]['nb_tops']; ?> Tops
                             </a>
                         </div>
                     </div>

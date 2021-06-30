@@ -59,8 +59,9 @@ function get_next_duel($id_ranking, $id_tournament){
 
         if ($timeline_main == 2) {
 
-            $list_inf = get_contenders_top_3_2($id_ranking);
-            $nb_list_inf = count($list_inf);
+            $list_inf       = get_contenders_top_3_2($id_ranking);
+            $nb_list_inf    = count($list_inf);
+            $random         = rand(2, $nb_list_inf);
 
             if ($nb_list_inf == 1) {
                 $timeline_main = 3;
@@ -68,8 +69,8 @@ function get_next_duel($id_ranking, $id_tournament){
 
             } else {
 
-                $key_c_1 = $list_inf[$nb_list_inf - 2];
-                $key_c_2 = $list_inf[$nb_list_inf - 1];
+                $key_c_1 = $list_inf[$random - 2];
+                $key_c_2 = $list_inf[$random - 1];
                 array_push($next_duel, $key_c_1);
                 array_push($next_duel, $key_c_2);
 
@@ -80,8 +81,9 @@ function get_next_duel($id_ranking, $id_tournament){
 
         if ($timeline_main == 3) {
 
-            $list_inf = get_contenders_top_3_3($id_ranking);
-            $nb_list_inf = count($list_inf);
+            $list_inf       = get_contenders_top_3_3($id_ranking);
+            $nb_list_inf    = count($list_inf);
+            $random         = rand(2, $nb_list_inf);
 
             if ($nb_list_inf == 1) {
                 $timeline_main = 4;
@@ -89,8 +91,8 @@ function get_next_duel($id_ranking, $id_tournament){
 
             } else {
 
-                $key_c_1 = $list_inf[$nb_list_inf - 2];
-                $key_c_2 = $list_inf[$nb_list_inf - 1];
+                $key_c_1 = $list_inf[$random - 2];
+                $key_c_2 = $list_inf[$random - 1];
                 array_push($next_duel, $key_c_1);
                 array_push($next_duel, $key_c_2);
 
@@ -100,8 +102,9 @@ function get_next_duel($id_ranking, $id_tournament){
 
         if ($timeline_main == 4) {
 
-            $list_inf = get_contenders_top_3_4($id_ranking);
-            $nb_list_inf = count($list_inf);
+            $list_inf       = get_contenders_top_3_4($id_ranking);
+            $nb_list_inf    = count($list_inf);
+            $random         = rand(2, $nb_list_inf);
 
             if ($nb_list_inf == 1) {
 
@@ -114,8 +117,8 @@ function get_next_duel($id_ranking, $id_tournament){
 
             } else {
 
-                $key_c_1 = $list_inf[$nb_list_inf - 2];
-                $key_c_2 = $list_inf[$nb_list_inf - 1];
+                $key_c_1 = $list_inf[$random - 2];
+                $key_c_2 = $list_inf[$random - 1];
                 array_push($next_duel, $key_c_1);
                 array_push($next_duel, $key_c_2);
 
