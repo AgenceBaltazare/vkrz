@@ -60,7 +60,7 @@ $illu_url   = $illu[0];
                                 <div class="meetup-header d-flex align-items-center justify-content-center">
                                     <div class="my-auto">
                                         <h4 class="card-title mb-25">
-                                            Top <?php echo $top_number; ?> <span class="ico">⚔️</span> <?php echo $top_title; ?>
+                                            Top <?php echo $top_number; ?> <span class="ico">⚔️️</span> <?php echo $top_title; ?>
                                         </h4>
                                         <p class="card-text mb-0 t-rose animate__animated animate__flash">
                                             <?php echo $top_question; ?>
