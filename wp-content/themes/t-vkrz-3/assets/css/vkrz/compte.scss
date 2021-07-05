@@ -1,3 +1,8 @@
+.cover-profil{
+  background-color: $c1;
+  min-height: 200px;
+}
+
 .avatar-picture-max{
   display: block;
   height: 100px;
@@ -30,7 +35,7 @@
   }
 }
 
-.dark-layout body.user-page{
+.dark-layout body.user-page, .dark-layout #user-profile .profile-header .navbar{
   background: linear-gradient(50deg, $c1, #471867, $c1, $c1);
   background-size: 400% 400%;
   animation: gradient 60s ease infinite;

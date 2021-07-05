@@ -405,3 +405,66 @@ function get_creator_data($creator_id = false, $id_tournament = false){
     return $result;
 
 }
+
+function get_creators_ids(){
+
+    $result = array();
+
+    $list_tops = new WP_Query(array(
+        'post_type' => 'tournoi',
+        'orderby' => 'date',
+        'posts_per_page' => '-1'
+    ));
+    while ($list_tops->have_posts()) : $list_tops->the_post();
+        $creator_id    = get_post_field('post_author', get_the_ID());
+        array_push($result, $creator_id);
+    endwhile;
+
+    return $result;
+}
+
+function get_creator_t($creator_id){
+
+    $result             = array();
+    $list_creator_tops  = array();
+
+    $creator_data   = get_user_by('ID', $creator_id);
+
+    $list_tops = new WP_Query(array('post_type' => 'tournoi', 'orderby' => 'date', 'author' => $creator_id, 'posts_per_page' => '-1'));
+    while ($list_tops->have_posts()) : $list_tops->the_post();
+
+        $id_tournament = get_the_ID();
+
+        $data_t        = get_tournoi_data($id_tournament);
+        $nb_votes_t    = $data_t[0]['nb_votes'];
+        $nb_ranks_t    = $data_t[0]['nb_tops'];
+
+        foreach(get_the_terms($id_tournament, 'categorie') as $cat ) {
+            $cat_id     = $cat->term_id;
+            $cat_name   = $cat->name;
+        }
+
+        array_push($list_creator_tops, array(
+            "top_id"        => $id_tournament,
+            "top_title"     => get_the_title($id_tournament),
+            "top_cat"       => array(
+                "cat_id"     => $cat->term_id,
+                "cat_name"   => $cat->name
+            ),
+            "top_votes"     => $nb_votes_t,
+            "top_ranks"     => $nb_ranks_t,
+        ));
+    endwhile;
+
+    array_push($result, array(
+        "creator_id"        => $creator_id,
+        "creator_link"      => get_author_posts_url($creator_id),
+        "creator_name"      => $creator_data->display_name,
+        "creator_nb_tops"   => count($list_creator_tops),
+        "creator_tops"      => $list_creator_tops,
+        "creator_uuid"      => get_field('uuiduser_user', 'user_'.$creator_id)
+    ));
+
+    return $result;
+
+}

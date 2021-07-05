@@ -14,10 +14,7 @@
 #user-profile .profile-header .profile-img-container .profile-img {
   height: 8.92rem;
   width: 8.92rem;
-  border: 0.357rem solid #fff;
-  background-color: #fff;
-  border-radius: 0.428rem;
-  box-shadow: 0 4px 24px 0 rgba(34, 41, 47, 0.1); }
+}
 
 #user-profile .profile-header .profile-header-nav .navbar {
   padding: 0.8rem 1rem; }

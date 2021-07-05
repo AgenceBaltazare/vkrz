@@ -4,6 +4,7 @@ global $user_id;
 global $user_name;
 global $user_email;
 global $utm;
+global $user_role;
 $user_role = "visitor";
 if(get_post_type() != "tournoi" || !is_single()){
     if(is_user_logged_in()){

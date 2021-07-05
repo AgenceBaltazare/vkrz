@@ -1094,6 +1094,11 @@ html .content {
   text-align: center;
 }
 
+.cover-profil {
+  background-color: #0c0a27;
+  min-height: 200px;
+}
+
 .avatar-picture-max {
   display: block;
   height: 100px;
@@ -1126,7 +1131,7 @@ html .content {
   margin-right: 10px;
 }
 
-.dark-layout body.user-page {
+.dark-layout body.user-page, .dark-layout #user-profile .profile-header .navbar {
   background: linear-gradient(50deg, #0c0a27, #471867, #0c0a27, #0c0a27);
   background-size: 400% 400%;
   animation: gradient 60s ease infinite;
