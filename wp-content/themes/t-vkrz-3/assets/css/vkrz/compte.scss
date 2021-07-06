@@ -1,3 +1,8 @@
+.cover-profil{
+  background-color: $c1;
+  min-height: 200px;
+}
+
 .avatar-picture-max{
   display: block;
   height: 100px;
@@ -30,7 +35,7 @@
   }
 }
 
-.dark-layout body.user-page{
+.dark-layout body.user-page, .dark-layout #user-profile .profile-header .navbar{
   background: linear-gradient(50deg, $c1, #471867, $c1, $c1);
   background-size: 400% 400%;
   animation: gradient 60s ease infinite;
@@ -50,7 +55,8 @@
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
+input:-webkit-autofill:active,
+textarea{
   transition: background-color 5000s ease-in-out 0s !important;
   -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
   color: #fff !important;
@@ -69,7 +75,7 @@ input:-webkit-autofill:active {
       margin-bottom: 20px;
     }
   }
-  input[type="text"], input[type="email"], input[type="password"]{
+  input[type="text"], input[type="email"], input[type="password"], textarea{
     background: transparent !important;
     border: 2px solid rgba(255, 255, 255, 0.2) !important;
     padding: 20px 15px !important;
@@ -92,7 +98,9 @@ input:-webkit-autofill:active {
     }
   }
 }
-
+.profile-tabs{
+  min-height: 40px;
+}
 .wppb-send-credentials-checkbox, #select_user_to_edit_form, .wppb-description-delimiter, .file-type, .file-name, .login-remember{
   display: none !important;
 }

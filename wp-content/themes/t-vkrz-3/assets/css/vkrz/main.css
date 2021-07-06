@@ -932,9 +932,13 @@ html .content {
   margin: 0 auto;
 }
 
+.card-developer-meetup {
+  background: #0c0a27 !important;
+}
 .card-developer-meetup .meetup-img-wrapper {
-  min-height: 220px;
+  min-height: 320px;
   background-position: center;
+  position: relative;
 }
 .card-developer-meetup .meetup-img-wrapper .badge {
   background: #312673;
@@ -944,11 +948,35 @@ html .content {
   font-weight: 400;
   padding: 5px 12px;
 }
+.card-developer-meetup .meetup-img-wrapper .list-contenders {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  left: 0;
+  right: 0;
+  margin: 20px 0 0;
+}
+.card-developer-meetup .meetup-img-wrapper .voile_contenders {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  right: 0;
+  opacity: 0.6;
+  height: 80px;
+  background: #0c0a28;
+  background: linear-gradient(0deg, #0c0a27 5%, rgba(0, 0, 0, 0) 100%);
+}
+.card-developer-meetup .meetup-header {
+  margin-bottom: 10px;
+}
 .card-developer-meetup .meetup-header .card-title {
   font-size: 22px;
+  line-height: 28px;
 }
 .card-developer-meetup .meetup-header .card-text {
   font-size: 28px;
+  line-height: 32px;
 }
 .card-developer-meetup .meetings {
   justify-content: space-around;
@@ -1000,6 +1028,7 @@ html .content {
 }
 .card-developer-meetup .card-footer {
   padding: 30px 20px 20px;
+  margin-top: 10px;
 }
 .card-developer-meetup .card-cta {
   padding: 0 20px 20px;
@@ -1094,6 +1123,11 @@ html .content {
   text-align: center;
 }
 
+.cover-profil {
+  background-color: #0c0a27;
+  min-height: 200px;
+}
+
 .avatar-picture-max {
   display: block;
   height: 100px;
@@ -1126,7 +1160,7 @@ html .content {
   margin-right: 10px;
 }
 
-.dark-layout body.user-page {
+.dark-layout body.user-page, .dark-layout #user-profile .profile-header .navbar {
   background: linear-gradient(50deg, #0c0a27, #471867, #0c0a27, #0c0a27);
   background-size: 400% 400%;
   animation: gradient 60s ease infinite;
@@ -1146,7 +1180,8 @@ html .content {
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
+input:-webkit-autofill:active,
+textarea {
   transition: background-color 5000s ease-in-out 0s !important;
   -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
   color: #fff !important;
@@ -1166,7 +1201,7 @@ input:-webkit-autofill:active {
   display: block;
   margin-bottom: 20px;
 }
-.wppb-user-forms input[type=text], .wppb-user-forms input[type=email], .wppb-user-forms input[type=password] {
+.wppb-user-forms input[type=text], .wppb-user-forms input[type=email], .wppb-user-forms input[type=password], .wppb-user-forms textarea {
   background: transparent !important;
   border: 2px solid rgba(255, 255, 255, 0.2) !important;
   padding: 20px 15px !important;
@@ -1175,18 +1210,22 @@ input:-webkit-autofill:active {
   color: #fff !important;
   transition: all 0.2s ease-in-out;
 }
-.wppb-user-forms input[type=text]::placeholder, .wppb-user-forms input[type=email]::placeholder, .wppb-user-forms input[type=password]::placeholder {
+.wppb-user-forms input[type=text]::placeholder, .wppb-user-forms input[type=email]::placeholder, .wppb-user-forms input[type=password]::placeholder, .wppb-user-forms textarea::placeholder {
   color: rgba(255, 255, 255, 0.8);
 }
-.wppb-user-forms input[type=text]:valid, .wppb-user-forms input[type=email]:valid, .wppb-user-forms input[type=password]:valid {
+.wppb-user-forms input[type=text]:valid, .wppb-user-forms input[type=email]:valid, .wppb-user-forms input[type=password]:valid, .wppb-user-forms textarea:valid {
   border: 2px solid #fff !important;
 }
-.wppb-user-forms input[type=text]:focus, .wppb-user-forms input[type=email]:focus, .wppb-user-forms input[type=password]:focus {
+.wppb-user-forms input[type=text]:focus, .wppb-user-forms input[type=email]:focus, .wppb-user-forms input[type=password]:focus, .wppb-user-forms textarea:focus {
   border: 2px solid #f4167f !important;
   transition: background-color 5000s ease-in-out 0s !important;
   -webkit-box-shadow: none !important;
   background: transparent !important;
   outline: 0;
+}
+
+.profile-tabs {
+  min-height: 40px;
 }
 
 .wppb-send-credentials-checkbox, #select_user_to_edit_form, .wppb-description-delimiter, .file-type, .file-name, .login-remember {

@@ -9,7 +9,6 @@ get_header();
     <div class="content-overlay"></div>
     <div class="content-wrapper">
         <div class="content-body mt-2">
-
             <div class="intro-mobile">
                 <div class="tournament-heading text-center">
                     <h3 class="mb-0 t-titre-tournoi">
@@ -17,7 +16,6 @@ get_header();
                     </h3>
                 </div>
             </div>
-
             <?php
             $users_list = get_vkrz_users();
             ?>
@@ -33,7 +31,7 @@ get_header();
                                             <div class="card">
                                                 <div class="card-header">
                                                     <h4 class="card-title pt-1 pb-1">
-                                                        Voici les <?php echo count($users_list); ?> champions de VAINKEURZ
+                                                        Voici les <span class="t-rose"><?php echo count($users_list); ?> champions</span> de VAINKEURZ
                                                     </h4>
                                                 </div>
                                                 <div class="table-responsive">
@@ -54,7 +52,6 @@ get_header();
                                                         <tbody>
                                                         <?php $r=1; foreach($users_list as $user): ?>
                                                             <tr>
-
                                                                 <td>
                                                                     <?php if($r == 1): ?>
                                                                         <span class="ico">🥇</span>
