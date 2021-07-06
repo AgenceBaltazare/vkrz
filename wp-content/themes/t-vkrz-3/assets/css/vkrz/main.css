@@ -939,6 +939,7 @@ html .content {
   min-height: 320px;
   background-position: center;
   position: relative;
+  background-size: cover !important;
 }
 .card-developer-meetup .meetup-img-wrapper .badge {
   background: #312673;

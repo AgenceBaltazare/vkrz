@@ -129,12 +129,20 @@ function get_next_duel($id_ranking, $id_tournament){
     } else {
 
         // Timeline Main
-        if ($nb_contenders >= 10) {
-            if ($timeline_votes == $nb_contenders - 5) {
+        if($nb_contenders >= 10){
+            if($timeline_votes == $nb_contenders-5){
                 update_field('timeline_main', 2, $id_ranking);
             }
-        } else {
-            update_field('timeline_main', 5, $id_ranking);
+        }
+        else{
+            if($timeline_votes < $nb_contenders - 1){
+                update_field('timeline_main', 6, $id_ranking);
+                $timeline_main = 6;
+            }
+            else{
+                update_field('timeline_main', 7, $id_ranking);
+                $timeline_main = 7;
+            }
         }
         $timeline_main = get_field('timeline_main', $id_ranking);
 
@@ -242,6 +250,39 @@ function get_next_duel($id_ranking, $id_tournament){
                 $is_next_duel = false;
 
                 if (!get_field('done_r', $id_ranking)) {
+                    update_field('done_r', 'done', $id_ranking);
+                    update_field('done_date_r', date('d/m/Y H:i:s'), $id_ranking);
+                }
+            }
+
+        }
+
+        if($timeline_main == 6){
+
+            $timeline_main = 6;
+            update_field('timeline_main', 6, $id_ranking);
+
+            $key_c_1 = $nb_contenders - (2 + $timeline_votes);
+            $key_c_2 = $nb_contenders - (1 + $timeline_votes);
+
+            array_push($next_duel, $list_contenders[$key_c_1]['id_wp']);
+            array_push($next_duel, $list_contenders[$key_c_2]['id_wp']);
+
+        }
+
+
+        if($timeline_main == 7){
+
+            $timeline_main = 7;
+            update_field('timeline_main', 7, $id_ranking);
+
+            $next_duel     = check_battle_5($id_ranking);
+
+            if(count($next_duel) != 2){
+
+                $is_next_duel = false;
+
+                if(!get_field('done_r', $id_ranking)){
                     update_field('done_r', 'done', $id_ranking);
                     update_field('done_date_r', date('d/m/Y H:i:s'), $id_ranking);
                 }
