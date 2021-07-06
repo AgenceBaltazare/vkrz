@@ -1,4 +1,5 @@
 <?php
+require_once 'meca/get_paid.php';
 require_once 'meca/compil.php';
 require_once 'meca/do_elo.php';
 require_once('meca/uniq_user_id.php');

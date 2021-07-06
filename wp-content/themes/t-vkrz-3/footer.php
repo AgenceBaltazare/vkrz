@@ -38,14 +38,14 @@
     <script src="<?php bloginfo('template_directory'); ?>/assets/vendors/js/tables/datatable/dataTables.responsive.min.js"></script>
     <script src="<?php bloginfo('template_directory'); ?>/assets/vendors/js/tables/datatable/responsive.bootstrap.min.js"></script>
     <script>
-        $('.table-c5_2').DataTable({
+        $('.table-c6').DataTable({
             autoWidth: false,
             lengthMenu: [5000],
             columns: [
                 { orderable: false },
-                null,
-                null,
-                null,
+                { orderable: false },
+                { orderable: false },
+                { orderable: false },
                 { orderable: false },
             ],
             order: [[1, 'asc']],

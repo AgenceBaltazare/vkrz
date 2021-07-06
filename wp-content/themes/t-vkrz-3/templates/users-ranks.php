@@ -118,7 +118,7 @@ $top_datas     = get_tournoi_data($id_tournament, $uuiduser);
                                                             <span class="font-weight-bold championname">
                                                                 <?php if($champion_data): ?>
                                                                     <a href="<?php echo esc_url(get_author_posts_url($champion_id)); ?>">
-                                                                         <?php echo $champion_data->display_name; ?>
+                                                                         <?php echo $champion_data->nickname; ?>
                                                                     </a>
                                                                     <span class="votechamp">
                                                                         - <?php echo $nb_user_votes; ?> <span class="ico">💎</span>

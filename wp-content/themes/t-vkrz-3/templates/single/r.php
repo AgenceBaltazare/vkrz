@@ -355,7 +355,7 @@ foreach($list_cat as $cat ) {
                                     Il est temps d'exprimer et de revendiquer ton propre avis !
                                 </h6>
                                 <a href="<?php echo $top_url; ?>" class="btn btn-outline-primary waves-effect">
-                                    Faire mon 🏆
+                                    Faire mon propre Top !
                                 </a>
                             </div>
                         </div>

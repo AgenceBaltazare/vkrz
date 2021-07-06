@@ -54,13 +54,18 @@ function get_tournoi_data($id_tournament, $uuiduser = false){
 
     endwhile;
 
-    $moyenne_note = round($count_note_of_t / $all_notes_of_t->post_count);
+    if($all_notes_of_t->post_count > 0){
+        $moyenne_note = round($count_note_of_t / $all_notes_of_t->post_count);
+    }
+    else{
+        $moyenne_note = 0;
+    }
 
     array_push($result, array(
         "date_of_t" => $date_of_t,
         "nb_tops"   => $all_ranking_of_t->post_count,
         "nb_votes"  => $count_votes_of_t,
-        "note"      => $moyenne_note
+        "note"      => $all_notes_of_t->post_count
     ));
 
     return $result;

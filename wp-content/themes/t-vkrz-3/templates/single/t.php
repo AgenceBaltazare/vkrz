@@ -183,7 +183,7 @@ $illu_url   = $illu[0];
                                             <div class="content-body text-left">
                                                 <small class="text-muted">Conçu par</small>
                                                 <h4 class="mb-0 link-creator">
-                                                    <a href="<?php echo $creator_data[0]['creator_link']; ?>" target="_blank">
+                                                    <a href="<?php echo $creator_data[0]['creator_link']; ?>" target="_blank" class="text-uppercase">
                                                         <?php echo $creator_data[0]['creator_name']; ?>
                                                     </a>
                                                 </h4>
