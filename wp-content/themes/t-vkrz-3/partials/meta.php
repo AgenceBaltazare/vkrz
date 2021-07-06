@@ -162,16 +162,16 @@
     $avatar_url     = get_avatar_url($champion_id, ['size' => '200']);
     ?>
     <title>
-        Profil de <?php echo $champion->display_name; ?> sur VAINKEURZ
+        Profil de <?php echo $champion->nickname; ?> sur VAINKEURZ
     </title>
     <link rel="canonical" href="<?php echo get_author_posts_url($champion_id); ?>" />
-    <meta name="description" content="Tous les Tops de <?php echo $champion->display_name; ?> et ses statistiques." />
+    <meta name="description" content="Tous les Tops de <?php echo $champion->nickname; ?> et ses statistiques." />
     <meta property="og:image" content="<?php echo $avatar_url; ?>" />
-    <meta property="og:title" content="Profil VAINKEURZ de <?php echo $champion->display_name; ?>" />
-    <meta property="og:description" content="Tous les Tops de <?php echo $champion->display_name; ?> et ses statistiques." />
+    <meta property="og:title" content="Profil VAINKEURZ de <?php echo $champion->nickname; ?>" />
+    <meta property="og:description" content="Tous les Tops de <?php echo $champion->nickname; ?> et ses statistiques." />
     <meta property="og:url" content="<?php echo get_author_posts_url($champion_id); ?>" />
-    <meta name="twitter:title" content="Profil VAINKEURZ de <?php echo $champion->display_name; ?>" />
-    <meta name="twitter:description" content="Tous les Tops de <?php echo $champion->display_name; ?> et ses statistiques." />
+    <meta name="twitter:title" content="Profil VAINKEURZ de <?php echo $champion->nickname; ?>" />
+    <meta name="twitter:description" content="Tous les Tops de <?php echo $champion->nickname; ?> et ses statistiques." />
     <meta name="twitter:image" content="<?php echo $avatar_url; ?>" />
 
 <?php elseif(is_page()): ?>

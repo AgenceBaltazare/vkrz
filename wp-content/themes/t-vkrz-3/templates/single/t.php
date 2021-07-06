@@ -55,6 +55,26 @@ $illu_url   = $illu[0];
                         <div class="card animate__animated animate__flipInX card-developer-meetup">
                             <div class="meetup-img-wrapper rounded-top text-left" style="background-image: url(<?php echo $illu; ?>);">
                                 <span class="badge badge-light-primary">Créé le <?php echo $top_datas[0]['date_of_t']; ?></span>
+                                <div class="voile_contenders"></div>
+                                <?php if($top_number < 30): ?>
+                                    <div class="avatar-group list-contenders">
+                                        <?php $contenders_t = new WP_Query(array('post_type' => 'contender', 'orderby' => 'date', 'posts_per_page' => '-1',
+                                            'meta_query'     => array(
+                                                array(
+                                                    'key'     => 'id_tournoi_c',
+                                                    'value'   => $id_tournament,
+                                                    'compare' => '=',
+                                                )
+                                            )
+                                        )); ?>
+                                        <?php while ($contenders_t->have_posts()) : $contenders_t->the_post(); ?>
+                                            <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="top" data-original-title="<?php echo get_the_title(get_the_id()); ?>" class="avatar pull-up">
+                                                <?php $illu = get_the_post_thumbnail_url(get_the_id(), 'medium'); ?>
+                                                <img src="<?php echo $illu; ?>" alt="Avatar" height="32" width="32">
+                                            </div>
+                                        <?php endwhile; ?>
+                                    </div>
+                                <?php endif; ?>
                             </div>
                             <div class="card-body">
                                 <div class="meetup-header d-flex align-items-center justify-content-center">
@@ -110,28 +130,6 @@ $illu_url   = $illu[0];
                                     <?php endif; ?>
                                 </div>
                             </div>
-                            <?php if($top_number < 23): ?>
-                                <div class="avatar-group">
-                                    <h6 class="align-self-center cursor-pointer ms-50 mb-0 list-contenders-wording">
-                                        Contenders 👉
-                                    </h6>
-                                    <?php $contenders_t = new WP_Query(array('post_type' => 'contender', 'orderby' => 'date', 'posts_per_page' => '-1',
-                                        'meta_query'     => array(
-                                            array(
-                                                'key'     => 'id_tournoi_c',
-                                                'value'   => $id_tournament,
-                                                'compare' => '=',
-                                            )
-                                        )
-                                    )); ?>
-                                    <?php while ($contenders_t->have_posts()) : $contenders_t->the_post(); ?>
-                                        <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="top" data-original-title="<?php echo get_the_title(get_the_id()); ?>" class="avatar pull-up">
-                                            <?php $illu = get_the_post_thumbnail_url(get_the_id(), 'medium'); ?>
-                                            <img src="<?php echo $illu; ?>" alt="Avatar" height="32" width="32">
-                                        </div>
-                                    <?php endwhile; ?>
-                                </div>
-                            <?php endif; ?>
                             <div class="card-footer">
                                 <div class="row meetings align-items-center">
                                     <div class="col">

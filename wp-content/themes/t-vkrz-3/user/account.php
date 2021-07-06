@@ -54,6 +54,7 @@ $list_t_created = $data_t_created[0]['creator_tops'];
                                 <div class="card-header">
                                     <h4 class="card-title">
                                         <span class="ico">⏳</span> Progression
+                                    </h4>
                                 </div>
                                 <div class="card-body">
                                     <div class="row avg-sessions pt-50">

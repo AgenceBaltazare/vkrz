@@ -244,9 +244,11 @@
 }
 
 .card-developer-meetup{
+  background: $c1 !important;
   .meetup-img-wrapper{
-    min-height: 220px;
+    min-height: 320px;
     background-position: center;
+    position: relative;
     .badge{
       background: $c3;
       color: #fff !important;
@@ -255,13 +257,35 @@
       font-weight: 400;
       padding: 5px 12px;
     }
+    .list-contenders{
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      left: 0;
+      right: 0;
+      margin: 20px 0 0;
+    }
+    .voile_contenders{
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      left: 0;
+      right: 0;
+      opacity: 0.6;
+      height: 80px;
+      background: rgb(12,10,40);
+      background: linear-gradient(0deg, $c1 5%, rgba(0,0,0,0) 100%);
+    }
   }
   .meetup-header{
+    margin-bottom: 10px;
     .card-title{
       font-size: 22px;
+      line-height: 28px;
     }
     .card-text{
       font-size: 28px;
+      line-height: 32px;
     }
   }
   .meetings{
@@ -318,6 +342,7 @@
   }
   .card-footer{
     padding: 30px 20px 20px;
+    margin-top: 10px;
   }
   .card-cta{
     padding: 0 20px 20px;
