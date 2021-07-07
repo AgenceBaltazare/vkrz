@@ -7,6 +7,10 @@
 <?php __("Choose Edit Profile form to display under bbPress Profile Edit tab:", "profile-builder"); ?>
 <?php __("Default Edit Profile", "profile-builder"); ?>
 <?php __("Select Profile Builder Edit Profile form to replace the bbPress Profile Edit tab.", "profile-builder"); ?>
+<?php __("Replace bbPress Login form:", "profile-builder"); ?>
+<?php __("No", "profile-builder"); ?>
+<?php __("Yes", "profile-builder"); ?>
+<?php __("Select \"Yes\" to replace the default bbPress Login form with the Profile Builder Login form.", "profile-builder"); ?>
 <?php __("bbPress needs to be installed and activated for Profile Builder - bbPress Integration Add-on to work as expected!", "profile-builder"); ?>
 <?php __("Forum Role", "profile-builder"); ?>
 <?php __("Topics Started", "profile-builder"); ?>
@@ -170,8 +174,6 @@
 <?php __("Settings", "profile-builder"); ?>
 <?php __("Help", "profile-builder"); ?>
 <?php __("Display Social Connect buttons:", "profile-builder"); ?>
-<?php __("Yes", "profile-builder"); ?>
-<?php __("No", "profile-builder"); ?>
 <?php __("You have successfully unlinked %% from your account.", "profile-builder"); ?>
 <?php __("An account with this email address already exists.<br> Do you want to connect it?", "profile-builder"); ?>
 <?php __("Please enter your website account password", "profile-builder"); ?>

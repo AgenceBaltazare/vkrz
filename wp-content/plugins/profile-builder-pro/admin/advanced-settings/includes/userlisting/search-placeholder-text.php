@@ -6,6 +6,6 @@ function wppb_toolbox_userlisting_search_placeholder_text( $default ) {
     if ( $text == false )
         return $default;
 
-    return $text;
+    return esc_html( $text );
 }
 add_filter('wppb_userlisting_search_field_text', 'wppb_toolbox_userlisting_search_placeholder_text', 20 );

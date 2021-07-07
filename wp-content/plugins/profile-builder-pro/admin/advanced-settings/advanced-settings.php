@@ -154,6 +154,7 @@ if( !class_exists('WPPB_toolbox') ){
 
 
         public function sanitize_forms_settings( $settings ) {
+
             if( !empty( $settings['restricted-email-domains-data'] ) ){
                 foreach( $settings['restricted-email-domains-data'] as $key => $email )
                     $settings['restricted-email-domains-data'][$key] = strtolower( $email );
@@ -190,11 +191,21 @@ if( !class_exists('WPPB_toolbox') ){
                 }
             }
 
-            if( empty( $settings['admin-emails'] ) ) {
-                $settings['admin-emails'] = sanitize_email( get_option('admin_email') );
+            if( isset( $settings['redirect-delay-timer'] ) ){
+                $settings['redirect-delay-timer'] = (int)$settings['redirect-delay-timer'];
+
+                if( empty( $settings['redirect-delay-timer'] ) )
+                    $settings['redirect-delay-timer'] = 3;
             }
 
+            if( isset( $settings['modify-permalinks-single'] ) )
+                $settings['modify-permalinks-single'] = sanitize_text_field( $settings['modify-permalinks-single'] );
+
+            if( empty( $settings['admin-emails'] ) )
+                $settings['admin-emails'] = sanitize_email( get_option('admin_email') );
+
             return $settings;
+
         }
 
         private function setup_functions() {

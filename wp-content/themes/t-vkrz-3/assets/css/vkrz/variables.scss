@@ -43,11 +43,3 @@ $c5: #5e50a6;
     transform: rotate(360deg);
   }
 }
-.rotating {
-  display: inline-block;
-  -webkit-animation: rotating 2s linear infinite;
-  -moz-animation: rotating 2s linear infinite;
-  -ms-animation: rotating 2s linear infinite;
-  -o-animation: rotating 2s linear infinite;
-  animation: rotating 2s linear infinite;
-}

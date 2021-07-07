@@ -27,9 +27,14 @@ function wppb_toolbox_usermeta_handler( $atts, $content=null){
 
 	if ( !array_key_exists( 'key', $atts ) ) return;
 
-	if( $atts['key'] == 'avatar'){
+	if( $atts['key'] == 'avatar' ){
 		return $atts['pre'] . get_avatar( $user->ID, $atts['size']) . $atts['post'] ;
 	}
+
+    if( $atts['key'] === 'id' ){
+        $atts['key'] = 'ID';
+    }
+
 	if ( $user->has_prop( $atts['key'] ) ){
 		if ($atts['wpautop'] == 'on'){
 			$value = wpautop( $user->get( $atts['key'] ) );

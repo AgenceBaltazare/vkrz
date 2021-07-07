@@ -30,8 +30,7 @@ $info_user_level     = get_user_level($uuidchampion, $champion_id, $nb_user_vote
                         <div class="row">
                             <div class="col-lg-3 col-12 order-2 order-lg-1">
 
-                                <!-- about -->
-                                <div class="card">
+                                <div class="card card-transaction">
                                     <div class="card-body">
                                         <div class="info-bio">
                                             <h5 class="mb-75 t-rose">Inscription</h5>
@@ -51,14 +50,93 @@ $info_user_level     = get_user_level($uuidchampion, $champion_id, $nb_user_vote
                                                 </p>
                                             </div>
                                         <?php endif; ?>
-                                        <?php if($champion_info->twitch_user): ?>
+
+                                        <?php if($champion_info->twitch_user || $champion_info->youtube_user || $champion_info->Instagram_user || $champion_info->tiktok_user): ?>
                                             <div class="info-bio mt-2">
-                                                <h5 class="mb-75 t-rose">Twitch</h5>
-                                                <p class="card-text">
-                                                    <a href="<?php echo $champion_info->twitch_user; ?>" target="_blank">
-                                                        <?php echo $champion_info->twitch_user; ?>
-                                                    </a>
-                                                </p>
+                                                <h5 class="mb-75 t-rose">Réseaux</h5>
+                                                <div class="row">
+                                                    <?php if($champion_info->twitch_user): ?>
+                                                        <div class="col-md-6">
+                                                            <div class="transaction-item mb-2">
+                                                                <a href="<?php echo $champion_info->twitch_user; ?>" target="_blank" >
+                                                                    <div class="d-flex align-items-center">
+                                                                        <div class="avatar bg-light-primary rounded">
+                                                                            <div class="avatar-content picto-rs">
+                                                                                <i class="fab fa-twitch"></i>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="transaction-info">
+                                                                            <h6 class="transaction-title mb-0">
+                                                                                Twitch
+                                                                            </h6>
+                                                                        </div>
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    <?php endif; ?>
+                                                    <?php if($champion_info->youtube_user): ?>
+                                                        <div class="col-md-6">
+                                                            <div class="transaction-item mb-2">
+                                                                <a href="<?php echo $champion_info->youtube_user; ?>" target="_blank" >
+                                                                    <div class="d-flex align-items-center">
+                                                                        <div class="avatar bg-light-primary rounded">
+                                                                            <div class="avatar-content picto-rs">
+                                                                                <i class="fab fa-youtube"></i>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="transaction-info">
+                                                                            <h6 class="transaction-title mb-0">
+                                                                                Youtube
+                                                                            </h6>
+                                                                        </div>
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    <?php endif; ?>
+                                                    <?php if($champion_info->Instagram_user): ?>
+                                                        <div class="col-md-6">
+                                                            <div class="transaction-item mb-2">
+                                                                <a href="<?php echo $champion_info->Instagram_user; ?>" target="_blank" >
+                                                                    <div class="d-flex align-items-center">
+                                                                        <div class="avatar bg-light-primary rounded">
+                                                                            <div class="avatar-content picto-rs">
+                                                                                <i class="fab fa-instagram"></i>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="transaction-info">
+                                                                            <h6 class="transaction-title mb-0">
+                                                                                Instagram
+                                                                            </h6>
+                                                                        </div>
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    <?php endif; ?>
+                                                    <?php if($champion_info->tiktok_user): ?>
+                                                        <div class="col-md-6">
+                                                            <div class="transaction-item mb-2">
+                                                                <a href="<?php echo $champion_info->tiktok_user; ?>" target="_blank" >
+                                                                    <div class="d-flex align-items-center">
+                                                                        <div class="avatar bg-light-primary rounded">
+                                                                            <div class="avatar-content picto-rs">
+                                                                                <i class="fab fa-tiktok"></i>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="transaction-info">
+                                                                            <h6 class="transaction-title mb-0">
+                                                                                TikTok
+                                                                            </h6>
+                                                                        </div>
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    <?php endif; ?>
+                                                </div>
+
                                             </div>
                                         <?php endif; ?>
                                     </div>
@@ -178,7 +256,7 @@ $info_user_level     = get_user_level($uuidchampion, $champion_id, $nb_user_vote
                                                 <div class="col-12">
                                                     <div class="card invoice-list-wrapper">
                                                         <div class="card-datatable table-responsive">
-                                                            <table class="invoice-list-table table table-c5">
+                                                            <table class="invoice-list-table table table-4">
                                                                 <thead>
                                                                 <tr>
                                                                     <th class="">
@@ -189,9 +267,6 @@ $info_user_level     = get_user_level($uuidchampion, $champion_id, $nb_user_vote
                                                                     </th>
                                                                     <th class="">
                                                                         🥇🥈🥉
-                                                                    </th>
-                                                                    <th class="cp">
-                                                                        👯‍ <i class="fal fa-sort-alt"></i>
                                                                     </th>
                                                                     <th>
                                                                         👀
@@ -231,21 +306,7 @@ $info_user_level     = get_user_level($uuidchampion, $champion_id, $nb_user_vote
                                                                                         <img src="<?php echo $illu; ?>" alt="Avatar">
                                                                                     </div>
 
-                                                                                    <?php $l++; if($l==4) break; endforeach; ?>
-                                                                            </td>
-                                                                            <td>
-                                                                                <?php
-                                                                                $similar = get_user_percent($r_user['uuid_user'], $r_user['id_tournoi']);
-                                                                                if($similar[0]['nb_similar'] == 0){
-                                                                                    $wording_similar = "Aucun podium identique à celui-ci";
-                                                                                }
-                                                                                else{
-                                                                                    $wording_similar = $similar[0]['nb_similar']." podiums identiques à celui-ci";
-                                                                                }
-                                                                                ?>
-                                                                                <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="<?php echo $wording_similar; ?>">
-                                                                                    <?php echo $similar[0]['percent']; ?>%
-                                                                                </div>
+                                                                                <?php $l++; if($l==4) break; endforeach; ?>
                                                                             </td>
                                                                             <td>
                                                                                 <div class="d-flex align-items-center col-actions">

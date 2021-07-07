@@ -178,6 +178,12 @@
     margin-left: 0;
 }
 
+.wppb-form-field.wppb-default-password,
+.wppb-form-field.wppb-default-repeat-password,
+#wppb-login-wrap .login-password {
+    position: relative;
+}
+
 .wppb-form-field label,
 #wppb-login-wrap .login-username label,
 #wppb-login-wrap .login-password label{
@@ -859,6 +865,20 @@ li.wppb-facet-search{
 #pass-strength-result.strong {
     background-color: #c3ff88;
     border-color: #8dff1c;
+}
+
+/*--------------------------------------------------------------
+7.0 Show/Hide Password
+--------------------------------------------------------------*/
+.wppb-form-field.wppb-default-password button.wppb-toggle-pw,
+.wppb-form-field.wppb-default-repeat-password button.wppb-toggle-pw,
+#wppb-login-wrap .login-password button.wppb-toggle-pw {
+    position: absolute;
+    right: 0px;
+    top: 8px;
+    background: transparent;
+    border: 1px solid transparent;
+    box-shadow: none;
 }
 
 /**************************************************/

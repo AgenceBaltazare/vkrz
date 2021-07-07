@@ -36,15 +36,6 @@
     transform: rotate(360deg);
   }
 }
-.rotating {
-  display: inline-block;
-  -webkit-animation: rotating 2s linear infinite;
-  -moz-animation: rotating 2s linear infinite;
-  -ms-animation: rotating 2s linear infinite;
-  -o-animation: rotating 2s linear infinite;
-  animation: rotating 2s linear infinite;
-}
-
 body {
   height: auto !important;
 }
@@ -214,6 +205,10 @@ div.dataTables_wrapper div.dataTables_filter label, div.dataTables_wrapper div.d
 }
 .chat-widget .chat-app-form button {
   margin-top: 10px;
+}
+
+.wppb-toggle-pw {
+  display: none;
 }
 
 .cover {
@@ -1188,6 +1183,18 @@ textarea {
   color: #fff !important;
   -webkit-text-fill-color: #fff !important;
   -webkit-text-size-adjust: 100% !important;
+}
+
+.picto-rs {
+  font-size: 25px !important;
+}
+
+.transaction-item a {
+  color: #fff;
+  display: block;
+}
+.transaction-item a:hover {
+  color: #5e50a6;
 }
 
 .wppb-user-forms {

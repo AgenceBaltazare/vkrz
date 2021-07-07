@@ -21,10 +21,12 @@ function get_user_full_data($uuiduser){
     // Get user ranking
     $user_all_ranking = new WP_Query(array(
         'post_type'              => 'classement',
-        'posts_per_page'         => '-1',
+        'posts_per_page'         => '1000',
+        'fields'                 => 'ids',
+        'post_status'            => 'publish',
         'ignore_sticky_posts'    => true,
         'update_post_meta_cache' => false,
-        'no_found_rows'          => true,
+        'no_found_rows'          => false,
         'meta_query'             =>
             array(
                 array(
@@ -100,9 +102,6 @@ function get_user_full_data($uuiduser){
         }
 
     endwhile;
-
-    wp_reset_postdata();
-    wp_reset_query();
 
     array_push($result, array(
         "nb_user_votes"             => $count_user_votes,
@@ -414,13 +413,20 @@ function get_creator_t($creator_id){
 
     $result             = array();
     $list_creator_tops  = array();
-    $moy_note_global    = array();
     $creator_data       = get_user_by('ID', $creator_id);
     $nb_votes_all_t     = 0;
     $nb_ranks_all_t     = 0;
     $total_money        = array();
 
-    $list_tops = new WP_Query(array('post_type' => 'tournoi', 'orderby' => 'date', 'author' => $creator_id, 'posts_per_page' => '-1'));
+    $list_tops = new WP_Query(array(
+        'post_type'              => 'tournoi',
+        'orderby'                => 'date',
+        'posts_per_page'         => 500,
+        'ignore_sticky_posts'    => true,
+        'update_post_meta_cache' => false,
+        'no_found_rows'          => false,
+        'author'                 => $creator_id,
+    ));
     while ($list_tops->have_posts()) : $list_tops->the_post();
 
         $id_tournament = get_the_ID();
@@ -432,42 +438,6 @@ function get_creator_t($creator_id){
         $nb_votes_all_t = $nb_votes_all_t + $nb_votes_t;
         $nb_ranks_all_t = $nb_ranks_all_t + $nb_ranks_t;
 
-        foreach(get_the_terms($id_tournament, 'categorie') as $cat ) {
-            $cat_id     = $cat->term_id;
-            $cat_name   = $cat->name;
-        }
-
-        $moyenne_note    = 0;
-        $count_note_of_t = 0;
-
-        $all_notes_of_t = new WP_Query(array(
-            'post_type' => 'note',
-            'posts_per_page' => '-1',
-            'ignore_sticky_posts' => true,
-            'update_post_meta_cache' => false,
-            'no_found_rows' => true,
-            'meta_query' => array(
-                array(
-                    'key' => 'id_t_n',
-                    'value' => $id_tournament,
-                    'compare' => '=',
-                )
-            )
-        ));
-        while ($all_notes_of_t->have_posts()) : $all_notes_of_t->the_post();
-
-            $count_note_of_t = $count_note_of_t + get_field('id_s_n');
-
-        endwhile;
-
-        if($all_notes_of_t->post_count > 0){
-            $moyenne_note = round($count_note_of_t / $all_notes_of_t->post_count, 2);
-            array_push($moy_note_global, $moyenne_note);
-        }
-        else{
-            $moyenne_note = "-";
-        }
-
         $money_top = get_paid($nb_votes_t);
         array_push($total_money, $money_top);
 
@@ -475,18 +445,11 @@ function get_creator_t($creator_id){
             "top_id"        => $id_tournament,
             "top_title"     => get_the_title($id_tournament),
             "nb_top"        => get_numbers_of_contenders($id_tournament),
-            "top_cat"       => array(
-                "cat_id"     => $cat->term_id,
-                "cat_name"   => $cat->name
-            ),
             "top_votes"     => $nb_votes_t,
             "top_ranks"     => $nb_ranks_t,
-            "top_notes"     => $moyenne_note,
             "top_money"     => $money_top
         ));
     endwhile;
-
-    $moyenne_note = round(array_sum($moy_note_global) / count($moy_note_global), 2);
 
     array_push($result, array(
         "creator_id"        => $creator_id,
@@ -496,7 +459,6 @@ function get_creator_t($creator_id){
         "creator_tops"      => $list_creator_tops,
         "creator_all_v"     => $nb_votes_all_t,
         "creator_all_t"     => $nb_ranks_all_t,
-        "creator_n_moy"     => $moyenne_note,
         "creator_money"     => array_sum($total_money),
         "creator_uuid"      => get_field('uuiduser_user', 'user_'.$creator_id)
     ));

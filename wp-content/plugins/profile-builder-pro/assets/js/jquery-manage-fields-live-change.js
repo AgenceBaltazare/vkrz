@@ -296,6 +296,14 @@ var fields 	=	{
 																						'.row-overwrite-existing'
 																					]
 																},
+						'Language':								{	'show_rows'	:	[
+																						'.row-field-title',
+																						'.row-meta-name',
+																						'.row-description',
+																						'.row-default-value',
+																						'.row-overwrite-existing'
+																					]
+																},
 
 						'Textarea':								{	'show_rows'	:	[
 																						'.row-field-title',

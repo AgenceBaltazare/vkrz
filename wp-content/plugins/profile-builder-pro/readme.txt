@@ -7,7 +7,7 @@ custom registration, custom registration form, custom registration page, extra u
 front-end register, front-end registration, frontend edit profile, edit profileregistration, customize profile, user fields, builder, profile builder, custom fields, avatar
 Requires at least: 3.1
 Tested up to: 5.7
-Stable tag: 3.4.7
+Stable tag: 3.4.8
 
 
 Login, registration and edit profile shortcodes for the front-end. Also you can choose what fields should be displayed or add custom ones.
@@ -101,6 +101,13 @@ This plugin only adds/removes fields in the front-end. The default information-f
 
 
 == Changelog ==
+= 3.4.8 =
+* Feature: Add a visibility toggle to Profile Builder password fields. Similar to WordPress default form functionality
+* Fix: Issue with Labels Edit showing the incorrect original string in the back-end
+* Fix: Improved sanitization on the Toolbox settings page
+* Misc: Usermeta shortcodes now supports the `ID` key which will return the currently logged in users ID
+* Misc: Added a language field that can be used to store the selected website language at the time of registration
+
 = 3.4.7 =
 * Feature: Added {{unapprove_url}} and {{{unnaprove_link}}} tags to the Admin Email Customizer
 * Fix: Default placeholder for URL field so it can be replaced using the general filter

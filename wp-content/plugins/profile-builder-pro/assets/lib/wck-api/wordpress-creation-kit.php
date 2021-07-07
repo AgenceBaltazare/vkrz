@@ -498,7 +498,11 @@ class Wordpress_Creation_Kit_PB{
                 } elseif ( $details['type'] == 'checkbox' && is_array( $value ) ){
                     $display_value = implode( ', ', $value );
 				} elseif ( $details['type'] == 'select' || $details['type'] === 'select-2' ){
-						$display_value = '<pre>' . __(self::wck_get_entry_field_select( $value, $details ), 'profilebuilder') . '</pre>';
+				    if ( $details['slug'] === 'pble-label' ){
+                        $display_value = '<pre>' . self::wck_get_entry_field_select( $value, $details ) . '</pre>';
+                    } else {
+                        $display_value = '<pre>' . __(self::wck_get_entry_field_select( $value, $details ), 'profilebuilder') . '</pre>';
+                    }
                 } else {
 					$display_value = '<pre>'.htmlspecialchars( $value ) . '</pre>';
 				}

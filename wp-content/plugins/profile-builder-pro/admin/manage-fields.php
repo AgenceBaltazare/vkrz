@@ -87,6 +87,7 @@ function wppb_populate_manage_fields(){
         $manage_field_types['optgroups']['standard']['options'][] = 'Input';
         $manage_field_types['optgroups']['standard']['options'][] = 'Number';
         $manage_field_types['optgroups']['standard']['options'][] = 'Input (Hidden)';
+        $manage_field_types['optgroups']['standard']['options'][] = 'Language';
         $manage_field_types['optgroups']['standard']['options'][] = 'Textarea';
         $manage_field_types['optgroups']['standard']['options'][] = 'WYSIWYG';
         $manage_field_types['optgroups']['standard']['options'][] = 'Select';
@@ -1743,4 +1744,3 @@ if ( ! function_exists( 'wppb_filter_map_bubble_fields' ) ) {
 	}
 }
 add_filter( 'wppb_map_bubble_fields', 'wppb_filter_map_bubble_fields' );
-

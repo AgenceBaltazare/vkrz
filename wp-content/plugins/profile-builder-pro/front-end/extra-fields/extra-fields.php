@@ -29,6 +29,7 @@ function wppb_include_extra_fields_files() {
 	include_once( WPPB_PLUGIN_DIR.'/front-end/extra-fields/number/number.php' );
 	include_once( WPPB_PLUGIN_DIR.'/front-end/extra-fields/select2/select2.php' );
 	include_once( WPPB_PLUGIN_DIR.'/front-end/extra-fields/select2/select2-multiple.php' );
+	include_once( WPPB_PLUGIN_DIR.'/front-end/extra-fields/language/language.php' );
 }
 wppb_include_extra_fields_files();
 

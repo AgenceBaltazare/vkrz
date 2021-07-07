@@ -42,7 +42,7 @@ $list_t_created = $data_t_created[0]['creator_tops'];
                                                     <span class="ico4">⚔️</span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">
-                                                    <?php echo count($list_t_created); ?>
+                                                    <?php echo $data_t_created[0]['creator_nb_tops']; ?>
                                                 </h2>
                                                 <p class="card-text legende">Tops créés</p>
                                             </div>
@@ -55,9 +55,9 @@ $list_t_created = $data_t_created[0]['creator_tops'];
                                                     <span class="ico4">💎</span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">
-                                                    <?php echo $nb_user_votes; ?>
+                                                    <?php echo $data_t_created[0]['creator_all_v']; ?>
                                                 </h2>
-                                                <p class="card-text legende">Votes générés dans <?php echo count($list_t_done); ?> 🏆</p>
+                                                <p class="card-text legende">Votes générés</p>
                                             </div>
                                         </div>
                                     </div>
@@ -65,12 +65,12 @@ $list_t_created = $data_t_created[0]['creator_tops'];
                                         <div class="card text-center">
                                             <div class="card-body">
                                                 <div class="mb-1">
-                                                    <span class="ico4">🌟</span>
+                                                    <span class="ico4">🏆</span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">
-                                                    <?php echo $data_t_created[0]['creator_n_moy']; ?><small>/ 3</small>
+                                                    <?php echo $data_t_created[0]['creator_all_t']; ?>
                                                 </h2>
-                                                <p class="card-text legende">Note moyenne des Tops</p>
+                                                <p class="card-text legende">Classements générés</p>
                                             </div>
                                         </div>
                                     </div>
@@ -96,14 +96,11 @@ $list_t_created = $data_t_created[0]['creator_tops'];
                                             <div class="col-12">
                                                 <div class="card invoice-list-wrapper">
                                                     <div class="card-datatable table-responsive">
-                                                        <table class="invoice-list-table table table-c6">
+                                                        <table class="invoice-list-table table table-creator">
                                                             <thead>
                                                             <tr>
                                                                 <th class="">
                                                                     Liste des <span class="t-rose"><?php echo count($list_t_created); ?></span> Tops créés
-                                                                </th>
-                                                                <th class="text-right">
-                                                                    🌟 <i class="fal fa-sort-alt"></i>
                                                                 </th>
                                                                 <th class="text-right">
                                                                     💎
@@ -114,7 +111,7 @@ $list_t_created = $data_t_created[0]['creator_tops'];
                                                                 <th class="text-right">
                                                                     💰 <i class="fal fa-sort-alt"></i>
                                                                 </th>
-                                                                <th class="text-right">
+                                                                <th>
 
                                                                 </th>
                                                             </tr>
@@ -138,29 +135,6 @@ $list_t_created = $data_t_created[0]['creator_tops'];
                                                                         </div>
                                                                     </td>
                                                                     <td class="text-right">
-                                                                        <?php
-                                                                        if($item['top_notes'] == "-"){
-                                                                            $class_note = "";
-                                                                        }
-                                                                        elseif($item['top_notes'] < 1.8){
-                                                                            $class_note = "danger";
-                                                                        }
-                                                                        elseif($item['top_notes'] >= 1.8 && $item['top_notes'] < 2.2){
-                                                                            $class_note = "warning";
-                                                                        }
-                                                                        elseif($item['top_notes'] >= 2.2){
-                                                                            $class_note = "success";
-                                                                        }
-                                                                        ?>
-                                                                        <span class="text-<?php echo $class_note; ?>">
-                                                                            <?php if($item['top_notes'] == "-"): ?>
-                                                                                <?php echo $item['top_notes']; ?>
-                                                                            <?php else: ?>
-                                                                                <?php echo $item['top_notes']; ?> <span class="ico3">⭐️</span>
-                                                                            <?php endif; ?>
-                                                                        </span>
-                                                                    </td>
-                                                                    <td class="text-right">
                                                                         <?php echo $item['top_votes']; ?> <span class="ico3">💎</span>
                                                                     </td>
                                                                     <td class="text-right">
@@ -169,7 +143,7 @@ $list_t_created = $data_t_created[0]['creator_tops'];
                                                                     <td class="text-right">
                                                                         <?php echo $item['top_money']; ?>
                                                                     </td>
-                                                                    <th class="text-right">
+                                                                    <td class="text-right">
                                                                         <div class="d-flex align-items-center justify-content-end col-actions">
                                                                             <a class="mr-1" href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $item['top_id']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir tous les classements">
                                                                                 <span class="ico">

@@ -12,8 +12,6 @@ global $list_t_done;
 get_header();
 global $user_role;
 $list_t_begin   = $user_full_data[0]['list_user_ranking_begin'];
-$data_t_created = get_creator_t($user_id);
-$list_t_created = $data_t_created[0]['creator_tops'];
 ?>
 <!-- BEGIN: Content-->
 <div class="app-content content ">
@@ -94,7 +92,8 @@ $list_t_created = $data_t_created[0]['creator_tops'];
                                                         </span>
                                                     </span>
                                                     <?php echo $cat->name; ?>
-                                                    <small class="infosmall text-<?php echo $classbar; ?>"><?php echo $count_top_done_in_cat; ?> sur <?php echo $tops_in_cat; ?>
+                                                    <small class="infosmall text-<?php echo $classbar; ?>">
+                                                        <?php echo $count_top_done_in_cat; ?> sur <?php echo $tops_in_cat; ?>
                                                     </small>
                                                 </p>
                                                 <div class="progress progress-bar-<?php echo $classbar; ?>" style="height: 6px">
@@ -176,7 +175,7 @@ $list_t_created = $data_t_created[0]['creator_tops'];
                                             <div class="col-12">
                                                 <div class="card invoice-list-wrapper">
                                                     <div class="card-datatable table-responsive">
-                                                        <table class="invoice-list-table table table-c5">
+                                                        <table class="invoice-list-table table table-tbegin">
                                                             <thead>
                                                             <tr>
                                                                 <th class="">
@@ -184,9 +183,6 @@ $list_t_created = $data_t_created[0]['creator_tops'];
                                                                 </th>
                                                                 <th class="text-center">
                                                                     💎
-                                                                </th>
-                                                                <th class="">
-                                                                    🥇🥈🥉
                                                                 </th>
                                                                 <th>
                                                                     👀
@@ -217,19 +213,6 @@ $list_t_created = $data_t_created[0]['creator_tops'];
                                                                         </td>
                                                                         <td class="text-center">
                                                                             <?php echo $r_user['nb_votes']; ?> <span class="ico3">💎</span>
-                                                                        </td>
-                                                                        <td>
-                                                                            <?php
-                                                                            $user_top3 = get_user_ranking($r_user['id_ranking']);
-                                                                            $l=1;
-                                                                            foreach($user_top3 as $top => $p): ?>
-
-                                                                                <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="<?php echo get_the_title($top); ?>" class="avatartop3 avatar pull-up">
-                                                                                    <?php $illu = get_the_post_thumbnail_url($top, 'thumbnail'); ?>
-                                                                                    <img src="<?php echo $illu; ?>" alt="Avatar">
-                                                                                </div>
-
-                                                                            <?php $l++; if($l==4) break; endforeach; ?>
                                                                         </td>
                                                                         <td>
                                                                             <a class="mr-1" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $r_user['id_tournoi']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir le classement mondial">
@@ -266,23 +249,17 @@ $list_t_created = $data_t_created[0]['creator_tops'];
                                             <div class="col-12">
                                                 <div class="card invoice-list-wrapper">
                                                     <div class="card-datatable table-responsive">
-                                                        <table class="invoice-list-table table table-c7">
+                                                        <table class="invoice-list-table table table-tdone">
                                                             <thead>
                                                             <tr>
                                                                 <th class="">
                                                                     <span class="t-rose"><?php echo count($list_t_done); ?></span> Tops terminés
                                                                 </th>
                                                                 <th class="text-right">
-                                                                    🌟
-                                                                </th>
-                                                                <th class="text-right">
                                                                     💎
                                                                 </th>
                                                                 <th class="">
                                                                     🥇🥈🥉
-                                                                </th>
-                                                                <th class="cp">
-                                                                    👯‍ <i class="fal fa-sort-alt"></i>
                                                                 </th>
                                                                 <th>
                                                                     👀
@@ -312,30 +289,6 @@ $list_t_created = $data_t_created[0]['creator_tops'];
                                                                             </div>
                                                                         </td>
                                                                         <td class="text-right">
-                                                                            <div class=card-stars">
-                                                                                <?php
-                                                                                $note = get_note($r_user['id_tournoi'], $uuiduser);
-                                                                                if(isset($note[0]["note"]) && $note[0]["note"] > 0): ?>
-                                                                                    <div class="startchoicedone" style="display: block; !important">
-                                                                                        <span class="star_number">
-                                                                                            <?php echo $note[0]["note"]; ?>
-                                                                                        </span>
-                                                                                        <span class="ico">⭐️</span>
-                                                                                    </div>
-                                                                                <?php else: ?>
-                                                                                    <div class="starchoice" data-id-tournament="<?php echo $r_user['id_tournoi']; ?>" data-uuiduser="<?php echo $uuiduser; ?>">
-                                                                                        <span class="star star-1" data-star="1">⭐️</span>
-                                                                                        <span class="star star-2" data-star="2">⭐️</span>
-                                                                                        <span class="star star-3" data-star="3">⭐️</span>
-                                                                                    </div>
-                                                                                    <div class="startchoicedone toshow-<?php echo $r_user['id_tournoi']; ?>">
-                                                                                        <span class="star_number"></span>
-                                                                                        <span class="ico">⭐️</span>
-                                                                                    </div>
-                                                                                <?php endif; ?>
-                                                                            </div>
-                                                                        </td>
-                                                                        <td class="text-right">
                                                                             <?php echo $r_user['nb_votes']; ?> <span class="ico3">💎</span>
                                                                         </td>
                                                                         <td>
@@ -349,21 +302,7 @@ $list_t_created = $data_t_created[0]['creator_tops'];
                                                                                     <img src="<?php echo $illu; ?>" alt="Avatar">
                                                                                 </div>
 
-                                                                                <?php $l++; if($l==4) break; endforeach; ?>
-                                                                        </td>
-                                                                        <td>
-                                                                            <?php
-                                                                            $similar = get_user_percent($r_user['uuid_user'], $r_user['id_tournoi']);
-                                                                            if($similar[0]['nb_similar'] == 0){
-                                                                                $wording_similar = "Aucun podium identique à celui-ci";
-                                                                            }
-                                                                            else{
-                                                                                $wording_similar = $similar[0]['nb_similar']." podiums identiques à celui-ci";
-                                                                            }
-                                                                            ?>
-                                                                            <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="<?php echo $wording_similar; ?>">
-                                                                                <?php echo $similar[0]['percent']; ?>%
-                                                                            </div>
+                                                                            <?php $l++; if($l==4) break; endforeach; ?>
                                                                         </td>
                                                                         <td>
                                                                             <div class="d-flex align-items-center col-actions">

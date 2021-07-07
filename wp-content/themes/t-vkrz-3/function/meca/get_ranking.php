@@ -11,26 +11,27 @@ function get_or_create_ranking_if_not_exists($id_tournament, $uuiduser = false) 
 
         // Get user ranking
         $user_ranking = new WP_Query(array(
-                'post_type' => 'classement',
-                'posts_per_page' => '1',
-                'ignore_sticky_posts' => true,
-                'update_post_meta_cache' => false,
-                'fields' => 'ids',
-                'no_found_rows' => true,
-                'meta_query' =>
+            'post_type'              => 'classement',
+            'posts_per_page'         => '1',
+            'fields'                 => 'ids',
+            'post_status'            => 'publish',
+            'ignore_sticky_posts'    => true,
+            'update_post_meta_cache' => false,
+            'no_found_rows'          => false,
+            'meta_query' =>
+                array(
+                    'relation' => 'AND',
                     array(
-                        'relation' => 'AND',
-                        array(
-                            'key' => 'id_tournoi_r',
-                            'value' => $id_tournament,
-                            'compare' => '=',
-                        ),
-                        array(
-                            'key' => 'uuid_user_r',
-                            'value' => $uuiduser,
-                            'compare' => '=',
-                        )
+                        'key' => 'id_tournoi_r',
+                        'value' => $id_tournament,
+                        'compare' => '=',
+                    ),
+                    array(
+                        'key' => 'uuid_user_r',
+                        'value' => $uuiduser,
+                        'compare' => '=',
                     )
+                )
             )
         );
         if ($user_ranking->have_posts()) {
@@ -39,9 +40,6 @@ function get_or_create_ranking_if_not_exists($id_tournament, $uuiduser = false) 
             endwhile;
         }
     }
-
     return $id_ranking;
-
-    wp_reset_postdata();
 }
 ?>

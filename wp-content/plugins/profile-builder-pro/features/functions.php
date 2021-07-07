@@ -796,7 +796,7 @@ function wppb_password_strength_description() {
 }
 
 /**
- * Include password strength check scripts on frontend where we have shortoces present
+ * Include password strength check scripts on frontend where we have shortcodes present
  */
 add_action( 'wp_footer', 'wppb_enqueue_password_strength_check' );
 function wppb_enqueue_password_strength_check() {
@@ -860,6 +860,62 @@ function wppb_password_strength_check(){
         }
     }
 }
+
+/**
+ * Include toggle password visibility script on frontend where we have shortcodes present
+ */
+function wppb_password_visibility_toggle_html(){
+    if( apply_filters( 'wppb_show_password_visibility_toggle', true ) ){
+        return '
+            <button type="button" class="wppb-toggle-pw wppb-show-pw hide-if-no-js" data-toggle="0" aria-label="Show password" tabindex="-1">
+                <span class="wppb-img-pw" aria-hidden="true">
+                    <img src="'.WPPB_PLUGIN_URL.'/assets/images/eye-outline.svg"/>
+                </span>
+            </button>';
+    }
+    return '';
+}
+
+/**
+ * Include toggle password visibility script on frontend where we have shortcodes present
+ */
+add_action( 'wp_footer', 'wppb_enqueue_password_visibility_toggle' );
+function wppb_enqueue_password_visibility_toggle() {
+    global $wppb_shortcode_on_front;
+    if( $wppb_shortcode_on_front && apply_filters( 'wppb_show_password_visibility_toggle', true ) ){
+        ?>
+        <script type="text/javascript">
+            jQuery( document ).ready( function() {
+                jQuery( "button.wppb-toggle-pw" ).on( "click", wppb_password_visibility_toggle );
+            });
+            function wppb_password_visibility_toggle() {
+                var target_form_id = "#" + jQuery(this).closest('form').attr("id") + " ";
+
+                var password_inputs = [ ".login-password input#user_pass", "input#passw1", "input#passw2" ]
+
+                for ( var password_input of password_inputs ){
+                    var input = jQuery( target_form_id + password_input );
+                    var button = jQuery( target_form_id + "button.wppb-toggle-pw" );
+                    var icon = jQuery( target_form_id + "button.wppb-toggle-pw img" );
+
+                    if ( input.length ) {
+                        if ("password" === input.attr("type")) {
+                            input.attr("type", "text");
+                            button.toggleClass("wppb-show-pw").toggleClass("wppb-hide-pw");
+                            icon.attr("src", "<?php echo WPPB_PLUGIN_URL; ?>/assets/images/eye-off-outline.svg");
+                        } else {
+                            input.attr("type", "password");
+                            button.toggleClass("wppb-show-pw").toggleClass("wppb-hide-pw");
+                            icon.attr("src", "<?php echo WPPB_PLUGIN_URL; ?>/assets/images/eye-outline.svg");
+                        }
+                    }
+                }
+            }
+        </script>
+        <?php
+    }
+}
+
 /**
  * Create functions for repeating error messages in front-end forms
  */

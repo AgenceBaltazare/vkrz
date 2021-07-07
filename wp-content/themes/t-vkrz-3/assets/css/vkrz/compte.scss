@@ -64,6 +64,20 @@ textarea{
   -webkit-text-size-adjust: 100% !important;
 }
 
+.picto-rs{
+  font-size: 25px !important;
+}
+
+.transaction-item{
+  a{
+    color: #fff;
+    display: block;
+    &:hover{
+      color: $c5;
+    }
+  }
+}
+
 .wppb-user-forms{
   max-width: 550px;
   ul{
