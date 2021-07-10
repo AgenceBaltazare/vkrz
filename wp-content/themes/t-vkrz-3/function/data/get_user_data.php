@@ -180,7 +180,7 @@ function get_user_percent($uuiduser, $id_tournament){
     return $result;
 }
 
-function get_vkrz_users(){
+function get_vkrz_users($limit = false){
 
     $result = array();
 
@@ -191,6 +191,7 @@ function get_vkrz_users(){
 
         $user_ID    = $user->ID;
         $user_info  = get_userdata($user_ID);
+        $user_role  = $user_info->roles[0];
 
         $avatar_url = get_avatar_url($user_ID, ['size' => '80']);
         if(!$avatar_url){
@@ -206,6 +207,7 @@ function get_vkrz_users(){
 
         array_push($result, array(
             "user_id"       => $user_ID,
+            "user_role"     => $user_role,
             "user_name"     => $user_info->nickname,
             "user_level"    => $user_level,
             "user_votes"    => $nb_user_votes,
@@ -214,8 +216,11 @@ function get_vkrz_users(){
         ));
 
     }
+    array_multisort(array_column($result, "user_votes"), SORT_DESC, $result);
 
-    array_multisort( array_column($result, "user_votes"), SORT_DESC, $result );
+    if($limit){
+        $result = array_slice($result, 0, $limit);
+    }
 
     return $result;
 

@@ -46,10 +46,12 @@ if($champion_id){
                     <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Niveau actuel">
                         <?php echo $info_user_level['level_ico']; ?>
                     </span>
-                    <?php if($user_role == "administrator" || $user_role == "author"): ?>
-                        <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Membre de la TeamVKRZ">
+                    <?php if($user_role == "administrator"): ?>
+                        <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
                             🦙
                         </span>
+                    <?php endif; ?>
+                    <?php if($user_role == "author"): ?>
                         <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
                             🎨
                         </span>

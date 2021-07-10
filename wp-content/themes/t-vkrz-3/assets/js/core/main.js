@@ -1,17 +1,25 @@
-jQuery.fn.equalHeights = function(){
+$.fn.equalHeights = function(){
     var max_height = 0;
-    jQuery(this).each(function(){
-        max_height = Math.max(jQuery(this).height(), max_height);
+    $(this).each(function(){
+        max_height = Math.max($(this).height(), max_height);
     });
-    jQuery(this).each(function(){
-        jQuery(this).height(max_height);
+    $(this).each(function(){
+        $(this).height(max_height);
     });
 };
 
-jQuery(document).ready(function() {
-    jQuery('.eh').equalHeights();
-    jQuery('.eh2').equalHeights();
-    jQuery('.ico-master').equalHeights();
+$(document).ready(function() {
+
+    $('.eh').equalHeights();
+    $('.eh2').equalHeights();
+    $('.ico-master').equalHeights();
+
+    $('.kick').on('click', function() {
+        console.log('ttt');
+        var newTXT = $(this).data('kick');
+        $(this).html(newTXT);
+    });
+
 });
 
 $(window).on('load', function() {
@@ -56,7 +64,8 @@ window.onload=function() {
             }
         });
     }
-}
+
+};
 
 
 

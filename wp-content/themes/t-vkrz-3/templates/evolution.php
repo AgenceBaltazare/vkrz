@@ -22,7 +22,7 @@ else{
                         <p class="mb-4 mt-3">
                             En enchaînant les votes, tu accumules des 💎. Voici toutes les étapes à franchir pour devenir légendaire 👇
                             <br><br>
-                            Par contre, calmons-nous - pour arriver au sommet il faudra attendre que de nouveaux Tops soit publiés #ProjetLongTerme
+                            Par contre, calmons-nous 🥴 pour arriver au sommet il faudra sans doute attendre que de nouveaux moyens de gagner des 💎 voient le jour #ProjetLongTerme
                         </p>
                     </div>
 

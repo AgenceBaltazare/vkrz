@@ -12,12 +12,12 @@ get_header();
             <div class="intro-mobile">
                 <div class="tournament-heading text-center">
                     <h3 class="mb-0 t-titre-tournoi">
-                        Tous les membres de VAINKEURZ
+                        Top 20 des champions
                     </h3>
                 </div>
             </div>
             <?php
-            $users_list = get_vkrz_users();
+            $users_list = get_vkrz_users(20);
             ?>
             <div class="classement">
                 <div class="container-fluid">
@@ -31,22 +31,18 @@ get_header();
                                             <div class="card">
                                                 <div class="card-header">
                                                     <h4 class="card-title pt-1 pb-1">
-                                                        Voici les <span class="t-rose"><?php echo count($users_list); ?> champions</span> de VAINKEURZ
+                                                        <span class="t-rose">TOP 20</span> des champions
                                                     </h4>
                                                 </div>
                                                 <div class="table-responsive">
                                                     <table class="table">
                                                         <thead>
                                                         <tr>
-                                                            <th>
-                                                                #
-                                                            </th>
-                                                            <th>
-                                                                Champions
-                                                            </th>
-                                                            <th>Votes</th>
-                                                            <th>Tops</th>
-                                                            <th>Actions</th>
+                                                            <th>🏁</th>
+                                                            <th>🤴</th>
+                                                            <th class="text-right">💎</th>
+                                                            <th class="text-right">🏆</th>
+                                                            <th>👀</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
@@ -64,34 +60,48 @@ get_header();
                                                                     <?php endif; ?>
                                                                 </td>
                                                                 <td>
-                                                                    <?php
-                                                                    $champion_id    = $user['user_id'];
-                                                                    $champion_data  = get_user_by('ID', $champion_id);
-                                                                    ?>
-                                                                    <span class="avatar">
-                                                                        <span class="avatar-picture" style="background-image: url(<?php echo $user['user_avatar']; ?>);"></span>
-                                                                        <?php if($user['user_level']): ?>
-                                                                            <span class="user-niveau">
+                                                                    <div class="d-flex align-items-center">
+                                                                        <?php
+                                                                        $champion_id    = $user['user_id'];
+                                                                        $champion_data  = get_user_by('ID', $champion_id);
+                                                                        ?>
+                                                                        <div class="avatar">
+                                                                            <span class="avatar-picture" style="background-image: url(<?php echo $user['user_avatar']; ?>);"></span>
+                                                                            <?php if($user['user_level']): ?>
+                                                                                <span class="user-niveau">
                                                                                 <?php echo $user['user_level']; ?>
                                                                             </span>
-                                                                        <?php endif; ?>
-                                                                    </span>
-                                                                    <span class="font-weight-bold championname">
-                                                                        <?php echo $user['user_name']; ?>
-                                                                    </span>
+                                                                            <?php endif; ?>
+                                                                        </div>
+                                                                        <div class="font-weight-bold championname">
+                                                                        <span>
+                                                                            <?php echo $user['user_name']; ?>
+                                                                        </span>
+                                                                            <?php if($user['user_role'] == "administrator"): ?>
+                                                                                <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
+                                                                                🦙
+                                                                            </span>
+                                                                            <?php endif; ?>
+                                                                            <?php if($user['user_role'] == "administrator" || $user['user_role'] == "author"): ?>
+                                                                                <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
+                                                                                🎨
+                                                                            </span>
+                                                                            <?php endif; ?>
+                                                                        </div>
+                                                                    </div>
                                                                 </td>
 
-                                                                <td>
+                                                                <td class="text-right">
                                                                     <?php echo $user['user_votes']; ?> <span class="ico">💎</span>
                                                                 </td>
 
-                                                                <td>
+                                                                <td class="text-right">
                                                                     <?php echo $user['user_tops']; ?> <span class="ico">🏆</span>
                                                                 </td>
 
                                                                 <td>
                                                                     <a href="<?php echo esc_url(get_author_posts_url($champion_id)); ?>" class="mr-1 btn btn-outline-primary waves-effect">
-                                                                        <span class="ico ico-reverse">👀</span> Guetter tous ses Tops !
+                                                                        Guetter ses Tops
                                                                     </a>
                                                                 </td>
                                                             </tr>

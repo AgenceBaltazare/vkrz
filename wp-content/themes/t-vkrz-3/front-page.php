@@ -20,7 +20,7 @@ $list_t_already_done = $user_full_data[0]['user_tops_done_ids'];
                         <div class="row">
                             <div class="col">
                                 <h2 class="text-primary text-uppercase">
-                                    <span class="ico">⏰</span> Tops les plus récents
+                                    <span class="ico">⏱</span> Tops les plus récents
                                     <small class="text-muted">Toutes catégories confondues</small>
                                 </h2>
                             </div>

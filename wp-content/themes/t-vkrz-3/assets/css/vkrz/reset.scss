@@ -177,7 +177,9 @@ div.dataTables_wrapper div.dataTables_filter label, div.dataTables_wrapper div.d
   transition: all 0.25s ease;
   transform: none;
 }
-
+.main-menu.menu-dark .navigation li.nav-item a.sociallink i {
+  font-size: 15px;
+}
 .main-menu.menu-dark .navigation li.nav-item a.sociallink:hover{
   background: #7367f0 !important;
   color: #fff !important;
