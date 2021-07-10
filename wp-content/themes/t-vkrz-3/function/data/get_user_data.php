@@ -261,10 +261,10 @@ function get_user_level($uuiduser = false, $user_id = false, $nb_user_votes = fa
     $niv_2 = 500;
     $niv_3 = 2000;
     $niv_4 = 5000;
-    $niv_5 = 15000;
-    $niv_6 = 30000;
-    $niv_7 = 70000;
-    $niv_8 = 100000;
+    $niv_5 = 35000;
+    $niv_6 = 100000;
+    $niv_7 = 450000;
+    $niv_8 = 1000000;
 
     if($nb_user_votes < $niv_1){
 

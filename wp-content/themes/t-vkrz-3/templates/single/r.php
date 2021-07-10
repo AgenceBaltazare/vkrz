@@ -25,7 +25,6 @@ foreach($list_cat as $cat ) {
     $cat_name   = $cat->name;
 }
 ?>
-<!-- Vertical modal -->
 <div class="vertical-modal-ex">
     <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -57,13 +56,27 @@ foreach($list_cat as $cat ) {
         </div>
     </div>
 </div>
-<!-- Vertical modal end-->
-<!-- BEGIN: Content-->
 <div class="app-content content cover" style="background: url(<?php echo $illu_url; ?>) center center no-repeat">
     <div class="content-overlay"></div>
     <div class="content-wrapper">
     <div class="content-body">
-
+    <?php if(!is_user_logged_in()): ?>
+        <section class="please-rejoin app-user-view">
+            <div role="alert" aria-live="polite" aria-atomic="true" class="alert alert-account" data-v-aa799a9e="">
+                <div class="alert-body d-flex align-items-center justify-content-between">
+                    <span><span class="ico">💾</span> Pour sauvegarder et retrouver sur tous tes supports ta progression l'idéal serait de te créer un compte.</span>
+                    <div class="btns-alert text-right">
+                        <a class="btn btn-primary waves-effect btn-rose" href="<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>">
+                            Excellente idée - je créé mon compte <span class="ico">🎉</span>
+                        </a>
+                        <a class="btn btn-outline-white waves-effect t-white ml-1" href="<?php the_permalink(get_page_by_path('se-connecter')); ?>">
+                            J'ai déjà un compte
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    <?php endif; ?>
     <div class="intro-mobile">
         <div class="tournament-heading text-center">
             <h3 class="mb-0 t-titre-tournoi">
@@ -74,7 +87,6 @@ foreach($list_cat as $cat ) {
             </h4>
         </div>
     </div>
-
     <div class="classement mt-1">
         <div class="row">
             <div class="col-md-8">

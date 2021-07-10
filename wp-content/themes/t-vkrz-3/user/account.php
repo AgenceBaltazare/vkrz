@@ -18,23 +18,23 @@ $list_t_begin   = $user_full_data[0]['list_user_ranking_begin'];
     <div class="content-wrapper">
         <div class="content-body">
 
-            <section class="app-user-view">
-                <?php if(!is_user_logged_in()): ?>
+            <?php if(!is_user_logged_in()): ?>
+                <section class="please-rejoin app-user-view">
                     <div role="alert" aria-live="polite" aria-atomic="true" class="alert alert-account" data-v-aa799a9e="">
                         <div class="alert-body d-flex align-items-center justify-content-between">
-                            <span><span class="ico">💾</span> Pour sauvegarder et retrouver sur tout tes supports ta progression l'idéal serait de te créer un compte.</span>
+                            <span><span class="ico">💾</span> Pour sauvegarder et retrouver sur tous tes supports ta progression l'idéal serait de te créer un compte.</span>
                             <div class="btns-alert text-right">
-                                <a class="btn btn-outline-white waves-effect mr-1 t-white" href="<?php the_permalink(get_page_by_path('se-connecter')); ?>">
-                                    J'ai déjà un compte
-                                </a>
-                                <a class="btn btn-primary waves-effect" href="<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>">
+                                <a class="btn btn-primary waves-effect btn-rose" href="<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>">
                                     Excellente idée - je créé mon compte <span class="ico">🎉</span>
+                                </a>
+                                <a class="btn btn-outline-white waves-effect t-white ml-1" href="<?php the_permalink(get_page_by_path('se-connecter')); ?>">
+                                    J'ai déjà un compte
                                 </a>
                             </div>
                         </div>
                     </div>
-                <?php endif; ?>
-            </section>
+                </section>
+            <?php endif; ?>
 
             <div id="user-profile">
                 <div class="row">
@@ -45,7 +45,6 @@ $list_t_begin   = $user_full_data[0]['list_user_ranking_begin'];
 
                 <section id="profile-info">
                     <div class="row">
-                        <!-- left profile info section -->
                         <div class="col-lg-3 col-12 order-2 order-lg-1">
 
                             <div class="card">
@@ -158,19 +157,23 @@ $list_t_begin   = $user_full_data[0]['list_user_ranking_begin'];
                             </section>
                             <section id="basic-tabs-components">
                                 <ul class="nav nav-tabs" role="tablist">
+                                    <?php if(count($list_t_begin) > 0): ?>
+                                        <?php $has_t_begin = true; ?>
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="homeIcon-tab" data-toggle="tab" href="#tab1" aria-controls="home" role="tab" aria-selected="true">
+                                                Mes Tops à terminer
+                                            </a>
+                                        </li>
+                                    <?php endif; ?>
                                     <li class="nav-item">
-                                        <a class="nav-link active" id="homeIcon-tab" data-toggle="tab" href="#tab1" aria-controls="home" role="tab" aria-selected="true">
-                                            Mes Tops à terminer
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="profileIcon-tab" data-toggle="tab" href="#tab2" aria-controls="profile" role="tab" aria-selected="false">
+                                        <a class="nav-link <?php if(!$has_t_begin){echo 'active';} ?>" id="profileIcon-tab" data-toggle="tab" href="#tab2" aria-controls="profile" role="tab" aria-selected="false">
                                             Mes Tops terminés
                                         </a>
                                     </li>
                                 </ul>
                                 <div class="tab-content">
-                                    <div class="tab-pane active" id="tab1" aria-labelledby="homeIcon-tab" role="tabpanel">
+                                    <?php if(count($list_t_begin) > 0): ?>
+                                        <div class="tab-pane active" id="tab1" aria-labelledby="homeIcon-tab" role="tabpanel">
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="card invoice-list-wrapper">
@@ -244,7 +247,8 @@ $list_t_begin   = $user_full_data[0]['list_user_ranking_begin'];
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="tab-pane" id="tab2" aria-labelledby="profileIcon-tab" role="tabpanel">
+                                    <?php endif; ?>
+                                    <div class="tab-pane <?php if(!$has_t_begin){echo 'active';} ?>" id="tab2" aria-labelledby="profileIcon-tab" role="tabpanel">
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="card invoice-list-wrapper">

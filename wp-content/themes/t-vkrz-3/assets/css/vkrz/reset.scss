@@ -167,3 +167,31 @@ div.dataTables_wrapper div.dataTables_filter label, div.dataTables_wrapper div.d
 .wppb-toggle-pw{
   display: none;
 }
+
+.main-menu.menu-dark .navigation .navigation-header {
+  margin: calc(2rem) 0 0.8rem 2.2rem;
+}
+
+
+.main-menu.menu-dark .navigation li.nav-item a.sociallink:hover > * {
+  transition: all 0.25s ease;
+  transform: none;
+}
+
+.main-menu.menu-dark .navigation li.nav-item a.sociallink:hover{
+  background: #7367f0 !important;
+  color: #fff !important;
+  i{
+    color: #fff !important;
+  }
+}
+a.sociallink:hover{
+  background: #7367f0 !important;
+  color: #fff !important;
+  i{
+    color: #fff !important;
+  }
+}
+.dark-layout #user-profile .profile-header .navbar .navbar-toggler {
+  border: none;
+}

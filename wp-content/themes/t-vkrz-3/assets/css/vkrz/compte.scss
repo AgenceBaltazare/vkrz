@@ -174,20 +174,7 @@ textarea{
 
 .alert-account {
   color: #fff !important;
-  background: linear-gradient(90deg, rgba(244, 22, 127, 0.11), rgba(244, 22, 127, 0.2));
-  background-size: 400% 400%;
-  animation: gradient2 10s ease infinite;
-  @keyframes gradient2 {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
+  background: #2a1f70;
 }
 
 .t-white{
@@ -264,8 +251,19 @@ textarea{
   }
 }
 
-.app-user-view .btns-alert .btn-primary{
-  margin-top: 0.71rem !important;
+.please-rejoin{
+  a{
+    margin: 5px 0;
+  }
+  @media (max-width: 768px) {
+    .alert-body{
+      flex-direction: column;
+      a{
+        width: 100%;
+        margin: 15px 0 0 !important;
+      }
+    }
+  }
 }
 
 .invoice-list-wrapper{

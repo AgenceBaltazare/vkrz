@@ -180,7 +180,7 @@ else{
                                             <div class="annual-plan">
                                                 <div class="plan-price mt-2 d-flex align-items-center justify-content-center">
                                                     <div class="need">
-                                                        <span class="pricing-basic-value font-weight-bolder text-primary">15 000 <span class="ico">💎</span></span>
+                                                        <span class="pricing-basic-value font-weight-bolder text-primary">35 000 <span class="ico">💎</span></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -206,7 +206,7 @@ else{
                                             <div class="annual-plan">
                                                 <div class="plan-price mt-2 d-flex align-items-center justify-content-center">
                                                     <div class="need">
-                                                        <span class="pricing-basic-value font-weight-bolder text-primary">30 000 <span class="ico">💎</span></span>
+                                                        <span class="pricing-basic-value font-weight-bolder text-primary">100 000 <span class="ico">💎</span></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -232,7 +232,7 @@ else{
                                             <div class="annual-plan">
                                                 <div class="plan-price mt-2 d-flex align-items-center justify-content-center">
                                                     <div class="need">
-                                                        <span class="pricing-basic-value font-weight-bolder text-primary">70 000 <span class="ico">💎</span></span>
+                                                        <span class="pricing-basic-value font-weight-bolder text-primary">450 000 <span class="ico">💎</span></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -258,7 +258,7 @@ else{
                                             <div class="annual-plan">
                                                 <div class="plan-price mt-2 d-flex align-items-center justify-content-center">
                                                     <div class="need">
-                                                        <span class="pricing-basic-value font-weight-bolder text-primary">100 000<span class="ico">💎</span></span>
+                                                        <span class="pricing-basic-value font-weight-bolder text-primary">1 MILLION<span class="ico">💎</span></span>
                                                     </div>
                                                 </div>
                                             </div>

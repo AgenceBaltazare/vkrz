@@ -6,7 +6,6 @@ $list_t_already_done = $user_full_data[0]['user_tops_done_ids'];
 <!-- BEGIN: Content-->
 <div class="app-content content ">
     <div class="content-wrapper">
-
         <div class="content-body">
 
             <div class="intro-mobile">
@@ -21,7 +20,7 @@ $list_t_already_done = $user_full_data[0]['user_tops_done_ids'];
                         <div class="row">
                             <div class="col">
                                 <h2 class="text-primary text-uppercase">
-                                    <span class="ico">🤖</span> Tops au hasard
+                                    <span class="ico">⏰</span> Tops les plus récents
                                     <small class="text-muted">Toutes catégories confondues</small>
                                 </h2>
                             </div>
@@ -38,8 +37,8 @@ $list_t_already_done = $user_full_data[0]['user_tops_done_ids'];
                                 'no_found_rows'          => true,
                                 'post_type'              => 'tournoi',
                                 'post__not_in'           => $list_t_already_done,
-                                'orderby'                => 'rand',
-                                'order'                  => 'ASC',
+                                'orderby'                => 'date',
+                                'order'                  => 'DESC',
                                 'posts_per_page'         => 10
                             ));
                             while ($tournois_in_cat->have_posts()) : $tournois_in_cat->the_post(); ?>
@@ -72,15 +71,18 @@ $list_t_already_done = $user_full_data[0]['user_tops_done_ids'];
                                 <a href="<?php the_permalink(104853); ?>" class="btn btn-primary waves-effect">
                                     Découvrir l'histoire de VAINKEURZ
                                 </a>
-                                <div class="mt-05">
-                                    <a href="https://discord.gg/w882sUnrhE" class="btn btn-outline-primary waves-effect mr-1" target="_blank">
+                                <div class="mt-10p">
+                                    <a href="https://discord.gg/w882sUnrhE" class="sociallink btn btn-outline-primary waves-effect mr-10p mt-10p" target="_blank">
                                         Discord
                                     </a>
-                                    <a href="https://twitter.com/Vainkeurz" class="btn btn-outline-primary waves-effect mr-1" target="_blank">
+                                    <a href="https://twitter.com/Vainkeurz" class="sociallink btn btn-outline-primary waves-effect mr-10p mt-10p" target="_blank">
                                         Twitter
                                     </a>
-                                    <a href="https://www.facebook.com/vainkeurz" class="btn btn-outline-primary waves-effect mr-1" target="_blank">
+                                    <a href="https://www.facebook.com/vainkeurz" class="sociallink btn btn-outline-primary waves-effect mr-10p mt-10p" target="_blank">
                                         Facebook
+                                    </a>
+                                    <a href="https://www.instagram.com/wearevainkeurz/" class="sociallink btn btn-outline-primary waves-effect mt-10p" target="_blank">
+                                        Instagram
                                     </a>
                                 </div>
                             </div>

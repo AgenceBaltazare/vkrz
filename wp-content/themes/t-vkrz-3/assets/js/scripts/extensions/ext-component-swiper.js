@@ -31,11 +31,11 @@ $(function () {
         spaceBetween: 10
       },
       640: {
-        slidesPerView: 2,
-        spaceBetween: 10
+        slidesPerView: 3,
+        spaceBetween: 5
       },
       320: {
-        slidesPerView: 1,
+        slidesPerView: 2,
         spaceBetween: 5
       }
     }
@@ -63,11 +63,11 @@ $(function () {
                 spaceBetween: 10
             },
             640: {
-                slidesPerView: 2,
-                spaceBetween: 10
+                slidesPerView: 3,
+                spaceBetween: 5
             },
             320: {
-                slidesPerView: 1,
+                slidesPerView: 2,
                 spaceBetween: 5
             }
         }
@@ -95,11 +95,11 @@ $(function () {
                 spaceBetween: 10
             },
             640: {
-                slidesPerView: 2,
-                spaceBetween: 10
+                slidesPerView: 3,
+                spaceBetween: 5
             },
             320: {
-                slidesPerView: 1,
+                slidesPerView: 2,
                 spaceBetween: 5
             }
         }
@@ -127,11 +127,11 @@ $(function () {
                 spaceBetween: 10
             },
             640: {
-                slidesPerView: 2,
-                spaceBetween: 10
+                slidesPerView: 3,
+                spaceBetween: 5
             },
             320: {
-                slidesPerView: 1,
+                slidesPerView: 2,
                 spaceBetween: 5
             }
         }
@@ -159,11 +159,11 @@ $(function () {
                 spaceBetween: 10
             },
             640: {
-                slidesPerView: 2,
-                spaceBetween: 10
+                slidesPerView: 3,
+                spaceBetween: 5
             },
             320: {
-                slidesPerView: 1,
+                slidesPerView: 2,
                 spaceBetween: 5
             }
         }
@@ -191,11 +191,11 @@ $(function () {
                 spaceBetween: 10
             },
             640: {
-                slidesPerView: 2,
-                spaceBetween: 10
+                slidesPerView: 3,
+                spaceBetween: 5
             },
             320: {
-                slidesPerView: 1,
+                slidesPerView: 2,
                 spaceBetween: 5
             }
         }
@@ -223,11 +223,11 @@ $(function () {
                 spaceBetween: 10
             },
             640: {
-                slidesPerView: 2,
-                spaceBetween: 10
+                slidesPerView: 3,
+                spaceBetween: 5
             },
             320: {
-                slidesPerView: 1,
+                slidesPerView: 2,
                 spaceBetween: 5
             }
         }
@@ -255,11 +255,11 @@ $(function () {
                 spaceBetween: 10
             },
             640: {
-                slidesPerView: 2,
-                spaceBetween: 10
+                slidesPerView: 3,
+                spaceBetween: 5
             },
             320: {
-                slidesPerView: 1,
+                slidesPerView: 2,
                 spaceBetween: 5
             }
         }
@@ -287,11 +287,11 @@ $(function () {
                 spaceBetween: 10
             },
             640: {
-                slidesPerView: 2,
-                spaceBetween: 10
+                slidesPerView: 3,
+                spaceBetween: 5
             },
             320: {
-                slidesPerView: 1,
+                slidesPerView: 2,
                 spaceBetween: 5
             }
         }
@@ -319,11 +319,11 @@ $(function () {
                 spaceBetween: 10
             },
             640: {
-                slidesPerView: 2,
-                spaceBetween: 10
+                slidesPerView: 3,
+                spaceBetween: 5
             },
             320: {
-                slidesPerView: 1,
+                slidesPerView: 2,
                 spaceBetween: 5
             }
         }
@@ -351,11 +351,11 @@ $(function () {
                 spaceBetween: 10
             },
             640: {
-                slidesPerView: 2,
-                spaceBetween: 10
+                slidesPerView: 3,
+                spaceBetween: 5
             },
             320: {
-                slidesPerView: 1,
+                slidesPerView: 2,
                 spaceBetween: 5
             }
         }

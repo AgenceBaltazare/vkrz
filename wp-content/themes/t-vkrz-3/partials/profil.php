@@ -80,11 +80,13 @@ if($champion_id){
                                     </a>
                                 </li>
                             <?php endif; ?>
-                            <li class="nav-item">
-                                <a class="nav-link font-weight-bold <?php if(is_page(get_page_by_path('parametres'))){echo 'btn btn-primary';} ?>" href="<?php the_permalink(get_page_by_path('parametres')); ?>">
-                                    Editer mon profil
-                                </a>
-                            </li>
+                            <?php if(is_user_logged_in()): ?>
+                                <li class="nav-item">
+                                    <a class="nav-link font-weight-bold <?php if(is_page(get_page_by_path('parametres'))){echo 'btn btn-primary';} ?>" href="<?php the_permalink(get_page_by_path('parametres')); ?>">
+                                        Editer mon profil
+                                    </a>
+                                </li>
+                            <?php endif; ?>
                         <?php endif; ?>
                     </ul>
                     <?php if(!is_author()): ?>

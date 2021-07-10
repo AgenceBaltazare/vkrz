@@ -114,3 +114,12 @@
     text-align: center;
   }
 }
+
+.apropos{
+  a{
+    color: $rose !important;
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+}

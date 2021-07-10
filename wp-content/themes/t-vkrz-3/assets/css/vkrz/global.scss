@@ -264,23 +264,6 @@ html .content {
 .hide-lg{
   display: none;
 }
-.nav-toggle{
-  width: 100%;
-  margin-right: 15px;
-  a{
-    border: 1px solid;
-    width: 100%;
-    display: flex;
-    padding: 10px !important;
-    color: #7367ef;
-    text-transform: uppercase;
-    text-align: center;
-    border-radius: 5px;
-    svg{
-      margin-right: 10px;
-    }
-  }
-}
 
 .pricing-card{
   .badge.badge-light-primary {

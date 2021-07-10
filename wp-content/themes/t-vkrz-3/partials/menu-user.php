@@ -352,10 +352,10 @@ $info_user_level = get_user_level($uuiduser, $user_id, $nb_user_votes);
                         </a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('se-connecter')); ?>">
-                            <span class="ico">🤙</span> Se connecter
+                            <span class="ico">🤙</span> Me connecter
                         </a>
                         <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>">
-                            <span class="ico">🎉</span> S'inscrire
+                            <span class="ico">🎉</span> M'inscrire
                         </a>
                     <?php endif; ?>
                     

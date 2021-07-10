@@ -4,6 +4,7 @@ $c3: #312673;
 $rose: #f4167f;
 $c4: rgba(97, 84, 167, 0.10);
 $c5: #5e50a6;
+$c6: #2a1f70;
 
 .text-rose{
   color: $rose !important;
@@ -42,4 +43,21 @@ $c5: #5e50a6;
     -o-transform: rotate(360deg);
     transform: rotate(360deg);
   }
+}
+
+.btn-rose{
+  background: $rose !important;
+  border-color: $rose !important;
+  &:hover{
+    background: $rose !important;
+    border-color: $rose !important;
+  }
+}
+
+.mt-10p{
+  margin-top: 10px;
+}
+
+.mr-10p{
+  margin-right: 10px;
 }
