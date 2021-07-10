@@ -382,7 +382,7 @@ function get_creator_data($creator_id = false, $id_tournament = false){
     array_push($result, array(
         "creator_id"        => $creator_id,
         "creator_link"      => get_author_posts_url($creator_id),
-        "creator_name"      => $creator_data->display_name,
+        "creator_name"      => $creator_data->nickname,
         "creator_nb_tops"   => count($list_creator_tops),
         "creator_tops"      => $list_creator_tops,
         "creator_uuid"      => get_field('uuiduser_user', 'user_'.$creator_id)
