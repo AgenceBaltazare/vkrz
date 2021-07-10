@@ -19,7 +19,7 @@ function save_top_by_creator($post_id){
         $cat_id     = $cat->term_id;
         $cat_name   = $cat->name;
     }
-    $cat_value = get_field('icone_cat', 'term_'.$cat_id)." ".$cat_name;
+    $cat_value          = get_field('icone_cat', 'term_'.$cat_id)." ".$cat_name;
 
     $creator_id         = get_post_field('post_author', $id_tournament);
     $creator_data       = get_user_by('ID', $creator_id);
