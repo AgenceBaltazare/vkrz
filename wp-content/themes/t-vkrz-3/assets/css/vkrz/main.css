@@ -1255,6 +1255,13 @@ textarea {
   .apropos a:hover {
     text-decoration: underline; }
 
+.filters-btn .btn {
+  margin: 0 0 5px; }
+.filters-btn .active_filtre {
+  background: #7367f0 !important;
+  border: 1px solid #7367f0;
+  color: #fff !important; }
+
 @media (min-width: 1200px) {
   .col-xxl-2 {
     flex: 0 0 16.66667%;

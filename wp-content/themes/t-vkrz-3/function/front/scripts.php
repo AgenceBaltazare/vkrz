@@ -17,6 +17,9 @@ function load_css_js() {
     wp_enqueue_style('page-pricing', get_template_directory_uri().'/assets/css/pages/page-pricing.css', array(), null);
     wp_enqueue_style('vertical-menu', get_template_directory_uri().'/assets/css/theme/vertical-menu.css', array(), null);
     wp_enqueue_style('profil', get_template_directory_uri().'/assets/css/pages/page-profile.css', array(), null);
+    if(is_archive()){
+        wp_enqueue_style('filtres-shop', get_template_directory_uri().'/assets/css/pages/app-ecommerce.css', array(), null);
+    }
     if(get_post_type() == "tournoi"){
         wp_enqueue_style('chat', get_template_directory_uri().'/assets/css/pages/app-chat-list.min.css', array(), null);
     }
@@ -35,6 +38,9 @@ function load_css_js() {
     wp_enqueue_script('swiper', get_template_directory_uri().'/assets/vendors/js/extensions/swiper.min.js', array(), null, true);
     wp_enqueue_script('component-swiper', get_template_directory_uri().'/assets/js/scripts/extensions/ext-component-swiper.js', array(), null, true);
     wp_enqueue_script('modals', get_template_directory_uri().'/assets/js/scripts/components/components-modals.js', array(), null, true);
+    if(is_archive()){
+        wp_enqueue_script('filters', get_template_directory_uri().'/assets/js/scripts/filters.js', array(), null, true);
+    }
     wp_enqueue_script('app', get_template_directory_uri().'/assets/js/core/app.js', array(), null, true);
     wp_enqueue_script('app-menu', get_template_directory_uri().'/assets/js/core/app-menu.js', array(), null, true);
     wp_enqueue_script('main', get_template_directory_uri().'/assets/js/core/main.js', array(), $template_version, true);
