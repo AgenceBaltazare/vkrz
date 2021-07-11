@@ -15,7 +15,6 @@ $(document).ready(function() {
     $('.ico-master').equalHeights();
 
     $('.kick').on('click', function() {
-        console.log('ttt');
         var newTXT = $(this).data('kick');
         $(this).html(newTXT);
     });
@@ -66,8 +65,6 @@ window.onload=function() {
     }
 
 };
-
-
 
 
 $(window).scroll(function() {
