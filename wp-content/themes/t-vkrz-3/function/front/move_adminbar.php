@@ -16,4 +16,4 @@ function move_admin_bar() {
     #wpadminbar .quicklinks .menupop ul { bottom: 28px;}
     </style>';
 }
-//add_action( 'wp_head', 'move_admin_bar' );
+add_action( 'wp_head', 'move_admin_bar' );
