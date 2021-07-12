@@ -8,6 +8,7 @@ $.fn.equalHeights = function(){
     });
 };
 
+
 $(document).ready(function() {
 
     $('.eh').equalHeights();
@@ -19,15 +20,48 @@ $(document).ready(function() {
         $(this).html(newTXT);
     });
 
-    var $grid = $('.grid-view').isotope({
+    var $grid = $('.grid-to-filtre').isotope({
         itemSelector: '.grid-item',
-        layoutMode: 'fitRows'
-    });
-    $('.btn-to-filtre').on('click', function() {
-        var filterValue = $(this).attr('data-filter');
-        $grid.isotope({ filter: filterValue });
+        layoutMode: 'masonry',
     });
 
+    var filters = {};
+
+    $('.btn-to-filtre').on('click', function() {
+
+        var $this = $(this);
+
+        var $buttonParent = $this.parents('.button-group');
+        $buttonParent.find('.btn-to-filtre').removeClass('is-checked');
+        $this.addClass('is-checked');
+
+
+        // get group key
+        var $buttonGroup = $this.parents('.button-group');
+        var filterGroup  = $buttonGroup.attr('data-filter-group');
+
+        console.log(filterGroup);
+
+
+
+        // set filter for group
+        filters[ filterGroup ] = $this.attr('data-filter');
+
+        console.log(filters);
+
+        // combine filters
+        var filterValue = concatValues( filters );
+        $grid.isotope({ filter: filterValue });
+
+    });
+
+    function concatValues( filters ) {
+        var value = '';
+        for ( var prop in filters ) {
+            value += filters[ prop ];
+        }
+        return value;
+    }
 });
 
 $(window).on('load', function() {
