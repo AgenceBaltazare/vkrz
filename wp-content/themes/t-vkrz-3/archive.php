@@ -27,7 +27,6 @@ $list_sujets      = array();
 ?>
 <div class="app-content content ecommerce-application">
     <div class="content-overlay"></div>
-    <div class="header-navbar-shadow"></div>
     <div class="content-wrapper">
         <div class="content-detached content-right">
 
