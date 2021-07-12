@@ -1262,6 +1262,12 @@ textarea {
   border: 1px solid #7367f0;
   color: #fff !important; }
 
+.grid-item {
+  width: 25%; }
+
+.grid-item--width2 {
+  width: 50%; }
+
 @media (min-width: 1200px) {
   .col-xxl-2 {
     flex: 0 0 16.66667%;

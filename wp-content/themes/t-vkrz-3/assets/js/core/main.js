@@ -19,6 +19,15 @@ $(document).ready(function() {
         $(this).html(newTXT);
     });
 
+    var $grid = $('.grid-view').isotope({
+        itemSelector: '.grid-item',
+        layoutMode: 'fitRows'
+    });
+    $('.btn-to-filtre').on('click', function() {
+        var filterValue = $(this).attr('data-filter');
+        $grid.isotope({ filter: filterValue });
+    });
+
 });
 
 $(window).on('load', function() {
