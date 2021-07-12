@@ -142,7 +142,7 @@ $list_sujets      = array();
                                         <?php elseif($state == "begin"): ?>
                                             <div class="spoun">
                                                 <span class="ico">⚡</span>
-                                                <h5>Terminer</h5>
+                                                <h5>Terminer le Top</h5>
                                             </div>
                                         <?php else: ?>
                                             <div class="spoun">
