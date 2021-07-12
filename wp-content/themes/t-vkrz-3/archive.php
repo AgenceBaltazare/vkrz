@@ -94,15 +94,15 @@ $list_sujets      = array();
 
                         if(get_the_terms($id_tournament, 'sous-cat')){
                             foreach(get_the_terms($id_tournament, 'sous-cat') as $sujet ) {
-                                $sujet_name     .= $tag->name;
-                                $sujet_slug     .= $tag->slug;
+                                $sujet_name     .= $tag->name." ";
+                                $sujet_slug     .= $tag->slug." ";
                                 array_push($list_sujets, $sujet->term_id);
                             }
                         }
                         if(get_the_terms($id_tournament, 'tag')){
                             foreach(get_the_terms($id_tournament, 'tag') as $tag ) {
-                                $tag_name     .= $tag->name;
-                                $tag_slug     .= $tag->slug;
+                                $tag_name     .= $tag->name." ";
+                                $tag_slug     .= $tag->slug." ";
                                 array_push($list_tags, $tag->term_id);
                             }
                         }
