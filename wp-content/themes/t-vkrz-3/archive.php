@@ -93,8 +93,8 @@ $list_sujets      = array();
                         $sujet_name       = "";
                         $sujet_slug       = "";
 
-                        if(get_the_terms($id_tournament, 'tag')){
-                            foreach(get_the_terms($id_tournament, 'sujet') as $sujet ) {
+                        if(get_the_terms($id_tournament, 'sous-cat')){
+                            foreach(get_the_terms($id_tournament, 'sous-cat') as $sujet ) {
                                 $sujet_name     .= $tag->name;
                                 $sujet_slug     .= $tag->slug;
                                 array_push($list_sujets, $sujet->term_id);
@@ -173,47 +173,51 @@ $list_sujets      = array();
                 <div class="sidebar-shop">
                     <div class="card">
                         <div class="card-body">
-                            <div class="ui-group">
-                                <h5 class="mb-2 text-uppercase text-muted">
-                                    Sous-catégorie
-                                </h5>
-                                <div class="grid-filtre button-group" data-filter-group="souscat">
-                                    <button class="grid-filtre-item btn-to-filtre button btn btn-outline-primary waves-effect is-checked" data-filter="">Tout</button>
-                                    <?php
-                                    $list_concepts  = array_unique($list_concepts);
-                                    $concepts = get_terms(array(
-                                        'taxonomy'      => 'concept',
-                                        'include'       => $list_concepts,
-                                        'orderby'       => 'count',
-                                        'order'         => 'DESC',
-                                        'hide_empty'    => true,
-                                    ));
-                                    foreach($concepts as $concept) : ?>
-                                        <button class="grid-filtre-item btn-to-filtre btn btn-outline-primary waves-effect" data-filter=".<?php echo $concept->slug; ?>"><?php echo $concept->name; ?></button>
-                                    <?php endforeach; ?>
+                            <?php if($list_sujets): ?>
+                                <div class="ui-group">
+                                    <h5 class="mb-2 text-uppercase text-muted">
+                                        Sous-catégorie
+                                    </h5>
+                                    <div class="grid-filtre button-group" data-filter-group="souscat">
+                                        <button class="grid-filtre-item btn-to-filtre button btn btn-outline-primary waves-effect is-checked" data-filter="">Tout</button>
+                                        <?php
+                                        $list_sujets  = array_unique($list_sujets);
+                                        $concepts = get_terms(array(
+                                            'taxonomy'      => 'sous-cat',
+                                            'include'       => $list_sujets,
+                                            'orderby'       => 'count',
+                                            'order'         => 'DESC',
+                                            'hide_empty'    => true,
+                                        ));
+                                        foreach($concepts as $concept) : ?>
+                                            <button class="grid-filtre-item btn-to-filtre btn btn-outline-primary waves-effect" data-filter=".<?php echo $concept->slug; ?>"><?php echo $concept->name; ?></button>
+                                        <?php endforeach; ?>
+                                    </div>
                                 </div>
-                            </div>
+                            <?php endif; ?>
 
-                            <div class="ui-group mt-3">
-                                <h5 class="mb-2 text-uppercase text-muted">
-                                    Sujet
-                                </h5>
-                                <div class="grid-filtre button-group" data-filter-group="sujet">
-                                    <button class="grid-filtre-item btn-to-filtre button btn btn-outline-primary waves-effect is-checked" data-filter="">Tout</button>
-                                    <?php
-                                    $list_sujets  = array_unique($list_sujets);
-                                    $sujets = get_terms(array(
-                                        'taxonomy'      => 'concept',
-                                        'include'       => $list_sujets,
-                                        'orderby'       => 'count',
-                                        'order'         => 'DESC',
-                                        'hide_empty'    => true,
-                                    ));
-                                    foreach($sujets as $sujet) : ?>
-                                        <button class="grid-filtre-item btn-to-filtre btn btn-outline-primary waves-effect" data-filter=".<?php echo $sujet->slug; ?>"><?php echo $sujet->name; ?></button>
-                                    <?php endforeach; ?>
+                            <?php if($list_concepts): ?>
+                                <div class="ui-group mt-3">
+                                    <h5 class="mb-2 text-uppercase text-muted">
+                                        Sujet
+                                    </h5>
+                                    <div class="grid-filtre button-group" data-filter-group="sujet">
+                                        <button class="grid-filtre-item btn-to-filtre button btn btn-outline-primary waves-effect is-checked" data-filter="">Tout</button>
+                                        <?php
+                                        $list_concepts  = array_unique($list_concepts);
+                                        $sujets = get_terms(array(
+                                            'taxonomy'      => 'concept',
+                                            'include'       => $list_concepts,
+                                            'orderby'       => 'count',
+                                            'order'         => 'DESC',
+                                            'hide_empty'    => true,
+                                        ));
+                                        foreach($sujets as $sujet) : ?>
+                                            <button class="grid-filtre-item btn-to-filtre btn btn-outline-primary waves-effect" data-filter=".<?php echo $sujet->slug; ?>"><?php echo $sujet->name; ?></button>
+                                        <?php endforeach; ?>
+                                    </div>
                                 </div>
-                            </div>
+                            <?php endif; ?>
 
                             <div class="ui-group mt-3">
                                 <h5 class="mb-2 text-uppercase text-muted">
@@ -235,63 +239,67 @@ $list_sujets      = array();
                                 </div>
                             </div>
 
-                            <div class="ui-group mt-3">
-                                <h5 class="mb-2 text-uppercase text-muted">
-                                    Concept
-                                </h5>
-                                <ul class="list-unstyled categories-list button-group" data-filter-group="concepts">
-                                    <li>
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" id="all-concepts" name="concept-filter" data-filter="" class="btn-to-filtre custom-control-input" checked/>
-                                            <label class="custom-control-label" for="all-concepts">
-                                                Tous les concepts
-                                            </label>
-                                        </div>
-                                    </li>
-                                    <?php
-                                    $list_tags  = array_unique($list_tags);
-                                    $tags = get_terms(array(
-                                        'taxonomy'      => 'tag',
-                                        'include'       => $list_tags,
-                                        'orderby'       => 'count',
-                                        'order'         => 'DESC',
-                                        'hide_empty'    => true,
-                                    ));
-                                    foreach($tags as $tag) : ?>
+                            <?php if($list_tags): ?>
+                                <div class="ui-group mt-3">
+                                    <h5 class="mb-2 text-uppercase text-muted">
+                                        Concept
+                                    </h5>
+                                    <ul class="list-unstyled categories-list button-group" data-filter-group="concepts">
                                         <li>
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" id="<?php echo $tag->slug; ?>" name="concept-filter" data-filter=".<?php echo $tag->slug; ?>" class="btn-to-filtre custom-control-input"/>
-                                                <label class="custom-control-label" for="<?php echo $tag->slug; ?>">
-                                                    <?php
-                                                    if($tag->name == "QTP"){
-                                                        echo "Quel est ton préféré ?";
-                                                    }
-                                                    elseif($tag->name == "QPS" || $tag->name == "QPB"){
-                                                        echo "Qui est le plus stylé ?";
-                                                    }
-                                                    elseif($tag->name == "QPF"){
-                                                        echo "Qui est le plus fort ?";
-                                                    }
-                                                    elseif($tag->name == "QLM"){
-                                                        echo "Quel est le meilleur ?";
-                                                    }
-                                                    elseif($tag->name == "DUEL"){
-                                                        echo "1 vs 1";
-                                                    }
-                                                    elseif($tag->name == "QLP"){
-                                                        echo "Quel est le pire ?";
-                                                    }
-                                                    else{
-                                                        echo $tag->name;
-                                                    }
-                                                    ?>
+                                                <input type="radio" id="all-concepts" name="concept-filter" data-filter="" class="btn-to-filtre custom-control-input" checked/>
+                                                <label class="custom-control-label" for="all-concepts">
+                                                    Tous les concepts
                                                 </label>
                                             </div>
                                         </li>
-                                    <?php endforeach; ?>
-                                </ul>
-                            </div>
-
+                                        <?php
+                                        $list_tags  = array_unique($list_tags);
+                                        $tags = get_terms(array(
+                                            'taxonomy'      => 'tag',
+                                            'include'       => $list_tags,
+                                            'orderby'       => 'count',
+                                            'order'         => 'DESC',
+                                            'hide_empty'    => true,
+                                        ));
+                                        foreach($tags as $tag) : ?>
+                                            <li>
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" id="<?php echo $tag->slug; ?>" name="concept-filter" data-filter=".<?php echo $tag->slug; ?>" class="btn-to-filtre custom-control-input"/>
+                                                    <label class="custom-control-label" for="<?php echo $tag->slug; ?>">
+                                                        <?php
+                                                        if($tag->name == "QTP"){
+                                                            echo "Quel est ton préféré ?";
+                                                        }
+                                                        elseif($tag->name == "QPS"){
+                                                            echo "Qui est le plus stylé ?";
+                                                        }
+                                                        elseif($tag->name == "QPB"){
+                                                            echo "Qui est le plus badass ?";
+                                                        }
+                                                        elseif($tag->name == "QPF"){
+                                                            echo "Qui est le plus fort ?";
+                                                        }
+                                                        elseif($tag->name == "QLM"){
+                                                            echo "Quel est le meilleur ?";
+                                                        }
+                                                        elseif($tag->name == "DUEL"){
+                                                            echo "1 vs 1";
+                                                        }
+                                                        elseif($tag->name == "QLP"){
+                                                            echo "Quel est le pire ?";
+                                                        }
+                                                        else{
+                                                            echo $tag->name;
+                                                        }
+                                                        ?>
+                                                    </label>
+                                                </div>
+                                            </li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                </div>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
