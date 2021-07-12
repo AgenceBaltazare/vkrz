@@ -559,7 +559,7 @@ html .content {
   height: 40px;
   width: 40px;
   background-size: cover;
-  background-color: #5e50a6;
+  background-color: #7367f0;
   border-radius: 50%; }
 
 .main-menu.menu-dark .navigation .navigation-header span {
@@ -596,7 +596,7 @@ html .content {
     padding: 5px !important;
     display: block;
     letter-spacing: 2px;
-    color: #5e50a6;
+    color: #7367f0;
     text-transform: uppercase; }
     .nav-toggle a span {
       margin-right: 5px; }
@@ -939,7 +939,7 @@ html .content {
   height: 100px;
   width: 100px;
   background-size: cover;
-  background-color: #5e50a6;
+  background-color: #7367f0;
   border-radius: 50%; }
 
 .avatartop3 {
@@ -990,7 +990,7 @@ textarea {
   color: #fff;
   display: block; }
   .transaction-item a:hover {
-    color: #5e50a6; }
+    color: #7367f0; }
 
 .wppb-user-forms {
   max-width: 550px; }
@@ -1045,7 +1045,7 @@ textarea {
 .wppb-remove-upload {
   cursor: pointer !important;
   display: block;
-  color: #5e50a6;
+  color: #7367f0;
   position: relative;
   -webkit-transition: all .2s ease-in-out;
   -moz-transition: all .2s ease-in-out;
@@ -1254,6 +1254,56 @@ textarea {
   color: #f4167f !important; }
   .apropos a:hover {
     text-decoration: underline; }
+
+.filters-btn .btn {
+  margin: 0 0 5px; }
+.filters-btn .active_filtre {
+  background: #7367f0 !important;
+  border: 1px solid #7367f0;
+  color: #fff !important; }
+
+.max-item .min-tournoi .cov-illu {
+  min-height: 240px;
+  border-radius: 5px 5px 0 0;
+  position: relative; }
+
+.grid-filtre-item {
+  margin-bottom: 5px;
+  margin-right: 3px;
+  font-size: 10px;
+  padding: 5px 8px;
+  text-transform: uppercase; }
+  .grid-filtre-item.is-checked {
+    background: #7367f0 !important;
+    color: #fff !important; }
+
+.grid-to-filtre {
+  padding: 0;
+  margin: 0;
+  margin-top: 0.85rem; }
+
+.spoun .ico {
+  font-size: 20px; }
+
+.sidebar-shop {
+  background: #0a0921; }
+
+#ecommerce-header {
+  display: none; }
+  @media (max-width: 992px) {
+    #ecommerce-header {
+      display: block; } }
+
+.result-toggler button i {
+  font-size: 20px; }
+.result-toggler button span {
+  color: #fff;
+  font-size: 12px;
+  margin-left: 10px; }
+
+.grid-to-filtre {
+  margin-left: -1rem;
+  margin-right: -5px; }
 
 @media (min-width: 1200px) {
   .col-xxl-2 {

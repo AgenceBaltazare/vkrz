@@ -8,6 +8,7 @@ $.fn.equalHeights = function(){
     });
 };
 
+
 $(document).ready(function() {
 
     $('.eh').equalHeights();
@@ -15,11 +16,52 @@ $(document).ready(function() {
     $('.ico-master').equalHeights();
 
     $('.kick').on('click', function() {
-        console.log('ttt');
         var newTXT = $(this).data('kick');
         $(this).html(newTXT);
     });
 
+    var $grid = $('.grid-to-filtre').isotope({
+        itemSelector: '.grid-item',
+        layoutMode: 'masonry',
+    });
+
+    var filters = {};
+
+    $('.btn-to-filtre').on('click', function() {
+
+        var $this = $(this);
+
+        var $buttonParent = $this.parents('.button-group');
+        $buttonParent.find('.btn-to-filtre').removeClass('is-checked');
+        $this.addClass('is-checked');
+
+
+        // get group key
+        var $buttonGroup = $this.parents('.button-group');
+        var filterGroup  = $buttonGroup.attr('data-filter-group');
+
+        console.log(filterGroup);
+
+
+
+        // set filter for group
+        filters[ filterGroup ] = $this.attr('data-filter');
+
+        console.log(filters);
+
+        // combine filters
+        var filterValue = concatValues( filters );
+        $grid.isotope({ filter: filterValue });
+
+    });
+
+    function concatValues( filters ) {
+        var value = '';
+        for ( var prop in filters ) {
+            value += filters[ prop ];
+        }
+        return value;
+    }
 });
 
 $(window).on('load', function() {
@@ -66,8 +108,6 @@ window.onload=function() {
     }
 
 };
-
-
 
 
 $(window).scroll(function() {
