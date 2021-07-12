@@ -132,7 +132,7 @@ $info_user_level = get_user_level($uuiduser, $user_id, $nb_user_votes);
             <?php if(is_home()): ?>
 
                 <h3 class="mb-0 animate__animated animate__slideInLeft">🖖 Bienvenue</h3>
-                <h4 class="mb-0 kick animate__animated animate__slideInRight" data-kick="Commence par choisir un Top qui t'intéresse et enchaîne les votes">Tu vas pouvoir générer et revendiquer tes propres classements !</h4>
+                <h4 class="mb-0 kick animate__animated animate__slideInRight" data-kick="Commence par choisir un Top qui t'intéresse et enchaîne les votes 👇">Tu vas pouvoir générer et revendiquer tes propres classements !</h4>
 
             <?php elseif(is_single() && (get_post_type() == "tournoi")): ?>
 

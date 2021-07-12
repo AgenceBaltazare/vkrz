@@ -9,8 +9,8 @@ $list_t_already_done = $user_full_data[0]['user_tops_done_ids'];
         <div class="content-body">
 
             <div class="intro-mobile">
-                <h3 class="mb-0">🖖 Bienvenue</h3>
-                <h4 class="mb-0">Créer & partage tes propres Tops en enchaînant les votes !</h4>
+                <h3 class="mb-0 animate__animated animate__slideInLeft">🖖 Bienvenue</h3>
+                <h4 class="mb-0 kick animate__animated animate__slideInRight" data-kick="Commence par choisir un Top qui t'intéresse et enchaîne les votes 👇">Tu vas pouvoir générer et revendiquer tes propres classements !</h4>
             </div>
 
             <section class="list-tournois">

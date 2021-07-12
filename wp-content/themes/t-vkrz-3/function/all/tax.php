@@ -37,5 +37,17 @@ function tax_init() {
         )
     );
 
+    # Target tournoi
+    register_taxonomy(
+        'sujet',
+        array('tournoi'),
+        array(
+            'label'         => 'Sujets',
+            'rewrite'       => array('slug' => 'sujet'),
+            'hierarchical'  => false,
+            'show_in_rest'  => true,
+        )
+    );
+
 }
 add_action('init', 'tax_init');
