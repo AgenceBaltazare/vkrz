@@ -39,7 +39,7 @@ $list_sujets      = array();
                             <span class="ico"><?php the_field('icone_cat', 'term_'.$current_cat->term_id); ?></span> <?php echo $current_cat->name; ?>
                         </h3>
                         <h4 class="mb-0">
-                            <?php echo $current_cat->description; ?> - <?php echo $uuiduser; ?>
+                            <?php echo $current_cat->description; ?>
                         </h4>
                     </div>
                 </div>
