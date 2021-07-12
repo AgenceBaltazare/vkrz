@@ -18,7 +18,7 @@ function tax_init() {
         'tag',
         array('tournoi'),
         array(
-            'label'         => 'Tags',
+            'label'         => 'Concepts',
             'rewrite'       => array('slug' => 'tag'),
             'hierarchical'  => false,
             'show_in_rest'  => true,
@@ -30,7 +30,7 @@ function tax_init() {
         'concept',
         array('tournoi'),
         array(
-            'label'         => 'Concepts',
+            'label'         => 'Sujet',
             'rewrite'       => array('slug' => 'concept'),
             'hierarchical'  => false,
             'show_in_rest'  => true,
