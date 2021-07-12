@@ -39,11 +39,11 @@ function tax_init() {
 
     # Target tournoi
     register_taxonomy(
-        'sujet',
+        'sous-cat',
         array('tournoi'),
         array(
-            'label'         => 'Sujets',
-            'rewrite'       => array('slug' => 'sujet'),
+            'label'         => 'Sous cat',
+            'rewrite'       => array('slug' => 'sous-cat'),
             'hierarchical'  => false,
             'show_in_rest'  => true,
         )
