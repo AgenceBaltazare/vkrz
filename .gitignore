@@ -3,7 +3,8 @@
 *.sublime-project
 *.sublime-workspace
 _ai-cache
-
+nodes_modules
+.env
 
 #### Directory : dependancies
 wp-content/themes/node_modules/
