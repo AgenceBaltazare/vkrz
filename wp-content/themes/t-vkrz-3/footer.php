@@ -155,5 +155,37 @@
     </script>
 <?php endif; ?>
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Le chat s'exprime...</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <h1>Choix 1:</h1>
+                    <h1 id="count1"></h1>
+                    <h2 id="users1"></h2>
+                </div>
+                <div>
+                    <h1> Choix 2: </h1>
+                    <h1 id="count2"></h1>
+                    <h2 id="users2"></h2>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <script src="<?php bloginfo('template_directory'); ?>/assets/js/twitch-vote/tmi.min.js"></script>
+                <script src="<?php bloginfo('template_directory'); ?>/assets/js/twitch-vote/app.js"></script>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Reset</button>
+                <button type="button" class="btn btn-primary">Mettre fin au vote</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

@@ -283,6 +283,20 @@ $illu_url   = $illu[0];
                                 </div>
                             </div>
 
+                            <div class="card text-left">
+                                <div class="card-body">
+                                    <h4 class="card-title">
+                                        <span class="ico">🎙</span> Qui veut gagner des 💎?
+                                    </h4>
+                                    <h6 class="card-subtitle text-muted mb-1">
+                                        C'est mon dernier mot Jean Pierre
+                                    </h6>
+                                    <a href="#" data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-icon btn-outline-primary">
+                                        <i class="fab fa-twitch"></i> Laisser le public voter
+                                    </a>
+                                </div>
+                            </div>
+
                             <!--
                             <div class="card chat-widget">
                                 <div class="card-header">
