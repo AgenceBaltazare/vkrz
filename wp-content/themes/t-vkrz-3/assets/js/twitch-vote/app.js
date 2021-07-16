@@ -20,11 +20,16 @@ client.on('message', (channel, tags, message, self) => {
         if (self) return;
         const {username} = tags;
         if (username == 'vainkeurz') {
+
+            //click sur le bouton
             if (message === '!start-count') {
                 listeningForCount = true;
+
+            //click sur mettre fin au vote
             } else if (message === '!end-count') {
                 listeningForCount = false;
-                // say count out loud
+
+            //fermer
             } else if (message === '!clear-count') {
                 countElement1.textContent = '';
                 usersElement1.textContent = '';
@@ -44,3 +49,14 @@ client.on('message', (channel, tags, message, self) => {
         }
     }
 );
+
+function clear_click() {
+    countElement1.textContent = '';
+    usersElement1.textContent = '';
+    countElement2.textContent = '';
+    usersElement2.textContent = '';
+}
+
+function stop_count(){
+    listeningForCount = false;
+}
