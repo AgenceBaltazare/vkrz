@@ -156,7 +156,7 @@
 <?php endif; ?>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -172,7 +172,10 @@
                     <h2 id="users1"></h2>
                 </div>
                 <div>
-                    <h1>Choix 2:</h1>
+                    <h1>
+                        Choix 2:
+                        <?php echo get_the_title( $contender_1 ); ?>
+                    </h1>
                     <h1 id="count2"></h1>
                     <h2 id="users2"></h2>
                 </div>

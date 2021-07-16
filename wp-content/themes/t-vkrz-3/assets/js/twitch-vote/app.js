@@ -50,6 +50,10 @@ client.on('message', (channel, tags, message, self) => {
     }
 );
 
+function start_count(){
+    listeningForCount = true;
+}
+
 function clear_click() {
     countElement1.textContent = '';
     usersElement1.textContent = '';

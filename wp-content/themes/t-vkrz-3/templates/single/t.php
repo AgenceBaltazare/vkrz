@@ -291,7 +291,7 @@ $illu_url   = $illu[0];
                                     <h6 class="card-subtitle text-muted mb-1">
                                         C'est mon dernier mot Jean Pierre
                                     </h6>
-                                    <a href="#" data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-icon btn-outline-primary">
+                                    <a href="#" onclick="start_count()" data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-icon btn-outline-primary">
                                         <i class="fab fa-twitch"></i> Laisser le public voter
                                     </a>
                                 </div>
