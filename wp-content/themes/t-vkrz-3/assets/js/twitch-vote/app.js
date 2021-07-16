@@ -26,8 +26,10 @@ client.on('message', (channel, tags, message, self) => {
                 listeningForCount = false;
                 // say count out loud
             } else if (message === '!clear-count') {
-                countElement1.textContent = 'Waiting for count...';
+                countElement1.textContent = '';
                 usersElement1.textContent = '';
+                countElement2.textContent = '';
+                usersElement2.textContent = '';
             }
         } else if (listeningForCount && message === '1') {
             users[tags.username] = true;
