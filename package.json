@@ -1,1 +1,19 @@
-{}
+{
+  "name": "vkrz",
+  "version": "1.0.0",
+  "description": "<!DOCTYPE html> <html lang=\"fr\"> <head>     <meta name=\"viewport\" content=\"width=device-width\" /> \t<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /> \t<title>WordPress &#8250; À lire</title> \t<link rel=\"stylesheet\" href=\"wp-admin/css/install.css?ver=20100228\" type=\"text/css\" /> </head> <body> <h1 id=\"logo\"> \t<a href=\"https://wordpress.org/\"><img alt=\"WordPress\" src=\"wp-admin/images/wordpress-logo.png\" /></a> </h1> <p style=\"text-align: center\">Plateforme de publication sémantique personnelle</p>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AgenceBaltazare/vkrz.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AgenceBaltazare/vkrz/issues"
+  },
+  "homepage": "https://github.com/AgenceBaltazare/vkrz#readme"
+}
