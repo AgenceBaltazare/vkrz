@@ -8,18 +8,17 @@ const client = new tmi.Client({
         secure: true,
         reconnect: true,
     },
-    channels: [ 'vainkeurz' ],
+    channels: [ channel ],
 });
 
 client.connect();
 
 let listeningForCount = false;
 const users = {};
-
 client.on('message', (channel, tags, message, self) => {
         if (self) return;
         const {username} = tags;
-        if (username == 'vainkeurz') {
+        if (username == channel) {
 
             //click sur le bouton
             if (message === '!start-count') {
@@ -56,11 +55,22 @@ function start_count(){
 
 function clear_click() {
     countElement1.textContent = '';
-    usersElement1.textContent = '';
     countElement2.textContent = '';
-    usersElement2.textContent = '';
 }
 
 function stop_count(){
     listeningForCount = false;
 }
+
+function show_twitch() {
+    var x = document.getElementsByClassName("twitch_vote");
+    console.log(x[0]);
+    for (var i = 0; i < x.length; i ++) {
+        if (x[i].style.display === "unset") {
+            x[i].style.display = "none";
+        } else {
+            x[i].style.display = "unset";
+        }
+    }
+}
+

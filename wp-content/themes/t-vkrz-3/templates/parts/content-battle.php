@@ -1,4 +1,9 @@
-<?php extract( $battle_vars ); ?>
+<?php extract( $battle_vars );
+global $champion_id;
+$champion_info = get_userdata($champion_id);
+
+?>
+
 <div class="row align-items-center contenders-containers justify-content-center">
     <div class="col-sm-5 col-6 bloc-contenders link-contender_1 contender_1 cover_contenders link-contender">
         <div class="contender_zone animate__animated animate__slideInDown"
@@ -16,7 +21,9 @@
             <?php if (!get_field('ne_pas_afficher_les_titres_t', $id_tournament)): ?>
                 <h2 class="title-contender">
                     <?php echo get_the_title( $contender_1 ); ?>
+                    <h1 id="count1" class="twitch_vote">Taper 1</h1>
                 </h2>
+
             <?php endif; ?>
         </div>
     </div>
@@ -56,8 +63,11 @@
             <?php if (!get_field('ne_pas_afficher_les_titres_t', $id_tournament)): ?>
                 <h2 class="title-contender">
                     <?php echo get_the_title( $contender_2 ); ?>
+                    <h1 id="count2" class="twitch_vote">Taper 2</h1>
                 </h2>
             <?php endif; ?>
         </div>
     </div>
 </div>
+<button type="button" onclick="clear_click()" class="btn btn-secondary twitch_vote" >Reset</button>
+<button type="button" onclick="stop_count()" class="btn btn-primary twitch_vote" id="twitch_vote">Mettre fin au vote</button>

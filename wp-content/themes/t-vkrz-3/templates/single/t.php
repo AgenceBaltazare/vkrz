@@ -15,6 +15,8 @@ if(is_user_logged_in()){
     $user_email     = $current_user->user_email;
     $user_info      = get_userdata($user_id);
     $user_role      = $user_info->roles[0];
+    global $champion_id;
+    $champion_info = get_userdata($champion_id);
 }
 global $user_name;
 global $user_email;
@@ -242,6 +244,39 @@ $illu_url   = $illu[0];
                     </div>
                     <div class="col-md-3 col-lg-2 mt-2">
                         <div class="related animate__fadeInUp animate__animated animate__delay-0s">
+                            <?php if($champion_info->twitch_user): ?>
+                            <script>
+                                <?php
+                                echo "var channel= '$champion_info->twitch_user';";  ?>
+                            </script>
+                            <div class="card text-left">
+                                <div class="card-body">
+                                    <h4 class="card-title">
+                                        <span class="ico">🎙</span> Qui veut gagner des 💎?
+                                    </h4>
+                                    <h6 class="card-subtitle text-muted mb-1">
+                                        C'est mon dernier mot Jean Pierre
+                                    </h6>
+                                    <a href="#" onclick="start_count(); show_twitch();" data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-icon btn-outline-primary">
+                                        <i class="fab fa-twitch"></i> Laisser le public voter
+                                    </a>
+                                </div>
+                            </div>
+                            <?php endif; ?>
+
+                            <div class="card text-left">
+                                <div class="card-body">
+                                    <h4 class="card-title">
+                                        <span class="ico">🙃</span> T'as fais une bavure ?
+                                    </h4>
+                                    <h6 class="card-subtitle text-muted mb-1">
+                                        T'inquiète on te laisse refaire le Top
+                                    </h6>
+                                    <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-idranking="<?php echo $id_ranking; ?>" href="#" class="confirm_delete btn btn-outline-primary waves-effect">
+                                        Recommencer
+                                    </a>
+                                </div>
+                            </div>
 
                             <div class="card text-left">
                                 <div class="card-body">
@@ -266,34 +301,6 @@ $illu_url   = $illu[0];
                                             <i class="far fa-link"></i>
                                         </a>
                                     </div>
-                                </div>
-                            </div>
-
-                            <div class="card text-left">
-                                <div class="card-body">
-                                    <h4 class="card-title">
-                                        <span class="ico">🙃</span> T'as fais une bavure ?
-                                    </h4>
-                                    <h6 class="card-subtitle text-muted mb-1">
-                                        T'inquiète on te laisse refaire le Top
-                                    </h6>
-                                    <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-idranking="<?php echo $id_ranking; ?>" href="#" class="confirm_delete btn btn-outline-primary waves-effect">
-                                        Recommencer
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="card text-left">
-                                <div class="card-body">
-                                    <h4 class="card-title">
-                                        <span class="ico">🎙</span> Qui veut gagner des 💎?
-                                    </h4>
-                                    <h6 class="card-subtitle text-muted mb-1">
-                                        C'est mon dernier mot Jean Pierre
-                                    </h6>
-                                    <a href="#" onclick="start_count()" data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-icon btn-outline-primary">
-                                        <i class="fab fa-twitch"></i> Laisser le public voter
-                                    </a>
                                 </div>
                             </div>
 

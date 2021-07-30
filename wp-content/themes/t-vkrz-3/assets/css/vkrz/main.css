@@ -833,6 +833,9 @@ html .content {
           max-width: 350px;
           font-weight: 600; }
 
+.twitch_vote {
+  display: none; }
+
 .list-share {
   flex-wrap: wrap; }
   .list-share div {
