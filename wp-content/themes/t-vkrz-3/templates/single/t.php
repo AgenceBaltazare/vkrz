@@ -8,6 +8,8 @@ global $id_tournament;
 global $is_next_duel;
 global $utm;
 global $typetop;
+global $champion_id;
+$champion_info = get_userdata($champion_id);
 if(is_user_logged_in()){
     $current_user   = wp_get_current_user();
     $user_id        = $current_user->ID;
@@ -15,8 +17,7 @@ if(is_user_logged_in()){
     $user_email     = $current_user->user_email;
     $user_info      = get_userdata($user_id);
     $user_role      = $user_info->roles[0];
-    global $champion_id;
-    $champion_info = get_userdata($champion_id);
+
 }
 global $user_name;
 global $user_email;
@@ -244,7 +245,8 @@ $illu_url   = $illu[0];
                     </div>
                     <div class="col-md-3 col-lg-2 mt-2">
                         <div class="related animate__fadeInUp animate__animated animate__delay-0s">
-                            <?php if($champion_info->twitch_user): ?>
+                            <?php //if($champion_info->twitch_user): ?>
+                            <?php $champion_info->twitch_user= "vainkeurz"; ?>
                             <script>
                                 <?php
                                 echo "var channel= '$champion_info->twitch_user';";  ?>
@@ -262,7 +264,7 @@ $illu_url   = $illu[0];
                                     </a>
                                 </div>
                             </div>
-                            <?php endif; ?>
+                            <?php //endif; ?>
 
                             <div class="card text-left">
                                 <div class="card-body">
