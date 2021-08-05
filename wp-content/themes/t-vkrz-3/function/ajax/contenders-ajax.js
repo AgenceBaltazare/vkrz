@@ -18,6 +18,15 @@ $(document).ready(function ($) {
 
         e.preventDefault();
 
+        window.dataLayer.push({
+            'event': 'track_event',
+            'event_name': 'vote',
+            'page_categorie': 'manga',
+            'top_title': 'BDZ',
+            'id_user': 4,
+            'event_score': 1
+        });
+
         if (!ajaxRunning) {
             ajaxRunning = true;
             if ($(this).find('.contender_zone').attr('id') === "c_1") {
