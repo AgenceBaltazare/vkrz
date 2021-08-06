@@ -22,8 +22,11 @@ $(document).ready(function ($) {
             'event': 'track_event',
             'event_name': 'vote',
             'page_categorie': $(this).find('.contender_zone').data('cat-name'),
+
             'top_title': $(this).find('.contender_zone').data('top-title'),
+            //ok
             'id_top' : $(this).find('.contender_zone').data('id-tournament'),
+            //champion id
             'id_user': $(this).find('.contender_zone').data('id-user'),
             'event_score': 1
         });

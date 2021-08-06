@@ -1,3 +1,7 @@
+<?php
+global $top_title;
+global $top_question;
+?>
 <?php extract( $battle_vars ); ?>
 <div class="row align-items-center contenders-containers justify-content-center">
     <div class="col-sm-5 col-6 bloc-contenders link-contender_1 contender_1 cover_contenders link-contender">
@@ -10,6 +14,8 @@
         >
             test1
             <?php echo $champion_id; ?>
+            <?php echo $top_title; ?> <?php echo $top_question; ?>
+            <?php
 
             <?php if(get_field('visuel_cover_t', $id_tournament)): ?>
                 <?php $illu = get_the_post_thumbnail_url( $contender_1, 'full' ); ?>
