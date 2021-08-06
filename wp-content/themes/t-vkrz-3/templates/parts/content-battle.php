@@ -4,9 +4,13 @@
         <div class="contender_zone animate__animated animate__slideInDown"
            data-id-winner="<?= $contender_1 ?>"
            data-id-looser="<?= $contender_2 ?>"
-           data-id-tournament="<?= $id_tournament ?>" data-id-ranking="<?= $id_ranking ?>"
+           data-id-tournament="<?= $id_tournament ?>" data-id-ranking="<?= $id_ranking ?>" data-id-user="<?= $champion_id ?>"
+           data-top-title ="<?= $top_title ?>" data-cat-name="<?= $cat->name; ?>"
            id="c_1"
         >
+            test1
+            <?php echo $champion_id; ?>
+
             <?php if(get_field('visuel_cover_t', $id_tournament)): ?>
                 <?php $illu = get_the_post_thumbnail_url( $contender_1, 'full' ); ?>
                 <div class="cov-illu" style="background: url(<?php echo $illu; ?>) center center no-repeat"></div>

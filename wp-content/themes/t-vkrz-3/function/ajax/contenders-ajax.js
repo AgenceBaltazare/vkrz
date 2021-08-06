@@ -21,9 +21,10 @@ $(document).ready(function ($) {
         window.dataLayer.push({
             'event': 'track_event',
             'event_name': 'vote',
-            'page_categorie': 'manga',
-            'top_title': 'BDZ',
-            'id_user': 4,
+            'page_categorie': $(this).find('.contender_zone').data('cat-name'),
+            'top_title': $(this).find('.contender_zone').data('top-title'),
+            'id_top' : $(this).find('.contender_zone').data('id-tournament'),
+            'id_user': $(this).find('.contender_zone').data('id-user'),
             'event_score': 1
         });
 

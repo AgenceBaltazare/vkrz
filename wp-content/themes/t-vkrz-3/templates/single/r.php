@@ -66,6 +66,8 @@ foreach($list_cat as $cat ) {
                 <div class="alert-body d-flex align-items-center justify-content-between">
                     <span><span class="ico">💾</span> Pour sauvegarder et retrouver sur tous tes supports ta progression l'idéal serait de te créer un compte.</span>
                     <div class="btns-alert text-right">
+                        test2
+                        <?php echo $champion_id; ?>
                         <a class="btn btn-primary waves-effect btn-rose" href="<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>">
                             Excellente idée - je créé mon compte <span class="ico">🎉</span>
                         </a>
