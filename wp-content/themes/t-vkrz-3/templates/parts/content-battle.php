@@ -18,10 +18,6 @@ foreach($list_cat as $cat ) {
            data-top-question ="<?= $top_question ?>" data-top-title ="<?= $top_title ?>" data-cat-name="<?= $cat->name; ?>"
         id="c_1"
         >
-            test1
-            <?php echo $cat->name; ?>
-            <?php echo $top_title; ?> <?php echo $top_question; ?>
-
 
             <?php if(get_field('visuel_cover_t', $id_tournament)): ?>
                 <?php $illu = get_the_post_thumbnail_url( $contender_1, 'full' ); ?>
