@@ -14,7 +14,7 @@ global $id_ranking;
 
 // /!\ If you delete next lines (get_user_full_data(), $list_t_done, $nb_user_votes, get_user_level())
 // You should remove conditional $uuidchampion != $uuiduser in author.php file
-$user_full_data  = get_user_full_data($uuiduser);
+$user_full_data  = is_user_logged_in() ? get_user_full_data($user_id, "author") : get_user_full_data($uuiduser);
 $list_t_done     = $user_full_data[0]['list_user_ranking_done'];
 $nb_user_votes   = $user_full_data[0]['nb_user_votes'];
 $info_user_level = get_user_level($uuiduser, $user_id, $nb_user_votes);

@@ -7,7 +7,7 @@ $champion_role       = $champion_info->roles[0];
 $uuidchampion        = get_field('uuiduser_user', 'user_'.$champion_id);
 
 if ($uuidchampion != $uuiduser) {
-    $user_full_data = get_user_full_data($uuidchampion);
+    $user_full_data = get_user_full_data($champion_id, "author");
     $list_t_done = $user_full_data[0]['list_user_ranking_done'];
     $nb_user_votes = $user_full_data[0]['nb_user_votes'];
     $info_user_level = get_user_level($uuidchampion, $champion_id, $nb_user_votes);
