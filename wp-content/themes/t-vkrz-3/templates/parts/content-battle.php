@@ -1,8 +1,11 @@
 <?php
 global $top_title;
 global $top_question;
-global $champion_id;
+global $uuiduser;
 global $id_tournament;
+global $utm;
+$utm = deal_utm();
+global $typetop;
 $list_cat = get_the_terms($id_tournament, 'categorie');
 foreach($list_cat as $cat ) {
     $cat_name   = $cat->name;
@@ -16,6 +19,7 @@ foreach($list_cat as $cat ) {
            data-id-looser="<?= $contender_2 ?>"
            data-id-tournament="<?= $id_tournament ?>" data-id-ranking="<?= $id_ranking ?>" data-id-user="<?= $champion_id ?>"
            data-top-question ="<?= $top_question ?>" data-top-title ="<?= $top_title ?>" data-cat-name="<?= $cat->name; ?>"
+           data-id-user="<?= $uuiduser ?>" data-type-top="<?= $typetop; ?>" data-utm="<?= $utm; ?>"
         id="c_1"
         >
 

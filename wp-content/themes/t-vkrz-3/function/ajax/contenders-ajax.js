@@ -21,12 +21,14 @@ $(document).ready(function ($) {
         window.dataLayer.push({
             'event': 'track_event',
             'event_name': 'vote',
-            'test_affichage' : 't5',
+            'test_affichage' : 't0',
             'page_categorie': $(this).find('.contender_zone').data('cat-name'),
             'top_title': $(this).find('.contender_zone').data('top-title'),
             'top_question': $(this).find('.contender_zone').data('top-question'),
             'id_top' : $(this).find('.contender_zone').data('id-tournament'),
             'id_user': $(this).find('.contender_zone').data('id-user'),
+            'type_top': $(this).find('.contender_zone').data('type-top'),
+            'utm': $(this).find('.contender_zone').data('utm'),
             'event_score': 1
         });
 

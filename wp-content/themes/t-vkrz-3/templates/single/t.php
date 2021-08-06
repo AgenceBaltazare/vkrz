@@ -208,7 +208,8 @@ $illu_url   = $illu[0];
                 <div class="row">
                     <div class="col-md-9 col-lg-10">
 
-                        <?php if($typetop != "top3"): ?>
+                        <?php
+                        if($typetop != "top3"): ?>
                             <div class="container-fluid">
                                 <div class="tournoi-infos mb-2">
                                     <div class="display_current_user_rank">
