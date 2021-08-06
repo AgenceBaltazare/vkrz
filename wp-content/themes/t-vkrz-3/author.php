@@ -5,14 +5,13 @@ global $champion_id;
 $champion_info       = get_userdata($champion_id);
 $champion_role       = $champion_info->roles[0];
 $uuidchampion        = get_field('uuiduser_user', 'user_'.$champion_id);
-$user_full_data      = get_user_full_data($uuidchampion);
-$nb_champion_votes   = $user_full_data[0]['nb_user_votes'];
-$info_champion_level = get_user_level($uuidchampion, $champion_id, $nb_champion_votes);
-$list_t_done         = $user_full_data[0]['list_user_ranking_done'];
-$user_full_data      = get_user_full_data($uuidchampion);
-$list_t_done         = $user_full_data[0]['list_user_ranking_done'];
-$nb_user_votes       = $user_full_data[0]['nb_user_votes'];
-$info_user_level     = get_user_level($uuidchampion, $champion_id, $nb_user_votes);
+
+if ($uuidchampion != $uuiduser) {
+    $user_full_data = get_user_full_data($uuidchampion);
+    $list_t_done = $user_full_data[0]['list_user_ranking_done'];
+    $nb_user_votes = $user_full_data[0]['nb_user_votes'];
+    $info_user_level = get_user_level($uuidchampion, $champion_id, $nb_user_votes);
+}
 ?>
     <!-- BEGIN: Content-->
     <div class="app-content content ">
