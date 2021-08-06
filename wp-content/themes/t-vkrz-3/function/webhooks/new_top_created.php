@@ -1,5 +1,5 @@
 <?php
-add_action('save_post', 'save_top_by_creator', 10, 2);
+//add_action('save_post', 'save_top_by_creator', 10, 2);
 function save_top_by_creator($post_id){
 
     global $post;
