@@ -93,8 +93,8 @@ foreach($list_cat as $cat ) {
                 <div class="list-classement">
                     <div class="row align-items-end justify-content-center">
                         test2
-                        <?php echo $champion_id; ?>
-                        <?php echo $top_title; ?> <?php echo $top_question; ?>
+                        <?php echo $list_cat->name; ?>
+                        <?php echo $cat->name; ?>
                         <?php
                         $i=1; foreach($user_ranking as $c => $p) : ?>
                             <?php if($i == 1): ?>

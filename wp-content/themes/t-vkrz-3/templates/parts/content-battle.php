@@ -1,6 +1,12 @@
 <?php
 global $top_title;
 global $top_question;
+global $champion_id;
+global $id_tournament;
+$list_cat = get_the_terms($id_tournament, 'categorie');
+foreach($list_cat as $cat ) {
+    $cat_name   = $cat->name;
+}
 ?>
 <?php extract( $battle_vars ); ?>
 <div class="row align-items-center contenders-containers justify-content-center">
@@ -9,13 +15,13 @@ global $top_question;
            data-id-winner="<?= $contender_1 ?>"
            data-id-looser="<?= $contender_2 ?>"
            data-id-tournament="<?= $id_tournament ?>" data-id-ranking="<?= $id_ranking ?>" data-id-user="<?= $champion_id ?>"
-           data-top-title ="<?= $top_title ?>" data-cat-name="<?= $cat->name; ?>"
-           id="c_1"
+           data-top-question ="<?= $top_question ?>" data-top-title ="<?= $top_title ?>" data-cat-name="<?= $cat->name; ?>"
+        id="c_1"
         >
             test1
-            <?php echo $champion_id; ?>
+            <?php echo $cat->name; ?>
             <?php echo $top_title; ?> <?php echo $top_question; ?>
-            <?php
+
 
             <?php if(get_field('visuel_cover_t', $id_tournament)): ?>
                 <?php $illu = get_the_post_thumbnail_url( $contender_1, 'full' ); ?>

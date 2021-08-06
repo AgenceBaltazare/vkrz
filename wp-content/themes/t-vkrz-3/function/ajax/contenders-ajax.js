@@ -21,12 +21,11 @@ $(document).ready(function ($) {
         window.dataLayer.push({
             'event': 'track_event',
             'event_name': 'vote',
+            'test_affichage' : 't5',
             'page_categorie': $(this).find('.contender_zone').data('cat-name'),
-
             'top_title': $(this).find('.contender_zone').data('top-title'),
-            //ok
+            'top_question': $(this).find('.contender_zone').data('top-question'),
             'id_top' : $(this).find('.contender_zone').data('id-tournament'),
-            //champion id
             'id_user': $(this).find('.contender_zone').data('id-user'),
             'event_score': 1
         });
