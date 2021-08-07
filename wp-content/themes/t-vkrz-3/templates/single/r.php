@@ -10,6 +10,8 @@ global $top_question;
 global $top_img;
 global $top_number;
 global $user_full_data;
+global $utm;
+$utm = deal_utm();
 $display_titre                   = get_field('ne_pas_afficher_les_titres_t', $id_tournament);
 $rounded                         = get_field('c_rounded_t', $id_tournament);
 $typetop                         = get_field('type_top_r', $id_ranking);
@@ -35,7 +37,9 @@ foreach($list_cat as $cat ) {
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form class="form form-vertical form-note" data-id-tournament="<?php echo $id_tournament; ?>" data-uuiduser="<?php echo $uuiduser; ?>">
+                <form class="form form-vertical form-note" data-id-tournament="<?php echo $id_tournament; ?>" data-uuiduser="<?php echo $uuiduser; ?>"
+                data-top-question ="<?= $top_question; ?>" data-top-title ="<?= $top_title; ?>" data-cat-name="<?= $cat->name; ?>"
+                data-id-user="<?= $uuiduser; ?>" data-type-top="<?= $typetop; ?>" data-utm="<?= $utm; ?>" >
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-12">
