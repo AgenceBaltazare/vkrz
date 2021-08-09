@@ -354,7 +354,9 @@ foreach($list_cat as $cat ) {
                                 <h6 class="card-subtitle text-muted mb-1">
                                     T'inquiète on te laisse refaire le Top
                                 </h6>
-                                <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-idranking="<?php echo $id_ranking; ?>" href="#" class="confirm_delete btn btn-outline-primary waves-effect">
+                                <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-idranking="<?php echo $id_ranking;  ?>" data-id-tournament="<?= $id_tournament ?>"
+                                   data-top-question ="<?= $top_question ?>" data-top-title ="<?= $top_title; ?>" data-cat-name="<?= $cat->name; ?>"
+                                   data-id-user="<?= $uuiduser ?>" data-type-top="<?= $typetop; ?>" data-utm="<?= $utm; ?>" href="#" class="restart confirm_delete btn btn-outline-primary waves-effect">
                                     Recommencer
                                 </a>
                             </div>

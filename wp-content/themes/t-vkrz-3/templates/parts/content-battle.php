@@ -20,8 +20,7 @@ foreach($list_cat as $cat ) {
            data-id-tournament="<?= $id_tournament ?>" data-id-ranking="<?= $id_ranking ?>"
            data-top-question ="<?= $top_question ?>" data-top-title ="<?= $top_title; ?>" data-cat-name="<?= $cat->name; ?>"
            data-id-user="<?= $uuiduser ?>" data-type-top="<?= $typetop; ?>" data-utm="<?= $utm; ?>"
-        id="c_1"
-        >
+        id="c_1">
             <?php echo $utm ?>
             <?php if(get_field('visuel_cover_t', $id_tournament)): ?>
                 <?php $illu = get_the_post_thumbnail_url( $contender_1, 'full' ); ?>

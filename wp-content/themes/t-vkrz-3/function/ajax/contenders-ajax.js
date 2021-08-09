@@ -42,18 +42,30 @@ $(document).ready(function ($) {
             'utm': $(this).find('.contender_zone').data('utm'),
             'event_score': 20
         },
-            {
-                'event': 'track_event',
-                'event_name': 'start_top',
-                'page_categorie': $(this).find('.contender_zone').data('cat-name'),
-                'top_title': $(this).find('.contender_zone').data('top-title'),
-                'top_question': $(this).find('.contender_zone').data('top-question'),
-                'id_top' : $(this).find('.contender_zone').data('id-tournament'),
-                'id_user': $(this).find('.contender_zone').data('id-user'),
-                'type_top': $(this).find('.contender_zone').data('type-top'),
-                'utm': $(this).find('.contender_zone').data('utm'),
-                'event_score': 10
-            }
+        {
+            'event': 'track_event',
+            'event_name': 'start_top',
+            'page_categorie': $(this).find('.testing').data('cat-name'),
+            'top_title': $(this).find('.testing').data('top-title'),
+            'top_question': $(this).find('.testing').data('top-question'),
+            'id_top' : $(this).find('.testing').data('id-tournament'),
+            'id_user': $(this).find('.testing').data('id-user'),
+            'type_top': $(this).find('.testing').data('type-top'),
+            'utm': $(this).find('.testing').data('utm'),
+            'event_score': 10
+        },
+        {
+            'event': 'track_event',
+            'event_name': 'restart_top',
+            'page_categorie': $(this).find('.restart').data('cat-name'),
+            'top_title': $(this).find('.restart').data('top-title'),
+            'top_question': $(this).find('.restart').data('top-question'),
+            'id_top' : $(this).find('.restart').data('id-tournament'),
+            'id_user': $(this).find('.restart').data('id-user'),
+            'type_top': $(this).find('.restart').data('type-top'),
+            'utm': $(this).find('.restart').data('utm'),
+            'event_score': 5
+        }
 
 
         );
@@ -121,4 +133,21 @@ $(document).ready(function ($) {
             });
         }
     })
+
+    $(document).on('click', '.restart', {}, function (e) {
+        window.dataLayer.push({
+                'event': 'track_event',
+                'event_name': 'restart_top',
+                'page_categorie': $(this).find('.restart').data('cat-name'),
+                'top_title': $(this).find('.restart').data('top-title'),
+                'top_question': $(this).find('.restart').data('top-question'),
+                'id_top' : $(this).find('.restart').data('id-tournament'),
+                'id_user': $(this).find('.restart').data('id-user'),
+                'type_top': $(this).find('.restart').data('type-top'),
+                'utm': $(this).find('.restart').data('utm'),
+                'event_score': 5
+            }
+        );
+    })
+
 });

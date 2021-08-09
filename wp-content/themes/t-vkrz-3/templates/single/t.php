@@ -98,7 +98,7 @@ $illu_url   = $illu[0];
                             <div class="card-cta">
                                 <div class="choosecta">
                                     <div class="cta-begin cta-complet">
-                                        <a href="#" id="begin_t" data-tournament="<?php echo $id_tournament; ?>" data-uuiduser="<?php echo $uuiduser; ?>" data-id-ranking="<?= $id_ranking ?>" data-top-question ="<?= $top_question ?>" data-top-title ="<?= $top_title; ?>" data-cat-name="<?= $cat->name; ?>" data-id-user="<?= $uuiduser ?>" data-type-top="<?= $typetop; ?>" data-utm="<?= $utm; ?>" class="animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
+                                        <a href="#" id="begin_t" data-tournament="<?php echo $id_tournament; ?>" data-uuiduser="<?php echo $uuiduser; ?>" data-id-ranking="<?= $id_ranking ?>" data-top-question ="<?= $top_question ?>" data-top-title ="<?= $top_title; ?>" data-cat-name="<?= $cat->name; ?>" data-id-user="<?= $uuiduser ?>" data-type-top="<?= $typetop; ?>" data-utm="<?= $utm; ?>" class="testing animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
                                             Débuter mon Top Complet
                                         </a>
                                         <small class="text-muted">
