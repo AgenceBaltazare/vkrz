@@ -54,21 +54,7 @@ $(document).ready(function ($) {
             'utm': $(this).find('.testing').data('utm'),
             'event_score': 10
         },
-        {
-            'event': 'track_event',
-            'event_name': 'restart_top',
-            'page_categorie': $(this).find('.restart').data('cat-name'),
-            'top_title': $(this).find('.restart').data('top-title'),
-            'top_question': $(this).find('.restart').data('top-question'),
-            'id_top' : $(this).find('.restart').data('id-tournament'),
-            'id_user': $(this).find('.restart').data('id-user'),
-            'type_top': $(this).find('.restart').data('type-top'),
-            'utm': $(this).find('.restart').data('utm'),
-            'event_score': 5
-        }
-
-
-        );
+            );
 
         if (!ajaxRunning) {
             ajaxRunning = true;
