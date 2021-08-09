@@ -111,7 +111,7 @@ $(document).ready(function ($) {
             }
         );
     })
-    $(document).on('click', '.starting', {}, function (e) {
+    $(document).on('click', '.choosecta', {}, function (e) {
         window.dataLayer.push({
                 'event': 'track_event',
                 'event_name': 'start_top',
