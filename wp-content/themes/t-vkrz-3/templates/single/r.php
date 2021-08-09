@@ -95,7 +95,7 @@ foreach($list_cat as $cat ) {
         <div class="row">
             <div class="col-md-8">
                 <div class="list-classement">
-                    <div class="row align-items-end justify-content-center">
+                    <div  data-id-tournament="<?= $id_tournament ?>" data-id-ranking="<?= $id_ranking ?>"  data-top-question ="<?= $top_question ?>" data-top-title ="<?= $top_title; ?>" data-cat-name="<?= $cat->name; ?>" data-id-user="<?= $uuiduser ?>" data-type-top="<?= $typetop; ?>" data-utm="<?= $utm; ?>" class="ending row align-items-end justify-content-center">
                         <?php
                         $i=1; foreach($user_ranking as $c => $p) : ?>
                             <?php if($i == 1): ?>

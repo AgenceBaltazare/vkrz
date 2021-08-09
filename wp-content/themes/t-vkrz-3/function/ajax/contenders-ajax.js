@@ -30,31 +30,7 @@ $(document).ready(function ($) {
             'utm': $(this).find('.contender_zone').data('utm'),
             'event_score': 1
         },
-        {
-            'event': 'track_event',
-            'event_name': 'end_top',
-            'page_categorie': $(this).find('.contender_zone').data('cat-name'),
-            'top_title': $(this).find('.contender_zone').data('top-title'),
-            'top_question': $(this).find('.contender_zone').data('top-question'),
-            'id_top' : $(this).find('.contender_zone').data('id-tournament'),
-            'id_user': $(this).find('.contender_zone').data('id-user'),
-            'type_top': $(this).find('.contender_zone').data('type-top'),
-            'utm': $(this).find('.contender_zone').data('utm'),
-            'event_score': 20
-        },
-        {
-            'event': 'track_event',
-            'event_name': 'start_top',
-            'page_categorie': $(this).find('.testing').data('cat-name'),
-            'top_title': $(this).find('.testing').data('top-title'),
-            'top_question': $(this).find('.testing').data('top-question'),
-            'id_top' : $(this).find('.testing').data('id-tournament'),
-            'id_user': $(this).find('.testing').data('id-user'),
-            'type_top': $(this).find('.testing').data('type-top'),
-            'utm': $(this).find('.testing').data('utm'),
-            'event_score': 10
-        },
-            );
+    );
 
         if (!ajaxRunning) {
             ajaxRunning = true;
@@ -135,5 +111,35 @@ $(document).ready(function ($) {
             }
         );
     })
+    $(document).on('click', '.starting', {}, function (e) {
+        window.dataLayer.push({
+                'event': 'track_event',
+                'event_name': 'start_top',
+                'page_categorie': $(this).find('.starting').data('cat-name'),
+                'top_title': $(this).find('.starting').data('top-title'),
+                'top_question': $(this).find('.starting').data('top-question'),
+                'id_top': $(this).find('.starting').data('id-tournament'),
+                'id_user': $(this).find('.starting').data('id-user'),
+                'type_top': $(this).find('.starting').data('type-top'),
+                'utm': $(this).find('.starting').data('utm'),
+                'event_score': 10
+            }
+        );
+    })
+    $(document).on('.ending', {}, function (e) {
+        window.dataLayer.push({
+                'event': 'track_event',
+                'event_name': 'end_top',
+                'page_categorie': $(this).find('.ending').data('cat-name'),
+                'top_title': $(this).find('.ending').data('top-title'),
+                'top_question': $(this).find('.ending').data('top-question'),
+                'id_top' : $(this).find('.ending').data('id-tournament'),
+                'id_user': $(this).find('.ending').data('id-user'),
+                'type_top': $(this).find('.ending').data('type-top'),
+                'utm': $(this).find('.ending').data('utm'),
+                'event_score': 20
+            }
 
-});
+        );
+    })
+})
