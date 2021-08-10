@@ -23,4 +23,33 @@ function new_champion($user_id){
 
     wp_remote_post($url, $args);
 
+    // Update author for all "classement" where uuid_user_r == vainkeurz_user_id
+    if (isset($_COOKIE["vainkeurz_user_id"])) {
+        $classements = new WP_Query(array(
+                'post_type'              => 'classement',
+                'posts_per_page'         => -1,
+                'fields'                 => 'ids',
+                'post_status'            => 'publish',
+                'ignore_sticky_posts'    => true,
+                'update_post_meta_cache' => false,
+                'no_found_rows'          => false,
+                'author__not_in'         => array($user_id),
+                'meta_query'             => array(array(
+                                               'key' => 'uuid_user_r',
+                                               'value' => $_COOKIE["vainkeurz_user_id"],
+                                               'compare' => '='
+                                           )),
+            ));
+
+        if ($classements->have_posts()) {
+            foreach ($classements->posts as $classement) {
+                $arg = array(
+                    'ID' => $classement,
+                    'post_author' => $user_id,
+                );
+                wp_update_post( $arg );
+            }
+        }
+    }
+
 }

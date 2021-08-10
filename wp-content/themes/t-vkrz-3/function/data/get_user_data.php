@@ -1,13 +1,22 @@
 <?php
 
-function get_user_full_data($uuiduser){
+/**
+ * Get user full data
+ *
+ * @param   {String}    user_id     - uuiduser or author_id
+ * @param   {String}    type        - uuiduser by default or author
+ * @returns {Array}
+ */
+function get_user_full_data(
+    $user_id,
+    $type = "uuiduser"
+){
 
-    if(!$uuiduser){
-        if(isset($_COOKIE["vainkeurz_user_id"])){
-            $uuiduser       = $_COOKIE["vainkeurz_user_id"];
-        }
-        else{
-            $uuiduser       = "nouuiduser";
+    if (!$user_id) {
+        if (isset($_COOKIE["vainkeurz_user_id"])) {
+            $user_id = $_COOKIE["vainkeurz_user_id"];
+        } else {
+            $user_id = "nouuiduser";
         }
     }
 
@@ -15,8 +24,13 @@ function get_user_full_data($uuiduser){
     $user_ranking_done      = array();
     $user_ranking_begin     = array();
     $user_ranking_all       = array();
-    $result                 = array();
     $user_tops_done_ids     = array();
+
+    $args_meta_query = $type == "author" ? array() : array(array(
+                                                           'key' => 'uuid_user_r',
+                                                           'value' => $user_id,
+                                                           'compare' => '='));
+   $args_author__in = $type == "author" ? array($user_id) : array();
 
     // Get user ranking
     $user_all_ranking = new WP_Query(array(
@@ -27,92 +41,78 @@ function get_user_full_data($uuiduser){
         'ignore_sticky_posts'    => true,
         'update_post_meta_cache' => false,
         'no_found_rows'          => false,
-        'meta_query'             =>
-            array(
-                array(
-                    'key' => 'uuid_user_r',
-                    'value' => $uuiduser,
-                    'compare' => '=',
-                )
-            )
-        )
-    );
-    while ($user_all_ranking->have_posts()) : $user_all_ranking->the_post();
+        'meta_query'             => $args_meta_query,
+        'author__in'             => $args_author__in,
+    ));
 
-        $count_user_votes = $count_user_votes + get_field('nb_votes_r');
-        $id_tournament    = get_field('id_tournoi_r');
-        $typetop          = get_field('type_top_r');
+    if ($user_all_ranking->have_posts()) {
+        foreach ($user_all_ranking->posts as $classement) {
+            $nb_votes         = get_field('nb_votes_r', $classement);
+            $id_tournament    = get_field('id_tournoi_r', $classement);
+            $typetop          = get_field('type_top_r', $classement);
+            $uuid_user        = get_field('uuid_user_r', $classement);
 
-        if(get_field('done_r') == "done"){
-            $done = true;
-        }
-        else{
-            $done = false;
-        }
+            $count_user_votes = $count_user_votes + $nb_votes;
 
-        if(get_the_terms($id_tournament, 'categorie')){
-            foreach (get_the_terms($id_tournament, 'categorie') as $cat) {
-                $cat_id = $cat->term_id;
+            $done = get_field('done_r', $classement) == "done" ? true : false;
+            // /!\ ranking_r is a textarea, why use count for a string ?
+            $nb_top = $typetop == "top3" ? 3 : count(get_field('ranking_r', $classement));
+
+            if (get_the_terms($id_tournament, 'categorie')) {
+                foreach (get_the_terms($id_tournament, 'categorie') as $cat) {
+                    $cat_id = $cat->term_id;
+                }
             }
-        }
 
-        if($typetop == "top3"){
-            $nb_top = 3;
-        }
-        else{
-            $nb_top = count(get_field('ranking_r'));
-        }
-
-        if(get_field('done_r') == "done"){
-            array_push($user_ranking_done, array(
-                "id_tournoi" => $id_tournament,
-                "cat_t"      => $cat_id,
-                "typetop"    => $typetop,
-                "nb_top"     => $nb_top,
-                "done"       => $done,
-                "nb_votes"   => get_field('nb_votes_r'),
-                "uuid_user"  => get_field('uuid_user_r'),
-                "id_ranking" => get_the_ID(),
-            ));
-            array_push($user_tops_done_ids, get_field('id_tournoi_r'));
-        }
-        else{
-            if(get_field('nb_votes_r') >= 1) {
-                array_push($user_ranking_begin, array(
-                    "id_tournoi" => get_field('id_tournoi_r'),
+            if ($done) {
+                array_push($user_ranking_done, array(
+                    "id_tournoi" => $id_tournament,
+                    "cat_t"      => $cat_id,
                     "typetop"    => $typetop,
                     "nb_top"     => $nb_top,
                     "done"       => $done,
-                    "nb_votes"   => get_field('nb_votes_r'),
-                    "uuid_user"  => get_field('uuid_user_r'),
-                    "id_ranking" => get_the_ID(),
+                    "nb_votes"   => $nb_votes,
+                    "uuid_user"  => $uuid_user,
+                    "id_ranking" => $classement,
+                ));
+                array_push($user_tops_done_ids, $id_tournament);
+            } else {
+                if($nb_votes >= 1) {
+                    array_push($user_ranking_begin, array(
+                        "id_tournoi" => $id_tournament,
+                        "typetop"    => $typetop,
+                        "nb_top"     => $nb_top,
+                        "done"       => $done,
+                        "nb_votes"   => $nb_votes,
+                        "uuid_user"  => $uuid_user,
+                        "id_ranking" => $classement,
+                    ));
+                }
+            }
+
+            if($nb_votes >= 1) {
+                array_push($user_ranking_all, array(
+                    "id_tournoi" => $id_tournament,
+                    "typetop"    => $typetop,
+                    "nb_top"     => $nb_top,
+                    "done"       => $done,
+                    "nb_votes"   => $nb_votes,
+                    "uuid_user"  => $uuid_user,
+                    "id_ranking" => $classement,
                 ));
             }
         }
-        if(get_field('nb_votes_r') >= 1) {
-            array_push($user_ranking_all, array(
-                "id_tournoi" => get_field('id_tournoi_r'),
-                "typetop"    => $typetop,
-                "nb_top"     => $nb_top,
-                "done"       => $done,
-                "nb_votes"   => get_field('nb_votes_r'),
-                "uuid_user"  => get_field('uuid_user_r'),
-                "id_ranking" => get_the_ID(),
-            ));
-        }
+    }
 
-    endwhile;
-
-    array_push($result, array(
-        "nb_user_votes"             => $count_user_votes,
-        "list_user_ranking_done"    => $user_ranking_done,
-        "list_user_ranking_begin"   => $user_ranking_begin,
-        "list_user_ranking_all"     => $user_ranking_all,
-        "user_tops_done_ids"        => $user_tops_done_ids
-    ));
-
-    return $result;
-
+    return array(
+        array(
+            "nb_user_votes"             => $count_user_votes,
+            "list_user_ranking_done"    => $user_ranking_done,
+            "list_user_ranking_begin"   => $user_ranking_begin,
+            "list_user_ranking_all"     => $user_ranking_all,
+            "user_tops_done_ids"        => $user_tops_done_ids
+        )
+    );
 }
 
 function get_user_percent($uuiduser, $id_tournament){
@@ -257,7 +257,7 @@ function get_user_level($uuiduser = false, $user_id = false, $nb_user_votes = fa
 
     if(!$nb_user_votes){
 
-        $user_full_data     = get_user_full_data($uuiduser);
+        $user_full_data     = $user_id ? get_user_full_data($user_id, "author") : get_user_full_data($uuiduser);
         $nb_user_votes      = $user_full_data[0]['nb_user_votes'];
 
     }

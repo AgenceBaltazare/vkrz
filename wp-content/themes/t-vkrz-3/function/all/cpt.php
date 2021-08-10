@@ -63,7 +63,7 @@ function cpt_init() {
         'menu_position' => null,
         'menu_icon' => 'dashicons-editor-code',
         'show_in_rest' => true,
-        'supports' => array('title')
+        'supports' => array('title', 'author')
     );
     register_post_type('classement', $args);
 
