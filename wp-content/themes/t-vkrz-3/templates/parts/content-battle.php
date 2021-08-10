@@ -60,8 +60,7 @@ foreach($list_cat as $cat ) {
            data-id-winner="<?= $contender_2 ?>"
            data-id-looser="<?= $contender_1 ?>"
            data-id-tournament="<?= $id_tournament ?>" data-id-ranking="<?= $id_ranking ?>"
-           id="c_2"
-        >
+           id="c_2">
             <?php if(get_field('visuel_cover_t', $id_tournament)): ?>
                 <?php $illu = get_the_post_thumbnail_url( $contender_2, 'full' ); ?>
                 <div class="cov-illu" style="background: url(<?php echo $illu; ?>) center center no-repeat"></div>

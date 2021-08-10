@@ -120,7 +120,7 @@ $(document).ready(function ($) {
                 'top_question': $(this).find('.starting').data('top-question'),
                 'id_top': $(this).find('.starting').data('id-tournament'),
                 'id_user': $(this).find('.starting').data('id-user'),
-                'type_top': $(this).find('.starting').data('type-top'),
+                'type_top': $(this).find('.starting').data('typetop'),
                 'utm': $(this).find('.starting').data('utm'),
                 'event_score': 10
             }
