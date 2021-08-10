@@ -18,6 +18,10 @@ if(is_user_logged_in()){
 }
 global $user_name;
 global $user_email;
+$list_cat = get_the_terms($id_tournament, 'categorie');
+foreach($list_cat as $cat ) {
+    $cat_name   = $cat->name;
+}
 $uuiduser      = deal_uuiduser();
 $utm           = deal_utm();
 $id_tournament = get_the_ID();
@@ -98,7 +102,7 @@ $illu_url   = $illu[0];
                             <div class="card-cta">
                                 <div class="choosecta">
                                     <div class="cta-begin cta-complet">
-                                        <a href="#" id="begin_t" data-tournament="<?php echo $id_tournament; ?>" data-uuiduser="<?php echo $uuiduser; ?>" data-id-ranking="<?= $id_ranking ?>" data-top-question ="<?= $top_question ?>" data-top-title ="<?= $top_title; ?>" data-cat-name="<?= $cat->name; ?>" data-type-top="<?= $typetop; ?>" data-utm="<?= $utm; ?>" class="starting animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
+                                        <a href="#" id="begin_t" data-tournament="<?php echo $id_tournament; ?>" data-typetop="complet" data-uuiduser="<?php echo $uuiduser; ?>" data-id-ranking="<?= $id_ranking ?>" data-top-question ="<?= $top_question ?>" data-top-title ="<?= $top_title; ?>" data-cat-name="<?= $cat->name; ?>" data-type-top="<?= $typetop; ?>" data-utm="<?= $utm; ?>" class="starting animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
                                             Débuter mon Top Complet
                                         </a>
                                         <small class="text-muted">
@@ -278,9 +282,9 @@ $illu_url   = $illu[0];
                                     <h6 class="card-subtitle text-muted mb-1">
                                         T'inquiète on te laisse refaire le Top
                                     </h6>
-                                    <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-idranking="<?php echo $id_ranking; ?>" data-id-tournament="<?= $id_tournament ?>"
+                                    <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" href="#" class="restart confirm_delete btn btn-outline-primary waves-effect" data-idranking="<?php echo $id_ranking; ?>" data-id-tournament="<?= $id_tournament ?>"
                                        data-top-question ="<?= $top_question ?>" data-top-title ="<?= $top_title; ?>" data-cat-name="<?= $cat->name; ?>"
-                                       data-id-user="<?= $uuiduser ?>" data-type-top="<?= $typetop; ?>" data-utm="<?= $utm; ?>"  href="#" class="restart confirm_delete btn btn-outline-primary waves-effect">
+                                       data-id-user="<?= $uuiduser ?>" data-type-top="<?= $typetop; ?>" data-utm="<?= $utm; ?>"  >
                                         Recommencer
                                     </a>
                                 </div>
