@@ -4,7 +4,6 @@
 */
 ?>
 <?php
-global $user_role;
 if(is_user_logged_in()){
     wp_redirect(get_bloginfo('url'));
     exit;
@@ -59,6 +58,11 @@ else{
                             </p>
 
                             <div class="auth-register-form mt-2">
+                                <script>
+                                    const user_id_user_layer  = "<?php echo $user_id; ?>";
+                                    const user_uuiduser_layer  = "<?php echo $uuiduser; ?>";
+                                    const signin_utm__layer  = "<?php echo $utm; ?>";
+                                </script>
                                 <?php echo do_shortcode('[wppb-register form_name="sign-in"]'); ?>
                             </div>
 
