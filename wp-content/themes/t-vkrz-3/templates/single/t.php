@@ -42,6 +42,17 @@ global $top_number;
 $illu       = wp_get_attachment_image_src(get_field('cover_t', $id_tournament), 'full');
 $illu_url   = $illu[0];
 ?>
+<script>
+    const top_title_layer  = "<?php echo $top_title; ?>";
+    const top_question_layer  = "<?php echo $top_question; ?>";
+    const top_categorie_layer  = "<?php echo $cat->name; ?>";
+    const top_id_top_layer  = "<?php echo $id_tournament; ?>";
+    const top_uuiduser_layer  = "<?php echo $uuiduser; ?>";
+    const top_id_user_layer  = "<?php echo $user_id;; ?>";
+    const top_type__layer  = "<?php echo $typetop; ?>";
+    const top_utm__layer  = "<?php echo $utm; ?>";
+</script>
+
 <div class="app-content content cover" style="background: url(<?php echo $illu_url; ?>) center center no-repeat">
     <div class="content-overlay"></div>
     <div class="content-wrapper">

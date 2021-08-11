@@ -282,7 +282,7 @@ function get_next_duel($id_ranking, $id_tournament){
 
                 $is_next_duel = false;
 
-                if(!get_field('done_r', $id_ranking)){
+                if(!get_field('done_r', $id_ranking)) {
                     update_field('done_r', 'done', $id_ranking);
                     update_field('done_date_r', date('d/m/Y H:i:s'), $id_ranking);
                 }

@@ -21,13 +21,14 @@ $(document).ready(function ($) {
         window.dataLayer.push({
             'event': 'track_event',
             'event_name': 'vote',
-            'page_categorie': $(this).find('.contender_zone').data('cat-name'),
-            'top_title': $(this).find('.contender_zone').data('top-title'),
-            'top_question': $(this).find('.contender_zone').data('top-question'),
-            'id_top' : $(this).find('.contender_zone').data('id-tournament'),
-            'id_user': $(this).find('.contender_zone').data('id-user'),
-            'type_top': $(this).find('.contender_zone').data('type-top'),
-            'utm': $(this).find('.contender_zone').data('utm'),
+            'page_categorie': top_categorie_layer,
+            'top_title': top_title_layer,
+            'top_question': top_question_layer,
+            'id_top' : top_id_top_layer,
+            'id_user': top_id_user_layer,
+            'uuiduser':top_uuiduser_layer,
+            'type_top': top_type__layer,
+            'utm': top_utm__layer,
             'event_score': 1
         },
     );
@@ -87,7 +88,20 @@ $(document).ready(function ($) {
                     $('.current_rank').html(data.user_ranking_html);
 
                     if(!data.is_next_duel){
-                        location.reload()
+                        window.dataLayer.push({
+                            'event': 'track_event',
+                            'event_name': 'end_top',
+                            'page_categorie': top_categorie_layer,
+                            'top_title': top_title_layer,
+                            'top_question': top_question_layer,
+                            'id_top' : top_id_top_layer,
+                            'id_user': top_id_user_layer,
+                            'uuiduser':top_uuiduser_layer,
+                            'type_top': top_type__layer,
+                            'utm': top_utm__layer,
+                            'event_score': 20
+                        });
+                        location.reload();
                     }
 
                 }).always(function () {
@@ -96,17 +110,18 @@ $(document).ready(function ($) {
         }
     })
 
-    $(document).on('click', '.restart', {}, function (e) {
+    $(document).on('click', '.swal2-confirm', {}, function (e) {
         window.dataLayer.push({
                 'event': 'track_event',
                 'event_name': 'restart_top',
-                'page_categorie': $(this).find('.restart').data('cat-name'),
-                'top_title': $(this).find('.restart').data('top-title'),
-                'top_question': $(this).find('.restart').data('top-question'),
-                'id_top' : $(this).find('.restart').data('id-tournament'),
-                'id_user': $(this).find('.restart').data('id-user'),
-                'type_top': $(this).find('.restart').data('type-top'),
-                'utm': $(this).find('.restart').data('utm'),
+                'page_categorie': top_categorie_layer,
+                'top_title': top_title_layer,
+                'top_question': top_question_layer,
+                'id_top' : top_id_top_layer,
+                'id_user': top_id_user_layer,
+                'uuiduser':top_uuiduser_layer,
+                'type_top': top_type__layer,
+                'utm': top_utm__layer,
                 'event_score': 5
             }
         );
@@ -124,22 +139,6 @@ $(document).ready(function ($) {
                 'utm': $(this).find('.starting').data('utm'),
                 'event_score': 10
             }
-        );
-    })
-    $(document).on('.ending', {}, function (e) {
-        window.dataLayer.push({
-                'event': 'track_event',
-                'event_name': 'end_top',
-                'page_categorie': $(this).find('.ending').data('cat-name'),
-                'top_title': $(this).find('.ending').data('top-title'),
-                'top_question': $(this).find('.ending').data('top-question'),
-                'id_top' : $(this).find('.ending').data('id-tournament'),
-                'id_user': $(this).find('.ending').data('id-user'),
-                'type_top': $(this).find('.ending').data('type-top'),
-                'utm': $(this).find('.ending').data('utm'),
-                'event_score': 20
-            }
-
         );
     })
 })

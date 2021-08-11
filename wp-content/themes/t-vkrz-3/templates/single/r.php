@@ -27,6 +27,16 @@ foreach($list_cat as $cat ) {
     $cat_name   = $cat->name;
 }
 ?>
+    <script>
+        const top_title_layer  = "<?php echo $top_title; ?>";
+        const top_question_layer  = "<?php echo $top_question; ?>";
+        const top_categorie_layer  = "<?php echo $cat->name; ?>";
+        const top_id_top_layer  = "<?php echo $id_tournament; ?>";
+        const top_uuiduser_layer  = "<?php echo $uuiduser; ?>";
+        const top_id_user_layer  = "<?php echo $user_id;; ?>";
+        const top_type__layer  = "<?php echo $typetop; ?>";
+        const top_utm__layer  = "<?php echo $utm; ?>";
+    </script>
 <div class="vertical-modal-ex">
     <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -356,7 +366,7 @@ foreach($list_cat as $cat ) {
                                 </h6>
                                 <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-idranking="<?php echo $id_ranking;  ?>" data-id-tournament="<?= $id_tournament ?>"
                                    data-top-question ="<?= $top_question ?>" data-top-title ="<?= $top_title; ?>" data-cat-name="<?= $cat->name; ?>"
-                                   data-id-user="<?= $uuiduser ?>" data-type-top="<?= $typetop; ?>" data-utm="<?= $utm; ?>" href="#" class="restart confirm_delete btn btn-outline-primary waves-effect">
+                                   data-id-user="<?= $uuiduser ?>" data-id-user="<?= $user_id; ?>" data-type-top="<?= $typetop; ?>" data-utm="<?= $utm; ?>" href="#" class="restart confirm_delete btn btn-outline-primary waves-effect">
                                     Recommencer
                                 </a>
                             </div>
