@@ -61,11 +61,44 @@ function cpt_init() {
         'has_archive' => true,
         'hierarchical' => false,
         'menu_position' => null,
-        'menu_icon' => 'dashicons-editor-code',
+        'menu_icon' => 'dashicons-heart',
         'show_in_rest' => true,
         'supports' => array('title', 'author')
     );
     register_post_type('classement', $args);
+
+    // Vainkeur
+    $labels = array(
+        'name' => 'Vainkeur',
+        'singular_name' => 'Vainkeur',
+        'add_new' => 'Ajouter un vainkeur',
+        'add_new_item' => 'Ajouter un vainkeur',
+        'edit_item' => 'Editer un vainkeur',
+        'new_item' => 'Nouveau vainkeur',
+        'all_items' => 'Tous les vainkeurs',
+        'view_item' => 'Voir vainkeur',
+        'search_items' => 'Chercher un vainkeur',
+        'not_found' =>  'Aucun vainkeur trouvé',
+        'not_found_in_trash' => 'Aucun vainkeur trouvé dans la corbeille',
+        'menu_name' => 'Vainkeurs'
+    );
+    $args = array(
+        'labels' => $labels,
+        'public' => true,
+        'publicly_queryable' => false,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'query_var' => true,
+        'rewrite' => array('slug' => 'vkrz'),
+        'capability_type' => 'post',
+        'has_archive' => true,
+        'hierarchical' => false,
+        'menu_position' => null,
+        'menu_icon' => 'dashicons-admin-users',
+        'show_in_rest' => true,
+        'supports' => array('title', 'author')
+    );
+    register_post_type('vainkeur', $args);
 
     // Contenders
     $labels = array(

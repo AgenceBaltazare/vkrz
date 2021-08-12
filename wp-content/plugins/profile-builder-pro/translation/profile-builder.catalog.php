@@ -114,6 +114,21 @@
 <?php __("Show users that require review", "profile-builder"); ?>
 <?php __("Show reviewed users with unapproved fields", "profile-builder"); ?>
 <?php __("Exit Review Mode", "profile-builder"); ?>
+<?php __("Visibility", "profile-builder"); ?>
+<?php __("<strong>Admin Only</strong> field is visible only for administrators. <strong>User Locked</strong> field is visible for both administrators and users, but only administrators have the capability to edit it.", "profile-builder"); ?>
+<?php __("User Role Visibility", "profile-builder"); ?>
+<?php __("Select which user roles see this field", "profile-builder"); ?>
+<?php __("Location Visibility", "profile-builder"); ?>
+<?php __("Select the locations you wish the field to appear", "profile-builder"); ?>
+<?php __("<pre>Title</pre><pre>Type</pre><pre>Meta Name</pre><pre class=\"wppb-mb-head-required\">Required</pre><pre class=\"wppb-mb-head-visibility\"></pre>", "profile-builder"); ?>
+<?php __("Edit", "profile-builder"); ?>
+<?php __("Delete", "profile-builder"); ?>
+<?php __("This field is visible only for administrators.", "profile-builder"); ?>
+<?php __("This field is visible for both administrators and users, but only administrators have the capability to edit it.", "profile-builder"); ?>
+<?php __("This field is visible only for the following user roles: %1$s", "profile-builder"); ?>
+<?php __("This field is visible only in the following locations: %1$s", "profile-builder"); ?>
+<?php __("Get file", "profile-builder"); ?>
+<?php __("You do not have the capabilities necessary to edit this field.", "profile-builder"); ?>
 <?php __("MailPoet Newsletters needs to be installed and activated for Profile Builder - MailPoet Add-on to work!", "profile-builder"); ?>
 <?php __("Step", "profile-builder"); ?>
 <?php __("Title for Tab", "profile-builder"); ?>
@@ -374,7 +389,6 @@
 <?php __("Admin Bar Settings", "profile-builder"); ?>
 <?php __("Choose which user roles view the admin bar in the front-end of the website.", "profile-builder"); ?>
 <?php __("User-Role", "profile-builder"); ?>
-<?php __("Visibility", "profile-builder"); ?>
 <?php __("Default", "profile-builder"); ?>
 <?php __("Show", "profile-builder"); ?>
 <?php __("Hide", "profile-builder"); ?>
@@ -1034,8 +1048,6 @@
 <?php __("The following option(s) did not coincide with the ones in the options list: %s\n", "profile-builder"); ?>
 <?php __("Please select at least one user role\n", "profile-builder"); ?>
 <?php __("<pre>Title</pre><pre>Type</pre><pre>Meta Name</pre><pre class=\"wppb-mb-head-required\">Required</pre>", "profile-builder"); ?>
-<?php __("Edit", "profile-builder"); ?>
-<?php __("Delete", "profile-builder"); ?>
 <?php __("Use these shortcodes on the pages you want the forms to be displayed:", "profile-builder"); ?>
 <?php __("With Profile Builder Pro you can display different fields in the registration and edit profile forms, using the Multiple Registration & Edit Profile Forms add-on.", "profile-builder"); ?>
 <?php __("If you're interested in displaying different fields in the registration and edit profile forms, please use the Multiple Registration & Edit Profile Forms Add-ons.", "profile-builder"); ?>
@@ -1150,7 +1162,11 @@
 <?php __("Remember Me", "profile-builder"); ?>
 <?php __("Log In", "profile-builder"); ?>
 <?php __("ERROR", "profile-builder"); ?>
+<?php __("The password field is empty.", "profile-builder"); ?>
 <?php __("The password you entered is incorrect.", "profile-builder"); ?>
+<?php __("The username field is empty", "profile-builder"); ?>
+<?php __("The username/email field is empty", "profile-builder"); ?>
+<?php __("The email field is empty.", "profile-builder"); ?>
 <?php __("Invalid username.", "profile-builder"); ?>
 <?php __("Invalid username or email.", "profile-builder"); ?>
 <?php __("Invalid email.", "profile-builder"); ?>
@@ -1175,6 +1191,7 @@
 <?php __("%1$s has requested a password change via the password reset feature.<br/>His/her new password is:%2$s", "profile-builder"); ?>
 <?php __("You are already logged in. You can change your password on the edit profile form.", "profile-builder"); ?>
 <?php __("The password must not be empty!", "profile-builder"); ?>
+<?php __("The key cannot be empty!", "profile-builder"); ?>
 <?php __("Invalid key!", "profile-builder"); ?>
 <?php __("The entered passwords don't match!", "profile-builder"); ?>
 <?php __("The password must have the minimum length of %s characters", "profile-builder"); ?>
@@ -1678,6 +1695,8 @@
 <?php __("Set multiple admin e-mail addresses that will receive e-mail notifications sent by Profile Builder", "profile-builder"); ?>
 <?php __("Admin Emails:", "profile-builder"); ?>
 <?php __("Add email addresses, separated by comma, for people you wish to receive notifications from Profile Builder. These addresses will overwrite the default Email Address from <a href=\"%s\">Settings -> General</a>", "profile-builder"); ?>
+<?php __("Disable Multiple User Roles", "profile-builder"); ?>
+<?php __("Activating this option will disable the ability to select multiple roles for a user.", "profile-builder"); ?>
 <?php __("Automatically generate password for users", "profile-builder"); ?>
 <?php __("By checking this option, the password will be automatically generated and emailed to the user.", "profile-builder"); ?>
 <?php __("Modify 'Send Credentials' checkbox", "profile-builder"); ?>
@@ -1706,6 +1725,8 @@
 <?php __("Hide Repeater Fields from the back-end profile page", "profile-builder"); ?>
 <?php __("Repeater Fields from Profile Builder do not work on the back-end user profile page, they are just displayed. If you want to remove them completely, you can use this option.", "profile-builder"); ?>
 <?php __("You will still be able to use them from a front-end edit profile form.", "profile-builder"); ?>
+<?php __("Show the Password field visibility toggle", "profile-builder"); ?>
+<?php __("Activating this option will show a visibility toggle button for all Password fields.", "profile-builder"); ?>
 <?php __("Remove All Extra Fields from Backend edit profile page.", "profile-builder"); ?>
 <?php __("If you activate this option, it will remove all custom fields from the backend profile page created with Profile Builder.", "profile-builder"); ?>
 <?php __("Update database entries when changing meta key", "profile-builder"); ?>

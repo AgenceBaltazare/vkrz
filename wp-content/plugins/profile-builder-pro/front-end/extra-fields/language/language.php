@@ -55,6 +55,9 @@ add_filter( 'wppb_admin_output_form_field_language', 'wppb_language_field_handle
 function wppb_save_language_field_value( $field, $user_id, $request_data, $form_location ){
 	if( $field['field'] == 'Language' && $form_location == 'register' ){
 		update_user_meta( $user_id, $field['meta-name'], get_locale() );
+
+		// also set the data in the default WordPress field
+		update_user_meta( $user_id, 'locale', get_locale() );
 	}
 }
 add_action( 'wppb_save_form_field', 'wppb_save_language_field_value', 10, 4 );

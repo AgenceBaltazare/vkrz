@@ -1,11 +1,10 @@
 <?php
 global $uuiduser;
 global $user_id;
-global $user_name;
-global $user_email;
 global $utm;
 global $user_role;
-global $champion_role;
+global $vainkeur_infos;
+global $user_full_data;
 $user_role = "visitor";
 if(get_post_type() != "tournoi" || !is_single()){
     if(is_user_logged_in()){
@@ -17,12 +16,13 @@ if(get_post_type() != "tournoi" || !is_single()){
     $uuiduser       = deal_uuiduser();
     $utm            = deal_utm();
 }
-if(is_author()){
-    global $champion;
-    global $champion_id;
-    $champion            = get_user_by('slug', get_query_var('author_name'));
-    $champion_id         = $champion->ID;
+if (false === ( $user_full_data = get_transient( 'user_'.$user_id.'_get_user_full_data' ) )) {
+    $user_full_data = get_user_full_data($user_id, "author");
+    set_transient( 'user_'.$user_id.'_get_user_full_data', $user_full_data, DAY_IN_SECONDS );
+} else {
+    $user_full_data = get_transient( 'user_'.$user_id.'_get_user_full_data' );
 }
+$vainkeur_infos = deal_vainkeur_entry($uuiduser);
 ?>
 <!DOCTYPE html>
 <html class="loading dark-layout" lang="fr" data-layout="dark-layout" data-textdirection="ltr">
@@ -98,4 +98,3 @@ else{
 <?php get_template_part('partials/menu-user'); ?>
 
 <?php get_template_part('partials/menu-vkrz'); ?>
-

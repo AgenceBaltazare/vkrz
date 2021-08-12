@@ -5,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  * Functions Load
  *
  */
- 
+
 // whitelist options, you can add more register_settings changing the second parameter
 function wppb_register_settings() {
 	register_setting( 'wppb_option_group', 'wppb_default_settings' );
@@ -27,10 +27,10 @@ function wppb_register_settings() {
 
 
 // WPML support
-function wppb_icl_t($context, $name, $value){  
+function wppb_icl_t($context, $name, $value){
 	if( function_exists( 'icl_t' ) )
 		return icl_t( $context, $name, $value );
-		
+
 	else
 		return $value;
 }
@@ -143,12 +143,12 @@ if(!function_exists('wppb_get_abs_home')) {
 if ( is_admin() ){
 
 	// register the settings for the menu only display sidebar menu for a user with a certain capability, in this case only the "admin"
-	add_action( 'admin_init', 'wppb_register_settings' );	
+	add_action( 'admin_init', 'wppb_register_settings' );
 
 	// display the same extra profile fields in the admin panel also
 	if ( file_exists ( WPPB_PLUGIN_DIR.'/front-end/extra-fields/extra-fields.php' ) ){
 		require_once( WPPB_PLUGIN_DIR.'/front-end/extra-fields/extra-fields.php' );
-		
+
 		add_action( 'show_user_profile', 'display_profile_extra_fields_in_admin', 10 );
 		add_action( 'edit_user_profile', 'display_profile_extra_fields_in_admin', 10 );
         global $pagenow;
@@ -167,15 +167,15 @@ if ( is_admin() ){
 
 }else if ( !is_admin() ){
 	// include the stylesheet
-	add_action( 'wp_print_styles', 'wppb_add_plugin_stylesheet' );		
+	add_action( 'wp_print_styles', 'wppb_add_plugin_stylesheet' );
 
 	// include the menu file for the profile informations
-	include_once( WPPB_PLUGIN_DIR.'/front-end/edit-profile.php' ); 
-	include_once( WPPB_PLUGIN_DIR.'/front-end/class-formbuilder.php' );  	
+	include_once( WPPB_PLUGIN_DIR.'/front-end/edit-profile.php' );
+	include_once( WPPB_PLUGIN_DIR.'/front-end/class-formbuilder.php' );
 	add_shortcode( 'wppb-edit-profile', 'wppb_front_end_profile_info' );
 
 	// include the menu file for the login screen
-	include_once( WPPB_PLUGIN_DIR.'/front-end/login.php' );       
+	include_once( WPPB_PLUGIN_DIR.'/front-end/login.php' );
 	add_shortcode( 'wppb-login', 'wppb_front_end_login' );
 
     // include the menu file for the logout screen
@@ -183,11 +183,11 @@ if ( is_admin() ){
     add_shortcode( 'wppb-logout', 'wppb_front_end_logout' );
 
 	// include the menu file for the register screen
-	include_once( WPPB_PLUGIN_DIR.'/front-end/register.php' );        		
-	add_shortcode( 'wppb-register', 'wppb_front_end_register_handler' );	
-	
+	include_once( WPPB_PLUGIN_DIR.'/front-end/register.php' );
+	add_shortcode( 'wppb-register', 'wppb_front_end_register_handler' );
+
 	// include the menu file for the recover password screen
-	include_once( WPPB_PLUGIN_DIR.'/front-end/recover.php' );        		
+	include_once( WPPB_PLUGIN_DIR.'/front-end/recover.php' );
 	add_shortcode( 'wppb-recover-password', 'wppb_front_end_password_recovery' );
 
 	// set the front-end admin bar to show/hide
@@ -210,7 +210,7 @@ if ( is_admin() ){
  *
  */
 function wppb_mail( $to, $subject, $message, $message_from = null, $context = null, $headers = '' ) {
-	$to = apply_filters( 'wppb_send_email_to', $to );
+	$to = apply_filters( 'wppb_send_email_to', $to, $context );
 	$send_email = apply_filters( 'wppb_send_email', true, $to, $subject, $message, $context );
 
 	$message = apply_filters( 'wppb_email_message', $message, $context );
@@ -218,7 +218,7 @@ function wppb_mail( $to, $subject, $message, $message_from = null, $context = nu
 	$message = wppb_maybe_add_propper_html_tags_to_email( $message );
 
 	do_action( 'wppb_before_sending_email', $to, $subject, $message, $send_email, $context );
-	
+
 	if ( $send_email ) {
 		//we add this filter to enable html encoding
 		add_filter('wp_mail_content_type', 'wppb_html_content_type' );
@@ -262,7 +262,7 @@ function wppb_activate_account_check(){
 
 		$wppb_generalSettings = get_option( 'wppb_general_settings' );
 		$activation_landing_page_id = ( ( isset( $wppb_generalSettings['activationLandingPage'] ) && ( trim( $wppb_generalSettings['activationLandingPage'] ) != '' ) ) ? $wppb_generalSettings['activationLandingPage'] : 'not_set' );
-		
+
 		if ( $activation_landing_page_id != 'not_set' ){
 			//an activation page was selected, but we still need to check if the current page doesn't already have the registration shortcode
 			if ( strpos( $post->post_content, '[wppb-register' ) === false )
@@ -286,7 +286,7 @@ function wppb_add_activation_message( $content ){
 
 
 // Create a new, top-level page
-$args = array(							
+$args = array(
 			'page_title'	=> 'Profile Builder',
 			'menu_title'	=> 'Profile Builder',
 			'capability'	=> 'manage_options',
@@ -320,7 +320,7 @@ add_action( 'admin_menu', 'wppb_remove_main_menu_page', 11 );
 function wppb_print_cpt_script( $hook ){
 	wp_enqueue_script( 'jquery-ui-dialog' );
     wp_enqueue_style( 'wp-jquery-ui-dialog' );
-    
+
 	if ( $hook == 'profile-builder_page_manage-fields' ){
 		wp_enqueue_script( 'wppb-manage-fields-live-change', WPPB_PLUGIN_URL . 'assets/js/jquery-manage-fields-live-change.js', array(), PROFILE_BUILDER_VERSION, true );
 		wp_localize_script( 'wppb-manage-fields-live-change', 'wppb_fields_strings', array( 'gdpr_title' => __( 'GDPR Checkbox', 'profile-builder' ), 'gdpr_description' => __( 'I allow the website to collect and store the data I submit through this form.', 'profile-builder' ) ) );
@@ -356,7 +356,7 @@ function wppb_print_cpt_script( $hook ){
 		( $hook == 'admin_page_profile-builder-private-website') ) {
 			wp_enqueue_style( 'wppb-back-end-style', WPPB_PLUGIN_URL . 'assets/css/style-back-end.css', false, PROFILE_BUILDER_VERSION );
 	}
-	
+
 	if ( $hook == 'profile-builder_page_profile-builder-general-settings' )
 		wp_enqueue_script( 'wppb-manage-fields-live-change', WPPB_PLUGIN_URL . 'assets/js/jquery-email-confirmation.js', array(), PROFILE_BUILDER_VERSION, true );
 
@@ -370,10 +370,10 @@ function wppb_print_cpt_script( $hook ){
 	if ( isset( $_GET['post_type'] ) || isset( $_GET['post'] ) ){
 		if ( isset( $_GET['post_type'] ) )
 			$post_type = sanitize_text_field( $_GET['post_type'] );
-		
+
 		elseif ( isset( $_GET['post'] ) )
 			$post_type = get_post_type( absint( $_GET['post'] ) );
-		
+
 		if ( ( 'wppb-epf-cpt' == $post_type ) || ( 'wppb-rf-cpt' == $post_type ) || ( 'wppb-ul-cpt' == $post_type ) ){
 			wp_enqueue_style( 'wppb-back-end-style', WPPB_PLUGIN_URL . 'assets/css/style-back-end.css', false, PROFILE_BUILDER_VERSION );
 			wp_enqueue_script( 'wppb-epf-rf', WPPB_PLUGIN_URL . 'assets/js/jquery-epf-rf.js', array(), PROFILE_BUILDER_VERSION, true );
@@ -405,7 +405,7 @@ function wppb_make_setting_menu_item_highlighted(){
         jQuery(document).ready( function($) {
             $("#toplevel_page_profile-builder").addClass("current wp-has-current-submenu wp-menu-open");
             $("a[href=\'admin.php?page=profile-builder-general-settings\']").closest("li").addClass("current");
-        });     
+        });
         </script>';
 }
 
@@ -708,7 +708,7 @@ add_action('admin_print_styles-users_page_ProfileBuilderOptionsAndSettings', 'wp
 
 function wppb_user_meta_exists( $id, $meta_name ){
 	global $wpdb;
-	
+
 	return apply_filters( 'wppb_user_meta_exists_meta_name', $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $wpdb->usermeta WHERE user_id = %d AND meta_key = %s", $id, $meta_name ) ), $id, $meta_name );
 }
 
@@ -721,7 +721,7 @@ function wppb_check_missing_http( $redirectLink ) {
 //function that adds missing http to a link
 function wppb_add_missing_http( $link ){
 	$http = '';
-	if ( wppb_check_missing_http( $link ) ) { //if missing http(s)		
+	if ( wppb_check_missing_http( $link ) ) { //if missing http(s)
 		$http = 'http';
 		if ((isset($_SERVER["HTTPS"])) && ($_SERVER["HTTPS"] == "on"))
 			$http .= "s";
@@ -865,12 +865,10 @@ function wppb_password_strength_check(){
  * Include toggle password visibility script on frontend where we have shortcodes present
  */
 function wppb_password_visibility_toggle_html(){
-    if( apply_filters( 'wppb_show_password_visibility_toggle', true ) ){
+    if( apply_filters( 'wppb_show_password_visibility_toggle', false ) ){
         return '
             <button type="button" class="wppb-toggle-pw wppb-show-pw hide-if-no-js" data-toggle="0" aria-label="Show password" tabindex="-1">
-                <span class="wppb-img-pw" aria-hidden="true">
-                    <img src="'.WPPB_PLUGIN_URL.'/assets/images/eye-outline.svg"/>
-                </span>
+                <img src="'.WPPB_PLUGIN_URL.'/assets/images/eye-outline.svg"/>
             </button>';
     }
     return '';
@@ -882,11 +880,26 @@ function wppb_password_visibility_toggle_html(){
 add_action( 'wp_footer', 'wppb_enqueue_password_visibility_toggle' );
 function wppb_enqueue_password_visibility_toggle() {
     global $wppb_shortcode_on_front;
-    if( $wppb_shortcode_on_front && apply_filters( 'wppb_show_password_visibility_toggle', true ) ){
+    if( $wppb_shortcode_on_front && apply_filters( 'wppb_show_password_visibility_toggle', false ) ){
         ?>
         <script type="text/javascript">
             jQuery( document ).ready( function() {
                 jQuery( "button.wppb-toggle-pw" ).on( "click", wppb_password_visibility_toggle );
+
+                var toggle = jQuery( 'button.wppb-toggle-pw' )
+
+                if( toggle.length > 0 ){
+
+                    var parent = toggle.parent()
+
+                    if( parent.hasClass( 'wppb-form-field' ) && jQuery( '.wppb-description-delimiter', parent ) ){
+
+                        toggle.css( 'top', parseInt( toggle.css('top') ) - ( jQuery( '.wppb-description-delimiter', parent ).outerHeight() / 2 ) )
+
+                    }
+
+                }
+
             });
             function wppb_password_visibility_toggle() {
                 var target_form_id = "#" + jQuery(this).closest('form').attr("id") + " ";

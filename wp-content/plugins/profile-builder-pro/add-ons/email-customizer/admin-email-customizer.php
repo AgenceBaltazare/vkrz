@@ -73,7 +73,7 @@ function wppb_admin_email_customizer_add_mustache_in_backend(){
 
 
     $registration_default_email_content = __( "<p>New subscriber on {{site_name}}.</p>\n<p>Username:{{username}}</p>\n<p>Email:{{user_email}}</p>\n", 'profile-builder' );
-    $mustache_vars = wppb_email_customizer_generate_merge_tags( 'email_confirmation' );
+    $mustache_vars = wppb_email_customizer_generate_merge_tags();
 
     $fields = array(
 				array(

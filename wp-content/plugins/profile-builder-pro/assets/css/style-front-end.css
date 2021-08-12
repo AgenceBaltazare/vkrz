@@ -149,7 +149,7 @@
 }
 
 #wppb-login-wrap p,
-#select_user_to_edit_form p{
+#select_user_to_edit_form p {
 	overflow:hidden;
 	margin:0;
 	padding-bottom:14px;
@@ -874,11 +874,26 @@ li.wppb-facet-search{
 .wppb-form-field.wppb-default-repeat-password button.wppb-toggle-pw,
 #wppb-login-wrap .login-password button.wppb-toggle-pw {
     position: absolute;
-    right: 0px;
-    top: 8px;
+    right: 4px;
+	/* fields bottom padding  / 2 */
+    top: -7px;
     background: transparent;
     border: 1px solid transparent;
     box-shadow: none;
+	padding: 0;
+	margin: 0;
+	height: 100%;
+	cursor: pointer;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.wppb-form-field.wppb-default-password button img,
+.wppb-form-field.wppb-default-repeat-password button img,
+#wppb-login-wrap .login-password button img {
+    width: 20px;
 }
 
 /**************************************************/

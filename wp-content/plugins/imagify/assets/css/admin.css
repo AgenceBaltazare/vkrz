@@ -279,7 +279,8 @@ body.imagify-modal-is-open {
 }
 
 /* Buttons */
-.imagify-settings .button,
+.imagify-main-content .button,
+.imagify-settings-section .button,
 .imagify-welcome .button,
 .imagify-notice .button,
 .imagify-button.imagify-button,
@@ -1393,6 +1394,9 @@ ul.imagify-datas-details.imagify-datas-details {
 	box-shadow: 1px 1px 4px rgba(0,0,0,.7);
 	border-radius: 3px;
 }
+.imagify-modal-loading .imagify-modal-content{
+	overflow: hidden;
+}
 #imagify-visual-comparison .imagify-modal-content,
 .imagify-visual-comparison .imagify-modal-content {
 	max-width: 1400px;
@@ -1437,6 +1441,7 @@ ul.imagify-datas-details.imagify-datas-details {
 .js .imagify-modal .close-btn {
 	display: block;
 	visibility: visible;
+	z-index: 12;
 }
 
 /* Attachments specifics */
@@ -1477,5 +1482,64 @@ ul.imagify-datas-details.imagify-datas-details {
 	}
 	50% {
 		background: #F4F7F9;
+	}
+}
+@media (max-width: 730px) {
+	.imagify-settings .imagify-documentation-link-box{
+		margin-top: 2em;
+	}
+}
+
+@media (max-width: 782px) {
+	input[type="radio"], input[type="checkbox"] {
+		height: 1.5625rem;
+		width: 1.5625rem;
+		margin: 1px;
+	}
+	[class*="imagify-"] .button-text{
+		font-size: 13px;
+	}
+	.imagify-account-info-col .imagify-settings-section{
+		padding: 0 10px;
+	}
+	.imagify-settings-section{
+		padding: 10px;
+	}
+	.imagify-check-group.imagify-is-scrollable{
+		margin: auto;
+	}
+	.imagify-settings-section .imagify-col,
+	.imagify-col.imagify-col.imagify-shared-with-account-col,
+	.imagify-media-lib-section .imagify-col,
+	.imagify-custom-folders-section .imagify-col,
+	.imagify-shared-with-account-col {
+		width:100%;
+		float: none;
+		padding-right: 0;
+	}
+	.imagify-col.imagify-col.imagify-account-info-col,
+	.imagify-media-lib-section .imagify-account-info-col,
+	.imagify-custom-folders-section .imagify-account-info-col,
+	.imagify-account-info-col{
+		width: 100%;
+		float: none;
+		padding-left: 0;
+		padding-right: 0;
+	}
+	.imagify-lb-text{
+		font-size: 20px;
+	}
+	.imagify-vcenter{
+		-webkit-flex-direction: column;
+		-ms-flex-direction: column;
+		flex-direction: column;
+		-webkit-box-direction: normal;
+		-webkit-box-orient: vertical;
+		-moz-box-direction: normal;
+		-moz-box-orient: vertical;
+		align-items: center;
+	}
+	.imagify-pr2.imagify-pr2{
+		padding-right: 0em;
 	}
 }

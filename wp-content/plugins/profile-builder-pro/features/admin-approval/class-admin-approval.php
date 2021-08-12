@@ -504,10 +504,15 @@ function wppb_sort_by_admin_approval( $query ){
             if ( isset($_REQUEST['order']) && $_REQUEST['order'] === 'asc' ) {
                 $order = 'ASC';
             }
-            $taxonomy = get_term_by( 'name', 'unapproved', 'user_status' );
-            $term_taxonomy_id = $taxonomy->term_taxonomy_id;
-            $query->query_from .= ' LEFT JOIN (SELECT * FROM ' . $wpdb->term_relationships . ' WHERE term_taxonomy_id = ' . $term_taxonomy_id . ') AS tr ON ' . $wpdb->users . '.ID = tr.object_id LEFT JOIN ' . $wpdb->term_taxonomy . ' AS tt ON tr.term_taxonomy_id = tt.term_taxonomy_id LEFT JOIN ' . $wpdb->terms . ' AS t ON tt.term_id = t.term_id';
-            $query->query_orderby = 'ORDER BY t.slug ' . $order . ', user_registered DESC';
+            $taxonomy1 = get_term_by( 'name', 'unapproved', 'user_status' );
+            $taxonomy2 = get_term_by( 'name', 'pending',    'user_status' );
+
+            if ( isset($taxonomy1->term_taxonomy_id, $taxonomy2->term_taxonomy_id) ) {
+                $term_taxonomy_id1 = $taxonomy1->term_taxonomy_id;
+                $term_taxonomy_id2 = $taxonomy2->term_taxonomy_id;
+                $query->query_from .= ' LEFT JOIN (SELECT * FROM ' . $wpdb->term_relationships . ' WHERE term_taxonomy_id = ' . $term_taxonomy_id1 . ' OR term_taxonomy_id = ' . $term_taxonomy_id2 . ') AS tr ON ' . $wpdb->users . '.ID = tr.object_id LEFT JOIN ' . $wpdb->term_taxonomy . ' AS tt ON tr.term_taxonomy_id = tt.term_taxonomy_id LEFT JOIN ' . $wpdb->terms . ' AS t ON tt.term_id = t.term_id';
+                $query->query_orderby = 'ORDER BY t.slug ' . $order . ', user_registered DESC';
+            }
         }
     }
 }

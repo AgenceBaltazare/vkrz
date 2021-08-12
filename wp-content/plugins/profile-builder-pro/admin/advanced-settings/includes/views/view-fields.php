@@ -252,6 +252,22 @@
             </tr>
         <?php endif; ?>
 
+            <tr>
+                <th><?php _e( 'Show the Password field visibility toggle', 'profile-builder' ); ?></th>
+
+                <td>
+                    <label><input type="checkbox" name="wppb_toolbox_fields_settings[password-visibility-hide]"<?php echo ( ( isset( $settings['password-visibility-hide'] ) && ( $settings['password-visibility-hide'] == 'yes' ) ) ? ' checked' : '' ); ?> value="yes">
+                        <?php _e( 'Yes', 'profile-builder' ); ?>
+                    </label>
+
+                    <ul>
+                        <li class="description">
+                            <?php _e( 'Activating this option will show a visibility toggle button for all Password fields.', 'profile-builder' ); ?>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+
 	    <?php if ( file_exists( WPPB_PLUGIN_DIR . '/front-end/extra-fields/extra-fields.php' ) ) : ?>
             <tr>
                 <th><?php _e( 'Remove All Extra Fields from Backend edit profile page.', 'profile-builder' ); ?></th>

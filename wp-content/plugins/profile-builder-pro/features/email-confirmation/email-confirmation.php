@@ -418,7 +418,7 @@ function wppb_signup_user_notification( $user, $user_email, $activation_key, $me
 	$subject = sprintf( __( '[%1$s] Activate %2$s', 'profile-builder'), $from_name, $user );
 	$subject = apply_filters( 'wppb_signup_user_notification_email_subject', $subject, $user_email, $user, $activation_key, $registration_page_url, $meta, $from_name, 'wppb_user_emailc_registr_w_email_confirm_email_subject' );
 
-	$message = sprintf( __( "To activate your user, please click the following link:<br><br>%s%s%s<br><br>After you activate it you will receive yet *another email* with your login.", "profile-builder" ), '<a href="'.$registration_page_url.'">', $registration_page_url, '</a>.' );
+	$message = sprintf( __( "To activate your user, please click the following link:<br><br>%s%s%s<br><br>After you activate it you will receive yet *another email* with your login.", "profile-builder" ), '<a href="'.$registration_page_url.'">', $registration_page_url, '</a>' );
     $message = apply_filters( 'wppb_signup_user_notification_email_content', $message, $user_email, $user, $activation_key, $registration_page_url, $meta, $from_name, 'wppb_user_emailc_registr_w_email_confirm_email_content' );
 
 	$message_context = 'email_user_activate';

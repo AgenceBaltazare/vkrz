@@ -7,16 +7,13 @@ global $top_question;
 global $top_number;
 global $top_title;
 global $user_full_data;
-global $nb_user_votes;
 global $info_user_level;
-global $list_t_done;
 global $id_ranking;
-
-// /!\ If you delete next lines (get_user_full_data(), $list_t_done, $nb_user_votes, get_user_level())
-// You should remove conditional $uuidchampion != $uuiduser in author.php file
-$user_full_data  = is_user_logged_in() ? get_user_full_data($user_id, "author") : get_user_full_data($uuiduser);
-$list_t_done     = $user_full_data[0]['list_user_ranking_done'];
-$nb_user_votes   = $user_full_data[0]['nb_user_votes'];
+global $vainkeur_infos;
+global $nb_user_votes;
+global $nb_user_tops;
+$nb_user_votes   = $vainkeur_infos[0]['nb_vote_vkrz'];
+$nb_user_tops    = $vainkeur_infos[0]['nb_top_vkrz'];
 $info_user_level = get_user_level($uuiduser, $user_id, $nb_user_votes);
 ?>
 <nav class="header-navbar navbar navbar-expand-lg align-items-center floating-nav navbar-dark navbar-shadow menu-user">
@@ -210,46 +207,13 @@ $info_user_level = get_user_level($uuiduser, $user_id, $nb_user_votes);
                             </div>
                         </div>
                     </li>
-                    <li class="scrollable-container media-list">
-                        <?php
-                        $list_t_all = $user_full_data[0]['list_user_ranking_all'];
-                        foreach($list_t_all as $t_user) : ?>
-                            <a class="text-body" href="<?php the_permalink($t_user['id_tournoi']); ?>">
-                                <div class="media align-items-center">
-                                    <div class="min-t-thumb">
-                                        <?php echo get_the_post_thumbnail($t_user['id_tournoi'], 'thumbnail', array('class'=>'d-block rounded mr-1 img-fluid')); ?>
-                                    </div>
-                                    <div class="media-body">
-                                        <div class="media-heading">
-                                            <h6 class="cart-item-title mb-0">
-                                                <?php echo get_the_title($t_user['id_tournoi']); ?>
-                                            </h6>
-                                            <small class="notification-text">
-                                                <?php the_field('question_t', $t_user['id_tournoi']); ?>
-                                            </small>
-                                            <small class="cart-item-by">
-                                                <?php if($t_user['done'] == true): ?>
-                                                    <div class="badge badge-success">Terminé</div>
-                                                <?php else: ?>
-                                                    <div class="badge badge-warning">En cours</div>
-                                                <?php endif; ?>
-                                            </small>
-                                        </div>
-                                        <h5 class="cart-item-price" id="rank-<?php echo $t_user['id_ranking']; ?>">
-                                            <span class="value-span"><?php echo $t_user['nb_votes']; ?></span> <span class="ico3">💎</span>
-                                        </h5>
-                                    </div>
-                                </div>
-                            </a>
-                        <?php endforeach; ?>
-                    </li>
                     <li class="dropdown-menu-footer">
                         <div class="text-center mb-2">
                             <h6 class="font-weight-bolder mb-0">
                                 <?php if(is_user_logged_in()): ?>
                                     Encore <span class="decompte_vote"><?php echo $info_user_level['votes_restant']; ?></span> 💎 pour passer au niveau <?php echo $info_user_level['next_level']; ?>
                                 <?php else: ?>
-                                    Il faut avoir un compte pour monter en niveau 🚀
+                                    Il te créer un compte pour monter en niveau 🚀
                                 <?php endif; ?>
                             </h6>
                         </div>
@@ -263,7 +227,7 @@ $info_user_level = get_user_level($uuiduser, $user_id, $nb_user_votes);
                 <a class="nav-link" href="javascript:void(0);" data-toggle="dropdown">
                     <span class="value-user-stats">
                         <span class="ico text-center">🏆</span>
-                        <?php echo count($list_t_done); ?>
+                        <?php echo $nb_user_tops; ?>
                     </span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
@@ -271,7 +235,7 @@ $info_user_level = get_user_level($uuiduser, $user_id, $nb_user_votes);
                         <div class="dropdown-header d-flex">
                             <h4 class="notification-title mb-0 mr-auto">🏆</h4>
                             <div class="badge badge-pill badge-light-primary">
-                                <?php if(count($list_t_done) >= 1): ?>
+                                <?php if($nb_user_tops >= 1): ?>
                                     Mes Tops terminés
                                 <?php else: ?>
                                     Aucun Tops terminés <span class="ico">😑</span>
@@ -279,41 +243,7 @@ $info_user_level = get_user_level($uuiduser, $user_id, $nb_user_votes);
                             </div>
                         </div>
                     </li>
-                    <?php if(count($list_t_done) >= 1): ?>
-                        <li class="scrollable-container media-list">
-                            <?php
-                            foreach($list_t_done as $t_user) : ?>
-                                <a class="d-flex" href="<?php the_permalink($t_user['id_ranking']); ?>">
-                                    <div class="media d-flex align-items-start">
-                                        <div class="media-body">
-                                            <p class="media-heading">
-                                            <span class="font-weight-bolder">
-                                                Top <?php echo $t_user['nb_top']; ?> <span class="ico text-center">⚔️</span> <?php echo get_the_title($t_user['id_tournoi']); ?>
-                                            </span>
-                                            </p>
-                                            <small class="notification-text">
-                                                <?php the_field('question_t', $t_user['id_tournoi']); ?>
-                                            </small>
-                                        </div>
-                                        <div class="user_rank">
-                                            <div class="avatar-group align-items-center">
-                                                <?php
-                                                $user_top3 = get_user_ranking($t_user['id_ranking']);
-                                                $l=1;
-                                                foreach($user_top3 as $top => $p): ?>
-
-                                                    <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="top" data-original-title="<?php echo get_the_title($top); ?>" class="avatar pull-up">
-                                                        <?php $illu = get_the_post_thumbnail_url($top, 'medium'); ?>
-                                                        <img src="<?php echo $illu; ?>" alt="Avatar" height="32" width="32">
-                                                    </div>
-
-                                                <?php $l++; if($l==4) break; endforeach; ?>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            <?php endforeach; ?>
-                        </li>
+                    <?php if($nb_user_tops >= 1): ?>
                         <li class="dropdown-menu-footer">
                             <a class="btn btn-primary btn-block" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>?uuid=<?php echo $uuiduser; ?>">
                                 Voir tous mes Tops terminés

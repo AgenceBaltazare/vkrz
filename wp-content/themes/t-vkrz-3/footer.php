@@ -24,7 +24,6 @@
     </p>
 </footer>
 
-<!-- Scripts -->
 <script>
     const vkrz_ajaxurl  = "<?= admin_url('admin-ajax.php') ?>";
 </script>

@@ -1,9 +1,8 @@
 === Imagify – Optimize your Images & Convert WebP ===
 Contributors: wp_media
 Tags: convert webp, webp, optimize images, optimize, images
-Requires at least: 4.0.0
-Tested up to: 5.6.1
-Stable tag: 1.9.14
+Tested up to: 5.8
+Stable tag: 1.10
 
 Optimize images in one click: reduce image file sizes, convert WebP, keep your images beautiful… and boost your loading time and your SEO!
 
@@ -210,6 +209,18 @@ No. However, you get 20MB of quota per month for free.
 4. Other Media Page
 
 == Changelog ==
+= 1.10 - 2021/07/15 =
+* The plugin minimum compatible versions are now PHP 7.0 and WordPress 5.3
+* Enhancement: Correctly display WordPress cover blocks when WebP and picture tag replacement is enabled (#546)
+* Enhancement: Update our jQuery code to be compatible with the new jQuery version included in WordPress (#545)
+* 3rd party compatibility: Correctly display WooCommerce variable products images when WebP and picture tag replacement is enabled (#495)
+* Bugfix: Prevent nested picture tags when picture tag replacement is enabled (#537)
+* Bugfix: Prevent a fatal error related to get_current_screen() in some cases (#567)
+* Bugfix: Fixes some display issues related to the promotions in the checkout process (#556, #557)
+* Bugfix: Fixes some display issues on the settings & bulk optimization pages on mobile (#566)
+* Bugfix: Prevent PHP warning in some cases on the bulk optimization process (#565)
+* Bugfix: Prevent PHP notice in somes cases for the $images_count variable (#573)
+
 = 1.9.14 =
 * Fix: cURL not connecting to Imagify API when using PHP 8.
 * Fix: Display issue in Chrome on scrollable check groups on Imagify admin page.
@@ -222,7 +233,7 @@ No. However, you get 20MB of quota per month for free.
 
 = 1.9.11 - 2020/09/09 =
 * Fix: Fix settings error on multi-sites with WordPress 5.5
-* Fix: Write the correct conf file for use with webp rewrites on nginx
+* Fix: Write the correct conf file for use with WebP rewrites on nginx
 * Improvement: Namespace composer dependencies to avoid possible naming collisions.
 * Security: Add blank index.php to imagify-created backup folders to disable public access. 
 
@@ -236,7 +247,7 @@ No. However, you get 20MB of quota per month for free.
 * Fix: php notices that could happen when optimizing.
 
 = 1.9.8.1 - 2019/11/15 =
-* Fix: webp image not showing when using the `<picture>` method and the original `<img/>` does not have a `srcset` attribute.
+* Fix: WebP image not showing when using the `<picture>` method and the original `<img/>` does not have a `srcset` attribute.
 * Fix: a fatal error with WP Offload Media 2.3.
 
 = 1.9.8 - 2019/11/11 =
@@ -244,7 +255,7 @@ No. However, you get 20MB of quota per month for free.
 * New: among other things, WordPress 5.3 automatically resizes large images on upload, using a predefined threshold value that can be changed only by filter (no setting fields are provided). Imagify’s "Resize larger images" setting field is now used to tweak this threshold.
 * Caution: to be able to work on WordPress 5.3, some adjustments have been made to our compatibility with Enable Media Replace and Regenerate Thumbnails. However, these plugins must be updated to work with WordPress 5.3: do not use them until then.
 * Improvement: moved the `width` and `height` attributes from the `<picture>` tag to the `<img>` tag to be valid HTML markup.
-* Fix: added a missing descriptor in `srcset` attribute when using `<picture>` tags to display webp images. This should also fix an issue with LasyLoad.
+* Fix: added a missing descriptor in `srcset` attribute when using `<picture>` tags to display WebP images. This should also fix an issue with LasyLoad.
 * Fix: fixed an issue with the user capacity used for "Other Media" menu item.
 * Fix: a php notice `stripos(): Non-string needles will be interpreted as strings in the future.`.
 
@@ -254,23 +265,23 @@ No. However, you get 20MB of quota per month for free.
 * Fix: display the "Welcome" banner correctly when it is shown on the WP Rocket’s settings page.
 
 = 1.9.6 - 2019/07/22 =
-* Improvement: now images that are "already optimized" can also get webp versions.
+* Improvement: now images that are "already optimized" can also get WebP versions.
 * Fix: progress bar height in the admin bar for Chrome and Safari.
 
 = 1.9.5 - 2019/07/16 =
 * Improvement: Basic Authentication support. If it does not work automatically, you can still define the constants `IMAGIFY_AUTH_USER` and `IMAGIFY_AUTH_PASSWORD` in your `wp-config.php` file.
-* Improvement: webp images are not created for animated gif images by default anymore. Use the filter `imagify_pre_can_create_webp_version` if you still want to create an unanimated webp version of them.
-* Improvement: when creating webp images from the settings page, we made more clear when all the images are missing a backup copy.
+* Improvement: WebP images are not created for animated gif images by default anymore. Use the filter `imagify_pre_can_create_webp_version` if you still want to create an unanimated WebP version of them.
+* Improvement: when creating WebP images from the settings page, we made more clear when all the images are missing a backup copy.
 * Improvement: clear the 5 minutes data cache when buying quota from the plugin.
-* Improvement: when displaying webp images with the `<picture>` tag, allow to use relative URLs (starting with `/`).
+* Improvement: when displaying WebP images with the `<picture>` tag, allow to use relative URLs (starting with `/`).
 
 = 1.9.4 - 2019/07/10 =
-* Improvement: if a webp image is larger than its non-webp version, it is now possible to not keep it. This can be done by using the filter `imagify_keep_large_webp`.
+* Improvement: if a WebP image is larger than its non-webp version, it is now possible to not keep it. This can be done by using the filter `imagify_keep_large_webp`.
 * Improvement: compatibility with Pressable.
 * Improvement: renamed a php class to prevent some hosts to wrongly flag it as "suspicious" and trigger a fatal error.
 * Improvement: better compatibility with WP Real Media Library plugin.
-* Fix: rewrite rules for webp could not work on some servers.
-* Fix: when using `<picture>` tags for webp, some attributes could disappear if they were written on multiple lines.
+* Fix: rewrite rules for WebP could not work on some servers.
+* Fix: when using `<picture>` tags for WebP, some attributes could disappear if they were written on multiple lines.
 * Fix: the bulk method would not work in the NextGen Gallery list.
 * Fix: php notice `Trying to get property "namespace" for a non object`.
 
@@ -278,7 +289,7 @@ No. However, you get 20MB of quota per month for free.
 * Fix: conflict with plugins using an ancient version of Composer.
 
 = 1.9.3 - 2019/06/17 =
-* Improvement: better compatibility with CDNs when displaying webp images with `<picture>` tags. There is now a new setting field to fill in the CDN URL in use.
+* Improvement: better compatibility with CDNs when displaying WebP images with `<picture>` tags. There is now a new setting field to fill in the CDN URL in use.
 * Improvement: don’t use Heartbeat anymore. This speeds up the optimization process and prevents other plugins to break everything when they remove Heartbeat.
 * Fix: a fatal error upon plugin deactivation.
 * Fix: an occasional fatal error preventing the optimization process to work.
@@ -291,11 +302,11 @@ No. However, you get 20MB of quota per month for free.
 * Fix: don’t display support bubble anymore.
 
 = 1.9.1 - 2019/05/09 =
-* Improvement: prevent "Generating missing webp versions" being stuck at 0% in the settings page by displaying a "done/total" label instead.
+* Improvement: prevent "Generating missing WebP versions" being stuck at 0% in the settings page by displaying a "done/total" label instead.
 * Improvement: improved our "re-registering" of the Heartbeat library, that some plugins may deactivate.
 
 = 1.9.0 - 2019/05/06 =
-* New: webp support. For each image or thumbnail, Imagify can create a webp version of it. But since creating these images without using them does not make really sense, Imagify can also display your webp images on your site. All of this can be enabled in the settings. For the images that are already optimized, you get the possibility to create the webp versions separately (one by one or in the settings page), but only if you kept a backup copy of the original images.
+* New: WebP support. For each image or thumbnail, Imagify can create a WebP version of it. But since creating these images without using them does not make really sense, Imagify can also display your WebP images on your site. All of this can be enabled in the settings. For the images that are already optimized, you get the possibility to create the WebP versions separately (one by one or in the settings page), but only if you kept a backup copy of the original images.
 * Improvement: the optimization process has been entirely rebuilt. This new process allows you to optimize as many thumbnail sizes that you want. It also implies that many classes, functions, and hooks have been deprecated.
 * Improvement: compatibility with Flywheel.
 * Improvement: some error messages are now more accurate.

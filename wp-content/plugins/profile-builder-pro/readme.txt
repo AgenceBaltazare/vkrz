@@ -6,8 +6,8 @@ Tags: registration, profile, user registration, custom field registration, custo
 custom registration, custom registration form, custom registration page, extra user fields, registration page, user custom fields, user listing, user login, user registration form, front-end login,
 front-end register, front-end registration, frontend edit profile, edit profileregistration, customize profile, user fields, builder, profile builder, custom fields, avatar
 Requires at least: 3.1
-Tested up to: 5.7
-Stable tag: 3.4.8
+Tested up to: 5.8
+Stable tag: 3.5.0
 
 
 Login, registration and edit profile shortcodes for the front-end. Also you can choose what fields should be displayed or add custom ones.
@@ -101,6 +101,23 @@ This plugin only adds/removes fields in the front-end. The default information-f
 
 
 == Changelog ==
+= 3.5.0 =
+* Fix: Issue with missing dependency for a script
+* Fix: Issue with Admin Approval sorting query for unapproved cases
+* Fix: Issue with Multiple Admin Emails
+* Misc: Added Advanced Setting to allow admins to disable the Multiple User Roles selector field from the back-end Add/Edit User pages
+* Misc: Don't show Paid Member Subscriptions cross promotion if the plugin is already active
+* Misc: Removed period after the Activation URL in the default Email Confirmation email
+* Misc: Removed wrong email tags from the Default Registration email for admins
+
+= 3.4.9 =
+* Fix: Security issue with Reset Password form. Thanks to Stiofan O'connor
+* Fix: Added option in Advanced Settings -> Fields for display password feature. It's disabled by default now. Display and positioning corrected
+* Fix: Language field to be in sync with default WordPress field
+* Fix: Issue with the Admin Approval status not being saved correctly in the usermeta table
+* Fix: For issue with WooCommerce Sync fields in Elementor Widgets
+* Misc: Added Empty Username/Password login messages in our code so they can be changed using the Labels Edit add-on
+
 = 3.4.8 =
 * Feature: Add a visibility toggle to Profile Builder password fields. Similar to WordPress default form functionality
 * Fix: Issue with Labels Edit showing the incorrect original string in the back-end

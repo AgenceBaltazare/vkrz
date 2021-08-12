@@ -169,7 +169,7 @@ function imagify_get_filesystem() {
 }
 
 /**
- * Convert a path (or URL) to its webp version.
+ * Convert a path (or URL) to its WebP version.
  * To keep the function simple:
  * - Not tested if it's an image.
  * - File existance is not tested.
@@ -223,8 +223,8 @@ function imagify_can_optimize_custom_folders() {
  * @return string The URL.
  */
 function imagify_get_external_url( $target, $query_args = array() ) {
-	$site_url = 'https://imagify.io/';
-	$app_url  = 'https://app.imagify.io/#/';
+	$site_url = IMAGIFY_APP_DOMAIN . '/';
+	$app_url  = IMAGIFY_APP_DOMAIN . '/#/';
 
 	switch ( $target ) {
 		case 'plugin':

@@ -226,6 +226,30 @@ function get_vkrz_users($limit = false){
 
 }
 
+function get_vkrz_users_list($limit = false){
+
+    $result = array();
+
+    $user_query = new WP_User_Query(array('number' => -1));
+    $users_list = $user_query->get_results();
+
+    foreach($users_list as $user){
+
+        $user_ID    = $user->ID;
+
+        array_push($result, $user_ID);
+
+    }
+
+    if($limit){
+        $result = array_slice($result, 0, $limit);
+    }
+
+    return $result;
+
+}
+
+
 function find_vkrz_user($uuid_user_r){
 
     $result = array();

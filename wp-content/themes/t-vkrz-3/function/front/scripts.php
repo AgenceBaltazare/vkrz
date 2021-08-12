@@ -40,7 +40,7 @@ function load_css_js() {
     wp_enqueue_script('modals', get_template_directory_uri().'/assets/js/scripts/components/components-modals.js', array(), null, true);
     if(is_archive()){
         wp_enqueue_script('filters', get_template_directory_uri().'/assets/js/scripts/filters.js', array(), null, true);
-        wp_enqueue_script('shop', get_template_directory_uri().'/assets/js/scripts/pages/app-ecommerce.min.js', array(), null, true);
+        wp_enqueue_script('shop', get_template_directory_uri().'/assets/js/scripts/pages/app-ecommerce.js', array(), null, true);
     }
     wp_enqueue_script('app', get_template_directory_uri().'/assets/js/core/app.js', array(), null, true);
     wp_enqueue_script('app-menu', get_template_directory_uri().'/assets/js/core/app-menu.js', array(), null, true);

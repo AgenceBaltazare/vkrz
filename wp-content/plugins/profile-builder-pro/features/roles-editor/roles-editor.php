@@ -1087,7 +1087,9 @@ class WPPB_Roles_Editor {
 
         wp_nonce_field( 'new_user_roles', 'wppb_re_new_user_roles_nonce' );
 
-        $this->roles_field_display( $user_roles );
+        if( apply_filters( 'wppb_backend_allow_multiple_user_roles_selection', true ) ) {
+            $this->roles_field_display( $user_roles );
+        }
 
     }
 
@@ -1102,8 +1104,9 @@ class WPPB_Roles_Editor {
 
         wp_nonce_field( 'new_user_roles', 'wppb_re_new_user_roles_nonce' );
 
-        $this->roles_field_display( $user_roles );
-
+        if( apply_filters( 'wppb_backend_allow_multiple_user_roles_selection', true ) ) {
+            $this->roles_field_display($user_roles);
+        }
     }
 
     // Output roles edit checkboxes
@@ -1199,12 +1202,12 @@ class WPPB_Roles_Editor {
         add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_jquery' ) );
 
         // Actions for Add User back-end page
-        if( $location == 'user_new' ) {
+        if( $location == 'user_new' && apply_filters( 'wppb_backend_allow_multiple_user_roles_selection', true ) ) {
             add_action( 'admin_footer', array( $this, 'print_scripts_user_new' ), 25 );
         }
 
         // Actions for Edit User back-end page
-        if( $location == 'user_edit' ) {
+        if( $location == 'user_edit' && apply_filters( 'wppb_backend_allow_multiple_user_roles_selection', true ) ) {
             add_action( 'admin_head', array( $this, 'print_styles_user_edit' ) );
             add_action( 'admin_footer', array( $this, 'print_scripts_user_edit' ), 25 );
         }

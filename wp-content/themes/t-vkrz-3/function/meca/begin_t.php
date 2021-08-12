@@ -2,6 +2,7 @@
 function begin_t($id_tournament, $uuiduser, $typetop){
 
     global $utm;
+
     if(!$utm){
         $utm = $_COOKIE['vainkeurz_user_utm'];
     }

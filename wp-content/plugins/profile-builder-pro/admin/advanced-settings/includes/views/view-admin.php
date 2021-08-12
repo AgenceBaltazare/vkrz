@@ -96,6 +96,20 @@
             </td>
         </tr>
 
+        <tr>
+            <th><?php _e( 'Disable Multiple User Roles', 'profile-builder' ); ?></th>
+            <td>
+                <label><input type="checkbox" name="wppb_toolbox_admin_settings[multiple-user-roles]"<?php echo ( ( isset( $settings['multiple-user-roles'] ) && ( $settings['multiple-user-roles'] == 'yes' ) ) ? ' checked' : '' ); ?> value="yes">
+                    <?php _e( 'Yes', 'profile-builder' ); ?>
+                </label>
+                <ul>
+                    <li class="description">
+                        <?php _e( 'Activating this option will disable the ability to select multiple roles for a user.', 'profile-builder' ); ?>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+
     </table>
 
     <?php submit_button( __( 'Save Changes', 'profile-builder' ) ); ?>

@@ -67,7 +67,7 @@ function wppb_handle_approve_unapprove_cases(){
 		if ( ( $todo != '' ) && ( $userID != '' ) ){
 
 			if ( $todo == 'approve' ){
-				wp_set_object_terms( $userID, NULL, 'user_status' );
+				wp_set_object_terms( $userID, apply_filters( 'wppb_admin_approval_update_user_status', NULL, $userID ), 'user_status' );
 				clean_object_term_cache( $userID, 'user_status' );
 
                 // now that the user is approved, remove approval link key from usermeta
@@ -80,7 +80,7 @@ function wppb_handle_approve_unapprove_cases(){
 				die( __( "User successfully approved!", "profile-builder" ) );
 
 			}elseif ( $todo == 'unapprove' ){
-				wp_set_object_terms( $userID, array( 'unapproved' ), 'user_status', false );
+				wp_set_object_terms( $userID, apply_filters( 'wppb_admin_approval_update_user_status', array( 'unapproved' ), $userID ), 'user_status', false );
 				clean_object_term_cache( $userID, 'user_status' );
 
 				do_action( 'wppb_after_user_unapproval', $userID );
@@ -117,7 +117,7 @@ function wppb_handle_bulk_approve_unapprove_cases(){
 			if( $todo === 'bulkApprove' ){
 				foreach( $users as $user ){
                     if ($current_user->ID != $user){
-                        wp_set_object_terms( $user, NULL, 'user_status' );
+                        wp_set_object_terms( $user, apply_filters( 'wppb_admin_approval_update_user_status', NULL, $user ), 'user_status' );
                         clean_object_term_cache( $user, 'user_status' );
                         wppb_send_new_user_status_email( $user, 'approved' );
 						do_action('wppb_after_user_approval', $user );
@@ -127,7 +127,7 @@ function wppb_handle_bulk_approve_unapprove_cases(){
 			}elseif ($todo === 'bulkUnapprove'){
 				foreach( $users as $user ){
                     if ($current_user->ID != $user ){
-                        wp_set_object_terms( $user, array( 'unapproved' ), 'user_status', false);
+                        wp_set_object_terms( $user, apply_filters( 'wppb_admin_approval_update_user_status', array( 'unapproved' ), $user ), 'user_status', false);
                         clean_object_term_cache( $user, 'user_status' );
                         wppb_send_new_user_status_email( $user, 'unapproved' );
 						do_action('wppb_after_user_unapproval', $user );
@@ -218,21 +218,22 @@ function wppb_update_user_status_on_admin_registration( $user_id ){
         if ($wppb_generalSettings != 'not_found' && !empty($wppb_generalSettings['adminApprovalOnUserRole'])) {
             foreach ($user_data->roles as $role) {
                 if (in_array($role, $wppb_generalSettings['adminApprovalOnUserRole'])) {
-                    wp_set_object_terms($user_id, array('pending'), 'user_status', false);
+                    wp_set_object_terms($user_id, apply_filters( 'wppb_admin_approval_update_user_status', array('pending'), $user_id ), 'user_status', false);
                     clean_object_term_cache($user_id, 'user_status');
                     // save admin approval email link unique parameter ( used for outputting Admin Email Customizer {{{approve_link}}} or {{approve_url}} tags )
                     add_user_meta( $user_id, '_wppb_admin_approval_link_param', wppb_get_admin_approval_email_link_key($user_id) );
-
+                    do_action('wppb_new_user_pending_approval', $user_id );
 
                 } else {
                     add_filter('wppb_register_success_message', 'wppb_noAdminApproval_successMessage');
                 }
             }
         } else {
-            wp_set_object_terms($user_id, array('pending'), 'user_status', false);
+            wp_set_object_terms($user_id, apply_filters( 'wppb_admin_approval_update_user_status', array('pending'), $user_id ), 'user_status', false);
             clean_object_term_cache($user_id, 'user_status');
             // save admin approval email link unique parameter ( used for outputting Admin Email Customizer {{{approve_link}}} or {{approve_url}} tags )
-            add_user_meta( $user_id, '_wppb_admin_approval_link_param', wppb_get_admin_approval_email_link_key($user_id) );
+            add_user_meta( $user_id, '_wppb_admin_approval_link_param', wppb_get_admin_approval_email_link_key($user_id) );;
+            do_action('wppb_new_user_pending_approval', $user_id );
         }
     }
 }
@@ -356,7 +357,7 @@ function wppb_approve_unapprove_user_from_email_url_listener( $userID, $action )
     if( $action == 'approve' ){
 
         //approve user by removing 'unnaprove' term
-        wp_set_object_terms($userID, NULL, 'user_status');
+        wp_set_object_terms($userID, apply_filters( 'wppb_admin_approval_update_user_status', NULL, $userID ), 'user_status');
         clean_object_term_cache($userID, 'user_status');
 
         do_action('wppb_after_user_approval', $userID);
@@ -373,7 +374,7 @@ function wppb_approve_unapprove_user_from_email_url_listener( $userID, $action )
 
     } else if( $action == 'unapprove' ){
 
-        wp_set_object_terms( $userID, array( 'unapproved' ), 'user_status', false );
+        wp_set_object_terms( $userID, apply_filters( 'wppb_admin_approval_update_user_status', array( 'unapproved' ), $userID ), 'user_status', false );
         clean_object_term_cache( $userID, 'user_status' );
 
         do_action( 'wppb_after_user_unapproval', $userID );

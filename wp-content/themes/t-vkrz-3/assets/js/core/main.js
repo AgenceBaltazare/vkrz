@@ -22,7 +22,7 @@ $(document).ready(function() {
 
     var $grid = $('.grid-to-filtre').isotope({
         itemSelector: '.grid-item',
-        layoutMode: 'masonry',
+        layoutMode: 'fitRows',
     });
 
     var filters = {};
@@ -35,19 +35,12 @@ $(document).ready(function() {
         $buttonParent.find('.btn-to-filtre').removeClass('is-checked');
         $this.addClass('is-checked');
 
-
         // get group key
         var $buttonGroup = $this.parents('.button-group');
         var filterGroup  = $buttonGroup.attr('data-filter-group');
 
-        console.log(filterGroup);
-
-
-
         // set filter for group
         filters[ filterGroup ] = $this.attr('data-filter');
-
-        console.log(filters);
 
         // combine filters
         var filterValue = concatValues( filters );

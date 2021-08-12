@@ -287,7 +287,7 @@ if( ! class_exists('PMUE_Updater') ) {
         function http_request_args( $args, $url ) {
             // If it is an https request and we are performing a package download, disable ssl verification
             if ( strpos( $url, 'https://' ) !== false && strpos( $url, 'edd_action=package_download' ) ) {
-                $args['sslverify'] = false;
+                $args['sslverify'] = true;
             }
             return $args;
         }
@@ -330,7 +330,7 @@ if( ! class_exists('PMUE_Updater') ) {
                 'version'    => $this->version
             );            
             
-            $request = wp_remote_post( $this->api_url, array( 'timeout' => 15, 'sslverify' => false, 'body' => $api_params ) );
+            $request = wp_remote_post( $this->api_url, array( 'timeout' => 15, 'sslverify' => true, 'body' => $api_params ) );
 
             if ( ! is_wp_error( $request ) ) {
                 $request = json_decode( wp_remote_retrieve_body( $request ) );

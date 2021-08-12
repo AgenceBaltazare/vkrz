@@ -43,13 +43,6 @@
   background: $c2;
 }
 
-#ecommerce-header{
-  display: none;
-  @media (max-width: 992px) {
-    display: block;
-  }
-}
-
 .result-toggler{
   button{
     i{
@@ -65,5 +58,18 @@
 
 .grid-to-filtre{
   margin-left: -1rem;
-  margin-right: -1rem;
+}
+
+.filtres-bloc{
+  display: none;
+}
+.ecommerce-searchbar{
+  .input-group .input-group-text {
+    background-color: transparent;
+    border: none;
+    color: #fff;
+  }
+}
+.show{
+  display: block !important;
 }

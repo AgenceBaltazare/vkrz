@@ -189,8 +189,6 @@ function wppb_login_form( $args = array() ) {
 		return $form;
 }
 
-
-
 // when email login is enabled we need to change the post data for the username
 function wppb_change_login_with_email(){
     if( !empty( $_POST['log'] ) ){
@@ -319,12 +317,26 @@ function wppb_login_redirect( $redirect_to, $requested_redirect_to, $user ){
                 $LostPassURL = apply_filters('wppb_pre_login_url_filter', $LostPassURL);
 
 				/* start building the error string */
-				if( $user->get_error_code() == 'incorrect_password' || $user->get_error_code() == 'invalid_username' )
+				if( in_array( $user->get_error_code(), array( 'empty_username', 'empty_password', 'invalid_username', 'incorrect_password' ) ) )
 					$error_string = '<strong>' . __('ERROR', 'profile-builder') . '</strong>: ';
+
+
+				if ( $user->get_error_code() == 'empty_password' ) {
+					$error_string .= __( 'The password field is empty.', 'profile-builder' ) . ' ';
+				}
 
                 if ($user->get_error_code() == 'incorrect_password') {
                     $error_string .= __('The password you entered is incorrect.', 'profile-builder') . ' ';
                 }
+
+				if ( $user->get_error_code() == 'empty_username' ) {
+					if ($wppb_generalSettings['loginWith'] == 'email')// if login with email is enabled change the word username with email
+						$error_string .= __('The email field is empty.', 'profile-builder') . ' ';
+					else if( $wppb_generalSettings['loginWith'] == 'usernameemail' )// if login with username and email is enabled change the word username with username or email
+						$error_string .= __('The username/email field is empty', 'profile-builder') . ' ';
+					else
+						$error_string .= __('The username field is empty', 'profile-builder') . ' ';
+				}
 
                 if ($user->get_error_code() == 'invalid_username') {
 					if ($wppb_generalSettings['loginWith'] == 'email')// if login with email is enabled change the word username with email
@@ -339,6 +351,7 @@ function wppb_login_redirect( $redirect_to, $requested_redirect_to, $user ){
 					$error_string .= '<a href="' . esc_url( $LostPassURL ) . '" title="' . __('Password Lost and Found.', 'profile-builder') . '">' . __('Lost your password?', 'profile-builder') . '</a>';
 
             }
+
             // if the error string is empty it means that none of the fields were completed
             if (empty($error_string) || ( in_array( 'empty_username', $user->get_error_codes() ) && in_array( 'empty_password', $user->get_error_codes() ) ) ) {
                 $error_string = '<strong>' . __('ERROR', 'profile-builder') . '</strong>: ' . __('Both fields are empty.', 'profile-builder') . ' ';

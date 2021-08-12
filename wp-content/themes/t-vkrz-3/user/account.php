@@ -11,9 +11,17 @@ global $info_user_level;
 global $list_t_done;
 get_header();
 global $user_role;
+global $nb_user_votes;
+global $nb_user_tops;
+if (false === ( $user_full_data = get_transient( 'user_'.$user_id.'_get_user_full_data' ) )) {
+    $user_full_data = get_user_full_data($user_id, "author");
+    set_transient( 'user_'.$user_id.'_get_user_full_data', $user_full_data, DAY_IN_SECONDS );
+} else {
+    $user_full_data = get_transient( 'user_'.$user_id.'_get_user_full_data' );
+}
 $list_t_begin   = $user_full_data[0]['list_user_ranking_begin'];
+$list_t_done    = $user_full_data[0]['list_user_ranking_done'];
 ?>
-<!-- BEGIN: Content-->
 <div class="app-content content ">
     <div class="content-wrapper">
         <div class="content-body">
@@ -147,7 +155,7 @@ $list_t_begin   = $user_full_data[0]['list_user_ranking_begin'];
                                                     <span class="ico4">🏆</span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">
-                                                    <?php echo count($list_t_done); ?>
+                                                    <?php echo $nb_user_tops; ?>
                                                 </h2>
                                                 <p class="card-text legende">Tops terminés</p>
                                             </div>

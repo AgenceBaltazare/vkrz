@@ -350,6 +350,12 @@ function wppb_front_end_password_recovery(){
 
             //get the login name and key and verify if they match the ones in the database
             $key = sanitize_text_field( $_POST['key'] );
+
+			if( empty( $key ) ){
+				$password_change_message = __('The key cannot be empty!', 'profile-builder');
+				$output .= wppb_password_recovery_error( $password_change_message, 'wppb_recover_password_password_changed_message2' );
+			}
+
             $user_object = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $wpdb->users WHERE user_activation_key = %s", $key ) );
             if( empty( $user_object ) || ( !empty( $user_object ) && $user_object->ID === absint( $_POST['userData'] ) ) ){
                 $password_change_message = __('Invalid key!', 'profile-builder');
@@ -420,12 +426,13 @@ function wppb_front_end_password_recovery(){
 
 
     //this is the part that shows the forms
-    if( isset( $_GET['key'] ) && !empty( $_GET['key'] ) ){
+    if( isset( $_GET['key'] ) ){
 
-        if( !$password_changed_success ) {
+		$key = sanitize_text_field( $_GET['key'] );
+
+        if( !empty( $key ) && !$password_changed_success ) {
 
             //get the login name and key and verify if they match the ones in the database
-            $key = sanitize_text_field( $_GET['key'] );
             $user = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $wpdb->users WHERE user_activation_key = %s", $key ) );
 
             if( !empty( $user ) ) {
@@ -438,9 +445,14 @@ function wppb_front_end_password_recovery(){
                 $output .= wppb_password_recovery_error('<b>' . __('ERROR:', 'profile-builder') . '</b>' . __('Invalid key!', 'profile-builder'), 'wppb_recover_password_invalid_key_message');
             }
 
-        }
-    }
-    else{
+        } elseif ( !$password_changed_success && !$password_email_sent ) {
+			ob_start();
+			wppb_create_generate_password_form($_POST);
+			$output .= ob_get_contents();
+			ob_end_clean();
+		}
+
+    } else {
         if( !$password_email_sent ) {
             ob_start();
             wppb_create_generate_password_form($_POST);

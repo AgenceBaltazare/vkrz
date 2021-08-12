@@ -1,7 +1,6 @@
 <?php
-global $uuiduser;
 global $user_full_data;
-global $list_t_done;
+$list_t_done      = $user_full_data[0]['list_user_ranking_done'];
 $list_t_begin     = $user_full_data[0]['list_user_ranking_begin'];
 $state            = "";
 $id_tournament    = get_the_ID();
@@ -24,7 +23,6 @@ elseif(array_search($id_tournament, array_column($list_t_begin, 'id_tournoi')) !
 else{
     $state = "todo";
 }
-
 ?>
 <div class="<?php echo $class; ?>">
     <div class="min-tournoi card scaler">
