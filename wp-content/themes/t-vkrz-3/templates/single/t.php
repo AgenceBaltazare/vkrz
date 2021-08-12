@@ -113,7 +113,7 @@ $illu_url   = $illu[0];
                             <div class="card-cta">
                                 <div class="choosecta">
                                     <div class="cta-begin cta-complet">
-                                        <a href="#" id="begin_t" data-tournament="<?php echo $id_tournament; ?>" data-typetop="complet" data-uuid-user="<?php echo $uuiduser; ?>" data-id-ranking="<?= $id_ranking ?>" data-top-question ="<?= $top_question ?>" data-top-title ="<?= $top_title; ?>" data-cat-name="<?= $cat->name; ?>" data-utm="<?= $utm; ?>" class="starting animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
+                                        <a href="#" id="begin_t" data-tournament="<?php echo $id_tournament; ?>" data-typetop="complet" data-uuiduser="<?php echo $uuiduser; ?>" data-id-user="<?= $user_id ?>" data-id-ranking="<?= $id_ranking ?>" data-top-question ="<?= $top_question ?>" data-top-title ="<?= $top_title; ?>" data-cat-name="<?= $cat->name; ?>" data-utm="<?= $utm; ?>" class="starting animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
                                             Débuter mon Top Complet
                                         </a>
                                         <small class="text-muted">
@@ -130,7 +130,7 @@ $illu_url   = $illu[0];
                                     </div>
                                     <?php if($top_number > 10): ?>
                                         <div class="cta-begin cta-top3">
-                                            <a href="#" id="begin_top3" data-typetop="top3" data-tournament="<?php echo $id_tournament; ?>" data-uuiduser="<?php echo $uuiduser; ?>"  data-id-ranking="<?= $id_ranking ?>" data-top-question ="<?= $top_question ?>" data-top-title ="<?= $top_title; ?>" data-cat-name="<?= $cat->name; ?>" data-utm="<?= $utm; ?>" class="starting animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
+                                            <a href="#" id="begin_top3" data-typetop="top3" data-tournament="<?php echo $id_tournament; ?>" data-uuiduser="<?php echo $uuiduser; ?>" data-id-user="<?= $user_id ?>" data-id-ranking="<?= $id_ranking ?>" data-top-question ="<?= $top_question ?>" data-top-title ="<?= $top_title; ?>" data-cat-name="<?= $cat->name; ?>" data-utm="<?= $utm; ?>" class="starting animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
                                                 Faire juste mon Top 3
                                             </a>
                                             <small class="text-muted">
@@ -293,7 +293,9 @@ $illu_url   = $illu[0];
                                     <h6 class="card-subtitle text-muted mb-1">
                                         T'inquiète on te laisse refaire le Top
                                     </h6>
-                                    <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" href="#" class="restart confirm_delete btn btn-outline-primary waves-effect" data-idranking="<?php echo $id_ranking; ?>" data-id-tournament="<?= $id_tournament ?>">
+                                    <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" href="#" class="restart confirm_delete btn btn-outline-primary waves-effect" data-idranking="<?php echo $id_ranking; ?>" data-id-tournament="<?= $id_tournament ?>"
+                                       data-top-question ="<?= $top_question ?>" data-top-title ="<?= $top_title; ?>" data-cat-name="<?= $cat->name; ?>"
+                                       data-id-user="<?= $uuiduser ?>" data-type-top="<?= $typetop; ?>" data-utm="<?= $utm; ?>"  >
                                         Recommencer
                                     </a>
                                 </div>

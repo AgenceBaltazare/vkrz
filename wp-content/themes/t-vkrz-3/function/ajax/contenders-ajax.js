@@ -135,7 +135,7 @@ $(document).ready(function ($) {
                 'top_question': $(this).find('.starting').data('top-question'),
                 'id_top': $(this).find('.starting').data('id-tournament'),
                 'id_user': $(this).find('.starting').data('id-user'),
-                'uuiduser': $(this).find('.starting').data('uuid-user'),
+                'uuiduser': $(this).find('.starting').data('uuiduser'),
                 'type_top': $(this).find('.starting').data('typetop'),
                 'utm': $(this).find('.starting').data('utm'),
                 'event_score': 10
