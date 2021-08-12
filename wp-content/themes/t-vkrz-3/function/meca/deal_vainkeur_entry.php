@@ -1,17 +1,19 @@
 <?php
-function deal_vainkeur_entry($uuidusertofind = false){
+function deal_vainkeur_entry($useridtofind = false){
 
-    global $user_id;
+    global $uuiduser;
 
-    if(!$uuidusertofind){
-        global $uuiduser;
+    if(!$useridtofind){
+        global $user_id;
+    } else {
+        $user_id = $useridtofind;
     }
 
     $nb_vote_vkrz = 0;
     $nb_top_vkrz  = 0;
 
-    if($uuidusertofind){
-        $args_author__in = array($uuidusertofind);
+    if($useridtofind){
+        $args_author__in = array($useridtofind);
         $args_meta_query = array();
     }
     elseif($user_id){
@@ -71,7 +73,7 @@ function deal_vainkeur_entry($uuidusertofind = false){
     if(!$avatar_url){
         $avatar_url = get_bloginfo('template_directory')."/assets/images/vkrz/ninja.png";
     }
-    $info_user_level = get_user_level();
+    $info_user_level = get_user_level($user_id);
 
     $result = array(
         'id_vainkeur'       => $id_vainkeur,

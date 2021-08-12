@@ -120,10 +120,13 @@
 <?php elseif(is_author()): ?>
 
     <?php
+    global $vainkeur_id;
     global $vainkeur_info;
+    global $vainkeur_tops;
     $vainkeur            = get_user_by('slug', get_query_var('author_name'));
     $vainkeur_id         = $vainkeur->ID;
     $vainkeur_info       = deal_vainkeur_entry($vainkeur_id);
+    $vainkeur_tops       = get_user_tops($vainkeur_id);
     ?>
     <title>
         Profil de <?php echo $vainkeur_info['pseudo']; ?> sur VAINKEURZ

@@ -9,9 +9,9 @@ $user_id        = get_user_logged_id();
 $uuiduser       = deal_uuiduser();
 $utm            = deal_utm();
 
-$user_tops      = get_user_tops();
+$user_tops      = get_user_tops(); // transient
 
-$user_infos     = deal_vainkeur_entry();
+$user_infos     = deal_vainkeur_entry(); // transient
 ?>
 <!DOCTYPE html>
 <html class="loading dark-layout" lang="fr" data-layout="dark-layout" data-textdirection="ltr">

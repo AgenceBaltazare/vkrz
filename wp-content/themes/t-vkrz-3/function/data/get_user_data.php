@@ -13,9 +13,13 @@ function get_user_logged_id(){
     return $user_id;
 }
 
-function get_user_tops(){
+function get_user_tops($useridtofind = false){
 
-    global $user_id;
+    if(!$useridtofind){
+        global $user_id;
+    } else {
+        $user_id = $useridtofind;
+    }
 
     if($user_id){
         $args_author__in = array($user_id);
@@ -67,6 +71,7 @@ function get_user_tops(){
                 }
             }
 
+            $state = "";
             if ($done) {
                 $state = "done";
             }
@@ -263,9 +268,13 @@ function find_vkrz_user($uuid_user_r){
 
 }
 
-function get_user_level(){
+function get_user_level($useridtofind = false){
 
-    global $user_id;
+    if(!$useridtofind){
+        global $user_id;
+    } else {
+        $user_id = $useridtofind;
+    }
 
     $level_number = get_field('level_user', 'user_' . $user_id);
 

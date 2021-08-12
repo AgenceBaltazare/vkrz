@@ -3,24 +3,19 @@
     Template Name: Account
 */
 global $uuiduser;
-global $current_user;
-global $user_id;
-global $nb_user_votes;
-global $user_full_data;
-global $info_user_level;
-global $list_t_done;
+global $user_tops;
+global $user_infos;
+
 get_header();
-global $user_role;
-global $nb_user_votes;
-global $nb_user_tops;
-if (false === ( $user_full_data = get_transient( 'user_'.$user_id.'_get_user_full_data' ) )) {
-    $user_full_data = get_user_full_data($user_id, "author");
-    set_transient( 'user_'.$user_id.'_get_user_full_data', $user_full_data, DAY_IN_SECONDS );
-} else {
-    $user_full_data = get_transient( 'user_'.$user_id.'_get_user_full_data' );
+
+$list_user_tops = $user_tops['list_user_tops'];
+
+$list_t_begin = 0;
+foreach($list_user_tops as $top){
+    if($top['state'] == 'begin') {
+        $list_t_begin++;
+    }
 }
-$list_t_begin   = $user_full_data[0]['list_user_ranking_begin'];
-$list_t_done    = $user_full_data[0]['list_user_ranking_done'];
 ?>
 <div class="app-content content ">
     <div class="content-wrapper">
@@ -75,8 +70,8 @@ $list_t_done    = $user_full_data[0]['list_user_ranking_done'];
                                             $tops_in_cat = $cat->count;
                                             $id_cat      = $cat->term_id;
                                             $count_top_done_in_cat = 0;
-                                            foreach($list_t_done as $top_done){
-                                                if($id_cat == $top_done['cat_t']){
+                                            foreach($list_user_tops as $top_done){
+                                                if($id_cat == $top_done['cat_t'] && $top_done['state'] == 'done'){
                                                     $count_top_done_in_cat++;
                                                 }
                                             }
@@ -128,7 +123,7 @@ $list_t_done    = $user_full_data[0]['list_user_ranking_done'];
                                                 </div>
                                                 <div class="user-level">
                                                     <span class="icomax">
-                                                        <?php echo $info_user_level['level_ico']; ?>
+                                                        <?php echo $user_infos['level']; ?>
                                                     </span>
                                                 </div>
                                                 <p class="card-text legende">Niveau actuel</p>
@@ -142,7 +137,7 @@ $list_t_done    = $user_full_data[0]['list_user_ranking_done'];
                                                     <span class="ico4">💎</span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">
-                                                    <?php echo $nb_user_votes; ?>
+                                                    <?php echo $user_infos['nb_vote_vkrz']; ?>
                                                 </h2>
                                                 <p class="card-text legende">Votes</p>
                                             </div>
@@ -155,7 +150,7 @@ $list_t_done    = $user_full_data[0]['list_user_ranking_done'];
                                                     <span class="ico4">🏆</span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">
-                                                    <?php echo $nb_user_tops; ?>
+                                                    <?php echo $user_infos['nb_top_vkrz']; ?>
                                                 </h2>
                                                 <p class="card-text legende">Tops terminés</p>
                                             </div>
@@ -165,7 +160,7 @@ $list_t_done    = $user_full_data[0]['list_user_ranking_done'];
                             </section>
                             <section id="basic-tabs-components">
                                 <ul class="nav nav-tabs" role="tablist">
-                                    <?php if(count($list_t_begin) > 0): ?>
+                                    <?php if($list_t_begin > 0): ?>
                                         <?php $has_t_begin = true; ?>
                                         <li class="nav-item">
                                             <a class="nav-link active" id="homeIcon-tab" data-toggle="tab" href="#tab1" aria-controls="home" role="tab" aria-selected="true">
@@ -180,7 +175,7 @@ $list_t_done    = $user_full_data[0]['list_user_ranking_done'];
                                     </li>
                                 </ul>
                                 <div class="tab-content">
-                                    <?php if(count($list_t_begin) > 0): ?>
+                                    <?php if($list_t_begin > 0): ?>
                                         <div class="tab-pane active" id="tab1" aria-labelledby="homeIcon-tab" role="tabpanel">
                                         <div class="row">
                                             <div class="col-12">
@@ -190,7 +185,7 @@ $list_t_done    = $user_full_data[0]['list_user_ranking_done'];
                                                             <thead>
                                                             <tr>
                                                                 <th class="">
-                                                                    <span class="t-rose"><?php echo count($list_t_begin); ?></span> Tops à terminer
+                                                                    <span class="t-rose"><?php echo $list_t_begin; ?></span> Tops à terminer
                                                                 </th>
                                                                 <th class="text-center">
                                                                     💎
@@ -205,8 +200,8 @@ $list_t_done    = $user_full_data[0]['list_user_ranking_done'];
                                                             </thead>
                                                             <tbody>
                                                             <?php
-                                                            foreach($list_t_begin as $r_user) : ?>
-                                                                <?php if($r_user['nb_votes'] > 0): ?>
+                                                            foreach($list_user_tops as $r_user) : ?>
+                                                                <?php if($r_user['nb_votes'] > 0 && $r_user['state'] == 'begin'): ?>
                                                                     <tr id="top-<?php echo $r_user['id_ranking']; ?>">
                                                                         <td>
                                                                             <div class="media-body">
@@ -265,7 +260,7 @@ $list_t_done    = $user_full_data[0]['list_user_ranking_done'];
                                                             <thead>
                                                             <tr>
                                                                 <th class="">
-                                                                    <span class="t-rose"><?php echo count($list_t_done); ?></span> Tops terminés
+                                                                    <span class="t-rose"><?php echo $user_infos['nb_top_vkrz']; ?></span> Tops terminés
                                                                 </th>
                                                                 <th class="text-right">
                                                                     💎
@@ -283,8 +278,8 @@ $list_t_done    = $user_full_data[0]['list_user_ranking_done'];
                                                             </thead>
                                                             <tbody>
                                                             <?php
-                                                            foreach($list_t_done as $r_user) : ?>
-                                                                <?php if($r_user['nb_votes'] > 0): ?>
+                                                            foreach($list_user_tops as $r_user) : ?>
+                                                                <?php if($r_user['nb_votes'] > 0 && $r_user['state'] == 'done'): ?>
                                                                     <tr id="top-<?php echo $r_user['id_ranking']; ?>">
                                                                         <td>
                                                                             <div class="media-body">
@@ -380,8 +375,8 @@ $list_t_done    = $user_full_data[0]['list_user_ranking_done'];
     </div>
 </div>
 
-<?php foreach($list_t_done as $r_user) : ?>
-    <?php if($r_user['nb_votes'] > 0): ?>
+<?php foreach($list_user_tops as $r_user) : ?>
+    <?php if($r_user['nb_votes'] > 0 && $r_user['state'] == 'done'): ?>
         <div class="vertical-modal-ex">
             <div class="modal fade" id="commentModal-<?php echo $r_user['id_tournoi']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
