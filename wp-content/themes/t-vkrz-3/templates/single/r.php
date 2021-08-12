@@ -1,6 +1,7 @@
 <?php
 get_header();
 global $uuiduser;
+global $user_id;
 global $id_tournament;
 global $top_number;
 global $id_ranking;
