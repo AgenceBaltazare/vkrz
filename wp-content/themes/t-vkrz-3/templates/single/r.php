@@ -48,9 +48,7 @@ foreach($list_cat as $cat ) {
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form class="form form-vertical form-note" data-id-tournament="<?php echo $id_tournament; ?>" data-uuiduser="<?php echo $uuiduser; ?>"
-                data-top-question ="<?= $top_question; ?>" data-top-title ="<?= $top_title; ?>" data-cat-name="<?= $cat->name; ?>"
-                data-id-user="<?= $uuiduser; ?>" data-type-top="<?= $typetop; ?>" data-utm="<?= $utm; ?>" >
+                <form class="form form-vertical form-note" data-id-tournament="<?php echo $id_tournament; ?>" data-uuiduser="<?php echo $uuiduser; ?>">
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-12">
@@ -106,7 +104,7 @@ foreach($list_cat as $cat ) {
         <div class="row">
             <div class="col-md-8">
                 <div class="list-classement">
-                    <div  data-id-tournament="<?= $id_tournament ?>" data-id-ranking="<?= $id_ranking ?>"  data-top-question ="<?= $top_question ?>" data-top-title ="<?= $top_title; ?>" data-cat-name="<?= $cat->name; ?>" data-id-user="<?= $uuiduser ?>" data-type-top="<?= $typetop; ?>" data-utm="<?= $utm; ?>" class="ending row align-items-end justify-content-center">
+                    <div  data-id-tournament="<?= $id_tournament ?>" data-id-ranking="<?= $id_ranking ?>" class="row align-items-end justify-content-center">
                         <?php
                         $i=1; foreach($user_ranking as $c => $p) : ?>
                             <?php if($i == 1): ?>
@@ -365,9 +363,7 @@ foreach($list_cat as $cat ) {
                                 <h6 class="card-subtitle text-muted mb-1">
                                     T'inquiète on te laisse refaire le Top
                                 </h6>
-                                <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-idranking="<?php echo $id_ranking;  ?>" data-id-tournament="<?= $id_tournament ?>"
-                                   data-top-question ="<?= $top_question ?>" data-top-title ="<?= $top_title; ?>" data-cat-name="<?= $cat->name; ?>"
-                                   data-id-user="<?= $uuiduser ?>" data-id-user="<?= $user_id; ?>" data-type-top="<?= $typetop; ?>" data-utm="<?= $utm; ?>" href="#" class="restart confirm_delete btn btn-outline-primary waves-effect">
+                                <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-idranking="<?php echo $id_ranking;  ?>" data-id-tournament="<?= $id_tournament ?>" href="#" class="confirm_delete btn btn-outline-primary waves-effect">
                                     Recommencer
                                 </a>
                             </div>
