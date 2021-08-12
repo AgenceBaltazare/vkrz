@@ -361,7 +361,6 @@ class Profile_Builder_Form_Creator{
                                                 'event_score': 100
                                             }
                                         );
-                                    console.log("test");
                                 </script>
                                 <?php
                                 $wppb_register_success_message = apply_filters( 'wppb_register_success_message', sprintf( __( "The account %1s has been successfully created!", 'profile-builder' ), $account_name ), $account_name );
