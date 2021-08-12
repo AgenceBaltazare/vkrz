@@ -288,7 +288,7 @@ function get_next_duel($id_ranking, $id_tournament){
                 }
 
                 if (is_user_logged_in()) {
-                    delete_transient( 'user_'.get_current_user_id().'_get_user_full_data' );
+                    delete_transient( 'user_'.get_current_user_id().'_get_user_tops' );
                 }
             }
 

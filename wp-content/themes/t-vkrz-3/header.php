@@ -9,9 +9,24 @@ $user_id        = get_user_logged_id();
 $uuiduser       = deal_uuiduser();
 $utm            = deal_utm();
 
-$user_tops      = get_user_tops(); // transient
+if (is_user_logged_in()) {
+    if (false === ( $user_tops = get_transient( 'user_'.$user_id.'_get_user_tops' ) )) {
+        $user_tops = get_user_tops();
+        set_transient( 'user_'.$user_id.'_get_user_tops', $user_tops, DAY_IN_SECONDS );
+    } else {
+        $user_tops = get_transient( 'user_'.$user_id.'_get_user_tops' );
+    }
 
-$user_infos     = deal_vainkeur_entry(); // transient
+    if (false === ( $user_infos = get_transient( 'user_'.$user_id.'_deal_vainkeur_entry' ) )) {
+        $user_infos = deal_vainkeur_entry();
+        set_transient( 'user_'.$user_id.'_deal_vainkeur_entry', $user_infos, DAY_IN_SECONDS );
+    } else {
+        $user_infos = get_transient( 'user_'.$user_id.'_deal_vainkeur_entry' );
+    }
+} else {
+    $user_tops = get_user_tops();
+    $user_infos = deal_vainkeur_entry();
+}
 ?>
 <!DOCTYPE html>
 <html class="loading dark-layout" lang="fr" data-layout="dark-layout" data-textdirection="ltr">

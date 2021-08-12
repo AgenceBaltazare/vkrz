@@ -101,8 +101,7 @@ function get_user_tops($useridtofind = false){
 
     return array(
         "list_user_tops"            => $user_tops_all,
-        "list_user_tops_done_ids"   => $user_tops_done_ids,
-        "user_nb_votes"             => $user_nb_votes
+        "list_user_tops_done_ids"   => $user_tops_done_ids
     );
 }
 

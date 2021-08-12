@@ -125,8 +125,20 @@
     global $vainkeur_tops;
     $vainkeur            = get_user_by('slug', get_query_var('author_name'));
     $vainkeur_id         = $vainkeur->ID;
-    $vainkeur_info       = deal_vainkeur_entry($vainkeur_id);
-    $vainkeur_tops       = get_user_tops($vainkeur_id);
+
+    if (false === ( $vainkeur_tops = get_transient( 'user_'.$vainkeur_id.'_get_user_tops' ) )) {
+        $vainkeur_tops = get_user_tops($vainkeur_id);
+        set_transient( 'user_'.$vainkeur_id.'_get_user_tops', $vainkeur_tops, DAY_IN_SECONDS );
+    } else {
+        $vainkeur_tops = get_transient( 'user_'.$vainkeur_id.'_get_user_tops' );
+    }
+
+    if (false === ( $vainkeur_info = get_transient( 'user_'.$vainkeur_id.'_deal_vainkeur_entry' ) )) {
+        $vainkeur_info = deal_vainkeur_entry($vainkeur_id);
+        set_transient( 'user_'.$vainkeur_id.'_deal_vainkeur_entry', $vainkeur_info, DAY_IN_SECONDS );
+    } else {
+        $vainkeur_info = get_transient( 'user_'.$vainkeur_id.'_deal_vainkeur_entry' );
+    }
     ?>
     <title>
         Profil de <?php echo $vainkeur_info['pseudo']; ?> sur VAINKEURZ
