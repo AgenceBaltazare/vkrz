@@ -1,13 +1,20 @@
 <?php
-function deal_vainkeur_entry(){
+function deal_vainkeur_entry($uuidusertofind = false){
 
     global $user_id;
-    global $uuiduser;
+
+    if(!$uuidusertofind){
+        global $uuiduser;
+    }
 
     $nb_vote_vkrz = 0;
     $nb_top_vkrz  = 0;
 
-    if($user_id){
+    if($uuidusertofind){
+        $args_author__in = array($uuidusertofind);
+        $args_meta_query = array();
+    }
+    elseif($user_id){
         $args_author__in = array($user_id);
         $args_meta_query = array();
     }

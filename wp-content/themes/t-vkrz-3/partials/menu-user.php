@@ -16,7 +16,11 @@ global $user_infos;
         </div>
 
         <ul class="nav navbar-nav d-xl-none">
-            <li class="nav-item"><a class="nav-link menu-toggle" href="javascript:void(0);"><i class="ficon" data-feather="menu"></i></a></li>
+            <li class="nav-item">
+                <a class="nav-link menu-toggle" href="javascript:void(0);">
+                    <i class="ficon" data-feather="menu"></i>
+                </a>
+            </li>
         </ul>
 
         <?php if(!is_home()): ?>
@@ -247,7 +251,7 @@ global $user_infos;
                     <span class="avatar">
                         <span class="avatar-picture" style="background-image: url(<?php echo $user_infos['avatar']; ?>);"></span>
                         <span class="user-niveau">
-                            <?php echo $user_infos['level_ico']; ?>
+                            <?php echo $user_infos['level']; ?>
                         </span>
                     </span>
                 </a>

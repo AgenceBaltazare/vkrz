@@ -1300,6 +1300,8 @@ textarea {
 
 .filtres-bloc {
   display: none; }
+  .filtres-bloc .ui-group {
+    margin-right: 20px; }
 
 .ecommerce-searchbar .input-group .input-group-text {
   background-color: transparent;

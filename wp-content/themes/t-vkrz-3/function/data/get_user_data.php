@@ -1,19 +1,10 @@
 <?php
-/**
- * Get user full data
- *
- * @param   {String}    user_id     - uuiduser or author_id
- * @param   {String}    type        - uuiduser by default or author
- * @returns {Array}
- */
 
 function get_user_logged_id(){
 
     if(is_user_logged_in()){
         $current_user   = wp_get_current_user();
         $user_id        = $current_user->ID;
-        $user_info      = get_userdata($user_id);
-        $user_role      = $user_info->roles[0];
     }
     else{
         $user_id = false;
@@ -276,7 +267,7 @@ function get_user_level(){
 
     global $user_id;
 
-    $level_number = get_field('level_user', 0, 'user_' . $user_id);
+    $level_number = get_field('level_user', 'user_' . $user_id);
 
     switch($level_number){
 

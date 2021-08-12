@@ -24,7 +24,6 @@ $user_infos     = deal_vainkeur_entry();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <link rel="apple-touch-icon" sizes="120x120" href="<?php bloginfo('template_directory'); ?>/assets/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="<?php bloginfo('template_directory'); ?>/assets/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="<?php bloginfo('template_directory'); ?>/assets/favicon/favicon-16x16.png">
@@ -69,6 +68,7 @@ $user_infos     = deal_vainkeur_entry();
 
     <?php wp_head(); ?>
 </head>
+
 <?php
 if(is_single()){
     $list_body_class = "vertical-layout vertical-menu-modern navbar-floating footer-static menu-collapsed";
@@ -78,6 +78,7 @@ else{
 }
 ?>
 <body <?php body_class($list_body_class); ?> data-open="click" data-menu="vertical-menu-modern" data-col="">
+
 <?php if($user_infos['user_role'] != "administrator"): ?>
 	<!-- Google Tag Manager (noscript) -->
 	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KH379F5" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
