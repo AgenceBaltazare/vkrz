@@ -1,24 +1,18 @@
 <?php
-global $user_full_data;
-$list_t_done      = $user_full_data[0]['list_user_ranking_done'];
-$list_t_begin     = $user_full_data[0]['list_user_ranking_begin'];
+global $user_tops;
+$list_user_tops   = $user_tops['list_user_tops'];
 $state            = "";
 $id_tournament    = get_the_ID();
 $illu             = get_the_post_thumbnail_url($id_tournament, 'medium');
 if(is_home() || is_single()){
     $class        = "swiper-slide";
 }
-elseif(is_archive()){
-    $class        = "col-md-4 col-lg-3 col-xxl-2";
-}
 else{
     $class        = "col-12";
 }
-if(array_search($id_tournament, array_column($list_t_done, 'id_tournoi')) !== false) {
-    $state = "done";
-}
-elseif(array_search($id_tournament, array_column($list_t_begin, 'id_tournoi')) !== false) {
-    $state = "begin";
+$user_sinle_top_data = array_search($id_tournament, array_column($list_user_tops, 'id_tournoi'));
+if($user_sinle_top_data !== false) {
+    $state = $list_user_tops[$user_sinle_top_data]['state'];
 }
 else{
     $state = "todo";

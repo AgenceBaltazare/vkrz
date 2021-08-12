@@ -52,7 +52,7 @@ function wppb_recaptcha_get_html ( $pubkey, $form_name='' ){
     $field = wppb_get_recaptcha_field();
 
     if ( empty($pubkey) )
-        echo $errorMessage = '<span class="error">'. __("To use reCAPTCHA you must get an API key from", "profile-builder"). " <a href='https://www.google.com/recaptcha/admin/create'>https://www.google.com/recaptcha/admin/create</a></span><br/><br/>";
+        echo '<span class="error">'. esc_html__("To use reCAPTCHA you must get an API key from", "profile-builder"). " <a href='https://www.google.com/recaptcha/admin/create'>https://www.google.com/recaptcha/admin/create</a></span><br/><br/>";
 
     // extra class needed for Invisible reCAPTCHA html
     $invisible_class = '';
@@ -95,7 +95,7 @@ function wppb_recaptcha_script_footer(){
     //get site key
     $pubkey = '';
     if( isset( $field['public-key'] ) ) {
-        $pubkey = trim( $field['public-key'] );
+        $pubkey = sanitize_text_field( $field['public-key'] );
     }
 
     // Check if we have a reCAPTCHA type
@@ -111,7 +111,8 @@ function wppb_recaptcha_script_footer(){
         $callback_conditions = 'jQuery(".wppb-recaptcha-element")';
         $invisible_parameters = '';
     }
-
+    //the section below is properly escaped or the variables contain static strings
+    // phpcs:disable
     echo '<script>
         var wppbRecaptchaCallback = function() {
             if( typeof window.wppbRecaptchaCallbackExecuted == "undefined" ){//see if we executed this before
@@ -138,11 +139,12 @@ function wppb_recaptcha_script_footer(){
             wppbRecaptchaCallback();
         });
     </script>';
-
+    // phpcs:enable
     if( $field['recaptcha-type'] === 'invisible' ) {
         echo '<script>
             /* success callback for invisible recaptcha. it submits the form that contains the right token response */
             function wppbInvisibleRecaptchaOnSubmit(token){
+
                 var elem = jQuery(".g-recaptcha-response").filter(function(){
                     return jQuery(this).val() === token;
                 });
@@ -161,8 +163,7 @@ function wppb_recaptcha_script_footer(){
                     var form = elem.closest("form");
                     form.submit();
                 } else {
-                    jQuery(document).trigger( "wppb_invisible_recaptcha_success" )
-
+                    jQuery(document).trigger( "wppb_invisible_recaptcha_success", jQuery( ".form-submit input[type=\'submit\']", elem.closest("form") ) )
                 }
 
             }
@@ -187,7 +188,7 @@ function wppb_recaptcha_script_footer(){
 
     $source = apply_filters( 'wppb_recaptcha_custom_field_source', 'www.google.com' );
 
-    echo '<script src="https://'.$source.'/recaptcha/api.js?onload=wppbRecaptchaCallback&render=explicit'.$lang.'" async defer></script>';
+    echo '<script src="https://'. esc_attr( $source ) .'/recaptcha/api.js?onload=wppbRecaptchaCallback&render=explicit'.esc_attr( $lang ).'" async defer></script>';
 }
 add_action('wp_footer', 'wppb_recaptcha_script_footer', 9999);
 add_action('login_footer', 'wppb_recaptcha_script_footer');
@@ -213,13 +214,13 @@ class wppb_ReCaptchaResponse {
 function wppb_recaptcha_check_answer ( $privkey, $remoteip, $response ){
 
     if ( $remoteip == null || $remoteip == '' )
-        echo '<span class="error">'. __("For security reasons, you must pass the remote ip to reCAPTCHA!", "profile-builder") .'</span><br/><br/>';
+        echo '<span class="error">'. esc_html__("For security reasons, you must pass the remote ip to reCAPTCHA!", "profile-builder") .'</span><br/><br/>';
 
     // Discard empty solution submissions
     if ($response == null || strlen($response) == 0) {
         $recaptchaResponse = new wppb_ReCaptchaResponse();
 
-        if( isset( $_POST['wppb_recaptcha_load_error'] ) && wp_verify_nonce( $_POST['wppb_recaptcha_load_error'], 'wppb_recaptcha_init_error' ) )
+        if( isset( $_POST['wppb_recaptcha_load_error'] ) && wp_verify_nonce( sanitize_text_field( $_POST['wppb_recaptcha_load_error'] ), 'wppb_recaptcha_init_error' ) )
             $recaptchaResponse->is_valid = true;
         else
             $recaptchaResponse->is_valid = false;
@@ -257,10 +258,10 @@ function wppb_validate_captcha_response( $publickey, $privatekey ){
     else {
         $recaptcha_response_field = '';
     }
+    if( isset( $_SERVER["REMOTE_ADDR"] ) )
+        $resp = wppb_recaptcha_check_answer($privatekey, sanitize_text_field( $_SERVER["REMOTE_ADDR"] ), $recaptcha_response_field );
 
-    $resp = wppb_recaptcha_check_answer($privatekey, $_SERVER["REMOTE_ADDR"], $recaptcha_response_field );
-
-    if ( !empty( $_POST ) )
+    if ( !empty( $_POST ) && isset( $resp ) )
         return ( ( !$resp->is_valid ) ? false : true );
 }
 
@@ -490,11 +491,11 @@ function wppb_display_recaptcha_wp_login_form(){
                 if (!empty($item_description))
                     $recaptcha_output .= '<span class="wppb-description-delimiter">' . $item_description . '</span>';
 
-                echo '<div class="wppb-form-field wppb-recaptcha" style="margin-left:-14px; margin-bottom: 15px;">' . $recaptcha_output . '</div>';
+                echo '<div class="wppb-form-field wppb-recaptcha" style="margin-left:-14px; margin-bottom: 15px;">' . $recaptcha_output . '</div>'; /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ /* properly escaped when constructing the var */
             }
             else {
                 // output Invisible reCAPTCHA html
-                echo wppb_recaptcha_get_html( trim($field['public-key']));
+                echo wppb_recaptcha_get_html( trim($field['public-key'])); /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ /* properly escaped when constructing the var */
             }
         }
     }
@@ -557,11 +558,11 @@ function wppb_display_recaptcha_default_wp_recover_password() {
                 if (!empty($item_description))
                     $recaptcha_output .= '<span class="wppb-description-delimiter">' . $item_description . '</span>';
 
-                echo '<div class="wppb-form-field wppb-recaptcha" style="margin-left:-14px; margin-bottom: 15px;">' . $recaptcha_output . '</div>';
+                echo '<div class="wppb-form-field wppb-recaptcha" style="margin-left:-14px; margin-bottom: 15px;">' . $recaptcha_output . '</div>'; /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ /* properly escaped when constructing the var */
             }
             else {
                 // output Invisible reCAPTCHA html
-                echo wppb_recaptcha_get_html($publickey);
+                echo wppb_recaptcha_get_html($publickey); /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ /* properly escaped when constructing the var */
             }
         }
     }
@@ -582,7 +583,7 @@ function wppb_verify_recaptcha_default_wp_recover_password(){
 
     // If reCAPTCHA not entered or incorrect reCAPTCHA answer
         if ( isset( $_REQUEST['g-recaptcha-response'] ) && ( ( "" ===  $_REQUEST['g-recaptcha-response'] )  || ( $wppb_recaptcha_response == false ) ) ) {
-            wp_die( __('Please enter a (valid) reCAPTCHA value','profile-builder') . '<br />' . __( "Click the BACK button on your browser, and try again.", 'profile-builder' ) ) ;
+            wp_die( esc_html__('Please enter a (valid) reCAPTCHA value','profile-builder') . '<br />' . esc_html__( "Click the BACK button on your browser, and try again.", 'profile-builder' ) ) ;
         }
     }
 }
@@ -609,11 +610,11 @@ function wppb_display_recaptcha_default_wp_register(){
                     if (!empty($item_description))
                         $recaptcha_output .= '<span class="wppb-description-delimiter">' . $item_description . '</span>';
 
-                    echo '<div class="wppb-form-field wppb-recaptcha" style="margin-left:-14px; margin-bottom: 15px;">' . $recaptcha_output . '</div>';
+                    echo '<div class="wppb-form-field wppb-recaptcha" style="margin-left:-14px; margin-bottom: 15px;">' . $recaptcha_output . '</div>'; /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ /* properly escaped when constructing the var */
                 }
                 else {
                     // output reCAPTCHA html
-                    echo wppb_recaptcha_get_html($publickey);
+                    echo wppb_recaptcha_get_html($publickey); /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ /* properly escaped when constructing the var */
                 }
             }
     }

@@ -144,7 +144,7 @@ add_filter( 'wppb_backend_save_form_field', 'wppb_save_repeater_values', 10, 4 )
  */
 function wppb_rpf_add_repeater_groups( $manage_fields, $args ){
 
-    if ( empty( $args['context'] ) ||  ! in_array( $args['context'], array( 'user_activation', 'user_signup', 'edit_profile_auto_login_after_password_change', 'validate_backend', 'validate_frontend', 'mustache_variable', 'email_customizer', 'map_api_key', 'upload_helper', 'multi_step_forms' ) ) ) {
+    if ( !is_array($manage_fields) || empty( $args['context'] ) ||  ! in_array( $args['context'], array( 'user_activation', 'user_signup', 'edit_profile_auto_login_after_password_change', 'validate_backend', 'validate_frontend', 'mustache_variable', 'email_customizer', 'map_api_key', 'upload_helper', 'multi_step_forms' ) ) ) {
         return $manage_fields;
     }
 
@@ -194,12 +194,12 @@ function wppb_rpf_add_repeater_groups( $manage_fields, $args ){
                     break;
 
                 case 'multi_step_forms':
-                    $extra_groups_count = esc_attr( $args['extra_groups_count'] );
+                    $extra_groups_count = sanitize_text_field( $args['extra_groups_count'] );
                     break;
 
                 default:
                     if ( !empty( $_REQUEST[ $repeater_field['meta-name'] . '_extra_groups_count' ]) ) {
-                        $extra_groups_count = esc_attr($_REQUEST[$repeater_field['meta-name'] . '_extra_groups_count']);
+                        $extra_groups_count = sanitize_text_field( $_REQUEST[$repeater_field['meta-name'] . '_extra_groups_count'] );
                     }
             }
 

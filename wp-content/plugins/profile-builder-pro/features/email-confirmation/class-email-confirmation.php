@@ -234,7 +234,7 @@ class wpp_list_unfonfirmed_email_table extends PB_WP_List_Table {
 		
 	function wppb_process_bulk_action_message( $message, $url ){
 		
-		echo '<script type=\'text/javascript\'>confirmECActionBulk( "'.$url.'", "'.$message.'" )</script>';
+		echo '<script type=\'text/javascript\'>confirmECActionBulk( "'.esc_js( $url ).'", "'.esc_js( $message ).'" )</script>';
 	}	
 
     function wppb_process_bulk_action() {
@@ -243,34 +243,40 @@ class wpp_list_unfonfirmed_email_table extends PB_WP_List_Table {
 		
 		if ( current_user_can( apply_filters( 'wppb_email_confirmation_user_capability', 'manage_options' ) ) ){
 			if( 'delete' === $this->current_action() ) {
-				foreach ( $_GET['user'] as $user ){
-					$sql_result = $wpdb->query( $wpdb->prepare( "DELETE FROM ".$wpdb->base_prefix."signups WHERE user_email = %s", sanitize_email( $user ) ) );
-					
-					if ( !$sql_result )
-						$this->wppb_process_bulk_action_message( sprintf( __( "%s couldn't be deleted", "profile-builder" ), $result->user_login ), get_bloginfo('url').'/wp-admin/users.php?page=unconfirmed_emails' );
+			    if( !empty( $_GET['user'] ) && is_array( $_GET['user'] ) ) {
+                    foreach (  array_map( 'sanitize_email', $_GET['user'] ) as $user) {
+                        $sql_result = $wpdb->query($wpdb->prepare("DELETE FROM " . $wpdb->base_prefix . "signups WHERE user_email = %s", $user));
 
-				}
+                        if (!$sql_result)
+                            $this->wppb_process_bulk_action_message(sprintf(__("%s couldn't be deleted", "profile-builder"), $result->user_login), get_bloginfo('url') . '/wp-admin/users.php?page=unconfirmed_emails');
+
+                    }
+                }
 				
 				$this->wppb_process_bulk_action_message( __( 'All users have been successfully deleted', 'profile-builder' ), get_bloginfo('url').'/wp-admin/users.php?page=unconfirmed_emails' );
 			
 			}elseif( 'confirm' === $this->current_action() ) {
-				foreach ( $_GET['user'] as $user ){
-					$sql_result = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM " . $wpdb->base_prefix . "signups WHERE user_email = %s", sanitize_email( $user ) ), ARRAY_A );
+                if( !empty( $_GET['user'] ) && is_array( $_GET['user'] ) ) {
+                    foreach ( array_map( 'sanitize_email', $_GET['user'] ) as $user) {
+                        $sql_result = $wpdb->get_row($wpdb->prepare("SELECT * FROM " . $wpdb->base_prefix . "signups WHERE user_email = %s", $user), ARRAY_A);
 
-					if ( $sql_result )
-						wppb_manual_activate_signup( $sql_result['activation_key'] );
-				}
+                        if ($sql_result)
+                            wppb_manual_activate_signup($sql_result['activation_key']);
+                    }
+                }
 
 				$this->wppb_process_bulk_action_message( __( 'The selected users have been activated', 'profile-builder' ), get_bloginfo('url').'/wp-admin/users.php?page=unconfirmed_emails' );
 				
 			}elseif( 'resend' === $this->current_action() ) {
-				foreach ( $_GET['user'] as $user ){
-					$sql_result = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM " . $wpdb->base_prefix . "signups WHERE user_email = %s", sanitize_email( $user ) ), ARRAY_A );
-					
-					if ( $sql_result )
-						wppb_signup_user_notification( esc_sql( $sql_result['user_login'] ), esc_sql( $sql_result['user_email'] ), $sql_result['activation_key'], $sql_result['meta'] );
+                if( !empty( $_GET['user'] ) && is_array( $_GET['user'] ) ) {
+                    foreach ( array_map( 'sanitize_email', $_GET['user'] ) as $user ) {
+                        $sql_result = $wpdb->get_row($wpdb->prepare("SELECT * FROM " . $wpdb->base_prefix . "signups WHERE user_email = %s", $user), ARRAY_A);
 
-				}
+                        if ($sql_result)
+                            wppb_signup_user_notification(esc_sql($sql_result['user_login']), esc_sql($sql_result['user_email']), $sql_result['activation_key'], $sql_result['meta']);
+
+                    }
+                }
 
 				$this->wppb_process_bulk_action_message( __( 'The selected users have had their activation emails resent', 'profile-builder' ), get_bloginfo('url').'/wp-admin/users.php?page=unconfirmed_emails' );
 			}
@@ -311,7 +317,7 @@ class wpp_list_unfonfirmed_email_table extends PB_WP_List_Table {
 
         /* determine offset */
         if( !empty( $_REQUEST['paged'] ) ){
-            $offset = ( esc_attr( $_REQUEST['paged'] ) -1 ) * $per_page;
+            $offset = ( sanitize_text_field( $_REQUEST['paged'] ) -1 ) * $per_page;
         }
         else
             $offset = 0;
@@ -334,7 +340,7 @@ class wpp_list_unfonfirmed_email_table extends PB_WP_List_Table {
         /* handle the WHERE clause */
         $where = "active = 0";
         if( isset( $_REQUEST['s'] ) && !empty( $_REQUEST['s'] ) ){
-            $where .= " AND ( user_login LIKE '%".esc_sql($_REQUEST['s'])."%' OR user_email LIKE '%".esc_sql($_REQUEST['s'])."%' OR registered LIKE '%".esc_sql($_REQUEST['s'])."%' )";
+            $where .= $wpdb->prepare( " AND ( user_login LIKE %s OR user_email LIKE %s OR registered LIKE %s )", '%' . sanitize_text_field( $_REQUEST['s'] ) . '%', '%' . sanitize_text_field( $_REQUEST['s'] ) . '%' , '%' . sanitize_text_field( $_REQUEST['s'] ) . '%' );
         }
         /* since version 2.0.7 for multisite we add a 'registered_for_blog_id' meta in the registration process
             so we can display only the users registered on that blog. Also for backwards compatibility we display the users that don't have that meta at all */
@@ -455,17 +461,17 @@ function wppb_unconfirmed_email_address_custom_menu_page(){
     ?>
     <div class="wrap">
         
-        <div class="wrap"><div id="icon-users" class="icon32"></div><h2><?php _e('Users with Unconfirmed Email Address', 'profile-builder');?></h2></div>
+        <div class="wrap"><div id="icon-users" class="icon32"></div><h2><?php esc_html_e('Users with Unconfirmed Email Address', 'profile-builder');?></h2></div>
 		
 		<ul class="subsubsub">
-			<li class="all"><a href="users.php"><?php _e('All Users', 'profile-builder');?></a></li>
+			<li class="all"><a href="users.php"><?php esc_html_e('All Users', 'profile-builder');?></a></li>
 		</ul>
         
         <!-- Forms are NOT created automatically, so you need to wrap the table in one to use features like bulk actions -->
         <form id="movies-filter" method="get">
             <!-- For plugins, we also need to ensure that the form posts back to our current page -->
-            <?php $listTable->search_box( __( 'Search Users' ), 'user' ); ?>
-            <input type="hidden" name="page" value="<?php echo esc_attr( $_REQUEST['page'] ); ?>" />
+            <?php $listTable->search_box( __( 'Search Users', 'profile-builder' ), 'user' ); ?>
+            <input type="hidden" name="page" value="<?php echo isset( $_REQUEST['page'] ) ? esc_attr( sanitize_text_field( $_REQUEST['page'] ) ) : ''; ?>" />
             <!-- Now we can render the completed list table -->
             <?php $listTable->display() ?>
         </form>
@@ -481,7 +487,7 @@ function wppb_ec_screen_options(){
     $option = 'per_page';
 
     $args = array(
-        'label' => __( 'Number of items per page:' ),//use the default wordpress domain
+        'label' => __( 'Number of items per page:' , 'profile-builder' ),//use the default wordpress domain
         'default' => 20,
         'option' => 'users_per_page' //this is the same option as the one on the normal User screen
     );

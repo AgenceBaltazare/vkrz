@@ -219,7 +219,7 @@ function wppb_belongs_to_repeater_with_conditional_logic( $field ){
                     $repeater_count = count( $repeater_group );
                     for ( $i = 0; $i < $repeater_count; $i++ ){
                         if ( $repeater_group[ $i ][ 'field' ] == 'Upload' && isset( $repeater_group[ $i ][ 'simple-upload' ] ) && $repeater_group[ $i ][ 'simple-upload' ] == 'yes' && isset( $_REQUEST[ $form_field[ 'meta-name' ] . '_extra_groups_count' ] ) ){
-                            $groups = $_REQUEST[ $form_field[ 'meta-name' ] . '_extra_groups_count' ];
+                            $groups = absint( $_REQUEST[ $form_field[ 'meta-name' ] . '_extra_groups_count' ] );
                             for ( $j = 0; $j <= $groups; $j++ ){
                                 $name = $repeater_group[ $i ][ 'meta-name' ];
                                 if ( $j != 0 ){

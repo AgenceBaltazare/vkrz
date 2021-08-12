@@ -3,7 +3,7 @@
 Plugin Name: Profile Builder Pro
 Plugin URI: https://www.cozmoslabs.com/wordpress-profile-builder/
 Description: Login, registration and edit profile shortcodes for the front-end. Also you can choose what fields should be displayed or add new (custom) ones both in the front-end and in the dashboard.
-Version: 3.5.0
+Version: 3.5.1
 Author: Cozmoslabs
 Author URI: https://www.cozmoslabs.com/
 Text Domain: profile-builder
@@ -70,7 +70,7 @@ function wppb_plugin_init() {
          *
          *
          */
-        define('PROFILE_BUILDER_VERSION', '3.5.0' );
+        define('PROFILE_BUILDER_VERSION', '3.5.1' );
         define('WPPB_PLUGIN_DIR', plugin_dir_path(__FILE__));
         define('WPPB_PLUGIN_URL', plugin_dir_url(__FILE__));
         define('WPPB_PLUGIN_BASENAME', plugin_basename(__FILE__));
@@ -142,6 +142,13 @@ function wppb_plugin_init() {
         include_once(WPPB_PLUGIN_DIR . '/features/login-widget/login-widget.php');
         include_once(WPPB_PLUGIN_DIR . '/features/roles-editor/roles-editor.php');
         include_once(WPPB_PLUGIN_DIR . '/features/content-restriction/content-restriction.php');
+
+        /* include 2fa class */
+        if (file_exists(WPPB_PLUGIN_DIR . '/features/two-factor-authentication/class-two-factor-authentication.php')){
+            include_once(WPPB_PLUGIN_DIR . '/features/two-factor-authentication/class-two-factor-authentication.php');
+            new WPPB_Two_Factor_Authenticator ();
+        }
+
 
         if (file_exists(WPPB_PLUGIN_DIR . '/update/update-checker.php')) {
             include_once(WPPB_PLUGIN_DIR . '/update/update-checker.php');
@@ -254,7 +261,7 @@ if (file_exists( plugin_dir_path(__FILE__) . '/front-end/extra-fields/upload/upl
 /* add a redirect when plugin is activated */
 if( !function_exists( 'wppb_activate_plugin_redirect' ) ){
     function wppb_activate_plugin_redirect( $plugin ) {
-        if( $plugin == plugin_basename( __FILE__ ) ) {
+        if( !wp_doing_ajax() && $plugin == plugin_basename( __FILE__ ) ) {
             wp_safe_redirect( admin_url( 'admin.php?page=profile-builder-basic-info' ) );
             exit();
         }

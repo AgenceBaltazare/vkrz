@@ -79,7 +79,9 @@ function wppb_check_email_value( $message, $field, $request_data, $form_location
                 return __('This email is already in use.', 'profile-builder') . '<br/>' . __('Please try a different one!', 'profile-builder');
 
             if ($form_location == 'edit_profile') {
-                $url_parts = parse_url($_SERVER['HTTP_REFERER']);
+                if( isset( $_SERVER['HTTP_REFERER'] ) )
+                    $url_parts = parse_url(  esc_url_raw( $_SERVER['HTTP_REFERER'] ) );
+
                 if (isset($url_parts['query'])) {
                     parse_str($url_parts['query'], $query);
                 }

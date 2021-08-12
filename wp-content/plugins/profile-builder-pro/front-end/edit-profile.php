@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 add_action( 'init', 'wppb_autologin_after_password_changed' );
 function wppb_autologin_after_password_changed(){
     if( isset( $_POST['action'] ) && $_POST['action'] === 'edit_profile' ){
-        if( isset( $_POST['passw1'] ) && !empty( $_POST['passw1'] ) && !empty( $_POST['form_name'] ) && isset(  $_POST['edit_profile_'. $_POST['form_name'] .'_nonce_field'] ) && wp_verify_nonce( $_POST['edit_profile_'. $_POST['form_name'] .'_nonce_field'], 'wppb_verify_form_submission' ) ){
+        if( isset( $_POST['passw1'] ) && !empty( $_POST['passw1'] ) && !empty( $_POST['form_name'] ) && isset(  $_POST['edit_profile_'. $_POST['form_name'] .'_nonce_field'] ) && wp_verify_nonce( sanitize_text_field( $_POST['edit_profile_'. $_POST['form_name'] .'_nonce_field'] ), 'wppb_verify_form_submission' ) ){
 
             /* all the error checking filters are defined in each field file so we need them here */
             if ( file_exists ( WPPB_PLUGIN_DIR.'/front-end/default-fields/default-fields.php' ) )
@@ -52,7 +52,7 @@ function wppb_autologin_after_password_changed(){
                     if( !isset( $_GET['edit_user'] ) ) {
                         wp_clear_auth_cookie();
                         /* set the new password for the user */
-                        wp_set_password($_POST['passw1'], $user_id);
+                        wp_set_password($_POST['passw1'], $user_id);//phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
                         // Here we calculate the expiration length of the current auth cookie and compare it to the default expiration.
                         // If it's greater than this, then we know the user checked 'Remember Me' when they logged in.
                         $logged_in_cookie = wp_parse_auth_cookie('', 'logged_in');
@@ -63,7 +63,7 @@ function wppb_autologin_after_password_changed(){
                         wp_set_auth_cookie($user_id, $remember, '', wp_get_session_token() );
                     }
                     else{
-                        wp_set_password($_POST['passw1'], $user_id);
+                        wp_set_password($_POST['passw1'], $user_id); //phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
                     }
 
                     /* log out of other sessions or all sessions if the admin is editing the profile */

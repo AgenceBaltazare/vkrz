@@ -60,7 +60,7 @@ function wppb_content_restriction_content() {
 
     ?>
     <div class="wrap wppb-content-restriction-wrap">
-        <h2><?php _e( 'Content Restriction Settings', 'profile-builder' ); ?></h2>
+        <h2><?php esc_html_e( 'Content Restriction Settings', 'profile-builder' ); ?></h2>
 
         <?php settings_errors(); ?>
 
@@ -82,58 +82,58 @@ function wppb_content_restriction_content() {
                     }
                     ?>
                      <div class="wppb-restriction-fields-group">                        
-                         <label class="wppb-restriction-label" for="contentRestrictionSelect"><?php _e( 'Enable Content Restriction', 'profile-builder' ); ?></label>
+                         <label class="wppb-restriction-label" for="contentRestrictionSelect"><?php esc_html_e( 'Enable Content Restriction', 'profile-builder' ); ?></label>
                          <div class="wppb-restriction-activated">
                             <select id="contentRestrictionSelect" name="wppb_content_restriction_settings[contentRestriction]">
-                                <option value="no" <?php if( $content_restriction_activated == 'no' ) echo 'selected'; ?>><?php _e( 'No', 'profile-builder' ); ?></option>
-                                <option value="yes" <?php if( $content_restriction_activated == 'yes' ) echo 'selected'; ?>><?php _e( 'Yes', 'profile-builder' ); ?></option>
+                                <option value="no" <?php if( $content_restriction_activated == 'no' ) echo 'selected'; ?>><?php esc_html_e( 'No', 'profile-builder' ); ?></option>
+                                <option value="yes" <?php if( $content_restriction_activated == 'yes' ) echo 'selected'; ?>><?php esc_html_e( 'Yes', 'profile-builder' ); ?></option>
                             </select>
-                             <p class="description"><?php _e( 'Activate Content Restriction', 'profile-builder' ); ?></p>
+                             <p class="description"><?php esc_html_e( 'Activate Content Restriction', 'profile-builder' ); ?></p>
                         </div>
                      </div>
 
                 <div class="wppb-restriction-fields-group">
-                    <label class="wppb-restriction-label"><?php _e( 'Type of Restriction', 'profile-builder' ); ?></label>
+                    <label class="wppb-restriction-label"><?php esc_html_e( 'Type of Restriction', 'profile-builder' ); ?></label>
 
                     <div class="wppb-restriction-type">
                         <label for="wppb-content-restrict-type-message">
                             <input type="radio" id="wppb-content-restrict-type-message" value="message" <?php echo ( ( $wppb_content_restriction_settings != 'not_found' && $wppb_content_restriction_settings['restrict_type'] == 'message' ) ? 'checked="checked"' : '' ); ?> name="wppb_content_restriction_settings[restrict_type]">
-                            <?php _e( 'Message', 'profile-builder' ); ?>
+                            <?php esc_html_e( 'Message', 'profile-builder' ); ?>
                         </label>
 
                         <label for="wppb-content-restrict-type-redirect">
                             <input type="radio" id="wppb-content-restrict-type-redirect" value="redirect" <?php echo ( ( $wppb_content_restriction_settings != 'not_found' && $wppb_content_restriction_settings['restrict_type'] == 'redirect' ) ? 'checked="checked"' : '' ); ?> name="wppb_content_restriction_settings[restrict_type]">
-                            <?php _e( 'Redirect', 'profile-builder' ); ?>
+                            <?php esc_html_e( 'Redirect', 'profile-builder' ); ?>
                         </label>
 
-                        <p class="description" style="margin-top: 10px;"><?php echo __( 'If you select "Message", the post\'s content will be protected by being replaced with a custom message.', 'profile-builder' ); ?></p>
-                        <p class="description"><?php echo __( 'If you select "Redirect", the post\'s content will be protected by redirecting the user to the URL you specify. The redirect happens only when accessing a single post. On archive pages the restriction message will be displayed, instead of the content.', 'profile-builder' ); ?></p>
+                        <p class="description" style="margin-top: 10px;"><?php echo esc_html__( 'If you select "Message", the post\'s content will be protected by being replaced with a custom message.', 'profile-builder' ); ?></p>
+                        <p class="description"><?php echo esc_html__( 'If you select "Redirect", the post\'s content will be protected by redirecting the user to the URL you specify. The redirect happens only when accessing a single post. On archive pages the restriction message will be displayed, instead of the content.', 'profile-builder' ); ?></p>
                     </div>
                 </div>
 
                 <div class="wppb-restriction-fields-group">
-                    <label class="wppb-restriction-label"><?php _e( 'Redirect URL', 'profile-builder' ); ?></label>
+                    <label class="wppb-restriction-label"><?php esc_html_e( 'Redirect URL', 'profile-builder' ); ?></label>
                     <input type="text" class="widefat" name="wppb_content_restriction_settings[redirect_url]" value="<?php echo ( ( $wppb_content_restriction_settings != 'not_found' && ! empty( $wppb_content_restriction_settings['redirect_url'] ) ) ? esc_url( $wppb_content_restriction_settings['redirect_url'] ) : '' ); ?>" />
                 </div>
 
                 <div class="wppb-restriction-fields-group">
-                    <label class="wppb-restriction-label"><?php _e( 'Message for logged-out users', 'profile-builder' ); ?></label>
+                    <label class="wppb-restriction-label"><?php esc_html_e( 'Message for logged-out users', 'profile-builder' ); ?></label>
                     <?php wp_editor( wppb_get_restriction_content_message( 'logged_out' ), 'message_logged_out', array( 'textarea_name' => 'wppb_content_restriction_settings[message_logged_out]', 'editor_height' => 250 ) ); ?>
                 </div>
 
                 <div class="wppb-restriction-fields-group">
-                    <label class="wppb-restriction-label"><?php _e( 'Message for logged-in users', 'profile-builder' ); ?></label>
+                    <label class="wppb-restriction-label"><?php esc_html_e( 'Message for logged-in users', 'profile-builder' ); ?></label>
                     <?php wp_editor( wppb_get_restriction_content_message( 'logged_in' ), 'message_logged_in', array( 'textarea_name' => 'wppb_content_restriction_settings[message_logged_in]', 'editor_height' => 250 ) ); ?>
                 </div>
 
                 <div class="wppb-restriction-fields-group">
-                    <label class="wppb-restriction-label" for="restricted-posts-preview"><?php echo __( 'Restricted Posts Preview', 'profile-builder' ) ?></label>
+                    <label class="wppb-restriction-label" for="restricted-posts-preview"><?php echo esc_html__( 'Restricted Posts Preview', 'profile-builder' ) ?></label>
 
                     <div class="wppb-restriction-post-preview">
                         <div>
                             <label>
                                 <input type="radio" name="wppb_content_restriction_settings[post_preview]" value="none" <?php echo ( ( $wppb_content_restriction_settings != 'not_found' ) && $wppb_content_restriction_settings['post_preview'] == 'none' ? 'checked' : '' ); ?> />
-                                <span><?php echo __( 'None', 'profile-builder' ); ?></span>
+                                <span><?php echo esc_html__( 'None', 'profile-builder' ); ?></span>
                             </label>
                         </div>
 
@@ -142,7 +142,7 @@ function wppb_content_restriction_content() {
                                 <input type="radio" name="wppb_content_restriction_settings[post_preview]" value="trim-content" <?php echo ( ( $wppb_content_restriction_settings != 'not_found' ) && $wppb_content_restriction_settings['post_preview'] == 'trim-content' ? 'checked' : '' ); ?> />
 
                                 <span>
-                                    <?php echo sprintf( __( 'Show the first %s words of the post\'s content', 'profile-builder' ), '<input name="wppb_content_restriction_settings[post_preview_length]" type="text" value="'. ( $wppb_content_restriction_settings != 'not_found' && ! empty( $wppb_content_restriction_settings['post_preview_length'] ) ? esc_attr( $wppb_content_restriction_settings['post_preview_length'] ) : 20 ) .'" style="width: 50px;" />' ); ?>
+                                    <?php echo sprintf( __( 'Show the first %s words of the post\'s content', 'profile-builder' ), '<input name="wppb_content_restriction_settings[post_preview_length]" type="text" value="'. ( $wppb_content_restriction_settings != 'not_found' && ! empty( $wppb_content_restriction_settings['post_preview_length'] ) ? esc_attr( $wppb_content_restriction_settings['post_preview_length'] ) : 20 ) .'" style="width: 50px;" />' ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
                                  </span>
                             </label>
                         </div>
@@ -150,11 +150,11 @@ function wppb_content_restriction_content() {
                         <div>
                             <label>
                                 <input type="radio" name="wppb_content_restriction_settings[post_preview]" value="more-tag" <?php echo ( ( $wppb_content_restriction_settings != 'not_found' ) && $wppb_content_restriction_settings['post_preview'] == 'more-tag' ? 'checked' : '' ); ?> />
-                                <span><?php echo __( 'Show the content before the "more" tag', 'profile-builder' ); ?></span>
+                                <span><?php echo esc_html__( 'Show the content before the "more" tag', 'profile-builder' ); ?></span>
                             </label>
                         </div>
 
-                        <p class="description"><?php echo __( 'Show a portion of the restricted post to logged-out users or users that are not allowed to see it.', 'profile-builder' ); ?></p>
+                        <p class="description"><?php echo esc_html__( 'Show a portion of the restricted post to logged-out users or users that are not allowed to see it.', 'profile-builder' ); ?></p>
                     </div>
                 </div>
             </div>

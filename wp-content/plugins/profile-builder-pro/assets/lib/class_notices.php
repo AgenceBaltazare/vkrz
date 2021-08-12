@@ -40,7 +40,7 @@ class WPPB_Add_General_Notices{
         if ( current_user_can( 'manage_options' ) ){
             // Check that the user hasn't already clicked to ignore the message
             if ( ! get_user_meta($user_id, $this->notificationId.'_dismiss_notification' ) ) {
-                echo $finalMessage = apply_filters($this->notificationId.'_notification_message','<div class="'. $this->notificationClass .'" >'.$this->notificationMessage.'</div>', $this->notificationMessage);
+                echo wp_kses_post( apply_filters($this->notificationId.'_notification_message','<div class="'. $this->notificationClass .'" >'.$this->notificationMessage.'</div>', $this->notificationMessage) );
             }
             do_action( $this->notificationId.'_notification_displayed', $current_user, $pagenow );
         }
@@ -282,10 +282,10 @@ Class WPPB_Plugin_Notifications {
     public function is_plugin_page() {
         if( !empty( $this->pluginPages ) ){
             foreach ( $this->pluginPages as $pluginPage ){
-                if( ! empty( $_GET['page'] ) && false !== strpos( $_GET['page'], $pluginPage ) )
+                if( ! empty( $_GET['page'] ) && false !== strpos( sanitize_text_field( $_GET['page'] ), $pluginPage ) )
                     return true;
 
-                if( ! empty( $_GET['post_type'] ) && false !== strpos( $_GET['post_type'], $pluginPage ) )
+                if( ! empty( $_GET['post_type'] ) && false !== strpos( sanitize_text_field( $_GET['post_type'] ), $pluginPage ) )
                     return true;
 
                 if( ! empty( $_GET['post'] ) && false !== strpos( get_post_type( (int)$_GET['post'] ), $pluginPage ) )

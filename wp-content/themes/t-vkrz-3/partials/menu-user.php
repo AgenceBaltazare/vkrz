@@ -1,20 +1,10 @@
 <?php
-global $uuiduser;
-global $current_user;
-global $user_id;
 global $id_tournament;
 global $top_question;
 global $top_number;
 global $top_title;
-global $user_full_data;
-global $info_user_level;
 global $id_ranking;
-global $vainkeur_infos;
-global $nb_user_votes;
-global $nb_user_tops;
-$nb_user_votes   = $vainkeur_infos[0]['nb_vote_vkrz'];
-$nb_user_tops    = $vainkeur_infos[0]['nb_top_vkrz'];
-$info_user_level = get_user_level($uuiduser, $user_id, $nb_user_votes);
+global $user_infos;
 ?>
 <nav class="header-navbar navbar navbar-expand-lg align-items-center floating-nav navbar-dark navbar-shadow menu-user">
     <div class="navbar-container d-flex content align-items-center justify-content-between">
@@ -195,7 +185,7 @@ $info_user_level = get_user_level($uuiduser, $user_id, $nb_user_votes);
                 <a class="nav-link" href="javascript:void(0);" data-toggle="dropdown">
                     <span class="ico text-center">💎</span>
                     <span class="value-user-stats user-total-vote-value">
-                        <?php echo $nb_user_votes; ?>
+                        <?php echo $user_infos['nb_vote_vkrz']; ?>
                     </span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
@@ -211,7 +201,7 @@ $info_user_level = get_user_level($uuiduser, $user_id, $nb_user_votes);
                         <div class="text-center mb-2">
                             <h6 class="font-weight-bolder mb-0">
                                 <?php if(is_user_logged_in()): ?>
-                                    Encore <span class="decompte_vote"><?php echo $info_user_level['votes_restant']; ?></span> 💎 pour passer au niveau <?php echo $info_user_level['next_level']; ?>
+                                    Encore <span class="decompte_vote"><?php echo get_vote_to_next_level($user_infos['nb_vote_vkrz']); ?></span> 💎 pour passer au niveau <?php echo $user_infos['next_level']; ?>
                                 <?php else: ?>
                                     Il te créer un compte pour monter en niveau 🚀
                                 <?php endif; ?>
@@ -227,7 +217,7 @@ $info_user_level = get_user_level($uuiduser, $user_id, $nb_user_votes);
                 <a class="nav-link" href="javascript:void(0);" data-toggle="dropdown">
                     <span class="value-user-stats">
                         <span class="ico text-center">🏆</span>
-                        <?php echo $nb_user_tops; ?>
+                        <?php echo $user_infos['nb_top_vkrz']; ?>
                     </span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
@@ -235,7 +225,7 @@ $info_user_level = get_user_level($uuiduser, $user_id, $nb_user_votes);
                         <div class="dropdown-header d-flex">
                             <h4 class="notification-title mb-0 mr-auto">🏆</h4>
                             <div class="badge badge-pill badge-light-primary">
-                                <?php if($nb_user_tops >= 1): ?>
+                                <?php if($user_infos['nb_top_vkrz'] >= 1): ?>
                                     Mes Tops terminés
                                 <?php else: ?>
                                     Aucun Tops terminés <span class="ico">😑</span>
@@ -243,7 +233,7 @@ $info_user_level = get_user_level($uuiduser, $user_id, $nb_user_votes);
                             </div>
                         </div>
                     </li>
-                    <?php if($nb_user_tops >= 1): ?>
+                    <?php if($user_infos['nb_top_vkrz'] >= 1): ?>
                         <li class="dropdown-menu-footer">
                             <a class="btn btn-primary btn-block" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>?uuid=<?php echo $uuiduser; ?>">
                                 Voir tous mes Tops terminés
@@ -255,23 +245,15 @@ $info_user_level = get_user_level($uuiduser, $user_id, $nb_user_votes);
             <li class="nav-item dropdown dropdown-user ml-25">
                 <a class="nav-link dropdown-toggle dropdown-user-link" id="dropdown-user" href="javascript:void(0);" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="avatar">
-                        <?php
-                        if(is_user_logged_in() && get_avatar_url($user_id, ['size' => '80'])){
-                            $avatar_url = get_avatar_url($user_id, ['size' => '80']);
-                        }
-                        else{
-                            $avatar_url = get_bloginfo('template_directory')."/assets/images/vkrz/ninja.png";
-                        }
-                        ?>
-                        <span class="avatar-picture" style="background-image: url(<?php echo $avatar_url; ?>);"></span>
+                        <span class="avatar-picture" style="background-image: url(<?php echo $user_infos['avatar']; ?>);"></span>
                         <span class="user-niveau">
-                            <?php echo $info_user_level['level_ico']; ?>
+                            <?php echo $user_infos['level_ico']; ?>
                         </span>
                     </span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-user">
                     <?php if(is_user_logged_in()): ?>
-                        <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>?uuid=<?php echo $uuiduser; ?>">
+                        <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>">
                             <span class="ico">🐣</span> Mon compte
                         </a>
                         <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('parametres')); ?>">
@@ -282,7 +264,7 @@ $info_user_level = get_user_level($uuiduser, $user_id, $nb_user_votes);
                             <span class="ico">👋</span> Déconnexion
                         </a>
                     <?php else: ?>
-                        <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>?uuid=<?php echo $uuiduser; ?>">
+                        <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>">
                             <span class="ico">🥷</span> Mon compte
                         </a>
                         <div class="dropdown-divider"></div>
@@ -293,7 +275,7 @@ $info_user_level = get_user_level($uuiduser, $user_id, $nb_user_votes);
                             <span class="ico">🎉</span> M'inscrire
                         </a>
                     <?php endif; ?>
-                    
+
                 </div>
             </li>
         </ul>

@@ -913,3 +913,18 @@ Advanced Settings or Toolbox (legacy addon)
         padding-left: 10px;
     }
 }
+
+/* Two-Factor Authentication field */
+#wppb_auth_verify_indicator {
+    pointer-events: none !important;
+}
+#wppb_auth_verify_indicator.valid.button[disabled] {
+    background-color: #c3ff88 !important;
+    border-color: #8dff1c !important;
+    color: #2c3338 !important;
+}
+#wppb_auth_verify_indicator.invalid.button[disabled] {
+    background-color: #ffa0a0 !important;
+    border-color: #f04040 !important;
+    color: #2c3338 !important;
+}

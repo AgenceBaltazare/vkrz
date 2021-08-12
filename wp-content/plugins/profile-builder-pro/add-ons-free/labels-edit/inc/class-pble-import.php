@@ -41,7 +41,7 @@ class WPPB_LE_Import {
 	public function upload_json_file() {
 		if( isset( $_POST['pble-import'] ) ) {
 			if( ! empty( $_FILES['pble-upload']['tmp_name'] ) ) {
-				$json_content = file_get_contents( $_FILES['pble-upload']['tmp_name'] );
+				$json_content = file_get_contents( $_FILES['pble-upload']['tmp_name'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 				$this->json_to_db( $json_content );
 
 				if( empty( $this->import_messages ) ) {

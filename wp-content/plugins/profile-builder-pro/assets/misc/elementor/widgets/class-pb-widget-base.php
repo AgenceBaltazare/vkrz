@@ -33,7 +33,7 @@ abstract class PB_Elementor_Widget extends \Elementor\Widget_Base {
         $this->start_controls_section(
             $id_prefix.'_style_section',
             [
-                'label'     => __( ($section_label === '' ? 'Unlabelled Field' : $section_label), 'profile-builder' ),
+                'label'     => $section_label === '' ? __( 'Unlabelled Field', 'profile-builder' ) : $section_label,
                 'tab'       => Controls_Manager::TAB_STYLE,
                 'condition' => $condition,
             ]
@@ -51,7 +51,7 @@ abstract class PB_Elementor_Widget extends \Elementor\Widget_Base {
                 $this->add_control(
                     $id_prefix.'_target_'.$target,
                     [
-                        'label' => __($section['section_name'], 'profile-builder'),
+                        'label' => $section['section_name'],
                         'type'  => Controls_Manager::HEADING,
                     ]
                 );
@@ -244,6 +244,19 @@ abstract class PB_Elementor_Widget extends \Elementor\Widget_Base {
     }
 
     /**
+     * Check if 2FA is active.
+     * @return bool
+     */
+    protected function is_2fa_active(){
+        $wppb_two_factor_authentication_settings = get_option( 'wppb_two_factor_authentication_settings', 'not_found' );
+        if( isset( $wppb_two_factor_authentication_settings['enabled'] ) && $wppb_two_factor_authentication_settings['enabled'] === 'yes' ) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
      * Render the four widget types.
      * @param $form_type
      * @return mixed|Profile_Builder_Form_Creator|string|void
@@ -297,6 +310,7 @@ abstract class PB_Elementor_Widget extends \Elementor\Widget_Base {
                     'logout_redirect_url' => $settings['pb_after_logout_redirect_url'],
                     'register_url'        => $settings['pb_register_url'],
                     'lostpassword_url'    => $settings['pb_lostpassword_url'],
+                    'show_2fa_field'      => $settings['pb_auth_field'],
                 ];
                 return wppb_front_end_login( $atts );
             case 'rp':

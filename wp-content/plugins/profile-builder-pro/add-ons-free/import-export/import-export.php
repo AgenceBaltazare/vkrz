@@ -32,7 +32,7 @@ function wppb_pbie_tabs( $current = 'import' ) {
 	echo '<h2 class="nav-tab-wrapper">';
 	foreach( $tabs as $tab => $name ) {
 		$class = ( $tab == $current ) ? ' nav-tab-active' : '';
-		echo "<a class='nav-tab$class' href='?page=pbie-import-export&tab=$tab'>$name</a>";
+		echo "<a class='nav-tab". esc_attr( $class )."' href='?page=pbie-import-export&tab=". esc_attr( $tab ) ."'>". esc_html( $name ) ."</a>";
 	}
 	echo '</h2>';
 }
@@ -45,7 +45,7 @@ function wppb_pbie_page() {
 	<div class="wrap">
 		<?php
 		echo '<h2>';
-		_e( 'Import and Export', 'profile-builder' );
+			esc_html_e( 'Import and Export', 'profile-builder' );
 		echo '</h2>';
 
 		if( isset ( $_GET['tab'] ) ) wppb_pbie_tabs( sanitize_text_field( $_GET['tab'] ) );
@@ -54,7 +54,7 @@ function wppb_pbie_page() {
 
 		<form method="post" action="<?php admin_url( 'admin.php?page=pbie-import-export' ); ?>" enctype= "multipart/form-data">
 			<?php
-			if( $pagenow == 'admin.php' && $_GET['page'] === 'pbie-import-export' ) {
+			if( $pagenow == 'admin.php' && isset( $_GET['page'] ) && $_GET['page'] === 'pbie-import-export' ) {
 				if( isset ( $_GET['tab'] ) ) $tab = sanitize_text_field( $_GET['tab'] );
 				else $tab = 'import';
 

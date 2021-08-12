@@ -76,10 +76,10 @@ get_header();
                                                                     <div class="d-flex align-items-center">
                                                                         <?php
                                                                         $user_id     = get_the_author_meta('ID');
-                                                                        $avatar_url  = get_avatar_url($user_id, ['size' => '80']);
                                                                         $user_uuid   = get_field('uuiduser_user', 'user_'.$user_id);
                                                                         $user_infos  = deal_vainkeur_entry($user_uuid);
                                                                         $nb_user_votes = $user_infos[0]['nb_vote_vkrz'];
+                                                                        $avatar_url  = get_avatar_url($user_id, ['size' => '80']);
                                                                         if(!$avatar_url){
                                                                             $avatar_url = get_bloginfo('template_directory')."/assets/images/vkrz/ninja.png";
                                                                         }
@@ -95,7 +95,7 @@ get_header();
                                                                         </div>
                                                                         <div class="font-weight-bold championname">
                                                                             <span>
-                                                                                <?php echo get_the_author_meta('nickname');; ?>
+                                                                                <?php echo get_the_author_meta('nickname'); ?>
                                                                             </span>
                                                                             <?php if($user['user_role'] == "administrator"): ?>
                                                                                 <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">

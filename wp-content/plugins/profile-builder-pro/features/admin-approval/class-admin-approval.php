@@ -102,8 +102,11 @@ class wpp_list_approved_unapproved_users extends PB_WP_List_Table {
 		$user = apply_filters( 'wppb_admin_approval_user_listing_user_object', get_user_by( 'id', $item['ID'] ), $item );
 		$currentUser =  wp_get_current_user();
 		$wppb_nonce = wp_create_nonce( '_nonce_'.$current_user->ID.$user->ID);
-		
-		$edit_link = esc_url( add_query_arg( 'wp_http_referer', urlencode( stripslashes( $_SERVER['REQUEST_URI'] ) ), get_edit_user_link( $user->ID ) ) );
+
+		if( isset( $_SERVER['REQUEST_URI'] ) )
+		    $edit_link = add_query_arg( 'wp_http_referer', urlencode( stripslashes( esc_url_raw( $_SERVER['REQUEST_URI'] ) ) ), get_edit_user_link( $user->ID ) );
+		else
+            $edit_link = '';
 		
 		$actions['remove'] = sprintf('<a class=\'edit_view\' href="%s">'. __('Edit', 'profile-builder') .'</a>', $edit_link);
 		
@@ -226,7 +229,7 @@ class wpp_list_approved_unapproved_users extends PB_WP_List_Table {
         $actions = array(
             'approved'		=> __( 'Approve', 'profile-builder' ),
 			'unapproved'	=> __( 'Unapprove', 'profile-builder' ),
-			'delete' => __( 'Delete' )
+			'delete' => __( 'Delete', 'profile-builder' )
         );
         return $actions;
     }
@@ -254,7 +257,7 @@ class wpp_list_approved_unapproved_users extends PB_WP_List_Table {
 			if( 'approved'===$this->current_action() ) {
 				?>
 				<script type="text/javascript">
-					confirmAUActionBulk('<?php echo get_bloginfo('wpurl').'/wp-admin/users.php?page=admin_approval'.$extra_args;?>', '<?php _e("Do you want to bulk approve the selected users?", "profile-builder");?>', '<?php echo $wppb_nonce;?>', '<?php echo esc_attr( $users );?>', 'bulkApprove');
+					confirmAUActionBulk('<?php echo esc_js( get_bloginfo('wpurl') ).'/wp-admin/users.php?page=admin_approval'.esc_js( $extra_args );?>', '<?php esc_html_e("Do you want to bulk approve the selected users?", "profile-builder");?>', '<?php echo esc_js( $wppb_nonce );?>', '<?php echo esc_attr( $users );?>', 'bulkApprove');
 				</script>
 				<?php
 	
@@ -262,13 +265,13 @@ class wpp_list_approved_unapproved_users extends PB_WP_List_Table {
 			}elseif( 'unapproved'===$this->current_action() ) {
 				?>
 				<script type="text/javascript">
-					confirmAUActionBulk('<?php echo get_bloginfo('wpurl').'/wp-admin/users.php?page=admin_approval'.$extra_args;?>', '<?php _e("Do you want to bulk unapprove the selected users?", "profile-builder");?>', '<?php echo $wppb_nonce;?>', '<?php echo esc_attr( $users );?>', 'bulkUnapprove');
+					confirmAUActionBulk('<?php echo esc_js(get_bloginfo('wpurl') ).'/wp-admin/users.php?page=admin_approval'.esc_js( $extra_args );?>', '<?php esc_html_e("Do you want to bulk unapprove the selected users?", "profile-builder");?>', '<?php echo esc_js( $wppb_nonce );?>', '<?php echo esc_attr( $users );?>', 'bulkUnapprove');
 				</script>
 				<?php
 			}elseif( 'delete'===$this->current_action() ) {
 				?>
 				<script type="text/javascript">
-					confirmAUActionBulk('<?php echo get_bloginfo('wpurl').'/wp-admin/users.php?page=admin_approval'.$extra_args;?>', '<?php _e("Do you want to bulk delete the selected users?", "profile-builder");?>', '<?php echo $wppb_nonce;?>', '<?php echo esc_attr( $users );?>', 'bulkDelete');
+					confirmAUActionBulk('<?php echo esc_js( get_bloginfo('wpurl') ).'/wp-admin/users.php?page=admin_approval'. esc_js( $extra_args );?>', '<?php esc_html_e("Do you want to bulk delete the selected users?", "profile-builder");?>', '<?php echo esc_js( $wppb_nonce );?>', '<?php echo esc_attr( $users );?>', 'bulkDelete');
 				</script>
 				<?php
 			}
@@ -276,7 +279,7 @@ class wpp_list_approved_unapproved_users extends PB_WP_List_Table {
 		}else{
 			?>
 			<script type="text/javascript">
-				alert('<?php _e("Sorry, but you don't have permission to do that!", "profile-builder");?>')
+				alert('<?php esc_html_e("Sorry, but you don't have permission to do that!", "profile-builder");?>')
 			</script>
 			<?php
 		}
@@ -318,7 +321,7 @@ class wpp_list_approved_unapproved_users extends PB_WP_List_Table {
         );
 
         if ( isset( $_REQUEST['s'] ) ) {
-            $search_for = trim( esc_attr($_REQUEST['s']) );
+            $search_for = trim( sanitize_text_field($_REQUEST['s']) );
             $args['search'] = '*' . $search_for . '*';
         }
 
@@ -466,17 +469,17 @@ function wppb_approved_unapproved_users_custom_menu_page(){
     ?>
     <div class="wrap">
         
-        <div class="wrap"><div id="icon-users" class="icon32"></div><h2><?php _e('Admin Approval', 'profile-builder');?></h2></div>
+        <div class="wrap"><div id="icon-users" class="icon32"></div><h2><?php esc_html_e('Admin Approval', 'profile-builder');?></h2></div>
 		
 		<ul class="subsubsub">
-			<li class="all"><a href="users.php"><?php _e('All Users', 'profile-builder');?></a></li>
+			<li class="all"><a href="users.php"><?php esc_html_e('All Users', 'profile-builder');?></a></li>
 		</ul>
         
         <!-- Forms are NOT created automatically, so you need to wrap the table in one to use features like bulk actions -->
         <form id="movies-filter" method="get">
-            <?php $listTable->search_box( __( 'Search Users' ), 'user' ); ?>
+            <?php $listTable->search_box( esc_html__( 'Search Users', 'profile-builder' ), 'user' ); ?>
             <!-- For plugins, we also need to ensure that the form posts back to our current page -->
-            <input type="hidden" name="page" value="<?php echo esc_attr( $_REQUEST['page'] ); ?>" />
+            <input type="hidden" name="page" value="<?php echo isset( $_REQUEST['page'] ) ? esc_attr( sanitize_text_field( $_REQUEST['page'] ) ) : ''; ?>" />
             <!-- Now we can render the completed list table -->
             <?php $listTable->display() ?>
         </form>
@@ -525,7 +528,7 @@ function wppb_au_screen_options(){
     $option = 'per_page';
 
     $args = array(
-        'label' => __( 'Number of items per page:' ),//use the default wordpress domain
+        'label' => __( 'Number of items per page:', 'profile-builder' ),//use the default wordpress domain
         'default' => 20,
         'option' => 'users_per_page' //this is the same option as the one on the normal User screen
     );

@@ -553,12 +553,12 @@ function wppb_userlisting_show_default_user_fields( $value, $name, $children, $e
             if( $roles = array_intersect( array_values( $user_info->roles ), $editable_roles ) )
                 foreach( $roles as $key=>$role )
                     if( $key >= '1' )
-                        $role_names .= ', '.(isset( $WP_Roles->role_names[$role] ) ? translate_user_role( $WP_Roles->role_names[$role] ) : __( 'None' ));
+                        $role_names .= ', '.(isset( $WP_Roles->role_names[$role] ) ? translate_user_role( $WP_Roles->role_names[$role] ) : __( 'None', 'profile-builder' ));
                     else
-                        $role_names .= isset( $WP_Roles->role_names[$role] ) ? translate_user_role( $WP_Roles->role_names[$role] ) : __( 'None' );
+                        $role_names .= isset( $WP_Roles->role_names[$role] ) ? translate_user_role( $WP_Roles->role_names[$role] ) : __( 'None', 'profile-builder' );
             else {
                 $role = reset($user_info->roles);
-                $role_names .= isset($WP_Roles->role_names[$role]) ? translate_user_role($WP_Roles->role_names[$role]) : __('None');
+                $role_names .= isset($WP_Roles->role_names[$role]) ? translate_user_role($WP_Roles->role_names[$role]) : __( 'None', 'profile-builder' );
             }
 
             $returned_value = apply_filters('wppb_userlisting_extra_meta_role', $role_names, $user_info );
@@ -575,12 +575,12 @@ function wppb_userlisting_show_default_user_fields( $value, $name, $children, $e
             if( $roles = array_intersect( array_values( $user_info->roles ), $editable_roles ) )
                 foreach( $roles as $key=>$role )
                     if( $key >= '1' )
-                        $role_slugs .= ', '.(isset( $WP_Roles->roles[$role] ) ? $role : __( 'None' ));
+                        $role_slugs .= ', '.(isset( $WP_Roles->roles[$role] ) ? $role : __( 'None', 'profile-builder' ));
                     else
-                        $role_slugs .= isset( $WP_Roles->roles[$role] ) ? $role : __( 'None' );
+                        $role_slugs .= isset( $WP_Roles->roles[$role] ) ? $role : __( 'None', 'profile-builder' );
             else {
                 $role = reset($user_info->roles);
-                $role_slugs .= isset( $WP_Roles->roles[$role] ) ? $role : __( 'None' );
+                $role_slugs .= isset( $WP_Roles->roles[$role] ) ? $role : __( 'None', 'profile-builder' );
             }
 
             $returned_value = apply_filters('wppb_userlisting_extra_meta_role_slug', $role_slugs, $user_info );
@@ -922,7 +922,7 @@ function wppb_userlisting_users_loop( $value, $name, $children, $extra_values ){
                 $userlisting_args[0]['number-of-userspage'] = 5;
 
             // Check if some of the listing parameters have changed
-            if ( isset( $_REQUEST['setSortingOrder'] ) && ( trim( $_REQUEST['setSortingOrder'] ) !== '' ) )
+            if ( isset( $_REQUEST['setSortingOrder'] ) && sanitize_text_field( $_REQUEST['setSortingOrder'] ) !== '' )
                 $sorting_order = sanitize_text_field( $_REQUEST['setSortingOrder'] );
             else
                 $sorting_order = $userlisting_args[0]['default-sorting-order'];
@@ -957,7 +957,7 @@ function wppb_userlisting_users_loop( $value, $name, $children, $extra_values ){
                 $wppb_manage_fields = get_option( 'wppb_manage_fields', 'not_found' );
 
             // Check if some of the listing parameters have changed
-            if ( isset( $_REQUEST['setSortingCriteria'] ) && ( trim( $_REQUEST['setSortingCriteria'] ) !== '' ) )
+            if ( isset( $_REQUEST['setSortingCriteria'] ) && sanitize_text_field( $_REQUEST['setSortingCriteria'] ) !== '' )
                 $sorting_criteria = sanitize_text_field( $_REQUEST['setSortingCriteria'] );
             else
                 $sorting_criteria = $userlisting_args[0]['default-sorting-criteria'];
@@ -1052,7 +1052,7 @@ function wppb_userlisting_users_loop( $value, $name, $children, $extra_values ){
                                 $args['meta_query'][0][$faceted_setting['facet-meta']] = array(
                                     'key' => $faceted_setting['facet-meta'],
                                     'compare_key' => $compare_key,
-                                    'value' => apply_filters( 'wppb_ul_search_meta_value', sanitize_text_field( stripslashes( $_GET['ul_filter_'.$faceted_setting['facet-meta']] ) ), $faceted_setting['facet-meta'], $wppb_manage_fields ),
+                                    'value' => apply_filters( 'wppb_ul_search_meta_value', stripslashes( sanitize_text_field( $_GET['ul_filter_'.$faceted_setting['facet-meta']] ) ), $faceted_setting['facet-meta'], $wppb_manage_fields ),
                                     'compare' => 'LIKE'
                                 );
                             }
@@ -1061,7 +1061,7 @@ function wppb_userlisting_users_loop( $value, $name, $children, $extra_values ){
                                 /* for fields types that have multiple values (checkbox..) we check for the options in the fields settings and not what is stored in the database  */
                                 if( wppb_check_if_field_is_multiple_value_from_meta_name( $faceted_setting['facet-meta'], $wppb_manage_fields ) ){
                                     $compare = 'REGEXP';
-                                    $val = '('.preg_quote( $_GET['ul_filter_'.$faceted_setting['facet-meta']] ).'$)|('. preg_quote( $_GET['ul_filter_'.$faceted_setting['facet-meta']] ).',)';
+                                    $val = '('.preg_quote( sanitize_text_field( $_GET['ul_filter_'.$faceted_setting['facet-meta']] ) ).'$)|('. preg_quote( sanitize_text_field( $_GET['ul_filter_'.$faceted_setting['facet-meta']] ) ).',)';
                                 }
                                 else{
                                     /* handle roles facet differently */
@@ -1146,7 +1146,7 @@ function wppb_userlisting_users_loop( $value, $name, $children, $extra_values ){
 
             /* set the search here, we have a combination with search arg for columns in user table and meta query for user_meta table */
 			if ( isset( $_REQUEST['searchFor'] ) ) {
-                $search_for = sanitize_text_field( stripslashes( $_REQUEST['searchFor'] ) );
+                $search_for = stripslashes( sanitize_text_field( $_REQUEST['searchFor'] ) );
                 //was a valid string enterd in the search form?
                 $searchText = apply_filters('wppb_userlisting_search_field_text', __('Search Users by All Fields', 'profile-builder'));
                 if (trim($search_for) !== $searchText){
@@ -1303,12 +1303,12 @@ function wppb_user_query_modifications($query) {
 
     /* hopefully it won't get applied to other user queries */
     if( !empty( $userlisting_args ) ){
-        if ( isset( $_REQUEST['setSortingCriteria'] ) && ( trim( $_REQUEST['setSortingCriteria'] ) !== '' ) )
+        if ( isset( $_REQUEST['setSortingCriteria'] ) && sanitize_text_field( $_REQUEST['setSortingCriteria'] ) !== '' )
             $sorting_criteria = sanitize_text_field( $_REQUEST['setSortingCriteria'] );
         else
             $sorting_criteria = $userlisting_args[0]['default-sorting-criteria'];
 
-        if ( isset( $_REQUEST['setSortingOrder'] ) && ( trim( $_REQUEST['setSortingOrder'] ) !== '' ) )
+        if ( isset( $_REQUEST['setSortingOrder'] ) && sanitize_text_field( $_REQUEST['setSortingOrder'] ) !== '' )
             $sorting_order = sanitize_text_field( $_REQUEST['setSortingOrder'] );
         else
             $sorting_order = $userlisting_args[0]['default-sorting-order'];
@@ -1325,7 +1325,7 @@ function wppb_user_query_modifications($query) {
 
         /* when searching in user listing we have to change the operator from AND to OR and move the search expression by changing some ')' around in the relationship between users table and user_meta table */
         if ( isset( $_REQUEST['searchFor'] ) ) {
-            $search_for = $wpdb->prepare( "%s", '%'.$wpdb->esc_like( sanitize_text_field( stripslashes( $_REQUEST['searchFor'] ) ) ).'%' );
+            $search_for = $wpdb->prepare( "%s", '%'.$wpdb->esc_like( stripslashes( sanitize_text_field( $_REQUEST['searchFor'] ) ) ).'%' );
             remove_all_filters( 'user_search_columns' );//I am not sure that this works in any case but I will leave it here just in case. Implemented the pre_get_users hook for the correct way
             /* when we have sorting by a user meta then there are extra parenthesis which we have to rearange*/
             if( strpos( preg_replace( '/\s+/', ' ', $query->query_where ), ") ) ) AND (ID = " ) !== false ){
@@ -1512,7 +1512,7 @@ function wppb_userlisting_more_info_url( $value, $name, $children, $extra_info )
 	$get_user_by_ID = apply_filters( 'wppb_userlisting_get_user_by_id', true );
 	$url = apply_filters( 'wppb_userlisting_more_base_url', get_permalink() );
     if( !$url && isset( $_SERVER['HTTP_REFERER'] ) ){
-        $url = esc_url( $_SERVER['HTTP_REFERER'] );
+        $url = esc_url( esc_url_raw( $_SERVER['HTTP_REFERER'] ) );
     }
 
 	$user_data = get_the_author_meta( 'user_nicename', $user_info->ID );
@@ -1634,7 +1634,7 @@ function wppb_userlisting_pagination( $value, $name, $children, $extra_info ){
 			if ( isset( $_POST['searchFor'] ) ){
 				$searchtext_label = apply_filters( 'wppb_userlisting_search_field_text', __( 'Search Users by All Fields', 'profile-builder' ) );
 
-				if ( ( trim( $_POST['searchFor'] ) == $searchtext_label ) || ( trim( $_POST['searchFor'] ) == '' ) )
+				if ( ( sanitize_text_field( $_POST['searchFor'] ) == $searchtext_label ) || ( sanitize_text_field( $_POST['searchFor'] ) == '' ) )
 					$pagination->generate( $totalUsers, $this_form_settings[0]['number-of-userspage'], '', $first, $prev, $next, $last, $currentPage );
 
 				else
@@ -1969,7 +1969,7 @@ function wppb_ul_facet_value_or_label( $meta_value, $faceted_filter_options, $wp
  */
 function wppb_ul_get_current_filter_value( $filter_name ){
     if( !empty( $_GET['ul_filter_'. $filter_name] ) )
-        $current_value = sanitize_text_field( stripslashes( $_GET['ul_filter_'. $filter_name] ) );
+        $current_value = stripslashes( sanitize_text_field( $_GET['ul_filter_'. $filter_name] ) );
     else
         $current_value = '';
 
@@ -2016,7 +2016,7 @@ function wppb_ul_faceted_remove( $faceted_filters_options, $wppb_manage_fields )
         foreach( $faceted_filters_options as $faceted_filter_options ){
             if( isset( $_GET['ul_filter_'.$faceted_filter_options['facet-meta']]  ) ) {
                 $have_filters[] = $faceted_filter_options['facet-meta'];
-                $filter_values = explode( '||', sanitize_text_field( stripslashes( $_GET['ul_filter_'.$faceted_filter_options['facet-meta']] ) ) );
+                $filter_values = explode( '||', stripslashes( sanitize_text_field( $_GET['ul_filter_'.$faceted_filter_options['facet-meta']] ) ) );
                 foreach( $filter_values as $filter_value ) {
                     $filter .= '<li>';
                     $filter .= '<a href="#" class="wppb-remove-facet" data-meta-name="' . esc_attr($faceted_filter_options['facet-meta']) . '" data-meta-value="' . esc_attr($filter_value) . '" data-current-page="' . esc_attr(get_query_var('wppb_page')) . '">' . $faceted_filter_options['facet-name'] . ': ' . esc_html(  wppb_ul_facet_value_or_label( $filter_value, $faceted_filter_options, $wppb_manage_fields ) ) . '</a>';
@@ -2128,8 +2128,8 @@ function wppb_userlisting_extra_search_all_fields( $value, $name, $children, $ex
 	$searchText = apply_filters( 'wppb_userlisting_search_field_text', __( 'Search Users by All Fields', 'profile-builder' ) );
 
 	if ( isset($_REQUEST['searchFor'] ) )
-		if ( trim( $_REQUEST['searchFor'] ) != $searchText )
-			$searchText = esc_attr( stripslashes( $_REQUEST['searchFor'] ) );
+		if ( sanitize_text_field( $_REQUEST['searchFor'] ) != $searchText )
+			$searchText = sanitize_text_field( $_REQUEST['searchFor'] );
 
 	$setSortingCriteria = ( isset( $userlisting_settings[0]['default-sorting-criteria'] ) ? $userlisting_settings[0]['default-sorting-criteria'] : 'login' );
 	$setSortingCriteria = ( isset( $_REQUEST['setSortingCriteria'] ) ? sanitize_text_field( $_REQUEST['setSortingCriteria'] ) : $setSortingCriteria );
@@ -2140,7 +2140,7 @@ function wppb_userlisting_extra_search_all_fields( $value, $name, $children, $ex
 	return '
 		<form method="post" action="'.esc_url( add_query_arg( array( 'wppb_page' => 1, 'setSortingCriteria' => $setSortingCriteria, 'setSortingOrder' => $setSortingOrder ), wppb_remove_query_arg( 'wppb_page', wppb_curpageurl() ) ) ).'" class="wppb-search-users wppb-user-forms">
             <div class="wppb-search-users-wrap">
-                <input onfocus="if(this.value == \''.$searchText.'\'){this.value = \'\';}" type="text" onblur="if(this.value == \'\'){this.value=\''.$searchText.'\';}" id="wppb-search-fields" name="searchFor" title="'. $searchText .'" value="'.$searchText.'" />
+                <input onfocus="if(this.value == \''.esc_attr( $searchText ).'\'){this.value = \'\';}" type="text" onblur="if(this.value == \'\'){this.value=\''.esc_attr( $searchText ).'\';}" id="wppb-search-fields" name="searchFor" title="'. esc_attr( $searchText ) .'" value="'. esc_attr( $searchText ).'" />
 		        <input type="hidden" name="action" value="searchAllFields" />
 		        <input type="submit" name="searchButton" class="wppb-search-button" value="'.__( 'Search', 'profile-builder' ).'" />
 			    <a class="wppb-clear-results" href="'.wppb_clear_results().'">'.__( 'Clear Results', 'profile-builder' ).'</a>
@@ -2321,7 +2321,7 @@ function wppb_ul_custom_column_content( $column_name, $post_id ){
 		if( empty( $post->post_title ) )
 			$post->post_title = __( '(no title)', 'profile-builder' );
 
-        echo "<input readonly spellcheck='false' type='text' class='wppb-shortcode input' value='[wppb-list-users name=\"" . Wordpress_Creation_Kit_PB::wck_generate_slug( $post->post_title ) . "\"]' />";
+        echo "<input readonly spellcheck='false' type='text' class='wppb-shortcode input' value='[wppb-list-users name=\"" . esc_attr( Wordpress_Creation_Kit_PB::wck_generate_slug( $post->post_title ) ) . "\"]' />";
 	}
 }
 add_action("manage_wppb-ul-cpt_posts_custom_column",  "wppb_ul_custom_column_content", 10, 2);
@@ -2339,38 +2339,38 @@ function wppb_ul_content(){
 
 	$form_shortcode = trim( Wordpress_Creation_Kit_PB::wck_generate_slug( $post->post_title ) );
 	if ( $form_shortcode == '' )
-		echo '<p><em>' . __( 'The shortcode will be available after you publish this form.', 'profile-builder' ) . '</em></p>';
+		echo '<p><em>' . esc_html__( 'The shortcode will be available after you publish this form.', 'profile-builder' ) . '</em></p>';
 	else{
-        echo '<p>' . __( 'Use this shortcode on the page you want the form to be displayed:', 'profile-builder' );
+        echo '<p>' . esc_html__( 'Use this shortcode on the page you want the form to be displayed:', 'profile-builder' );
         echo '<br/>';
-        echo "<textarea readonly spellcheck='false' class='wppb-shortcode textarea'>[wppb-list-users name=\"" . $form_shortcode . "\"]</textarea>";
+        echo "<textarea readonly spellcheck='false' class='wppb-shortcode textarea'>[wppb-list-users name=\"" . esc_attr( $form_shortcode ) . "\"]</textarea>";
         echo '</p><p>';
-        echo __( '<span style="color:red;">Note:</span> changing the form title also changes the shortcode!', 'profile-builder' );
+        echo esc_html__( '<span style="color:red;">Note:</span> changing the form title also changes the shortcode!', 'profile-builder' );
         echo '</p>';
 
-        echo '<h4>'. __('Extra shortcode parameters', 'profile-builder') .'</h4>';
+        echo '<h4>'. esc_html__('Extra shortcode parameters', 'profile-builder') .'</h4>';
 
-        echo '<a href="wppb-extra-shortcode-parameters" class="wppb-open-modal-box">' . __( "View all extra shortcode parameters", "profile-builder" ) . '</a>';
+        echo '<a href="wppb-extra-shortcode-parameters" class="wppb-open-modal-box">' . esc_html__( "View all extra shortcode parameters", "profile-builder" ) . '</a>';
 
-        echo '<div id="wppb-extra-shortcode-parameters" title="' . __( "Extra shortcode parameters", "profile-builder" ) . '" class="wppb-modal-box">';
+        echo '<div id="wppb-extra-shortcode-parameters" title="' . esc_html__( "Extra shortcode parameters", "profile-builder" ) . '" class="wppb-modal-box">';
 
         	echo '<p>';
-	        echo '<strong>meta_key="key_here"<br /> meta_value="value_here"</strong> - '. __( 'displays users having a certain meta-value within a certain (extra) meta-field', 'profile-builder' );
-	        echo '<br/><br/>'.__( 'Example:', 'profile-builder' ).'<br/>';
-	        echo '<strong>[wppb-list-users name="' . $form_shortcode . '" meta_key="skill" meta_value="Photography"]</strong><br/><br/>';
-	        echo __( 'Remember though, that the field-value combination must exist in the database.', 'profile-builder' );
+	        echo '<strong>meta_key="key_here"<br /> meta_value="value_here"</strong> - '. esc_html__( 'displays users having a certain meta-value within a certain (extra) meta-field', 'profile-builder' );
+	        echo '<br/><br/>'.esc_html__( 'Example:', 'profile-builder' ).'<br/>';
+	        echo '<strong>[wppb-list-users name="' . esc_attr( $form_shortcode ) . '" meta_key="skill" meta_value="Photography"]</strong><br/><br/>';
+	        echo esc_html__( 'Remember though, that the field-value combination must exist in the database.', 'profile-builder' );
 	        echo '</p>';
 
 	        echo '<hr />';
 
 	        echo '<p>';
-	        echo '<strong>include="user_id_1, user_id_2"</strong> - '. __( 'displays only the users that you specified the user_id for', 'profile-builder' );
+	        echo '<strong>include="user_id_1, user_id_2"</strong> - '. esc_html__( 'displays only the users that you specified the user_id for', 'profile-builder' );
 	        echo '</p>';
 
 	        echo '<hr />';
 
 	        echo '<p>';
-	        echo '<strong>exclude="user_id_1, user_id_2"</strong> - '. __( 'displays all users except the ones you specified the user_id for', 'profile-builder' );
+	        echo '<strong>exclude="user_id_1, user_id_2"</strong> - '. esc_html__( 'displays all users except the ones you specified the user_id for', 'profile-builder' );
 	        echo '</p>';
 
         echo '</div>';
@@ -2612,8 +2612,8 @@ function wppb_get_new_url( $criteria, $extra_info ){
 
 	$searchText = apply_filters( 'wppb_userlisting_search_field_text', __( 'Search Users by All Fields', 'profile-builder' ) );
 
-	if ( ( isset( $_REQUEST['searchFor'] ) ) && ( trim( $_REQUEST['searchFor'] ) != $searchText ) )
-		$args['searchFor'] = sanitize_text_field( stripslashes( $_REQUEST['searchFor'] ) );
+	if ( ( isset( $_REQUEST['searchFor'] ) ) && ( sanitize_text_field( $_REQUEST['searchFor'] ) != $searchText ) )
+		$args['searchFor'] = stripslashes( sanitize_text_field( $_REQUEST['searchFor'] ) );
 
 	return add_query_arg( $args );
 }
@@ -2880,7 +2880,7 @@ function wppb_single_user_description_meta( $description ) {
         if( current_filter() == 'wpseo_metadesc' )
             return $user_object->description;
         else
-            echo '<meta property="og:description" content="' . $user_object->description . '" />';
+            echo '<meta property="og:description" content="' . esc_attr( $user_object->description ) . '" />';
     }
 }
 

@@ -129,7 +129,7 @@ function _wppb_le_output_str ( $str )
     $tpl = "\$lang['%s'] = '%s';\n";
 
     $str = sprintf ( $tpl, $args[ 1 ], $args[ 0 ] );
-    echo nl2br ( stripslashes ( htmlentities ( $str ) ) );
+    echo nl2br ( stripslashes ( htmlentities ( $str ) ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
     return $str;
 }
@@ -175,7 +175,7 @@ function _wppb_le_potx_process_file ( $file_path, $strip_prefix = 0, $save_callb
         if ( ( !is_array ( $token ) ) || ( ( $token[ 0 ] != T_WHITESPACE ) && ( $token[ 0 ] != T_INLINE_HTML ) ) ) {
             if ( is_array ( $token ) ) {
                 $token[ ] = $line_number;
-                // Fill array for finding token offsets quickly.         
+                // Fill array for finding token offsets quickly.
                 $src_tokens = array(
                     '__', 'esc_attr__', 'esc_html__', '_e', 'esc_attr_e', 'esc_html_e',
                     '_x', 'esc_attr_x', 'esc_html_x', '_ex',
@@ -483,7 +483,7 @@ function _wppb_le_potx_write_files ( $http_filename = NULL, $content_disposition
                 header ( 'Content-Type: text/plain; charset=utf-8' );
                 header ( 'Content-Transfer-Encoding: 8bit' );
                 header ( "Content-Disposition: $content_disposition; filename=$http_filename" );
-                print $output;
+                print $output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                 return;
             } else {
                 // Local file output, flatten directory structure.
@@ -725,7 +725,7 @@ function _wppb_le_potx_find_t_calls_with_context ( $file, $save_callback, $funct
             list( $type, $string, $line ) = $ctok;
 
             $slug = $_wppb_le_potx_tokens[ $ti + 4 ];
-            
+
             if ( $par == "(" ) {
                 if ( in_array ( $rig, array( ")", "," ) )
                     && ( is_array ( $mid ) && ( $mid[ 0 ] == T_CONSTANT_ENCAPSED_STRING ) )
@@ -1028,7 +1028,7 @@ function _wppb_le_potx_skip_args ( $here )
         }
     }
     // If we run out of nesting, it means we reached the end of the function call,
-    // so we skipped the arguments but did not find meat for looking at the 
+    // so we skipped the arguments but did not find meat for looking at the
     // specified context.
     return ( $nesting == 0 ? $here : FALSE );
 }
@@ -1053,9 +1053,9 @@ function _wppb_le_potx_find_context ( $tf, $ti, $file, $function_name )
     // Start from after the comma and skip the possible arguments for the function
     // so we can look for the context.
     if ( ( $ti = _wppb_le_potx_skip_args ( $ti ) ) && ( $_wppb_le_potx_tokens[ $ti ] == ',' ) ) {
-        // Now we actually might have some definition for a context. The $options 
+        // Now we actually might have some definition for a context. The $options
         // argument is coming up, which might have a key for context.
-        echo "TI:" . $ti . "\n";
+        echo "TI:" . $ti . "\n"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         list( $com, $arr, $par ) = array( $_wppb_le_potx_tokens[ $ti ], $_wppb_le_potx_tokens[ $ti + 1 ], $_wppb_le_potx_tokens[ $ti + 2 ] );
         if ( $com == ',' && $arr[ 1 ] == 'array' && $par == '(' ) {
             $nesting = 0;
@@ -1449,7 +1449,7 @@ function _wppb_le_potx_explore_dir ( $path = '', $basename = '*', $api_version =
             }
         }
     }
-    // Skip our own files, because we don't want to get strings from them 
+    // Skip our own files, because we don't want to get strings from them
     // to appear in the output, especially with the command line interface.
     // TODO: fix this to be able to autogenerate templates for potx itself.
     foreach ( $files as $id => $file_name ) {
@@ -1504,7 +1504,7 @@ function _wppb_le_potx_save_version ( $value = NULL, $file = NULL )
 function _wppb_le_potx_save_string ( $value = NULL, $context = NULL, $file = NULL, $line = 0, $string_mode = WPPB_LE_POTX_STRING_RUNTIME )
 {
     global $_wppb_le_potx_strings, $_wppb_le_potx_install;
-	
+
 	if ( isset( $value ) ) {
         switch ( $string_mode ) {
             case WPPB_LE_POTX_STRING_BOTH:

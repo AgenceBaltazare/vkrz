@@ -112,13 +112,13 @@ function wppb_save_avatar_value( $field, $user_id, $request_data, $form_location
             $field_name = 'simple_upload_' . wppb_handle_meta_name( $field[ 'meta-name' ] );
             if( isset( $_FILES[ $field_name ] ) ) {
                 if ( !( isset( $field[ 'conditional-logic-enabled' ] ) && $field[ 'conditional-logic-enabled' ] == 'yes' && !isset( $request_data[ wppb_handle_meta_name( $field[ 'meta-name' ] ) ] ) ) ){
-                    if ( $_FILES[ $field_name ][ 'size' ] == 0 ){
+                    if ( isset( $_FILES[ $field_name ][ 'size' ] ) && $_FILES[ $field_name ][ 'size' ] == 0 ){
                         if ( isset( $request_data[ wppb_handle_meta_name( $field[ 'meta-name' ] ) ] ) ){
-                            update_user_meta( $user_id, $field[ 'meta-name' ], $request_data[ wppb_handle_meta_name( $field[ 'meta-name' ] ) ] );
+                            update_user_meta( $user_id, $field[ 'meta-name' ], sanitize_text_field( $request_data[ wppb_handle_meta_name( $field[ 'meta-name' ] ) ] ) );
                         }
                     }
                     else{
-                        if ( wppb_valid_simple_upload( $field, $_FILES[ $field_name ] ) == false ){
+                        if ( wppb_valid_simple_upload( $field, $_FILES[ $field_name ] ) == false ){ /* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */ /* no need here for wppb_valid_simple_upload() */
                             update_user_meta( $user_id, $field[ 'meta-name' ], '' );
                         }
                         else {
@@ -130,7 +130,7 @@ function wppb_save_avatar_value( $field, $user_id, $request_data, $form_location
                             if ( isset( $file[ 'error' ] ) ) {
                                 return new WP_Error( 'upload_error', $file[ 'error' ] );
                             }
-                            $filename = $_FILES[ $field_name ][ 'name' ];
+                            $filename = isset( $_FILES[ $field_name ][ 'name' ] ) ? sanitize_text_field( $_FILES[ $field_name ][ 'name' ] ) : '';
                             $wp_filetype = wp_check_filetype( $filename, null );
                             $attachment = array(
                                 'post_mime_type'    => $wp_filetype[ 'type' ],
@@ -145,7 +145,7 @@ function wppb_save_avatar_value( $field, $user_id, $request_data, $form_location
                                 wp_update_attachment_metadata( $attachment_id, $attachment_data );
                                 update_user_meta( $user_id, $field[ 'meta-name' ], $attachment_id );
                                 wp_update_post( array(
-                                    'ID'            => trim( $attachment_id ),
+                                    'ID'            => absint( trim( $attachment_id ) ),
                                     'post_author'   => $user_id
                                 ) );
                             }
@@ -157,7 +157,7 @@ function wppb_save_avatar_value( $field, $user_id, $request_data, $form_location
         else{
             //Save data in the case the WordPress upload is used
             if ( isset( $request_data[wppb_handle_meta_name( $field['meta-name'] )] ) ){
-                update_user_meta( $user_id, $field['meta-name'], $request_data[wppb_handle_meta_name( $field['meta-name'] )] );
+                update_user_meta( $user_id, $field['meta-name'], sanitize_text_field( $request_data[wppb_handle_meta_name( $field['meta-name'] )] ) );
             }
         }
 	}
@@ -174,7 +174,7 @@ function wppb_check_avatar_value( $message, $field, $request_data, $form_locatio
             if ( isset( $field[ 'simple-upload' ] ) && $field[ 'simple-upload' ] == 'yes' ) {
                 //Check the required field in case simple upload is used
                 $field_name = 'simple_upload_' . wppb_handle_meta_name( $field[ 'meta-name' ] );
-                if ( (!isset( $_FILES[ $field_name ] ) || ( isset( $_FILES[ $field_name ] ) && $_FILES[ $field_name ][ 'size' ] == 0 ) || !wppb_valid_simple_upload( $field, $_FILES[ $field_name ] ) ) && isset( $request_data[ $field[ 'meta-name' ] ] ) && empty( $request_data[ $field[ 'meta-name' ] ] ) ){
+                if ( (!isset( $_FILES[ $field_name ] ) || ( isset( $_FILES[ $field_name ] ) && isset( $_FILES[ $field_name ][ 'size' ] ) && $_FILES[ $field_name ][ 'size' ] == 0 ) || !wppb_valid_simple_upload( $field, $_FILES[ $field_name ] ) ) && isset( $request_data[ $field[ 'meta-name' ] ] ) && empty( $request_data[ $field[ 'meta-name' ] ] ) ){ /* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */ /* no need here for wppb_valid_simple_upload() */
                     return wppb_required_field_error( $field[ 'field-title' ] );
                 }
             }

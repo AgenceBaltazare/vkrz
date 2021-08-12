@@ -238,7 +238,7 @@ function wppb_redirect_default_wp_pages() {
 				global $pagenow;
 
                 //force wp-login.php if you accidentally get locked out
-                if( $pagenow === 'wp-login.php' && ( isset( $_GET['wppb_force_wp_login'] ) || ( isset($_SERVER['HTTP_REFERER'])  && strpos( $_SERVER['HTTP_REFERER'], 'wppb_force_wp_login=true' ) !== false ) || ( isset($_REQUEST['redirect_to'])  && strpos( $_REQUEST['redirect_to'], 'wppb_force_wp_login=true' ) !== false ) ) )
+                if( $pagenow === 'wp-login.php' && ( isset( $_GET['wppb_force_wp_login'] ) || ( isset( $_SERVER['HTTP_REFERER'] )  && strpos( esc_url_raw( $_SERVER['HTTP_REFERER'] ), 'wppb_force_wp_login=true' ) !== false ) || ( isset($_REQUEST['redirect_to'])  && strpos( sanitize_text_field( $_REQUEST['redirect_to'] ), 'wppb_force_wp_login=true' ) !== false ) ) )
                     return;
 
 				// the part for the WP register page
@@ -272,7 +272,7 @@ function wppb_redirect_default_wp_pages() {
 				// the part for WP login; BEFORE login; this part only covers when the user isn't logged in and NOT when he just logged out
                 } elseif( ( ( $pagenow == 'wp-login.php' ) && ( ! isset( $_GET['action'] ) ) && ( ! isset( $_GET['loggedout'] ) ) && ! isset( $_POST['wppb_login'] ) && ! isset( $_POST['wppb_redirect_check'] ) ) || ( isset( $_GET['redirect_to'] ) && ( ( isset( $_GET['action'] ) && $_GET['action'] != 'logout' ) || !isset( $_GET['action'] ) ) ) ) {
 					$redirect_url = wppb_custom_redirect_url( 'login' );
-                    
+
 					if( ! current_user_can( 'manage_options' ) ) {
 						$redirect_url = apply_filters( 'wppb_wp_default_login_redirect_url', $redirect_url );
 
@@ -364,7 +364,7 @@ function wppb_cr_replace_tags( $redirect_url, $wppb_cr_username = NULL ) {
 				}
 			} elseif( $key == '{{http_referer}}' && $value === NULL ) {
 				if( isset( $_SERVER['HTTP_REFERER'] ) ) {
-					$redirect_url = str_replace( $key, $_SERVER['HTTP_REFERER'], $redirect_url );
+					$redirect_url = str_replace( $key, esc_url_raw( $_SERVER['HTTP_REFERER'] ), $redirect_url );
                     $redirect_url = remove_query_arg( 'reauth', $redirect_url );
 				} else {
 					$redirect_url = '';

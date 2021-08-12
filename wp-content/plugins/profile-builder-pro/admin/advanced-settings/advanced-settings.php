@@ -41,11 +41,11 @@ if( !class_exists('WPPB_toolbox') ){
         public function submenu_page_callback() {
             reset( $this->tabs );
 
-            if ( isset( $_GET['tab'] ) && array_key_exists( $_GET['tab'], $this->tabs) )
+            if ( isset( $_GET['tab'] ) && array_key_exists( sanitize_text_field( $_GET['tab'] ), $this->tabs) )
                 $this->active_tab = sanitize_text_field( $_GET['tab'] );
             ?>
             <div class="wrap wppb-wrap wppb-toolbox-wrap">
-                <h2><?php _e( 'Advanced Settings', 'profile-builder'); ?></h2>
+                <h2><?php esc_html_e( 'Advanced Settings', 'profile-builder'); ?></h2>
 
                 <?php settings_errors(); ?>
 

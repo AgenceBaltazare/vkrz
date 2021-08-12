@@ -168,18 +168,18 @@ class WPPB_Roles_Editor {
                 'current_user_role'             =>  $current_user_role,
                 'admin_capabilities'            =>  $admin_capabilities,
                 'hidden_capabilities'           =>  $hidden_capabilities,
-                'default_role_text'             =>  esc_html__( 'Default Role', 'profile_builder' ),
-                'your_role_text'                =>  esc_html__( 'Your Role', 'profile_builder' ),
-                'role_name_required_error_text' =>  esc_html__( 'Role name is required.', 'profile_builder' ),
-                'no_capabilities_found_text'    =>  esc_html__( 'No capabilities found.', 'profile_builder' ),
-                'select2_placeholder_text'      =>  esc_html__( 'Select capabilities', 'profile_builder' ),
-                'delete_permanently_text'       =>  esc_html__( 'Delete Permanently', 'profile_builder' ),
-                'capability_perm_delete_text'   =>  esc_html__( "This will permanently delete the capability from your site and from every user role.\n\nIt can't be undone!", 'profile_builder' ),
-                'new_cap_update_title_text'     =>  esc_html__( 'This capability is not saved until you click Update!', 'profile_builder' ),
-                'new_cap_publish_title_text'    =>  esc_html__( 'This capability is not saved until you click Publish!', 'profile_builder' ),
+                'default_role_text'             =>  esc_html__( 'Default Role', 'profile-builder' ),
+                'your_role_text'                =>  esc_html__( 'Your Role', 'profile-builder' ),
+                'role_name_required_error_text' =>  esc_html__( 'Role name is required.', 'profile-builder' ),
+                'no_capabilities_found_text'    =>  esc_html__( 'No capabilities found.', 'profile-builder' ),
+                'select2_placeholder_text'      =>  esc_html__( 'Select capabilities', 'profile-builder' ),
+                'delete_permanently_text'       =>  esc_html__( 'Delete Permanently', 'profile-builder' ),
+                'capability_perm_delete_text'   =>  esc_html__( "This will permanently delete the capability from your site and from every user role.\n\nIt can't be undone!", 'profile-builder' ),
+                'new_cap_update_title_text'     =>  esc_html__( 'This capability is not saved until you click Update!', 'profile-builder' ),
+                'new_cap_publish_title_text'    =>  esc_html__( 'This capability is not saved until you click Publish!', 'profile-builder' ),
                 'delete_text'                   =>  esc_html__( 'Delete', 'profile-builder' ),
-                'cancel_text'                   =>  esc_html__( 'Cancel', 'profile_builder' ),
-                'add_new_capability_text'       =>  esc_html__( 'Add New Capability', 'profile_builder' ),
+                'cancel_text'                   =>  esc_html__( 'Cancel', 'profile-builder' ),
+                'add_new_capability_text'       =>  esc_html__( 'Add New Capability', 'profile-builder' ),
                 'capability_text'               =>  esc_html__( 'Capability', 'profile-builder' ),
                 'cap_no_delete_text'            =>  esc_html__( 'You can\'t delete this capability from your role.', 'profile-builder' )
             );
@@ -211,7 +211,7 @@ class WPPB_Roles_Editor {
 
         check_ajax_referer( 'wppb-re-ajax-nonce', 'security' );
 
-        $role = get_role( sanitize_text_field( $_POST['role'] ) );
+        $role = isset( $_POST['role'] ) ? get_role( sanitize_text_field( $_POST['role'] ) ) : null;
 
         if( isset( $role ) && ! empty( $role->capabilities ) ) {
             $role_capabilities = $role->capabilities;
@@ -281,7 +281,7 @@ class WPPB_Roles_Editor {
         $screen = get_current_screen();
 
          if( $screen->post_type == 'wppb-roles-editor' ) {
-              $title = esc_html__( 'Enter role name here', 'profile_builder' );
+              $title = esc_html__( 'Enter role name here', 'profile-builder' );
          }
 
          return $title;
@@ -298,11 +298,11 @@ class WPPB_Roles_Editor {
             2  => esc_html__( 'Custom field updated.', 'profile-builder' ),
             3  => esc_html__( 'Custom field deleted.', 'profile-builder' ),
             4  => esc_html__( 'Role updated.', 'profile-builder' ),
-            5  => isset( $_GET['revision'] ) ? sprintf( esc_html__( 'Role restored to revision from %s' ), wp_post_revision_title( (int) sanitize_text_field( $_GET['revision'] ), false ) ) : false,
+            5  => isset( $_GET['revision'] ) ? sprintf( esc_html__( 'Role restored to revision from %s', 'profile-builder' ), wp_post_revision_title( (int) sanitize_text_field( $_GET['revision'] ), false ) ) : false,
             6  => esc_html__( 'Role created.', 'profile-builder' ),
             7  => esc_html__( 'Role saved.', 'profile-builder' ),
             8  => esc_html__( 'Role submitted.', 'profile-builder' ),
-            9  => sprintf( esc_html__( 'Role scheduled for: <strong>%1$s</strong>', 'profile-builder' ), date_i18n( __( 'M j, Y @ G:i' ), strtotime( $post->post_date ) ) ),
+            9  => sprintf( esc_html__( 'Role scheduled for: <strong>%1$s</strong>', 'profile-builder' ), date_i18n( __( 'M j, Y @ G:i', 'profile-builder' ), strtotime( $post->post_date ) ) ),
             10 => esc_html__( 'Role draft updated.', 'profile-builder' ),
         );
 
@@ -380,7 +380,7 @@ class WPPB_Roles_Editor {
             $role = get_role( $role_slug );
 
             if( $column_name == 'role' ) {
-                echo '<input readonly spellcheck="false" type="text" class="wppb-role-slug-input input" value="'. $role_slug .'" />';
+                echo '<input readonly spellcheck="false" type="text" class="wppb-role-slug-input input" value="'. esc_attr( $role_slug ) .'" />';
             }
 
             if( $column_name == 'capabilities' && isset( $role ) ) {
@@ -403,7 +403,7 @@ class WPPB_Roles_Editor {
                     $role_users_count = 0;
                 }
 
-                echo $role_users_count;
+                echo esc_html( $role_users_count );
             }
         }
     }
@@ -411,7 +411,7 @@ class WPPB_Roles_Editor {
     function register_meta_boxes() {
 
         remove_meta_box( 'slugdiv', 'wppb-roles-editor', 'normal' );
-        add_meta_box( 'wppb_edit_role_capabilities', esc_html__( 'Edit Role Capabilities', 'profile_builder' ), array( $this, 'edit_role_capabilities_meta_box_callback' ), 'wppb-roles-editor', 'normal', 'high' );
+        add_meta_box( 'wppb_edit_role_capabilities', esc_html__( 'Edit Role Capabilities', 'profile-builder' ), array( $this, 'edit_role_capabilities_meta_box_callback' ), 'wppb-roles-editor', 'normal', 'high' );
 
     }
 
@@ -422,61 +422,61 @@ class WPPB_Roles_Editor {
             <div id="wppb-role-edit-add-caps">
                 <select style="width: 40%; display: none;" class="wppb-capabilities-select" multiple="multiple"></select>
 
-                <input class="wppb-add-new-cap-input" type="text" placeholder="<?php esc_html_e( 'Add a new capability', 'profile_builder' ) ?>">
+                <input class="wppb-add-new-cap-input" type="text" placeholder="<?php esc_html_e( 'Add a new capability', 'profile-builder' ) ?>">
 
                 <a href="javascript:void(0)" class="button-primary" onclick="wppb_re_add_capability()">
-                    <span><?php esc_html_e( 'Add Capability', 'profile_builder' ) ?></span>
+                    <span><?php esc_html_e( 'Add Capability', 'profile-builder' ) ?></span>
                 </a>
 
                 <div id="wppb-add-new-cap-link">
-                    <a class="wppb-add-new-cap-link" href="javascript:void(0)"><?php esc_html_e( 'Add New Capability', 'profile_builder' ) ?></a>
+                    <a class="wppb-add-new-cap-link" href="javascript:void(0)"><?php esc_html_e( 'Add New Capability', 'profile-builder' ) ?></a>
                 </div>
 
-                <span id="wppb-add-capability-error"><?php esc_html_e( 'Please select an existing capability or add a new one!', 'profile_builder' ) ?></span>
-                <span id="wppb-hidden-capability-error"><?php esc_html_e( 'You can\'t add a hidden capability!', 'profile_builder' ) ?></span>
-                <span id="wppb-duplicate-capability-error"><?php esc_html_e( 'This capability already exists!', 'profile_builder' ) ?></span>
+                <span id="wppb-add-capability-error"><?php esc_html_e( 'Please select an existing capability or add a new one!', 'profile-builder' ) ?></span>
+                <span id="wppb-hidden-capability-error"><?php esc_html_e( 'You can\'t add a hidden capability!', 'profile-builder' ) ?></span>
+                <span id="wppb-duplicate-capability-error"><?php esc_html_e( 'This capability already exists!', 'profile-builder' ) ?></span>
             </div>
 
             <div class="wppb-role-edit-caps">
                 <ul id="wppb-capabilities-tabs">
                     <li class="wppb-role-editor-tab-title wppb-role-editor-tab-active">
-                        <a href="javascript:void(0)" class="wppb-role-editor-tab wppb-role-editor-all" data-wppb-re-tab="all"><i class="dashicons dashicons-plus"></i> <span class="wppb-role-editor-tab-label"><?php esc_html_e( 'All', 'profile_builder' ) ?></span></a>
+                        <a href="javascript:void(0)" class="wppb-role-editor-tab wppb-role-editor-all" data-wppb-re-tab="all"><i class="dashicons dashicons-plus"></i> <span class="wppb-role-editor-tab-label"><?php esc_html_e( 'All', 'profile-builder' ) ?></span></a>
                     </li>
 
                     <li class="wppb-role-editor-tab-title">
-                        <a href="javascript:void(0)" class="wppb-role-editor-tab wppb-role-editor-general" data-wppb-re-tab="general"><i class="dashicons dashicons-wordpress"></i> <span class="wppb-role-editor-tab-label"><?php esc_html_e( 'General', 'profile_builder' ) ?></span></a>
+                        <a href="javascript:void(0)" class="wppb-role-editor-tab wppb-role-editor-general" data-wppb-re-tab="general"><i class="dashicons dashicons-wordpress"></i> <span class="wppb-role-editor-tab-label"><?php esc_html_e( 'General', 'profile-builder' ) ?></span></a>
                     </li>
 
                     <li class="wppb-role-editor-tab-title">
-                        <a href="javascript:void(0)" class="wppb-role-editor-tab wppb-role-editor-posts" data-wppb-re-tab="post"><i class="dashicons dashicons-admin-post"></i> <span class="wppb-role-editor-tab-label"><?php esc_html_e( 'Posts', 'profile_builder' ) ?></span></a>
+                        <a href="javascript:void(0)" class="wppb-role-editor-tab wppb-role-editor-posts" data-wppb-re-tab="post"><i class="dashicons dashicons-admin-post"></i> <span class="wppb-role-editor-tab-label"><?php esc_html_e( 'Posts', 'profile-builder' ) ?></span></a>
                     </li>
 
                     <li class="wppb-role-editor-tab-title">
-                        <a href="javascript:void(0)" class="wppb-role-editor-tab wppb-role-editor-pages" data-wppb-re-tab="page"><i class="dashicons dashicons-admin-page"></i> <span class="wppb-role-editor-tab-label"><?php esc_html_e( 'Pages', 'profile_builder' ) ?></span></a>
+                        <a href="javascript:void(0)" class="wppb-role-editor-tab wppb-role-editor-pages" data-wppb-re-tab="page"><i class="dashicons dashicons-admin-page"></i> <span class="wppb-role-editor-tab-label"><?php esc_html_e( 'Pages', 'profile-builder' ) ?></span></a>
                     </li>
 
                     <li class="wppb-role-editor-tab-title">
-                        <a href="javascript:void(0)" class="wppb-role-editor-tab wppb-role-editor-media" data-wppb-re-tab="attachment"><i class="dashicons dashicons-admin-media"></i> <span class="wppb-role-editor-tab-label"><?php esc_html_e( 'Media', 'profile_builder' ) ?></span></a>
+                        <a href="javascript:void(0)" class="wppb-role-editor-tab wppb-role-editor-media" data-wppb-re-tab="attachment"><i class="dashicons dashicons-admin-media"></i> <span class="wppb-role-editor-tab-label"><?php esc_html_e( 'Media', 'profile-builder' ) ?></span></a>
                     </li>
 
                     <li class="wppb-role-editor-tab-title">
-                        <a href="javascript:void(0)" class="wppb-role-editor-tab wppb-role-editor-taxonomies" data-wppb-re-tab="taxonomies"><i class="dashicons dashicons-tag"></i> <span class="wppb-role-editor-tab-label"><?php esc_html_e( 'Taxonomies', 'profile_builder' ) ?></span></a>
+                        <a href="javascript:void(0)" class="wppb-role-editor-tab wppb-role-editor-taxonomies" data-wppb-re-tab="taxonomies"><i class="dashicons dashicons-tag"></i> <span class="wppb-role-editor-tab-label"><?php esc_html_e( 'Taxonomies', 'profile-builder' ) ?></span></a>
                     </li>
 
                     <li class="wppb-role-editor-tab-title">
-                        <a href="javascript:void(0)" class="wppb-role-editor-tab wppb-role-editor-appearance" data-wppb-re-tab="appearance"><i class="dashicons dashicons-admin-appearance"></i> <span class="wppb-role-editor-tab-label"><?php esc_html_e( 'Appearance', 'profile_builder' ) ?></span></a>
+                        <a href="javascript:void(0)" class="wppb-role-editor-tab wppb-role-editor-appearance" data-wppb-re-tab="appearance"><i class="dashicons dashicons-admin-appearance"></i> <span class="wppb-role-editor-tab-label"><?php esc_html_e( 'Appearance', 'profile-builder' ) ?></span></a>
                     </li>
 
                     <li class="wppb-role-editor-tab-title">
-                        <a href="javascript:void(0)" class="wppb-role-editor-tab wppb-role-editor-plugins" data-wppb-re-tab="plugins"><i class="dashicons dashicons-admin-plugins"></i> <span class="wppb-role-editor-tab-label"><?php esc_html_e( 'Plugins', 'profile_builder' ) ?></span></a>
+                        <a href="javascript:void(0)" class="wppb-role-editor-tab wppb-role-editor-plugins" data-wppb-re-tab="plugins"><i class="dashicons dashicons-admin-plugins"></i> <span class="wppb-role-editor-tab-label"><?php esc_html_e( 'Plugins', 'profile-builder' ) ?></span></a>
                     </li>
 
                     <li class="wppb-role-editor-tab-title">
-                        <a href="javascript:void(0)" class="wppb-role-editor-tab wppb-role-editor-users" data-wppb-re-tab="users"><i class="dashicons dashicons-admin-users"></i> <span class="wppb-role-editor-tab-label"><?php esc_html_e( 'Users', 'profile_builder' ) ?></span></a>
+                        <a href="javascript:void(0)" class="wppb-role-editor-tab wppb-role-editor-users" data-wppb-re-tab="users"><i class="dashicons dashicons-admin-users"></i> <span class="wppb-role-editor-tab-label"><?php esc_html_e( 'Users', 'profile-builder' ) ?></span></a>
                     </li>
 
                     <li class="wppb-role-editor-tab-title">
-                        <a href="javascript:void(0)" class="wppb-role-editor-tab wppb-role-editor-custom" data-wppb-re-tab="custom"><i class="dashicons dashicons-admin-generic"></i> <span class="wppb-role-editor-tab-label"><?php esc_html_e( 'Custom', 'profile_builder' ) ?></span></a>
+                        <a href="javascript:void(0)" class="wppb-role-editor-tab wppb-role-editor-custom" data-wppb-re-tab="custom"><i class="dashicons dashicons-admin-generic"></i> <span class="wppb-role-editor-tab-label"><?php esc_html_e( 'Custom', 'profile-builder' ) ?></span></a>
                     </li>
                 </ul>
 
@@ -488,7 +488,7 @@ class WPPB_Roles_Editor {
             </div>
 
             <input type="hidden" id="wppb-role-slug-hidden" name="wppb-role-slug-hidden" value="">
-            <input type="hidden" name="wppb-re-ajax-nonce" id="wppb-re-ajax-nonce" value="<?php echo wp_create_nonce( 'wppb-re-ajax-nonce' ) ?>" />
+            <input type="hidden" name="wppb-re-ajax-nonce" id="wppb-re-ajax-nonce" value="<?php echo esc_attr( wp_create_nonce( 'wppb-re-ajax-nonce' ) ) ?>" />
         </div>
         <?php
 
@@ -516,19 +516,19 @@ class WPPB_Roles_Editor {
 
             <div class="misc-pub-section misc-pub-section-users">
                 <i class="icon-wppb-re-users"></i>
-                <span><?php esc_html_e( 'Users', 'profile_builder' ) ?>: <strong>0</strong></span>
+                <span><?php esc_html_e( 'Users', 'profile-builder' ) ?>: <strong>0</strong></span>
             </div>
 
             <div class="misc-pub-section misc-pub-section-capabilities">
                 <i class="icon-wppb-re-caps"></i>
-                <span><?php esc_html_e( 'Capabilities', 'profile_builder' ) ?>: <strong>0</strong></span>
+                <span><?php esc_html_e( 'Capabilities', 'profile-builder' ) ?>: <strong>0</strong></span>
             </div>
 
             <div class="misc-pub-section misc-pub-section-edit-slug">
                 <i class="icon-wppb-re-slug"></i>
                 <span>
-                    <label for="wppb-role-slug"><?php esc_html_e( 'Role Slug', 'profile_builder' ) ?>: </label>
-                    <input type="text" id="wppb-role-slug" value="<?php echo $current_screen->action == 'add' ? '' : $role_slug ?>" <?php echo $current_screen->action == 'add' ? '' : 'disabled'; ?>>
+                    <label for="wppb-role-slug"><?php esc_html_e( 'Role Slug', 'profile-builder' ) ?>: </label>
+                    <input type="text" id="wppb-role-slug" value="<?php echo $current_screen->action == 'add' ? '' : esc_attr( $role_slug ) ?>" <?php echo $current_screen->action == 'add' ? '' : 'disabled'; ?>>
                 </span>
             </div>
         <?php
@@ -579,7 +579,7 @@ class WPPB_Roles_Editor {
         }
 
         if( isset( $_POST['wppb-role-slug-hidden'] ) ) {
-            $role_slug = $this->sanitize_role( trim( $_POST['wppb-role-slug-hidden'] ) );
+            $role_slug = $this->sanitize_role( trim( $_POST['wppb-role-slug-hidden'] ) ); /* phpcs:ignore  WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
 
             update_post_meta( $post_id, 'wppb_role_slug', $role_slug );
         }
@@ -594,19 +594,19 @@ class WPPB_Roles_Editor {
 
         check_ajax_referer( 'wppb-re-ajax-nonce', 'security' );
 
-        $role_slug = $this->sanitize_role( $_POST['role'] );
+        $role_slug = isset( $_POST['role'] ) ? $this->sanitize_role( $_POST['role'] ) : ''; /* phpcs:ignore  WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
 
         $role = get_role( $role_slug );
 
         if( $role ) {
             if( isset( $_POST['new_capabilities'] ) ) {
-                foreach( $_POST['new_capabilities'] as $key => $value ) {
+                foreach( $_POST['new_capabilities'] as $key => $value ) { /* phpcs:ignore  WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
                     $role->add_cap( sanitize_text_field( $key ) );
                 }
             }
 
             if( isset( $_POST['capabilities_to_delete'] ) ) {
-                foreach( $_POST['capabilities_to_delete'] as $key => $value ) {
+                foreach( $_POST['capabilities_to_delete'] as $key => $value ) { /* phpcs:ignore  WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
                     $role->remove_cap( sanitize_text_field( $key ) );
                 }
             }
@@ -614,12 +614,12 @@ class WPPB_Roles_Editor {
             $capabilities = array();
 
             if( isset( $_POST['all_capabilities'] ) ) {
-                foreach( $_POST['all_capabilities'] as $key => $value ) {
+                foreach( $_POST['all_capabilities'] as $key => $value ) { /* phpcs:ignore  WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
                     $capabilities[sanitize_text_field( $key )] = true;
                 };
             }
 
-            $role_display_name = sanitize_text_field( $_POST['role_display_name'] );
+            $role_display_name = isset( $_POST['role_display_name'] ) ? sanitize_text_field( $_POST['role_display_name'] ) : '';
 
             add_role( $role_slug, $role_display_name, $capabilities );
         }
@@ -819,18 +819,21 @@ class WPPB_Roles_Editor {
 
         global $wp_roles;
 
-        foreach( $wp_roles->role_names as $role_slug => $role_display_name ) {
-            $role = get_role( $role_slug );
-            $role->remove_cap( sanitize_text_field( $_POST['capability'] ) );
-        }
+        if( !empty( $_POST['capability'] ) ) {
 
-        $capabilities = get_option( 'wppb_roles_editor_capabilities', 'not_set' );
+            foreach ($wp_roles->role_names as $role_slug => $role_display_name) {
+                $role = get_role($role_slug);
+                $role->remove_cap(sanitize_text_field($_POST['capability']));
+            }
 
-        if( $capabilities != 'not_set' && ( $key = array_search( sanitize_text_field( $_POST['capability'] ), $capabilities['custom']['capabilities'] ) ) !== false ) {
-            unset( $capabilities['custom']['capabilities'][$key] );
-            $capabilities['custom']['capabilities'] = array_values( $capabilities['custom']['capabilities'] );
+            $capabilities = get_option('wppb_roles_editor_capabilities', 'not_set');
 
-            update_option( 'wppb_roles_editor_capabilities', $capabilities );
+            if ($capabilities != 'not_set' && ($key = array_search(sanitize_text_field($_POST['capability']), $capabilities['custom']['capabilities'])) !== false) {
+                unset($capabilities['custom']['capabilities'][$key]);
+                $capabilities['custom']['capabilities'] = array_values($capabilities['custom']['capabilities']);
+
+                update_option('wppb_roles_editor_capabilities', $capabilities);
+            }
         }
 
         die();
@@ -900,7 +903,7 @@ class WPPB_Roles_Editor {
                         'delete' => sprintf(
                             '<a href="%1$s" onclick="return confirm( \'%2$s\' );">%3$s</a>',
                             esc_url( $delete_link ),
-                            esc_html__( 'Are you sure?\nThis will permanently delete the role and cannot be undone!\nUsers assigned only on this role will be moved to the default role.', 'profile_builder' ),
+                            esc_html__( 'Are you sure?\nThis will permanently delete the role and cannot be undone!\nUsers assigned only on this role will be moved to the default role.', 'profile-builder' ),
                             esc_html__( 'Delete', 'profile-builder' )
                         )
                     )
@@ -1082,7 +1085,7 @@ class WPPB_Roles_Editor {
         $user_roles = apply_filters( 'wppb_default_user_roles', array( get_option( 'default_role' ) ) );
 
         if( isset( $_POST['createuser'] ) && ! empty( $_POST['wppb_re_user_roles'] ) ) {
-            $user_roles = array_map( array( $this, 'sanitize_role' ), $_POST['wppb_re_user_roles'] );
+            $user_roles = array_map( array( $this, 'sanitize_role' ), $_POST['wppb_re_user_roles'] );// phpcs:ignore  WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
         }
 
         wp_nonce_field( 'new_user_roles', 'wppb_re_new_user_roles_nonce' );
@@ -1145,7 +1148,7 @@ class WPPB_Roles_Editor {
             return;
         }
 
-        if( ! isset( $_POST['wppb_re_new_user_roles_nonce'] ) || ! wp_verify_nonce( $_POST['wppb_re_new_user_roles_nonce'], 'new_user_roles' ) ) {
+        if( ! isset( $_POST['wppb_re_new_user_roles_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( $_POST['wppb_re_new_user_roles_nonce'] ), 'new_user_roles' ) ) {
             return;
         }
 
@@ -1159,7 +1162,7 @@ class WPPB_Roles_Editor {
             return;
         }
 
-        if( ! isset( $_POST['wppb_re_new_user_roles_nonce'] ) || ! wp_verify_nonce( $_POST['wppb_re_new_user_roles_nonce'], 'new_user_roles' ) ) {
+        if( ! isset( $_POST['wppb_re_new_user_roles_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( $_POST['wppb_re_new_user_roles_nonce'] ), 'new_user_roles' ) ) {
             return;
         }
 
@@ -1175,7 +1178,7 @@ class WPPB_Roles_Editor {
 
             $old_roles = (array) $user->roles;
 
-            $new_roles = array_map( array( $this, 'sanitize_role' ), $_POST['wppb_re_user_roles'] );
+            $new_roles = array_map( array( $this, 'sanitize_role' ), $_POST['wppb_re_user_roles'] );//phpcs:ignore  WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 
             foreach( $new_roles as $new_role ) {
                 if( ! in_array( $new_role, (array) $user->roles ) ) {

@@ -2,7 +2,7 @@
 
 /**
  * Get the repeater field limit
- * 
+ *
  * @param $repeater_field
  * @param $user_id
  * @param string $role
@@ -30,7 +30,7 @@ function wppb_rpf_get_limit( $repeater_field, $user_id, $role = '' ){
 
 /**
  * Get the repeater field limit for a specific role
- * 
+ *
  * @param $repeater_field
  * @param $roles
  * @return int
@@ -73,7 +73,7 @@ function wppb_rpf_get_limit_for_role( $repeater_field, $roles ) {
  * @param string                    $rpf_meta_name              Repeater field meta-name
  * @param array                     $repeater_group             Array of fields of the current Repeater field. Fields do not have indexed meta-names.
  * @param int                       $count_repeater_group       Number of fields contained in the $repeater group.
- * @param array                     $request_data               Request data array.             
+ * @param array                     $request_data               Request data array.
  * @return array                    $request_data               Request array cleared of empty repeater groups
  */
 function wppb_rpf_remove_empty_appended_fields_for_repeater( $rpf_meta_name, $repeater_group, $count_repeater_group, $request_data ){
@@ -87,7 +87,7 @@ function wppb_rpf_remove_empty_appended_fields_for_repeater( $rpf_meta_name, $re
         for ( $iterator = 0; $iterator < $count_repeater_group; $iterator++ ) {
             $field = $repeater_group[$iterator];
             if ( $field[ 'field' ] == 'Upload' && isset( $field[ 'simple-upload' ] ) && $field[ 'simple-upload' ] == 'yes' ){
-                if ( ( ( isset( $_FILES[ 'simple_upload_' . $field[ 'meta-name' ] . "_" . $meta_name_iterator ] ) && $_FILES[ 'simple_upload_' . $field[ 'meta-name' ] . "_" . $meta_name_iterator ][ 'size' ] > 0 ) || ( isset( $request_data[ $field[ 'meta-name' ] . "_" . $meta_name_iterator ] ) && !empty ( $request_data[ $field[ 'meta-name' ] . "_" . $meta_name_iterator ] ) ) ) ||
+                if ( ( ( isset( $_FILES[ 'simple_upload_' . $field[ 'meta-name' ] . "_" . $meta_name_iterator ] ) && isset( $_FILES[ 'simple_upload_' . $field[ 'meta-name' ] . "_" . $meta_name_iterator ]['size'] ) && $_FILES[ 'simple_upload_' . $field[ 'meta-name' ] . "_" . $meta_name_iterator ][ 'size' ] > 0 ) || ( isset( $request_data[ $field[ 'meta-name' ] . "_" . $meta_name_iterator ] ) && !empty ( $request_data[ $field[ 'meta-name' ] . "_" . $meta_name_iterator ] ) ) ) ||
                     ( wppb_belongs_to_repeater_with_conditional_logic( $field ) && ( !isset( $request_data[ $field[ 'meta-name' ] . "_" . $meta_name_iterator ] ) && ( ( !isset( $_FILES[ 'simple_upload_' . $field[ 'meta-name' ] . "_" . $meta_name_iterator ] ) || ( isset( $_FILES[ 'simple_upload_' . $field[ 'meta-name' ] . "_" . $meta_name_iterator ] ) && $_FILES[ 'simple_upload_' . $field[ 'meta-name' ] . "_" . $meta_name_iterator ][ 'size' ] == 0 ) ) ) ) ) ){
                     $stop = true;
                     break;

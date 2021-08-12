@@ -1,28 +1,17 @@
 <?php
 global $uuiduser;
 global $user_id;
+global $user_tops;
+global $user_infos;
 global $utm;
-global $user_role;
-global $vainkeur_infos;
-global $user_full_data;
-$user_role = "visitor";
-if(get_post_type() != "tournoi" || !is_single()){
-    if(is_user_logged_in()){
-        $current_user   = wp_get_current_user();
-        $user_id        = $current_user->ID;
-        $user_info      = get_userdata($user_id);
-        $user_role      = $user_info->roles[0];
-    }
-    $uuiduser       = deal_uuiduser();
-    $utm            = deal_utm();
-}
-if (false === ( $user_full_data = get_transient( 'user_'.$user_id.'_get_user_full_data' ) )) {
-    $user_full_data = get_user_full_data($user_id, "author");
-    set_transient( 'user_'.$user_id.'_get_user_full_data', $user_full_data, DAY_IN_SECONDS );
-} else {
-    $user_full_data = get_transient( 'user_'.$user_id.'_get_user_full_data' );
-}
-$vainkeur_infos = deal_vainkeur_entry($uuiduser);
+
+$user_id        = get_user_logged_id();
+$uuiduser       = deal_uuiduser();
+$utm            = deal_utm();
+
+$user_tops      = get_user_tops();
+
+$user_infos     = deal_vainkeur_entry();
 ?>
 <!DOCTYPE html>
 <html class="loading dark-layout" lang="fr" data-layout="dark-layout" data-textdirection="ltr">
@@ -58,7 +47,7 @@ $vainkeur_infos = deal_vainkeur_entry($uuiduser);
 
     <?php get_template_part('partials/meta'); ?>
 
-    <?php if($user_role != "administrator"): ?>
+    <?php if($user_infos['user_role'] != "administrator"): ?>
         <!-- Google Tag Manager -->
         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -70,8 +59,8 @@ $vainkeur_infos = deal_vainkeur_entry($uuiduser);
 
     <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="ec6a3187-bf39-4eb5-a90d-dda00a2995c8";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
     <script>
-        $crisp.push(["set", "user:email", ["<?php echo $user_email; ?>"]]);
-        $crisp.push(["set", "user:nickname", ["<?php echo $user_name; ?>"]]);
+        $crisp.push(["set", "user:email", ["<?php echo $user_infos['user_email']; ?>"]]);
+        $crisp.push(["set", "user:nickname", ["<?php echo $user_infos['pseudo']; ?>"]]);
     </script>
 
     <?php if(is_author() || is_page(27040)): ?>
@@ -89,7 +78,7 @@ else{
 }
 ?>
 <body <?php body_class($list_body_class); ?> data-open="click" data-menu="vertical-menu-modern" data-col="">
-<?php if($user_role != "administrator"): ?>
+<?php if($user_infos['user_role'] != "administrator"): ?>
 	<!-- Google Tag Manager (noscript) -->
 	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KH379F5" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	<!-- End Google Tag Manager (noscript) -->

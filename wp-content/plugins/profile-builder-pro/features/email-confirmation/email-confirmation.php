@@ -46,7 +46,7 @@ function wppb_add_pending_users_header_script(){
 	<script type="text/javascript">
 		jQuery(document).ready(function() {
 			jQuery.post( ajaxurl ,  { action:"wppb_get_unconfirmed_email_number"}, function(response) {
-				jQuery('.wrap ul.subsubsub').append('<span id="separatorID"> |</span> <li class="listUsersWithUncofirmedEmail"><a class="unconfirmedEmailUsers" href="?page=unconfirmed_emails"><?php _e('Users with Unconfirmed Email Address', 'profile-builder');?></a> <font id="unconfirmedEmailNo" color="grey">('+response.number+')</font></li>');
+				jQuery('.wrap ul.subsubsub').append('<span id="separatorID"> |</span> <li class="listUsersWithUncofirmedEmail"><a class="unconfirmedEmailUsers" href="?page=unconfirmed_emails"><?php esc_html_e('Users with Unconfirmed Email Address', 'profile-builder');?></a> <font id="unconfirmedEmailNo" color="grey">('+response.number+')</font></li>');
 			});
 		});
 
@@ -57,7 +57,7 @@ function wppb_add_pending_users_header_script(){
 
 		// script to create a confirmation box for the user upon approving/unapproving a user
 		function confirmECAction( URL, todo, user_email, actionText ) {
-			actionText = '<?php _e( 'Do you want to', 'profile-builder' ); ?>' + ' ' + actionText;
+			actionText = '<?php esc_html_e( 'Do you want to', 'profile-builder' ); ?>' + ' ' + actionText;
 
 			if (confirm(actionText)) {
 				jQuery.post( ajaxurl ,  { action:"wppb_handle_email_confirmation_cases", URL:URL, todo:todo, user_email:user_email}, function(response) {
@@ -97,8 +97,8 @@ function wppb_get_unconfirmed_email_number(){
 function wppb_handle_email_confirmation_cases() {
 	global $wpdb;
 
-	$todo = sanitize_text_field($_POST['todo']);
-	$user_email = sanitize_email($_POST['user_email']);
+	$todo = isset( $_POST['todo'] ) ? sanitize_text_field( $_POST['todo'] ) : '';
+	$user_email = isset( $_POST['user_email'] ) ? sanitize_email($_POST['user_email']) : '';
 
 	if ( current_user_can( apply_filters( 'wppb_email_confirmation_user_capability', 'manage_options' ) ) )
 		if ( ( $todo != '' ) && ( $user_email != '' ) ){
@@ -106,7 +106,7 @@ function wppb_handle_email_confirmation_cases() {
 			$results = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM " . $wpdb->base_prefix . "signups WHERE active = 0 AND user_email = %s", $user_email ) );
 
 			if ( count( $results ) != 1 )
-				die( __( "There was an error performing that action!", "profile-builder" ) );
+				die( esc_html__( "There was an error performing that action!", "profile-builder" ) );
 
 			elseif ( $todo == 'delete' ){
 				$sql_result = $wpdb->delete( $wpdb->base_prefix.'signups', array( 'user_login' => $results[0]->user_login, 'user_email' => $results[0]->user_email ) );
@@ -114,10 +114,10 @@ function wppb_handle_email_confirmation_cases() {
 					die( 'ok' );
 
 				else
-					die( __( "The selected user couldn't be deleted", "profile-builder" ) );
+					die( esc_html__( "The selected user couldn't be deleted", "profile-builder" ) );
 
 			}elseif ( $todo == 'confirm' ){
-				die( wppb_manual_activate_signup( $results[0]->activation_key ) );
+				die( wppb_manual_activate_signup( $results[0]->activation_key ) );/* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ /* escaped inside the function */
 
 			}elseif ( $todo == 'resend' ){
 				$sql_result = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM " . $wpdb->base_prefix . "signups WHERE user_login = %s AND user_email = %s", $results[0]->user_login, $results[0]->user_email ), ARRAY_A );
@@ -125,13 +125,13 @@ function wppb_handle_email_confirmation_cases() {
 				if ( $sql_result ){
 					wppb_signup_user_notification( trim( $sql_result['user_login'] ), trim( $sql_result['user_email'] ), $sql_result['activation_key'], $sql_result['meta'] );
 
-					die( __( "Email notification resent to user", "profile-builder" ) );
+					die( esc_html__( "Email notification resent to user", "profile-builder" ) );
 				}
 
 			}
 		}
 
-	die( __("You either don't have permission for that action or there was an error!", "profile-builder") );
+	die( esc_html__("You either don't have permission for that action or there was an error!", "profile-builder") );
 }
 
 
@@ -384,9 +384,6 @@ function wppb_signup_user_notification( $user, $user_email, $activation_key, $me
 	$wppb_general_settings = get_option( 'wppb_general_settings' );
 	$admin_email = get_site_option( 'admin_email' );
 
-	if ( $admin_email == '' )
-		$admin_email = 'support@' . $_SERVER['SERVER_NAME'];
-
 	$from_name = apply_filters ( 'wppb_signup_user_notification_email_from_field', get_bloginfo( 'name' ) );
 
 	//we don't use this anymore do we ?
@@ -415,7 +412,16 @@ function wppb_signup_user_notification( $user, $user_email, $activation_key, $me
 		$registration_page_url = ( ( strpos( $post_content, '[wppb-register' ) !== false ) ? add_query_arg( array( 'activation_key' => $activation_key ), $permalink ) : add_query_arg( array( 'activation_key' => $activation_key ), get_bloginfo( 'url' ) ) );
 	}
 
-	$subject = sprintf( __( '[%1$s] Activate %2$s', 'profile-builder'), $from_name, $user );
+    $wppb_generalSettings = get_option( 'wppb_general_settings' );
+
+    if( !empty( $wppb_generalSettings['loginWith'] ) && $wppb_generalSettings['loginWith'] == 'email' ) {
+        $display_username_email = $user_email;
+    }
+    else {
+        $display_username_email = $user;
+    }
+
+	$subject = sprintf( __( '[%1$s] Activate %2$s', 'profile-builder'), $from_name, $display_username_email );
 	$subject = apply_filters( 'wppb_signup_user_notification_email_subject', $subject, $user_email, $user, $activation_key, $registration_page_url, $meta, $from_name, 'wppb_user_emailc_registr_w_email_confirm_email_subject' );
 
 	$message = sprintf( __( "To activate your user, please click the following link:<br><br>%s%s%s<br><br>After you activate it you will receive yet *another email* with your login.", "profile-builder" ), '<a href="'.$registration_page_url.'">', $registration_page_url, '</a>' );
@@ -677,7 +683,7 @@ if( $wppb_general_settings != 'not_found' )
     if( !empty($wppb_general_settings['emailConfirmation'] ) && ( $wppb_general_settings['emailConfirmation'] == 'yes' ) ){
         if ( is_multisite() ){
             /* don't display on network admin */
-            if( strpos($_SERVER['SCRIPT_NAME'], 'users.php') && !is_network_admin() ){  //global $pagenow doesn't seem to work
+            if( isset($_SERVER['SCRIPT_NAME']) && strpos( sanitize_text_field( $_SERVER['SCRIPT_NAME'] ), 'users.php') && !is_network_admin() ){  //global $pagenow doesn't seem to work
                 add_action( 'admin_head', 'wppb_add_pending_users_header_script' );
             }
         }else{

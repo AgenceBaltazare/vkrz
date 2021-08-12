@@ -437,7 +437,7 @@ if ( ! function_exists( 'wppb_agregate_map_assets' ) ) {
 			.wppb-acf-map-all .marker-content .marker-info-avatar_or_gravatar {float: left; margin-right: 10px;}
 			.map-pins-loading {position: relative;}
 			.map-pins-loading:after {position: absolute; content:' '; width: 100%; height: 32px; top: -32px; left: 0; display: block; z-index: 100; text-align: center; line-height: 32px; font-size: 11px color: #000; content:'<?php esc_attr_e( 'Please wait while the pins are loading...', 'profile-builder' ); ?>';}
-			.map-pins-loading:before {position: absolute; content:' '; width: 100%; height: 100%; top: 0; left: 0; display: block; z-index: 100; background: url('<?php echo admin_url('/images/loading.gif')?>') no-repeat 50% 50% rgba(255,255,255,0.4);}
+			.map-pins-loading:before {position: absolute; content:' '; width: 100%; height: 100%; top: 0; left: 0; display: block; z-index: 100; background: url('<?php echo esc_url( admin_url('/images/loading.gif') )?>') no-repeat 50% 50% rgba(255,255,255,0.4);}
 			</style>
 			<script>/* <![CDATA[ */
 			var oneMapListing = <?php echo json_encode( $conf ); ?>;
@@ -535,7 +535,7 @@ if ( ! function_exists( 'wppb_aggregate_map_pins' ) ) {
 		ob_start();
 		?>
 
-		<?php echo wppb_agregate_map_assets( $api_key, $map_lat, $map_lng, $map_zoom, $map_height ); // WPCS: XSS OK. ?>
+		<?php echo wppb_agregate_map_assets( $api_key, $map_lat, $map_lng, $map_zoom, $map_height ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
         <?php if ( 'all' === $map_load ) : ?>
 
 			<a class="wppb-acf-map-all-load-more load-for-<?php echo esc_attr( $item_hash ); ?>-map" id="<?php echo esc_attr( $item_hash ); ?>_more"
@@ -558,7 +558,7 @@ if ( ! function_exists( 'wppb_aggregate_map_pins' ) ) {
 						<?php
 						if ( ! empty( $current_list['pins'] ) ) {
 							$pins = wp_list_pluck( $current_list['pins'], 'pin_markup' );
-							echo implode( ' ', $pins ); // WPCS: XSS OK.
+							echo implode( ' ', $pins ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						}
 						?>
 					</div>

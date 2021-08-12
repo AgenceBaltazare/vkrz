@@ -21,6 +21,7 @@ function wppb_register_settings() {
 	register_setting( 'emailCustomizer', 'emailCustomizer' );
 	register_setting( 'wppb_content_restriction_settings', 'wppb_content_restriction_settings' );
 	register_setting( 'wppb_private_website_settings', 'wppb_private_website_settings' );
+    register_setting( 'wppb_two_factor_authentication_settings', 'wppb_two_factor_authentication_settings' );
 }
 
 
@@ -76,7 +77,7 @@ function wppb_show_admin_bar($content){
 
 if(!function_exists('wppb_curpageurl')){
 	function wppb_curpageurl(){
-        $req_uri = $_SERVER['REQUEST_URI'];
+        $req_uri = isset( $_SERVER['REQUEST_URI'] ) ? esc_url_raw( $_SERVER['REQUEST_URI'] ) : '';
 
         if( function_exists('wppb_get_abs_home') ) {
             $home_path = trim(parse_url(wppb_get_abs_home(), PHP_URL_PATH), '/');
@@ -256,7 +257,7 @@ function wppb_maybe_add_propper_html_tags_to_email( $message ){
 }
 
 function wppb_activate_account_check(){
-	if ( ( isset( $_GET['activation_key'] ) ) && ( trim( $_GET['activation_key'] ) != '' ) ){
+	if ( ( isset( $_GET['activation_key'] ) ) && ( sanitize_text_field( $_GET['activation_key'] ) != '' ) ){
 		global $post;
 		$activation_key = sanitize_text_field( $_GET['activation_key'] );
 
@@ -280,8 +281,10 @@ add_action( 'template_redirect', 'wppb_activate_account_check' );
 
 
 function wppb_add_activation_message( $content ){
-
-	return wppb_activate_signup( sanitize_text_field( $_GET['activation_key'] ) ) . $content;
+    if( isset( $_GET['activation_key']  ) )
+	    return wppb_activate_signup( sanitize_text_field( $_GET['activation_key'] ) ) . $content;
+    else
+        return $content;
 }
 
 
@@ -323,7 +326,7 @@ function wppb_print_cpt_script( $hook ){
 
 	if ( $hook == 'profile-builder_page_manage-fields' ){
 		wp_enqueue_script( 'wppb-manage-fields-live-change', WPPB_PLUGIN_URL . 'assets/js/jquery-manage-fields-live-change.js', array(), PROFILE_BUILDER_VERSION, true );
-		wp_localize_script( 'wppb-manage-fields-live-change', 'wppb_fields_strings', array( 'gdpr_title' => __( 'GDPR Checkbox', 'profile-builder' ), 'gdpr_description' => __( 'I allow the website to collect and store the data I submit through this form.', 'profile-builder' ) ) );
+		wp_localize_script( 'wppb-manage-fields-live-change', 'wppb_fields_strings', array( 'gdpr_title' => __( 'GDPR Checkbox', 'profile-builder' ), 'gdpr_description' => __( 'I allow the website to collect and store the data I submit through this form.', 'profile-builder' ), 'honeypot_title' => __( 'Honeypot', 'profile-builder' ) ) );
 
 		wp_enqueue_script( 'wppb-select2', WPPB_PLUGIN_URL . 'assets/js/select2/select2.min.js', array(), PROFILE_BUILDER_VERSION, true );
         wp_enqueue_style( 'wppb-select2-style', WPPB_PLUGIN_URL . 'assets/css/select2/select2.min.css', false, PROFILE_BUILDER_VERSION );
@@ -400,6 +403,7 @@ add_action( "admin_footer-profile-builder_page_profile-builder-content_restricti
 add_action( "admin_footer-profile-builder_page_admin-email-customizer", "wppb_make_setting_menu_item_highlighted" );
 add_action( "admin_footer-profile-builder_page_user-email-customizer", "wppb_make_setting_menu_item_highlighted" );
 add_action( "admin_footer-profile-builder_page_profile-builder-toolbox-settings", "wppb_make_setting_menu_item_highlighted" );
+add_action( "admin_footer-profile-builder_page_profile-builder-two-factor-authentication", "wppb_make_setting_menu_item_highlighted" );
 function wppb_make_setting_menu_item_highlighted(){
 	echo'<script type="text/javascript">
         jQuery(document).ready( function($) {
@@ -915,11 +919,11 @@ function wppb_enqueue_password_visibility_toggle() {
                         if ("password" === input.attr("type")) {
                             input.attr("type", "text");
                             button.toggleClass("wppb-show-pw").toggleClass("wppb-hide-pw");
-                            icon.attr("src", "<?php echo WPPB_PLUGIN_URL; ?>/assets/images/eye-off-outline.svg");
+                            icon.attr("src", "<?php echo esc_attr( WPPB_PLUGIN_URL ); ?>/assets/images/eye-off-outline.svg");
                         } else {
                             input.attr("type", "password");
                             button.toggleClass("wppb-show-pw").toggleClass("wppb-hide-pw");
-                            icon.attr("src", "<?php echo WPPB_PLUGIN_URL; ?>/assets/images/eye-outline.svg");
+                            icon.attr("src", "<?php echo esc_attr( WPPB_PLUGIN_URL ); ?>/assets/images/eye-outline.svg");
                         }
                     }
                 }
@@ -1487,7 +1491,7 @@ function wppb_disable_feed() {
 	if( $wppb_private_website_settings != 'not_found' ) {
 		if ($wppb_private_website_settings['private_website'] == 'yes') {
 			if (!is_user_logged_in()) {
-				wp_die( sprintf( __('No feed available,please visit our <a href="%s">homepage</a>!', 'profile-builder' ), get_bloginfo('url') ) );
+				wp_die( wp_kses_post( sprintf( __('No feed available,please visit our <a href="%s">homepage</a>!', 'profile-builder' ), get_bloginfo('url') ) ) );
 			}
 		}
 	}
@@ -1527,7 +1531,7 @@ function wppb_disable_rest_api_authentication($result) {
             if ( isset( $wppb_private_website_settings[ 'disable_rest_api' ] ) && $wppb_private_website_settings[ 'disable_rest_api' ] == 'no' ) {
                 return $result;
             }
-            if (!is_user_logged_in() && $_SERVER['REQUEST_URI'] !== "/wp-json/jwt-auth/v1/token" && $_SERVER['REQUEST_URI'] !== "/wp-json/jwt-auth/v1/token/validate") {
+            if (!is_user_logged_in() && isset( $_SERVER['REQUEST_URI'] ) && $_SERVER['REQUEST_URI'] !== "/wp-json/jwt-auth/v1/token" && $_SERVER['REQUEST_URI'] !== "/wp-json/jwt-auth/v1/token/validate") {
                 return new WP_Error('rest_not_logged_in', __( 'You are not currently logged in.', 'profile-builder' ), array('status' => 401));
             }
         }
@@ -1565,7 +1569,7 @@ function wppb_hide_menus( $menu ){
 add_filter( 'wp_privacy_personal_data_exporters', 'wppb_register_profile_builder_wp_exporter', 10 );
 function wppb_register_profile_builder_wp_exporter( $exporters ) {
     $exporters['profile-builder'] = array(
-        'exporter_friendly_name' => __( 'Profile Builder' ),
+        'exporter_friendly_name' => __( 'Profile Builder', 'profile-builder' ),
         'callback' => 'wppb_profile_builder_wp_exporter',
     );
     return $exporters;
@@ -1583,7 +1587,7 @@ function wppb_profile_builder_wp_exporter( $email_address, $page = 1 ) {
 
             $item_id = "user-meta-{$user->ID}";
             $group_id = 'user-meta';
-            $group_label = __('User Meta');
+            $group_label = __('User Meta' , 'profile-builder' );
             $data = array();
 
             $all_meta_for_user = get_user_meta( $user->ID );
@@ -1634,7 +1638,7 @@ function wppb_gdpr_delete_user() {
                 $edited_user_id = absint($_GET['wppb_user']);
         }
 
-        if (isset($_REQUEST['wppb_action']) && $_REQUEST['wppb_action'] == 'wppb_delete_user' && wp_verify_nonce($_REQUEST['wppb_nonce'], 'wppb-user-own-account-deletion') && isset($_REQUEST['wppb_user']) && $edited_user_id == $_REQUEST['wppb_user']) {
+        if (isset($_REQUEST['wppb_action']) && $_REQUEST['wppb_action'] == 'wppb_delete_user' && isset( $_REQUEST['wppb_nonce'] ) && wp_verify_nonce( sanitize_text_field( $_REQUEST['wppb_nonce'] ), 'wppb-user-own-account-deletion') && isset($_REQUEST['wppb_user']) && $edited_user_id == $_REQUEST['wppb_user']) {
             require_once(ABSPATH . 'wp-admin/includes/user.php');
             $user = new WP_User( absint( $_REQUEST['wppb_user'] ) );
 

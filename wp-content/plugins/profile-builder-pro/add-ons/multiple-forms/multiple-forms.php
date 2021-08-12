@@ -3,10 +3,10 @@ $wppb_module_settings = get_option( 'wppb_module_settings', 'not_found' );
 if ( $wppb_module_settings != 'not_found' ){
 	if ( isset( $wppb_module_settings['wppb_multipleEditProfileForms'] ) && ( $wppb_module_settings['wppb_multipleEditProfileForms'] == 'show' ) )
 		include_once( WPPB_PLUGIN_DIR.'/add-ons/multiple-forms/edit-profile-forms.php' );
-		
+
 	if ( isset( $wppb_module_settings['wppb_multipleRegistrationForms'] ) && ( $wppb_module_settings['wppb_multipleRegistrationForms'] == 'show' ) )
 		include_once( WPPB_PLUGIN_DIR.'/add-ons/multiple-forms/register-forms.php' );
-	
+
 
 	if ( ( isset( $wppb_module_settings['wppb_multipleEditProfileForms'] ) && ( $wppb_module_settings['wppb_multipleEditProfileForms'] == 'show' ) ) || ( isset( $wppb_module_settings['wppb_multipleRegistrationForms'] ) && ( $wppb_module_settings['wppb_multipleRegistrationForms'] == 'show' ) ) )
 		add_filter( 'wppb_change_form_fields', 'wppb_multiple_forms_change_fields', 10, 2 );
@@ -23,7 +23,7 @@ function wppb_multiple_forms_change_fields( $fields, $args ){
 	//if we have a edit_profile form set up the post type and meta name accordingly
 	if( $args['form_type'] == 'edit_profile' ){
 		$meta_name = 'wppb_epf_fields';
-		
+
 	}elseif( $args['form_type'] == 'register' ){
 		$meta_name = 'wppb_rf_fields';
 	}
@@ -76,10 +76,10 @@ function wppb_add_prepopulated_default_fields( $post_id, $post ){
 	if ( 'auto-draft' == $post->post_status ) {
 		$all_fields = get_option ( 'wppb_manage_fields' );
 		$all_fields_new = array();
-		
+
 		foreach ( $all_fields as $key => $value )
 			array_push( $all_fields_new, array( 'field' => wppb_field_format( $value['field-title'], $value['field'] ), 'id' => $value['id'] ) );
-		
+
 		if ( 'wppb-rf-cpt' == $post->post_type ) {
             // Remove "Display name publicly as" from register forms
             foreach( $all_fields_new as $key => $value ) {
@@ -99,7 +99,7 @@ function wppb_add_prepopulated_default_fields( $post_id, $post ){
 			}
             $all_fields_new = array_values( $all_fields_new );
 			add_post_meta( $post->ID, 'wppb_epf_fields', $all_fields_new );
-		}		
+		}
 	}
 }
 add_action( 'wp_insert_post', 'wppb_add_prepopulated_default_fields', 10, 2 );
@@ -113,19 +113,24 @@ add_action( 'wp_insert_post', 'wppb_add_prepopulated_default_fields', 10, 2 );
  * @return void
  */
 function wppb_handle_rf_epf_id_change(){
+
+    if( !isset( $_POST['field'] ) || $_POST['field'] == '' )
+        die('');
+
 	$all_fields = get_option ( 'wppb_manage_fields', 'not_set' );
-	if ( ( $all_fields != 'not_set' ) && ( ( is_array( $all_fields ) ) && ( !empty( $all_fields ) ) ) ){		
+
+	if ( ( $all_fields != 'not_set' ) && ( ( is_array( $all_fields ) ) && ( !empty( $all_fields ) ) ) ){
+
 		foreach ( $all_fields as $key => $value ){
-			if( $_POST['field'] == '' ){
-				die( '' );
+
+			if( wppb_field_format( $value['field-title'], $value['field'] ) == stripslashes( sanitize_text_field( $_POST['field'] ) ) ){
+				die( (string)$value['id'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 
-			if( wppb_field_format( $value['field-title'], $value['field'] ) == stripslashes( $_POST['field'] ) ){
-				die( (string)$value['id'] );
-			}
 		}
-	}else
+	} else
 		die('');
+
 }
 add_action( 'wp_ajax_wppb_handle_rf_epf_id_change', 'wppb_handle_rf_epf_id_change' );
 
@@ -153,7 +158,7 @@ function wppb_check_epf_rf_cptpms_update( $ep_r_posts, $cpt, $cpt_meta, $interna
 						$post_meta[$this_post_meta_key]['field'] = wppb_field_format( $array_after_update['field-title'], $array_after_update['field'] );
 					}
 				}
-				
+
 				update_post_meta( $value->ID, $cpt_meta, $post_meta );
 			}
 		}
@@ -177,10 +182,10 @@ function wppb_fields_list_update( $meta, $id, $array_after_update, $element_id )
 	if ( $meta == 'wppb_manage_fields' ){
 		$all_fields = get_option ( $meta );
 		$array_before_update = $all_fields[$element_id];
-		
+
 		if ( ( trim( $array_before_update['field'] ) != trim( $array_after_update['field'] ) ) || ( trim( $array_before_update['field-title'] ) != trim( $array_after_update['field-title'] ) ) ){
 			$ep_r_posts = get_posts( array( 'posts_per_page' => -1, 'post_status' => apply_filters ( 'wppb_get_ep_r_posts', array( 'publish', 'pending', 'draft', 'future', 'private', 'trash' ) ), 'post_type' => array( 'wppb-epf-cpt', 'wppb-rf-cpt' ) ) );
-			
+
 			wppb_check_epf_rf_cptpms_update( $ep_r_posts, 'wppb-rf-cpt', 'wppb_rf_fields', $array_before_update['id'], $array_after_update );
 			wppb_check_epf_rf_cptpms_update( $ep_r_posts, 'wppb-epf-cpt', 'wppb_epf_fields', $array_after_update['id'], $array_after_update );
 		}
@@ -197,7 +202,7 @@ add_action ( 'wck_before_update_meta', 'wppb_fields_list_update', 10, 4 );
  */
 function wppb_get_post_number ( $cpt, $action ){
 	$this_cpt = get_posts( array( 'posts_per_page' => -1, 'post_status' => apply_filters ( 'wppb_check_'.$cpt.$action, array( 'any' ) ) , 'post_type' => $cpt ) );
-	
+
 	if ( count( $this_cpt ) <= 1 )
 		return true;
 	else
@@ -210,7 +215,7 @@ function wppb_get_post_number ( $cpt, $action ){
  */
 function wppb_multiple_forms_publish_admin_hook(){
 	global $post;
-	
+
 	if ( is_admin() && ( ( $post->post_type == 'wppb-epf-cpt' ) || ( $post->post_type == 'wppb-rf-cpt' ) ) ){
 		?>
 		<script language="javascript" type="text/javascript">
@@ -219,16 +224,16 @@ function wppb_multiple_forms_publish_admin_hook(){
 					var post_title = jQuery( '#title' ).val();
 
 					if ( post_title.trim() == '' ){
-						alert ( '<?php _e( 'You need to specify the title of the form before creating it', 'profile-builder' ); ?>' );
-						
+						alert ( '<?php esc_html_e( 'You need to specify the title of the form before creating it', 'profile-builder' ); ?>' );
+
 						jQuery( '#ajax-loading' ).hide();
 						jQuery( '.spinner' ).hide();
 						jQuery( '#publish' ).removeClass( 'button-primary-disabled' );
 						jQuery( '#save-post' ).removeClass('button-disabled' );
-						
+
 						return false;
 					}
-					
+
 					return true;
 				});
 			});
@@ -403,7 +408,7 @@ add_action( "wck_refresh_entry_wppb_epf_fields", "wppb_rf_epf_edit_field_check_d
 function wppb_multiple_forms_header( $list_header ){
     $delete_all_nonce = wp_create_nonce( 'wppb-delete-all-entries' );
 
-    return '<thead><tr><th class="wck-number">#</th><th class="wck-content">'. __( '<pre>Title (Type)</pre>', 'profile-builder' ) .'</th><th class="wck-edit">'. __( 'Edit', 'profile-builder' ) .'</th><th class="wck-delete"><a id="wppb-delete-all-fields" class="wppb-delete-all-fields" onclick="wppb_rf_epf_delete_all_fields(event, this.id, \'' . esc_js($delete_all_nonce) . '\')" title="' . __('Delete all items', 'profile-builder') . '" href="#">'. __( 'Delete all', 'profile-builder' ) .'</a></th></tr></thead>';
+    return '<thead><tr><th class="wck-number">#</th><th class="wck-content">'. __( '<pre>Title (Type)</pre>', 'profile-builder' ) .'</th><th class="wck-edit">'. esc_html__( 'Edit', 'profile-builder' ) .'</th><th class="wck-delete"><a id="wppb-delete-all-fields" class="wppb-delete-all-fields" onclick="wppb_rf_epf_delete_all_fields(event, this.id, \'' . esc_js($delete_all_nonce) . '\')" title="' . esc_html__('Delete all items', 'profile-builder') . '" href="#">'. esc_html__( 'Delete all', 'profile-builder' ) .'</a></th></tr></thead>'; // phpcs:ignore WordPress.WP.I18n.NoHtmlWrappedStrings
 }
 add_action( 'wck_metabox_content_header_wppb_epf_fields', 'wppb_multiple_forms_header' );
 add_action( 'wck_metabox_content_header_wppb_rf_fields', 'wppb_multiple_forms_header' );

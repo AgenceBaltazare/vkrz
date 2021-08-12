@@ -198,7 +198,8 @@ function wppb_default_registration_redirect( $user_id ) {
     $user_data = get_userdata( $user_id );
 
     // CHECK FOR REDIRECT
-    $_POST['redirect_to'] = apply_filters( 'wppb_after_registration_redirect_url', wppb_get_redirect_url( 'normal', 'after_registration', esc_url( $_POST['redirect_to'] ), $user_data ) );
+    if( isset( $_POST['redirect_to']  ) )
+        $_POST['redirect_to'] = apply_filters( 'wppb_after_registration_redirect_url', wppb_get_redirect_url( 'normal', 'after_registration', esc_url_raw( $_POST['redirect_to'] ), $user_data ) );
 
 }
 add_action( 'register_new_user', 'wppb_default_registration_redirect' );

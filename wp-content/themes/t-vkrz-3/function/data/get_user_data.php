@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Get user full data
  *
@@ -7,32 +6,43 @@
  * @param   {String}    type        - uuiduser by default or author
  * @returns {Array}
  */
-function get_user_full_data(
-    $user_id,
-    $type = "uuiduser"
-){
 
-    if (!$user_id) {
-        if (isset($_COOKIE["vainkeurz_user_id"])) {
-            $user_id = $_COOKIE["vainkeurz_user_id"];
-        } else {
-            $user_id = "nouuiduser";
-        }
+function get_user_logged_id(){
+
+    if(is_user_logged_in()){
+        $current_user   = wp_get_current_user();
+        $user_id        = $current_user->ID;
+        $user_info      = get_userdata($user_id);
+        $user_role      = $user_info->roles[0];
+    }
+    else{
+        $user_id = false;
     }
 
-    $count_user_votes       = 0;
-    $user_ranking_done      = array();
-    $user_ranking_begin     = array();
-    $user_ranking_all       = array();
+    return $user_id;
+}
+
+function get_user_tops(){
+
+    global $user_id;
+
+    if($user_id){
+        $args_author__in = array($user_id);
+        $args_meta_query = array();
+    }
+    else{
+        global $uuiduser;
+        $args_author__in = array();
+        $args_meta_query = array(
+            'key' => 'uuid_user_r',
+            'value' => $uuiduser,
+            'compare' => '=');
+    }
+
+    $user_nb_votes          = 0;
+    $user_tops_all          = array();
     $user_tops_done_ids     = array();
 
-    $args_meta_query = $type == "author" ? array() : array(array(
-                                                           'key' => 'uuid_user_r',
-                                                           'value' => $user_id,
-                                                           'compare' => '='));
-   $args_author__in = $type == "author" ? array($user_id) : array();
-
-    // Get user ranking
     $user_all_ranking = new WP_Query(array(
         'post_type'              => 'classement',
         'posts_per_page'         => '1000',
@@ -46,16 +56,18 @@ function get_user_full_data(
     ));
 
     if ($user_all_ranking->have_posts()) {
+
         foreach ($user_all_ranking->posts as $classement) {
+
             $nb_votes         = get_field('nb_votes_r', $classement);
             $id_tournament    = get_field('id_tournoi_r', $classement);
             $typetop          = get_field('type_top_r', $classement);
             $uuid_user        = get_field('uuid_user_r', $classement);
 
-            $count_user_votes = $count_user_votes + $nb_votes;
+            $user_nb_votes    = $user_nb_votes + $nb_votes;
 
-            $done = get_field('done_r', $classement) == "done" ? true : false;
-            // /!\ ranking_r is a textarea, why use count for a string ?
+            $done   = get_field('done_r', $classement) == "done" ? true : false;
+
             $nb_top = $typetop == "top3" ? 3 : count(get_field('ranking_r', $classement));
 
             if (get_the_terms($id_tournament, 'categorie')) {
@@ -65,53 +77,36 @@ function get_user_full_data(
             }
 
             if ($done) {
-                array_push($user_ranking_done, array(
-                    "id_tournoi" => $id_tournament,
-                    "cat_t"      => $cat_id,
-                    "typetop"    => $typetop,
-                    "nb_top"     => $nb_top,
-                    "done"       => $done,
-                    "nb_votes"   => $nb_votes,
-                    "uuid_user"  => $uuid_user,
-                    "id_ranking" => $classement,
-                ));
-                array_push($user_tops_done_ids, $id_tournament);
-            } else {
+                $state = "done";
+            }
+            else {
                 if($nb_votes >= 1) {
-                    array_push($user_ranking_begin, array(
-                        "id_tournoi" => $id_tournament,
-                        "typetop"    => $typetop,
-                        "nb_top"     => $nb_top,
-                        "done"       => $done,
-                        "nb_votes"   => $nb_votes,
-                        "uuid_user"  => $uuid_user,
-                        "id_ranking" => $classement,
-                    ));
+                    $state = "begin";
                 }
             }
 
-            if($nb_votes >= 1) {
-                array_push($user_ranking_all, array(
-                    "id_tournoi" => $id_tournament,
-                    "typetop"    => $typetop,
-                    "nb_top"     => $nb_top,
-                    "done"       => $done,
-                    "nb_votes"   => $nb_votes,
-                    "uuid_user"  => $uuid_user,
-                    "id_ranking" => $classement,
-                ));
+            array_push($user_tops_all, array(
+                "id_tournoi" => $id_tournament,
+                "state"      => $state,
+                "cat_t"      => $cat_id,
+                "typetop"    => $typetop,
+                "nb_top"     => $nb_top,
+                "nb_votes"   => $nb_votes,
+                "uuid_user"  => $uuid_user,
+                "id_ranking" => $classement,
+            ));
+
+            if($done){
+                array_push($user_tops_done_ids, $id_tournament);
             }
+
         }
     }
 
     return array(
-        array(
-            "nb_user_votes"             => $count_user_votes,
-            "list_user_ranking_done"    => $user_ranking_done,
-            "list_user_ranking_begin"   => $user_ranking_begin,
-            "list_user_ranking_all"     => $user_ranking_all,
-            "user_tops_done_ids"        => $user_tops_done_ids
-        )
+        "list_user_tops"            => $user_tops_all,
+        "list_user_tops_done_ids"   => $user_tops_done_ids,
+        "user_nb_votes"             => $user_nb_votes
     );
 }
 
@@ -277,12 +272,79 @@ function find_vkrz_user($uuid_user_r){
 
 }
 
-function get_user_level($uuiduser = false, $user_id = false, $nb_user_votes = false){
+function get_user_level(){
+
+    global $user_id;
+
+    $level_number = get_field('level_user', 0, 'user_' . $user_id);
+
+    switch($level_number){
+
+        case 0 :
+            $level          = "🥚";
+            $next_level     = "🐣";
+            break;
+        case 1 :
+            $level          = "🐥";
+            $next_level     = "🐓";
+            break;
+        case 2 :
+            $level          = "🐓";
+            $next_level     = "🦃";
+            break;
+        case 3 :
+            $level          = "🦃";
+            $next_level     = "🦢";
+            break;
+        case 4 :
+            $level          = "🦢";
+            $next_level     = "🦩";
+            break;
+        case 5 :
+            $level          = "🦩";
+            $next_level     = "🦚";
+            break;
+        case 6 :
+            $level          = "🦚";
+            $next_level     = "🐉";
+            break;
+        case 7 :
+            $level          = "🐉";
+            $next_level     = false;
+            break;
+    }
+
+    $result = array(
+        "level_ico"       => $level,
+        "next_level"      => $next_level
+    );
+
+    return $result;
+
+}
+
+function get_vote_to_next_level($nb_vote_vkrz){
+
+    $niv_1 = 50;
+    $niv_2 = 500;
+    $niv_3 = 2000;
+    $niv_4 = 5000;
+    $niv_5 = 35000;
+    $niv_6 = 100000;
+    $niv_7 = 450000;
+    $niv_8 = 1000000;
+
+    $votes_to_next_level = $nb_vote_vkrz - $niv_1;
+
+    return $votes_to_next_level;
+
+}
+
+function deal_user_level($uuiduser = false, $user_id = false, $nb_user_votes = false){
 
     if(!$nb_user_votes){
 
-        $user_full_data     = $user_id ? get_user_full_data($user_id, "author") : get_user_full_data($uuiduser);
-        $nb_user_votes      = $user_full_data[0]['nb_user_votes'];
+        $nb_user_votes      = 50;
 
     }
 

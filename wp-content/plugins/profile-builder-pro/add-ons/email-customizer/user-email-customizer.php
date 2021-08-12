@@ -27,7 +27,7 @@ function wppb_add_tabs_on_top_of_user_email_page( $hookname ){
 
         if( isset( $_GET['mustache_action'] ) && $_GET['mustache_action'] == 'save' ) { ?>
             <div id="setting-error-settings_updated" class="updated settings-error notice">
-                <p><strong><?php _e( "Settings saved."); ?></strong></p>
+                <p><strong><?php esc_html_e( "Settings saved.", 'profile-builder' ); ?></strong></p>
             </div>
             <?php
         }

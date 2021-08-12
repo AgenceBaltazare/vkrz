@@ -67,10 +67,10 @@ function wppb_register_add_form_change_class_based_on_redirect_field($wck_update
  */
 function wppb_remove_rf_view_link( $actions ){
 	global $post;
-	
+
 	if ( $post->post_type == 'wppb-rf-cpt' ){
 		unset( $actions['view'] );
-		
+
 		if ( wppb_get_post_number ( $post->post_type, 'singular_action' ) )
 			unset( $actions['trash'] );
 	}
@@ -116,7 +116,7 @@ function wppb_hide_rf_publishing_actions(){
 
 	if ( $post->post_type == 'wppb-rf-cpt' ){
 		echo '<style type="text/css">#misc-publishing-actions, #minor-publishing-actions{display:none;}</style>';
-		
+
 		$rf = get_posts( array( 'posts_per_page' => -1, 'post_status' => apply_filters ( 'wppb_check_singular_rf_form_publishing_options', array( 'publish' ) ) , 'post_type' => 'wppb-rf-cpt' ) );
 		if ( count( $rf ) == 1 )
 			echo '<style type="text/css">#major-publishing-actions #delete-action{display:none;}</style>';
@@ -136,7 +136,7 @@ add_action('admin_head-post-new.php', 'wppb_hide_rf_publishing_actions');
  */
 function wppb_add_extra_column_for_rf( $columns ){
 	$columns['rf-shortcode'] = __( 'Shortcode', 'profile-builder' );
-	
+
 	return $columns;
 }
 add_filter( 'manage_wppb-rf-cpt_posts_columns', 'wppb_add_extra_column_for_rf' );
@@ -154,11 +154,11 @@ add_filter( 'manage_wppb-rf-cpt_posts_columns', 'wppb_add_extra_column_for_rf' )
 function wppb_rf_custom_column_content( $column_name, $post_id ){
 	if( $column_name == 'rf-shortcode' ){
 		$post = get_post( $post_id );
-		
+
 		if( empty( $post->post_title ) )
 			$post->post_title = __( '(no title)', 'profile-builder' );
 
-        echo "<input readonly spellcheck='false' type='text' class='wppb-shortcode input' value='[wppb-register form_name=\"" . Wordpress_Creation_Kit_PB::wck_generate_slug( $post->post_title ) . "\"]' />";
+        echo "<input readonly spellcheck='false' type='text' class='wppb-shortcode input' value='[wppb-register form_name=\"" . esc_attr( Wordpress_Creation_Kit_PB::wck_generate_slug( $post->post_title ) ) . "\"]' />";
 	}
 }
 add_action("manage_wppb-rf-cpt_posts_custom_column",  "wppb_rf_custom_column_content", 10, 2);
@@ -175,13 +175,13 @@ function wppb_rf_content(){
 
     $form_shortcode = trim( Wordpress_Creation_Kit_PB::wck_generate_slug( $post->post_title ) );
     if ( $form_shortcode == '' ) {
-        echo '<p><em>' . __( 'The shortcode will be available after you publish this form.', 'profile-builder' ) . '</em></p>';
+        echo '<p><em>' . esc_html__( 'The shortcode will be available after you publish this form.', 'profile-builder' ) . '</em></p>';
     } else {
-        echo '<p>' . __( 'Use this shortcode on the page you want the form to be displayed:', 'profile-builder' );
+        echo '<p>' . esc_html__( 'Use this shortcode on the page you want the form to be displayed:', 'profile-builder' );
         echo '<br/>';
-        echo "<textarea readonly spellcheck='false' class='wppb-shortcode textarea'>[wppb-register form_name=\"" . $form_shortcode . "\"]</textarea>";
+        echo "<textarea readonly spellcheck='false' class='wppb-shortcode textarea'>[wppb-register form_name=\"" . esc_attr( $form_shortcode ) . "\"]</textarea>";
         echo '</p><p>';
-        echo __( '<span style="color:red;">Note:</span> changing the form title also changes the shortcode!', 'profile-builder' );
+        echo wp_kses_post( __( '<span style="color:red;">Note:</span> changing the form title also changes the shortcode!', 'profile-builder' ) );
         echo '</p>';
     }
 }
@@ -224,28 +224,28 @@ function wppb_manage_rf_cpt(){
 		$available_time[] = $i;
 
 	// set up the fields array
-	$settings_fields = array( 		
+	$settings_fields = array(
 		array( 'type' => 'select', 'slug' => 'set-role', 'title' => __( 'Set Role', 'profile-builder' ), 'options' => $available_roles, 'description' => __( 'Choose what role the user will have after (s)he registered<br/>If not specified, defaults to the role set in the WordPress settings', 'profile-builder' ) ),
 		array( 'type' => 'select', 'slug' => 'automatically-log-in', 'title' => __( 'Automatically Log In', 'profile-builder' ), 'options' => array( '%'.__('No', 'profile-builder').'%No', '%'.__('Yes', 'profile-builder').'%Yes' ), 'default' => 'No', 'description' => __( 'Whether to automatically log in the newly registered user or not<br/>Only works on single-sites without "Admin Approval" and "Email Confirmation" features activated<br/>WARNING: Caching the registration form will make automatic login not work', 'profile-builder' ) ),
 		array( 'type' => 'select', 'slug' => 'redirect', 'title' => __( 'Redirect', 'profile-builder' ), 'options' => array( '%'.__('Default', 'profile-builder').'%-', '%'.__('No', 'profile-builder').'%No', '%'.__('Yes', 'profile-builder').'%Yes' ), 'default' => '-', 'description' => __( 'Whether to redirect the user to a specific page or not', 'profile-builder' ) ),
 		array( 'type' => 'select', 'slug' => 'display-messages', 'title' => __( 'Display Messages', 'profile-builder' ), 'options' => $available_time, 'default' => 1, 'description' => __( 'Allowed time to display any success messages (in seconds)', 'profile-builder' ) ),
 		array( 'type' => 'text', 'slug' => 'url', 'title' => __( 'URL', 'profile-builder' ), 'description' => __( 'Specify the URL of the page users will be redirected once registered using this form<br/>Use the following format: http://www.mysite.com', 'profile-builder' ) ),
 	);
-	
+
 	// set up the box arguments
 	$args = array(
 		'metabox_id' => 'wppb-rf-settings-args',
 		'metabox_title' => __( 'After Registration...', 'profile-builder' ),
 		'post_type' => 'wppb-rf-cpt',
 		'meta_name' => 'wppb_rf_page_settings',
-		'meta_array' => $settings_fields,			
+		'meta_array' => $settings_fields,
 		'sortable' => false,
 		'single' => true
 	);
 	new Wordpress_Creation_Kit_PB( $args );
 
 	$rf_fields = array ();
-	
+
 	$all_fields = get_option ( 'wppb_manage_fields', 'not_set' );
 	if ( ( $all_fields != 'not_set' ) && ( ( is_array( $all_fields ) ) && ( !empty( $all_fields ) ) ) ){
 		foreach ( $all_fields as $key => $value ) {
@@ -262,10 +262,10 @@ function wppb_manage_rf_cpt(){
 		'metabox_title' => __( 'Add New Field to the List', 'profile-builder' ),
 		'post_type' => 'wppb-rf-cpt',
 		'meta_name' => 'wppb_rf_fields',
-		'meta_array' => $rf_fields = apply_filters	( 'wppb_rf_fields', array( 
+		'meta_array' => $rf_fields = apply_filters	( 'wppb_rf_fields', array(
 																				array( 'type' => 'select', 'slug' => 'field', 'title' => __( 'Field', 'profile-builder' ), 'options' => $rf_fields, 'default-option' => true, 'description' => sprintf( __( 'Choose one of the supported fields you manage <a href="%s">here</a>', 'profile-builder' ), admin_url( 'admin.php?page=manage-fields' ) ) ),
 																				array( 'type' => 'text', 'slug' => 'id', 'title' => __( 'ID', 'profile-builder' ), 'default' =>  '', 'description' => __( "A unique, auto-generated ID for this particular field<br/>You can use this in conjuction with filters to target this element if needed<br/>Can't be edited", 'profile-builder' ), 'readonly' => true )
-																		) 
+																		)
 													)
 	);
 	new Wordpress_Creation_Kit_PB( $args );

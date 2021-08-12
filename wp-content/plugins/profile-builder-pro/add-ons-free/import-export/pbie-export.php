@@ -114,9 +114,9 @@ function wppb_pbie_export_our_json() {
 /* Export tab content function */
 function wppb_pbie_export() {
 	?>
-	<p><?php _e( 'Export Profile Builder options as a .json file. This allows you to easily import the configuration into another site.', 'profile-builder' ); ?></p>
+	<p><?php esc_html_e( 'Export Profile Builder options as a .json file. This allows you to easily import the configuration into another site.', 'profile-builder' ); ?></p>
 	<div class="wrap">
-		<form action="" method="post"><input class="button-secondary" type="submit" name="cozmos-export" value=<?php _e( 'Export', 'profile-builder' ); ?> id="cozmos-export" /></form>
+		<form action="" method="post"><input class="button-secondary" type="submit" name="cozmos-export" value=<?php esc_html_e( 'Export', 'profile-builder' ); ?> id="cozmos-export" /></form>
 	</div>
 <?php
 }

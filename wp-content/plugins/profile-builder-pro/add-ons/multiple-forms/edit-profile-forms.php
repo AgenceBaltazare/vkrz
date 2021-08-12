@@ -67,10 +67,10 @@ function wppb_epf_add_form_change_class_based_on_redirect_field($wck_update_cont
  */
 function wppb_remove_epf_view_link( $actions ){
 	global $post;
-	
+
 	if ( $post->post_type == 'wppb-epf-cpt' ){
 		unset( $actions['view'] );
-		
+
 		if ( wppb_get_post_number ( $post->post_type, 'singular_action' ) )
 			unset( $actions['trash'] );
 	}
@@ -113,7 +113,7 @@ function wppb_hide_epf_publishing_actions(){
 
 	if ( $post->post_type == 'wppb-epf-cpt' ){
 		echo '<style type="text/css">#misc-publishing-actions, #minor-publishing-actions{display:none;}</style>';
-		
+
 		$epf = get_posts( array( 'posts_per_page' => -1, 'post_status' => apply_filters ( 'wppb_check_singular_epf_form_publishing_options', array( 'publish' ) ) , 'post_type' => 'wppb-epf-cpt' ) );
 		if ( count( $epf ) == 1 )
 			echo '<style type="text/css">#major-publishing-actions #delete-action{display:none;}</style>';
@@ -133,7 +133,7 @@ add_action('admin_head-post-new.php', 'wppb_hide_epf_publishing_actions');
  */
 function wppb_add_extra_column_for_epf( $columns ){
 	$columns['epf-shortcode'] = __( 'Shortcode', 'profile-builder' );
-	
+
 	return $columns;
 }
 add_filter( 'manage_wppb-epf-cpt_posts_columns', 'wppb_add_extra_column_for_epf' );
@@ -150,11 +150,11 @@ add_filter( 'manage_wppb-epf-cpt_posts_columns', 'wppb_add_extra_column_for_epf'
 function wppb_epf_custom_column_content( $column_name, $post_id ){
 	if( $column_name == 'epf-shortcode' ){
 		$post = get_post( $post_id );
-		
+
 		if( empty( $post->post_title ) )
 			$post->post_title = __( '(no title)', 'profile-builder' );
 
-        echo "<input readonly spellcheck='false' type='text' class='wppb-shortcode input' value='[wppb-edit-profile form_name=\"" . Wordpress_Creation_Kit_PB::wck_generate_slug( $post->post_title ) . "\"]' />";
+        echo "<input readonly spellcheck='false' type='text' class='wppb-shortcode input' value='[wppb-edit-profile form_name=\"" . esc_attr( Wordpress_Creation_Kit_PB::wck_generate_slug( $post->post_title ) ) . "\"]' />";
 	}
 }
 add_action( "manage_wppb-epf-cpt_posts_custom_column",  "wppb_epf_custom_column_content", 10, 2 );
@@ -172,13 +172,13 @@ function wppb_epf_content(){
 
 	$form_shortcode = trim( Wordpress_Creation_Kit_PB::wck_generate_slug( $post->post_title ) );
 	if ( $form_shortcode == '' ) {
-        echo '<p><em>' . __( 'The shortcode will be available after you publish this form.', 'profile-builder' ) . '</em></p>';
+        echo '<p><em>' . esc_html__( 'The shortcode will be available after you publish this form.', 'profile-builder' ) . '</em></p>';
     } else {
-        echo '<p>' . __( 'Use this shortcode on the page you want the form to be displayed:', 'profile-builder' );
+        echo '<p>' . esc_html__( 'Use this shortcode on the page you want the form to be displayed:', 'profile-builder' );
         echo '<br/>';
-        echo "<textarea readonly spellcheck='false' class='wppb-shortcode textarea'>[wppb-edit-profile form_name=\"" . $form_shortcode . "\"]</textarea>";
+        echo "<textarea readonly spellcheck='false' class='wppb-shortcode textarea'>[wppb-edit-profile form_name=\"" . esc_attr( $form_shortcode ) . "\"]</textarea>";
         echo '</p><p>';
-        echo __( '<span style="color:red;">Note:</span> changing the form title also changes the shortcode!', 'profile-builder' );
+        echo wp_kses_post( __( '<span style="color:red;">Note:</span> changing the form title also changes the shortcode!', 'profile-builder' ) );
         echo '</p>';
     }
 }
@@ -202,13 +202,13 @@ function wppb_manage_epf_cpt(){
 		$available_time[] = $i;
 
 	// set up the fields array
-	$settings_fields = array( 		
+	$settings_fields = array(
 		array( 'type' => 'select', 'slug' => 'redirect', 'title' => __( 'Redirect', 'profile-builder' ), 'options' => array( '%'.__('Default', 'profile-builder').'%-', '%'.__('No', 'profile-builder').'%No', '%'.__('Yes', 'profile-builder').'%Yes' ), 'default' => '-', 'description' => __( 'Whether to redirect the user to a specific page or not', 'profile-builder' ) ),
 		array( 'type' => 'select', 'slug' => 'display-messages', 'title' => __( 'Display Messages', 'profile-builder' ), 'options' => $available_time, 'default' => 1, 'description' => __( 'Allowed time to display any success messages (in seconds)', 'profile-builder' ) ),
 		array( 'type' => 'text', 'slug' => 'url', 'title' => __( 'URL', 'profile-builder' ), 'description' => __( 'Specify the URL of the page users will be redirected once they updated their profile using this form<br/>Use the following format: http://www.mysite.com', 'profile-builder' ) )
 	);
-	
-	
+
+
 	// set up the box arguments
 	$args = array(
 		'metabox_id' => 'wppb-epf-settings-args',
@@ -222,7 +222,7 @@ function wppb_manage_epf_cpt(){
 	new Wordpress_Creation_Kit_PB( $args );
 
 	$epf_fields = array ();
-	
+
 	$wppb_manage_fields = get_option ( 'wppb_manage_fields', 'not_set' );
 	if ( ( $wppb_manage_fields != 'not_set' ) && ( ( is_array( $wppb_manage_fields ) ) && ( !empty( $wppb_manage_fields ) ) ) ){
 		$wppb_epf_unwanted_fields = array( 'reCAPTCHA', 'Validation' );
@@ -232,19 +232,19 @@ function wppb_manage_epf_cpt(){
 				array_push( $epf_fields, wppb_field_format( $value['field-title'], $value['field'] ) );
 		}
 	}
-	
+
 	$epf_fields = apply_filters( 'wppb_epf_fields_types', $epf_fields );
-	
+
 	// set up the box arguments for the edit profile forms and create them
 	$args = array(
 		'metabox_id' => 'wppb-epf-fields',
 		'metabox_title' => __( 'Add New Field to the List', 'profile-builder' ),
 		'post_type' => 'wppb-epf-cpt',
 		'meta_name' => 'wppb_epf_fields',
-		'meta_array' => apply_filters( 'wppb_epf_fields', array( 
+		'meta_array' => apply_filters( 'wppb_epf_fields', array(
 																	array( 'type' => 'select', 'slug' => 'field', 'title' => __( 'Field', 'profile-builder' ), 'options' => $epf_fields, 'default-option' => true, 'description' => sprintf( __( 'Choose one of the supported fields you manage <a href="%s">here</a>', 'profile-builder' ), admin_url( 'admin.php?page=manage-fields' ) ) ),
 																	array( 'type' => 'text', 'slug' => 'id', 'title' => __( 'ID', 'profile-builder' ), 'default' =>  '', 'description' => __( "A unique, auto-generated ID for this particular field<br/>You can use this in conjuction with filters to target this element if needed<br/>Can't be edited", 'profile-builder' ), 'readonly' => true )
-															   ) 
+															   )
 									 )
 		);
 	new Wordpress_Creation_Kit_PB( $args );

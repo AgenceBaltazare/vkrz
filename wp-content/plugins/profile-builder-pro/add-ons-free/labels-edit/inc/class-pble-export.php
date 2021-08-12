@@ -36,7 +36,7 @@ class WPPB_LE_Export {
 			header( 'Content-type: application/json' );
 			header( 'Content-Length: ' . mb_strlen( $json ) );
 			header( 'Connection: close' );
-			echo $json;
+			echo $json; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			exit;
 		}
 	}
