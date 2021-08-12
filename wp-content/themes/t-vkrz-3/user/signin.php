@@ -62,8 +62,10 @@ else{
                                     const user_id_user_layer  = "<?php echo $user_id; ?>";
                                     const user_uuiduser_layer  = "<?php echo $uuiduser; ?>";
                                     const signin_utm__layer  = "<?php echo $utm; ?>";
+                                    const signin_inscription__layer  = "<?php echo "oui"; ?>";
                                 </script>
                                 <?php echo do_shortcode('[wppb-register form_name="sign-in"]'); ?>
+                                
                             </div>
 
                             <p class="text-left mt-2 already-account">

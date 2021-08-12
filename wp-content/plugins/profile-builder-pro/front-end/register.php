@@ -62,8 +62,13 @@ function wppb_activate_signup( $key ) {
 	$meta = unserialize( $signup->meta );
 
 
-	if ( !$user_id )
+	if ( !$user_id ){
 		$user_id = wppb_create_user( $user_login, $password, $user_email );
+    ?>
+    <script>alert("true");</script>
+<?php
+    }
+
 	else
 		$user_already_exists = true;
 

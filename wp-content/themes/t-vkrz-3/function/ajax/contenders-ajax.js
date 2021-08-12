@@ -148,6 +148,7 @@ $(document).ready(function ($) {
                 'id_user': user_id_user_layer,
                 'uuiduser':user_uuiduser_layer,
                 'utm': signin_utm__layer,
+                'inscription': signin_inscription__layer,
                 'event_score': 100
             }
         );
