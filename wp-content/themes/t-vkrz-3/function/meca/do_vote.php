@@ -1,5 +1,5 @@
 <?php
-function do_vote($id_winner, $id_looser, $id_ranking, $id_tournament){
+function do_vote($id_winner, $id_looser, $id_ranking, $id_top){
 
     $key_vainkeur    = 0;
     $key_loser       = 0;
@@ -141,6 +141,6 @@ function do_vote($id_winner, $id_looser, $id_ranking, $id_tournament){
     // On enregistre la mise à jour du champs "Ranking" du classement en cours
     update_field("ranking_r", $list_contenders, $id_ranking);
 
-    mouv_timeline($nb_contenders, $nb_loosers, $id_ranking, $id_tournament);
+    mouv_timeline($nb_contenders, $nb_loosers, $id_ranking, $id_top);
 
 }

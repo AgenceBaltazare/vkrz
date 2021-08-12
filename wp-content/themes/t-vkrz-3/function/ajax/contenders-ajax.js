@@ -34,7 +34,7 @@ $(document).ready(function ($) {
                 url: vkrz_ajaxurl,
                 data: {
                     action: 'vkzr_process_vote',
-                    id_tournament: $(this).find('.contender_zone').data('id-tournament'),
+                    id_top: $(this).find('.contender_zone').data('id-top'),
                     id_ranking: $(this).find('.contender_zone').data('id-ranking'),
                     id_winner: $(this).find('.contender_zone').data('id-winner'),
                     id_looser: $(this).find('.contender_zone').data('id-looser')

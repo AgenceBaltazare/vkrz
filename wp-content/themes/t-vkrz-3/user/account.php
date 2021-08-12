@@ -392,7 +392,7 @@ $list_t_done    = $user_full_data[0]['list_user_ranking_done'];
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form class="form form-vertical form-note" data-id-tournament="<?php echo $r_user['id_tournoi']; ?>" data-uuiduser="<?php echo $uuiduser; ?>">
+                        <form class="form form-vertical form-note" data-id-top="<?php echo $r_user['id_tournoi']; ?>" data-uuiduser="<?php echo $uuiduser; ?>">
                             <div class="modal-body">
                                 <div class="row">
                                     <div class="col-12">

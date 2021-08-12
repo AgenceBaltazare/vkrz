@@ -4,19 +4,19 @@
 */
 global $uuiduser;
 if(isset($_GET['id_top'])){
-    $id_tournament  = $_GET['id_top'];
+    $id_top  = $_GET['id_top'];
 }
 else{
     header('Location: ' . get_bloginfo('url'));
 }
-$display_titre      = get_field('ne_pas_afficher_les_titres_t', $id_tournament);
-$rounded            = get_field('c_rounded_t', $id_tournament);
-$illu               = wp_get_attachment_image_src(get_field('cover_t', $id_tournament), 'full');
+$display_titre      = get_field('ne_pas_afficher_les_titres_t', $id_top);
+$rounded            = get_field('c_rounded_t', $id_top);
+$illu               = wp_get_attachment_image_src(get_field('cover_t', $id_top), 'full');
 $illu_url           = $illu[0];
 get_header();
-$top_title     = get_the_title($id_tournament);
-$top_question  = get_field('question_t', $id_tournament);
-$top_number    = get_numbers_of_contenders($id_tournament);
+$top_title     = get_the_title($id_top);
+$top_question  = get_field('question_t', $id_top);
+$top_number    = get_numbers_of_contenders($id_top);
 ?>
 <div class="app-content content cover" style="background: url(<?php echo $illu_url; ?>) center center no-repeat">
     <div class="content-overlay"></div>
@@ -46,11 +46,11 @@ $top_number    = get_numbers_of_contenders($id_tournament);
                                 <div class="row align-items-end justify-content-center">
 
                                     <?php
-                                    $id_tournament = $_GET['id_top'];
+                                    $id_top = $_GET['id_top'];
                                     $contenders_tournament = new WP_Query(array('post_type' => 'contender', 'meta_key' => 'ELO_c', 'orderby' => 'meta_value_num', 'posts_per_page' => '-1', 'meta_query' => array(
                                         array(
                                             'key'     => 'id_tournoi_c',
-                                            'value'   => $id_tournament,
+                                            'value'   => $id_top,
                                             'compare' => '=',
                                         )
                                     )));?>
@@ -73,9 +73,9 @@ $top_number    = get_numbers_of_contenders($id_tournament);
                                                     $d = $i-1;
                                                 }
                                                 ?>
-                                                <div class="animate__jackInTheBox animate__animated animate__delay-<?php echo $d; ?>s contenders_min <?php if(get_field('c_rounded_t', $id_tournament)){ echo 'rounded'; } ?> mb-3">
+                                                <div class="animate__jackInTheBox animate__animated animate__delay-<?php echo $d; ?>s contenders_min <?php if(get_field('c_rounded_t', $id_top)){ echo 'rounded'; } ?> mb-3">
                                                     <div class="illu">
-                                                        <?php if(get_field('visuel_cover_t', $id_tournament)): ?>
+                                                        <?php if(get_field('visuel_cover_t', $id_top)): ?>
                                                             <?php $illu = get_the_post_thumbnail_url(get_the_ID(), 'full'); ?>
                                                             <div class="cov-illu" style="background: url(<?php echo $illu; ?>) center center no-repeat"></div>
                                                         <?php else: ?>
@@ -133,7 +133,7 @@ $top_number    = get_numbers_of_contenders($id_tournament);
                                                 ),
                                                 array(
                                                     'key' => 'id_tournoi_r',
-                                                    'value' => $id_tournament,
+                                                    'value' => $id_top,
                                                     'compare' => '=',
                                                 )
                                             )
@@ -196,7 +196,7 @@ $top_number    = get_numbers_of_contenders($id_tournament);
                                                 <div class="card-body">
                                                     <div class="pricing-badge text-right">
                                                         <div class="badge badge-pill badge-light-primary">
-                                                            <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_tournament; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir les <?php echo $nb_tops; ?> Tops">
+                                                            <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_top; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir les <?php echo $nb_tops; ?> Tops">
                                                                 👀
                                                             </a>
                                                         </div>
@@ -274,7 +274,7 @@ $top_number    = get_numbers_of_contenders($id_tournament);
                                             <h6 class="card-subtitle text-muted mb-1">
                                                 Toi aussi fais ton Top afin de faire bouger des positions !
                                             </h6>
-                                            <a href="<?php the_permalink($id_tournament); ?>" class="btn btn-outline-primary waves-effect">
+                                            <a href="<?php the_permalink($id_top); ?>" class="btn btn-outline-primary waves-effect">
                                                 Faire mon propre Top
                                             </a>
                                         </div>

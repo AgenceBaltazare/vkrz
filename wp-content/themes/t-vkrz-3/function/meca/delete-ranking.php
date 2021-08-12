@@ -3,7 +3,7 @@ function delete_ranking($id_ranking){
 
     if(isset($id_ranking) && $id_ranking != ""){
 
-        $id_tournament = get_field('id_tournoi_r', $id_ranking);
+        $id_top = get_field('id_tournoi_r', $id_ranking);
 
         wp_update_post(array(
             'ID'            =>  $id_ranking,
@@ -14,8 +14,8 @@ function delete_ranking($id_ranking){
 
     return die(json_encode( array(
         'id_ranking'        => $id_ranking,
-        'id_tournament'     => $id_tournament,
-        'url_tournament'    => get_permalink($id_tournament)
+        'id_top'            => $id_top,
+        'url_top'           => get_permalink($id_top)
     )));
 
 }

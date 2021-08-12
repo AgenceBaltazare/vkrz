@@ -1,20 +1,20 @@
 <?php
 function cpt_init() {
 
-    // Tournoi
+    // Tops
     $labels = array(
-        'name' => 'Tournoi',
-        'singular_name' => 'Tournoi',
-        'add_new' => 'Ajouter un tournoi',
-        'add_new_item' => 'Ajouter un tournoi',
-        'edit_item' => 'Editer un tournoi',
-        'new_item' => 'Nouveau tournoi',
-        'all_items' => 'Tous les tournois',
-        'view_item' => 'Voir tournoi',
-        'search_items' => 'Chercher un tournoi',
-        'not_found' =>  'Aucun tournoi trouvé',
-        'not_found_in_trash' => 'Aucun tournoi trouvé dans la corbeille',
-        'menu_name' => 'Tournois'
+        'name' => 'Top',
+        'singular_name' => 'Top',
+        'add_new' => 'Ajouter un top',
+        'add_new_item' => 'Ajouter un top',
+        'edit_item' => 'Editer un top',
+        'new_item' => 'Nouveau top',
+        'all_items' => 'Tous les tops',
+        'view_item' => 'Voir top',
+        'search_items' => 'Chercher un top',
+        'not_found' =>  'Aucun top trouvé',
+        'not_found_in_trash' => 'Aucun top trouvé dans la corbeille',
+        'menu_name' => 'Tops'
     );
     $args = array(
         'labels' => $labels,

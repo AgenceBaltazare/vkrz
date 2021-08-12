@@ -3,7 +3,7 @@ get_header();
 global $user_tops;
 $list_user_tops     = $user_tops['list_user_tops'];
 $current_cat        = get_queried_object();
-$tournois_in_cat    = new WP_Query(array(
+$tops_in_cat    = new WP_Query(array(
     'post_type'                 => 'tournoi',
     'orderby'                   => 'date',
     'order'                     => 'DESC',
@@ -54,7 +54,7 @@ $list_sujets      = array();
                     <div class="col-sm-7">
                         <div id="ecommerce-searchbar" class="ecommerce-searchbar">
                             <div class="input-group input-group-merge">
-                                <input type="text" class="form-control search-product" id="shop-search" placeholder="Rechercher dans les <?php echo $tournois_in_cat->post_count; ?> Tops" aria-label="Rechercher..." aria-describedby="shop-search" />
+                                <input type="text" class="form-control search-product" id="shop-search" placeholder="Rechercher dans les <?php echo $tops_in_cat->post_count; ?> Tops" aria-label="Rechercher..." aria-describedby="shop-search" />
                             </div>
                         </div>
                     </div>
@@ -63,22 +63,22 @@ $list_sujets      = array();
 
             <div class="filtres-bloc">
                 <?php
-                while ($tournois_in_cat->have_posts()) : $tournois_in_cat->the_post();
+                while ($tops_in_cat->have_posts()) : $tops_in_cat->the_post();
 
-                    $id_tournament    = get_the_ID();
+                    $id_top    = get_the_ID();
 
-                    if(get_the_terms($id_tournament, 'sous-cat')){
-                        foreach(get_the_terms($id_tournament, 'sous-cat') as $sujet ) {
+                    if(get_the_terms($id_top, 'sous-cat')){
+                        foreach(get_the_terms($id_top, 'sous-cat') as $sujet ) {
                             array_push($list_sujets, $sujet->term_id);
                         }
                     }
-                    if(get_the_terms($id_tournament, 'tag')){
-                        foreach(get_the_terms($id_tournament, 'tag') as $tag ) {
+                    if(get_the_terms($id_top, 'tag')){
+                        foreach(get_the_terms($id_top, 'tag') as $tag ) {
                             array_push($list_tags, $tag->term_id);
                         }
                     }
-                    if(get_the_terms($id_tournament, 'concept')){
-                        foreach(get_the_terms($id_tournament, 'concept') as $concept ) {
+                    if(get_the_terms($id_top, 'concept')){
+                        foreach(get_the_terms($id_top, 'concept') as $concept ) {
                             array_push($list_concepts, $concept->term_id);
                         }
                     }
@@ -216,13 +216,13 @@ $list_sujets      = array();
 
             <section class="grid-to-filtre row match-height mt-2">
 
-                <?php $i=1; while ($tournois_in_cat->have_posts()) : $tournois_in_cat->the_post(); ?>
+                <?php $i=1; while ($tops_in_cat->have_posts()) : $tops_in_cat->the_post(); ?>
 
                     <?php
-                    $id_tournament    = get_the_ID();
-                    $illu             = get_the_post_thumbnail_url($id_tournament, 'medium');
-                    $nb_top           = get_numbers_of_contenders($id_tournament);
-                    $user_sinle_top_data = array_search($id_tournament, array_column($list_user_tops, 'id_tournoi'));
+                    $id_top    = get_the_ID();
+                    $illu             = get_the_post_thumbnail_url($id_top, 'medium');
+                    $nb_top           = get_numbers_of_contenders($id_top);
+                    $user_sinle_top_data = array_search($id_top, array_column($list_user_tops, 'id_top'));
                     if($user_sinle_top_data !== false) {
                         $state = $list_user_tops[$user_sinle_top_data]['state'];
                     }
@@ -233,18 +233,18 @@ $list_sujets      = array();
                     $concept_slug     = "";
                     $sujet_slug       = "";
 
-                    if(get_the_terms($id_tournament, 'sous-cat')){
-                        foreach(get_the_terms($id_tournament, 'sous-cat') as $sujet ) {
+                    if(get_the_terms($id_top, 'sous-cat')){
+                        foreach(get_the_terms($id_top, 'sous-cat') as $sujet ) {
                             $sujet_slug     .= $sujet->slug." ";
                         }
                     }
-                    if(get_the_terms($id_tournament, 'tag')){
-                        foreach(get_the_terms($id_tournament, 'tag') as $tag ) {
+                    if(get_the_terms($id_top, 'tag')){
+                        foreach(get_the_terms($id_top, 'tag') as $tag ) {
                             $tag_slug     .= $tag->slug." ";
                         }
                     }
-                    if(get_the_terms($id_tournament, 'concept')){
-                        foreach(get_the_terms($id_tournament, 'concept') as $concept ) {
+                    if(get_the_terms($id_top, 'concept')){
+                        foreach(get_the_terms($id_top, 'concept') as $concept ) {
                             $concept_slug   .= $concept->slug." ";
                         }
                     }
@@ -280,13 +280,13 @@ $list_sujets      = array();
                             </div>
                             <div class="card-body">
                                 <p class="card-text text-primary">
-                                    TOP <?php echo $nb_top; ?>  : <span class="namecontenders"><?php echo get_the_title($id_tournament); ?></span>
+                                    TOP <?php echo $nb_top; ?>  : <span class="namecontenders"><?php echo get_the_title($id_top); ?></span>
                                 </p>
                                 <h4 class="card-title">
-                                    <?php the_field('question_t', $id_tournament); ?>
+                                    <?php the_field('question_t', $id_top); ?>
                                 </h4>
                             </div>
-                            <a href="<?php the_permalink($id_tournament); ?>" class="stretched-link"></a>
+                            <a href="<?php the_permalink($id_top); ?>" class="stretched-link"></a>
                         </div>
                     </div>
                 <?php $i++; endwhile; ?>

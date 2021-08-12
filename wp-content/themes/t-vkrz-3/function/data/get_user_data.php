@@ -1,5 +1,15 @@
 <?php
 
+// Level values
+$niv_1 = 50;
+$niv_2 = 500;
+$niv_3 = 2000;
+$niv_4 = 5000;
+$niv_5 = 35000;
+$niv_6 = 100000;
+$niv_7 = 450000;
+$niv_8 = 1000000;
+
 function get_user_logged_id(){
 
     if(is_user_logged_in()){
@@ -25,9 +35,12 @@ function get_user_tops(){
         global $uuiduser;
         $args_author__in = array();
         $args_meta_query = array(
-            'key' => 'uuid_user_r',
-            'value' => $uuiduser,
-            'compare' => '=');
+            array(
+                'key' => 'uuid_user_r',
+                'value' => $uuiduser,
+                'compare' => '='
+            )
+        );
     }
 
     $user_nb_votes          = 0;
@@ -51,7 +64,7 @@ function get_user_tops(){
         foreach ($user_all_ranking->posts as $classement) {
 
             $nb_votes         = get_field('nb_votes_r', $classement);
-            $id_tournament    = get_field('id_tournoi_r', $classement);
+            $id_top           = get_field('id_tournoi_r', $classement);
             $typetop          = get_field('type_top_r', $classement);
             $uuid_user        = get_field('uuid_user_r', $classement);
 
@@ -61,8 +74,8 @@ function get_user_tops(){
 
             $nb_top = $typetop == "top3" ? 3 : count(get_field('ranking_r', $classement));
 
-            if (get_the_terms($id_tournament, 'categorie')) {
-                foreach (get_the_terms($id_tournament, 'categorie') as $cat) {
+            if (get_the_terms($id_top, 'categorie')) {
+                foreach (get_the_terms($id_top, 'categorie') as $cat) {
                     $cat_id = $cat->term_id;
                 }
             }
@@ -77,7 +90,7 @@ function get_user_tops(){
             }
 
             array_push($user_tops_all, array(
-                "id_tournoi" => $id_tournament,
+                "id_top"     => $id_top,
                 "state"      => $state,
                 "cat_t"      => $cat_id,
                 "typetop"    => $typetop,
@@ -88,7 +101,7 @@ function get_user_tops(){
             ));
 
             if($done){
-                array_push($user_tops_done_ids, $id_tournament);
+                array_push($user_tops_done_ids, $id_top);
             }
 
         }
@@ -166,52 +179,6 @@ function get_user_percent($uuiduser, $id_tournament){
     return $result;
 }
 
-function get_vkrz_users($limit = false){
-
-    $result = array();
-
-    $user_query = new WP_User_Query(array('number' => -1));
-    $users_list = $user_query->get_results();
-
-    foreach($users_list as $user){
-
-        $user_ID    = $user->ID;
-        $user_info  = get_userdata($user_ID);
-        $user_role  = $user_info->roles[0];
-
-        $avatar_url = get_avatar_url($user_ID, ['size' => '80']);
-        if(!$avatar_url){
-            $avatar_url = get_bloginfo('template_directory')."/assets/images/vkrz/ninja.png";
-        }
-
-        $uuidchampion    = get_field('uuiduser_user', 'user_'.$user_ID);
-        $user_full_data  = get_user_full_data($uuidchampion);
-        $nb_user_votes   = $user_full_data[0]['nb_user_votes'];
-        $nb_user_tops    = $user_full_data[0]['list_user_ranking_done'];
-        $info_user_level = get_user_level(false, false, $nb_user_votes);
-        $user_level      = $info_user_level['level_ico'];
-
-        array_push($result, array(
-            "user_id"       => $user_ID,
-            "user_role"     => $user_role,
-            "user_name"     => $user_info->nickname,
-            "user_level"    => $user_level,
-            "user_votes"    => $nb_user_votes,
-            "user_tops"     => count($nb_user_tops),
-            "user_avatar"   => $avatar_url
-        ));
-
-    }
-    array_multisort(array_column($result, "user_votes"), SORT_DESC, $result);
-
-    if($limit){
-        $result = array_slice($result, 0, $limit);
-    }
-
-    return $result;
-
-}
-
 function get_vkrz_users_list($limit = false){
 
     $result = array();
@@ -235,34 +202,6 @@ function get_vkrz_users_list($limit = false){
 
 }
 
-
-function find_vkrz_user($uuid_user_r){
-
-    $result = array();
-
-    $user_search = new WP_User_Query(array(
-        'number' => 1,
-        'meta_query' => array(
-            array(
-                'key'     => 'uuiduser_user',
-                'value'   => $uuid_user_r,
-                'compare' => '=',
-            )
-        )
-    ));
-
-    $user_found = $user_search->get_results();
-
-    foreach($user_found as $user){
-
-        $result    = $user->ID;
-
-    }
-
-    return $result;
-
-}
-
 function get_user_level(){
 
     global $user_id;
@@ -273,40 +212,49 @@ function get_user_level(){
 
         case 0 :
             $level          = "🥚";
+            $level_number   = 0;
             $next_level     = "🐣";
             break;
         case 1 :
             $level          = "🐥";
+            $level_number   = 1;
             $next_level     = "🐓";
             break;
         case 2 :
             $level          = "🐓";
+            $level_number   = 2;
             $next_level     = "🦃";
             break;
         case 3 :
             $level          = "🦃";
+            $level_number   = 3;
             $next_level     = "🦢";
             break;
         case 4 :
             $level          = "🦢";
+            $level_number   = 4;
             $next_level     = "🦩";
             break;
         case 5 :
             $level          = "🦩";
+            $level_number   = 5;
             $next_level     = "🦚";
             break;
         case 6 :
             $level          = "🦚";
+            $level_number   = 6;
             $next_level     = "🐉";
             break;
         case 7 :
             $level          = "🐉";
+            $level_number   = 7;
             $next_level     = false;
             break;
     }
 
     $result = array(
         "level_ico"       => $level,
+        "level_number"    => $level_number,
         "next_level"      => $next_level
     );
 
@@ -314,18 +262,33 @@ function get_user_level(){
 
 }
 
-function get_vote_to_next_level($nb_vote_vkrz){
+function get_vote_to_next_level($level_number, $nb_vote_vkrz){
 
-    $niv_1 = 50;
-    $niv_2 = 500;
-    $niv_3 = 2000;
-    $niv_4 = 5000;
-    $niv_5 = 35000;
-    $niv_6 = 100000;
-    $niv_7 = 450000;
-    $niv_8 = 1000000;
+    switch ($level_number){
+        case 1 :
+            $value_require_to_level = $niv_1;
+            break;
+        case 2 :
+            $value_require_to_level = $niv_2;
+            break;
+        case 3 :
+            $value_require_to_level = $niv_3;
+            break;
+        case 4 :
+            $value_require_to_level = $niv_4;
+            break;
+        case 5 :
+            $value_require_to_level = $niv_5;
+            break;
+        case 6 :
+            $value_require_to_level = $niv_6;
+            break;
+        case 7 :
+            $value_require_to_level = $niv_7;
+            break;
+    }
 
-    $votes_to_next_level = $nb_vote_vkrz - $niv_1;
+    $votes_to_next_level  = $value_require_to_level - $nb_vote_vkrz;
 
     return $votes_to_next_level;
 
@@ -446,13 +409,13 @@ function deal_user_level($uuiduser = false, $user_id = false, $nb_user_votes = f
 
 }
 
-function get_creator_data($creator_id = false, $id_tournament = false){
+function get_creator_data($creator_id = false, $id_top = false){
 
     $result             = array();
     $list_creator_tops  = array();
 
     if(!$creator_id){
-        $creator_id = get_post_field('post_author', $id_tournament);
+        $creator_id = get_post_field('post_author', $id_top);
     }
     $creator_data   = get_user_by('ID', $creator_id);
 
@@ -511,9 +474,9 @@ function get_creator_t($creator_id){
     ));
     while ($list_tops->have_posts()) : $list_tops->the_post();
 
-        $id_tournament = get_the_ID();
+        $id_top = get_the_ID();
 
-        $data_t        = get_tournoi_data($id_tournament);
+        $data_t        = get_tournoi_data($id_top);
         $nb_votes_t    = $data_t[0]['nb_votes'];
         $nb_ranks_t    = $data_t[0]['nb_tops'];
 
@@ -524,9 +487,9 @@ function get_creator_t($creator_id){
         array_push($total_money, $money_top);
 
         array_push($list_creator_tops, array(
-            "top_id"        => $id_tournament,
-            "top_title"     => get_the_title($id_tournament),
-            "nb_top"        => get_numbers_of_contenders($id_tournament),
+            "top_id"        => $id_top,
+            "top_title"     => get_the_title($id_top),
+            "nb_top"        => get_numbers_of_contenders($id_top),
             "top_votes"     => $nb_votes_t,
             "top_ranks"     => $nb_ranks_t,
             "top_money"     => $money_top

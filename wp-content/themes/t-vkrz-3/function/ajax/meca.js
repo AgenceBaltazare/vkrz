@@ -30,7 +30,7 @@ $(document).ready(function ($) {
 
                         let data = JSON.parse(response);
 
-                        window.location.replace(data.url_tournament);
+                        window.location.replace(data.url_top);
 
                     });
                     Swal.fire({

@@ -7,7 +7,7 @@ $(document).ready(function ($) {
         e.preventDefault();
 
         var laucher         = $(this);
-        var id_tournament   = laucher.data('tournament');
+        var id_top          = laucher.data('top');
         var uuiduser        = laucher.data('uuiduser');
         var typetop         = laucher.data('typetop');
 
@@ -26,15 +26,13 @@ $(document).ready(function ($) {
                 url: vkrz_ajaxurl,
                 data: {
                     action: 'vkzr_begin_t',
-                    id_tournament: id_tournament,
+                    id_top: id_top,
                     uuiduser: uuiduser,
                     typetop: typetop,
                 }
             })
             .done(function (response) {
-
                 location.reload()
-
             })
             .always(function () {
                 ajaxRunning = false;

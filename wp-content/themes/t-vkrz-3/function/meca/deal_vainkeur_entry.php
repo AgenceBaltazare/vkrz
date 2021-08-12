@@ -1,29 +1,27 @@
 <?php
-function deal_vainkeur_entry($uuidusertofind = false){
+function deal_vainkeur_entry($user_id = false){
 
-    global $user_id;
+    global $uuiduser;
 
-    if(!$uuidusertofind){
-        global $uuiduser;
+    if(!$user_id){
+        global $user_id;
     }
 
     $nb_vote_vkrz = 0;
     $nb_top_vkrz  = 0;
 
-    if($uuidusertofind){
-        $args_author__in = array($uuidusertofind);
-        $args_meta_query = array();
-    }
-    elseif($user_id){
+    if($user_id){
         $args_author__in = array($user_id);
         $args_meta_query = array();
     }
     else{
         $args_author__in = array();
         $args_meta_query = array(
-            'key' => 'uuid_user_vkrz',
-            'value' => $uuiduser,
-            'compare' => '='
+            array(
+                'key' => 'uuid_user_vkrz',
+                'value' => $uuiduser,
+                'compare' => '='
+            )
         );
     }
 
@@ -42,6 +40,7 @@ function deal_vainkeur_entry($uuidusertofind = false){
     if($vainkeur_entry->have_posts()){
 
         $id_vainkeur    = $vainkeur_entry->posts[0];
+
         $uuid_user_vkrz = get_field('uuid_user_vkrz', $id_vainkeur);
         $nb_vote_vkrz   = get_field('nb_vote_vkrz', $id_vainkeur);
         $nb_top_vkrz    = get_field('nb_top_vkrz', $id_vainkeur);
@@ -67,10 +66,12 @@ function deal_vainkeur_entry($uuidusertofind = false){
     $user_email     = $user_info->user_email;
     $user_role      = $user_info->roles[0];
 
-    $avatar_url  = get_avatar_url($user_id, ['size' => '80']);
-    if(!$avatar_url){
+    if(get_avatar($user_id)){
+        $avatar_url  = get_avatar_url($user_id, ['size' => '80', 'default' => 'blank']);
+    }else{
         $avatar_url = get_bloginfo('template_directory')."/assets/images/vkrz/ninja.png";
     }
+
     $info_user_level = get_user_level();
 
     $result = array(

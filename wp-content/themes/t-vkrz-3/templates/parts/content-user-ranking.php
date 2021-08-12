@@ -2,7 +2,7 @@
 extract($current_user_ranking_var);
 $current_user_ranking = get_current_user_ranking($id_ranking);
 $list_contenders      = get_field('ranking_r', $id_ranking);
-$id_tournament        = get_field('id_tournoi_r', $id_ranking);
+$id_top               = get_field('id_tournoi_r', $id_ranking);
 $nb_contenders        = count($list_contenders);
 ?>
 <?php if($nb_contenders < 33): ?>
@@ -30,16 +30,16 @@ $nb_contenders        = count($list_contenders);
                     endforeach; ?>
 
                     <?php if($do_place == false): ?>
-                    <div class="avatar bg-secondary">
-                        <div class="avatar-content">
-                            <?php
-                            $delay = 0.25*$j."s";
-                            ?>
-                            <span class="lele1" style="animation-delay: <?php echo $delay; ?>;"><?php echo $j; ?></span>
-                            <span class="lele2" style="animation-delay: <?php echo $delay; ?>;">🤷🏻‍♂️</span>
+                        <div class="avatar bg-secondary">
+                            <div class="avatar-content">
+                                <?php
+                                $delay = 0.25*$j."s";
+                                ?>
+                                <span class="lele1" style="animation-delay: <?php echo $delay; ?>;"><?php echo $j; ?></span>
+                                <span class="lele2" style="animation-delay: <?php echo $delay; ?>;">🤷🏻‍♂️</span>
+                            </div>
                         </div>
-                    </div>
-                <?php endif; ?>
+                    <?php endif; ?>
 
                 <?php endfor; ?>
             </div>

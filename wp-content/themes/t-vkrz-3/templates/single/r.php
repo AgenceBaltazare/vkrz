@@ -1,7 +1,7 @@
 <?php
 get_header();
 global $uuiduser;
-global $id_tournament;
+global $id_top;
 global $top_number;
 global $id_ranking;
 global $top_url;
@@ -10,16 +10,16 @@ global $top_question;
 global $top_img;
 global $top_number;
 global $user_full_data;
-$display_titre                   = get_field('ne_pas_afficher_les_titres_t', $id_tournament);
-$rounded                         = get_field('c_rounded_t', $id_tournament);
+$display_titre                   = get_field('ne_pas_afficher_les_titres_t', $id_top);
+$rounded                         = get_field('c_rounded_t', $id_top);
 $typetop                         = get_field('type_top_r', $id_ranking);
 $user_ranking                    = get_user_ranking($id_ranking);
 $url_ranking                     = get_the_permalink($id_ranking);
 $title_post                      = $top_title." : ".$top_question;
-$illu                            = wp_get_attachment_image_src(get_field('cover_t', $id_tournament), 'full');
+$illu                            = wp_get_attachment_image_src(get_field('cover_t', $id_top), 'full');
 $illu_url                        = $illu[0];
-$list_cat                        = get_the_terms($id_tournament, 'categorie');
-$list_concepts                   = get_the_terms($id_tournament, 'concept');
+$list_cat                        = get_the_terms($id_top, 'categorie');
+$list_concepts                   = get_the_terms($id_top, 'concept');
 foreach($list_cat as $cat ) {
     $cat_id     = $cat->term_id;
     $cat_name   = $cat->name;
@@ -35,7 +35,7 @@ foreach($list_cat as $cat ) {
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form class="form form-vertical form-note" data-id-tournament="<?php echo $id_tournament; ?>" data-uuiduser="<?php echo $uuiduser; ?>">
+                <form class="form form-vertical form-note" data-id-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuiduser; ?>">
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-12">
@@ -111,9 +111,9 @@ foreach($list_cat as $cat ) {
                                     $d = $i-1;
                                 }
                                 ?>
-                                <div class="animate__jackInTheBox animate__animated animate__delay-<?php echo $d; ?>s contenders_min <?php if(get_field('c_rounded_t', $id_tournament)){ echo 'rounded'; } ?> mb-3">
+                                <div class="animate__jackInTheBox animate__animated animate__delay-<?php echo $d; ?>s contenders_min <?php if(get_field('c_rounded_t', $id_top)){ echo 'rounded'; } ?> mb-3">
                                     <div class="illu">
-                                        <?php if(get_field('visuel_cover_t', $id_tournament)): ?>
+                                        <?php if(get_field('visuel_cover_t', $id_top)): ?>
                                             <?php $illu = get_the_post_thumbnail_url( $c, 'large' ); ?>
                                             <div class="cov-illu" style="background: url(<?php echo $illu; ?>) center center no-repeat"></div>
                                         <?php else: ?>
@@ -220,7 +220,7 @@ foreach($list_cat as $cat ) {
                                     </h6>
                                     <div class=card-stars">
                                         <?php
-                                        $note = get_note($id_tournament, $uuiduser);
+                                        $note = get_note($id_top, $uuiduser);
                                         if(isset($note[0]["note"]) && $note[0]["note"] > 0): ?>
                                             <div class="startchoicedone" style="display: block; !important">
                                                 <span class="star_number">
@@ -229,12 +229,12 @@ foreach($list_cat as $cat ) {
                                                 <span class="ico">⭐️</span>
                                             </div>
                                         <?php else: ?>
-                                            <div class="starchoice" data-id-tournament="<?php echo $id_tournament; ?>" data-uuiduser="<?php echo $uuiduser; ?>">
+                                            <div class="starchoice" data-id-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuiduser; ?>">
                                                 <span class="star star-1" data-star="1">⭐️</span>
                                                 <span class="star star-2" data-star="2">⭐️</span>
                                                 <span class="star star-3" data-star="3">⭐️</span>
                                             </div>
-                                            <div class="startchoicedone toshow-<?php echo $id_tournament; ?>">
+                                            <div class="startchoicedone toshow-<?php echo $id_top; ?>">
                                                 <span class="star_number"></span>
                                                 <span class="ico">⭐️</span>
                                             </div>
@@ -254,14 +254,14 @@ foreach($list_cat as $cat ) {
                 <div class="related animate__fadeInUp animate__animated animate__delay-4s">
 
                     <?php
-                    $top_datas     = get_tournoi_data($id_tournament, $uuiduser);
+                    $top_datas     = get_tournoi_data($id_top, $uuiduser);
                     ?>
 
                     <div class="card">
                         <div class="card-body">
                             <h2 class="font-weight-bolder mb-0">
                                 <?php
-                                $similar = get_user_percent(get_field('uuid_user_r', $id_ranking), $id_tournament);
+                                $similar = get_user_percent(get_field('uuid_user_r', $id_ranking), $id_top);
                                 if($similar[0]['percent'] == 0){
                                     $wording_similar = "0% <small>des Podiums identiques à celui-ci !</small>";
                                 }
@@ -273,10 +273,10 @@ foreach($list_cat as $cat ) {
                             </h2>
                         </div>
                         <div class="card-footer" id="clt">
-                            <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_tournament; ?>" class="btn btn-outline-primary waves-effect mb-1 mr-1">
+                            <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_top; ?>" class="btn btn-outline-primary waves-effect mb-1 mr-1">
                                 Classement mondial
                             </a>
-                            <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_tournament; ?>" class="btn btn-outline-primary waves-effect mb-1">
+                            <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_top; ?>" class="btn btn-outline-primary waves-effect mb-1">
                                 Voir les <?php echo $top_datas[0]['nb_tops']; ?> Tops
                             </a>
                         </div>

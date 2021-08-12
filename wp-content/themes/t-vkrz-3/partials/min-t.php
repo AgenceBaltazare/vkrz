@@ -2,15 +2,15 @@
 global $user_tops;
 $list_user_tops   = $user_tops['list_user_tops'];
 $state            = "";
-$id_tournament    = get_the_ID();
-$illu             = get_the_post_thumbnail_url($id_tournament, 'medium');
+$id_top           = get_the_ID();
+$illu             = get_the_post_thumbnail_url($id_top, 'medium');
 if(is_home() || is_single()){
     $class        = "swiper-slide";
 }
 else{
     $class        = "col-12";
 }
-$user_sinle_top_data = array_search($id_tournament, array_column($list_user_tops, 'id_tournoi'));
+$user_sinle_top_data = array_search($id_top, array_column($list_user_tops, 'id_top'));
 if($user_sinle_top_data !== false) {
     $state = $list_user_tops[$user_sinle_top_data]['state'];
 }
@@ -49,12 +49,12 @@ else{
         </div>
         <div class="card-body eh">
             <p class="card-text text-primary">
-                TOP <?php echo get_numbers_of_contenders($id_tournament); ?> : <?php echo get_the_title($id_tournament); ?>
+                TOP <?php echo get_numbers_of_contenders($id_top); ?> : <?php echo get_the_title($id_top); ?>
             </p>
             <h4 class="card-title">
-                <?php the_field('question_t', $id_tournament); ?>
+                <?php the_field('question_t', $id_top); ?>
             </h4>
         </div>
-        <a href="<?php the_permalink($id_tournament); ?>" class="stretched-link"></a>
+        <a href="<?php the_permalink($id_top); ?>" class="stretched-link"></a>
     </div>
 </div>

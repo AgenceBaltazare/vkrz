@@ -1,5 +1,5 @@
 <?php
-function get_next_duel($id_ranking, $id_tournament){
+function get_next_duel($id_ranking, $id_top){
 
     $next_duel          = [];
     $is_next_duel       = true;
@@ -296,7 +296,7 @@ function get_next_duel($id_ranking, $id_tournament){
 
     }
 
-    $nb_user_votes = all_user_votes_in_tournament($id_ranking);
+    $nb_user_votes = all_user_votes_in_top($id_ranking);
 
     if ($is_next_duel) {
         $val1 = random_int(0, 1);
@@ -319,7 +319,7 @@ function get_next_duel($id_ranking, $id_tournament){
         'timeline_main',
         'nb_user_votes',
         'nb_contenders',
-        'id_tournament',
+        'id_top',
         'id_ranking'
     );
 }

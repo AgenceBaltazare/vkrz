@@ -9,6 +9,20 @@ $user_id        = get_user_logged_id();
 $uuiduser       = deal_uuiduser();
 $utm            = deal_utm();
 
+if(is_single() && get_post_type() == "tournoi"){
+    global $id_ranking;
+    global $id_top;
+    global $is_next_duel;
+    $id_top        = get_the_ID();
+    $id_ranking    = get_user_ranking_id($id_top, $uuiduser);
+    if($id_ranking){
+        extract(get_next_duel($id_ranking, $id_top));
+        if(!$is_next_duel){
+            wp_redirect(get_the_permalink($id_ranking));
+        }
+    }
+}
+
 $user_tops      = get_user_tops();
 
 $user_infos     = deal_vainkeur_entry();

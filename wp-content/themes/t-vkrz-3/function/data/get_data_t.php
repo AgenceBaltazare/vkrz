@@ -38,8 +38,8 @@ function get_top_infos($id_top, $id_ranking = false){
     $top_cover     = wp_get_attachment_image_src(get_field('cover_t', $id_top), 'large');
 
     if($id_ranking){
-        $typetop       = get_field('type_top_r', $id_ranking);
-        if($typetop == "top3"){
+        $top_type       = get_field('type_top_r', $id_ranking);
+        if($top_type == "top3"){
             $top_number = 3;
         }
         else{
@@ -54,8 +54,81 @@ function get_top_infos($id_top, $id_ranking = false){
         'top_title'     => $top_title,
         'top_question'  => $top_question,
         'top_number'    => $top_number,
+        'top_type'      => $top_type,
         'top_img'       => $top_img,
-        'top_cover'     => $top_cover
+        'top_cover'     => $top_cover,
+        'top_date'      => get_the_date('d/m/Y', $id_top)
+    );
+
+    return $result;
+
+}
+
+function get_tournoi_data($id_top){
+
+    $result                 = array();
+    $count_votes_of_t       = 0;
+    $count_note_of_t        = 0;
+
+    $all_ranking_of_t = new WP_Query(array(
+        'post_type'                 => 'classement',
+        'posts_per_page'            => '-1',
+        'ignore_sticky_posts'       => true,
+        'update_post_meta_cache'    => false,
+        'no_found_rows'             => true,
+        'meta_query' => array(
+            'relation' => 'AND',
+                array(
+                    'key'       => 'nb_votes_r',
+                    'value'     => 0,
+                    'compare'   => '>',
+                ),
+                array(
+                    'key'       => 'id_tournoi_r',
+                    'value'     => $id_top,
+                    'compare'   => '=',
+                )
+            )
+        )
+    );
+    while ($all_ranking_of_t->have_posts()) : $all_ranking_of_t->the_post();
+
+        $count_votes_of_t = $count_votes_of_t + get_field('nb_votes_r');
+
+    endwhile;
+
+    $all_notes_of_t = new WP_Query(array(
+        'post_type'                 => 'note',
+        'posts_per_page'            => '-1',
+        'ignore_sticky_posts'       => true,
+        'update_post_meta_cache'    => false,
+        'no_found_rows'             => true,
+        'meta_query'                => array(
+            array(
+                'key'       => 'id_t_n',
+                'value'     => $id_top,
+                'compare'   => '=',
+            )
+        )
+    ));
+    while ($all_notes_of_t->have_posts()) : $all_notes_of_t->the_post();
+
+        $count_note_of_t = $count_note_of_t + get_field('id_s_n');
+
+    endwhile;
+
+    if($all_notes_of_t->post_count > 0){
+        $moyenne_note = round($count_note_of_t / $all_notes_of_t->post_count);
+    }
+    else{
+        $moyenne_note = 0;
+    }
+
+    $result = array(
+        "nb_tops"   => $all_ranking_of_t->post_count,
+        "nb_votes"  => $count_votes_of_t,
+        "note"      => $all_notes_of_t->post_count,
+        "moy_note"  => $moyenne_note
     );
 
     return $result;

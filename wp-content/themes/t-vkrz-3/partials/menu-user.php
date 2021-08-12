@@ -1,10 +1,16 @@
 <?php
-global $id_tournament;
-global $top_question;
-global $top_number;
-global $top_title;
-global $id_ranking;
 global $user_infos;
+if(is_single() && get_post_type() == "tournoi"){
+    global $top_infos;
+    global $id_top;
+    global $id_ranking;
+}
+elseif(is_single() && get_post_type() == "classement"){
+    global $top_infos;
+}
+elseif(is_author()){
+    global $vainkeur_info;
+}
 ?>
 <nav class="header-navbar navbar navbar-expand-lg align-items-center floating-nav navbar-dark navbar-shadow menu-user">
     <div class="navbar-container d-flex content align-items-center justify-content-between">
@@ -42,13 +48,18 @@ global $user_infos;
 
                                             <li class="breadcrumb-item">
                                                 <?php
-                                                foreach(get_the_terms($id_tournament, 'categorie') as $cat ) {
+                                                foreach(get_the_terms($id_top, 'categorie') as $cat ) {
                                                     $cat_id     = $cat->term_id;
                                                     $cat_name   = $cat->name;
                                                 }
                                                 ?>
                                                 <a href="<?php echo get_category_link($cat_id); ?>">
-                                                    <span class="ico"><?php the_field('icone_cat', 'term_'.$cat_id); ?></span> <span class="menu-title text-truncate"><?php echo $cat_name; ?></span>
+                                                    <span class="ico">
+                                                        <?php the_field('icone_cat', 'term_'.$cat_id); ?>
+                                                    </span> 
+                                                    <span class="menu-title text-truncate">
+                                                        <?php echo $cat_name; ?>
+                                                    </span>
                                                 </a>
                                             </li>
 
@@ -71,7 +82,7 @@ global $user_infos;
 
                                             <li class="breadcrumb-item">
                                                 <?php
-                                                foreach(get_the_terms($id_tournament, 'categorie') as $cat ) {
+                                                foreach(get_the_terms($id_top, 'categorie') as $cat ) {
                                                     $cat_id     = $cat->term_id;
                                                     $cat_name   = $cat->name;
                                                 }
@@ -81,9 +92,9 @@ global $user_infos;
                                                 </a>
                                             </li>
                                             <li class="breadcrumb-item">
-                                                <a href="<?php the_permalink($id_tournament); ?>">
+                                                <a href="<?php the_permalink($id_top); ?>">
                                                     <span class="menu-title text-truncate">
-                                                        <?php echo get_the_title($id_tournament); ?>
+                                                        <?php echo get_the_title($id_top); ?>
                                                     </span>
                                                 </a>
                                             </li>
@@ -92,8 +103,8 @@ global $user_infos;
 
                                             <li class="breadcrumb-item">
                                                 <?php
-                                                if(get_the_terms($id_tournament, 'categorie')){
-                                                    foreach(get_the_terms($id_tournament, 'categorie') as $cat ) {
+                                                if(get_the_terms($id_top, 'categorie')){
+                                                    foreach(get_the_terms($id_top, 'categorie') as $cat ) {
                                                         $cat_id     = $cat->term_id;
                                                         $cat_name   = $cat->name;
                                                     }
@@ -104,9 +115,9 @@ global $user_infos;
                                                 </a>
                                             </li>
                                             <li class="breadcrumb-item">
-                                                <a href="<?php the_permalink($id_tournament); ?>">
+                                                <a href="<?php the_permalink($id_top); ?>">
                                                     <span class="menu-title text-truncate">
-                                                        <?php echo get_the_title($id_tournament); ?>
+                                                        <?php echo get_the_title($id_top); ?>
                                                     </span>
                                                 </a>
                                             </li>
@@ -132,9 +143,9 @@ global $user_infos;
 
                 <?php if($id_ranking): ?>
                     <div class="tournament-heading text-center">
-                        <h3 class="mb-0 t-titre-tournoi">Top <?php echo $top_number; ?> <span class="ico">⚡</span> <?php echo $top_title; ?></h3>
+                        <h3 class="mb-0 t-titre-tournoi">Top <?php echo $top_infos['top_number']; ?> <span class="ico">⚡</span> <?php echo $top_infos['top_title']; ?></h3>
                         <h4 class="mb-0 t-rose t-max">
-                            <?php echo $top_question; ?>
+                            <?php echo $top_infos['top_question']; ?>
                         </h4>
                     </div>
                 <?php else: ?>
@@ -147,30 +158,30 @@ global $user_infos;
 
                 <div class="tournament-heading text-center">
                     <h3 class="mb-0 t-titre-tournoi">
-                        Top <?php echo $top_number; ?> <span class="ico text-center">🏆</span> <?php echo $top_title; ?>
+                        Top <?php echo $top_infos['top_number']; ?> <span class="ico text-center">🏆</span> <?php echo $top_infos['top_title']; ?>
                     </h3>
                     <h4 class="mb-0">
-                        <?php echo $top_question; ?>
+                        <?php echo $top_infos['top_question']; ?>
                     </h4>
                 </div>
 
             <?php elseif(is_page(get_page_by_path('elo'))): ?>
 
-                <?php $id_tournament = $_GET['id_top']; ?>
+                <?php $id_top = $_GET['id_top']; ?>
                 <div class="tournament-heading text-center">
-                    <h3 class="mb-0 t-titre-tournoi">Top <?php echo get_numbers_of_contenders($id_tournament); ?> mondial <span class="ico text-center">🏆</span> <?php echo get_the_title($id_tournament); ?></h3>
+                    <h3 class="mb-0 t-titre-tournoi">Top <?php echo get_numbers_of_contenders($id_top); ?> mondial <span class="ico text-center">🏆</span> <?php echo get_the_title($id_top); ?></h3>
                     <h4 class="mb-0">
-                        <?php the_field('question_t', $id_tournament); ?>
+                        <?php the_field('question_t', $id_top); ?>
                     </h4>
                 </div>
 
             <?php elseif(is_page(get_page_by_path('liste-des-tops'))): ?>
 
-                <?php $id_tournament = $_GET['id_top']; ?>
+                <?php $id_top = $_GET['id_top']; ?>
                 <div class="tournament-heading text-center">
-                    <h3 class="mb-0 t-titre-tournoi">Liste des Tops <span class="ico text-center">🏆</span> <?php echo get_the_title($id_tournament); ?></h3>
+                    <h3 class="mb-0 t-titre-tournoi">Liste des Tops <span class="ico text-center">🏆</span> <?php echo get_the_title($id_top); ?></h3>
                     <h4 class="mb-0">
-                        <?php the_field('question_t', $id_tournament); ?>
+                        <?php the_field('question_t', $id_top); ?>
                     </h4>
                 </div>
 
@@ -178,6 +189,15 @@ global $user_infos;
 
                 <div class="tournament-heading text-center">
                     <h3 class="mb-0 t-titre-tournoi"><span class="ico"><?php the_field('icone_cat', 'term_'.$cat_id); ?></span> <?php echo $cat_name; ?></h3>
+                    <h4 class="mb-0"><?php echo $current_cat->description; ?></h4>
+                </div>
+
+            <?php elseif(is_author()): ?>
+
+                <div class="tournament-heading text-center">
+                    <h3 class="mb-0 t-titre-tournoi">
+                        Profil de <?php echo $vainkeur_info['pseudo']; ?> <?php echo $vainkeur_info['level']; ?>
+                    </h3>
                     <h4 class="mb-0"><?php echo $current_cat->description; ?></h4>
                 </div>
 
@@ -205,7 +225,7 @@ global $user_infos;
                         <div class="text-center mb-2">
                             <h6 class="font-weight-bolder mb-0">
                                 <?php if(is_user_logged_in()): ?>
-                                    Encore <span class="decompte_vote"><?php echo get_vote_to_next_level($user_infos['nb_vote_vkrz']); ?></span> 💎 pour passer au niveau <?php echo $user_infos['next_level']; ?>
+                                    Encore <span class="decompte_vote"><?php echo get_vote_to_next_level($user_infos['level_number'], $user_infos['nb_vote_vkrz']); ?></span> 💎 pour passer au niveau <?php echo $user_infos['next_level']; ?>
                                 <?php else: ?>
                                     Il te créer un compte pour monter en niveau 🚀
                                 <?php endif; ?>

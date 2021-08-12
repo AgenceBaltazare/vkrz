@@ -4,20 +4,20 @@
 */
 global $uuiduser;
 if(isset($_GET['id_top'])){
-    $id_tournament  = $_GET['id_top'];
+    $id_top  = $_GET['id_top'];
 }
 else{
     header('Location: ' . get_bloginfo('url'));
 }
-$display_titre      = get_field('ne_pas_afficher_les_titres_t', $id_tournament);
-$rounded            = get_field('c_rounded_t', $id_tournament);
-$illu               = wp_get_attachment_image_src(get_field('cover_t', $id_tournament), 'full');
+$display_titre      = get_field('ne_pas_afficher_les_titres_t', $id_top);
+$rounded            = get_field('c_rounded_t', $id_top);
+$illu               = wp_get_attachment_image_src(get_field('cover_t', $id_top), 'full');
 $illu_url           = $illu[0];
 get_header();
-$top_title     = get_the_title($id_tournament);
-$top_question  = get_field('question_t', $id_tournament);
-$top_number    = get_numbers_of_contenders($id_tournament);
-$top_datas     = get_tournoi_data($id_tournament, $uuiduser);
+$top_title     = get_the_title($id_top);
+$top_question  = get_field('question_t', $id_top);
+$top_number    = get_numbers_of_contenders($id_top);
+$top_datas     = get_tournoi_data($id_top, $uuiduser);
 ?>
 <div class="app-content content cover" style="background: url(<?php echo $illu_url; ?>) center center no-repeat">
     <div class="content-overlay"></div>
@@ -48,7 +48,7 @@ $top_datas     = get_tournoi_data($id_tournament, $uuiduser);
                     'meta_query' => array(
                         array(
                             'key' => 'id_tournoi_r',
-                            'value' => $id_tournament,
+                            'value' => $id_top,
                             'compare' => '=',
                         )
                     )
