@@ -364,7 +364,7 @@ class Profile_Builder_Form_Creator{
                                     console.log("test");
                                 </script>
                                 <?php
-                                $wppb_register_success_message = apply_filters( 'wppb_register_success_message', sprintf( __( "The account %1s has been successfully created!", 'profile-builder' ), $account_name ), $account_name );
+                                $wppb_register_success_message = apply_filters( 'wppb_register_success_message', sprintf( __( "BIEEEEEEEEEEEEENVENUUUUUUEE !!", 'profile-builder' ), $account_name ), $account_name );
                                 break;
                             case 'ec-yes_aa-no':
                                 $wppb_register_success_message = apply_filters( 'wppb_register_success_message', sprintf( __( "Before you can access your account %1s, you need to confirm your email address. Please check your inbox and click the activation link.", 'profile-builder' ), $account_name ), $account_name );

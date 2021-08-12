@@ -262,7 +262,6 @@ function wppb_activate_account_check(){
 
 		$wppb_generalSettings = get_option( 'wppb_general_settings' );
 		$activation_landing_page_id = ( ( isset( $wppb_generalSettings['activationLandingPage'] ) && ( trim( $wppb_generalSettings['activationLandingPage'] ) != '' ) ) ? $wppb_generalSettings['activationLandingPage'] : 'not_set' );
-		
 		if ( $activation_landing_page_id != 'not_set' ){
 			//an activation page was selected, but we still need to check if the current page doesn't already have the registration shortcode
 			if ( strpos( $post->post_content, '[wppb-register' ) === false )
