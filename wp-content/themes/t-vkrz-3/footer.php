@@ -154,7 +154,21 @@
             }
         });
     </script>
-<?php endif; ?>
+<?php endif;
+global $post;
+$post_slug = $post->post_name;
+?>
+<script>
+    const page_slug__layer  = "<?php echo $post_slug; ?>";
+    window.dataLayer.push({
+            'event': 'track_event',
+            'event_name': 'page_view',
+            'page_categorie': top_categorie_layer,
+            'page_title': page_slug__layer,
+            'event_score': 1
+        }
+    );
+</script>
 
 </body>
 </html>
