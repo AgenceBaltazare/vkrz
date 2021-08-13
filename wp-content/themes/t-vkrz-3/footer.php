@@ -156,13 +156,16 @@
     </script>
 <?php endif;
 global $post;
+global $uuiduser;
+global $user_id;
 $post_slug=$post->post_name;
 $post_guid=$post->guid;
-
 ?>
 <script>
     const page_slug__layer  = "<?php echo $post_slug; ?>";
     const page_guid__layer  = "<?php echo $post_guid; ?>";
+    const top_uuiduser_layer  = "<?php echo $uuiduser; ?>";
+    const top_id_user_layer  = "<?php echo $user_id; ?>";
         window.dataLayer.push({
                 'event': 'track_event',
                 'event_name': 'page_view',
@@ -172,6 +175,18 @@ $post_guid=$post->guid;
             }
         );
 
+    $(document).on('click', '.sociallink, .btn-footer', {}, function (e) {
+        window.dataLayer.push({
+                'event': 'track_event',
+                'event_name': 'click_social',
+                'id_user': top_id_user_layer,
+                'uuiduser':top_uuiduser_layer,
+                'page_title': page_slug__layer,
+                'page_url': page_guid__layer,
+                'event_score': 20
+            }
+        );
+    })
 
 
 </script>

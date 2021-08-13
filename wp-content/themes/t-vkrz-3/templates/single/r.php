@@ -34,7 +34,7 @@ foreach($list_cat as $cat ) {
         const top_categorie_layer  = "<?php echo $cat->name; ?>";
         const top_id_top_layer  = "<?php echo $id_tournament; ?>";
         const top_uuiduser_layer  = "<?php echo $uuiduser; ?>";
-        const top_id_user_layer  = "<?php echo $user_id;; ?>";
+        const top_id_user_layer  = "<?php echo $user_id; ?>";
         const top_type__layer  = "<?php echo $typetop; ?>";
         const top_utm__layer  = "<?php echo $utm; ?>";
     </script>
