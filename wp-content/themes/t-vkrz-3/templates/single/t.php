@@ -1,11 +1,22 @@
 <?php
-get_header();
 global $uuiduser;
 global $id_ranking;
 global $id_top;
 global $is_next_duel;
 global $top_infos;
 global $utm;
+$user_id       = get_user_logged_id();
+$uuiduser      = deal_uuiduser();
+$utm           = deal_utm();
+$id_top        = get_the_ID();
+$id_ranking    = get_user_ranking_id($id_top, $uuiduser);
+if($id_ranking){
+    extract(get_next_duel($id_ranking, $id_top));
+    if(!$is_next_duel){
+        wp_redirect(get_the_permalink($id_ranking));
+    }
+}
+get_header();
 $top_datas = get_tournoi_data($id_top);
 ?>
 <div class="app-content content cover" style="background: url(<?php echo $top_infos['top_cover']; ?>) center center no-repeat">

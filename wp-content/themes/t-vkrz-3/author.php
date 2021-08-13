@@ -1,10 +1,8 @@
 <?php
+get_header();
 global $vainkeur_id;
 global $vainkeur_info;
 global $vainkeur_tops;
-
-get_header();
-
 $list_user_tops = $vainkeur_tops['list_user_tops'];
 ?>
 <div class="app-content content ">

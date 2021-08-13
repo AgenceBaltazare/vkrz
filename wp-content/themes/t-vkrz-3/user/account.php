@@ -2,18 +2,21 @@
 /*
     Template Name: Account
 */
+get_header();
 global $uuiduser;
 global $user_tops;
 global $user_infos;
-
-get_header();
-
 $list_user_tops = $user_tops['list_user_tops'];
 
-$list_t_begin = 0;
+$list_t_begin   = array();
+$list_t_done    = array();
+$has_t_begin    = false;
 foreach($list_user_tops as $top){
     if($top['state'] == 'begin') {
-        $list_t_begin++;
+        array_push($list_t_begin, $top);
+    }
+    if($top['state'] == 'done') {
+        array_push($list_t_done, $top);
     }
 }
 ?>
@@ -23,7 +26,7 @@ foreach($list_user_tops as $top){
 
             <?php if(!is_user_logged_in()): ?>
                 <section class="please-rejoin app-user-view">
-                    <div role="alert" aria-live="polite" aria-atomic="true" class="alert alert-account" data-v-aa799a9e="">
+                    <div role="alert" aria-live="polite" aria-atomic="true" class="alert alert-account">
                         <div class="alert-body d-flex align-items-center justify-content-between">
                             <span><span class="ico">💾</span> Pour sauvegarder et retrouver sur tous tes supports ta progression l'idéal serait de te créer un compte.</span>
                             <div class="btns-alert text-right">
@@ -160,7 +163,7 @@ foreach($list_user_tops as $top){
                             </section>
                             <section id="basic-tabs-components">
                                 <ul class="nav nav-tabs" role="tablist">
-                                    <?php if($list_t_begin > 0): ?>
+                                    <?php if(count($list_t_begin) > 0): ?>
                                         <?php $has_t_begin = true; ?>
                                         <li class="nav-item">
                                             <a class="nav-link active" id="homeIcon-tab" data-toggle="tab" href="#tab1" aria-controls="home" role="tab" aria-selected="true">
@@ -175,7 +178,7 @@ foreach($list_user_tops as $top){
                                     </li>
                                 </ul>
                                 <div class="tab-content">
-                                    <?php if($list_t_begin > 0): ?>
+                                    <?php if($has_t_begin): ?>
                                         <div class="tab-pane active" id="tab1" aria-labelledby="homeIcon-tab" role="tabpanel">
                                         <div class="row">
                                             <div class="col-12">
@@ -185,7 +188,7 @@ foreach($list_user_tops as $top){
                                                             <thead>
                                                             <tr>
                                                                 <th class="">
-                                                                    <span class="t-rose"><?php echo $list_t_begin; ?></span> Tops à terminer
+                                                                    <span class="t-rose"><?php echo count($list_t_begin); ?></span> Tops à terminer
                                                                 </th>
                                                                 <th class="text-center">
                                                                     💎
@@ -200,48 +203,46 @@ foreach($list_user_tops as $top){
                                                             </thead>
                                                             <tbody>
                                                             <?php
-                                                            foreach($list_user_tops as $r_user) : ?>
-                                                                <?php if($r_user['nb_votes'] > 0 && $r_user['state'] == 'begin'): ?>
-                                                                    <tr id="top-<?php echo $r_user['id_ranking']; ?>">
-                                                                        <td>
-                                                                            <div class="media-body">
-                                                                                <div class="media-heading">
-                                                                                    <h6 class="cart-item-title mb-0">
-                                                                                        <a class="text-body" href="<?php the_permalink($r_user['id_tournoi']); ?>">
-                                                                                            Top <?php echo $r_user['nb_top']; ?> - <?php echo get_the_title($r_user['id_tournoi']); ?>
-                                                                                        </a>
-                                                                                    </h6>
-                                                                                    <small class="cart-item-by legende">
-                                                                                        <?php the_field('question_t', $r_user['id_tournoi']); ?>
-                                                                                    </small>
-                                                                                </div>
+                                                            foreach($list_t_begin as $top) : ?>
+                                                                <tr id="top-<?php echo $top['id_ranking']; ?>">
+                                                                    <td>
+                                                                        <div class="media-body">
+                                                                            <div class="media-heading">
+                                                                                <h6 class="cart-item-title mb-0">
+                                                                                    <a class="text-body" href="<?php the_permalink($top); ?>">
+                                                                                        Top <?php echo $top['nb_top']; ?> - <?php echo get_the_title($top['id_top']); ?>
+                                                                                    </a>
+                                                                                </h6>
+                                                                                <small class="cart-item-by legende">
+                                                                                    <?php the_field('question_t', $top['id_top']); ?>
+                                                                                </small>
                                                                             </div>
-                                                                        </td>
-                                                                        <td class="text-center">
-                                                                            <?php echo $r_user['nb_votes']; ?> <span class="ico3">💎</span>
-                                                                        </td>
-                                                                        <td>
-                                                                            <a class="mr-1" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $r_user['id_tournoi']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir le classement mondial">
-                                                                                <span class="ico">
-                                                                                    🌍
-                                                                                </span>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td class="text-center">
+                                                                        <?php echo $top['nb_votes']; ?> <span class="ico3">💎</span>
+                                                                    </td>
+                                                                    <td>
+                                                                        <a class="mr-1" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $top['id_tournoi']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir le classement mondial">
+                                                                            <span class="ico">
+                                                                                🌍
+                                                                            </span>
+                                                                        </a>
+                                                                    </td>
+                                                                    <td class="text-center">
+                                                                        <div class="d-flex align-items-center col-actions">
+                                                                            <a href="<?php the_permalink($top['id_tournoi']); ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Continuer le Top">
+                                                                                <span class="ico-action">▶️</span>
                                                                             </a>
-                                                                        </td>
-                                                                        <td class="text-center">
-                                                                            <div class="d-flex align-items-center col-actions">
-                                                                                <a href="<?php the_permalink($r_user['id_tournoi']); ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Continuer le Top">
-                                                                                    <span class="ico-action">▶️</span>
-                                                                                </a>
-                                                                                <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-idranking="<?php echo $r_user['id_ranking']; ?>" class="confirm_delete" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Recommencer le Top">
-                                                                                    <span class="ico-action">🆕</span>
-                                                                                </a>
-                                                                                <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Le Top sera supprimé définitivement 😱" data-idranking="<?php echo $r_user['id_ranking']; ?>" class="confirmDeleteReal" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Abandonner le Top">
-                                                                                    <span class="ico-action">🚮</span>
-                                                                                </a>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-                                                                <?php endif; ?>
+                                                                            <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-idranking="<?php echo $top['id_ranking']; ?>" class="confirm_delete" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Recommencer le Top">
+                                                                                <span class="ico-action">🆕</span>
+                                                                            </a>
+                                                                            <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Le Top sera supprimé définitivement 😱" data-idranking="<?php echo $top['id_ranking']; ?>" class="confirmDeleteReal" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Abandonner le Top">
+                                                                                <span class="ico-action">🚮</span>
+                                                                            </a>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
                                                             <?php endforeach; ?>
                                                             </tbody>
                                                         </table>
@@ -260,7 +261,7 @@ foreach($list_user_tops as $top){
                                                             <thead>
                                                             <tr>
                                                                 <th class="">
-                                                                    <span class="t-rose"><?php echo $user_infos['nb_top_vkrz']; ?></span> Tops terminés
+                                                                    <span class="t-rose"><?php echo count($list_t_done); ?></span> Tops terminés
                                                                 </th>
                                                                 <th class="text-right">
                                                                     💎
@@ -278,85 +279,83 @@ foreach($list_user_tops as $top){
                                                             </thead>
                                                             <tbody>
                                                             <?php
-                                                            foreach($list_user_tops as $r_user) : ?>
-                                                                <?php if($r_user['nb_votes'] > 0 && $r_user['state'] == 'done'): ?>
-                                                                    <tr id="top-<?php echo $r_user['id_ranking']; ?>">
-                                                                        <td>
-                                                                            <div class="media-body">
-                                                                                <div class="media-heading">
-                                                                                    <h6 class="cart-item-title mb-0">
-                                                                                        <a class="text-body" href="<?php the_permalink($r_user['id_tournoi']); ?>">
-                                                                                            Top <?php echo $r_user['nb_top']; ?> - <?php echo get_the_title($r_user['id_tournoi']); ?>
-                                                                                        </a>
-                                                                                    </h6>
-                                                                                    <small class="cart-item-by legende">
-                                                                                        <?php the_field('question_t', $r_user['id_tournoi']); ?>
-                                                                                    </small>
-                                                                                </div>
+                                                            foreach($list_t_done as $top) : ?>
+                                                                <tr id="top-<?php echo $top['id_ranking']; ?>">
+                                                                    <td>
+                                                                        <div class="media-body">
+                                                                            <div class="media-heading">
+                                                                                <h6 class="cart-item-title mb-0">
+                                                                                    <a class="text-body" href="<?php the_permalink($top['id_top']); ?>">
+                                                                                        Top <?php echo $top['nb_top']; ?> - <?php echo get_the_title($top['id_top']); ?>
+                                                                                    </a>
+                                                                                </h6>
+                                                                                <small class="cart-item-by legende">
+                                                                                    <?php the_field('question_t', $top['id_tournoi']); ?>
+                                                                                </small>
                                                                             </div>
-                                                                        </td>
-                                                                        <td class="text-right">
-                                                                            <?php echo $r_user['nb_votes']; ?> <span class="ico3">💎</span>
-                                                                        </td>
-                                                                        <td>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td class="text-right">
+                                                                        <?php echo $top['nb_votes']; ?> <span class="ico3">💎</span>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php
+                                                                        $user_top3 = get_user_ranking($top['id_ranking']);
+                                                                        $l=1;
+                                                                        foreach($user_top3 as $contender => $p): ?>
+
+                                                                            <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="<?php echo get_the_title($contender); ?>" class="avatartop3 avatar pull-up">
+                                                                                <?php $illu = get_the_post_thumbnail_url($contender, 'thumbnail'); ?>
+                                                                                <img src="<?php echo $illu; ?>" alt="Avatar">
+                                                                            </div>
+
+                                                                        <?php $l++; if($l==4) break; endforeach; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="d-flex align-items-center col-actions">
                                                                             <?php
-                                                                            $user_top3 = get_user_ranking($r_user['id_ranking']);
-                                                                            $l=1;
-                                                                            foreach($user_top3 as $top => $p): ?>
-
-                                                                                <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="<?php echo get_the_title($top); ?>" class="avatartop3 avatar pull-up">
-                                                                                    <?php $illu = get_the_post_thumbnail_url($top, 'thumbnail'); ?>
-                                                                                    <img src="<?php echo $illu; ?>" alt="Avatar">
-                                                                                </div>
-
-                                                                            <?php $l++; if($l==4) break; endforeach; ?>
-                                                                        </td>
-                                                                        <td>
-                                                                            <div class="d-flex align-items-center col-actions">
-                                                                                <?php
-                                                                                if($r_user['typetop'] == "top3"){
-                                                                                    $wording = "Voir le Top 3";
-                                                                                }
-                                                                                else{
-                                                                                    $wording = "Voir le Top complet";
-                                                                                }
-                                                                                ?>
-                                                                                <a class="mr-1" href="<?php the_permalink($r_user['id_ranking']); ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="<?php echo $wording; ?>">
-                                                                                    <span class="ico">
-                                                                                        🏆
-                                                                                    </span>
+                                                                            if($top['typetop'] == "top3"){
+                                                                                $wording = "Voir le Top 3";
+                                                                            }
+                                                                            else{
+                                                                                $wording = "Voir le Top complet";
+                                                                            }
+                                                                            ?>
+                                                                            <a class="mr-1" href="<?php the_permalink($top['id_ranking']); ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="<?php echo $wording; ?>">
+                                                                                <span class="ico">
+                                                                                    🏆
+                                                                                </span>
+                                                                            </a>
+                                                                            <a class="mr-1" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $top['id_tournoi']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir le classement mondial">
+                                                                                <span class="ico">
+                                                                                    🌍
+                                                                                </span>
+                                                                            </a>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td class="text-center">
+                                                                        <div class="dropdown">
+                                                                            <a class="btn btn-sm btn-icon px-0" data-toggle="dropdown">
+                                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical font-medium-2">
+                                                                                    <circle cx="12" cy="12" r="1"></circle>
+                                                                                    <circle cx="12" cy="5" r="1"></circle>
+                                                                                    <circle cx="12" cy="19" r="1"></circle>
+                                                                                </svg>
+                                                                            </a>
+                                                                            <div class="dropdown-menu dropdown-menu-right">
+                                                                                <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-idranking="<?php echo $top['id_ranking']; ?>" class="confirm_delete dropdown-item" href="#">
+                                                                                    <span class="ico-action">🆕</span> Recommencer
                                                                                 </a>
-                                                                                <a class="mr-1" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $r_user['id_tournoi']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir le classement mondial">
-                                                                                    <span class="ico">
-                                                                                        🌍
-                                                                                    </span>
+                                                                                <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Le Top sera supprimé définitivement 😱" data-idranking="<?php echo $top['id_ranking']; ?>" class="confirmDeleteReal dropdown-item" href="#">
+                                                                                    <span class="ico-action">🚮</span> Supprimer
+                                                                                </a>
+                                                                                <a href="#" class="dropdown-item" data-toggle="modal" data-target="#commentModal-<?php echo $top['id_tournoi']; ?>">
+                                                                                    <span class="ico-action">🆓</span> Commenter
                                                                                 </a>
                                                                             </div>
-                                                                        </td>
-                                                                        <td class="text-center">
-                                                                            <div class="dropdown">
-                                                                                <a class="btn btn-sm btn-icon px-0" data-toggle="dropdown">
-                                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical font-medium-2">
-                                                                                        <circle cx="12" cy="12" r="1"></circle>
-                                                                                        <circle cx="12" cy="5" r="1"></circle>
-                                                                                        <circle cx="12" cy="19" r="1"></circle>
-                                                                                    </svg>
-                                                                                </a>
-                                                                                <div class="dropdown-menu dropdown-menu-right">
-                                                                                    <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-idranking="<?php echo $r_user['id_ranking']; ?>" class="confirm_delete dropdown-item" href="#">
-                                                                                        <span class="ico-action">🆕</span> Recommencer
-                                                                                    </a>
-                                                                                    <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Le Top sera supprimé définitivement 😱" data-idranking="<?php echo $r_user['id_ranking']; ?>" class="confirmDeleteReal dropdown-item" href="#">
-                                                                                        <span class="ico-action">🚮</span> Supprimer
-                                                                                    </a>
-                                                                                    <a href="#" class="dropdown-item" data-toggle="modal" data-target="#commentModal-<?php echo $r_user['id_tournoi']; ?>">
-                                                                                        <span class="ico-action">🆓</span> Commenter
-                                                                                    </a>
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-                                                                <?php endif; ?>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
                                                             <?php endforeach; ?>
                                                             </tbody>
                                                         </table>
