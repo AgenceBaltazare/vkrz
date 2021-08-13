@@ -23,9 +23,11 @@ function get_user_logged_id(){
     return $user_id;
 }
 
-function get_user_tops(){
+function get_user_tops($user_id = false){
 
-    global $user_id;
+    if(!$user_id){
+        global $user_id;
+    }
 
     if($user_id){
         $args_author__in = array($user_id);
@@ -80,6 +82,7 @@ function get_user_tops(){
                 }
             }
 
+            $state = "";
             if ($done) {
                 $state = "done";
             }
@@ -109,8 +112,7 @@ function get_user_tops(){
 
     return array(
         "list_user_tops"            => $user_tops_all,
-        "list_user_tops_done_ids"   => $user_tops_done_ids,
-        "user_nb_votes"             => $user_nb_votes
+        "list_user_tops_done_ids"   => $user_tops_done_ids
     );
 }
 
@@ -202,9 +204,38 @@ function get_vkrz_users_list($limit = false){
 
 }
 
-function get_user_level(){
+function find_vkrz_user($uuid_user_r){
 
-    global $user_id;
+    $result = array();
+
+    $user_search = new WP_User_Query(array(
+        'number' => 1,
+        'meta_query' => array(
+            array(
+                'key'     => 'uuiduser_user',
+                'value'   => $uuid_user_r,
+                'compare' => '=',
+            )
+        )
+    ));
+
+    $user_found = $user_search->get_results();
+
+    foreach($user_found as $user){
+
+        $result    = $user->ID;
+
+    }
+
+    return $result;
+
+}
+
+function get_user_level($user_id = false){
+
+    if(!$user_id){
+        global $user_id;
+    }
 
     $level_number = get_field('level_user', 'user_' . $user_id);
 
@@ -291,121 +322,6 @@ function get_vote_to_next_level($level_number, $nb_vote_vkrz){
     $votes_to_next_level  = $value_require_to_level - $nb_vote_vkrz;
 
     return $votes_to_next_level;
-
-}
-
-function deal_user_level($uuiduser = false, $user_id = false, $nb_user_votes = false){
-
-    if(!$nb_user_votes){
-
-        $nb_user_votes      = 50;
-
-    }
-
-    $niv_1 = 50;
-    $niv_2 = 500;
-    $niv_3 = 2000;
-    $niv_4 = 5000;
-    $niv_5 = 35000;
-    $niv_6 = 100000;
-    $niv_7 = 450000;
-    $niv_8 = 1000000;
-
-    if($nb_user_votes < $niv_1){
-
-        $level          = "🥚";
-        $level_number   = 0;
-        $next_level     = "🐣";
-        $votes_restant  = $niv_1 - $nb_user_votes;
-        update_field('level_user', 0, 'user_' . $user_id);
-
-    }
-    elseif($niv_1 <= $nb_user_votes && $nb_user_votes < $niv_2){
-
-        $level          = "🐣";
-        $level_number   = 1;
-        $next_level     = "🐥";
-        $votes_restant  = $niv_2 - $nb_user_votes;
-        update_field('level_user', 1, 'user_' . $user_id);
-
-    }
-    elseif($niv_2 <= $nb_user_votes && $nb_user_votes < $niv_3){
-
-        $level          = "🐥";
-        $level_number   = 2;
-        $next_level     = "🐓";
-        $votes_restant  = $niv_3 - $nb_user_votes;
-        update_field('level_user', 2, 'user_' . $user_id);
-
-    }
-    elseif($niv_3 <= $nb_user_votes && $nb_user_votes < $niv_4){
-
-        $level          = "🐓";
-        $level_number   = 3;
-        $next_level     = "🦃";
-        $votes_restant  = $niv_4 - $nb_user_votes;
-        update_field('level_user', 3, 'user_' . $user_id);
-
-    }
-    elseif($niv_4 <= $nb_user_votes && $nb_user_votes < $niv_5){
-
-        $level          = "🦃";
-        $level_number   = 4;
-        $next_level     = "🦢";
-        $votes_restant  = $niv_5 - $nb_user_votes;
-        update_field('level_user', 4, 'user_' . $user_id);
-
-    }
-    elseif($niv_5 <= $nb_user_votes && $nb_user_votes < $niv_6){
-
-        $level          = "🦢";
-        $level_number   = 5;
-        $next_level     = "🦩";
-        $votes_restant  = $niv_6 - $nb_user_votes;
-        update_field('level_user', 5, 'user_' . $user_id);
-
-    }
-    elseif($niv_6 <= $nb_user_votes && $nb_user_votes < $niv_7){
-
-
-        $level          = "🦩";
-        $level_number   = 6;
-        $next_level     = "🦚";
-        $votes_restant  = $niv_7 - $nb_user_votes;
-        update_field('level_user', 6, 'user_' . $user_id);
-
-    }
-    elseif($niv_7 <= $nb_user_votes && $nb_user_votes < $niv_8){
-
-        $level          = "🦚";
-        $level_number   = 7;
-        $next_level     = "🐉";
-        $votes_restant  = $niv_8 - $nb_user_votes;
-        update_field('level_user', 7, 'user_' . $user_id);
-
-    }
-    elseif($nb_user_votes >= $niv_8){
-
-        $level = "🐉";
-        $level_number = 8;
-        $next_level   = "🐉";
-        $votes_restant = 0;
-        update_field('level_user', 8, 'user_' . $user_id);
-
-    }
-
-    if($votes_restant < 0){
-        $votes_restant = 0;
-    }
-
-    $result = array(
-        "level_ico"       => $level,
-        "level_number"    => $level_number,
-        "votes_restant"   => $votes_restant,
-        "next_level"      => $next_level
-    );
-
-    return $result;
 
 }
 

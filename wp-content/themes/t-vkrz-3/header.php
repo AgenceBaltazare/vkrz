@@ -5,27 +5,29 @@ global $user_tops;
 global $user_infos;
 global $utm;
 
-$user_id        = get_user_logged_id();
-$uuiduser       = deal_uuiduser();
-$utm            = deal_utm();
-
-if(is_single() && get_post_type() == "tournoi"){
-    global $id_ranking;
-    global $id_top;
-    global $is_next_duel;
-    $id_top        = get_the_ID();
-    $id_ranking    = get_user_ranking_id($id_top, $uuiduser);
-    if($id_ranking){
-        extract(get_next_duel($id_ranking, $id_top));
-        if(!$is_next_duel){
-            wp_redirect(get_the_permalink($id_ranking));
-        }
-    }
+if(!is_single() || get_post_type() != "tournoi"){
+    $user_id        = get_user_logged_id();
+    $uuiduser       = deal_uuiduser();
+    $utm            = deal_utm();
 }
 
-$user_tops      = get_user_tops();
-
-$user_infos     = deal_vainkeur_entry();
+if(is_user_logged_in()) {
+    if (false === ( $user_tops = get_transient( 'user_'.$user_id.'_get_user_tops' ) )) {
+        $user_tops = get_user_tops();
+        set_transient( 'user_'.$user_id.'_get_user_tops', $user_tops, DAY_IN_SECONDS );
+    } else {
+        $user_tops = get_transient( 'user_'.$user_id.'_get_user_tops' );
+    }
+    if (false === ( $user_infos = get_transient( 'user_'.$user_id.'_deal_vainkeur_entry' ) )) {
+        $user_infos = deal_vainkeur_entry();
+        set_transient( 'user_'.$user_id.'_deal_vainkeur_entry', $user_infos, DAY_IN_SECONDS );
+    } else {
+        $user_infos = get_transient( 'user_'.$user_id.'_deal_vainkeur_entry' );
+    }
+} else {
+    $user_tops  = get_user_tops();
+    $user_infos = deal_vainkeur_entry();
+}
 ?>
 <!DOCTYPE html>
 <html class="loading dark-layout" lang="fr" data-layout="dark-layout" data-textdirection="ltr">

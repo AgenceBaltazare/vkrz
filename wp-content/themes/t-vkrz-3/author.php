@@ -1,24 +1,11 @@
 <?php
-global $champion;
-global $champion_id;
-$champion            = get_user_by('slug', get_query_var('author_name'));
-$champion_id         = $champion->ID;
-get_header();
-$champion_info       = get_userdata($champion_id);
-$champion_role       = $champion_info->roles[0];
-$uuidchampion        = get_field('uuiduser_user', 'user_'.$champion_id);
+global $vainkeur_id;
+global $vainkeur_info;
+global $vainkeur_tops;
 
-if ($uuidchampion != $uuiduser) {
-     if (false === ( $user_full_data = get_transient( 'user_'.$champion_id.'_get_user_full_data' ) )) {
-        $user_full_data = get_user_full_data($champion_id, "author");
-        set_transient( 'user_'.$champion_id.'_get_user_full_data', $user_full_data, DAY_IN_SECONDS );
-     } else {
-        $user_full_data = get_transient( 'user_'.$champion_id.'_get_user_full_data' );
-     }
-    $list_t_done        = $user_full_data[0]['list_user_ranking_done'];
-    $nb_user_votes      = $user_full_data[0]['nb_user_votes'];
-    $info_user_level    = get_user_level($uuidchampion, $champion_id, $nb_user_votes);
-}
+get_header();
+
+$list_user_tops = $vainkeur_tops['list_user_tops'];
 ?>
 <div class="app-content content ">
     <div class="content-wrapper">
@@ -40,30 +27,31 @@ if ($uuidchampion != $uuiduser) {
                                     <div class="info-bio">
                                         <h5 class="mb-75 t-rose">Inscription</h5>
                                         <p class="card-text">
-                                            <?php if($champion_id == 1): ?>
+                                            <?php if($vainkeur_id == 1): ?>
                                                 1er champion sur VAINKEURZ
                                             <?php else: ?>
-                                                <?php echo $champion_id; ?>ème champion à avoir rejoint le concept VAINKEURZ
+                                                <?php echo $vainkeur_id; ?>ème champion à avoir rejoint le concept VAINKEURZ
                                             <?php endif; ?>
                                         </p>
                                     </div>
-                                    <?php if($champion_info->description): ?>
+                                    <?php
+                                    if(get_userdata($vainkeur_id)->description): ?>
                                         <div class="info-bio mt-2">
                                             <h5 class="mb-75 t-rose">Bio</h5>
                                             <p class="card-text">
-                                                <?php echo $champion_info->description; ?>
+                                                <?php echo get_userdata($vainkeur_id)->description; ?>
                                             </p>
                                         </div>
                                     <?php endif; ?>
 
-                                    <?php if($champion_info->twitch_user || $champion_info->youtube_user || $champion_info->Instagram_user || $champion_info->tiktok_user): ?>
+                                    <?php if(get_userdata($vainkeur_id)->twitch_user || get_userdata($vainkeur_id)->youtube_user || get_userdata($vainkeur_id)->Instagram_user || get_userdata($vainkeur_id)->tiktok_user): ?>
                                         <div class="info-bio mt-2">
                                             <h5 class="mb-75 t-rose">Réseaux</h5>
                                             <div class="row">
-                                                <?php if($champion_info->twitch_user): ?>
+                                                <?php if(get_userdata($vainkeur_id)->twitch_user): ?>
                                                     <div class="col-md-6">
                                                         <div class="transaction-item mb-2">
-                                                            <a href="<?php echo $champion_info->twitch_user; ?>" target="_blank" >
+                                                            <a href="<?php echo get_userdata($vainkeur_id)->twitch_user; ?>" target="_blank" >
                                                                 <div class="d-flex align-items-center">
                                                                     <div class="avatar bg-light-primary rounded">
                                                                         <div class="avatar-content picto-rs">
@@ -80,10 +68,10 @@ if ($uuidchampion != $uuiduser) {
                                                         </div>
                                                     </div>
                                                 <?php endif; ?>
-                                                <?php if($champion_info->youtube_user): ?>
+                                                <?php if(get_userdata($vainkeur_id)->youtube_user): ?>
                                                     <div class="col-md-6">
                                                         <div class="transaction-item mb-2">
-                                                            <a href="<?php echo $champion_info->youtube_user; ?>" target="_blank" >
+                                                            <a href="<?php echo get_userdata($vainkeur_id)->youtube_user; ?>" target="_blank" >
                                                                 <div class="d-flex align-items-center">
                                                                     <div class="avatar bg-light-primary rounded">
                                                                         <div class="avatar-content picto-rs">
@@ -100,10 +88,10 @@ if ($uuidchampion != $uuiduser) {
                                                         </div>
                                                     </div>
                                                 <?php endif; ?>
-                                                <?php if($champion_info->Instagram_user): ?>
+                                                <?php if(get_userdata($vainkeur_id)->Instagram_user): ?>
                                                     <div class="col-md-6">
                                                         <div class="transaction-item mb-2">
-                                                            <a href="<?php echo $champion_info->Instagram_user; ?>" target="_blank" >
+                                                            <a href="<?php echo get_userdata($vainkeur_id)->Instagram_user; ?>" target="_blank" >
                                                                 <div class="d-flex align-items-center">
                                                                     <div class="avatar bg-light-primary rounded">
                                                                         <div class="avatar-content picto-rs">
@@ -120,10 +108,10 @@ if ($uuidchampion != $uuiduser) {
                                                         </div>
                                                     </div>
                                                 <?php endif; ?>
-                                                <?php if($champion_info->tiktok_user): ?>
+                                                <?php if(get_userdata($vainkeur_id)->tiktok_user): ?>
                                                     <div class="col-md-6">
                                                         <div class="transaction-item mb-2">
-                                                            <a href="<?php echo $champion_info->tiktok_user; ?>" target="_blank" >
+                                                            <a href="<?php echo get_userdata($vainkeur_id)->tiktok_user; ?>" target="_blank" >
                                                                 <div class="d-flex align-items-center">
                                                                     <div class="avatar bg-light-primary rounded">
                                                                         <div class="avatar-content picto-rs">
@@ -162,13 +150,14 @@ if ($uuidchampion != $uuiduser) {
                                             'order'         => 'DESC',
                                             'hide_empty'    => true,
                                         ));
-                                        foreach($cat_t as $cat) : ?>
-                                            <?php
+
+                                        foreach($cat_t as $cat) :
                                             $tops_in_cat = $cat->count;
                                             $id_cat      = $cat->term_id;
                                             $count_top_done_in_cat = 0;
-                                            foreach($list_t_done as $top_done){
-                                                if($id_cat == $top_done['cat_t']){
+
+                                            foreach($list_user_tops as $top_done){
+                                                if($id_cat == $top_done['cat_t'] && $top_done['state'] == 'done'){
                                                     $count_top_done_in_cat++;
                                                 }
                                             }
@@ -219,7 +208,7 @@ if ($uuidchampion != $uuiduser) {
                                                 </div>
                                                 <div class="user-level">
                                                 <span class="icomax">
-                                                    <?php echo $info_user_level['level_ico']; ?>
+                                                    <?php echo $vainkeur_info['level']; ?>
                                                 </span>
                                                 </div>
                                                 <p class="card-text legende">Niveau actuel</p>
@@ -233,7 +222,7 @@ if ($uuidchampion != $uuiduser) {
                                                     <span class="ico4">💎</span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">
-                                                    <?php echo $nb_user_votes; ?>
+                                                    <?php echo $vainkeur_info['nb_vote_vkrz']; ?>
                                                 </h2>
                                                 <p class="card-text legende">Votes</p>
                                             </div>
@@ -246,7 +235,7 @@ if ($uuidchampion != $uuiduser) {
                                                     <span class="ico4">🏆</span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">
-                                                    <?php echo count($list_t_done); ?>
+                                                    <?php echo $vainkeur_info['nb_top_vkrz']; ?>
                                                 </h2>
                                                 <p class="card-text legende">Tops terminés</p>
                                             </div>
@@ -265,7 +254,7 @@ if ($uuidchampion != $uuiduser) {
                                                             <thead>
                                                             <tr>
                                                                 <th class="">
-                                                                    <span class="t-rose"><?php echo count($list_t_done); ?></span> Tops terminés
+                                                                    <span class="t-rose"><?php echo $vainkeur_info['nb_top_vkrz']; ?></span> Tops terminés
                                                                 </th>
                                                                 <th class="text-right">
                                                                     💎
@@ -280,8 +269,8 @@ if ($uuidchampion != $uuiduser) {
                                                             </thead>
                                                             <tbody>
                                                             <?php
-                                                            foreach($list_t_done as $r_user) : ?>
-                                                                <?php if($r_user['nb_votes'] > 0): ?>
+                                                            foreach($list_user_tops as $r_user) : ?>
+                                                                <?php if($r_user['nb_votes'] > 0 && $r_user['state'] ==  'done'): ?>
                                                                     <tr id="top-<?php echo $r_user['id_ranking']; ?>">
                                                                         <td>
                                                                             <div class="media-body">

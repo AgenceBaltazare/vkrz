@@ -1,7 +1,7 @@
 <?php
 get_header();
-global $user_full_data;
-$list_t_already_done = $user_full_data['list_user_tops_done_ids'];
+global $user_tops;
+$list_t_already_done = $user_tops['list_user_tops_done_ids'];
 ?>
 <div class="app-content content ">
     <div class="content-wrapper">

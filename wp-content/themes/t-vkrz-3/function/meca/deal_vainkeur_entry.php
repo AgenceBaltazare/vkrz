@@ -1,9 +1,10 @@
 <?php
+
 function deal_vainkeur_entry($user_id = false){
 
     global $uuiduser;
 
-    if(!$user_id){
+    if(!$user_id) {
         global $user_id;
     }
 
@@ -72,7 +73,7 @@ function deal_vainkeur_entry($user_id = false){
         $avatar_url = get_bloginfo('template_directory')."/assets/images/vkrz/ninja.png";
     }
 
-    $info_user_level = get_user_level();
+    $info_user_level = get_user_level($user_id);
 
     $result = array(
         'id_vainkeur'       => $id_vainkeur,

@@ -77,7 +77,7 @@ get_header();
                                                                         <?php
                                                                         $user_id     = get_the_author_meta('ID');
                                                                         $user_uuid   = get_field('uuiduser_user', 'user_'.$user_id);
-                                                                        $user_infos  = deal_vainkeur_entry($user_uuid);
+                                                                        $user_infos  = deal_vainkeur_entry($user_id);
                                                                         $nb_user_votes = $user_infos[0]['nb_vote_vkrz'];
                                                                         $avatar_url  = get_avatar_url($user_id, ['size' => '80']);
                                                                         if(!$avatar_url){
