@@ -110,22 +110,6 @@ $(document).ready(function ($) {
         }
     })
 
-    $(document).on('click', '.swal2-confirm', {}, function (e) {
-        window.dataLayer.push({
-                'event': 'track_event',
-                'event_name': 'restart_top',
-                'page_categorie': top_categorie_layer,
-                'top_title': top_title_layer,
-                'top_question': top_question_layer,
-                'id_top' : top_id_top_layer,
-                'id_user': top_id_user_layer,
-                'uuiduser':top_uuiduser_layer,
-                'type_top': top_type__layer,
-                'utm': top_utm__layer,
-                'event_score': 5
-            }
-        );
-    })
     $(document).on('click', '.choosecta', {}, function (e) {
         window.dataLayer.push({
                 'event': 'track_event',
