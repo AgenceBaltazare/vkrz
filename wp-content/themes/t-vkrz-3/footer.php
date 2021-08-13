@@ -155,20 +155,25 @@
         });
     </script>
 <?php endif;
-$slug = get_post_field( 'post_name', get_post() );
 global $post;
-var_dump($post);
+$post_slug=$post->post_name;
+$post_guid=$post->guid;
+
 ?>
 <script>
-    const page_slug__layer  = "<?php echo $slug; ?>";
-    window.dataLayer.push({
-            'event': 'track_event',
-            'event_name': 'page_view',
-            'page_categorie': top_categorie_layer,
-            'page_title': page_slug__layer,
-            'event_score': 1
-        }
-    );
+    const page_slug__layer  = "<?php echo $post_slug; ?>";
+    const page_guid__layer  = "<?php echo $post_guid; ?>";
+        window.dataLayer.push({
+                'event': 'track_event',
+                'event_name': 'page_view',
+                'page_title': page_slug__layer,
+                'page_url': page_guid__layer,
+                'event_score': 1
+            }
+        );
+
+
+
 </script>
 
 </body>
