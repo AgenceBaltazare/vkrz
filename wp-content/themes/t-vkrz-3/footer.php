@@ -155,11 +155,12 @@
         });
     </script>
 <?php endif;
+$slug = get_post_field( 'post_name', get_post() );
 global $post;
-$post_slug = $post->post_name;
+var_dump($post);
 ?>
 <script>
-    const page_slug__layer  = "<?php echo $post_slug; ?>";
+    const page_slug__layer  = "<?php echo $slug; ?>";
     window.dataLayer.push({
             'event': 'track_event',
             'event_name': 'page_view',
