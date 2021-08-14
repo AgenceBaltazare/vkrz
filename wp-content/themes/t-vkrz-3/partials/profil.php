@@ -3,7 +3,6 @@ global $uuiduser;
 global $user_id;
 global $vainkeur_info;
 global $user_infos;
-
 $vainkeur_info = isset($vainkeur_info) ? $vainkeur_info : $user_infos;
 ?>
 <div class="card profile-header mb-2">
@@ -26,7 +25,7 @@ $vainkeur_info = isset($vainkeur_info) ? $vainkeur_info : $user_infos;
             </div>
             <div class="profile-title ml-3">
                 <h2 class="text-white text-uppercase">
-                    <?php echo is_user_logged_in() ? $vainkeur_info['pseudo'] : "Anonyme"; ?>
+                    <?php echo is_user_logged_in() ? $vainkeur_info['pseudo'] : "Futur_VAINKEUR"; ?>
                 </h2>
                 <p class="text-white">
                     <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Niveau actuel">

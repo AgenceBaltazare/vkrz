@@ -6,6 +6,8 @@ global $id_top;
 global $is_next_duel;
 global $top_infos;
 global $utm;
+global $user_infos;
+global $user_tops;
 $user_id       = get_user_logged_id();
 $uuiduser      = deal_uuiduser();
 $utm           = deal_utm();
@@ -276,7 +278,7 @@ $top_datas = get_tournoi_data($id_top);
                                     <h6 class="card-subtitle text-muted mb-1">
                                         T'inquiète on te laisse refaire le Top
                                     </h6>
-                                    <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-idranking="<?php echo $id_ranking; ?>" href="#" class="confirm_delete btn btn-outline-primary waves-effect">
+                                    <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-id_ranking="<?php echo $id_ranking; ?>" href="#" class="confirm_delete btn btn-outline-primary waves-effect">
                                         Recommencer
                                     </a>
                                 </div>

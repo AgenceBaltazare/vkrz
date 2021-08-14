@@ -6,6 +6,18 @@ global $id_ranking;
 global $top_infos;
 global $utm;
 global $user_infos;
+global $id_vainkeur;
+if(is_user_logged_in()) {
+    if (false === ( $user_tops = get_transient( 'user_'.$user_id.'_get_user_tops' ) )) {
+        $user_tops = get_user_tops();
+        set_transient( 'user_'.$user_id.'_get_user_tops', $user_tops, DAY_IN_SECONDS );
+    } else {
+        $user_tops = get_transient( 'user_'.$user_id.'_get_user_tops' );
+    }
+} 
+else {
+    $user_tops  = get_user_tops();
+}
 $user_ranking = get_user_ranking($id_ranking);
 $url_ranking  = get_the_permalink($id_ranking);
 ?>
@@ -126,10 +138,18 @@ $url_ranking  = get_the_permalink($id_ranking);
                     </div>
 
                     <?php
-                    $list_t_already_done = $user_infos['list_user_tops_done_ids'];
+                    $list_t_already_done = $user_tops['list_user_tops_done_ids'];
 
-                    if (empty($list_concepts)) $term_list = array();
-                    $list_concepts = wp_list_pluck($list_concepts, 'slug');
+                    $top_cat = $top_infos['top_cat'];
+                    foreach($top_cat as $cat){
+                        $top_cat_id = $cat->term_id;
+                    }
+
+                    $list_souscat  = array();
+                    $top_souscat   = get_the_terms($id_top, 'concept');
+                    foreach($top_souscat as $souscat){
+                        array_push($list_souscat, $souscat->slug);
+                    }
 
                     $tournois_in_cat     = new WP_Query(array(
                         'ignore_sticky_posts'    => true,
@@ -141,16 +161,16 @@ $url_ranking  = get_the_permalink($id_ranking);
                         'order'                  => 'ASC',
                         'posts_per_page'         => 10,
                         'tax_query' => array(
-                            'relation' => 'OR',
+                            'relation' => 'AND',
                             array(
                                 'taxonomy' => 'categorie',
                                 'field'    => 'term_id',
-                                'terms'    => array($cat_id)
+                                'terms'    => array($top_cat_id)
                             ),
                             array(
                                 'taxonomy' => 'concept',
                                 'field' => 'slug',
-                                'terms' => $list_concepts
+                                'terms' => $list_souscat
                             )
                         )
                     ));
@@ -236,9 +256,7 @@ $url_ranking  = get_the_permalink($id_ranking);
 
                 <div class="related animate__fadeInUp animate__animated animate__delay-4s">
 
-                    <?php
-                    $top_datas     = get_tournoi_data($id_top);
-                    ?>
+                    <?php $top_datas     = get_tournoi_data($id_top); ?>
 
                     <div class="card">
                         <div class="card-body">
@@ -333,7 +351,7 @@ $url_ranking  = get_the_permalink($id_ranking);
                                 <h6 class="card-subtitle text-muted mb-1">
                                     T'inquiète on te laisse refaire le Top
                                 </h6>
-                                <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-idranking="<?php echo $id_ranking; ?>" href="#" class="confirm_delete btn btn-outline-primary waves-effect">
+                                <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" href="#" class="confirm_delete btn btn-outline-primary waves-effect">
                                     Recommencer
                                 </a>
                             </div>

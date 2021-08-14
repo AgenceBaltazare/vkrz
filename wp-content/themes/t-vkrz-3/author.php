@@ -222,7 +222,11 @@ $list_user_tops = $vainkeur_tops['list_user_tops'];
                                                 <h2 class="font-weight-bolder">
                                                     <?php echo $vainkeur_info['nb_vote_vkrz']; ?>
                                                 </h2>
-                                                <p class="card-text legende">Votes</p>
+                                                <?php if($vainkeur_info['nb_vote_vkrz'] > 1) : ?>
+                                                    <p class="card-text legende">Votes</p>
+                                                <?php else: ?>
+                                                    <p class="card-text legende">Vote</p>
+                                                <?php endif; ?>
                                             </div>
                                         </div>
                                     </div>
@@ -235,7 +239,13 @@ $list_user_tops = $vainkeur_tops['list_user_tops'];
                                                 <h2 class="font-weight-bolder">
                                                     <?php echo $vainkeur_info['nb_top_vkrz']; ?>
                                                 </h2>
-                                                <p class="card-text legende">Tops terminés</p>
+                                                <p class="card-text legende">
+                                                    <?php if(count($list_t_done) > 1) : ?>
+                                                        Tops terminés
+                                                    <?php else: ?>
+                                                        Top terminé
+                                                    <?php endif; ?>
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
@@ -252,7 +262,11 @@ $list_user_tops = $vainkeur_tops['list_user_tops'];
                                                             <thead>
                                                             <tr>
                                                                 <th class="">
-                                                                    <span class="t-rose"><?php echo $vainkeur_info['nb_top_vkrz']; ?></span> Tops terminés
+                                                                    <?php if(count($list_t_done) > 1) : ?>
+                                                                        <span class="t-rose"><?php echo count($list_t_done); ?></span> Tops terminés
+                                                                    <?php else: ?>
+                                                                        <span class="t-rose"><?php echo count($list_t_done); ?></span> Top terminé
+                                                                    <?php endif; ?>
                                                                 </th>
                                                                 <th class="text-right">
                                                                     💎
@@ -274,12 +288,12 @@ $list_user_tops = $vainkeur_tops['list_user_tops'];
                                                                             <div class="media-body">
                                                                                 <div class="media-heading">
                                                                                     <h6 class="cart-item-title mb-0">
-                                                                                        <a class="text-body" href="<?php the_permalink($r_user['id_tournoi']); ?>">
-                                                                                            Top <?php echo $r_user['nb_top']; ?> - <?php echo get_the_title($r_user['id_tournoi']); ?>
+                                                                                        <a class="text-body" href="<?php the_permalink($r_user['id_top']); ?>">
+                                                                                            Top <?php echo $r_user['nb_top']; ?> - <?php echo get_the_title($r_user['id_top']); ?>
                                                                                         </a>
                                                                                     </h6>
                                                                                     <small class="cart-item-by legende">
-                                                                                        <?php the_field('question_t', $r_user['id_tournoi']); ?>
+                                                                                        <?php the_field('question_t', $r_user['id_top']); ?>
                                                                                     </small>
                                                                                 </div>
                                                                             </div>
@@ -315,7 +329,7 @@ $list_user_tops = $vainkeur_tops['list_user_tops'];
                                                                                         🏆
                                                                                     </span>
                                                                                 </a>
-                                                                                <a class="mr-1" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $r_user['id_tournoi']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir le classement mondial">
+                                                                                <a class="mr-1" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $r_user['id_top']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir le classement mondial">
                                                                                     <span class="ico">
                                                                                         🌍
                                                                                     </span>

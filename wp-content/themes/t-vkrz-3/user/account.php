@@ -6,6 +6,7 @@ get_header();
 global $uuiduser;
 global $user_tops;
 global $user_infos;
+global $id_vainkeur;
 $list_user_tops = $user_tops['list_user_tops'];
 
 $list_t_begin   = array();
@@ -142,7 +143,11 @@ foreach($list_user_tops as $top){
                                                 <h2 class="font-weight-bolder">
                                                     <?php echo $user_infos['nb_vote_vkrz']; ?>
                                                 </h2>
-                                                <p class="card-text legende">Votes</p>
+                                                <?php if($vainkeur_info['nb_vote_vkrz'] > 1) : ?>
+                                                    <p class="card-text legende">Votes</p>
+                                                <?php else: ?>
+                                                    <p class="card-text legende">Vote</p>
+                                                <?php endif; ?>
                                             </div>
                                         </div>
                                     </div>
@@ -155,7 +160,11 @@ foreach($list_user_tops as $top){
                                                 <h2 class="font-weight-bolder">
                                                     <?php echo $user_infos['nb_top_vkrz']; ?>
                                                 </h2>
-                                                <p class="card-text legende">Tops terminés</p>
+                                                <?php if(count($list_t_done) > 1) : ?>
+                                                    <p class="card-text legende">Tops terminés</p>
+                                                <?php else: ?>
+                                                    <p class="card-text legende">Top terminé</p>
+                                                <?php endif; ?>
                                             </div>
                                         </div>
                                     </div>
@@ -167,13 +176,21 @@ foreach($list_user_tops as $top){
                                         <?php $has_t_begin = true; ?>
                                         <li class="nav-item">
                                             <a class="nav-link active" id="homeIcon-tab" data-toggle="tab" href="#tab1" aria-controls="home" role="tab" aria-selected="true">
-                                                Mes Tops à terminer
+                                                <?php if(count($list_t_begin) > 1) : ?>
+                                                    Mes Tops à terminer
+                                                <?php else: ?>
+                                                    Mon Top à terminer
+                                                <?php endif; ?>
                                             </a>
                                         </li>
                                     <?php endif; ?>
                                     <li class="nav-item">
                                         <a class="nav-link <?php if(!$has_t_begin){echo 'active';} ?>" id="profileIcon-tab" data-toggle="tab" href="#tab2" aria-controls="profile" role="tab" aria-selected="false">
-                                            Mes Tops terminés
+                                            <?php if(count($list_t_done) > 1) : ?>
+                                                Mes Tops terminés
+                                            <?php else: ?>
+                                                Mon Top terminé
+                                            <?php endif; ?>
                                         </a>
                                     </li>
                                 </ul>
@@ -223,7 +240,7 @@ foreach($list_user_tops as $top){
                                                                         <?php echo $top['nb_votes']; ?> <span class="ico3">💎</span>
                                                                     </td>
                                                                     <td>
-                                                                        <a class="mr-1" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $top['id_tournoi']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir le classement mondial">
+                                                                        <a class="mr-1" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $top['id_top']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir le classement mondial">
                                                                             <span class="ico">
                                                                                 🌍
                                                                             </span>
@@ -231,13 +248,13 @@ foreach($list_user_tops as $top){
                                                                     </td>
                                                                     <td class="text-center">
                                                                         <div class="d-flex align-items-center col-actions">
-                                                                            <a href="<?php the_permalink($top['id_tournoi']); ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Continuer le Top">
+                                                                            <a href="<?php the_permalink($top['id_top']); ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Continuer le Top">
                                                                                 <span class="ico-action">▶️</span>
                                                                             </a>
-                                                                            <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-idranking="<?php echo $top['id_ranking']; ?>" class="confirm_delete" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Recommencer le Top">
+                                                                            <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0"  data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-id_ranking="<?php echo $top['id_ranking']; ?>" class="confirm_delete" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Recommencer le Top">
                                                                                 <span class="ico-action">🆕</span>
                                                                             </a>
-                                                                            <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Le Top sera supprimé définitivement 😱" data-idranking="<?php echo $top['id_ranking']; ?>" class="confirmDeleteReal" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Abandonner le Top">
+                                                                            <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Le Top sera supprimé définitivement 😱"  data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-id_ranking="<?php echo $top['id_ranking']; ?>" class="confirmDeleteReal" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Abandonner le Top">
                                                                                 <span class="ico-action">🚮</span>
                                                                             </a>
                                                                         </div>
@@ -261,7 +278,11 @@ foreach($list_user_tops as $top){
                                                             <thead>
                                                             <tr>
                                                                 <th class="">
-                                                                    <span class="t-rose"><?php echo count($list_t_done); ?></span> Tops terminés
+                                                                    <?php if(count($list_t_done) > 1) : ?>
+                                                                        <span class="t-rose"><?php echo count($list_t_done); ?></span> Tops terminés
+                                                                    <?php else: ?>
+                                                                        <span class="t-rose"><?php echo count($list_t_done); ?></span> Top terminé
+                                                                    <?php endif; ?>
                                                                 </th>
                                                                 <th class="text-right">
                                                                     💎
@@ -290,7 +311,7 @@ foreach($list_user_tops as $top){
                                                                                     </a>
                                                                                 </h6>
                                                                                 <small class="cart-item-by legende">
-                                                                                    <?php the_field('question_t', $top['id_tournoi']); ?>
+                                                                                    <?php the_field('question_t', $top['id_top']); ?>
                                                                                 </small>
                                                                             </div>
                                                                         </div>
@@ -326,7 +347,7 @@ foreach($list_user_tops as $top){
                                                                                     🏆
                                                                                 </span>
                                                                             </a>
-                                                                            <a class="mr-1" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $top['id_tournoi']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir le classement mondial">
+                                                                            <a class="mr-1" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $top['id_top']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir le classement mondial">
                                                                                 <span class="ico">
                                                                                     🌍
                                                                                 </span>
@@ -343,13 +364,13 @@ foreach($list_user_tops as $top){
                                                                                 </svg>
                                                                             </a>
                                                                             <div class="dropdown-menu dropdown-menu-right">
-                                                                                <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-idranking="<?php echo $top['id_ranking']; ?>" class="confirm_delete dropdown-item" href="#">
+                                                                                <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-id_ranking="<?php echo $top['id_ranking']; ?>" class="confirm_delete dropdown-item" href="#">
                                                                                     <span class="ico-action">🆕</span> Recommencer
                                                                                 </a>
-                                                                                <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Le Top sera supprimé définitivement 😱" data-idranking="<?php echo $top['id_ranking']; ?>" class="confirmDeleteReal dropdown-item" href="#">
+                                                                                <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Le Top sera supprimé définitivement 😱" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-id_ranking="<?php echo $top['id_ranking']; ?>" class="confirmDeleteReal dropdown-item" href="#">
                                                                                     <span class="ico-action">🚮</span> Supprimer
                                                                                 </a>
-                                                                                <a href="#" class="dropdown-item" data-toggle="modal" data-target="#commentModal-<?php echo $top['id_tournoi']; ?>">
+                                                                                <a href="#" class="dropdown-item" data-toggle="modal" data-target="#commentModal-<?php echo $top['id_top']; ?>">
                                                                                     <span class="ico-action">🆓</span> Commenter
                                                                                 </a>
                                                                             </div>
@@ -377,16 +398,16 @@ foreach($list_user_tops as $top){
 <?php foreach($list_user_tops as $r_user) : ?>
     <?php if($r_user['nb_votes'] > 0 && $r_user['state'] == 'done'): ?>
         <div class="vertical-modal-ex">
-            <div class="modal fade" id="commentModal-<?php echo $r_user['id_tournoi']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal fade" id="commentModal-<?php echo $r_user['id_top']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalCenterTitle">Qu'as-tu pensé de ce Top <?php echo get_the_title($r_user['id_tournoi']); ?>?</h5>
+                            <h5 class="modal-title" id="exampleModalCenterTitle">Qu'as-tu pensé de ce Top <?php echo get_the_title($r_user['id_top']); ?>?</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form class="form form-vertical form-note" data-id-top="<?php echo $r_user['id_tournoi']; ?>" data-uuiduser="<?php echo $uuiduser; ?>">
+                        <form class="form form-vertical form-note" data-id-top="<?php echo $r_user['id_top']; ?>" data-uuiduser="<?php echo $uuiduser; ?>">
                             <div class="modal-body">
                                 <div class="row">
                                     <div class="col-12">
