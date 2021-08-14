@@ -24,7 +24,8 @@ if(is_user_logged_in()) {
     } else {
         $user_infos = get_transient( 'user_'.$user_id.'_deal_vainkeur_entry' );
     }
-} else {
+} 
+else {
     $user_tops  = get_user_tops();
     $user_infos = deal_vainkeur_entry();
 }
