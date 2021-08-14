@@ -2,28 +2,12 @@
 get_header();
 global $uuiduser;
 global $id_top;
-global $top_number;
 global $id_ranking;
-global $top_url;
-global $top_title;
-global $top_question;
-global $top_img;
-global $top_number;
-global $user_full_data;
-$display_titre                   = get_field('ne_pas_afficher_les_titres_t', $id_top);
-$rounded                         = get_field('c_rounded_t', $id_top);
-$typetop                         = get_field('type_top_r', $id_ranking);
-$user_ranking                    = get_user_ranking($id_ranking);
-$url_ranking                     = get_the_permalink($id_ranking);
-$title_post                      = $top_title." : ".$top_question;
-$illu                            = wp_get_attachment_image_src(get_field('cover_t', $id_top), 'full');
-$illu_url                        = $illu[0];
-$list_cat                        = get_the_terms($id_top, 'categorie');
-$list_concepts                   = get_the_terms($id_top, 'concept');
-foreach($list_cat as $cat ) {
-    $cat_id     = $cat->term_id;
-    $cat_name   = $cat->name;
-}
+global $top_infos;
+global $utm;
+global $user_infos;
+$user_ranking = get_user_ranking($id_ranking);
+$url_ranking  = get_the_permalink($id_ranking);
 ?>
 <div class="vertical-modal-ex">
     <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -56,7 +40,7 @@ foreach($list_cat as $cat ) {
         </div>
     </div>
 </div>
-<div class="app-content content cover" style="background: url(<?php echo $illu_url; ?>) center center no-repeat">
+<div class="app-content content cover" style="background: url(<?php echo $top_infos['top_cover']; ?>) center center no-repeat">
     <div class="content-overlay"></div>
     <div class="content-wrapper">
     <div class="content-body">
@@ -80,10 +64,10 @@ foreach($list_cat as $cat ) {
     <div class="intro-mobile">
         <div class="tournament-heading text-center">
             <h3 class="mb-0 t-titre-tournoi">
-                Top <?php echo $top_number; ?> <span class="ico text-center">🏆</span> <?php echo $top_title; ?>
+                Top <?php echo $top_infos['top_number']; ?> <span class="ico text-center">🏆</span> <?php echo $top_infos['top_title']; ?>
             </h3>
             <h4 class="mb-0">
-                <?php echo $top_question; ?>
+                <?php echo $top_infos['top_question']; ?>
             </h4>
         </div>
     </div>
@@ -111,9 +95,9 @@ foreach($list_cat as $cat ) {
                                     $d = $i-1;
                                 }
                                 ?>
-                                <div class="animate__jackInTheBox animate__animated animate__delay-<?php echo $d; ?>s contenders_min <?php if(get_field('c_rounded_t', $id_top)){ echo 'rounded'; } ?> mb-3">
+                                <div class="animate__jackInTheBox animate__animated animate__delay-<?php echo $d; ?>s contenders_min <?php if($top_infos['top_d_rounded']){ echo 'rounded'; } ?> mb-3">
                                     <div class="illu">
-                                        <?php if(get_field('visuel_cover_t', $id_top)): ?>
+                                        <?php if($top_infos['top_d_cover']): ?>
                                             <?php $illu = get_the_post_thumbnail_url( $c, 'large' ); ?>
                                             <div class="cov-illu" style="background: url(<?php echo $illu; ?>) center center no-repeat"></div>
                                         <?php else: ?>
@@ -142,8 +126,7 @@ foreach($list_cat as $cat ) {
                     </div>
 
                     <?php
-                    global $user_full_data;
-                    $list_t_already_done = $user_full_data[0]['user_tops_done_ids'];
+                    $list_t_already_done = $user_infos['list_user_tops_done_ids'];
 
                     if (empty($list_concepts)) $term_list = array();
                     $list_concepts = wp_list_pluck($list_concepts, 'slug');
@@ -213,18 +196,18 @@ foreach($list_cat as $cat ) {
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">
-                                        <span class="ico">🙏</span> As-tu apprécié ce Top ?
+                                        <span class="ico">🙏</span> As-tu apprécié ce Top
                                     </h4>
                                     <h6 class="card-subtitle text-muted mb-1">
                                         Vos retours nous aident beaucoup à améliorer VAINKEURZ !
                                     </h6>
-                                    <div class=card-stars">
+                                    <div class="card-stars">
                                         <?php
                                         $note = get_note($id_top, $uuiduser);
-                                        if(isset($note[0]["note"]) && $note[0]["note"] > 0): ?>
-                                            <div class="startchoicedone" style="display: block; !important">
+                                        if(isset($note["note_value"]) && $note["note_value"] > 0): ?>
+                                            <div class="startchoicedone" style="display: block!important;">
                                                 <span class="star_number">
-                                                    <?php echo $note[0]["note"]; ?>
+                                                    <?php echo $note["note_value"]; ?>
                                                 </span>
                                                 <span class="ico">⭐️</span>
                                             </div>
@@ -254,7 +237,7 @@ foreach($list_cat as $cat ) {
                 <div class="related animate__fadeInUp animate__animated animate__delay-4s">
 
                     <?php
-                    $top_datas     = get_tournoi_data($id_top, $uuiduser);
+                    $top_datas     = get_tournoi_data($id_top);
                     ?>
 
                     <div class="card">
@@ -262,11 +245,11 @@ foreach($list_cat as $cat ) {
                             <h2 class="font-weight-bolder mb-0">
                                 <?php
                                 $similar = get_user_percent(get_field('uuid_user_r', $id_ranking), $id_top);
-                                if($similar[0]['percent'] == 0){
-                                    $wording_similar = "0% <small>des Podiums identiques à celui-ci !</small>";
+                                if($similar['percent'] == 0){
+                                    $wording_similar = "0% <small>des Top3 identiques à celui-ci !</small>";
                                 }
                                 else{
-                                    $wording_similar = $similar[0]['percent']."% <small>des Podiums identiques à celui-ci !</small>";
+                                    $wording_similar = $similar['percent']."% <small>des Top3 identiques à celui-ci !</small>";
                                 }
                                 ?>
                                 <?php echo $wording_similar; ?>
@@ -277,7 +260,7 @@ foreach($list_cat as $cat ) {
                                 Classement mondial
                             </a>
                             <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_top; ?>" class="btn btn-outline-primary waves-effect mb-1">
-                                Voir les <?php echo $top_datas[0]['nb_tops']; ?> Tops
+                                Voir les <?php echo $top_datas['nb_tops']; ?> Tops
                             </a>
                         </div>
                     </div>
@@ -381,5 +364,4 @@ foreach($list_cat as $cat ) {
 </div>
 </div>
 </div>
-<!-- END: Content-->
 <?php get_footer(); ?>

@@ -2,9 +2,10 @@
 <div class="row align-items-center contenders-containers justify-content-center">
     <div class="col-sm-5 col-6 bloc-contenders link-contender_1 contender_1 cover_contenders link-contender">
         <div class="contender_zone animate__animated animate__slideInDown"
-           data-id-winner="<?= $contender_1 ?>"
-           data-id-looser="<?= $contender_2 ?>"
-           data-id-top="<?= $id_top ?>" data-id-ranking="<?= $id_ranking ?>"
+           data-id-winner="<?= $contender_1 ?>" 
+           data-id-looser="<?= $contender_2 ?>" 
+           data-id-top="<?= $id_top ?>" 
+           data-id-ranking="<?= $id_ranking ?>" 
            id="c_1"
         >
             <?php if(get_field('visuel_cover_t', $id_top)): ?>
@@ -42,9 +43,10 @@
 
     <div class="col-sm-5 col-6 bloc-contenders link-contender_2 contender_2 cover_contenders link-contender">
         <div class="contender_zone animate__animated animate__slideInUp"
-           data-id-winner="<?= $contender_2 ?>"
-           data-id-looser="<?= $contender_1 ?>"
-           data-id-top="<?= $id_top ?>" data-id-ranking="<?= $id_ranking ?>"
+           data-id-winner="<?= $contender_2 ?>" 
+           data-id-looser="<?= $contender_1 ?>" 
+           data-id-top="<?= $id_top ?>" 
+           data-id-ranking="<?= $id_ranking ?>" 
            id="c_2"
         >
             <?php if(get_field('visuel_cover_t', $id_top)): ?>

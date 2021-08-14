@@ -3,31 +3,33 @@ global $uuiduser;
 global $user_id;
 global $user_tops;
 global $user_infos;
+global $id_vainkeur;
 global $utm;
 
 if(!is_single() || get_post_type() != "tournoi"){
     $user_id        = get_user_logged_id();
     $uuiduser       = deal_uuiduser();
     $utm            = deal_utm();
-}
 
-if(is_user_logged_in()) {
-    if (false === ( $user_tops = get_transient( 'user_'.$user_id.'_get_user_tops' ) )) {
-        $user_tops = get_user_tops();
-        set_transient( 'user_'.$user_id.'_get_user_tops', $user_tops, DAY_IN_SECONDS );
-    } else {
-        $user_tops = get_transient( 'user_'.$user_id.'_get_user_tops' );
-    }
-    if (false === ( $user_infos = get_transient( 'user_'.$user_id.'_deal_vainkeur_entry' ) )) {
+    if(is_user_logged_in()) {
+        if (false === ( $user_tops = get_transient( 'user_'.$user_id.'_get_user_tops' ) )) {
+            $user_tops = get_user_tops();
+            set_transient( 'user_'.$user_id.'_get_user_tops', $user_tops, DAY_IN_SECONDS );
+        } else {
+            $user_tops = get_transient( 'user_'.$user_id.'_get_user_tops' );
+        }
+        if (false === ( $user_infos = get_transient( 'user_'.$user_id.'_deal_vainkeur_entry' ) )) {
+            $user_infos = deal_vainkeur_entry();
+            set_transient( 'user_'.$user_id.'_deal_vainkeur_entry', $user_infos, DAY_IN_SECONDS );
+        } else {
+            $user_infos = get_transient( 'user_'.$user_id.'_deal_vainkeur_entry' );
+        }
+    } 
+    else {
+        $user_tops  = get_user_tops();
         $user_infos = deal_vainkeur_entry();
-        set_transient( 'user_'.$user_id.'_deal_vainkeur_entry', $user_infos, DAY_IN_SECONDS );
-    } else {
-        $user_infos = get_transient( 'user_'.$user_id.'_deal_vainkeur_entry' );
     }
-} 
-else {
-    $user_tops  = get_user_tops();
-    $user_infos = deal_vainkeur_entry();
+    $id_vainkeur = $user_infos['id_vainkeur'];
 }
 ?>
 <!DOCTYPE html>

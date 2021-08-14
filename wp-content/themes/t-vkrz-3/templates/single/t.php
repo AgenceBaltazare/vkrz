@@ -1,5 +1,6 @@
 <?php
 global $uuiduser;
+global $id_vainkeur;
 global $id_ranking;
 global $id_top;
 global $is_next_duel;
@@ -10,9 +11,29 @@ $uuiduser      = deal_uuiduser();
 $utm           = deal_utm();
 $id_top        = get_the_ID();
 $id_ranking    = get_user_ranking_id($id_top, $uuiduser);
+if(is_user_logged_in()) {
+    if (false === ( $user_tops = get_transient( 'user_'.$user_id.'_get_user_tops' ) )) {
+        $user_tops = get_user_tops();
+        set_transient( 'user_'.$user_id.'_get_user_tops', $user_tops, DAY_IN_SECONDS );
+    } else {
+        $user_tops = get_transient( 'user_'.$user_id.'_get_user_tops' );
+    }
+    if (false === ( $user_infos = get_transient( 'user_'.$user_id.'_deal_vainkeur_entry' ) )) {
+        $user_infos = deal_vainkeur_entry();
+        set_transient( 'user_'.$user_id.'_deal_vainkeur_entry', $user_infos, DAY_IN_SECONDS );
+    } else {
+        $user_infos = get_transient( 'user_'.$user_id.'_deal_vainkeur_entry' );
+    }
+} 
+else {
+    $user_tops  = get_user_tops();
+    $user_infos = deal_vainkeur_entry();
+}
+$id_vainkeur = $user_infos['id_vainkeur'];
 if($id_ranking){
     extract(get_next_duel($id_ranking, $id_top));
     if(!$is_next_duel){
+        increase_top_counter($id_vainkeur);
         wp_redirect(get_the_permalink($id_ranking));
     }
 }
@@ -210,7 +231,7 @@ $top_datas = get_tournoi_data($id_top);
                                 <div class="col-md-12">
                                     <div class="display_battle">
                                         <?php
-                                        set_query_var('battle_vars', compact('contender_1', 'contender_2', 'id_top', 'id_ranking'));
+                                        set_query_var('battle_vars', compact('contender_1', 'contender_2', 'id_top', 'id_ranking', 'id_vainkeur'));
                                         get_template_part('templates/parts/content', 'battle');
                                         ?>
                                     </div>

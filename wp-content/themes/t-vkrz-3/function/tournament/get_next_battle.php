@@ -1,6 +1,7 @@
 <?php
 function get_next_duel($id_ranking, $id_top){
 
+    global $id_vainkeur;
     $next_duel          = [];
     $is_next_duel       = true;
     $contender_1        = 0;
@@ -283,13 +284,16 @@ function get_next_duel($id_ranking, $id_top){
                 $is_next_duel = false;
 
                 if(!get_field('done_r', $id_ranking)){
-                    update_field('done_r', 'done', $id_ranking);
+
                     update_field('done_date_r', date('d/m/Y H:i:s'), $id_ranking);
+                    update_field('done_r', 'done', $id_ranking);
+
                 }
 
                 if (is_user_logged_in()) {
                     delete_transient( 'user_'.get_current_user_id().'_get_user_tops' );
                 }
+
             }
 
         }

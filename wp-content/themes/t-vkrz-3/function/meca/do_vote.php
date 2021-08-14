@@ -17,7 +17,7 @@ function do_vote($id_winner, $id_looser, $id_ranking, $id_top){
     $nb_loosers      = count($list_l_r);
     $list_contenders = get_field('ranking_r', $id_ranking);
     $nb_contenders   = count($list_contenders);
-    $timeline_main = get_field('timeline_main', $id_ranking);
+    $timeline_main   = get_field('timeline_main', $id_ranking);
 
     // On ajoute un vote au compteur
     if($id_winner && $id_looser){

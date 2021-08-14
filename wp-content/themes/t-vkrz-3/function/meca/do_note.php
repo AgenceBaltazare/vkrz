@@ -2,11 +2,11 @@
 function do_note($id_top, $uuiduser, $star){
 
     $note               = get_note($id_top, $uuiduser);
-    $id_note            = $note[0]['id_note'];
+    $note_id            = $note['note_id'];
 
-    if($id_note){
+    if($note_id){
 
-        update_field('id_s_n', $star, $id_note);
+        update_field('id_s_n', $star, $note_id);
 
     }
     else{

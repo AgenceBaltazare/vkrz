@@ -37,7 +37,8 @@ $(document).ready(function ($) {
                     id_top: $(this).find('.contender_zone').data('id-top'),
                     id_ranking: $(this).find('.contender_zone').data('id-ranking'),
                     id_winner: $(this).find('.contender_zone').data('id-winner'),
-                    id_looser: $(this).find('.contender_zone').data('id-looser')
+                    id_looser: $(this).find('.contender_zone').data('id-looser'),
+                    id_vainkeur: id_vainkeur
                 }
             })
                 .done(function (response) {

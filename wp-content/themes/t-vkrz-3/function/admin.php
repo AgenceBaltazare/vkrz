@@ -4,3 +4,4 @@
     require_once('admin/disable_comments.php');
     require_once('admin/yoast.php');
     require_once('admin/remove_menu_items.php');
+    require_once('admin/avatar.php');

@@ -25,7 +25,7 @@ $(document).ready(function ($) {
 
         var starchoice   = $(this).data('star');
 
-        parentStar  = $(this).parent('.starchoice');
+        parentStar       = $(this).parent('.starchoice');
 
         var id_t         = parentStar.data('id-top');
 
@@ -65,6 +65,9 @@ $(document).ready(function ($) {
         CommentForm.find('.commentairezone').hide();
         CommentForm.find('.tohidecta').hide();
         CommentForm.find('.merci').fadeIn();
+
+        console.log($(this).data('id-top'));
+        console.log($(this).data('uuiduser'));
 
         if (!ajaxRunning) {
             ajaxRunning = true;

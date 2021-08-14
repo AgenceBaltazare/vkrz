@@ -3,11 +3,11 @@ function do_commentaire_note($id_top, $uuiduser, $commentaire_note){
 
     $commentaire_note   = Strip_tags($commentaire_note);
     $note               = get_note($id_top, $uuiduser);
-    $id_note            = $note[0]['id_note'];
+    $note_id            = $note['note_id'];
 
-    if($id_note){
+    if($note_id){
 
-        update_field('commentaire_n', $commentaire_note, $id_note);
+        update_field('commentaire_n', $commentaire_note, $note_id);
 
     }
     else{

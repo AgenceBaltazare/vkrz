@@ -1,9 +1,6 @@
 <?php
 function get_note($id_top, $uuiduser){
 
-    $result = array();
-
-    // Get note
     $user_note_of_t = new WP_Query(array(
         'post_type'              => 'note',
         'posts_per_page'         => '1',
@@ -28,16 +25,17 @@ function get_note($id_top, $uuiduser){
     );
     while ($user_note_of_t->have_posts()) : $user_note_of_t->the_post();
 
-        array_push($result, array(
-            "note"      => get_field('id_s_n'),
-            "id_note"   => get_the_ID()
-        ));
+        $note_id    = get_the_ID();
+        $note_value = get_field('id_s_n');
 
     endwhile;
 
     wp_reset_postdata();
     wp_reset_query();
 
-    return $result;
+    return array(
+        "note_value"    => $note_value,
+        "note_id"       => $note_id
+    );
 
 }

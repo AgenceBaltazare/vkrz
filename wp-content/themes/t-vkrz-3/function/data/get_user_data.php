@@ -116,28 +116,29 @@ function get_user_tops($user_id = false){
     );
 }
 
-function get_user_percent($uuiduser, $id_tournament){
+function get_user_percent($uuiduser, $id_top){
 
     $result                 = array();
     $list_ranking_of_t      = array();
     $count_same_ranking     = 0;
+
     $all_ranking_of_t       = new WP_Query(array(
-        'post_type' => 'classement',
-        'posts_per_page' => '-1',
-        'ignore_sticky_posts'    => true,
-        'update_post_meta_cache' => false,
-        'no_found_rows'          => true,
-        'meta_query' => array(
+        'post_type'                 => 'classement',
+        'posts_per_page'            => '-1',
+        'ignore_sticky_posts'       => true,
+        'update_post_meta_cache'    => false,
+        'no_found_rows'             => true,
+        'meta_query'                => array(
             'relation' => 'AND',
             array(
-                'key' => 'nb_votes_r',
-                'value' => 0,
-                'compare' => '>',
+                'key'       => 'nb_votes_r',
+                'value'     => 0,
+                'compare'   => '>',
             ),
             array(
-                'key' => 'id_tournoi_r',
-                'value' => $id_tournament,
-                'compare' => '=',
+                'key'       => 'id_tournoi_r',
+                'value'     => $id_top,
+                'compare'   => '=',
             )
         )
     ));
@@ -173,12 +174,10 @@ function get_user_percent($uuiduser, $id_tournament){
 
     wp_reset_query();
 
-    array_push($result, array(
+    return array(
         "percent" => $percent,
         "nb_similar" => $count_same_ranking + 1,
-    ));
-
-    return $result;
+    );
 }
 
 function get_vkrz_users_list($limit = false){
