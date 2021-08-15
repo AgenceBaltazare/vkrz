@@ -74,7 +74,7 @@ function get_top_infos($id_top, $id_ranking = false){
 
 }
 
-function get_tournoi_data($id_top){
+function get_top_data($id_top){
 
     $result                 = array();
     $count_votes_of_t       = 0;
@@ -123,7 +123,11 @@ function get_tournoi_data($id_top){
     ));
     while ($all_notes_of_t->have_posts()) : $all_notes_of_t->the_post();
 
-        $count_note_of_t = $count_note_of_t + get_field('id_s_n');
+        $top_note        = get_field('id_s_n');
+        if($top_note > 3){
+            $top_note = 3;
+        }
+        $count_note_of_t = $count_note_of_t + $top_note;
 
     endwhile;
 
@@ -137,7 +141,7 @@ function get_tournoi_data($id_top){
     $result = array(
         "nb_tops"   => $all_ranking_of_t->post_count,
         "nb_votes"  => $count_votes_of_t,
-        "note"      => $all_notes_of_t->post_count,
+        "nb_note"   => $all_notes_of_t->post_count,
         "moy_note"  => $moyenne_note
     );
 

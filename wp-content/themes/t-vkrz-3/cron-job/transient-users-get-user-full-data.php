@@ -16,12 +16,8 @@ foreach($users_list as $user){
  $user_id = $user->ID;
 
  delete_transient( 'user_'.$user_id.'_get_user_tops' );
- delete_transient( 'user_'.$user_id.'_deal_vainkeur_entry' );
 
  $user_tops = get_user_tops($user_id);
  set_transient( 'user_'.$user_id.'_get_user_tops', $user_tops, DAY_IN_SECONDS );
-
- $user_infos = deal_vainkeur_entry($user_id);
- set_transient( 'user_'.$user_id.'_deal_vainkeur_entry', $user_infos, DAY_IN_SECONDS );
 
 }

@@ -25,11 +25,7 @@ $list_user_tops = $vainkeur_tops['list_user_tops'];
                                     <div class="info-bio">
                                         <h5 class="mb-75 t-rose">Inscription</h5>
                                         <p class="card-text">
-                                            <?php if($vainkeur_id == 1): ?>
-                                                1er champion sur VAINKEURZ
-                                            <?php else: ?>
-                                                <?php echo $vainkeur_id; ?>ème champion à avoir rejoint le concept VAINKEURZ
-                                            <?php endif; ?>
+                                            <?php echo $vainkeur_id; ?>ème vainkeur à avoir rejoint le concept
                                         </p>
                                     </div>
                                     <?php
@@ -127,7 +123,6 @@ $list_user_tops = $vainkeur_tops['list_user_tops'];
                                                     </div>
                                                 <?php endif; ?>
                                             </div>
-
                                         </div>
                                     <?php endif; ?>
                                 </div>
@@ -262,10 +257,10 @@ $list_user_tops = $vainkeur_tops['list_user_tops'];
                                                             <thead>
                                                             <tr>
                                                                 <th class="">
-                                                                    <?php if(count($list_t_done) > 1) : ?>
-                                                                        <span class="t-rose"><?php echo count($list_t_done); ?></span> Tops terminés
+                                                                    <?php if(count($list_user_tops) > 1) : ?>
+                                                                        <span class="t-rose"><?php echo count($list_user_tops); ?></span> Tops terminés
                                                                     <?php else: ?>
-                                                                        <span class="t-rose"><?php echo count($list_t_done); ?></span> Top terminé
+                                                                        <span class="t-rose"><?php echo count($list_user_tops); ?></span> Top terminé
                                                                     <?php endif; ?>
                                                                 </th>
                                                                 <th class="text-right">
@@ -329,7 +324,7 @@ $list_user_tops = $vainkeur_tops['list_user_tops'];
                                                                                         🏆
                                                                                     </span>
                                                                                 </a>
-                                                                                <a class="mr-1" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $r_user['id_top']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir le classement mondial">
+                                                                                <a class="mr-1" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $r_user['id_top']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir le Top mondial">
                                                                                     <span class="ico">
                                                                                         🌍
                                                                                     </span>

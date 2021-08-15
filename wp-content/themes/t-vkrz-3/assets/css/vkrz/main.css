@@ -652,6 +652,14 @@ html .content {
   display: none !important;
 }
 
+.ico-max {
+  font-size: 150px;
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  width: 150px;
+}
+
 .main-menu {
   border-right: 10px solid #14122f;
 }
@@ -1504,6 +1512,13 @@ textarea {
   margin-left: 12rem;
 }
 
+.profile-img {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  background-size: cover !important;
+}
+
 .ico-master {
   font-size: 85px;
 }
@@ -2023,6 +2038,27 @@ textarea {
 
   .swal2-actions .swal2-confirm {
     margin-bottom: 10px;
+  }
+
+  .bigup h1 {
+    font-size: 30px;
+  }
+
+  .dropdown-user {
+    display: block;
+    text-align: right;
+    padding: 0;
+  }
+  .dropdown-user a {
+    font-size: 10px;
+  }
+
+  .dropdown-notification, .dropdown-cart {
+    width: 25%;
+    text-align: right;
+  }
+  .dropdown-notification a, .dropdown-cart a {
+    font-size: 10px;
   }
 }
 @media (max-width: 425px) {

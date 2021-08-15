@@ -177,30 +177,3 @@ $(window).scroll(function() {
         $('.nav-tournament, .stepbar').removeClass('disapear');
     }
 });
-
-$('#wppb-register-user-sign-in #register').mouseover(function() {
-    $('.gif1').hide();
-    $('.gif2').show().addClass('animate__tada');
-});
-$('#wppb-register-user-sign-in #register').mouseout(function() {
-    $('.gif2').hide();
-    $('.gif1').show();
-});
-
-$('.already-account').mouseover(function() {
-    $('.gif1').hide();
-    $('.gif3').show().addClass('animate__tada');
-});
-$('.already-account').mouseout(function() {
-    $('.gif3').hide();
-    $('.gif1').show();
-});
-
-$('.user-registration-LostPassword').mouseover(function() {
-    $('.gif1').hide();
-    $('.gif4').show().addClass('animate__tada');
-});
-$('.user-registration-LostPassword').mouseout(function() {
-    $('.gif4').hide();
-    $('.gif1').show();
-});

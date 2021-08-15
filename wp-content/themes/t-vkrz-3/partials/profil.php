@@ -12,16 +12,8 @@ $vainkeur_info = isset($vainkeur_info) ? $vainkeur_info : $user_infos;
     <div class="position-relative">
 
         <div class="profile-img-container d-flex align-items-center">
-            <?php
-            if(is_user_logged_in() && get_avatar_url($user_id, ['size' => '80'])){
-                $avatar_url = get_avatar_url($user_id, ['size' => '80']);
-            }
-            else{
-                $avatar_url = get_bloginfo('template_directory')."/assets/images/vkrz/ninja.png";
-            }
-            ?>
-            <div class="profile-img">
-                <img src="<?php echo $avatar_url; ?>" class="avatar img-fluid" alt="Avatar"/>
+            <div class="profile-img" style="background: url(<?php echo $vainkeur_info['avatar']; ?>) no-repeat center center;">
+                
             </div>
             <div class="profile-title ml-3">
                 <h2 class="text-white text-uppercase">

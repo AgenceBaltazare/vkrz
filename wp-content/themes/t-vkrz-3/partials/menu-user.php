@@ -81,6 +81,8 @@ elseif(is_author()){
 
                                         <?php elseif(is_page(get_page_by_path('elo'))): ?>
 
+                                            <?php global $id_top; ?>
+
                                             <li class="breadcrumb-item">
                                                 <?php
                                                 foreach(get_the_terms($id_top, 'categorie') as $cat ) {
@@ -101,6 +103,8 @@ elseif(is_author()){
                                             </li>
 
                                         <?php elseif(is_page(get_page_by_path('liste-des-tops'))): ?>
+
+                                            <?php global $id_top; ?>
 
                                             <li class="breadcrumb-item">
                                                 <?php
@@ -240,8 +244,8 @@ elseif(is_author()){
             </li>
             <li class="nav-item dropdown dropdown-notification mr-25">
                 <a class="nav-link" href="javascript:void(0);" data-toggle="dropdown">
+                    <span class="ico text-center">🏆</span>
                     <span class="value-user-stats">
-                        <span class="ico text-center">🏆</span>
                         <?php echo $user_infos['nb_top_vkrz']; ?>
                     </span>
                 </a>

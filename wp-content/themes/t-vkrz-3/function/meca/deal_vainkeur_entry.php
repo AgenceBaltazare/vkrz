@@ -80,6 +80,7 @@ function deal_vainkeur_entry($user_id = false){
         'user_email'        => $user_email,
         'user_role'         => $user_role,
         'level'             => $info_user_level['level_ico'],
+        'level_number'      => $info_user_level['level_number'],
         'next_level'        => $info_user_level['next_level'],
         'nb_vote_vkrz'      => $nb_vote_vkrz,
         'nb_top_vkrz'       => $nb_top_vkrz

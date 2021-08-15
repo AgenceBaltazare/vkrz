@@ -92,17 +92,25 @@
 
 <?php elseif(is_page(get_page_by_path('elo'))): ?>
 
-    <?php $id_top = $_GET['id_top']; ?>
+    <?php 
+    global $top_infos;
+    $id_top     = $_GET['id_top'];
+    $top_infos  = get_top_infos($id_top);
+    ?>
     <title>
-        Classement mondial 👉 <?php echo get_the_title($id_top); ?> - <?php the_field('question_t', $id_top); ?> 🔥 VAINKEURZ
+        Top mondial 👉 <?php echo $top_infos['top_title']; ?> - <?php echo $top_infos['top_question']; ?> 🔥 VAINKEURZ
     </title>
     <meta name="description" content="Classement ELO du tournoi rassemblant les votes du monde entier." />
 
 <?php elseif(is_page(get_page_by_path('liste-des-tops'))): ?>
 
-    <?php $id_top = $_GET['id_top']; ?>
+    <?php 
+    global $top_infos;
+    $id_top     = $_GET['id_top'];
+    $top_infos  = get_top_infos($id_top);
+    ?>
     <title>
-        Tous les Tops 👉 <?php echo get_the_title($id_top); ?> - <?php the_field( 'question_t', $id_top ); ?> 🔥 VAINKEURZ
+        Tous les Tops 👉 <?php echo $top_infos['top_number']; ?> - <?php echo $top_infos['top_question']; ?> 🔥 VAINKEURZ
     </title>
     <meta name="description" content="Découvre tous les Tops générés sur VAINKEURZ" />
 
@@ -137,12 +145,7 @@
         $vainkeur_tops = get_transient( 'user_'.$vainkeur_id.'_get_user_tops' );
     }
 
-    if (false === ( $vainkeur_info = get_transient( 'user_'.$vainkeur_id.'_deal_vainkeur_entry' ) )) {
-        $vainkeur_info = deal_vainkeur_entry($vainkeur_id);
-        set_transient( 'user_'.$vainkeur_id.'_deal_vainkeur_entry', $vainkeur_info, DAY_IN_SECONDS );
-    } else {
-        $vainkeur_info = get_transient( 'user_'.$vainkeur_id.'_deal_vainkeur_entry' );
-    }
+    $vainkeur_info = deal_vainkeur_entry($vainkeur_id);
     ?>
     <title>
         Profil de <?php echo $vainkeur_info['pseudo']; ?> sur VAINKEURZ

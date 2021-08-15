@@ -127,7 +127,7 @@ function cpt_init() {
         'has_archive' => true,
         'hierarchical' => false,
         'menu_position' => null,
-        'menu_icon' => 'dashicons-universal-access',
+        'menu_icon' => 'dashicons-superhero',
         'show_in_rest' => false,
         'supports' => array('title', 'thumbnail', 'author')
     );

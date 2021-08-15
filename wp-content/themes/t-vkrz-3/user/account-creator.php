@@ -3,17 +3,11 @@
     Template Name: Account - Creator
 */
 global $uuiduser;
-global $current_user;
 global $user_id;
-global $nb_user_votes;
-global $user_full_data;
-global $info_user_level;
-global $list_t_done;
+global $user_infos;
 get_header();
-global $user_role;
-$list_t_begin   = $user_full_data[0]['list_user_ranking_begin'];
 $data_t_created = get_creator_t($user_id);
-$list_t_created = $data_t_created[0]['creator_tops'];
+$list_t_created = $data_t_created['creator_tops'];
 ?>
 <!-- BEGIN: Content-->
 <div class="app-content content ">
@@ -27,9 +21,7 @@ $list_t_created = $data_t_created[0]['creator_tops'];
 
                     </div>
                 </div>
-                <!--/ profile header -->
-
-                <!-- profile info section -->
+                
                 <section id="profile-info">
                     <div class="row">
                         <div class="col-12">
@@ -42,7 +34,7 @@ $list_t_created = $data_t_created[0]['creator_tops'];
                                                     <span class="ico4">⚔️</span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">
-                                                    <?php echo $data_t_created[0]['creator_nb_tops']; ?>
+                                                    <?php echo $data_t_created['creator_nb_tops']; ?>
                                                 </h2>
                                                 <p class="card-text legende">Tops créés</p>
                                             </div>
@@ -55,7 +47,7 @@ $list_t_created = $data_t_created[0]['creator_tops'];
                                                     <span class="ico4">💎</span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">
-                                                    <?php echo $data_t_created[0]['creator_all_v']; ?>
+                                                    <?php echo $data_t_created['creator_all_v']; ?>
                                                 </h2>
                                                 <p class="card-text legende">Votes générés</p>
                                             </div>
@@ -68,7 +60,7 @@ $list_t_created = $data_t_created[0]['creator_tops'];
                                                     <span class="ico4">🏆</span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">
-                                                    <?php echo $data_t_created[0]['creator_all_t']; ?>
+                                                    <?php echo $data_t_created['creator_all_t']; ?>
                                                 </h2>
                                                 <p class="card-text legende">Classements générés</p>
                                             </div>
@@ -78,12 +70,12 @@ $list_t_created = $data_t_created[0]['creator_tops'];
                                         <div class="card text-center">
                                             <div class="card-body">
                                                 <div class="mb-1">
-                                                    <span class="ico4">💰</span>
+                                                    <span class="ico4">🌟</span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">
-                                                    <?php echo $data_t_created[0]['creator_money']; ?>
+                                                    <?php echo $data_t_created['creator_note']; ?>
                                                 </h2>
-                                                <p class="card-text legende">Cagnotte</p>
+                                                <p class="card-text legende">Note moyenne / 3</p>
                                             </div>
                                         </div>
                                     </div>
@@ -109,7 +101,7 @@ $list_t_created = $data_t_created[0]['creator_tops'];
                                                                     🏆
                                                                 </th>
                                                                 <th class="text-right">
-                                                                    💰 <i class="fal fa-sort-alt"></i>
+                                                                    🌟
                                                                 </th>
                                                                 <th>
 
@@ -141,16 +133,16 @@ $list_t_created = $data_t_created[0]['creator_tops'];
                                                                         <?php echo $item['top_ranks']; ?> <span class="ico3">🏆</span>
                                                                     </td>
                                                                     <td class="text-right">
-                                                                        <?php echo $item['top_money']; ?>
+                                                                        <?php echo $item['top_note']; ?>
                                                                     </td>
                                                                     <td class="text-right">
                                                                         <div class="d-flex align-items-center justify-content-end col-actions">
-                                                                            <a class="mr-1" href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $item['top_id']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir tous les classements">
+                                                                            <a class="mr-1" href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $item['top_id']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir tous les Tops">
                                                                                 <span class="ico">
                                                                                     👀
                                                                                 </span>
                                                                             </a>
-                                                                            <a class="mr-1" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $item['top_id']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir le classement mondial">
+                                                                            <a class="mr-1" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $item['top_id']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir le Top mondial">
                                                                                 <span class="ico">
                                                                                     🌍
                                                                                 </span>

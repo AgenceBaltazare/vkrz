@@ -3,13 +3,9 @@
     Template Name: Évolution
 */
 global $user_id;
+global $user_infos;
 get_header();
-if(is_user_logged_in()){
-    $level_user = get_field('level_user', 'user_' . $user_id);
-}
-else{
-    $level_user = 0;
-}
+$level_user = $user_infos['level_number'];
 ?>
     <div class="app-content content evolution">
         <div class="content-wrapper">

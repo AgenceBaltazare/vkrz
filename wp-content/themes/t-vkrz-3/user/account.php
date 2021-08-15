@@ -242,7 +242,7 @@ foreach($list_user_tops as $top){
                                                                         <?php echo $top['nb_votes']; ?> <span class="ico3">💎</span>
                                                                     </td>
                                                                     <td>
-                                                                        <a class="mr-1" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $top['id_top']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir le classement mondial">
+                                                                        <a class="mr-1" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $top['id_top']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir le Top mondial">
                                                                             <span class="ico">
                                                                                 🌍
                                                                             </span>
@@ -349,7 +349,7 @@ foreach($list_user_tops as $top){
                                                                                     🏆
                                                                                 </span>
                                                                             </a>
-                                                                            <a class="mr-1" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $top['id_top']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir le classement mondial">
+                                                                            <a class="mr-1" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $top['id_top']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir le Top mondial">
                                                                                 <span class="ico">
                                                                                     🌍
                                                                                 </span>

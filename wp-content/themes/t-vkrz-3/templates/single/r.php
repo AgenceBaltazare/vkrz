@@ -83,10 +83,10 @@ $url_ranking  = get_the_permalink($id_ranking);
             </h4>
         </div>
     </div>
-    <div class="classement mt-1">
+    <div class="classement">
         <div class="row">
             <div class="col-md-8">
-                <div class="list-classement">
+                <div class="list-classement mt-2">
                     <div class="row align-items-end justify-content-center">
                         <?php
                         $i=1; foreach($user_ranking as $c => $p) : ?>
@@ -252,7 +252,7 @@ $url_ranking  = get_the_permalink($id_ranking);
 
                 <div class="related animate__fadeInUp animate__animated animate__delay-4s">
 
-                    <?php $top_datas     = get_tournoi_data($id_top); ?>
+                    <?php $top_datas     = get_top_data($id_top); ?>
 
                     <div class="card">
                         <div class="card-body">
@@ -271,7 +271,7 @@ $url_ranking  = get_the_permalink($id_ranking);
                         </div>
                         <div class="card-footer" id="clt">
                             <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_top; ?>" class="btn btn-outline-primary waves-effect mb-1 mr-1">
-                                Classement mondial
+                                Top mondial
                             </a>
                             <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_top; ?>" class="btn btn-outline-primary waves-effect mb-1">
                                 Voir les <?php echo $top_datas['nb_tops']; ?> Tops

@@ -258,6 +258,30 @@
       margin-bottom: 10px;
     }
   }
+
+  .bigup{
+    h1{
+      font-size: 30px;
+    }
+  }
+
+  .dropdown-user{
+    display: block;
+    text-align: right;
+    padding: 0;
+    a{
+      font-size: 10px;
+    }
+  }
+
+  .dropdown-notification, .dropdown-cart{
+    width: 25%;
+    text-align: right;
+    a{
+      font-size: 10px;
+    }
+  }
+
 }
 
 

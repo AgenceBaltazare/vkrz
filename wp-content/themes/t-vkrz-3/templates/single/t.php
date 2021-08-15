@@ -40,7 +40,7 @@ if($id_ranking){
     }
 }
 get_header();
-$top_datas = get_tournoi_data($id_top);
+$top_datas = get_top_data($id_top);
 ?>
 <div class="app-content content cover" style="background: url(<?php echo $top_infos['top_cover']; ?>) center center no-repeat">
     <div class="content-overlay"></div>

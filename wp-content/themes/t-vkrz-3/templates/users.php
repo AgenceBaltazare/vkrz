@@ -75,18 +75,14 @@ get_header();
                                                                 <td>
                                                                     <div class="d-flex align-items-center">
                                                                         <?php
-                                                                        $user_id     = get_the_author_meta('ID');
-                                                                        $user_uuid   = get_field('uuiduser_user', 'user_'.$user_id);
-                                                                        $user_infos  = deal_vainkeur_entry($user_id);
-                                                                        $nb_user_votes = $user_infos[0]['nb_vote_vkrz'];
-                                                                        $avatar_url  = get_avatar_url($user_id, ['size' => '80']);
-                                                                        if(!$avatar_url){
-                                                                            $avatar_url = get_bloginfo('template_directory')."/assets/images/vkrz/ninja.png";
-                                                                        }
-                                                                        $info_user_level = get_user_level($uuiduser, $user_id, $nb_user_votes);
+                                                                        $user_id            = get_the_author_meta('ID');
+                                                                        $user_infos         = deal_vainkeur_entry($user_id);
+                                                                        $nb_user_votes      = $user_infos['nb_vote_vkrz'];
+                                                                        $avatar             = $user_infos['avatar'];
+                                                                        $info_user_level    = get_user_level($user_id);
                                                                         ?>
                                                                         <div class="avatar">
-                                                                            <span class="avatar-picture" style="background-image: url(<?php echo $avatar_url; ?>);"></span>
+                                                                            <span class="avatar-picture" style="background-image: url(<?php echo $avatar; ?>);"></span>
                                                                             <?php if($info_user_level): ?>
                                                                                 <span class="user-niveau">
                                                                                     <?php echo $info_user_level['level_ico']; ?>
@@ -97,15 +93,15 @@ get_header();
                                                                             <span>
                                                                                 <?php echo get_the_author_meta('nickname'); ?>
                                                                             </span>
-                                                                            <?php if($user['user_role'] == "administrator"): ?>
+                                                                            <?php if($user_infos['user_role'] == "administrator"): ?>
                                                                                 <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
-                                                                                🦙
-                                                                            </span>
+                                                                                    🦙
+                                                                                </span>
                                                                             <?php endif; ?>
-                                                                            <?php if($user['user_role'] == "administrator" || $user['user_role'] == "author"): ?>
+                                                                            <?php if($user_infos['user_role'] == "administrator" || $user_infos['user_role'] == "author"): ?>
                                                                                 <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
-                                                                                🎨
-                                                                            </span>
+                                                                                    🎨
+                                                                                </span>
                                                                             <?php endif; ?>
                                                                         </div>
                                                                     </div>
@@ -120,7 +116,7 @@ get_header();
                                                                 </td>
 
                                                                 <td>
-                                                                    <a href="<?php echo esc_url(get_author_posts_url($champion_id)); ?>" class="mr-1 btn btn-outline-primary waves-effect">
+                                                                    <a href="<?php echo esc_url(get_author_posts_url($user_id)); ?>" class="mr-1 btn btn-outline-primary waves-effect">
                                                                         Guetter ses Tops
                                                                     </a>
                                                                 </td>
