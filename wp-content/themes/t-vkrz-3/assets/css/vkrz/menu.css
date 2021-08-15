@@ -1,102 +1,173 @@
-/*
-Error: Undefined variable: "$rose".
-        on line 15 of menu.scss
+.text-rose {
+  color: #f4167f !important;
+}
 
-10:       position: absolute;
-11:       bottom: 0;
-12:       text-align: center;
-13:       width: 100%;
-14:       .badge{
-15:         background: $rose !important;
-16:         color: #fff;
-17:         font-weight: bold;
-18:         text-transform: uppercase;
-19:       }
-20:     }
+.big-cat .heading-cat h2 {
+  font-weight: 900;
+  letter-spacing: 2px;
+  margin: 20px 0 5px;
+}
 
-Backtrace:
-menu.scss:15
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/script/tree/variable.rb:49:in `_perform'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/script/tree/node.rb:50:in `perform'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/script/tree/list_literal.rb:75:in `block in _perform'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/script/tree/list_literal.rb:75:in `map'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/script/tree/list_literal.rb:75:in `_perform'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/script/tree/node.rb:50:in `perform'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:398:in `visit_prop'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `visit'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/stack.rb:79:in `block in with_base'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/stack.rb:135:in `with_frame'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/stack.rb:79:in `with_base'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `visit'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:440:in `block (2 levels) in visit_rule'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:440:in `map'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:440:in `block in visit_rule'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:438:in `visit_rule'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `visit'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/stack.rb:79:in `block in with_base'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/stack.rb:135:in `with_frame'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/stack.rb:79:in `with_base'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `visit'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:440:in `block (2 levels) in visit_rule'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:440:in `map'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:440:in `block in visit_rule'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:438:in `visit_rule'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `visit'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/stack.rb:79:in `block in with_base'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/stack.rb:135:in `with_frame'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/stack.rb:79:in `with_base'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `visit'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:440:in `block (2 levels) in visit_rule'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:440:in `map'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:440:in `block in visit_rule'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:438:in `visit_rule'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `visit'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/stack.rb:79:in `block in with_base'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/stack.rb:135:in `with_frame'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/stack.rb:79:in `with_base'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `visit'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:440:in `block (2 levels) in visit_rule'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:440:in `map'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:440:in `block in visit_rule'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:438:in `visit_rule'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `visit'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/stack.rb:79:in `block in with_base'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/stack.rb:135:in `with_frame'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/stack.rb:79:in `with_base'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `visit'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:52:in `map'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:52:in `visit_children'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:167:in `block in visit_children'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:166:in `visit_children'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `block in visit'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:186:in `visit_root'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `visit'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:157:in `visit'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:10:in `visit'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/root_node.rb:36:in `css_tree'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/engine.rb:389:in `_render_with_sourcemap'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/engine.rb:307:in `render_with_sourcemap'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/exec/sass_scss.rb:387:in `run'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/exec/sass_scss.rb:63:in `process_result'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/exec/base.rb:50:in `parse'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/exec/base.rb:18:in `parse!'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/bin/sass:13:in `<top (required)>'
-/usr/local/bin/sass:23:in `load'
-/usr/local/bin/sass:23:in `<main>'
-*/
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Error: Undefined variable: \"$rose\".\A         on line 15 of menu.scss\A \A 10:       position: absolute;\A 11:       bottom: 0;\A 12:       text-align: center;\A 13:       width: 100%;\A 14:       .badge{\A 15:         background: $rose !important;\A 16:         color: #fff;\A 17:         font-weight: bold;\A 18:         text-transform: uppercase;\A 19:       }\A 20:     }"; }
+@-webkit-keyframes rotating /* Safari and Chrome */ {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.btn-rose {
+  background: #f4167f !important;
+  border-color: #f4167f !important;
+}
+.btn-rose:hover {
+  background: #f4167f !important;
+  border-color: #f4167f !important;
+}
+
+.mt-10p {
+  margin-top: 10px;
+}
+
+.mr-10p {
+  margin-right: 10px;
+}
+
+.main-menu {
+  border-right: 10px solid #14122f;
+}
+.main-menu .navbar-header {
+  height: auto;
+}
+.main-menu .navbar-header .navbar-brand {
+  position: relative;
+}
+.main-menu .navbar-header .badge-beta {
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+}
+.main-menu .navbar-header .badge-beta .badge {
+  background: #f4167f !important;
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.menu-collapsed .brand-text {
+  display: block !important;
+}
+.menu-collapsed .brand-text img {
+  max-width: 60px;
+  height: auto;
+  position: relative;
+  right: 30px;
+}
+.menu-collapsed .rs-menu {
+  display: none;
+}
+.menu-collapsed .badge-beta {
+  display: none;
+}
+.menu-collapsed .expanded img {
+  max-width: 100%;
+  height: auto;
+  position: inherit;
+  right: unset;
+}
+.menu-collapsed .expanded .rs-menu {
+  display: block;
+}
+
+.bookmark-wrapper h4 {
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.home .bookmark-wrapper h4 {
+  margin-left: 10px;
+}
+
+.min-t-thumb {
+  width: 60px;
+  margin-right: 10px;
+}
+
+.value-user-stats {
+  font-size: 1.07rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.user-niveau {
+  width: 11px;
+  height: 11px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.avatar .avatar-picture {
+  display: block;
+  height: 40px;
+  width: 40px;
+  background-size: cover;
+  background-color: #7367f0;
+  border-radius: 50%;
+}
+
+.main-menu.menu-dark .navigation .navigation-header span {
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.dark-layout .main-menu-content .navigation-main li a {
+  color: #fff !important;
+}
+
+.dark-layout .main-menu-content .navigation-main li a.btn-outline-primary {
+  border: 1px solid #7367f0 !important;
+  background-color: transparent !important;
+  color: #7367f0 !important;
+  text-align: center !important;
+}
+
+.dark-layout .main-menu-content .navigation-main .nav-item a.btn-outline-primary i, .dark-layout .main-menu-content .navigation-main .nav-item a.btn-outline-primary svg {
+  color: #7367f0 !important;
+  margin: 0 auto;
+  text-align: center !important;
+}
+
+.rs-menu {
+  margin: 0 15px 0 10px;
+  padding: 10px 15px 10px 15px;
+}
+
+.nav-toggle {
+  width: 100%;
+}
+.nav-toggle a {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  width: 100%;
+  margin: 0 !important;
+  border: none !important;
+  padding: 5px !important;
+  display: block;
+  letter-spacing: 2px;
+  color: #7367f0;
+  text-transform: uppercase;
+}
+.nav-toggle a span {
+  margin-right: 5px;
+}/*# sourceMappingURL=menu.css.map */

@@ -1,90 +1,157 @@
 @media (min-width: 1200px) {
   .col-xxl-2 {
     flex: 0 0 16.66667%;
-    max-width: 16.66667%; } }
+    max-width: 16.66667%;
+  }
+
+  .mb-xs {
+    margin-bottom: 10px;
+  }
+}
 @media (max-width: 1700px) {
   .basic-pricing .pricing-basic-value {
     font-size: 1.5rem !important;
-    line-height: 0.8; }
+    line-height: 0.8;
+  }
   .basic-pricing .card-text {
     font-size: 15px;
-    opacity: 0.5; }
+  }
 
   .plus {
     font-size: 20px;
-    margin: 0 5px; } }
+    margin: 0 5px;
+  }
+}
 @media (max-width: 768px) {
   .intro-mobile {
-    display: block; }
+    display: block;
+  }
 
   .display_current_user_rank {
-    display: none; }
+    display: none;
+  }
 
   .hide-xs {
-    display: none; }
+    display: none;
+  }
 
   .hide-lg {
-    display: block; }
+    display: block;
+  }
 
   .nav-tournament {
     left: 0;
-    flex-direction: column; }
-    .nav-tournament .btng {
-      margin-bottom: 10px; }
+    flex-direction: column;
+  }
+  .nav-tournament .btng {
+    margin-bottom: 10px;
+  }
 
   .auth-wrapper {
-    padding-top: 70px; }
+    padding-top: 70px;
+  }
 
   .user-avatar-section .content-avatar-name {
     flex-direction: column;
-    text-align: center; }
-    .user-avatar-section .content-avatar-name h1 {
-      margin-top: 15px; }
-    .user-avatar-section .content-avatar-name .ml-2, .user-avatar-section .content-avatar-name .mr-1 {
-      margin: 0 !important; }
-    .user-avatar-section .content-avatar-name .btn {
-      margin-bottom: 10px !important; }
+    text-align: center;
+  }
+  .user-avatar-section .content-avatar-name h1 {
+    margin-top: 15px;
+  }
+  .user-avatar-section .content-avatar-name .ml-2, .user-avatar-section .content-avatar-name .mr-1 {
+    margin: 0 !important;
+  }
+  .user-avatar-section .content-avatar-name .btn {
+    margin-bottom: 10px !important;
+  }
 
   html body .app-content {
-    padding: calc(2rem - 0.8rem + 7.45rem + 1.3rem) calc(2rem - 0.8rem) 0 calc(2rem - 0.8rem) !important; }
+    padding: calc(2rem - 0.8rem + 7.45rem + 1.3rem) calc(2rem - 0.8rem) 0 calc(2rem - 0.8rem) !important;
+  }
 
   .bookmark-wrapper {
-    display: none !important; }
+    display: none !important;
+  }
 
   .min-tournoi .cov-illu .badge {
     position: absolute;
     left: 5px;
     right: auto;
     top: 5px;
-    z-index: 99; }
+    z-index: 9;
+  }
 
   .logo {
     max-width: 60px !important;
-    transition: all 0.3s ease-in-out; }
-
-  .opfull .logo {
-    max-width: 60px !important; }
-  .opfull h3, .opfull h4 {
-    display: none; }
-  .opfull .navbar-container {
-    flex-wrap: wrap;
-    justify-content: end !important; }
+    transition: all 0.3s ease-in-out;
+  }
 
   .cat-min .card-header {
     text-align: center;
     flex-direction: column;
-    padding: 20px 10px 12px 10px; }
-    .cat-min .card-header .ico2 {
-      display: block;
-      margin: 0 auto 10px; }
+    padding: 20px 10px 12px 10px;
+  }
+  .cat-min .card-header .ico2 {
+    display: block;
+    margin: 0 auto 10px;
+  }
 
   .heading-cat small {
     display: block;
-    margin: 5px 0 0 0; } }
+    margin: 5px 0 0 0;
+  }
+
+  .main-menu .main-menu-content {
+    height: calc(100% - 310px) !important;
+  }
+
+  .vertical-layout .header-navbar .navbar-container ul.navbar-nav li.dropdown .dropdown-menu {
+    top: 80px !important;
+    margin-top: 0px !important;
+  }
+
+  .apropos .card-text h2 {
+    text-align: center;
+  }
+
+  .header-navbar .navbar-container ul.navbar-nav li .media-list {
+    max-height: 22rem;
+  }
+
+  .card-developer-meetup .card-cta .choosecta .cta-begin {
+    display: flex;
+    flex-direction: column;
+    margin: 0 5px;
+  }
+
+  .card-developer-meetup .card-cta .choosecta .cta-begin a {
+    font-size: 13px;
+    padding: 8px 10px;
+  }
+
+  .infos-card-t-c {
+    margin-top: 20px;
+  }
+
+  .profile-tabs .nav-pills {
+    margin-bottom: 20px !important;
+  }
+  .profile-tabs .nav-pills .nav-link {
+    padding: 5px 10px;
+    font-size: 1rem;
+    line-height: 1rem;
+    border: 1px solid transparent;
+  }
+}
+@media (max-width: 425px) {
+  .app-user-view .btns-alert .btn-outline-white {
+    margin-right: 0px !important;
+  }
+}
 @media (max-height: 800px) {
   .contenders-containers .link-contender {
     max-width: 350px;
     position: relative;
-    transition: all 0.2s ease-in; } }
-
-/*# sourceMappingURL=responsive.css.map */
+    transition: all 0.2s ease-in;
+  }
+}/*# sourceMappingURL=responsive.css.map */

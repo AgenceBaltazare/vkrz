@@ -1,65 +1,339 @@
-/*
-Error: Undefined variable: "$c5".
-        on line 6 of compte.scss
+.text-rose {
+  color: #f4167f !important;
+}
 
-1: .avatar-picture-max{
-2:   display: block;
-3:   height: 100px;
-4:   width: 100px;
-5:   background-size: cover;
-6:   background-color: $c5;
-7:   border-radius: 50%;
-8: }
-9: .avatartop3{
-10:   width: 30px;
-11:   height: 30px;
+.big-cat .heading-cat h2 {
+  font-weight: 900;
+  letter-spacing: 2px;
+  margin: 20px 0 5px;
+}
 
-Backtrace:
-compte.scss:6
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/script/tree/variable.rb:49:in `_perform'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/script/tree/node.rb:50:in `perform'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:398:in `visit_prop'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `visit'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/stack.rb:79:in `block in with_base'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/stack.rb:135:in `with_frame'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/stack.rb:79:in `with_base'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `visit'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:440:in `block (2 levels) in visit_rule'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:440:in `map'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:440:in `block in visit_rule'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:438:in `visit_rule'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `visit'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/stack.rb:79:in `block in with_base'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/stack.rb:135:in `with_frame'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/stack.rb:79:in `with_base'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `visit'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:52:in `map'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:52:in `visit_children'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:167:in `block in visit_children'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:166:in `visit_children'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `block in visit'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:186:in `visit_root'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `visit'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:157:in `visit'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:10:in `visit'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/root_node.rb:36:in `css_tree'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/engine.rb:389:in `_render_with_sourcemap'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/engine.rb:307:in `render_with_sourcemap'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/exec/sass_scss.rb:387:in `run'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/exec/sass_scss.rb:63:in `process_result'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/exec/base.rb:50:in `parse'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/lib/sass/exec/base.rb:18:in `parse!'
-/Library/Ruby/Gems/2.6.0/gems/sass-3.7.4/bin/sass:13:in `<top (required)>'
-/usr/local/bin/sass:23:in `load'
-/usr/local/bin/sass:23:in `<main>'
-*/
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Error: Undefined variable: \"$c5\".\A         on line 6 of compte.scss\A \A 1: .avatar-picture-max{\A 2:   display: block;\A 3:   height: 100px;\A 4:   width: 100px;\A 5:   background-size: cover;\A 6:   background-color: $c5;\A 7:   border-radius: 50%;\A 8: }\A 9: .avatartop3{\A 10:   width: 30px;\A 11:   height: 30px;"; }
+@-webkit-keyframes rotating /* Safari and Chrome */ {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.btn-rose {
+  background: #f4167f !important;
+  border-color: #f4167f !important;
+}
+.btn-rose:hover {
+  background: #f4167f !important;
+  border-color: #f4167f !important;
+}
+
+.mt-10p {
+  margin-top: 10px;
+}
+
+.mr-10p {
+  margin-right: 10px;
+}
+
+.cover-profil {
+  background-color: #0c0a27;
+  min-height: 200px;
+}
+
+.avatar-picture-max {
+  display: block;
+  height: 100px;
+  width: 100px;
+  background-size: cover;
+  background-color: #7367f0;
+  border-radius: 50%;
+}
+
+.avatartop3 {
+  width: 30px;
+  height: 30px;
+  transform: scale(1);
+  transition: all 0.2s ease-in-out;
+}
+.avatartop3 img {
+  width: 100%;
+  height: auto;
+}
+.avatartop3:hover {
+  transform: scale(2);
+}
+
+.auth-inner .brand-text {
+  max-width: 150px;
+  margin-right: 10px;
+}
+
+.dark-layout body.user-page, .dark-layout #user-profile .profile-header .navbar {
+  background: linear-gradient(50deg, #0c0a27, #471867, #0c0a27, #0c0a27);
+  background-size: 400% 400%;
+  -webkit-animation: gradient 60s ease infinite;
+          animation: gradient 60s ease infinite;
+}
+@-webkit-keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+textarea {
+  -webkit-transition: background-color 5000s ease-in-out 0s !important;
+  transition: background-color 5000s ease-in-out 0s !important;
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+  -webkit-text-size-adjust: 100% !important;
+}
+
+.picto-rs {
+  font-size: 25px !important;
+}
+
+.transaction-item a {
+  color: #fff;
+  display: block;
+}
+.transaction-item a:hover {
+  color: #7367f0;
+}
+
+.wppb-user-forms {
+  max-width: 550px;
+}
+.wppb-user-forms ul {
+  margin: 0;
+  padding: 0;
+}
+.wppb-user-forms ul li {
+  list-style-type: none;
+  display: block;
+  margin-bottom: 20px;
+}
+.wppb-user-forms input[type=text], .wppb-user-forms input[type=email], .wppb-user-forms input[type=password], .wppb-user-forms textarea {
+  background: transparent !important;
+  border: 2px solid rgba(255, 255, 255, 0.2) !important;
+  padding: 20px 15px !important;
+  font-size: 15px !important;
+  border-radius: 10px !important;
+  color: #fff !important;
+  transition: all 0.2s ease-in-out;
+}
+.wppb-user-forms input[type=text]::-moz-placeholder, .wppb-user-forms input[type=email]::-moz-placeholder, .wppb-user-forms input[type=password]::-moz-placeholder, .wppb-user-forms textarea::-moz-placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+.wppb-user-forms input[type=text]:-ms-input-placeholder, .wppb-user-forms input[type=email]:-ms-input-placeholder, .wppb-user-forms input[type=password]:-ms-input-placeholder, .wppb-user-forms textarea:-ms-input-placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+.wppb-user-forms input[type=text]::placeholder, .wppb-user-forms input[type=email]::placeholder, .wppb-user-forms input[type=password]::placeholder, .wppb-user-forms textarea::placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+.wppb-user-forms input[type=text]:valid, .wppb-user-forms input[type=email]:valid, .wppb-user-forms input[type=password]:valid, .wppb-user-forms textarea:valid {
+  border: 2px solid #fff !important;
+}
+.wppb-user-forms input[type=text]:focus, .wppb-user-forms input[type=email]:focus, .wppb-user-forms input[type=password]:focus, .wppb-user-forms textarea:focus {
+  border: 2px solid #f4167f !important;
+  transition: background-color 5000s ease-in-out 0s !important;
+  background: transparent !important;
+  outline: 0;
+}
+
+.profile-tabs {
+  min-height: 40px;
+}
+
+.wppb-send-credentials-checkbox, #select_user_to_edit_form, .wppb-description-delimiter, .file-type, .file-name, .login-remember {
+  display: none !important;
+}
+
+.wppb-avatar {
+  display: flex !important;
+  align-items: center;
+}
+.wppb-avatar label {
+  color: #fff;
+  font-size: 16px;
+  margin-right: 20px;
+  margin-left: 5px;
+  width: 100% !important;
+}
+.wppb-avatar input {
+  width: 100% !important;
+}
+.wppb-avatar .wppb-attachment-link img {
+  border-radius: 50%;
+}
+.wppb-avatar .upload-field-details {
+  text-align: center;
+}
+
+.wppb-remove-upload {
+  cursor: pointer !important;
+  display: block;
+  color: #7367f0;
+  position: relative;
+  transition: all 0.2s ease-in-out;
+  left: 0;
+}
+.wppb-remove-upload:hover {
+  left: 5px;
+}
+
+.annonce {
+  padding: 0 3px;
+  font-size: 15px;
+}
+
+.gif2, .gif3, .gif4 {
+  display: none;
+}
+
+.bigup h1 {
+  font-size: 3rem;
+}
+
+.alert-account {
+  color: #fff !important;
+  background: #2a1f70;
+}
+
+.t-white {
+  color: #fff;
+}
+
+.scali {
+  transition: all 0.2s ease-in-out;
+  transform: scale(1);
+  display: inline-block;
+}
+.scali:hover {
+  transform: scale(2);
+}
+
+.btn-outline-white {
+  border-color: #fff;
+}
+.btn-outline-white:hover {
+  background: #fff;
+}
+
+.form-submit .submit, #wppb-submit {
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+  padding: 10px 20px;
+  line-height: 1.5;
+  text-align: center;
+  word-break: break-word;
+  white-space: normal;
+  border: none;
+  cursor: pointer;
+  transition: 0.35s all ease-out;
+  box-shadow: 0 1px 3px #b5bacf26;
+  border-color: #7367f0 !important;
+  background-color: #7367f0 !important;
+  color: #fff !important;
+  width: auto;
+  min-height: 50px;
+  font-size: 16px;
+  font-weight: 500;
+  display: block;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  border-radius: 0.358rem;
+  -webkit-appearance: button;
+}
+.form-submit .submit:hover, #wppb-submit:hover {
+  box-shadow: 0 8px 25px -8px #7367f0;
+}
+
+.wppb-success {
+  color: #ffffff;
+  background: #ffd2e71c;
+  padding: 15px 20px;
+}
+
+.auth-bg {
+  background: transparent !important;
+}
+
+.wppb-error {
+  color: #ffffff;
+  background: rgba(244, 29, 27, 0.39);
+  padding: 15px 20px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  max-width: 550px;
+}
+.wppb-error a {
+  display: none;
+}
+
+.please-rejoin a {
+  margin: 5px 0;
+}
+@media (max-width: 768px) {
+  .please-rejoin .alert-body {
+    flex-direction: column;
+  }
+  .please-rejoin .alert-body a {
+    width: 100%;
+    margin: 15px 0 0 !important;
+  }
+}
+
+.invoice-list-wrapper .star {
+  font-size: 14px;
+}
+.invoice-list-wrapper .startchoicedone {
+  font-size: 14px;
+  text-align: right;
+}
+.invoice-list-wrapper .startchoicedone .ico {
+  font-size: 14px;
+  width: 15px;
+}
+.invoice-list-wrapper td, .invoice-list-wrapper th {
+  padding: 10px 15px 8px !important;
+}
+
+.ico-action {
+  font-size: 17px;
+  display: inline-block;
+  margin: 0 5px 0 0;
+}
+
+.infosmall {
+  float: right;
+  text-align: right;
+}/*# sourceMappingURL=compte.css.map */

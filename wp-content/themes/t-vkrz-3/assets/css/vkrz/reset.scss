@@ -1,3 +1,5 @@
+@import 'variables';
+
 body {
   height: auto !important;
 }
@@ -8,12 +10,12 @@ body {
   background-color: $c4;
 }
 .swiper-button-next, .swiper-button-prev{
-  width: 40px;
+  width: 40px !important;
   margin: 0;
   background: transparent;
-  top: -26px;
-  height: 100%;
-  right: 0;
+  top: 36%;
+  height: 40px !important;
+  right: 0 !important;
   justify-content: flex-end;
   &:after{
     border-radius: 0;
@@ -28,9 +30,7 @@ body {
   }
 }
 .swiper-button-prev{
-  background: transparent;
-  width: 40px;
-  justify-content: flex-start;
+  right: auto;
   left: 0;
 }
 .swiper-button-disabled{

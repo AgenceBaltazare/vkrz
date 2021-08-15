@@ -1,7 +1,1 @@
-{
-"version": 3,
-"mappings": "AAKQ,kGAA0F",
-"sources": ["variables.scss"],
-"names": [],
-"file": "variables.css"
-}
+{"version":3,"sources":["variables.scss"],"names":[],"mappings":"AAQA;EACE,yBAAA;AAPF;;AAUA;EACE,gBAAA;EACA,mBAAA;EACA,kBAAA;AAPF;;AAUA;EACE;IAGE,uBAAA;EAPF;EASA;IAGE,yBAAA;EAPF;AACF;AASA;EACE;IAKE,uBAAA;EAPF;EASA;IAKE,yBAAA;EAPF;AACF;AAUA;EACE,8BAAA;EACA,gCAAA;AARF;AASE;EACE,8BAAA;EACA,gCAAA;AAPJ;;AAWA;EACE,gBAAA;AARF;;AAWA;EACE,kBAAA;AARF","file":"variables.css"}

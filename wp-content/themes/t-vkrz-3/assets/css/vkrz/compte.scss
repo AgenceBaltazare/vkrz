@@ -1,3 +1,5 @@
+@import 'variables';
+
 .cover-profil{
   background-color: $c1;
   min-height: 200px;
@@ -58,7 +60,6 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active,
 textarea{
   transition: background-color 5000s ease-in-out 0s !important;
-  -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
   color: #fff !important;
   -webkit-text-fill-color: #fff !important;
   -webkit-text-size-adjust: 100% !important;
@@ -106,7 +107,6 @@ textarea{
     &:focus{
       border: 2px solid $rose !important;
       transition: background-color 5000s ease-in-out 0s !important;
-      -webkit-box-shadow: none !important;
       background: transparent !important;
       outline: 0;
     }
@@ -221,7 +221,6 @@ textarea{
   font-size: 16px;
   font-weight: 500;
   display: block;
-  vertical-align: middle;
   user-select: none;
   border-radius: 0.358rem;
   -webkit-appearance: button;

@@ -1,4 +1,105 @@
-.filters-btn .btn {
-  margin-bottom: 5px; }
+.text-rose {
+  color: #f4167f !important;
+}
 
-/*# sourceMappingURL=archive.css.map */
+.big-cat .heading-cat h2 {
+  font-weight: 900;
+  letter-spacing: 2px;
+  margin: 20px 0 5px;
+}
+
+@-webkit-keyframes rotating /* Safari and Chrome */ {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.btn-rose {
+  background: #f4167f !important;
+  border-color: #f4167f !important;
+}
+.btn-rose:hover {
+  background: #f4167f !important;
+  border-color: #f4167f !important;
+}
+
+.mt-10p {
+  margin-top: 10px;
+}
+
+.mr-10p {
+  margin-right: 10px;
+}
+
+.filters-btn .btn {
+  margin: 0 0 5px;
+}
+.filters-btn .active_filtre {
+  background: #7367f0 !important;
+  border: 1px solid #7367f0;
+  color: #fff !important;
+}
+
+.max-item .min-tournoi .cov-illu {
+  min-height: 240px;
+  border-radius: 5px 5px 0 0;
+  position: relative;
+}
+
+.grid-filtre-item {
+  margin-bottom: 5px;
+  margin-right: 3px;
+  font-size: 10px;
+  padding: 5px 8px;
+  text-transform: uppercase;
+}
+
+.grid-to-filtre {
+  padding: 0;
+  margin: 0;
+  margin-top: 0.85rem;
+}
+
+.spoun .ico {
+  font-size: 20px;
+}
+
+.result-toggler button i {
+  font-size: 20px;
+}
+.result-toggler button span {
+  color: #fff;
+  font-size: 12px;
+  margin-left: 10px;
+}
+
+.grid-to-filtre {
+  margin-left: -1rem;
+}
+
+.filtres-bloc {
+  display: none;
+}
+.filtres-bloc .ui-group {
+  margin-right: 20px;
+}
+
+.ecommerce-searchbar .input-group .input-group-text {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+}
+
+.show {
+  display: block !important;
+}/*# sourceMappingURL=archive.css.map */

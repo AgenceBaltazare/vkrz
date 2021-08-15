@@ -1,3 +1,42 @@
-@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap");
+.text-rose {
+  color: #f4167f !important;
+}
 
-/*# sourceMappingURL=variables.css.map */
+.big-cat .heading-cat h2 {
+  font-weight: 900;
+  letter-spacing: 2px;
+  margin: 20px 0 5px;
+}
+
+@-webkit-keyframes rotating /* Safari and Chrome */ {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.btn-rose {
+  background: #f4167f !important;
+  border-color: #f4167f !important;
+}
+.btn-rose:hover {
+  background: #f4167f !important;
+  border-color: #f4167f !important;
+}
+
+.mt-10p {
+  margin-top: 10px;
+}
+
+.mr-10p {
+  margin-right: 10px;
+}/*# sourceMappingURL=variables.css.map */
