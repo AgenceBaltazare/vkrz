@@ -74,14 +74,14 @@ $list_t_already_done = $user_tops['list_user_tops_done_ids'];
                                     <a href="https://discord.gg/w882sUnrhE" class="sociallink btn btn-outline-primary waves-effect mr-10p mt-10p" target="_blank">
                                         Discord
                                     </a>
+                                    <a href="https://www.instagram.com/wearevainkeurz/" class="sociallink btn btn-outline-primary waves-effect mr-10p mt-10p" target="_blank">
+                                        Insta
+                                    </a>
                                     <a href="https://twitter.com/Vainkeurz" class="sociallink btn btn-outline-primary waves-effect mr-10p mt-10p" target="_blank">
                                         Twitter
                                     </a>
-                                    <a href="https://www.facebook.com/vainkeurz" class="sociallink btn btn-outline-primary waves-effect mr-10p mt-10p" target="_blank">
+                                    <a href="https://www.facebook.com/vainkeurz" class="sociallink btn btn-outline-primary waves-effect mt-10p" target="_blank">
                                         Facebook
-                                    </a>
-                                    <a href="https://www.instagram.com/wearevainkeurz/" class="sociallink btn btn-outline-primary waves-effect mt-10p" target="_blank">
-                                        Instagram
                                     </a>
                                 </div>
                             </div>

@@ -31,7 +31,7 @@
             <li class="nav-item">
                 <div class="rs-menu mt-2">
                     <div class="w-100 btn-group justify-content-center share-t" role="group">
-                        <a href="https://discord.gg/w882sUnrhE" class="btn btn-outline-primary waves-effect sociallink" target="_blank">
+                        <a href="https://discord.gg/E9H9e8NYp7" class="btn btn-outline-primary waves-effect sociallink" target="_blank">
                             <i class="fab fa-discord"></i>
                         </a>
                         <a href="https://www.instagram.com/wearevainkeurz/" class="btn btn-outline-primary waves-effect sociallink" target="_blank">
