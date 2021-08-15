@@ -4,8 +4,11 @@ $list_user_tops   = $user_tops['list_user_tops'];
 $state            = "";
 $id_top           = get_the_ID();
 $illu             = get_the_post_thumbnail_url($id_top, 'medium');
-if(is_home() || is_single()){
+if(is_home()){
     $class        = "swiper-slide";
+}
+elseif(is_single()){
+    $class        = "col-md-3 col-6";
 }
 else{
     $class        = "col-12";

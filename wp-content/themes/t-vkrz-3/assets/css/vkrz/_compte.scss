@@ -1,5 +1,3 @@
-@import 'variables';
-
 .cover-profil{
   background-color: $c1;
   min-height: 200px;
@@ -81,6 +79,7 @@ textarea{
 
 .wppb-user-forms{
   max-width: 550px;
+  margin: 0 auto;
   ul{
     margin: 0;
     padding: 0;
@@ -202,8 +201,6 @@ textarea{
 }
 
 .form-submit .submit, #wppb-submit{
-  margin-right: 0 !important;
-  margin-left: 0 !important;
   padding: 10px 20px;
   line-height: 1.5;
   text-align: center;
@@ -291,4 +288,32 @@ textarea{
 .infosmall{
   float: right;
   text-align: right;
+}
+
+#user-profile .profile-header .profile-img-container {
+  position: absolute;
+  bottom: -2rem;
+  left: 10px;
+  z-index: 2;
+  right: 10px;
+}
+
+.dark-layout #user-profile .profile-header .navbar .navbar-toggler {
+  color: #fff;
+  border-color: #fff;
+  position: relative;
+  z-index: 999;
+}
+
+.dataTables_filter{
+  input{
+    border: 1px solid $c5 !important;
+    color: #fff;
+  }
+  input::placeholder{
+    color: $c5 !important;
+  }
+}
+.profile-header-nav .profile-tabs {
+  margin-left: 12rem;
 }

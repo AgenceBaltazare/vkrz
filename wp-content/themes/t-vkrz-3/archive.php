@@ -40,23 +40,22 @@ $list_sujets      = array();
             </div>
 
             <section id="ecommerce-header" class="mb-2 mt-2">
-                <div class="row align-items-center">
-                    <div class="col-sm-5">
-                        <div class="ecommerce-header-items">
-                            <div class="result-toggler">
-                                <button class="navbar-toggler shop-sidebar-toggler d-flex align-items-center" type="button" data-bs-toggle="collapse">
-                                    <i class="far fa-bars"></i>
-                                    <span class="text-uppercase">Afficher les filtres</span>
-                                </button>
-                            </div>
-                        </div>
+                <div class="ecommerce-header-items">
+                    <div class="result-toggler">
+                        <a class="btn btn-outline-primary waves-effect" href="#">
+                            <span class="ico ico-filtreshow">🌝</span>
+                            <span class="ico ico-filtrehide hide">🌚</span>
+                            Afficher les filtres
+                        </a>
                     </div>
-                    <div class="col-sm-7">
-                        <div id="ecommerce-searchbar" class="ecommerce-searchbar">
-                            <div class="input-group input-group-merge">
-                                <input type="text" class="form-control search-product" id="shop-search" placeholder="Rechercher dans les <?php echo $tops_in_cat->post_count; ?> Tops" aria-label="Rechercher..." aria-describedby="shop-search" />
-                            </div>
-                        </div>
+                </div>
+                <div id="ecommerce-searchbar" class="ecommerce-searchbar">
+                    <div class="input-group input-group-merge">
+                        <form action="?" method="get" id="search_form">
+                            <span class="ico ico-search ico-search-result">🔍</span>
+                            <span class="ico ico-search ico-search-clear">❌</span>
+                            <input type="text" class="form-control search-product" placeholder="Rechercher dans les <?php echo $tops_in_cat->post_count; ?> Tops..." aria-label="Rechercher..." aria-describedby="shop-search" />
+                        </form>
                     </div>
                 </div>
             </section>
@@ -232,6 +231,7 @@ $list_sujets      = array();
                     $tag_slug         = "";
                     $concept_slug     = "";
                     $sujet_slug       = "";
+                    $term_to_search   = "";
 
                     if(get_the_terms($id_top, 'sous-cat')){
                         foreach(get_the_terms($id_top, 'sous-cat') as $sujet ) {
@@ -248,8 +248,11 @@ $list_sujets      = array();
                             $concept_slug   .= $concept->slug." ";
                         }
                     }
+                    $top_question   = get_field('question_t', $id_top);
+                    $top_title      = get_the_title($id_top);
+                    $term_to_search = $sujet_slug." ".$concept_slug." ".$top_question." ".$top_title;
                     ?>
-                    <div class="grid-item col-md-3 col-6 <?php echo $sujet_slug; ?> <?php echo $state; ?> <?php echo $concept_slug; ?> <?php echo $tag_slug; ?>">
+                    <div data-filter-item data-filter-name="<?php echo $term_to_search; ?>" class="same-h grid-item col-md-3 col-6 <?php echo $sujet_slug; ?> <?php echo $state; ?> <?php echo $concept_slug; ?> <?php echo $tag_slug; ?>">
                         <div class="min-tournoi card scaler">
                             <div class="cov-illu cover" style="background: url(<?php echo $illu; ?>) center center no-repeat">
                                 <?php if($state == "done"): ?>
@@ -280,10 +283,10 @@ $list_sujets      = array();
                             </div>
                             <div class="card-body">
                                 <p class="card-text text-primary">
-                                    TOP <?php echo $nb_top; ?>  : <span class="namecontenders"><?php echo get_the_title($id_top); ?></span>
+                                    TOP <?php echo $nb_top; ?>  : <span class="namecontenders"><?php echo $top_title; ?></span>
                                 </p>
                                 <h4 class="card-title">
-                                    <?php the_field('question_t', $id_top); ?>
+                                    <?php echo $top_question; ?>
                                 </h4>
                             </div>
                             <a href="<?php the_permalink($id_top); ?>" class="stretched-link"></a>

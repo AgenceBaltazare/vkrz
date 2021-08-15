@@ -1,0 +1,31 @@
+@import '_variables';
+
+.auth-bg{
+ .card-title{
+    font-size: 1.5rem;
+ }   
+}
+.already-account{
+    text-align: center;
+}
+
+.auth-wrapper{
+    text-align: center;
+    padding: 70px;
+    .auth-inner{
+        max-width: 550px;
+        margin: 0 auto;
+        .card-title{
+            width: 100%;
+        }
+        .form-submit, .login-submit{
+            text-align: center;
+            input{
+                margin: 0 auto !important;
+            }
+        }
+    }
+    .divider {
+        margin: 20px auto !important;
+    }
+}

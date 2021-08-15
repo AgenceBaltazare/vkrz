@@ -25,7 +25,7 @@ $vainkeur_info = isset($vainkeur_info) ? $vainkeur_info : $user_infos;
             </div>
             <div class="profile-title ml-3">
                 <h2 class="text-white text-uppercase">
-                    <?php echo is_user_logged_in() ? $vainkeur_info['pseudo'] : "Futur_VAINKEUR"; ?>
+                    <?php echo is_user_logged_in() ? $vainkeur_info['pseudo'] : "Futur Vainkeur"; ?>
                 </h2>
                 <p class="text-white">
                     <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Niveau actuel">
@@ -76,7 +76,7 @@ $vainkeur_info = isset($vainkeur_info) ? $vainkeur_info : $user_infos;
                             <?php endif; ?>
                         <?php endif; ?>
                     </ul>
-                    <?php if(!is_author()): ?>
+                    <?php if(!is_author() && is_user_logged_in()): ?>
                         <div class="">
                             <a href="<?php echo get_author_posts_url($user_id); ?>" class="btn btn-outline-primary waves-effect">
                                 Profil public

@@ -1,5 +1,3 @@
-@import 'variables';
-
 body {
   height: auto !important;
 }
@@ -194,6 +192,10 @@ a.sociallink:hover{
     color: #fff !important;
   }
 }
-.dark-layout #user-profile .profile-header .navbar .navbar-toggler {
-  border: none;
+
+.dark-layout .dropdown-menu {
+  z-index: 9999999;
+}
+.reset_size{
+  height: auto !important;
 }

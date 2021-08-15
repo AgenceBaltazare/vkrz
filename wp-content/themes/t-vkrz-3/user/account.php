@@ -8,7 +8,6 @@ global $user_tops;
 global $user_infos;
 global $id_vainkeur;
 $list_user_tops = $user_tops['list_user_tops'];
-
 $list_t_begin   = array();
 $list_t_done    = array();
 $has_t_begin    = false;
@@ -24,7 +23,6 @@ foreach($list_user_tops as $top){
 <div class="app-content content ">
     <div class="content-wrapper">
         <div class="content-body">
-
             <?php if(!is_user_logged_in()): ?>
                 <section class="please-rejoin app-user-view">
                     <div role="alert" aria-live="polite" aria-atomic="true" class="alert alert-account">
@@ -177,9 +175,9 @@ foreach($list_user_tops as $top){
                                         <li class="nav-item">
                                             <a class="nav-link active" id="homeIcon-tab" data-toggle="tab" href="#tab1" aria-controls="home" role="tab" aria-selected="true">
                                                 <?php if(count($list_t_begin) > 1) : ?>
-                                                    Mes Tops à terminer
+                                                    Tops à terminer
                                                 <?php else: ?>
-                                                    Mon Top à terminer
+                                                    Top à terminer
                                                 <?php endif; ?>
                                             </a>
                                         </li>
@@ -187,9 +185,9 @@ foreach($list_user_tops as $top){
                                     <li class="nav-item">
                                         <a class="nav-link <?php if(!$has_t_begin){echo 'active';} ?>" id="profileIcon-tab" data-toggle="tab" href="#tab2" aria-controls="profile" role="tab" aria-selected="false">
                                             <?php if(count($list_t_done) > 1) : ?>
-                                                Mes Tops terminés
+                                                Tops terminés
                                             <?php else: ?>
-                                                Mon Top terminé
+                                                Top terminé
                                             <?php endif; ?>
                                         </a>
                                     </li>
@@ -205,7 +203,11 @@ foreach($list_user_tops as $top){
                                                             <thead>
                                                             <tr>
                                                                 <th class="">
-                                                                    <span class="t-rose"><?php echo count($list_t_begin); ?></span> Tops à terminer
+                                                                    <?php if(count($list_t_done) > 1) : ?>
+                                                                        <span class="t-rose"><?php echo count($list_t_begin); ?></span> Tops à terminer
+                                                                    <?php else: ?>
+                                                                        <span class="t-rose"><?php echo count($list_t_begin); ?></span> Top à terminer
+                                                                    <?php endif; ?>
                                                                 </th>
                                                                 <th class="text-center">
                                                                     💎

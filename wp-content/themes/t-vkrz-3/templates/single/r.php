@@ -159,7 +159,7 @@ $url_ranking  = get_the_permalink($id_ranking);
                         'post__not_in'           => $list_t_already_done,
                         'orderby'                => 'rand',
                         'order'                  => 'ASC',
-                        'posts_per_page'         => 10,
+                        'posts_per_page'         => 4,
                         'tax_query' => array(
                             'relation' => 'AND',
                             array(
@@ -183,24 +183,20 @@ $url_ranking  = get_the_permalink($id_ranking);
                                         <div class="col">
                                             <h2 class="text-primary text-uppercase">
                                                 <span class="ico">🥰</span> Tops similaires
-                                                <small class="text-muted">Ça devrait te plaidre</small>
+                                                <small class="text-muted">Voici quelques Tops qui devraient te plaire</small>
                                             </h2>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div id="component-swiper-responsive-breakpoints">
-                                <div class="swiper-responsive-breakpoints swiper-container swiper-1">
-                                    <div class="swiper-wrapper">
-                                        <?php
-                                        while ($tournois_in_cat->have_posts()) : $tournois_in_cat->the_post(); ?>
+                            <div class="similar-list mt-2">
+                                <div class="row">
+                                    <?php
+                                    while ($tournois_in_cat->have_posts()) : $tournois_in_cat->the_post(); ?>
 
-                                            <?php get_template_part('partials/min-t'); ?>
+                                        <?php get_template_part('partials/min-t'); ?>
 
-                                        <?php endwhile;?>
-                                    </div>
-                                    <div class="swiper-button-next swiper-button-next-0"></div>
-                                    <div class="swiper-button-prev swiper-button-prev-0"></div>
+                                    <?php endwhile;?>
                                 </div>
                             </div>
                         </section>

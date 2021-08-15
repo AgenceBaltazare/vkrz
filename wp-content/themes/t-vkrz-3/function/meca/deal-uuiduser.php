@@ -4,6 +4,7 @@ function deal_uuiduser(){
     if(is_user_logged_in()){
 
         global $user_id;
+
         $uuiuser        = get_field('uuiduser_user', 'user_'.$user_id);
 
         if(isset($uuiuser) && $uuiuser != ""){

@@ -55,10 +55,6 @@
     }
   }
 
-  .auth-wrapper{
-    padding-top: 70px;
-  }
-
   .user-avatar-section{
     .content-avatar-name{
       flex-direction: column;
@@ -76,7 +72,7 @@
   }
 
   html body .app-content {
-    padding: calc(2rem - 0.8rem + 7.45rem + 1.3rem) calc(2rem - 0.8rem) 0 calc(2rem - 0.8rem) !important;
+    padding: calc(1rem - 0.8rem + 7.45rem + 1.3rem) calc(2rem - 0.8rem) 0 calc(2rem - 0.8rem) !important;
   }
 
   .bookmark-wrapper{
@@ -158,6 +154,110 @@
     }
   }
 
+  #ecommerce-header{
+    flex-direction: column;
+    .ecommerce-header-items{
+      width: 100%;
+      margin-bottom: 10px;
+      .result-toggler {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        margin: 0;
+        a{
+          width: 100%;
+        }
+      }
+    }
+    .ecommerce-searchbar{
+      width: 100%;
+      #search_form {
+        width: 100%;
+        input{
+          padding: 0 15px;
+          font-size: 1rem;
+          &::placeholder{
+            color: #7367f0 !important;
+            font-size: 0.8rem;
+            line-height: 1;
+            text-transform: none;
+            border-radius: .358rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+          }
+        }
+      }
+    }
+  }
+
+  .filtres-bloc{
+    .ui-group{
+      width: 100%;
+      margin: 0 !important;
+    }
+    .dropdown-sort{
+      width: 100%;
+      button{
+        width: 100%;
+        display: block;
+        margin: 0 0 10px!important;
+        text-align: left;
+        &:after {
+          height: 11px;
+          position: absolute;
+          top: 39%;
+          right: 10px;
+          left: inherit;
+        }
+      }
+    }
+  }
+
+  .auth-wrapper{
+    padding: 10px 0;
+  }
+
+  .big-cat .heading-cat h2 {
+    font-weight: 900;
+    letter-spacing: 1px;
+    margin: 10px 0 5px;
+    font-size: 18px;
+  }
+
+  .tournament-heading:after {
+    display: none;
+  }
+
+  .display_battle {
+    margin: -10px -1rem;
+  }
+
+  .profile-title{
+    margin-left: 20px !important;
+  }
+
+  .cover-profil {
+    min-height: 100px;
+  }
+
+  .nav-fill{
+    li{
+      width: 50%;
+      a{
+        font-size: 12px;
+      }
+    }
+  }
+
+  .profile-header-nav .profile-tabs {
+    margin-left: 0;
+  }
+
+  .swal2-actions{
+    .swal2-confirm{
+      margin-bottom: 10px;
+    }
+  }
 }
 
 

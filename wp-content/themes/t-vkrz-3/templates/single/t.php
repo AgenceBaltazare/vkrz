@@ -99,8 +99,8 @@ $top_datas = get_tournoi_data($id_top);
                             <div class="card-cta">
                                 <div class="choosecta">
                                     <div class="cta-begin cta-complet">
-                                        <a href="#" id="begin_t" data-typetop="complet" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
-                                            Débuter mon Top Complet
+                                        <a href="#" id="begin_t" data-typetop="complet" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
+                                            Top Complet
                                         </a>
                                         <small class="text-muted">
                                             <?php
@@ -110,14 +110,14 @@ $top_datas = get_tournoi_data($id_top);
                                             <?php if($top_infos['top_number'] < 3): ?>
                                                 Un seul vote suffira pour finir ce Top
                                             <?php else: ?>
-                                                Prévoir entre <?php echo $min; ?> et <?php echo $max; ?> votes pour finir ce Top
+                                                Prévoir entre <?php echo $min; ?> et <?php echo $max; ?> votes pour finir ton Top du 1er au dernier
                                             <?php endif; ?>
                                         </small>
                                     </div>
                                     <?php if($top_infos['top_number'] > 10): ?>
                                         <div class="cta-begin cta-top3">
-                                            <a href="#" id="begin_top3" data-typetop="top3" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
-                                                Faire juste mon Top 3
+                                            <a href="#" id="begin_top3" data-typetop="top3" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
+                                                Top 3
                                             </a>
                                             <small class="text-muted">
                                                 <?php
@@ -125,7 +125,7 @@ $top_datas = get_tournoi_data($id_top);
                                                 $min = (floor($top_infos['top_number']/2))+((round($top_infos['top_number']/2))-1)+3;
                                                 $moy = ($max+$min) / 2;
                                                 ?>
-                                                Prévoir environ <?php echo round($moy); ?> votes pour finir ce Top
+                                                Prévoir environ <?php echo round($moy); ?> votes pour juste faire ton podium
                                             </small>
                                         </div>
                                     <?php endif; ?>

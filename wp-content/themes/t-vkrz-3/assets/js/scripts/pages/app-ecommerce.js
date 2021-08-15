@@ -45,13 +45,6 @@ $(function () {
     });
   }
 
-  // Show sidebar
-  if (sidebarToggler.length) {
-    sidebarToggler.on('click', function () {
-        $('.filtres-bloc').toggleClass('show');
-    });
-  }
-
   // Overlay Click
   if (overlay.length) {
     overlay.on('click', function (e) {
