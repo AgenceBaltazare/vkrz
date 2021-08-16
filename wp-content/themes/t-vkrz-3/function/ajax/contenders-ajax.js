@@ -16,8 +16,6 @@ $(document).ready(function ($) {
         $('.contender_zone').removeClass('animate__slideInDown');
         $('.contender_zone').removeClass('animate__slideInUp');
 
-        console.log(id_vainkeur);
-
         e.preventDefault();
 
         if (!ajaxRunning) {
@@ -43,43 +41,44 @@ $(document).ready(function ($) {
                     current_id_vainkeur: id_vainkeur
                 }
             })
-                .done(function (response) {
-                    let data = JSON.parse(response);
+            .done(function (response) {
 
-                    if(data.is_next_duel){
-                        $('.display_battle').html(data.contenders_html);
-                        contenders = $('.display_battle .link-contender');
-                        $('.contender_1 .contender_zone').addClass('animate__zoomIn');
-                        $('.contender_2 .contender_zone').addClass('animate__zoomIn');
-                    }
+                let data = JSON.parse(response);
 
-                    $('.stepbar').width(data.current_step + "%");
-                    $('.stepbar span').html(data.current_step + "%");
+                if(data.is_next_duel){
+                    $('.display_battle').html(data.contenders_html);
+                    contenders = $('.display_battle .link-contender');
+                    $('.contender_1 .contender_zone').addClass('animate__zoomIn');
+                    $('.contender_2 .contender_zone').addClass('animate__zoomIn');
+                }
 
-                    // +1 au compteur de votes du tournoi
-                    var current_user_t_votes = parseInt($('#rank-'+data.id_ranking+' span.value-span').html());
-                    $('#rank-'+data.id_ranking+' span.value-span').html(current_user_t_votes + 1);
+                $('.stepbar').width(data.current_step + "%");
+                $('.stepbar span').html(data.current_step + "%");
 
-                    // +1 au compteur de votes global
-                    var current_user_total_votes = parseInt($('.user-total-vote-value').html());
-                    $('.user-total-vote-value').html(current_user_total_votes + 1);
+                // +1 au compteur de votes du tournoi
+                var current_user_t_votes = parseInt($('#rank-'+data.id_ranking+' span.value-span').html());
+                $('#rank-'+data.id_ranking+' span.value-span').html(current_user_t_votes + 1);
 
-                    // -1 au décompte du prochain niveau
-                    var current_decompte_vote = parseInt($('.decompte_vote').html());
-                    $new_decompte_vote_val = current_decompte_vote - 1;
-                    if($new_decompte_vote_val <= 0){
-                        $new_decompte_vote_val = 0;
-                    }
-                    $('.decompte_vote').html($new_decompte_vote_val);
+                // +1 au compteur de votes global
+                var current_user_total_votes = parseInt($('.user-total-vote-value').html());
+                $('.user-total-vote-value').html(current_user_total_votes + 1);
 
-                    $('.display_users_votes h6').replaceWith(data.uservotes_html);
-                    $('.current_rank').html(data.user_ranking_html);
+                // -1 au décompte du prochain niveau
+                var current_decompte_vote = parseInt($('.decompte_vote').html());
+                $new_decompte_vote_val = current_decompte_vote - 1;
+                if($new_decompte_vote_val <= 0){
+                    $new_decompte_vote_val = 0;
+                }
+                $('.decompte_vote').html($new_decompte_vote_val);
 
-                    if(!data.is_next_duel){
-                        location.reload()
-                    }
+                $('.display_users_votes h6').replaceWith(data.uservotes_html);
+                $('.current_rank').html(data.user_ranking_html);
 
-                }).always(function () {
+                if(!data.is_next_duel){
+                    location.reload()
+                }
+
+            }).always(function () {
                 ajaxRunning = false;
             });
         }

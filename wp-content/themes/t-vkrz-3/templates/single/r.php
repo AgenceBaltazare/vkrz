@@ -1,6 +1,7 @@
 <?php
 get_header();
 global $uuiduser;
+global $user_id;
 global $id_top;
 global $id_ranking;
 global $top_infos;
@@ -127,7 +128,7 @@ $url_ranking  = get_the_permalink($id_ranking);
                                             <?php else: ?>
                                                 <span><?php echo $i; ?><br></span>
                                             <?php endif; ?>
-                                            <?php if(!$display_titre): ?>
+                                            <?php if(!$top_infos['top_d_titre']): ?>
                                                 <?php echo get_the_title($c); ?>
                                             <?php endif; ?>
                                         </h5>

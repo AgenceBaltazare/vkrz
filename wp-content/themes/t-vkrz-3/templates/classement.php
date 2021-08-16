@@ -77,7 +77,7 @@ $user_single_top_data = array_search($id_top, $list_t_already_done);
                                                     $d = $i-1;
                                                 }
                                                 ?>
-                                                <div class="animate__jackInTheBox animate__animated animate__delay-<?php echo $d; ?>s contenders_min <?php if(get_field('c_rounded_t', $id_top)){ echo 'rounded'; } ?> mb-3">
+                                                <div class="animate__jackInTheBox animate__animated animate__delay-<?php echo $d; ?>s contenders_min <?php if($top_infos['top_d_rounded']){ echo 'rounded'; } ?> mb-3">
                                                     <div class="illu">
                                                         <?php if(get_field('visuel_cover_t', $id_top)): ?>
                                                             <?php $illu = get_the_post_thumbnail_url(get_the_ID(), 'full'); ?>
@@ -97,7 +97,7 @@ $user_single_top_data = array_search($id_top, $list_t_already_done);
                                                             <?php else: ?>
                                                                 <span><?php echo $i; ?><br></span>
                                                             <?php endif; ?>
-                                                            <?php if(!$display_titre): ?>
+                                                            <?php if(!$top_infos['top_d_titre']): ?>
                                                                 <?php the_title(); ?>
                                                             <?php endif; ?>
                                                         </h5>
@@ -174,7 +174,7 @@ $user_single_top_data = array_search($id_top, $list_t_already_done);
                                     </div>
                                 </div>
 
-                                <?php if($user_sinle_top_data != false): ?>
+                                <?php if($user_single_top_data == false): ?>
                                     <div class="card">
                                         <div class="card-body">
                                             <h4 class="card-title">

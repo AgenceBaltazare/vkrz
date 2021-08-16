@@ -98,7 +98,7 @@
     $top_infos  = get_top_infos($id_top);
     ?>
     <title>
-        Top mondial 👉 <?php echo $top_infos['top_title']; ?> - <?php echo $top_infos['top_question']; ?> 🔥 VAINKEURZ
+        Top mondial 🌎  <?php echo $top_infos['top_title']; ?> - <?php echo $top_infos['top_question']; ?> 🔥 VAINKEURZ
     </title>
     <meta name="description" content="Classement ELO du tournoi rassemblant les votes du monde entier." />
 
@@ -110,7 +110,7 @@
     $top_infos  = get_top_infos($id_top);
     ?>
     <title>
-        Tous les Tops 👉 <?php echo $top_infos['top_number']; ?> - <?php echo $top_infos['top_question']; ?> 🔥 VAINKEURZ
+        Tous les Tops 👉 <?php echo $top_infos['top_title']; ?> - <?php echo $top_infos['top_question']; ?> 🔥 VAINKEURZ
     </title>
     <meta name="description" content="Découvre tous les Tops générés sur VAINKEURZ" />
 

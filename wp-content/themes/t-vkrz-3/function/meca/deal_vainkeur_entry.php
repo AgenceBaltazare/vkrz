@@ -3,6 +3,8 @@
 function deal_vainkeur_entry($user_id = false){
 
     global $uuiduser;
+    $id_vainkeur    = false;
+    $uuid_user_vkrz = false;
 
     if(!$user_id) {
         global $user_id;
@@ -80,6 +82,14 @@ function deal_vainkeur_entry($user_id = false){
 
         }
     }
+
+    if(!$id_vainkeur){
+        $id_vainkeur = false;
+    }
+    if(!$uuid_user_vkrz){
+        $uuid_user_vkrz = $uuiduser;
+    }
+
 
     $user_info       = get_userdata($user_id);
     $user_pseudo     = $user_info->nickname;

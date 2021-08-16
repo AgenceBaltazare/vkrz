@@ -1,6 +1,9 @@
 <?php
 function get_note($id_top, $uuiduser){
 
+    $note_id    = 0;
+    $note_value = 0;
+
     $user_note_of_t = new WP_Query(array(
         'post_type'              => 'note',
         'posts_per_page'         => '1',

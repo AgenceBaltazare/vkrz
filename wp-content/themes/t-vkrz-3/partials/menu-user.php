@@ -174,7 +174,7 @@ elseif(is_author()){
 
                 <?php $id_top = $_GET['id_top']; ?>
                 <div class="tournament-heading text-center">
-                    <h3 class="mb-0 t-titre-tournoi">Top <?php echo get_numbers_of_contenders($id_top); ?> mondial <span class="ico text-center">🏆</span> <?php echo get_the_title($id_top); ?></h3>
+                    <h3 class="mb-0 t-titre-tournoi">Top <?php echo get_numbers_of_contenders($id_top); ?> mondial <span class="ico text-center">🌎</span> <?php echo get_the_title($id_top); ?></h3>
                     <h4 class="mb-0">
                         <?php the_field('question_t', $id_top); ?>
                     </h4>
@@ -203,7 +203,6 @@ elseif(is_author()){
                     <h3 class="mb-0 t-titre-tournoi">
                         Profil de <?php echo $vainkeur_info['pseudo']; ?> <?php echo $vainkeur_info['level']; ?>
                     </h3>
-                    <h4 class="mb-0"><?php echo $current_cat->description; ?></h4>
                 </div>
 
             <?php endif; ?>

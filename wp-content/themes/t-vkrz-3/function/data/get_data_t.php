@@ -30,6 +30,7 @@ function get_numbers_of_contenders($id_top) {
 function get_top_infos($id_top, $id_ranking = false){
 
     global $id_ranking;
+    $top_type = false;
 
     $top_url       = get_the_permalink($id_top);
     $top_title     = get_the_title($id_top);

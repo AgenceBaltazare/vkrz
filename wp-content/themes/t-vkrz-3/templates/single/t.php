@@ -1,4 +1,5 @@
 <?php
+global $user_id;
 global $uuiduser;
 global $id_vainkeur;
 global $id_ranking;
@@ -9,10 +10,8 @@ global $utm;
 global $user_infos;
 global $user_tops;
 $user_id       = get_user_logged_id();
-$uuiduser      = deal_uuiduser();
 $utm           = deal_utm();
 $id_top        = get_the_ID();
-$id_ranking    = get_user_ranking_id($id_top, $uuiduser);
 if(is_user_logged_in()) {
     if (false === ( $user_tops = get_transient( 'user_'.$user_id.'_get_user_tops' ) )) {
         $user_tops = get_user_tops();
@@ -20,18 +19,17 @@ if(is_user_logged_in()) {
     } else {
         $user_tops = get_transient( 'user_'.$user_id.'_get_user_tops' );
     }
-    if (false === ( $user_infos = get_transient( 'user_'.$user_id.'_deal_vainkeur_entry' ) )) {
-        $user_infos = deal_vainkeur_entry();
-        set_transient( 'user_'.$user_id.'_deal_vainkeur_entry', $user_infos, DAY_IN_SECONDS );
-    } else {
-        $user_infos = get_transient( 'user_'.$user_id.'_deal_vainkeur_entry' );
-    }
 } 
 else {
     $user_tops  = get_user_tops();
-    $user_infos = deal_vainkeur_entry();
 }
-$id_vainkeur = $user_infos['id_vainkeur'];
+$uuiduser      = deal_uuiduser();
+$user_infos    = deal_vainkeur_entry();
+$id_vainkeur   = $user_infos['id_vainkeur'];
+if($id_vainkeur){
+    $current_id_vainkeur = $id_vainkeur;
+}
+$id_ranking    = get_user_ranking_id($id_top, $uuiduser);
 if($id_ranking){
     extract(get_next_duel($id_ranking, $id_top, $current_id_vainkeur));
     if(!$is_next_duel){

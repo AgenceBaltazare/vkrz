@@ -15,7 +15,7 @@ else{
 }
 $user_single_top_data = array_search($id_top, array_column($list_user_tops, 'id_top'));
 if($user_single_top_data !== false) {
-    $state = $list_user_tops[$user_sinle_top_data]['state'];
+    $state = $list_user_tops[$user_single_top_data]['state'];
 }
 else{
     $state = "todo";
