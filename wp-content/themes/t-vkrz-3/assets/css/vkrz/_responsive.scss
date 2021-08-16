@@ -75,6 +75,10 @@
     padding: calc(1rem - 0.8rem + 7.45rem + 1.3rem) calc(2rem - 0.8rem) 0 calc(2rem - 0.8rem) !important;
   }
 
+  html body.page-template-monitor .app-content {
+    padding: 0 !important;
+  }
+
   .bookmark-wrapper{
     display: none !important;
   }

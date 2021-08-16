@@ -84,7 +84,7 @@ if(!is_single() || get_post_type() != "tournoi"){
 </head>
 
 <?php
-if(is_single()){
+if(is_single() || is_page(get_page_by_path('monitor'))){
     $list_body_class = "vertical-layout vertical-menu-modern navbar-floating footer-static menu-collapsed";
 }
 else{
@@ -99,6 +99,9 @@ else{
 	<!-- End Google Tag Manager (noscript) -->
 <?php endif; ?>
 
-<?php get_template_part('partials/menu-user'); ?>
-
-<?php get_template_part('partials/menu-vkrz'); ?>
+<?php
+    if(!is_page(get_page_by_path('monitor'))){
+        get_template_part('partials/menu-user');
+    }
+    get_template_part('partials/menu-vkrz');
+?>

@@ -32,7 +32,7 @@ foreach($list_user_tops as $top){
                                         <h5 class="mb-75 t-rose">Inscription</h5>
                                         <p class="card-text">
                                             <?php echo $vainkeur_id; ?>ème vainkeur à avoir rejoint le concept
-                                            <!-- #<?php the_field('uuid_user_vkrz', $vainkeur_id); ?> -->
+                                            <!-- #<?php $vainkeur_info['uuid_user_vkrz']; ?> -->
                                         </p>
                                     </div>
                                     <?php

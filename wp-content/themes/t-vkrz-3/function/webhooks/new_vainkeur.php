@@ -8,7 +8,7 @@ function new_vainkeur($user_id){
         $user_avatar = get_avatar_url($user_id, ['size' => '80']);
     }
     else{
-        $user_avatar = get_bloginfo('template_directory')."/assets/images/vkrz/ninja.png";
+        $user_avatar = get_bloginfo('template_directory')."/assets/images/vkrz/avatar.png";
     }
     $user_url       = get_author_posts_url($user_id);
 

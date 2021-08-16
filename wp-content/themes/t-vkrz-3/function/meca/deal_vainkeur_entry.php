@@ -90,12 +90,16 @@ function deal_vainkeur_entry($user_id = false){
         $uuid_user_vkrz = $uuiduser;
     }
 
+    $user_pseudo         = "";
+    $user_email          = "";
+    $user_role           = "";
 
-    $user_info       = get_userdata($user_id);
-    $user_pseudo     = $user_info->nickname;
-    $user_email      = $user_info->user_email;
-    $user_role       = $user_info->roles[0];
-
+    if($user_id){
+        $user_info       = get_userdata($user_id);
+        $user_pseudo     = $user_info->nickname;
+        $user_email      = $user_info->user_email;
+        $user_role       = $user_info->roles[0];
+    }
     
     $avatar_url      = get_avatar_url($user_id, ['size' => '80', 'force_default' => false]);
 

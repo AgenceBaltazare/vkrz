@@ -37,3 +37,9 @@ add_action( 'wp_ajax_nopriv_vkzr_begin_t', 'vkzr_begin_t' );
 function vkzr_begin_t() {
     begin_t($_POST['id_top'], $_POST['uuiduser'], $_POST['typetop']);
 }
+
+add_action( 'wp_ajax_vkzr_get_monitor_data', 'vkzr_get_monitor_data' );
+add_action( 'wp_ajax_nopriv_get_monitor_data', 'vkzr_get_monitor_data' );
+function vkzr_get_monitor_data() {
+    get_monitor_data();
+}

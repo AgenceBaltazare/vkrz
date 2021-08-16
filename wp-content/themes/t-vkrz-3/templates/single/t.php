@@ -159,7 +159,7 @@ $top_datas = get_top_data($id_top);
                                                             $avatar_url = get_avatar_url($creator_data[0]['creator_id'], ['size' => '80']);
                                                         }
                                                         else{
-                                                            $avatar_url = get_bloginfo('template_directory')."/assets/images/vkrz/ninja.png";
+                                                            $avatar_url = get_bloginfo('template_directory')."/assets/images/vkrz/avatar.png";
                                                         }
                                                         ?>
                                                         <img src="<?php echo $avatar_url; ?>" alt="Avatar" width="38" height="38">

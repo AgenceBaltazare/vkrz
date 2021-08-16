@@ -12,7 +12,7 @@ $vainkeur_info = isset($vainkeur_info) ? $vainkeur_info : $user_infos;
     <div class="position-relative">
 
         <div class="profile-img-container d-flex align-items-center">
-            <div class="profile-img" style="background: url(<?php echo $vainkeur_info['avatar']; ?>) no-repeat center center;">
+            <div class="profile-img" style="background: url(<?php echo $vainkeur_info['avatar']; ?>) #7367f0 no-repeat center center;">
                 
             </div>
             <div class="profile-title ml-3">
