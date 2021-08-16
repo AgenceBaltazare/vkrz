@@ -33,9 +33,8 @@ else {
 }
 $id_vainkeur = $user_infos['id_vainkeur'];
 if($id_ranking){
-    extract(get_next_duel($id_ranking, $id_top));
+    extract(get_next_duel($id_ranking, $id_top, $current_id_vainkeur));
     if(!$is_next_duel){
-        increase_top_counter($id_vainkeur);
         wp_redirect(get_the_permalink($id_ranking));
     }
 }

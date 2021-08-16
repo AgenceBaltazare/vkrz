@@ -1,5 +1,5 @@
 <?php
-function get_next_duel($id_ranking, $id_top){
+function get_next_duel($id_ranking, $id_top, $current_id_vainkeur){
 
     global $id_vainkeur;
     $next_duel          = [];
@@ -114,6 +114,7 @@ function get_next_duel($id_ranking, $id_top){
                 if (!get_field('done_r', $id_ranking)) {
                     update_field('done_r', 'done', $id_ranking);
                     update_field('done_date_r', date('d/m/Y H:i:s'), $id_ranking);
+                    increase_top_counter($current_id_vainkeur);
                 }
 
             } else {
@@ -253,6 +254,7 @@ function get_next_duel($id_ranking, $id_top){
                 if (!get_field('done_r', $id_ranking)) {
                     update_field('done_r', 'done', $id_ranking);
                     update_field('done_date_r', date('d/m/Y H:i:s'), $id_ranking);
+                    increase_top_counter($current_id_vainkeur);
                 }
             }
 
@@ -287,6 +289,7 @@ function get_next_duel($id_ranking, $id_top){
 
                     update_field('done_date_r', date('d/m/Y H:i:s'), $id_ranking);
                     update_field('done_r', 'done', $id_ranking);
+                    increase_top_counter($current_id_vainkeur);
 
                 }
 
@@ -324,6 +327,7 @@ function get_next_duel($id_ranking, $id_top){
         'nb_user_votes',
         'nb_contenders',
         'id_top',
-        'id_ranking'
+        'id_ranking',
+        'current_id_vainkeur'
     );
 }

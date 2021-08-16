@@ -16,6 +16,8 @@ $(document).ready(function ($) {
         $('.contender_zone').removeClass('animate__slideInDown');
         $('.contender_zone').removeClass('animate__slideInUp');
 
+        console.log(id_vainkeur);
+
         e.preventDefault();
 
         if (!ajaxRunning) {
@@ -38,7 +40,7 @@ $(document).ready(function ($) {
                     id_ranking: $(this).find('.contender_zone').data('id-ranking'),
                     id_winner: $(this).find('.contender_zone').data('id-winner'),
                     id_looser: $(this).find('.contender_zone').data('id-looser'),
-                    id_vainkeur: id_vainkeur
+                    current_id_vainkeur: id_vainkeur
                 }
             })
                 .done(function (response) {

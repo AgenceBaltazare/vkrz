@@ -252,7 +252,7 @@ $url_ranking  = get_the_permalink($id_ranking);
 
                 <div class="related animate__fadeInUp animate__animated animate__delay-4s">
 
-                    <?php $top_datas     = get_top_data($id_top); ?>
+                    <?php $top_datas = get_top_data($id_top); ?>
 
                     <div class="card">
                         <div class="card-body">
@@ -260,10 +260,10 @@ $url_ranking  = get_the_permalink($id_ranking);
                                 <?php
                                 $similar = get_user_percent(get_field('uuid_user_r', $id_ranking), $id_top);
                                 if($similar['percent'] == 0){
-                                    $wording_similar = "0% <small>des Top3 identiques à celui-ci !</small>";
+                                    $wording_similar = "0% <small>des Top 3 identiques à celui-ci !</small>";
                                 }
                                 else{
-                                    $wording_similar = $similar['percent']."% <small>des Top3 identiques à celui-ci !</small>";
+                                    $wording_similar = $similar['percent']."% <small>des Top 3 identiques à celui-ci !</small>";
                                 }
                                 ?>
                                 <?php echo $wording_similar; ?>

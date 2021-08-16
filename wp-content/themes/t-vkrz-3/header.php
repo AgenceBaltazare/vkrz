@@ -23,7 +23,7 @@ if(!is_single() || get_post_type() != "tournoi"){
         $user_tops  = get_user_tops();
         
     }
-    $user_infos = deal_vainkeur_entry();
+    $user_infos  = deal_vainkeur_entry();
     $id_vainkeur = $user_infos['id_vainkeur'];
 }
 ?>
