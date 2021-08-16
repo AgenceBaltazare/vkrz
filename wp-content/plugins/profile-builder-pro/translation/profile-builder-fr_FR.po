@@ -4574,7 +4574,7 @@ msgstr "Profile Builder Login Widget"
 #: profile-builder-2.0/front-end/class-formbuilder.php:415
 #: profile-builder-2.0/front-end/login.php:250
 msgid "Register"
-msgstr "S'inscrire"
+msgstr "Devenir vainkeur"
 
 #: profile-builder-2.0/features/login-widget/login-widget.php:63
 msgid "Title:"
