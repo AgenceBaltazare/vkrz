@@ -19,21 +19,7 @@ function get_user_tops($user_id = false){
         global $user_id;
     }
 
-    if($user_id){
-        $args_author__in = array($user_id);
-        $args_meta_query = array();
-    }
-    else{
-        global $uuiduser;
-        $args_author__in = array();
-        $args_meta_query = array(
-            array(
-                'key' => 'uuid_user_r',
-                'value' => $uuiduser,
-                'compare' => '='
-            )
-        );
-    }
+    global $uuiduser;
 
     $user_nb_votes          = 0;
     $user_tops_all          = array();
@@ -47,8 +33,13 @@ function get_user_tops($user_id = false){
         'ignore_sticky_posts'    => true,
         'update_post_meta_cache' => false,
         'no_found_rows'          => false,
-        'meta_query'             => $args_meta_query,
-        'author__in'             => $args_author__in,
+        'meta_query'             => array(
+            array(
+                'key' => 'uuid_user_r',
+                'value' => $uuiduser,
+                'compare' => '='
+            )
+        )
     ));
 
     if ($user_all_ranking->have_posts()) {
