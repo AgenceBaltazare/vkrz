@@ -92,6 +92,7 @@ get_header();
                                                                         <div class="font-weight-bold championname">
                                                                             <span>
                                                                                 <?php echo get_the_author_meta('nickname'); ?>
+                                                                                <!-- #<?php echo $user_infos['uuid_user_vkrz']; ?> -->
                                                                             </span>
                                                                             <?php if($user_infos['user_role'] == "administrator"): ?>
                                                                                 <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">

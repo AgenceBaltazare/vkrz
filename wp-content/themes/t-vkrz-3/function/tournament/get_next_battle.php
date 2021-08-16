@@ -234,6 +234,11 @@ function get_next_duel($id_ranking, $id_top, $current_id_vainkeur){
                         update_field('done_r', 'done', $id_ranking);
                         update_field('done_date_r', date('d/m/Y H:i:s'), $id_ranking);
                     }
+
+                    if (is_user_logged_in()) {
+                        delete_transient( 'user_'.get_current_user_id().'_get_user_tops' );
+                    }
+                    
                 }
 
             }
@@ -256,6 +261,11 @@ function get_next_duel($id_ranking, $id_top, $current_id_vainkeur){
                     update_field('done_date_r', date('d/m/Y H:i:s'), $id_ranking);
                     increase_top_counter($current_id_vainkeur);
                 }
+
+                if (is_user_logged_in()) {
+                    delete_transient( 'user_'.get_current_user_id().'_get_user_tops' );
+                }
+
             }
 
         }
