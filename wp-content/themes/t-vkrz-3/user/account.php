@@ -308,12 +308,12 @@ foreach($list_user_tops as $top){
                                                                         <div class="media-body">
                                                                             <div class="media-heading">
                                                                                 <h6 class="cart-item-title mb-0">
-                                                                                    <a class="text-body" href="<?php the_permalink($top['id_ranking']); ?>">
-                                                                                        Top <?php echo $top['nb_top']; ?> - <?php echo $top['top_title']; ?>); ?>
+                                                                                    <a class="text-body" href="<?php the_permalink($top['id_top']); ?>">
+                                                                                        Top <?php echo $top['nb_top']; ?> - <?php echo get_the_title($top['id_top']); ?>
                                                                                     </a>
                                                                                 </h6>
                                                                                 <small class="cart-item-by legende">
-                                                                                    <?php echo $top['top_title']; ?>
+                                                                                    <?php the_field('question_t', $top['id_top']); ?>
                                                                                 </small>
                                                                             </div>
                                                                         </div>
