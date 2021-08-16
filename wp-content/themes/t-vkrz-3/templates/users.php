@@ -44,7 +44,7 @@ get_header();
                                             <div class="card">
                                                 <div class="card-header">
                                                     <h4 class="card-title pt-1 pb-1">
-                                                        <span class="t-rose">TOP 20</span> des champions
+                                                        <span class="t-rose">TOP 20</span> des Vaikeurs les plus actifs <span class="ico">🤩</span>
                                                     </h4>
                                                 </div>
                                                 <div class="table-responsive">
