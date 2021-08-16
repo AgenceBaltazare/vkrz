@@ -281,7 +281,7 @@ foreach($list_user_tops as $top){
                                                     <?php echo $vainkeur_info['nb_top_vkrz']; ?>
                                                 </h2>
                                                 <p class="card-text legende">
-                                                    <?php if(count($list_user_tops) > 1) : ?>
+                                                    <?php if(count($list_t_done) > 1) : ?>
                                                         Tops terminés
                                                     <?php else: ?>
                                                         Top terminé
@@ -303,10 +303,10 @@ foreach($list_user_tops as $top){
                                                             <thead>
                                                             <tr>
                                                                 <th class="">
-                                                                    <?php if(count($list_user_tops) > 1) : ?>
-                                                                        <span class="t-rose"><?php echo count($list_user_tops); ?></span> Tops terminés
+                                                                    <?php if(count($list_t_done) > 1) : ?>
+                                                                        <span class="t-rose"><?php echo count($list_t_done); ?></span> Tops terminés
                                                                     <?php else: ?>
-                                                                        <span class="t-rose"><?php echo count($list_user_tops); ?></span> Top terminé
+                                                                        <span class="t-rose"><?php echo count($list_t_done); ?></span> Top terminé
                                                                     <?php endif; ?>
                                                                 </th>
                                                                 <th class="text-right">

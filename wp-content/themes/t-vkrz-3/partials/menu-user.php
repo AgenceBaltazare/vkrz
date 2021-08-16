@@ -263,7 +263,7 @@ elseif(is_author()){
                     </li>
                     <?php if($user_infos['nb_top_vkrz'] >= 1): ?>
                         <li class="dropdown-menu-footer">
-                            <a class="btn btn-primary btn-block" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>?uuid=<?php echo $uuiduser; ?>">
+                            <a class="btn btn-primary btn-block" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>">
                                 Voir tous mes Tops terminés
                             </a>
                         </li>
