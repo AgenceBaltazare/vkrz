@@ -12,17 +12,7 @@ global $user_tops;
 $user_id       = get_user_logged_id();
 $utm           = deal_utm();
 $id_top        = get_the_ID();
-if(is_user_logged_in()) {
-    if (false === ( $user_tops = get_transient( 'user_'.$user_id.'_get_user_tops' ) )) {
-        $user_tops = get_user_tops();
-        set_transient( 'user_'.$user_id.'_get_user_tops', $user_tops, DAY_IN_SECONDS );
-    } else {
-        $user_tops = get_transient( 'user_'.$user_id.'_get_user_tops' );
-    }
-} 
-else {
-    $user_tops  = get_user_tops();
-}
+$user_tops     = get_user_tops();
 $uuiduser      = deal_uuiduser();
 $user_infos    = deal_vainkeur_entry();
 $id_vainkeur   = $user_infos['id_vainkeur'];
