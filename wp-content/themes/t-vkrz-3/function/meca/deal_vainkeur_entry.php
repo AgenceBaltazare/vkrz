@@ -49,17 +49,36 @@ function deal_vainkeur_entry($user_id = false){
     }
     else{
 
-        $new_vainkeur_entry = array(
-            'post_type'   => 'vainkeur',
-            'post_title'  => $uuiduser,
-            'post_status' => 'publish',
-        );
-        $id_vainkeur  = wp_insert_post($new_vainkeur_entry);
+        $rank_entry = new WP_Query(array(
+            'post_type'              => 'classement',
+            'posts_per_page'         => '1',
+            'fields'                 => 'ids',
+            'post_status'            => 'publish',
+            'ignore_sticky_posts'    => true,
+            'update_post_meta_cache' => false,
+            'no_found_rows'          => false,
+            'meta_query'             => array(
+                array(
+                    'key' => 'uuid_user_r',
+                    'value' => $uuiduser,
+                    'compare' => '='
+                )
+            )
+        ));
+        if($rank_entry->have_posts()){
 
-        update_field('uuid_user_vkrz', $uuiduser, $id_vainkeur);
-        update_field('nb_vote_vkrz', 0, $id_vainkeur);
-        update_field('nb_top_vkrz', 0, $id_vainkeur);
+            $new_vainkeur_entry = array(
+                'post_type'   => 'vainkeur',
+                'post_title'  => $uuiduser,
+                'post_status' => 'publish',
+            );
+            $id_vainkeur  = wp_insert_post($new_vainkeur_entry);
+    
+            update_field('uuid_user_vkrz', $uuiduser, $id_vainkeur);
+            update_field('nb_vote_vkrz', 0, $id_vainkeur);
+            update_field('nb_top_vkrz', 0, $id_vainkeur);
 
+        }
     }
 
     $user_info       = get_userdata($user_id);
