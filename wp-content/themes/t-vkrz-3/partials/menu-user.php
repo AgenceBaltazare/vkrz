@@ -209,7 +209,7 @@ elseif(is_author()){
             <?php endif; ?>
         </div>
 
-        <ul class="nav navbar-nav align-items-center">
+        <ul class="nav navbar-nav align-items-center justify-content-end">
             <li class="nav-item dropdown dropdown-cart">
                 <a class="nav-link" href="javascript:void(0);" data-toggle="dropdown">
                     <span class="ico text-center">💎</span>

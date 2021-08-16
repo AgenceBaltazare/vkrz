@@ -2055,10 +2055,10 @@ textarea {
 
   .dropdown-notification, .dropdown-cart {
     width: 25%;
-    text-align: right;
+    text-align: center;
   }
   .dropdown-notification a, .dropdown-cart a {
-    font-size: 10px;
+    font-size: 12px;
   }
 }
 @media (max-width: 425px) {

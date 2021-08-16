@@ -12,7 +12,7 @@ get_header();
             <div class="intro-mobile">
                 <div class="tournament-heading text-center">
                     <h3 class="mb-0 t-titre-tournoi">
-                        Top 20 des champions
+                        Top 20 des Vainkeurs les plus actifs <span class="ico">🤩</span>
                     </h3>
                 </div>
             </div>

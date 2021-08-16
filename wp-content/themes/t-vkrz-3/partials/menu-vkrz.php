@@ -77,8 +77,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="d-flex align-items-center" href="<?php the_permalink(get_page_by_path('liste-des-champions')); ?>">
-                    <span class="ico">👑</span> <span class="menu-title text-truncate">Les champions</span>
+                <a class="d-flex align-items-center" href="<?php the_permalink(143788); ?>">
+                    <span class="ico">👑</span> <span class="menu-title text-truncate">Les Vainkeurs</span>
                 </a>
             </li>
             <li class="nav-item">

@@ -14789,7 +14789,7 @@ msgstr "Il ne semble pas y avoir de nouveau message."
 
 #: wp-mail.php:42
 msgid "Slow down cowboy, no need to check for new mails so often!"
-msgstr "Lève le pied, champion ! Inutile de vérifier tes e-mails aussi souvent !"
+msgstr "Lève le pied, vainkeur! Inutile de vérifier tes e-mails aussi souvent !"
 
 #: wp-login.php:1261
 msgid "You are now logged out."

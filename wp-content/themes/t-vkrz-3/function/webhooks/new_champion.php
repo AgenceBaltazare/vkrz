@@ -1,6 +1,6 @@
 <?php
-add_action('user_register', 'new_champion', 10, 1);
-function new_champion($user_id){
+add_action('user_register', 'new_vainkeur', 10, 1);
+function new_vainkeur($user_id){
 
     $user_data      = get_user_by('ID', $user_id);
     $user_name      = $user_data->nickname;

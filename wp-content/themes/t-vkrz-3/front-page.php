@@ -69,7 +69,7 @@ $list_t_already_done = $user_tops['list_user_tops_done_ids'];
                                     <br>  
                                     Tu vas forcément devoir faire des choix que tu voulais clairement pas avoir 😱
                                     <br><br>
-                                    Ensuite, tu pourras comparer tes 🥇🥈🥉 à ceux de tes amis - si tu en as bien sûr. Et puis si tu n'en pas, 🤗 rejoins notre Discord.
+                                    Ensuite, tu pourras comparer tes 🏆 à ceux de tes amis - si tu en as bien sûr. Et puis si tu n'en pas, 🤗 rejoins notre Discord.
                                 </p>
                                 <a href="<?php the_permalink(104853); ?>" class="btn btn-primary waves-effect">
                                     Découvrir l'histoire de VAINKEURZ

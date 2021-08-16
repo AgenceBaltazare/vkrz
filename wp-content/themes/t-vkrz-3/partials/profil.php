@@ -28,7 +28,7 @@ $vainkeur_info = isset($vainkeur_info) ? $vainkeur_info : $user_infos;
                             🦙
                         </span>
                     <?php endif; ?>
-                    <?php if($vainkeur_info['user_role'] == "author"): ?>
+                    <?php if($vainkeur_info['user_role']  == "administrator" || $vainkeur_info['user_role'] == "author"): ?>
                         <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
                             🎨
                         </span>
