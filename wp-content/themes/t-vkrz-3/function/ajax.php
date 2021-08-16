@@ -39,7 +39,7 @@ function vkzr_begin_t() {
 }
 
 add_action( 'wp_ajax_vkzr_get_monitor_data', 'vkzr_get_monitor_data' );
-add_action( 'wp_ajax_nopriv_get_monitor_data', 'vkzr_get_monitor_data' );
+add_action( 'wp_ajax_nopriv_vkzr_get_monitor_data', 'vkzr_get_monitor_data' );
 function vkzr_get_monitor_data() {
     get_monitor_data();
 }

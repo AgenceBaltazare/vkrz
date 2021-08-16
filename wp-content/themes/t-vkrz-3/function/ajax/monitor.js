@@ -44,9 +44,10 @@ $(document).ready(function ($) {
     }
 
     function getDataCount() {
-    
+
         if (!ajaxRunning) {
             ajaxRunning = true;
+
             $.ajax({
                 method: "POST",
                 url: vkrz_ajaxurl,
@@ -65,13 +66,13 @@ $(document).ready(function ($) {
                     updateTopsCount(newCountTops);
                 }
             })
-            .always(function () {
+            .always(function() {
                 ajaxRunning = false;
             });
         }
     }
 
     // Execute getPlayerCount every 5 seconds.
-    setInterval(getDataCount, 10);
+    setInterval(getDataCount, 2500);
 
 });

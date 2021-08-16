@@ -100,8 +100,6 @@ else{
 <?php endif; ?>
 
 <?php
-    if(!is_page(get_page_by_path('monitor'))){
-        get_template_part('partials/menu-user');
-    }
+    get_template_part('partials/menu-user');
     get_template_part('partials/menu-vkrz');
 ?>
