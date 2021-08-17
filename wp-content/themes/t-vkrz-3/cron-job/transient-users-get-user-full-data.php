@@ -2,7 +2,7 @@
 include __DIR__.'/../../../../wp-load.php';
 
 /**
- * CRON JOB : Update transient "user_id_get_user_tops" and "user_id_deal_vainkeur_entry" for all users
+ * CRON JOB : Update transient "user_id_get_user_tops" for all users
  *
  * When : Everyday @ 00:00
  */

@@ -77,7 +77,6 @@ function get_top_infos($id_top, $id_ranking = false){
 
 function get_top_data($id_top){
 
-    $result                 = array();
     $count_votes_of_t       = 0;
     $count_note_of_t        = 0;
 
@@ -139,13 +138,10 @@ function get_top_data($id_top){
         $moyenne_note = 0;
     }
 
-    $result = array(
+    return array(
         "nb_tops"   => $all_ranking_of_t->post_count,
         "nb_votes"  => $count_votes_of_t,
         "nb_note"   => $all_notes_of_t->post_count,
         "moy_note"  => $moyenne_note
     );
-
-    return $result;
-
 }
