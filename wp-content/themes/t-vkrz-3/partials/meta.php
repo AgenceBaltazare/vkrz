@@ -137,7 +137,7 @@
     global $vainkeur_tops;
     $vainkeur            = get_user_by('slug', get_query_var('author_name'));
     $vainkeur_id         = $vainkeur->ID;
-    if(is_user_logged_in()) {
+    if(is_user_logged_in() && env() != "local") {
         if (false === ( $vainkeur_tops = get_transient( 'user_'.$vainkeur_id.'_get_user_tops' ) )) {
             $vainkeur_tops   = get_user_tops($vainkeur_id);
             set_transient( 'user_'.$user_id.'_get_user_tops', $vainkeur_tops, DAY_IN_SECONDS );
