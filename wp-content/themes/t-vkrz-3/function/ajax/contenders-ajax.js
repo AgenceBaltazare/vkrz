@@ -74,7 +74,36 @@ $(document).ready(function ($) {
                 $('.display_users_votes h6').replaceWith(data.uservotes_html);
                 $('.current_rank').html(data.user_ranking_html);
 
+                window.dataLayer.push({
+                    'event': 'track_event',
+                    'event_name': 'vote',
+                    'categorie': top_categorie_layer,
+                    'top_title': top_title_layer,
+                    'top_id': top_id_top_layer,
+                    'top_type': top_type_layer,
+                    'user_id': top_id_user_layer,
+                    'user_uuid': top_uuiduser_layer,
+                    'user_level': top_user_level_layer,
+                    'utm': utm_layer,
+                    'event_score': 1
+                });
+
                 if(!data.is_next_duel){
+
+                    window.dataLayer.push({
+                        'event': 'track_event',
+                        'event_name': 'end_top',
+                        'categorie': top_categorie_layer,
+                        'top_title': top_title_layer,
+                        'top_id': top_id_top_layer,
+                        'top_type': top_type_layer,
+                        'user_id': top_id_user_layer,
+                        'user_uuid': top_uuiduser_layer,
+                        'user_level': top_user_level_layer,
+                        'utm': utm_layer,
+                        'event_score': 20
+                    });
+
                     location.reload()
                 }
 

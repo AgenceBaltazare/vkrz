@@ -32,6 +32,19 @@ $(document).ready(function ($) {
                 }
             })
             .done(function (response) {
+                window.dataLayer.push({
+                    'event': 'track_event',
+                    'event_name': 'start_top',
+                    'categorie': top_categorie_layer,
+                    'top_title': top_title_layer,
+                    'top_id': top_id_top_layer,
+                    'top_type': id_top,
+                    'user_id': top_id_user_layer,
+                    'user_uuid': top_uuiduser_layer,
+                    'user_level': top_user_level_layer,
+                    'utm': utm_layer,
+                    'event_score': 10
+                });
                 location.reload()
             })
             .always(function () {
