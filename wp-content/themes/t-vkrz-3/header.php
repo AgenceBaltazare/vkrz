@@ -5,13 +5,12 @@ global $user_tops;
 global $user_infos;
 global $id_vainkeur;
 global $utm;
-
 if(!is_single() || get_post_type() != "tournoi"){
     $user_id        = get_user_logged_id();
     $uuiduser       = deal_uuiduser();
     $utm            = deal_utm();
 
-    if(is_user_logged_in()) {
+    if(is_user_logged_in() && env() != "local") {
         if (false === ( $user_tops = get_transient( 'user_'.$user_id.'_get_user_tops' ) )) {
             $user_tops = get_user_tops();
             set_transient( 'user_'.$user_id.'_get_user_tops', $user_tops, DAY_IN_SECONDS );
