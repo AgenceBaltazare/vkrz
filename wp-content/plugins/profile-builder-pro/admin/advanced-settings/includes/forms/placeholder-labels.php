@@ -129,11 +129,11 @@ function wppb_pbpl_meta_box_content( $post ) {
     ?>
     <div class="wrap">
         <p>
-            <label for="pbpl-active" ><?php _e( 'Replace labels with placeholders:', 'profile-builder' ) ?></label>
+            <label for="pbpl-active" ><?php esc_html_e( 'Replace labels with placeholders:', 'profile-builder' ) ?></label>
         </p>
         <select name="pbpl-active" id="pbpl-active" class="mb-select">
-            <option value="yes" <?php selected( $pbpl_select_value, 'yes' ); ?>><?php _e( 'Yes', 'profile-builder' ) ?></option>
-            <option value="no" <?php selected( $pbpl_select_value, 'no' ); ?>><?php _e( 'No', 'profile-builder' ) ?></option>
+            <option value="yes" <?php selected( $pbpl_select_value, 'yes' ); ?>><?php esc_html_e( 'Yes', 'profile-builder' ) ?></option>
+            <option value="no" <?php selected( $pbpl_select_value, 'no' ); ?>><?php esc_html_e( 'No', 'profile-builder' ) ?></option>
         </select>
     </div>
     <?php

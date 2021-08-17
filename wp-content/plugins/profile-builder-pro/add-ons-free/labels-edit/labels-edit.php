@@ -93,7 +93,7 @@ function _wppb_le_output_str2( $str ) {
 
 /* scan pble labels on Rescan button click */
 function wppb_le_rescan() {
-	if( isset( $_POST['rescan'] ) && $_POST['rescan'] ) {
+	if( isset( $_POST['rescan'] ) ) {
         wppb_le_scan_labels();
 	}
 
@@ -105,12 +105,12 @@ add_action( 'init', 'wppb_le_rescan' );
 
 /* rescan success message */
 function wppb_le_rescan_success_message() {
-	if( isset( $_POST['rescan'] ) && $_POST['rescan'] ) {
+	if( isset( $_POST['rescan'] ) ) {
 		global $wppb_strings;
 		$wppb_strings_count = count( $wppb_strings );
 
 		$rescan_message = '<div id="message" class="updated"><p>' . $wppb_strings_count . __(' labels scanned.', 'profile-builder') . '</p></div>';
-		echo $rescan_message;
+		echo wp_kses_post( $rescan_message );
 	}
 }
 add_action( 'admin_notices', 'wppb_le_rescan_success_message' );
@@ -299,26 +299,26 @@ function wppb_le_impexp_content() {
     wppb_le_import();
 	?>
 	<p>
-		<?php _e( 'Import Labels from a .json file.', 'profile-builder' ); ?>
+		<?php esc_html_e( 'Import Labels from a .json file.', 'profile-builder' ); ?>
 		<br>
-		<?php _e( 'Easily import the labels from another site.', 'profile-builder' ); ?>
+		<?php esc_html_e( 'Easily import the labels from another site.', 'profile-builder' ); ?>
 	</p>
 	<form name="pble-upload" method="post" action="" enctype= "multipart/form-data">
 		<div class="wrap">
 			<input type="file" name="pble-upload" value="pble-upload" id="pble-upload" />
 		</div>
 		<div class="wrap">
-			<input class="button-primary" type="submit" name="pble-import" value=<?php _e( 'Import', 'profile-builder' ); ?> id="pble-import" onclick="return confirm( '<?php _e( 'This will overwrite all your old edited labels!\nAre you sure you want to continue?', 'profile-builder' ); ?>' )" />
+			<input class="button-primary" type="submit" name="pble-import" value=<?php esc_html_e( 'Import', 'profile-builder' ); ?> id="pble-import" onclick="return confirm( '<?php esc_html_e( 'This will overwrite all your old edited labels!\nAre you sure you want to continue?', 'profile-builder' ); ?>' )" />
 		</div>
 	</form>
 	<hr>
 	<p>
-		<?php _e( 'Export Labels as a .json file.', 'profile-builder' ); ?>
+		<?php esc_html_e( 'Export Labels as a .json file.', 'profile-builder' ); ?>
 		<br>
-		<?php _e( 'Easily import the labels into another site.', 'profile-builder' ); ?>
+		<?php esc_html_e( 'Easily import the labels into another site.', 'profile-builder' ); ?>
 	</p>
 	<div class="wrap">
-		<form action="" method="post"><input class="button-primary" type="submit" name="pble-export" value=<?php _e( 'Export', 'profile-builder' ); ?> id="pble-export" /></form>
+		<form action="" method="post"><input class="button-primary" type="submit" name="pble-export" value=<?php esc_html_e( 'Export', 'profile-builder' ); ?> id="pble-export" /></form>
 	</div>
 <?php
 }
@@ -383,8 +383,8 @@ add_action( "wck_after_adding_form_pble", "wppb_le_chosen_pble" );
 
 /* import class arguments and call */
 function wppb_le_import() {
-	if( isset( $_POST['pble-import'] ) && $_POST['pble-import'] ) {
-		if( isset( $_FILES['pble-upload'] ) && $_FILES['pble-upload'] ) {
+	if( isset( $_POST['pble-import'] ) ) {
+		if( isset( $_FILES['pble-upload'] ) ) {
 			$pble_args = array(
 				'pble'
 			);
@@ -394,7 +394,7 @@ function wppb_le_import() {
 			/* show error/success messages */
 			$pble_messages = $pble_json_upload->get_messages();
 			foreach ( $pble_messages as $pble_message ) {
-				echo '<div id="message" class='. $pble_message['type'] .'><p>'. $pble_message['message'] .'</p></div>';
+				echo '<div id="message" class='. esc_attr( $pble_message['type'] ) .'><p>'. esc_html( $pble_message['message'] ) .'</p></div>';
 			}
 		}
 	}
@@ -403,10 +403,10 @@ function wppb_le_import() {
 /* export class arguments and call */
 add_action( 'admin_init', 'wppb_le_export' );
 function wppb_le_export() {
-	if( isset( $_POST['pble-export'] ) && $_POST['pble-export'] ) {
+	if( isset( $_POST['pble-export'] ) ) {
 		$check_export = get_option( 'pble', 'not_set' );
 		if( empty( $check_export ) || $check_export === 'not_set' ) {
-			echo '<div id="message" class="error"><p>' . __('No labels edited, nothing to export!', 'profile-builder') . '</p></div>';
+			echo '<div id="message" class="error"><p>' . esc_html__('No labels edited, nothing to export!', 'profile-builder') . '</p></div>';
 		} else {
 			$pble_args = array(
 				'pble'

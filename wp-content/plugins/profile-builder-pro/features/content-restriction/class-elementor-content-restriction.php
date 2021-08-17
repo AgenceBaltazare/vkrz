@@ -278,7 +278,7 @@ class WPPB_Elementor {
 			);
 
 			$element->before_render();
-				echo $message;
+				echo $message;//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			$element->after_render();
 		}
 	}

@@ -33,7 +33,7 @@ function wppb_populate_manage_fields(){
         'optgroups' => array(
             'default' =>
                 array(
-                    'label' 	=> __('Default'),
+                    'label' 	=> __('Default', 'profile-builder'),
                     'options'	=> array(
                         'Default - Name (Heading)',
                         'Default - Contact Info (Heading)',
@@ -52,17 +52,17 @@ function wppb_populate_manage_fields(){
             ),
             'standard' =>
                 array(
-                    'label'		=> __('Standard'),
+                    'label'		=> __('Standard', 'profile-builder'),
                     'options'	=> array(),
                 ),
             'advanced' =>
                 array(
-                    'label'		=> __('Advanced'),
+                    'label'		=> __('Advanced', 'profile-builder'),
                     'options'	=> array(),
                 ),
             'other' =>
                 array(
-                    'label'		=> __('Other'),
+                    'label'		=> __('Other', 'profile-builder'),
                     'options'	=> array(
                         'GDPR Checkbox', // since 2.8.2
                         'GDPR Delete Button', // since 3.0.1
@@ -115,6 +115,8 @@ function wppb_populate_manage_fields(){
 
         $manage_field_types['optgroups']['other']['options'][] = 'Select2';
         $manage_field_types['optgroups']['other']['options'][] = 'Select2 (Multiple)';
+
+        $manage_field_types['optgroups']['other']['options'][] = 'Honeypot';
     }
 
     $manage_field_types['optgroups']['other']['options'][] = 'Email Confirmation';
@@ -694,7 +696,7 @@ function wppb_get_currencies( $form_location = '' ) {
         'ALL' => __( 'Albania Lek', 'profile-builder' ),
         'AFN' => __( 'Afghanistan Afghani', 'profile-builder' ),
         'ARS' => __( 'Argentina Peso', 'profile-builder' ),
-        'AWG' => __( 'Aruba Guilder', 'wkc' ),
+        'AWG' => __( 'Aruba Guilder', 'profile-builder' ),
         'AUD' => __( 'Australia Dollar', 'profile-builder' ),
         'AZN' => __( 'Azerbaijan New Manat', 'profile-builder' ),
         'BSD' => __( 'Bahamas Dollar', 'profile-builder' ),
@@ -1212,7 +1214,7 @@ function wppb_check_field_on_edit_add( $message, $fields, $required_fields, $met
                 // meta names that are reserved and cannot be used as part of other meta names
                 $reserved_meta_name_list_strict = apply_filters( 'wppb_unique_meta_name_list_strict', array( 'map' ) );
                 // skip meta name check for these fields
-                $skip_unique_meta_name_list_check = apply_filters( 'wppb_skip_unique_meta_name_list_check', array( 'Map' ) );
+                $skip_unique_meta_name_list_check = apply_filters( 'wppb_skip_unique_meta_name_list_check', array( 'Map', 'Honeypot' ) );
 
 				// if the desired meta name is in the restricted list or if one of the meta names in the strictly
                 // restricted list is part of it display an error message
@@ -1372,20 +1374,20 @@ add_action( 'wck_metabox_content_header_wppb_manage_fields', 'wppb_manage_fields
  */
 function wppb_add_content_before_manage_fields(){
 ?>
-   <p><?php _e('Use these shortcodes on the pages you want the forms to be displayed:', 'profile-builder'); ?></p>
-   <ul>
-        <li><strong class="nowrap">[wppb-register]</strong></li>
-        <li><strong class="nowrap">[wppb-edit-profile]</strong></li>
-        <li><strong class="nowrap">[wppb-register role="author"]</strong></li>
-   </ul>
-   <p>
-       <?php
-       if( PROFILE_BUILDER == 'Profile Builder Pro' )
-           _e("If you're interested in displaying different fields in the registration and edit profile forms, please use the Multiple Registration & Edit Profile Forms Add-ons.", 'profile-builder');
-       else
-           _e( "With Profile Builder Pro you can display different fields in the registration and edit profile forms, using the Multiple Registration & Edit Profile Forms add-on.", "profile-builder" )
-       ?>
-   </p>
+    <p><?php esc_html_e('Use these shortcodes on the pages you want the forms to be displayed:', 'profile-builder'); ?></p>
+        <ul>
+            <li><strong class="nowrap">[wppb-register]</strong></li>
+            <li><strong class="nowrap">[wppb-edit-profile]</strong></li>
+            <li><strong class="nowrap">[wppb-register role="author"]</strong></li>
+        </ul>
+    <p>
+    <?php
+    if( PROFILE_BUILDER == 'Profile Builder Pro' )
+        esc_html_e("If you're interested in displaying different fields in the registration and edit profile forms, please use the Multiple Registration & Edit Profile Forms Add-ons.", 'profile-builder');
+    else
+        esc_html_e( "With Profile Builder Pro you can display different fields in the registration and edit profile forms, using the Multiple Registration & Edit Profile Forms add-on.", "profile-builder" )
+    ?>
+    </p>
 <?php
 }
 add_action('wck_metabox_content_wppb_manage_fields_info', 'wppb_add_content_before_manage_fields');
@@ -1405,7 +1407,7 @@ function wppb_remove_properties_from_added_form( $meta_name, $id, $element_id ){
         echo "<script type=\"text/javascript\">wppb_disable_delete_on_default_mandatory_fields();</script>";
 
     if ( $meta_name == 'wppb_manage_fields' ) {
-        echo "<script type=\"text/javascript\">wppb_edit_form_properties( '#container_wppb_manage_fields', 'update_container_wppb_manage_fields_" . $element_id . "' );</script>";
+        echo "<script type=\"text/javascript\">wppb_edit_form_properties( '#container_wppb_manage_fields', 'update_container_wppb_manage_fields_" . esc_attr( $element_id ) . "' );</script>";
         echo "<script type=\"text/javascript\">wppb_enable_select2( '#container_wppb_manage_fields' );</script>";
     }
 }

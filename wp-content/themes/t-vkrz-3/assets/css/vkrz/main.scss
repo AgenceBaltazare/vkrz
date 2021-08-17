@@ -1,12 +1,14 @@
-@import 'variables';
-@import 'reset';
-@import 'global';
+@import '_variables';
+@import '_reset';
+@import '_global';
 
-@import "menu";
-@import "tournament";
-@import "ranking";
-@import "compte";
-@import "page";
-@import "archive";
+@import "_monitor";
 
-@import "responsive";
+@import "_menu";
+@import "_top";
+@import "_ranking";
+@import "_compte";
+@import "_page";
+@import "_archive";
+
+@import "_responsive";

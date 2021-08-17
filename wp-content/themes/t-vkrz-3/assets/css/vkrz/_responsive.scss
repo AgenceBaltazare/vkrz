@@ -1,0 +1,304 @@
+@media (min-width: 1200px) {
+
+  .col-xxl-2{
+    flex: 0 0 16.66667%;
+    max-width: 16.66667%;
+  }
+
+  .mb-xs{
+    margin-bottom: 10px;
+  }
+
+}
+
+@media (max-width: 1700px) {
+
+  .basic-pricing{
+    .pricing-basic-value {
+      font-size: 1.5rem !important;
+      line-height: 0.8;
+    }
+    .card-text {
+      font-size: 15px;
+    }
+  }
+  .plus{
+    font-size: 20px;
+    margin: 0 5px;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .intro-mobile{
+    display: block;
+  }
+
+  .display_current_user_rank{
+    display: none;
+  }
+
+  .hide-xs{
+    display: none;
+  }
+
+  .hide-lg{
+    display: block;
+  }
+
+  .nav-tournament{
+    left: 0;
+    flex-direction: column;
+    .btng{
+      margin-bottom: 10px;
+    }
+  }
+
+  .user-avatar-section{
+    .content-avatar-name{
+      flex-direction: column;
+      text-align: center;
+      h1{
+        margin-top: 15px;
+      }
+      .ml-2, .mr-1{
+        margin: 0 !important;
+      }
+      .btn{
+        margin-bottom: 10px !important;
+      }
+    }
+  }
+
+  html body .app-content {
+    padding: calc(1rem - 0.8rem + 7.45rem + 1.3rem) calc(2rem - 0.8rem) 0 calc(2rem - 0.8rem) !important;
+  }
+
+  .bookmark-wrapper{
+    display: none !important;
+  }
+
+  .min-tournoi .cov-illu .badge {
+    position: absolute;
+    left: 5px;
+    right: auto;
+    top: 5px;
+    z-index: 9;
+  }
+
+  .logo{
+    max-width: 60px !important;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .cat-min{
+    .card-header{
+      text-align: center;
+      flex-direction: column;
+      padding: 20px 10px 12px 10px;
+      .ico2{
+        display: block;
+        margin: 0 auto 10px;
+      }
+    }
+  }
+
+  .heading-cat{
+    small{
+      display: block;
+      margin: 5px 0 0 0;
+    }
+  }
+  .main-menu .main-menu-content {
+    height: calc(100% - 310px) !important;
+  }
+
+  .vertical-layout .header-navbar .navbar-container ul.navbar-nav li.dropdown .dropdown-menu {
+    top: 80px !important;
+    margin-top: 0px !important;
+  }
+
+  .apropos .card-text h2{
+    text-align: center;
+  }
+
+  .header-navbar .navbar-container ul.navbar-nav li .media-list {
+    max-height: 22rem;
+  }
+
+  .card-developer-meetup .card-cta .choosecta .cta-begin {
+    display: flex;
+    flex-direction: column;
+    margin: 0 5px;
+  }
+
+  .card-developer-meetup .card-cta .choosecta .cta-begin a {
+    font-size: 13px;
+    padding: 8px 10px;
+  }
+
+  .infos-card-t-c{
+    margin-top: 20px;
+  }
+
+  .profile-tabs{
+    .nav-pills{
+      margin-bottom: 20px !important;
+      .nav-link {
+        padding: 5px 10px;
+        font-size: 1rem;
+        line-height: 1rem;
+        border: 1px solid transparent;
+      }
+    }
+  }
+
+  #ecommerce-header{
+    flex-direction: column;
+    .ecommerce-header-items{
+      width: 100%;
+      margin-bottom: 10px;
+      .result-toggler {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        margin: 0;
+        a{
+          width: 100%;
+        }
+      }
+    }
+    .ecommerce-searchbar{
+      width: 100%;
+      #search_form {
+        width: 100%;
+        input{
+          padding: 0 15px;
+          font-size: 1rem;
+          &::placeholder{
+            color: #7367f0 !important;
+            font-size: 0.8rem;
+            line-height: 1;
+            text-transform: none;
+            border-radius: .358rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+          }
+        }
+      }
+    }
+  }
+
+  .filtres-bloc{
+    .ui-group{
+      width: 100%;
+      margin: 0 !important;
+    }
+    .dropdown-sort{
+      width: 100%;
+      button{
+        width: 100%;
+        display: block;
+        margin: 0 0 10px!important;
+        text-align: left;
+        &:after {
+          height: 11px;
+          position: absolute;
+          top: 39%;
+          right: 10px;
+          left: inherit;
+        }
+      }
+    }
+  }
+
+  .auth-wrapper{
+    padding: 10px 0;
+  }
+
+  .big-cat .heading-cat h2 {
+    font-weight: 900;
+    letter-spacing: 1px;
+    margin: 10px 0 5px;
+    font-size: 18px;
+  }
+
+  .tournament-heading:after {
+    display: none;
+  }
+
+  .display_battle {
+    margin: -10px -1rem;
+  }
+
+  .profile-title{
+    margin-left: 20px !important;
+  }
+
+  .cover-profil {
+    min-height: 100px;
+  }
+
+  .nav-fill{
+    li{
+      width: 50%;
+      a{
+        font-size: 12px;
+      }
+    }
+  }
+
+  .profile-header-nav .profile-tabs {
+    margin-left: 0;
+  }
+
+  .swal2-actions{
+    .swal2-confirm{
+      margin-bottom: 10px;
+    }
+  }
+
+  .bigup{
+    h1{
+      font-size: 30px;
+    }
+  }
+
+  .dropdown-user{
+    display: block;
+    text-align: right;
+    padding: 0;
+    a{
+      font-size: 10px;
+    }
+  }
+
+  .dropdown-notification, .dropdown-cart{
+    width: 25%;
+    text-align: center;
+    a{
+      font-size: 12px;
+    }
+  }
+
+}
+
+
+@media (max-width: 425px) {
+
+  .app-user-view .btns-alert .btn-outline-white {
+    margin-right: 0px !important;
+  }
+}
+
+
+@media (max-height: 800px) {
+
+  .contenders-containers .link-contender {
+    max-width: 350px;
+    position: relative;
+    transition: all 0.2s ease-in;
+  }
+
+}

@@ -1,5 +1,5 @@
 <?php
-function get_or_create_ranking_if_not_exists($id_tournament, $uuiduser = false) {
+function get_user_ranking_id($id_top, $uuiduser = false) {
 
     if(!$uuiduser){
         $uuiduser = $_COOKIE['vainkeurz_user_id'];
@@ -9,7 +9,6 @@ function get_or_create_ranking_if_not_exists($id_tournament, $uuiduser = false) 
 
     if(isset($uuiduser) && $uuiduser != "") {
 
-        // Get user ranking
         $user_ranking = new WP_Query(array(
             'post_type'              => 'classement',
             'posts_per_page'         => '1',
@@ -23,7 +22,7 @@ function get_or_create_ranking_if_not_exists($id_tournament, $uuiduser = false) 
                     'relation' => 'AND',
                     array(
                         'key' => 'id_tournoi_r',
-                        'value' => $id_tournament,
+                        'value' => $id_top,
                         'compare' => '=',
                     ),
                     array(

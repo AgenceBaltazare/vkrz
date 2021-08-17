@@ -1,27 +1,29 @@
 <?php
 global $uuiduser;
 global $user_id;
-global $user_name;
-global $user_email;
+global $user_tops;
+global $user_infos;
+global $id_vainkeur;
 global $utm;
-global $user_role;
-global $champion_role;
-$user_role = "visitor";
-if(get_post_type() != "tournoi" || !is_single()){
-    if(is_user_logged_in()){
-        $current_user   = wp_get_current_user();
-        $user_id        = $current_user->ID;
-    }
-    $user_info      = get_userdata($user_id);
-    $user_role      = $user_info->roles[0];
+if(!is_single() || get_post_type() != "tournoi"){
+    $user_id        = get_user_logged_id();
     $uuiduser       = deal_uuiduser();
     $utm            = deal_utm();
-}
-if(is_author()){
-    global $champion;
-    global $champion_id;
-    $champion            = get_user_by('slug', get_query_var('author_name'));
-    $champion_id         = $champion->ID;
+
+    if(is_user_logged_in() && env() != "local") {
+        if (false === ( $user_tops = get_transient( 'user_'.$user_id.'_get_user_tops' ) )) {
+            $user_tops = get_user_tops();
+            set_transient( 'user_'.$user_id.'_get_user_tops', $user_tops, DAY_IN_SECONDS );
+        } else {
+            $user_tops = get_transient( 'user_'.$user_id.'_get_user_tops' );
+        }
+    } 
+    else {
+        $user_tops  = get_user_tops();
+        
+    }
+    $user_infos  = deal_vainkeur_entry();
+    $id_vainkeur = $user_infos['id_vainkeur'];
 }
 ?>
 <!DOCTYPE html>
@@ -35,7 +37,6 @@ if(is_author()){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <link rel="apple-touch-icon" sizes="120x120" href="<?php bloginfo('template_directory'); ?>/assets/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="<?php bloginfo('template_directory'); ?>/assets/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="<?php bloginfo('template_directory'); ?>/assets/favicon/favicon-16x16.png">
@@ -58,7 +59,7 @@ if(is_author()){
 
     <?php get_template_part('partials/meta'); ?>
 
-    <?php if($user_role != "administrator"): ?>
+    <?php if($user_infos['user_role'] != "administrator"): ?>
         <!-- Google Tag Manager -->
         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -70,8 +71,8 @@ if(is_author()){
 
     <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="ec6a3187-bf39-4eb5-a90d-dda00a2995c8";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
     <script>
-        $crisp.push(["set", "user:email", ["<?php echo $user_email; ?>"]]);
-        $crisp.push(["set", "user:nickname", ["<?php echo $user_name; ?>"]]);
+        $crisp.push(["set", "user:email", ["<?php echo $user_infos['user_email']; ?>"]]);
+        $crisp.push(["set", "user:nickname", ["<?php echo $user_infos['pseudo']; ?>"]]);
     </script>
 
     <?php if(is_author() || is_page(27040)): ?>
@@ -80,8 +81,9 @@ if(is_author()){
 
     <?php wp_head(); ?>
 </head>
+
 <?php
-if(is_single()){
+if(is_single() || is_page(get_page_by_path('monitor'))){
     $list_body_class = "vertical-layout vertical-menu-modern navbar-floating footer-static menu-collapsed";
 }
 else{
@@ -89,13 +91,14 @@ else{
 }
 ?>
 <body <?php body_class($list_body_class); ?> data-open="click" data-menu="vertical-menu-modern" data-col="">
-<?php if($user_role != "administrator"): ?>
+
+<?php if($user_infos['user_role'] != "administrator"): ?>
 	<!-- Google Tag Manager (noscript) -->
 	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KH379F5" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	<!-- End Google Tag Manager (noscript) -->
 <?php endif; ?>
 
-<?php get_template_part('partials/menu-user'); ?>
-
-<?php get_template_part('partials/menu-vkrz'); ?>
-
+<?php
+    get_template_part('partials/menu-user');
+    get_template_part('partials/menu-vkrz');
+?>

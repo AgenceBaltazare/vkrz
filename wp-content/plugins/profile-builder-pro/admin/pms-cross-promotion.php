@@ -31,20 +31,20 @@ function wppb_pms_cross_promo() {
 		</div>
 
 
-		<h2 class="wppb-callout"><?php _e( 'Paid Member Subscriptions - a free WordPress plugin', 'profile-builder' ); ?></h2>
+		<h2 class="wppb-callout"><?php esc_html_e( 'Paid Member Subscriptions - a free WordPress plugin', 'profile-builder' ); ?></h2>
 		<hr/>
 		<div class="wppb-row wppb-2-col">
 			<div>
-				<p><?php _e( 'With the new Subscriptions Field in Profile Builder, your registration forms will allow your users to sign up for paid accounts.', 'profile-builder' ); ?></p>
+				<p><?php esc_html_e( 'With the new Subscriptions Field in Profile Builder, your registration forms will allow your users to sign up for paid accounts.', 'profile-builder' ); ?></p>
 				<p>Other features of Paid Member Subscriptions are:</p>
 				<ul>
-					<li><?php _e( 'Paid & Free Subscriptions', 'profile-builder' ); ?></li>
-					<li><?php _e( 'Restrict Content', 'profile-builder' ); ?></li>
-					<li><?php _e( 'Member Management', 'profile-builder' ); ?></li>
-					<li><?php _e( 'Email Templates', 'profile-builder' ); ?> </li>
-					<li><?php _e( 'Account Management', 'profile-builder' ); ?> </li>
-					<li><?php _e( 'Subscription Management', 'profile-builder' ); ?> </li>
-					<li><?php _e( 'Payment Management', 'profile-builder' ); ?> </li>
+					<li><?php esc_html_e( 'Paid & Free Subscriptions', 'profile-builder' ); ?></li>
+					<li><?php esc_html_e( 'Restrict Content', 'profile-builder' ); ?></li>
+					<li><?php esc_html_e( 'Member Management', 'profile-builder' ); ?></li>
+					<li><?php esc_html_e( 'Email Templates', 'profile-builder' ); ?> </li>
+					<li><?php esc_html_e( 'Account Management', 'profile-builder' ); ?> </li>
+					<li><?php esc_html_e( 'Subscription Management', 'profile-builder' ); ?> </li>
+					<li><?php esc_html_e( 'Payment Management', 'profile-builder' ); ?> </li>
 				</ul>
 			</div>
 			<div>
@@ -76,34 +76,34 @@ function wppb_pms_cross_promo() {
 					}
 					?>
 
-                    <span id="wppb-add-on-activate-button-text" class="wppb-add-on-user-messages"><?php echo __( 'Activate', 'profile-builder' ); ?></span>
+                    <span id="wppb-add-on-activate-button-text" class="wppb-add-on-user-messages"><?php echo esc_html__( 'Activate', 'profile-builder' ); ?></span>
 
-                    <span id="wppb-add-on-downloading-message-text" class="wppb-add-on-user-messages"><?php echo __( 'Downloading and installing...', 'profile-builder' ); ?></span>
-                    <span id="wppb-add-on-download-finished-message-text" class="wppb-add-on-user-messages"><?php echo __( 'Installation complete', 'profile-builder' ); ?></span>
+                    <span id="wppb-add-on-downloading-message-text" class="wppb-add-on-user-messages"><?php echo esc_html__( 'Downloading and installing...', 'profile-builder' ); ?></span>
+                    <span id="wppb-add-on-download-finished-message-text" class="wppb-add-on-user-messages"><?php echo esc_html__( 'Installation complete', 'profile-builder' ); ?></span>
 
-                    <span id="wppb-add-on-activated-button-text" class="wppb-add-on-user-messages"><?php echo __( 'Plugin is Active', 'profile-builder' ); ?></span>
-                    <span id="wppb-add-on-activated-message-text" class="wppb-add-on-user-messages"><?php echo __( 'Plugin has been activated', 'profile-builder' ) ?></span>
-                    <span id="wppb-add-on-activated-error-button-text" class="wppb-add-on-user-messages"><?php echo __( 'Retry Install', 'profile-builder' ) ?></span>
+                    <span id="wppb-add-on-activated-button-text" class="wppb-add-on-user-messages"><?php echo esc_html__( 'Plugin is Active', 'profile-builder' ); ?></span>
+                    <span id="wppb-add-on-activated-message-text" class="wppb-add-on-user-messages"><?php echo esc_html__( 'Plugin has been activated', 'profile-builder' ) ?></span>
+                    <span id="wppb-add-on-activated-error-button-text" class="wppb-add-on-user-messages"><?php echo esc_html__( 'Retry Install', 'profile-builder' ) ?></span>
 
-                    <span id="wppb-add-on-is-active-message-text" class="wppb-add-on-user-messages"><?php echo __( 'Plugin is <strong>active</strong>', 'profile-builder' ); ?></span>
-                    <span id="wppb-add-on-is-not-active-message-text" class="wppb-add-on-user-messages"><?php echo __( 'Plugin is <strong>inactive</strong>', 'profile-builder' ); ?></span>
+                    <span id="wppb-add-on-is-active-message-text" class="wppb-add-on-user-messages"><?php echo esc_html__( 'Plugin is <strong>active</strong>', 'profile-builder' ); ?></span>
+                    <span id="wppb-add-on-is-not-active-message-text" class="wppb-add-on-user-messages"><?php echo esc_html__( 'Plugin is <strong>inactive</strong>', 'profile-builder' ); ?></span>
 
-                    <span id="wppb-add-on-deactivate-button-text" class="wppb-add-on-user-messages"><?php echo __( 'Deactivate', 'profile-builder' ) ?></span>
-                    <span id="wppb-add-on-deactivated-message-text" class="wppb-add-on-user-messages"><?php echo __( 'Plugin has been deactivated.', 'profile-builder' ) ?></span>
+                    <span id="wppb-add-on-deactivate-button-text" class="wppb-add-on-user-messages"><?php echo esc_html__( 'Deactivate', 'profile-builder' ) ?></span>
+                    <span id="wppb-add-on-deactivated-message-text" class="wppb-add-on-user-messages"><?php echo esc_html__( 'Plugin has been deactivated.', 'profile-builder' ) ?></span>
 
 
 					<div class="plugin-card wppb-recommended-plugin wppb-add-on" style="width: 111%;">
 						<div class="plugin-card-top">
 							<a target="_blank" href="http://wordpress.org/plugins/paid-member-subscriptions/">
-								<img src="<?php echo plugins_url( '../assets/images/pms-recommended.png', __FILE__ ); ?>" width="100%">
+								<img src="<?php echo esc_url( plugins_url( '../assets/images/pms-recommended.png', __FILE__ ) ); ?>" width="100%">
 							</a>
 							<h3 class="wppb-add-on-title">
 								<a target="_blank" href="http://wordpress.org/plugins/paid-member-subscriptions/">Paid Member Subscriptions</a>
 							</h3>
-							<h3 class="wppb-add-on-price"><?php  _e( 'Free', 'profile-builder' ) ?></h3>
+							<h3 class="wppb-add-on-price"><?php  esc_html_e( 'Free', 'profile-builder' ) ?></h3>
 							<p class="wppb-add-on-description">
-								<?php _e( 'Accept user payments, create subscription plans and restrict content on your website.', 'profile-builder' ) ?>
-								<a href="<?php admin_url();?>plugin-install.php?tab=plugin-information&plugin=paid-member-subscriptions&TB_iframe=true&width=772&height=875" class="thickbox" aria-label="More information about Paid Member Subscriptions - membership & content restriction" data-title="Paid Member Subscriptions - membership & content restriction"><?php _e( 'More Details' ); ?></a>
+								<?php esc_html_e( 'Accept user payments, create subscription plans and restrict content on your website.', 'profile-builder' ) ?>
+								<a href="<?php esc_url( admin_url() );?>plugin-install.php?tab=plugin-information&plugin=paid-member-subscriptions&TB_iframe=true&width=772&height=875" class="thickbox" aria-label="More information about Paid Member Subscriptions - membership & content restriction" data-title="Paid Member Subscriptions - membership & content restriction"><?php esc_html_e( 'More Details', 'profile-builder' ); ?></a>
 							</p>
 						</div>
 						<div class="plugin-card-bottom wppb-add-on-compatible">
@@ -112,18 +112,18 @@ function wppb_pms_cross_promo() {
 
 								// Display activate/deactivate buttons
 								if (!$pms_add_on_is_active) {
-									echo '<a class="wppb-add-on-activate right button button-primary" href="' . $plugin_file . '" data-nonce="' . $ajax_nonce . '">' . __('Activate', 'profile-builder') . '</a>';
+									echo '<a class="wppb-add-on-activate right button button-primary" href="' . esc_url( $plugin_file ) . '" data-nonce="' . esc_attr( $ajax_nonce ) . '">' . esc_html__('Activate', 'profile-builder') . '</a>';
 
 									// If add-on is network activated don't allow deactivation
 								} elseif (!$pms_add_on_is_network_active) {
-									echo '<a class="wppb-add-on-deactivate right button button-primary" href="' . $plugin_file . '" data-nonce="' . $ajax_nonce . '">' . __('Deactivate', 'profile-builder') . '</a>';
+									echo '<a class="wppb-add-on-deactivate right button button-primary" href="' . esc_url( $plugin_file ) . '" data-nonce="' . esc_attr( $ajax_nonce ) . '">' . esc_html__('Deactivate', 'profile-builder') . '</a>';
 								}
 
 								// Display message to the user
 								if( !$pms_add_on_is_active ){
-									echo '<span class="dashicons dashicons-no-alt"></span><span class="wppb-add-on-message">' . __('Plugin is <strong>inactive</strong>', 'profile-builder') . '</span>';
+									echo '<span class="dashicons dashicons-no-alt"></span><span class="wppb-add-on-message">' . esc_html__('Plugin is <strong>inactive</strong>', 'profile-builder') . '</span>';
 								} else {
-									echo '<span class="dashicons dashicons-yes"></span><span class="wppb-add-on-message">' . __('Plugin is <strong>active</strong>', 'profile-builder') . '</span>';
+									echo '<span class="dashicons dashicons-yes"></span><span class="wppb-add-on-message">' . esc_html__('Plugin is <strong>active</strong>', 'profile-builder') . '</span>';
 								}
 
 							} else {
@@ -132,19 +132,19 @@ function wppb_pms_cross_promo() {
 								// handles the in-page download
 								if (is_multisite()) {
 									$wppb_paid_link_class = 'button-primary';
-									$wppb_paid_link_text = __('Download Now', 'profile-builder' );
+									$wppb_paid_link_text = esc_html__('Download Now', 'profile-builder' );
 								} else {
 									$wppb_paid_link_class = 'button-primary wppb-add-on-download';
-									$wppb_paid_link_text = __('Install Now', 'profile-builder');
+									$wppb_paid_link_text = esc_html__('Install Now', 'profile-builder');
 								}
 
-								echo '<a target="_blank" class="right button ' . $wppb_paid_link_class . '" href="https://downloads.wordpress.org/plugin/paid-member-subscriptions.zip" data-add-on-slug="paid-member-subscriptions" data-add-on-name="Paid Member Subscriptions" data-nonce="' . $ajax_nonce . '">' . $wppb_paid_link_text . '</a>';
-								echo '<span class="dashicons dashicons-yes"></span><span class="wppb-add-on-message">' . __('Compatible with your version of Profile Builder.', 'profile-builder') . '</span>';
+								echo '<a target="_blank" class="right button ' . esc_attr( $wppb_paid_link_class ) . '" href="https://downloads.wordpress.org/plugin/paid-member-subscriptions.zip" data-add-on-slug="paid-member-subscriptions" data-add-on-name="Paid Member Subscriptions" data-nonce="' . esc_attr( $ajax_nonce ) . '">' . esc_html( $wppb_paid_link_text ) . '</a>';
+								echo '<span class="dashicons dashicons-yes"></span><span class="wppb-add-on-message">' . esc_html__('Compatible with your version of Profile Builder.', 'profile-builder') . '</span>';
 
 							}
 							?>
 							<div class="spinner"></div>
-							<span class="wppb-add-on-user-messages wppb-error-manual-install"><?php printf(__('Could not install plugin. Retry or <a href="%s" target="_blank">install manually</a>.', 'profile-builder'), esc_url( 'http://www.wordpress.org/plugins/paid-member-subscriptions' )) ?></a>.</span>
+							<span class="wppb-add-on-user-messages wppb-error-manual-install"><?php printf(esc_html__('Could not install plugin. Retry or <a href="%s" target="_blank">install manually</a>.', 'profile-builder'), esc_url( 'http://www.wordpress.org/plugins/paid-member-subscriptions' )) ?></a>.</span>
 						</div>
 					</div>
 				</div>
@@ -153,7 +153,7 @@ function wppb_pms_cross_promo() {
 			</div>
 		</div>
 
-		<h2 class="wppb-callout"><?php _e( 'Step by Step Quick Setup', 'profile-builder' ); ?></h2>
+		<h2 class="wppb-callout"><?php esc_html_e( 'Step by Step Quick Setup', 'profile-builder' ); ?></h2>
 		<hr/>
 		<p>Setting up Paid Member Subscriptions opens the door to paid user accounts. </p>
 		<div class="wrap wppb-wrap wppb-1-3-col">
@@ -162,7 +162,7 @@ function wppb_pms_cross_promo() {
 				<p>Adding a new subscription gives you access to the following options to set up: subscription name, description, duration, the price, status and user role.</p>
 			</div>
 			<div style="text-align: right">
-				<p><img src="<?php echo WPPB_PLUGIN_URL; ?>assets/images/pms_all_subscriptions-600x336.jpg" alt="paid subscription plans"/></p>
+				<p><img src="<?php echo esc_url( WPPB_PLUGIN_URL ); ?>assets/images/pms_all_subscriptions-600x336.jpg" alt="paid subscription plans"/></p>
 			</div>
 		</div>
 		<div class="wrap wppb-wrap wppb-1-3-col">
@@ -170,7 +170,7 @@ function wppb_pms_cross_promo() {
 				<p>The new Subscription Plans field will add a list of radio buttons with membership details to Profile Builder registration forms.</p>
 			</div>
 			<div style="text-align: right">
-				<p><img src="<?php echo WPPB_PLUGIN_URL; ?>assets/images/pms_pb_add_subscription-600x471.png" alt="manage fields subscription plans"/></p>
+				<p><img src="<?php echo esc_url( WPPB_PLUGIN_URL ); ?>assets/images/pms_pb_add_subscription-600x471.png" alt="manage fields subscription plans"/></p>
 			</div>
 		</div>
 		<div class="wrap wppb-wrap wppb-1-3-col">
@@ -179,7 +179,7 @@ function wppb_pms_cross_promo() {
 				<p>Members created with Profile Builder registration form will have the user role of the selected subscription.</p>
 			</div>
 			<div style="text-align: right">
-				<p><img src="<?php echo WPPB_PLUGIN_URL; ?>assets/images/pms_pb_register_page-600x618.png" alt="register payed accounts"/></p>
+				<p><img src="<?php echo esc_url( WPPB_PLUGIN_URL ); ?>assets/images/pms_pb_register_page-600x618.png" alt="register payed accounts"/></p>
 			</div>
 		</div>
 
@@ -191,18 +191,18 @@ function wppb_pms_cross_promo() {
 
 					// Display activate/deactivate buttons
 					if (!$pms_add_on_is_active) {
-						echo '<a class="wppb-add-on-activate right button button-secondary" href="' . $plugin_file . '" data-nonce="' . $ajax_nonce . '">' . __('Activate', 'profile-builder') . '</a>';
+						echo '<a class="wppb-add-on-activate right button button-secondary" href="' . esc_url( $plugin_file ) . '" data-nonce="' . esc_attr( $ajax_nonce ) . '">' . esc_html__('Activate', 'profile-builder') . '</a>';
 
 						// If add-on is network activated don't allow deactivation
 					} elseif (!$pms_add_on_is_network_active) {
-						echo '<a class="wppb-add-on-deactivate right button button-secondary" href="' . $plugin_file . '" data-nonce="' . $ajax_nonce . '">' . __('Deactivate', 'profile-builder') . '</a>';
+						echo '<a class="wppb-add-on-deactivate right button button-secondary" href="' . esc_url( $plugin_file ) . '" data-nonce="' . esc_attr( $ajax_nonce ) . '">' . esc_html__('Deactivate', 'profile-builder') . '</a>';
 					}
 
 					// Display message to the user
 					if( !$pms_add_on_is_active ){
-						echo '<span class="dashicons dashicons-no-alt"></span><span class="wppb-add-on-message">' . __('Plugin is <strong>inactive</strong>', 'profile-builder') . '</span>';
+						echo '<span class="dashicons dashicons-no-alt"></span><span class="wppb-add-on-message">' . esc_html__('Plugin is <strong>inactive</strong>', 'profile-builder') . '</span>';
 					} else {
-						echo '<span class="dashicons dashicons-yes"></span><span class="wppb-add-on-message">' . __('Plugin is <strong>active</strong>', 'profile-builder') . '</span>';
+						echo '<span class="dashicons dashicons-yes"></span><span class="wppb-add-on-message">' . esc_html__('Plugin is <strong>active</strong>', 'profile-builder') . '</span>';
 					}
 
 				} else {
@@ -217,8 +217,8 @@ function wppb_pms_cross_promo() {
 						$wppb_paid_link_text = __('Install Now', 'profile-builder');
 					}
 
-					echo '<a target="_blank" class="right button ' . $wppb_paid_link_class . '" href="https://downloads.wordpress.org/plugin/paid-member-subscriptions.zip" data-add-on-slug="paid-member-subscriptions" data-add-on-name="Paid Member Subscriptions" data-nonce="' . $ajax_nonce . '">' . $wppb_paid_link_text . '</a>';
-					echo '<span class="dashicons dashicons-yes"></span><span class="wppb-add-on-message">' . __('Compatible with your version of Profile Builder.', 'profile-builder') . '</span>';
+					echo '<a target="_blank" class="right button ' . esc_attr( $wppb_paid_link_class ) . '" href="https://downloads.wordpress.org/plugin/paid-member-subscriptions.zip" data-add-on-slug="paid-member-subscriptions" data-add-on-name="Paid Member Subscriptions" data-nonce="' . esc_attr( $ajax_nonce ) . '">' . esc_html( $wppb_paid_link_text ) . '</a>';
+					echo '<span class="dashicons dashicons-yes"></span><span class="wppb-add-on-message">' . esc_html__('Compatible with your version of Profile Builder.', 'profile-builder') . '</span>';
 				}
 				?>
 				<div class="spinner"></div>
@@ -235,10 +235,8 @@ function wppb_pms_cross_promo() {
  *
  * @Since 2.2.5
  */
-if ( !isset($_GET['page']) || $_GET['page'] != 'profile-builder-pms-promo'){
+if ( ( !isset($_GET['page']) || $_GET['page'] != 'profile-builder-pms-promo' ) && function_exists('is_plugin_active') && !is_plugin_active( 'paid-member-subscriptions/index.php' ) ){
 new WPPB_Add_General_Notices('wppb_pms_cross_promo',
-    sprintf(__('Allow your users to have <strong>paid accounts with Profile Builder</strong>. %1$sFind out how >%2$s %3$sDismiss%4$s', 'profile-builder'), "<a href='" . admin_url('options.php?page=profile-builder-pms-promo') . "'>", "</a>", "<a class='wppb-dismiss-notification' href='" . esc_url( add_query_arg('wppb_pms_cross_promo_dismiss_notification', '0') ) . "'>", "</a>"),
+    sprintf(__('Allow your users to have <strong>paid accounts with Profile Builder</strong>. %1$sFind out how >%2$s %3$sDismiss%4$s', 'profile-builder'), "<a href='" . esc_url( admin_url('options.php?page=profile-builder-pms-promo') ) . "'>", "</a>", "<a class='wppb-dismiss-notification' href='" . esc_url( add_query_arg('wppb_pms_cross_promo_dismiss_notification', '0') ) . "'>", "</a>"),
     'pms-cross-promo');
 }
-
-

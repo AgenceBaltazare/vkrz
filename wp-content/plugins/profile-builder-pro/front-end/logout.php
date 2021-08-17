@@ -13,7 +13,16 @@
 
         $current_user = get_userdata( get_current_user_id() );
 
-        extract( shortcode_atts( array( 'text' => sprintf( __('You are currently logged in as %s. ','profile-builder') ,$current_user->user_login) , 'redirect' => '', 'redirect_url' => wppb_curpageurl(), 'redirect_priority' => 'normal', 'link_text' => __('Log out &raquo;','profile-builder'), 'url_only' => '' ), $atts ) );
+        $wppb_generalSettings = get_option( 'wppb_general_settings' );
+
+        if( !empty( $wppb_generalSettings['loginWith'] ) && $wppb_generalSettings['loginWith'] == 'email' ) {
+            $display_username_email = $current_user->user_email;
+        }
+        else {
+            $display_username_email = $current_user->user_login;
+        }
+
+        extract(shortcode_atts(array('text' => sprintf(__('You are currently logged in as %s. ', 'profile-builder'), $display_username_email), 'redirect' => '', 'redirect_url' => wppb_curpageurl(), 'redirect_priority' => 'normal', 'link_text' => __('Log out &raquo;', 'profile-builder'), 'url_only' => ''), $atts));
 
         if( ! empty( $redirect ) ) {
             $redirect_url = $redirect;

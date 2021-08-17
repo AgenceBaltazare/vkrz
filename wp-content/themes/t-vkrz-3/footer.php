@@ -9,8 +9,12 @@
             <a class="ml-25" href="mailto:vainkeurz@gmail.com">Nous contacter</a>
         </span>
         <span class="float-md-right d-none d-md-block">
-            <a href="https://discord.gg/w882sUnrhE" class="btn-footer" target="_blank">
+            <a href="https://discord.gg/E9H9e8NYp7" class="btn-footer" target="_blank">
                 Discord
+            </a>
+            <span class="space"></span>
+            <a href="https://www.instagram.com/wearevainkeurz/" class="btn-footer" target="_blank">
+                Insta
             </a>
             <span class="space"></span>
             <a href="https://twitter.com/Vainkeurz" target="_blank" class="btn-footer">
@@ -24,9 +28,10 @@
     </p>
 </footer>
 
-<!-- Scripts -->
+<?php global $id_vainkeur; ?>
 <script>
     const vkrz_ajaxurl  = "<?= admin_url('admin-ajax.php') ?>";
+    const id_vainkeur   = "<?= $id_vainkeur ?>";
 </script>
 
 <?php wp_footer(); ?>

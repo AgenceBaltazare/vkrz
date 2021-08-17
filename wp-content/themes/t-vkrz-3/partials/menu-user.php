@@ -1,20 +1,17 @@
 <?php
-global $uuiduser;
-global $current_user;
-global $user_id;
-global $id_tournament;
-global $top_question;
-global $top_number;
-global $top_title;
-global $user_full_data;
-global $nb_user_votes;
-global $info_user_level;
-global $list_t_done;
-global $id_ranking;
-$user_full_data  = get_user_full_data($uuiduser);
-$list_t_done     = $user_full_data[0]['list_user_ranking_done'];
-$nb_user_votes   = $user_full_data[0]['nb_user_votes'];
-$info_user_level = get_user_level($uuiduser, $user_id, $nb_user_votes);
+global $user_infos;
+if(is_single() && get_post_type() == "tournoi"){
+    global $top_infos;
+    global $id_top;
+    global $id_ranking;
+}
+elseif(is_single() && get_post_type() == "classement"){
+    global $top_infos;
+    global $id_top;
+}
+elseif(is_author()){
+    global $vainkeur_info;
+}
 ?>
 <nav class="header-navbar navbar navbar-expand-lg align-items-center floating-nav navbar-dark navbar-shadow menu-user">
     <div class="navbar-container d-flex content align-items-center justify-content-between">
@@ -26,7 +23,11 @@ $info_user_level = get_user_level($uuiduser, $user_id, $nb_user_votes);
         </div>
 
         <ul class="nav navbar-nav d-xl-none">
-            <li class="nav-item"><a class="nav-link menu-toggle" href="javascript:void(0);"><i class="ficon" data-feather="menu"></i></a></li>
+            <li class="nav-item">
+                <a class="nav-link menu-toggle" href="javascript:void(0);">
+                    <i class="ficon" data-feather="menu"></i>
+                </a>
+            </li>
         </ul>
 
         <?php if(!is_home()): ?>
@@ -48,13 +49,18 @@ $info_user_level = get_user_level($uuiduser, $user_id, $nb_user_votes);
 
                                             <li class="breadcrumb-item">
                                                 <?php
-                                                foreach(get_the_terms($id_tournament, 'categorie') as $cat ) {
+                                                foreach(get_the_terms($id_top, 'categorie') as $cat ) {
                                                     $cat_id     = $cat->term_id;
                                                     $cat_name   = $cat->name;
                                                 }
                                                 ?>
                                                 <a href="<?php echo get_category_link($cat_id); ?>">
-                                                    <span class="ico"><?php the_field('icone_cat', 'term_'.$cat_id); ?></span> <span class="menu-title text-truncate"><?php echo $cat_name; ?></span>
+                                                    <span class="ico">
+                                                        <?php the_field('icone_cat', 'term_'.$cat_id); ?>
+                                                    </span> 
+                                                    <span class="menu-title text-truncate">
+                                                        <?php echo $cat_name; ?>
+                                                    </span>
                                                 </a>
                                             </li>
 
@@ -75,9 +81,11 @@ $info_user_level = get_user_level($uuiduser, $user_id, $nb_user_votes);
 
                                         <?php elseif(is_page(get_page_by_path('elo'))): ?>
 
+                                            <?php global $id_top; ?>
+
                                             <li class="breadcrumb-item">
                                                 <?php
-                                                foreach(get_the_terms($id_tournament, 'categorie') as $cat ) {
+                                                foreach(get_the_terms($id_top, 'categorie') as $cat ) {
                                                     $cat_id     = $cat->term_id;
                                                     $cat_name   = $cat->name;
                                                 }
@@ -87,19 +95,21 @@ $info_user_level = get_user_level($uuiduser, $user_id, $nb_user_votes);
                                                 </a>
                                             </li>
                                             <li class="breadcrumb-item">
-                                                <a href="<?php the_permalink($id_tournament); ?>">
+                                                <a href="<?php the_permalink($id_top); ?>">
                                                     <span class="menu-title text-truncate">
-                                                        <?php echo get_the_title($id_tournament); ?>
+                                                        <?php echo get_the_title($id_top); ?>
                                                     </span>
                                                 </a>
                                             </li>
 
                                         <?php elseif(is_page(get_page_by_path('liste-des-tops'))): ?>
 
+                                            <?php global $id_top; ?>
+
                                             <li class="breadcrumb-item">
                                                 <?php
-                                                if(get_the_terms($id_tournament, 'categorie')){
-                                                    foreach(get_the_terms($id_tournament, 'categorie') as $cat ) {
+                                                if(get_the_terms($id_top, 'categorie')){
+                                                    foreach(get_the_terms($id_top, 'categorie') as $cat ) {
                                                         $cat_id     = $cat->term_id;
                                                         $cat_name   = $cat->name;
                                                     }
@@ -110,9 +120,9 @@ $info_user_level = get_user_level($uuiduser, $user_id, $nb_user_votes);
                                                 </a>
                                             </li>
                                             <li class="breadcrumb-item">
-                                                <a href="<?php the_permalink($id_tournament); ?>">
+                                                <a href="<?php the_permalink($id_top); ?>">
                                                     <span class="menu-title text-truncate">
-                                                        <?php echo get_the_title($id_tournament); ?>
+                                                        <?php echo get_the_title($id_top); ?>
                                                     </span>
                                                 </a>
                                             </li>
@@ -138,9 +148,9 @@ $info_user_level = get_user_level($uuiduser, $user_id, $nb_user_votes);
 
                 <?php if($id_ranking): ?>
                     <div class="tournament-heading text-center">
-                        <h3 class="mb-0 t-titre-tournoi">Top <?php echo $top_number; ?> <span class="ico">⚡</span> <?php echo $top_title; ?></h3>
+                        <h3 class="mb-0 t-titre-tournoi">Top <?php echo $top_infos['top_number']; ?> <span class="ico">⚡</span> <?php echo $top_infos['top_title']; ?></h3>
                         <h4 class="mb-0 t-rose t-max">
-                            <?php echo $top_question; ?>
+                            <?php echo $top_infos['top_question']; ?>
                         </h4>
                     </div>
                 <?php else: ?>
@@ -153,30 +163,30 @@ $info_user_level = get_user_level($uuiduser, $user_id, $nb_user_votes);
 
                 <div class="tournament-heading text-center">
                     <h3 class="mb-0 t-titre-tournoi">
-                        Top <?php echo $top_number; ?> <span class="ico text-center">🏆</span> <?php echo $top_title; ?>
+                        Top <?php echo $top_infos['top_number']; ?> <span class="ico text-center">🏆</span> <?php echo $top_infos['top_title']; ?>
                     </h3>
                     <h4 class="mb-0">
-                        <?php echo $top_question; ?>
+                        <?php echo $top_infos['top_question']; ?>
                     </h4>
                 </div>
 
             <?php elseif(is_page(get_page_by_path('elo'))): ?>
 
-                <?php $id_tournament = $_GET['id_top']; ?>
+                <?php $id_top = $_GET['id_top']; ?>
                 <div class="tournament-heading text-center">
-                    <h3 class="mb-0 t-titre-tournoi">Top <?php echo get_numbers_of_contenders($id_tournament); ?> mondial <span class="ico text-center">🏆</span> <?php echo get_the_title($id_tournament); ?></h3>
+                    <h3 class="mb-0 t-titre-tournoi">Top <?php echo get_numbers_of_contenders($id_top); ?> mondial <span class="ico text-center">🌎</span> <?php echo get_the_title($id_top); ?></h3>
                     <h4 class="mb-0">
-                        <?php the_field('question_t', $id_tournament); ?>
+                        <?php the_field('question_t', $id_top); ?>
                     </h4>
                 </div>
 
             <?php elseif(is_page(get_page_by_path('liste-des-tops'))): ?>
 
-                <?php $id_tournament = $_GET['id_top']; ?>
+                <?php $id_top = $_GET['id_top']; ?>
                 <div class="tournament-heading text-center">
-                    <h3 class="mb-0 t-titre-tournoi">Liste des Tops <span class="ico text-center">🏆</span> <?php echo get_the_title($id_tournament); ?></h3>
+                    <h3 class="mb-0 t-titre-tournoi">Liste des Tops <span class="ico text-center">🏆</span> <?php echo get_the_title($id_top); ?></h3>
                     <h4 class="mb-0">
-                        <?php the_field('question_t', $id_tournament); ?>
+                        <?php the_field('question_t', $id_top); ?>
                     </h4>
                 </div>
 
@@ -187,15 +197,23 @@ $info_user_level = get_user_level($uuiduser, $user_id, $nb_user_votes);
                     <h4 class="mb-0"><?php echo $current_cat->description; ?></h4>
                 </div>
 
+            <?php elseif(is_author()): ?>
+
+                <div class="tournament-heading text-center">
+                    <h3 class="mb-0 t-titre-tournoi">
+                        Profil de <?php echo $vainkeur_info['pseudo']; ?> <?php echo $vainkeur_info['level']; ?>
+                    </h3>
+                </div>
+
             <?php endif; ?>
         </div>
 
-        <ul class="nav navbar-nav align-items-center">
+        <ul class="nav navbar-nav align-items-center justify-content-end">
             <li class="nav-item dropdown dropdown-cart">
                 <a class="nav-link" href="javascript:void(0);" data-toggle="dropdown">
                     <span class="ico text-center">💎</span>
                     <span class="value-user-stats user-total-vote-value">
-                        <?php echo $nb_user_votes; ?>
+                        <?php echo $user_infos['nb_vote_vkrz']; ?>
                     </span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
@@ -211,9 +229,9 @@ $info_user_level = get_user_level($uuiduser, $user_id, $nb_user_votes);
                         <div class="text-center mb-2">
                             <h6 class="font-weight-bolder mb-0">
                                 <?php if(is_user_logged_in()): ?>
-                                    Encore <span class="decompte_vote"><?php echo $info_user_level['votes_restant']; ?></span> 💎 pour passer au niveau <?php echo $info_user_level['next_level']; ?>
+                                    Encore <span class="decompte_vote"><?php echo get_vote_to_next_level($user_infos['level_number'], $user_infos['nb_vote_vkrz']); ?></span> 💎 pour passer au niveau <?php echo $user_infos['next_level']; ?>
                                 <?php else: ?>
-                                    Il faut avoir un compte pour monter en niveau 🚀
+                                    Il te créer un compte pour monter en niveau 🚀
                                 <?php endif; ?>
                             </h6>
                         </div>
@@ -225,9 +243,9 @@ $info_user_level = get_user_level($uuiduser, $user_id, $nb_user_votes);
             </li>
             <li class="nav-item dropdown dropdown-notification mr-25">
                 <a class="nav-link" href="javascript:void(0);" data-toggle="dropdown">
+                    <span class="ico text-center">🏆</span>
                     <span class="value-user-stats">
-                        <span class="ico text-center">🏆</span>
-                        <?php echo count($list_t_done); ?>
+                        <?php echo $user_infos['nb_top_vkrz']; ?>
                     </span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
@@ -235,7 +253,7 @@ $info_user_level = get_user_level($uuiduser, $user_id, $nb_user_votes);
                         <div class="dropdown-header d-flex">
                             <h4 class="notification-title mb-0 mr-auto">🏆</h4>
                             <div class="badge badge-pill badge-light-primary">
-                                <?php if(count($list_t_done) >= 1): ?>
+                                <?php if($user_infos['nb_top_vkrz'] >= 1): ?>
                                     Mes Tops terminés
                                 <?php else: ?>
                                     Aucun Tops terminés <span class="ico">😑</span>
@@ -243,29 +261,27 @@ $info_user_level = get_user_level($uuiduser, $user_id, $nb_user_votes);
                             </div>
                         </div>
                     </li>
-
+                    <?php if($user_infos['nb_top_vkrz'] >= 1): ?>
+                        <li class="dropdown-menu-footer">
+                            <a class="btn btn-primary btn-block" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>">
+                                Voir tous mes Tops terminés
+                            </a>
+                        </li>
+                    <?php endif; ?>
                 </ul>
             </li>
             <li class="nav-item dropdown dropdown-user ml-25">
                 <a class="nav-link dropdown-toggle dropdown-user-link" id="dropdown-user" href="javascript:void(0);" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="avatar">
-                        <?php
-                        if(is_user_logged_in() && get_avatar_url($user_id, ['size' => '80'])){
-                            $avatar_url = get_avatar_url($user_id, ['size' => '80']);
-                        }
-                        else{
-                            $avatar_url = get_bloginfo('template_directory')."/assets/images/vkrz/ninja.png";
-                        }
-                        ?>
-                        <span class="avatar-picture" style="background-image: url(<?php echo $avatar_url; ?>);"></span>
+                        <span class="avatar-picture" style="background-image: url(<?php echo $user_infos['avatar']; ?>);"></span>
                         <span class="user-niveau">
-                            <?php echo $info_user_level['level_ico']; ?>
+                            <?php echo $user_infos['level']; ?>
                         </span>
                     </span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-user">
                     <?php if(is_user_logged_in()): ?>
-                        <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>?uuid=<?php echo $uuiduser; ?>">
+                        <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>">
                             <span class="ico">🐣</span> Mon compte
                         </a>
                         <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('parametres')); ?>">
@@ -276,7 +292,7 @@ $info_user_level = get_user_level($uuiduser, $user_id, $nb_user_votes);
                             <span class="ico">👋</span> Déconnexion
                         </a>
                     <?php else: ?>
-                        <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>?uuid=<?php echo $uuiduser; ?>">
+                        <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>">
                             <span class="ico">🥷</span> Mon compte
                         </a>
                         <div class="dropdown-divider"></div>
@@ -287,7 +303,7 @@ $info_user_level = get_user_level($uuiduser, $user_id, $nb_user_votes);
                             <span class="ico">🎉</span> M'inscrire
                         </a>
                     <?php endif; ?>
-                    
+
                 </div>
             </li>
         </ul>

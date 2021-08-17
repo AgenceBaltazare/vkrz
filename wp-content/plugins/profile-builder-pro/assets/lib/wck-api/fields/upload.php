@@ -40,7 +40,7 @@ if( !empty ( $value ) ){
         $element.= $file_type;
         $element.= '</span>';
         if( !empty ( $value ) )
-            $element.= '<span class="wck-remove-upload">'.__( 'Remove', 'core' ).'</span>';
+            $element.= '<span class="wck-remove-upload">'.__( 'Remove', 'profile-builder' ).'</span>';
         $element.= '</p></div>';
     }
 }
@@ -72,5 +72,5 @@ else
 if( !empty( $details['allowed_types'] ) )
     $element.= ' data-allowed_types="'. $details['allowed_types'] .'"';
 
-$element.= '>'. __( 'Upload ', 'wck' ) . $details['title'] .'</a>';
+$element.= '>'. __( 'Upload ', 'profile-builder' ) . $details['title'] .'</a>';
 ?>

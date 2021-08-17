@@ -1,0 +1,201 @@
+body {
+  height: auto !important;
+}
+.dark-layout .swiper-slide {
+  background-color: transparent !important;
+}
+.dark-layout .card {
+  background-color: $c4;
+}
+.swiper-button-next, .swiper-button-prev{
+  width: 40px !important;
+  margin: 0;
+  background: transparent;
+  top: 36%;
+  height: 40px !important;
+  right: 0 !important;
+  justify-content: flex-end;
+  &:after{
+    border-radius: 0;
+    background-color: $c3;
+    box-shadow: none !important;
+    background-size: 24px !important;
+    height: 40px !important;
+    width: 40px !important;
+    padding: 0 !important;
+    position: relative;
+    right: 0;
+  }
+}
+.swiper-button-prev{
+  right: auto;
+  left: 0;
+}
+.swiper-button-disabled{
+  display: none;
+}
+.main-menu.menu-dark .navigation > li > a {
+  margin: 0 15px 0 10px;
+}
+.vertical-layout.vertical-menu-modern.menu-collapsed .main-menu:not(.expanded) .navigation-header {
+  margin-left: 1.8rem !important;
+}
+
+.demo-inline-spacing {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+
+.header-navbar .navbar-container ul.navbar-nav li.dropdown-cart .media-heading {
+  width: auto;
+}
+.dark-layout .dropdown-menu .dropdown-item:hover, .dark-layout .dropdown-menu .dropdown-item:focus {
+  background: transparent;
+}
+
+.dark-layout .table {
+  background-color: $c4;
+}
+.dark-layout .table:not(.table-dark):not(.table-light) thead:not(.thead-dark) th, .dark-layout .table:not(.table-dark):not(.table-light) tfoot:not(.thead-dark) th {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+}
+
+.dark-layout .nav-tabs .nav-item .nav-link.active, .dark-layout .nav-pills .nav-item .nav-link.active, .dark-layout .nav-tabs.nav-justified .nav-item .nav-link.active {
+  background-color: transparent;
+}
+
+.dataTables_length, .dataTables_info{
+  display: none;
+}
+.dataTables_filter{
+  text-align: right;
+  padding: 10px;
+  float: right;
+  label{
+    max-width: 100%;
+    width: 270px;
+    margin: 0 10px 0 0;
+  }
+}
+.pagination{
+  display: none;
+  text-align: right;
+  float: right;
+  padding: 0 20px 0 0;
+}
+div.dataTables_wrapper div.dataTables_filter label, div.dataTables_wrapper div.dataTables_length label {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.dark-layout input.form-control, .dark-layout .custom-file-label, .dark-layout textarea.form-control {
+  background-color: #20143a;
+  color: #fff;
+}
+
+.dark-layout .modal .modal-content, .dark-layout .modal .modal-body, .dark-layout .modal .modal-footer {
+  background-color: #20143a;
+  border-color: #20143a;
+}
+.modal .modal-footer {
+  padding: 0 1.4rem .8rem 1.4rem;
+}
+.dark-layout .modal .modal-header, .dark-layout .modal .modal-header[class*='bg-'] {
+  background-color: #170c31;
+}
+
+.table-responsive {
+  overflow-x: inherit;
+}
+
+.dark-layout pre {
+  background-color: #ffffff !important;
+  border: 0;
+  position: relative;
+}
+
+.chat-widget{
+  .chat-app-window{
+    .user-chats{
+      background-color: rgba(97, 84, 167, 0.1) !important;
+    }
+    .chats{
+      .chat-body {
+        margin: 10px 0 0 0;
+        .chat-content {
+          max-width: 100% !important;
+          p{
+            max-width: 100%;
+            font-size: 11px;
+            line-height: 14px;
+          }
+        }
+      }
+      .chat-left{
+        .chat-body {
+          .chat-content {
+            background-color: rgba(19, 18, 47, 0.75) !important;
+            text-align: left;
+          }
+        }
+      }
+    }
+  }
+  .chat-app-form{
+    display: flex;
+    flex-direction: column;
+    height: auto !important;
+    padding: 10px !important;
+    background: #13122f;
+    input{
+      background-color: #f0f0f2;
+      color: #13122f;
+      padding: 0 0 0 4px !important;
+    }
+    button{
+      margin-top: 10px;
+    }
+  }
+}
+
+.wppb-toggle-pw{
+  display: none;
+}
+
+.main-menu.menu-dark .navigation .navigation-header {
+  margin: calc(2rem) 0 0.8rem 2.2rem;
+}
+
+
+.main-menu.menu-dark .navigation li.nav-item a.sociallink:hover > * {
+  transition: all 0.25s ease;
+  transform: none;
+}
+.main-menu.menu-dark .navigation li.nav-item a.sociallink i {
+  font-size: 15px;
+}
+.main-menu.menu-dark .navigation li.nav-item a.sociallink:hover{
+  background: #7367f0 !important;
+  color: #fff !important;
+  i{
+    color: #fff !important;
+  }
+}
+a.sociallink:hover{
+  background: #7367f0 !important;
+  color: #fff !important;
+  i{
+    color: #fff !important;
+  }
+}
+
+.dark-layout .dropdown-menu {
+  z-index: 9999999;
+}
+.reset_size{
+  height: auto !important;
+}

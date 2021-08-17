@@ -1,5 +1,5 @@
 <?php
-function mouv_timeline($nb_contenders, $nb_loosers, $id_ranking, $id_tournament){
+function mouv_timeline($nb_contenders, $nb_loosers, $id_ranking, $id_top){
 
     // NB votes
     $typetop            = get_field('type_top_r', $id_ranking);

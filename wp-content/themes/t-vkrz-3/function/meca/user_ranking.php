@@ -1,6 +1,5 @@
 <?php
-function do_user_ranking( $id_tournament, $id_winner, $id_looser ) {
-	$id_ranking = get_or_create_ranking_if_not_exists( $id_tournament );
-    do_vote($id_winner, $id_looser, $id_ranking, $id_tournament);
-	return get_next_duel($id_ranking, $id_tournament);
+function do_user_ranking($id_top, $id_ranking, $id_winner, $id_looser, $current_id_vainkeur) {
+    do_vote($id_winner, $id_looser, $id_ranking, $id_top);
+	return get_next_duel($id_ranking, $id_top, $current_id_vainkeur);
 }

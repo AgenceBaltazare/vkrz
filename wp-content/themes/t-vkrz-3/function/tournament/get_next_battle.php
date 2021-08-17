@@ -1,6 +1,7 @@
 <?php
-function get_next_duel($id_ranking, $id_tournament){
+function get_next_duel($id_ranking, $id_top, $current_id_vainkeur){
 
+    global $id_vainkeur;
     $next_duel          = [];
     $is_next_duel       = true;
     $contender_1        = 0;
@@ -113,6 +114,7 @@ function get_next_duel($id_ranking, $id_tournament){
                 if (!get_field('done_r', $id_ranking)) {
                     update_field('done_r', 'done', $id_ranking);
                     update_field('done_date_r', date('d/m/Y H:i:s'), $id_ranking);
+                    increase_top_counter($current_id_vainkeur);
                 }
 
             } else {
@@ -232,6 +234,11 @@ function get_next_duel($id_ranking, $id_tournament){
                         update_field('done_r', 'done', $id_ranking);
                         update_field('done_date_r', date('d/m/Y H:i:s'), $id_ranking);
                     }
+
+                    if (is_user_logged_in()) {
+                        delete_transient( 'user_'.get_current_user_id().'_get_user_tops' );
+                    }
+                    
                 }
 
             }
@@ -252,7 +259,13 @@ function get_next_duel($id_ranking, $id_tournament){
                 if (!get_field('done_r', $id_ranking)) {
                     update_field('done_r', 'done', $id_ranking);
                     update_field('done_date_r', date('d/m/Y H:i:s'), $id_ranking);
+                    increase_top_counter($current_id_vainkeur);
                 }
+
+                if (is_user_logged_in()) {
+                    delete_transient( 'user_'.get_current_user_id().'_get_user_tops' );
+                }
+
             }
 
         }
@@ -283,16 +296,23 @@ function get_next_duel($id_ranking, $id_tournament){
                 $is_next_duel = false;
 
                 if(!get_field('done_r', $id_ranking)) {
-                    update_field('done_r', 'done', $id_ranking);
                     update_field('done_date_r', date('d/m/Y H:i:s'), $id_ranking);
+                    update_field('done_r', 'done', $id_ranking);
+                    increase_top_counter($current_id_vainkeur);
+
                 }
+
+                if (is_user_logged_in()) {
+                    delete_transient( 'user_'.get_current_user_id().'_get_user_tops' );
+                }
+
             }
 
         }
 
     }
 
-    $nb_user_votes = all_user_votes_in_tournament($id_ranking);
+    $nb_user_votes = all_user_votes_in_top($id_ranking);
 
     if ($is_next_duel) {
         $val1 = random_int(0, 1);
@@ -315,7 +335,8 @@ function get_next_duel($id_ranking, $id_tournament){
         'timeline_main',
         'nb_user_votes',
         'nb_contenders',
-        'id_tournament',
-        'id_ranking'
+        'id_top',
+        'id_ranking',
+        'current_id_vainkeur'
     );
 }

@@ -22,43 +22,43 @@ function wppb_add_feedback_modal(){
 
             <div class="custom-feedback-poll-content">
 
-                <h1 style="padding-left:10px;padding-top:15px;"><?php _e('Quick Feedback', 'profile-builder'); ?></h1>
-                <p><?php _e( 'Because we care about our clients, please leave us feedback on why you are no longer using our plugin.', 'profile-builder'); ?></p>
-                <form method="post" enctype="multipart/form-data" id="gform_<?php echo $gf_id; ?>" class="gpoll_enabled gpoll" action="<?php echo $action_link; ?>">
+                <h1 style="padding-left:10px;padding-top:15px;"><?php esc_html_e('Quick Feedback', 'profile-builder'); ?></h1>
+                <p><?php esc_html_e( 'Because we care about our clients, please leave us feedback on why you are no longer using our plugin.', 'profile-builder'); ?></p>
+                <form method="post" enctype="multipart/form-data" id="gform_<?php echo esc_attr( $gf_id ); ?>" class="gpoll_enabled gpoll" action="<?php echo esc_attr( $action_link ); ?>">
                     <div>
                         <ul>
                             <li>
-                                <input name="input_1" type="radio" value="gpoll1d7fc0436" id="choice_<?php echo $gf_id; ?>_1_0">
-                                <label for="choice_<?php echo $gf_id; ?>_1_0" id="label_<?php echo $gf_id; ?>_1_0"><?php _e( 'Lacking certain features', 'profile-builder'); ?></label>
-                                <input class="poll_custom_hidden_detail" name="input_2" id="input_<?php echo $gf_id; ?>_2" type="text" value="" placeholder="<?php _e( 'What feature would you like to see?', 'profile-builder' ); ?>">
+                                <input name="input_1" type="radio" value="gpoll1d7fc0436" id="choice_<?php echo esc_attr( $gf_id ); ?>_1_0">
+                                <label for="choice_<?php echo esc_attr( $gf_id ); ?>_1_0" id="label_<?php echo esc_attr( $gf_id ); ?>_1_0"><?php esc_html_e( 'Lacking certain features', 'profile-builder'); ?></label>
+                                <input class="poll_custom_hidden_detail" name="input_2" id="input_<?php echo esc_attr( $gf_id ); ?>_2" type="text" value="" placeholder="<?php esc_html_e( 'What feature would you like to see?', 'profile-builder' ); ?>">
                             </li>
                             <li>
-                                <input name="input_1" type="radio" value="gpoll19c993bd1" id="choice_<?php echo $gf_id; ?>_1_1">
-                                <label for="choice_<?php echo $gf_id; ?>_1_1" id="label_<?php echo $gf_id; ?>_1_1"><?php _e( 'Hard to use', 'profile-builder'); ?></label>
-                                <input class="poll_custom_hidden_detail" name="input_3" id="input_<?php echo $gf_id; ?>_3" type="text" value="" placeholder="<?php _e( 'How can we improve our user experience ?', 'profile-builder' ); ?>">
+                                <input name="input_1" type="radio" value="gpoll19c993bd1" id="choice_<?php echo esc_attr( $gf_id ); ?>_1_1">
+                                <label for="choice_<?php echo esc_attr( $gf_id ); ?>_1_1" id="label_<?php echo esc_attr( $gf_id ); ?>_1_1"><?php esc_html_e( 'Hard to use', 'profile-builder'); ?></label>
+                                <input class="poll_custom_hidden_detail" name="input_3" id="input_<?php echo esc_attr( $gf_id ); ?>_3" type="text" value="" placeholder="<?php esc_html_e( 'How can we improve our user experience ?', 'profile-builder' ); ?>">
                             </li>
                             <li>
-                                <input name="input_1" type="radio" value="gpoll147502d8a" id="choice_<?php echo $gf_id; ?>_1_2">
-                                <label for="choice_<?php echo $gf_id; ?>_1_2" id="label_<?php echo $gf_id; ?>_1_2"><?php _e( 'Unsatisfactory support', 'profile-builder' ); ?></label>
-                                <span class="poll_custom_hidden_detail"><?php _e( "Give us another try! Open a support ticket <a href='https://www.cozmoslabs.com/support/open-ticket/' target='_blank'>here</a>" ) ?></span>
+                                <input name="input_1" type="radio" value="gpoll147502d8a" id="choice_<?php echo esc_attr( $gf_id ); ?>_1_2">
+                                <label for="choice_<?php echo esc_attr( $gf_id ); ?>_1_2" id="label_<?php echo esc_attr( $gf_id ); ?>_1_2"><?php esc_html_e( 'Unsatisfactory support', 'profile-builder' ); ?></label>
+                                <span class="poll_custom_hidden_detail"><?php esc_html_e( "Give us another try! Open a support ticket <a href='https://www.cozmoslabs.com/support/open-ticket/' target='_blank'>here</a>", 'profile-builder' ) ?></span>
                             </li>
                             <li>
-                                <input name="input_1" type="radio" value="gpoll1353bb209" id="choice_<?php echo $gf_id; ?>_1_4">
-                                <label for="choice_<?php echo $gf_id; ?>_1_4" id="label_<?php echo $gf_id; ?>_1_4"><?php _e( 'Other', 'profile-builder'); ?></label>
-                                <input class="poll_custom_hidden_detail" name="input_4" id="input_<?php echo $gf_id; ?>_4" type="text" value="" placeholder="<?php _e( 'Please tell us more', 'profile-builder' ); ?>">
+                                <input name="input_1" type="radio" value="gpoll1353bb209" id="choice_<?php echo esc_attr( $gf_id ); ?>_1_4">
+                                <label for="choice_<?php echo esc_attr( $gf_id ); ?>_1_4" id="label_<?php echo esc_attr( $gf_id ); ?>_1_4"><?php esc_html_e( 'Other', 'profile-builder'); ?></label>
+                                <input class="poll_custom_hidden_detail" name="input_4" id="input_<?php echo esc_attr( $gf_id ); ?>_4" type="text" value="" placeholder="<?php esc_html_e( 'Please tell us more', 'profile-builder' ); ?>">
                             </li>
                             <li>
-                                <input name="input_1" type="radio" value="gpoll18cbe0189" id="choice_<?php echo $gf_id; ?>_1_3">
-                                <label for="choice_<?php echo $gf_id; ?>_1_3" id="label_<?php echo $gf_id; ?>_1_3"><?php _e( 'Poor Documentation', 'profile-builder'); ?></label>
-                                <input class="poll_custom_hidden_detail" name="input_5" id="input_<?php echo $gf_id; ?>_5" type="text" value="" placeholder="<?php _e( "Tell us what you couldn't find", 'profile-builder' ); ?>">
-                            </li>                            
+                                <input name="input_1" type="radio" value="gpoll18cbe0189" id="choice_<?php echo esc_attr( $gf_id ); ?>_1_3">
+                                <label for="choice_<?php echo esc_attr( $gf_id ); ?>_1_3" id="label_<?php echo esc_attr( $gf_id ); ?>_1_3"><?php esc_html_e( 'Poor Documentation', 'profile-builder'); ?></label>
+                                <input class="poll_custom_hidden_detail" name="input_5" id="input_<?php echo esc_attr( $gf_id ); ?>_5" type="text" value="" placeholder="<?php esc_html_e( "Tell us what you couldn't find", 'profile-builder' ); ?>">
+                            </li>
                         </ul>
                     </div>
                     <div class="gform_footer">
-                        <input type="submit" id="gform_submit_button_<?php echo $gf_id; ?>" class="button button-primary" value="<?php _e( 'Submit & Deactivate', 'profile-builder' ); ?>" disabled="disabled">
-                        <input type="hidden" class="gform_hidden" name="is_submit_<?php echo $gf_id; ?>" value="1">
-                        <input type="hidden" class="gform_hidden" name="gform_submit" value="<?php echo $gf_id; ?>">
-                        <a href="#" class="button secondary custom-feedback-skip"><?php _e('Skip and Deactivate', 'profile-builder'); ?></a>
+                        <input type="submit" id="gform_submit_button_<?php echo esc_attr( $gf_id ); ?>" class="button button-primary" value="<?php esc_html_e( 'Submit & Deactivate', 'profile-builder' ); ?>" disabled="disabled">
+                        <input type="hidden" class="gform_hidden" name="is_submit_<?php echo esc_attr( $gf_id ); ?>" value="1">
+                        <input type="hidden" class="gform_hidden" name="gform_submit" value="<?php echo esc_attr( $gf_id ); ?>">
+                        <a href="#" class="button secondary custom-feedback-skip"><?php esc_html_e('Skip and Deactivate', 'profile-builder'); ?></a>
                     </div>
                 </form>
 
@@ -89,8 +89,8 @@ function wppb_add_feedback_script(){
                 if (jQuery('tr[data-slug="' + pluginSlug + '"] .deactivate a').length != 0) {
 
                     /* the conditional fields */
-                    jQuery("#gform_<?php echo $gf_id; ?> input[type='radio']").on('click', function(){
-                        jQuery("#gform_<?php echo $gf_id; ?> input[type='submit']").prop("disabled", false);
+                    jQuery("#gform_<?php echo esc_attr( $gf_id ); ?> input[type='radio']").on('click', function(){
+                        jQuery("#gform_<?php echo esc_attr( $gf_id ); ?> input[type='submit']").prop("disabled", false);
                         jQuery( '.poll_custom_hidden_detail' ).hide();
                         jQuery( '.poll_custom_hidden_detail', jQuery(this).parent() ).show();
                     });
@@ -107,13 +107,13 @@ function wppb_add_feedback_script(){
                     });
 
                     /* on submit */
-                    jQuery("#gform_<?php echo $gf_id; ?>").on('submit', function(e) {
-                        var url = "<?php echo $action_link; ?>"; // the script where you handle the form input.
+                    jQuery("#gform_<?php echo esc_attr( $gf_id ); ?>").on('submit', function(e) {
+                        var url = "<?php echo esc_url( $action_link ); ?>"; // the script where you handle the form input.
 
                         jQuery.ajax({
                             type: "POST",
                             url: url,
-                            data: jQuery("#gform_<?php echo $gf_id; ?>").serialize(), // serializes the form's elements.
+                            data: jQuery("#gform_<?php echo esc_attr( $gf_id ); ?>").serialize(), // serializes the form's elements.
                             complete: function()
                             {
                                 tb_remove();
@@ -162,7 +162,7 @@ function wppb_add_feedback_style(){
                 display:none;
             }
             #TB_window .pds-vote-button:after{
-                content:"<?php _e('Submit and Deactivate', 'profile-builder')?>";
+                content:"<?php esc_html_e('Submit and Deactivate', 'profile-builder')?>";
             }
             #TB_window .pds-vote-button{
                 padding: 6px 14px;
@@ -188,7 +188,7 @@ function wppb_add_feedback_style(){
             #custom-feedback-modal{
                 display: none;
             }
-            
+
             .custom-feedback-poll-content{
                 font-size:15px;
                 padding:0 10px;

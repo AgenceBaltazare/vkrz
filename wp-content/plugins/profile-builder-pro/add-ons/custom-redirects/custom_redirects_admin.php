@@ -85,7 +85,7 @@ function wppb_populate_custom_redirects_fields(){
 	//user roles
 	global $wp_roles;
 
-	$user_roles = array('%'. __('... Choose').'%');
+	$user_roles = array('%'. __( '... Choose', 'profile-builder' ).'%');
 	foreach( $wp_roles->roles as $user_role_slug => $user_role ) {
 		if( $user_role_slug !== 'administrator' ){
 			array_push( $user_roles, '%' . wppb_prepare_wck_labels( $user_role['name'] ) . '%' . $user_role_slug );
@@ -237,30 +237,30 @@ add_action( 'wck_metabox_content_header_wppb_cr_default_wp_pages', 'wppb_custom_
  */
 function wppb_add_content_before_custom_redirects_info(){
 	?>
-	<p><?php _e('These redirects happen after a successful action, like registration or after a successful login.', 'profile-builder'); ?></p>
+	<p><?php esc_html_e('These redirects happen after a successful action, like registration or after a successful login.', 'profile-builder'); ?></p>
 	<hr/>
-	<h4><?php _e("Which redirect happens depends on the following priority:", 'profile-builder'); ?></h4>
+	<h4><?php esc_html_e("Which redirect happens depends on the following priority:", 'profile-builder'); ?></h4>
 	<ol>
-		<li><?php _e("Multiple Registration and Edit Profile form settings Redirects", 'profile-builder'); ?></li>
-		<li><?php _e("Individual User Redirects", 'profile-builder'); ?></li>
-		<li><?php _e("User Role based Redirects", 'profile-builder'); ?></li>
-		<li><?php _e("Global Redirects", 'profile-builder'); ?></li>
-		<li><?php _e("Individual redirects defined in shortcodes; <strong><em>redirect_priority=\"top\"</em></strong> parameter can be added in any shortcode, then that shortcode redirect will have priority over all other redirects.", 'profile-builder'); ?></li>
+		<li><?php esc_html_e("Multiple Registration and Edit Profile form settings Redirects", 'profile-builder'); ?></li>
+		<li><?php esc_html_e("Individual User Redirects", 'profile-builder'); ?></li>
+		<li><?php esc_html_e("User Role based Redirects", 'profile-builder'); ?></li>
+		<li><?php esc_html_e("Global Redirects", 'profile-builder'); ?></li>
+		<li><?php echo wp_kses_post( __("Individual redirects defined in shortcodes; <strong><em>redirect_priority=\"top\"</em></strong> parameter can be added in any shortcode, then that shortcode redirect will have priority over all other redirects.", 'profile-builder') ); ?></li>
 	</ol>
 	<hr/>
-	<h4><?php _e("Redirect Default WordPress forms and pages", 'profile-builder'); ?></h4>
-	<p><?php _e("With these you can redirect various WordPress forms and pages to pages created with profile builder.", 'profile-builder'); ?></p>
-	<p><?php _e( 'You can force access to wp-login.php so you don\'t get locked out of the site by accessing the link:', 'profile-builder' ); ?> <a href="<?php echo wp_login_url().'?wppb_force_wp_login=true' ?>"><?php echo wp_login_url().'?wppb_force_wp_login=true' ?></a></p>
+	<h4><?php esc_html_e("Redirect Default WordPress forms and pages", 'profile-builder'); ?></h4>
+	<p><?php esc_html_e("With these you can redirect various WordPress forms and pages to pages created with profile builder.", 'profile-builder'); ?></p>
+	<p><?php esc_html_e( 'You can force access to wp-login.php so you don\'t get locked out of the site by accessing the link:', 'profile-builder' ); ?> <a href="<?php echo esc_url( wp_login_url() ).'?wppb_force_wp_login=true' ?>"><?php echo esc_url( wp_login_url() ).'?wppb_force_wp_login=true' ?></a></p>
 	<hr/>
-	<h4><?php _e("Available tags for dynamic URLs", 'profile-builder'); ?></h4>
-	<p><?php _e("You use the following tags in your URLs to redirect users to various pages.", 'profile-builder'); ?></p>
+	<h4><?php esc_html_e("Available tags for dynamic URLs", 'profile-builder'); ?></h4>
+	<p><?php esc_html_e("You use the following tags in your URLs to redirect users to various pages.", 'profile-builder'); ?></p>
 	<ol>
-		<li><strong>{{homeurl}}</strong> - <?php _e("generates a url of the current website homepage.", 'profile-builder'); ?></li>
-		<li><strong>{{siteurl}}</strong> - <?php _e("in WordPress the <a target='_blank' href='https://codex.wordpress.org/Function_Reference/site_url'>site url</a> can be different then the home url", 'profile-builder'); ?></li>
-		<li><strong>{{user_id}}</strong> - <?php _e("the ID of the user", 'profile-builder'); ?></li>
-		<li><strong>{{user_nicename}}</strong> - <?php _e("the URL sanitized version of the username, the user nicename can be safely used in URLs since it can't contain special characters or spaces.", 'profile-builder'); ?></li>
-		<li><strong>{{http_referer}}</strong> - <?php _e("the URL of the previously visited page", 'profile-builder'); ?></li>
-        <li><strong>{{redirect_to}}</strong> - <?php _e("the default URL set by WordPress after login", 'profile-builder'); ?></li>
+		<li><strong>{{homeurl}}</strong> - <?php esc_html_e("generates a url of the current website homepage.", 'profile-builder'); ?></li>
+		<li><strong>{{siteurl}}</strong> - <?php echo wp_kses_post( __("in WordPress the <a target='_blank' href='https://codex.wordpress.org/Function_Reference/site_url'>site url</a> can be different then the home url", 'profile-builder') ); ?></li>
+		<li><strong>{{user_id}}</strong> - <?php esc_html_e("the ID of the user", 'profile-builder'); ?></li>
+		<li><strong>{{user_nicename}}</strong> - <?php esc_html_e("the URL sanitized version of the username, the user nicename can be safely used in URLs since it can't contain special characters or spaces.", 'profile-builder'); ?></li>
+		<li><strong>{{http_referer}}</strong> - <?php esc_html_e("the URL of the previously visited page", 'profile-builder'); ?></li>
+        <li><strong>{{redirect_to}}</strong> - <?php esc_html_e("the default URL set by WordPress after login", 'profile-builder'); ?></li>
 	</ol>
 
 <?php

@@ -128,7 +128,7 @@ class PB_Elementor_Recover_Password_Widget extends PB_Elementor_Widget {
 	 *
 	 */
 	protected function render() {
-        echo $this->render_widget( 'rp' );
+        echo $this->render_widget( 'rp' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 }

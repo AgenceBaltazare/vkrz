@@ -1,9 +1,10 @@
 <?php
-function genrerate_tournament_response($tournament_infos){
-    extract($tournament_infos);
+function genrerate_tournament_response($top_infos){
+
+    extract($top_infos);
 
     ob_start();
-    set_query_var( 'battle_vars', compact( 'contender_1', 'contender_2', 'id_tournament', 'nb_user_votes', 'id_ranking' ) );
+    set_query_var( 'battle_vars', compact( 'contender_1', 'contender_2', 'id_top', 'nb_user_votes', 'id_ranking', 'current_id_vainkeur'));
     get_template_part( 'templates/parts/content', 'battle' );
     $contenders_html = ob_get_clean();
 
@@ -32,7 +33,8 @@ function genrerate_tournament_response($tournament_infos){
         'uservotes_html'    => $uservotes_html,
         'nb_user_votes'     => $nb_user_votes,
         'user_ranking_html' => $user_ranking_html,
-        'is_next_duel'      => $is_next_duel
+        'is_next_duel'      => $is_next_duel,
+        'current_id_vainkeur' => $current_id_vainkeur
     ) ));
 }
 ?>

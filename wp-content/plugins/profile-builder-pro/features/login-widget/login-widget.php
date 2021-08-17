@@ -26,16 +26,16 @@ class wppb_login_widget extends WP_Widget {
 		$register = ( isset( $instance['register'] ) ? trim( $instance['register'] ) : '' );
 		$lostpass = ( isset( $instance['lostpass'] ) ? trim( $instance['lostpass'] ) : '' );
 
-		echo $before_widget;
+		echo wp_kses_post( $args['before_widget'] );
 
 		if ( ! empty( $title ) )
-			echo $before_title . $title . $after_title;
+			echo wp_kses_post( $args['before_title']  . $title .  $args['after_title'] );
 
 		echo do_shortcode('[wppb-login display="false" register_url="'.$register.'" lostpassword_url="'.$lostpass.'" redirect_url="'.$redirect.'"]');
 
 		do_action( 'wppb_login_widget_display', $args, $instance);
 			
-		echo $after_widget;
+		echo wp_kses_post( $args['after_widget'] );
 	}
 
 	/**
@@ -62,23 +62,23 @@ class wppb_login_widget extends WP_Widget {
 		$instance = wp_parse_args( (array) $instance, $defaults ); ?>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'profile-builder' ); ?></label>
-			<input id="<?php echo $this->get_field_id( 'title' ); ?>" class="widefat" type="text" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $instance['title']; ?>" style="width:100%;" />
+			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title:', 'profile-builder' ); ?></label>
+			<input id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" class="widefat" type="text" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" value="<?php echo esc_attr( $instance['title'] ); ?>" style="width:100%;" />
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'redirect' ); ?>"><?php _e( 'After login redirect URL (optional):', 'profile-builder' ); ?></label>
-			<input id="<?php echo $this->get_field_id( 'redirect' ); ?>" class="widefat wppb-widget-url-field" type="url" name="<?php echo $this->get_field_name( 'redirect' ); ?>" value="<?php echo $instance['redirect']; ?>" style="width:100%;" />
+			<label for="<?php echo esc_attr( $this->get_field_id( 'redirect' ) ); ?>"><?php esc_html_e( 'After login redirect URL (optional):', 'profile-builder' ); ?></label>
+			<input id="<?php echo esc_attr( $this->get_field_id( 'redirect' ) ); ?>" class="widefat wppb-widget-url-field" type="url" name="<?php echo esc_attr( $this->get_field_name( 'redirect' ) ); ?>" value="<?php echo esc_attr( $instance['redirect'] ); ?>" style="width:100%;" />
 		</p>
 		
 		<p>
-			<label for="<?php echo $this->get_field_id( 'register' ); ?>"><?php _e( 'Register page URL (optional):', 'profile-builder' ); ?></label>
-			<input id="<?php echo $this->get_field_id( 'register' ); ?>" class="widefat wppb-widget-url-field" type="url" name="<?php echo $this->get_field_name( 'register' ); ?>" value="<?php echo $instance['register']; ?>" style="width:100%;" />
+			<label for="<?php echo esc_attr( $this->get_field_id( 'register' ) ); ?>"><?php esc_html_e( 'Register page URL (optional):', 'profile-builder' ); ?></label>
+			<input id="<?php echo esc_attr( $this->get_field_id( 'register' ) ); ?>" class="widefat wppb-widget-url-field" type="url" name="<?php echo esc_attr( $this->get_field_name( 'register' ) ); ?>" value="<?php echo esc_attr( $instance['register'] ); ?>" style="width:100%;" />
 		</p>		
 		
 		<p>
-			<label for="<?php echo $this->get_field_id( 'lostpass' ); ?>"><?php _e( 'Password Recovery page URL (optional):', 'profile-builder' ); ?></label>
-			<input id="<?php echo $this->get_field_id( 'lostpass' ); ?>" class="widefat wppb-widget-url-field" type="url" name="<?php echo $this->get_field_name( 'lostpass' ); ?>" value="<?php echo $instance['lostpass']; ?>" style="width:100%;" />
+			<label for="<?php echo esc_attr( $this->get_field_id( 'lostpass' ) ); ?>"><?php esc_html_e( 'Password Recovery page URL (optional):', 'profile-builder' ); ?></label>
+			<input id="<?php echo esc_attr( $this->get_field_id( 'lostpass' ) ); ?>" class="widefat wppb-widget-url-field" type="url" name="<?php echo esc_attr( $this->get_field_name( 'lostpass' ) ); ?>" value="<?php echo esc_attr( $instance['lostpass'] ); ?>" style="width:100%;" />
 		</p>
 
 	<?php

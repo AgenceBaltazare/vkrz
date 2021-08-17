@@ -12,12 +12,25 @@ get_header();
             <div class="intro-mobile">
                 <div class="tournament-heading text-center">
                     <h3 class="mb-0 t-titre-tournoi">
-                        Top 20 des champions
+                        Top 20 des Vainkeurs les plus actifs <span>🔥</span>
                     </h3>
                 </div>
             </div>
             <?php
-            $users_list = get_vkrz_users(20);
+            $users_ids_list = get_vkrz_users_list();
+            $vainkeur_boss = new WP_Query(array(
+                'post_type'              => 'vainkeur',
+                'posts_per_page'         => '20',
+                'post_status'            => 'publish',
+                'meta_key'			     => 'nb_vote_vkrz',
+                'orderby'			     => 'meta_value_num',
+                'order'                  => 'DESC',
+                'author__in'             => $users_ids_list,
+                'author__not_in'         => array(1),
+                'ignore_sticky_posts'    => true,
+                'update_post_meta_cache' => false,
+                'no_found_rows'          => false,
+            ));
             ?>
             <div class="classement">
                 <div class="container-fluid">
@@ -25,13 +38,13 @@ get_header();
                         <div class="row">
                             <div class="col-md-12">
                                 <?php
-                                if($users_list) : ?>
+                                if($vainkeur_boss->have_posts()) : ?>
                                     <div class="row" id="table-bordered">
                                         <div class="col-12">
                                             <div class="card">
                                                 <div class="card-header">
                                                     <h4 class="card-title pt-1 pb-1">
-                                                        <span class="t-rose">TOP 20</span> des champions
+                                                        <span class="t-rose">TOP 20</span> des Vainkeurs les plus <span>🔥</span>
                                                     </h4>
                                                 </div>
                                                 <div class="table-responsive">
@@ -46,7 +59,7 @@ get_header();
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                        <?php $r=1; foreach($users_list as $user): ?>
+                                                        <?php $r=1; while ($vainkeur_boss->have_posts()) : $vainkeur_boss->the_post(); ?>
                                                             <tr>
                                                                 <td>
                                                                     <?php if($r == 1): ?>
@@ -62,50 +75,54 @@ get_header();
                                                                 <td>
                                                                     <div class="d-flex align-items-center">
                                                                         <?php
-                                                                        $champion_id    = $user['user_id'];
-                                                                        $champion_data  = get_user_by('ID', $champion_id);
+                                                                        $user_id            = get_the_author_meta('ID');
+                                                                        $user_infos         = deal_vainkeur_entry($user_id);
+                                                                        $nb_user_votes      = $user_infos['nb_vote_vkrz'];
+                                                                        $avatar             = $user_infos['avatar'];
+                                                                        $info_user_level    = get_user_level($user_id);
                                                                         ?>
                                                                         <div class="avatar">
-                                                                            <span class="avatar-picture" style="background-image: url(<?php echo $user['user_avatar']; ?>);"></span>
-                                                                            <?php if($user['user_level']): ?>
+                                                                            <span class="avatar-picture" style="background-image: url(<?php echo $avatar; ?>);"></span>
+                                                                            <?php if($info_user_level): ?>
                                                                                 <span class="user-niveau">
-                                                                                <?php echo $user['user_level']; ?>
-                                                                            </span>
+                                                                                    <?php echo $info_user_level['level_ico']; ?>
+                                                                                </span>
                                                                             <?php endif; ?>
                                                                         </div>
                                                                         <div class="font-weight-bold championname">
-                                                                        <span>
-                                                                            <?php echo $user['user_name']; ?>
-                                                                        </span>
-                                                                            <?php if($user['user_role'] == "administrator"): ?>
+                                                                            <span>
+                                                                                <?php echo get_the_author_meta('nickname'); ?>
+                                                                                <!-- #<?php echo $user_infos['uuid_user_vkrz']; ?> -->
+                                                                            </span>
+                                                                            <?php if($user_infos['user_role'] == "administrator"): ?>
                                                                                 <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
-                                                                                🦙
-                                                                            </span>
+                                                                                    🦙
+                                                                                </span>
                                                                             <?php endif; ?>
-                                                                            <?php if($user['user_role'] == "administrator" || $user['user_role'] == "author"): ?>
+                                                                            <?php if($user_infos['user_role'] == "administrator" || $user_infos['user_role'] == "author"): ?>
                                                                                 <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
-                                                                                🎨
-                                                                            </span>
+                                                                                    🎨
+                                                                                </span>
                                                                             <?php endif; ?>
                                                                         </div>
                                                                     </div>
                                                                 </td>
 
                                                                 <td class="text-right">
-                                                                    <?php echo $user['user_votes']; ?> <span class="ico">💎</span>
+                                                                    <?php the_field('nb_vote_vkrz'); ?> <span class="ico">💎</span>
                                                                 </td>
 
                                                                 <td class="text-right">
-                                                                    <?php echo $user['user_tops']; ?> <span class="ico">🏆</span>
+                                                                    <?php the_field('nb_top_vkrz'); ?> <span class="ico">🏆</span>
                                                                 </td>
 
                                                                 <td>
-                                                                    <a href="<?php echo esc_url(get_author_posts_url($champion_id)); ?>" class="mr-1 btn btn-outline-primary waves-effect">
+                                                                    <a href="<?php echo esc_url(get_author_posts_url($user_id)); ?>" class="mr-1 btn btn-outline-primary waves-effect">
                                                                         Guetter ses Tops
                                                                     </a>
                                                                 </td>
                                                             </tr>
-                                                            <?php $r++; endforeach; ?>
+                                                            <?php $r++; endwhile; ?>
                                                         </tbody>
                                                     </table>
                                                 </div>

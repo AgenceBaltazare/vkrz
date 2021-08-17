@@ -6,4 +6,3 @@ function get_paid($nb_votes) {
     return $money;
 
 }
-?>

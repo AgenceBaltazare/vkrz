@@ -216,7 +216,7 @@ function wppb_content_restriction_add_post_preview( $message, $content, $post, $
             $post_content = do_shortcode( $post_content );
 
             // Trim the preview
-            $preview = wp_trim_words( $post_content, $length, apply_filters( 'wppb_content_restriction_post_preview_more', __( '&hellip;' ) ) );
+            $preview = wp_trim_words( $post_content, $length, apply_filters( 'wppb_content_restriction_post_preview_more', __( '&hellip;', 'profile-builder' ) ) );
         }
     }
 
@@ -281,7 +281,7 @@ if( function_exists( 'wc_get_page_id' ) ) {
         $product_content = ob_get_contents();
         ob_end_clean();
         remove_filter('the_content', 'wpautop');
-        echo apply_filters( 'the_content', $product_content );
+        echo apply_filters( 'the_content', $product_content );//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         add_filter('the_content', 'wpautop');
     }
 }
@@ -346,9 +346,9 @@ function wppb_comments_restrict_view( $comment, $args, $depth ) {
     if ( !$message_shown ) {
 
         if ( is_user_logged_in() )
-            printf( '<p>%s</p>', apply_filters( 'wppb_comments_restriction_message_user_role', __( 'Comments are restricted for your user role.', 'profile-builder' ) ) );
+            printf( '<p>%s</p>', esc_html( apply_filters( 'wppb_comments_restriction_message_user_role', __( 'Comments are restricted for your user role.', 'profile-builder' ) ) ) );
         else
-            printf( '<p>%s</p>', apply_filters( 'wppb_comments_restriction_message_logged_out', __( 'You must be logged in to view the comments.', 'profile-builder' ) ) );
+            printf( '<p>%s</p>', esc_html( apply_filters( 'wppb_comments_restriction_message_logged_out', __( 'You must be logged in to view the comments.', 'profile-builder' ) ) ) );
 
         $message_shown = true;
     }

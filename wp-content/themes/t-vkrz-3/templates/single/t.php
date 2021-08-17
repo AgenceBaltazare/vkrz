@@ -1,59 +1,35 @@
 <?php
-global $uuiduser;
 global $user_id;
-global $id_tournament;
+global $uuiduser;
+global $id_vainkeur;
 global $id_ranking;
+global $id_top;
 global $is_next_duel;
-global $id_tournament;
-global $is_next_duel;
+global $top_infos;
 global $utm;
-global $typetop;
-if(is_user_logged_in()){
-    $current_user   = wp_get_current_user();
-    $user_id        = $current_user->ID;
-    $user_name      = $current_user->display_name;
-    $user_email     = $current_user->user_email;
-    $user_info      = get_userdata($user_id);
-    $user_role      = $user_info->roles[0];
-}
-global $user_name;
-global $user_email;
-$list_cat = get_the_terms($id_tournament, 'categorie');
-foreach($list_cat as $cat ) {
-    $cat_name   = $cat->name;
-}
-$uuiduser      = deal_uuiduser();
+global $user_infos;
+global $user_tops;
+$user_id       = get_user_logged_id();
 $utm           = deal_utm();
-$id_tournament = get_the_ID();
-$id_ranking    = get_or_create_ranking_if_not_exists($id_tournament, $uuiduser);
+$id_top        = get_the_ID();
+$user_tops     = get_user_tops();
+$uuiduser      = deal_uuiduser();
+$user_infos    = deal_vainkeur_entry();
+$id_vainkeur   = $user_infos['id_vainkeur'];
+if($id_vainkeur){
+    $current_id_vainkeur = $id_vainkeur;
+}
+$id_ranking    = get_user_ranking_id($id_top, $uuiduser);
 if($id_ranking){
-    extract(get_next_duel($id_ranking, $id_tournament));
+    extract(get_next_duel($id_ranking, $id_top, $current_id_vainkeur));
     if(!$is_next_duel){
         wp_redirect(get_the_permalink($id_ranking));
     }
 }
-wp_reset_postdata();
 get_header();
-global $top_url;
-global $top_title;
-global $top_question;
-global $top_img;
-global $top_number;
-$illu       = wp_get_attachment_image_src(get_field('cover_t', $id_tournament), 'full');
-$illu_url   = $illu[0];
+$top_datas = get_top_data($id_top);
 ?>
-<script>
-    const top_title_layer  = "<?php echo $top_title; ?>";
-    const top_question_layer  = "<?php echo $top_question; ?>";
-    const top_categorie_layer  = "<?php echo $cat->name; ?>";
-    const top_id_top_layer  = "<?php echo $id_tournament; ?>";
-    const top_uuiduser_layer  = "<?php echo $uuiduser; ?>";
-    const top_id_user_layer  = "<?php echo $user_id;; ?>";
-    const top_type__layer  = "<?php echo $typetop; ?>";
-    const top_utm__layer  = "<?php echo $utm; ?>";
-</script>
-
-<div class="app-content content cover" style="background: url(<?php echo $illu_url; ?>) center center no-repeat">
+<div class="app-content content cover" style="background: url(<?php echo $top_infos['top_cover']; ?>) center center no-repeat">
     <div class="content-overlay"></div>
     <div class="content-wrapper">
         <div class="content-body tournoi-content">
@@ -61,23 +37,20 @@ $illu_url   = $illu[0];
             <?php if(!$id_ranking): ?>
 
                 <div class="content-intro">
-                    <?php
-                    $illu          = get_the_post_thumbnail_url($id_tournament, 'large');
-                    $top_datas     = get_tournoi_data($id_tournament, $uuiduser);
-                    ?>
+
                     <div class="intro">
 
                         <div class="card animate__animated animate__flipInX card-developer-meetup">
-                            <div class="meetup-img-wrapper rounded-top text-left" style="background-image: url(<?php echo $illu; ?>);">
-                                <span class="badge badge-light-primary">Créé le <?php echo $top_datas[0]['date_of_t']; ?></span>
+                            <div class="meetup-img-wrapper rounded-top text-left" style="background-image: url(<?php echo $top_infos['top_img']; ?>);">
+                                <span class="badge badge-light-primary">Créé le <?php echo $top_infos['top_date']; ?></span>
                                 <div class="voile_contenders"></div>
-                                <?php if($top_number < 30): ?>
+                                <?php if($top_infos['top_number'] < 30): ?>
                                     <div class="avatar-group list-contenders">
                                         <?php $contenders_t = new WP_Query(array('post_type' => 'contender', 'orderby' => 'date', 'posts_per_page' => '-1',
                                             'meta_query'     => array(
                                                 array(
                                                     'key'     => 'id_tournoi_c',
-                                                    'value'   => $id_tournament,
+                                                    'value'   => $id_top,
                                                     'compare' => '=',
                                                 )
                                             )
@@ -95,17 +68,17 @@ $illu_url   = $illu[0];
                                 <div class="meetup-header d-flex align-items-center justify-content-center">
                                     <div class="my-auto">
                                         <h4 class="card-title mb-25">
-                                            Top <?php echo $top_number; ?> ⚡ <?php echo $top_title; ?>
+                                            Top <?php echo $top_infos['top_number']; ?> ⚡ <?php echo $top_infos['top_title']; ?>
                                         </h4>
                                         <p class="card-text mb-0 t-rose animate__animated animate__flash">
-                                            <?php echo $top_question; ?>
+                                            <?php echo $top_infos['top_question']; ?>
                                         </p>
                                     </div>
                                 </div>
-                                <?php if(get_field('precision_t', $id_tournament)): ?>
+                                <?php if(get_field('precision_t', $id_top)): ?>
                                     <div class="card-precision">
                                         <p class="card-text mb-1">
-                                            <?php the_field('precision_t', $id_tournament); ?>
+                                            <?php the_field('precision_t', $id_top); ?>
                                         </p>
                                     </div>
                                 <?php endif; ?>
@@ -113,33 +86,33 @@ $illu_url   = $illu[0];
                             <div class="card-cta">
                                 <div class="choosecta">
                                     <div class="cta-begin cta-complet">
-                                        <a href="#" id="begin_t" data-tournament="<?php echo $id_tournament; ?>" data-typetop="complet" data-uuiduser="<?php echo $uuiduser; ?>" data-id-user="<?= $user_id ?>" data-id-ranking="<?= $id_ranking ?>" data-top-question ="<?= $top_question ?>" data-top-title ="<?= $top_title; ?>" data-cat-name="<?= $cat->name; ?>" data-utm="<?= $utm; ?>" class="starting animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
-                                            Débuter mon Top Complet
+                                        <a href="#" id="begin_t" data-typetop="complet" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
+                                            Top Complet
                                         </a>
                                         <small class="text-muted">
                                             <?php
-                                            $min = ($top_number - 5) * 2 + 6;
+                                            $min = ($top_infos['top_number'] - 5) * 2 + 6;
                                             $max = $min * 2;
                                             ?>
-                                            <?php if($top_number < 3): ?>
+                                            <?php if($top_infos['top_number'] < 3): ?>
                                                 Un seul vote suffira pour finir ce Top
                                             <?php else: ?>
-                                                Prévoir entre <?php echo $min; ?> et <?php echo $max; ?> votes pour finir ce Top
+                                                Prévoir entre <?php echo $min; ?> et <?php echo $max; ?> votes pour finir ton Top du 1er au dernier
                                             <?php endif; ?>
                                         </small>
                                     </div>
-                                    <?php if($top_number > 10): ?>
+                                    <?php if($top_infos['top_number'] > 10): ?>
                                         <div class="cta-begin cta-top3">
-                                            <a href="#" id="begin_top3" data-typetop="top3" data-tournament="<?php echo $id_tournament; ?>" data-uuiduser="<?php echo $uuiduser; ?>" data-id-user="<?= $user_id ?>" data-id-ranking="<?= $id_ranking ?>" data-top-question ="<?= $top_question ?>" data-top-title ="<?= $top_title; ?>" data-cat-name="<?= $cat->name; ?>" data-utm="<?= $utm; ?>" class="starting animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
-                                                Faire juste mon Top 3
+                                            <a href="#" id="begin_top3" data-typetop="top3" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
+                                                Top 3
                                             </a>
                                             <small class="text-muted">
                                                 <?php
-                                                $max = (floor($top_number/2))+(3*((round($top_number/2))-1));
-                                                $min = (floor($top_number/2))+((round($top_number/2))-1)+3;
+                                                $max = (floor($top_infos['top_number']/2))+(3*((round($top_infos['top_number']/2))-1));
+                                                $min = (floor($top_infos['top_number']/2))+((round($top_infos['top_number']/2))-1)+3;
                                                 $moy = ($max+$min) / 2;
                                                 ?>
-                                                Prévoir environ <?php echo round($moy); ?> votes pour finir ce Top
+                                                Prévoir environ <?php echo round($moy); ?> votes pour juste faire ton podium
                                             </small>
                                         </div>
                                     <?php endif; ?>
@@ -154,7 +127,7 @@ $illu_url   = $illu[0];
                                             </div>
                                             <div class="content-body text-left">
                                                 <h4 class="mb-0">
-                                                    <?php echo $top_datas[0]['nb_votes']; ?>
+                                                    <?php echo $top_datas['nb_votes']; ?>
                                                 </h4>
                                                 <small class="text-muted">votes réalisés</small>
                                             </div>
@@ -167,7 +140,7 @@ $illu_url   = $illu[0];
                                             </div>
                                             <div class="content-body text-left">
                                                 <h4 class="mb-0">
-                                                    <?php echo $top_datas[0]['nb_tops']; ?>
+                                                    <?php echo $top_datas['nb_tops']; ?>
                                                 </h4>
                                                 <small class="text-muted">Tops terminés</small>
                                             </div>
@@ -175,7 +148,7 @@ $illu_url   = $illu[0];
                                     </div>
                                     <div class="col">
                                         <?php
-                                        $creator_data = get_creator_data(false, $id_tournament);
+                                        $creator_data = get_creator_data(false, $id_top);
                                         ?>
                                         <div class="infos-card-t d-flex align-items-center infos-card-t-c">
                                             <div class="">
@@ -186,7 +159,7 @@ $illu_url   = $illu[0];
                                                             $avatar_url = get_avatar_url($creator_data[0]['creator_id'], ['size' => '80']);
                                                         }
                                                         else{
-                                                            $avatar_url = get_bloginfo('template_directory')."/assets/images/vkrz/ninja.png";
+                                                            $avatar_url = get_bloginfo('template_directory')."/assets/images/vkrz/avatar.png";
                                                         }
                                                         ?>
                                                         <img src="<?php echo $avatar_url; ?>" alt="Avatar" width="38" height="38">
@@ -213,9 +186,9 @@ $illu_url   = $illu[0];
 
                 <div class="intro-mobile">
                     <div class="tournament-heading text-center">
-                        <h3 class="mb-0 t-titre-tournoi">Top <?php echo $top_number; ?> <span class="ico">⚔️</span> <?php echo $top_title; ?></h3>
+                        <h3 class="mb-0 t-titre-tournoi">Top <?php echo $top_infos['top_number']; ?> <span class="ico">⚔️</span> <?php echo $top_infos['top_title']; ?></h3>
                         <h4 class="text-center t-question">
-                            <?php echo $top_question; ?> <br>
+                            <?php echo $top_infos['top_question']; ?> <br>
                         </h4>
                     </div>
                 </div>
@@ -223,8 +196,7 @@ $illu_url   = $illu[0];
                 <div class="row">
                     <div class="col-md-9 col-lg-10">
 
-                        <?php
-                        if($typetop != "top3"): ?>
+                        <?php if($top_infos['top_type'] != "top3"): ?>
                             <div class="container-fluid">
                                 <div class="tournoi-infos mb-2">
                                     <div class="display_current_user_rank">
@@ -232,7 +204,7 @@ $illu_url   = $illu[0];
                                             <div class="col-12">
                                                 <div class="current_rank">
                                                     <?php
-                                                    set_query_var('current_user_ranking_var', compact('id_ranking', 'id_tournament'));
+                                                    set_query_var('current_user_ranking_var', compact('id_ranking', 'id_top'));
                                                     get_template_part('templates/parts/content', 'user-ranking');
                                                     ?>
                                                 </div>
@@ -243,12 +215,12 @@ $illu_url   = $illu[0];
                             </div>
                         <?php endif; ?>
 
-                        <div class="<?php if(get_field('c_rounded_t', $id_tournament)){ echo 'rounded'; } ?> <?php if(get_field('full_w_t', $id_tournament)){ echo 'container container-cc'; } else { echo 'container'; } ?>">
+                        <div class="<?php if(get_field('c_rounded_t', $id_top)){ echo 'rounded'; } ?> <?php if(get_field('full_w_t', $id_top)){ echo 'container container-cc'; } else { echo 'container'; } ?>">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="display_battle">
                                         <?php
-                                        set_query_var('battle_vars', compact('contender_1', 'contender_2', 'id_tournament', 'id_ranking'));
+                                        set_query_var('battle_vars', compact('contender_1', 'contender_2', 'id_top', 'id_ranking', 'id_vainkeur'));
                                         get_template_part('templates/parts/content', 'battle');
                                         ?>
                                     </div>
@@ -268,17 +240,17 @@ $illu_url   = $illu[0];
                                         Plus on est de fou plus on .. TOP !
                                     </h6>
                                     <div class="btn-group justify-content-center share-t w-100" role="group">
-                                        <a href="https://twitter.com/intent/tweet?text=J'ai fait mon TOP <?php echo $top_number; ?> <?php echo $top_title; ?> maintenant c'est à vous 🤪🤪 &via=vainkeurz&hashtags=VKRZ&url=<?php echo $top_url; ?>" target="_blank" title="Tweet" class="btn btn-icon btn-outline-primary">
+                                        <a href="https://twitter.com/intent/tweet?text=J'ai fait mon TOP <?php echo $top_infos['top_number']; ?> <?php echo $top_infos['top_title']; ?> maintenant c'est à vous 🤪🤪 &via=vainkeurz&hashtags=VKRZ&url=<?php echo $top_infos['top_url']; ?>" target="_blank" title="Tweet" class="btn btn-icon btn-outline-primary">
                                             <i class="fab fa-twitter"></i>
                                         </a>
-                                        <a href="whatsapp://send?text=<?php echo $top_url; ?>" data-action="share/whatsapp/share" class="btn btn-icon btn-outline-primary">
+                                        <a href="whatsapp://send?text=<?php echo $top_infos['top_url']; ?>" data-action="share/whatsapp/share" class="btn btn-icon btn-outline-primary">
                                             <i class="fab fa-whatsapp"></i>
                                         </a>
-                                        <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $top_url; ?>" title="Partager sur Facebook" target="_blank" class="btn btn-icon btn-outline-primary">
+                                        <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $top_infos['top_url']; ?>" title="Partager sur Facebook" target="_blank" class="btn btn-icon btn-outline-primary">
                                             <i class="fab fa-facebook-f"></i>
                                         </a>
                                         <a href="javascript: void(0)" class="sharelinkbtn2 btn btn-icon btn-outline-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copier le lien du Top">
-                                            <input type="text" value="<?php echo $top_url; ?>" class="input_to_share2">
+                                            <input type="text" value="<?php echo $top_infos['top_url']; ?>" class="input_to_share2">
                                             <i class="far fa-link"></i>
                                         </a>
                                     </div>
@@ -293,7 +265,7 @@ $illu_url   = $illu[0];
                                     <h6 class="card-subtitle text-muted mb-1">
                                         T'inquiète on te laisse refaire le Top
                                     </h6>
-                                    <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" href="#" class="restart confirm_delete btn btn-outline-primary waves-effect" data-idranking="<?php echo $id_ranking; ?>" data-id-tournament="<?= $id_tournament ?>" >
+                                    <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-id_ranking="<?php echo $id_ranking; ?>" href="#" class="confirm_delete btn btn-outline-primary waves-effect">
                                         Recommencer
                                     </a>
                                 </div>
@@ -351,6 +323,5 @@ $illu_url   = $illu[0];
         </div>
     </div>
 </div>
-<!-- END: Content-->
 
 <?php get_footer(); ?>

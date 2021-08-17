@@ -8,8 +8,8 @@ function load_css_js() {
     wp_enqueue_style('font', 'https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&?family=Libre%20Franklin:400&display=swap', array(), null);
     wp_enqueue_style('animate', 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css', array(), null);
     wp_enqueue_style('vendors', get_template_directory_uri().'/assets/vendors/css/vendors.min.css', array(), null);
-    wp_enqueue_style('bootstrap', get_template_directory_uri().'/assets/css/bootstrap.min.css', array(), null);
-    wp_enqueue_style('bootstrap-ext', get_template_directory_uri().'/assets/css/bootstrap-extended.min.css', array(), null);
+    wp_enqueue_style('bootstrap', get_template_directory_uri().'/assets/css/core/bootstrap.min.css', array(), null);
+    wp_enqueue_style('bootstrap-ext', get_template_directory_uri().'/assets/css/core/bootstrap-extended.min.css', array(), null);
     wp_enqueue_style('theme', get_template_directory_uri().'/assets/css/theme/theme.css', array(), null);
     wp_enqueue_style('swiper', get_template_directory_uri().'/assets/vendors/css/extensions/swiper.min.css', array(), null);
     wp_enqueue_style('ext-swiper', get_template_directory_uri().'/assets/css/plugins/extensions/ext-component-swiper.css', array(), null);
@@ -20,8 +20,8 @@ function load_css_js() {
     if(is_archive()){
         wp_enqueue_style('shop', get_template_directory_uri().'/assets/css/pages/app-ecommerce.css', array(), null);
     }
-    if(get_post_type() == "tournoi"){
-        wp_enqueue_style('chat', get_template_directory_uri().'/assets/css/pages/app-chat-list.min.css', array(), null);
+    if(is_page(array(27800, 27795, 27792))){
+        wp_enqueue_style('account', get_template_directory_uri().'/assets/css/vkrz/login.css', array(), $template_version);
     }
     wp_enqueue_style('main', get_template_directory_uri().'/assets/css/vkrz/main.css', array(), $template_version);
 
@@ -41,7 +41,7 @@ function load_css_js() {
     wp_enqueue_script('modals', get_template_directory_uri().'/assets/js/scripts/components/components-modals.js', array(), null, true);
     if(is_archive()){
         wp_enqueue_script('filters', get_template_directory_uri().'/assets/js/scripts/filters.js', array(), null, true);
-        wp_enqueue_script('shop', get_template_directory_uri().'/assets/js/scripts/pages/app-ecommerce.min.js', array(), null, true);
+        wp_enqueue_script('shop', get_template_directory_uri().'/assets/js/scripts/pages/app-ecommerce.js', array(), null, true);
     }
     wp_enqueue_script('app', get_template_directory_uri().'/assets/js/core/app.js', array(), null, true);
     wp_enqueue_script('app-menu', get_template_directory_uri().'/assets/js/core/app-menu.js', array(), null, true);
@@ -50,5 +50,6 @@ function load_css_js() {
     wp_enqueue_script('meca', get_template_directory_uri().'/function/ajax/meca.js', array(), $template_version, true);
     wp_enqueue_script('note', get_template_directory_uri().'/function/ajax/note-t.js', array(), $template_version, true);
     wp_enqueue_script('begin', get_template_directory_uri().'/function/ajax/begin-t.js', array(), $template_version, true);
+    wp_enqueue_script('monitor', get_template_directory_uri().'/function/ajax/monitor.js', array(), $template_version, true);
 }
 add_action('wp_enqueue_scripts', 'load_css_js');

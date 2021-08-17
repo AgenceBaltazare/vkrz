@@ -189,7 +189,7 @@ class Wordpress_Creation_Kit_PB{
 
         //output the entries only for repeater fields
         if( !$this->args['single'] )
-            echo self::wck_output_meta_content($metabox['args']['meta_name'], $post_id, $metabox['args']['meta_array']);
+            echo self::wck_output_meta_content($metabox['args']['meta_name'], $post_id, $metabox['args']['meta_array']); //phpcs:ignore  WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	/**
@@ -310,7 +310,7 @@ class Wordpress_Creation_Kit_PB{
             $wck_update_container_css_class = apply_filters("wck_add_form_class_{$meta}", '', $meta, $results );
         }
         ?>
-		<div id="<?php echo $meta ?>" style="padding:10px 0;" class="wck-add-form<?php if( $this->args['single'] ) echo ' single' ?> <?php if( !empty( $wck_update_container_css_class ) ) echo $wck_update_container_css_class; ?>">
+		<div id="<?php echo esc_attr( $meta ) ?>" style="padding:10px 0;" class="wck-add-form<?php if( $this->args['single'] ) echo ' single' ?> <?php if( !empty( $wck_update_container_css_class ) ) echo esc_attr( $wck_update_container_css_class ); ?>">
 			<ul class="mb-list-entry-fields">
 				<?php
 				$element_id = 0;
@@ -328,7 +328,7 @@ class Wordpress_Creation_Kit_PB{
                         }
                         ?>
 							<li class="row-<?php echo esc_attr( Wordpress_Creation_Kit_PB::wck_generate_slug( $details['title'], $details ) ) ?>">
-                                <?php echo self::wck_output_form_field( $meta, $details, $value, $context, $post_id ); ?>
+                                <?php echo self::wck_output_form_field( $meta, $details, $value, $context, $post_id ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 							</li>
 						<?php
 
@@ -340,14 +340,14 @@ class Wordpress_Creation_Kit_PB{
 				?>
                 <?php if( ! $this->args['single'] || $this->args['context'] == 'option' ){ ?>
                     <li style="overflow:visible;" class="add-entry-button">
-                        <a href="javascript:void(0)" class="button-primary" onclick="addMeta('<?php echo esc_js($meta); ?>', '<?php echo esc_js( $post_id ); ?>', '<?php echo esc_js($nonce); ?>')"><span><?php if( $this->args['single'] ) echo apply_filters( 'wck_add_entry_button', __( 'Save', 'profile-builder' ), $meta, $post ); else echo apply_filters( 'wck_add_entry_button', __( 'Add Entry', 'wck' ), $meta, $post ); ?></span></a>
+                        <a href="javascript:void(0)" class="button-primary" onclick="addMeta('<?php echo esc_js($meta); ?>', '<?php echo esc_js( $post_id ); ?>', '<?php echo esc_js($nonce); ?>')"><span><?php if( $this->args['single'] ) echo esc_html( apply_filters( 'wck_add_entry_button', __( 'Save', 'profile-builder' ), $meta, $post ) ); else echo esc_html( apply_filters( 'wck_add_entry_button', __( 'Add Entry', 'profile-builder' ), $meta, $post ) ); ?></span></a>
                     </li>
                 <?php }elseif($this->args['single'] && $this->args['context'] == 'post_meta' ){ ?>
-                    <input type="hidden" name="_wckmetaname_<?php echo $meta ?>#wck" value="true">
+                    <input type="hidden" name="_wckmetaname_<?php echo esc_attr( $meta ) ?>#wck" value="true">
                 <?php } ?>
             </ul>
 		</div>
-		<script>wck_set_to_widest( '.field-label', '<?php echo $meta ?>' );</script>
+		<script>wck_set_to_widest( '.field-label', '<?php echo esc_js( $meta ) ?>' );</script>
 		<?php
 	}
 
@@ -444,7 +444,7 @@ class Wordpress_Creation_Kit_PB{
 
 
 		if( !empty( $results ) ){
-			$list .= apply_filters( 'wck_metabox_content_header_'.$meta , '<thead><tr><th class="wck-number">#</th><th class="wck-content">'. __( 'Content', 'profile-builder' ) .'</th><th class="wck-edit">'. __( 'Edit', 'wck' ) .'</th><th class="wck-delete">'. __( 'Delete', 'wck' ) .'</th></tr></thead>' );
+			$list .= apply_filters( 'wck_metabox_content_header_'.$meta , '<thead><tr><th class="wck-number">#</th><th class="wck-content">'. __( 'Content', 'profile-builder' ) .'</th><th class="wck-edit">'. __( 'Edit', 'profile-builder' ) .'</th><th class="wck-delete">'. __( 'Delete', 'profile-builder' ) .'</th></tr></thead>' );
 			$i=0;
 			foreach ($results as $result){
 
@@ -501,7 +501,7 @@ class Wordpress_Creation_Kit_PB{
 				    if ( $details['slug'] === 'pble-label' ){
                         $display_value = '<pre>' . self::wck_get_entry_field_select( $value, $details ) . '</pre>';
                     } else {
-                        $display_value = '<pre>' . __(self::wck_get_entry_field_select( $value, $details ), 'profilebuilder') . '</pre>';
+                        $display_value = '<pre>' . __(self::wck_get_entry_field_select( $value, $details ), 'profile-builder') . '</pre>'; //phpcs:ignore  WordPress.WP.I18n.NonSingularStringLiteralText
                     }
                 } else {
 					$display_value = '<pre>'.htmlspecialchars( $value ) . '</pre>';
@@ -545,8 +545,8 @@ class Wordpress_Creation_Kit_PB{
 		}
 
 		$list .= '</td>';
-		$list .= '<td style="text-align:center;vertical-align:middle;" class="wck-edit"><a href="javascript:void(0)" class="button-secondary"  onclick=\'showUpdateFormMeta("'.esc_js($meta).'", "'.esc_js($id).'", "'.esc_js($element_id).'", "'.esc_js($edit_nonce).'")\' title="'. __( 'Edit this item', 'profile-builder' ) .'">'. apply_filters( 'wck_edit_button', __('Edit','wck'), $meta ) .'</a></td>';
-		$list .= '<td style="text-align:center;vertical-align:middle;" class="wck-delete"><a href="javascript:void(0)" class="mbdelete" onclick=\'removeMeta("'.esc_js($meta).'", "'.esc_js($id).'", "'.esc_js($element_id).'", "'.esc_js($delete_nonce).'")\' title="'. __( 'Delete this item', 'profile-builder' ) .'">'. apply_filters( 'wck_delete_button', __( 'Delete', 'wck' ), $meta) .'</a></td>';
+		$list .= '<td style="text-align:center;vertical-align:middle;" class="wck-edit"><a href="javascript:void(0)" class="button-secondary"  onclick=\'showUpdateFormMeta("'.esc_js($meta).'", "'.esc_js($id).'", "'.esc_js($element_id).'", "'.esc_js($edit_nonce).'")\' title="'. __( 'Edit this item', 'profile-builder' ) .'">'. apply_filters( 'wck_edit_button', __('Edit','profile-builder'), $meta ) .'</a></td>';
+		$list .= '<td style="text-align:center;vertical-align:middle;" class="wck-delete"><a href="javascript:void(0)" class="mbdelete" onclick=\'removeMeta("'.esc_js($meta).'", "'.esc_js($id).'", "'.esc_js($element_id).'", "'.esc_js($delete_nonce).'")\' title="'. __( 'Delete this item', 'profile-builder' ) .'">'. apply_filters( 'wck_delete_button', __( 'Delete', 'profile-builder' ), $meta) .'</a></td>';
 		$list .= apply_filters( 'wck_add_content_after_columns', '', $list, $meta );
 
 		$list .= "</tr> \r\n";
@@ -674,7 +674,7 @@ class Wordpress_Creation_Kit_PB{
 
 	/* our own ajaxurl */
 	function wck_print_ajax_url(){
-		echo '<script type="text/javascript">var wppbWckAjaxurl = "'. apply_filters( 'wck_ajax_url', admin_url('admin-ajax.php') ) .'";</script>';
+		echo '<script type="text/javascript">var wppbWckAjaxurl = "'. esc_js( apply_filters( 'wck_ajax_url', admin_url('admin-ajax.php') ) ).'";</script>';
 	}
 
 
@@ -734,7 +734,7 @@ class Wordpress_Creation_Kit_PB{
 		if( !empty( $values ) ){
 			foreach( $values as $key => $value ){
 				if( array_key_exists( $key, $required_fields ) && apply_filters( "wck_required_test_{$meta}_{$key}", empty( $value ), $value, $id ) ){
-					$required_message .= apply_filters( "wck_required_message_{$meta}_{$key}", __( "Please enter a value for the required field ", "wck" ) . "$required_fields[$key] \n", $value );
+					$required_message .= apply_filters( "wck_required_message_{$meta}_{$key}", __( "Please enter a value for the required field ", "profile-builder" ) . "$required_fields[$key] \n", $value );
 					$required_fields_with_errors[] = $key;
 				}
 			}
@@ -783,7 +783,7 @@ class Wordpress_Creation_Kit_PB{
 		if( $return )
 			return $return;
 		else
-			return array( 'error' => __( 'You are not allowed to do this.', 'wck' ), 'errorfields' => '' );
+			return array( 'error' => __( 'You are not allowed to do this.', 'profile-builder' ), 'errorfields' => '' );
 
 	}
 
@@ -800,7 +800,7 @@ class Wordpress_Creation_Kit_PB{
 		else
 			$id = '';
 		if( !empty( $_POST['values'] ) && is_array( $_POST['values'] ) )
-			$values = array_map( 'wppb_sanitize_value', $_POST['values'] );
+			$values = array_map( 'wppb_sanitize_value', $_POST['values'] );//phpcs:ignore  WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		else
 			$values = array();
 
@@ -883,7 +883,7 @@ class Wordpress_Creation_Kit_PB{
 		else
 			$element_id = 0;
 		if( !empty( $_POST['values'] ) && is_array( $_POST['values']) )
-			$values = array_map( 'wppb_sanitize_value', $_POST['values'] );
+			$values = array_map( 'wppb_sanitize_value', $_POST['values'] ); //phpcs:ignore  WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		else
 			$values = array();
 
@@ -949,12 +949,12 @@ class Wordpress_Creation_Kit_PB{
 			$id = absint($_POST['id']);
 
 		ob_start();
-			echo self::wck_output_meta_content($meta, $id, $this->args['meta_array']);
+			echo self::wck_output_meta_content($meta, $id, $this->args['meta_array']); //phpcs:ignore  WordPress.Security.EscapeOutput.OutputNotEscaped
 			do_action( "wck_refresh_list_{$meta}", $id );
 		$entry_list = ob_get_clean();
 
 		if( strpos( current_filter(), 'wp_ajax_wck_refresh_list') === 0 ){
-			echo $entry_list;
+			echo $entry_list; //phpcs:ignore  WordPress.Security.EscapeOutput.OutputNotEscaped
 			exit;
 		}
 		else{
@@ -971,7 +971,7 @@ class Wordpress_Creation_Kit_PB{
 			$results = get_option( apply_filters( 'wck_option_meta' , $meta, $element_id ) );
 
 		ob_start();
-			echo self::wck_output_entry_content( $meta, $id, $this->args['meta_array'], $results, $element_id );
+			echo self::wck_output_entry_content( $meta, $id, $this->args['meta_array'], $results, $element_id ); //phpcs:ignore  WordPress.Security.EscapeOutput.OutputNotEscaped
 			do_action( "wck_refresh_entry_{$meta}", $id );
 		$entry_content = ob_get_clean();
 
@@ -995,13 +995,13 @@ class Wordpress_Creation_Kit_PB{
 	/* ajax to show the update form */
 	function wck_show_update_form(){
 		check_ajax_referer( "wck-edit-entry" );
-		$meta = sanitize_text_field( $_POST['meta'] );
-		$id = absint($_POST['id']);
-		$element_id = absint( $_POST['element_id'] );
+		$meta = isset(  $_POST['meta'] ) ? sanitize_text_field( $_POST['meta'] ) : '';
+		$id = isset( $_POST['id'] ) ? absint( $_POST['id'] ) : '';
+		$element_id = isset( $_POST['element_id'] ) ? absint( $_POST['element_id'] ) : '';
 
         do_action( "wck_before_adding_form_{$meta}", $id, $element_id );
 
-		echo self::mb_update_form($this->args['meta_array'], $meta, $id, $element_id);
+		echo self::mb_update_form($this->args['meta_array'], $meta, $id, $element_id);//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 		do_action( "wck_after_adding_form", $meta, $id, $element_id );
         do_action( "wck_after_adding_form_{$meta}", $id, $element_id );
@@ -1201,9 +1201,9 @@ class Wordpress_Creation_Kit_PB{
                                 if (isset($_POST[$single_field_name])) {
                                     /* checkbox needs to be stored as string not array */
                                     if( $meta_field['type'] == 'checkbox' )
-                                        $_POST[$single_field_name] = implode( ', ', $_POST[$single_field_name] );
+                                        $_POST[$single_field_name] = implode( ', ', $_POST[$single_field_name] );//phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 
-                                    $meta_values[Wordpress_Creation_Kit_PB::wck_generate_slug( $meta_field['title'], $meta_field )] = wppb_sanitize_value( $_POST[$single_field_name] );
+                                    $meta_values[Wordpress_Creation_Kit_PB::wck_generate_slug( $meta_field['title'], $meta_field )] = wppb_sanitize_value( $_POST[$single_field_name] ); //phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
                                 }
                                 else
                                     $meta_values[Wordpress_Creation_Kit_PB::wck_generate_slug( $meta_field['title'], $meta_field )] = '';
@@ -1229,7 +1229,7 @@ class Wordpress_Creation_Kit_PB{
                             if ($this->args['unserialize_fields']) {
                                 if (!empty($this->args['meta_array'])) {
                                     foreach ($this->args['meta_array'] as $meta_field) {
-                                        update_post_meta($post_id, $meta_name . '_' . Wordpress_Creation_Kit_PB::wck_generate_slug( $meta_field['title'], $meta_field ) . '_1', $_POST[$this->args['meta_name'] . '_' . Wordpress_Creation_Kit_PB::wck_generate_slug( $meta_field['title'], $meta_field )]);
+                                        update_post_meta($post_id, $meta_name . '_' . Wordpress_Creation_Kit_PB::wck_generate_slug( $meta_field['title'], $meta_field ) . '_1', array_map( 'wppb_sanitize_value', $_POST[$this->args['meta_name'] . '_' . Wordpress_Creation_Kit_PB::wck_generate_slug( $meta_field['title'], $meta_field )] ) ); //phpcs:ignore
                                     }
                                 }
                             }
@@ -1255,7 +1255,9 @@ class Wordpress_Creation_Kit_PB{
                 $error_messages .= $wck_single_forms_error['error'];
                 $error_fields .= implode( ',', $wck_single_forms_error['errorfields'] ).',';
             }
-            wp_safe_redirect( add_query_arg( array( 'wckerrormessages' => base64_encode( urlencode( $error_messages ) ), 'wckerrorfields' => base64_encode( urlencode( $error_fields ) ) ), $_SERVER["HTTP_REFERER"] ) );
+            if( isset( $_SERVER["HTTP_REFERER"] ) )
+                wp_safe_redirect( add_query_arg( array( 'wckerrormessages' => base64_encode( urlencode( $error_messages ) ), 'wckerrorfields' => base64_encode( urlencode( $error_fields ) ) ), esc_url_raw( $_SERVER["HTTP_REFERER"] ) ) );
+
             exit;
         }
     }
@@ -1277,7 +1279,7 @@ class Wordpress_Creation_Kit_PB{
         /* mark the fields */
         if( isset( $_GET['wckerrorfields'] ) && !empty( $_GET['wckerrorfields'] ) ){
             echo '<script type="text/javascript">';
-            $field_names = explode( ',', sanitize_text_field( urldecode( base64_decode( $_GET['wckerrorfields'] ) ) ) );
+            $field_names = explode( ',', sanitize_text_field( urldecode( base64_decode( $_GET['wckerrorfields'] ) ) ) );//phpcs:ignore  WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 			if( !empty( $field_names ) ) {
 				foreach ($field_names as $field_name) {
 					echo "jQuery( '.field-label[for=\"" . esc_js($field_name) . "\"]' ).addClass('error');";
@@ -1288,7 +1290,7 @@ class Wordpress_Creation_Kit_PB{
 
         /* alert the error messages */
         if( isset( $_GET['wckerrormessages'] ) ){
-            echo '<script type="text/javascript">alert("'.  str_replace( '%0A', '\n', esc_js( urldecode( base64_decode( $_GET['wckerrormessages'] ) ) ) ) .'")</script>';
+            echo '<script type="text/javascript">alert("'.  str_replace( '%0A', '\n', esc_js( urldecode( base64_decode( $_GET['wckerrormessages'] ) ) ) ) .'")</script>';//phpcs:ignore
         }
     }
 
@@ -1508,7 +1510,7 @@ class WCK_Page_Creator_PB{
 			//<![CDATA[
 			jQuery(document).ready( function($) {
 				$('.if-js-closed').removeClass('if-js-closed').addClass('closed');
-				postboxes.add_postbox_toggles( '<?php echo $this->hookname; ?>' );
+				postboxes.add_postbox_toggles( '<?php echo esc_js( $this->hookname ); ?>' );
 			});
 			//]]>
 		</script><?php
@@ -1523,12 +1525,12 @@ class WCK_Page_Creator_PB{
 		<div class="wrap">
 
 			<?php if( !empty( $this->args['page_icon'] ) ): ?>
-			<div id="<?php echo $this->args['menu_slug'] ?>-icon" style="background: url('<?php echo $this->args['page_icon']; ?>') no-repeat;" class="icon32">
+			<div id="<?php echo esc_attr( $this->args['menu_slug'] );//phpcs:ignore ?>-icon" style="background: url('<?php echo $this->args['page_icon']; ?>') no-repeat;" class="icon32">
 				<br/>
 			</div>
 			<?php endif; ?>
 
-			<h2><?php echo $this->args['page_title'] ?></h2>
+			<h2><?php echo esc_html( $this->args['page_title'] ) ?></h2>
 
 			<div id="poststuff">
 

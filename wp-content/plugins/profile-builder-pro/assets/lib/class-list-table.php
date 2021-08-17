@@ -181,7 +181,7 @@ class PB_WP_List_Table {
 	 * @access public
 	 */
 	function no_items() {
-		_e( 'No items found.' );
+		esc_html_e( 'No items found.' );//phpcs:ignore WordPress.WP.I18n.MissingArgDomain
 	}
 
 	/**
@@ -200,17 +200,17 @@ class PB_WP_List_Table {
 		$input_id = $input_id . '-search-input';
 
 		if ( ! empty( $_REQUEST['orderby'] ) )
-			echo '<input type="hidden" name="orderby" value="' . esc_attr( $_REQUEST['orderby'] ) . '" />';
+			echo '<input type="hidden" name="orderby" value="' . esc_attr( $_REQUEST['orderby'] ) . '" />';//phpcs:ignore
 		if ( ! empty( $_REQUEST['order'] ) )
-			echo '<input type="hidden" name="order" value="' . esc_attr( $_REQUEST['order'] ) . '" />';
+			echo '<input type="hidden" name="order" value="' . esc_attr( $_REQUEST['order'] ) . '" />';//phpcs:ignore
 		if ( ! empty( $_REQUEST['post_mime_type'] ) )
-			echo '<input type="hidden" name="post_mime_type" value="' . esc_attr( $_REQUEST['post_mime_type'] ) . '" />';
+			echo '<input type="hidden" name="post_mime_type" value="' . esc_attr( $_REQUEST['post_mime_type'] ) . '" />';//phpcs:ignore
 		if ( ! empty( $_REQUEST['detached'] ) )
-			echo '<input type="hidden" name="detached" value="' . esc_attr( $_REQUEST['detached'] ) . '" />';
+			echo '<input type="hidden" name="detached" value="' . esc_attr( $_REQUEST['detached'] ) . '" />';//phpcs:ignore
 ?>
 <p class="search-box">
-	<label class="screen-reader-text" for="<?php echo $input_id ?>"><?php echo $text; ?>:</label>
-	<input type="search" id="<?php echo $input_id ?>" name="s" value="<?php _admin_search_query(); ?>" />
+	<label class="screen-reader-text" for="<?php echo esc_attr( $input_id ) ?>"><?php echo esc_html( $text ); ?>:</label>
+	<input type="search" id="<?php echo esc_attr( $input_id ) ?>" name="s" value="<?php _admin_search_query(); ?>" />
 	<?php submit_button( $text, 'button', false, false, array('id' => 'search-submit') ); ?>
 </p>
 <?php
@@ -256,7 +256,7 @@ class PB_WP_List_Table {
 		foreach ( $views as $class => $view ) {
 			$views[ $class ] = "\t<li class='$class'>$view";
 		}
-		echo implode( " |</li>\n", $views ) . "</li>\n";
+		echo wp_kses_post( implode( " |</li>\n", $views ) . "</li>\n" );
 		echo "</ul>";
 	}
 
@@ -304,18 +304,18 @@ class PB_WP_List_Table {
 		if ( empty( $this->_actions ) )
 			return;
 
-		echo "<select name='action$two'>\n";
-		echo "<option value='-1' selected='selected'>" . __( 'Bulk Actions' ) . "</option>\n";
+		echo "<select name='action". esc_attr( $two ) ."'>\n";
+		echo "<option value='-1' selected='selected'>" . __( 'Bulk Actions' ) . "</option>\n";//phpcs:ignore
 
 		foreach ( $this->_actions as $name => $title ) {
 			$class = 'edit' == $name ? ' class="hide-if-no-js"' : '';
 
-			echo "\t<option value='$name'$class>$title</option>\n";
+			echo "\t<option value='".esc_attr($name)."'$class>". esc_html( $title )."</option>\n";//phpcs:ignore
 		}
 
 		echo "</select>\n";
 
-		submit_button( __( 'Apply' ), 'action', false, false, array( 'id' => "doaction$two" ) );
+		submit_button( __( 'Apply' ), 'action', false, false, array( 'id' => "doaction$two" ) );//phpcs:ignore
 		echo "\n";
 	}
 
@@ -399,7 +399,7 @@ class PB_WP_List_Table {
 		$m = isset( $_GET['m'] ) ? (int) sanitize_text_field( $_GET['m'] ) : 0;
 ?>
 		<select name='m'>
-			<option<?php selected( $m, 0 ); ?> value='0'><?php _e( 'Show all dates' ); ?></option>
+			<option<?php selected( $m, 0 ); ?> value='0'><?php esc_html_e( 'Show all dates' ); //phpcs:ignore ?></option>
 <?php
 		foreach ( $months as $arc_row ) {
 			if ( 0 == $arc_row->year )
@@ -412,7 +412,7 @@ class PB_WP_List_Table {
 				selected( $m, $year . $month, false ),
 				esc_attr( $arc_row->year . $month ),
 				/* translators: 1: month name, 2: 4-digit year */
-				sprintf( __( '%1$s %2$d' ), esc_attr( $wp_locale->get_month( $month ) ), esc_attr( $year ) )
+				sprintf( __( '%1$s %2$d' ), esc_attr( $wp_locale->get_month( $month ) ), esc_attr( $year ) )//phpcs:ignore
 			);
 		}
 ?>
@@ -428,8 +428,8 @@ class PB_WP_List_Table {
 	 */
 	function view_switcher( $current_mode ) {
 		$modes = array(
-			'list'    => __( 'List View' ),
-			'excerpt' => __( 'Excerpt View' )
+			'list'    => __( 'List View' ),//phpcs:ignore
+			'excerpt' => __( 'Excerpt View' )//phpcs:ignore
 		);
 
 ?>
@@ -438,7 +438,7 @@ class PB_WP_List_Table {
 <?php
 			foreach ( $modes as $mode => $title ) {
 				$class = ( $current_mode == $mode ) ? 'class="current"' : '';
-				echo "<a href='" . esc_url( add_query_arg( 'mode', $mode, $_SERVER['REQUEST_URI'] ) ) . "' $class><img id='view-switch-$mode' src='" . esc_url( includes_url( 'images/blank.gif' ) ) . "' width='20' height='20' title='$title' alt='$title' /></a>\n";
+				echo "<a href='" . esc_url( add_query_arg( 'mode', $mode, $_SERVER['REQUEST_URI'] ) ) . "' $class><img id='view-switch-$mode' src='" . esc_url( includes_url( 'images/blank.gif' ) ) . "' width='20' height='20' title='$title' alt='$title' /></a>\n";//phpcs:ignore
 			}
 		?>
 		</div>
@@ -455,12 +455,12 @@ class PB_WP_List_Table {
 	 * @param int $pending_comments
 	 */
 	function comments_bubble( $post_id, $pending_comments ) {
-		$pending_phrase = sprintf( __( '%s pending' ), number_format( $pending_comments ) );
+		$pending_phrase = sprintf( __( '%s pending' ), number_format( $pending_comments ) );//phpcs:ignore
 
 		if ( $pending_comments )
 			echo '<strong>';
 
-		echo "<a href='" . esc_url( add_query_arg( 'p', $post_id, admin_url( 'edit-comments.php' ) ) ) . "' title='" . esc_attr( $pending_phrase ) . "' class='post-com-count'><span class='comment-count'>" . number_format_i18n( get_comments_number() ) . "</span></a>";
+		echo "<a href='" . esc_url( add_query_arg( 'p', $post_id, admin_url( 'edit-comments.php' ) ) ) . "' title='" . esc_attr( $pending_phrase ) . "' class='post-com-count'><span class='comment-count'>" . number_format_i18n( get_comments_number() ) . "</span></a>";//phpcs:ignore
 
 		if ( $pending_comments )
 			echo '</strong>';
@@ -523,11 +523,11 @@ class PB_WP_List_Table {
 
 		extract( $this->_pagination_args, EXTR_SKIP );
 
-		$output = '<span class="displaying-num">' . sprintf( _n( '1 item', '%s items', $total_items ), number_format_i18n( $total_items ) ) . '</span>';
+		$output = '<span class="displaying-num">' . sprintf( _n( '1 item', '%s items', $total_items ), number_format_i18n( $total_items ) ) . '</span>';//phpcs:ignore
 
 		$current = $this->get_pagenum();
 
-		$current_url = set_url_scheme( 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] );
+		$current_url = set_url_scheme( 'http://' . sanitize_text_field( $_SERVER['HTTP_HOST'] ) . esc_url_raw( $_SERVER['REQUEST_URI'] ) );//phpcs:ignore
 
 		$current_url = remove_query_arg( array( 'hotkeys_highlight_last', 'hotkeys_highlight_first' ), $current_url );
 
@@ -541,14 +541,14 @@ class PB_WP_List_Table {
 
 		$page_links[] = sprintf( "<a class='%s' title='%s' href='%s'>%s</a>",
 			'first-page button' . $disable_first,
-			esc_attr__( 'Go to the first page' ),
+			esc_attr__( 'Go to the first page' ),//phpcs:ignore
 			esc_url( remove_query_arg( 'paged', $current_url ) ),
 			'&laquo;'
 		);
 
 		$page_links[] = sprintf( "<a class='%s' title='%s' href='%s'>%s</a>",
 			'prev-page button' . $disable_first,
-			esc_attr__( 'Go to the previous page' ),
+			esc_attr__( 'Go to the previous page' ),//phpcs:ignore
 			esc_url( add_query_arg( 'paged', max( 1, $current-1 ), $current_url ) ),
 			'&lsaquo;'
 		);
@@ -557,24 +557,24 @@ class PB_WP_List_Table {
 			$html_current_page = $current;
 		else
 			$html_current_page = sprintf( "<input class='current-page' title='%s' type='text' name='paged' value='%s' size='%d' />",
-				esc_attr__( 'Current page' ),
+				esc_attr__( 'Current page' ),//phpcs:ignore
 				$current,
 				strlen( $total_pages )
 			);
 
 		$html_total_pages = sprintf( "<span class='total-pages'>%s</span>", number_format_i18n( $total_pages ) );
-		$page_links[] = '<span class="paging-input">' . sprintf( _x( '%1$s of %2$s', 'paging' ), $html_current_page, $html_total_pages ) . '</span>';
+		$page_links[] = '<span class="paging-input">' . sprintf( _x( '%1$s of %2$s', 'paging' ), $html_current_page, $html_total_pages ) . '</span>'; //phpcs:ignore
 
 		$page_links[] = sprintf( "<a class='%s' title='%s' href='%s'>%s</a>",
 			'next-page button' . $disable_last,
-			esc_attr__( 'Go to the next page' ),
+			esc_attr__( 'Go to the next page' ),//phpcs:ignore
 			esc_url( add_query_arg( 'paged', min( $total_pages, $current+1 ), $current_url ) ),
 			'&rsaquo;'
 		);
 
 		$page_links[] = sprintf( "<a class='%s' title='%s' href='%s'>%s</a>",
 			'last-page button' . $disable_last,
-			esc_attr__( 'Go to the last page' ),
+			esc_attr__( 'Go to the last page' ),//phpcs:ignore
 			esc_url( add_query_arg( 'paged', $total_pages, $current_url ) ),
 			'&raquo;'
 		);
@@ -591,7 +591,7 @@ class PB_WP_List_Table {
 
 		$this->_pagination = "<div class='tablenav-pages{$page_class}'>$output</div>";
 
-		echo $this->_pagination;
+		echo $this->_pagination;//phpcs:ignore
 	}
 
 	/**
@@ -695,7 +695,7 @@ class PB_WP_List_Table {
 	function print_column_headers( $with_id = true ) {
 		list( $columns, $hidden, $sortable ) = $this->get_column_info();
 
-		$current_url = set_url_scheme( 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] );
+		$current_url = set_url_scheme( 'http://' . sanitize_text_field( $_SERVER['HTTP_HOST'] ) . esc_url_raw( $_SERVER['REQUEST_URI'] ) );//phpcs:ignore
 		$current_url = remove_query_arg( 'paged', $current_url );
 
 		if ( isset( $_GET['orderby'] ) )
@@ -710,7 +710,7 @@ class PB_WP_List_Table {
 
 		if ( ! empty( $columns['cb'] ) ) {
 			static $cb_counter = 1;
-			$columns['cb'] = '<label class="screen-reader-text" for="cb-select-all-' . $cb_counter . '">' . __( 'Select All' ) . '</label>'
+			$columns['cb'] = '<label class="screen-reader-text" for="cb-select-all-' . esc_attr( $cb_counter ) . '">' . __( 'Select All' ) . '</label>'//phpcs:ignore
 				. '<input id="cb-select-all-' . $cb_counter . '" type="checkbox" />';
 			$cb_counter++;
 		}
@@ -751,7 +751,7 @@ class PB_WP_List_Table {
 			if ( !empty( $class ) )
 				$class = "class='" . join( ' ', $class ) . "'";
 
-			echo "<th scope='col' $id $class $style>$column_display_name</th>";
+			echo "<th scope='col' $id $class $style>$column_display_name</th>";//phpcs:ignore
 		}
 	}
 
@@ -767,7 +767,7 @@ class PB_WP_List_Table {
 		$this->display_tablenav( 'top' );
 
 ?>
-<table class="wp-list-table <?php echo implode( ' ', $this->get_table_classes() ); ?>" cellspacing="0">
+<table class="wp-list-table <?php echo esc_attr( implode( ' ', $this->get_table_classes() ) ); ?>" cellspacing="0">
 	<thead>
 	<tr>
 		<?php $this->print_column_headers(); ?>
@@ -780,7 +780,7 @@ class PB_WP_List_Table {
 	</tr>
 	</tfoot>
 
-	<tbody id="the-list"<?php if ( $singular ) echo " data-wp-lists='list:$singular'"; ?>>
+	<tbody id="the-list"<?php if ( $singular ) echo " data-wp-lists='list:$singular'";//phpcs:ignore ?>>
 		<?php $this->display_rows_or_placeholder(); ?>
 	</tbody>
 </table>
@@ -844,7 +844,7 @@ class PB_WP_List_Table {
 			$this->display_rows();
 		} else {
 			list( $columns, $hidden ) = $this->get_column_info();
-			echo '<tr class="no-items"><td class="colspanchange" colspan="' . $this->get_column_count() . '">';
+			echo '<tr class="no-items"><td class="colspanchange" colspan="' . esc_attr( $this->get_column_count() ) . '">';
 			$this->no_items();
 			echo '</td></tr>';
 		}
@@ -873,7 +873,7 @@ class PB_WP_List_Table {
 		static $row_class = '';
 		$row_class = ( $row_class == '' ? ' class="alternate"' : '' );
 
-        echo '<tr id="user-'. $item['ID'] .'" ' . $row_class . '>';
+        echo '<tr id="user-'. esc_attr( $item['ID'] ) .'" ' . $row_class . '>';//phpcs:ignore
 		$this->single_row_columns( $item );
 		echo '</tr>';
 	}
@@ -900,17 +900,17 @@ class PB_WP_List_Table {
 
 			if ( 'cb' == $column_name ) {
 				echo '<th scope="row" class="check-column">';
-				echo $this->column_cb( $item );
+				echo $this->column_cb( $item );//phpcs:ignore
 				echo '</th>';
 			}
 			elseif ( method_exists( $this, 'column_' . $column_name ) ) {
-				echo "<td $attributes>";
-				echo call_user_func( array( $this, 'column_' . $column_name ), $item );
+				echo "<td $attributes>";//phpcs:ignore
+				echo call_user_func( array( $this, 'column_' . $column_name ), $item );//phpcs:ignore
 				echo "</td>";
 			}
 			else {
-				echo "<td $attributes>";
-				echo $this->column_default( $item, $column_name );
+				echo "<td $attributes>";//phpcs:ignore
+				echo $this->column_default( $item, $column_name );//phpcs:ignore
 				echo "</td>";
 			}
 		}
@@ -939,7 +939,7 @@ class PB_WP_List_Table {
 		$response = array( 'rows' => $rows );
 
 		if ( isset( $total_items ) )
-			$response['total_items_i18n'] = sprintf( _n( '1 item', '%s items', $total_items ), number_format_i18n( $total_items ) );
+			$response['total_items_i18n'] = sprintf( _n( '1 item', '%s items', $total_items ), number_format_i18n( $total_items ) );//phpcs:ignore
 
 		if ( isset( $total_pages ) ) {
 			$response['total_pages'] = $total_pages;

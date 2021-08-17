@@ -38,17 +38,10 @@ $(function () {
   if (sortingDropdown.length) {
     sortingDropdown.on('click', function () {
       var $this = $(this);
+      var $parent = $this.attr('data-select');
+      console.log($parent);
       var selectedLang = $this.text();
-      sortingText.text(selectedLang);
-    });
-  }
-
-  // Show sidebar
-  if (sidebarToggler.length) {
-    sidebarToggler.on('click', function () {
-      sidebarShop.toggleClass('show');
-      overlay.toggleClass('show');
-      $('body').addClass('modal-open');
+      $('.'+$parent).text(selectedLang);
     });
   }
 

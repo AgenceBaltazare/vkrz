@@ -2,24 +2,17 @@
 /*
     Template Name: Users Ranks
 */
-global $uuiduser;
 if(isset($_GET['id_top'])){
-    $id_tournament  = $_GET['id_top'];
+    $id_top  = $_GET['id_top'];
 }
 else{
     header('Location: ' . get_bloginfo('url'));
 }
-$display_titre      = get_field('ne_pas_afficher_les_titres_t', $id_tournament);
-$rounded            = get_field('c_rounded_t', $id_tournament);
-$illu               = wp_get_attachment_image_src(get_field('cover_t', $id_tournament), 'full');
-$illu_url           = $illu[0];
 get_header();
-$top_title     = get_the_title($id_tournament);
-$top_question  = get_field('question_t', $id_tournament);
-$top_number    = get_numbers_of_contenders($id_tournament);
-$top_datas     = get_tournoi_data($id_tournament, $uuiduser);
+global $top_infos;
+$top_datas = get_top_data($id_top);
 ?>
-<div class="app-content content cover" style="background: url(<?php echo $illu_url; ?>) center center no-repeat">
+<div class="app-content content cover" style="background: url(<?php echo $top_infos['top_cover']; ?>) center center no-repeat">
     <div class="content-overlay"></div>
     <div class="content-wrapper">
     <div class="content-body mt-2">
@@ -27,10 +20,10 @@ $top_datas     = get_tournoi_data($id_tournament, $uuiduser);
         <div class="intro-mobile">
             <div class="tournament-heading text-center">
                 <h3 class="mb-0 t-titre-tournoi">
-                    Liste de tous les Tops <?php echo $top_number; ?> <span class="ico text-center">🏆</span> <?php echo $top_title; ?>
+                    Liste de tous les Tops <?php echo $top_infos['top_number']; ?> <span class="ico text-center">🏆</span> <?php echo $top_infos['top_title']; ?>
                 </h3>
                 <h4 class="mb-0">
-                    <?php echo $top_question; ?>
+                    <?php echo $top_infos['top_question']; ?>
                 </h4>
             </div>
         </div>
@@ -48,7 +41,7 @@ $top_datas     = get_tournoi_data($id_tournament, $uuiduser);
                     'meta_query' => array(
                         array(
                             'key' => 'id_tournoi_r',
-                            'value' => $id_tournament,
+                            'value' => $id_top,
                             'compare' => '=',
                         )
                     )
@@ -62,7 +55,7 @@ $top_datas     = get_tournoi_data($id_tournament, $uuiduser);
                                 <div class="card">
                                     <div class="card-header">
                                         <h4 class="card-title pt-1 pb-1">
-                                            Depuis le <?php echo $top_datas[0]['date_of_t']; ?>, <?php echo $top_datas[0]['nb_votes']; ?>💎 ont générés <?php echo $top_datas[0]['nb_tops']; ?> 🏆
+                                            Depuis le <?php echo $top_infos['top_date']; ?>, <?php echo $top_datas['nb_votes']; ?>💎 ont générés <?php echo $top_datas['nb_tops']; ?> 🏆
                                         </h4>
                                     </div>
                                     <div class="table-responsive">
@@ -70,9 +63,9 @@ $top_datas     = get_tournoi_data($id_tournament, $uuiduser);
                                             <thead>
                                             <tr>
                                                 <th>
-                                                    Champions
+                                                    Vainkeurs
                                                 </th>
-                                                <th>Podium</th>
+                                                <th>Top 3</th>
                                                 <th></th>
                                             </tr>
                                             </thead>
@@ -82,47 +75,39 @@ $top_datas     = get_tournoi_data($id_tournament, $uuiduser);
 
                                                         <td>
                                                             <?php
-                                                            $id_rank        = get_the_ID();
-                                                            $uuid_user_r    = get_field('uuid_user_r', $id_rank);
-                                                            $champion_id    = find_vkrz_user($uuid_user_r);
-                                                            $champion_data  = get_user_by('ID', $champion_id);
+                                                            $id_rank                 = get_the_ID();
+                                                            $uuid_user_r             = get_field('uuid_user_r', $id_rank);
+                                                            $vainkeur_data_selected  = find_vkrz_user($uuid_user_r);
                                                             ?>
                                                             <span class="avatar">
-                                                                <?php
-                                                                if($champion_data){
-                                                                    $avatar_url = get_avatar_url($champion_id, ['size' => '80']);
-                                                                }
-                                                                else{
-                                                                    $avatar_url = get_bloginfo('template_directory')."/assets/images/vkrz/ninja.png";
-                                                                }
-                                                                ?>
-                                                                <?php if($champion_data): ?>
-                                                                    <a href="<?php echo esc_url(get_author_posts_url($champion_id)); ?>">
-                                                                        <span class="avatar-picture" style="background-image: url(<?php echo $avatar_url; ?>);"></span>
+                                                                <?php if($vainkeur_data_selected): ?>
+                                                                    <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_vainkeur'])); ?>">
+                                                                        <span class="avatar-picture" style="background-image: url(<?php echo $vainkeur_data_selected['avatar']; ?>);"></span>
                                                                     </a>
                                                                 <?php else: ?>
-                                                                    <span class="avatar-picture" style="background-image: url(<?php echo $avatar_url; ?>);"></span>
+                                                                    <span class="avatar-picture" style="background-image: url(<?php echo $vainkeur_data_selected['avatar']; ?>);"></span>
                                                                 <?php endif; ?>
-                                                                <?php if($champion_data): ?>
+                                                                <?php if($vainkeur_data_selected): ?>
                                                                     <span class="user-niveau">
-                                                                    <?php
-                                                                    $uuidchampion    = get_field('uuiduser_user', 'user_'.$champion_id);
-                                                                    $user_full_data  = get_user_full_data($uuidchampion);
-                                                                    $nb_user_votes   = $user_full_data[0]['nb_user_votes'];
-                                                                    $info_user_level = get_user_level($uuidchampion, $champion_id, $nb_user_votes);
-                                                                    echo $info_user_level['level_ico'];
-                                                                    ?>
-                                                                </span>
+                                                                        <?php echo $vainkeur_data_selected['level']; ?>
+                                                                    </span>
                                                                 <?php endif; ?>
                                                             </span>
                                                             <span class="font-weight-bold championname">
-                                                                <?php if($champion_data): ?>
-                                                                    <a href="<?php echo esc_url(get_author_posts_url($champion_id)); ?>">
-                                                                         <?php echo $champion_data->nickname; ?>
+                                                                <?php if($vainkeur_data_selected): ?>
+                                                                    <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_vainkeur'])); ?>">
+                                                                         <?php echo $vainkeur_data_selected['pseudo']; ?>
+                                                                         <?php if($vainkeur_data_selected['user_role'] == "administrator"): ?>
+                                                                            <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
+                                                                                🦙
+                                                                            </span>
+                                                                        <?php endif; ?>
+                                                                        <?php if($vainkeur_data_selected['user_role'] == "administrator" || $vainkeur_data_selected['user_role'] == "author"): ?>
+                                                                            <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
+                                                                                🎨
+                                                                            </span>
+                                                                        <?php endif; ?>
                                                                     </a>
-                                                                    <span class="votechamp">
-                                                                        - <?php echo $nb_user_votes; ?> <span class="ico">💎</span>
-                                                                    </span>
                                                                 <?php else: ?>
                                                                     <i>Anonyme</i>
                                                                 <?php endif; ?>
@@ -149,7 +134,7 @@ $top_datas     = get_tournoi_data($id_tournament, $uuiduser);
 
                                                         <td>
                                                             <a href="<?php the_permalink($id_rank); ?>" class="mr-1 btn btn-outline-primary waves-effect">
-                                                                <span class="ico">🏆</span> Voir le Top complet
+                                                                <span class="ico ico-reverse">👀</span> le Top complet
                                                             </a>
                                                         </td>
 

@@ -66,6 +66,20 @@ class PB_Elementor_Login_Widget extends PB_Elementor_Widget {
             )
         );
 
+        if ( $this->is_2fa_active() ) {
+            $this->add_control(
+                'pb_auth_field',
+                array(
+                    'label' => __('Show Authenticator Code Field', 'profile-builder'),
+                    'type' => \Elementor\Controls_Manager::SWITCHER,
+                    'label_on' => __('Yes', 'profile-builder'),
+                    'label_off' => __('No', 'profile-builder'),
+                    'return_value' => 'yes',
+                    'default' => '',
+                )
+            );
+        }
+
         $this->end_controls_section();
 
         $this->start_controls_section(
@@ -133,6 +147,27 @@ class PB_Elementor_Login_Widget extends PB_Elementor_Widget {
             $sections
         );
         unset($sections);
+
+        if ( $this->is_2fa_active() ) {
+            // Authenticator Code Style tab
+            if (!$this->is_placeholder_labels_active()) {
+                $sections['label'] = [
+                    'selector' => '#wppb-login-wrap .login-auth label[for=login_auth]',
+                    'section_name' => 'Label',
+                ];
+            }
+            $sections['input'] = [
+                'selector' => '#wppb-login-wrap .login-auth input#login_auth',
+                'section_name' => 'Input',
+            ];
+            $this->add_styling_control_group(
+                'Authenticator Code',
+                '',
+                'pb_user_auth_code',
+                $sections
+            );
+            unset($sections);
+        }
 
         // reCAPTCHA Style tab
         if( !$this->is_placeholder_labels_active() ) {
@@ -214,7 +249,7 @@ class PB_Elementor_Login_Widget extends PB_Elementor_Widget {
 	 */
 	protected function render() {
         $output = $this->render_widget( 'l' );
-        echo $output;
+        echo $output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
         // check if the form is being displayed in the Elementor editor
         $is_elementor_edit_mode = false;
@@ -225,7 +260,7 @@ class PB_Elementor_Login_Widget extends PB_Elementor_Widget {
 
         if ($is_elementor_edit_mode && !empty($output) && $this->is_placeholder_labels_active()) {
             echo '
-                <script id="wppb_elementor_login_pbpl_init">                
+                <script id="wppb_elementor_login_pbpl_init">
                     jQuery(".login-username input, .login-password input").each( function ( index, elem ) {
                         var element_id = jQuery( elem ).attr( "id" );
                         if( element_id && ( label = jQuery( elem ).parents( "#wppb-login-wrap" ).find( "label[for=" + element_id + "]" ) ).length === 1 ) {

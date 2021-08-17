@@ -1,20 +1,9 @@
 <?php
 global $uuiduser;
-global $current_user;
 global $user_id;
-global $nb_user_votes;
-global $user_full_data;
-global $info_user_level;
-global $list_t_done;
-global $user_role;
-global $champion_id;
-global $champion;
-global $champion_role;
-if($champion_id){
-    $user_id      = $champion_id;
-    $current_user = $champion;
-    $user_role    = $champion_role;
-}
+global $vainkeur_info;
+global $user_infos;
+$vainkeur_info = isset($vainkeur_info) ? $vainkeur_info : $user_infos;
 ?>
 <div class="card profile-header mb-2">
 
@@ -23,35 +12,23 @@ if($champion_id){
     <div class="position-relative">
 
         <div class="profile-img-container d-flex align-items-center">
-            <?php
-            if(is_user_logged_in() && get_avatar_url($user_id, ['size' => '80'])){
-                $avatar_url = get_avatar_url($user_id, ['size' => '80']);
-            }
-            else{
-                $avatar_url = get_bloginfo('template_directory')."/assets/images/vkrz/ninja.png";
-            }
-            ?>
-            <div class="profile-img">
-                <img src="<?php echo $avatar_url; ?>" class="avatar img-fluid" alt="Avatar"/>
+            <div class="profile-img" style="background: url(<?php echo $vainkeur_info['avatar']; ?>) #7367f0 no-repeat center center;">
+                
             </div>
             <div class="profile-title ml-3">
                 <h2 class="text-white text-uppercase">
-                    <?php if(is_user_logged_in()): ?>
-                        <?php echo $current_user->nickname; ?>
-                    <?php else: ?>
-                        Anonyme
-                    <?php endif; ?>
+                    <?php echo $vainkeur_info['pseudo'] ? $vainkeur_info['pseudo'] : "Futur Vainkeur"; ?>
                 </h2>
                 <p class="text-white">
                     <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Niveau actuel">
-                        <?php echo $info_user_level['level_ico']; ?>
+                        <?php echo $vainkeur_info['level']; ?>
                     </span>
-                    <?php if($user_role == "administrator"): ?>
+                    <?php if($vainkeur_info['user_role']  == "administrator"): ?>
                         <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
                             🦙
                         </span>
                     <?php endif; ?>
-                    <?php if($user_role == "author"): ?>
+                    <?php if($vainkeur_info['user_role']  == "administrator" || $vainkeur_info['user_role'] == "author"): ?>
                         <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
                             🎨
                         </span>
@@ -75,7 +52,7 @@ if($champion_id){
                                     Récap
                                 </a>
                             </li>
-                            <?php if($user_role == "administrator" || $user_role == "author"): ?>
+                            <?php if($vainkeur_info['user_role'] == "administrator" || $vainkeur_info['user_role'] == "author"): ?>
                                 <li class="nav-item">
                                     <a class="nav-link font-weight-bold <?php if(is_page(172849)){echo 'btn btn-primary';} ?>" href="<?php the_permalink(get_page_by_path('mon-compte/createur')); ?>">
                                         Créateur
@@ -91,7 +68,7 @@ if($champion_id){
                             <?php endif; ?>
                         <?php endif; ?>
                     </ul>
-                    <?php if(!is_author()): ?>
+                    <?php if(!is_author() && is_user_logged_in()): ?>
                         <div class="">
                             <a href="<?php echo get_author_posts_url($user_id); ?>" class="btn btn-outline-primary waves-effect">
                                 Profil public

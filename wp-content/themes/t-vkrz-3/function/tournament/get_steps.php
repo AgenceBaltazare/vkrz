@@ -47,4 +47,3 @@ function get_steps($id_ranking){
     return $current_step;
 
 }
-?>

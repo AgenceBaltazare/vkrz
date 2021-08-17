@@ -1,30 +1,25 @@
 <?php
-global $uuiduser;
-global $user_full_data;
-global $list_t_done;
-$list_t_begin     = $user_full_data[0]['list_user_ranking_begin'];
+global $user_tops;
+$list_user_tops   = $user_tops['list_user_tops'];
 $state            = "";
-$id_tournament    = get_the_ID();
-$illu             = get_the_post_thumbnail_url($id_tournament, 'medium');
-if(is_home() || is_single()){
+$id_top           = get_the_ID();
+$illu             = get_the_post_thumbnail_url($id_top, 'medium');
+if(is_home()){
     $class        = "swiper-slide";
 }
-elseif(is_archive()){
-    $class        = "col-md-4 col-lg-3 col-xxl-2";
+elseif(is_single()){
+    $class        = "col-md-3 col-6";
 }
 else{
     $class        = "col-12";
 }
-if(array_search($id_tournament, array_column($list_t_done, 'id_tournoi')) !== false) {
-    $state = "done";
-}
-elseif(array_search($id_tournament, array_column($list_t_begin, 'id_tournoi')) !== false) {
-    $state = "begin";
+$user_single_top_data = array_search($id_top, array_column($list_user_tops, 'id_top'));
+if($user_single_top_data !== false) {
+    $state = $list_user_tops[$user_single_top_data]['state'];
 }
 else{
     $state = "todo";
 }
-
 ?>
 <div class="<?php echo $class; ?>">
     <div class="min-tournoi card scaler">
@@ -57,12 +52,12 @@ else{
         </div>
         <div class="card-body eh">
             <p class="card-text text-primary">
-                TOP <?php echo get_numbers_of_contenders($id_tournament); ?> : <?php echo get_the_title($id_tournament); ?>
+                TOP <?php echo get_numbers_of_contenders($id_top); ?> : <?php echo get_the_title($id_top); ?>
             </p>
             <h4 class="card-title">
-                <?php the_field('question_t', $id_tournament); ?>
+                <?php the_field('question_t', $id_top); ?>
             </h4>
         </div>
-        <a href="<?php the_permalink($id_tournament); ?>" class="stretched-link"></a>
+        <a href="<?php the_permalink($id_top); ?>" class="stretched-link"></a>
     </div>
 </div>

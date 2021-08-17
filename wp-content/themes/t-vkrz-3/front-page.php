@@ -1,16 +1,17 @@
 <?php
 get_header();
-global $user_full_data;
-$list_t_already_done = $user_full_data[0]['user_tops_done_ids'];
+global $user_tops;
+$list_t_already_done = $user_tops['list_user_tops_done_ids'];
 ?>
-<!-- BEGIN: Content-->
 <div class="app-content content ">
     <div class="content-wrapper">
         <div class="content-body">
 
             <div class="intro-mobile">
                 <h3 class="mb-0 animate__animated animate__slideInLeft">🖖 Bienvenue</h3>
-                <h4 class="mb-0 kick animate__animated animate__slideInRight" data-kick="Commence par choisir un Top qui t'intéresse et enchaîne les votes 👇">Tu vas pouvoir générer et revendiquer tes propres classements !</h4>
+                <h4 class="mb-0 kick animate__animated animate__slideInRight" data-kick="Commence par choisir un Top qui t'intéresse et enchaîne les votes 👇">
+                    Ici, tu fais et revendique tes propres Tops !
+                </h4>
             </div>
 
             <section class="list-tournois">
@@ -62,11 +63,13 @@ $list_t_already_done = $user_full_data[0]['user_tops_done_ids'];
                                     <span class="ico">🧐</span> VAINKEURZ, c'est quoi ?
                                 </h4>
                                 <p class="card-text mb-2">
-                                    C'est le site qui te demande de faire des choix que tu ne voulais pas faire. Comme de choisir entre Végéta et Sangoku, NOS et Adémo... 🥴
+                                    C'est clairement le moyen le plus douloureux de classer tout ce que tu préfères 🥴
                                     <br><br>
-                                    En gros, tu choisis un Top et tu votes en enchaînant les duels jusqu'à finaliser ton classement 🥇🥈🥉
+                                    Ici, c'est pas aussi simple qu'une Tier List 😝 car pas d'égalité possible.
+                                    <br>  
+                                    Tu vas forcément devoir faire des choix que tu voulais clairement pas avoir 😱
                                     <br><br>
-                                    Ensuite, tu peux comparer tes classements à ceux de tes amis - si tu en as bien sûr. Et puis si tu n'en pas, 🤗 rejoins notre Discord.
+                                    Ensuite, tu pourras comparer tes 🏆 à ceux de tes amis - si tu en as bien sûr. Et puis si tu n'en pas, 🤗 rejoins notre Discord.
                                 </p>
                                 <a href="<?php the_permalink(104853); ?>" class="btn btn-primary waves-effect">
                                     Découvrir l'histoire de VAINKEURZ
@@ -75,14 +78,14 @@ $list_t_already_done = $user_full_data[0]['user_tops_done_ids'];
                                     <a href="https://discord.gg/w882sUnrhE" class="sociallink btn btn-outline-primary waves-effect mr-10p mt-10p" target="_blank">
                                         Discord
                                     </a>
+                                    <a href="https://www.instagram.com/wearevainkeurz/" class="sociallink btn btn-outline-primary waves-effect mr-10p mt-10p" target="_blank">
+                                        Insta
+                                    </a>
                                     <a href="https://twitter.com/Vainkeurz" class="sociallink btn btn-outline-primary waves-effect mr-10p mt-10p" target="_blank">
                                         Twitter
                                     </a>
-                                    <a href="https://www.facebook.com/vainkeurz" class="sociallink btn btn-outline-primary waves-effect mr-10p mt-10p" target="_blank">
+                                    <a href="https://www.facebook.com/vainkeurz" class="sociallink btn btn-outline-primary waves-effect mt-10p" target="_blank">
                                         Facebook
-                                    </a>
-                                    <a href="https://www.instagram.com/wearevainkeurz/" class="sociallink btn btn-outline-primary waves-effect mt-10p" target="_blank">
-                                        Instagram
                                     </a>
                                 </div>
                             </div>

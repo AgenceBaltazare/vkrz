@@ -36,7 +36,7 @@ class WPPB_ImpEx_Import {
 
 			/* import custom posts to database */
 			foreach( $this->args_to_import as $imported_post_type ) {
-				
+
 				/* there could be the possibility that the post type doesn't exist yet so we need to register it */
 				if ( !post_type_exists( $imported_post_type ) ) {
 					register_post_type( $imported_post_type );
@@ -71,7 +71,7 @@ class WPPB_ImpEx_Import {
 	public function upload_json_file() {
 		if( isset( $_POST['cozmos-import'] ) ) {
 			if( ! empty( $_FILES['cozmos-upload']['tmp_name'] ) ) {
-				$json_content = file_get_contents( $_FILES['cozmos-upload']['tmp_name'] );
+				$json_content = file_get_contents( $_FILES['cozmos-upload']['tmp_name'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 				/* save uploaded file to server (for later versions).
 				$target = dirname( plugin_dir_path( __FILE__ ) ) . '/upload/';
 				$target = $target . basename( $_FILES['cozmos-upload']['name'] );

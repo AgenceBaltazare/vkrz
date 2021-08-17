@@ -1,7 +1,5 @@
 <?php
-function do_elo_ranking( $id_tournoi, $id_winner, $id_looser, $id_ranking ) {
-
-    $uuiduser = $_COOKIE['vainkeurz_user_id'];
+function do_elo_ranking($id_winner, $id_looser){
 
 	include_once 'VkrzELoRranking.php';
 	$elo_winner = floor(get_field( 'ELO_c', $id_winner ));

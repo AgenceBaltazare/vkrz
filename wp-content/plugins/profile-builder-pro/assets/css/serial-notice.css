@@ -48,7 +48,11 @@ div.wppb-serial-notification p{
 
 
 /* hide menu items */
-.wp-submenu a[href="admin.php?page=profile-builder-admin-bar-settings"], .wp-submenu a[href="admin.php?page=profile-builder-content_restriction"],
-.wp-submenu a[href="admin.php?page=admin-email-customizer"], .wp-submenu a[href="admin.php?page=user-email-customizer"], .wp-submenu a[href="admin.php?page=profile-builder-toolbox-settings"]{
+.wp-submenu a[href="admin.php?page=profile-builder-admin-bar-settings"],
+.wp-submenu a[href="admin.php?page=profile-builder-content_restriction"],
+.wp-submenu a[href="admin.php?page=admin-email-customizer"],
+.wp-submenu a[href="admin.php?page=user-email-customizer"],
+.wp-submenu a[href="admin.php?page=profile-builder-toolbox-settings"],
+.wp-submenu a[href="admin.php?page=profile-builder-two-factor-authentication"] {
 	display:none !important;
 }

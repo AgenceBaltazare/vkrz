@@ -16,12 +16,12 @@ function wppb_toolbox_check_email_domain( $message, $field, $request_data, $form
     if ( $type == 'allow' ) {
 
         if ( !in_array( $domain, $restricted_domains ) )
-            return __( $validation_message, 'profile-builder' );
+            return $validation_message;
 
     } else if ( $type == 'deny' ) {
 
         if ( in_array( $domain, $restricted_domains ) )
-            return __( $validation_message, 'profile-builder' );
+            return $validation_message;
 
     }
 

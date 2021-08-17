@@ -21,7 +21,7 @@ function wppb_toolbox_check_banned_words( $message, $field, $request_data, $form
 
 	foreach ( $banned_words as $banned ) {
 		if ( strpos( $request_data[ $meta_name ], $banned ) !== false) {
-			return __( $validation_message, 'profile-builder' );
+			return $validation_message;
 		}
 	}
 

@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAAA,0BAA2B;EACzB,gBAAgB,EAAE,sBAAsB",
-"sources": ["reset.scss"],
-"names": [],
-"file": "reset.css"
-}

@@ -30,6 +30,7 @@ function wppb_include_extra_fields_files() {
 	include_once( WPPB_PLUGIN_DIR.'/front-end/extra-fields/select2/select2.php' );
 	include_once( WPPB_PLUGIN_DIR.'/front-end/extra-fields/select2/select2-multiple.php' );
 	include_once( WPPB_PLUGIN_DIR.'/front-end/extra-fields/language/language.php' );
+	include_once( WPPB_PLUGIN_DIR.'/front-end/extra-fields/honeypot/honeypot.php' );
 }
 wppb_include_extra_fields_files();
 
@@ -64,7 +65,7 @@ function display_profile_extra_fields_in_admin( $user ){
 
 	}
 
-	echo $admin_fields;
+	echo $admin_fields; //phpcs:ignore  WordPress.Security.EscapeOutput.OutputNotEscaped
 }
 
 // the function to save the values from the custom fields in the back-end

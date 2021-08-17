@@ -65,7 +65,7 @@ class CL_Addons_List_Table extends WP_List_Table {
         $columns = array(
             'cb'        	=> '<input type="checkbox" />', //Render a checkbox instead of text
             'icon'     	=> '',
-            'add_on'    => __('Add-On', $this->text_domain ),
+            'add_on'    => __('Add-On', $this->text_domain ), //phpcs:ignore WordPress.WP.I18n.NonSingularStringLiteralDomain
             'actions'     => '',
         );
         return $columns;
@@ -123,18 +123,20 @@ class CL_Addons_List_Table extends WP_List_Table {
             $all_wp_plugins = get_plugins();
             if( array_key_exists( $item['slug'], $all_wp_plugins ) ) {
                 if( is_plugin_active_for_network( $item['slug'] ) ){
-                    $action = '<a class="right button button-secondary" href="' . esc_url(network_admin_url( 'plugins.php' )) . '">' . __('Manage in Network', $this->text_domain) . '</a>';
+                    $action = '<a class="right button button-secondary" href="' . esc_url(network_admin_url( 'plugins.php' )) . '">' . __('Manage in Network', $this->text_domain) . '</a>'; //phpcs:ignore WordPress.WP.I18n.NonSingularStringLiteralDomain
                 }
                 else {
-                    if (is_plugin_active($item['slug'])) {
-                        $action = '<a class="right button button-secondary" href="' . esc_url(wp_nonce_url(add_query_arg('cl_plugins', $item['slug'], admin_url('admin.php?page=' . $_REQUEST['page'] . '&cl_add_ons_action=deactivate')), 'cl_add_ons_action')) . '">' . __('Deactivate', $this->text_domain) . '</a>';
-                    } else {
-                        $action = '<a class="right button button-primary" href="' . esc_url(wp_nonce_url(add_query_arg('cl_plugins', $item['slug'], admin_url('admin.php?page=' . $_REQUEST['page'] . '&cl_add_ons_action=activate')), 'cl_add_ons_action')) . '">' . __('Activate', $this->text_domain) . '</a>';
+                    if( isset( $_REQUEST['page'] ) ) {
+                        if (is_plugin_active($item['slug'])) {
+                            $action = '<a class="right button button-secondary" href="' . esc_url(wp_nonce_url(add_query_arg('cl_plugins', $item['slug'], admin_url('admin.php?page=' . sanitize_text_field( $_REQUEST['page'] ) . '&cl_add_ons_action=deactivate')), 'cl_add_ons_action')) . '">' . __('Deactivate', $this->text_domain) . '</a>'; //phpcs:ignore WordPress.WP.I18n.NonSingularStringLiteralDomain
+                        } else {
+                            $action = '<a class="right button button-primary" href="' . esc_url(wp_nonce_url(add_query_arg('cl_plugins', $item['slug'], admin_url('admin.php?page=' .sanitize_text_field( $_REQUEST['page'] ) . '&cl_add_ons_action=activate')), 'cl_add_ons_action')) . '">' . __('Activate', $this->text_domain) . '</a>'; //phpcs:ignore WordPress.WP.I18n.NonSingularStringLiteralDomain
+                        }
                     }
                 }
             }
             else{
-                $action = '<a target="_blank" class="right button button-secondary" href="'. $item['download_url'] .'">' . __('Download', $this->text_domain) . '</a>';
+                $action = '<a target="_blank" class="right button button-secondary" href="'. $item['download_url'] .'">' . __('Download', $this->text_domain) . '</a>'; //phpcs:ignore WordPress.WP.I18n.NonSingularStringLiteralDomain
             }
 
 
@@ -144,14 +146,14 @@ class CL_Addons_List_Table extends WP_List_Table {
             in_array( $this->current_version, $this->section_versions ) ? $disabled = '' : $disabled = 'disabled'; //add disabled if the current version isn't eligible
 
             if ( $this->is_add_on_active( $item['slug'] ) ) {
-                $action = '<a class="right button button-secondary" '.$disabled.' href="'. esc_url( wp_nonce_url( add_query_arg( 'cl_add_ons', $item['slug'], admin_url( 'admin.php?page='. $_REQUEST['page']. '&cl_add_ons_action=deactivate' ) ), 'cl_add_ons_action' ) ) .'">' . __('Deactivate', $this->text_domain) . '</a>';
+                $action = '<a class="right button button-secondary" '.$disabled.' href="'. esc_url( wp_nonce_url( add_query_arg( 'cl_add_ons', $item['slug'], admin_url( 'admin.php?page='. sanitize_text_field( $_REQUEST['page'] ). '&cl_add_ons_action=deactivate' ) ), 'cl_add_ons_action' ) ) .'">' . __('Deactivate', $this->text_domain) . '</a>'; //phpcs:ignore WordPress.WP.I18n.NonSingularStringLiteralDomain
             } else {
-                $action = '<a class="right button button-primary" '.$disabled.' href="'. esc_url( wp_nonce_url( add_query_arg( 'cl_add_ons', $item['slug'], admin_url( 'admin.php?page='. $_REQUEST['page']. '&cl_add_ons_action=activate' ) ), 'cl_add_ons_action' ) ) .'">' . __('Activate', $this->text_domain) . '</a>';
+                $action = '<a class="right button button-primary" '.$disabled.' href="'. esc_url( wp_nonce_url( add_query_arg( 'cl_add_ons', $item['slug'], admin_url( 'admin.php?page='. sanitize_text_field( $_REQUEST['page'] ). '&cl_add_ons_action=activate' ) ), 'cl_add_ons_action' ) ) .'">' . __('Activate', $this->text_domain) . '</a>'; //phpcs:ignore WordPress.WP.I18n.NonSingularStringLiteralDomain
             }
         }
 
 
-        $documentation = '<a target="_blank" class="right" href="'. $item['doc_url'] . '">' . __( 'Documentation', $this->text_domain ) . '</a>';
+        $documentation = '<a target="_blank" class="right" href="'. $item['doc_url'] . '">' . __( 'Documentation', $this->text_domain ) . '</a>'; //phpcs:ignore WordPress.WP.I18n.NonSingularStringLiteralDomain
 
         return $action . $documentation;
     }
@@ -183,7 +185,7 @@ class CL_Addons_List_Table extends WP_List_Table {
     function show_search_box(){
         ?>
         <p class="cl-add-ons-search-box">
-            <input type="text" id="cl-add-ons-search-input" name="s" value="" placeholder="<?php _e( 'Search for add-ons...', $this->text_domain ); ?>">
+            <input type="text" id="cl-add-ons-search-input" name="s" value="" placeholder="<?php esc_html_e( 'Search for add-ons...', $this->text_domain ); //phpcs:ignore WordPress.WP.I18n.NonSingularStringLiteralDomain ?>">
         </p>
         <?php
     }
@@ -193,7 +195,7 @@ class CL_Addons_List_Table extends WP_List_Table {
      */
     function show_sumbit_button(){
         ?>
-        <input type="submit" class="button-primary" value="<?php _e('Save Add-ons', $this->text_domain);?>">
+        <input type="submit" class="button-primary" value="<?php esc_html_e('Save Add-ons', $this->text_domain); //phpcs:ignore WordPress.WP.I18n.NonSingularStringLiteralDomain?>">
         <?php
     }
 
@@ -206,9 +208,9 @@ class CL_Addons_List_Table extends WP_List_Table {
         <div class="cl-add-ons-section">
             <?php if( !empty( $this->section_header ) ): ?>
 
-                <h2><?php echo $this->section_header['title'];?></h2>
+                <h2><?php echo esc_html ( $this->section_header['title'] );?></h2>
                 <?php if( !empty( $this->section_header ) ): ?>
-                    <p class="description"><?php echo $this->section_header['description']; ?></p>
+                    <p class="description"><?php echo esc_html( $this->section_header['description'] ); ?></p>
                 <?php endif; ?>
             <?php endif; ?>
 
@@ -238,7 +240,7 @@ class CL_Addons_List_Table extends WP_List_Table {
     function display_addons(){
         ?>
         <div class="wrap" id="cl-add-ons-listing">
-            <h1 class="cl-main-header"><?php echo $this->header['title'];?></h1>
+            <h1 class="cl-main-header"><?php echo esc_html( $this->header['title'] );?></h1>
 
             <form id="cl-addons" method="post">
 
@@ -250,15 +252,15 @@ class CL_Addons_List_Table extends WP_List_Table {
 
                 if( !empty( $this->sections ) ){
                     foreach ( $this->sections as $section ){
-                        echo $section;
+                        echo $section; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                     }
                 }
                 ?>
                 <?php $this->show_sumbit_button(); ?>
 
                 <!-- For plugins, we also need to ensure that the form posts back to our current page -->
-                <input type="hidden" name="cl_all_add_ons" value="<?php echo implode( '|' ,$this->all_addons ); ?>" />
-                <input type="hidden" name="cl_all_plugins" value="<?php echo implode( '|' ,$this->all_plugins ); ?>" />
+                <input type="hidden" name="cl_all_add_ons" value="<?php echo esc_attr( implode( '|' ,$this->all_addons ) ); ?>" />
+                <input type="hidden" name="cl_all_plugins" value="<?php echo esc_attr( implode( '|' ,$this->all_plugins ) ); ?>" />
                 <input type="hidden" name="cl_add_ons_action" value="bulk_action" />
                 <?php wp_nonce_field('cl_add_ons_action'); ?>
             </form>
@@ -278,7 +280,7 @@ class CL_Addons_List_Table extends WP_List_Table {
  */
 add_action( 'admin_init', 'cl_add_ons_listing_process_actions', 1 );
 function cl_add_ons_listing_process_actions(){
-    if (current_user_can( 'manage_options' ) && isset( $_REQUEST['cl_add_ons_action'] ) && isset($_REQUEST['_wpnonce']) && wp_verify_nonce( $_REQUEST['_wpnonce'], 'cl_add_ons_action' ) ){
+    if (current_user_can( 'manage_options' ) && isset( $_REQUEST['cl_add_ons_action'] ) && isset($_REQUEST['_wpnonce']) && wp_verify_nonce( sanitize_text_field( $_REQUEST['_wpnonce'] ), 'cl_add_ons_action' ) ){
 
         if( $_REQUEST['cl_add_ons_action'] === 'bulk_action' ){
             if( !empty( $_POST['cl_all_plugins'] ) && !empty( $_POST['cl_all_add_ons'] ) ){//make sure we have all the data
@@ -340,7 +342,7 @@ function cl_add_ons_listing_process_actions(){
                 do_action( 'cl_add_ons_deactivate', sanitize_text_field($_REQUEST['cl_add_ons']) );
             }
         }
-
-        wp_safe_redirect( add_query_arg( 'cl_add_ons_listing_success', 'true', admin_url( 'admin.php?page='. $_REQUEST['page'] ) ) );
+        if( isset( $_REQUEST['page'] ) )
+            wp_safe_redirect( add_query_arg( 'cl_add_ons_listing_success', 'true', admin_url( 'admin.php?page='. sanitize_text_field( $_REQUEST['page'] ) ) ) );
     }
 }

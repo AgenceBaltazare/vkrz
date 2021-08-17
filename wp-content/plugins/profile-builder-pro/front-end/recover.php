@@ -74,27 +74,27 @@ function wppb_create_recover_password_form( $user, $post_data ){
 
 		$recover_inputPassword = '
 			<li class="wppb-form-field passw1">
-				<label for="passw1">'. $password_label .'</label>
-				<input class="password" name="passw1" type="password" id="passw1" value="" autocomplete="off" title="'. wppb_password_length_text() .'" '. apply_filters( 'wppb_recover_password_extra_attr', '', $password_label, 'password' ) .' />
+				<label for="passw1">'. esc_html( $password_label ) .'</label>
+				<input class="password" name="passw1" type="password" id="passw1" value="" autocomplete="off" title="'. esc_attr( wppb_password_length_text() ).'" '. apply_filters( 'wppb_recover_password_extra_attr', '', esc_html( $password_label ), 'password' ) .' />
 				<span class="wppb-description-delimiter">'. wppb_password_length_text() .' '. wppb_password_strength_description() .'</span>
 			</li><!-- .passw1 -->
-			<input type="hidden" name="userData" value="'.$user->ID.'"/>
+			<input type="hidden" name="userData" value="'. esc_attr( $user->ID ).'"/>
 			<li class="wppb-form-field passw2">
-				<label for="passw2">'. $repeat_password_label .'</label>
-				<input class="password" name="passw2" type="password" id="passw2" value="" autocomplete="off" '. apply_filters( 'wppb_recover_password_extra_attr', '', $repeat_password_label, 'repeat_password' ) .' />
+				<label for="passw2">'. esc_html( $repeat_password_label ) .'</label>
+				<input class="password" name="passw2" type="password" id="passw2" value="" autocomplete="off" '. apply_filters( 'wppb_recover_password_extra_attr', '', esc_html( $repeat_password_label ), 'repeat_password' ) .' />
 			</li><!-- .passw2 -->';
 
         /* if we have active the password strength checker */
         $recover_inputPassword .= wppb_password_strength_checker_html();
 
-		echo apply_filters( 'wppb_recover_password_form_input', $recover_inputPassword, $passw_one, $passw_two, $user->ID );
+		echo apply_filters( 'wppb_recover_password_form_input', $recover_inputPassword, $passw_one, $passw_two, $user->ID ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 ?>
 		</ul>
 		<p class="form-submit">
 			<?php $button_name = __('Reset Password', 'profile-builder'); ?>
-			<input name="recover_password2" type="submit" id="wppb-recover-password-button" class="<?php echo apply_filters( 'wppb_recover_submit_class', "submit button" ); ?>" value="<?php echo apply_filters('wppb_recover_password_button_name1', $button_name); ?>" />
+			<input name="recover_password2" type="submit" id="wppb-recover-password-button" class="<?php echo esc_attr( apply_filters( 'wppb_recover_submit_class', "submit button" ) ); ?>" value="<?php echo esc_attr( apply_filters('wppb_recover_password_button_name1', $button_name) ); ?>" />
 			<input name="action2" type="hidden" id="action2" value="recover_password2" />
-			<input name="key" type="hidden" id="key" value="<?php echo esc_attr( $_GET['key'] ) ?>" />
+			<input name="key" type="hidden" id="key" value="<?php echo esc_attr( isset( $_GET['key'] ) ? sanitize_text_field( $_GET['key'] ) : '' ) ?>" />
 		</p><!-- .form-submit -->
 		<?php wp_nonce_field( 'verify_true_password_recovery2_'.$user->ID, 'password_recovery_nonce_field2' ); ?>
 	</form><!-- #recover_password -->
@@ -124,20 +124,20 @@ function wppb_create_recover_password_form( $user, $post_data ){
 	}
 
 	$recover_notification .= '<br/>'.__( 'You will receive a link to create a new password via email.', 'profile-builder' ).'</p>';
-	echo apply_filters( 'wppb_recover_password_message1', $recover_notification );
+	echo wp_kses_post( apply_filters( 'wppb_recover_password_message1', $recover_notification ) );
 
 	$username_email = ( isset( $post_data['username_email'] ) ? $post_data['username_email'] : '' );
 
 	$recover_input = '<ul>
 			<li class="wppb-form-field wppb-username-email">
-				<label for="username_email">'. $username_email_label .'</label>
-				<input class="text-input" name="username_email" type="text" id="username_email" value="'.esc_attr( trim( $username_email ) ).'" '. apply_filters( 'wppb_recover_password_extra_attr', '', $username_email_label, 'username_email' ) .' />
+				<label for="username_email">'. esc_html( $username_email_label ) .'</label>
+				<input class="text-input" name="username_email" type="text" id="username_email" value="'.esc_attr( trim( $username_email ) ).'" '. apply_filters( 'wppb_recover_password_extra_attr', '', esc_html( $username_email_label ), 'username_email' ) .' />
 			</li><!-- .username_email --></ul>';
-	echo apply_filters( 'wppb_recover_password_generate_password_input', $recover_input, trim( $username_email ) );
+	echo apply_filters( 'wppb_recover_password_generate_password_input', $recover_input, trim( $username_email ) ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		?>
 	<p class="form-submit">
 		<?php $button_name = __('Get New Password', 'profile-builder'); ?>
-		<input name="recover_password" type="submit" id="wppb-recover-password-button" class="<?php echo apply_filters( 'wppb_recover_submit_class', "submit button" );?>" value="<?php echo apply_filters('wppb_recover_password_button_name3', $button_name); ?>" />
+		<input name="recover_password" type="submit" id="wppb-recover-password-button" class="<?php echo esc_attr( apply_filters( 'wppb_recover_submit_class', "submit button" ) );?>" value="<?php echo esc_attr( apply_filters('wppb_recover_password_button_name3', $button_name) ); ?>" />
 		<input name="action" type="hidden" id="action" value="recover_password" />
 	</p>
 	<?php wp_nonce_field( 'verify_true_password_recovery', 'password_recovery_nonce_field' ); ?>
@@ -274,9 +274,13 @@ function wppb_front_end_password_recovery(){
     $wppb_generalSettings = get_option( 'wppb_general_settings' );
 
     // If the user entered an email/username, process the request
-    if ( 'POST' == $_SERVER['REQUEST_METHOD'] && !empty( $_POST['action'] ) && $_POST['action'] == 'recover_password' && wp_verify_nonce($_POST['password_recovery_nonce_field'],'verify_true_password_recovery') ) {
+    if ( isset( $_SERVER['REQUEST_METHOD'] ) && 'POST' == $_SERVER['REQUEST_METHOD'] && !empty( $_POST['action'] ) && $_POST['action'] == 'recover_password' && isset( $_POST['password_recovery_nonce_field'] ) && wp_verify_nonce( sanitize_text_field( $_POST['password_recovery_nonce_field'] ),'verify_true_password_recovery') ) {
         // filter must be applied on the $_POST variable so that the value returned to the form can be corrected too
-        $username_email = apply_filters( 'wppb_before_processing_email_from_forms', $_POST['username_email'] );	//we get the raw data
+
+        if( !empty( $_POST['username_email'] ) )
+            $username_email = apply_filters( 'wppb_before_processing_email_from_forms', sanitize_text_field( $_POST['username_email'] ) );	//we get the raw data
+        else
+            $username_email = '';
 
         //check to see if it's an e-mail (and if this is valid/present in the database) or is a username
 
@@ -342,14 +346,23 @@ function wppb_front_end_password_recovery(){
         }
     }
     // If the user used the correct key-code, update his/her password
-    elseif ( 'POST' == $_SERVER['REQUEST_METHOD'] && !empty( $_POST['action2'] ) && $_POST['action2'] === 'recover_password2' && wp_verify_nonce( $_POST['password_recovery_nonce_field2'], 'verify_true_password_recovery2_'.absint( $_POST['userData'] ) ) ) {
+    elseif ( 'POST' == $_SERVER['REQUEST_METHOD'] && !empty( $_POST['action2'] ) && $_POST['action2'] === 'recover_password2' && isset( $_POST['password_recovery_nonce_field2'] ) && isset( $_POST['userData'] ) && wp_verify_nonce( sanitize_text_field( $_POST['password_recovery_nonce_field2'] ), 'verify_true_password_recovery2_'.absint( sanitize_text_field( $_POST['userData'] ) ) ) ) {
 
         $password_change_message = '';
 
         if( ( !empty( $_POST['passw1'] ) && !empty( $_POST['passw2'] ) ) ){
 
             //get the login name and key and verify if they match the ones in the database
-            $key = sanitize_text_field( $_POST['key'] );
+            if( isset( $_POST['key'] ) )
+                $key = sanitize_text_field( $_POST['key'] );
+            else
+                $key = '';
+
+			if( empty( $key ) ){
+				$password_change_message = __('The key cannot be empty!', 'profile-builder');
+				$output .= wppb_password_recovery_error( $password_change_message, 'wppb_recover_password_password_changed_message2' );
+			}
+
             $user_object = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $wpdb->users WHERE user_activation_key = %s", $key ) );
             if( empty( $user_object ) || ( !empty( $user_object ) && $user_object->ID === absint( $_POST['userData'] ) ) ){
                 $password_change_message = __('Invalid key!', 'profile-builder');
@@ -362,7 +375,7 @@ function wppb_front_end_password_recovery(){
             }
 
             if( !empty( $wppb_generalSettings['minimum_password_length'] ) || ( isset( $_POST['wppb_password_strength'] ) && !empty( $wppb_generalSettings['minimum_password_strength'] ) ) ){
-                if( wppb_check_password_length( $_POST['passw1'] ) ){
+                if( wppb_check_password_length( $_POST['passw1'] ) ){//phpcs:ignore  WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
                     $password_change_message = sprintf( __( "The password must have the minimum length of %s characters", "profile-builder" ), $wppb_generalSettings['minimum_password_length'] ) . '<br/>';
                     $output .= wppb_password_recovery_error( $password_change_message, 'wppb_recover_password_password_changed_message2' );
                 }
@@ -420,12 +433,13 @@ function wppb_front_end_password_recovery(){
 
 
     //this is the part that shows the forms
-    if( isset( $_GET['key'] ) && !empty( $_GET['key'] ) ){
+    if( isset( $_GET['key'] ) ){
 
-        if( !$password_changed_success ) {
+		$key = sanitize_text_field( $_GET['key'] );
+
+        if( !empty( $key ) && !$password_changed_success ) {
 
             //get the login name and key and verify if they match the ones in the database
-            $key = sanitize_text_field( $_GET['key'] );
             $user = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $wpdb->users WHERE user_activation_key = %s", $key ) );
 
             if( !empty( $user ) ) {
@@ -438,9 +452,14 @@ function wppb_front_end_password_recovery(){
                 $output .= wppb_password_recovery_error('<b>' . __('ERROR:', 'profile-builder') . '</b>' . __('Invalid key!', 'profile-builder'), 'wppb_recover_password_invalid_key_message');
             }
 
-        }
-    }
-    else{
+        } elseif ( !$password_changed_success && !$password_email_sent ) {
+			ob_start();
+			wppb_create_generate_password_form($_POST);
+			$output .= ob_get_contents();
+			ob_end_clean();
+		}
+
+    } else {
         if( !$password_email_sent ) {
             ob_start();
             wppb_create_generate_password_form($_POST);

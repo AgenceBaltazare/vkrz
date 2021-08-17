@@ -8,8 +8,10 @@ Description: Extends the functionality of Profile Builder by adding the possibil
  *
  * @since v.1.0.0
  */
-function wppb_ccc_scripts() {
-    wp_enqueue_script( 'wppb-custom-css-class-field', plugin_dir_url(__FILE__) . 'assets/js/main.js', array( 'jquery', 'wppb-manage-fields-live-change' ) );
+function wppb_ccc_scripts( $hook ) {
+    if ( $hook == 'profile-builder_page_manage-fields' ) {
+        wp_enqueue_script('wppb-custom-css-class-field', plugin_dir_url(__FILE__) . 'assets/js/main.js', array('jquery', 'wppb-manage-fields-live-change'));
+    }
 }
 add_action( 'admin_enqueue_scripts', 'wppb_ccc_scripts' );
 

@@ -1,20 +1,20 @@
 <?php
 function cpt_init() {
 
-    // Tournoi
+    // Tops
     $labels = array(
-        'name' => 'Tournoi',
-        'singular_name' => 'Tournoi',
-        'add_new' => 'Ajouter un tournoi',
-        'add_new_item' => 'Ajouter un tournoi',
-        'edit_item' => 'Editer un tournoi',
-        'new_item' => 'Nouveau tournoi',
-        'all_items' => 'Tous les tournois',
-        'view_item' => 'Voir tournoi',
-        'search_items' => 'Chercher un tournoi',
-        'not_found' =>  'Aucun tournoi trouvé',
-        'not_found_in_trash' => 'Aucun tournoi trouvé dans la corbeille',
-        'menu_name' => 'Tournois'
+        'name' => 'Top',
+        'singular_name' => 'Top',
+        'add_new' => 'Ajouter un top',
+        'add_new_item' => 'Ajouter un top',
+        'edit_item' => 'Editer un top',
+        'new_item' => 'Nouveau top',
+        'all_items' => 'Tous les tops',
+        'view_item' => 'Voir top',
+        'search_items' => 'Chercher un top',
+        'not_found' =>  'Aucun top trouvé',
+        'not_found_in_trash' => 'Aucun top trouvé dans la corbeille',
+        'menu_name' => 'Tops'
     );
     $args = array(
         'labels' => $labels,
@@ -61,11 +61,44 @@ function cpt_init() {
         'has_archive' => true,
         'hierarchical' => false,
         'menu_position' => null,
-        'menu_icon' => 'dashicons-editor-code',
+        'menu_icon' => 'dashicons-heart',
         'show_in_rest' => true,
         'supports' => array('title', 'author')
     );
     register_post_type('classement', $args);
+
+    // Vainkeur
+    $labels = array(
+        'name' => 'Vainkeur',
+        'singular_name' => 'Vainkeur',
+        'add_new' => 'Ajouter un vainkeur',
+        'add_new_item' => 'Ajouter un vainkeur',
+        'edit_item' => 'Editer un vainkeur',
+        'new_item' => 'Nouveau vainkeur',
+        'all_items' => 'Tous les vainkeurs',
+        'view_item' => 'Voir vainkeur',
+        'search_items' => 'Chercher un vainkeur',
+        'not_found' =>  'Aucun vainkeur trouvé',
+        'not_found_in_trash' => 'Aucun vainkeur trouvé dans la corbeille',
+        'menu_name' => 'Vainkeurs'
+    );
+    $args = array(
+        'labels' => $labels,
+        'public' => true,
+        'publicly_queryable' => false,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'query_var' => true,
+        'rewrite' => array('slug' => 'vkrz'),
+        'capability_type' => 'post',
+        'has_archive' => true,
+        'hierarchical' => false,
+        'menu_position' => null,
+        'menu_icon' => 'dashicons-admin-users',
+        'show_in_rest' => true,
+        'supports' => array('title', 'author')
+    );
+    register_post_type('vainkeur', $args);
 
     // Contenders
     $labels = array(
@@ -94,7 +127,7 @@ function cpt_init() {
         'has_archive' => true,
         'hierarchical' => false,
         'menu_position' => null,
-        'menu_icon' => 'dashicons-universal-access',
+        'menu_icon' => 'dashicons-superhero',
         'show_in_rest' => false,
         'supports' => array('title', 'thumbnail', 'author')
     );

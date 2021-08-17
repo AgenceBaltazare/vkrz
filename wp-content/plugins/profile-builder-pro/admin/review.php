@@ -83,12 +83,12 @@ class WPPB_Review_Request {
                                target="_blank" rel="noopener" class="button-primary" style="margin-right: 20px">
                                 <?php esc_html_e('Ok, I will gladly help!', 'profile-builder'); ?>
                             </a>
-                            <a href="<?php echo add_query_arg(array($this->query_arg => $this->notificationId)) ?>"
+                            <a href="<?php echo esc_url( add_query_arg(array($this->query_arg => $this->notificationId)) ) ?>"
                                class="button-secondary">
                                 <?php esc_html_e('No, thanks.', 'profile-builder'); ?>
                             </a>
                         </p>
-                        <a href="<?php echo add_query_arg(array($this->query_arg => $this->notificationId)) ?>"
+                        <a href="<?php echo esc_url( add_query_arg(array($this->query_arg => $this->notificationId)) ) ?>"
                            type="button" class="notice-dismiss" style="text-decoration: none;">
                             <span class="screen-reader-text">
                                 <?php esc_html_e('Dismiss this notice.', 'profile-builder'); ?>

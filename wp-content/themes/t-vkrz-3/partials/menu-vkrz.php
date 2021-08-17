@@ -31,7 +31,7 @@
             <li class="nav-item">
                 <div class="rs-menu mt-2">
                     <div class="w-100 btn-group justify-content-center share-t" role="group">
-                        <a href="https://discord.gg/w882sUnrhE" class="btn btn-outline-primary waves-effect sociallink" target="_blank">
+                        <a href="https://discord.gg/E9H9e8NYp7" class="btn btn-outline-primary waves-effect sociallink" target="_blank">
                             <i class="fab fa-discord"></i>
                         </a>
                         <a href="https://www.instagram.com/wearevainkeurz/" class="btn btn-outline-primary waves-effect sociallink" target="_blank">
@@ -72,13 +72,18 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="d-flex align-items-center" href="<?php the_permalink(get_page_by_path('monitor')); ?>">
+                    <span class="ico">📡</span> <span class="menu-title text-truncate">Monitor</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="d-flex align-items-center" href="<?php the_permalink(get_page_by_path('evolution')); ?>">
                     <span class="ico">🚀</span> <span class="menu-title text-truncate">Les niveaux</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="d-flex align-items-center" href="<?php the_permalink(get_page_by_path('liste-des-champions')); ?>">
-                    <span class="ico">👑</span> <span class="menu-title text-truncate">Les champions</span>
+                <a class="d-flex align-items-center" href="<?php the_permalink(143788); ?>">
+                    <span class="ico">👑</span> <span class="menu-title text-truncate">Les Vainkeurs</span>
                 </a>
             </li>
             <li class="nav-item">

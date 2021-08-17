@@ -318,6 +318,10 @@
     cursor: pointer;
 }
 
+.post-type-wppb-roles-editor #wpbody .wrap .wp-heading-inline, .post-type-wppb-roles-editor #wpbody .wrap .page-title-action {
+    display: inline-block !important;
+}
+
 @media screen and ( max-width: 1600px ) {
     .post-type-wppb-roles-editor #wppb-role-edit-table .wppb-role-edit-table-entry {
         width: 49%;

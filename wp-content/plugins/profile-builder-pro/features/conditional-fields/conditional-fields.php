@@ -125,7 +125,7 @@ Class PB_Conditional_Fields {
 		$return = '<script type="text/javascript">wppb_conditional_logic.set_manage_fields(' . json_encode( $wppb_manage_fields ) . ');</script>';
 
 		if( $fields_or_id === 0 )
-			echo $return;
+			echo $return;//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		else
 			return $fields_or_id . $return;
 
@@ -263,7 +263,7 @@ Class PB_Conditional_Fields {
                             }
 
                             $check_fields_change_all = implode(', ', $check_fields_change);
-
+                            // phpcs:disable
                             /* output the js rules */
                             $wppb_toolbox_forms_settings = get_option('wppb_toolbox_forms_settings');
                             if (!isset( $wppb_toolbox_forms_settings['ajax-conditional-logic'] ) || $wppb_toolbox_forms_settings['ajax-conditional-logic'] === 'no'):
@@ -310,6 +310,7 @@ Class PB_Conditional_Fields {
 								}
 							  </script>';
                             endif;
+                            // phpcs:enable
                         }
                     }
                 }
@@ -320,20 +321,20 @@ Class PB_Conditional_Fields {
     function wppb_conditional_logic_ajax(){
 
         $args = array(
-            'form_type' 			=> sanitize_text_field( $_POST['formType'] ),
+            'form_type' 			=> isset( $_POST['formType'] ) ? sanitize_text_field( $_POST['formType'] ) : '',
             'form_fields' 			=> array(),
-            'form_name' 			=> sanitize_text_field( $_POST['formName'] ),
+            'form_name' 			=> isset( $_POST['formName'] ) ? sanitize_text_field( $_POST['formName'] ): '',
             'role' 					=> '', //used only for the register-form settings
             'redirect_url'          => '',
             'logout_redirect_url'   => '', //used only for the register-form settings
             'redirect_priority'		=> 'normal',
-            'ID'                    => sanitize_text_field( $_POST['formID'] )
+            'ID'                    => isset( $_POST['formID'] ) ? sanitize_text_field( $_POST['formID'] ): ''
         );
         $args['form_fields'] = apply_filters( 'wppb_change_form_fields', get_option( 'wppb_manage_fields' ), $args );
 
         $form_fields = apply_filters( 'wppb_form_fields', $args['form_fields'], array( 'global_request' => array(), 'context' => 'validate_frontend', 'form_type' => $args['form_type'] , 'role' => $args['role'], 'user_id' => '' ) );
         $ret = array();
-        $fields = json_decode(stripslashes($_POST['data']), true);
+        $fields = isset( $_POST['data'] ) ? json_decode(stripslashes($_POST['data']), true): array();//phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 
         if( !empty($form_fields) ) {
             foreach ($form_fields as $form_field) {

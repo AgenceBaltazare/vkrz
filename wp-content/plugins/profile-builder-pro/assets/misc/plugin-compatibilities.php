@@ -71,7 +71,7 @@
                 $result = cptch_register_check(new WP_Error());
 
                 if ($result->get_error_message('captcha_error'))
-                    echo '<p class="wppb-error">' . $result->get_error_message('captcha_error') . '</p>';
+                    echo '<p class="wppb-error">' . esc_html( $result->get_error_message('captcha_error') ) . '</p>';
 
             }
 

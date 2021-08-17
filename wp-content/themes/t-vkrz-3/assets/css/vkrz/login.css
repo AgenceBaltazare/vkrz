@@ -1,0 +1,71 @@
+.text-rose {
+  color: #f4167f !important;
+}
+
+.big-cat .heading-cat h2 {
+  font-weight: 900;
+  letter-spacing: 2px;
+  margin: 20px 0 5px;
+}
+
+@-webkit-keyframes rotating /* Safari and Chrome */ {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.btn-rose {
+  background: #f4167f !important;
+  border-color: #f4167f !important;
+}
+.btn-rose:hover {
+  background: #f4167f !important;
+  border-color: #f4167f !important;
+}
+
+.mt-10p {
+  margin-top: 10px;
+}
+
+.mr-10p {
+  margin-right: 10px;
+}
+
+.auth-bg .card-title {
+  font-size: 1.5rem;
+}
+
+.already-account {
+  text-align: center;
+}
+
+.auth-wrapper {
+  text-align: center;
+  padding: 70px;
+}
+.auth-wrapper .auth-inner {
+  max-width: 550px;
+  margin: 0 auto;
+}
+.auth-wrapper .auth-inner .card-title {
+  width: 100%;
+}
+.auth-wrapper .auth-inner .form-submit, .auth-wrapper .auth-inner .login-submit {
+  text-align: center;
+}
+.auth-wrapper .auth-inner .form-submit input, .auth-wrapper .auth-inner .login-submit input {
+  margin: 0 auto !important;
+}
+.auth-wrapper .divider {
+  margin: 20px auto !important;
+}/*# sourceMappingURL=login.css.map */

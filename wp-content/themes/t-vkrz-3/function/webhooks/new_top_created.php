@@ -1,5 +1,4 @@
 <?php
-add_action('save_post', 'save_top_by_creator', 10, 2);
 function save_top_by_creator($post_id){
 
     global $post;
@@ -13,20 +12,20 @@ function save_top_by_creator($post_id){
         return;
     }
 
-    $id_tournament      = $post_id;
-    $top_title          = get_the_title($id_tournament);
-    $top_number         = get_numbers_of_contenders($id_tournament);
+    $id_top             = $post_id;
+    $top_title          = get_the_title($id_top);
+    $top_number         = get_numbers_of_contenders($id_top);
     $top_title          = "Top ".$top_number." ⚡️ ".$top_title;
-    $top_url            = get_the_permalink($id_tournament);
-    $top_question       = get_field('question_t', $id_tournament);
-    $top_visuel         = get_the_post_thumbnail_url($id_tournament, 'large');
-    foreach(get_the_terms($id_tournament, 'categorie') as $cat ) {
+    $top_url            = get_the_permalink($id_top);
+    $top_question       = get_field('question_t', $id_top);
+    $top_visuel         = get_the_post_thumbnail_url($id_top, 'large');
+    foreach(get_the_terms($id_top, 'categorie') as $cat ) {
         $cat_id     = $cat->term_id;
         $cat_name   = $cat->name;
     }
     $cat_value          = get_field('icone_cat', 'term_'.$cat_id)." ".$cat_name;
 
-    $creator_id         = get_post_field('post_author', $id_tournament);
+    $creator_id         = get_post_field('post_author', $id_top);
     $creator_data       = get_user_by('ID', $creator_id);
     $creator_name       = $creator_data->nickname;
     $creator_img        = get_avatar_url($creator_id, ['size' => '80']);
@@ -47,3 +46,4 @@ function save_top_by_creator($post_id){
     wp_remote_post($url, $args);
 
 }
+add_action('save_post', 'save_top_by_creator', 10, 2);

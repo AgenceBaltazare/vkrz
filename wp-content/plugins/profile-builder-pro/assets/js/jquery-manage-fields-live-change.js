@@ -426,6 +426,14 @@ var fields 	=	{
 																					'.row-location-visibility'
 																					]
 																},
+						'Honeypot':								{	'show_rows'	:	[
+																					'.row-field-title'
+																					],
+																	'properties':	{
+																		'meta_name_value'	: 'honeypot',
+																		'field_title'		: wppb_fields_strings.honeypot_title
+																	}
+						},
 						'Checkbox':								{	'show_rows'	:	[
 																						'.row-field-title',
 																						'.row-meta-name',
@@ -469,6 +477,7 @@ var fields 	=	{
 																						'.row-simple-upload',
 																						'.row-allowed-extensions',
 																						'.row-required',
+																						'.row-overwrite-existing',
 																						'.row-allowed-upload-extensions'
 																					]
 																},
@@ -572,7 +581,8 @@ var fields 	=	{
                                                                                         '.row-map-pins-load-type',
                                                                                         '.row-map-pagination-number',
                                                                                         '.row-map-bubble-fields',
-                                                                                        '.row-required'
+                                                                                        '.row-required',
+																						'.row-overwrite-existing'
                                                                                     ],
 																	'properties':	{
 																		'meta_name_value'	: 'map'

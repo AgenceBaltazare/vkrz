@@ -1,16 +1,17 @@
 <?php
-function begin_t($id_tournament, $uuiduser, $typetop){
+function begin_t($id_top, $uuiduser, $typetop){
 
     global $utm;
+
     if(!$utm){
         $utm = $_COOKIE['vainkeurz_user_utm'];
     }
 
     if($typetop == "top3"){
-        $title_rank = 'Podium '.get_the_title($id_tournament);
+        $title_rank = 'Podium '.get_the_title($id_top);
     }
     else{
-        $title_rank = 'Top '.get_numbers_of_contenders($id_tournament).' - '.get_the_title($id_tournament);
+        $title_rank = 'Top '.get_numbers_of_contenders($id_top).' - '.get_the_title($id_top);
     }
 
     $new_ranking = array(
@@ -35,7 +36,7 @@ function begin_t($id_tournament, $uuiduser, $typetop){
             'meta_query'     => array(
                 array(
                     'key'     => 'id_tournoi_c',
-                    'value'   => $id_tournament,
+                    'value'   => $id_top,
                     'compare' => '=',
                 )
             )
@@ -58,7 +59,7 @@ function begin_t($id_tournament, $uuiduser, $typetop){
 
     update_field('type_top_r', $typetop, $id_ranking);
     update_field('uuid_user_r', $uuiduser, $id_ranking);
-    update_field('id_tournoi_r', $id_tournament, $id_ranking);
+    update_field('id_tournoi_r', $id_top, $id_ranking);
     update_field('ranking_r', $list_contenders, $id_ranking);
     update_field('nb_votes_r', 0, $id_ranking);
     update_field('timeline_main', 1, $id_ranking);

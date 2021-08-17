@@ -49,62 +49,64 @@ $(document).ready(function ($) {
                 url: vkrz_ajaxurl,
                 data: {
                     action: 'vkzr_process_vote',
-                    id_tournament: $(this).find('.contender_zone').data('id-tournament'),
+                    id_top: $(this).find('.contender_zone').data('id-top'),
                     id_ranking: $(this).find('.contender_zone').data('id-ranking'),
                     id_winner: $(this).find('.contender_zone').data('id-winner'),
-                    id_looser: $(this).find('.contender_zone').data('id-looser')
+                    id_looser: $(this).find('.contender_zone').data('id-looser'),
+                    current_id_vainkeur: id_vainkeur
                 }
             })
-                .done(function (response) {
-                    let data = JSON.parse(response);
+            .done(function (response) {
 
-                    if(data.is_next_duel){
-                        $('.display_battle').html(data.contenders_html);
-                        contenders = $('.display_battle .link-contender');
-                        $('.contender_1 .contender_zone').addClass('animate__zoomIn');
-                        $('.contender_2 .contender_zone').addClass('animate__zoomIn');
-                    }
+                let data = JSON.parse(response);
 
-                    $('.stepbar').width(data.current_step + "%");
-                    $('.stepbar span').html(data.current_step + "%");
+                if(data.is_next_duel){
+                    $('.display_battle').html(data.contenders_html);
+                    contenders = $('.display_battle .link-contender');
+                    $('.contender_1 .contender_zone').addClass('animate__zoomIn');
+                    $('.contender_2 .contender_zone').addClass('animate__zoomIn');
+                }
 
-                    // +1 au compteur de votes du tournoi
-                    var current_user_t_votes = parseInt($('#rank-'+data.id_ranking+' span.value-span').html());
-                    $('#rank-'+data.id_ranking+' span.value-span').html(current_user_t_votes + 1);
+                $('.stepbar').width(data.current_step + "%");
+                $('.stepbar span').html(data.current_step + "%");
 
-                    // +1 au compteur de votes global
-                    var current_user_total_votes = parseInt($('.user-total-vote-value').html());
-                    $('.user-total-vote-value').html(current_user_total_votes + 1);
+                // +1 au compteur de votes du tournoi
+                var current_user_t_votes = parseInt($('#rank-'+data.id_ranking+' span.value-span').html());
+                $('#rank-'+data.id_ranking+' span.value-span').html(current_user_t_votes + 1);
 
-                    // -1 au décompte du prochain niveau
-                    var current_decompte_vote = parseInt($('.decompte_vote').html());
-                    $new_decompte_vote_val = current_decompte_vote - 1;
-                    if($new_decompte_vote_val <= 0){
-                        $new_decompte_vote_val = 0;
-                    }
-                    $('.decompte_vote').html($new_decompte_vote_val);
+                // +1 au compteur de votes global
+                var current_user_total_votes = parseInt($('.user-total-vote-value').html());
+                $('.user-total-vote-value').html(current_user_total_votes + 1);
 
-                    $('.display_users_votes h6').replaceWith(data.uservotes_html);
-                    $('.current_rank').html(data.user_ranking_html);
+                // -1 au décompte du prochain niveau
+                var current_decompte_vote = parseInt($('.decompte_vote').html());
+                $new_decompte_vote_val = current_decompte_vote - 1;
+                if($new_decompte_vote_val <= 0){
+                    $new_decompte_vote_val = 0;
+                }
+                $('.decompte_vote').html($new_decompte_vote_val);
 
-                    if(!data.is_next_duel){
-                        window.dataLayer.push({
-                            'event': 'track_event',
-                            'event_name': 'end_top',
-                            'page_categorie': top_categorie_layer,
-                            'top_title': top_title_layer,
-                            'top_question': top_question_layer,
-                            'id_top' : top_id_top_layer,
-                            'id_user': top_id_user_layer,
-                            'uuiduser':top_uuiduser_layer,
-                            'type_top': top_type__layer,
-                            'utm': top_utm__layer,
-                            'event_score': 20
-                        });
-                        location.reload();
-                    }
+                $('.display_users_votes h6').replaceWith(data.uservotes_html);
+                $('.current_rank').html(data.user_ranking_html);
 
-                }).always(function () {
+                if(!data.is_next_duel){
+                    window.dataLayer.push({
+                        'event': 'track_event',
+                        'event_name': 'end_top',
+                        'page_categorie': top_categorie_layer,
+                        'top_title': top_title_layer,
+                        'top_question': top_question_layer,
+                        'id_top' : top_id_top_layer,
+                        'id_user': top_id_user_layer,
+                        'uuiduser':top_uuiduser_layer,
+                        'type_top': top_type__layer,
+                        'utm': top_utm__layer,
+                        'event_score': 20
+                    });
+                    location.reload();
+                }
+
+            }).always(function () {
                 ajaxRunning = false;
             });
         }

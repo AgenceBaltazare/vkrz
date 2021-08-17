@@ -59,33 +59,33 @@ function wppb_register_your_version_content() {
 function wppb_serial_form($version, $fullname){
     ?>
 
-    <h2><?php printf( __( "Register your version of %s", 'profile-builder' ), $fullname ); ?></h2>
+    <h2><?php printf( esc_html__( "Register your version of %s", 'profile-builder' ), esc_html( $fullname ) ); ?></h2>
 
-    <form method="post" action="<?php echo get_admin_url( 1, 'options.php' ) ?>">
+    <form method="post" action="<?php echo esc_url( get_admin_url( 1, 'options.php' ) ) ?>">
 
         <?php $wppb_profile_builder_serial = get_option( 'wppb_profile_builder_'.$version.'_serial' ); ?>
         <?php $wppb_profile_builder_serial_status = get_option( 'wppb_profile_builder_'.$version.'_serial_status' ); ?>
         <?php settings_fields( 'wppb_profile_builder_'.$version.'_serial' ); ?>
 
-        <p><?php printf( __( "Now that you acquired a copy of %s, you should take the time and register it with the serial number you received", 'profile-builder'), $fullname);?></p>
-        <p><?php _e( "If you register this version of Profile Builder, you'll receive information regarding upgrades, patches, and technical support.", 'profile-builder' );?></p>
+        <p><?php printf( esc_html__( "Now that you acquired a copy of %s, you should take the time and register it with the serial number you received", 'profile-builder'), esc_html( $fullname ));?></p>
+        <p><?php esc_html_e( "If you register this version of Profile Builder, you'll receive information regarding upgrades, patches, and technical support.", 'profile-builder' );?></p>
         <p class="wppb-serial-wrap">
-            <label for="wppb_profile_builder_<?php echo $version; ?>_serial"><?php _e(' Serial Number:', 'profile-builder' );?></label>
-                <input type="password" size="50" name="wppb_profile_builder_<?php echo $version; ?>_serial" id="wppb_profile_builder_<?php echo $version; ?>_serial" class="regular-text" <?php if ( $wppb_profile_builder_serial != ''){ echo ' value="'.$wppb_profile_builder_serial.'"';} ?>/>
+            <label for="wppb_profile_builder_<?php echo esc_attr( $version ); ?>_serial"><?php esc_html_e(' Serial Number:', 'profile-builder' );?></label>
+                <input type="password" size="50" name="wppb_profile_builder_<?php echo esc_attr( $version ); ?>_serial" id="wppb_profile_builder_<?php echo esc_attr( $version ); ?>_serial" class="regular-text" <?php if ( $wppb_profile_builder_serial != ''){ echo ' value="'.esc_attr( $wppb_profile_builder_serial ).'"';} ?>/>
 
                 <?php
                 if( $wppb_profile_builder_serial_status == 'found' )
-                    echo '<span class="validateStatus"><img src="'.WPPB_PLUGIN_URL.'/assets/images/accept.png" title="'.__( 'The serial number was successfully validated!', 'profile-builder' ).'"/></span>';
+                    echo '<span class="validateStatus"><img src="'.esc_url( WPPB_PLUGIN_URL ).'/assets/images/accept.png" title="'.esc_html__( 'The serial number was successfully validated!', 'profile-builder' ).'"/></span>';
                 elseif ( $wppb_profile_builder_serial_status == 'notFound' )
-                    echo '<span class="validateStatus"><img src="'.WPPB_PLUGIN_URL.'/assets/images/icon_error.png" title="'.__( 'The serial number entered couldn\'t be validated!','profile-builder' ).'"/></span>';
+                    echo '<span class="validateStatus"><img src="'.esc_url( WPPB_PLUGIN_URL ).'/assets/images/icon_error.png" title="'.esc_html__( 'The serial number entered couldn\'t be validated!','profile-builder' ).'"/></span>';
                 elseif ( strpos( $wppb_profile_builder_serial_status, 'aboutToExpire')  !== false )//instead of aboutToExpire if the client has autobbiling on then he will receive 'found' instead
-                    echo '<span class="validateStatus"><img src="' . WPPB_PLUGIN_URL . '/assets/images/icon_error.png" title="' . __('The serial number is about to expire soon!', 'profile-builder') . '"/>'. sprintf( __(' Your serial number is about to expire, please %1$s Renew Your License%2$s.','profile-builder'), "<a href='https://www.cozmoslabs.com/account/?utm_source=PB&utm_medium=dashboard&utm_campaign=PB-Renewal' >", "</a>").'</span>';
+                    echo '<span class="validateStatus"><img src="' . esc_url( WPPB_PLUGIN_URL ) . '/assets/images/icon_error.png" title="' . esc_html__('The serial number is about to expire soon!', 'profile-builder') . '"/>'. sprintf( esc_html__(' Your serial number is about to expire, please %1$s Renew Your License%2$s.','profile-builder'), "<a href='https://www.cozmoslabs.com/account/?utm_source=PB&utm_medium=dashboard&utm_campaign=PB-Renewal' >", "</a>").'</span>';
                 elseif ( $wppb_profile_builder_serial_status == 'expired' )
-                    echo '<span class="validateStatus"><img src="'.WPPB_PLUGIN_URL.'/assets/images/icon_error.png" title="'.__( 'The serial number couldn\'t be validated because it expired!','profile-builder' ).'"/>'. sprintf( __(' Your serial number is expired, please %1$s Renew Your License%2$s.','profile-builder'), "<a href='https://www.cozmoslabs.com/account/?utm_source=PB&utm_medium=dashboard&utm_campaign=PB-Renewal' >", "</a>").'</span>';
+                    echo '<span class="validateStatus"><img src="'.esc_url( WPPB_PLUGIN_URL ).'/assets/images/icon_error.png" title="'.esc_html__( 'The serial number couldn\'t be validated because it expired!','profile-builder' ).'"/>'. sprintf( esc_html__(' Your serial number is expired, please %1$s Renew Your License%2$s.','profile-builder'), "<a href='https://www.cozmoslabs.com/account/?utm_source=PB&utm_medium=dashboard&utm_campaign=PB-Renewal' >", "</a>").'</span>';
                 elseif ( $wppb_profile_builder_serial_status == 'serverDown' )
-                    echo '<span class="validateStatus"><img src="'.WPPB_PLUGIN_URL.'/assets/images/icon_error.png" title="'.__( 'The serial number couldn\'t be validated because process timed out. This is possible due to the server being down. Please try again later!','profile-builder' ).'"/></span>';
+                    echo '<span class="validateStatus"><img src="'.esc_url( WPPB_PLUGIN_URL ).'/assets/images/icon_error.png" title="'.esc_html__( 'The serial number couldn\'t be validated because process timed out. This is possible due to the server being down. Please try again later!','profile-builder' ).'"/></span>';
                 ?>
-        <span class="wppb-serialnumber-descr"><?php _e( '(e.g. CLPB-15-SN-253a55baa4fbe7bf595b2aabb8d72985)', 'profile-builder' );?></span>
+        <span class="wppb-serialnumber-descr"><?php esc_html_e( '(e.g. CLPB-15-SN-253a55baa4fbe7bf595b2aabb8d72985)', 'profile-builder' );?></span>
         </p>
 
 
@@ -93,7 +93,7 @@ function wppb_serial_form($version, $fullname){
             <input type="hidden" name="action" value="update" />
             <p class="submit">
                 <?php wp_nonce_field( 'wppb_register_version_nonce', 'wppb_register_version_nonce' ); ?>
-                <input type="submit" name="wppb_serial_number_activate" class="button-primary" value="<?php _e('Save Changes') ?>" />
+                <input type="submit" name="wppb_serial_number_activate" class="button-primary" value="<?php esc_html_e( 'Save Changes', 'profile-builder' ) ?>" />
             </p>
         </div>
 
@@ -209,7 +209,7 @@ class WPPB_add_notices{
 
 					// Check that the user hasn't already clicked to ignore the message
 					if ( ! get_user_meta($user_id, $this->pluginPrefix.'_dismiss_notification' ) || $force_show ) {
-						echo $finalMessage = apply_filters($this->pluginPrefix.'_notification_message','<div class="error wppb-serial-notification" >'.$this->notificaitonMessage.'</div>', $this->notificaitonMessage);
+						echo wp_kses_post( $finalMessage = apply_filters($this->pluginPrefix.'_notification_message','<div class="error wppb-serial-notification" >'.$this->notificaitonMessage.'</div>', $this->notificaitonMessage) );
 					}
 				}
 
@@ -258,20 +258,20 @@ if ( $wppb_profile_builder_pro_hobbyist_serial_status == 'notFound' || $wppb_pro
     else
         $register_url = network_admin_url( 'admin.php?page=profile-builder-register' );
 
-	new WPPB_add_notices( 'wppb', 'profile_builder_pro', sprintf( __( '<p>Your <strong>Profile Builder</strong> serial number is invalid or missing. <br/>Please %1$sregister your copy%2$s to receive access to automatic updates and support. Need a license key? %3$sPurchase one now%4$s</p>', 'profile-builder'), "<a href='". $register_url ."'>", "</a>", "<a href='https://www.cozmoslabs.com/wordpress-profile-builder/?utm_source=PB&utm_medium=dashboard&utm_campaign=PB-SN-Purchase' target='_blank' class='button-primary'>", "</a>" ), 'wppb_profile_builder_pro_serial_status' );
+	new WPPB_add_notices( 'wppb', 'profile_builder_pro', sprintf( '<p>' . __( 'Your <strong>Profile Builder</strong> serial number is invalid or missing. <br/>Please %1$sregister your copy%2$s to receive access to automatic updates and support. Need a license key? %3$sPurchase one now%4$s', 'profile-builder') . '</p>', "<a href='". esc_url( $register_url ) ."'>", "</a>", "<a href='https://www.cozmoslabs.com/wordpress-profile-builder/?utm_source=PB&utm_medium=dashboard&utm_campaign=PB-SN-Purchase' target='_blank' class='button-primary'>", "</a>" ), 'wppb_profile_builder_pro_serial_status' );
 }
 elseif ( $wppb_profile_builder_pro_hobbyist_serial_status == 'expired' ){
         /* on our plugin pages do not add the dismiss button for the expired notification*/
         $notification_instance = WPPB_Plugin_Notifications::get_instance();
         if( $notification_instance->is_plugin_page() )
-            $message = __( '<p>Your <strong>Profile Builder</strong> license has expired. <br/>Please %1$sRenew Your Licence%2$s to continue receiving access to product downloads, automatic updates and support. %3$sRenew now %4$s</p>', 'profile-builder');
+            $message = '<p>' . __( 'Your <strong>Profile Builder</strong> license has expired. <br/>Please %1$sRenew Your Licence%2$s to continue receiving access to product downloads, automatic updates and support. %3$sRenew now %4$s', 'profile-builder') . '</p>';
         else
-            $message = __( '<p>Your <strong>Profile Builder</strong> license has expired. <br/>Please %1$sRenew Your Licence%2$s to continue receiving access to product downloads, automatic updates and support. %3$sRenew now %4$s %5$sDismiss%6$s</p>', 'profile-builder');
+            $message = '<p>' . __( 'Your <strong>Profile Builder</strong> license has expired. <br/>Please %1$sRenew Your Licence%2$s to continue receiving access to product downloads, automatic updates and support. %3$sRenew now %4$s %5$sDismiss%6$s', 'profile-builder') . '</p>';
 
     new WPPB_add_notices( 'wppb_expired', 'profile_builder_pro', sprintf( $message, "<a href='https://www.cozmoslabs.com/account/?utm_source=PB&utm_medium=dashboard&utm_campaign=PB-Renewal' target='_blank'>", "</a>", "<a href='https://www.cozmoslabs.com/account/?utm_source=PB&utm_medium=dashboard&utm_campaign=PB-Renewal' target='_blank' class='button-primary'>", "</a>", "<a href='". esc_url( add_query_arg( 'wppb_expired_dismiss_notification', '0' ) ) ."' class='wppb-dismiss-notification'>", "</a>" ), 'wppb_profile_builder_pro_serial_status' );
 }
 elseif( strpos( $wppb_profile_builder_pro_hobbyist_serial_status, 'aboutToExpire' ) === 0 ){
     $serial_status_parts = explode( '#', $wppb_profile_builder_pro_hobbyist_serial_status );
     $date = $serial_status_parts[1];
-    new WPPB_add_notices( 'wppb_about_to_expire', 'profile_builder_pro', sprintf( __( '<p>Your <strong>Profile Builder</strong> license is about to expire on %5$s. <br/>Please %1$sRenew Your Licence%2$s to continue receiving access to product downloads, automatic updates and support. %3$sRenew now %4$s %6$sDismiss%7$s</p>', 'profile-builder'), "<a href='https://www.cozmoslabs.com/account/?utm_source=PB&utm_medium=dashboard&utm_campaign=PB-Renewal' target='_blank'>", "</a>", "<a href='https://www.cozmoslabs.com/account/?utm_source=PB&utm_medium=dashboard&utm_campaign=PB-Renewal' target='_blank' class='button-primary'>", "</a>", $date, "<a href='". esc_url( add_query_arg( 'wppb_about_to_expire_dismiss_notification', '0' ) )."' class='wppb-dismiss-notification'>", "</a>" ), 'wppb_profile_builder_pro_serial_status' );
+    new WPPB_add_notices( 'wppb_about_to_expire', 'profile_builder_pro', sprintf( '<p>' . __( 'Your <strong>Profile Builder</strong> license is about to expire on %5$s. <br/>Please %1$sRenew Your Licence%2$s to continue receiving access to product downloads, automatic updates and support. %3$sRenew now %4$s %6$sDismiss%7$s', 'profile-builder') . '</p>', "<a href='https://www.cozmoslabs.com/account/?utm_source=PB&utm_medium=dashboard&utm_campaign=PB-Renewal' target='_blank'>", "</a>", "<a href='https://www.cozmoslabs.com/account/?utm_source=PB&utm_medium=dashboard&utm_campaign=PB-Renewal' target='_blank' class='button-primary'>", "</a>", $date, "<a href='". esc_url( add_query_arg( 'wppb_about_to_expire_dismiss_notification', '0' ) )."' class='wppb-dismiss-notification'>", "</a>" ), 'wppb_profile_builder_pro_serial_status' );
 }

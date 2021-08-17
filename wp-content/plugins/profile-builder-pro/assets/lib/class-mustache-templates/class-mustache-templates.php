@@ -252,7 +252,7 @@ class PB_Mustache_Generate_Admin_Box{
 
 			/* if it's not a post type add a side metabox with a save button */
 			if( isset( $_GET['page'] ) )
-				add_meta_box( 'page-save-metabox', __( 'Save' ), array( $this, 'page_save_meta_box' ), $page, 'side' );
+				add_meta_box( 'page-save-metabox', __( 'Save', 'profile-builder' ), array( $this, 'page_save_meta_box' ), $page, 'side' );
 		}
 	}
 
@@ -284,7 +284,7 @@ class PB_Mustache_Generate_Admin_Box{
         }
 
 		// Use nonce for verification
-		echo '<input type="hidden" name="' . $post_type . '_meta_box_nonce" value="' . wp_create_nonce( basename( __FILE__) ) . '" />';
+		echo '<input type="hidden" name="' . esc_attr( $post_type ) . '_meta_box_nonce" value="' . esc_attr( wp_create_nonce( basename( __FILE__) ) ) . '" />';
 
 		// Begin the field table and loop
 		echo '<table class="form-table meta_box mustache-box">';
@@ -311,51 +311,51 @@ class PB_Mustache_Generate_Admin_Box{
 
 			// begin a table row with
 			echo '<tr>
-					<td class="' . $id . ' ' .$type . '">';
+					<td class="' . esc_attr( $id ) . ' ' . esc_attr( $type ) . '">';
 					if( $type != 'header' && !empty( $label ) ){
-					    echo '<label for="' . $id . '" class="wppb_mustache_label">' . esc_html( $label ) . '</label>';
+					    echo '<label for="' . esc_attr( $id ) . '" class="wppb_mustache_label">' . esc_html( $label ) . '</label>';
                     }
 					switch( $type ) {
 						// text
 						case 'text':
-							echo '<input type="text" name="' . $id . '" id="' . $id . '" value="' . esc_attr( $meta ) . '" size="30" />
-									<br />' . $desc ;
+							echo '<input type="text" name="' . esc_attr( $id ) . '" id="' . esc_attr( $id ) . '" value="' . esc_attr( $meta ) . '" size="30" />
+									<br />' . wp_kses_post( $desc ) ;
 						break;
 						// textarea
 						case 'textarea':
 
-							echo '<textarea name="' . $id . '" id="' . $id . '" cols="220" rows="4" class="wppb_mustache_template">' . esc_textarea( $meta ) . '</textarea>';
-							echo  $desc ;
+							echo '<textarea name="' . esc_attr( $id ) . '" id="' . esc_attr( $id ) . '" cols="220" rows="4" class="wppb_mustache_template">' . esc_textarea( $meta ) . '</textarea>';
+							echo  wp_kses_post( $desc ) ;
 						break;
 						// checkbox
 						case 'checkbox':
-							echo '<input type="checkbox" name="' . $id . '" id="' . $id . '"' . checked( esc_attr( $meta ), 'on', false ) . ' value="on" />
-									<label for="' . $id . '">' . $desc . '</label>';
+							echo '<input type="checkbox" name="' . esc_attr( $id ) . '" id="' . esc_attr( $id ) . '"' . checked( esc_attr( $meta ), 'on', false ) . ' value="on" />
+									<label for="' . esc_attr( $id ) . '">' . esc_html( $desc ) . '</label>';
 						break;
 						// select
 						case 'select':
-							echo '<select name="' . $id . '" id="' . $id . '">';
+							echo '<select name="' . esc_attr( $id ) . '" id="' . esc_attr( $id ) . '">';
 							foreach ( $options as $option )
 								echo '<option' . selected( esc_attr( $meta ), $option['value'], false ) . ' value="' . esc_attr( $option['value'] ) . '">' . esc_html( $option['label'] ) . '</option>';
-							echo '</select><br />' . $desc;
+							echo '</select><br />' . wp_kses_post( $desc );
 						break;
 						// radio
 						case 'radio':
 							foreach ( $options as $option )
-								echo '<input type="radio" name="' . $id . '" id="' . $id . '-' . $option['value'] . '" value="' . esc_attr( $option['value'] ) . '"' . checked( esc_attr( $meta ), $option['value'], false ) . ' />
-										<label for="' . $id . '-' . $option['value'] . '">' . $option['label'] . '</label><br />';
-							echo '' . esc_html( $desc );
+								echo '<input type="radio" name="' . esc_attr( $id ) . '" id="' . esc_attr( $id ) . '-' . esc_attr( $option['value'] ) . '" value="' . esc_attr( $option['value'] ) . '"' . checked( esc_attr( $meta ), $option['value'], false ) . ' />
+										<label for="' . esc_attr( $id ) . '-' . esc_attr( $option['value'] ) . '">' . esc_html( $option['label'] ) . '</label><br />';
+							echo '' . wp_kses_post( $desc );
 						break;
 						// checkbox_group
 						case 'checkbox_group':
 							foreach ( $options as $option )
 								echo '<input type="checkbox" value="' . esc_attr( $option['value'] ) . '" name="' . $id . '[]" id="' . $id . '-' . $option['value'] . '"' , is_array( $meta ) && in_array( $option['value'], $meta ) ? ' checked="checked"' : '' , ' />
-										<label for="' . $id . '-' . $option['value'] . '">' . $option['label'] . '</label><br />';
-							echo '' . esc_html( $desc );
+										<label for="' . esc_attr( $id ) . '-' . esc_attr( $option['value'] ) . '">' . esc_html( $option['label'] ) . '</label><br />';
+							echo '' . wp_kses_post( $desc );
 						break;
 						// text
 						case 'header':
-							echo '<h4>'. $default .'</h4>';
+							echo '<h4>'. esc_html( $default ) .'</h4>';
 						break;
 					} //end switch
 
@@ -366,7 +366,7 @@ class PB_Mustache_Generate_Admin_Box{
 						if( !empty( $this->mustache_vars ) ){
 							foreach( $this->mustache_vars as $mustache_var_group ){
 								?>
-								<h4><?php echo $mustache_var_group['group-title']; ?></h4>
+								<h4><?php echo esc_html( $mustache_var_group['group-title'] ); ?></h4>
 								<pre><?php 	do_action( 'wppb_before_mustache_vars_display', $mustache_var_group, $id, $post_type ); $this->display_mustache_available_vars( $mustache_var_group['variables'], 0 ); ?></pre>
 								<?php
 							}
@@ -389,7 +389,7 @@ class PB_Mustache_Generate_Admin_Box{
 	 */
 	function page_save_meta_box() {
 		?>
-		<input type="submit" value="<?php _e( 'Save Changes', 'profile-builder' ); ?>" class="button button-primary button-large mustache-save">
+		<input type="submit" value="<?php esc_html_e( 'Save Changes', 'profile-builder' ); ?>" class="button button-primary button-large mustache-save">
 	<?php
 	}
 
@@ -456,27 +456,27 @@ class PB_Mustache_Generate_Admin_Box{
 			foreach( $mustache_vars  as $var ){
 			    if ( $var[ 'name' ] != 'password' ) {
                     if ( empty( $var[ 'children' ] ) ) {
-                        echo str_repeat( "&nbsp;&nbsp;", $level );
+                        echo str_repeat( "&nbsp;&nbsp;", $level );//phpcs:ignore  WordPress.Security.EscapeOutput.OutputNotEscaped
                         if ( !empty( $var[ 'label' ] ) )
-                            echo apply_filters( 'wppb_variable_label', $var[ 'label' ] . ':' );
+                            echo esc_html( apply_filters( 'wppb_variable_label', $var[ 'label' ] . ':' ) );
                         if ( !empty( $var[ 'unescaped' ] ) && $var[ 'unescaped' ] === true )
                             echo '{{{';
                         else
                             echo '{{';
-                        echo $var[ 'name' ];
+                        echo esc_html( $var[ 'name' ] );
                         if ( !empty( $var[ 'unescaped' ] ) && $var[ 'unescaped' ] === true )
                             echo '}}}';
                         else
                             echo '}}';
                         echo PHP_EOL;
                     } else {
-                        echo str_repeat( "&nbsp;&nbsp;", $level );
-                        echo '{{#' . $var[ 'name' ] . '}}' . PHP_EOL;
+                        echo str_repeat( "&nbsp;&nbsp;", $level ); //phpcs:ignore  WordPress.Security.EscapeOutput.OutputNotEscaped
+                        echo '{{#' . esc_html( $var[ 'name' ] ) . '}}' . PHP_EOL;
                         $level++;
                         $this->display_mustache_available_vars( $var[ 'children' ], $level );
                         $level--;
-                        echo str_repeat( "&nbsp;&nbsp;", $level );
-                        echo '{{/' . $var[ 'name' ] . '}}' . PHP_EOL;
+                        echo str_repeat( "&nbsp;&nbsp;", $level ); //phpcs:ignore  WordPress.Security.EscapeOutput.OutputNotEscaped
+                        echo '{{/' . esc_html( $var[ 'name' ] ) . '}}' . PHP_EOL;
                     }
                 }
 			}
@@ -495,18 +495,18 @@ class PB_Mustache_Generate_Admin_Box{
 	function save_box( $post_id, $post ){
 		global $post_type;
 		/* addition to save as option if we are not on a post type */
-		if( !is_numeric( $post_id ) && @wp_verify_nonce( $_POST['_meta_box_nonce'],  basename( __FILE__ ) ) ){
+		if( !is_numeric( $post_id ) && isset( $_POST['_meta_box_nonce'] ) && @wp_verify_nonce( sanitize_text_field( $_POST['_meta_box_nonce'] ),  basename( __FILE__ ) ) ){
 			foreach ( $this->fields as $field ) {
 
 				if ( isset( $_POST[$field['id']] ) ) {
-					update_option( $field['id'], wp_unslash( $_POST[$field['id']] ) );
+					update_option( $field['id'], wp_unslash( $_POST[$field['id']] ) );//phpcs:ignore  WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 				}
 
 			}
 		}
 
 		// verify nonce
-		if ( ! ( in_array( $post_type, $this->page ) && @wp_verify_nonce( $_POST[$post_type . '_meta_box_nonce'],  basename( __FILE__ ) ) ) )
+		if ( ! ( in_array( $post_type, $this->page ) && isset( $_POST[$post_type . '_meta_box_nonce'] ) && @wp_verify_nonce( sanitize_text_field( $_POST[$post_type . '_meta_box_nonce'] ),  basename( __FILE__ ) ) ) )
 			return $post_id;
 		// check autosave
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
@@ -520,14 +520,14 @@ class PB_Mustache_Generate_Admin_Box{
 			if( $field['type'] == 'tax_select' ) {
 				// save taxonomies
 				if ( isset( $_POST[$field['id']] ) )
-					$term = $_POST[$field['id']];
+					$term = $_POST[$field['id']]; //phpcs:ignore  WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 				wp_set_object_terms( $post_id, $term, $field['id'] );
 			}
 			else {
 				// save the rest
 				$old = get_post_meta( $post_id, $field['id'], true );
 				if ( isset( $_POST[$field['id']] ) ) {
-					$new = $_POST[$field['id']];
+					$new = $_POST[$field['id']]; /* phpcs:ignore  WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
 				} else {
 					$new = '';
 				}

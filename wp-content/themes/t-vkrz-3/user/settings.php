@@ -2,16 +2,7 @@
 /*
     Template Name: User settings
 */
-global $uuiduser;
-global $current_user;
-global $user_id;
-global $nb_user_votes;
-global $user_full_data;
-global $info_user_level;
-global $list_t_done;
 get_header();
-global $user_role;
-$list_t_begin   = $user_full_data[0]['list_user_ranking_begin'];
 ?>
 <div class="app-content content ">
     <div class="content-wrapper">

@@ -164,7 +164,7 @@ function wppb_disable_old_add_ons_notice( $translated_text, $untranslated_text, 
 function wppb_disable_old_add_ons_notice_multi() {
     ?>
     <div id="message" class="updated notice is-dismissible">
-        <p><?php _e( 'This Profile Builder add-on has been migrated to the main plugin and is no longer used. You can delete it.', 'profile-builder' ); ?></p>
+        <p><?php esc_html_e( 'This Profile Builder add-on has been migrated to the main plugin and is no longer used. You can delete it.', 'profile-builder' ); ?></p>
     </div>
     <?php
 }

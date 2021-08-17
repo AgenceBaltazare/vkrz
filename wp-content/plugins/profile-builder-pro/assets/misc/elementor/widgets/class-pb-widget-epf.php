@@ -45,7 +45,7 @@ class PB_Elementor_Edit_Profile_Widget extends PB_Elementor_Register_Edit_Profil
 	 *
 	 */
 	protected function _register_controls() {
-        $this -> register_rf_epf_controls( 'epf' );
+        $this->register_rf_epf_controls( 'epf' );
 	}
 
 	/**

@@ -176,8 +176,8 @@ abstract class PB_Elementor_Register_Edit_Profile_Widget extends PB_Elementor_Wi
                 array(
                     'label' => __('Automatic Login', 'profile-builder'),
                     'type' => \Elementor\Controls_Manager::SWITCHER,
-                    'label_on' => __('Yes', 'your-plugin'),
-                    'label_off' => __('No', 'your-plugin'),
+                    'label_on' => __('Yes', 'profile-builder'),
+                    'label_off' => __('No', 'profile-builder'),
                     'return_value' => 'yes',
                     'default' => '',
                     'condition' => [
@@ -208,7 +208,7 @@ abstract class PB_Elementor_Register_Edit_Profile_Widget extends PB_Elementor_Wi
                 'pb_form_'.$form_slug.'_edit_link' ,
                 array(
                     'type'     => \Elementor\Controls_Manager::RAW_HTML,
-                    'raw'      => __( 'Edit the Settings for this form <a href="'.esc_url( $edit_form_link ).'" target="_blank">here</a>' , 'profile-builder' ),
+                    'raw'      => sprintf( __( 'Edit the Settings for this form %1$shere%2$s' , 'profile-builder' ), '<a href="'.esc_url( $edit_form_link ).'" target="_blank">', '</a>'),
                     'condition'=> [
                         'pb_form_name' => [ '-'.$form_slug ],
                     ],
@@ -275,6 +275,81 @@ abstract class PB_Elementor_Register_Edit_Profile_Widget extends PB_Elementor_Wi
                         'selector' => '.wppb-register-user .wppb-send-credentials-checkbox label[for=send_credentials_via_email]',
                         'section_name' => 'Label',
                     ]
+                ]
+            );
+        }
+
+        // Style controls for the 'Two-Factor Authentication' field group
+        if ( $form_type === 'epf' && $this->is_2fa_active() ) {
+            $this->add_styling_control_group(
+                'Two-Factor Authentication',
+                '',
+                'pb_edit_profile_' . $form_slug . '_2fa',
+                [
+                    '2fa_heading' => [
+                        'selector' => '.wppb-2fa-fields .wppb_2fa_heading h4',
+                        'section_name' => 'Heading',
+                    ],
+                    '2fa_activate_label' => [
+                        'selector' => '.wppb-2fa-fields label[for=wppb_auth_enabled]',
+                        'section_name' => 'Activate Label',
+                    ],
+                    '2fa_activate_checkbox' => [
+                        'selector' => '.wppb-2fa-fields #wppb_auth_enabled',
+                        'section_name' => 'Activate Checkbox',
+                    ],
+                    '2fa_relaxed_label' => [
+                        'selector' => '.wppb-2fa-fields label[for=wppb_auth_relaxedmode]',
+                        'section_name' => 'Relaxed Mode Label',
+                    ],
+                    '2fa_relaxed_checkbox' => [
+                        'selector' => '.wppb-2fa-fields #wppb_auth_relaxedmode',
+                        'section_name' => 'Relaxed Mode Checkbox',
+                    ],
+                    '2fa_description_label' => [
+                        'selector' => '.wppb-2fa-fields label[for=wppb_auth_description]',
+                        'section_name' => 'Description Label',
+                    ],
+                    '2fa_description_input' => [
+                        'selector' => '.wppb-2fa-fields #wppb_auth_description',
+                        'section_name' => 'Description Input',
+                    ],
+                    '2fa_description_description' => [
+                        'selector' => '.wppb-2fa-fields .wppb-description-delimiter',
+                        'section_name' => 'Description Description',
+                    ],
+                    '2fa_secret_label' => [
+                        'selector' => '.wppb-2fa-fields label[for=wppb_auth_secret]',
+                        'section_name' => 'Secret Label',
+                    ],
+                    '2fa_secret_input' => [
+                        'selector' => '.wppb-2fa-fields #wppb_auth_secret',
+                        'section_name' => 'Secret Input',
+                    ],
+                    '2fa_new_secret_button' => [
+                        'selector' => '.wppb-2fa-fields #wppb_auth_secret_buttons #wppb_auth_newsecret',
+                        'section_name' => 'New Secret Button',
+                    ],
+                    '2fa_qr_code_button' => [
+                        'selector' => '.wppb-2fa-fields #wppb_auth_secret_buttons #wppb_show_qr',
+                        'section_name' => 'QR Code Button',
+                    ],
+                    '2fa_verify_label' => [
+                        'selector' => '.wppb-2fa-fields .wppb_auth_verify label[for=wppb_auth_passw]',
+                        'section_name' => 'Verify TOTP Label',
+                    ],
+                    '2fa_verify_input' => [
+                        'selector' => '.wppb-2fa-fields .wppb_auth_verify #wppb_auth_passw',
+                        'section_name' => 'Verify TOTP Input',
+                    ],
+                    '2fa_check_button' => [
+                        'selector' => '.wppb-2fa-fields #wppb_auth_verify_buttons #wppb_auth_verify_button',
+                        'section_name' => 'Check Button',
+                    ],
+                    '2fa_check_indicator' => [
+                        'selector' => '.wppb-2fa-fields #wppb_auth_verify_buttons #wppb_auth_verify_indicator',
+                        'section_name' => 'Validity Indicator',
+                    ],
                 ]
             );
         }
@@ -792,7 +867,7 @@ abstract class PB_Elementor_Register_Edit_Profile_Widget extends PB_Elementor_Wi
     protected function render_widget($form_type ) {
 
         $output = parent::render_widget( $form_type );
-        echo $output;
+        echo $output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
         // check if the form is being displayed in the Elementor editor
         $is_elementor_edit_mode = false;
@@ -807,17 +882,17 @@ abstract class PB_Elementor_Register_Edit_Profile_Widget extends PB_Elementor_Wi
             foreach ( $output->args['form_fields'] as $form_field ){
                 switch ( $form_field['field'] ){
                     case 'Select2':
-                        echo '<script src="'.WPPB_PLUGIN_URL.'front-end/extra-fields/select2/select2.js?ver='.PROFILE_BUILDER_VERSION.'" id="wppb_sl2_js"></script>';
+                        echo '<script src="'.esc_url( WPPB_PLUGIN_URL ).'front-end/extra-fields/select2/select2.js?ver='.esc_attr( PROFILE_BUILDER_VERSION ).'" id="wppb_sl2_js"></script>';
                         break;
                     case 'WYSIWYG':
                         echo '<script>jQuery(document.body).off( "click.add-media-button", ".insert-media" );</script>';
                         break;
                     case 'Select (CPT)':
-                        echo '<script src="'.WPPB_PLUGIN_URL.'front-end/extra-fields/select-cpt/select-cpt.js?ver='.PROFILE_BUILDER_VERSION.'" id="wppb-select-cpt-script"></script>';
+                        echo '<script src="'.esc_url( WPPB_PLUGIN_URL ).'front-end/extra-fields/select-cpt/select-cpt.js?ver='.esc_attr( PROFILE_BUILDER_VERSION ).'" id="wppb-select-cpt-script"></script>';
                         break;
                     case 'Phone':
-                        echo '<script src="'.WPPB_PLUGIN_URL.'front-end/extra-fields/phone/jquery.inputmask.bundle.min.js?ver='.PROFILE_BUILDER_VERSION.'" id="wppb-jquery-inputmask"></script>';
-                        echo '<script src="'.WPPB_PLUGIN_URL.'front-end/extra-fields/phone/script-phone.js?ver='.PROFILE_BUILDER_VERSION.'" id="wppb-phone-script"></script>';
+                        echo '<script src="'.esc_url( WPPB_PLUGIN_URL ).'front-end/extra-fields/phone/jquery.inputmask.bundle.min.js?ver='.esc_attr( PROFILE_BUILDER_VERSION ).'" id="wppb-jquery-inputmask"></script>';
+                        echo '<script src="'.esc_url( WPPB_PLUGIN_URL ).'front-end/extra-fields/phone/script-phone.js?ver='.esc_attr( PROFILE_BUILDER_VERSION ).'" id="wppb-phone-script"></script>';
                         break;
                     default:
                         break;
@@ -830,11 +905,11 @@ abstract class PB_Elementor_Register_Edit_Profile_Widget extends PB_Elementor_Wi
                 $ajaxNonce = wp_create_nonce( 'wppb_msf_frontend_nonce' );
                 echo '
                     <script id="wppb-msf-script-frontend-extra">
-                        var wppb_msf_data_frontend = {"ajaxUrl":"'.$ajaxUrl.'","ajaxNonce":"'.$ajaxNonce.'"};
+                        var wppb_msf_data_frontend = {"ajaxUrl":"'.esc_url( $ajaxUrl ).'","ajaxNonce":"'.esc_attr( $ajaxNonce ).'"};
                     </script>
                 ';
                 echo '
-                    <script src="'.WP_PLUGIN_URL.'/pb-add-on-multi-step-forms/assets/js/frontend-multi-step-forms.js?ver='.PROFILE_BUILDER_VERSION.'" id="wppb-msf-script-frontend">
+                    <script src="'.esc_url( WP_PLUGIN_URL ).'/pb-add-on-multi-step-forms/assets/js/frontend-multi-step-forms.js?ver='.esc_attr( PROFILE_BUILDER_VERSION ).'" id="wppb-msf-script-frontend">
                     </script>
                 ';
 

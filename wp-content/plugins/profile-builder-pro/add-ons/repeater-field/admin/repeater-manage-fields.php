@@ -333,8 +333,9 @@ function wppb_rpf_unique_field_title( $title, $meta_name = '' ){
  * @return string
  */
 function wppb_rpf_check_repeater_unique_title() {
-    $title = sanitize_text_field( $_POST['title'] );
-    $meta_name = sanitize_text_field( $_POST['meta_name'] );
+
+    $title = isset( $_POST['title'] ) ? sanitize_text_field( $_POST['title'] ) : '';
+    $meta_name = isset( $_POST['meta_name'] ) ? sanitize_text_field( $_POST['meta_name'] ) : '';
 
     if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
         $unique_title = wppb_rpf_unique_field_title( $title, $meta_name );
