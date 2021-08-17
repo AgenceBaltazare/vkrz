@@ -6,8 +6,13 @@ global $uuiduser;
 global $user_id;
 global $user_infos;
 get_header();
-$data_t_created = get_creator_t($user_id);
-$list_t_created = $data_t_created['creator_tops'];
+
+if (false === ( $data_t_created = get_transient( 'user_'.$user_id.'_get_creator_t' ) )) {
+    $data_t_created = get_creator_t($user_id);
+    set_transient( 'user_'.$user_id.'_get_creator_t', $data_t_created, DAY_IN_SECONDS );
+} else {
+    $data_t_created = get_transient( 'user_'.$user_id.'_get_creator_t' );
+}
 ?>
 <!-- BEGIN: Content-->
 <div class="app-content content ">
@@ -47,7 +52,7 @@ $list_t_created = $data_t_created['creator_tops'];
                                                     <span class="ico4">💎</span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">
-                                                    <?php echo $data_t_created['creator_all_v']; ?>
+                                                    <?php echo number_format($data_t_created['creator_all_v'], 0, ",", " "); ?>
                                                 </h2>
                                                 <p class="card-text legende">Votes générés</p>
                                             </div>
@@ -92,7 +97,7 @@ $list_t_created = $data_t_created['creator_tops'];
                                                             <thead>
                                                             <tr>
                                                                 <th class="">
-                                                                    Liste des <span class="t-rose"><?php echo count($list_t_created); ?></span> Tops créés
+                                                                    Liste des <span class="t-rose"><?php echo $data_t_created['creator_nb_tops']; ?></span> Tops créés
                                                                 </th>
                                                                 <th class="text-right">
                                                                     💎
@@ -110,7 +115,7 @@ $list_t_created = $data_t_created['creator_tops'];
                                                             </thead>
                                                             <tbody>
                                                             <?php
-                                                            foreach($list_t_created as $item) : ?>
+                                                            foreach($data_t_created['creator_tops'] as $item) : ?>
                                                                 <tr>
                                                                     <td>
                                                                         <div class="media-body">
@@ -127,7 +132,7 @@ $list_t_created = $data_t_created['creator_tops'];
                                                                         </div>
                                                                     </td>
                                                                     <td class="text-right">
-                                                                        <?php echo $item['top_votes']; ?> <span class="ico3">💎</span>
+                                                                        <?php echo number_format($item['top_votes'], 0, ",", " "); ?> <span class="ico3">💎</span>
                                                                     </td>
                                                                     <td class="text-right">
                                                                         <?php echo $item['top_ranks']; ?> <span class="ico3">🏆</span>
