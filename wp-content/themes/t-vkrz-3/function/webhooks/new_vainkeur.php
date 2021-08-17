@@ -5,14 +5,14 @@ function new_vainkeur($user_id){
     $new_user_infos = deal_vainkeur_entry($user_id);
     $user_url       = get_author_posts_url($user_id);
 
-    $url    = "https://hook.integromat.com/q6wsg4hejd3k3mveq9nn6ycvwgc5y7kp";
+    $url    = "https://hook.integromat.com/uiuymy9i8o09fztl10pkjctqqlwg264w";
     $args   = array(
         'body' => array(
             'id_vainkeur'       => $new_user_infos['id_vainkeur'],
             'user_url'          => $user_url,
             'uuid_user_vkrz'    => $new_user_infos['uuid_user_vkrz'],
-            'pseudo'            => $new_user_infos['user_pseudo'],
-            'avatar'            => $new_user_infos['avatar_url'],
+            'pseudo'            => $new_user_infos['pseudo'],
+            'avatar'            => $new_user_infos['avatar'],
             'user_email'        => $new_user_infos['user_email'],
             'level'             => $new_user_infos['level'],
             'level_number'      => $new_user_infos['level_number'],
