@@ -52,7 +52,7 @@ else{
         </div>
         <div class="card-body eh">
             <p class="card-text text-primary">
-                TOP <?php echo get_numbers_of_contenders($id_top); ?> : <?php echo get_the_title($id_top); ?>
+                TOP <?php echo get_field('count_contenders_t', $id_top); ?> : <?php echo get_the_title($id_top); ?>
             </p>
             <h4 class="card-title">
                 <?php the_field('question_t', $id_top); ?>

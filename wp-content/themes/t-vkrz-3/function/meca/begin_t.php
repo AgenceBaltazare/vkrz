@@ -11,7 +11,7 @@ function begin_t($id_top, $uuiduser, $typetop){
         $title_rank = 'Podium '.get_the_title($id_top);
     }
     else{
-        $title_rank = 'Top '.get_numbers_of_contenders($id_top).' - '.get_the_title($id_top);
+        $title_rank = 'Top '.get_field('count_contenders_t', $id_top).' - '.get_the_title($id_top);
     }
 
     $new_ranking = array(

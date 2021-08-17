@@ -174,7 +174,7 @@ elseif(is_author()){
 
                 <?php $id_top = $_GET['id_top']; ?>
                 <div class="tournament-heading text-center">
-                    <h3 class="mb-0 t-titre-tournoi">Top <?php echo get_numbers_of_contenders($id_top); ?> mondial <span class="ico text-center">🌎</span> <?php echo get_the_title($id_top); ?></h3>
+                    <h3 class="mb-0 t-titre-tournoi">Top <?php echo get_field('count_contenders_t', $id_top); ?> mondial <span class="ico text-center">🌎</span> <?php echo get_the_title($id_top); ?></h3>
                     <h4 class="mb-0">
                         <?php the_field('question_t', $id_top); ?>
                     </h4>

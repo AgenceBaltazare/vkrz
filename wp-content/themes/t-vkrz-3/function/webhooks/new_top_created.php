@@ -14,8 +14,7 @@ function save_top_by_creator($post_id){
 
     $id_top             = $post_id;
     $top_title          = get_the_title($id_top);
-    $top_number         = get_numbers_of_contenders($id_top);
-    $top_title          = "Top ".$top_number." ⚡️ ".$top_title;
+    $top_title          = "Top ".get_field('count_contenders_t', $id_top)." ⚡️ ".$top_title;
     $top_url            = get_the_permalink($id_top);
     $top_question       = get_field('question_t', $id_top);
     $top_visuel         = get_the_post_thumbnail_url($id_top, 'large');

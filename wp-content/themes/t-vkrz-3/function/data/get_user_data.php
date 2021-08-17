@@ -436,7 +436,7 @@ function get_creator_t($creator_id){
         array_push($list_creator_tops, array(
             "top_id"        => $id_top,
             "top_title"     => get_the_title($id_top),
-            "nb_top"        => get_numbers_of_contenders($id_top), // TODO: refacto to not call get_numbers_of_contenders()
+            "nb_top"        => get_field('count_contenders_t', $id_top),
             "top_votes"     => $nb_votes_t,
             "top_ranks"     => $nb_ranks_t,
             "top_note"      => $moy_notes_t,

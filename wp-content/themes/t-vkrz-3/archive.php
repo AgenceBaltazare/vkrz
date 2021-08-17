@@ -220,7 +220,6 @@ $list_sujets      = array();
                     <?php
                     $id_top    = get_the_ID();
                     $illu             = get_the_post_thumbnail_url($id_top, 'medium');
-                    $nb_top           = get_numbers_of_contenders($id_top);
                     $user_sinle_top_data = array_search($id_top, array_column($list_user_tops, 'id_top'));
                     if($user_sinle_top_data !== false) {
                         $state = $list_user_tops[$user_sinle_top_data]['state'];
@@ -283,7 +282,7 @@ $list_sujets      = array();
                             </div>
                             <div class="card-body">
                                 <p class="card-text text-primary">
-                                    TOP <?php echo $nb_top; ?>  : <span class="namecontenders"><?php echo $top_title; ?></span>
+                                    TOP <?php echo get_field('count_contenders_t', $id_top); ?>  : <span class="namecontenders"><?php echo $top_title; ?></span>
                                 </p>
                                 <h4 class="card-title">
                                     <?php echo $top_question; ?>
