@@ -1,7 +1,5 @@
 $(document).ready(function ($) {
-
     let ajaxRunning = false;
-
     $(document).on('click', '.laucher_t', {}, function (e) {
 
         e.preventDefault();
@@ -32,17 +30,17 @@ $(document).ready(function ($) {
                 }
             })
             .done(function (response) {
-                window.dataLayer.push({
+                dataLayer.push({
                     'event': 'track_event',
                     'event_name': 'start_top',
-                    'categorie': top_categorie_layer,
-                    'top_title': top_title_layer,
-                    'top_id': top_id_top_layer,
-                    'top_type': id_top,
-                    'user_id': top_id_user_layer,
-                    'user_uuid': top_uuiduser_layer,
-                    'user_level': top_user_level_layer,
-                    'utm': utm_layer,
+                    'categorie': vkrz_tracking_vars_top.top_categorie_layer,
+                    'top_title': vkrz_tracking_vars_top.top_title_layer,
+                    'top_id': vkrz_tracking_vars_top.top_id_top_layer,
+                    'top_type': vkrz_tracking_vars_top.id_top,
+                    'user_id': vkrz_tracking_vars_user.id_user_layer,
+                    'user_uuid': vkrz_tracking_vars_user.uuiduser_layer,
+                    'user_level': vkrz_tracking_vars_top.top_user_level_layer,
+                    'utm': vkrz_tracking_vars_top.utm_layer,
                     'event_score': 10
                 });
                 location.reload()

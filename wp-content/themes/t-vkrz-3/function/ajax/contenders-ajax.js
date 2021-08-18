@@ -77,33 +77,31 @@ $(document).ready(function ($) {
                 window.dataLayer.push({
                     'event': 'track_event',
                     'event_name': 'vote',
-                    'categorie': top_categorie_layer,
-                    'top_title': top_title_layer,
-                    'top_id': top_id_top_layer,
-                    'top_type': top_type_layer,
-                    'user_id': top_id_user_layer,
-                    'user_uuid': top_uuiduser_layer,
-                    'user_level': top_user_level_layer,
-                    'utm': utm_layer,
-                    'event_score': 1
+                    'categorie': vkrz_tracking_vars_top.top_categorie_layer,
+                    'top_title': vkrz_tracking_vars_top.top_title_layer,
+                    'top_id': vkrz_tracking_vars_top.top_id_top_layer,
+                    'top_type': vkrz_tracking_vars_top.id_top,
+                    'user_id': vkrz_tracking_vars_user.id_user_layer,
+                    'user_uuid': vkrz_tracking_vars_user.uuiduser_layer,
+                    'user_level': vkrz_tracking_vars_top.top_user_level_layer,
+                    'utm': vkrz_tracking_vars_top.utm_layer,
+                    'event_score': 1,
                 });
 
                 if(!data.is_next_duel){
-
                     window.dataLayer.push({
                         'event': 'track_event',
                         'event_name': 'end_top',
-                        'categorie': top_categorie_layer,
-                        'top_title': top_title_layer,
-                        'top_id': top_id_top_layer,
-                        'top_type': top_type_layer,
-                        'user_id': top_id_user_layer,
-                        'user_uuid': top_uuiduser_layer,
-                        'user_level': top_user_level_layer,
-                        'utm': utm_layer,
+                        'categorie': vkrz_tracking_vars_top.top_categorie_layer,
+                        'top_title': vkrz_tracking_vars_top.top_title_layer,
+                        'top_id': vkrz_tracking_vars_top.top_id_top_layer,
+                        'top_type': vkrz_tracking_vars_top.id_top,
+                        'user_id': vkrz_tracking_vars_user.id_user_layer,
+                        'user_uuid': vkrz_tracking_vars_user.uuiduser_layer,
+                        'user_level': vkrz_tracking_vars_top.top_user_level_layer,
+                        'utm': vkrz_tracking_vars_top.utm_layer,
                         'event_score': 20
                     });
-
                     location.reload()
                 }
 

@@ -1,4 +1,5 @@
 <?php
+
 global $user_id;
 global $uuiduser;
 global $id_vainkeur;
@@ -9,6 +10,7 @@ global $top_infos;
 global $utm;
 global $user_infos;
 global $user_tops;
+
 $user_id       = get_user_logged_id();
 $utm           = deal_utm();
 $id_top        = get_the_ID();
@@ -29,16 +31,6 @@ if($id_ranking){
 get_header();
 $top_datas = get_top_data($id_top);
 ?>
-<script>
-    const top_title_layer       = "<?php echo $top_infos['top_title']." ".$top_infos['top_number']." - ".$top_infos['top_question']; ?>";
-    const top_categorie_layer   = "<?php echo $top_infos['top_cat_name']; ?>";
-    const top_id_top_layer      = "<?php echo $id_top; ?>";
-    const top_uuiduser_layer    = "<?php echo $uuiduser; ?>";
-    const top_id_user_layer     = "<?php echo $user_id; ?>";
-    const top_user_level_layer  = "<?php echo $user_infos['level_number']; ?>";
-    const top_type_layer        = "<?php echo $top_infos['top_type']; ?>";
-    const utm_layer             = "<?php echo $utm; ?>";
-</script>
 <div class="app-content content cover" style="background: url(<?php echo $top_infos['top_cover']; ?>) center center no-repeat">
     <div class="content-overlay"></div>
     <div class="content-wrapper">
