@@ -49,6 +49,8 @@ function load_css_js() {
     wp_enqueue_script('meca', get_template_directory_uri().'/function/ajax/meca.js', array(), $template_version, true);
     wp_enqueue_script('note', get_template_directory_uri().'/function/ajax/note-t.js', array(), $template_version, true);
     wp_enqueue_script('begin', get_template_directory_uri().'/function/ajax/begin-t.js', array(), $template_version, true);
-    wp_enqueue_script('monitor', get_template_directory_uri().'/function/ajax/monitor.js', array(), $template_version, true);
+    if(is_page(get_page_by_path('monitor'))){
+        wp_enqueue_script('monitor', get_template_directory_uri().'/function/ajax/monitor.js', array(), $template_version, true);
+    }
 }
 add_action('wp_enqueue_scripts', 'load_css_js');

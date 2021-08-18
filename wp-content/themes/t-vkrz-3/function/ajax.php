@@ -8,6 +8,14 @@ function vkzr_process_vote() {
 	genrerate_tournament_response($top_infos);
 }
 
+add_action( 'wp_ajax_vkzr_check_level', 'vkzr_check_level' );
+add_action( 'wp_ajax_nopriv_vkzr_check_level', 'vkzr_check_level' );
+function vkzr_check_level() {
+    if(is_user_logged_in()){
+        check_user_level($_POST['current_id_vainkeur']);
+    }
+}
+
 add_action( 'wp_ajax_vkzr_process_delete_ranking', 'vkzr_process_delete_ranking' );
 add_action( 'wp_ajax_nopriv_vkzr_process_delete_ranking', 'vkzr_process_delete_ranking' );
 function vkzr_process_delete_ranking() {
