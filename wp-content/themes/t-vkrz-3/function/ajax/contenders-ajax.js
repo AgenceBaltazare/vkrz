@@ -78,6 +78,25 @@ $(document).ready(function ($) {
                     location.reload()
                 }
 
+                $.ajax({
+                    method: "POST",
+                    url: vkrz_ajaxurl,
+                    data: {
+                        action: 'vkzr_check_level',
+                        current_id_vainkeur: id_vainkeur
+                    }
+                })
+                .done(function (response) {
+    
+                    let data = JSON.parse(response);
+                    console.log(response);
+                    $('.dropdown-user-link .user-niveau').html(data.user_level_icon);
+                    
+
+                }).always(function () {
+                    ajaxRunning = false;
+                });
+
             }).always(function () {
                 ajaxRunning = false;
             });
