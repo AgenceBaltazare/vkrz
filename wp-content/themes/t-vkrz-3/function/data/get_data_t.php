@@ -12,6 +12,9 @@ function get_top_infos($id_top, $id_ranking = false){
     $top_cover     = wp_get_attachment_image_src(get_field('cover_t', $id_top), 'large');
 
     $top_cat       = get_the_terms($id_top, 'categorie');
+    foreach($top_cat as $cat){
+        $top_cat_name = $cat->name;
+    }
 
     if($id_ranking){
         $top_type       = get_field('type_top_r', $id_ranking);
@@ -32,6 +35,7 @@ function get_top_infos($id_top, $id_ranking = false){
     $result = array(
         'top_url'       => $top_url,
         'top_cat'       => $top_cat,
+        'top_cat_name'  => $top_cat_name,
         'top_title'     => $top_title,
         'top_question'  => $top_question,
         'top_number'    => $top_number,
