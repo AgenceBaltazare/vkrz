@@ -28,7 +28,7 @@ function wppb_basic_info_content() {
 ?>
 	<div class="wrap wppb-wrap wppb-info-wrap">
 		<div class="wppb-badge <?php echo esc_attr( $version ); ?>"><span><?php printf( esc_html__( 'Version %s', 'profile-builder' ), esc_html( PROFILE_BUILDER_VERSION ) ); ?></span></div>
-		<h1><?php printf( esc_html__( '<strong>Profile Builder </strong> %s', 'profile-builder' ), esc_html( $version ) ); ?></h1>
+		<h1><?php echo wp_kses_post( sprintf( __( '<strong>Profile Builder </strong> %s', 'profile-builder' ), esc_html( $version ) ) ); ?></h1>
 		<p class="wppb-info-text"><?php printf( esc_html__( 'The best way to add front-end registration, edit profile and login forms.', 'profile-builder' ) ); ?></p>
 		<hr />
 		<?php

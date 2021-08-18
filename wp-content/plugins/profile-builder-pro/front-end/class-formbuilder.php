@@ -448,13 +448,13 @@ class Profile_Builder_Form_Creator{
             do_action( 'wppb_form_args_before_output', $this->args );
             $this->args = apply_filters( 'wppb_filter_form_args_before_output', $this->args );
 
-			echo wp_kses_post( apply_filters( 'wppb_before_form_fields', '<ul>', $this->args['form_type'], $this->args['ID'] ) );
+			echo apply_filters( 'wppb_before_form_fields', '<ul>', $this->args['form_type'], $this->args['ID'] ); /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
 			echo $this->wppb_output_form_fields( $_REQUEST, $field_check_errors, $this->args['form_fields'] ); /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */  /* properly escaped when created */
-			echo wp_kses_post( apply_filters( 'wppb_after_form_fields', '</ul>', $this->args['form_type'], $this->args['ID'], $_REQUEST ) );
+			echo apply_filters( 'wppb_after_form_fields', '</ul>', $this->args['form_type'], $this->args['ID'], $_REQUEST ); /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
 
-			echo wp_kses_post( apply_filters( 'wppb_before_send_credentials_checkbox', '<ul>', $this->args['form_type'], $this->args['ID'] ) );
+			echo apply_filters( 'wppb_before_send_credentials_checkbox', '<ul>', $this->args['form_type'], $this->args['ID'] ); /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
 			$this->wppb_add_send_credentials_checkbox( $_REQUEST, $this->args['form_type'] );
-			echo wp_kses_post( apply_filters( 'wppb_after_send_credentials_checkbox', '</ul>', $this->args['form_type'] ) );
+			echo apply_filters( 'wppb_after_send_credentials_checkbox', '</ul>', $this->args['form_type'] ); /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
 
             $wppb_form_submit_extra_attr = apply_filters( 'wppb_form_submit_extra_attr', '', $this->args['form_type'], $this->args['ID'] );
 			?>

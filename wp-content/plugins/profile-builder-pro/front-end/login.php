@@ -112,7 +112,7 @@ function wppb_login_form( $args = array() ) {
 		'label_username' => __( 'Username or Email Address', 'profile-builder' ),
 		'label_password' => __( 'Password', 'profile-builder' ),
 		'label_remember' => __( 'Remember Me', 'profile-builder' ),
-		'label_log_in'   => __( 'Me connecter', 'profile-builder' ),
+		'label_log_in'   => __( 'Log In', 'profile-builder' ),
 		'id_username'    => 'user_login',
 		'id_password'    => 'user_pass',
 		'id_remember'    => 'rememberme',
@@ -453,16 +453,18 @@ function wppb_front_end_login( $atts ){
 			$form_args['label_username'] = __( 'Username or Email', 'profile-builder' );
 
         // Check if 2fa is required
-        $wppb_google_auth = new WPPB_Two_Factor_Authenticator;
-        $wppb_two_factor_authentication_settings = get_option( 'wppb_two_factor_authentication_settings', 'not_found' );
-        if ( ( isset( $_GET['login_auth'] ) && $_GET['login_auth'] === 'true' ) || (
-                ( isset($wppb_two_factor_authentication_settings['enabled']) && $wppb_two_factor_authentication_settings['enabled'] === 'yes' ) &&
-                ( ( isset($wppb_two_factor_authentication_settings['show_code_field']) && (
-                    $wppb_two_factor_authentication_settings['show_code_field'] === 'everywhere' ||
-                    $wppb_two_factor_authentication_settings['show_code_field'] === 'frontend' ) ) ||
-                $show_2fa_field === 'yes' ) ) ){
-            add_action( 'login_form_middle', array( $wppb_google_auth, 'auth_code_field') );
-        }
+		if( class_exists( 'WPPB_Two_Factor_Authenticator' ) ){
+			$wppb_google_auth = new WPPB_Two_Factor_Authenticator;
+			$wppb_two_factor_authentication_settings = get_option( 'wppb_two_factor_authentication_settings', 'not_found' );
+			if ( ( isset( $_GET['login_auth'] ) && $_GET['login_auth'] === 'true' ) || (
+					( isset($wppb_two_factor_authentication_settings['enabled']) && $wppb_two_factor_authentication_settings['enabled'] === 'yes' ) &&
+					( ( isset($wppb_two_factor_authentication_settings['show_code_field']) && (
+						$wppb_two_factor_authentication_settings['show_code_field'] === 'everywhere' ||
+						$wppb_two_factor_authentication_settings['show_code_field'] === 'frontend' ) ) ||
+					$show_2fa_field === 'yes' ) ) ){
+				add_action( 'login_form_middle', array( $wppb_google_auth, 'auth_code_field') );
+			}
+		}
 
 		// initialize our form variable
 		$login_form = '';

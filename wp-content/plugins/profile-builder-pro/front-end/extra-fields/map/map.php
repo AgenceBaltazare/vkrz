@@ -151,7 +151,7 @@ function wppb_check_map_value( $message, $field, $request_data, $form_location )
 }
 add_filter( 'wppb_check_form_field_map', 'wppb_check_map_value', 10, 4 );
 
-function wppb_get_map_api_key(){
+function wppb_get_map_api_key( $field ){
     if( ! empty ( $field['map-api-key'] ) ){
         return $field['map-api-key'];
     }else{
