@@ -19,9 +19,19 @@ function vkrz_tracking_vars()
         'utm' => $utm
     ]);
 
+    global $post;
+    $taxs = get_object_taxonomies($post);
+
+    $terms = [];
+    foreach ($taxs as $tax){
+       foreach (get_the_terms(get_the_ID(), $tax) as $term){
+           $terms[] = $term->name;
+       }
+    }
 
     vkrz_output_tracking_vars_in_head("vkrz_tracking_vars_current_page", [
-            "page_title" => get_the_title()
+            "page_title" => get_the_title(),
+            "page_category" => join(', ', $terms)
     ]);
 
     // Tracking Classement:

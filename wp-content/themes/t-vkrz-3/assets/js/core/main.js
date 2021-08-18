@@ -190,6 +190,16 @@ $(window).scroll(function() {
  */
 
 jQuery(document).ready(function ($){
+
+    window.dataLayer.push({
+        'event': 'track_event',
+        'event_name': 'page_view',
+        'event_score': 1,
+        'page_title': vkrz_tracking_vars_current_page.page_title,
+        'categorie' : vkrz_tracking_vars_current_page.page_category
+    })
+
+
     $('.nav-item .rs-menu a').click(function (e){
         const rs_name = $(this).data('rs-name');
         window.dataLayer.push({
