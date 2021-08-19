@@ -31,16 +31,16 @@
             <li class="nav-item">
                 <div class="rs-menu mt-2">
                     <div class="w-100 btn-group justify-content-center share-t" role="group">
-                        <a data-rs-name="discord" href="https://discord.gg/E9H9e8NYp7" class="btn btn-outline-primary waves-effect sociallink" target="_blank">
+                        <a href="https://discord.gg/E9H9e8NYp7" class="btn btn-outline-primary waves-effect sociallink" target="_blank">
                             <i class="fab fa-discord"></i>
                         </a>
-                        <a data-rs-name="instagram" href="https://www.instagram.com/wearevainkeurz/" class="btn btn-outline-primary waves-effect sociallink" target="_blank">
+                        <a href="https://www.instagram.com/wearevainkeurz/" class="btn btn-outline-primary waves-effect sociallink" target="_blank">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a data-rs-name="twitter" href="https://twitter.com/Vainkeurz" target="_blank" class="btn btn-outline-primary waves-effect sociallink">
+                        <a href="https://twitter.com/Vainkeurz" target="_blank" class="btn btn-outline-primary waves-effect sociallink">
                             <i class="fab fa-twitter"></i>
                         </a>
-                        <a data-rs-name="facebook" href="https://www.facebook.com/vainkeurz" target="_blank" class="btn btn-outline-primary waves-effect sociallink">
+                        <a href="https://www.facebook.com/vainkeurz" target="_blank" class="btn btn-outline-primary waves-effect sociallink">
                             <i class="fab fa-facebook-f"></i>
                         </a>
                     </div>

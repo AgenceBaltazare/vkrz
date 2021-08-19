@@ -1,5 +1,4 @@
 <?php
-
 global $user_id;
 global $uuiduser;
 global $id_vainkeur;
@@ -10,7 +9,6 @@ global $top_infos;
 global $utm;
 global $user_infos;
 global $user_tops;
-
 $user_id       = get_user_logged_id();
 $utm           = deal_utm();
 $id_top        = get_the_ID();
