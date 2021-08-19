@@ -1,7 +1,6 @@
 <?php
 add_action('user_register', 'new_vainkeur', 10, 1);
 function new_vainkeur($user_id){
-
     $new_user_infos = deal_vainkeur_entry($user_id);
     $user_url       = get_author_posts_url($user_id);
 
@@ -20,7 +19,7 @@ function new_vainkeur($user_id){
             'nb_top_vkrz'       => $new_user_infos['nb_top_vkrz']
         )
     );
-    wp_remote_post($url, $args);
+    //wp_remote_post($url, $args);
 
     // Update author for all "classement" where uuid_user_r == vainkeurz_user_id
     if (isset($_COOKIE["vainkeurz_user_id"])) {
@@ -80,4 +79,29 @@ function new_vainkeur($user_id){
         }
     }
 
+
+    //Trigger a JS event by outputting a script in the dom above the shortcode
+    ob_start();
+    global $uuiduser;
+    global $utm;
+
+    $utm = deal_utm();
+    $uuiduser = deal_uuiduser();
+
+    ?>
+    <script>
+        jQuery(document).ready(function ($){
+            dataLayer.push({
+                event: 'track_event',
+                event_name: 'signin',
+                user_id : <?= $user_id ?>,
+                user_uuid : "<?= $uuiduser ?>",
+                utm : "<?= $utm ?>",
+                'event_score': 100
+
+            })
+        })
+    </script>
+    <?php
+    echo ob_get_clean();
 }
