@@ -1,23 +1,19 @@
 <?php
-function save_top_by_creator($post_id){
+function publish_top_by_creator($post_id){
 
     global $post;
-    $is_new = false;
-
-    if($post->post_date === $post->post_modified){
-        $is_new = true;
-    }
-
-    if($post->post_type != 'tournoi' || !$is_new){
+  
+    if($post->post_type != 'tournoi'){
         return;
     }
 
     $id_top             = $post_id;
-    $top_title          = get_the_title($id_top);
-    $top_title          = "Top ".get_field('count_contenders_t', $id_top)." ⚡️ ".$top_title;
+    $top_infos_to_send  = get_top_infos($id_top);
+    $top_title          = $top_infos_to_send['top_title'];
+    $top_title          = "Top ".$top_infos_to_send['top_number']." ⚡️ ".$top_title;
     $top_url            = get_the_permalink($id_top);
-    $top_question       = get_field('question_t', $id_top);
-    $top_visuel         = get_the_post_thumbnail_url($id_top, 'large');
+    $top_question       = $top_infos_to_send['top_question'];
+    $top_visuel         = $top_infos_to_send['top_img'];
     foreach(get_the_terms($id_top, 'categorie') as $cat ) {
         $cat_id     = $cat->term_id;
         $cat_name   = $cat->name;
@@ -45,4 +41,4 @@ function save_top_by_creator($post_id){
     wp_remote_post($url, $args);
 
 }
-add_action('save_post', 'save_top_by_creator', 10, 2);
+add_action( 'publish_tournoi', 'publish_top_by_creator' );

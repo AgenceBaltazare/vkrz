@@ -256,7 +256,7 @@ elseif(is_author()){
                                 <?php if($user_infos['nb_top_vkrz'] >= 1): ?>
                                     Mes Tops terminés
                                 <?php else: ?>
-                                    Aucun Tops terminés <span class="ico">😑</span>
+                                    Aucun Top terminé <span class="ico">😑</span>
                                 <?php endif; ?>
                             </div>
                         </div>

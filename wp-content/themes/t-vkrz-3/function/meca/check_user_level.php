@@ -5,7 +5,7 @@ function check_user_level($id_vainkeur){
     $level_up       = false;
 
     $niv_1 = 50;
-    $niv_2 = 220;
+    $niv_2 = 500;
     $niv_3 = 2000;
     $niv_4 = 5000;
     $niv_5 = 35000;
@@ -67,6 +67,12 @@ function check_user_level($id_vainkeur){
     if($level_number != $user_level){
         $level_up = true;
         update_field('level_user', $level_number, 'user_' . $user_id);
+    }
+
+    if($level_up == true){
+
+        vkrz_push_levelup($user_id, $level);
+
     }
 
     return die(json_encode( array(
