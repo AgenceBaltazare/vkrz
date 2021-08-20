@@ -1,32 +1,5 @@
 <?php
 
-// Get numbers of contenders in a tournament
-function get_numbers_of_contenders($id_top) {
-
-    $contenders_top = new WP_Query(
-        array(
-            'post_type'              => 'contender',
-            'posts_per_page'         => '300',
-            'fields'                 => 'ids',
-            'post_status'            => 'publish',
-            'ignore_sticky_posts'    => true,
-            'update_post_meta_cache' => false,
-            'no_found_rows'          => false,
-            'meta_query'     => array(
-                array(
-                    'key'     => 'id_tournoi_c',
-                    'value'   => $id_top,
-                    'compare' => '=',
-                )
-            )
-        )
-    );
-
-    $nb_contenders = $contenders_top->post_count;
-
-    return $nb_contenders;
-}
-
 function get_top_infos($id_top, $id_ranking = false){
 
     global $id_ranking;
@@ -39,9 +12,6 @@ function get_top_infos($id_top, $id_ranking = false){
     $top_cover     = wp_get_attachment_image_src(get_field('cover_t', $id_top), 'large');
 
     $top_cat       = get_the_terms($id_top, 'categorie');
-    foreach($top_cat as $cat){
-        $top_cat_name = $cat->name;
-    }
 
     if($id_ranking){
         $top_type       = get_field('type_top_r', $id_ranking);
@@ -49,10 +19,10 @@ function get_top_infos($id_top, $id_ranking = false){
             $top_number = 3;
         }
         else{
-            $top_number = get_numbers_of_contenders($id_top);
+            $top_number = get_field('count_contenders_t', $id_top);
         }
     }else{
-        $top_number = get_numbers_of_contenders($id_top);
+        $top_number = get_field('count_contenders_t', $id_top);
     }
 
     $display_titre  = get_field('ne_pas_afficher_les_titres_t', $id_top);
@@ -62,7 +32,6 @@ function get_top_infos($id_top, $id_ranking = false){
     $result = array(
         'top_url'       => $top_url,
         'top_cat'       => $top_cat,
-        'top_cat_name'  => $top_cat_name,
         'top_title'     => $top_title,
         'top_question'  => $top_question,
         'top_number'    => $top_number,

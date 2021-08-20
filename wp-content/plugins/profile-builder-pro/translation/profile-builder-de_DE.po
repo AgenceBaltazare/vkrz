@@ -2,12 +2,12 @@
 # This file is distributed under the same license as the Profile Builder package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-09-26 23:25+0200\n"
+"PO-Revision-Date: 2021-08-12 14:26+0300\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 2.4.1\n"
+"X-Generator: Poedit 3.0\n"
 "Project-Id-Version: Profile Builder\n"
 "POT-Creation-Date: \n"
 "Last-Translator: \n"
@@ -3311,7 +3311,7 @@ msgid "displays all users except the ones you specified the user_id for"
 msgstr "Zeigt alle Benutzer an, außer diejenigen, denen du eine user_id gegeben hast."
 
 #: profile-builder-2.0/features/functions.php:566
-msgid "Minimum length of %d characters"
+msgid "Minimum length of %d characters."
 msgstr "Mindestlänge: %d Zeichen"
 
 #: profile-builder-2.0/front-end/class-formbuilder.php:146
@@ -5605,4 +5605,3 @@ msgstr "Du findest es im Menü vom Profile Builder"
 #: profile-builder-2.0/modules/user-listing/userlisting.php:2565
 msgid "No results found!"
 msgstr "Es wurden keine Ergebnisse gefunden!"
-

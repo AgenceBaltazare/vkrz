@@ -414,6 +414,8 @@ class WPPB_Two_Factor_Authenticator {
                 return $this->add_field_info($manage_fields);
             }
         }
+
+        return $manage_fields;
     }
 
     /**
@@ -600,12 +602,12 @@ class WPPB_Two_Factor_Authenticator {
             <script type="text/javascript">
                 var WPPBAuthNonce = "' . wp_create_nonce('WPPBAuth_field_on_login_form') . '";
                 var ajaxurl = "' . admin_url( 'admin-ajax.php' ) . '";
-                
+
                 if ( !jQuery(".login-auth").length ){
                     jQuery("#wppb-loginform").one("submit", function(event) {
                         var thisForm = this;
                         event.preventDefault();
-                        
+
                         var data = new Object();
                         data["action"]	= "WPPBAuth_field_on_login_form";
                         data["nonce"]	= WPPBAuthNonce;

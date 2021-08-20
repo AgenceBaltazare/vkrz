@@ -235,7 +235,7 @@ function find_vkrz_user($uuid_user_r){
             'avatar'            => $avatar_url,
             'user_email'        => $user_email,
             'user_role'         => $user_role,
-            'level'             => $info_user_level['level_ico'],
+            'level'             => $user_id,
             'level_number'      => $info_user_level['level_number'],
             'next_level'        => $info_user_level['next_level']
         );
@@ -251,12 +251,17 @@ function get_user_level($user_id = false){
     if(!$user_id){
         global $user_id;
     }
-
-    $level_number = get_field('level_user', 'user_' . $user_id);
-
+    
+    if(!$user_id){
+        $level_number = false;
+    }
+    else{
+        $level_number = get_field('level_user', 'user_' . $user_id);
+    }
+    
     switch($level_number){
 
-        case 0 :
+        case 0 || false:
             $level          = "🥚";
             $level_number   = 0;
             $next_level     = "🐣";
@@ -443,7 +448,7 @@ function get_creator_t($creator_id){
         array_push($list_creator_tops, array(
             "top_id"        => $id_top,
             "top_title"     => get_the_title($id_top),
-            "nb_top"        => get_numbers_of_contenders($id_top), // TODO: refacto to not call get_numbers_of_contenders()
+            "nb_top"        => get_field('count_contenders_t', $id_top),
             "top_votes"     => $nb_votes_t,
             "top_ranks"     => $nb_ranks_t,
             "top_note"      => $moy_notes_t,

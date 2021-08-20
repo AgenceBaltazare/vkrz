@@ -384,18 +384,25 @@ label[for=blog-privacy]{
 --------------------------------------------------------------*/
 
 .wppb-error,
-.wppb-warning {
+.wppb-warning,
+.wppb-notice,
+.wppb-success {
     padding: 6px 9px;
     margin: 0 auto 25px;
     display: block;
     width: 100%;
+}
+
+.wppb-error,
+.wppb-warning {
     box-sizing: border-box;
     background: #ffebe8;
     border: 1px solid #C00;
 }
 
 .wppb-error,
-.wppb-warning{
+.wppb-warning,
+.wppb-notice {
     color:#222222 !important;
 }
 
@@ -414,8 +421,14 @@ label[for=blog-privacy]{
     text-decoration: underline;
 }
 
+.wppb-notice {
+    box-sizing: border-box;
+    background: #ccc;
+    border: 1px solid #666;
+}
+
 .wppb-required{
-	color: red;
+    color: red;
 }
 
 .wppb-required,
@@ -424,10 +437,6 @@ label[for=blog-privacy]{
 }
 
 .wppb-success {
-    padding: 6px 9px;
-    margin: 0 auto 25px;
-    display: block;
-    width: 100%;
     box-sizing: border-box;
     background: #e7f7d3;
     border: 1px solid #6c3;

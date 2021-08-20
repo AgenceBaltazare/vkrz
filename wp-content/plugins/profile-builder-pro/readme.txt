@@ -6,8 +6,8 @@ Tags: registration, profile, user registration, custom field registration, custo
 custom registration, custom registration form, custom registration page, extra user fields, registration page, user custom fields, user listing, user login, user registration form, front-end login,
 front-end register, front-end registration, frontend edit profile, edit profileregistration, customize profile, user fields, builder, profile builder, custom fields, avatar
 Requires at least: 3.1
-Tested up to: 5.7
-Stable tag: 3.5.1
+Tested up to: 5.8
+Stable tag: 3.5.2
 
 
 Login, registration and edit profile shortcodes for the front-end. Also you can choose what fields should be displayed or add custom ones.
@@ -101,6 +101,13 @@ This plugin only adds/removes fields in the front-end. The default information-f
 
 
 == Changelog ==
+= 3.5.2 =
+* Fix: Issue with Multi-Step forms not rendering correctly
+* Fix: Issue with Map field not rendering correctly
+* Fix: Issue with Conditional Logic fields through AJAX not working correctly
+* Misc: Add styling to 2FA notice
+* Misc: Fixed a string in the German translation files
+
 = 3.5.1 =
 * Feature: Added 2 Factor Authentication functionality
 * Feature: Added Honeypot field. This can be used as an alternative or alongside reCaptcha to help combat spam registrations
