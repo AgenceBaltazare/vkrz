@@ -106,7 +106,8 @@ function get_user_tops($user_id = false){
     );
 }
 
-function get_user_percent($uuiduser, $id_top){
+function get_user_percent(
+    $uuiduser, $id_top){
 
     $result                 = array();
     $list_ranking_of_t      = array();
@@ -132,6 +133,7 @@ function get_user_percent($uuiduser, $id_top){
             )
         )
     ));
+
     while ($all_ranking_of_t->have_posts()) : $all_ranking_of_t->the_post();
 
         if(get_field('uuid_user_r') == $uuiduser){
@@ -158,8 +160,13 @@ function get_user_percent($uuiduser, $id_top){
 
     $nb_tops = $all_ranking_of_t->post_count;
 
-    $percent = round($count_same_ranking * 100 / $nb_tops);
 
+    /** MODIF : Pas de division par 0 */
+    if ($nb_tops === 0){
+        $percent = 0;
+    }else{
+        $percent = round($count_same_ranking * 100 / $nb_tops);
+    }
     $all_ranking_of_t->reset_postdata();
 
     wp_reset_query();

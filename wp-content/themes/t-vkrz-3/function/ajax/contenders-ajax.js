@@ -45,6 +45,26 @@ $(document).ready(function ($) {
 
                 let data = JSON.parse(response);
 
+
+                if(data.level_up !== undefined && data.level_up){
+                    $('.dropdown-user-link .user-niveau').html(data.user_level_icon);
+                    window.dataLayer.push({
+                        'event': 'track_event',
+                        'event_name': 'level_up',
+                        'categorie': vkrz_tracking_vars_top.top_categorie_layer,
+                        'top_title': vkrz_tracking_vars_top.top_title_layer,
+                        'top_id': vkrz_tracking_vars_top.top_id_top_layer,
+                        'top_type': vkrz_tracking_vars_top.id_top,
+                        'user_id': vkrz_tracking_vars_user.id_user_layer,
+                        'user_uuid': vkrz_tracking_vars_user.uuiduser_layer,
+                        'user_level': data.user_level,
+                        'utm': vkrz_tracking_vars_top.utm_layer,
+                        'event_score': 50,
+                    });
+                }
+
+
+
                 if(data.is_next_duel){
                     $('.display_battle').html(data.contenders_html);
                     contenders = $('.display_battle .link-contender');
@@ -74,11 +94,40 @@ $(document).ready(function ($) {
                 $('.display_users_votes h6').replaceWith(data.uservotes_html);
                 $('.current_rank').html(data.user_ranking_html);
 
+
+                window.dataLayer.push({
+                    'event': 'track_event',
+                    'event_name': 'vote',
+                    'categorie': vkrz_tracking_vars_top.top_categorie_layer,
+                    'top_title': vkrz_tracking_vars_top.top_title_layer,
+                    'top_id': vkrz_tracking_vars_top.top_id_top_layer,
+                    'top_type': vkrz_tracking_vars_top.id_top,
+                    'user_id': vkrz_tracking_vars_user.id_user_layer,
+                    'user_uuid': vkrz_tracking_vars_user.uuiduser_layer,
+                    'user_level': vkrz_tracking_vars_top.top_user_level_layer,
+                    'utm': vkrz_tracking_vars_top.utm_layer,
+                    'event_score': 1,
+                });
+
                 if(!data.is_next_duel){
+                    window.dataLayer.push({
+                        'event': 'track_event',
+                        'event_name': 'end_top',
+                        'categorie': vkrz_tracking_vars_top.top_categorie_layer,
+                        'top_title': vkrz_tracking_vars_top.top_title_layer,
+                        'top_id': vkrz_tracking_vars_top.top_id_top_layer,
+                        'top_type': vkrz_tracking_vars_top.id_top,
+                        'user_id': vkrz_tracking_vars_user.id_user_layer,
+                        'user_uuid': vkrz_tracking_vars_user.uuiduser_layer,
+                        'user_level': vkrz_tracking_vars_top.top_user_level_layer,
+                        'utm': vkrz_tracking_vars_top.utm_layer,
+                        'event_score': 20
+                    });
+
                     location.reload()
                 }
-
-                $.ajax({
+                //MODIFICATION : On passe la fonction au vote pour éviter un deuxieme appel ajax
+                /*$.ajax({
                     method: "POST",
                     url: vkrz_ajaxurl,
                     data: {
@@ -86,16 +135,16 @@ $(document).ready(function ($) {
                         current_id_vainkeur: id_vainkeur
                     }
                 })
-                .done(function (response) {
-    
-                    let data = JSON.parse(response);
-                    console.log(response);
-                    $('.dropdown-user-link .user-niveau').html(data.user_level_icon);
-                    
+                    .done(function (response) {
 
-                }).always(function () {
+                        let data = JSON.parse(response);
+                        console.log(response);
+                        $('.dropdown-user-link .user-niveau').html(data.user_level_icon);
+
+
+                    }).always(function () {
                     ajaxRunning = false;
-                });
+                });*/
 
             }).always(function () {
                 ajaxRunning = false;

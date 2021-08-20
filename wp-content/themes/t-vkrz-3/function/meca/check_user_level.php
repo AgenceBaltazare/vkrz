@@ -77,12 +77,13 @@ function check_user_level($id_vainkeur){
 
         }
 
-        return die(json_encode( array(
+        return array(
             'user_level'        => $level_number,
             'user_level_icon'   => $level,
             'level_up'          => $level_up
-        )));
+        );
         
     }
-    
+
+    return [];
 }
