@@ -5,7 +5,14 @@ function vkzr_process_vote() {
 	do_elo_ranking($_POST['id_winner'], $_POST['id_looser']);
     increase_vote_counter($_POST['current_id_vainkeur']);
 	$top_infos = do_user_ranking($_POST['id_top'], $_POST['id_ranking'], $_POST['id_winner'], $_POST['id_looser'], $_POST['current_id_vainkeur']);
-	genrerate_tournament_response($top_infos);
+
+	$user_levels_infos = [];
+
+	if(is_user_logged_in()){
+        $user_levels_infos = check_user_level($_POST['current_id_vainkeur']);
+    }
+
+	genrerate_tournament_response($top_infos, $user_levels_infos);
 }
 
 add_action( 'wp_ajax_vkzr_check_level', 'vkzr_check_level' );

@@ -177,3 +177,46 @@ $(window).scroll(function() {
         $('.nav-tournament, .stepbar').removeClass('disapear');
     }
 });
+
+
+/**
+ * TRACKING
+ */
+
+jQuery(document).ready(function ($){
+
+    window.dataLayer.push({
+        'event': 'track_event',
+        'event_name': 'page_view',
+        'event_score': 1,
+        'page_title': vkrz_tracking_vars_current_page.page_title,
+        'categorie' : vkrz_tracking_vars_current_page.page_category
+    })
+
+
+    $('.nav-item .rs-menu a').click(function (e){
+        const rs_name = $(this).data('rs-name');
+        window.dataLayer.push({
+            'event': 'track_event',
+            'event_name': 'click_social',
+            'event_score': 1,
+            'rs_name' : rs_name,
+            'user_id': vkrz_tracking_vars_user.id_user_layer,
+            'user_uuid': vkrz_tracking_vars_user.uuiduser_layer,
+            'page_title': vkrz_tracking_vars_current_page.page_title
+        })
+    })
+
+    $('.share-t a').click(function (e){
+        const rs_name = $(this).attr('title');
+        window.dataLayer.push({
+            'event': 'track_event',
+            'event_name': 'share_top',
+            'event_score': 20,
+            'rs_name' : rs_name,
+            'user_id': vkrz_tracking_vars_user.id_user_layer,
+            'user_uuid': vkrz_tracking_vars_user.uuiduser_layer,
+            'page_title': vkrz_tracking_vars_current_page.page_title
+        })
+    })
+})
