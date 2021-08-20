@@ -80,4 +80,29 @@ function new_vainkeur($user_id){
         }
     }
 
+    //Trigger a JS event by outputting a script in the dom above the shortcode
+    ob_start();
+    global $uuiduser;
+    global $utm;
+
+    $utm = deal_utm();
+    $uuiduser = deal_uuiduser();
+
+    ?>
+    <script>
+        jQuery(document).ready(function ($){
+            dataLayer.push({
+                event: 'track_event',
+                event_name: 'signin',
+                user_id : <?= $user_id ?>,
+                user_uuid : "<?= $uuiduser ?>",
+                utm : "<?= $utm ?>",
+                'event_score': 100
+
+            })
+        })
+    </script>
+    <?php
+    echo ob_get_clean();
+
 }

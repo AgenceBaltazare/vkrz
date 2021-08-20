@@ -185,6 +185,7 @@ $(window).scroll(function() {
 
 jQuery(document).ready(function ($){
 
+    console.log(window.dataLayer);
     window.dataLayer.push({
         'event': 'track_event',
         'event_name': 'page_view',
@@ -192,9 +193,10 @@ jQuery(document).ready(function ($){
         'page_title': vkrz_tracking_vars_current_page.page_title,
         'categorie' : vkrz_tracking_vars_current_page.page_category
     })
+    console.log(window.dataLayer);
 
 
-    $('.nav-item .rs-menu a').click(function (e){
+    $('.main-menu .nav-item .rs-menu a').click(function (e){
         const rs_name = $(this).data('rs-name');
         window.dataLayer.push({
             'event': 'track_event',
@@ -207,7 +209,7 @@ jQuery(document).ready(function ($){
         })
     })
 
-    $('.share-t a').click(function (e){
+    $('.card-body .share-t a').click(function (e){
         const rs_name = $(this).attr('title');
         window.dataLayer.push({
             'event': 'track_event',

@@ -3,3 +3,5 @@
     require_once('front/move_adminbar.php');
     require_once('front/clean.php');
     require_once('front/scripts.php');
+    require_once('front/tracking.php');
+

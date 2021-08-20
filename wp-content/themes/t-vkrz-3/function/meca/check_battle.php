@@ -236,7 +236,7 @@ function check_battle_5($id_ranking){
                     $list_inf_of_c1 = $contender['more_to'];
                     $list_sup_of_c1 = $contender['less_to'];
                 }
-                if ($contender['id_wp'] == $list[$timeline]['id_wp']) {
+                if (isset($contender['id_wp']) && isset($list[$timeline]['id_wp']) && $contender['id_wp'] == $list[$timeline]['id_wp']) {
                     $key_c2 = $contender['id'];
                     $key_c2_wp = $contender['id_wp'];
                     $list_inf_of_c2 = $contender['more_to'];

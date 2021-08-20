@@ -57,7 +57,6 @@ function vkrz_tracking_vars()
 
     vkrz_output_tracking_vars_in_head("vkrz_tracking_vars_current_page", $pageVars);
 
-
     $current_post_type = get_post_type();
     // Tracking Classement:
     if (is_single() && in_array($current_post_type, ["classement", "tournoi"])) {
@@ -69,7 +68,7 @@ function vkrz_tracking_vars()
         $user_infos = deal_vainkeur_entry();
         vkrz_output_tracking_vars_in_head('vkrz_tracking_vars_top', [
             'top_title_layer' => $top_infos['top_title'] . " " . $top_infos['top_number'] . " - " . $top_infos['top_question'],
-            'top_categorie_layer' => $top_infos['top_cat_name'],
+            'top_categorie_layer' => @$top_infos['top_cat_name'],
             'top_id_top_layer' => $id_top,
             'top_user_level_layer' => $user_infos['level_number'],
             'top_type_layer' => $top_infos['top_type'],
