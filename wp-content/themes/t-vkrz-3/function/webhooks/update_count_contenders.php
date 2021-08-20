@@ -1,8 +1,9 @@
 <?php
 
-add_action( 'publish_contender', 'update_count_contenders' );
-add_action( 'draft_contender', 'update_count_contenders' );
-add_action( 'trash_contender', 'update_count_contenders' );
+add_action('publish_contender', 'update_count_contenders');
+add_action('draft_contender', 'update_count_contenders');
+add_action('trash_contender', 'update_count_contenders');
+add_action('publish_tournoi', 'publish_top_by_creator');
 
 function update_count_contenders($post_id){
     // If create new contender, the query return post without current new contender and get_field doesn't work

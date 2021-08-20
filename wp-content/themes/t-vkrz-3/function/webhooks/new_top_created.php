@@ -41,4 +41,4 @@ function publish_top_by_creator($post_id){
     wp_remote_post($url, $args);
 
 }
-add_action( 'publish_tournoi', 'publish_top_by_creator' );
+add_action('publish_tournoi', 'publish_top_by_creator');
