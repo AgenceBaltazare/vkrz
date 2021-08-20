@@ -265,19 +265,15 @@ $url_ranking  = get_the_permalink($id_ranking);
                         <div class="card-body">
                             <h2 class="font-weight-bolder mb-0">
                                 <?php
-
-
                                 $similar = get_user_percent(get_field('uuid_user_r', $id_ranking), $id_top);
-
-
                                 if($similar['percent'] == 0){
                                     $wording_similar = "0% <small>des Top 3 identiques à celui-ci !</small>";
                                 }
                                 else{
                                     $wording_similar = $similar['percent']."% <small>des Top 3 identiques à celui-ci !</small>";
                                 }
+                                echo $wording_similar;
                                 ?>
-                                <?php echo $wording_similar; ?>
                             </h2>
                         </div>
                         <div class="card-footer" id="clt">

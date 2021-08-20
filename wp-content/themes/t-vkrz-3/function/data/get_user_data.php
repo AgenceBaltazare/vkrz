@@ -235,7 +235,7 @@ function find_vkrz_user($uuid_user_r){
             'avatar'            => $avatar_url,
             'user_email'        => $user_email,
             'user_role'         => $user_role,
-            'level'             => $user_id,
+            'level'             => $info_user_level['level_ico'],
             'level_number'      => $info_user_level['level_number'],
             'next_level'        => $info_user_level['next_level']
         );

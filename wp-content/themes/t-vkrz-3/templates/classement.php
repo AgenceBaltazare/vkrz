@@ -150,7 +150,7 @@ $user_single_top_data = array_search($id_top, $list_t_already_done);
                                                 <div class="card-body">
                                                     <div class="pricing-badge text-right">
                                                         <div class="badge badge-pill badge-light-primary">
-                                                            <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_top; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir les <?php echo $nb_tops; ?> Tops">
+                                                            <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_top; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir les <?php echo $top_datas['nb_tops']; ?> Tops">
                                                                 👀
                                                             </a>
                                                         </div>
