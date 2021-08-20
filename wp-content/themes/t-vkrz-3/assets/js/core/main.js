@@ -185,7 +185,6 @@ $(window).scroll(function() {
 
 jQuery(document).ready(function ($){
 
-    console.log(window.dataLayer);
     window.dataLayer.push({
         'event': 'track_event',
         'event_name': 'page_view',
@@ -193,7 +192,6 @@ jQuery(document).ready(function ($){
         'page_title': vkrz_tracking_vars_current_page.page_title,
         'categorie' : vkrz_tracking_vars_current_page.page_category
     })
-    console.log(window.dataLayer);
 
 
     $('.main-menu .nav-item .rs-menu a').click(function (e){

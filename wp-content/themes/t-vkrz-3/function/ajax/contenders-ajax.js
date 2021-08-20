@@ -50,7 +50,7 @@ $(document).ready(function ($) {
                     $('.dropdown-user-link .user-niveau').html(data.user_level_icon);
                     window.dataLayer.push({
                         'event': 'track_event',
-                        'event_name': 'end_top',
+                        'event_name': 'level_up',
                         'categorie': vkrz_tracking_vars_top.top_categorie_layer,
                         'top_title': vkrz_tracking_vars_top.top_title_layer,
                         'top_id': vkrz_tracking_vars_top.top_id_top_layer,
