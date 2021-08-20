@@ -23,5 +23,8 @@ function do_commentaire_note($id_top, $uuiduser, $commentaire_note){
         update_field('id_t_n', $id_top, $id_new_note);
         update_field('commentaire_n', $commentaire_note, $id_new_note);
 
+        vkrz_push_note($id_new_note);
+
     }
+    
 }

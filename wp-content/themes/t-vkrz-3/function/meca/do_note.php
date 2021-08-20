@@ -22,6 +22,8 @@ function do_note($id_top, $uuiduser, $star){
         update_field('id_t_n', $id_top, $id_new_note);
         update_field('id_s_n', $star, $id_new_note);
 
+        vkrz_push_note($id_new_note);
+
     }
 
 }
