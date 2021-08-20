@@ -7,6 +7,7 @@ function do_note($id_top, $uuiduser, $star){
     if($note_id){
 
         update_field('id_s_n', $star, $note_id);
+        vkrz_push_note($note_id);
 
     }
     else{

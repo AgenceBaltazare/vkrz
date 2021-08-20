@@ -8,6 +8,7 @@ function do_commentaire_note($id_top, $uuiduser, $commentaire_note){
     if($note_id){
 
         update_field('commentaire_n', $commentaire_note, $note_id);
+        vkrz_push_note($note_id);
 
     }
     else{
