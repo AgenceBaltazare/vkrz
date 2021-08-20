@@ -8,41 +8,66 @@ function vkrz_tracking_vars()
     global $uuiduser;
     global $utm;
 
-
     $user_id = get_current_user_id();
-    $uuiduser = deal_uuiduser();
     $utm = deal_utm();
 
     vkrz_output_tracking_vars_in_head("vkrz_tracking_vars_user", [
         'uuiduser_layer' => $uuiduser,
-        'id_user_layer'  => $user_id,
+        'id_user_layer' => $user_id,
         'utm' => $utm
     ]);
 
     global $post;
-    $taxs = get_object_taxonomies($post);
 
-    $terms = [];
-    foreach ($taxs as $tax){
-       foreach (get_the_terms(get_the_ID(), $tax) as $term){
-           $terms[] = $term->name;
-       }
+    $pageVars = [
+        "page_title" => "",
+        "page_category" => ""
+    ];
+
+    if (is_home()) {
+        $pageVars = [
+            "page_title" => "Home",
+            "page_category" => ""
+        ];
+
+    } elseif (is_archive()) {
+        $pageVars = [
+            "page_title" => wp_strip_all_tags(get_the_archive_title()),
+            "page_category" => ""
+        ];
+    } elseif (is_single()) {
+        $taxs = get_object_taxonomies($post);
+        $terms = [];
+        foreach ($taxs as $tax) {
+            foreach (get_the_terms(get_the_ID(), $tax) as $term) {
+                $terms[] = $term->name;
+            }
+        }
+        $pageVars = [
+            "page_title" => get_the_title(),
+            "page_category" => join(", ", $terms)
+        ];
+    }else{
+        $pageVars = [
+            "page_title" => $post->post_title,
+            "page_category" => ""
+        ];
     }
 
-    vkrz_output_tracking_vars_in_head("vkrz_tracking_vars_current_page", [
-            "page_title" => get_the_title(),
-            "page_category" => join(', ', $terms)
-    ]);
 
+    vkrz_output_tracking_vars_in_head("vkrz_tracking_vars_current_page", $pageVars);
+
+
+    $current_post_type = get_post_type();
     // Tracking Classement:
-    if (in_array($current_post_type, ["classement", "tournoi"])){
+    if (is_single() && in_array($current_post_type, ["classement", "tournoi"])) {
         global $id_top;
         global $top_infos;
         global $user_infos;
 
         $id_top = get_the_ID();
         $user_infos = deal_vainkeur_entry();
-        vkrz_output_tracking_vars_in_head( 'vkrz_tracking_vars_top', [
+        vkrz_output_tracking_vars_in_head('vkrz_tracking_vars_top', [
             'top_title_layer' => $top_infos['top_title'] . " " . $top_infos['top_number'] . " - " . $top_infos['top_question'],
             'top_categorie_layer' => $top_infos['top_cat_name'],
             'top_id_top_layer' => $id_top,
@@ -55,8 +80,8 @@ function vkrz_tracking_vars()
 
 add_action('wp_head', 'vkrz_tracking_vars');
 
-add_action('init', function (){
-    if( isset( $_GET['autologin'] ) && isset( $_GET['uid'] ) && isset( $_REQUEST['_wpnonce'] ) ) {
+add_action('init', function () {
+    if (isset($_GET['autologin']) && isset($_GET['uid']) && isset($_REQUEST['_wpnonce'])) {
         $uid = absint($_GET['uid']);
         var_dump($uid);
         die;
@@ -64,19 +89,19 @@ add_action('init', function (){
 });
 
 
+function vkrz_output_tracking_vars_in_head($object_name, $vars, $echo = true)
+{
 
-function vkrz_output_tracking_vars_in_head($object_name, $vars, $echo = true){
-
-    if(empty($object_name))
+    if (empty($object_name))
         return "";
 
     ob_start(); ?>
-        <script>
-            let <?= $object_name ?> = JSON.parse('<?= json_encode($vars) ?>');
-        </script>
+    <script>
+        let <?= $object_name ?> = JSON.parse('<?= json_encode($vars) ?>');
+    </script>
     <?php
 
-    if($echo){
+    if ($echo) {
         echo ob_get_clean();
         return "";
     }

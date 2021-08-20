@@ -65,9 +65,15 @@ if(!is_single() || get_post_type() != "tournoi"){
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
         j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-KH379F5');</script>
+        })(window,document,'script','dataLayer','GTM-KH379F5');
+        </script>
+
         <!-- End Google Tag Manager -->
     <?php endif; ?>
+
+    <script>
+        window.dataLayer = window.dataLayer || [];
+    </script>
 
     <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="ec6a3187-bf39-4eb5-a90d-dda00a2995c8";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
     <script>

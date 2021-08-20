@@ -149,8 +149,13 @@ $url_ranking  = get_the_permalink($id_ranking);
 
                     $list_souscat  = array();
                     $top_souscat   = get_the_terms($id_top, 'concept');
-                    foreach($top_souscat as $souscat){
-                        array_push($list_souscat, $souscat->slug);
+                    /**
+                     * MODIF : GET THE TERM retourne false, donc check la variable avant de continuer
+                     */
+                    if(!empty($top_souscat)){
+                        foreach($top_souscat as $souscat){
+                            array_push($list_souscat, $souscat->slug);
+                        }
                     }
 
                     $tournois_in_cat     = new WP_Query(array(
@@ -260,7 +265,11 @@ $url_ranking  = get_the_permalink($id_ranking);
                         <div class="card-body">
                             <h2 class="font-weight-bolder mb-0">
                                 <?php
+
+
                                 $similar = get_user_percent(get_field('uuid_user_r', $id_ranking), $id_top);
+
+
                                 if($similar['percent'] == 0){
                                     $wording_similar = "0% <small>des Top 3 identiques à celui-ci !</small>";
                                 }

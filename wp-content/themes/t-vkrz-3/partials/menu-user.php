@@ -7,7 +7,7 @@ if(is_single() && get_post_type() == "tournoi"){
 }
 elseif(is_single() && get_post_type() == "classement"){
     global $top_infos;
-    global $id_top;
+    $id_top = get_field('id_tournoi_r');
 }
 elseif(is_author()){
     global $vainkeur_info;
