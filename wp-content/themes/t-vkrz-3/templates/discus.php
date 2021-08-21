@@ -2,7 +2,6 @@
 /*
     Template Name: Discussions
 */
-global $uuiduser;
 if(isset($_GET['id_top'])){
     $id_top  = $_GET['id_top'];
 }
@@ -40,6 +39,8 @@ get_header();
                                 <div class="card-body">
 
                                     <?php comment_form(array(), $id_top); ?>
+
+                                    <div id="replybox"></div>
 
                                 </div>
 
