@@ -129,7 +129,7 @@
     </title>
     <meta name="description" content="<?php echo $current_cat->description; ?>" />
 
-<?php elseif(is_author() || is_page(204303)): ?>
+<?php elseif(is_author() || is_page(218587)): ?>
 
     <?php
     global $vainkeur_id;
