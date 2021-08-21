@@ -30,7 +30,7 @@ function cpt_init() {
         'menu_position' => null,
         'menu_icon' => 'dashicons-editor-code',
         'show_in_rest' => true,
-        'supports' => array('title', 'editor', 'thumbnail', 'author')
+        'supports' => array('title', 'editor', 'thumbnail', 'author', 'comments')
     );
     register_post_type('tournoi', $args);
 
