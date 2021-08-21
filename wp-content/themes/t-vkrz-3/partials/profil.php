@@ -47,7 +47,7 @@ $vainkeur_info = isset($vainkeur_info) ? $vainkeur_info : $user_infos;
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <div class="profile-tabs d-flex justify-content-between flex-wrap mt-1 mt-md-0">
                     <ul class="nav nav-pills mb-0">
-                        <?php if(!is_author() && !is_page(get_page_by_path('createur-tops'))): ?>
+                        <?php if(!is_author() && !is_page(218587)): ?>
                             <li class="nav-item">
                                 <a class="nav-link font-weight-bold <?php if(is_page(get_page_by_path('mon-compte'))){echo 'btn btn-primary';} ?>" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>">
                                     Récap
@@ -75,14 +75,14 @@ $vainkeur_info = isset($vainkeur_info) ? $vainkeur_info : $user_infos;
                             </li>
                             <?php if($vainkeur_info['user_role'] == "administrator" || $vainkeur_info['user_role'] == "author"): ?>
                                 <li class="nav-item">
-                                    <a class="nav-link font-weight-bold <?php if(is_page(get_page_by_path('createur-tops'))){echo 'btn btn-primary';} ?>" href="<?php the_permalink(get_page_by_path('createur-tops')); ?>?creator_id=<?php echo $vainkeur_id; ?>">
+                                    <a class="nav-link font-weight-bold <?php if(is_page(218587)){echo 'btn btn-primary';} ?>" href="<?php the_permalink(218587); ?>?creator_id=<?php echo $vainkeur_id; ?>">
                                         Créateur
                                     </a>
                                 </li>
                             <?php endif; ?>
                         <?php endif; ?>
                     </ul>
-                    <?php if(!is_author() && is_user_logged_in() && !is_page(get_page_by_path('createur-tops'))): ?>
+                    <?php if(!is_author() && is_user_logged_in() && !is_page(218587)): ?>
                         <div class="">
                             <a href="<?php echo get_author_posts_url($user_id); ?>" class="btn btn-outline-primary waves-effect">
                                 Profil public
