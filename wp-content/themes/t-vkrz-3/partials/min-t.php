@@ -45,7 +45,7 @@ else{
                 <?php else: ?>
                     <div class="spoun">
                         ⚔️
-                        <h5>Créer mon Top</h5>
+                        <h5>Faire mon Top</h5>
                     </div>
                 <?php endif; ?>
             </div>

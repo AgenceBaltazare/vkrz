@@ -660,6 +660,39 @@ html .content {
   width: 150px;
 }
 
+.link-to-creator {
+  text-transform: uppercase;
+}
+.link-to-creator span {
+  font-size: 14px !important;
+}
+.link-to-creator h3 {
+  text-transform: uppercase;
+  font-size: 16px;
+  transition: 0.2s all ease-in-out;
+}
+.link-to-creator h3 span {
+  font-size: 14px;
+}
+.link-to-creator:hover {
+  color: #7367f0 !important;
+}
+.link-to-creator:hover h3 {
+  color: #7367f0;
+}
+
+.t-violet {
+  color: #7367f0;
+}
+
+.championname a {
+  color: #fff;
+  transition: 0.2s all ease-in-out;
+}
+.championname a:hover {
+  color: #7367f0;
+}
+
 .page-template-monitor .header-monitor {
   text-align: center;
   padding-top: 20px;
@@ -2105,6 +2138,10 @@ textarea {
   }
   .dropdown-notification a, .dropdown-cart a {
     font-size: 12px;
+  }
+
+  .contenders-containers {
+    align-items: flex-start !important;
   }
 }
 @media (max-width: 425px) {

@@ -43,9 +43,9 @@ window.onload=function() {
             try {
                 var successful = document.execCommand('copy');
                 var msg = successful ? 'successful' : 'unsuccessful';
-                copyBtn.innerHTML = "Copié !";
+                copyBtn.innerHTML = "✓";
             } catch (err) {
-                console.log('Oops, unable to copy');
+                console.log('Oops, impossible de copié - Demandes pas pourquoi :/');
             }
         });
     }
@@ -59,9 +59,9 @@ window.onload=function() {
             try {
                 var successful = document.execCommand('copy');
                 var msg = successful ? 'successful' : 'unsuccessful';
-                copyBtn2.innerHTML = "Copié !";
+                copyBtn2.innerHTML = "✓";
             } catch (err) {
-                console.log('Oops, unable to copy');
+                console.log('Oops, impossible de copié - Demandes pas pourquoi :/');
             }
         });
     }

@@ -24,7 +24,6 @@ if(!is_single() || get_post_type() != "tournoi"){
     }
     $user_infos  = deal_vainkeur_entry();
     $id_vainkeur = $user_infos['id_vainkeur'];
-    vkrz_push_levelup($user_id, 2);
 }
 ?>
 <!DOCTYPE html>

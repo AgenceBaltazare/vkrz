@@ -70,6 +70,7 @@ function get_user_infos($uuiduser){
         'id_vainkeur'       => $id_vainkeur,
         'user_id'           => $user_id,
         'uuid_user_vkrz'    => $uuiduser,
+        'profil_url'        => get_author_posts_url($user_id),
         'pseudo'            => $user_pseudo,
         'avatar'            => $avatar_url,
         'user_email'        => $user_email,
@@ -433,34 +434,6 @@ function get_vote_to_next_level($level_number, $nb_vote_vkrz){
 
 }
 
-function get_creator_data($creator_id = false, $id_top = false){
-
-    $result             = array();
-    $list_creator_tops  = array();
-
-    if(!$creator_id){
-        $creator_id = get_post_field('post_author', $id_top);
-    }
-    $creator_data   = get_user_by('ID', $creator_id);
-
-    $list_tops = new WP_Query(array('post_type' => 'tournoi', 'orderby' => 'date', 'author' => $creator_id, 'posts_per_page' => '-1'));
-    while ($list_tops->have_posts()) : $list_tops->the_post();
-        array_push($list_creator_tops, get_the_ID());
-    endwhile;
-
-    array_push($result, array(
-        "creator_id"        => $creator_id,
-        "creator_link"      => get_author_posts_url($creator_id),
-        "creator_name"      => $creator_data->nickname,
-        "creator_nb_tops"   => count($list_creator_tops),
-        "creator_tops"      => $list_creator_tops,
-        "creator_uuid"      => get_field('uuiduser_user', 'user_'.$creator_id)
-    ));
-
-    return $result;
-
-}
-
 function get_creators_ids(){
 
     $result = array();
@@ -481,11 +454,10 @@ function get_creators_ids(){
 function get_creator_t($creator_id){
 
     $list_creator_tops  = array();
-    // unuse: $creator_data       = get_user_by('ID', $creator_id);
+    $creator_data       = get_user_by('ID', $creator_id);
     $nb_votes_all_t     = 0;
     $nb_ranks_all_t     = 0;
     $total_note_moy     = array();
-    // unuse: $total_money        = array();
 
     $list_tops = new WP_Query(array(
         'post_type'              => 'tournoi',
@@ -512,9 +484,6 @@ function get_creator_t($creator_id){
             array_push($total_note_moy, $moy_notes_t);
         }
 
-        // unuse: $money_top      = get_paid($nb_votes_t);
-        // unuse: array_push($total_money, $money_top);
-
         array_push($list_creator_tops, array(
             "top_id"        => $id_top,
             "top_title"     => get_the_title($id_top),
@@ -522,23 +491,28 @@ function get_creator_t($creator_id){
             "top_votes"     => $nb_votes_t,
             "top_ranks"     => $nb_ranks_t,
             "top_note"      => $moy_notes_t,
-            // unuse: "top_money"     => $money_top
         ));
     endwhile;
 
     $creator_note    = round(array_sum($total_note_moy) / count($total_note_moy), 2);
-
+    $avatar_url      = get_avatar_url($creator_id, ['size' => '80', 'force_default' => false]);
+    $info_user_level = get_user_level($creator_id);
+    
     return array(
-        // unuse: "creator_id"        => $creator_id,
-        // unuse: "creator_link"      => get_author_posts_url($creator_id),
-        // unuse: "creator_name"      => $creator_data->nickname,
+        "creator_id"        => $creator_id,
+        "creator_link"      => get_author_posts_url($creator_id),
+        "creator_name"      => $creator_data->nickname,
+        "creator_avatar"    => $avatar_url,
         "creator_nb_tops"   => count($list_creator_tops),
         "creator_tops"      => $list_creator_tops,
+        "creator_level"     => array(
+            "level_ico"     => $info_user_level['level_ico'],
+            "level_number"  => $info_user_level['level_number'],
+        ),
+        "creator_role"      => $creator_data->roles[0],
         "creator_all_v"     => $nb_votes_all_t,
         "creator_all_t"     => $nb_ranks_all_t,
-        // unuse: "creator_money"     => array_sum($total_money),
         "creator_note"      => $creator_note,
-        // unuse: "creator_uuid"      => get_field('uuiduser_user', 'user_'.$creator_id)
     );
 
 }

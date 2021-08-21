@@ -219,7 +219,7 @@ $url_ranking  = get_the_permalink($id_ranking);
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">
-                                        <span class="ico">🙏</span> As-tu apprécié ce Top
+                                        <span class="ico">🙏</span> As-tu apprécié ce Top ?
                                     </h4>
                                     <h6 class="card-subtitle text-muted mb-1">
                                         Vos retours nous aident beaucoup à améliorer VAINKEURZ !
@@ -247,7 +247,7 @@ $url_ranking  = get_the_permalink($id_ranking);
                                         <?php endif; ?>
                                         <div class="commentbox mt-1">
                                             <a href="#" class="btn btn-outline-primary waves-effect" data-toggle="modal" data-target="#commentModal">
-                                                Nous laisser un commentaire
+                                                Je laisse un commentaire
                                             </a>
                                         </div>
                                     </div>
@@ -267,10 +267,10 @@ $url_ranking  = get_the_permalink($id_ranking);
                                 <?php
                                 $similar = get_user_percent(get_field('uuid_user_r', $id_ranking), $id_top);
                                 if($similar['percent'] == 0){
-                                    $wording_similar = "0% <small>des Top 3 identiques à celui-ci !</small>";
+                                    $wording_similar = "0% <small>des autres Tops identique à celui-ci !</small>";
                                 }
                                 else{
-                                    $wording_similar = $similar['percent']."% <small>des Top 3 identiques à celui-ci !</small>";
+                                    $wording_similar = $similar['percent']."% <small>des autres Tops identiques à celui-ci !</small>";
                                 }
                                 echo $wording_similar;
                                 ?>
@@ -299,7 +299,7 @@ $url_ranking  = get_the_permalink($id_ranking);
                                     <?php
                                     $url_ranking = get_permalink($id_ranking);
                                     ?>
-                                    <a href="https://twitter.com/intent/tweet?text=Voici mon TOP <?php echo $top_number; ?> <?php echo $top_title; ?>&via=vainkeurz&hashtags=VKRZ&url=<?php echo $url_ranking; ?>" target="_blank" title="Tweet" class="btn btn-icon btn-outline-primary">
+                                    <a href="https://twitter.com/intent/tweet?text=Voici mon TOP <?php echo $top_infos['top_number']; ?> <?php echo $top_infos['top_title']; ?>&via=vainkeurz&hashtags=VKRZ&url=<?php echo $url_ranking; ?>" target="_blank" title="Tweet" class="btn btn-icon btn-outline-primary">
                                         <i class="fab fa-twitter"></i>
                                     </a>
                                     <a href="whatsapp://send?text=<?php echo $url_ranking; ?>" data-action="share/whatsapp/share" class="btn btn-icon btn-outline-primary">
@@ -327,17 +327,17 @@ $url_ranking  = get_the_permalink($id_ranking);
                                 Plus on est de fou plus on .. TOP !
                             </h6>
                             <div class="btn-group justify-content-center share-t w-100" role="group">
-                                <a href="https://twitter.com/intent/tweet?text=J'ai fait mon TOP <?php echo $top_number; ?> <?php echo $top_title; ?> maintenant c'est à vous 🤪🤪 &via=vainkeurz&hashtags=VKRZ&url=<?php echo $top_url; ?>" target="_blank" title="Tweet" class="btn btn-icon btn-outline-primary">
+                                <a href="https://twitter.com/intent/tweet?text=J'ai fait mon TOP <?php echo $top_infos['top_number']; ?> <?php echo $top_infos['top_title']; ?> maintenant c'est à vous 🤪🤪 &via=vainkeurz&hashtags=VKRZ&url=<?php echo $top_infos['top_url']; ?>" target="_blank" title="Tweet" class="btn btn-icon btn-outline-primary">
                                     <i class="fab fa-twitter"></i>
                                 </a>
-                                <a href="whatsapp://send?text=<?php echo $top_url; ?>" data-action="share/whatsapp/share" class="btn btn-icon btn-outline-primary">
+                                <a href="whatsapp://send?text=<?php echo $top_infos['top_url']; ?>" data-action="share/whatsapp/share" class="btn btn-icon btn-outline-primary">
                                     <i class="fab fa-whatsapp"></i>
                                 </a>
-                                <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $top_url; ?>" title="Partager sur Facebook" target="_blank" class="btn btn-icon btn-outline-primary">
+                                <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $top_infos['top_url']; ?>" title="Partager sur Facebook" target="_blank" class="btn btn-icon btn-outline-primary">
                                     <i class="fab fa-facebook-f"></i>
                                 </a>
                                 <a href="javascript: void(0)" class="sharelinkbtn2 btn btn-icon btn-outline-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copier le lien du Top">
-                                    <input type="text" value="<?php echo $top_url; ?>" class="input_to_share2">
+                                    <input type="text" value="<?php echo $top_infos['top_url']; ?>" class="input_to_share2">
                                     <i class="far fa-link"></i>
                                 </a>
                             </div>
@@ -365,12 +365,12 @@ $url_ranking  = get_the_permalink($id_ranking);
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">
-                                    <span class="ico">🤬</span> D'accord ou pas d'accord avec ce Podium ?
+                                    <span class="ico">🤬</span> D'accord ou pas d'accord ?
                                 </h4>
                                 <h6 class="card-subtitle text-muted mb-1">
-                                    Il est temps d'exprimer et de revendiquer ton propre avis !
+                                    Il est temps de faire et de revendiquer ton propre Tops !
                                 </h6>
-                                <a href="<?php echo $top_url; ?>" class="btn btn-outline-primary waves-effect">
+                                <a href="<?php echo $top_infos['top_url']; ?>" class="btn btn-outline-primary waves-effect">
                                     Faire mon propre Top !
                                 </a>
                             </div>
@@ -378,6 +378,49 @@ $url_ranking  = get_the_permalink($id_ranking);
 
                     <?php endif; ?>
 
+                    <div class="card text-left">
+                        <?php
+                        $creator_id         = get_post_field('post_author', $id_top);
+                        $creator_uuiduser   = get_field('uuiduser_user', 'user_'.$creator_id);
+                        $creator_data       = get_user_infos($creator_uuiduser);
+                        ?>
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <?php
+                                date_default_timezone_set('Europe/Paris');
+                                $top_date   = strtotime($top_infos['top_date']); 
+                                $now_date   = strtotime("now"); 
+                                $nb_days    = round(($now_date - $top_date)/60/60/24,0);
+                                ?>
+                                <span class="ico">🎂</span> Créé depuis <span class="t-violet"><?php echo $nb_days; ?> jours</span> par :
+                            </h4>
+                            <div class="employee-task d-flex justify-content-between align-items-center">
+                                <a href="<?php echo $creator_data['profil']; ?>" class="d-flex flex-row link-to-creator">
+                                    <div class="avatar me-75 mr-1">
+                                        <img src="<?php echo $creator_data['avatar']; ?>" class="circle" width="42" height="42" alt="Avatar">
+                                    </div>
+                                    <div class="my-auto">
+                                        <h3 class="mb-0">
+                                            <?php echo $creator_data['pseudo']; ?> <br>
+                                            <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Niveau actuel">
+                                                <?php echo $creator_data['level']; ?>
+                                            </span>
+                                            <?php if($creator_data['user_role']  == "administrator"): ?>
+                                                <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
+                                                    🦙
+                                                </span>
+                                            <?php endif; ?>
+                                            <?php if($creator_data['user_role']  == "administrator" || $creator_data['user_role'] == "author"): ?>
+                                                <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
+                                                    🎨
+                                                </span>
+                                            <?php endif; ?>
+                                        </h3>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -27,7 +27,10 @@ if($id_ranking){
     }
 }
 get_header();
-$top_datas = get_top_data($id_top);
+$top_datas          = get_top_data($id_top);
+$creator_id         = get_post_field('post_author', $id_top);
+$creator_uuiduser   = get_field('uuiduser_user', 'user_'.$creator_id);
+$creator_data       = get_user_infos($creator_uuiduser);
 ?>
 <div class="app-content content cover" style="background: url(<?php echo $top_infos['top_cover']; ?>) center center no-repeat">
     <div class="content-overlay"></div>
@@ -147,30 +150,32 @@ $top_datas = get_top_data($id_top);
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <?php
-                                        $creator_data = get_creator_data(false, $id_top);
-                                        ?>
                                         <div class="infos-card-t d-flex align-items-center infos-card-t-c">
                                             <div class="">
-                                                <a href="<?php echo $creator_data[0]['creator_link']; ?>" target="_blank">
+                                                <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator_id; ?>" target="_blank">
                                                     <div class="avatar me-50">
-                                                        <?php
-                                                        if(get_avatar_url($creator_data[0]['creator_id'], ['size' => '80'])){
-                                                            $avatar_url = get_avatar_url($creator_data[0]['creator_id'], ['size' => '80']);
-                                                        }
-                                                        else{
-                                                            $avatar_url = get_bloginfo('template_directory')."/assets/images/vkrz/avatar.png";
-                                                        }
-                                                        ?>
-                                                        <img src="<?php echo $avatar_url; ?>" alt="Avatar" width="38" height="38">
+                                                        <img src="<?php echo $creator_data['avatar']; ?>" alt="Avatar" width="38" height="38">
                                                     </div>
                                                 </a>
                                             </div>
                                             <div class="content-body text-left">
                                                 <small class="text-muted">Conçu par</small>
                                                 <h4 class="mb-0 link-creator">
-                                                    <a href="<?php echo $creator_data[0]['creator_link']; ?>" target="_blank" class="text-uppercase">
-                                                        <?php echo $creator_data[0]['creator_name']; ?>
+                                                    <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator_id; ?>" target="_blank" class="link-to-creator">
+                                                        <?php echo $creator_data['pseudo']; ?>
+                                                        <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Niveau actuel">
+                                                            <?php echo $creator_data['level']; ?>
+                                                        </span>
+                                                        <?php if($creator_data['user_role']  == "administrator"): ?>
+                                                            <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
+                                                                🦙
+                                                            </span>
+                                                        <?php endif; ?>
+                                                        <?php if($creator_data['user_role']  == "administrator" || $creator_data['user_role'] == "author"): ?>
+                                                            <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
+                                                                🎨
+                                                            </span>
+                                                        <?php endif; ?>
                                                     </a>
                                                 </h4>
                                             </div>
@@ -270,46 +275,46 @@ $top_datas = get_top_data($id_top);
                                     </a>
                                 </div>
                             </div>
-
-                            <!--
-                            <div class="card chat-widget">
-                                <div class="card-header">
-                                    <div class="d-flex align-items-center">
-                                        <h4 class="card-title">
-                                            <span class="ico">🐱</span> Un truc à dire ?
-                                        </h4>
+                            
+                            <div class="card text-left">
+                                <div class="card-body">
+                                    <h4 class="card-title">
+                                        <?php
+                                        date_default_timezone_set('Europe/Paris');
+                                        $top_date   = strtotime($top_infos['top_date']); 
+                                        $now_date   = strtotime("now"); 
+                                        $nb_days    = round(($now_date - $top_date)/60/60/24,0);
+                                        ?>
+                                        <span class="ico">🎂</span> Créé depuis <span class="t-violet"><?php echo $nb_days; ?> jours</span> par :
+                                    </h4>
+                                    <div class="employee-task d-flex justify-content-between align-items-center">
+                                        <a href="<?php echo $creator_data['profil']; ?>" class="d-flex flex-row link-to-creator">
+                                            <div class="avatar me-75 mr-1">
+                                                <img src="<?php echo $creator_data['avatar']; ?>" class="circle" width="42" height="42" alt="Avatar">
+                                            </div>
+                                            <div class="my-auto">
+                                                <h3 class="mb-0">
+                                                    <?php echo $creator_data['pseudo']; ?> <br>
+                                                    <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Niveau actuel">
+                                                        <?php echo $creator_data['level']; ?>
+                                                    </span>
+                                                    <?php if($creator_data['user_role']  == "administrator"): ?>
+                                                        <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
+                                                            🦙
+                                                        </span>
+                                                    <?php endif; ?>
+                                                    <?php if($creator_data['user_role']  == "administrator" || $creator_data['user_role'] == "author"): ?>
+                                                        <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
+                                                            🎨
+                                                        </span>
+                                                    <?php endif; ?>
+                                                </h3>
+                                            </div>
+                                        </a>
                                     </div>
                                 </div>
-                                <section class="chat-app-window">
-                                    <div class="user-chats">
-                                        <div class="chats">
-                                            <div class="chat chat-left">
-                                                <div class="chat-avatar">
-                                                    <span class="avatar box-shadow-1 cursor-pointer">
-                                                       <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/logo-vkrz.png" alt="avatar" height="36" width="auto" />
-                                                    </span>
-                                                </div>
-                                                <div class="chat-body">
-                                                    <div class="chat-content">
-                                                        <p>Qui sera la premier à ouvrir la discussion 👀 ?</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <form class="chat-app-form" action="javascript:void(0);" onsubmit="enterChat();">
-                                        <div class="input-group input-group-merge w-100 form-send-message">
-                                            <input type="text" class="form-control message" placeholder="Tape ton message..." />
-                                        </div>
-                                        <button type="button" class="btn btn-primary send" onclick="enterChat();">
-                                            <span class="d-none text-nowrap d-lg-block">
-                                                <i class="fal fa-paper-plane"></i>
-                                            </span>
-                                        </button>
-                                    </form>
-                                </section>
                             </div>
-                            -->
+
                         </div>
                     </div>
                 </div>

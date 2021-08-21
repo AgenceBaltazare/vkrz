@@ -11,6 +11,19 @@ function increase_vote_counter($id_vainkeur){
         $vkrz_vote_counter = get_field('nb_total_votes', 'options');
         update_field('nb_total_votes', $vkrz_vote_counter+1, 'options');
 
+        if($vkrz_vote_counter+1 === 1000000){
+            $uuid_winner = get_field('uuid_user_vkrz', $id_vainkeur);
+            update_field('uuid_1m_votes', $uuid_winner." ".$id_vainkeur, 'options');
+            update_field('date_1m_votes', date('d/m/Y H:i:s'), 'options');
+
+            $event = array(
+                'event_name' => '🚨 Le 1 000 000ème vote vient d\'avoir lieu 🥳 🥳 🥳  Bravo à tous les Vainkeurs 🤩',
+                'event_illu' => 'https://vainkeurz.com/wp-content/uploads/2021/08/giphy.gif'
+            );
+            vkrz_push_event($event);
+
+        }
+
     }
 
 }
