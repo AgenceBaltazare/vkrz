@@ -129,14 +129,16 @@
     </title>
     <meta name="description" content="<?php echo $current_cat->description; ?>" />
 
-<?php elseif(is_author()): ?>
+<?php elseif(is_author() || is_page(204303)): ?>
 
     <?php
     global $vainkeur_id;
     global $vainkeur_info;
     global $vainkeur_tops;
-    $vainkeur            = get_user_by('slug', get_query_var('author_name'));
-    $vainkeur_id         = $vainkeur->ID;
+    if(!$vainkeur_id){
+        $vainkeur            = get_user_by('slug', get_query_var('author_name'));
+        $vainkeur_id         = $vainkeur->ID;
+    }
     if(is_user_logged_in() && env() != "local") {
         if (false === ( $vainkeur_tops = get_transient( 'user_'.$vainkeur_id.'_get_user_tops' ) )) {
             $vainkeur_tops   = get_user_tops($vainkeur_id);
