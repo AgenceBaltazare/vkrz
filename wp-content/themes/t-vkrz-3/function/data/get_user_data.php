@@ -13,6 +13,76 @@ function get_user_logged_id(){
     return $user_id;
 }
 
+function get_user_infos($uuiduser){
+
+    $id_vainkeur        = false;
+    $user_id            = false;
+    $user_pseudo        = "";
+    $avatar_url         = "";
+    $user_role          = "";
+    $user_email         = "";
+    $nb_top_vkrz        = 0;
+    $nb_vote_vkrz       = 0;
+    $info_user_level    = array(
+        "level_ico"     => "",
+        "level_number"  => "",
+        "next_level"    => "",
+    );
+
+    $vainkeur_entry = new WP_Query(array(
+        'post_type'              => 'vainkeur',
+        'posts_per_page'         => '1',
+        'fields'                 => 'ids',
+        'post_status'            => 'publish',
+        'ignore_sticky_posts'    => true,
+        'update_post_meta_cache' => false,
+        'no_found_rows'          => false,
+        'meta_query'             => array(
+            array(
+                'key' => 'uuid_user_vkrz',
+                'value' => $uuiduser,
+                'compare' => '='
+            )
+        ),
+    ));
+
+    if($vainkeur_entry->have_posts()){
+
+        $id_vainkeur    = $vainkeur_entry->posts[0];
+        $nb_vote_vkrz   = get_field('nb_vote_vkrz', $id_vainkeur);
+        $nb_top_vkrz    = get_field('nb_top_vkrz', $id_vainkeur);
+
+    }
+
+    if($id_vainkeur){
+
+        $user_id         = get_post_field('post_author', $id_vainkeur);
+        $user_info       = get_userdata($user_id);
+        $user_pseudo     = $user_info->nickname;
+        $user_email      = $user_info->user_email;
+        $user_role       = $user_info->roles[0];
+        $avatar_url      = get_avatar_url($user_id, ['size' => '80', 'force_default' => false]);
+        $info_user_level = get_user_level($user_id);
+
+    }
+
+    return array(
+        'id_vainkeur'       => $id_vainkeur,
+        'user_id'           => $user_id,
+        'uuid_user_vkrz'    => $uuiduser,
+        'pseudo'            => $user_pseudo,
+        'avatar'            => $avatar_url,
+        'user_email'        => $user_email,
+        'user_role'         => $user_role,
+        'level'             => $info_user_level['level_ico'],
+        'level_number'      => $info_user_level['level_number'],
+        'next_level'        => $info_user_level['next_level'],
+        'nb_vote_vkrz'      => $nb_vote_vkrz,
+        'nb_top_vkrz'       => $nb_top_vkrz
+    );
+
+}
+
 function get_user_tops($user_id = false){
 
     if(!$user_id){
