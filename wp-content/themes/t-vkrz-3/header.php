@@ -80,11 +80,8 @@ if(!is_single() || get_post_type() != "tournoi"){
     <script>
         $crisp.push(["set", "user:email", ["<?php echo $user_infos['user_email']; ?>"]]);
         $crisp.push(["set", "user:nickname", ["<?php echo $user_infos['pseudo']; ?>"]]);
+        $crisp.push(["set", "user:avatar", ["<?php echo $user_infos['avatar']; ?>"]]);
     </script>
-
-    <?php if(is_author() || is_page(27040)): ?>
-        <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory'); ?>/assets/css/plugins/charts/chart-apex.min.css">
-    <?php endif; ?>
 
     <?php wp_head(); ?>
 </head>
@@ -109,3 +106,4 @@ else{
     get_template_part('partials/menu-user');
     get_template_part('partials/menu-vkrz');
 ?>
+

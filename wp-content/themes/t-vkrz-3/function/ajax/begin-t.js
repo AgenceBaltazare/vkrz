@@ -38,7 +38,7 @@ $(document).ready(function ($) {
                     'categorie': vkrz_tracking_vars_top.top_categorie_layer,
                     'top_title': vkrz_tracking_vars_top.top_title_layer,
                     'top_id': vkrz_tracking_vars_top.top_id_top_layer,
-                    'top_type': vkrz_tracking_vars_top.id_top,
+                    'top_type': typetop,
                     'user_id': vkrz_tracking_vars_user.id_user_layer,
                     'user_uuid': vkrz_tracking_vars_user.uuiduser_layer,
                     'user_level': vkrz_tracking_vars_top.top_user_level_layer,

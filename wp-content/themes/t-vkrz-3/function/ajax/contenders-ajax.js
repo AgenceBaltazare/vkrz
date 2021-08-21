@@ -1,5 +1,5 @@
 $(document).ready(function ($) {
-    let contenders = $('.display_battle .link-contender');
+
     let ajaxRunning = false;
 
     $(window).keydown(function(e){
@@ -45,7 +45,6 @@ $(document).ready(function ($) {
 
                 let data = JSON.parse(response);
 
-
                 if(data.level_up !== undefined && data.level_up){
                     $('.dropdown-user-link .user-niveau').html(data.user_level_icon);
                     window.dataLayer.push({
@@ -62,8 +61,6 @@ $(document).ready(function ($) {
                         'event_score': 50,
                     });
                 }
-
-
 
                 if(data.is_next_duel){
                     $('.display_battle').html(data.contenders_html);
@@ -126,26 +123,6 @@ $(document).ready(function ($) {
 
                     location.reload()
                 }
-                //MODIFICATION : On passe la fonction au vote pour éviter un deuxieme appel ajax
-                /*$.ajax({
-                    method: "POST",
-                    url: vkrz_ajaxurl,
-                    data: {
-                        action: 'vkzr_check_level',
-                        current_id_vainkeur: id_vainkeur
-                    }
-                })
-                    .done(function (response) {
-
-                        let data = JSON.parse(response);
-                        console.log(response);
-                        $('.dropdown-user-link .user-niveau').html(data.user_level_icon);
-
-
-                    }).always(function () {
-                    ajaxRunning = false;
-                });*/
-
             }).always(function () {
                 ajaxRunning = false;
             });

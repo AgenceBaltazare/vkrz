@@ -61,7 +61,6 @@ function new_vainkeur($user_id){
                 'ignore_sticky_posts'    => true,
                 'update_post_meta_cache' => false,
                 'no_found_rows'          => false,
-                'author__not_in'         => array($user_id),
                 'meta_query'             => array(array(
                     'key' => 'uuid_user_vkrz',
                     'value' => $_COOKIE["vainkeurz_user_id"],
@@ -98,9 +97,8 @@ function new_vainkeur($user_id){
                 user_uuid : "<?= $uuiduser ?>",
                 utm : "<?= $utm ?>",
                 'event_score': 100
-
             })
-        })
+        });
     </script>
     <?php
     echo ob_get_clean();

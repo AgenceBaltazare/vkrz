@@ -70,8 +70,7 @@ function vkrz_tracking_vars()
         elseif($current_post_type == "classement"){
             $id_top = get_field('id_tournoi_r');
         }
-        
-        $user_infos = deal_vainkeur_entry();
+
         vkrz_output_tracking_vars_in_head('vkrz_tracking_vars_top', [
             'top_title_layer' => $top_infos['top_title'] . " " . $top_infos['top_number'] . " - " . $top_infos['top_question'],
             'top_categorie_layer' => @$top_infos['top_cat_name'],
