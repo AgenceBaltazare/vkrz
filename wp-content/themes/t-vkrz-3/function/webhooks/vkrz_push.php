@@ -1,6 +1,6 @@
 <?php
 
-function vkrz_push_levelup($user_id, $level){
+function vkrz_push_level_up($user_id, $level){
 
     if($user_id){
 
@@ -58,6 +58,18 @@ function vkrz_push_note($note_id){
         )
     );
 
+    wp_remote_post($url, $args);
+
+}
+
+
+function vkrz_push_event($event){
+
+    $url    = "https://hook.integromat.com/t4m1rces3mtdluer1f9g91lemug5497y";
+    $args   = array(
+        'body' => $event
+    );
+    
     wp_remote_post($url, $args);
 
 }

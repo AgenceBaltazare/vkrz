@@ -275,7 +275,7 @@ $list_sujets      = array();
                                     <?php else: ?>
                                         <div class="spoun">
                                             <span class="ico">⚡</span>
-                                            <h5>Créer mon Top</h5>
+                                            <h5>Faire mon Top</h5>
                                         </div>
                                     <?php endif; ?>
                                 </div>
