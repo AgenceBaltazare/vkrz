@@ -378,6 +378,25 @@ $url_ranking  = get_the_permalink($id_ranking);
 
                     <?php endif; ?>
 
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <span class="ico">💬</span> <?php echo $top_datas['nb_comments']; ?>
+                                <?php if($top_datas['nb_comments'] <= 1): ?>
+                                    Commentaire
+                                <?php else: ?>
+                                    Commentaires
+                                <?php endif; ?>
+                            </h4>
+                            <h6 class="card-subtitle text-muted mb-1">
+                                Tout ce qui te passe par la tête à propos de ce Top mérite d'être partagé avec les autres Vainkeurs.
+                            </h6>
+                            <a href="<?php echo get_the_permalink(get_page_by_path('discuz')).'?id_top='.$id_top; ?>" class="btn btn-outline-primary waves-effect">
+                                Lire & poster
+                            </a>
+                        </div>
+                    </div>
+
                     <div class="card text-left">
                         <?php
                         $creator_id         = get_post_field('post_author', $id_top);
