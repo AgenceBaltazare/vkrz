@@ -45,7 +45,7 @@ function vkrz_tracking_vars()
         }
         $pageVars = [
             "page_title" => get_the_title(),
-            "page_category" => join(", ", $terms)
+            "page_category" => ""
         ];
     }else{
         $pageVars = [
@@ -73,7 +73,7 @@ function vkrz_tracking_vars()
 
         vkrz_output_tracking_vars_in_head('vkrz_tracking_vars_top', [
             'top_title_layer' => $top_infos['top_title'] . " " . $top_infos['top_number'] . " - " . $top_infos['top_question'],
-            'top_categorie_layer' => @$top_infos['top_cat_name'],
+            'top_categorie_layer' => "",
             'top_id_top_layer' => $id_top,
             'top_user_level_layer' => $user_infos['level_number'],
             'top_type_layer' => $top_infos['top_type'],
