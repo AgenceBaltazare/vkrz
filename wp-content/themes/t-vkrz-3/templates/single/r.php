@@ -388,11 +388,11 @@ $url_ranking  = get_the_permalink($id_ranking);
                             <h4 class="card-title">
                                 <?php
                                 date_default_timezone_set('Europe/Paris');
-                                $top_date   = strtotime($top_infos['top_date']); 
-                                $now_date   = strtotime("now"); 
-                                $nb_days    = round(($now_date - $top_date)/60/60/24,0);
+                                $origin     = new DateTime(get_the_date('Y-m-d', $id_top));
+                                $target     = new DateTime(date('Y-m-d'));
+                                $interval   = $origin->diff($target);
                                 ?>
-                                <span class="ico">🎂</span> Créé depuis <span class="t-violet"><?php echo $nb_days; ?> jours</span> par :
+                                <span class="ico">🎂</span> Créé depuis <span class="t-violet"><?php echo $interval->days; ?> jours</span> par :
                             </h4>
                             <div class="employee-task d-flex justify-content-between align-items-center">
                                 <a href="<?php echo $creator_data['profil']; ?>" class="d-flex flex-row link-to-creator">

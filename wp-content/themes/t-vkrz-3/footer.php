@@ -35,11 +35,6 @@
 </script>
 
 <?php wp_footer(); ?>
-<script>
-window.replybox = {
-	site: '0GkB0L0B1q', 
-};
-</script>
-<script src="https://cdn.getreplybox.com/js/embed.js"></script>
+
 </body>
 </html>
