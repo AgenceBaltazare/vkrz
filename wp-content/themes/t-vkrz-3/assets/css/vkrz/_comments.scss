@@ -1,0 +1,43 @@
+#commentform{
+    textarea, input{
+        background-color: transparent !important;
+        &:focus{
+            background-color: transparent !important;
+            border-color: $c5;
+        }
+    }
+}
+
+.comment-min{
+    margin-top: 15px;
+    .card{
+        margin: 0;
+    }
+}
+
+.title-bloc{
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: flex-end;
+    font-size: 1.2rem;
+    a{
+        font-size: 0.85rem;
+        color: #fff !important;
+        margin-left: 10px;
+        display: inline-block;
+        &:hover{
+            color: $c5 !important;
+        }
+    }
+}
+
+.ml-05{
+    margin-left: 5px;
+}
+
+.sub-comment-min{
+    .card{
+        margin-left: 5%;
+    }
+}

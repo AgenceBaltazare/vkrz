@@ -281,11 +281,11 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                     <h4 class="card-title">
                                         <?php
                                         date_default_timezone_set('Europe/Paris');
-                                        $top_date   = strtotime($top_infos['top_date']); 
-                                        $now_date   = strtotime("now"); 
-                                        $nb_days    = round(($now_date - $top_date)/60/60/24,0);
+                                        $origin     = new DateTime(get_the_date('Y-m-d', $id_top));
+                                        $target     = new DateTime(date('Y-m-d'));
+                                        $interval   = $origin->diff($target);
                                         ?>
-                                        <span class="ico">🎂</span> Créé depuis <span class="t-violet"><?php echo $nb_days; ?> jours</span> par :
+                                        <span class="ico">🎂</span> Créé depuis <span class="t-violet"><?php echo $interval->days; ?> jours</span> par :
                                     </h4>
                                     <div class="employee-task d-flex justify-content-between align-items-center">
                                         <a href="<?php echo $creator_data['profil']; ?>" class="d-flex flex-row link-to-creator">
@@ -312,6 +312,25 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                             </div>
                                         </a>
                                     </div>
+                                </div>
+                            </div>
+
+                            <div class="card text-left">
+                                <div class="card-body">
+                                    <h4 class="card-title">
+                                        <span class="ico">💬</span> <?php echo $top_datas['nb_comments']; ?>
+                                        <?php if($top_datas['nb_comments'] <= 1): ?>
+                                            Commentaire
+                                        <?php else: ?>
+                                            Commentaires
+                                        <?php endif; ?>
+                                    </h4>
+                                    <h6 class="card-subtitle text-muted mb-1">
+                                        Tout ce qui te passe par la tête à propos de ce Top mérite d'être partagé avec les autres Vainkeurs.
+                                    </h6>
+                                    <a href="<?php echo get_the_permalink(get_page_by_path('discuz')).'?id_top='.$id_top; ?>" class="btn btn-outline-primary waves-effect">
+                                        Lire & poster
+                                    </a>
                                 </div>
                             </div>
 

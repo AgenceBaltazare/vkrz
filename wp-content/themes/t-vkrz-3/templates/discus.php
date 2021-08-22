@@ -13,40 +13,26 @@ get_header();
 <div class="app-content content">
     <div class="content-overlay"></div>
     <div class="content-wrapper">
-        <div class="content-body mt-2">
 
-            <div class="intro-mobile">
-                <div class="tournament-heading text-center">
-                    <h3 class="mb-0 t-titre-tournoi">
-                        Top <?php echo $top_infos['top_number']; ?> <span class="ico text-center">🏆</span> <?php echo $top_infos['top_title']; ?>
-                    </h3>
-                    <h4 class="mb-0">
-                        <?php echo $top_infos['top_question']; ?>
-                    </h4>
-                </div>
-            </div>
+        <div class="content-header mt-1">
+            <a href="#" onclick="window.history.back();" class="btn btn-outline-primary waves-effect mb-1 mr-1">
+                <span class="ico">⬅️</span> Retour en arrière
+            </a>
+            <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_top; ?>" class="btn btn-outline-primary waves-effect mb-1 mr-1">
+                Voir le Top mondial <span class="ico">🌎</span>
+            </a>
+        </div>
+
+        <div class="content-body mt-2">
 
             <div class="classement">
 
-                <div class="container">
+                <div class="row">
 
-                    <div class="row">
+                    <div class="col-md-12">
 
-                        <div class="col-md-12">
-
-                            <div class="card">
-
-                                <div class="card-body">
-
-                                    <?php comment_form(array(), $id_top); ?>
-
-                                    <div id="replybox"></div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
+                        <?php global $top_comments_id; $top_comments_id = $id_top;   ?>
+                        <?php echo get_template_part('comments'); ?>
 
                     </div>
 

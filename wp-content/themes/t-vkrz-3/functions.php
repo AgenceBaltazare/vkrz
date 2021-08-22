@@ -36,3 +36,12 @@ include($templatepath . '/function/webhook.php');
 @ini_set('upload_max_size' , '64M');
 @ini_set('post_max_size', '64M');
 @ini_set('max_execution_time', '300');
+
+function wpse_58613_comment_redirect( $location ) {
+    if ( isset( $_POST['my_redirect_to'] ) ) // Don't use "redirect_to", internal WP var
+        $location = $_POST['my_redirect_to'];
+
+    return $location;
+}
+
+add_filter( 'comment_post_redirect', 'wpse_58613_comment_redirect' );
