@@ -100,7 +100,7 @@ function vkrz_output_tracking_vars_in_head($object_name, $vars, $echo = true)
 
     ob_start(); ?>
     <script>
-        let <?= $object_name ?> = JSON.parse('<?= json_encode($vars) ?>');
+        let <?= $object_name ?> = <?= json_encode($vars) ?>;
     </script>
     <?php
 
