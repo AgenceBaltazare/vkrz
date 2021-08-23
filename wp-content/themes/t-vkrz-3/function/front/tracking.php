@@ -35,15 +35,32 @@ function vkrz_tracking_vars()
             "page_category" => ""
         ];
     } elseif (is_single()) {
-        $taxs = get_object_taxonomies($post);
+
+        if($current_post_type == "tournoi"){
+            $post_id = get_the_ID();
+        } elseif($current_post_type == "classement"){
+            $post_id = get_field('id_tournoi_r');
+        }else{
+            $post_id = get_the_ID();
+        }
+
+
+        $taxs = get_object_taxonomies(get_post($post_id));
         $terms = [];
         foreach ($taxs as $tax) {
-            foreach (get_the_terms(get_the_ID(), $tax) as $term) {
+            foreach (get_the_terms($post_id, $tax) as $term) {
                 $terms[] = $term->name;
             }
         }
+
+        $pageTitle = get_the_title();
+        if(in_array($current_post_type, ["classement", "tournoi"])){
+            global $top_infos;
+            $pageTitle = $top_infos['top_title'] . " " . $top_infos['top_number'] . " - " . $top_infos['top_question'];
+        }
+
         $pageVars = [
-            "page_title" => get_the_title(),
+            "page_title" => $pageTitle,
             "page_category" => join(", ", $terms)
         ];
     }else{
