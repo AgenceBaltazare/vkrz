@@ -44,7 +44,7 @@ function vkrz_tracking_vars()
         }
         $pageVars = [
             "page_title" => get_the_title(),
-            "page_category" => ""
+            "page_category" => join(", ", $terms)
         ];
     }else{
         $pageVars = [
