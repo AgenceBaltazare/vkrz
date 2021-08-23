@@ -9,7 +9,6 @@ function vkrz_tracking_vars()
     global $utm;
 
     $user_id = get_current_user_id();
-    $utm = deal_utm();
 
     vkrz_output_tracking_vars_in_head("vkrz_tracking_vars_user", [
         'uuiduser_layer' => $uuiduser,
@@ -72,8 +71,8 @@ function vkrz_tracking_vars()
         }
 
         vkrz_output_tracking_vars_in_head('vkrz_tracking_vars_top', [
-            'top_title_layer' => "",
-            'top_categorie_layer' => "",
+            'top_title_layer' => $top_infos['top_title'] . " " . $top_infos['top_number'] . " - " . $top_infos['top_question'],
+            'top_categorie_layer' => !empty($top_infos['top_cat']) ? $top_infos['top_cat'][0]->name : "",
             'top_id_top_layer' => $id_top,
             'top_user_level_layer' => $user_infos['level_number'],
             'top_type_layer' => $top_infos['top_type'],
