@@ -83,9 +83,7 @@ function new_vainkeur($user_id){
     ob_start();
     global $uuiduser;
     global $utm;
-
     $utm = deal_utm();
-    $uuiduser = deal_uuiduser();
 
     ?>
     <script>
