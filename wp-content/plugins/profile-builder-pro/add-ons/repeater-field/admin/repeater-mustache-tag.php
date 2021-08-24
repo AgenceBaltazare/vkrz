@@ -122,7 +122,7 @@ function wppb_rpf_move_children_inside_loop_tag( $merge_tags, $rpf_key, $rpf_gro
 
     foreach ( $rpf_group_meta_names as $meta_name ){
         foreach ( $merge_tags as $key => $value ){
-            if ( preg_replace("/$tag_prefix/", '', $merge_tags[$key]['name'], 1 ) == $meta_name ) {
+            if ( preg_replace("/$tag_prefix/", '', $merge_tags[$key]['name'], 1 ) == $meta_name && $key !== $rpf_key) {
                 $merge_tags[$key]['rpf_meta_name'] = $rpf_meta_name;
                 $merge_tags[$rpf_key]['children'][] = $merge_tags[$key];
                 unset ( $merge_tags[$key] );

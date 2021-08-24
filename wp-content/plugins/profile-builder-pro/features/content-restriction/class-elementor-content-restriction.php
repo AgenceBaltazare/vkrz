@@ -90,14 +90,33 @@ class WPPB_Elementor {
 				'label'       => __( 'Restrict to logged in users', 'profile-builder' ),
 				'type'        => Controls_Manager::SWITCHER,
 				'description' => __( 'Allow only logged in users to see this content.', 'profile-builder' ),
+                'default'   => '',
+                'condition'   => array(
+                    'wppb_restriction_loggedout_users!' => 'yes'
+                )
 			)
 		);
+
+        $element->add_control(
+            'wppb_restriction_loggedout_users', array(
+                'label'       => __( 'Restrict to logged out users', 'profile-builder' ),
+                'type'        => Controls_Manager::SWITCHER,
+                'description' => __( 'Allow only logged out users to see this content.', 'profile-builder' ),
+                'default'   => '',
+                'condition'   => array(
+                    'wppb_restriction_loggedin_users!' => 'yes'
+                )
+            )
+        );
 
 		$element->add_control(
 			'wppb_restriction_user_roles_heading', array(
 				'label'     => __( 'Restrict by User Roles', 'profile-builder' ),
 				'type'      => Controls_Manager::HEADING,
 				'separator' => 'before',
+                'condition'   => array(
+                    'wppb_restriction_loggedout_users!' => 'yes'
+                )
 			)
 		);
 
@@ -108,6 +127,9 @@ class WPPB_Elementor {
                 'multiple'    => 'true',
 				'label_block' => 'true',
 				'description' => __( 'Allow users which have the specified role to see this content.', 'profile-builder' ),
+                'condition'   => array(
+                    'wppb_restriction_loggedout_users!' => 'yes'
+                )
             )
         );
 
@@ -193,6 +215,10 @@ class WPPB_Elementor {
     // Verifies if element is hidden
 	public function is_hidden( $element ) {
 		$settings = $element->get_settings();
+
+		if( is_user_logged_in() && $settings['wppb_restriction_loggedout_users'] === 'yes' ) {
+            return true;
+        }
 
 		if( !empty( $settings['wppb_restriction_user_roles'] ) && is_user_logged_in() ) {
 

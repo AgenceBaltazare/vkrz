@@ -76,16 +76,15 @@ function wppb_create_recover_password_form( $user, $post_data ){
 			<li class="wppb-form-field passw1">
 				<label for="passw1">'. esc_html( $password_label ) .'</label>
 				<input class="password" name="passw1" type="password" id="passw1" value="" autocomplete="off" title="'. esc_attr( wppb_password_length_text() ).'" '. apply_filters( 'wppb_recover_password_extra_attr', '', esc_html( $password_label ), 'password' ) .' />
-				<span class="wppb-description-delimiter">'. wppb_password_length_text() .' '. wppb_password_strength_description() .'</span>
+				<span class="wppb-description-delimiter">'. wppb_password_length_text() .' '. wppb_password_strength_description() .'</span>'.
+            /* if we have active the password strength checker */
+            wppb_password_strength_checker_html().'
 			</li><!-- .passw1 -->
 			<input type="hidden" name="userData" value="'. esc_attr( $user->ID ).'"/>
 			<li class="wppb-form-field passw2">
 				<label for="passw2">'. esc_html( $repeat_password_label ) .'</label>
 				<input class="password" name="passw2" type="password" id="passw2" value="" autocomplete="off" '. apply_filters( 'wppb_recover_password_extra_attr', '', esc_html( $repeat_password_label ), 'repeat_password' ) .' />
 			</li><!-- .passw2 -->';
-
-        /* if we have active the password strength checker */
-        $recover_inputPassword .= wppb_password_strength_checker_html();
 
 		echo apply_filters( 'wppb_recover_password_form_input', $recover_inputPassword, $passw_one, $passw_two, $user->ID ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 ?>
@@ -334,13 +333,15 @@ function wppb_front_end_password_recovery(){
                 }
             }elseif ( !email_exists( $username_email ) ){
                 // check reCAPTCHA
-                $output = wppb_password_recovery_warning( '', 'wppb_recover_password_displayed_message1' );
+                $warning = wppb_password_recovery_warning( '', 'wppb_recover_password_displayed_message1' );
 
                 // if there is no reCAPTCHA error show the invalid email address error
-                if( $output === '' ) {
+                if( $warning === '' ) {
                     $warning = __('The email address entered wasn\'t found in the database!', 'profile-builder').'<br/>'.__('Please check that you entered the correct email address.', 'profile-builder');
                     $warning = apply_filters('wppb_recover_password_sent_message2', $warning);
                     $output .= '<p class="wppb-warning">'.$warning.'</p>';
+                } else {
+                    $output .= $warning;
                 }
             }
         }

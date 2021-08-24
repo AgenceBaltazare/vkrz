@@ -51,6 +51,7 @@ class PB_Elementor {
 		require_once(__DIR__ . '/widgets/class-pb-widget-l.php');
 		require_once(__DIR__ . '/widgets/class-pb-widget-rp.php');
 		require_once(__DIR__ . '/widgets/class-pb-widget-rf.php');
+		require_once(__DIR__ . '/widgets/class-pb-widget-ul.php');
 	}
 
 	/**
@@ -63,6 +64,7 @@ class PB_Elementor {
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new PB_Elementor_Login_Widget() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new PB_Elementor_Recover_Password_Widget() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new PB_Elementor_Register_Widget() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new PB_Elementor_User_Listing_Widget() );
 	}
 
     public function add_category( $elements_manager ) {

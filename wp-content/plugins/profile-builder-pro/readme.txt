@@ -7,7 +7,7 @@ custom registration, custom registration form, custom registration page, extra u
 front-end register, front-end registration, frontend edit profile, edit profileregistration, customize profile, user fields, builder, profile builder, custom fields, avatar
 Requires at least: 3.1
 Tested up to: 5.8
-Stable tag: 3.5.2
+Stable tag: 3.5.3
 
 
 Login, registration and edit profile shortcodes for the front-end. Also you can choose what fields should be displayed or add custom ones.
@@ -101,6 +101,13 @@ This plugin only adds/removes fields in the front-end. The default information-f
 
 
 == Changelog ==
+= 3.5.3 =
+* Feature: Added option to display Elementor sections and widgets to logged out users
+* Feature: Added Elementor widget for Userlisting
+* Fix: An issue when repeater sub fields had similar meta name with the parent field
+* Fix: Position of password strength on the reset password form
+* Fix: An issue with the password reset shortcode generating invalid HTML in a case
+
 = 3.5.2 =
 * Fix: Issue with Multi-Step forms not rendering correctly
 * Fix: Issue with Map field not rendering correctly
