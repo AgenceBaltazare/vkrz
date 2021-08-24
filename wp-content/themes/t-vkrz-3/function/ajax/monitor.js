@@ -23,6 +23,9 @@ $(document).ready(function ($) {
                 count_votes = newCountVotes;
             }
         });
+        if(newCountVotes == 1000000){
+            location.reload();
+        }
     }
 
     function updateTopsCount(newCountTops) {
