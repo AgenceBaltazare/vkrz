@@ -3,7 +3,9 @@ add_action( 'wp_ajax_vkzr_process_vote', 'vkzr_process_vote' );
 add_action( 'wp_ajax_nopriv_vkzr_process_vote', 'vkzr_process_vote' );
 function vkzr_process_vote() {
 	do_elo_ranking($_POST['id_winner'], $_POST['id_looser']);
-    increase_vote_counter($_POST['current_id_vainkeur']);
+	if (!in_array($_POST['id_top'], get_top_welcome())) {
+        increase_vote_counter($_POST['current_id_vainkeur']);
+    }
 	$top_infos = do_user_ranking($_POST['id_top'], $_POST['id_ranking'], $_POST['id_winner'], $_POST['id_looser'], $_POST['current_id_vainkeur']);
 
 	$user_levels_infos = [];

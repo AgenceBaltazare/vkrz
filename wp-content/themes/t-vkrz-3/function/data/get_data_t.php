@@ -129,3 +129,24 @@ function get_top_data($id_top){
         'nb_comments'   => $nb_comments
     );
 }
+
+function get_top_welcome() {
+    $tops = new WP_Query(array(
+        'post_type'              => 'tournoi',
+        'posts_per_page'         => -1,
+        'fields'                 => 'ids',
+        'ignore_sticky_posts'    => true,
+        'update_post_meta_cache' => false,
+        'no_found_rows'          => true,
+        'tax_query' => array(
+            array(
+                'taxonomy' => 'categorie',
+                'field'    => 'slug',
+                'terms'    => array( 'welcome' ),
+                'operator' => 'IN',
+            )
+        ),
+    ));
+
+    return $tops->posts;
+}
