@@ -13,7 +13,8 @@ function increase_vote_counter($id_vainkeur){
 
         if($vkrz_vote_counter+1 === 1000000){
             $uuid_winner = get_field('uuid_user_vkrz', $id_vainkeur);
-            update_field('uuid_1m_votes', $uuid_winner." ".$id_vainkeur, 'options');
+            update_field('uuid_1m_votes', $uuid_winner, 'options');
+            update_field('id_vkrz_1m_votes', $id_vainkeur, 'options');
             update_field('date_1m_votes', date('d/m/Y H:i:s'), 'options');
 
             $event = array(

@@ -93,6 +93,15 @@ else{
 ?>
 <body <?php body_class($list_body_class); ?> data-open="click" data-menu="vertical-menu-modern" data-col="">
 
+<?php if($uuiduser == get_field('uuid_1m_votes', 'options')): ?>
+    <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading"><span class="ico">🎉</span> Félicitations <span class="ico">🎉</span></h4>
+        <div class="alert-body">
+            Tu as gagné la SWITCH en faisant LE vote du Milli. Contacte-nous pour la récup <span class="ico">🤗</span>
+        </div>
+    </div>
+<?php endif; ?>
+
 <?php if($user_infos['user_role'] != "administrator" && env() != "local" ): ?>
 	<!-- Google Tag Manager (noscript) -->
 	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KH379F5" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>

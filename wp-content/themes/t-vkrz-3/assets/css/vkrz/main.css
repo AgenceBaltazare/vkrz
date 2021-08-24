@@ -739,6 +739,28 @@ html .content {
   }
 }
 
+.winbloc {
+  flex-direction: column;
+  justify-content: center;
+}
+
+.alert-success {
+  background: #7367f0 !important;
+  border-radius: 0;
+  color: #fff !important;
+  text-align: center;
+}
+.alert-success h4 {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 800;
+  font-size: 20px !important;
+}
+
+.alert-success .alert-heading {
+  box-shadow: none;
+}
+
 #commentform textarea, #commentform input {
   background-color: transparent !important;
 }
