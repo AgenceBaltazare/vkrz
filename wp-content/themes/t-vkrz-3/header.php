@@ -59,7 +59,7 @@ if(!is_single() || get_post_type() != "tournoi"){
 
     <?php get_template_part('partials/meta'); ?>
 
-    <?php if($user_infos['user_role'] != "administrator"): ?>
+    <?php if($user_infos['user_role'] != "administrator" && env() != "local" ): ?>
         <!-- Google Tag Manager -->
         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
