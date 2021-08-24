@@ -2,10 +2,9 @@
 /*
     Template Name: Discussions
 */
-if(isset($_GET['id_top'])){
+if (isset($_GET['id_top'])) {
     $id_top  = $_GET['id_top'];
-}
-else{
+} else {
     header('Location: ' . get_bloginfo('url'));
 }
 get_header();
@@ -31,7 +30,10 @@ get_header();
 
                     <div class="col-md-12">
 
-                        <?php global $top_comments_id; $top_comments_id = $id_top;   ?>
+                        <?php
+                        global $top_comments_id;
+                        $top_comments_id = $id_top;
+                        ?>
                         <?php echo get_template_part('comments'); ?>
 
                     </div>
@@ -42,6 +44,5 @@ get_header();
         </div>
     </div>
 </div>
-<!-- END: Content-->
 
 <?php get_footer(); ?>
