@@ -67,10 +67,8 @@ if(!is_single() || get_post_type() != "tournoi"){
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer','GTM-KH379F5');
         </script>
-
         <!-- End Google Tag Manager -->
     <?php endif; ?>
-
     <script>
         window.dataLayer = window.dataLayer || [];
     </script>
@@ -95,7 +93,7 @@ else{
 ?>
 <body <?php body_class($list_body_class); ?> data-open="click" data-menu="vertical-menu-modern" data-col="">
 
-<?php if($user_infos['user_role'] != "administrator"): ?>
+<?php if($user_infos['user_role'] != "administrator" && env() != "local" ): ?>
 	<!-- Google Tag Manager (noscript) -->
 	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KH379F5" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	<!-- End Google Tag Manager (noscript) -->

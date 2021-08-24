@@ -1,47 +1,59 @@
-.cover{
+.cover {
   background-size: cover !important;
 }
-.contain{
+
+.contain {
   background-size: contain !important;
 }
-.dark-layout{
+
+.dark-layout {
   background: linear-gradient(35deg, $c1 40%, #230b36 100%) fixed;
-  body{
+
+  body {
     background: transparent;
     font-family: 'Libre Franklin', sans-serif !important;
   }
+
   .main-menu {
     background: linear-gradient(150deg, $c1, #471867, $c1, #230b36, $c1);
     background-size: 400% 400%;
     animation: gradient 15s ease infinite;
   }
+
   @keyframes gradient {
     0% {
       background-position: 0% 50%;
     }
+
     50% {
       background-position: 100% 50%;
     }
+
     100% {
       background-position: 0% 50%;
     }
   }
+
   .main-menu-content .navigation-main {
     background-color: $c2;
   }
+
   .navbar-dark {
     background: $c4;
     transition: all 0.5s ease-in-out;
   }
 }
+
 .dark-layout .main-menu-content .navigation-main {
   background-color: transparent;
 }
+
 html .content.app-content {
   padding: calc(2rem + 3.45rem + 1.3rem) 2rem 10rem;
   min-height: 100vh;
 }
-html .content.app-content .content-overlay{
+
+html .content.app-content .content-overlay {
   position: absolute;
   opacity: 0.92;
   width: 100%;
@@ -53,30 +65,37 @@ html .content.app-content .content-overlay{
   background-color: $c2;
   z-index: 0;
 }
-.opfull{
+
+.opfull {
   background: #13122f !important;
 }
-.ico{
+
+.ico {
   width: 20px;
   display: inline-block;
-  img{
+
+  img {
     max-width: 22px;
   }
 }
-.ico3{
+
+.ico3 {
   width: 20px;
   display: inline-block;
 }
-.ico4{
+
+.ico4 {
   font-size: 30px;
 }
-.main-menu-content{
-  .ico{
+
+.main-menu-content {
+  .ico {
     width: 30px;
   }
 }
-.breadcrumbs-top{
-  a{
+
+.breadcrumbs-top {
+  a {
     color: #fff;
     -webkit-transition: all .2s ease-in-out;
     -moz-transition: all .2s ease-in-out;
@@ -86,40 +105,45 @@ html .content.app-content .content-overlay{
     display: inline-block;
     position: relative;
     left: 0;
-    .ico{
+
+    .ico {
       width: 20px;
       display: inline-block;
     }
-    &:hover{
+
+    &:hover {
       left: 3px;
       color: #fff;
     }
   }
 }
-.ico2{
+
+.ico2 {
   width: 45px;
   display: inline-block;
 }
 
-.card-text{
+.card-text {
   font-size: 15px;
 }
 
-.scaler{
+.scaler {
   -webkit-transition: all .2s ease-in-out;
   -moz-transition: all .2s ease-in-out;
   -ms-transition: all .2s ease-in-out;
   -o-transition: all .2s ease-in-out;
   transition: all .2s ease-in-out;
-  &:hover{
+
+  &:hover {
     transform: scale(1.05);
-    .voile{
+
+    .voile {
       transform: scale(1.05);
     }
   }
 }
 
-.swiper-container{
+.swiper-container {
   padding-top: 15px;
 }
 
@@ -127,8 +151,8 @@ html .content {
   min-height: 100%;
 }
 
-.heading-cat{
-  a{
+.heading-cat {
+  a {
     -webkit-transition: all .2s ease-in-out;
     -moz-transition: all .2s ease-in-out;
     -ms-transition: all .2s ease-in-out;
@@ -137,22 +161,24 @@ html .content {
     display: block;
     position: relative;
     left: 0;
-    &:hover{
+
+    &:hover {
       left: 10px;
     }
   }
 }
 
-.t-titre-tournoi{
+.t-titre-tournoi {
   font-size: 18px;
   color: #fff !important;
 }
-.t-question{
+
+.t-question {
   color: $rose !important;
   font-size: 22px;
 }
 
-.lele2{
+.lele2 {
   width: 0;
   animation-name: appear2;
   overflow: hidden;
@@ -161,18 +187,22 @@ html .content {
 
 
 @keyframes appear2 {
-  20%, 100% {
+
+  20%,
+  100% {
     width: 0;
   }
+
   0% {
     width: 0;
   }
+
   5% {
     width: auto;
   }
 }
 
-.lele1{
+.lele1 {
   width: auto;
   overflow: hidden;
   animation: appear 3s infinite ease-in-out;
@@ -180,31 +210,38 @@ html .content {
 
 
 @keyframes appear {
-  20%, 100% {
+
+  20%,
+  100% {
     width: auto;
   }
+
   0% {
     width: auto;
   }
+
   5% {
     width: 0;
   }
 }
 
-.ico-size-2{
+.ico-size-2 {
   font-size: 20px;
 }
-.icomax{
+
+.icomax {
   font-size: 60px;
 }
-.legende{
+
+.legende {
   color: rgba(106, 104, 109, 1);
 }
 
-.main-menu{
+.main-menu {
   position: relative;
 }
-.voile{
+
+.voile {
   position: absolute;
   top: 0;
   right: 0;
@@ -214,7 +251,7 @@ html .content {
   opacity: 0.45;
 }
 
-.divider{
+.divider {
   height: 1px;
   width: 80%;
   margin: 20px 0;
@@ -227,27 +264,27 @@ html .content {
   position: relative;
 }
 
-.avatar{
-  img{
+.avatar {
+  img {
     object-fit: cover;
   }
 }
 
-.ico-reverse{
+.ico-reverse {
   transform: scaleX(-1);
 }
 
-.disapear{
+.disapear {
   transition: all .1s ease-in-out;
   opacity: 0 !important;
 }
 
-.space{
+.space {
   display: inline-block;
   width: 10px;
 }
 
-.intro-mobile{
+.intro-mobile {
   display: none;
   position: relative;
   z-index: 1;
@@ -257,81 +294,88 @@ html .content {
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.05);
   border: 2px solid $rose;
-  h4{
+
+  h4 {
     font-size: 14px;
     margin: 10px 0 0 0;
   }
 }
-.hide-lg{
+
+.hide-lg {
   display: none;
 }
 
-.pricing-card{
+.pricing-card {
   .badge.badge-light-primary {
     background-color: rgba(244, 22, 127, 0.11) !important;
     color: $rose !important;
   }
+
   .card.dodocard {
     border: 2px solid #7367ef;
   }
+
   .card.popular {
     border: 2px solid $rose;
   }
 }
 
-.t-rose{
+.t-rose {
   color: $rose !important;
 }
 
-.classement .profile-suggestion .card-footer{
+.classement .profile-suggestion .card-footer {
   text-align: center !important;
 }
 
-#clt{
+#clt {
   padding-left: 1.5rem !important;
   padding-right: 1.5rem !important;
 }
 
-#vkrz-intro .col-md-5 .mt-1 a{
+#vkrz-intro .col-md-5 .mt-1 a {
   margin-top: 1rem;
 }
 
-.championname{
+.championname {
   display: inline-block;
   text-transform: uppercase;
   margin-left: 20px;
   font-size: 18px;
-  i{
+
+  i {
     color: rgba(255, 255, 255, 0.5);
     font-size: 15px;
   }
 }
 
-.votechamp{
+.votechamp {
   font-size: 12px;
   color: rgba(255, 255, 255, 0.75);
 }
 
-.t-max{
+.t-max {
   font-size: 18px !important;
 }
 
-.mt-05{
+.mt-05 {
   margin-top: 20px;
 }
 
-.related{
+.related {
   .card .card-title {
     font-size: 1.1rem;
   }
+
   h6 {
     font-size: 0.9rem;
   }
 }
 
-.tournament-heading{
+.tournament-heading {
   position: relative;
-  &:after{
+
+  &:after {
     border-top: 2px solid $rose;
     display: block;
     content: "";
@@ -342,34 +386,37 @@ html .content {
   }
 }
 
-.media{
-  .notification-text{
+.media {
+  .notification-text {
     line-height: 15px !important;
     display: inline-block;
     margin: 0 !important;
   }
 }
 
-.input_to_share{
+.input_to_share {
   position: absolute;
   left: -99999999px;
 }
-.input_to_share2{
+
+.input_to_share2 {
   position: absolute;
   left: -99999999px;
 }
+
 .avatar-group .avatar .avatar-content {
   background-color: #6f63e8 !important;
 }
-.cp{
+
+.cp {
   cursor: pointer !important;
 }
 
-.hide{
+.hide {
   display: none !important;
 }
 
-.ico-max{
+.ico-max {
   font-size: 150px;
   display: block;
   text-align: center;
@@ -377,36 +424,42 @@ html .content {
   width: 150px;
 }
 
-.link-to-creator{
+.link-to-creator {
   text-transform: uppercase;
-  span{
+
+  span {
     font-size: 14px !important;
   }
-  h3{
+
+  h3 {
     text-transform: uppercase;
     font-size: 16px;
     transition: 0.2s all ease-in-out;
-    span{
+
+    span {
       font-size: 14px;
     }
   }
-  &:hover{
+
+  &:hover {
     color: $c5 !important;
-    h3{
+
+    h3 {
       color: $c5;
     }
   }
 }
 
-.t-violet{
+.t-violet {
   color: $c5;
 }
 
-.championname{
-  a{
+.championname {
+  a {
     color: #fff;
     transition: 0.2s all ease-in-out;
-    &:hover{
+
+    &:hover {
       color: $c5;
     }
   }

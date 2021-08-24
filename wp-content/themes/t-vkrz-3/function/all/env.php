@@ -3,6 +3,9 @@
     function env(){
         $local_env = [
             'localhost',
+            'localhost:8888',
+            'bltzr.fr',
+            'bltzr.fr/vkrz',
             '127.0.0.1'
         ];
 

@@ -284,8 +284,17 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                         $origin     = new DateTime(get_the_date('Y-m-d', $id_top));
                                         $target     = new DateTime(date('Y-m-d'));
                                         $interval   = $origin->diff($target);
+                                        if($interval->days == 0){
+                                            $info_date = "aujourd'hui";
+                                        }
+                                        elseif($interval->days == 1){
+                                            $info_date = "hier";
+                                        }
+                                        else{
+                                            $info_date = "depuis ".$interval->days." jours";
+                                        }
                                         ?>
-                                        <span class="ico">🎂</span> Créé depuis <span class="t-violet"><?php echo $interval->days; ?> jours</span> par :
+                                        <span class="ico">🎂</span> Créé <span class="t-violet"><?php echo $info_date; ?></span> par :
                                     </h4>
                                     <div class="employee-task d-flex justify-content-between align-items-center">
                                         <a href="<?php echo $creator_data['profil']; ?>" class="d-flex flex-row link-to-creator">

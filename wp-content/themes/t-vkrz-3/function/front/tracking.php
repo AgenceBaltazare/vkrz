@@ -9,7 +9,6 @@ function vkrz_tracking_vars()
     global $utm;
 
     $user_id = get_current_user_id();
-    $utm = deal_utm();
 
     vkrz_output_tracking_vars_in_head("vkrz_tracking_vars_user", [
         'uuiduser_layer' => $uuiduser,
@@ -36,18 +35,51 @@ function vkrz_tracking_vars()
             "page_category" => ""
         ];
     } elseif (is_single()) {
-        $taxs = get_object_taxonomies($post);
+
+        if($current_post_type == "tournoi"){
+            $post_id = get_the_ID();
+        } elseif($current_post_type == "classement"){
+            $post_id = get_field('id_tournoi_r');
+        }else{
+            $post_id = get_the_ID();
+        }
+
+
+        $taxs = get_object_taxonomies(get_post($post_id));
         $terms = [];
         foreach ($taxs as $tax) {
-            foreach (get_the_terms(get_the_ID(), $tax) as $term) {
+            foreach (get_the_terms($post_id, $tax) as $term) {
                 $terms[] = $term->name;
             }
         }
+
+        $pageTitle = get_the_title();
+        if(in_array($current_post_type, ["classement", "tournoi"])){
+            global $top_infos;
+            if($current_post_type == "tournoi"){
+                $id_top     = get_the_ID();
+                $pageTitle  = "Top : ".$top_infos['top_number'] . " " . $top_infos['top_title'] . " - " . $top_infos['top_question'];
+            }
+            elseif($current_post_type == "classement"){
+                $id_top = get_field('id_tournoi_r');
+                $pageTitle  = "Result : ".$top_infos['top_number'] . " " . $top_infos['top_title'] . " - " . $top_infos['top_question'];
+            }
+        }
+
         $pageVars = [
-            "page_title" => get_the_title(),
-            "page_category" => ""
+            "page_title" => $pageTitle,
+            "page_category" => join(", ", $terms)
         ];
-    }else{
+        
+    }elseif(isset($_GET['id_top']) && $_GET['id_top'] != ""){
+        $top_info_for_dl = get_top_infos($_GET['id_top']);
+        $page_title = $post->post_title." : Top ".$top_info_for_dl['top_title'] . " " . $top_info_for_dl['top_number'] . " - " . $top_info_for_dl['top_question'];
+        $pageVars = [
+            "page_title" => $page_title,
+            "page_category" => $top_info_for_dl['top_cat_name']
+        ];
+    }
+    else{
         $pageVars = [
             "page_title" => $post->post_title,
             "page_category" => ""
@@ -65,15 +97,17 @@ function vkrz_tracking_vars()
         global $user_infos;
 
         if($current_post_type == "tournoi"){
-            $id_top = get_the_ID();
+            $id_top     = get_the_ID();
+            $top_title  = "Top : ".$top_infos['top_number'] . " " . $top_infos['top_title'] . " - " . $top_infos['top_question'];
         }
         elseif($current_post_type == "classement"){
             $id_top = get_field('id_tournoi_r');
+            $top_title  = "Result : ".$top_infos['top_number'] . " " . $top_infos['top_title'] . " - " . $top_infos['top_question'];
         }
 
         vkrz_output_tracking_vars_in_head('vkrz_tracking_vars_top', [
-            'top_title_layer' => "",
-            'top_categorie_layer' => "",
+            'top_title_layer' => $top_title,
+            'top_categorie_layer' => !empty($top_infos['top_cat']) ? $top_infos['top_cat'][0]->name : "",
             'top_id_top_layer' => $id_top,
             'top_user_level_layer' => $user_infos['level_number'],
             'top_type_layer' => $top_infos['top_type'],
@@ -101,7 +135,7 @@ function vkrz_output_tracking_vars_in_head($object_name, $vars, $echo = true)
 
     ob_start(); ?>
     <script>
-        let <?= $object_name ?> = JSON.parse('<?= json_encode($vars) ?>');
+        let <?= $object_name ?> = <?= json_encode($vars) ?>;
     </script>
     <?php
 

@@ -22,6 +22,7 @@ else {
 }
 $user_ranking = get_user_ranking($id_ranking);
 $url_ranking  = get_the_permalink($id_ranking);
+$top_datas    = get_top_data($id_top);
 ?>
 <div class="vertical-modal-ex">
     <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -149,9 +150,6 @@ $url_ranking  = get_the_permalink($id_ranking);
 
                     $list_souscat  = array();
                     $top_souscat   = get_the_terms($id_top, 'concept');
-                    /**
-                     * MODIF : GET THE TERM retourne false, donc check la variable avant de continuer
-                     */
                     if(!empty($top_souscat)){
                         foreach($top_souscat as $souscat){
                             array_push($list_souscat, $souscat->slug);
@@ -213,6 +211,78 @@ $url_ranking  = get_the_permalink($id_ranking);
 
             <div class="col-md-3 offset-md-1">
 
+                <div class="card text-left">
+                    <?php
+                    $creator_id         = get_post_field('post_author', $id_top);
+                    $creator_uuiduser   = get_field('uuiduser_user', 'user_'.$creator_id);
+                    $creator_data       = get_user_infos($creator_uuiduser);
+                    ?>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <?php
+                            date_default_timezone_set('Europe/Paris');
+                            $origin     = new DateTime(get_the_date('Y-m-d', $id_top));
+                            $target     = new DateTime(date('Y-m-d'));
+                            $interval   = $origin->diff($target);
+                            if($interval->days == 0){
+                                $info_date = "aujourd'hui";
+                            }
+                            elseif($interval->days == 1){
+                                $info_date = "hier";
+                            }
+                            else{
+                                $info_date = "depuis ".$interval->days." jours";
+                            }
+                            ?>
+                            <span class="ico">🎂</span> Créé <span class="t-violet"><?php echo $info_date; ?></span> par :
+                        </h4>
+                        <div class="employee-task d-flex justify-content-between align-items-center">
+                            <a href="<?php echo $creator_data['profil']; ?>" class="d-flex flex-row link-to-creator">
+                                <div class="avatar me-75 mr-1">
+                                    <img src="<?php echo $creator_data['avatar']; ?>" class="circle" width="42" height="42" alt="Avatar">
+                                </div>
+                                <div class="my-auto">
+                                    <h3 class="mb-0">
+                                        <?php echo $creator_data['pseudo']; ?> <br>
+                                        <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Niveau actuel">
+                                            <?php echo $creator_data['level']; ?>
+                                        </span>
+                                        <?php if($creator_data['user_role']  == "administrator"): ?>
+                                            <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
+                                                🦙
+                                            </span>
+                                        <?php endif; ?>
+                                        <?php if($creator_data['user_role']  == "administrator" || $creator_data['user_role'] == "author"): ?>
+                                            <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
+                                                🎨
+                                            </span>
+                                        <?php endif; ?>
+                                    </h3>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <span class="ico">💬</span> <?php echo $top_datas['nb_comments']; ?>
+                            <?php if($top_datas['nb_comments'] <= 1): ?>
+                                Commentaire
+                            <?php else: ?>
+                                Commentaires
+                            <?php endif; ?>
+                        </h4>
+                        <h6 class="card-subtitle text-muted mb-1">
+                            Tout ce qui te passe par la tête à propos de ce Top mérite d'être partagé avec les autres Vainkeurs.
+                        </h6>
+                        <a href="<?php echo get_the_permalink(get_page_by_path('discuz')).'?id_top='.$id_top; ?>" class="btn btn-outline-primary waves-effect">
+                            Lire & poster
+                        </a>
+                    </div>
+                </div>
+
                 <?php if(get_field('uuid_user_r', $id_ranking) == $uuiduser): ?>
                     <div class="related animate__backInDown animate__animated animate__delay-3s">
                         <div class="dorating">
@@ -258,8 +328,6 @@ $url_ranking  = get_the_permalink($id_ranking);
                 <?php endif; ?>
 
                 <div class="related animate__fadeInUp animate__animated animate__delay-4s">
-
-                    <?php $top_datas = get_top_data($id_top); ?>
 
                     <div class="card">
                         <div class="card-body">
@@ -377,69 +445,6 @@ $url_ranking  = get_the_permalink($id_ranking);
                         </div>
 
                     <?php endif; ?>
-
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <span class="ico">💬</span> <?php echo $top_datas['nb_comments']; ?>
-                                <?php if($top_datas['nb_comments'] <= 1): ?>
-                                    Commentaire
-                                <?php else: ?>
-                                    Commentaires
-                                <?php endif; ?>
-                            </h4>
-                            <h6 class="card-subtitle text-muted mb-1">
-                                Tout ce qui te passe par la tête à propos de ce Top mérite d'être partagé avec les autres Vainkeurs.
-                            </h6>
-                            <a href="<?php echo get_the_permalink(get_page_by_path('discuz')).'?id_top='.$id_top; ?>" class="btn btn-outline-primary waves-effect">
-                                Lire & poster
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="card text-left">
-                        <?php
-                        $creator_id         = get_post_field('post_author', $id_top);
-                        $creator_uuiduser   = get_field('uuiduser_user', 'user_'.$creator_id);
-                        $creator_data       = get_user_infos($creator_uuiduser);
-                        ?>
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <?php
-                                date_default_timezone_set('Europe/Paris');
-                                $origin     = new DateTime(get_the_date('Y-m-d', $id_top));
-                                $target     = new DateTime(date('Y-m-d'));
-                                $interval   = $origin->diff($target);
-                                ?>
-                                <span class="ico">🎂</span> Créé depuis <span class="t-violet"><?php echo $interval->days; ?> jours</span> par :
-                            </h4>
-                            <div class="employee-task d-flex justify-content-between align-items-center">
-                                <a href="<?php echo $creator_data['profil']; ?>" class="d-flex flex-row link-to-creator">
-                                    <div class="avatar me-75 mr-1">
-                                        <img src="<?php echo $creator_data['avatar']; ?>" class="circle" width="42" height="42" alt="Avatar">
-                                    </div>
-                                    <div class="my-auto">
-                                        <h3 class="mb-0">
-                                            <?php echo $creator_data['pseudo']; ?> <br>
-                                            <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Niveau actuel">
-                                                <?php echo $creator_data['level']; ?>
-                                            </span>
-                                            <?php if($creator_data['user_role']  == "administrator"): ?>
-                                                <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
-                                                    🦙
-                                                </span>
-                                            <?php endif; ?>
-                                            <?php if($creator_data['user_role']  == "administrator" || $creator_data['user_role'] == "author"): ?>
-                                                <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
-                                                    🎨
-                                                </span>
-                                            <?php endif; ?>
-                                        </h3>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
