@@ -56,9 +56,78 @@ $top_datas    = get_top_data($id_top);
     </div>
 </div>
 <div class="app-content content cover" style="background: url(<?php echo $top_infos['top_cover']; ?>) center center no-repeat">
-    <div class="content-overlay"></div>
+    <div class="content-overlay">
+    </div>
     <div class="content-wrapper">
     <div class="content-body">
+    <nav class="navbar fixed-bottom mobile-navbar">
+        <div class="container icons-bottom-navbar">
+            <div class="">
+                <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" href="#" class="confirm_delete">
+                    <i class="fas fa-redo fa-lg"></i>
+                </a>
+            </div>
+            <div class="share">
+                <i class="fas fa-share-alt fa-lg"></i>
+            </div>
+            <div class="">
+                <a href="#" data-toggle="modal" data-target="#commentModal">
+                    <i class="fas fa-star fa-lg"></i>
+                </a>
+            </div>
+            <div class="">
+                <a href="<?php echo get_the_permalink(get_page_by_path('discuz')).'?id_top='.$id_top; ?>">
+                    <i class="fas fa-pen fa-lg"></i>
+                </a>
+            </div>
+        </div> 
+    </nav>
+    <div class="share-content fixed-bottom">
+        <ul>
+            <li id="share-classement">Partager classement</li>
+            <li id="share-top">Partager top</li>
+        </ul>
+        <i class="close fas fa-times fa-2x"></i>
+    </div>
+    <div class="share-classement-content fixed-bottom">
+        <h3>Partager classement</h3>
+        <i class="close fas fa-times fa-2x"></i>
+        <ul>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $url_ranking; ?>" title="Partager sur Facebook" target="_blank">
+                <li><i class="social-media fab fa-twitter"></i>Facebook</li>
+            </a>
+            <a href="https://twitter.com/intent/tweet?text=Voici mon TOP <?php echo $top_infos['top_number']; ?> <?php echo $top_infos['top_title']; ?>&via=vainkeurz&hashtags=VKRZ&url=<?php echo $url_ranking; ?>" target="_blank" title="Tweet">
+                <li><i class="social-media fab fa-facebook-f"></i>Twitter</li>
+            </a>
+            <a href="whatsapp://send?text=<?php echo $url_ranking; ?>" data-action="share/whatsapp/share">
+                <li><i class="social-media fab fa-whatsapp"></i>What's App</li>
+            </a>
+            <a href="">
+                <li><i class="social-media fas fa-download"></i>Télécharger une image</li>
+            </a>
+            <a href="javascript: void(0)" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copier le lien de ton Top">
+                <li><i class="social-media fas fa-paperclip"></i>Copier le lien du classement</li>
+            </a>
+        </ul>
+    </div>
+    <div class="share-top-content fixed-bottom">
+        <h3>Partager top</h3>
+        <i class="close fas fa-times fa-2x"></i>
+        <ul>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $url_ranking; ?>" title="Partager sur Facebook" target="_blank">
+                <li><i class="social-media fab fa-twitter"></i>Facebook</li>
+            </a>
+            <a href="https://twitter.com/intent/tweet?text=Voici mon TOP <?php echo $top_infos['top_number']; ?> <?php echo $top_infos['top_title']; ?>&via=vainkeurz&hashtags=VKRZ&url=<?php echo $url_ranking; ?>" target="_blank" title="Tweet">
+                <li><i class="social-media fab fa-facebook-f"></i>Twitter</li>
+            </a>
+            <a href="whatsapp://send?text=<?php echo $url_ranking; ?>" data-action="share/whatsapp/share">
+                <li><i class="social-media fab fa-whatsapp"></i>What's App</li>
+            </a>
+            <a href="javascript: void(0)" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copier le lien de ton Top">
+                <li><i class="social-media fas fa-paperclip"></i>Copier le lien du classement</li>
+            </a>
+        </ul>
+    </div>
     <?php if(!is_user_logged_in()): ?>
         <section class="please-rejoin app-user-view">
             <div role="alert" aria-live="polite" aria-atomic="true" class="alert alert-account" data-v-aa799a9e="">
