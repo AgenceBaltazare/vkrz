@@ -2246,14 +2246,8 @@ textarea {
   cursor: pointer;
 }
 
-.mobile-navbar {
-  display: none;
-}
-
-.share-content {
-  display: none;
-}
-
+.mobile-navbar,
+.share-content,
 .share-classement-content,
 .share-top-content {
   display: none;

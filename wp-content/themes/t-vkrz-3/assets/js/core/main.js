@@ -127,20 +127,51 @@ $(document).ready(function () {
   });
 });
 
-$(document).ready(function () {
-  $("#share-classement").click(function () {
-    $(".share-classement-content").show("fast");
-  });
-  $(".close").click(function () {
-    $(".share-classement-content").hide("fast");
-  });
+// Partage en mode natif DEBUT
+const shareClassementNatif = document.querySelector(".share-natif-classement");
+const shareTopNatif = document.querySelector(".share-natif-top");
+const shareClassement = document.querySelector("#share-classement");
+const shareTop = document.querySelector("#share-classement");
+
+shareClassementNatif.addEventListener("click", (event) => {
+  if (navigator.share) {
+    navigator
+      .share({
+        title: "WebShare API Demo",
+        url: "https://codepen.io/ayoisaiah/pen/YbNazJ",
+      })
+      .then(() => {
+        console.log("Thanks for sharing!");
+      })
+      .catch(console.error);
+  } else {
+    $("#share-classement").click(function () {
+      $(".share-classement-content").show("fast");
+    });
+    $(".close").click(function () {
+      $(".share-classement-content").hide("fast");
+    });
+  }
 });
 
-$(document).ready(function () {
-  $("#share-top").click(function () {
-    $(".share-top-content").show("fast");
-  });
-  $(".close").click(function () {
-    $(".share-top-content").hide("fast");
-  });
+shareTopNatif.addEventListener("click", (event) => {
+  if (navigator.share) {
+    navigator
+      .share({
+        title: "WebShare API Demo",
+        url: "https://codepen.io/ayoisaiah/pen/YbNazJ",
+      })
+      .then(() => {
+        console.log("Thanks for sharing!");
+      })
+      .catch(console.error);
+  } else {
+    $("#share-top").click(function () {
+      $(".share-top-content").show("fast");
+    });
+    $(".close").click(function () {
+      $(".share-top-content").hide("fast");
+    });
+  }
 });
+// Partage en mode natif FIN

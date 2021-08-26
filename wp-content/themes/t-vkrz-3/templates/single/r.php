@@ -84,8 +84,8 @@ $top_datas    = get_top_data($id_top);
     </nav>
     <div class="share-content fixed-bottom">
         <ul>
-            <li id="share-classement">Partager classement</li>
-            <li id="share-top">Partager top</li>
+            <li class="share-natif-classement" id="share-classement">Partager classement</li>
+            <li class="share-natif-top" id="share-top">Partager top</li>
         </ul>
         <i class="close fas fa-times fa-2x"></i>
     </div>
