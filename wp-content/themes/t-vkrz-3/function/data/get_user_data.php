@@ -130,6 +130,7 @@ function get_user_tops($user_id = false){
             $id_top           = get_field('id_tournoi_r', $classement);
             $typetop          = get_field('type_top_r', $classement);
             $uuid_user        = get_field('uuid_user_r', $classement);
+            $cat_id           = "";
 
             $user_nb_votes    = $user_nb_votes + $nb_votes;
 
