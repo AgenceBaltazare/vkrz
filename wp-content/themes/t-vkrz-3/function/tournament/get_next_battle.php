@@ -112,8 +112,13 @@ function get_next_duel($id_ranking, $id_top, $current_id_vainkeur){
                 $is_next_duel = false;
 
                 if (!get_field('done_r', $id_ranking)) {
+                    date_default_timezone_set('Europe/Paris');
+                    $is_suspected_cheating = suspected_cheating(get_the_date('Y-m-d H:i:s', $id_ranking), date('Y-m-d H:i:s'), get_field('nb_votes_r', $id_ranking));
+
                     update_field('done_r', 'done', $id_ranking);
-                    update_field('done_date_r', date('d/m/Y H:i:s'), $id_ranking);
+                    update_field('done_date_r', date('Y-m-d H:i:s'), $id_ranking);
+                    update_field('suspected_cheating_r', $is_suspected_cheating, $id_ranking);
+
                     increase_top_counter($current_id_vainkeur);
                 }
 
@@ -231,8 +236,12 @@ function get_next_duel($id_ranking, $id_top, $current_id_vainkeur){
                     $is_next_duel = false;
 
                     if (!get_field('done_r', $id_ranking)) {
+                        date_default_timezone_set('Europe/Paris');
+                        $is_suspected_cheating = suspected_cheating(get_the_date('Y-m-d H:i:s', $id_ranking), date('Y-m-d H:i:s'), get_field('nb_votes_r', $id_ranking));
+
                         update_field('done_r', 'done', $id_ranking);
-                        update_field('done_date_r', date('d/m/Y H:i:s'), $id_ranking);
+                        update_field('done_date_r', date('Y-m-d H:i:s'), $id_ranking);
+                        update_field('suspected_cheating_r', $is_suspected_cheating, $id_ranking);
                     }
 
                     if (is_user_logged_in()) {
@@ -257,8 +266,13 @@ function get_next_duel($id_ranking, $id_top, $current_id_vainkeur){
                 $is_next_duel = false;
 
                 if (!get_field('done_r', $id_ranking)) {
+                    date_default_timezone_set('Europe/Paris');
+                    $is_suspected_cheating = suspected_cheating(get_the_date('Y-m-d H:i:s', $id_ranking), date('Y-m-d H:i:s'), get_field('nb_votes_r', $id_ranking));
+
                     update_field('done_r', 'done', $id_ranking);
-                    update_field('done_date_r', date('d/m/Y H:i:s'), $id_ranking);
+                    update_field('done_date_r', date('Y-m-d H:i:s'), $id_ranking);
+                    update_field('suspected_cheating_r', $is_suspected_cheating, $id_ranking);
+
                     increase_top_counter($current_id_vainkeur);
                 }
 
@@ -296,11 +310,14 @@ function get_next_duel($id_ranking, $id_top, $current_id_vainkeur){
                 $is_next_duel = false;
 
                 if(!get_field('done_r', $id_ranking)){
+                    date_default_timezone_set('Europe/Paris');
+                    $is_suspected_cheating = suspected_cheating(get_the_date('Y-m-d H:i:s', $id_ranking), date('Y-m-d H:i:s'), get_field('nb_votes_r', $id_ranking));
 
-                    update_field('done_date_r', date('d/m/Y H:i:s'), $id_ranking);
+                    update_field('done_date_r', date('Y-m-d H:i:s'), $id_ranking);
                     update_field('done_r', 'done', $id_ranking);
-                    increase_top_counter($current_id_vainkeur);
+                    update_field('suspected_cheating_r', $is_suspected_cheating, $id_ranking);
 
+                    increase_top_counter($current_id_vainkeur);
                 }
 
                 if (is_user_logged_in()) {
