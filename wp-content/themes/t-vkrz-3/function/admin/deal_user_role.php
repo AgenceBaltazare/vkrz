@@ -21,3 +21,11 @@ function add_theme_caps() {
     wp_roles()->remove_role('editor');
 }
 add_action('admin_init', 'add_theme_caps');
+
+add_action('admin_init', 'disable_dashboard');
+function disable_dashboard() {
+    if (current_user_can('subscriber') && is_admin()) {
+        wp_redirect(home_url());
+        exit;
+    }
+}

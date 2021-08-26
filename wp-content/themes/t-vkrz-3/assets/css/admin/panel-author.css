@@ -18,6 +18,6 @@
   margin-bottom: 20px !important;
 }
 
-#commentstatusdiv, #authordiv {
+#commentstatusdiv, #authordiv, #rocket_post_exclude, #slugdiv {
   display: none;
 }/*# sourceMappingURL=panel-author.css.map */
