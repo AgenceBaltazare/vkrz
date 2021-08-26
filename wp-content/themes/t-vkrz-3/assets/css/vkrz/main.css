@@ -2246,9 +2246,23 @@ textarea {
   cursor: pointer;
 }
 
+.mobile-navbar {
+  display: none;
+}
+
+.share-content {
+  display: none;
+}
+
+.share-classement-content,
+.share-top-content {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .mobile-navbar {
     background: #23213b;
+    display: block;
   }
   .mobile-navbar .icons-bottom-navbar {
     display: -webkit-box;
@@ -2267,7 +2281,6 @@ textarea {
   }
   .share-content {
     background: #23213b;
-    display: none;
   }
   .share-content ul {
     margin: 20px;
@@ -2289,7 +2302,6 @@ textarea {
   .share-classement-content,
   .share-top-content {
     background: #23213b;
-    display: none;
   }
   .share-classement-content h3,
   .share-top-content h3 {

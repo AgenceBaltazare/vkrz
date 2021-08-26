@@ -1,6 +1,18 @@
+.mobile-navbar {
+  display: none;
+}
+.share-content {
+  display: none;
+}
+.share-classement-content,
+.share-top-content {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .mobile-navbar {
     background: #23213b;
+    display: block;
     .icons-bottom-navbar {
       display: flex;
       justify-content: space-evenly;
@@ -15,7 +27,6 @@
   }
   .share-content {
     background: #23213b;
-    display: none;
     ul {
       margin: 20px;
       padding-left: 5px;
@@ -37,7 +48,6 @@
   .share-classement-content,
   .share-top-content {
     background: #23213b;
-    display: none;
     h3 {
       border-bottom: 1px solid #343249;
       padding: 22px 0px 22px 30px;
