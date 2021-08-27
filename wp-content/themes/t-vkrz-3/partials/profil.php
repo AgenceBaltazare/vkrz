@@ -69,7 +69,7 @@ $vainkeur_info = isset($vainkeur_info) ? $vainkeur_info : $user_infos;
                             <?php endif; ?>
                             <?php if($vainkeur_info['user_role']  == "administrator" || $vainkeur_info['user_role'] == "author" && is_user_logged_in()): ?>
                                 <li class="nav-item">
-                                    <a class="nav-link font-weight-bold" href="<?php bloginfo('url'); ?>/wp-admin" target="_blank">
+                                    <a class="nav-link font-weight-bold" href="<?php bloginfo('url'); ?>/wp-admin/edit.php?post_type=tournoi" target="_blank">
                                         Gestion de mes Tops
                                     </a>
                                 </li>

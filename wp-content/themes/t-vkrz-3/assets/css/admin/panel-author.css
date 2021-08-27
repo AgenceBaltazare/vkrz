@@ -18,6 +18,6 @@
   margin-bottom: 20px !important;
 }
 
-#commentstatusdiv, #authordiv, #rocket_post_exclude, #slugdiv {
+#commentstatusdiv, #authordiv, #rocket_post_exclude, #slugdiv, #wp-admin-bar-wpm-info {
   display: none;
 }/*# sourceMappingURL=panel-author.css.map */
