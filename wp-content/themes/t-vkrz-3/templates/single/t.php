@@ -37,37 +37,39 @@ $creator_data       = get_user_infos($creator_uuiduser);
     <div class="content-wrapper">
         <div class="content-body tournoi-content">
             <nav class="navbar fixed-bottom mobile-navbar">
-                <div class="container icons-bottom-navbar">
+                <div class="container icons-navbar">
                     <div class="">
                         <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" href="#" class="confirm_delete">
-                            <i class="fas fa-redo fa-lg"></i>
+                            <img src="<?php bloginfo('template_directory'); ?>/assets/images/icons/restart.svg" alt="" class="aaa">
                         </a>
                     </div>
                     <div class="share">
-                        <i class="fas fa-share-alt fa-lg"></i>
+                        <img src="<?php bloginfo('template_directory'); ?>/assets/images/icons/share.svg" alt="" class="">
                     </div>
                     <div class="">
                         <a href="#" data-toggle="modal" data-target="#commentModal">
-                            <i class="fas fa-star fa-lg"></i>
+                            <img src="<?php bloginfo('template_directory'); ?>/assets/images/icons/star2.svg" alt="" class="">
                         </a>
                     </div>
                     <div class="">
                         <a href="<?php echo get_the_permalink(get_page_by_path('discuz')).'?id_top='.$id_top; ?>">
-                            <i class="fas fa-pen fa-lg"></i>
+                            <img src="<?php bloginfo('template_directory'); ?>/assets/images/icons/pen.svg" alt="" class="">
                         </a>
                     </div>
                 </div> 
             </nav>
             <div class="share-content fixed-bottom">
+                <div class="d-flex justify-content-center close-content">
+                    <i class="close fas fa-chevron-down fa-2x"></i>
+                </div>
                 <ul>
-                    <li id="share-classement">Partager classement</li>
-                    <li id="share-top">Partager top</li>
+                    <li class="share-natif-classement" id="share-classement">Partager classement</li>
+                    <li class="share-natif-top" id="share-top">Partager top</li>
                 </ul>
-                <i class="close fas fa-times fa-2x"></i>
             </div>
             <div class="share-classement-content fixed-bottom">
                 <h3>Partager classement</h3>
-                <i class="close fas fa-times fa-2x"></i>
+                <img src="<?php bloginfo('template_directory'); ?>/assets/images/icons/close.svg" alt="" class="close">
                 <ul>
                     <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $url_ranking; ?>" title="Partager sur Facebook" target="_blank">
                         <li><i class="social-media fab fa-twitter"></i>Facebook</li>
@@ -88,7 +90,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
             </div>
             <div class="share-top-content fixed-bottom">
                 <h3>Partager top</h3>
-                <i class="close fas fa-times fa-2x"></i>
+                <img src="<?php bloginfo('template_directory'); ?>/assets/images/icons/close.svg" alt="" class="close">
                 <ul>
                     <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $url_ranking; ?>" title="Partager sur Facebook" target="_blank">
                         <li><i class="social-media fab fa-twitter"></i>Facebook</li>

@@ -138,10 +138,10 @@ shareClassementNatif.addEventListener("click", (event) => {
     navigator
       .share({
         title: "WebShare API Demo",
-        url: "https://codepen.io/ayoisaiah/pen/YbNazJ",
+        url: "",
       })
       .then(() => {
-        console.log("Thanks for sharing!");
+        console.log("Merci pour le partage !");
       })
       .catch(console.error);
   } else {
@@ -159,10 +159,10 @@ shareTopNatif.addEventListener("click", (event) => {
     navigator
       .share({
         title: "WebShare API Demo",
-        url: "https://codepen.io/ayoisaiah/pen/YbNazJ",
+        url: "",
       })
       .then(() => {
-        console.log("Thanks for sharing!");
+        console.log("Merci pour le partage !");
       })
       .catch(console.error);
   } else {

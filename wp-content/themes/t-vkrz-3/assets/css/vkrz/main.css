@@ -2258,40 +2258,43 @@ textarea {
     background: #23213b;
     display: block;
   }
-  .mobile-navbar .icons-bottom-navbar {
+  .mobile-navbar .icons-navbar {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: space-evenly;
         -ms-flex-pack: space-evenly;
             justify-content: space-evenly;
-    padding: 12px;
+    padding: 12px 50px 12px 0px;
   }
-  .mobile-navbar .icons-bottom-navbar i {
-    color: #ffffff;
-  }
-  .mobile-navbar .icons-bottom-navbar i:active {
-    color: #7367f0;
+  .mobile-navbar .icons-navbar .share {
+    cursor: pointer;
   }
   .share-content {
     background: #23213b;
   }
+  .share-content .close-content {
+    margin: 12px 0px 8px 0px;
+  }
+  .share-content .close-content .close {
+    cursor: pointer;
+  }
   .share-content ul {
-    margin: 20px;
-    padding-left: 5px;
+    margin: 0px 20px 20px 20px;
+    padding-left: 0px;
+    cursor: pointer;
   }
   .share-content li {
     font-family: "Lato";
     list-style-type: none;
     font-size: 18px;
     font-weight: bold;
+  }
+  .share-content li:last-child {
     margin-top: 12px;
   }
   .share-content i {
     color: #f4167f;
-    position: absolute;
-    top: 23px;
-    right: 25px;
   }
   .share-classement-content,
   .share-top-content {
@@ -2312,7 +2315,7 @@ textarea {
   .share-classement-content ul,
   .share-top-content ul {
     margin: 25px;
-    padding-left: 5px;
+    padding-left: 0px;
   }
   .share-classement-content li,
   .share-top-content li {
@@ -2329,13 +2332,14 @@ textarea {
   .share-top-content .close {
     color: #f4167f;
     position: absolute;
-    top: 20px;
+    top: 26px;
     right: 30px;
+    cursor: pointer;
   }
   .share-classement-content .social-media,
   .share-top-content .social-media {
     color: #7367f0;
-    width: 33px;
+    width: 30px;
   }
 }
 
