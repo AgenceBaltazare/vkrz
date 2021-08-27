@@ -67,6 +67,13 @@ $vainkeur_info = isset($vainkeur_info) ? $vainkeur_info : $user_infos;
                                     </a>
                                 </li>
                             <?php endif; ?>
+                            <?php if($vainkeur_info['user_role']  == "administrator" || $vainkeur_info['user_role'] == "author" && is_user_logged_in()): ?>
+                                <li class="nav-item">
+                                    <a class="nav-link font-weight-bold" href="<?php bloginfo('url'); ?>/wp-admin" target="_blank">
+                                        Gestion de mes Tops
+                                    </a>
+                                </li>
+                            <?php endif; ?>
                         <?php else: ?>
                             <li class="nav-item">
                                 <a class="nav-link font-weight-bold <?php if(is_author()){echo 'btn btn-primary';} ?>" href="<?php echo get_author_posts_url($vainkeur_id); ?>">
