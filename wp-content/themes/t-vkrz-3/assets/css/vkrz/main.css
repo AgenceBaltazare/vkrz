@@ -2274,9 +2274,9 @@ textarea {
     background: #23213b;
   }
   .share-content .close-content {
-    margin: 12px 0px 8px 0px;
+    margin: 12px 0px 12px 0px;
   }
-  .share-content .close-content .close {
+  .share-content .close-content .close-share {
     cursor: pointer;
   }
   .share-content ul {
@@ -2328,8 +2328,8 @@ textarea {
   .share-top-content li:active {
     color: #f4167f;
   }
-  .share-classement-content .close,
-  .share-top-content .close {
+  .share-classement-content .close-share,
+  .share-top-content .close-share {
     color: #f4167f;
     position: absolute;
     top: 26px;

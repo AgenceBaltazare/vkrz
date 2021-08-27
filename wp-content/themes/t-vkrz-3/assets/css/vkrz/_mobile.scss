@@ -21,8 +21,8 @@
   .share-content {
     background: #23213b;
     .close-content {
-      margin: 12px 0px 8px 0px;
-      .close {
+      margin: 12px 0px 12px 0px;
+      .close-share {
         cursor: pointer;
       }
     }
@@ -70,7 +70,7 @@
         color: $rose;
       }
     }
-    .close {
+    .close-share {
       color: $rose;
       position: absolute;
       top: 26px;

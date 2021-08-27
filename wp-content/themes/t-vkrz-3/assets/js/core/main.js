@@ -122,7 +122,7 @@ $(document).ready(function () {
   $(".share").click(function () {
     $(".share-content").show("fast");
   });
-  $(".close").click(function () {
+  $(".close-share").click(function () {
     $(".share-content").hide("fast");
   });
 });
@@ -148,7 +148,7 @@ shareClassementNatif.addEventListener("click", (event) => {
     $("#share-classement").click(function () {
       $(".share-classement-content").show("fast");
     });
-    $(".close").click(function () {
+    $(".close-share").click(function () {
       $(".share-classement-content").hide("fast");
     });
   }
@@ -169,7 +169,7 @@ shareTopNatif.addEventListener("click", (event) => {
     $("#share-top").click(function () {
       $(".share-top-content").show("fast");
     });
-    $(".close").click(function () {
+    $(".close-share").click(function () {
       $(".share-top-content").hide("fast");
     });
   }

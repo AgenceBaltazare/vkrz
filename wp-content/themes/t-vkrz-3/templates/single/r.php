@@ -84,7 +84,7 @@ $top_datas    = get_top_data($id_top);
         </nav>
         <div class="share-content fixed-bottom">
             <div class="d-flex justify-content-center close-content">
-                <i class="close fas fa-chevron-down fa-2x"></i>
+                <i class="close-share fas fa-chevron-down fa-2x"></i>
             </div>
             <ul>
                 <li class="share-natif-classement" id="share-classement">Partager classement</li>
@@ -93,7 +93,7 @@ $top_datas    = get_top_data($id_top);
         </div>
         <div class="share-classement-content fixed-bottom">
             <h3>Partager classement</h3>
-            <img src="<?php bloginfo('template_directory'); ?>/assets/images/icons/close.svg" alt="" class="close">
+            <img src="<?php bloginfo('template_directory'); ?>/assets/images/icons/close.svg" alt="" class="close-share">
             <ul>
                 <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $url_ranking; ?>" title="Partager sur Facebook" target="_blank">
                     <li><i class="social-media fab fa-twitter"></i>Facebook</li>
@@ -114,7 +114,7 @@ $top_datas    = get_top_data($id_top);
         </div>
         <div class="share-top-content fixed-bottom">
             <h3>Partager top</h3>
-            <img src="<?php bloginfo('template_directory'); ?>/assets/images/icons/close.svg" alt="" class="close">
+            <img src="<?php bloginfo('template_directory'); ?>/assets/images/icons/close.svg" alt="" class="close-share">
             <ul>
                 <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $url_ranking; ?>" title="Partager sur Facebook" target="_blank">
                     <li><i class="social-media fab fa-twitter"></i>Facebook</li>
