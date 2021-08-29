@@ -2,7 +2,7 @@ $(document).ready(function ($) {
 
     let ajaxRunning = false;
 
-    $(window).keydown(function(e){
+    $(window).keyup(function(e){
         if (e.keyCode === 37) {
             $("#c_1").trigger("click");
         } else if (e.keyCode === 39) {
