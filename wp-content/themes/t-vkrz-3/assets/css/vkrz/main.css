@@ -693,6 +693,10 @@ html .content {
   color: #7367f0;
 }
 
+.main-menu ul.navigation-main {
+  padding-bottom: 70px;
+}
+
 .page-template-monitor .header-monitor {
   text-align: center;
   padding-top: 20px;
@@ -759,6 +763,12 @@ html .content {
 
 .alert-success .alert-heading {
   box-shadow: none;
+}
+
+.recrutement-page h1 {
+  font-family: "montserrat";
+  font-weight: bold;
+  font-size: 35px;
 }
 
 #commentform textarea, #commentform input {
@@ -2023,7 +2033,7 @@ textarea {
   }
 
   .main-menu .main-menu-content {
-    height: calc(100% - 310px) !important;
+    height: 100%;
   }
 
   .vertical-layout .header-navbar .navbar-container ul.navbar-nav li.dropdown .dropdown-menu {

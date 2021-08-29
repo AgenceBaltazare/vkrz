@@ -84,7 +84,7 @@ if (false === ( $data_t_created = get_transient( 'user_'.$vainkeur_id.'_get_crea
                                                     <span class="ico4">🏆</span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">
-                                                    <?php echo $data_t_created['creator_all_t']; ?>
+                                                    <?php echo number_format($data_t_created['creator_all_t'], 0, ",", " "); ?>
                                                 </h2>
                                                 <p class="card-text legende">
                                                     <?php if($data_t_created['creator_all_t'] > 1) : ?>

@@ -3,7 +3,7 @@
 Plugin Name: WP All Export Pro
 Plugin URI: http://www.wpallimport.com/export/
 Description: Export any post type to a CSV or XML file. Edit the exported data, and then re-import it later using WP All Import.
-Version: 1.6.4
+Version: 1.6.7
 Author: Soflyy
 */
 
@@ -46,9 +46,11 @@ if (class_exists('PMXE_Plugin') and PMXE_EDITION == "free") {
      */
     define('PMXE_PREFIX', 'pmxe_');
 
-	define('PMXE_VERSION', '1.6.4');
+	define('PMXE_VERSION', '1.6.7');
 
     define('PMXE_EDITION', 'paid');
+
+    define('PMXE_PRO_USE_NAMESPACES', true);
 
     /**
      * Plugin root uploads folder name
@@ -265,7 +267,6 @@ if (class_exists('PMXE_Plugin') and PMXE_EDITION == "free") {
          */
         protected function __construct()
         {
-
             require_once(self::ROOT_DIR . '/classes/installer.php');
 
             $installer = new PMXE_Installer();
@@ -370,6 +371,11 @@ if (class_exists('PMXE_Plugin') and PMXE_EDITION == "free") {
         public function adminInit()
         {
 
+            if(current_user_can('manage_options') && (!XmlExportEngine::get_addons_service()->isAcfAddonActive() || !XmlExportEngine::get_addons_service()->isWooCommerceAddonActive())){
+                $this->showDismissibleNotice('<h1 style="padding-top:0">Important Notice Regarding WP All Export Pro</h1><br/><strong>WP All Export Pro will soon receive an update requiring paid add-ons to export ACF and WooCommerce data.<br/>These add-ons have been added to your account, free of charge. 
+<br/><br/><a href="https://wpallimport.com/portal/downloads/?utm_source=export-plugin-pro&utm_medium=wpae-addons-notice&utm_campaign=export-add-ons-added-to-acount-phase-1" target="_blank">Click here to download your new export add-ons.</a></strong>', 'wpae_pro_woocommerce_addon');
+            }
+
             wp_enqueue_style('wp-all-export-updater', PMXE_ROOT_URL . '/static/css/plugin-update-styles.css', array(), PMXE_VERSION);
 
             wp_enqueue_script('wp-all-export-notice-dismiss', PMXE_ROOT_URL . '/static/js/pmxe_notice_dismiss.js', array('jquery'), PMXE_VERSION);
@@ -453,7 +459,7 @@ if (class_exists('PMXE_Plugin') and PMXE_EDITION == "free") {
                         throw new Exception("Administration page `$page` matches to a wrong controller type.");
                     }
 
-                    if ($controller instanceof PMXE_Admin_Manage && $action == 'update' && isset($_GET['id'])) {
+                    if ($controller instanceof PMXE_Admin_Manage && $action == 'update_action' && isset($_GET['id'])) {
                         $addons = new \Wpae\App\Service\Addons\AddonService();
                         $exportId = intval($_GET['id']);
 
@@ -470,6 +476,25 @@ if (class_exists('PMXE_Plugin') and PMXE_EDITION == "free") {
                             ($export->options['export_type'] == 'advanced' && $export->options['wp_query_selector'] == 'wp_user_query' && !$addons->isUserAddonActive())
                         ) {
                             die(\__('The User Export Add-On Pro is required to run this export. You can download the add-on here: <a href="http://www.wpallimport.com/portal/" target="_blank">http://www.wpallimport.com/portal/</a>', \PMXE_Plugin::LANGUAGE_DOMAIN));
+                        }
+                    }
+
+                    if ($controller instanceof PMXE_Admin_Manage && ($action == 'update_action' || $action == 'template_action' || $action == 'options_action') && isset($_GET['id'])) {
+
+                        $exportId = intval($_GET['id']);
+
+                        $export = new \PMXE_Export_Record();
+                        $export->getById($exportId);
+
+                        $cpt = $export->options['cpt'];
+
+                        if(is_array($cpt)) {
+                            $cpt = $cpt[0];
+                        }
+
+                        if(strpos($cpt, 'custom_') === 0 && !class_exists('GF_Export_Add_On')) {
+
+                            die('The Gravity Forms Add-On Pro is required for this export. You can download the add-on here: <a href="http://www.wpallimport.com/portal/" target="_blank">http://www.wpallimport.com/portal/</a>');
                         }
                     }
 
@@ -975,6 +1000,7 @@ if (class_exists('PMXE_Plugin') and PMXE_EDITION == "free") {
                 'custom_xml_cdata_logic' => 'auto',
                 'show_cdata_in_preview' => 0,
                 'taxonomy_to_export' => '',
+                'sub_post_type_to_export' => '',
                 'created_at_version' => '',
                 'export_variations' => XmlExportEngine::VARIABLE_PRODUCTS_EXPORT_PARENT_AND_VARIATION,
                 'export_variations_title' => XmlExportEngine::VARIATION_USE_PARENT_TITLE,
