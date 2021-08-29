@@ -231,7 +231,7 @@ elseif(is_author()){
                                 <?php if(is_user_logged_in()): ?>
                                     Encore <span class="decompte_vote"><?php echo get_vote_to_next_level($user_infos['level_number'], $user_infos['nb_vote_vkrz']); ?></span> 💎 pour passer au niveau <?php echo $user_infos['next_level']; ?>
                                 <?php else: ?>
-                                    Il te créer un compte pour monter en niveau 🚀
+                                    Il te faut un compte pour monter en niveau 🚀
                                 <?php endif; ?>
                             </h6>
                         </div>
