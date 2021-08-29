@@ -55,6 +55,9 @@
                 'orderby'       => 'count',
                 'order'         => 'DESC',
                 'hide_empty'    => true,
+                'exclude'       => array(
+                    get_term_by('slug', 'welcome', 'categorie')->term_id
+                )
             ));
             foreach($cat_t as $cat) : ?>
                 <li class="nav-item">
