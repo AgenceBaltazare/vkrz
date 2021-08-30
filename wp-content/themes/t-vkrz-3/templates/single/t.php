@@ -32,7 +32,7 @@ $creator_id         = get_post_field('post_author', $id_top);
 $creator_uuiduser   = get_field('uuiduser_user', 'user_'.$creator_id);
 $creator_data       = get_user_infos($creator_uuiduser);
 ?>
-<div class="app-content content cover" style="background: url(<?php echo $top_infos['top_cover']; ?>) center center no-repeat">
+<div class="app-content content cover <?php if(get_field('sponso_t', $id_top)){echo 'top-sponso';} ?>" style="background: url(<?php echo $top_infos['top_cover']; ?>) center center no-repeat">
     <div class="content-overlay"></div>
     <div class="content-wrapper">
         <div class="content-body tournoi-content">
@@ -42,7 +42,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                 <div class="content-intro">
 
                     <?php
-                    if(get_field('sponso_t')) : ?>
+                    if(get_field('sponso_t', $id_top)) : ?>
 
                         <div class="row">
                             <div class="col-md-8">
