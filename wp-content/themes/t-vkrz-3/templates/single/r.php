@@ -105,9 +105,10 @@ $top_datas    = get_top_data($id_top);
                     <li><i class="social-media fab fa-whatsapp"></i>What's App</li>
                 </a>
                 <a href="">
-                    <li><i class="social-media fas fa-download"></i>Télécharger une image</li>
+                    <li><i class="social-media mb-12 fas fa-download"></i>Télécharger une image</li>
                 </a>
-                <a href="javascript: void(0)" onclick="copyToClipboard()" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copier le lien de ton Top">
+                <a href="javascript: void(0)" class="sharelinkbtn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copier le lien de ton Classement">
+                    <input type="text" value="<?php echo $top_infos['top_url']; ?>" class="input_to_share">
                     <li><i class="social-media fas fa-paperclip"></i>Copier le lien du classement</li>
                 </a>
             </ul>
@@ -123,10 +124,11 @@ $top_datas    = get_top_data($id_top);
                     <li><i class="social-media fab fa-facebook-f"></i>Twitter</li>
                 </a>
                 <a href="whatsapp://send?text=<?php echo $url_ranking; ?>" data-action="share/whatsapp/share">
-                    <li><i class="social-media fab fa-whatsapp"></i>What's App</li>
+                    <li><i class="social-media mb-12 fab fa-whatsapp"></i>What's App</li>
                 </a>
-                <a href="javascript: void(0)" onclick="copyToClipboard()" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copier le lien de ton Top">
-                    <li><i class="social-media fas fa-paperclip"></i>Copier le lien du classement</li>
+                <a href="javascript: void(0)" class="sharelinkbtn2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copier le lien de ton Top">
+                    <input type="text" value="<?php echo $top_infos['top_url']; ?>" class="input_to_share2">
+                    <li><i class="social-media fas fa-paperclip"></i>Copier le lien du top</li>
                 </a>
             </ul>
         </div>

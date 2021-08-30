@@ -2328,11 +2328,6 @@ textarea {
     list-style-type: none;
     font-size: 16px;
     margin-top: 12px;
-    -webkit-user-select: none;
-    -webkit-touch-callout: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
   }
   .share-classement-content li:active,
   .share-top-content li:active {

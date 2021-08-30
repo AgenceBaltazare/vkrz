@@ -59,8 +59,8 @@ $creator_data       = get_user_infos($creator_uuiduser);
                 </div> 
             </nav>
             <div class="share-content fixed-bottom">
-                <div class="d-flex justify-content-center close-content">
-                    <i class="close fas fa-chevron-down fa-2x"></i>
+                <div class="close-share d-flex justify-content-center close-content">
+                    <i class="fas fa-chevron-down fa-2x"></i>
                 </div>
                 <ul>
                     <li class="share-natif-classement" id="share-classement">Partager classement</li>
@@ -69,7 +69,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
             </div>
             <div class="share-classement-content fixed-bottom">
                 <h3>Partager classement</h3>
-                <img src="<?php bloginfo('template_directory'); ?>/assets/images/icons/close.svg" alt="" class="close">
+                <img src="<?php bloginfo('template_directory'); ?>/assets/images/icons/close.svg" alt="" class="close-share">
                 <ul>
                     <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $url_ranking; ?>" title="Partager sur Facebook" target="_blank">
                         <li><i class="social-media fab fa-twitter"></i>Facebook</li>
@@ -81,16 +81,17 @@ $creator_data       = get_user_infos($creator_uuiduser);
                         <li><i class="social-media fab fa-whatsapp"></i>What's App</li>
                     </a>
                     <a href="">
-                        <li><i class="social-media fas fa-download"></i>Télécharger une image</li>
+                        <li><i class="social-media mb-12 fas fa-download"></i>Télécharger une image</li>
                     </a>
-                    <a href="javascript: void(0)" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copier le lien de ton Top">
+                    <a href="javascript: void(0)" class="sharelinkbtn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copier le lien de ton Classement">
+                        <input type="text" value="<?php echo $top_infos['top_url']; ?>" class="input_to_share">
                         <li><i class="social-media fas fa-paperclip"></i>Copier le lien du classement</li>
                     </a>
                 </ul>
             </div>
             <div class="share-top-content fixed-bottom">
                 <h3>Partager top</h3>
-                <img src="<?php bloginfo('template_directory'); ?>/assets/images/icons/close.svg" alt="" class="close">
+                <img src="<?php bloginfo('template_directory'); ?>/assets/images/icons/close.svg" alt="" class="close-share">
                 <ul>
                     <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $url_ranking; ?>" title="Partager sur Facebook" target="_blank">
                         <li><i class="social-media fab fa-twitter"></i>Facebook</li>
@@ -99,10 +100,11 @@ $creator_data       = get_user_infos($creator_uuiduser);
                         <li><i class="social-media fab fa-facebook-f"></i>Twitter</li>
                     </a>
                     <a href="whatsapp://send?text=<?php echo $url_ranking; ?>" data-action="share/whatsapp/share">
-                        <li><i class="social-media fab fa-whatsapp"></i>What's App</li>
+                        <li><i class="social-media mb-12 fab fa-whatsapp"></i>What's App</li>
                     </a>
-                    <a href="javascript: void(0)" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copier le lien de ton Top">
-                        <li><i class="social-media fas fa-paperclip"></i>Copier le lien du classement</li>
+                    <a href="javascript: void(0)" class="sharelinkbtn2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copier le lien de ton Top">
+                        <input type="text" value="<?php echo $top_infos['top_url']; ?>" class="input_to_share2">
+                        <li><i class="social-media fas fa-paperclip"></i>Copier le lien du top</li>
                     </a>
                 </ul>
             </div>

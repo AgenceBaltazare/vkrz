@@ -39,9 +39,9 @@ window.onload = function () {
       try {
         var successful = document.execCommand("copy");
         var msg = successful ? "successful" : "unsuccessful";
-        copyBtn.innerHTML = "✓";
+        copyBtn.innerHTML = "✓ Lien du Classement copié !";
       } catch (err) {
-        console.log("Oops, impossible de copié - Demandes pas pourquoi :/");
+        console.log("Oops, impossible de copier - Demandes pas pourquoi :/");
       }
     });
   }
@@ -55,9 +55,9 @@ window.onload = function () {
       try {
         var successful = document.execCommand("copy");
         var msg = successful ? "successful" : "unsuccessful";
-        copyBtn2.innerHTML = "✓";
+        copyBtn2.innerHTML = "✓ Lien du Top copié !";
       } catch (err) {
-        console.log("Oops, impossible de copié - Demandes pas pourquoi :/");
+        console.log("Oops, impossible de copier - Demandes pas pourquoi :/");
       }
     });
   }
@@ -176,14 +176,26 @@ shareTopNatif.addEventListener("click", (event) => {
 });
 // Partage en mode natif FIN
 
-// Copie lien d'un top DEBUT
-function copyToClipboard(text) {
-  var inputc = document.body.appendChild(document.createElement("input"));
-  inputc.value = window.location.href;
-  inputc.focus();
-  inputc.select();
-  document.execCommand("copy");
-  inputc.parentNode.removeChild(inputc);
-  alert("Lien du top Copié !");
-}
-// Copie lien d'un top FIN
+$(".sharelinkbtn2").on("click", function () {
+  $(".sharelinkbtn2").css({
+    fontFamily: "Lato",
+    listStyleType: "none",
+    fontSize: "16px",
+  });
+  $(".mb-12").css({
+    marginBottom: "12px",
+  });
+  $(".sharelinkbtn2").tooltip("hide");
+});
+
+$(".sharelinkbtn").on("click", function () {
+  $(".sharelinkbtn").css({
+    fontFamily: "Lato",
+    listStyleType: "none",
+    fontSize: "16px",
+  });
+  $(".mb-12").css({
+    marginBottom: "12px",
+  });
+  $(".sharelinkbtn").tooltip("hide");
+});
