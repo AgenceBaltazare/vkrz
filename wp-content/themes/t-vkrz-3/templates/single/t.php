@@ -41,150 +41,308 @@ $creator_data       = get_user_infos($creator_uuiduser);
 
                 <div class="content-intro">
 
-                    <div class="intro">
+                    <?php
+                    if(get_field('sponso_t')) : ?>
 
-                        <div class="card animate__animated animate__flipInX card-developer-meetup">
-                            <div class="meetup-img-wrapper rounded-top text-left" style="background-image: url(<?php echo $top_infos['top_img']; ?>);">
-                                <span class="badge badge-light-primary">Créé le <?php echo $top_infos['top_date']; ?></span>
-                                <div class="voile_contenders"></div>
-                                <?php if($top_infos['top_number'] < 30): ?>
-                                    <div class="avatar-group list-contenders">
-                                        <?php $contenders_t = new WP_Query(array('post_type' => 'contender', 'orderby' => 'date', 'posts_per_page' => '-1',
-                                            'meta_query'     => array(
-                                                array(
-                                                    'key'     => 'id_tournoi_c',
-                                                    'value'   => $id_top,
-                                                    'compare' => '=',
-                                                )
-                                            )
-                                        )); ?>
-                                        <?php while ($contenders_t->have_posts()) : $contenders_t->the_post(); ?>
-                                            <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="top" data-original-title="<?php echo get_the_title(get_the_id()); ?>" class="avatar pull-up">
-                                                <?php $illu = get_the_post_thumbnail_url(get_the_id(), 'medium'); ?>
-                                                <img src="<?php echo $illu; ?>" alt="Avatar" height="32" width="32">
-                                            </div>
-                                        <?php endwhile; ?>
-                                    </div>
-                                <?php endif; ?>
-                            </div>
-                            <div class="card-body">
-                                <div class="meetup-header d-flex align-items-center justify-content-center">
-                                    <div class="my-auto">
-                                        <h4 class="card-title mb-25">
-                                            Top <?php echo $top_infos['top_number']; ?> ⚡ <?php echo $top_infos['top_title']; ?>
-                                        </h4>
-                                        <p class="card-text mb-0 t-rose animate__animated animate__flash">
-                                            <?php echo $top_infos['top_question']; ?>
-                                        </p>
-                                    </div>
-                                </div>
-                                <?php if(get_field('precision_t', $id_top)): ?>
-                                    <div class="card-precision">
-                                        <p class="card-text mb-1">
-                                            <?php the_field('precision_t', $id_top); ?>
-                                        </p>
-                                    </div>
-                                <?php endif; ?>
-                            </div>
-                            <div class="card-cta">
-                                <div class="choosecta">
-                                    <div class="cta-begin cta-complet">
-                                        <a href="#" id="begin_t" data-typetop="complet" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
-                                            Top Complet
-                                        </a>
-                                        <small class="text-muted">
-                                            <?php
-                                            $min = ($top_infos['top_number'] - 5) * 2 + 6;
-                                            $max = $min * 2;
-                                            ?>
-                                            <?php if($top_infos['top_number'] < 3): ?>
-                                                Un seul vote suffira pour finir ce Top
-                                            <?php else: ?>
-                                                Prévoir entre <?php echo $min; ?> et <?php echo $max; ?> votes pour finir ton Top du 1er au dernier
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="intro">
+                                    <div class="card animate__animated animate__flipInX card-developer-meetup">
+                                        <div class="meetup-img-wrapper rounded-top text-left" style="background-image: url(<?php echo $top_infos['top_img']; ?>);">
+                                            <span class="badge badge-light-primary">Créé le <?php echo $top_infos['top_date']; ?></span>
+                                            <div class="voile_contenders"></div>
+                                            <?php if($top_infos['top_number'] < 30): ?>
+                                                <div class="avatar-group list-contenders">
+                                                    <?php $contenders_t = new WP_Query(array('post_type' => 'contender', 'orderby' => 'date', 'posts_per_page' => '-1',
+                                                        'meta_query'     => array(
+                                                            array(
+                                                                'key'     => 'id_tournoi_c',
+                                                                'value'   => $id_top,
+                                                                'compare' => '=',
+                                                            )
+                                                        )
+                                                    )); ?>
+                                                    <?php while ($contenders_t->have_posts()) : $contenders_t->the_post(); ?>
+                                                        <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="top" data-original-title="<?php echo get_the_title(get_the_id()); ?>" class="avatar pull-up">
+                                                            <?php $illu = get_the_post_thumbnail_url(get_the_id(), 'medium'); ?>
+                                                            <img src="<?php echo $illu; ?>" alt="Avatar" height="32" width="32">
+                                                        </div>
+                                                    <?php endwhile; ?>
+                                                </div>
                                             <?php endif; ?>
-                                        </small>
-                                    </div>
-                                    <?php if($top_infos['top_number'] > 10): ?>
-                                        <div class="cta-begin cta-top3">
-                                            <a href="#" id="begin_top3" data-typetop="top3" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
-                                                Top 3
-                                            </a>
-                                            <small class="text-muted">
-                                                <?php
-                                                $max = (floor($top_infos['top_number']/2))+(3*((round($top_infos['top_number']/2))-1));
-                                                $min = (floor($top_infos['top_number']/2))+((round($top_infos['top_number']/2))-1)+3;
-                                                $moy = ($max+$min) / 2;
-                                                ?>
-                                                Prévoir environ <?php echo round($moy); ?> votes pour juste faire ton podium
-                                            </small>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="meetup-header d-flex align-items-center justify-content-center">
+                                                <div class="my-auto">
+                                                    <h4 class="card-title mb-25">
+                                                        Top <?php echo $top_infos['top_number']; ?> ⚡ <?php echo $top_infos['top_title']; ?>
+                                                    </h4>
+                                                    <p class="card-text mb-0 t-rose animate__animated animate__flash">
+                                                        <?php echo $top_infos['top_question']; ?>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <?php if(get_field('precision_t', $id_top)): ?>
+                                                <div class="card-precision">
+                                                    <p class="card-text mb-1">
+                                                        <?php the_field('precision_t', $id_top); ?>
+                                                    </p>
+                                                </div>
+                                            <?php endif; ?>
+                                        </div>
+                                        <div class="card-cta">
+                                            <div class="choosecta">
+                                                <div class="cta-begin cta-complet">
+                                                    <a href="#" id="begin_t" data-typetop="complet" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
+                                                        Top Complet
+                                                    </a>
+                                                    <small class="text-muted">
+                                                        <?php
+                                                        $min = ($top_infos['top_number'] - 5) * 2 + 6;
+                                                        $max = $min * 2;
+                                                        ?>
+                                                        <?php if($top_infos['top_number'] < 3): ?>
+                                                            Un seul vote suffira pour finir ce Top
+                                                        <?php else: ?>
+                                                            Prévoir entre <?php echo $min; ?> et <?php echo $max; ?> votes pour finir ton Top du 1er au dernier
+                                                        <?php endif; ?>
+                                                    </small>
+                                                </div>
+                                                <?php if($top_infos['top_number'] > 10): ?>
+                                                    <div class="cta-begin cta-top3">
+                                                        <a href="#" id="begin_top3" data-typetop="top3" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
+                                                            Top 3
+                                                        </a>
+                                                        <small class="text-muted">
+                                                            <?php
+                                                            $max = (floor($top_infos['top_number']/2))+(3*((round($top_infos['top_number']/2))-1));
+                                                            $min = (floor($top_infos['top_number']/2))+((round($top_infos['top_number']/2))-1)+3;
+                                                            $moy = ($max+$min) / 2;
+                                                            ?>
+                                                            Prévoir environ <?php echo round($moy); ?> votes pour juste faire ton podium
+                                                        </small>
+                                                    </div>
+                                                <?php endif; ?>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer">
+                                            <div class="row meetings align-items-center">
+                                                <div class="col">
+                                                    <div class="infos-card-t info-card-t-v d-flex align-items-center">
+                                                        <div class="mr-1">
+                                                            <span class="ico">💎</span>
+                                                        </div>
+                                                        <div class="content-body text-left">
+                                                            <h4 class="mb-0">
+                                                                <?php echo $top_datas['nb_votes']; ?>
+                                                            </h4>
+                                                            <small class="text-muted">votes réalisés</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="infos-card-t d-flex align-items-center">
+                                                        <div class="mr-1">
+                                                            <span class="ico">🏆</span>
+                                                        </div>
+                                                        <div class="content-body text-left">
+                                                            <h4 class="mb-0">
+                                                                <?php echo $top_datas['nb_tops']; ?>
+                                                            </h4>
+                                                            <small class="text-muted">Tops terminés</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="infos-card-t d-flex align-items-center infos-card-t-c">
+                                                        <div class="">
+                                                            <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator_id; ?>" target="_blank">
+                                                                <div class="avatar me-50">
+                                                                    <img src="<?php echo $creator_data['avatar']; ?>" alt="Avatar" width="38" height="38">
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                        <div class="content-body text-left">
+                                                            <small class="text-muted">Conçu par</small>
+                                                            <h4 class="mb-0 link-creator">
+                                                                <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator_id; ?>" target="_blank" class="link-to-creator">
+                                                                    <?php echo $creator_data['pseudo']; ?>
+                                                                    <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Niveau actuel">
+                                                                        <?php echo $creator_data['level']; ?>
+                                                                    </span>
+                                                                    <?php if($creator_data['user_role']  == "administrator"): ?>
+                                                                        <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
+                                                                            🦙
+                                                                        </span>
+                                                                    <?php endif; ?>
+                                                                    <?php if($creator_data['user_role']  == "administrator" || $creator_data['user_role'] == "author"): ?>
+                                                                        <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
+                                                                            🎨
+                                                                        </span>
+                                                                    <?php endif; ?>
+                                                                </a>
+                                                            </h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>  
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                bloc de droite
+                            </div>
+                        </div>
+
+                    <?php else: ?>
+
+                        <div class="intro">
+                            <div class="card animate__animated animate__flipInX card-developer-meetup">
+                                <div class="meetup-img-wrapper rounded-top text-left" style="background-image: url(<?php echo $top_infos['top_img']; ?>);">
+                                    <span class="badge badge-light-primary">Créé le <?php echo $top_infos['top_date']; ?></span>
+                                    <div class="voile_contenders"></div>
+                                    <?php if($top_infos['top_number'] < 30): ?>
+                                        <div class="avatar-group list-contenders">
+                                            <?php $contenders_t = new WP_Query(array('post_type' => 'contender', 'orderby' => 'date', 'posts_per_page' => '-1',
+                                                'meta_query'     => array(
+                                                    array(
+                                                        'key'     => 'id_tournoi_c',
+                                                        'value'   => $id_top,
+                                                        'compare' => '=',
+                                                    )
+                                                )
+                                            )); ?>
+                                            <?php while ($contenders_t->have_posts()) : $contenders_t->the_post(); ?>
+                                                <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="top" data-original-title="<?php echo get_the_title(get_the_id()); ?>" class="avatar pull-up">
+                                                    <?php $illu = get_the_post_thumbnail_url(get_the_id(), 'medium'); ?>
+                                                    <img src="<?php echo $illu; ?>" alt="Avatar" height="32" width="32">
+                                                </div>
+                                            <?php endwhile; ?>
                                         </div>
                                     <?php endif; ?>
                                 </div>
-                            </div>
-                            <div class="card-footer">
-                                <div class="row meetings align-items-center">
-                                    <div class="col">
-                                        <div class="infos-card-t info-card-t-v d-flex align-items-center">
-                                            <div class="mr-1">
-                                                <span class="ico">💎</span>
-                                            </div>
-                                            <div class="content-body text-left">
-                                                <h4 class="mb-0">
-                                                    <?php echo $top_datas['nb_votes']; ?>
-                                                </h4>
-                                                <small class="text-muted">votes réalisés</small>
-                                            </div>
+                                <div class="card-body">
+                                    <div class="meetup-header d-flex align-items-center justify-content-center">
+                                        <div class="my-auto">
+                                            <h4 class="card-title mb-25">
+                                                Top <?php echo $top_infos['top_number']; ?> ⚡ <?php echo $top_infos['top_title']; ?>
+                                            </h4>
+                                            <p class="card-text mb-0 t-rose animate__animated animate__flash">
+                                                <?php echo $top_infos['top_question']; ?>
+                                            </p>
                                         </div>
                                     </div>
-                                    <div class="col">
-                                        <div class="infos-card-t d-flex align-items-center">
-                                            <div class="mr-1">
-                                                <span class="ico">🏆</span>
-                                            </div>
-                                            <div class="content-body text-left">
-                                                <h4 class="mb-0">
-                                                    <?php echo $top_datas['nb_tops']; ?>
-                                                </h4>
-                                                <small class="text-muted">Tops terminés</small>
-                                            </div>
+                                    <?php if(get_field('precision_t', $id_top)): ?>
+                                        <div class="card-precision">
+                                            <p class="card-text mb-1">
+                                                <?php the_field('precision_t', $id_top); ?>
+                                            </p>
                                         </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="infos-card-t d-flex align-items-center infos-card-t-c">
-                                            <div class="">
-                                                <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator_id; ?>" target="_blank">
-                                                    <div class="avatar me-50">
-                                                        <img src="<?php echo $creator_data['avatar']; ?>" alt="Avatar" width="38" height="38">
-                                                    </div>
+                                    <?php endif; ?>
+                                </div>
+                                <div class="card-cta">
+                                    <div class="choosecta">
+                                        <div class="cta-begin cta-complet">
+                                            <a href="#" id="begin_t" data-typetop="complet" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
+                                                Top Complet
+                                            </a>
+                                            <small class="text-muted">
+                                                <?php
+                                                $min = ($top_infos['top_number'] - 5) * 2 + 6;
+                                                $max = $min * 2;
+                                                ?>
+                                                <?php if($top_infos['top_number'] < 3): ?>
+                                                    Un seul vote suffira pour finir ce Top
+                                                <?php else: ?>
+                                                    Prévoir entre <?php echo $min; ?> et <?php echo $max; ?> votes pour finir ton Top du 1er au dernier
+                                                <?php endif; ?>
+                                            </small>
+                                        </div>
+                                        <?php if($top_infos['top_number'] > 10): ?>
+                                            <div class="cta-begin cta-top3">
+                                                <a href="#" id="begin_top3" data-typetop="top3" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
+                                                    Top 3
                                                 </a>
+                                                <small class="text-muted">
+                                                    <?php
+                                                    $max = (floor($top_infos['top_number']/2))+(3*((round($top_infos['top_number']/2))-1));
+                                                    $min = (floor($top_infos['top_number']/2))+((round($top_infos['top_number']/2))-1)+3;
+                                                    $moy = ($max+$min) / 2;
+                                                    ?>
+                                                    Prévoir environ <?php echo round($moy); ?> votes pour juste faire ton podium
+                                                </small>
                                             </div>
-                                            <div class="content-body text-left">
-                                                <small class="text-muted">Conçu par</small>
-                                                <h4 class="mb-0 link-creator">
-                                                    <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator_id; ?>" target="_blank" class="link-to-creator">
-                                                        <?php echo $creator_data['pseudo']; ?>
-                                                        <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Niveau actuel">
-                                                            <?php echo $creator_data['level']; ?>
-                                                        </span>
-                                                        <?php if($creator_data['user_role']  == "administrator"): ?>
-                                                            <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
-                                                                🦙
-                                                            </span>
-                                                        <?php endif; ?>
-                                                        <?php if($creator_data['user_role']  == "administrator" || $creator_data['user_role'] == "author"): ?>
-                                                            <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
-                                                                🎨
-                                                            </span>
-                                                        <?php endif; ?>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="row meetings align-items-center">
+                                        <div class="col">
+                                            <div class="infos-card-t info-card-t-v d-flex align-items-center">
+                                                <div class="mr-1">
+                                                    <span class="ico">💎</span>
+                                                </div>
+                                                <div class="content-body text-left">
+                                                    <h4 class="mb-0">
+                                                        <?php echo $top_datas['nb_votes']; ?>
+                                                    </h4>
+                                                    <small class="text-muted">votes réalisés</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="infos-card-t d-flex align-items-center">
+                                                <div class="mr-1">
+                                                    <span class="ico">🏆</span>
+                                                </div>
+                                                <div class="content-body text-left">
+                                                    <h4 class="mb-0">
+                                                        <?php echo $top_datas['nb_tops']; ?>
+                                                    </h4>
+                                                    <small class="text-muted">Tops terminés</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="infos-card-t d-flex align-items-center infos-card-t-c">
+                                                <div class="">
+                                                    <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator_id; ?>" target="_blank">
+                                                        <div class="avatar me-50">
+                                                            <img src="<?php echo $creator_data['avatar']; ?>" alt="Avatar" width="38" height="38">
+                                                        </div>
                                                     </a>
-                                                </h4>
+                                                </div>
+                                                <div class="content-body text-left">
+                                                    <small class="text-muted">Conçu par</small>
+                                                    <h4 class="mb-0 link-creator">
+                                                        <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator_id; ?>" target="_blank" class="link-to-creator">
+                                                            <?php echo $creator_data['pseudo']; ?>
+                                                            <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Niveau actuel">
+                                                                <?php echo $creator_data['level']; ?>
+                                                            </span>
+                                                            <?php if($creator_data['user_role']  == "administrator"): ?>
+                                                                <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
+                                                                    🦙
+                                                                </span>
+                                                            <?php endif; ?>
+                                                            <?php if($creator_data['user_role']  == "administrator" || $creator_data['user_role'] == "author"): ?>
+                                                                <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
+                                                                    🎨
+                                                                </span>
+                                                            <?php endif; ?>
+                                                        </a>
+                                                    </h4>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+
+                    <?php endif; ?>
+  
                 </div>
 
             <?php else: ?>
