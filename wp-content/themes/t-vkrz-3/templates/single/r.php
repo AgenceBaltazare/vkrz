@@ -83,8 +83,8 @@ $top_datas    = get_top_data($id_top);
             </div> 
         </nav>
         <div class="share-content fixed-bottom">
-            <div class="d-flex justify-content-center close-content">
-                <i class="close-share fas fa-chevron-down fa-2x"></i>
+            <div class="close-share d-flex justify-content-center close-content">
+                <i class="fas fa-chevron-down fa-2x"></i>
             </div>
             <ul>
                 <li class="share-natif-classement" id="share-classement">Partager classement</li>

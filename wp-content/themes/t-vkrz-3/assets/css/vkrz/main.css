@@ -2319,7 +2319,7 @@ textarea {
   }
   .share-classement-content ul,
   .share-top-content ul {
-    margin: 25px;
+    margin: 25px 25px 25px 15px;
     padding-left: 0px;
   }
   .share-classement-content li,
@@ -2349,7 +2349,7 @@ textarea {
   .share-classement-content .social-media,
   .share-top-content .social-media {
     color: #7367f0;
-    width: 30px;
+    width: 20px;
   }
 }
 
