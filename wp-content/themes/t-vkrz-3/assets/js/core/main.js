@@ -175,3 +175,15 @@ shareTopNatif.addEventListener("click", (event) => {
   }
 });
 // Partage en mode natif FIN
+
+// Copie lien d'un top DEBUT
+function copyToClipboard(text) {
+  var inputc = document.body.appendChild(document.createElement("input"));
+  inputc.value = window.location.href;
+  inputc.focus();
+  inputc.select();
+  document.execCommand("copy");
+  inputc.parentNode.removeChild(inputc);
+  alert("Lien du top Copié !");
+}
+// Copie lien d'un top FIN

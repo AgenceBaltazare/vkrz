@@ -107,7 +107,7 @@ $top_datas    = get_top_data($id_top);
                 <a href="">
                     <li><i class="social-media fas fa-download"></i>Télécharger une image</li>
                 </a>
-                <a href="javascript: void(0)" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copier le lien de ton Top">
+                <a href="javascript: void(0)" onclick="copyToClipboard()" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copier le lien de ton Top">
                     <li><i class="social-media fas fa-paperclip"></i>Copier le lien du classement</li>
                 </a>
             </ul>
@@ -125,7 +125,7 @@ $top_datas    = get_top_data($id_top);
                 <a href="whatsapp://send?text=<?php echo $url_ranking; ?>" data-action="share/whatsapp/share">
                     <li><i class="social-media fab fa-whatsapp"></i>What's App</li>
                 </a>
-                <a href="javascript: void(0)" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copier le lien de ton Top">
+                <a href="javascript: void(0)" onclick="copyToClipboard()" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copier le lien de ton Top">
                     <li><i class="social-media fas fa-paperclip"></i>Copier le lien du classement</li>
                 </a>
             </ul>
