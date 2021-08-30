@@ -154,34 +154,15 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                                     </div>
                                                 </div>
                                                 <div class="col">
-                                                    <div class="infos-card-t d-flex align-items-center infos-card-t-c">
-                                                        <div class="">
-                                                            <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator_id; ?>" target="_blank">
-                                                                <div class="avatar me-50">
-                                                                    <img src="<?php echo $creator_data['avatar']; ?>" alt="Avatar" width="38" height="38">
-                                                                </div>
-                                                            </a>
+                                                    <div class="infos-card-t d-flex align-items-center">
+                                                        <div class="mr-1">
+                                                            <span class="ico">🎁</span>
                                                         </div>
                                                         <div class="content-body text-left">
-                                                            <small class="text-muted">Conçu par</small>
-                                                            <h4 class="mb-0 link-creator">
-                                                                <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator_id; ?>" target="_blank" class="link-to-creator">
-                                                                    <?php echo $creator_data['pseudo']; ?>
-                                                                    <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Niveau actuel">
-                                                                        <?php echo $creator_data['level']; ?>
-                                                                    </span>
-                                                                    <?php if($creator_data['user_role']  == "administrator"): ?>
-                                                                        <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
-                                                                            🦙
-                                                                        </span>
-                                                                    <?php endif; ?>
-                                                                    <?php if($creator_data['user_role']  == "administrator" || $creator_data['user_role'] == "author"): ?>
-                                                                        <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
-                                                                            🎨
-                                                                        </span>
-                                                                    <?php endif; ?>
-                                                                </a>
+                                                            <h4 class="mb-0">
+                                                                <?php echo $top_datas['nb_cadeaux']; ?>
                                                             </h4>
+                                                            <small class="text-muted">de ton choix</small>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -191,7 +172,51 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                bloc de droite
+                                <div class="card animate__animated animate__flipInX card-developer-meetup">
+                                    <div class="card-body">
+                                        <div class="rules-content">
+                                            <div class="title-win">
+                                                <h4>
+                                                    Une switch à gagner
+                                                </h4>
+                                            </div>
+                                            <div class="mr-1">
+                                                <span class="ico">🎁</span>
+                                            </div>
+                                        </div>
+                                        <div class="text-rules">
+                                            <p>Termine ton Top pour participer au tirage au sort afin de repartir avec ta <span>switch préférée</span> !</p>
+                                            <p>Il te suffit de finir ce Top puis de Follow le compte VAINKEURZ sur <span><a href="https://twitter.com/intent/tweet?text=J'ai fait mon TOP <?php echo $top_infos['top_number']; ?> <?php echo $top_infos['top_title']; ?> maintenant c'est à vous 🤪🤪 &via=vainkeurz&hashtags=VKRZ&url=<?php echo $top_infos['top_url']; ?>" target="_blank" title="Tweet" class="">Insta</a></span> ou Twitter pour participer au tirage au sort.</p>
+                                            <p>Bonne change à toi !</p>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        dzdezfez
+                                    </div>
+                                    <div class="card-footer">
+                                        dzdezfez
+                                    </div>
+                                    <div class="card-footer d-flex align-items-baseline justify-content-between">
+                                        <h6 class="share-text">
+                                            Partage le lien du Top
+                                        </h6>
+                                        <div class="btn-group justify-content-center share-t w-60" role="group">
+                                            <a href="https://twitter.com/intent/tweet?text=J'ai fait mon TOP <?php echo $top_infos['top_number']; ?> <?php echo $top_infos['top_title']; ?> maintenant c'est à vous 🤪🤪 &via=vainkeurz&hashtags=VKRZ&url=<?php echo $top_infos['top_url']; ?>" target="_blank" title="Tweet" class="btn btn-icon btn-outline-primary">
+                                                <i class="fab fa-twitter"></i>
+                                            </a>
+                                            <a href="whatsapp://send?text=<?php echo $top_infos['top_url']; ?>" data-action="share/whatsapp/share" class="btn btn-icon btn-outline-primary">
+                                                <i class="fab fa-whatsapp"></i>
+                                            </a>
+                                            <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $top_infos['top_url']; ?>" title="Partager sur Facebook" target="_blank" class="btn btn-icon btn-outline-primary">
+                                                <i class="fab fa-facebook-f"></i>
+                                            </a>
+                                            <a href="javascript: void(0)" class="sharelinkbtn2 btn btn-icon btn-outline-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copier le lien du Top">
+                                                <input type="text" value="<?php echo $top_infos['top_url']; ?>" class="input_to_share2">
+                                                <i class="far fa-link"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 

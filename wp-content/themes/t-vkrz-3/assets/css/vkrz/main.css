@@ -2256,6 +2256,14 @@ textarea {
   cursor: pointer;
 }
 
+.w-60 {
+  width: 60% !important;
+}
+
+.share-text {
+  color: #7367f0 !important;
+}
+
 @media (min-width: 1200px) {
   .col-xxl-2 {
     -webkit-box-flex: 0;
