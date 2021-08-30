@@ -1,6 +1,27 @@
+.rules-content {
+  text-align: start;
+  .title-win {
+    background: $rose;
+    border: $rose;
+    border-radius: 3px;
+    h4 {
+      padding: 10px 15px 0px 10px;
+      font-size: 22px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+  }
+  .icone-cadeau {
+    font-size: 30px;
+  }
+}
 .w-60 {
   width: 60% !important;
 }
 .share-text {
   color: $c5 !important;
+  font-size: calc(1rem);
+}
+.logo-vkrz-sponso {
+  width: 118px;
 }

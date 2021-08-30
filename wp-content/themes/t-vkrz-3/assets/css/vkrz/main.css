@@ -2256,12 +2256,38 @@ textarea {
   cursor: pointer;
 }
 
+.rules-content {
+  text-align: start;
+}
+
+.rules-content .title-win {
+  background: #f4167f;
+  border: #f4167f;
+  border-radius: 3px;
+}
+
+.rules-content .title-win h4 {
+  padding: 10px 15px 0px 10px;
+  font-size: 22px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.rules-content .icone-cadeau {
+  font-size: 30px;
+}
+
 .w-60 {
   width: 60% !important;
 }
 
 .share-text {
   color: #7367f0 !important;
+  font-size: calc(1rem);
+}
+
+.logo-vkrz-sponso {
+  width: 118px;
 }
 
 @media (min-width: 1200px) {

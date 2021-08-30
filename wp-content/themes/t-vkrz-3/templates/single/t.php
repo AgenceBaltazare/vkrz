@@ -173,28 +173,51 @@ $creator_data       = get_user_infos($creator_uuiduser);
                             </div>
                             <div class="col-md-4">
                                 <div class="card animate__animated animate__flipInX card-developer-meetup">
-                                    <div class="card-body">
-                                        <div class="rules-content">
+                                    <div class="card-body rules-content">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
                                             <div class="title-win">
                                                 <h4>
                                                     Une switch à gagner
                                                 </h4>
                                             </div>
-                                            <div class="mr-1">
-                                                <span class="ico">🎁</span>
+                                            <div class="mr-1 ml-3">
+                                                <span class="icone-cadeau">🎁</span>
                                             </div>
                                         </div>
                                         <div class="text-rules">
-                                            <p>Termine ton Top pour participer au tirage au sort afin de repartir avec ta <span>switch préférée</span> !</p>
-                                            <p>Il te suffit de finir ce Top puis de Follow le compte VAINKEURZ sur <span><a href="https://twitter.com/intent/tweet?text=J'ai fait mon TOP <?php echo $top_infos['top_number']; ?> <?php echo $top_infos['top_title']; ?> maintenant c'est à vous 🤪🤪 &via=vainkeurz&hashtags=VKRZ&url=<?php echo $top_infos['top_url']; ?>" target="_blank" title="Tweet" class="">Insta</a></span> ou Twitter pour participer au tirage au sort.</p>
-                                            <p>Bonne change à toi !</p>
+                                            <p>Termine ton Top pour participer au tirage au sort afin de repartir avec ta <span class="t-rose">switch préférée</span> !</p>
+                                            <p>Il te suffit de finir ce Top puis de Follow le compte VAINKEURZ sur <span><a href="https://twitter.com/intent/tweet?text=Voici mon TOP <?php echo $top_infos['top_number']; ?> <?php echo $top_infos['top_title']; ?>&via=vainkeurz&hashtags=VKRZ&url=<?php echo $url_ranking; ?>" target="_blank" title="Tweet">Insta</a></span> ou <span><a href="https://twitter.com/intent/tweet?text=Voici mon TOP <?php echo $top_infos['top_number']; ?> <?php echo $top_infos['top_title']; ?>&via=vainkeurz&hashtags=VKRZ&url=<?php echo $url_ranking; ?>" target="_blank" title="Tweet">Twitter</a></span> pour participer au tirage au sort.</p>
+                                            <p>Bonne chance à toi !</p>
                                         </div>
                                     </div>
                                     <div class="card-footer">
-                                        dzdezfez
+                                        <p>
+                                            Temps avant la fin de la sponso :
+                                        </p>
+                                        <div class="timer-sponso">
+                                            7J 3H 34M
+                                        </div>
+                                        <p>
+                                            règlement
+                                        </p>
                                     </div>
-                                    <div class="card-footer">
-                                        dzdezfez
+                                    <div class="card-footer d-flex">
+                                        <div class="logo-vkrz-sponso">
+                                            <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/logo-vkrz.png" alt="VAINKEURZ logo" class="img-fluid">
+                                        </div>
+                                        <div>
+                                            <div>
+                                                <p>Ce Top est proposé par VAINKEURZ</p>
+                                            </div>
+                                            <div class="d-flex">
+                                                <a href="#" id="begin_t" data-typetop="complet" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
+                                                    TWITTER
+                                                </a>
+                                                <a href="#" id="begin_t" data-typetop="complet" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
+                                                    INSTAGRAM
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="card-footer d-flex align-items-baseline justify-content-between">
                                         <h6 class="share-text">
