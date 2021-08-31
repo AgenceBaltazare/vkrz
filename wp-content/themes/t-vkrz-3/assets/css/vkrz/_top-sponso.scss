@@ -22,6 +22,52 @@
   color: $c5 !important;
   font-size: calc(1rem);
 }
+.fs-12px {
+  font-size: 12px;
+}
+#timer-sponso {
+  font-size: 48px;
+  line-height: 59.71px;
+  font-weight: 500;
+}
+.grey {
+  color: #3c4352;
+}
+.bb {
+  display: inline-block;
+  border-bottom: 1px solid;
+  padding-bottom: 5px;
+}
 .logo-vkrz-sponso {
-  width: 118px;
+  width: 30%;
+  img {
+    width: 118px;
+    height: auto;
+  }
+}
+.social-media-sponso {
+  padding: 0px 10px;
+  width: 70%;
+  a {
+    margin-right: 10px;
+  }
+}
+.timer-content-sponso {
+  padding: 30px 20px 10px !important;
+}
+.share-content-sponso,
+.share-top-sponsor {
+  padding: 15px 20px !important;
+}
+
+@media (min-width: 767px) and (max-width: 1576px) {
+  .social-media-sponso {
+    padding-left: 60px;
+    .buttons-social-media {
+      flex-direction: column;
+      a:first-child {
+        margin-bottom: 10px;
+      }
+    }
+  }
 }

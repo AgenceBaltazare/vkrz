@@ -190,36 +190,38 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                             <p>Bonne chance à toi !</p>
                                         </div>
                                     </div>
-                                    <div class="card-footer">
-                                        <p>
+                                    <div class="card-footer timer-content-sponso">
+                                        <p class="fs-12px">
                                             Temps avant la fin de la sponso :
                                         </p>
-                                        <div class="timer-sponso">
-                                            7J 3H 34M
+                                        <div class="">
+                                            <p id="timer-sponso"></p>
                                         </div>
-                                        <p>
-                                            règlement
+                                        <p class="fs-12px grey bb">
+                                            Règlement
                                         </p>
                                     </div>
-                                    <div class="card-footer d-flex">
-                                        <div class="logo-vkrz-sponso">
-                                            <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/logo-vkrz.png" alt="VAINKEURZ logo" class="img-fluid">
-                                        </div>
-                                        <div>
-                                            <div>
-                                                <p>Ce Top est proposé par VAINKEURZ</p>
+                                    <div class="card-footer share-content-sponso">
+                                        <div class="d-flex justify-content-between">
+                                            <div class="logo-vkrz-sponso">
+                                                <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/logo-vkrz.png" alt="VAINKEURZ logo" class="">
                                             </div>
-                                            <div class="d-flex">
-                                                <a href="#" id="begin_t" data-typetop="complet" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
-                                                    TWITTER
-                                                </a>
-                                                <a href="#" id="begin_t" data-typetop="complet" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
-                                                    INSTAGRAM
-                                                </a>
+                                            <div class="mt-2 social-media-sponso">
+                                                <div class="text-left">
+                                                    <p>Ce Top est proposé par VAINKEURZ</p>
+                                                </div>
+                                                <div class="d-flex buttons-social-media">
+                                                    <a href="#" id="begin_t" data-typetop="complet" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
+                                                        TWITTER
+                                                    </a>
+                                                    <a href="#" id="begin_t" data-typetop="complet" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
+                                                        INSTAGRAM
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="card-footer d-flex align-items-baseline justify-content-between">
+                                    <div class="card-footer share-top-sponsor d-flex align-items-baseline justify-content-between">
                                         <h6 class="share-text">
                                             Partage le lien du Top
                                         </h6>
