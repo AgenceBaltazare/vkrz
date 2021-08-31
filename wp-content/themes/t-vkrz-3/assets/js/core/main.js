@@ -41,7 +41,7 @@ window.onload = function () {
         var msg = successful ? "successful" : "unsuccessful";
         copyBtn.innerHTML = "✓";
       } catch (err) {
-        console.log("Oops, impossible de copié - Demandes pas pourquoi :/");
+        console.log("Oops, impossible de copier - Demandes pas pourquoi :/");
       }
     });
   }
@@ -57,7 +57,7 @@ window.onload = function () {
         var msg = successful ? "successful" : "unsuccessful";
         copyBtn2.innerHTML = "✓";
       } catch (err) {
-        console.log("Oops, impossible de copié - Demandes pas pourquoi :/");
+        console.log("Oops, impossible de copier - Demandes pas pourquoi :/");
       }
     });
   }
@@ -126,7 +126,7 @@ $(function () {
     });
 });
 
-// coutdown timer DEBUT
+// countdown timer DEBUT
 var countDownDate = new Date("Sep 01, 2021 10:30:30").getTime();
 
 // Update the count down every 1 second
@@ -153,4 +153,4 @@ var x = setInterval(function () {
     );
   }
 }, 1000);
-// coutdown timer FIN
+// countdown timer FIN

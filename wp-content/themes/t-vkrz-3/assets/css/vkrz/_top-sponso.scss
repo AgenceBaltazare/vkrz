@@ -1,3 +1,4 @@
+// t.php
 .rules-content {
   text-align: start;
   .title-win {
@@ -68,6 +69,68 @@
       a:first-child {
         margin-bottom: 10px;
       }
+    }
+  }
+}
+
+// r.php
+.participation-content-sponso {
+  background: linear-gradient(180deg, #230b36 12.44%, #0c0a27 100%);
+  border-radius: 10.7037px;
+  h1 {
+    font-family: "Lato";
+    font-weight: 900;
+    font-style: italic;
+
+    font-size: 38.89px;
+    line-height: 44.39px;
+    text-transform: uppercase;
+    color: #ffffff;
+    text-shadow: 3.4618px 3.4618px 0px #312673;
+    .participation {
+      font-size: 28.22px;
+      line-height: 35.53px;
+    }
+    .vainkeurz {
+      font-size: 39.06px;
+      line-height: 35.53px;
+    }
+  }
+  a {
+    text-decoration: none;
+    color: $rose;
+  }
+  .info-share2 {
+    font-family: "Roboto";
+    font-size: 14px;
+    line-height: 16px;
+    color: #c4c4c4;
+  }
+  .buttons-share-top {
+    a:first-child {
+      margin-right: 10px;
+    }
+  }
+
+  @media (min-width: 767px) and (max-width: 1205px) {
+    .buttons-share-top {
+      flex-direction: column;
+      a:first-child {
+        margin-bottom: 10px;
+        margin-right: 0px;
+      }
+    }
+  }
+  @media (min-width: 767px) and (max-width: 1036px) {
+    .info-concours {
+      margin-bottom: 1.5rem;
+    }
+  }
+  @media (max-width: 767px) {
+    .info-concours {
+      margin-bottom: 1.5rem;
+      text-align: center;
+      padding: 0px 20px;
     }
   }
 }
