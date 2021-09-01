@@ -8,6 +8,7 @@ global $top_infos;
 global $utm;
 global $user_infos;
 global $id_vainkeur;
+global $banner;
 
 if(is_user_logged_in() && env() != "local") {
     if (false === ( $user_tops = get_transient( 'user_'.$user_id.'_get_user_tops' ) )) {
@@ -104,7 +105,7 @@ $top_datas    = get_top_data($id_top);
                 <a href="whatsapp://send?text=<?php echo $url_ranking; ?>" data-action="share/whatsapp/share">
                     <li><i class="social-media fab fa-whatsapp"></i>What's App</li>
                 </a>
-                <a href="">
+                <a href="<?php echo $banner; ?>" download>
                     <li><i class="social-media mb-12 fas fa-download"></i>Télécharger une image</li>
                 </a>
                 <a href="javascript: void(0)" class="sharelinkbtn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copier le lien de ton Classement">
