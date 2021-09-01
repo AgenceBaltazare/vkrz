@@ -44,7 +44,79 @@ $creator_data       = get_user_infos($creator_uuiduser);
                     <?php
                     if(get_field('sponso_t', $id_top)) : ?>
 
-                        <div class="row">
+                        <div class="row equalH">
+                            <div class="col-md-4">
+                                <div class="card animate__animated animate__flipInX card-developer-meetup">
+                                    <div class="card-body rules-content">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <div class="title-win">
+                                                <h4>
+                                                    Une switch à gagner
+                                                </h4>
+                                            </div>
+                                            <div class="mr-1 ml-3">
+                                                <span class="icone-cadeau">🎁</span>
+                                            </div>
+                                        </div>
+                                        <div class="text-rules">
+                                            <p>Termine ton Top pour participer au tirage au sort afin de repartir avec ta <span class="t-rose">switch préférée</span> !</p>
+                                            <p>Il te suffit de finir ce Top puis de Follow le compte VAINKEURZ sur <span><a href="https://www.instagram.com/wearevainkeurz/" target="_blank" title="Instagram">Insta</a></span> ou <span><a href="https://twitter.com/Vainkeurz" target="_blank" title="Twitter">Twitter</a></span> pour participer au tirage au sort.</p>
+                                            <p>Bonne chance à toi !</p>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer timer-content-sponso">
+                                        <p class="fs-12px">
+                                            Temps avant la fin de la sponso :
+                                        </p>
+                                        <div class="">
+                                            <p id="timer-sponso"></p>
+                                        </div>
+                                        <a href="#" class="fs-12px grey bb">
+                                            Règlement
+                                        </a>
+                                    </div>
+                                    <div class="card-footer share-content-sponso">
+                                        <div class="d-flex justify-content-between">
+                                            <div class="logo-vkrz-sponso d-flex align-items-center">
+                                                <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/logo-vkrz.png" alt="VAINKEURZ logo" class="">
+                                            </div>
+                                            <div class="mt-2 social-media-sponso">
+                                                <div class="text-left">
+                                                    <p>Ce Top est proposé par VAINKEURZ</p>
+                                                </div>
+                                                <div class="d-flex buttons-social-media">
+                                                    <a href="https://twitter.com/Vainkeurz" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light">
+                                                        TWITTER
+                                                    </a>
+                                                    <a href="https://www.instagram.com/wearevainkeurz/" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light">
+                                                        INSTAGRAM
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer share-top-sponsor d-flex align-items-baseline justify-content-between">
+                                        <h6 class="share-text">
+                                            Partage le lien du Top
+                                        </h6>
+                                        <div class="btn-group justify-content-center share-t w-60" role="group">
+                                            <a href="https://twitter.com/intent/tweet?text=J'ai fait mon TOP <?php echo $top_infos['top_number']; ?> <?php echo $top_infos['top_title']; ?> maintenant c'est à vous 🤪🤪 &via=vainkeurz&hashtags=VKRZ&url=<?php echo $top_infos['top_url']; ?>" target="_blank" title="Tweet" class="btn btn-icon btn-outline-primary">
+                                                <i class="fab fa-twitter"></i>
+                                            </a>
+                                            <a href="whatsapp://send?text=<?php echo $top_infos['top_url']; ?>" data-action="share/whatsapp/share" class="btn btn-icon btn-outline-primary">
+                                                <i class="fab fa-whatsapp"></i>
+                                            </a>
+                                            <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $top_infos['top_url']; ?>" title="Partager sur Facebook" target="_blank" class="btn btn-icon btn-outline-primary">
+                                                <i class="fab fa-facebook-f"></i>
+                                            </a>
+                                            <a href="javascript: void(0)" class="sharelinkbtn2 btn btn-icon btn-outline-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copier le lien du Top">
+                                                <input type="text" value="<?php echo $top_infos['top_url']; ?>" class="input_to_share2">
+                                                <i class="far fa-link"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-md-8">
                                 <div class="intro">
                                     <div class="card animate__animated animate__flipInX card-developer-meetup">
@@ -169,78 +241,6 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                             </div>
                                         </div>
                                     </div>  
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="card animate__animated animate__flipInX card-developer-meetup">
-                                    <div class="card-body rules-content">
-                                        <div class="d-flex justify-content-between align-items-center mb-3">
-                                            <div class="title-win">
-                                                <h4>
-                                                    Une switch à gagner
-                                                </h4>
-                                            </div>
-                                            <div class="mr-1 ml-3">
-                                                <span class="icone-cadeau">🎁</span>
-                                            </div>
-                                        </div>
-                                        <div class="text-rules">
-                                            <p>Termine ton Top pour participer au tirage au sort afin de repartir avec ta <span class="t-rose">switch préférée</span> !</p>
-                                            <p>Il te suffit de finir ce Top puis de Follow le compte VAINKEURZ sur <span><a href="https://www.instagram.com/wearevainkeurz/" target="_blank" title="Instagram">Insta</a></span> ou <span><a href="https://twitter.com/Vainkeurz" target="_blank" title="Twitter">Twitter</a></span> pour participer au tirage au sort.</p>
-                                            <p>Bonne chance à toi !</p>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer timer-content-sponso">
-                                        <p class="fs-12px">
-                                            Temps avant la fin de la sponso :
-                                        </p>
-                                        <div class="">
-                                            <p id="timer-sponso"></p>
-                                        </div>
-                                        <p class="fs-12px grey bb">
-                                            Règlement
-                                        </p>
-                                    </div>
-                                    <div class="card-footer share-content-sponso">
-                                        <div class="d-flex justify-content-between">
-                                            <div class="logo-vkrz-sponso">
-                                                <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/logo-vkrz.png" alt="VAINKEURZ logo" class="">
-                                            </div>
-                                            <div class="mt-2 social-media-sponso">
-                                                <div class="text-left">
-                                                    <p>Ce Top est proposé par VAINKEURZ</p>
-                                                </div>
-                                                <div class="d-flex buttons-social-media">
-                                                    <a href="https://twitter.com/Vainkeurz" class="w-100 btn btn-max btn-primary waves-effect waves-float waves-light">
-                                                        TWITTER
-                                                    </a>
-                                                    <a href="https://www.instagram.com/wearevainkeurz/" class="w-100 btn btn-max btn-primary waves-effect waves-float waves-light">
-                                                        INSTAGRAM
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer share-top-sponsor d-flex align-items-baseline justify-content-between">
-                                        <h6 class="share-text">
-                                            Partage le lien du Top
-                                        </h6>
-                                        <div class="btn-group justify-content-center share-t w-60" role="group">
-                                            <a href="https://twitter.com/intent/tweet?text=J'ai fait mon TOP <?php echo $top_infos['top_number']; ?> <?php echo $top_infos['top_title']; ?> maintenant c'est à vous 🤪🤪 &via=vainkeurz&hashtags=VKRZ&url=<?php echo $top_infos['top_url']; ?>" target="_blank" title="Tweet" class="btn btn-icon btn-outline-primary">
-                                                <i class="fab fa-twitter"></i>
-                                            </a>
-                                            <a href="whatsapp://send?text=<?php echo $top_infos['top_url']; ?>" data-action="share/whatsapp/share" class="btn btn-icon btn-outline-primary">
-                                                <i class="fab fa-whatsapp"></i>
-                                            </a>
-                                            <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $top_infos['top_url']; ?>" title="Partager sur Facebook" target="_blank" class="btn btn-icon btn-outline-primary">
-                                                <i class="fab fa-facebook-f"></i>
-                                            </a>
-                                            <a href="javascript: void(0)" class="sharelinkbtn2 btn btn-icon btn-outline-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copier le lien du Top">
-                                                <input type="text" value="<?php echo $top_infos['top_url']; ?>" class="input_to_share2">
-                                                <i class="far fa-link"></i>
-                                            </a>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>

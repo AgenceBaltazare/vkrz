@@ -73,6 +73,30 @@
   }
 }
 
+@media (min-width: 767px) and (max-width: 1391px) {
+  #timer-sponso {
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 433px) {
+  #timer-sponso {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 495px) {
+  .social-media-sponso {
+    padding-left: 60px;
+    .buttons-social-media {
+      flex-direction: column;
+      a:first-child {
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
+
 // r.php
 .participation-content-sponso {
   background: linear-gradient(180deg, #230b36 12.44%, #0c0a27 100%);
@@ -112,7 +136,16 @@
     }
   }
 
-  @media (min-width: 767px) and (max-width: 1205px) {
+  @media (min-width: 767px) and (max-width: 1383px) {
+    .buttons-share-top {
+      flex-direction: column;
+      a:first-child {
+        margin-bottom: 10px;
+        margin-right: 0px;
+      }
+    }
+  }
+  @media (max-width: 433px) {
     .buttons-share-top {
       flex-direction: column;
       a:first-child {

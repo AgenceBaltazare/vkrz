@@ -124,10 +124,26 @@ $(function () {
       display: "block",
       width: "100%",
     });
+  $(".intro").css({
+    width: "auto",
+  });
+});
+
+jQuery.fn.equalHeights = function() {
+  var max_height = 0;
+  jQuery(this).each(function() {
+      max_height = Math.max(jQuery(this).height(), max_height);
+  });
+  jQuery(this).each(function() {
+      jQuery(this).height(max_height);
+  });
+};
+jQuery(document).ready(function() {
+  jQuery('.equalH').equalHeights();
 });
 
 // countdown timer DEBUT
-var countDownDate = new Date("Sep 01, 2021 10:30:30").getTime();
+var countDownDate = new Date("Sep 02, 2021 10:30:30").getTime();
 
 // Update the count down every 1 second
 var x = setInterval(function () {
@@ -141,9 +157,10 @@ var x = setInterval(function () {
   var days = Math.floor(distance / (1000 * 60 * 60 * 24));
   var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
   // Display the result in the element with id="demo"
-  $("#timer-sponso").html(days + "J " + hours + "H " + minutes + "M ");
+  $("#timer-sponso").html(days + "J " + hours + "H " + minutes + "M " + seconds + "S ");
 
   // If the count down is finished, write some text
   if (distance < 0) {

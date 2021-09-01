@@ -93,7 +93,7 @@ $top_datas    = get_top_data($id_top);
 
             <div class="row">
                 <div class="col-md-9">
-                    <div class="participation-content-sponso mt-2 mb-4">
+                    <div class="participation-content-sponso mb-4">
                         <div class="row">
                             <div class="col-md-8 ml-2 mt-1">
                                 <h1>
@@ -102,12 +102,12 @@ $top_datas    = get_top_data($id_top);
                             </div>
                         </div>
                         <div class="row d-flex align-items-center pr-1 pl-1">
-                            <div class="col-md-8 d-flex justify-content-around">
+                            <div class="col-md-7 d-flex justify-content-around">
                                 <div class="image-recompense">
-                                    <img src="<?php bloginfo('template_directory'); ?>/assets/images/illustration/recompense.svg" alt="" class="img-fluid">
+                                    <img src="<?php bloginfo('template_directory'); ?>/assets/images/concours/recompense-switch-bleu.svg" alt="" class="img-fluid">
                                 </div>
                             </div>
-                            <div class="col-md-4 info-concours">
+                            <div class="col-md-5 info-concours">
                                 <p class="info-share">
                                     Pour participer, tu dois <span class="t-rose">partager</span> ton Top en commentaire de notre poste pour le concours sur Twitter et <span class="t-rose">RT</span> + <span class="t-rose">follow</span> <a href="https://twitter.com/Vainkeurz">@Vainkeurz</a>
                                 </p>
@@ -115,10 +115,10 @@ $top_datas    = get_top_data($id_top);
                                     Pour partager ton classement dans les commentaires du post du concours, clique juste en dessous et copie colle le lien sur Twitter !
                                 </p>
                                 <div class="d-flex align-items-center buttons-share-top">
-                                    <a href="https://twitter.com/intent/tweet?text=Voici mon TOP <?php echo $top_infos['top_number']; ?> <?php echo $top_infos['top_title']; ?>&via=vainkeurz&hashtags=VKRZ&url=<?php echo $url_ranking; ?>" target="_blank" title="Tweet" class="w-100 btn btn-max btn-primary waves-effect waves-float waves-light">
+                                    <a href="https://twitter.com/intent/tweet?text=Voici mon TOP <?php echo $top_infos['top_number']; ?> <?php echo $top_infos['top_title']; ?>&via=vainkeurz&hashtags=VKRZ&url=<?php echo $url_ranking; ?>" target="_blank" title="Tweet" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light">
                                         Post Twitter
                                     </a>
-                                    <a href="javascript: void(0)" class="sharelinkbtn2 w-100 btn btn-max btn-primary waves-effect waves-float waves-light">
+                                    <a href="javascript: void(0)" class="sharelinkbtn2 w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light">
                                     <input type="text" value="<?php echo $top_infos['top_url']; ?>" class="input_to_share2">
                                         Copier le lien du Top
                                     </a>
