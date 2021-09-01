@@ -63,11 +63,19 @@ $top_datas    = get_top_data($id_top);
     <div class="content-body">
         <nav class="navbar fixed-bottom mobile-navbar">
             <div class="container icons-navbar">
+            <?php if(get_field('uuid_user_r', $id_ranking) == $uuiduser): ?>
                 <div class="">
                     <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" href="#" class="confirm_delete">
-                        <img src="<?php bloginfo('template_directory'); ?>/assets/images/icons/restart.svg" alt="" class="aaa">
+                        <img src="<?php bloginfo('template_directory'); ?>/assets/images/icons/restart.svg" alt="" class="">
                     </a>
                 </div>
+                <?php else: ?>
+                <div class="">
+                    <a href="<?php echo $top_infos['top_url']; ?>" class="">
+                        <img src="<?php bloginfo('template_directory'); ?>/assets/images/icons/trophy.svg" alt="" class="">
+                    </a>
+                </div>
+            <?php endif; ?>
                 <div class="share">
                     <img src="<?php bloginfo('template_directory'); ?>/assets/images/icons/share.svg" alt="" class="">
                 </div>
