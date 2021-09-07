@@ -45,7 +45,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                     if(get_field('sponso_t', $id_top)) : ?>
 
                         <div class="row">
-                            <div class="col-md-4 equalH">
+                            <div class="col-md-4">
                                 <div class="card animate__animated animate__flipInX card-developer-meetup">
                                     <div class="card-body rules-content">
                                         <div class="d-flex justify-content-between align-items-center mb-3">
@@ -117,7 +117,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-8 equalH">
+                            <div class="col-md-8 start-top">
                                 <div class="intro">
                                     <div class="card animate__animated animate__flipInX card-developer-meetup">
                                         <div class="meetup-img-wrapper rounded-top text-left" style="background-image: url(<?php echo $top_infos['top_img']; ?>);">
