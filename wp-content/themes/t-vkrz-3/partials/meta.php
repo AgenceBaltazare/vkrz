@@ -79,6 +79,7 @@
     $query = "?modifications=" . rtrim(strtr(base64_encode($modifications), '+/', '-_'), '=');
     $signature = hash_hmac('sha256', $base.$query, $api_key);
     $banner = $base . $query."&s=" . $signature;
+    global $banner;
     ?>
 
     <link rel="canonical" href="<?php echo get_the_permalink($id_ranking); ?>" />

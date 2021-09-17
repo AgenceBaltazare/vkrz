@@ -36,6 +36,78 @@ $creator_data       = get_user_infos($creator_uuiduser);
     <div class="content-overlay"></div>
     <div class="content-wrapper">
         <div class="content-body tournoi-content">
+            <nav class="navbar fixed-bottom mobile-navbar">
+                <div class="container icons-navbar">
+                    <div class="">
+                        <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" href="#" class="confirm_delete">
+                            <img src="<?php bloginfo('template_directory'); ?>/assets/images/icons/restart.svg" alt="" class="aaa">
+                        </a>
+                    </div>
+                    <div class="share">
+                        <img src="<?php bloginfo('template_directory'); ?>/assets/images/icons/share.svg" alt="" class="">
+                    </div>
+                    <div class="">
+                        <a href="#" data-toggle="modal" data-target="#commentModal">
+                            <img src="<?php bloginfo('template_directory'); ?>/assets/images/icons/star2.svg" alt="" class="">
+                        </a>
+                    </div>
+                    <div class="">
+                        <a href="<?php echo get_the_permalink(get_page_by_path('discuz')).'?id_top='.$id_top; ?>">
+                            <img src="<?php bloginfo('template_directory'); ?>/assets/images/icons/pen.svg" alt="" class="">
+                        </a>
+                    </div>
+                </div> 
+            </nav>
+            <div class="share-content fixed-bottom">
+                <div class="close-share d-flex justify-content-center close-content">
+                    <i class="fas fa-chevron-down fa-2x"></i>
+                </div>
+                <ul>
+                    <li class="share-natif-classement" id="share-classement">Partager classement</li>
+                    <li class="share-natif-top" id="share-top">Partager top</li>
+                </ul>
+            </div>
+            <div class="share-classement-content fixed-bottom">
+                <h3>Partager classement</h3>
+                <img src="<?php bloginfo('template_directory'); ?>/assets/images/icons/close.svg" alt="" class="close-share">
+                <ul>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $url_ranking; ?>" title="Partager sur Facebook" target="_blank">
+                        <li><i class="social-media fab fa-twitter"></i>Facebook</li>
+                    </a>
+                    <a href="https://twitter.com/intent/tweet?text=Voici mon TOP <?php echo $top_infos['top_number']; ?> <?php echo $top_infos['top_title']; ?>&via=vainkeurz&hashtags=VKRZ&url=<?php echo $url_ranking; ?>" target="_blank" title="Tweet">
+                        <li><i class="social-media fab fa-facebook-f"></i>Twitter</li>
+                    </a>
+                    <a href="whatsapp://send?text=<?php echo $url_ranking; ?>" data-action="share/whatsapp/share">
+                        <li><i class="social-media fab fa-whatsapp"></i>What's App</li>
+                    </a>
+                    <a href="">
+                        <li><i class="social-media mb-12 fas fa-download"></i>Télécharger une image</li>
+                    </a>
+                    <a href="javascript: void(0)" class="sharelinkbtn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copier le lien de ton Classement">
+                        <input type="text" value="<?php echo $top_infos['top_url']; ?>" class="input_to_share">
+                        <li><i class="social-media fas fa-paperclip"></i>Copier le lien du classement</li>
+                    </a>
+                </ul>
+            </div>
+            <div class="share-top-content fixed-bottom">
+                <h3>Partager top</h3>
+                <img src="<?php bloginfo('template_directory'); ?>/assets/images/icons/close.svg" alt="" class="close-share">
+                <ul>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $url_ranking; ?>" title="Partager sur Facebook" target="_blank">
+                        <li><i class="social-media fab fa-twitter"></i>Facebook</li>
+                    </a>
+                    <a href="https://twitter.com/intent/tweet?text=Voici mon TOP <?php echo $top_infos['top_number']; ?> <?php echo $top_infos['top_title']; ?>&via=vainkeurz&hashtags=VKRZ&url=<?php echo $url_ranking; ?>" target="_blank" title="Tweet">
+                        <li><i class="social-media fab fa-facebook-f"></i>Twitter</li>
+                    </a>
+                    <a href="whatsapp://send?text=<?php echo $url_ranking; ?>" data-action="share/whatsapp/share">
+                        <li><i class="social-media mb-12 fab fa-whatsapp"></i>What's App</li>
+                    </a>
+                    <a href="javascript: void(0)" class="sharelinkbtn2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copier le lien de ton Top">
+                        <input type="text" value="<?php echo $top_infos['top_url']; ?>" class="input_to_share2">
+                        <li><i class="social-media fas fa-paperclip"></i>Copier le lien du top</li>
+                    </a>
+                </ul>
+            </div>
 
             <?php if(!$id_ranking): ?>
 

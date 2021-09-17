@@ -1,0 +1,90 @@
+.mobile-navbar,
+.share-content,
+.share-classement-content,
+.share-top-content {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-navbar {
+    background: #23213b;
+    display: block;
+    .icons-navbar {
+      display: flex;
+      justify-content: space-evenly;
+      padding: 12px 50px 12px 0px;
+      .share {
+        cursor: pointer;
+      }
+    }
+  }
+  .share-content {
+    background: #23213b;
+    .close-content {
+      margin: 12px 0px 12px 0px;
+      .close-share {
+        cursor: pointer;
+      }
+    }
+    ul {
+      margin: 0px 20px 20px 20px;
+      padding-left: 0px;
+      cursor: pointer;
+    }
+    li {
+      font-family: "Lato";
+      list-style-type: none;
+      font-size: 18px;
+      font-weight: bold;
+      -webkit-user-select: none;
+      -webkit-touch-callout: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    li:last-child {
+      margin-top: 12px;
+    }
+    i {
+      color: $rose;
+    }
+  }
+  .share-classement-content,
+  .share-top-content {
+    background: #23213b;
+    h3 {
+      border-bottom: 1px solid #343249;
+      padding: 22px 0px 22px 30px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    a {
+      text-decoration: none;
+      color: #ffffff;
+    }
+    ul {
+      margin: 25px 25px 25px 15px;
+      padding-left: 0px;
+    }
+    li {
+      font-family: "Lato";
+      list-style-type: none;
+      font-size: 16px;
+      margin-top: 12px;
+      &:active {
+        color: $rose;
+      }
+    }
+    .close-share {
+      color: $rose;
+      position: absolute;
+      top: 26px;
+      right: 30px;
+      cursor: pointer;
+    }
+    .social-media {
+      color: $c5;
+      width: 20px;
+    }
+  }
+}
