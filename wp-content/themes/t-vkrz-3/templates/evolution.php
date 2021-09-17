@@ -40,7 +40,7 @@ $level_user = $user_infos['level_number'];
                                             <h3>Niveau 0</h3>
                                             <?php if(is_user_logged_in()): ?>
                                                 <p class="card-text eh2">
-                                                    Maintenant que tu fais parti de l'équipage, il te faut 50 💎 pour éclore et passer au niveau 1.
+                                                    Maintenant que tu fais parti des Vainkeurs, il te faut 50 💎 pour éclore et passer au niveau 1.
                                                 </p>
                                             <?php else: ?>
                                                 <p class="card-text eh2">

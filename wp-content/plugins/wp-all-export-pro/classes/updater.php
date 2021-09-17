@@ -52,6 +52,7 @@ if (!class_exists('PMXE_Updater')) {
 
             add_action('after_plugin_row_' . $this->name, array($this, 'show_update_notification'), 11, 2);
             add_filter('plugin_row_meta', array($this, 'plugin_row_meta'), 10, 2);
+
         }
 
         /**
@@ -261,11 +262,11 @@ if (!class_exists('PMXE_Updater')) {
                 if (empty($version_info->download_link)) {
                     if ($shiny_updates) $update_msg_classes .= ' post-shiny-updates';
                     $new_version = "<span class=\"wp-all-export-pro-new-version-notice\">" . sprintf(
-                            __('A new version of WP All Export Pro available. <strong>A valid license is required to enable updates - enter your license key on the <a href="%1$s">Licenses</a> page.</strong>', 'wp_all_export_plugin'),
+                            __('A new version of WP All Export Pro is available. <strong>A valid license is required to enable updates - enter your license key on the <a href="%1$s">Settings</a> page.</strong>', 'wp_all_export_plugin'),
                             esc_url(admin_url('admin.php?page=pmxe-admin-settings'))
                         ) . "</span>";
                     $new_version .= "<span class=\"wp-all-export-pro-licence-error-notice\">" . sprintf(
-                            __('If you don\'t have a licence key, please see <a href="%1$s" target="_blank">details & pricing</a>. If you do have a licence key, you can access it at the <a href="%2$s" target="_blank">customer portal</a>.', 'wp_all_export_plugin'),
+                            __('If you don\'t have a license key, please see the <a href="%1$s" target="_blank">details & pricing</a> page. If you do have a license key, you can access it at the <a href="%2$s" target="_blank">customer portal</a>.', 'wp_all_export_plugin'),
                             esc_url('http://www.wpallimport.com/order-now/'),
                             esc_url('http://www.wpallimport.com/portal/')
                         ) . "</span>";
@@ -279,13 +280,31 @@ if (!class_exists('PMXE_Updater')) {
                 }
             }
 
+	        $addons_text = <<<EOD
+<span style="margin-left:30px;display:block;">
+<span style="padding-top:0; font-size:20px;margin:0;">Important Notice Regarding WP All Export Pro</span><br/><br/><strong>WP All Export Pro will soon receive an update requiring paid add-ons to export ACF and WooCommerce data.<br/>These add-ons have been added to your account, free of charge.<br/><br/>
+<a href="https://wpallimport.com/portal/downloads/?utm_source=export-plugin-pro&utm_medium=wpae-addons-notice&utm_campaign=export-add-ons-added-to-acount-phase-1-plugins-page" target="_blank">Click here to download your new export add-ons.</a></strong>
+</span>
+EOD;
+
+
+	        if(!XmlExportEngine::get_addons_service()->isAcfAddonActive() || !XmlExportEngine::get_addons_service()->isWooCommerceAddonActive())
+	        {
+
+		        if(!empty($new_version)){
+			        $new_version .= '<br/><br/><span style="margin-left:30px;display:block;">';
+			        $addons_text = str_replace('<span style="margin-left:30px;display:block;">', '', $addons_text);
+		        }
+
+		        $new_version = $new_version . $addons_text;
+	        }
 
             if (empty($new_version)) {
                 return;
             }
             ?>
             <tr class="plugin-update-tr <?php echo $active; ?> wp-all-export-pro-custom">
-                <td colspan="3" class="plugin-update">
+                <td colspan="4" class="plugin-update colspanchange">
                     <div class="update-message <?php echo $update_msg_classes; ?>">
                         <p>
                             <?php echo $new_version; ?>
@@ -294,31 +313,33 @@ if (!class_exists('PMXE_Updater')) {
                 </td>
             </tr>
             <?php if ($new_version) { // removes the built-in plugin update message ?>
-                <script type="text/javascript">
-                    (function ($) {
-                        var wp_all_export_row = jQuery('[data-slug=<?php echo $plugin_slug; ?>]:first');
+            <script type="text/javascript">
+                (function ($) {
+                    var wp_all_export_row = jQuery('[data-slug=<?php echo $plugin_slug; ?>]:first');
 
-                        // Fallback for earlier versions of WordPress.
-                        if (!wp_all_export_row.length) {
-                            wp_all_export_row = jQuery('#<?php echo $plugin_slug; ?>');
-                        }
+                    // Fallback for earlier versions of WordPress.
+                    if (!wp_all_export_row.length) {
+                        wp_all_export_row = jQuery('#<?php echo $plugin_slug; ?>');
+                    }
 
-                        var next_row = wp_all_export_row.next();
+                    wp_all_export_row.addClass('update');
 
-                        // If there's a plugin update row - need to keep the original update row available so we can switch it out
-                        // if the user has a successful response from the 'check my license again' link
-                        if (next_row.hasClass('plugin-update-tr') && !next_row.hasClass('wp-all-export-pro-custom')) {
-                            var original = next_row.clone();
-                            // original.add;
-                            next_row.html(next_row.next().html()).addClass('wp-all-export-pro-custom-visible');
-                            next_row.next().remove();
-                            next_row.after(original);
-                            original.addClass('wp-all-export-original-update-row');
-                        }
-                    })(jQuery);
-                </script>
-                <?php
-            }            
+                    var next_row = wp_all_export_row.next();
+
+                    // If there's a plugin update row - need to keep the original update row available so we can switch it out
+                    // if the user has a successful response from the 'check my license again' link
+                    if (next_row.hasClass('plugin-update-tr') && !next_row.hasClass('wp-all-export-pro-custom')) {
+                        var original = next_row.clone();
+                        // original.add;
+                        next_row.html(next_row.next().html()).addClass('wp-all-export-pro-custom-visible');
+                        next_row.next().remove();
+                        next_row.after(original);
+                        original.addClass('wp-all-export-original-update-row');
+                    }
+                })(jQuery);
+            </script>
+            <?php
+        }
         }
 
         /**
@@ -411,7 +432,7 @@ if (!class_exists('PMXE_Updater')) {
 
             // If it is an https request and we are performing a package download, disable ssl verification
             if (strpos($url, 'https://') !== false && strpos($url, 'edd_action=package_download')) {
-                $args['sslverify'] = false;
+                $args['sslverify'] = true;
             }
             return $args;
         }
@@ -463,7 +484,7 @@ if (!class_exists('PMXE_Updater')) {
             //     file_put_contents($uploads['basedir'] . "/log.txt", date("d-m-Y H:i:s") . ' - ' .json_encode($api_params) . "\n", FILE_APPEND);
             // }
 
-            $request = wp_remote_post($this->api_url, array('timeout' => 15, 'sslverify' => false, 'body' => $api_params));
+            $request = wp_remote_post($this->api_url, array('timeout' => 15, 'sslverify' => true, 'body' => $api_params));
 
             if (!is_wp_error($request)) {
                 $request = json_decode(wp_remote_retrieve_body($request));

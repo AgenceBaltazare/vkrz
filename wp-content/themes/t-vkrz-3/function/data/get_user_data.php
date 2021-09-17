@@ -92,7 +92,13 @@ function get_user_tops($user_id = false){
 
     if($user_id){
         $args_author__in = array($user_id);
-        $args_meta_query = array();
+        $args_meta_query = array(
+            array(
+                'key' => 'id_tournoi_r',
+                'value' => get_top_welcome(),
+                'compare' => 'NOT IN'
+            )
+        );
     }
     else{
         global $uuiduser;
@@ -102,6 +108,11 @@ function get_user_tops($user_id = false){
                 'key' => 'uuid_user_r',
                 'value' => $uuiduser,
                 'compare' => '='
+            ),
+            array(
+                'key' => 'id_tournoi_r',
+                'value' => get_top_welcome(),
+                'compare' => 'NOT IN'
             )
         );
     }
@@ -130,6 +141,7 @@ function get_user_tops($user_id = false){
             $id_top           = get_field('id_tournoi_r', $classement);
             $typetop          = get_field('type_top_r', $classement);
             $uuid_user        = get_field('uuid_user_r', $classement);
+            $cat_id           = "";
 
             $user_nb_votes    = $user_nb_votes + $nb_votes;
 
@@ -441,7 +453,15 @@ function get_creators_ids(){
     $list_tops = new WP_Query(array(
         'post_type' => 'tournoi',
         'orderby' => 'date',
-        'posts_per_page' => '-1'
+        'posts_per_page' => '-1',
+        'tax_query' => array(
+            array(
+                'taxonomy' => 'categorie',
+                'field'    => 'slug',
+                'terms'    => array( 'welcome' ),
+                'operator' => 'NOT IN',
+            )
+        ),
     ));
     while ($list_tops->have_posts()) : $list_tops->the_post();
         $creator_id    = get_post_field('post_author', get_the_ID());
@@ -467,6 +487,14 @@ function get_creator_t($creator_id){
         'update_post_meta_cache' => false,
         'no_found_rows'          => false,
         'author'                 => $creator_id,
+        'tax_query' => array(
+            array(
+                'taxonomy' => 'categorie',
+                'field'    => 'slug',
+                'terms'    => array( 'welcome' ),
+                'operator' => 'NOT IN',
+            )
+        ),
     ));
     while($list_tops->have_posts()) : $list_tops->the_post();
 

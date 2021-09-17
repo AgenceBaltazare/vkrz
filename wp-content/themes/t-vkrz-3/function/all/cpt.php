@@ -24,13 +24,24 @@ function cpt_init() {
         'show_in_menu' => true,
         'query_var' => true,
         'rewrite' => array('slug' => 't'),
-        'capability_type' => 'post',
+        'capabilities' => array(
+            'publish_posts' => 'publish_tops',
+            'edit_posts' => 'edit_tops',
+            'edit_others_posts' => 'edit_others_tops',
+            'delete_posts' => 'delete_tops',
+            'delete_others_posts' => 'delete_others_tops',
+            'read_private_posts' => 'read_private_tops',
+            'edit_post' => 'edit_top',
+            'delete_post' => 'delete_top',
+            'read_post' => 'read_top',
+        ),
+        'map_meta_cap' => true,
         'has_archive' => true,
         'hierarchical' => false,
         'menu_position' => null,
         'menu_icon' => 'dashicons-editor-code',
         'show_in_rest' => true,
-        'supports' => array('title', 'editor', 'thumbnail', 'author', 'comments')
+        'supports' => array('title', 'thumbnail', 'author', 'comments')
     );
     register_post_type('tournoi', $args);
 

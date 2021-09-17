@@ -40,7 +40,15 @@ $list_t_already_done = $user_tops['list_user_tops_done_ids'];
                                 'post__not_in'           => $list_t_already_done,
                                 'orderby'                => 'date',
                                 'order'                  => 'DESC',
-                                'posts_per_page'         => 10
+                                'posts_per_page'         => 10,
+                                'tax_query' => array(
+                                    array(
+                                        'taxonomy' => 'categorie',
+                                        'field'    => 'slug',
+                                        'terms'    => array( 'welcome' ),
+                                        'operator' => 'NOT IN',
+                                    )
+                                ),
                             ));
                             while ($tournois_in_cat->have_posts()) : $tournois_in_cat->the_post(); ?>
 
@@ -99,6 +107,9 @@ $list_t_already_done = $user_tops['list_user_tops_done_ids'];
                                 'orderby'       => 'count',
                                 'order'         => 'DESC',
                                 'hide_empty'    => true,
+                                'exclude'       => array(
+                                    get_term_by('slug', 'welcome', 'categorie')->term_id
+                                )
                             ));
                             foreach($cat_t as $cat) : ?>
                                 <div class="col-6">

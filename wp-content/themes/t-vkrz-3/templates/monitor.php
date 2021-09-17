@@ -21,7 +21,7 @@
                             <div class="card text-center">
                                 <div class="card-body d-flex align-items-center winbloc">
                                     <?php
-                                    if(get_field('nb_total_votes', 'options') < 1000000) : ?>
+                                    if(get_field('nb_total_tops', 'options') < 50000) : ?>
                                         <div class="illuwin">
                                             <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/switch-towin.png" alt="" class="img-fluid">
                                         </div>
@@ -29,7 +29,7 @@
                                             Une <span class="t-violet">SWITCH LITE Bleu</span> à gagner !
                                         </h3>
                                         <p class="card-text mt-2">
-                                            Le Vainkeur qui fera le <span class="t-rose">millionème vote</span> l'emporte. <br>
+                                            Le Vainkeur qui fera le <span class="t-rose">50 000<sup>ème</sup> Top</span> l'emporte. <br>
                                             L'identifiant du gagnant sera annoncé sur Twitter et sur cette même page. <span class="ico">🥶</span>
                                         </p>
                                     <?php else: ?>
@@ -40,7 +40,7 @@
                                             La <span class="t-violet">SWITCH LITE Bleu</span> a été remportée !
                                         </h3>
                                         <p class="card-text mt-2">
-                                            Félicitation au Vainkeur qui a fait le <span class="t-rose">millionème vote</span>. <br>
+                                            Félicitation au Vainkeur qui a fait le <span class="t-rose">50 000<sup>ème</sup> Top</span>. <br>
                                             Go sur notre Twitter pour découvrir le gagnant, c'est peut-être toi <span class="ico">😜</span>
                                         </p>
                                     <?php endif; ?>

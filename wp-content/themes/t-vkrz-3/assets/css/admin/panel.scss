@@ -1,0 +1,64 @@
+#adminmenu, #adminmenu .wp-submenu, #adminmenuback, #adminmenuwrap, #wpadminbar {
+  background-color: #312673;
+}
+h1, h2, h3, p, li, .form-table th, .form-wrap label {
+  color: #312673;
+}
+#adminmenu .wp-has-current-submenu .wp-submenu .wp-submenu-head, #adminmenu .wp-menu-arrow, #adminmenu .wp-menu-arrow div, #adminmenu li.current a.menu-top, #adminmenu li.wp-has-current-submenu a.wp-has-current-submenu {
+  background: #f4167f;
+}
+.wrap .add-new-h2, .wrap .add-new-h2:active, .wrap .page-title-action, .wrap .page-title-action:active {
+  margin-left: 4px;
+  padding: 4px 8px;
+  position: relative;
+  top: -3px;
+  text-decoration: none;
+  border: 1px solid #312673;
+  border-radius: 2px;
+  text-shadow: none;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: normal;
+  color: #fff;
+  background: #312673;
+  cursor: pointer;
+  transition: all 0.2s ease-in;
+}
+.wrap .add-new-h2:hover, .wrap .page-title-action:hover {
+  background: #f4167f;
+  border-color: #f4167f;
+  color: #fff;
+}
+#adminmenu .wp-submenu a:focus, #adminmenu .wp-submenu a:hover, #adminmenu a:hover, #adminmenu li.menu-top>a:focus {
+  color: #fff;
+  background-color: transparent;
+  &:after{
+    display: none;
+  }
+}
+
+#adminmenu li.wp-has-submenu.wp-not-current-submenu:focus-within:after, #adminmenu li.wp-has-submenu.wp-not-current-submenu:hover:after {
+  display: none;
+}
+#adminmenu li.menu-top:hover, #adminmenu li.opensub>a.menu-top, #adminmenu li>a.menu-top:focus {
+  position: relative;
+  background-color: transparent;
+  color: #fff;
+}
+#adminmenu li a:focus div.wp-menu-image:before, #adminmenu li.opensub div.wp-menu-image:before, #adminmenu li:hover div.wp-menu-image:before {
+  color: #f4167f;
+}
+#wp-admin-bar-wp-logo{
+  display: none;
+}
+.wrap .page-title-action:focus {
+  border-color: #f4167f;
+  box-shadow: 0 0 0 1px #f4167f;
+  outline: 2px solid transparent;
+}
+body{
+  background: #fff;
+}
+.acf-field-611baa2616381, .acf-field-5eb85c9180d01, #column-view-selector, #footer-thankyou, #footer-upgrade, #wp-admin-bar-archive, #wp-admin-bar-edit-profile, #wp-admin-bar-user-info{
+  display: none;
+}

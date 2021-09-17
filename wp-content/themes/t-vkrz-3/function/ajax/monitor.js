@@ -23,9 +23,6 @@ $(document).ready(function ($) {
                 count_votes = newCountVotes;
             }
         });
-        if(newCountVotes == 1000000){
-            location.reload();
-        }
     }
 
     function updateTopsCount(newCountTops) {
@@ -44,6 +41,9 @@ $(document).ready(function ($) {
                 count_tops = newCountTops;
             }
         });
+        if(newCountTops == 30000){
+            location.reload();
+        }
     }
 
     function getDataCount() {
@@ -75,7 +75,7 @@ $(document).ready(function ($) {
         }
     }
 
-    // Execute getPlayerCount every 5 seconds.
+    // Execute getPlayerCount every 2.5 seconds.
     setInterval(getDataCount, 2500);
 
 });

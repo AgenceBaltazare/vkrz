@@ -33,11 +33,18 @@ function new_vainkeur($user_id){
                 'update_post_meta_cache' => false,
                 'no_found_rows'          => false,
                 'author__not_in'         => array($user_id),
-                'meta_query'             => array(array(
-                    'key' => 'uuid_user_r',
-                    'value' => $_COOKIE["vainkeurz_user_id"],
-                    'compare' => '='
-                )),
+                'meta_query'             => array(
+                    array(
+                        'key' => 'uuid_user_r',
+                        'value' => $_COOKIE["vainkeurz_user_id"],
+                        'compare' => '='
+                    ),
+                    array(
+                        'key' => 'id_tournoi_r',
+                        'value' => get_top_welcome(),
+                        'compare' => 'NOT IN'
+                    )
+                )
             ));
 
         if ($classements->have_posts()) {

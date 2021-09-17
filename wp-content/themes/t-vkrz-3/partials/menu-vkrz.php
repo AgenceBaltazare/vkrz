@@ -55,6 +55,9 @@
                 'orderby'       => 'count',
                 'order'         => 'DESC',
                 'hide_empty'    => true,
+                'exclude'       => array(
+                    get_term_by('slug', 'welcome', 'categorie')->term_id
+                )
             ));
             foreach($cat_t as $cat) : ?>
                 <li class="nav-item">
@@ -87,8 +90,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="d-flex align-items-center" href="https://baltazare1.typeform.com/to/j9n8JU" target="_blank">
-                    <span class="ico">🙏</span> <span class="menu-title text-truncate">Donne ton avis</span>
+                <a class="d-flex align-items-center" href="<?php the_permalink(get_page_by_path('recrutement')); ?>/">
+                    <span class="ico">🎨</span> <span class="menu-title text-truncate">Créer des Tops</span>
                 </a>
             </li>
         </ul>

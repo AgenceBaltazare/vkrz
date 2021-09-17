@@ -1,14 +1,20 @@
 <?php
 $addons = new \Wpae\App\Service\Addons\AddonService();
-
+$is_rapid_addon_export = PMXE_Helper::is_rapid_export_addon($post['cpt']);
+?>
+<?php
+if($is_rapid_addon_export) {
+    ?>
+    <input type="hidden" id="pmxe_dismiss_import_warnings_by_default" value="1" />
+<?php
+}
 ?>
 <h2 class="wpallexport-wp-notices"></h2>
 <div class="wpallexport-wrapper">
     <div class="wpallexport-header">
-        <div class="wpallexport-logo"></div>
-        <div class="wpallexport-title">
-            <p><?php _e('WP All Export', 'wp_all_export_plugin'); ?></p>
-            <h2><?php _e('Export to XML / CSV', 'wp_all_export_plugin'); ?></h2>
+		<div class="wpallexport-logo"></div>
+		<div class="wpallexport-title">
+            <h2><?php _e('Drag & Drop', 'wp_all_export_plugin'); ?></h2>
         </div>
         <div class="wpallexport-links">
             <a href="http://www.wpallimport.com/support/"
@@ -48,6 +54,7 @@ $addons = new \Wpae\App\Service\Addons\AddonService();
 				
 				<input type="hidden" class="hierarhy-output" name="filter_rules_hierarhy" value="<?php echo esc_html($post['filter_rules_hierarhy']);?>"/>
 				<input type="hidden" name="taxonomy_to_export" value="<?php echo $post['taxonomy_to_export'];?>">
+				<input type="hidden" name="sub_post_type_to_export" value="<?php echo $post['sub_post_type_to_export'];?>">
 				<input type="hidden" name="export_only_modified_stuff" value="<?php echo $post['export_only_modified_stuff'];?>" />
 				<input type="hidden" name="export_only_new_stuff" value="<?php echo $post['export_only_new_stuff'];?>" />
 
@@ -137,7 +144,7 @@ $addons = new \Wpae\App\Service\Addons\AddonService();
 																<input type="hidden" name="cc_options[]" value="<?php echo (empty($field['options'])) ? 0 : $field['options']; ?>"/>																										
 																<input type="hidden" name="cc_type[]" value="<?php echo $field['type']; ?>"/>
 																<input type="hidden" name="cc_value[]" value="<?php echo $field['label']; ?>"/>
-																<input type="hidden" name="cc_name[]" value="<?php echo (strtoupper($field['name']) == 'ID') ? 'id' : $field['name'];?>"/>													
+																<input type="hidden" name="cc_name[]" value="<?php echo (strtoupper($field['name']) == 'ID' && (XmlExportEngine::$exportOptions['export_to_sheet'] === 'xlsx' || XmlExportEngine::$exportOptions['export_to_sheet'] === 'xls')) ? 'id' : $field['name'];?>"/>
 																<input type="hidden" name="cc_settings[]" value="0"/>
 																<input type="hidden" name="cc_combine_multiple_fields[]" value=""/>
 																<input type="hidden" name="cc_combine_multiple_fields_value[]" value=""/>
@@ -244,24 +251,24 @@ $addons = new \Wpae\App\Service\Addons\AddonService();
 											<p><?php _e("You will not be able to reimport data to the parent products, and you will not be able to import these products to another site.", 'wp_all_export_plugin'); ?></p>
 										</div>
 										<div class="input">
-											<h4>CDATA</h4>
-											<p style="font-style: italic;"><?php echo sprintf(__("There are certain characters that cannot be included in an XML file unless they are wrapped in CDATA tags.<br/><a target='_blank' href='%s'>Click here to read more about CDATA tags.</a>", 'wp_all_export_plugin'), 'https://en.wikipedia.org/wiki/CDATA'); ?></p>
-											<div class="input" style="margin: 3px 0;">
+											<h4 style="margin-top: 24px;">CDATA</h4>
+											<p style="font-size: 12px;margin-top: 10px;"><?php echo sprintf(__("There are certain characters that cannot be included in an XML file unless they are wrapped in CDATA tags.<br/>Read more about CDATA tags: <a target='_blank' style='font-size: 12px;' href='%s'>%s</a>.", 'wp_all_export_plugin'), 'https://en.wikipedia.org/wiki/CDATA', 'https://en.wikipedia.org/wiki/CDATA'); ?></p>
+											<div class="input" style="margin: 10px 0;">
 												<input type="radio" id="simple_custom_xml_cdata_logic_auto" name="simple_custom_xml_cdata_logic" value="auto" checked="checked" <?php echo ( "auto" == $post['custom_xml_cdata_logic'] ) ? 'checked="checked"': '' ?> class="switcher cdata"/>
 												<label for="simple_custom_xml_cdata_logic_auto"><?php _e('Automatically wrap data in CDATA tags when it contains illegal characters', 'wp_all_export_plugin') ?></label>
 											</div>
-											<div class="input" style="margin: 3px 0;">
+											<div class="input" style="margin: 10px 0;">
 												<input type="radio" id="simple_custom_xml_cdata_logic_all" name="simple_custom_xml_cdata_logic" value="all" <?php echo ( "all" == $post['custom_xml_cdata_logic'] ) ? 'checked="checked"': '' ?> class="switcher cdata" />
 												<label for="simple_custom_xml_cdata_logic_all"><?php _e('Always wrap data in CDATA tags', 'wp_all_export_plugin') ?></label>
 											</div>
-											<div class="input" style="margin: 3px 0;">
+											<div class="input" style="margin: 10px 0;">
 												<input type="radio" id="simple_custom_xml_cdata_logic_never" name="simple_custom_xml_cdata_logic" value="never" <?php echo ( "never" == $post['custom_xml_cdata_logic'] ) ? 'checked="checked"': '' ?> class="switcher cdata"/>
 												<label for="simple_custom_xml_cdata_logic_never"><?php _e('Never wrap data in CDATA tags', 'wp_all_export_plugin') ?></label>
-												<div class="switcher-target-simple_custom_xml_cdata_logic_never" style="padding-left:17px;">
-													<p style="font-style: italic;"><?php _e('Warning: This may result in an invalid XML file', 'wp_all_export_plugin');?></p>
+												<div class="switcher-target-simple_custom_xml_cdata_logic_never" style="padding-left:28px;">
+													<p style="font-size: 12px;margin-top: 10px;"><?php _e('Warning: This may result in an invalid XML file', 'wp_all_export_plugin');?></p>
 												</div>
 											</div>
-											<div class="input" style="margin: 10px 4px;">
+											<div class="input" style="margin: 16px 4px;">
 												<input type="checkbox" value="1" id="simple_show_cdata_in_preview" <?php echo ( 1 == $post['show_cdata_in_preview'] ) ? 'checked="checked"': '' ?> class="show_cdata_in_preview" />
 												<label for="simple_show_cdata_in_preview">Show CDATA tags in XML preview</label>
 											</div>
@@ -289,7 +296,7 @@ $addons = new \Wpae\App\Service\Addons\AddonService();
 												<h4><?php _e('CSV Header Row', 'wp_all_export_plugin'); ?></h4>
 												<div class="input">
 													<input type="hidden" name="include_header_row" value="0"/>
-													<input type="checkbox" id="include_header_row" name="include_header_row" value="1" <?php if ($post['include_header_row']):?>checked="checked"<?php endif; ?> class="switcher"/>
+													<input type="checkbox" id="include_header_row" name="include_header_row" value="1" style="margin-bottom: -4px" <?php if ($post['include_header_row']):?>checked="checked"<?php endif; ?> class="switcher"/>
 													<label for="include_header_row"><?php _e("Include header row and column titles in export", "wp_all_export_plugin"); ?></label>
 												</div>
 											</div>
@@ -471,10 +478,10 @@ $addons = new \Wpae\App\Service\Addons\AddonService();
 											<div class="wp-all-export-product-bundle-warning warning-only-export-product-variations" style="display:none;">
 												<p><?php _e("You will not be able to reimport data to the parent products, and you will not be able to import these products to another site.", 'wp_all_export_plugin'); ?></p>
 											</div>
-                                            <div class="input">
-                                                <h4>CDATA</h4>
-                                                <p style="font-style: italic;"><?php echo sprintf(__("There are certain characters that cannot be included in an XML file unless they are wrapped in CDATA tags.<br/><a target='_blank' href='%s'>Click here to read more about CDATA tags.</a>", 'wp_all_export_plugin'), 'https://en.wikipedia.org/wiki/CDATA'); ?></p>
-                                                <div class="input" style="margin: 3px 0;">
+                                            <div class="input cdata">
+                                                <h4 style="margin-top: 20px;">CDATA</h4>
+                                                <p style="font-size: 12px;margin-top: 8px;"><?php echo sprintf(__("There are certain characters that cannot be included in an XML file unless they are wrapped in CDATA tags.<br/>Read more about CDATA tags: <a target='_blank' href='%s' style='font-size: 12px;'>%s</a>.", 'wp_all_export_plugin'), 'https://en.wikipedia.org/wiki/CDATA', 'https://en.wikipedia.org/wiki/CDATA'); ?></p>
+                                                <div class="input" style="margin: 10px 0;">
                                                     <input type="radio" id="custom_xml_cdata_logic_auto"
                                                            name="custom_custom_xml_cdata_logic"
                                                            value="auto" <?php echo ("auto" == $post['custom_xml_cdata_logic']) ? 'checked="checked"' : '' ?>
@@ -482,7 +489,7 @@ $addons = new \Wpae\App\Service\Addons\AddonService();
                                                     <label
                                                         for="custom_xml_cdata_logic_auto"><?php _e('Automatically wrap data in CDATA tags when it contains illegal characters', 'wp_all_export_plugin') ?></label>
                                                 </div>
-                                                <div class="input" style="margin: 3px 0;">
+                                                <div class="input" style="margin: 10px 0;">
                                                     <input type="radio" id="custom_custom_xml_cdata_logic_all"
                                                            name="custom_custom_xml_cdata_logic"
                                                            value="all" <?php echo ("all" == $post['custom_xml_cdata_logic']) ? 'checked="checked"' : '' ?>
@@ -490,7 +497,7 @@ $addons = new \Wpae\App\Service\Addons\AddonService();
                                                     <label
                                                         for="custom_custom_xml_cdata_logic_all"><?php _e('Always wrap data in CDATA tags', 'wp_all_export_plugin') ?></label>
                                                 </div>
-                                                <div class="input" style="margin: 3px 0;">
+                                                <div class="input" style="margin: 10px 0;">
                                                     <input type="radio" id="custom_custom_xml_cdata_logic_never"
                                                            name="custom_custom_xml_cdata_logic"
                                                            value="never" <?php echo ("never" == $post['custom_xml_cdata_logic']) ? 'checked="checked"' : '' ?>
@@ -498,11 +505,11 @@ $addons = new \Wpae\App\Service\Addons\AddonService();
                                                     <label
                                                         for="custom_custom_xml_cdata_logic_never"><?php _e('Never wrap data in CDATA tags', 'wp_all_export_plugin') ?></label>
                                                     <div class="switcher-target-simple_custom_xml_cdata_logic_never"
-                                                         style="padding-left:17px;">
-                                                        <p style="font-style: italic;"><?php _e('Warning: This may result in an invalid XML file', 'wp_all_export_plugin'); ?></p>
+                                                         style="padding-left:28px;">
+                                                        <p style="font-size: 12px;margin-top: 10px;"><?php _e('Warning: This may result in an invalid XML file', 'wp_all_export_plugin'); ?></p>
                                                     </div>
                                                 </div>
-                                                <div class="input" style="margin: 10px 3px;">
+                                                <div class="input" style="margin: 16px 4px;">
                                                     <input type="checkbox" value="1" name="custom_show_cdata_in_preview"
                                                            id="custom_show_cdata_in_preview" <?php echo (1 == $post['show_cdata_in_preview']) ? 'checked="checked"' : '' ?>
                                                            class="show_cdata_in_preview"/>
@@ -546,7 +553,7 @@ $addons = new \Wpae\App\Service\Addons\AddonService();
                                            style="top: 3px;">?</a>
                                         <div class="wp_all_export_functions_preloader"></div>
                                     </div>
-                                    <div class="input wp_all_export_saving_status" style="display:inline-block;"></div>
+                                    <div class="input wp_all_export_saving_status"></div>
                                 </div>
                             </div>
                         </div>
@@ -555,7 +562,7 @@ $addons = new \Wpae\App\Service\Addons\AddonService();
 
 				<hr>
 
-				<div class="input wpallexport-section" style="padding-bottom: 8px; padding-left: 8px;">
+				<div class="input wpallexport-section load-template-container" style="padding-left: 8px;">
 
 					<p style="margin: 11px; float: left;">
 						<input type="checkbox" id="save_template_as" name="save_template_as" class="switcher-horizontal fix_checkbox" value="1" <?php echo ( ! empty($post['save_template_as'])) ? 'checked="checked"' : '' ?> />
@@ -566,7 +573,7 @@ $addons = new \Wpae\App\Service\Addons\AddonService();
 					</div>				
 					<?php $templates = new PMXE_Template_List(); ?>
 					<div class="load-template">
-						<select name="load_template" id="load_template" style="padding:2px; width: auto; height: 40px;">
+						<select name="load_template" id="load_template">
 							<option value=""><?php _e('Load Template...', 'wp_all_export_plugin') ?></option>
 							<?php foreach ($templates->getBy()->convertRecords() as $t): ?>
 								<?php
@@ -601,7 +608,6 @@ $addons = new \Wpae\App\Service\Addons\AddonService();
                     </div>
 
                 </div>
-
                 <a href="http://soflyy.com/" target="_blank"
                    class="wpallexport-created-by"><?php _e('Created by', 'wp_all_export_plugin'); ?> <span></span></a>
 
