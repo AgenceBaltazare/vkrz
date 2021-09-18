@@ -8,9 +8,7 @@ function pmxe_render_xml_element($el, $shorten = false, $path = '/', $ind = 1, $
 	}		
 	
 	echo '<div class="xml-element lvl-' . $lvl . ' lvl-mod4-' . ($lvl % 4) . '" title="' . $path . '">';
-	//if ($el->hasAttributes()){
-		//echo '<div class="xml-element-xpaths">'; self::render_element_xpaths($el, $alternativePath, $ind, $lvl); echo '</div>';
-	//}
+
 	if ($el->hasChildNodes()) {
 		$is_render_collapsed = $ind > 1;
 		if ($el->childNodes->length > 1 or ! $el->childNodes->item(0) instanceof DOMText or strlen(trim($el->childNodes->item(0)->wholeText)) > 40) {

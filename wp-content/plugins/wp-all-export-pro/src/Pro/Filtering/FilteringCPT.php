@@ -129,6 +129,7 @@ class FilteringCPT extends FilteringBase
                     default:
 
                         if (strpos($rule->element, "cf_") === 0) {
+
                             $meta_key = str_replace("cf_", "", $rule->element);
 
                             if ($rule->condition == 'is_empty') {
@@ -141,6 +142,7 @@ class FilteringCPT extends FilteringBase
                         } else {
 
                             $meta_key = $rule->element;
+
                             if ($rule->condition == 'is_empty') {
                                 $this->userJoin[] = " LEFT JOIN {$this->wpdb->usermeta} ON ({$this->wpdb->usermeta}.user_id = {$this->wpdb->users}.ID AND {$this->wpdb->usermeta}.meta_key = '$meta_key') ";
                                 $this->userWhere .= "{$this->wpdb->usermeta}.umeta_id " . $this->parse_condition($rule);

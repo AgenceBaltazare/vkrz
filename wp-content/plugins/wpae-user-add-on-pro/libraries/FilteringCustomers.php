@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * Class FilteringCustomers
  * @package Wpae\Pro\Filtering

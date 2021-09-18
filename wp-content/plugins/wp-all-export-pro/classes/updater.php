@@ -127,7 +127,7 @@ if (!class_exists('PMXE_Updater')) {
 
                     if (false === $version_info) {
                         $version_info = $this->api_request('check_update', array('slug' => $this->slug));
-                        $transient_result = set_transient($cache_key, $version_info, 3600);
+                        $transient_result = set_transient($cache_key, $version_info, 3600 * 24);
 
                         $wpdb->query($wpdb->prepare("DELETE FROM $wpdb->options WHERE option_name = %s", $this->slug . '_' . $cache_key));
                         $wpdb->query($wpdb->prepare("DELETE FROM $wpdb->options WHERE option_name = %s", $this->slug . '_timeout_' . $cache_key));
@@ -213,7 +213,7 @@ if (!class_exists('PMXE_Updater')) {
 
                         $version_info = $this->api_request('plugin_latest_version', array('slug' => $this->slug));
 
-                        $transient_result = set_transient($cache_key, $version_info, 3600);
+                        $transient_result = set_transient($cache_key, $version_info, 3600 * 24);
 
                         $wpdb->query($wpdb->prepare("DELETE FROM $wpdb->options WHERE option_name = %s", $this->slug . '_' . $cache_key));
                         $wpdb->query($wpdb->prepare("DELETE FROM $wpdb->options WHERE option_name = %s", $this->slug . '_timeout_' . $cache_key));
@@ -280,24 +280,6 @@ if (!class_exists('PMXE_Updater')) {
                 }
             }
 
-	        $addons_text = <<<EOD
-<span style="margin-left:30px;display:block;">
-<span style="padding-top:0; font-size:20px;margin:0;">Important Notice Regarding WP All Export Pro</span><br/><br/><strong>WP All Export Pro will soon receive an update requiring paid add-ons to export ACF and WooCommerce data.<br/>These add-ons have been added to your account, free of charge.<br/><br/>
-<a href="https://wpallimport.com/portal/downloads/?utm_source=export-plugin-pro&utm_medium=wpae-addons-notice&utm_campaign=export-add-ons-added-to-acount-phase-1-plugins-page" target="_blank">Click here to download your new export add-ons.</a></strong>
-</span>
-EOD;
-
-
-	        if(!XmlExportEngine::get_addons_service()->isAcfAddonActive() || !XmlExportEngine::get_addons_service()->isWooCommerceAddonActive())
-	        {
-
-		        if(!empty($new_version)){
-			        $new_version .= '<br/><br/><span style="margin-left:30px;display:block;">';
-			        $addons_text = str_replace('<span style="margin-left:30px;display:block;">', '', $addons_text);
-		        }
-
-		        $new_version = $new_version . $addons_text;
-	        }
 
             if (empty($new_version)) {
                 return;
@@ -402,7 +384,7 @@ EOD;
 
                     if (false !== $_data) {
 
-                        $transient_result = set_transient($cache_key, $_data, 3600);
+                        $transient_result = set_transient($cache_key, $_data, 3600 * 24);
 
                         $wpdb->query($wpdb->prepare("DELETE FROM $wpdb->options WHERE option_name = %s", $this->slug . '_' . $cache_key));
                         $wpdb->query($wpdb->prepare("DELETE FROM $wpdb->options WHERE option_name = %s", $this->slug . '_timeout_' . $cache_key));

@@ -79,13 +79,11 @@ class PMXE_Export_Record extends PMXE_Model_Record {
 
 			$this->set(array( 'options' => XmlExportEngine::$exportOptions ))->update();
 			// [\ Update where clause]
-			
+
 			if (XmlExportEngine::$is_user_export)
 			{
-			    $addons = new \Wpae\App\Service\Addons\AddonService();
-
-			    if(!$addons->isUserAddonActive()) {
-                    throw new \Wpae\App\Service\Addons\AddonNotFoundException('The User Export Add-On Pro is required to run this export. You can download the add-on here: <a href="http://www.wpallimport.com/portal/" target="_blank">http://www.wpallimport.com/portal</a>');
+			    if(!XmlExportEngine::get_addons_service()->isUserAddonActive()) {
+                    throw new \Wpae\App\Service\Addons\AddonNotFoundException('The User Export Add-On Pro is required to run this export. If you already own it, you can download the add-on here: <a href="http://www.wpallimport.com/portal/downloads" target="_blank">http://www.wpallimport.com/portal/downloads</a>');
                 }
 
 				add_action('pre_user_query', 'wp_all_export_pre_user_query', 10, 1);
@@ -385,6 +383,12 @@ class PMXE_Export_Record extends PMXE_Model_Record {
 
                     if (!empty($xml_footer)) file_put_contents($file_path, $xml_footer, FILE_APPEND);
                 }
+
+                // Add close tag if there are no records
+                if(XmlExportEngine::$exportOptions['xml_template_type'] === 'custom') {
+
+                    file_put_contents($file_path, XmlExportEngine::$exportOptions['custom_xml_template_footer'], FILE_APPEND);
+                }
             }
 
 			do_action('pmxe_after_export', $this->id, $this);
@@ -423,7 +427,7 @@ class PMXE_Export_Record extends PMXE_Model_Record {
 
 	                $headers = 'From: '. get_bloginfo( 'name' ) .' <'. get_bloginfo( 'admin_email' ) .'>' . "\r\n";
 	                
-	                $message = '<p>Export '. $this->options['friendly_name'] .' has been completed. You can find exported file in attachments.</p>';                
+	                $message = '<p>Export '. wp_all_export_clear_xss($this->options['friendly_name']) .' has been completed. You can find exported file in attachments.</p>';
 
 	                wp_mail($this->options['scheduled_email'], __("WP All Export", "pmxe_plugin"), $message, $headers, array($file_path));
 

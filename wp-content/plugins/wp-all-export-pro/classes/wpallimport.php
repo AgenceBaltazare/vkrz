@@ -107,6 +107,7 @@ final class PMXE_Wpallimport
 	}
 
 	public static $templateOptions = array();
+
 	public static function generateImportTemplate( & $export, $file_path = '', $foundPosts = 0, $link_to_import = true )
 	{
 		$exportOptions = $export->options;
@@ -513,19 +514,19 @@ final class PMXE_Wpallimport
 			{
 				case 'woo':
 					
-					if ( ! empty($options['cc_value'][$ID]) )
-					{												
-						if (empty($required_add_ons['PMWI_Plugin']))
-						{
-							$required_add_ons['PMWI_Plugin'] = array(
-								'name' => 'WooCommerce Add-On Pro',
-								'paid' => true,
-								'url'  => 'http://www.wpallimport.com/woocommerce-product-import/'
-							);
-						}
+					if ( ! empty($options['cc_value'][$ID]) ) {
+                        if (empty($required_add_ons['PMWI_Plugin'])) {
+                            $required_add_ons['PMWI_Plugin'] = array(
+                                'name' => 'WooCommerce Add-On Pro',
+                                'paid' => true,
+                                'url' => 'http://www.wpallimport.com/woocommerce-product-import/'
+                            );
+                        }
 
-						XmlExportWooCommerce::prepare_import_template( $options, self::$templateOptions, $cf_list, $attr_list, $element_name, $options['cc_label'][$ID] );
-					}
+                        if (XmlExportEngine::get_addons_service()->isWooCommerceAddonActive()) {
+                            XmlExportWooCommerce::prepare_import_template($options, self::$templateOptions, $cf_list, $attr_list, $element_name, $options['cc_label'][$ID]);
+                        }
+                    }
 
 					break;
 
@@ -549,7 +550,9 @@ final class PMXE_Wpallimport
 						}
 					}
 
-					self::$templateOptions['fields'][$field_options['key']] = XmlExportACF::prepare_import_template( $options, self::$templateOptions, $acf_list, $element_name, $field_options);											 
+					if(XmlExportEngine::get_addons_service()->isAcfAddonActive()) {
+                        self::$templateOptions['fields'][$field_options['key']] = XmlExportACF::prepare_import_template($options, self::$templateOptions, $acf_list, $element_name, $field_options);
+                    }
 
 					break;				
 
@@ -577,14 +580,16 @@ final class PMXE_Wpallimport
 					if (XmlExportEngine::$is_comment_export) {
                         XmlExportComment::prepare_import_template($options, self::$templateOptions, $element_name, $ID);
                     }
-                    if(XmlExportEngine::$is_woo_review_export) {
-                        XmlExportWooCommerceReview::prepare_import_template($options, self::$templateOptions, $element_name, $ID);
-                    }
-
                     XmlExportTaxonomy::prepare_import_template( $options, self::$templateOptions, $element_name, $ID);
 
-					XmlExportWooCommerceOrder::prepare_import_template( $options, self::$templateOptions, $element_name, $ID);
+					if(XmlExportEngine::get_addons_service()->isWooCommerceAddonActive())
+                    {
+                        if(XmlExportEngine::$is_woo_review_export) {
+                            XmlExportWooCommerceReview::prepare_import_template($options, self::$templateOptions, $element_name, $ID);
+                        }
 
+                        XmlExportWooCommerceOrder::prepare_import_template($options, self::$templateOptions, $element_name, $ID);
+                    }
 					break;
 			}
 		}		

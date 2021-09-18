@@ -65,7 +65,7 @@ if($is_rapid_addon_export) {
 				endif;
 				if (XmlExportComment::$is_active):
 					$selected_post_type = 'comments';
-				elseif (XmlExportWooCommerceReview::$is_active):
+				elseif (XmlExportEngine::get_addons_service()->isWooCommerceAddonActive() && XmlExportWooCommerceReview::$is_active):
                     $selected_post_type = 'shop_review';
                 endif;
 				if (empty($selected_post_type) and ! empty($post['cpt'][0]))
@@ -123,7 +123,7 @@ if($is_rapid_addon_export) {
 												elseif ($this->isWizard)
 												{
 													$new_export = true;
-													if ( empty($post['cpt']) and ! XmlExportWooCommerceOrder::$is_active and ! $addons->isUserAddonActiveAndIsUserExport() and ! XmlExportComment::$is_active and ! XmlExportWooCommerceReview::$is_active){
+													if ( empty($post['cpt']) and $addons->isWooCommerceAddonActive() and ! XmlExportWooCommerceOrder::$is_active and ! $addons->isUserAddonActiveAndIsUserExport() and ! XmlExportComment::$is_active and ! XmlExportWooCommerceReview::$is_active){
 														$init_fields[] = 
 															array(
 																'label' => 'post_type',
@@ -179,7 +179,7 @@ if($is_rapid_addon_export) {
 								</div>
 
 								<!-- Warning Messages -->
-								<?php if ( ! XmlExportWooCommerceOrder::$is_active && ! XmlExportComment::$is_active && !XmlExportWooCommerceReview::$is_active && ! XmlExportTaxonomy::$is_active ) : ?>
+								<?php if ( XmlExportEngine::get_addons_service()->isWooCommerceAddonActive() &&  ! XmlExportWooCommerceOrder::$is_active && ! XmlExportComment::$is_active && !XmlExportWooCommerceReview::$is_active && ! XmlExportTaxonomy::$is_active ) : ?>
 								<div class="wp-all-export-warning" <?php if ( empty($post['ids']) or count($post['ids']) > 1 ) echo 'style="display:none;"'; ?>>
 									<p></p>
 									<input type="hidden" id="warning_template" value="<?php _e("Warning: without %s you won't be able to re-import this data back to this site using WP All Import.", "wp_all_export_plugin"); ?>"/>
@@ -187,11 +187,11 @@ if($is_rapid_addon_export) {
 								</div>
 								<?php endif; ?>
 
-								<?php if ( XmlExportWooCommerce::$is_active ) : ?>
+								<?php if ( XmlExportEngine::get_addons_service()->isWooCommerceAddonActive() && XmlExportWooCommerce::$is_active ) : ?>
 								<input type="hidden" id="is_product_export" value="1"/>													
 								<?php endif; ?>
 
-								<?php if ( empty($post['cpt']) and ! XmlExportWooCommerceOrder::$is_active and ! $addons->isUserAddonActiveAndIsUserExport() and ! XmlExportComment::$is_active and !XmlExportWooCommerceReview::$is_active and ! XmlExportTaxonomy::$is_active ) : ?>
+								<?php if ( XmlExportEngine::get_addons_service()->isWooCommerceAddonActive() && empty($post['cpt']) && ! XmlExportWooCommerceOrder::$is_active && ! $addons->isUserAddonActiveAndIsUserExport() && ! XmlExportComment::$is_active && !XmlExportWooCommerceReview::$is_active && ! XmlExportTaxonomy::$is_active ) : ?>
 								<input type="hidden" id="is_wp_query" value="1"/>								
 								<?php endif; ?>
 																									
@@ -311,7 +311,7 @@ if($is_rapid_addon_export) {
 											<p><?php _e("You will not be able to reimport data to the parent products, and you will not be able to import these products to another site.", 'wp_all_export_plugin'); ?></p>
 										</div>
 										<!-- Display each product in its own row -->
-										<?php if ( XmlExportWooCommerceOrder::$is_active ): ?>
+										<?php if (XmlExportEngine::get_addons_service()->isWooCommerceAddonActive() && XmlExportWooCommerceOrder::$is_active ): ?>
 											<div class="input" style="float: left; margin-top: 15px; margin-left:20px;" id="woo_commerce_order">
 												<input type="hidden" name="order_item_per_row" value="0"/>
 												<input type="checkbox" id="order_item_per_row" name="order_item_per_row" value="1" <?php if ($post['order_item_per_row']):?>checked="checked"<?php endif; ?> class="switcher"/>
@@ -580,7 +580,7 @@ if($is_rapid_addon_export) {
 									// When creating a new export you should be able to select existing saved export templates that were created for the same post type.
 									if ( $t->options['cpt'] != $post['cpt'] ) continue;
 								?>
-								<option value="<?php echo $t->id ?>"><?php echo $t->name ?></option>
+								<option value="<?php echo $t->id ?>"><?php echo wp_all_export_clear_xss($t->name); ?></option>
 							<?php endforeach ?>
 						</select>
 					</div>

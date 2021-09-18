@@ -194,20 +194,53 @@ do_action('pmxe_addons_html');
                                 <?php _e('The User Export Add-On Pro is required to Export Users', PMXE_Plugin::LANGUAGE_DOMAIN); ?>
                             </p>
 
-                            <a href="http://www.wpallimport.com/portal/downloads/" target="_blank" class="upgrade_link"><?php _e('Click here to download the User Export Add-On Pro', PMXE_Plugin::LANGUAGE_DOMAIN);?></a>
-
+                            <a href="http://www.wpallimport.com/portal/discounts/?utm_source=export-plugin-pro&utm_medium=upgrade-notice&utm_campaign=export-users" target="_blank" class="upgrade_link"><?php _e('Click here to purchase the User Export Add-On', PMXE_Plugin::LANGUAGE_DOMAIN);?></a>
                         </div>
 
                         <div class="wpallexport-free-edition-notice wpallexport-customer-export-notice" >
                             <p>
                                 <?php _e('The User Export Add-On Pro is required to Export WooCommerce Customers', PMXE_Plugin::LANGUAGE_DOMAIN); ?>
                             </p>
+                            <a href="http://www.wpallimport.com/portal/discounts/?utm_source=export-plugin-pro&utm_medium=upgrade-notice&utm_campaign=export-customers" target="_blank" class="upgrade_link"><?php _e('Click here to purchase the User Export Add-On', PMXE_Plugin::LANGUAGE_DOMAIN);?></a>
+                        </div>
 
-                            <a href="http://www.wpallimport.com/portal/downloads/" target="_blank" class="upgrade_link"><?php _e('Click here to download the User Export Add-On Pro', PMXE_Plugin::LANGUAGE_DOMAIN);?></a>
+                        <div class="wpallexport-free-edition-notice wpallexport-product-export-notice" >
+                            <p>
+                                <?php _e('The WooCommerce Export Add-On Pro is required to Export WooCommerce Products', PMXE_Plugin::LANGUAGE_DOMAIN); ?>
+                            </p>
+                            <a href="http://www.wpallimport.com/portal/discounts/?utm_source=export-plugin-pro&utm_medium=upgrade-notice&utm_campaign=export-products" target="_blank" class="upgrade_link"><?php _e('Click here to purchase the WooCommerce Export Add-On', PMXE_Plugin::LANGUAGE_DOMAIN);?></a>
+                        </div>
+
+                        <div class="wpallexport-free-edition-notice wpallexport-order-export-notice" >
+                            <p>
+                                <?php _e('The WooCommerce Export Add-On Pro is required to Export WooCommerce Orders', PMXE_Plugin::LANGUAGE_DOMAIN); ?>
+                            </p>
+
+                                <a href="http://www.wpallimport.com/portal/discounts/?utm_source=export-plugin-pro&utm_medium=upgrade-notice&utm_campaign=export-orders" target="_blank" class="upgrade_link"><?php _e('Click here to purchase the WooCommerce Export Add-On', PMXE_Plugin::LANGUAGE_DOMAIN);?></a>
 
                         </div>
 
-						<div class="wp_all_export_preloader"></div>							
+                        <div class="wpallexport-free-edition-notice wpallexport-coupon-export-notice" >
+                            <p>
+                                <?php _e('The WooCommerce Export Add-On Pro is required to Export WooCommerce Coupons', PMXE_Plugin::LANGUAGE_DOMAIN); ?>
+                            </p>
+
+                            <a href="http://www.wpallimport.com/portal/discounts/?utm_source=export-plugin-pro&utm_medium=upgrade-notice&utm_campaign=export-coupons" target="_blank" class="upgrade_link"><?php _e('Click here to purchase the WooCommerce Export Add-On', PMXE_Plugin::LANGUAGE_DOMAIN);?></a>
+
+                        </div>
+
+                        <div class="wpallexport-free-edition-notice wpallexport-review-export-notice" >
+                            <p>
+                                <?php _e('The WooCommerce Export Add-On Pro is required to Export WooCommerce Reviews', PMXE_Plugin::LANGUAGE_DOMAIN); ?>
+                            </p>
+
+                            <a href="http://www.wpallimport.com/portal/discounts/?utm_source=export-plugin-pro&utm_medium=upgrade-notice&utm_campaign=export-reviews" target="_blank" class="upgrade_link"><?php _e('Click here to purchase the WooCommerce Export Add-On', PMXE_Plugin::LANGUAGE_DOMAIN);?></a>
+
+                        </div>
+                        
+                        <?php do_action('pmxe_after_notices_html'); ?>
+
+                        <div class="wp_all_export_preloader"></div>
 
 						<input type="hidden" class="hierarhy-output" name="filter_rules_hierarhy" value="<?php echo esc_html($post['filter_rules_hierarhy']);?>"/>
 						<input type="hidden" class="wpallexport-preload-post-data" value="<?php echo $preload;?>">

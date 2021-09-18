@@ -271,7 +271,6 @@ function pmxe_wp_ajax_wpallexport()
                         file_put_contents(PMXE_Plugin::$session->file, PMXE_XMLWriter::preprocess_xml(XmlExportEngine::$exportOptions['custom_xml_template_footer']), FILE_APPEND);
                         break;
                     default:
-
                         break;
                 }
 

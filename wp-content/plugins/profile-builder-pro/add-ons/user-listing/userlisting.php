@@ -147,6 +147,10 @@ function wppb_generate_userlisting_merge_tags( $type, $template = '' ){
                 $merge_tags[] = array( 'name' => $type.'_'.$value['meta-name'], 'type' => $user_meta, 'label' => $value['field-title'] );
                 $merge_tags[] = array( 'name' => $type.'_'.$value['meta-name'].'_labels', 'type' => $user_meta.'_labels', 'label' => $value['field-title']. ' Labels' );
             }
+            elseif( ( $value['field'] == 'Select (CPT)' ) && ( $type == 'meta' ) ){
+                $merge_tags[] = array( 'name' => $type.'_'.$value['meta-name'], 'type' => $user_meta, 'label' => $value['field-title'] );
+                $merge_tags[] = array( 'name' => $type.'_'.$value['meta-name'].'_cpt_title_link', 'type' => 'user_meta_select_cpt', 'unescaped' => true, 'label' => $value['field-title'] );
+            }
             elseif( $value['field'] == 'Map' ) {
                 if( $type == 'meta' )
                     $merge_tags[] = array( 'name' => $type . '_' . $value['meta-name'], 'type' => $user_meta . '_map', 'unescaped' => true, 'label' => $value['field-title'] );
@@ -655,7 +659,7 @@ function wppb_userlisting_show_user_meta( $value, $name, $children, $extra_info 
 
 	// strip first meta_ from $name
 	$name = preg_replace('/meta_/', '', $name, 1);
-	$value = get_user_meta( $userID, $name, true );
+    $value = get_user_meta( $userID, $name, true );
 
     /* mustache escapes the values by default when the meta is just with {{ so if it comes escaped from the database it won't show properly in the table
     so we need to send the raw value to mustache */
@@ -684,6 +688,27 @@ function wppb_userlisting_show_user_meta_wysiwyg( $value, $name, $children, $ext
         return $value;
 }
 add_filter( 'mustache_variable_user_meta_wysiwyg', 'wppb_userlisting_show_user_meta_wysiwyg', 10, 4 );
+
+// generate post title and link for Select (CPT)
+function wppb_userlisting_show_user_meta_select_cpt( $value, $name, $children, $extra_info ){
+
+    $userID = wppb_get_query_var( 'username' );
+
+    $user_id = ( !empty( $extra_info['user_id'] ) ? $extra_info['user_id'] : '' );
+
+    if( empty( $userID ) )
+        $userID = $user_id;
+
+    // strip first meta_ & _tile_link from $name
+    $name = preg_replace('/meta_/', '', $name, 1);
+    $name = preg_replace('/_cpt_title_link/', '', $name, 1);
+
+    $value = get_user_meta( $userID, $name, true );
+    if ( !empty( $value ) ) {
+        return '<a href="' . get_permalink($value) . '">' . get_the_title($value) . '</a>';
+    }
+}
+add_filter( 'mustache_variable_user_meta_select_cpt', 'wppb_userlisting_show_user_meta_select_cpt', 10, 4 );
 
 /* select, checkbox and radio can have their labels displayed */
 function wppb_userlisting_show_user_meta_labels( $value, $name, $children, $extra_info ){
@@ -837,10 +862,10 @@ function wppb_userlisting_sort_tags( $value, $name, $children, $extra_info ){
         return '<a href="'.wppb_get_new_url( 'registered', $extra_info ).'" class="sortLink ' . wppb_get_sorting_class( 'registered' ) . '" id="sortLink3">'.apply_filters( 'sort_registration_date_filter', __( 'Sign-up Date', 'profile-builder' ) ).'</a>';
 
 	elseif ( $name == 'sort_first_name' )
-        return '<a href="'.wppb_get_new_url( 'firstname', $extra_info ).'" class="sortLink ' . wppb_get_sorting_class( 'firstname' ) . '" id="sortLink4">'.apply_filters( 'sort_first_name_filter', __( 'Firstname', 'profile-builder' ) ).'</a>';
+        return '<a href="'.wppb_get_new_url( 'firstname', $extra_info ).'" class="sortLink ' . wppb_get_sorting_class( 'firstname' ) . '" id="sortLink4">'.apply_filters( 'sort_first_name_filter', __( 'First Name', 'profile-builder' ) ).'</a>';
 
 	elseif ( $name == 'sort_last_name' )
-        return '<a href="'.wppb_get_new_url( 'lastname', $extra_info ).'" class="sortLink ' . wppb_get_sorting_class( 'lastname' ) . '" id="sortLink5">'.apply_filters( 'sort_last_name_filter', __( 'Lastname', 'profile-builder' ) ).'</a>';
+        return '<a href="'.wppb_get_new_url( 'lastname', $extra_info ).'" class="sortLink ' . wppb_get_sorting_class( 'lastname' ) . '" id="sortLink5">'.apply_filters( 'sort_last_name_filter', __( 'Last Name', 'profile-builder' ) ).'</a>';
 
 	elseif ( $name == 'sort_display_name' )
         return '<a href="'.wppb_get_new_url( 'nicename', $extra_info ).'" class="sortLink ' . wppb_get_sorting_class( 'nicename' ) . '" id="sortLink6">'.apply_filters( 'sort_display_name_filter', __( 'Display Name', 'profile-builder' ) ).'</a>';

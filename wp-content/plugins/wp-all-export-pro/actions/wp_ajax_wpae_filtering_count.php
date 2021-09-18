@@ -81,11 +81,6 @@ function pmxe_wp_ajax_wpae_filtering_count(){
 	PMXE_Plugin::$session->set('joinclause',  $filters->get('queryJoin'));
 	PMXE_Plugin::$session->save_data();
 
-    if (class_exists('SitePress') && !empty(XmlExportEngine::$exportOptions['wpml_lang']) && defined('ICL_LANGUAGE_CODE')){
-        PMXE_Plugin::$session->set('wpml_lang', XmlExportEngine::$exportOptions['wpml_lang']);
-        do_action( 'wpml_switch_language', ICL_LANGUAGE_CODE );
-    }
-
 	$foundRecords = 0;
 	$total_records = 0;
 
@@ -378,6 +373,11 @@ function pmxe_wp_ajax_wpae_filtering_count(){
 		}
 	}
 
+    if (class_exists('SitePress') && !empty(XmlExportEngine::$exportOptions['wpml_lang']) && defined('ICL_LANGUAGE_CODE')){
+        PMXE_Plugin::$session->set('wpml_lang', XmlExportEngine::$exportOptions['wpml_lang']);
+        do_action( 'wpml_switch_language', ICL_LANGUAGE_CODE );
+    }
+
     if(XmlExportTaxonomy::$is_active) {
         if(isset($exportQuery)) {
             PMXE_Plugin::$session->set('exportQuery', $exportQuery);
@@ -385,10 +385,13 @@ function pmxe_wp_ajax_wpae_filtering_count(){
         }
     }
 
-    if(XmlExportWooCommerceReview::$is_active) {
-        if(isset($exportQuery)) {
-            PMXE_Plugin::$session->set('exportQuery', $exportQuery);
-            PMXE_Plugin::$session->save_data();
+    $addons = new \Wpae\App\Service\Addons\AddonService();
+    if($addons->isWooCommerceAddonActive()) {
+        if (XmlExportWooCommerceReview::$is_active) {
+            if (isset($exportQuery)) {
+                PMXE_Plugin::$session->set('exportQuery', $exportQuery);
+                PMXE_Plugin::$session->save_data();
+            }
         }
     }
 

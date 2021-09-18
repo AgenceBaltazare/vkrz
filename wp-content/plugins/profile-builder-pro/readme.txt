@@ -7,7 +7,7 @@ custom registration, custom registration form, custom registration page, extra u
 front-end register, front-end registration, frontend edit profile, edit profileregistration, customize profile, user fields, builder, profile builder, custom fields, avatar
 Requires at least: 3.1
 Tested up to: 5.8
-Stable tag: 3.5.3
+Stable tag: 3.5.4
 
 
 Login, registration and edit profile shortcodes for the front-end. Also you can choose what fields should be displayed or add custom ones.
@@ -101,6 +101,16 @@ This plugin only adds/removes fields in the front-end. The default information-f
 
 
 == Changelog ==
+= 3.5.4 =
+* Feature: Improved login error when an user with an unconfirmed email address is trying to login
+* Feature: Added the ability resend the email confirmation from the login error message
+* Feature: 2FA functionality is now using AJAX to show the authentication field if necessary on both front-end and back-end forms
+* Fix: Don't load 2FA assets if functionality is not enabled
+* Fix: Userlisting sort tags for first and last name were written as one word
+* Misc: Added sorting information to Datepicker field description
+* Misc: Improved userlisting tag for the Select CPT field. It now provides an extra tag that can be used to output a link to the selected post
+* Misc: Userlisting widget for Elementor lets the admin select the desired userlist from a list instead of entering it's name
+
 = 3.5.3 =
 * Feature: Added option to display Elementor sections and widgets to logged out users
 * Feature: Added Elementor widget for Userlisting

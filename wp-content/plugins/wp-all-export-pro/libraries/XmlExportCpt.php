@@ -363,74 +363,84 @@ final class XmlExportCpt
 
 						case 'acf':
 
-							if (!empty($fieldLabel) and class_exists('acf')) {
+						    if(XmlExportEngine::get_addons_service()->isAcfAddonActive()) {
+                                if (!empty($fieldLabel) and class_exists('acf')) {
 
-							    $blocks = parse_blocks($entry->post_content);
+                                    $blocks = parse_blocks($entry->post_content);
 
-								global $acf;
+                                    global $acf;
 
-								$field_options = unserialize($fieldOptions);
+                                    $field_options = unserialize($fieldOptions);
 
-								if (!$is_xml_export) {
-									switch ($field_options['type']) {
-										case 'textarea':
-										case 'oembed':
-										case 'wysiwyg':
-										case 'wp_wysiwyg':
-										case 'date_time_picker':
-										case 'date_picker':
+                                    if (!$is_xml_export) {
+                                        switch ($field_options['type']) {
+                                            case 'textarea':
+                                            case 'oembed':
+                                            case 'wysiwyg':
+                                            case 'wp_wysiwyg':
+                                            case 'date_time_picker':
+                                            case 'date_picker':
 
-											$field_value = get_field($fieldLabel, $entry->ID, false);
+                                                $field_value = get_field($fieldLabel, $entry->ID, false);
 
-											break;
+                                                break;
 
-										default:
+                                            default:
 
-											$field_value = get_field($fieldLabel, $entry->ID);
+                                                $field_value = get_field($fieldLabel, $entry->ID);
 
-											break;
-									}
-								} else {
-									$field_value = get_field($fieldLabel, $entry->ID);
-								}
+                                                break;
+                                        }
+                                    } else {
+                                        $field_value = get_field($fieldLabel, $entry->ID);
+                                    }
 
-                                if($blocks) {
-								    foreach ($blocks as $block) {
-								        if($block['attrs']['id'] == $field_options['key']) {
-								            $field_value = $block['data'][$fieldLabel];
+                                    if ($blocks) {
+                                        foreach ($blocks as $block) {
+                                            if ($block['attrs']['id'] == $field_options['key']) {
+                                                $field_value = $block['data'][$fieldLabel];
+                                            }
                                         }
                                     }
+
+                                    if (!$field_value) {
+                                        if (XmlExportEngine::get_addons_service()->isAcfAddonActive()) {
+                                            $field_value = XmlExportACF::get_acf_block_value($entry, $field_options['name']);
+                                        }
+                                    }
+
+
+                                    if (XmlExportEngine::get_addons_service()->isAcfAddonActive()) {
+                                        XmlExportACF::export_acf_field(
+                                            $field_value,
+                                            $exportOptions,
+                                            $ID,
+                                            $entry->ID,
+                                            $article,
+                                            $xmlWriter,
+                                            $acfs,
+                                            $element_name,
+                                            $element_name_ns,
+                                            $fieldSnippet,
+                                            $field_options['group_id'],
+                                            $preview
+                                        );
+                                    }
                                 }
-
-                                  if(!$field_value) {
-                                        $field_value = XmlExportACF::get_acf_block_value($entry, $field_options['name']);
-                                  }
-                                
-
-								XmlExportACF::export_acf_field(
-									$field_value,
-									$exportOptions,
-									$ID,
-									$entry->ID,
-									$article,
-									$xmlWriter,
-									$acfs,
-									$element_name,
-									$element_name_ns,
-									$fieldSnippet,
-									$field_options['group_id'],
-									$preview
-								);
-							}
+                            }
 
 							break;
 
 						case 'woo':
 
 						if ($is_xml_export) {
-							XmlExportEngine::$woo_export->export_xml($xmlWriter, $entry, $exportOptions, $ID);
-						} else {
-							XmlExportEngine::$woo_export->export_csv($article, $woo, $entry, $exportOptions, $ID);
+						    if(XmlExportEngine::get_addons_service()->isWooCommerceAddonActive()) {
+                                XmlExportEngine::$woo_export->export_xml($xmlWriter, $entry, $exportOptions, $ID);
+                            }
+                        } else {
+                            if(XmlExportEngine::get_addons_service()->isWooCommerceAddonActive()) {
+                                XmlExportEngine::$woo_export->export_csv($article, $woo, $entry, $exportOptions, $ID);
+                            }
 						}
 
 							break;
@@ -438,9 +448,13 @@ final class XmlExportCpt
 						case 'woo_order':
 
 							if ($is_xml_export) {
-								XmlExportEngine::$woo_order_export->export_xml($xmlWriter, $entry, $exportOptions, $ID, $preview);
+                                if(XmlExportEngine::get_addons_service()->isWooCommerceAddonActive()) {
+                                    XmlExportEngine::$woo_order_export->export_xml($xmlWriter, $entry, $exportOptions, $ID, $preview);
+                                }
 							} else {
-								XmlExportEngine::$woo_order_export->export_csv($article, $woo_order, $entry, $exportOptions, $ID, $preview);
+                                if(XmlExportEngine::get_addons_service()->isWooCommerceAddonActive()) {
+                                    XmlExportEngine::$woo_order_export->export_csv($article, $woo_order, $entry, $exportOptions, $ID, $preview);
+                                }
 							}
 
 							break;

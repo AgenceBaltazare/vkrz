@@ -10,31 +10,24 @@
 
 @-webkit-keyframes rotating /* Safari and Chrome */ {
   from {
-    -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
   to {
-    -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }
-
 @keyframes rotating {
   from {
-    -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
   to {
-    -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }
-
 .btn-rose {
   background: #f4167f !important;
   border-color: #f4167f !important;
 }
-
 .btn-rose:hover {
   background: #f4167f !important;
   border-color: #f4167f !important;
@@ -60,25 +53,19 @@
   text-align: center;
   padding: 70px;
 }
-
 .auth-wrapper .auth-inner {
   max-width: 550px;
   margin: 0 auto;
 }
-
 .auth-wrapper .auth-inner .card-title {
   width: 100%;
 }
-
 .auth-wrapper .auth-inner .form-submit, .auth-wrapper .auth-inner .login-submit {
   text-align: center;
 }
-
 .auth-wrapper .auth-inner .form-submit input, .auth-wrapper .auth-inner .login-submit input {
   margin: 0 auto !important;
 }
-
 .auth-wrapper .divider {
   margin: 20px auto !important;
-}
-/*# sourceMappingURL=login.css.map */
+}/*# sourceMappingURL=login.css.map */

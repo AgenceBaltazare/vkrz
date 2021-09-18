@@ -146,10 +146,12 @@ $columns = apply_filters('pmxe_manage_imports_columns', $columns);
             $class = '';
             ?>
             <?php foreach ($list as $item):
-                if (is_array($item['options']['cpt'])) {
+                if ( is_array($item['options']['cpt']) && isset($item['options']['cpt'][0]) ) {
                     $cpt = $item['options']['cpt'][0];
-                } else {
+                } else if ( !empty($item['options']['cpt']) ) {
                     $cpt = $item['options']['cpt'];
+                } else {
+                    $cpt = '';
                 }
 
 
@@ -181,7 +183,7 @@ $columns = apply_filters('pmxe_manage_imports_columns', $columns);
                             case 'name':
                                 ?>
                                 <td style="min-width: 325px;">
-                                    <strong><?php echo $item['friendly_name']; ?></strong> <br>
+                                    <strong><?php echo wp_all_export_clear_xss($item['friendly_name']); ?></strong> <br>
                                     <div class="row-actions">
                                         <?php if (current_user_can(PMXE_Plugin::$capabilities)) { ?>
                                             <span class="edit">
@@ -242,9 +244,27 @@ $columns = apply_filters('pmxe_manage_imports_columns', $columns);
                                             if (!is_array($item['options']['cpt'])) {
                                                 $item['options']['cpt'] = array($item['options']['cpt']);
                                             }
+                                            // Disable scheduling options for User exports if User Export Add-On isn't enabled
                                             if (
                                                 ((in_array('users', $item['options']['cpt']) || in_array('shop_customer', $item['options']['cpt'])) && !$addons->isUserAddonActive()) ||
                                                 ($item['options']['export_type'] == 'advanced' && $item['options']['wp_query_selector'] == 'wp_user_query' && !$addons->isUserAddonActive())
+                                            ) {
+                                                ?>
+                                                href="<?php echo esc_url(add_query_arg(array('id' => $item['id'], 'action' => 'options'), $this->baseUrl)) ?>"
+                                                <?php
+                                            // Disable scheduling options for WooCo exports if WooCo Export Add-On isn't enabled
+                                            } else if (
+                                                (( (in_array('product', $item['options']['cpt']) && in_array('product_variation', $item['options']['cpt'])) || in_array('shop_order', $item['options']['cpt']) || in_array('shop_coupon', $item['options']['cpt']) || in_array('shop_review', $item['options']['cpt']) ) && !$addons->isWooCommerceAddonActive())
+                                                ||
+                                                ($item['options']['export_type'] == 'advanced' && in_array($item['options']['exportquery']->query['post_type'], array(array('product', 'product_variation'), 'shop_order', 'shop_coupon')) && !$addons->isWooCommerceAddonActive())
+                                            ) {
+                                                ?>
+                                                href="<?php echo esc_url(add_query_arg(array('id' => $item['id'], 'action' => 'options'), $this->baseUrl)) ?>"
+                                                <?php
+                                            // Disable scheduling options for ACF exports if ACF Export Add-On isn't enabled
+                                            } else if (
+                                                ((!in_array('comments', $item['options']['cpt']) || !in_array('shop_review', $item['options']['cpt'])) && in_array('acf', $item['options']['cc_type']) && !$addons->isAcfAddonActive()) ||
+                                                ($item['options']['export_type'] == 'advanced' && $item['options']['wp_query_selector'] != 'wp_comment_query' && in_array('acf', $item['options']['cc_type']) && !$addons->isAcfAddonActive())
                                             ) {
                                                 ?>
                                                 href="<?php echo esc_url(add_query_arg(array('id' => $item['id'], 'action' => 'options'), $this->baseUrl)) ?>"

@@ -111,7 +111,7 @@
 							<p style="text-align:right;">
 								<div class="input">
 									<label for="save_import_as" style="width: 103px;"><?php _e('Friendly Name:','wp_all_export_plugin');?></label> 
-									<input type="text" name="friendly_name" title="<?php _e('Save friendly name...', 'pmxi_plugin') ?>" style="vertical-align:middle; background:#fff !important;" value="<?php echo esc_attr($post['friendly_name'] ? $post['friendly_name']: $this->getFriendlyName($post)) ?>" />
+									<input type="text" name="friendly_name" title="<?php _e('Save friendly name...', 'pmxi_plugin') ?>" style="vertical-align:middle; background:#fff !important;" value="<?php echo wp_all_export_clear_xss($post['friendly_name'] ? $post['friendly_name']: $this->getFriendlyName($post)) ?>" />
 								</div>
 							</p>
                             <?php
