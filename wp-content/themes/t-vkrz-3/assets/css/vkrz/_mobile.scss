@@ -1,107 +1,130 @@
-.mobile-navbar,
-.share-content,
-.share-classement-content,
-.share-top-content {
-    display: none;
+.mobile-navbar {
+    background: #312673;
+    display: block;
+    position: fixed;
+    z-index: 1023;
+    right: 0;
+    left: 80px;
+    bottom: 0;
+
+    .icons-navbar {
+        display: flex;
+        padding: 10px 0 8px;
+    }
 }
 
-@media (max-width: 768px) {
-    .mobile-navbar {
-        background: #23213b;
-        display: block;
+.share-content {
+    background: #312673;
+    position: fixed;
+    bottom: -100px;
+    right: 0;
+    left: 0;
+    transition: all 0.2s ease-in;
 
-        .icons-navbar {
-            display: flex;
-            justify-content: space-evenly;
-            padding: 10px 0;
-
-            .share {
-                cursor: pointer;
-            }
-        }
-    }
-
-    .share-content {
-        background: $c4;
-
-        .close-content {
-            margin: 12px 0px 12px 0px;
-
-            .close-share {
-                cursor: pointer;
-            }
-        }
-
-        ul {
-            margin: 0px 20px 20px 20px;
-            padding-left: 0px;
-            cursor: pointer;
-        }
-
-        li {
-            font-family: "Lato";
-            list-style-type: none;
-            font-size: 18px;
-            font-weight: bold;
-            -webkit-user-select: none;
-            -webkit-touch-callout: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-
-        li:last-child {
-            margin-top: 12px;
-        }
-
-        i {
-            color: $rose;
-        }
-    }
-
-    .share-classement-content,
-    .share-top-content {
-        background: #23213b;
-
-        h3 {
-            border-bottom: 1px solid #343249;
-            padding: 22px 0px 22px 30px;
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        a {
-            text-decoration: none;
-            color: #ffffff;
-        }
-
-        ul {
-            margin: 25px 25px 25px 15px;
-            padding-left: 0px;
-        }
-
-        li {
-            font-family: "Lato";
-            list-style-type: none;
-            font-size: 16px;
-            margin-top: 12px;
-
-            &:active {
-                color: $rose;
-            }
-        }
+    .close-content {
+        margin: 12px 0px 12px 0px;
 
         .close-share {
-            color: $rose;
-            position: absolute;
-            top: 26px;
-            right: 30px;
             cursor: pointer;
         }
+    }
 
-        .social-media {
-            color: $c5;
-            width: 20px;
+    ul {
+        margin: 0px 20px 20px 20px;
+        padding-left: 0px;
+        cursor: pointer;
+    }
+
+    li {
+        font-family: "Lato";
+        list-style-type: none;
+        font-size: 18px;
+        font-weight: bold;
+        -webkit-user-select: none;
+        -webkit-touch-callout: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    li:last-child {
+        margin-top: 12px;
+    }
+
+    i {
+        color: #fff;
+    }
+}
+
+.share-classement-content,
+.share-top-content,
+.box-info-content,
+.share-content {
+    background: $c6;
+    position: fixed;
+    bottom: -100%;
+    right: 0;
+    left: 0;
+    transition: all 0.5s ease-in;
+
+    h3 {
+        border-bottom: 1px solid #343249;
+        padding: 22px 0px 20px 15px;
+        margin: 0;
+        font-size: 18px;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    a {
+        text-decoration: none;
+        color: #ffffff;
+    }
+
+    ul {
+        margin: 25px 25px 25px 15px;
+        padding-left: 0px;
+    }
+
+    li {
+        font-family: "Lato";
+        list-style-type: none;
+        font-size: 18px;
+        margin-top: 15px;
+
+        &:active {
+            color: $rose;
         }
     }
+
+    .close-share {
+        color: #fff;
+        position: absolute;
+        top: 17px;
+        right: 20px;
+        cursor: pointer;
+        font-size: 25px;
+    }
+
+    .social-media {
+        color: $c5;
+        width: 30px;
+        margin: 0 0 0 5px;
+    }
+
+    .card {
+        background-color: transparent !important;
+        margin-bottom: 5px;
+    }
+
+}
+
+.separate {
+    height: 5px;
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+.active-box {
+    z-index: 999999999;
+    bottom: 0;
 }

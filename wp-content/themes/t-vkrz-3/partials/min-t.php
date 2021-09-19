@@ -8,7 +8,7 @@ if(is_home()){
     $class        = "swiper-slide";
 }
 elseif(is_single()){
-    $class        = "col-md-3 col-6";
+    $class        = "col-md-12 col-6";
 }
 else{
     $class        = "col-12";

@@ -5,22 +5,20 @@ global $user_tops;
 global $user_infos;
 global $id_vainkeur;
 global $utm;
-if(!is_single() || get_post_type() != "tournoi"){
+if (!is_single() || get_post_type() != "tournoi") {
     $user_id        = get_user_logged_id();
     $uuiduser       = deal_uuiduser();
     $utm            = deal_utm();
 
-    if(is_user_logged_in() && env() != "local") {
-        if (false === ( $user_tops = get_transient( 'user_'.$user_id.'_get_user_tops' ) )) {
+    if (is_user_logged_in() && env() != "local") {
+        if (false === ($user_tops = get_transient('user_' . $user_id . '_get_user_tops'))) {
             $user_tops = get_user_tops();
-            set_transient( 'user_'.$user_id.'_get_user_tops', $user_tops, DAY_IN_SECONDS );
+            set_transient('user_' . $user_id . '_get_user_tops', $user_tops, DAY_IN_SECONDS);
         } else {
-            $user_tops = get_transient( 'user_'.$user_id.'_get_user_tops' );
+            $user_tops = get_transient('user_' . $user_id . '_get_user_tops');
         }
-    } 
-    else {
+    } else {
         $user_tops  = get_user_tops();
-        
     }
     $user_infos  = deal_vainkeur_entry();
     $id_vainkeur = $user_infos['id_vainkeur'];
@@ -28,12 +26,13 @@ if(!is_single() || get_post_type() != "tournoi"){
 ?>
 <!DOCTYPE html>
 <html class="loading dark-layout" lang="fr" data-layout="dark-layout" data-textdirection="ltr">
+
 <head>
     <!--[if lt IE 9]>
     <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     <link rel="profile" href="http://gmpg.org/xfn/11">
-    <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
+    <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -53,19 +52,29 @@ if(!is_single() || get_post_type() != "tournoi"){
     <meta name="twitter:creator" content="@Vainkeurz">
     <meta name="twitter:domain" content="vainkeurz.com">
 
-    <?php if(is_page(26626)): ?>
+    <?php if (is_page(26626)) : ?>
         <meta name='robots' content='noindex, nofollow' />
     <?php endif; ?>
 
     <?php get_template_part('partials/meta'); ?>
 
-    <?php if($user_infos['user_role'] != "administrator" && env() != "local" ): ?>
+    <?php if ($user_infos['user_role'] != "administrator" && env() != "local") : ?>
         <!-- Google Tag Manager -->
-        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-KH379F5');
+        <script>
+            (function(w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({
+                    'gtm.start': new Date().getTime(),
+                    event: 'gtm.js'
+                });
+                var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s),
+                    dl = l != 'dataLayer' ? '&l=' + l : '';
+                j.async = true;
+                j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-KH379F5');
         </script>
         <!-- End Google Tag Manager -->
     <?php endif; ?>
@@ -73,43 +82,54 @@ if(!is_single() || get_post_type() != "tournoi"){
         window.dataLayer = window.dataLayer || [];
     </script>
 
-    <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="ec6a3187-bf39-4eb5-a90d-dda00a2995c8";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+    <script type="text/javascript">
+        window.$crisp = [];
+        window.CRISP_WEBSITE_ID = "ec6a3187-bf39-4eb5-a90d-dda00a2995c8";
+        (function() {
+            d = document;
+            s = d.createElement("script");
+            s.src = "https://client.crisp.chat/l.js";
+            s.async = 1;
+            d.getElementsByTagName("head")[0].appendChild(s);
+        })();
+    </script>
     <script>
         $crisp.push(["set", "user:email", ["<?php echo $user_infos['user_email']; ?>"]]);
         $crisp.push(["set", "user:nickname", ["<?php echo $user_infos['pseudo']; ?>"]]);
         $crisp.push(["set", "user:avatar", ["<?php echo $user_infos['avatar']; ?>"]]);
     </script>
 
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-rqn26AG5Pj86AF4SO72RK5fyefcQ/x32DNQfChxWvbXIyXFePlEktwD18fEz+kQU" crossorigin="anonymous">
+
     <?php wp_head(); ?>
 </head>
 
 <?php
-if(is_single() || is_page(get_page_by_path('monitor'))){
+if (is_single() || is_page(get_page_by_path('monitor'))) {
     $list_body_class = "vertical-layout vertical-menu-modern navbar-floating footer-static menu-collapsed";
-}
-else{
+} else {
     $list_body_class = "vertical-layout vertical-menu-modern navbar-floating footer-static";
 }
 ?>
+
 <body <?php body_class($list_body_class); ?> data-open="click" data-menu="vertical-menu-modern" data-col="">
 
-<?php if($uuiduser == get_field('uuid_1m_votes', 'options')): ?>
-    <div class="alert alert-success" role="alert">
-        <h4 class="alert-heading"><span class="ico">🎉</span> Félicitations <span class="ico">🎉</span></h4>
-        <div class="alert-body">
-            Tu as gagné la SWITCH en faisant LE vote du Milli. Contacte-nous pour la récup <span class="ico">🤗</span>
+    <?php if ($uuiduser == get_field('uuid_1m_votes', 'options')) : ?>
+        <div class="alert alert-success" role="alert">
+            <h4 class="alert-heading"><span class="ico">🎉</span> Félicitations <span class="ico">🎉</span></h4>
+            <div class="alert-body">
+                Tu as gagné la SWITCH en faisant LE vote du Milli. Contacte-nous pour la récup <span class="ico">🤗</span>
+            </div>
         </div>
-    </div>
-<?php endif; ?>
+    <?php endif; ?>
 
-<?php if($user_infos['user_role'] != "administrator" && env() != "local" ): ?>
-	<!-- Google Tag Manager (noscript) -->
-	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KH379F5" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-	<!-- End Google Tag Manager (noscript) -->
-<?php endif; ?>
+    <?php if ($user_infos['user_role'] != "administrator" && env() != "local") : ?>
+        <!-- Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KH379F5" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- End Google Tag Manager (noscript) -->
+    <?php endif; ?>
 
-<?php
+    <?php
     get_template_part('partials/menu-user');
     get_template_part('partials/menu-vkrz');
-?>
-
+    ?>

@@ -157,7 +157,7 @@
                 <?php if($nb_comments > 0): ?>
                     <span class="t-violet">💬 Lâche ton meilleur commentaire</span>
                 <?php else: ?>
-                    <span class="t-violet">💬 Soit le premier à laisser un commentaire <span>🙏</span></span>
+                    <span class="t-violet">💬 Soit le premier à laisser un commentaire <span>🤟</span></span>
                 <?php endif; ?>
             <?php endif; ?>
         </h6>

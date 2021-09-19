@@ -37,80 +37,6 @@ $creator_data       = get_user_infos($creator_uuiduser);
     <div class="content-wrapper">
         <div class="content-body tournoi-content">
 
-            <nav class="navbar fixed-bottom mobile-navbar">
-                <div class="container icons-navbar">
-                    <div class="">
-                        <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" href="#" class="confirm_delete">
-                            <img src="<?php bloginfo('template_directory'); ?>/assets/images/icons/restart.svg" alt="" class="aaa">
-                        </a>
-                    </div>
-                    <div class="share">
-                        <img src="<?php bloginfo('template_directory'); ?>/assets/images/icons/share.svg" alt="" class="">
-                    </div>
-                    <div class="">
-                        <a href="#" data-toggle="modal" data-target="#commentModal">
-                            <img src="<?php bloginfo('template_directory'); ?>/assets/images/icons/star2.svg" alt="" class="">
-                        </a>
-                    </div>
-                    <div class="">
-                        <a href="<?php echo get_the_permalink(get_page_by_path('discuz')) . '?id_top=' . $id_top; ?>">
-                            <img src="<?php bloginfo('template_directory'); ?>/assets/images/icons/pen.svg" alt="" class="">
-                        </a>
-                    </div>
-                </div>
-            </nav>
-            <div class="share-content fixed-bottom">
-                <div class="close-share d-flex justify-content-center close-content">
-                    <i class="fas fa-chevron-down fa-2x"></i>
-                </div>
-                <ul>
-                    <li class="share-natif-classement" id="share-classement">Partager classement</li>
-                    <li class="share-natif-top" id="share-top">Partager top</li>
-                </ul>
-            </div>
-            <div class="share-classement-content fixed-bottom">
-                <h3>Partager classement</h3>
-                <img src="<?php bloginfo('template_directory'); ?>/assets/images/icons/close.svg" alt="" class="close-share">
-                <ul>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $url_ranking; ?>" title="Partager sur Facebook" target="_blank">
-                        <li><i class="social-media fab fa-twitter"></i>Facebook</li>
-                    </a>
-                    <a href="https://twitter.com/intent/tweet?text=Voici mon TOP <?php echo $top_infos['top_number']; ?> <?php echo $top_infos['top_title']; ?>&via=vainkeurz&hashtags=VKRZ&url=<?php echo $url_ranking; ?>" target="_blank" title="Tweet">
-                        <li><i class="social-media fab fa-facebook-f"></i>Twitter</li>
-                    </a>
-                    <a href="whatsapp://send?text=<?php echo $url_ranking; ?>" data-action="share/whatsapp/share">
-                        <li><i class="social-media fab fa-whatsapp"></i>What's App</li>
-                    </a>
-                    <a href="">
-                        <li><i class="social-media mb-12 fas fa-download"></i>Télécharger une image</li>
-                    </a>
-                    <a href="javascript: void(0)" class="sharelinkbtn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copier le lien de ton Classement">
-                        <input type="text" value="<?php echo $top_infos['top_url']; ?>" class="input_to_share">
-                        <li><i class="social-media fas fa-paperclip"></i>Copier le lien du classement</li>
-                    </a>
-                </ul>
-            </div>
-            <div class="share-top-content fixed-bottom">
-                <h3>Partager top</h3>
-                <img src="<?php bloginfo('template_directory'); ?>/assets/images/icons/close.svg" alt="" class="close-share">
-                <ul>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $url_ranking; ?>" title="Partager sur Facebook" target="_blank">
-                        <li><i class="social-media fab fa-twitter"></i>Facebook</li>
-                    </a>
-                    <a href="https://twitter.com/intent/tweet?text=Voici mon TOP <?php echo $top_infos['top_number']; ?> <?php echo $top_infos['top_title']; ?>&via=vainkeurz&hashtags=VKRZ&url=<?php echo $url_ranking; ?>" target="_blank" title="Tweet">
-                        <li><i class="social-media fab fa-facebook-f"></i>Twitter</li>
-                    </a>
-                    <a href="whatsapp://send?text=<?php echo $url_ranking; ?>" data-action="share/whatsapp/share">
-                        <li><i class="social-media mb-12 fab fa-whatsapp"></i>What's App</li>
-                    </a>
-                    <a href="javascript: void(0)" class="sharelinkbtn2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copier le lien de ton Top">
-                        <input type="text" value="<?php echo $top_infos['top_url']; ?>" class="input_to_share2">
-                        <li><i class="social-media fas fa-paperclip"></i>Copier le lien du top</li>
-                    </a>
-                </ul>
-            </div>
-
-
             <?php if (!$id_ranking) : ?>
 
                 <div class="content-intro">
@@ -121,26 +47,24 @@ $creator_data       = get_user_infos($creator_uuiduser);
                             <div class="meetup-img-wrapper rounded-top text-left" style="background-image: url(<?php echo $top_infos['top_img']; ?>);">
                                 <span class="badge badge-light-primary">Créé le <?php echo $top_infos['top_date']; ?></span>
                                 <div class="voile_contenders"></div>
-                                <?php if ($top_infos['top_number'] < 30) : ?>
-                                    <div class="avatar-group list-contenders">
-                                        <?php $contenders_t = new WP_Query(array(
-                                            'post_type' => 'contender', 'orderby' => 'date', 'posts_per_page' => '-1',
-                                            'meta_query'     => array(
-                                                array(
-                                                    'key'     => 'id_tournoi_c',
-                                                    'value'   => $id_top,
-                                                    'compare' => '=',
-                                                )
+                                <div class="avatar-group list-contenders">
+                                    <?php $contenders_t = new WP_Query(array(
+                                        'post_type' => 'contender', 'orderby' => 'date', 'posts_per_page' => '-1',
+                                        'meta_query'     => array(
+                                            array(
+                                                'key'     => 'id_tournoi_c',
+                                                'value'   => $id_top,
+                                                'compare' => '=',
                                             )
-                                        )); ?>
-                                        <?php while ($contenders_t->have_posts()) : $contenders_t->the_post(); ?>
-                                            <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="top" data-original-title="<?php echo get_the_title(get_the_id()); ?>" class="avatar pull-up">
-                                                <?php $illu = get_the_post_thumbnail_url(get_the_id(), 'medium'); ?>
-                                                <img src="<?php echo $illu; ?>" alt="Avatar" height="32" width="32">
-                                            </div>
-                                        <?php endwhile; ?>
-                                    </div>
-                                <?php endif; ?>
+                                        )
+                                    )); ?>
+                                    <?php while ($contenders_t->have_posts()) : $contenders_t->the_post(); ?>
+                                        <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="top" data-original-title="<?php echo get_the_title(get_the_id()); ?>" class="avatar pull-up">
+                                            <?php $illu = get_the_post_thumbnail_url(get_the_id(), 'medium'); ?>
+                                            <img src="<?php echo $illu; ?>" alt="Avatar" height="32" width="32">
+                                        </div>
+                                    <?php endwhile; ?>
+                                </div>
                             </div>
                             <div class="card-body">
                                 <div class="meetup-header d-flex align-items-center justify-content-center">
@@ -274,7 +198,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                 </div>
 
                 <div class="row">
-                    <div class="col-md-9 col-lg-10">
+                    <div class="col-md-12">
                         <?php if ($top_infos['top_type'] != "top3") : ?>
                             <div class="container-fluid">
                                 <div class="tournoi-infos mb-2">
@@ -307,116 +231,6 @@ $creator_data       = get_user_infos($creator_uuiduser);
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 col-lg-2 mt-2 d-none d-sm-block">
-                        <div class="related animate__fadeInUp animate__animated animate__delay-0s">
-
-                            <div class="card text-left">
-                                <div class="card-body">
-                                    <h4 class="card-title">
-                                        <span class="ico">🤪</span> Fais tourner le Top
-                                    </h4>
-                                    <h6 class="card-subtitle text-muted mb-1">
-                                        Plus on est de fou plus on .. TOP !
-                                    </h6>
-                                    <div class="btn-group justify-content-center share-t w-100" role="group">
-                                        <a href="https://twitter.com/intent/tweet?text=J'ai fait mon TOP <?php echo $top_infos['top_number']; ?> <?php echo $top_infos['top_title']; ?> maintenant c'est à vous 🤪🤪 &via=vainkeurz&hashtags=VKRZ&url=<?php echo $top_infos['top_url']; ?>" target="_blank" title="Tweet" class="btn btn-icon btn-outline-primary">
-                                            <i class="fab fa-twitter"></i>
-                                        </a>
-                                        <a href="whatsapp://send?text=<?php echo $top_infos['top_url']; ?>" data-action="share/whatsapp/share" class="btn btn-icon btn-outline-primary">
-                                            <i class="fab fa-whatsapp"></i>
-                                        </a>
-                                        <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $top_infos['top_url']; ?>" title="Partager sur Facebook" target="_blank" class="btn btn-icon btn-outline-primary">
-                                            <i class="fab fa-facebook-f"></i>
-                                        </a>
-                                        <a href="javascript: void(0)" class="sharelinkbtn2 btn btn-icon btn-outline-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copier le lien du Top">
-                                            <input type="text" value="<?php echo $top_infos['top_url']; ?>" class="input_to_share2">
-                                            <i class="far fa-link"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="card text-left">
-                                <div class="card-body">
-                                    <h4 class="card-title">
-                                        <span class="ico">🙃</span> T'as fais une bavure ?
-                                    </h4>
-                                    <h6 class="card-subtitle text-muted mb-1">
-                                        T'inquiète on te laisse refaire le Top
-                                    </h6>
-                                    <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-id_ranking="<?php echo $id_ranking; ?>" href="#" class="confirm_delete btn btn-outline-primary waves-effect">
-                                        Recommencer
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="card text-left">
-                                <div class="card-body">
-                                    <h4 class="card-title">
-                                        <?php
-                                        date_default_timezone_set('Europe/Paris');
-                                        $origin     = new DateTime(get_the_date('Y-m-d', $id_top));
-                                        $target     = new DateTime(date('Y-m-d'));
-                                        $interval   = $origin->diff($target);
-                                        if ($interval->days == 0) {
-                                            $info_date = "aujourd'hui";
-                                        } elseif ($interval->days == 1) {
-                                            $info_date = "hier";
-                                        } else {
-                                            $info_date = "depuis " . $interval->days . " jours";
-                                        }
-                                        ?>
-                                        <span class="ico">🎂</span> Créé <span class="t-violet"><?php echo $info_date; ?></span> par :
-                                    </h4>
-                                    <div class="employee-task d-flex justify-content-between align-items-center">
-                                        <a href="<?php echo $creator_data['profil']; ?>" class="d-flex flex-row link-to-creator">
-                                            <div class="avatar me-75 mr-1">
-                                                <img src="<?php echo $creator_data['avatar']; ?>" class="circle" width="42" height="42" alt="Avatar">
-                                            </div>
-                                            <div class="my-auto">
-                                                <h3 class="mb-0">
-                                                    <?php echo $creator_data['pseudo']; ?> <br>
-                                                    <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Niveau actuel">
-                                                        <?php echo $creator_data['level']; ?>
-                                                    </span>
-                                                    <?php if ($creator_data['user_role']  == "administrator") : ?>
-                                                        <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
-                                                            🦙
-                                                        </span>
-                                                    <?php endif; ?>
-                                                    <?php if ($creator_data['user_role']  == "administrator" || $creator_data['user_role'] == "author") : ?>
-                                                        <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
-                                                            🎨
-                                                        </span>
-                                                    <?php endif; ?>
-                                                </h3>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="card text-left">
-                                <div class="card-body">
-                                    <h4 class="card-title">
-                                        <span class="ico">💬</span> <?php echo $top_datas['nb_comments']; ?>
-                                        <?php if ($top_datas['nb_comments'] <= 1) : ?>
-                                            Commentaire
-                                        <?php else : ?>
-                                            Commentaires
-                                        <?php endif; ?>
-                                    </h4>
-                                    <h6 class="card-subtitle text-muted mb-1">
-                                        Tout ce qui te passe par la tête à propos de ce Top mérite d'être partagé avec les autres Vainkeurs.
-                                    </h6>
-                                    <a href="<?php echo get_the_permalink(get_page_by_path('discuz')) . '?id_top=' . $id_top; ?>" class="btn btn-outline-primary waves-effect">
-                                        Lire & poster
-                                    </a>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
                 </div>
 
                 <?php
@@ -428,5 +242,113 @@ $creator_data       = get_user_infos($creator_uuiduser);
         </div>
     </div>
 </div>
+
+<?php if ($id_ranking) : ?>
+    <nav class="navbar mobile-navbar">
+        <div class="icons-navbar">
+            <div class="ico-nav-mobile">
+                <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" href="#" class="confirm_delete">
+                    <i class="fas fa-repeat"></i> <span class="hide-spot">Recommencer</span>
+                </a>
+            </div>
+            <div class="ico-nav-mobile share-natif-top">
+                <i class="fas fa-share-alt"></i> <span class="hide-spot">Partager</span>
+            </div>
+            <div class="ico-nav-mobile">
+                <a href="<?php echo get_the_permalink(get_page_by_path('discuz')) . '?id_top=' . $id_top; ?>">
+                    <i class="fas fa-comments"></i> <span class="hide-spot">Commenter</span>
+                </a>
+            </div>
+            <div class="ico-nav-mobile box-info-show">
+                <i class="fas fa-info"></i> <span class="hide-spot">A propos du Top</span>
+            </div>
+        </div>
+    </nav>
+    <div class="share-top-content">
+        <h3><span class="ico-social">⚡️</span> Partager le lien du Top</h3>
+        <div class="close-share">
+            <i class="fal fa-times"></i>
+        </div>
+        <ul>
+            <li>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $url_ranking; ?>" title="Partager sur Facebook" target="_blank">
+                    <i class="social-media fab fa-twitter"></i> Sur Facebook
+                </a>
+            </li>
+            <li>
+                <a href="https://twitter.com/intent/tweet?text=Voici mon TOP <?php echo $top_infos['top_number']; ?> <?php echo $top_infos['top_title']; ?>&via=vainkeurz&hashtags=VKRZ&url=<?php echo $url_ranking; ?>" target="_blank" title="Tweet">
+                    <i class="social-media fab fa-facebook-f"></i> Dans un Tweet
+                </a>
+            </li>
+            <li>
+                <a href="whatsapp://send?text=<?php echo $url_ranking; ?>" data-action="share/whatsapp/share">
+                    <i class="social-media mb-12 fab fa-whatsapp"></i> Sur WhatsApp
+                </a>
+            </li>
+            <li>
+                <a href="javascript: void(0)" class="sharelinkbtn2">
+                    <input type="text" value="<?php echo $top_infos['top_url']; ?>" class="input_to_share2">
+                    <i class="social-media fas fa-paperclip"></i> <span>Copier le lien du Top</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="box-info-content">
+        <h3>
+            <span class="ico-social">📌</span>
+            Tous les infos du Top
+        </h3>
+        <div class="close-share">
+            <i class="fal fa-times"></i>
+        </div>
+        <div class="box-info-list">
+            <div class="card text-left">
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <?php
+                        date_default_timezone_set('Europe/Paris');
+                        $origin     = new DateTime(get_the_date('Y-m-d', $id_top));
+                        $target     = new DateTime(date('Y-m-d'));
+                        $interval   = $origin->diff($target);
+                        if ($interval->days == 0) {
+                            $info_date = "aujourd'hui";
+                        } elseif ($interval->days == 1) {
+                            $info_date = "hier";
+                        } else {
+                            $info_date = "depuis " . $interval->days . " jours";
+                        }
+                        ?>
+                        <span class="ico">🎂</span> Créé <span class="t-violet"><?php echo $info_date; ?></span> par :
+                    </h4>
+                    <div class="employee-task d-flex justify-content-between align-items-center">
+                        <a href="<?php echo $creator_data['profil']; ?>" class="d-flex flex-row link-to-creator">
+                            <div class="avatar me-75 mr-1">
+                                <img src="<?php echo $creator_data['avatar']; ?>" class="circle" width="42" height="42" alt="Avatar">
+                            </div>
+                            <div class="my-auto">
+                                <h4 class="mb-0">
+                                    <?php echo $creator_data['pseudo']; ?> <br>
+                                    <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Niveau actuel">
+                                        <?php echo $creator_data['level']; ?>
+                                    </span>
+                                    <?php if ($creator_data['user_role']  == "administrator") : ?>
+                                        <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
+                                            🦙
+                                        </span>
+                                    <?php endif; ?>
+                                    <?php if ($creator_data['user_role']  == "administrator" || $creator_data['user_role'] == "author") : ?>
+                                        <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
+                                            🎨
+                                        </span>
+                                    <?php endif; ?>
+                                </h4>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
 
 <?php get_footer(); ?>

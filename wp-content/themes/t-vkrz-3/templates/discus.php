@@ -17,9 +17,6 @@ get_header();
             <a href="#" onclick="window.history.back();" class="btn btn-outline-primary waves-effect mb-1 mr-1">
                 <span class="ico">⬅️</span> Retour en arrière
             </a>
-            <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_top; ?>" class="btn btn-outline-primary waves-effect mb-1 mr-1">
-                Voir le Top mondial <span class="ico">🌎</span>
-            </a>
         </div>
 
         <div class="content-body mt-2">

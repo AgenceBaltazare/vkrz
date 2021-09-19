@@ -16,20 +16,20 @@ $user_tops     = get_user_tops();
 $uuiduser      = deal_uuiduser();
 $user_infos    = deal_vainkeur_entry();
 $id_vainkeur   = $user_infos['id_vainkeur'];
-if($id_vainkeur){
+if ($id_vainkeur) {
     $current_id_vainkeur = $id_vainkeur;
 }
 $id_ranking    = get_user_ranking_id($id_top, $uuiduser);
-if($id_ranking){
+if ($id_ranking) {
     extract(get_next_duel($id_ranking, $id_top, $current_id_vainkeur));
-    if(!$is_next_duel){
+    if (!$is_next_duel) {
         wp_redirect(get_the_permalink($id_ranking));
     }
 }
 get_header();
 $top_datas          = get_top_data($id_top);
 $creator_id         = get_post_field('post_author', $id_top);
-$creator_uuiduser   = get_field('uuiduser_user', 'user_'.$creator_id);
+$creator_uuiduser   = get_field('uuiduser_user', 'user_' . $creator_id);
 $creator_data       = get_user_infos($creator_uuiduser);
 ?>
 <div class="app-content content cover" style="background: url(<?php echo $top_infos['top_cover']; ?>) center center no-repeat">
@@ -37,7 +37,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
     <div class="content-wrapper">
         <div class="content-body tournoi-content">
 
-            <?php if(!$id_ranking): ?>
+            <?php if (!$id_ranking) : ?>
 
                 <div class="content-intro">
 
@@ -47,9 +47,10 @@ $creator_data       = get_user_infos($creator_uuiduser);
                             <div class="meetup-img-wrapper rounded-top text-left" style="background-image: url(<?php echo $top_infos['top_img']; ?>);">
                                 <span class="badge badge-light-primary">Créé le <?php echo $top_infos['top_date']; ?></span>
                                 <div class="voile_contenders"></div>
-                                <?php if($top_infos['top_number'] < 30): ?>
+                                <?php if ($top_infos['top_number'] < 30) : ?>
                                     <div class="avatar-group list-contenders">
-                                        <?php $contenders_t = new WP_Query(array('post_type' => 'contender', 'orderby' => 'date', 'posts_per_page' => '-1',
+                                        <?php $contenders_t = new WP_Query(array(
+                                            'post_type' => 'contender', 'orderby' => 'date', 'posts_per_page' => '-1',
                                             'meta_query'     => array(
                                                 array(
                                                     'key'     => 'id_tournoi_c',
@@ -78,7 +79,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                         </p>
                                     </div>
                                 </div>
-                                <?php if(get_field('precision_t', $id_top)): ?>
+                                <?php if (get_field('precision_t', $id_top)) : ?>
                                     <div class="card-precision">
                                         <p class="card-text mb-1">
                                             <?php the_field('precision_t', $id_top); ?>
@@ -97,23 +98,23 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                             $min = ($top_infos['top_number'] - 5) * 2 + 6;
                                             $max = $min * 2;
                                             ?>
-                                            <?php if($top_infos['top_number'] < 3): ?>
+                                            <?php if ($top_infos['top_number'] < 3) : ?>
                                                 Un seul vote suffira pour finir ce Top
-                                            <?php else: ?>
+                                            <?php else : ?>
                                                 Prévoir entre <?php echo $min; ?> et <?php echo $max; ?> votes pour finir ton Top du 1er au dernier
                                             <?php endif; ?>
                                         </small>
                                     </div>
-                                    <?php if($top_infos['top_number'] > 10): ?>
+                                    <?php if ($top_infos['top_number'] > 10) : ?>
                                         <div class="cta-begin cta-top3">
                                             <a href="#" id="begin_top3" data-typetop="top3" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
                                                 Top 3
                                             </a>
                                             <small class="text-muted">
                                                 <?php
-                                                $max = (floor($top_infos['top_number']/2))+(3*((round($top_infos['top_number']/2))-1));
-                                                $min = (floor($top_infos['top_number']/2))+((round($top_infos['top_number']/2))-1)+3;
-                                                $moy = ($max+$min) / 2;
+                                                $max = (floor($top_infos['top_number'] / 2)) + (3 * ((round($top_infos['top_number'] / 2)) - 1));
+                                                $min = (floor($top_infos['top_number'] / 2)) + ((round($top_infos['top_number'] / 2)) - 1) + 3;
+                                                $moy = ($max + $min) / 2;
                                                 ?>
                                                 Prévoir environ <?php echo round($moy); ?> votes pour juste faire ton podium
                                             </small>
@@ -166,12 +167,12 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                                         <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Niveau actuel">
                                                             <?php echo $creator_data['level']; ?>
                                                         </span>
-                                                        <?php if($creator_data['user_role']  == "administrator"): ?>
+                                                        <?php if ($creator_data['user_role']  == "administrator") : ?>
                                                             <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
                                                                 🦙
                                                             </span>
                                                         <?php endif; ?>
-                                                        <?php if($creator_data['user_role']  == "administrator" || $creator_data['user_role'] == "author"): ?>
+                                                        <?php if ($creator_data['user_role']  == "administrator" || $creator_data['user_role'] == "author") : ?>
                                                             <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
                                                                 🎨
                                                             </span>
@@ -187,7 +188,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                     </div>
                 </div>
 
-            <?php else: ?>
+            <?php else : ?>
 
                 <div class="intro-mobile">
                     <div class="tournament-heading text-center">
@@ -201,7 +202,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                 <div class="row">
                     <div class="col-md-9 col-lg-10">
 
-                        <?php if($top_infos['top_type'] != "top3"): ?>
+                        <?php if ($top_infos['top_type'] != "top3") : ?>
                             <div class="container-fluid">
                                 <div class="tournoi-infos mb-2">
                                     <div class="display_current_user_rank">
@@ -220,7 +221,13 @@ $creator_data       = get_user_infos($creator_uuiduser);
                             </div>
                         <?php endif; ?>
 
-                        <div class="<?php if(get_field('c_rounded_t', $id_top)){ echo 'rounded'; } ?> <?php if(get_field('full_w_t', $id_top)){ echo 'container container-cc'; } else { echo 'container'; } ?>">
+                        <div class="<?php if (get_field('c_rounded_t', $id_top)) {
+                                        echo 'rounded';
+                                    } ?> <?php if (get_field('full_w_t', $id_top)) {
+                                                                                                            echo 'container container-cc';
+                                                                                                        } else {
+                                                                                                            echo 'container';
+                                                                                                        } ?>">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="display_battle">
@@ -270,12 +277,12 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                     <h6 class="card-subtitle text-muted mb-1">
                                         T'inquiète on te laisse refaire le Top
                                     </h6>
-                                    <a data-phrase1="Es-tu sûr de toi ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-id_ranking="<?php echo $id_ranking; ?>" href="#" class="confirm_delete btn btn-outline-primary waves-effect">
+                                    <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-id_ranking="<?php echo $id_ranking; ?>" href="#" class="confirm_delete btn btn-outline-primary waves-effect">
                                         Recommencer
                                     </a>
                                 </div>
                             </div>
-                            
+
                             <div class="card text-left">
                                 <div class="card-body">
                                     <h4 class="card-title">
@@ -284,14 +291,12 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                         $origin     = new DateTime(get_the_date('Y-m-d', $id_top));
                                         $target     = new DateTime(date('Y-m-d'));
                                         $interval   = $origin->diff($target);
-                                        if($interval->days == 0){
+                                        if ($interval->days == 0) {
                                             $info_date = "aujourd'hui";
-                                        }
-                                        elseif($interval->days == 1){
+                                        } elseif ($interval->days == 1) {
                                             $info_date = "hier";
-                                        }
-                                        else{
-                                            $info_date = "depuis ".$interval->days." jours";
+                                        } else {
+                                            $info_date = "depuis " . $interval->days . " jours";
                                         }
                                         ?>
                                         <span class="ico">🎂</span> Créé <span class="t-violet"><?php echo $info_date; ?></span> par :
@@ -307,12 +312,12 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                                     <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Niveau actuel">
                                                         <?php echo $creator_data['level']; ?>
                                                     </span>
-                                                    <?php if($creator_data['user_role']  == "administrator"): ?>
+                                                    <?php if ($creator_data['user_role']  == "administrator") : ?>
                                                         <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
                                                             🦙
                                                         </span>
                                                     <?php endif; ?>
-                                                    <?php if($creator_data['user_role']  == "administrator" || $creator_data['user_role'] == "author"): ?>
+                                                    <?php if ($creator_data['user_role']  == "administrator" || $creator_data['user_role'] == "author") : ?>
                                                         <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
                                                             🎨
                                                         </span>
@@ -328,16 +333,16 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                 <div class="card-body">
                                     <h4 class="card-title">
                                         <span class="ico">💬</span> <?php echo $top_datas['nb_comments']; ?>
-                                        <?php if($top_datas['nb_comments'] <= 1): ?>
+                                        <?php if ($top_datas['nb_comments'] <= 1) : ?>
                                             Commentaire
-                                        <?php else: ?>
+                                        <?php else : ?>
                                             Commentaires
                                         <?php endif; ?>
                                     </h4>
                                     <h6 class="card-subtitle text-muted mb-1">
                                         Tout ce qui te passe par la tête à propos de ce Top mérite d'être partagé avec les autres Vainkeurs.
                                     </h6>
-                                    <a href="<?php echo get_the_permalink(get_page_by_path('discuz')).'?id_top='.$id_top; ?>" class="btn btn-outline-primary waves-effect">
+                                    <a href="<?php echo get_the_permalink(get_page_by_path('discuz')) . '?id_top=' . $id_top; ?>" class="btn btn-outline-primary waves-effect">
                                         Lire & poster
                                     </a>
                                 </div>

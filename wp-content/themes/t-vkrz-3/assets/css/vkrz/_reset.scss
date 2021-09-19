@@ -242,6 +242,21 @@ a.sociallink:hover {
     height: auto !important;
 }
 
-.single-tournoi .crisp-client .cc-kv6t[data-full-view=true] .cc-1xry .cc-unoo {
-    bottom: 70px !important;
+.dark-layout input.form-control::placeholder,
+.dark-layout .custom-file-label::placeholder,
+.dark-layout textarea.form-control::placeholder,
+.dark-layout input.form-control::placeholder,
+.dark-layout .custom-file-label::placeholder,
+.dark-layout textarea.form-control::placeholder {
+    color: rgba(255, 255, 255, 1) !important;
+}
+
+.title-contender{
+    img{
+        border-radius: 0 !important;
+    }
+}
+
+.card{
+    margin-bottom: 1rem;
 }

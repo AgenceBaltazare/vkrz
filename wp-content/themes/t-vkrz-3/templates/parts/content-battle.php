@@ -23,15 +23,15 @@
                     <?php if ($nb_user_votes == 0) : ?>
                         Aucun vote encore
                     <?php elseif ($nb_user_votes == 1) : ?>
-                        Bravo pour ton 1er vote
+                        🖖 1er vote
                     <?php else : ?>
-                        Tes votes : <?php echo $nb_user_votes; ?>
+                        <?php echo $nb_user_votes; ?> votes
                     <?php endif; ?>
                 </h6>
             </div>
         <?php endif; ?>
         <h4 class="text-center versus">
-            VS
+            <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/vainkeurz-eclair.svg" alt="" class="img-fluid">
         </h4>
     </div>
 

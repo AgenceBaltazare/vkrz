@@ -289,9 +289,9 @@ html .content {
     position: relative;
     z-index: 1;
     text-align: center;
-    margin: 0 0 10px 0;
-    padding: 20px 5px;
-    border-radius: 10px;
+    margin: 20px 0 10px;
+    padding: 15px 5px;
+    border-radius: 5px;
     background: rgba(255, 255, 255, 0.05);
     border: 2px solid $rose;
 
@@ -416,7 +416,7 @@ html .content {
     display: none !important;
 }
 
-.ico-max {{
+.ico-max {
     font-size: 150px;
     display: block;
     text-align: center;
@@ -467,4 +467,48 @@ html .content {
 
 .main-menu ul.navigation-main {
     padding-bottom: 70px;
+}
+
+.icons-navbar {
+    width: 80%;
+    justify-content: space-around;
+
+    .ico-nav-mobile {
+
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+
+        a {
+            color: #fff;
+        }
+
+        i {
+            cursor: pointer;
+            color: #fff;
+            font-size: 20px;
+        }
+    }
+}
+
+.single-tournoi,
+.single-classement {
+    .crisp-client .cc-kv6t .cc-1xry .cc-unoo {
+        bottom: 0 !important;
+    }
+}
+
+.ico-social {
+    width: 30px;
+    display: inline-block;
+}
+
+.hide-spot {
+    text-transform: uppercase;
+    margin: 0 0 0 5px;
+    font-size: 10px;
+}
+
+.pslim{
+    padding: 0 5px;
 }

@@ -34,7 +34,41 @@
 @media (max-width: 768px) {
 
     .single-tournoi {
-        .tournoi-content .contenders-containers .link-contender {
+
+        .content-intro {
+            margin: 20px 0;
+        }
+
+        .tournoi-content .contenders-containers {
+
+            .versus {
+                margin: 0 auto;
+                position: relative;
+
+                img {
+                    max-width: 80px !important;
+                    border-radius: 0;
+                    height: auto;
+                    position: relative;
+                    z-index: 33;
+                }
+
+                &:before {
+                    content: "";
+                    height: 2px;
+                    width: 100%;
+                    display: block;
+                    background-color: $rose;
+                    position: absolute;
+                    top: 50%;
+                    transform: rotate(-18deg);
+                }
+            }
+
+        }
+
+        .link-contender {
+
             .contender_zone {
                 display: flex;
                 align-items: center;
@@ -50,308 +84,334 @@
                     margin: 10px 0 0;
                 }
             }
-            .versus{
-                margin: 20px auto;
-            }
+
             #c_2 {
                 flex-direction: row-reverse;
             }
-        }
 
-        .intro-mobile {
-            display: block;
         }
+    }
 
-        .display_current_user_rank {
-            display: none;
+    .intro-mobile {
+        display: block;
+        margin: 0;
+    }
+
+    .display_current_user_rank {
+        display: none;
+    }
+
+    .hide-xs {
+        display: none;
+    }
+
+    .hide-lg {
+        display: block;
+    }
+
+    .nav-tournament {
+        left: 0;
+        flex-direction: column;
+
+        .btng {
+            margin-bottom: 10px;
         }
+    }
 
-        .hide-xs {
-            display: none;
-        }
-
-        .hide-lg {
-            display: block;
-        }
-
-        .nav-tournament {
-            left: 0;
+    .user-avatar-section {
+        .content-avatar-name {
             flex-direction: column;
-
-            .btng {
-                margin-bottom: 10px;
-            }
-        }
-
-        .user-avatar-section {
-            .content-avatar-name {
-                flex-direction: column;
-                text-align: center;
-
-                h1 {
-                    margin-top: 15px;
-                }
-
-                .ml-2,
-                .mr-1 {
-                    margin: 0 !important;
-                }
-
-                .btn {
-                    margin-bottom: 10px !important;
-                }
-            }
-        }
-
-        html body .app-content {
-            padding: calc(1rem - 0.8rem + 7.45rem + 1.3rem) calc(2rem - 0.8rem) 0 calc(2rem - 0.8rem) !important;
-        }
-
-        .bookmark-wrapper {
-            display: none !important;
-        }
-
-        .min-tournoi .cov-illu .badge {
-            position: absolute;
-            left: 5px;
-            right: auto;
-            top: 5px;
-            z-index: 9;
-        }
-
-        .logo {
-            max-width: 60px !important;
-            transition: all 0.3s ease-in-out;
-        }
-
-        .cat-min {
-            .card-header {
-                text-align: center;
-                flex-direction: column;
-                padding: 20px 10px 12px 10px;
-
-                .ico2 {
-                    display: block;
-                    margin: 0 auto 10px;
-                }
-            }
-        }
-
-        .heading-cat {
-            small {
-                display: block;
-                margin: 5px 0 0 0;
-            }
-        }
-
-        .main-menu .main-menu-content {
-            height: 100%;
-        }
-
-        .vertical-layout .header-navbar .navbar-container ul.navbar-nav li.dropdown .dropdown-menu {
-            top: 80px !important;
-            margin-top: 0px !important;
-        }
-
-        .apropos .card-text h2 {
             text-align: center;
-        }
 
-        .header-navbar .navbar-container ul.navbar-nav li .media-list {
-            max-height: 22rem;
-        }
-
-        .card-developer-meetup .card-cta .choosecta .cta-begin {
-            display: flex;
-            flex-direction: column;
-            margin: 0 5px;
-        }
-
-        .card-developer-meetup .card-cta .choosecta .cta-begin a {
-            font-size: 13px;
-            padding: 8px 10px;
-        }
-
-        .infos-card-t-c {
-            margin-top: 20px;
-        }
-
-        .profile-tabs {
-            .nav-pills {
-                margin-bottom: 20px !important;
-
-                .nav-link {
-                    padding: 5px 10px;
-                    font-size: 1rem;
-                    line-height: 1rem;
-                    border: 1px solid transparent;
-                }
-            }
-        }
-
-        #ecommerce-header {
-            flex-direction: column;
-
-            .ecommerce-header-items {
-                width: 100%;
-                margin-bottom: 10px;
-
-                .result-toggler {
-                    display: flex;
-                    align-items: center;
-                    width: 100%;
-                    margin: 0;
-
-                    a {
-                        width: 100%;
-                    }
-                }
+            h1 {
+                margin-top: 15px;
             }
 
-            .ecommerce-searchbar {
-                width: 100%;
-
-                #search_form {
-                    width: 100%;
-
-                    input {
-                        padding: 0 15px;
-                        font-size: 1rem;
-
-                        &::placeholder {
-                            color: #7367f0 !important;
-                            font-size: 0.8rem;
-                            line-height: 1;
-                            text-transform: none;
-                            border-radius: .358rem;
-                            font-weight: bold;
-                            letter-spacing: 1px;
-                        }
-                    }
-                }
-            }
-        }
-
-        .filtres-bloc {
-            .ui-group {
-                width: 100%;
+            .ml-2,
+            .mr-1 {
                 margin: 0 !important;
             }
 
-            .dropdown-sort {
+            .btn {
+                margin-bottom: 10px !important;
+            }
+        }
+    }
+
+    html body .app-content {
+        padding: calc(1rem - 0.8rem + 6.45rem + 1.3rem) calc(2rem - 0.8rem) 0 calc(2rem - 0.8rem) !important;
+    }
+
+    .bookmark-wrapper {
+        display: none !important;
+    }
+
+    .min-tournoi .cov-illu .badge {
+        position: absolute;
+        left: 5px;
+        right: auto;
+        top: 5px;
+        z-index: 9;
+    }
+
+    .logo {
+        max-width: 60px !important;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .cat-min {
+        .card-header {
+            text-align: center;
+            flex-direction: column;
+            padding: 20px 10px 12px 10px;
+
+            .ico2 {
+                display: block;
+                margin: 0 auto 10px;
+            }
+        }
+    }
+
+    .heading-cat {
+        small {
+            display: block;
+            margin: 5px 0 0 0;
+        }
+    }
+
+    .main-menu .main-menu-content {
+        height: 100%;
+    }
+
+    .vertical-layout .header-navbar .navbar-container ul.navbar-nav li.dropdown .dropdown-menu {
+        top: 80px !important;
+        margin-top: 0px !important;
+    }
+
+    .apropos .card-text h2 {
+        text-align: center;
+    }
+
+    .header-navbar .navbar-container ul.navbar-nav li .media-list {
+        max-height: 22rem;
+    }
+
+    .card-developer-meetup .card-cta .choosecta .cta-begin {
+        display: flex;
+        flex-direction: column;
+        margin: 0 5px;
+    }
+
+    .card-developer-meetup .card-cta .choosecta .cta-begin a {
+        font-size: 13px;
+        padding: 8px 10px;
+    }
+
+    .infos-card-t-c {
+        margin-top: 20px;
+    }
+
+    .profile-tabs {
+        .nav-pills {
+            margin-bottom: 20px !important;
+
+            .nav-link {
+                padding: 5px 10px;
+                font-size: 1rem;
+                line-height: 1rem;
+                border: 1px solid transparent;
+            }
+        }
+    }
+
+    #ecommerce-header {
+
+        flex-direction: column;
+
+        .ecommerce-header-items {
+            width: 100%;
+            margin-bottom: 10px;
+
+            .result-toggler {
+                display: flex;
+                align-items: center;
+                width: 100%;
+                margin: 0;
+
+                a {
+                    width: 100%;
+                }
+            }
+        }
+
+        .ecommerce-searchbar {
+            width: 100%;
+
+            #search_form {
                 width: 100%;
 
-                button {
-                    width: 100%;
-                    display: block;
-                    margin: 0 0 10px !important;
-                    text-align: left;
+                input {
+                    padding: 0 15px;
+                    font-size: 1rem;
 
-                    &:after {
-                        height: 11px;
-                        position: absolute;
-                        top: 39%;
-                        right: 10px;
-                        left: inherit;
+                    &::placeholder {
+                        color: $c5 !important;
+                        font-size: 0.8rem;
+                        line-height: 1;
+                        text-transform: none;
+                        border-radius: .358rem;
+                        font-weight: bold;
+                        letter-spacing: 1px;
                     }
                 }
             }
         }
+    }
 
-        .auth-wrapper {
-            padding: 10px 0;
+    .filtres-bloc {
+        .ui-group {
+            width: 100%;
+            margin: 0 !important;
         }
 
-        .big-cat .heading-cat h2 {
-            font-weight: 900;
-            letter-spacing: 1px;
-            margin: 10px 0 5px;
-            font-size: 18px;
-        }
+        .dropdown-sort {
+            width: 100%;
 
-        .tournament-heading:after {
-            display: none;
-        }
+            button {
+                width: 100%;
+                display: block;
+                margin: 0 0 10px !important;
+                text-align: left;
 
-        .display_battle {
-            margin: -10px -1rem;
-        }
-
-        .profile-title {
-            margin-left: 20px !important;
-        }
-
-        .cover-profil {
-            min-height: 100px;
-        }
-
-        .nav-fill {
-            li {
-                width: 50%;
-
-                a {
-                    font-size: 12px;
+                &:after {
+                    height: 11px;
+                    position: absolute;
+                    top: 39%;
+                    right: 10px;
+                    left: inherit;
                 }
             }
         }
+    }
 
-        .profile-header-nav .profile-tabs {
-            margin-left: 0;
-        }
+    .auth-wrapper {
+        padding: 10px 0;
+    }
 
-        .swal2-actions {
-            .swal2-confirm {
-                margin-bottom: 10px;
-            }
-        }
+    .big-cat .heading-cat h2 {
+        font-weight: 900;
+        letter-spacing: 1px;
+        margin: 10px 0 5px;
+        font-size: 18px;
+    }
 
-        .bigup {
-            h1 {
-                font-size: 30px;
-            }
-        }
+    .tournament-heading:after {
+        display: none;
+    }
 
-        .dropdown-user {
-            display: block;
-            text-align: right;
-            padding: 0;
+    .display_battle {
+        margin: 15px -1rem 0;
+        padding: 0;
+    }
 
-            a {
-                font-size: 10px;
-            }
-        }
+    .t-titre-tournoi {
+        font-size: 16px;
+    }
 
-        .dropdown-notification,
-        .dropdown-cart {
-            width: 25%;
-            text-align: center;
+    .intro-mobile h4 {
+        font-size: 20px;
+        color: $rose;
+    }
+
+    .profile-title {
+        margin-left: 20px !important;
+    }
+
+    .cover-profil {
+        min-height: 100px;
+    }
+
+    .nav-fill {
+        li {
+            width: 50%;
 
             a {
                 font-size: 12px;
             }
         }
-
-        .contenders-containers {
-            align-items: flex-start !important;
-        }
-
     }
 
+    .profile-header-nav .profile-tabs {
+        margin-left: 0;
+    }
 
-    @media (max-width: 425px) {
-
-        .app-user-view .btns-alert .btn-outline-white {
-            margin-right: 0px !important;
+    .swal2-actions {
+        .swal2-confirm {
+            margin-bottom: 10px;
         }
     }
 
-
-    @media (max-height: 800px) {
-
-        .contenders-containers .link-contender {
-            max-width: 350px;
-            position: relative;
-            transition: all 0.2s ease-in;
+    .bigup {
+        h1 {
+            font-size: 30px;
         }
-
     }
+
+    .dropdown-user {
+        display: block;
+        text-align: right;
+        padding: 0;
+
+        a {
+            font-size: 10px;
+        }
+    }
+
+    .dropdown-notification,
+    .dropdown-cart {
+        width: 25%;
+        text-align: center;
+
+        a {
+            font-size: 12px;
+        }
+    }
+
+    .contenders-containers {
+        align-items: flex-start !important;
+    }
+
+    .hide-spot {
+        display: none;
+    }
+
+    .mobile-navbar {
+        right: 0;
+        left: 0;
+    }
+
+    .swal2-header,
+    .swal2-content {
+        padding: 0;
+    }
+}
+
+
+@media (max-width: 425px) {
+
+    .app-user-view .btns-alert .btn-outline-white {
+        margin-right: 0px !important;
+    }
+
+}
+
+
+@media (max-height: 800px) {
+
+    .contenders-containers .link-contender {
+        max-width: 350px;
+        position: relative;
+        transition: all 0.2s ease-in;
+    }
+
+}
