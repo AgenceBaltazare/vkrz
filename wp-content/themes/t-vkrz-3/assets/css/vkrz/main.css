@@ -1357,6 +1357,7 @@ html .content {
 
 .versus img {
   border-radius: 0 !important;
+  max-width: 80px;
 }
 
 .versus {
@@ -2189,7 +2190,7 @@ textarea {
 
 .separate {
   height: 5px;
-  background-color: rgba(255, 255, 255, 0.25);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .active-box {
@@ -2226,7 +2227,7 @@ textarea {
     margin: 20px 0;
   }
   .single-tournoi .tournoi-content .contenders-containers .versus {
-    margin: 0 auto;
+    margin: 15px auto;
     position: relative;
   }
   .single-tournoi .tournoi-content .contenders-containers .versus img {

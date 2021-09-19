@@ -39,6 +39,7 @@
     global $top_infos;
     global $id_top;
     global $id_ranking;
+    global $banner;
     $id_ranking    = get_the_ID();
     $id_top        = get_field('id_tournoi_r');
     $top_infos     = get_top_infos($id_top, $id_ranking);
@@ -79,7 +80,6 @@
     $query = "?modifications=" . rtrim(strtr(base64_encode($modifications), '+/', '-_'), '=');
     $signature = hash_hmac('sha256', $base.$query, $api_key);
     $banner = $base . $query."&s=" . $signature;
-    global $banner;
     ?>
 
     <link rel="canonical" href="<?php echo get_the_permalink($id_ranking); ?>" />
