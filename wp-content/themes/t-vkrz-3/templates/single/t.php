@@ -248,19 +248,19 @@ $creator_data       = get_user_infos($creator_uuiduser);
         <div class="icons-navbar">
             <div class="ico-nav-mobile">
                 <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" href="#" class="confirm_delete">
-                    <i class="fas fa-repeat"></i> <span class="hide-spot">Recommencer</span>
+                    <span class="ico">🆕</span> <span class="hide-spot">Recommencer</span>
                 </a>
             </div>
             <div class="ico-nav-mobile share-natif-top">
-                <i class="fas fa-share-alt"></i> <span class="hide-spot">Partager</span>
+                <span class="ico ico-reverse">📣</span> <span class="hide-spot">Partager</span>
             </div>
             <div class="ico-nav-mobile">
                 <a href="<?php echo get_the_permalink(get_page_by_path('discuz')) . '?id_top=' . $id_top; ?>">
-                    <i class="fas fa-comments"></i> <span class="hide-spot">Commenter</span>
+                    <span class="ico">💬</span> <span class="hide-spot">Commenter</span>
                 </a>
             </div>
             <div class="ico-nav-mobile box-info-show">
-                <i class="fas fa-info"></i> <span class="hide-spot">A propos du Top</span>
+                <span class="ico">📌</span> <span class="hide-spot">Infos du Top</span>
             </div>
         </div>
     </nav>

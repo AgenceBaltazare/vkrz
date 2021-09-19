@@ -82,6 +82,7 @@
                 .title-contender {
                     width: 40%;
                     margin: 10px 0 0;
+                    padding: 0 5px;
                 }
             }
 
@@ -381,8 +382,19 @@
         align-items: flex-start !important;
     }
 
+    .ico-nav-mobile {
+        flex-direction: column;
+
+        a {
+            flex-direction: column;
+        }
+    }
+
     .hide-spot {
-        display: none;
+        text-transform: uppercase;
+        margin: 0 0 0 5px;
+        font-size: 8px;
+        display: block;
     }
 
     .mobile-navbar {

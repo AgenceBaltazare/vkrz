@@ -746,6 +746,8 @@ html .content {
 }
 .icons-navbar .ico-nav-mobile a {
   color: #fff;
+  display: flex;
+  align-items: center;
 }
 .icons-navbar .ico-nav-mobile i {
   cursor: pointer;
@@ -2060,12 +2062,16 @@ textarea {
 }
 
 .mobile-navbar {
-  background: #312673;
+  background: linear-gradient(150deg, #0c0a27, #471867, #0c0a27, #230b36, #0c0a27);
+  background-size: 400% 400%;
+  -webkit-animation: gradient 15s ease infinite;
+  animation: gradient 15s ease infinite;
   display: block;
   position: fixed;
   z-index: 1023;
   right: 0;
   left: 80px;
+  border-top: 10px solid #14122f;
   bottom: 0;
 }
 .mobile-navbar .icons-navbar {
@@ -2259,6 +2265,7 @@ textarea {
   .single-tournoi .link-contender .contender_zone .title-contender {
     width: 40%;
     margin: 10px 0 0;
+    padding: 0 5px;
   }
   .single-tournoi .link-contender #c_2 {
     flex-direction: row-reverse;
@@ -2536,8 +2543,18 @@ textarea {
     align-items: flex-start !important;
   }
 
+  .ico-nav-mobile {
+    flex-direction: column;
+  }
+  .ico-nav-mobile a {
+    flex-direction: column;
+  }
+
   .hide-spot {
-    display: none;
+    text-transform: uppercase;
+    margin: 0 0 0 5px;
+    font-size: 8px;
+    display: block;
   }
 
   .mobile-navbar {

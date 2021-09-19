@@ -481,6 +481,8 @@ html .content {
 
         a {
             color: #fff;
+            display: flex;
+            align-items: center;
         }
 
         i {
@@ -509,6 +511,6 @@ html .content {
     font-size: 10px;
 }
 
-.pslim{
+.pslim {
     padding: 0 5px;
 }
