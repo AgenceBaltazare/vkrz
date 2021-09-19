@@ -343,13 +343,19 @@ $top_datas    = get_top_data($id_top);
             </div>
             <ul>
                 <li>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $url_ranking; ?>" title="Partager sur Facebook" target="_blank">
-                        <i class="social-media fab fa-twitter"></i> Facebook
+                    <a href="javascript: void(0)" class="sharelinkbtn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copier le lien de ton Classement">
+                        <input type="text" value="<?php echo $top_infos['top_url']; ?>" class="input_to_share">
+                        <i class="social-media fas fa-paperclip"></i> Copier le lien du classement
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo $banner; ?>" download target="_blank">
+                        <i class="social-media mb-12 fas fa-download"></i> Télécharger une image
                     </a>
                 </li>
                 <li>
                     <a href="https://twitter.com/intent/tweet?text=Voici mon TOP <?php echo $top_infos['top_number']; ?> <?php echo $top_infos['top_title']; ?>&via=vainkeurz&hashtags=VKRZ&url=<?php echo $url_ranking; ?>" target="_blank" title="Tweet">
-                        <i class="social-media fab fa-facebook-f"></i> Twitter
+                        <i class="social-media fab fa-twitter"></i> Twitter
                     </a>
                 </li>
                 <li>
@@ -358,14 +364,8 @@ $top_datas    = get_top_data($id_top);
                     </a>
                 </li>
                 <li>
-                    <a href="<?php echo $banner; ?>" download>
-                        <i class="social-media mb-12 fas fa-download"></i> Télécharger une image
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript: void(0)" class="sharelinkbtn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copier le lien de ton Classement">
-                        <input type="text" value="<?php echo $top_infos['top_url']; ?>" class="input_to_share">
-                        <i class="social-media fas fa-paperclip"></i> Copier le lien du classement
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $url_ranking; ?>" title="Partager sur Facebook" target="_blank">
+                        <i class="social-media fab fa-facebook-f"></i> Facebook
                     </a>
                 </li>
             </ul>
@@ -379,13 +379,14 @@ $top_datas    = get_top_data($id_top);
             </div>
             <ul>
                 <li>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $url_ranking; ?>" title="Partager sur Facebook" target="_blank">
-                        <i class="social-media fab fa-twitter"></i> Sur Facebook
+                    <a href="javascript: void(0)" class="sharelinkbtn2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copier le lien de ton Top">
+                        <input type="text" value="<?php echo $top_infos['top_url']; ?>" class="input_to_share2">
+                        <i class="social-media fas fa-paperclip"></i> Copier le lien du Top
                     </a>
                 </li>
                 <li>
-                    <a href="https://twitter.com/intent/tweet?text=Voici mon TOP <?php echo $top_infos['top_number']; ?> <?php echo $top_infos['top_title']; ?>&via=vainkeurz&hashtags=VKRZ&url=<?php echo $url_ranking; ?>" target="_blank" title="Tweet">
-                        <i class="social-media fab fa-facebook-f"></i> Dans un Tweet
+                    <a href="https://twitter.com/intent/tweet?text=Go faire le TOP <?php echo $top_infos['top_number']; ?> <?php echo $top_infos['top_title']; ?>&via=vainkeurz&hashtags=VKRZ&url=<?php echo $url_ranking; ?>" target="_blank" title="Tweet">
+                        <i class="social-media fab fa-twitter"></i> Dans un Tweet
                     </a>
                 </li>
                 <li>
@@ -394,9 +395,8 @@ $top_datas    = get_top_data($id_top);
                     </a>
                 </li>
                 <li>
-                    <a href="javascript: void(0)" class="sharelinkbtn2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copier le lien de ton Top">
-                        <input type="text" value="<?php echo $top_infos['top_url']; ?>" class="input_to_share2">
-                        <i class="social-media fas fa-paperclip"></i> Copier le lien du Top
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $url_ranking; ?>" title="Partager sur Facebook" target="_blank">
+                        <i class="social-media fab fa-facebook-f"></i> Sur Facebook
                     </a>
                 </li>
             </ul>

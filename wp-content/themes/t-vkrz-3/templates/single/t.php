@@ -271,13 +271,14 @@ $creator_data       = get_user_infos($creator_uuiduser);
         </div>
         <ul>
             <li>
-                <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $url_ranking; ?>" title="Partager sur Facebook" target="_blank">
-                    <i class="social-media fab fa-twitter"></i> Sur Facebook
+                <a href="javascript: void(0)" class="sharelinkbtn2">
+                    <input type="text" value="<?php echo $top_infos['top_url']; ?>" class="input_to_share2">
+                    <i class="social-media fas fa-paperclip"></i> <span>Copier le lien du Top</span>
                 </a>
             </li>
             <li>
-                <a href="https://twitter.com/intent/tweet?text=Voici mon TOP <?php echo $top_infos['top_number']; ?> <?php echo $top_infos['top_title']; ?>&via=vainkeurz&hashtags=VKRZ&url=<?php echo $url_ranking; ?>" target="_blank" title="Tweet">
-                    <i class="social-media fab fa-facebook-f"></i> Dans un Tweet
+                <a href="https://twitter.com/intent/tweet?text=Go faire le TOP <?php echo $top_infos['top_number']; ?> <?php echo $top_infos['top_title']; ?>&via=vainkeurz&hashtags=VKRZ&url=<?php echo $url_ranking; ?>" target="_blank" title="Tweet">
+                    <i class="social-media fab fa-twitter"></i> Dans un Tweet
                 </a>
             </li>
             <li>
@@ -286,9 +287,8 @@ $creator_data       = get_user_infos($creator_uuiduser);
                 </a>
             </li>
             <li>
-                <a href="javascript: void(0)" class="sharelinkbtn2">
-                    <input type="text" value="<?php echo $top_infos['top_url']; ?>" class="input_to_share2">
-                    <i class="social-media fas fa-paperclip"></i> <span>Copier le lien du Top</span>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $url_ranking; ?>" title="Partager sur Facebook" target="_blank">
+                    <i class="social-media fab fa-facebook-f"></i> Sur Facebook
                 </a>
             </li>
         </ul>
