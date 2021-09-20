@@ -125,8 +125,8 @@ $list_sujets      = array();
                                             $sujets = get_terms(array(
                                                 'taxonomy'      => 'concept',
                                                 'include'       => $list_concepts,
-                                                'orderby'       => 'count',
-                                                'order'         => 'DESC',
+                                                'orderby'       => 'name',
+                                                'order'         => 'ASC',
                                                 'hide_empty'    => true,
                                             ));
                                             foreach($sujets as $sujet) : ?>

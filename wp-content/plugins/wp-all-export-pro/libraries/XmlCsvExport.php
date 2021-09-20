@@ -1024,7 +1024,7 @@ final Class XmlCsvExport
             }
         }
 
-        if (XmlExportWooCommerceOrder::$is_active) {
+        if (XmlExportEngine::get_addons_service()->isWooCommerceAddonActive() && XmlExportWooCommerceOrder::$is_active) {
             foreach (XmlExportWooCommerceOrder::$order_sections as $slug => $section) {
                 if (!empty($section['meta'])) {
                     foreach ($section['meta'] as $cur_meta_key => $field) {
@@ -1043,7 +1043,7 @@ final Class XmlCsvExport
             }
         }
 
-        if (!XmlExportEngine::$is_comment_export && !XmlExportEngine::$is_woo_review_export) XmlExportEngine::$acf_export->auto_generate_export_fields($auto_generate);
+        if (XmlExportEngine::get_addons_service()->isAcfAddonActive() && !XmlExportEngine::$is_comment_export && !XmlExportEngine::$is_woo_review_export) XmlExportEngine::$acf_export->auto_generate_export_fields($auto_generate);
 
         return $auto_generate;
     }

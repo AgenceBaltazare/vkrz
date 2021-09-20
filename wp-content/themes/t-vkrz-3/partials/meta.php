@@ -39,6 +39,7 @@
     global $top_infos;
     global $id_top;
     global $id_ranking;
+    global $banner;
     $id_ranking    = get_the_ID();
     $id_top        = get_field('id_tournoi_r');
     $top_infos     = get_top_infos($id_top, $id_ranking);

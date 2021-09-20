@@ -319,7 +319,7 @@ abstract class PB_Elementor_Widget extends \Elementor\Widget_Base {
             case 'ul':
                 include_once( WPPB_PLUGIN_DIR.'/add-ons/user-listing/userlisting.php' );
                 $atts = [
-                    'name'       => $settings['pb_name'] === '' ? 'userlisting' : $settings['pb_name'],
+                    'name'       => $settings['pb_name'],
                     'single'     => $settings['pb_single'] === 'yes',
                     'meta_key'   => $settings['pb_meta_key'],
                     'meta_value' => $settings['pb_meta_value'],

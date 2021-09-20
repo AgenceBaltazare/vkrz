@@ -78,13 +78,24 @@ class PB_Elementor_User_Listing_Widget extends PB_Elementor_Widget {
             )
         );
 
+	    $ul_names = array();
+	    $userlisting_posts = get_posts( array( 'posts_per_page' => -1, 'post_status' =>'publish', 'post_type' => 'wppb-ul-cpt', 'orderby' => 'post_date', 'order' => 'ASC' ) );
+	    if( !empty( $userlisting_posts ) ){
+		    foreach ( $userlisting_posts as $post ){
+			    $ul_names[ $post->post_name ] = $post->post_title;
+		    }
+		}
+
+	    reset($ul_names);
+		$default_key = is_null( key($ul_names) ) ? '' : key($ul_names);
+
         $this->add_control(
             'pb_name',
             array(
-                'label'       => __( 'Name', 'profile-builder' ),
-                'type'        => \Elementor\Controls_Manager::TEXT,
-                'placeholder' => __( 'Enter Name', 'profile-builder' ),
-                'default'     => 'userlisting',
+                'label'       => __( 'User Listing', 'profile-builder' ),
+                'type'        => \Elementor\Controls_Manager::SELECT,
+                'options'     => $ul_names,
+	            'default'     => $default_key,
             )
         );
 
@@ -176,17 +187,5 @@ class PB_Elementor_User_Listing_Widget extends PB_Elementor_Widget {
     protected function render() {
         $output = $this->render_widget( 'ul' );
         echo $output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-
-        // check if the form is being displayed in the Elementor editor
-        $is_elementor_edit_mode = false;
-        if( class_exists ( '\Elementor\Plugin' ) ){
-            $is_elementor_edit_mode = \Elementor\Plugin::$instance->editor->is_edit_mode();
-        }
-
-        if ($is_elementor_edit_mode && !empty($output)) {
-            echo '
-            ';
-        }
     }
-
 }

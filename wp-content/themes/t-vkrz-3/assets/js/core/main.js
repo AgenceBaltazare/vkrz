@@ -39,7 +39,7 @@ window.onload = function () {
       try {
         var successful = document.execCommand("copy");
         var msg = successful ? "successful" : "unsuccessful";
-        copyBtn.innerHTML = "✓";
+        copyBtn.innerHTML = "✓ Lien du Classement copié !";
       } catch (err) {
         console.log("Oops, impossible de copier - Demandes pas pourquoi :/");
       }
@@ -55,7 +55,7 @@ window.onload = function () {
       try {
         var successful = document.execCommand("copy");
         var msg = successful ? "successful" : "unsuccessful";
-        copyBtn2.innerHTML = "✓";
+        copyBtn2.innerHTML = "✓ Lien du Top copié !";
       } catch (err) {
         console.log("Oops, impossible de copier - Demandes pas pourquoi :/");
       }
@@ -77,10 +77,6 @@ $(window).scroll(function () {
     $(".nav-tournament, .stepbar").removeClass("disapear");
   }
 });
-
-/**
- * TRACKING
- */
 
 jQuery(document).ready(function ($) {
   window.dataLayer.push({
@@ -117,6 +113,7 @@ jQuery(document).ready(function ($) {
     });
   });
 });
+
 
 $(function () {
   if ($(".top-sponso"))
@@ -165,3 +162,87 @@ var x = setInterval(function () {
   }
 }, 1000);
 // countdown timer FIN
+
+$(document).ready(function () {
+  $(".close-share").click(function () {
+    $(".share-content").removeClass("active-box");
+    $(".share-top-content").removeClass("active-box");
+    $(".box-info-content").removeClass("active-box");
+    $(".share-classement-content").removeClass("active-box");
+  });
+
+  $(".share").click(function () {
+    $(".share-content").addClass("active-box");
+  });
+
+  $(".share-natif-top").click(function () {
+    $(".share-top-content").addClass("active-box");
+  });
+
+  $(".box-info-show").click(function () {
+    $(".box-info-content").addClass("active-box");
+  });
+
+  $(".share-content-show").click(function () {
+    $(".share-content").addClass("active-box");
+  });
+
+  $(".share-natif-classement").click(function () {
+    $(".share-classement-content").addClass("active-box");
+  });
+});
+
+// Partage en mode natif DEBUT
+const shareClassementNatif = document.querySelector(".share-natif-classement");
+const shareTopNatif = document.querySelector(".share-natif-top");
+const shareClassement = document.querySelector("#share-classement");
+const shareTop = document.querySelector("#share-classement");
+
+shareClassementNatif.addEventListener("click", (event) => {
+  if (navigator.share && window.matchMedia("(max-width: 1024px)").matches) {
+    $(".share-natif-classement").click(function () {
+      $(".share-classement-content").removeClass("active-box");
+    });
+    navigator
+      .share({
+        title: "ShareNatif API",
+        url: "",
+      })
+      .then(() => {
+        console.log("Merci pour le partage !");
+      })
+      .catch(console.error);
+  } else {
+    $(".share-natif-classement").click(function () {
+      $(".share-classement-content").addClass("active-box");
+    });
+    $(".close-share").click(function () {
+      $(".share-classement-content").removeClass("active-box");
+    });
+  }
+});
+
+shareTopNatif.addEventListener("click", (event) => {
+  if (navigator.share && window.matchMedia("(max-width: 1024px)").matches) {
+    $(".share-natif-top").click(function () {
+      $(".share-top-content").removeClass("active-box");
+    });
+    navigator
+      .share({
+        title: "ShareNatif API",
+        url: "",
+      })
+      .then(() => {
+        console.log("Merci pour le partage !");
+      })
+      .catch(console.error);
+  } else {
+    $(".share-natif-top").click(function () {
+      $(".share-top-content").addClass("active-box");
+    });
+    $(".close-share").click(function () {
+      $(".share-top-content").removeClass("active-box");
+    });
+  }
+});
+// Partage en mode natif FIN

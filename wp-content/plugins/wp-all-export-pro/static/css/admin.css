@@ -4356,7 +4356,7 @@ input label {
     font-size: 1.3em;
     text-decoration: underline !important;
 }
-.wpallexport-plugin .wpallexport-user-export-notice, .wpallexport-plugin .wpallexport-customer-export-notice
+.wpallexport-plugin form.wpallexport-choose-file .wpallexport-free-edition-notice
 {
     padding: 20px;
     width: 558px;

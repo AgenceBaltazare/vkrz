@@ -126,7 +126,7 @@
                         <td>
                             <label class="selectit" for="template-<?php echo $t->id ?>"><input
                                         id="template-<?php echo $t->id ?>" type="checkbox" name="templates[]"
-                                        value="<?php echo $t->id ?>"/> <?php echo $t->name ?></label>
+                                        value="<?php echo $t->id ?>"/> <?php echo wp_all_export_clear_xss($t->name); ?></label>
                         </td>
                     </tr>
                 <?php endforeach ?>

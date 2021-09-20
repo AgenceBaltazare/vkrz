@@ -9,33 +9,50 @@ class WPPB_Two_Factor_Authenticator {
 
         add_action( 'admin_menu',                                       array( $this, 'add_settings_tab' ) );
 
-        add_filter( 'wp_authenticate_user',                             array( $this, 'login_error_message_handler' ),                10, 2 );
-        add_filter( 'wp_login_errors',                                  array( $this, 'back_end_errors_filter' ),                     10, 2 );
+	    $wppb_two_factor_authentication_settings = get_option( 'wppb_two_factor_authentication_settings', 'not_found' );
 
-        if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
-        add_action( 'wp_ajax_WPPBAuth_new_secret',                      array( $this, 'ajax_new_secret' ) );
-        add_action( 'wp_ajax_WPPBAuth_check_code',                      array( $this, 'ajax_check_code') );
-        add_action( 'wp_ajax_nopriv_WPPBAuth_field_on_login_form',      array( $this, 'ajax_add_auth_field_to_frontend_login_form') );
+	    $enabled = 'no';
+	    if ( !empty( $wppb_two_factor_authentication_settings['enabled'] ) ) {
+		    $enabled = $wppb_two_factor_authentication_settings['enabled'];
+	    }
+
+        if ( $enabled === 'yes' ) {
+
+	        add_filter( 'wp_authenticate_user', array( $this, 'login_error_message_handler' ), 10, 2 );
+	        add_filter( 'wp_login_errors', array( $this, 'back_end_errors_filter' ), 10, 2 );
+
+	        if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+		        add_action( 'wp_ajax_WPPBAuth_new_secret', array( $this, 'ajax_new_secret' ) );
+		        add_action( 'wp_ajax_WPPBAuth_check_code', array( $this, 'ajax_check_code' ) );
+		        add_action( 'wp_ajax_nopriv_WPPBAuth_field_on_login_form', array(
+			        $this,
+			        'ajax_add_auth_field_to_login_form'
+		        ) );
+	        }
+
+	        add_action( 'show_user_profile', array( $this, 'add_field_to_backend_edit_profile_form' ) );
+	        add_action( 'edit_user_profile', array( $this, 'add_field_to_backend_edit_profile_form' ) );
+	        add_action( 'wppb_backend_save_form_field', array( $this, 'handle_backend_edit_profile_update' ), 10, 4 );
+
+	        add_filter( 'wppb_filter_form_args_before_output', array(
+		        $this,
+		        'add_field_to_frontend_edit_profile_form'
+	        ) );
+	        add_filter( 'wppb_output_form_field_two-factor-authentication', array(
+		        $this,
+		        'frontend_edit_profile_field'
+	        ), 10, 6 );
+	        add_action( 'wppb_after_saving_form_values', array( $this, 'handle_frontend_edit_profile_update' ), 10, 2 );
+
+	        add_filter( 'wppb_form_fields', array( $this, 'add_field_to_pb_field_validation_sequence' ), 10, 2 );
+	        add_filter( 'wppb_check_form_field_two-factor-authentication', array(
+		        $this,
+		        'form_field_validation'
+	        ), 10, 4 );
+
+	        add_action( 'login_footer', array( $this, 'add_field_to_backend_login_form' ) );
+	        add_action( 'login_form_bottom', array( $this, 'add_field_to_frontend_login_form' ), 10, 2 );
         }
-
-        add_action( 'show_user_profile',                                array( $this, 'add_field_to_backend_edit_profile_form') );
-        add_action( 'edit_user_profile',                                array( $this, 'add_field_to_backend_edit_profile_form') );
-        add_action( 'wppb_backend_save_form_field',                     array( $this, 'handle_backend_edit_profile_update'),          10, 4 );
-
-        add_filter( 'wppb_filter_form_args_before_output',              array( $this, 'add_field_to_frontend_edit_profile_form') );
-        add_filter( 'wppb_output_form_field_two-factor-authentication', array( $this, 'frontend_edit_profile_field'),                 10, 6 );
-        add_action( 'wppb_after_saving_form_values',                    array( $this, 'handle_frontend_edit_profile_update'),         10, 2 );
-
-
-        add_filter( 'wppb_form_fields',                                 array( $this, 'add_field_to_pb_field_validation_sequence'),   10, 2 );
-        add_filter( 'wppb_check_form_field_two-factor-authentication',  array( $this, 'form_field_validation'),                       10, 4 );
-
-
-        add_action( 'login_form',                                       array( $this, 'add_field_to_backend_login_form') );
-
-        add_action( 'login_form_bottom',                                array( $this, 'add_field_to_frontend_login_form'),            10, 2 );
-
-
     }
 
     /**
@@ -87,11 +104,6 @@ class WPPB_Two_Factor_Authenticator {
                 array( $wppb_two_factor_authentication_settings['roles'] );
         }
 
-        $show_code_field = 'no';
-        if ( !empty( $wppb_two_factor_authentication_settings['show_code_field'] ) ) {
-            $show_code_field = $wppb_two_factor_authentication_settings['show_code_field'];
-        }
-
         ?>
         <div class="wrap wppb-wrap wppb-two-factor-authentication">
             <h2><?php esc_html_e( 'Two-Factor Authentication Settings', 'profile-builder' );?></h2>
@@ -139,24 +151,6 @@ class WPPB_Two_Factor_Authenticator {
                         </ul>
                     </td>
                 </tr>
-                <tr>
-                    <th><?php esc_html_e( 'Show Authenticator code field', 'profile-builder' ); ?></th>
-                    <td>
-                        <select id="show_code_field" class="wppb-select" name="wppb_two_factor_authentication_settings[show_code_field]">
-                            <option value="no" <?php if( $show_code_field === 'no' ) echo 'selected'; ?>><?php esc_html_e( 'No', 'profile-builder' ); ?></option>
-                            <option value="backend" <?php if( $show_code_field === 'backend' ) echo 'selected'; ?>><?php esc_html_e( 'Backend', 'profile-builder' ); ?></option>
-                            <option value="frontend" <?php if( $show_code_field === 'frontend' ) echo 'selected'; ?>><?php esc_html_e( 'Frontend', 'profile-builder' ); ?></option>
-                            <option value="everywhere" <?php if( $show_code_field === 'everywhere' ) echo 'selected'; ?>><?php esc_html_e( 'Everywhere', 'profile-builder' ); ?></option>
-                        </select>
-                        <ul>
-                            <li class="description"><?php esc_html_e( '"No" - only show the field when a user that has Two-Factor Authentication enabled attempts to log in.', 'profile-builder' ); ?></li>
-                            <li class="description"><?php esc_html_e( '"Backend" - always show the field on the default backend form.', 'profile-builder' ); ?></li>
-                            <li class="description"><?php esc_html_e( '"Frontend" - always show the field on the Profile Builder frontend form.', 'profile-builder' ); ?></li>
-                            <li class="description"><?php esc_html_e( '"Everywhere" - always show the field both on the Profile Builder frontend form and on the default backend form.', 'profile-builder' ); ?></li>
-                        </ul>
-                    </td>
-                </tr>
-
                 </tbody>
                 </table>
                 <?php submit_button( __( 'Save Changes', 'profile-builder' ) ); ?>
@@ -288,14 +282,22 @@ class WPPB_Two_Factor_Authenticator {
                 $user_id = $user->ID;
             }
 
-            update_user_option( $user_id, 'wppb_auth_enabled',
-                empty( $global_request['wppb_auth_enabled']     ) ? 'disabled' : 'enabled', true );
+            if ( isset( $global_request['wppb_auth_enabled'] ) ) {
+	            update_user_option( $user_id, 'wppb_auth_enabled',
+		            empty( $global_request['wppb_auth_enabled'] ) ? 'disabled' : 'enabled', true );
+            }
+	        if ( isset( $global_request['wppb_auth_relaxedmode'] ) ) {
             update_user_option( $user_id, 'wppb_auth_relaxedmode',
                 empty( $global_request['wppb_auth_relaxedmode'] ) ? 'disabled' : 'enabled', true );
+	        }
+	        if ( isset( $global_request['wppb_auth_description'] ) ) {
             update_user_option( $user_id, 'wppb_auth_description',
                 trim( sanitize_text_field( $global_request['wppb_auth_description'] ) ),             true );
+	        }
+	        if ( isset( $global_request['wppb_auth_secret'] ) ) {
             update_user_option( $user_id, 'wppb_auth_secret',
                 trim( $global_request['wppb_auth_secret'] ),                                         true );
+	        }
         }
     }
 
@@ -451,7 +453,7 @@ class WPPB_Two_Factor_Authenticator {
     /**
      * AJAX callback function used to add field to the login form when necessary
      */
-    function ajax_add_auth_field_to_frontend_login_form() {
+    function ajax_add_auth_field_to_login_form() {
         // Some AJAX security.
         check_ajax_referer( 'WPPBAuth_field_on_login_form', 'nonce' );
 
@@ -476,8 +478,8 @@ class WPPB_Two_Factor_Authenticator {
 
                 if ($this->should_user_see_field($wppb_two_factor_authentication_settings['roles'], $userdata)) {
                     $result = array(
-                        'field' => $this->auth_code_field(),
-                        'notice' => $this->input_TOTP_alert()
+                        'field'  => $this->auth_code_field(),
+                        'notice' => isset( $_REQUEST['location'] ) && $_REQUEST['location'] === 'backend' ? $this->input_TOTP_alert_back() : $this->input_TOTP_alert_front()
                     );
                     echo json_encode($result);
                     die();
@@ -565,7 +567,7 @@ class WPPB_Two_Factor_Authenticator {
 
             if ( $this->should_user_see_field( $wppb_two_factor_authentication_settings['roles'], $userdata ) ) {
                 if ( !isset( $_POST['auth'] ) || empty( $_POST['auth'] ) ) {
-                    $errorMessage = __( 'Please enter your Authenticator code.', 'profile-builder' );
+                    $errorMessage = __( 'Please enter the code from your Authenticator app.', 'profile-builder' );
                     return new WP_Error( 'wppb_login_auth', $errorMessage );
                 }
                 if ( !$this->check_otp( $userdata, $userdata->data->user_login, $password ) ) {
@@ -600,31 +602,73 @@ class WPPB_Two_Factor_Authenticator {
 
         return '
             <script type="text/javascript">
-                var WPPBAuthNonce = "' . wp_create_nonce('WPPBAuth_field_on_login_form') . '";
-                var ajaxurl = "' . admin_url( 'admin-ajax.php' ) . '";
-
-                if ( !jQuery(".login-auth").length ){
-                    jQuery("#wppb-loginform").one("submit", function(event) {
-                        var thisForm = this;
-                        event.preventDefault();
-
-                        var data = new Object();
-                        data["action"]	= "WPPBAuth_field_on_login_form";
-                        data["nonce"]	= WPPBAuthNonce;
-                        data["user"]	= jQuery("#user_login.input").val();
-                        jQuery.post(ajaxurl, data, function(response) {
-                            if ( response ){
-                                jQuery("#wppb-login-wrap").before(response["notice"]);
-                                jQuery(".login-password").after(response["field"]);
-                            } else {
-                                thisForm.submit();
-                            }
+                jQuery( document ).ready(function() {
+                    var WPPBAuthNonce = "' . wp_create_nonce( 'WPPBAuth_field_on_login_form' ) . '";
+                    var ajaxurl = "' . admin_url( 'admin-ajax.php' ) . '";
+    
+                    if ( !jQuery(".login-auth").length ){
+                        jQuery("#wppb-loginform").one("submit", function(event) {
+                            var thisForm = this;
+                            event.preventDefault();
+    
+                            var data = new Object();
+                            data["action"]	= "WPPBAuth_field_on_login_form";
+                            data["nonce"]	= WPPBAuthNonce;
+                            data["location"]= "frontend";
+                            data["user"]	= jQuery("#user_login.input").val();
+                            jQuery.post(ajaxurl, data, function(response) {
+                                if ( response ){
+                                    jQuery("#wppb-login-wrap").before(response["notice"]);
+                                    jQuery(".login-password").after(response["field"]);
+                                } else {
+                                    thisForm.submit();
+                                }
+                            });
                         });
-                    });
-                }
+                    }
+                });
             </script>
             ';
     }
+
+	/**
+	 * Add script that dynamically adds field to frontend Login form
+	 */
+	function add_field_to_backend_login_form( ) {
+		if( !wp_script_is('jquery', 'done') && !is_admin() ){
+			wp_print_scripts('jquery');
+		}
+
+		echo '
+            <script type="text/javascript">
+                jQuery( document ).ready(function() {
+                    var WPPBAuthNonce = "' . esc_html( wp_create_nonce( 'WPPBAuth_field_on_login_form' ) ) . '";
+                    var ajaxurl = "' . esc_html( admin_url( 'admin-ajax.php' ) ) . '";
+    
+                    if ( !jQuery(".login-auth").length ){
+                        jQuery("#loginform").one("submit", function(event) {
+                            var thisForm = this;
+                            event.preventDefault();
+    
+                            var data = new Object();
+                            data["action"]	= "WPPBAuth_field_on_login_form";
+                            data["nonce"]	= WPPBAuthNonce;
+                            data["location"]= "backend";
+                            data["user"]	= jQuery("#user_login.input").val();
+                            jQuery.post(ajaxurl, data, function(response) {
+                                if ( response ){
+                                    jQuery("#loginform").before(response["notice"]);
+                                    jQuery("#loginform .user-pass-wrap").after(response["field"]);
+                                } else {
+                                    thisForm.submit();
+                                }
+                            });
+                        });
+                    }
+                });
+            </script>
+            ';
+	}
 
     /**
      * Handle error for the backend Login form
@@ -636,21 +680,13 @@ class WPPB_Two_Factor_Authenticator {
         return $errors;
     }
 
-    /**
-     * Add field to backend Login form
-     */
-    function add_field_to_backend_login_form( ) {
-        $wppb_two_factor_authentication_settings = get_option( 'wppb_two_factor_authentication_settings', 'not_found' );
-        if( isset( $wppb_two_factor_authentication_settings['show_code_field'] ) && (
-                $wppb_two_factor_authentication_settings['show_code_field'] === 'everywhere' ||
-                $wppb_two_factor_authentication_settings['show_code_field'] === 'backend' ) ) {
-            echo $this->auth_code_field(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-        }
-    }
-
-    function input_TOTP_alert() {
+    function input_TOTP_alert_front() {
         return '<p class="wppb-notice">' . __( 'Please enter the code from your Authenticator app.', 'profile-builder' ) . '</p>';
     }
+
+	function input_TOTP_alert_back() {
+		return '<div id="login_error">' . __( 'Please enter the code from your Authenticator app.', 'profile-builder' ) . '<br></div>';
+	}
 
     /**
      * Echo field HTML for the backend Login form

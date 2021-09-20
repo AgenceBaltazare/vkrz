@@ -86,7 +86,8 @@ $l10n = array(
 					if (XmlExportComment::$is_active):
 						$selected_post_type = 'comments';
 					endif;
-					if (XmlExportWooCommerceReview::$is_active):
+
+					if (XmlExportEngine::get_addons_service()->isWooCommerceAddonActive() && XmlExportWooCommerceReview::$is_active):
                         $selected_post_type = 'shop_review';
 					endif;
 

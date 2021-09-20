@@ -152,7 +152,7 @@ class SchedulingController extends BaseController
             ||
             ($export->options['export_type'] == 'advanced' && $export->options['wp_query_selector'] == 'wp_user_query' && !$addons->isUserAddonActive())
         ) {
-            die(\__('The User Export Add-On Pro is required to run this export. You can download the add-on here: <a href="http://www.wpallimport.com/portal/" target="_blank">http://www.wpallimport.com/portal/</a>', \PMXE_Plugin::LANGUAGE_DOMAIN));
+            die(\__('The User Export Add-On Pro is required to run this export. If you already own it, you can download the add-on here: <a href="http://www.wpallimport.com/portal/downloads" target="_blank">http://www.wpallimport.com/portal/downloads</a>', \PMXE_Plugin::LANGUAGE_DOMAIN));
         }
 
         if (
@@ -160,7 +160,19 @@ class SchedulingController extends BaseController
             ||
             ($export->options['export_type'] == 'advanced' && $export->options['wp_query_selector'] == 'wp_user_query' && !$addons->isUserAddonActive())
         ) {
-            die(\__('The Gravity Forms Export Add-On Pro is required to run this export. You can download the add-on here: <a href="http://www.wpallimport.com/portal/" target="_blank">http://www.wpallimport.com/portal/</a>', \PMXE_Plugin::LANGUAGE_DOMAIN));
+            die(\__('The Gravity Forms Export Add-On Pro is required to run this export. If you already own it, you can download the add-on here: <a href="http://www.wpallimport.com/portal/downloads" target="_blank">http://www.wpallimport.com/portal/downloads</a>', \PMXE_Plugin::LANGUAGE_DOMAIN));
+        }
+
+        if (
+            (( (in_array('product', $cpt) && in_array('product_variation', $cpt)) || in_array('shop_order', $cpt) || in_array('shop_coupon', $cpt) || in_array('shop_review', $cpt) ) && !$addons->isWooCommerceAddonActive())
+            ||
+            ($export->options['export_type'] == 'advanced' && in_array($export->options['exportquery']->query['post_type'], array(array('product', 'product_variation'), 'shop_order', 'shop_coupon')) && !$addons->isWooCommerceAddonActive())
+        ) {
+            die(\__('The WooCommerce Export Add-On Pro is required to run this export. If you already own it, you can download the add-on here: <a href="http://www.wpallimport.com/portal/downloads" target="_blank">http://www.wpallimport.com/portal/downloads</a>', \PMXE_Plugin::LANGUAGE_DOMAIN));
+        }
+
+        if((in_array('acf', $export->options['cc_type']) || $export->options['xml_template_type'] == 'custom' && in_array('acf', $export->options['custom_xml_template_options']['cc_type'])) && !$addons->isAcfAddonActive()) {
+            die(\__('The ACF Export Add-On Pro is required to run this export. If you already own it, you can download the add-on here: <a href="http://www.wpallimport.com/portal/downloads" target="_blank">http://www.wpallimport.com/portal/downloads</a>', \PMXE_Plugin::LANGUAGE_DOMAIN));
         }
     }
 
