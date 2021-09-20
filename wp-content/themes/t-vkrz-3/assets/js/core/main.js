@@ -78,10 +78,6 @@ $(window).scroll(function () {
   }
 });
 
-/**
- * TRACKING
- */
-
 jQuery(document).ready(function ($) {
   window.dataLayer.push({
     event: "track_event",
@@ -117,6 +113,55 @@ jQuery(document).ready(function ($) {
     });
   });
 });
+
+
+$(function () {
+  if ($(".top-sponso"))
+    $(".content-intro").css({
+      display: "block",
+      width: "100%",
+    });
+  $(".intro").css({
+    width: "auto",
+  });
+});
+
+
+// countdown timer DEBUT
+var countDownDate = new Date("Sep 07, 2021 10:30:30").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function () {
+  // Get today's date and time
+  var now = new Date().getTime();
+
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Display the result in the element with id="demo"
+  $("#timer-sponso").html(
+    days + "J " + hours + "H " + minutes + "M " + seconds + "S "
+  );
+
+  // If the count down is finished, write some text
+  if (distance < 0) {
+    clearInterval(x);
+    $("#timer-sponso").html(
+      "Le concours est terminé ! Mais ne t'inquiète pas, on compte bien vous en proposer d'autres ! 😉 Pense à t'inscrire pour être sûr de ne pas les rater. 🙃"
+    );
+    $("#timer-sponso").css({
+      fontSize: "18px",
+      lineHeight: "24px",
+    });
+  }
+}, 1000);
+// countdown timer FIN
 
 $(document).ready(function () {
   $(".close-share").click(function () {
