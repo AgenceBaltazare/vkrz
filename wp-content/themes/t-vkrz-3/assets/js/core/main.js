@@ -154,11 +154,13 @@ const shareClassement = document.querySelector("#share-classement");
 const shareTop = document.querySelector("#share-classement");
 
 shareClassementNatif.addEventListener("click", (event) => {
-  if (navigator.share) {
-    $(".share-classement-content").css("display", "none");
+  if (navigator.share && window.matchMedia("(max-width: 1024px)").matches) {
+    $(".share-natif-classement").click(function () {
+      $(".share-classement-content").removeClass("active-box");
+    });
     navigator
       .share({
-        title: "WebShare API Demo",
+        title: "ShareNatif API",
         url: "",
       })
       .then(() => {
@@ -166,21 +168,23 @@ shareClassementNatif.addEventListener("click", (event) => {
       })
       .catch(console.error);
   } else {
-    $("#share-classement").click(function () {
-      $(".share-classement-content").show("fast");
+    $(".share-natif-classement").click(function () {
+      $(".share-classement-content").addClass("active-box");
     });
     $(".close-share").click(function () {
-      $(".share-classement-content").hide("fast");
+      $(".share-classement-content").removeClass("active-box");
     });
   }
 });
 
 shareTopNatif.addEventListener("click", (event) => {
-  if (navigator.share) {
-    $(".share-top-content").css("display", "none");
+  if (navigator.share && window.matchMedia("(max-width: 1024px)").matches) {
+    $(".share-natif-top").click(function () {
+      $(".share-top-content").removeClass("active-box");
+    });
     navigator
       .share({
-        title: "WebShare API Demo",
+        title: "ShareNatif API",
         url: "",
       })
       .then(() => {
@@ -188,11 +192,11 @@ shareTopNatif.addEventListener("click", (event) => {
       })
       .catch(console.error);
   } else {
-    $("#share-top").click(function () {
-      $(".share-top-content").show("fast");
+    $(".share-natif-top").click(function () {
+      $(".share-top-content").addClass("active-box");
     });
     $(".close-share").click(function () {
-      $(".share-top-content").hide("fast");
+      $(".share-top-content").removeClass("active-box");
     });
   }
 });
