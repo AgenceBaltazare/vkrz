@@ -1,0 +1,60 @@
+# Translation of Plugins - Public Post Preview - Stable (latest release) in French (France)
+# This file is distributed under the same license as the Plugins - Public Post Preview - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2019-09-10 20:32:57+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: GlotPress/3.0.0-alpha.2\n"
+"Language: fr\n"
+"Project-Id-Version: Plugins - Public Post Preview - Stable (latest release)\n"
+
+#: public-post-preview.php:499
+msgid "This link has expired!"
+msgstr "Ce lien a expiré !"
+
+#. Author URI of the plugin
+msgid "https://dominikschilling.de/"
+msgstr "https://dominikschilling.de/"
+
+#. Description of the plugin
+msgid "Allow anonymous users to preview a post before it is published."
+msgstr "Permet les utilisatrices et utilisateurs anonymes de prévisualiser une publication avant qu’elle soit mise en ligne."
+
+#: public-post-preview.php:222 js/dist/gutenberg-integration.js:1
+msgid "Copy and share this preview URL."
+msgstr "Copier et partager l’URL de prévisualisation."
+
+#. Plugin URI of the plugin
+msgid "https://dominikschilling.de/wp-plugins/public-post-preview/en/"
+msgstr "https://dominikschilling.de/wp-plugins/public-post-preview/en/"
+
+#. Author of the plugin
+msgid "Dominik Schilling"
+msgstr "Dominik Schilling"
+
+#. Plugin Name of the plugin
+msgid "Public Post Preview"
+msgstr "Public Post Preview"
+
+#: public-post-preview.php:503
+msgid "No public preview available!"
+msgstr "Aucun aperçu public n’est disponible !"
+
+#: public-post-preview.php:217 js/dist/gutenberg-integration.js:1
+msgid "Enable public preview"
+msgstr "Activer la prévisualisation publique"
+
+#: public-post-preview.php:145
+msgid "Public Preview"
+msgstr "Prévisualisation publique"
+
+#: public-post-preview.php:128
+msgid "Disabled!"
+msgstr "Désactivée !"
+
+#: public-post-preview.php:127
+msgid "Enabled!"
+msgstr "Activée !"

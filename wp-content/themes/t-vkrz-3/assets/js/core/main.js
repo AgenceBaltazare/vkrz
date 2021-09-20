@@ -149,8 +149,8 @@ $(document).ready(function () {
 });
 
 
+
 // Partage en mode natif DEBUT
-/*
 const shareClassementNatif = document.querySelector(".share-natif-classement");
 const shareTopNatif = document.querySelector(".share-natif-top");
 const shareClassement = document.querySelector("#share-classement");
@@ -200,6 +200,5 @@ shareTopNatif.addEventListener("click", (event) => {
         });
     }
 });
-*/
 // Partage en mode natif FIN
 
