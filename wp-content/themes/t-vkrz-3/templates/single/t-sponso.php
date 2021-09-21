@@ -228,7 +228,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                                     </div>
                                                     <div class="content-body text-left">
                                                         <h4 class="mb-0">
-                                                            Une Swith Lite
+                                                            Une Switch Lite
                                                         </h4>
                                                         <small class="text-muted">de ton choix</small>
                                                     </div>
