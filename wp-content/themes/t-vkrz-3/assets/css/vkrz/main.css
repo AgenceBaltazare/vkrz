@@ -2235,7 +2235,7 @@ textarea {
 }
 .mobile-navbar .icons-navbar {
   display: flex;
-  padding: 15px 5px 10px;
+  padding: 15px 5px 10px 55px;
 }
 
 .icons-navbar {
@@ -2764,6 +2764,11 @@ textarea {
   .single-tournoi .tournoi-content {
     text-align: center;
     padding: 0 0 40px 0;
+  }
+
+  .mobile-navbar .icons-navbar {
+    display: flex;
+    padding: 15px 5px 10px;
   }
 
   .single footer.footer {

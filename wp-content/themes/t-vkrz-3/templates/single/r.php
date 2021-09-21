@@ -154,8 +154,13 @@ $top_datas    = get_top_data($id_top);
                                                         <h2 class="stats-mondiales mb-0">
                                                             <b>Stats mondiales :</b>
                                                             <?php echo $top_datas['nb_tops']; ?> 🏆 <?php echo $top_datas['nb_votes']; ?> 💎
-                                                            <br>
-                                                            <br>
+                                                        </h2>
+                                                        <div class="mt-1">
+                                                            <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_top; ?>" class="w-100 btn btn-primary waves-effect">
+                                                                <span class="ico">🌎</span> Voir le Top mondial
+                                                            </a>
+                                                        </div>
+                                                        <h2 class="stats-mondiales mt-2 mb-0">
                                                             <b>Ressemblance :</b>
                                                             <?php
                                                             $similar = get_user_percent(get_field('uuid_user_r', $id_ranking), $id_top);
@@ -163,60 +168,9 @@ $top_datas    = get_top_data($id_top);
                                                             ?>
                                                         </h2>
                                                         <div class="mt-1">
-                                                            <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_top; ?>" class="w-100 btn btn-outline-primary waves-effect">
-                                                                Voir le Top mondial <span class="ico">🌎</span>
+                                                            <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_top; ?>" class="w-100 btn btn-outline-primary waves-effect">
+                                                                <span class="ico ico-reverse">👀</span> voir les autres Tops
                                                             </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="d-none d-sm-block">
-
-                                                    <div class="row">
-                                                        <div class="col-sm-6">
-                                                            <div class="card text-center">
-                                                                <div class="card-body">
-                                                                    <div class="mb-1">
-                                                                        <span class="ico4">💎</span>
-                                                                    </div>
-                                                                    <h2 class="font-weight-bolder">
-                                                                        <?php echo $top_datas['nb_votes']; ?>
-                                                                    </h2>
-                                                                    <p class="card-text legende">
-                                                                        <?php if ($top_datas['nb_votes'] <= 1) : ?>
-                                                                            vote
-                                                                        <?php else : ?>
-                                                                            Votes
-                                                                        <?php endif; ?>
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-6">
-                                                            <div class="card text-center">
-                                                                <div class="card-body">
-                                                                    <div class="pricing-badge text-right">
-                                                                        <div class="badge badge-pill badge-light-primary">
-                                                                            <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_top; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir les <?php echo $top_datas['nb_tops']; ?> Tops">
-                                                                                👀
-                                                                            </a>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="mb-1">
-                                                                        <span class="ico4">🏆</span>
-                                                                    </div>
-                                                                    <h2 class="font-weight-bolder">
-                                                                        <?php echo $top_datas['nb_tops']; ?>
-                                                                    </h2>
-                                                                    <p class="card-text legende">
-                                                                        <?php if ($top_datas['nb_tops'] <= 1) : ?>
-                                                                            Top
-                                                                        <?php else : ?>
-                                                                            Tops
-                                                                        <?php endif; ?>
-                                                                    </p>
-                                                                </div>
-                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -263,7 +217,7 @@ $top_datas    = get_top_data($id_top);
                                                 ?>
                                                 <?php if ($tournois_in_cat->have_posts()) : ?>
 
-                                                    <div class="separate mt-1 mb-2"></div>
+                                                    <div class="separate mt-2 mb-2"></div>
 
                                                     <section class="list-tournois">
                                                         <div class="mt-1 pslim">
