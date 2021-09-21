@@ -300,6 +300,11 @@ html .content {
         margin: 10px 0 0 0;
     }
 }
+.single-tournoi{
+    .intro-mobile {
+        z-index: 9999999;
+    }
+}
 
 .hide-lg {
     display: none;
@@ -469,46 +474,11 @@ html .content {
     padding-bottom: 70px;
 }
 
-.icons-navbar {
-    width: 80%;
-    justify-content: space-around;
-
-    .ico-nav-mobile {
-
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-
-        a {
-            color: #fff;
-            display: flex;
-            align-items: center;
-        }
-
-        i {
-            cursor: pointer;
-            color: #fff;
-            font-size: 20px;
-        }
-    }
-}
-
 .single-tournoi,
 .single-classement {
     .crisp-client .cc-kv6t .cc-1xry .cc-unoo {
-        bottom: 0 !important;
+        bottom: 10px !important;
     }
-}
-
-.ico-social {
-    width: 30px;
-    display: inline-block;
-}
-
-.hide-spot {
-    text-transform: uppercase;
-    margin: 0 0 0 5px;
-    font-size: 10px;
 }
 
 .pslim {

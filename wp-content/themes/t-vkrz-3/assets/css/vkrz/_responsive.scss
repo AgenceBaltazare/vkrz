@@ -76,11 +76,11 @@
 
                 img,
                 .cov-illu {
-                    width: 60%;
+                    width: 50%;
                 }
 
                 .title-contender {
-                    width: 40%;
+                    width: 50%;
                     margin: 10px 0 0;
                     padding: 0 5px;
                 }
@@ -392,7 +392,7 @@
 
     .hide-spot {
         text-transform: uppercase;
-        margin: 0 0 0 5px;
+        margin: 5px 0 0 0;
         font-size: 8px;
         display: block;
     }
@@ -405,6 +405,32 @@
     .swal2-header,
     .swal2-content {
         padding: 0;
+    }
+
+    .single-tournoi {
+        .menuvkrzmobilehide {
+            transition: all 0.2s ease-in;
+            opacity: 0;
+        }
+
+        .tournoi-content {
+            text-align: center;
+            padding: 0 0 40px 0;
+        }
+    }
+
+    .single {
+        footer.footer {
+            padding: 0.8rem 2rem 90px;
+        }
+
+        .social-links {
+            border-top: 1px solid $c5;
+            padding: 10px 0 0 0;
+            margin: 10px 0 0 0;
+            width: 100%;
+            display: block;
+        }
     }
 }
 
