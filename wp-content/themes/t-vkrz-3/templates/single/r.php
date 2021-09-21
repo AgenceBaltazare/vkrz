@@ -147,26 +147,30 @@ $top_datas    = get_top_data($id_top);
 
                                             <div class="animate__fadeInUp animate__animated animate__delay-2s">
 
-                                                <div class="d-none d-sm-block">
-                                                    <div class="card">
-                                                        <div class="card-body">
-                                                            <h2 class="font-weight-bolder mb-0">
-                                                                <?php
-                                                                $similar = get_user_percent(get_field('uuid_user_r', $id_ranking), $id_top);
-                                                                if ($similar['percent'] == 0) {
-                                                                    $wording_similar = "0% <small>des autres Tops identique à celui-ci !</small>";
-                                                                } else {
-                                                                    $wording_similar = $similar['percent'] . "% <small>des autres Tops identiques à celui-ci !</small>";
-                                                                }
-                                                                echo $wording_similar;
-                                                                ?>
-                                                            </h2>
+                                                <div class="separate mt-1 mb-2 d-block d-sm-none"></div>
+
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h2 class="stats-mondiales mb-0">
+                                                            <b>Stats mondiales :</b>
+                                                            <?php echo $top_datas['nb_tops']; ?> 🏆 <?php echo $top_datas['nb_votes']; ?> 💎
+                                                            <br>
+                                                            <br>
+                                                            <b>Ressemblance :</b>
+                                                            <?php
+                                                            $similar = get_user_percent(get_field('uuid_user_r', $id_ranking), $id_top);
+                                                            echo $similar['percent'] . "％";
+                                                            ?>
+                                                        </h2>
+                                                        <div class="mt-1">
+                                                            <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_top; ?>" class="w-100 btn btn-outline-primary waves-effect">
+                                                                Voir le Top mondial <span class="ico">🌎</span>
+                                                            </a>
                                                         </div>
                                                     </div>
+                                                </div>
 
-                                                    <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_top; ?>" class="w-100 btn btn-outline-primary waves-effect mb-1">
-                                                        Voir le Top mondial <span class="ico">🌎</span>
-                                                    </a>
+                                                <div class="d-none d-sm-block">
 
                                                     <div class="row">
                                                         <div class="col-sm-6">
@@ -259,7 +263,7 @@ $top_datas    = get_top_data($id_top);
                                                 ?>
                                                 <?php if ($tournois_in_cat->have_posts()) : ?>
 
-                                                    <div class="separate mt-1 mb-3"></div>
+                                                    <div class="separate mt-1 mb-2"></div>
 
                                                     <section class="list-tournois">
                                                         <div class="mt-1 pslim">
@@ -304,6 +308,7 @@ $top_datas    = get_top_data($id_top);
                         <span class="ico">💬</span> <span class="hide-spot">Commenter</span>
                     </a>
                 </div>
+
                 <?php if (get_field('uuid_user_r', $id_ranking) == $uuiduser) : ?>
                     <div class="ico-nav-mobile">
                         <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" href="#" class="confirm_delete">
@@ -458,83 +463,6 @@ $top_datas    = get_top_data($id_top);
                         </div>
                     </div>
                 </div>
-
-                <div class="separate"></div>
-
-                <div class="card">
-                    <div class="card-body">
-                        <h2 class="font-weight-bolder mb-0">
-                            <?php
-                            $similar = get_user_percent(get_field('uuid_user_r', $id_ranking), $id_top);
-                            if ($similar['percent'] == 0) {
-                                $wording_similar = "0% <small>des autres Tops identique à celui-ci !</small>";
-                            } else {
-                                $wording_similar = $similar['percent'] . "% <small>des autres Tops identiques à celui-ci !</small>";
-                            }
-                            echo $wording_similar;
-                            ?>
-                        </h2>
-                    </div>
-                </div>
-
-                <div class="separate"></div>
-
-                <div class="pr-1 pl-1">
-                    <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_top; ?>" class="w-100 btn btn-primary waves-effect mb-2 mt-2">
-                        Voir le Top mondial <span class="ico">🌎</span>
-                    </a>
-                </div>
-
-                <div class="separate"></div>
-
-                <div class="row">
-                    <div class="col-6">
-                        <div class="card text-center">
-                            <div class="card-body">
-                                <div class="mb-1">
-                                    <span class="ico4">💎</span>
-                                </div>
-                                <h2 class="font-weight-bolder">
-                                    <?php echo $top_datas['nb_votes']; ?>
-                                </h2>
-                                <p class="card-text legende">
-                                    <?php if ($top_datas['nb_votes'] <= 1) : ?>
-                                        vote
-                                    <?php else : ?>
-                                        Votes
-                                    <?php endif; ?>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="card text-center">
-                            <div class="card-body">
-                                <div class="pricing-badge text-right">
-                                    <div class="badge badge-pill badge-light-primary">
-                                        <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_top; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir les <?php echo $top_datas['nb_tops']; ?> Tops">
-                                            👀
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="mb-1">
-                                    <span class="ico4">🏆</span>
-                                </div>
-                                <h2 class="font-weight-bolder">
-                                    <?php echo $top_datas['nb_tops']; ?>
-                                </h2>
-                                <p class="card-text legende">
-                                    <?php if ($top_datas['nb_tops'] <= 1) : ?>
-                                        Top
-                                    <?php else : ?>
-                                        Tops
-                                    <?php endif; ?>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
 

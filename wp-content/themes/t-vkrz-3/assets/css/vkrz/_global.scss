@@ -300,7 +300,8 @@ html .content {
         margin: 10px 0 0 0;
     }
 }
-.single-tournoi{
+
+.single-tournoi {
     .intro-mobile {
         z-index: 9999999;
     }
@@ -483,4 +484,20 @@ html .content {
 
 .pslim {
     padding: 0 5px;
+}
+
+.stats-mondiales {
+    font-size: 18px;
+    b{
+        color: $c5;
+        font-weight: normal;
+    }
+}
+
+.t-cyan {
+    color: rgb(0, 167, 233);
+}
+
+.t-yellow {
+    color: rgb(233, 229, 0);
 }

@@ -748,6 +748,22 @@ html .content {
   padding: 0 5px;
 }
 
+.stats-mondiales {
+  font-size: 18px;
+}
+.stats-mondiales b {
+  color: #7367f0;
+  font-weight: normal;
+}
+
+.t-cyan {
+  color: #00a7e9;
+}
+
+.t-yellow {
+  color: #e9e500;
+}
+
 .page-template-monitor .header-monitor {
   text-align: center;
   padding-top: 20px;
