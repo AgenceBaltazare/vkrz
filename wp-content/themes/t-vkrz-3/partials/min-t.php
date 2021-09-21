@@ -4,45 +4,45 @@ $list_user_tops   = $user_tops['list_user_tops'];
 $state            = "";
 $id_top           = get_the_ID();
 $illu             = get_the_post_thumbnail_url($id_top, 'medium');
-if(is_home()){
+if (is_home()) {
     $class        = "swiper-slide";
-}
-elseif(is_single()){
+} elseif (is_single()) {
     $class        = "col-md-12 col-6";
-}
-else{
+} else {
     $class        = "col-12";
 }
 $user_single_top_data = array_search($id_top, array_column($list_user_tops, 'id_top'));
-if($user_single_top_data !== false) {
+if ($user_single_top_data !== false) {
     $state = $list_user_tops[$user_single_top_data]['state'];
-}
-else{
+} else {
     $state = "todo";
 }
 ?>
 <div class="<?php echo $class; ?>">
     <div class="min-tournoi card scaler">
         <div class="cov-illu cover" style="background: url(<?php echo $illu; ?>) center center no-repeat">
-            <?php if($state == "done"): ?>
+            <?php if (get_field('sponso_t', $id_top)) : ?>
+                <span class="badge badge-light-rose ml-0">Top sponsorisé</span>
+            <?php endif; ?>
+            <?php if ($state == "done") : ?>
                 <div class="badge badge-success">Terminé</div>
-            <?php elseif($state == "begin"): ?>
+            <?php elseif ($state == "begin") : ?>
                 <div class="badge badge-warning">En cours</div>
-            <?php else: ?>
+            <?php else : ?>
                 <div class="badge badge-primary">A faire</div>
             <?php endif; ?>
             <div class="voile">
-                <?php if($state == "done"): ?>
+                <?php if ($state == "done") : ?>
                     <div class="spoun">
                         🏆
                         <h5>Voir mon TOP</h5>
                     </div>
-                <?php elseif($state == "begin"): ?>
+                <?php elseif ($state == "begin") : ?>
                     <div class="spoun">
                         ⚔️
                         <h5>Terminer</h5>
                     </div>
-                <?php else: ?>
+                <?php else : ?>
                     <div class="spoun">
                         ⚔️
                         <h5>Faire mon Top</h5>

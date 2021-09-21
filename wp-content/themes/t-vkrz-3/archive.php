@@ -259,6 +259,9 @@ $list_sujets      = array();
                     <div data-filter-item data-filter-name="<?php echo $term_to_search; ?>" class="same-h grid-item col-md-3 col-6 <?php echo $sujet_slug; ?> <?php echo $state; ?> <?php echo $concept_slug; ?> <?php echo $tag_slug; ?>">
                         <div class="min-tournoi card scaler">
                             <div class="cov-illu cover" style="background: url(<?php echo $illu; ?>) center center no-repeat">
+                                <?php if (get_field('sponso_t', $id_top)) : ?>
+                                    <span class="badge badge-light-rose ml-0">Top sponsorisé</span>
+                                <?php endif; ?>
                                 <?php if ($state == "done") : ?>
                                     <div class="badge badge-success">Terminé</div>
                                 <?php elseif ($state == "begin") : ?>

@@ -2205,6 +2205,14 @@ textarea {
   background: #f4167f !important;
 }
 
+.min-tournoi .cov-illu .badge-light-rose {
+  position: absolute;
+  right: auto;
+  left: 5px;
+  top: 5px;
+  z-index: 2;
+}
+
 .mobile-navbar {
   background: linear-gradient(150deg, #0c0a27, #471867, #0c0a27, #230b36, #0c0a27);
   background-size: 400% 400%;
