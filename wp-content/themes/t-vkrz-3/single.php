@@ -14,9 +14,15 @@ switch (get_post_type()) {
             }
         }
         break;
-    case "classement": get_template_part("templates/single/r");
+    case "classement": 
+        $id_top = get_field('id_tournoi_r');
+        if (get_field('sponso_t', $id_top)) {
+            get_template_part("templates/single/r-sponso");
+        }
+        else{
+            get_template_part("templates/single/r");
+        }
         break;
     case "post": get_template_part("templates/single/post");
         break;
 }
-?>

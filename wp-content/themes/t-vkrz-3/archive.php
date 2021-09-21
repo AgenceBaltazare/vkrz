@@ -3,7 +3,7 @@ get_header();
 global $user_tops;
 $list_user_tops     = $user_tops['list_user_tops'];
 $current_cat        = get_queried_object();
-$tops_in_cat    = new WP_Query(array(
+$tops_in_cat        = new WP_Query(array(
     'post_type'                 => 'tournoi',
     'orderby'                   => 'date',
     'order'                     => 'DESC',
@@ -16,6 +16,18 @@ $tops_in_cat    = new WP_Query(array(
             'taxonomy' => 'categorie',
             'field'    => 'term_id',
             'terms'    => $current_cat->term_id,
+        ),
+    ),
+    'meta_query' => array(
+        'relation' => 'OR',
+        array(
+            'key'     => 'private_t',
+            'compare' => 'NOT EXISTS',
+        ),
+        array(
+            'key'     => 'private_t',
+            'value'   => '1',
+            'compare' => 'NOT LIKE',
         ),
     )
 ));
@@ -31,7 +43,7 @@ $list_sujets      = array();
             <div class="intro-mobile">
                 <div class="tournament-heading text-center">
                     <h3 class="mb-0 t-titre-tournoi">
-                        <span class="ico"><?php the_field('icone_cat', 'term_'.$current_cat->term_id); ?></span> <?php echo $current_cat->name; ?>
+                        <span class="ico"><?php the_field('icone_cat', 'term_' . $current_cat->term_id); ?></span> <?php echo $current_cat->name; ?>
                     </h3>
                     <h4 class="mb-0">
                         <?php echo $current_cat->description; ?>
@@ -66,18 +78,18 @@ $list_sujets      = array();
 
                     $id_top    = get_the_ID();
 
-                    if(get_the_terms($id_top, 'sous-cat')){
-                        foreach(get_the_terms($id_top, 'sous-cat') as $sujet ) {
+                    if (get_the_terms($id_top, 'sous-cat')) {
+                        foreach (get_the_terms($id_top, 'sous-cat') as $sujet) {
                             array_push($list_sujets, $sujet->term_id);
                         }
                     }
-                    if(get_the_terms($id_top, 'tag')){
-                        foreach(get_the_terms($id_top, 'tag') as $tag ) {
+                    if (get_the_terms($id_top, 'tag')) {
+                        foreach (get_the_terms($id_top, 'tag') as $tag) {
                             array_push($list_tags, $tag->term_id);
                         }
                     }
-                    if(get_the_terms($id_top, 'concept')){
-                        foreach(get_the_terms($id_top, 'concept') as $concept ) {
+                    if (get_the_terms($id_top, 'concept')) {
+                        foreach (get_the_terms($id_top, 'concept') as $concept) {
                             array_push($list_concepts, $concept->term_id);
                         }
                     }
@@ -86,7 +98,7 @@ $list_sujets      = array();
                 <div class="card">
                     <div class="card-body">
                         <div class="row align-items-start justify-content-start">
-                            <?php if($list_sujets): ?>
+                            <?php if ($list_sujets) : ?>
                                 <div class="ui-group">
                                     <div class="btn-group dropdown-sort">
                                         <button type="button" class="btn btn-outline-primary dropdown-toggle mr-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -103,7 +115,7 @@ $list_sujets      = array();
                                                 'order'         => 'DESC',
                                                 'hide_empty'    => true,
                                             ));
-                                            foreach($concepts as $concept) : ?>
+                                            foreach ($concepts as $concept) : ?>
                                                 <a class="dropdown-item grid-filtre-item btn-to-filtre" data-select="select1" data-filter=".<?php echo $concept->slug; ?>">
                                                     <?php echo $concept->name; ?>
                                                 </a>
@@ -112,7 +124,7 @@ $list_sujets      = array();
                                     </div>
                                 </div>
                             <?php endif; ?>
-                            <?php if($list_concepts): ?>
+                            <?php if ($list_concepts) : ?>
                                 <div class="ui-group">
                                     <div class="btn-group dropdown-sort">
                                         <button type="button" class="btn btn-outline-primary dropdown-toggle mr-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -129,7 +141,7 @@ $list_sujets      = array();
                                                 'order'         => 'ASC',
                                                 'hide_empty'    => true,
                                             ));
-                                            foreach($sujets as $sujet) : ?>
+                                            foreach ($sujets as $sujet) : ?>
                                                 <a class="dropdown-item grid-filtre-item btn-to-filtre" data-select="select2" data-filter=".<?php echo $sujet->slug; ?>">
                                                     <?php echo $sujet->name; ?>
                                                 </a>
@@ -157,7 +169,7 @@ $list_sujets      = array();
                                     </div>
                                 </div>
                             </div>
-                            <?php if($list_tags): ?>
+                            <?php if ($list_tags) : ?>
                                 <div class="ui-group">
                                     <div class="btn-group dropdown-sort">
                                         <button type="button" class="btn btn-outline-primary dropdown-toggle mr-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -174,31 +186,24 @@ $list_sujets      = array();
                                                 'order'         => 'DESC',
                                                 'hide_empty'    => true,
                                             ));
-                                            foreach($tags as $tag) : ?>
+                                            foreach ($tags as $tag) : ?>
                                                 <a class="dropdown-item grid-filtre-item btn-to-filtre" data-select="select4" data-filter=".<?php echo $tag->slug; ?>">
                                                     <?php
-                                                    if($tag->name == "QTP"){
+                                                    if ($tag->name == "QTP") {
                                                         echo "Quel est ton préféré ?";
-                                                    }
-                                                    elseif($tag->name == "QPS"){
+                                                    } elseif ($tag->name == "QPS") {
                                                         echo "Qui est le plus stylé ?";
-                                                    }
-                                                    elseif($tag->name == "QPB"){
+                                                    } elseif ($tag->name == "QPB") {
                                                         echo "Qui est le plus badass ?";
-                                                    }
-                                                    elseif($tag->name == "QPF"){
+                                                    } elseif ($tag->name == "QPF") {
                                                         echo "Qui est le plus fort ?";
-                                                    }
-                                                    elseif($tag->name == "QLM"){
+                                                    } elseif ($tag->name == "QLM") {
                                                         echo "Quel est le meilleur ?";
-                                                    }
-                                                    elseif($tag->name == "DUEL"){
+                                                    } elseif ($tag->name == "DUEL") {
                                                         echo "1 vs 1";
-                                                    }
-                                                    elseif($tag->name == "QLP"){
+                                                    } elseif ($tag->name == "QLP") {
                                                         echo "Quel est le pire ?";
-                                                    }
-                                                    else{
+                                                    } else {
                                                         echo $tag->name;
                                                     }
                                                     ?>
@@ -215,16 +220,16 @@ $list_sujets      = array();
 
             <section class="grid-to-filtre row match-height mt-2">
 
-                <?php $i=1; while ($tops_in_cat->have_posts()) : $tops_in_cat->the_post(); ?>
+                <?php $i = 1;
+                while ($tops_in_cat->have_posts()) : $tops_in_cat->the_post(); ?>
 
                     <?php
                     $id_top    = get_the_ID();
                     $illu             = get_the_post_thumbnail_url($id_top, 'medium');
                     $user_sinle_top_data = array_search($id_top, array_column($list_user_tops, 'id_top'));
-                    if($user_sinle_top_data !== false) {
+                    if ($user_sinle_top_data !== false) {
                         $state = $list_user_tops[$user_sinle_top_data]['state'];
-                    }
-                    else{
+                    } else {
                         $state = "todo";
                     }
                     $tag_slug         = "";
@@ -232,47 +237,47 @@ $list_sujets      = array();
                     $sujet_slug       = "";
                     $term_to_search   = "";
 
-                    if(get_the_terms($id_top, 'sous-cat')){
-                        foreach(get_the_terms($id_top, 'sous-cat') as $sujet ) {
-                            $sujet_slug     .= $sujet->slug." ";
+                    if (get_the_terms($id_top, 'sous-cat')) {
+                        foreach (get_the_terms($id_top, 'sous-cat') as $sujet) {
+                            $sujet_slug     .= $sujet->slug . " ";
                         }
                     }
-                    if(get_the_terms($id_top, 'tag')){
-                        foreach(get_the_terms($id_top, 'tag') as $tag ) {
-                            $tag_slug     .= $tag->slug." ";
+                    if (get_the_terms($id_top, 'tag')) {
+                        foreach (get_the_terms($id_top, 'tag') as $tag) {
+                            $tag_slug     .= $tag->slug . " ";
                         }
                     }
-                    if(get_the_terms($id_top, 'concept')){
-                        foreach(get_the_terms($id_top, 'concept') as $concept ) {
-                            $concept_slug   .= $concept->slug." ";
+                    if (get_the_terms($id_top, 'concept')) {
+                        foreach (get_the_terms($id_top, 'concept') as $concept) {
+                            $concept_slug   .= $concept->slug . " ";
                         }
                     }
                     $top_question   = get_field('question_t', $id_top);
                     $top_title      = get_the_title($id_top);
-                    $term_to_search = $sujet_slug." ".$concept_slug." ".$top_question." ".$top_title;
+                    $term_to_search = $sujet_slug . " " . $concept_slug . " " . $top_question . " " . $top_title;
                     ?>
                     <div data-filter-item data-filter-name="<?php echo $term_to_search; ?>" class="same-h grid-item col-md-3 col-6 <?php echo $sujet_slug; ?> <?php echo $state; ?> <?php echo $concept_slug; ?> <?php echo $tag_slug; ?>">
                         <div class="min-tournoi card scaler">
                             <div class="cov-illu cover" style="background: url(<?php echo $illu; ?>) center center no-repeat">
-                                <?php if($state == "done"): ?>
+                                <?php if ($state == "done") : ?>
                                     <div class="badge badge-success">Terminé</div>
-                                <?php elseif($state == "begin"): ?>
+                                <?php elseif ($state == "begin") : ?>
                                     <div class="badge badge-warning">En cours</div>
-                                <?php else: ?>
+                                <?php else : ?>
                                     <div class="badge badge-primary">A faire</div>
                                 <?php endif; ?>
                                 <div class="voile">
-                                    <?php if($state == "done"): ?>
+                                    <?php if ($state == "done") : ?>
                                         <div class="spoun">
                                             <span class="ico">🏆</span>
                                             <h5>Voir mon TOP</h5>
                                         </div>
-                                    <?php elseif($state == "begin"): ?>
+                                    <?php elseif ($state == "begin") : ?>
                                         <div class="spoun">
                                             <span class="ico">⚡</span>
                                             <h5>Terminer le Top</h5>
                                         </div>
-                                    <?php else: ?>
+                                    <?php else : ?>
                                         <div class="spoun">
                                             <span class="ico">⚡</span>
                                             <h5>Faire mon Top</h5>
@@ -282,7 +287,7 @@ $list_sujets      = array();
                             </div>
                             <div class="card-body">
                                 <p class="card-text text-primary">
-                                    TOP <?php echo get_field('count_contenders_t', $id_top); ?>  : <span class="namecontenders"><?php echo $top_title; ?></span>
+                                    TOP <?php echo get_field('count_contenders_t', $id_top); ?> : <span class="namecontenders"><?php echo $top_title; ?></span>
                                 </p>
                                 <h4 class="card-title">
                                     <?php echo $top_question; ?>
@@ -291,7 +296,8 @@ $list_sujets      = array();
                             <a href="<?php the_permalink($id_top); ?>" class="stretched-link"></a>
                         </div>
                     </div>
-                <?php $i++; endwhile; ?>
+                <?php $i++;
+                endwhile; ?>
             </section>
 
         </div>

@@ -70,7 +70,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                 <div class="meetup-header d-flex align-items-center justify-content-center">
                                     <div class="my-auto">
                                         <h4 class="card-title mb-25">
-                                            Top <?php echo $top_infos['top_number']; ?> ⚡ <?php echo $top_infos['top_title']; ?>
+                                            Top privé ⚡ <?php echo $top_infos['top_title']; ?>
                                         </h4>
                                         <p class="card-text mb-0 t-rose animate__animated animate__flash">
                                             <?php echo $top_infos['top_question']; ?>
@@ -148,38 +148,6 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col">
-                                        <div class="infos-card-t d-flex align-items-center infos-card-t-c">
-                                            <div class="">
-                                                <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator_id; ?>" target="_blank">
-                                                    <div class="avatar me-50">
-                                                        <img src="<?php echo $creator_data['avatar']; ?>" alt="Avatar" width="38" height="38">
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class="content-body text-left">
-                                                <small class="text-muted">Conçu par</small>
-                                                <h4 class="mb-0 link-creator">
-                                                    <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator_id; ?>" target="_blank" class="link-to-creator">
-                                                        <?php echo $creator_data['pseudo']; ?>
-                                                        <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Niveau actuel">
-                                                            <?php echo $creator_data['level']; ?>
-                                                        </span>
-                                                        <?php if ($creator_data['user_role']  == "administrator") : ?>
-                                                            <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
-                                                                🦙
-                                                            </span>
-                                                        <?php endif; ?>
-                                                        <?php if ($creator_data['user_role']  == "administrator" || $creator_data['user_role'] == "author") : ?>
-                                                            <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
-                                                                🎨
-                                                            </span>
-                                                        <?php endif; ?>
-                                                    </a>
-                                                </h4>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -190,7 +158,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
 
                 <div class="intro-mobile">
                     <div class="tournament-heading text-center">
-                        <h3 class="mb-0 t-titre-tournoi">Top <?php echo $top_infos['top_number']; ?> <span class="ico">⚔️</span> <?php echo $top_infos['top_title']; ?></h3>
+                        <h3 class="mb-0 t-titre-tournoi">Top privé <span class="ico">⚔️</span> <?php echo $top_infos['top_title']; ?></h3>
                         <h4 class="text-center t-question">
                             <?php echo $top_infos['top_question']; ?> <br>
                         </h4>
@@ -246,12 +214,6 @@ $creator_data       = get_user_infos($creator_uuiduser);
 <?php if ($id_ranking) : ?>
     <nav class="navbar mobile-navbar">
         <div class="icons-navbar">
-            <div class="ico-nav-mobile box-info-show">
-                <span class="ico">📌</span> <span class="hide-spot">Infos du Top</span>
-            </div>
-            <div class="ico-nav-mobile share-natif-top">
-                <span class="ico ico-reverse">📣</span> <span class="hide-spot">Partager</span>
-            </div>
             <div class="ico-nav-mobile">
                 <a href="<?php echo get_the_permalink(get_page_by_path('discuz')) . '?id_top=' . $id_top; ?>">
                     <span class="ico">💬</span> <span class="hide-spot">Commenter</span>
@@ -264,91 +226,6 @@ $creator_data       = get_user_infos($creator_uuiduser);
             </div>
         </div>
     </nav>
-    <div class="share-top-content">
-        <h3><span class="ico-social">⚡️</span> Partager le lien du Top</h3>
-        <div class="close-share">
-            <i class="fal fa-times"></i>
-        </div>
-        <ul>
-            <li>
-                <a href="javascript: void(0)" class="sharelinkbtn2">
-                    <input type="text" value="<?php echo $top_infos['top_url']; ?>" class="input_to_share2">
-                    <i class="social-media fas fa-paperclip"></i> <span>Copier le lien du Top</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://twitter.com/intent/tweet?text=Go faire le TOP <?php echo $top_infos['top_number']; ?> <?php echo $top_infos['top_title']; ?>&via=vainkeurz&hashtags=VKRZ&url=<?php echo $url_ranking; ?>" target="_blank" title="Tweet">
-                    <i class="social-media fab fa-twitter"></i> Dans un Tweet
-                </a>
-            </li>
-            <li>
-                <a href="whatsapp://send?text=<?php echo $url_ranking; ?>" data-action="share/whatsapp/share">
-                    <i class="social-media mb-12 fab fa-whatsapp"></i> Sur WhatsApp
-                </a>
-            </li>
-            <li>
-                <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $url_ranking; ?>" title="Partager sur Facebook" target="_blank">
-                    <i class="social-media fab fa-facebook-f"></i> Sur Facebook
-                </a>
-            </li>
-        </ul>
-    </div>
-    <div class="box-info-content">
-        <h3>
-            <span class="ico-social">📌</span>
-            Tous les infos du Top
-        </h3>
-        <div class="close-share">
-            <i class="fal fa-times"></i>
-        </div>
-        <div class="box-info-list">
-            <div class="card text-left">
-                <div class="card-body">
-                    <h4 class="card-title">
-                        <?php
-                        date_default_timezone_set('Europe/Paris');
-                        $origin     = new DateTime(get_the_date('Y-m-d', $id_top));
-                        $target     = new DateTime(date('Y-m-d'));
-                        $interval   = $origin->diff($target);
-                        if ($interval->days == 0) {
-                            $info_date = "aujourd'hui";
-                        } elseif ($interval->days == 1) {
-                            $info_date = "hier";
-                        } else {
-                            $info_date = "depuis " . $interval->days . " jours";
-                        }
-                        ?>
-                        <span class="ico">🎂</span> Créé <span class="t-violet"><?php echo $info_date; ?></span> par :
-                    </h4>
-                    <div class="employee-task d-flex justify-content-between align-items-center">
-                        <a href="<?php echo $creator_data['profil']; ?>" class="d-flex flex-row link-to-creator">
-                            <div class="avatar me-75 mr-1">
-                                <img src="<?php echo $creator_data['avatar']; ?>" class="circle" width="42" height="42" alt="Avatar">
-                            </div>
-                            <div class="my-auto">
-                                <h4 class="mb-0">
-                                    <?php echo $creator_data['pseudo']; ?> <br>
-                                    <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Niveau actuel">
-                                        <?php echo $creator_data['level']; ?>
-                                    </span>
-                                    <?php if ($creator_data['user_role']  == "administrator") : ?>
-                                        <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
-                                            🦙
-                                        </span>
-                                    <?php endif; ?>
-                                    <?php if ($creator_data['user_role']  == "administrator" || $creator_data['user_role'] == "author") : ?>
-                                        <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
-                                            🎨
-                                        </span>
-                                    <?php endif; ?>
-                                </h4>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 <?php endif; ?>
 
 <?php get_footer(); ?>

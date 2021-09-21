@@ -1,169 +1,180 @@
-// t.php
-.rules-content {
-  text-align: start;
-  .title-win {
-    background: $rose;
-    border: $rose;
-    border-radius: 3px;
-    h4 {
-      padding: 10px 15px 0px 10px;
-      font-size: 22px;
-      font-weight: bold;
-      text-transform: uppercase;
+.intro-sponso {
+    .intro {
+        width: 100%;
     }
-  }
-  .icone-cadeau {
-    font-size: 30px;
-  }
 }
-.w-60 {
-  width: 60% !important;
+
+.rules-content {
+    text-align: start;
+    padding: 1.5rem 1.5rem 0 1.5rem;
+
+    .title-win {
+        border: $rose;
+        border-radius: 3px;
+
+        h4 {
+            padding: 10px 15px 0px 10px;
+            font-size: 22px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+    }
+
+    .icone-cadeau {
+        font-size: 30px;
+    }
 }
+
 .share-text {
-  color: $c5 !important;
-  font-size: calc(1rem);
+    color: $c5 !important;
+    font-size: calc(1rem);
 }
+
 .fs-12px {
-  font-size: 12px;
+    font-size: 12px;
 }
+
 #timer-sponso {
-  font-size: 48px;
-  line-height: 59.71px;
-  font-weight: 500;
+    font-size: 48px;
+    line-height: 59.71px;
+    font-weight: 500;
 }
+
 .grey {
-  color: #3c4352;
+    color: #3c4352;
 }
+
 .bb {
-  display: inline-block;
-  border-bottom: 1px solid;
-  padding-bottom: 5px;
+    display: inline-block;
+    border-bottom: 1px solid;
+    padding-bottom: 5px;
 }
-.logo-vkrz-sponso {
-  width: 30%;
-  img {
-    width: 118px;
-    height: auto;
-  }
-}
+
+
 .social-media-sponso {
-  padding: 0px 10px;
-  width: 70%;
-  a {
-    margin-right: 10px;
-  }
+    padding: 0px 10px;
+
+    a {
+        margin-right: 10px;
+    }
 }
+
 .timer-content-sponso {
-  padding: 30px 20px 10px !important;
+    padding: 20px 10px 5px !important;
+
+    p {
+        margin: 0;
+    }
 }
+
 .share-content-sponso,
 .share-top-sponsor {
-  padding: 15px 20px !important;
+    padding: 15px 20px !important;
 }
 
-@media (min-width: 767px) and (max-width: 1576px) {
-  .social-media-sponso {
-    padding-left: 60px;
+.logo-vkrz-sponso {
+    width: 40%;
+}
+
+.social-media-sponso {
+
+    width: 60%;
+
     .buttons-social-media {
-      flex-direction: column;
-      a:first-child {
-        margin-bottom: 10px;
-      }
+        flex-direction: column;
+
+        a {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
     }
-  }
 }
 
-@media (min-width: 767px) and (max-width: 1391px) {
-  #timer-sponso {
-    font-size: 26px;
-  }
-}
-
-@media (max-width: 433px) {
-  #timer-sponso {
-    font-size: 28px;
-  }
-}
-
-@media (max-width: 495px) {
-  .social-media-sponso {
-    padding-left: 60px;
-    .buttons-social-media {
-      flex-direction: column;
-      a:first-child {
-        margin-bottom: 10px;
-      }
-    }
-  }
-}
-
-// r.php
 .participation-content-sponso {
-  background: linear-gradient(180deg, #230b36 12.44%, #0c0a27 100%);
-  border-radius: 10.7037px;
-  h1 {
-    font-family: "Lato";
-    font-weight: 900;
-    font-style: italic;
+    background: linear-gradient(180deg, #230b36 12.44%, #0c0a27 100%);
+    border-radius: 10.7037px;
 
-    font-size: 38.89px;
-    line-height: 44.39px;
-    text-transform: uppercase;
-    color: #ffffff;
-    text-shadow: 3.4618px 3.4618px 0px #312673;
-    .participation {
-      font-size: 28.22px;
-      line-height: 35.53px;
-    }
-    .vainkeurz {
-      font-size: 39.06px;
-      line-height: 35.53px;
-    }
-  }
-  a {
-    text-decoration: none;
-    color: $rose;
-  }
-  .info-share2 {
-    font-family: "Roboto";
-    font-size: 14px;
-    line-height: 16px;
-    color: #c4c4c4;
-  }
-  .buttons-share-top {
-    a:first-child {
-      margin-right: 10px;
-    }
-  }
+    h1 {
+        font-family: "Lato";
+        font-weight: 900;
+        font-style: italic;
 
-  @media (min-width: 767px) and (max-width: 1383px) {
+        font-size: 38.89px;
+        line-height: 44.39px;
+        text-transform: uppercase;
+        color: #ffffff;
+        text-shadow: 3.4618px 3.4618px 0px #312673;
+
+        .participation {
+            font-size: 28.22px;
+            line-height: 35.53px;
+        }
+
+        .vainkeurz {
+            font-size: 39.06px;
+            line-height: 35.53px;
+        }
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .info-share2 {
+        font-family: "Roboto";
+        font-size: 14px;
+        line-height: 16px;
+        color: #c4c4c4;
+    }
+
     .buttons-share-top {
-      flex-direction: column;
-      a:first-child {
-        margin-bottom: 10px;
-        margin-right: 0px;
-      }
+        a:first-child {
+            margin-right: 10px;
+        }
     }
-  }
-  @media (max-width: 433px) {
-    .buttons-share-top {
-      flex-direction: column;
-      a:first-child {
-        margin-bottom: 10px;
-        margin-right: 0px;
-      }
+
+    @media (min-width: 767px) and (max-width: 1383px) {
+        .buttons-share-top {
+            flex-direction: column;
+
+            a:first-child {
+                margin-bottom: 10px;
+                margin-right: 0px;
+            }
+        }
     }
-  }
-  @media (min-width: 767px) and (max-width: 1036px) {
-    .info-concours {
-      margin-bottom: 1.5rem;
+
+    @media (max-width: 433px) {
+        .buttons-share-top {
+            flex-direction: column;
+
+            a:first-child {
+                margin-bottom: 10px;
+                margin-right: 0px;
+            }
+        }
     }
-  }
-  @media (max-width: 767px) {
-    .info-concours {
-      margin-bottom: 1.5rem;
-      text-align: center;
-      padding: 0px 20px;
+
+    @media (min-width: 767px) and (max-width: 1036px) {
+        .info-concours {
+            margin-bottom: 1.5rem;
+        }
     }
-  }
+
+    @media (max-width: 767px) {
+        .info-concours {
+            margin-bottom: 1.5rem;
+            text-align: center;
+            padding: 0px 20px;
+        }
+    }
+}
+
+.badge-light-rose{
+    background: $rose !important;
 }

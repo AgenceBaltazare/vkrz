@@ -2050,8 +2050,13 @@ textarea {
   cursor: pointer;
 }
 
+.intro-sponso .intro {
+  width: 100%;
+}
+
 .rules-content {
   text-align: start;
+  padding: 1.5rem 1.5rem 0 1.5rem;
 }
 .rules-content .title-win {
   background: #f4167f;
@@ -2066,10 +2071,6 @@ textarea {
 }
 .rules-content .icone-cadeau {
   font-size: 30px;
-}
-
-.w-60 {
-  width: 60% !important;
 }
 
 .share-text {
@@ -2097,24 +2098,18 @@ textarea {
   padding-bottom: 5px;
 }
 
-.logo-vkrz-sponso {
-  width: 30%;
-}
-.logo-vkrz-sponso img {
-  width: 118px;
-  height: auto;
-}
-
 .social-media-sponso {
   padding: 0px 10px;
-  width: 70%;
 }
 .social-media-sponso a {
   margin-right: 10px;
 }
 
 .timer-content-sponso {
-  padding: 30px 20px 10px !important;
+  padding: 20px 10px 5px !important;
+}
+.timer-content-sponso p {
+  margin: 0;
 }
 
 .share-content-sponso,
@@ -2122,38 +2117,25 @@ textarea {
   padding: 15px 20px !important;
 }
 
-@media (min-width: 767px) and (max-width: 1576px) {
-  .social-media-sponso {
-    padding-left: 60px;
-  }
-  .social-media-sponso .buttons-social-media {
-    flex-direction: column;
-  }
-  .social-media-sponso .buttons-social-media a:first-child {
-    margin-bottom: 10px;
-  }
+.logo-vkrz-sponso {
+  width: 40%;
 }
-@media (min-width: 767px) and (max-width: 1391px) {
-  #timer-sponso {
-    font-size: 26px;
-  }
+
+.social-media-sponso {
+  width: 60%;
 }
-@media (max-width: 433px) {
-  #timer-sponso {
-    font-size: 28px;
-  }
+.social-media-sponso .buttons-social-media {
+  flex-direction: column;
 }
-@media (max-width: 495px) {
-  .social-media-sponso {
-    padding-left: 60px;
-  }
-  .social-media-sponso .buttons-social-media {
-    flex-direction: column;
-  }
-  .social-media-sponso .buttons-social-media a:first-child {
-    margin-bottom: 10px;
-  }
+.social-media-sponso .buttons-social-media a {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
 }
+.social-media-sponso .buttons-social-media a:last-child {
+  margin-bottom: 0;
+}
+
 .participation-content-sponso {
   background: linear-gradient(180deg, #230b36 12.44%, #0c0a27 100%);
   border-radius: 10.7037px;
@@ -2178,7 +2160,6 @@ textarea {
 }
 .participation-content-sponso a {
   text-decoration: none;
-  color: #f4167f;
 }
 .participation-content-sponso .info-share2 {
   font-family: "Roboto";
@@ -2218,6 +2199,10 @@ textarea {
     text-align: center;
     padding: 0px 20px;
   }
+}
+
+.badge-light-rose {
+  background: #f4167f !important;
 }
 
 .mobile-navbar {

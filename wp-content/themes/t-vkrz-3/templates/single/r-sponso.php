@@ -58,6 +58,41 @@ $top_datas    = get_top_data($id_top);
             <div class="classement">
                 <div class="row">
                     <div class="col-md-8">
+
+                        <div class="participation-content-sponso mb-4">
+                            <div class="row">
+                                <div class="col-md-8 ml-2 mt-1">
+                                    <h1>
+                                        Merci <span class="participation">pour ta participation au concours</span> <span class="vainkeurz">VAINKEURZ ! 👑</span>
+                                    </h1>
+                                </div>
+                            </div>
+                            <div class="row d-flex align-items-center pr-1 pl-1">
+                                <div class="col-md-6 d-flex justify-content-around">
+                                    <div class="image-recompense">
+                                        <img src="<?php bloginfo('template_directory'); ?>/assets/images/concours/recompense-switch-bleu.svg" alt="" class="img-fluid">
+                                    </div>
+                                </div>
+                                <div class="col-md-5 info-concours">
+                                    <p class="info-share">
+                                        Pour participer, tu dois <span class="t-rose">partager</span> ce Top en commentaire de notre post pour le concours sur Twitter et <span class="t-rose">RT</span> + <span class="t-rose">follow</span> <a href="https://twitter.com/Vainkeurz">@Vainkeurz</a>
+                                    </p>
+                                    <p class="info-share text-muted">
+                                        Pour partager ton classement dans les commentaires du post du concours, clique juste en dessous et copie colle le lien sur Twitter !
+                                    </p>
+                                    <div class="d-flex align-items-center buttons-share-top">
+                                        <a href="javascript: void(0)" class="sharelinkbtn2 w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-outline-primary waves-effect waves-float waves-light">
+                                            <input type="text" value="<?php echo get_the_permalink(); ?>" class="input_to_share2">
+                                            Copier le lien du Top
+                                        </a>
+                                        <a href="" target="_blank" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light">
+                                            Post Twitter
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="list-classement mt-2">
                             <div class="row align-items-end justify-content-center">
                                 <?php
@@ -185,7 +220,6 @@ $top_datas    = get_top_data($id_top);
                                                 ));
                                                 $count_similar = $tops_in_close_cat->post_count;
                                                 $count_next    = 4 - $count_similar;
-                                            
                                                 if ($count_similar < 4) {
 
                                                     $tops_in_large_cat     = new WP_Query(array(

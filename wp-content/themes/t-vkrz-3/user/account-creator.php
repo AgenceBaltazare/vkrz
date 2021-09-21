@@ -6,7 +6,6 @@ global $uuiduser;
 global $user_id;
 global $user_infos;
 get_header();
-
 if (false === ( $data_t_created = get_transient( 'user_'.$user_id.'_get_creator_t' ) )) {
     $data_t_created = get_creator_t($user_id);
     set_transient( 'user_'.$user_id.'_get_creator_t', $data_t_created, DAY_IN_SECONDS );
@@ -116,45 +115,47 @@ if (false === ( $data_t_created = get_transient( 'user_'.$user_id.'_get_creator_
                                                             <tbody>
                                                             <?php
                                                             foreach($data_t_created['creator_tops'] as $item) : ?>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="media-body">
-                                                                            <div class="media-heading">
-                                                                                <h6 class="cart-item-title mb-0">
-                                                                                    <a class="text-body" href="<?php the_permalink($item['top_id']); ?>">
-                                                                                        Top <?php echo $item['nb_top']; ?> - <?php echo $item['top_title']; ?>
-                                                                                    </a>
-                                                                                </h6>
-                                                                                <small class="cart-item-by legende">
-                                                                                    <?php the_field('question_t', $item['top_id']); ?>
-                                                                                </small>
+                                                                <?php if (!get_field('private_t', $item['id_top'])) : ?>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div class="media-body">
+                                                                                <div class="media-heading">
+                                                                                    <h6 class="cart-item-title mb-0">
+                                                                                        <a class="text-body" href="<?php the_permalink($item['top_id']); ?>">
+                                                                                            Top <?php echo $item['nb_top']; ?> - <?php echo $item['top_title']; ?>
+                                                                                        </a>
+                                                                                    </h6>
+                                                                                    <small class="cart-item-by legende">
+                                                                                        <?php the_field('question_t', $item['top_id']); ?>
+                                                                                    </small>
+                                                                                </div>
                                                                             </div>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td class="text-right">
-                                                                        <?php echo number_format($item['top_votes'], 0, ",", " "); ?> <span class="ico3">💎</span>
-                                                                    </td>
-                                                                    <td class="text-right">
-                                                                        <?php echo $item['top_ranks']; ?> <span class="ico3">🏆</span>
-                                                                    </td>
-                                                                    <td class="text-right">
-                                                                        <?php echo $item['top_note']; ?>
-                                                                    </td>
-                                                                    <td class="text-right">
-                                                                        <div class="d-flex align-items-center justify-content-end col-actions">
-                                                                            <a class="mr-1" href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $item['top_id']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir tous les Tops">
-                                                                                <span class="ico">
-                                                                                    👀
-                                                                                </span>
-                                                                            </a>
-                                                                            <a class="mr-1" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $item['top_id']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir le Top mondial">
-                                                                                <span class="ico">
-                                                                                    🌍
-                                                                                </span>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
+                                                                        </td>
+                                                                        <td class="text-right">
+                                                                            <?php echo number_format($item['top_votes'], 0, ",", " "); ?> <span class="ico3">💎</span>
+                                                                        </td>
+                                                                        <td class="text-right">
+                                                                            <?php echo $item['top_ranks']; ?> <span class="ico3">🏆</span>
+                                                                        </td>
+                                                                        <td class="text-right">
+                                                                            <?php echo $item['top_note']; ?>
+                                                                        </td>
+                                                                        <td class="text-right">
+                                                                            <div class="d-flex align-items-center justify-content-end col-actions">
+                                                                                <a class="mr-1" href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $item['top_id']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir tous les Tops">
+                                                                                    <span class="ico">
+                                                                                        👀
+                                                                                    </span>
+                                                                                </a>
+                                                                                <a class="mr-1" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $item['top_id']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir le Top mondial">
+                                                                                    <span class="ico">
+                                                                                        🌍
+                                                                                    </span>
+                                                                                </a>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                <?php endif; ?>
                                                             <?php endforeach; ?>
                                                             </tbody>
                                                         </table>

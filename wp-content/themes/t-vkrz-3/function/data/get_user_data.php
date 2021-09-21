@@ -113,7 +113,7 @@ function get_user_tops($user_id = false){
                 'key' => 'id_tournoi_r',
                 'value' => get_top_welcome(),
                 'compare' => 'NOT IN'
-            )
+            ),
         );
     }
 

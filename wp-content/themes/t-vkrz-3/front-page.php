@@ -49,6 +49,18 @@ $list_t_already_done = $user_tops['list_user_tops_done_ids'];
                                         'operator' => 'NOT IN',
                                     )
                                 ),
+                                'meta_query' => array(
+                                    'relation' => 'OR',
+                                    array(
+                                        'key'     => 'private_t',
+                                        'compare' => 'NOT EXISTS',
+                                    ),
+                                    array(
+                                        'key'     => 'private_t',
+                                        'value'   => '1',
+                                        'compare' => 'NOT LIKE',
+                                    ),
+                                )
                             ));
                             while ($tournois_in_cat->have_posts()) : $tournois_in_cat->the_post(); ?>
 
@@ -154,6 +166,18 @@ $list_t_already_done = $user_tops['list_user_tops_done_ids'];
                                 'taxonomy' => 'categorie',
                                 'field'    => 'term_id',
                                 'terms'    => $cat->term_id,
+                            ),
+                        ),
+                        'meta_query' => array(
+                            'relation' => 'OR',
+                            array(
+                                'key'     => 'private_t',
+                                'compare' => 'NOT EXISTS',
+                            ),
+                            array(
+                                'key'     => 'private_t',
+                                'value'   => '1',
+                                'compare' => 'NOT LIKE',
                             ),
                         )
                     ));
