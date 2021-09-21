@@ -9,6 +9,7 @@
     padding: 1.5rem 1.5rem 0 1.5rem;
 
     .title-win {
+        background: $rose;
         border: $rose;
         border-radius: 3px;
 
@@ -175,6 +176,14 @@
     }
 }
 
-.badge-light-rose{
+.badge-light-rose {
     background: $rose !important;
+}
+
+.min-tournoi .cov-illu .badge-light-rose {
+    position: absolute;
+    right: auto;
+    left: 5px;
+    top: 5px;
+    z-index: 3;
 }
