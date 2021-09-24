@@ -91,7 +91,7 @@ if (false === ( $data_t_created = get_transient( 'user_'.$vainkeur_id.'_get_crea
                                                     <span class="ico4">🌟</span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">
-                                                    <?php echo round($data_t_created['total_completed_top']); ?>%
+                                                    <?php echo $data_t_created['total_completed_top'] ? round($data_t_created['total_completed_top'] / $data_t_created['creator_all_t'] * 100).'%' : '0%'; ?>
                                                 </h2>
                                                 <p class="card-text legende">Taux moyen de finition</p>
                                             </div>
@@ -151,7 +151,7 @@ if (false === ( $data_t_created = get_transient( 'user_'.$vainkeur_id.'_get_crea
                                                                         <?php echo number_format($item['top_ranks'], 0, ",", " "); ?> <span class="ico3">🏆</span>
                                                                     </td>
                                                                     <td class="text-right">
-                                                                        <?php echo round($item['top_completed']); ?>%
+                                                                        <?php echo $item['top_completed'] ? round($item['top_completed'] / $item['top_ranks'] * 100).'%' : '0%'; ?>
                                                                     </td>
                                                                     <td class="text-right">
                                                                         <div class="d-flex align-items-center justify-content-end col-actions">

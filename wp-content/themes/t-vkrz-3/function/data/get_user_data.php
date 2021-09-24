@@ -515,7 +515,7 @@ function get_creator_t($creator_id){
             "nb_top"        => get_field('count_contenders_t', $id_top),
             "top_votes"     => $nb_votes_t,
             "top_ranks"     => $nb_ranks_t,
-            "top_completed" => $nb_completed_top ? $nb_completed_top / $nb_ranks_t * 100 : 0,
+            "top_completed" => $nb_completed_top,
         ));
     endwhile;
 
@@ -536,7 +536,7 @@ function get_creator_t($creator_id){
         "creator_role"      => $creator_data->roles[0],
         "creator_all_v"     => $nb_votes_all_t,
         "creator_all_t"     => $nb_ranks_all_t,
-        "total_completed_top" => $total_nb_completed_top ? $total_nb_completed_top / $nb_ranks_all_t * 100 : 0,
+        "total_completed_top" => $total_nb_completed_top,
     );
 
 }
