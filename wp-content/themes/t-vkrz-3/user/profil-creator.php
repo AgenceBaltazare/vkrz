@@ -16,7 +16,7 @@ get_header();
 
 if (false === ( $data_t_created = get_transient( 'user_'.$vainkeur_id.'_get_creator_t' ) )) {
     $data_t_created = get_creator_t($vainkeur_id);
-    set_transient( 'user_'.$creator_id.'_get_creator_t', $data_t_created, DAY_IN_SECONDS );
+    set_transient( 'user_'.$vainkeur_id.'_get_creator_t', $data_t_created, DAY_IN_SECONDS );
 } else {
     $data_t_created = get_transient( 'user_'.$vainkeur_id.'_get_creator_t' );
 }
@@ -46,14 +46,10 @@ if (false === ( $data_t_created = get_transient( 'user_'.$vainkeur_id.'_get_crea
                                                     <span class="ico4">⚔️</span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">
-                                                    <?php echo $data_t_created['creator_nb_tops']; ?>
+                                                    <?php echo number_format($data_t_created['creator_nb_tops'], 0, ",", " "); ?>
                                                 </h2>
                                                 <p class="card-text legende">
-                                                    <?php if($data_t_created['creator_nb_tops'] > 1) : ?>
-                                                        Tops créés
-                                                    <?php else: ?>
-                                                        Top créé
-                                                    <?php endif; ?>
+                                                    <?php echo ($data_t_created['creator_nb_tops'] > 1) ? "Tops créés" : "Top créé"; ?>
                                                 </p>
                                             </div>
                                         </div>
@@ -68,11 +64,7 @@ if (false === ( $data_t_created = get_transient( 'user_'.$vainkeur_id.'_get_crea
                                                     <?php echo number_format($data_t_created['creator_all_v'], 0, ",", " "); ?>
                                                 </h2>
                                                 <p class="card-text legende">
-                                                    <?php if($data_t_created['creator_all_v'] > 1) : ?>
-                                                        Votes générés
-                                                    <?php else: ?>
-                                                        Vote généré
-                                                    <?php endif; ?>
+                                                    <?php echo ($data_t_created['creator_all_v'] > 1) ? "Votes générés" : "Vote généré"; ?>
                                                 </p>
                                             </div>
                                         </div>
@@ -87,11 +79,7 @@ if (false === ( $data_t_created = get_transient( 'user_'.$vainkeur_id.'_get_crea
                                                     <?php echo number_format($data_t_created['creator_all_t'], 0, ",", " "); ?>
                                                 </h2>
                                                 <p class="card-text legende">
-                                                    <?php if($data_t_created['creator_all_t'] > 1) : ?>
-                                                        Classements générés
-                                                    <?php else: ?>
-                                                        Classement généré
-                                                    <?php endif; ?>
+                                                    <?php echo ($data_t_created['creator_all_t'] > 1) ? "Classements générés" : "Classement généré"; ?>
                                                 </p>
                                             </div>
                                         </div>
@@ -103,13 +91,9 @@ if (false === ( $data_t_created = get_transient( 'user_'.$vainkeur_id.'_get_crea
                                                     <span class="ico4">🌟</span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">
-                                                    <?php if($data_t_created['creator_note'] > 0 && $data_t_created['creator_note'] <= 3) : ?>
-                                                        <?php echo $data_t_created['creator_note']; ?>
-                                                    <?php else: ?>
-                                                        -
-                                                    <?php endif; ?>
+                                                    <?php echo round($data_t_created['total_completed_top']); ?>%
                                                 </h2>
-                                                <p class="card-text legende">Note moyenne / 3</p>
+                                                <p class="card-text legende">Taux moyen de finition</p>
                                             </div>
                                         </div>
                                     </div>
@@ -164,10 +148,10 @@ if (false === ( $data_t_created = get_transient( 'user_'.$vainkeur_id.'_get_crea
                                                                         <?php echo number_format($item['top_votes'], 0, ",", " "); ?> <span class="ico3">💎</span>
                                                                     </td>
                                                                     <td class="text-right">
-                                                                        <?php echo $item['top_ranks']; ?> <span class="ico3">🏆</span>
+                                                                        <?php echo number_format($item['top_ranks'], 0, ",", " "); ?> <span class="ico3">🏆</span>
                                                                     </td>
                                                                     <td class="text-right">
-                                                                        <?php echo $item['top_note']; ?>
+                                                                        <?php echo round($item['top_completed']); ?>%
                                                                     </td>
                                                                     <td class="text-right">
                                                                         <div class="d-flex align-items-center justify-content-end col-actions">
