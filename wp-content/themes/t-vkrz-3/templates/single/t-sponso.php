@@ -162,7 +162,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                         <div class="choosecta">
                                             <div class="cta-begin cta-complet">
                                                 <a href="#" id="begin_t" data-typetop="complet" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
-                                                    Top Complet
+                                                    Faire mon Top pour participer au concours
                                                 </a>
                                                 <small class="text-muted">
                                                     <?php
