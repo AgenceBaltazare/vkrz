@@ -82,7 +82,7 @@ $top_datas    = get_top_data($id_top);
                                     </p>
                                     <div class="d-flex align-items-center buttons-share-top">
                                         <a href="javascript: void(0)" class="sharelinkbtn2 w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-outline-primary waves-effect waves-float waves-light">
-                                            <input type="text" value="<?php echo get_the_permalink(); ?>" class="input_to_share2">
+                                            <input type="text" value="<?php echo get_the_permalink($id_ranking); ?>" class="input_to_share2">
                                             Copier le lien du Top
                                         </a>
                                         <a href="https://twitter.com/Vainkeurz/status/1441764476525719555" target="_blank" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light">
