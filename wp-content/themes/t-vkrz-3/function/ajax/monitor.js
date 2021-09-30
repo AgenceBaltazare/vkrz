@@ -41,7 +41,7 @@ $(document).ready(function ($) {
                 count_tops = newCountTops;
             }
         });
-        if(newCountTops == 30000){
+        if (newCountTops == 100000){
             location.reload();
         }
     }
