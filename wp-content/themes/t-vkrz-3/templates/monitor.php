@@ -21,7 +21,7 @@
                             <div class="card text-center">
                                 <div class="card-body d-flex align-items-center winbloc">
                                     <?php
-                                    if(get_field('nb_total_tops', 'options') < 100000) : ?>
+                                    if (get_field('nb_total_tops', 'options') < 100000) : ?>
                                         <div class="illuwin">
                                             <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/switch-towin.png" alt="" class="img-fluid">
                                         </div>
@@ -29,10 +29,10 @@
                                             Une <span class="t-violet">SWITCH LITE Bleu</span> à gagner !
                                         </h3>
                                         <p class="card-text mt-2">
-                                            Le Vainkeur qui fera le <span class="t-rose">50 000<sup>ème</sup> Top</span> l'emporte. <br>
+                                            Le Vainkeur qui fera le <span class="t-rose">100 000<sup>ème</sup> Top</span> l'emporte. <br>
                                             L'identifiant du gagnant sera annoncé sur Twitter et sur cette même page. <span class="ico">🥶</span>
                                         </p>
-                                    <?php else: ?>
+                                    <?php else : ?>
                                         <div class="illuwin">
                                             <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/switch-win.png" alt="" class="img-fluid">
                                         </div>
@@ -99,7 +99,7 @@
 </div>
 <script>
     const total_vkrz_votes = "<?php the_field('nb_total_votes', 'options'); ?>";
-    const total_vkrz_tops  = "<?php the_field('nb_total_tops', 'options'); ?>";
+    const total_vkrz_tops = "<?php the_field('nb_total_tops', 'options'); ?>";
 </script>
 
 <?php get_footer(); ?>
