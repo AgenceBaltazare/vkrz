@@ -129,6 +129,9 @@ if (is_single() || is_page(get_page_by_path('monitor'))) {
         <!-- End Google Tag Manager (noscript) -->
     <?php endif; ?>
 
+    <?php if(get_template_part('single/t-marqueblanche.php')): ?>
+        
+    <?php endif; ?>
     <?php
     get_template_part('partials/menu-user');
     get_template_part('partials/menu-vkrz');
