@@ -127,7 +127,7 @@ $top_datas    = get_top_data($id_top);
                                                             </h2>
                                                             <div class="mt-1">
                                                                 <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_top; ?>" class="w-100 btn btn-primary waves-effect">
-                                                                    <span class="ico">🌎</span> Voir le Top globales
+                                                                    <span class="ico">🌎</span> Voir le Top global
                                                                 </a>
                                                             </div>
                                                             <h2 class="stats-mondiales mt-2 mb-0">
