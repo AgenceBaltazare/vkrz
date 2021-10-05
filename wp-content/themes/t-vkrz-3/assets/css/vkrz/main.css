@@ -832,6 +832,10 @@ html .content {
   box-shadow: none;
 }
 
+.typeform iframe {
+  min-height: 800px;
+}
+
 #commentform textarea, #commentform input {
   background-color: transparent !important;
 }
