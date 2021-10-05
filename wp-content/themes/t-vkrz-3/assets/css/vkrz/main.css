@@ -2644,6 +2644,7 @@ textarea {
   max-width: 300px;
   height: auto;
   margin-bottom: -30px;
+  cursor: pointer;
 }
 
 .content_marqueblanche .produit p {

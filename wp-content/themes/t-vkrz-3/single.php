@@ -21,7 +21,7 @@ switch (get_post_type()) {
         if (get_field('sponso_t', $id_top)) {
             get_template_part("templates/single/r-sponso");
         } elseif (get_field('marqueblanche_t', $id_top)) {
-            get_template_part("templates/single/t-marqueblanche");
+            get_template_part("templates/single/r-marqueblanche");
         }
         else{
             get_template_part("templates/single/r");
