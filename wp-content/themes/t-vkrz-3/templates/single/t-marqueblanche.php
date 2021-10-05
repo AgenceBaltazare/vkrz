@@ -47,7 +47,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
             <h2>
                 Quelle culotte préfères-tu ?
             </h2>
-            <div class="row align-items-center">
+            <div class="row align-items-center mb-5">
                 <div class="col-5 produit">
                     <img src="<?php bloginfo('template_directory'); ?>/assets/images/marqueblanche/gdp/2.png" alt="">
                     <p>

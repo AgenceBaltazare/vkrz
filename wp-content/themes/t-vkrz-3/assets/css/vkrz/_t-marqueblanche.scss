@@ -1,6 +1,12 @@
 .content_marqueblanche {
     margin: 0;
     padding: 0;
+    h2 {
+        font-family: 'Themysion';
+    }
+    p {
+        font-family: 'Dosis';
+    }
     .logo_marqueblanche {
         margin-left: 30px;
         margin-top: 15px;
@@ -8,12 +14,6 @@
             max-width: 250px;
             height: auto;
         }
-    }
-    h2 {
-        font-family: 'Themysion';
-    }
-    p {
-        font-family: 'Dosis';
     }
     .content_top {
         display: flex;
@@ -24,16 +24,16 @@
         .bouton_start {
             margin-bottom: 60px;
             p {
-                font-size: 28px;
+                font-size: 26px;
             }
         }
         h2 {
-            font-size: 66px;
+            font-size: 60px;
         }
     }
     .produit {
         img {
-            max-width: 400px;
+            max-width: 300px;
             height: auto;
             margin-bottom: -30px;
         }
@@ -45,7 +45,7 @@
     }
     .versus {
         img {
-            max-width: 130px;
+            max-width: 90px;
             height: auto;
         }
     }
