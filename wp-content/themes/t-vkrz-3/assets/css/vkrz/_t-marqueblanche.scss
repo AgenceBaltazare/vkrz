@@ -1,0 +1,52 @@
+.content_marqueblanche {
+    margin: 0;
+    padding: 0;
+    .logo_marqueblanche {
+        margin-left: 30px;
+        margin-top: 15px;
+        img {
+            max-width: 250px;
+            height: auto;
+        }
+    }
+    h2 {
+        font-family: 'Themysion';
+    }
+    p {
+        font-family: 'Dosis';
+    }
+    .content_top {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 110px;
+        .bouton_start {
+            margin-bottom: 60px;
+            p {
+                font-size: 28px;
+            }
+        }
+        h2 {
+            font-size: 66px;
+        }
+    }
+    .produit {
+        img {
+            max-width: 400px;
+            height: auto;
+            margin-bottom: -30px;
+        }
+        p {
+            text-transform: uppercase;
+            font-size: 26px;
+            text-align: center;
+        }
+    }
+    .versus {
+        img {
+            max-width: 130px;
+            height: auto;
+        }
+    }
+}

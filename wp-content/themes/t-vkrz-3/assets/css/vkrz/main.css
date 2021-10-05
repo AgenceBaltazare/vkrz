@@ -2588,6 +2588,75 @@ textarea {
   z-index: 3;
 }
 
+.content_marqueblanche {
+  margin: 0;
+  padding: 0;
+}
+
+.content_marqueblanche .logo_marqueblanche {
+  margin-left: 30px;
+  margin-top: 15px;
+}
+
+.content_marqueblanche .logo_marqueblanche img {
+  max-width: 250px;
+  height: auto;
+}
+
+.content_marqueblanche h2 {
+  font-family: 'Themysion';
+}
+
+.content_marqueblanche p {
+  font-family: 'Dosis';
+}
+
+.content_marqueblanche .content_top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 110px;
+}
+
+.content_marqueblanche .content_top .bouton_start {
+  margin-bottom: 60px;
+}
+
+.content_marqueblanche .content_top .bouton_start p {
+  font-size: 28px;
+}
+
+.content_marqueblanche .content_top h2 {
+  font-size: 66px;
+}
+
+.content_marqueblanche .produit img {
+  max-width: 400px;
+  height: auto;
+  margin-bottom: -30px;
+}
+
+.content_marqueblanche .produit p {
+  text-transform: uppercase;
+  font-size: 26px;
+  text-align: center;
+}
+
+.content_marqueblanche .versus img {
+  max-width: 130px;
+  height: auto;
+}
+
 .mobile-navbar {
   background: linear-gradient(150deg, #0c0a27, #471867, #0c0a27, #230b36, #0c0a27);
   background-size: 400% 400%;

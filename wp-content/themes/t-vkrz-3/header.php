@@ -134,9 +134,6 @@ if (is_single() || is_page(get_page_by_path('monitor'))) {
         get_template_part('partials/menu-user');
         get_template_part('partials/menu-vkrz');
         ?>
-        <?php else: 
-             
-        ?>
     <?php endif; ?>
 
     
