@@ -116,7 +116,37 @@ $top_datas    = get_top_data($id_top);
 
                                             <div class="animate__fadeInUp animate__animated animate__delay-2s">
 
-                                                <?php if (!get_field('private_t', $id_top)) : ?>
+                                                <?php if (get_field('private_t', $id_top)) : ?>
+                                                    <div class="separate mt-1 mb-2 d-block d-sm-none"></div>
+
+                                                    <div class="card">
+                                                        <div class="card-body">
+                                                            <h2 class="stats-mondiales mb-0">
+                                                                <b>Stats globales :</b>
+                                                                <?php echo $top_datas['nb_tops']; ?> 🏆 <?php echo $top_datas['nb_votes']; ?> 💎
+                                                            </h2>
+                                                            <div class="mt-1">
+                                                                <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_top; ?>" class="w-100 btn btn-primary waves-effect">
+                                                                    <span class="ico">🌎</span> Voir le Top globales
+                                                                </a>
+                                                            </div>
+                                                            <h2 class="stats-mondiales mt-2 mb-0">
+                                                                <b>Ressemblance :</b>
+                                                                <?php
+                                                                $similar = get_user_percent(get_field('uuid_user_r', $id_ranking), $id_top);
+                                                                echo $similar['percent'] . "％";
+                                                                ?>
+                                                            </h2>
+                                                            <div class="mt-1">
+                                                                <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_top; ?>" class="w-100 btn btn-outline-primary waves-effect">
+                                                                    <span class="ico ico-reverse">👀</span> voir les autres Tops
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                <?php else : ?>
+
                                                     <div class="separate mt-1 mb-2 d-block d-sm-none"></div>
 
                                                     <div class="card">
@@ -144,6 +174,7 @@ $top_datas    = get_top_data($id_top);
                                                             </div>
                                                         </div>
                                                     </div>
+
                                                 <?php endif; ?>
 
                                                 <?php
