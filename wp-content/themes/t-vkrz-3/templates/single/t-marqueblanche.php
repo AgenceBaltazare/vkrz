@@ -34,14 +34,14 @@ $creator_data       = get_user_infos($creator_uuiduser);
 ?>
 <div class="app-content-marqueblanche content cover" style="background: url(<?php echo $top_infos['top_cover']; ?>) center center no-repeat">
     <div class="logo_marqueblanche">
-        <img src="<?php bloginfo('template_directory'); ?>/assets/images/marqueblanche/gdp/logo-gdp.png" alt="logo-gdp">
+        <?php echo wp_get_attachment_image(get_field('logo_marque_blanche_t', $id_top), 'full', '', array('class' => 'img-fluid')); ?>
     </div>
     <div class="content-wrapper">
         <div class="content-body tournoi-content">
             <div class="intro-marqueblanche">
                 <div class="t-objectif-marqueblanche">
                     <h3>
-                    Génère ton classement Germaine des prés !
+                        <?php the_field('objectif_marque_blanche_t', $id_top); ?>
                     </h3>
                 </div>
                 <h4 class="text-center t-question-marqueblanche">
@@ -275,15 +275,13 @@ $creator_data       = get_user_infos($creator_uuiduser);
                 </div>
 
                 <div class="social-media-marqueblanche">
-                    <a href="">
-                        <img src="<?php bloginfo('template_directory'); ?>/assets/images/marqueblanche/gdp/icon-fb-gdp.svg" alt="facebook-gdp">
-                    </a>
-                    <a href="">
-                        <img src="<?php bloginfo('template_directory'); ?>/assets/images/marqueblanche/gdp/icon-twitter-gdp.svg" alt="twitter-gdp">
-                    </a>
-                    <a href="">
-                        <img src="<?php bloginfo('template_directory'); ?>/assets/images/marqueblanche/gdp/icon-insta-gdp.svg" alt="insta-gdp">
-                    </a>
+                    <?php if(have_rows('reseaux_sociaux_marque_blanche_t', $id_top)):
+                        while ( have_rows('reseaux_sociaux_marque_blanche_t', $id_top) ) : the_row(); ?>
+                            <a href=<?php the_sub_field('lien_reseaux_sociaux_marque_blanche_t', $id_top); ?> target="_blank">
+                                <?php echo wp_get_attachment_image(get_sub_field('image_reseaux_sociaux_marque_blanche_t', $id_top), 'full', '', array('class' => 'img-fluid')); ?>
+                            </a>
+                        <?php endwhile; ?>
+                    <?php endif; ?>
                 </div>
 
                 <?php
