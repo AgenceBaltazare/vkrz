@@ -34,14 +34,18 @@ $creator_data       = get_user_infos($creator_uuiduser);
 ?>
 <div class="app-content-marqueblanche content cover" style="background: url(<?php echo $top_infos['top_cover']; ?>) center center no-repeat">
     <div class="logo_marqueblanche">
-        <img src="<?php bloginfo('template_directory'); ?>/assets/images/marqueblanche/gdp/logo-gdp.png" alt="">
+        <img src="<?php bloginfo('template_directory'); ?>/assets/images/marqueblanche/gdp/logo-gdp.png" alt="logo-gdp">
     </div>
     <div class="content-wrapper">
         <div class="content-body tournoi-content">
             <div class="intro-marqueblanche">
-                <h3 class="mb-0 t-titre-tournoi">Top <?php echo $top_infos['top_number']; ?> <span class="ico">⚔️</span> <?php echo $top_infos['top_title']; ?></h3>
+                <div class="t-objectif-marqueblanche">
+                    <h3>
+                    Génère ton classement Germaine des prés !
+                    </h3>
+                </div>
                 <h4 class="text-center t-question-marqueblanche">
-                    <?php echo $top_infos['top_question']; ?> <br>
+                    <?php echo $top_infos['top_question']; ?><img src="<?php bloginfo('template_directory'); ?>/assets/images/marqueblanche/gdp/coeur.svg" alt="coeur"> <br>
                 </h4>    
             </div>
 
@@ -270,6 +274,18 @@ $creator_data       = get_user_infos($creator_uuiduser);
                     </div>
                 </div>
 
+                <div class="social-media-marqueblanche">
+                    <a href="">
+                        <img src="<?php bloginfo('template_directory'); ?>/assets/images/marqueblanche/gdp/icon-fb-gdp.svg" alt="facebook-gdp">
+                    </a>
+                    <a href="">
+                        <img src="<?php bloginfo('template_directory'); ?>/assets/images/marqueblanche/gdp/icon-twitter-gdp.svg" alt="twitter-gdp">
+                    </a>
+                    <a href="">
+                        <img src="<?php bloginfo('template_directory'); ?>/assets/images/marqueblanche/gdp/icon-insta-gdp.svg" alt="insta-gdp">
+                    </a>
+                </div>
+
                 <?php
                 set_query_var('steps_var', compact('current_step'));
                 get_template_part('templates/parts/content', 'step-bar');
@@ -279,3 +295,5 @@ $creator_data       = get_user_infos($creator_uuiduser);
         </div>
     </div>
 </div>
+
+<?php get_footer(); ?>

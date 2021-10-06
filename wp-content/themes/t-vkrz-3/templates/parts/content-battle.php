@@ -58,11 +58,11 @@
             <?php if (!get_field('ne_pas_afficher_les_titres_t', $id_top)) : ?>
                 <?php if(get_field('marqueblanche_t', $id_top)): ?>
                     <h2 class="title-contender-marqueblanche">
-                        <?php echo get_the_title($contender_1); ?>
+                        <?php echo get_the_title($contender_2); ?>
                     </h2>
                 <?php else: ?>
                     <h2 class="title-contender">
-                        <?php echo get_the_title($contender_1); ?>
+                        <?php echo get_the_title($contender_2); ?>
                     </h2>
                 <?php endif; ?>
             <?php endif; ?>

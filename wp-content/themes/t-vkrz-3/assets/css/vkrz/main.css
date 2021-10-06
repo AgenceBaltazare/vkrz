@@ -2660,7 +2660,7 @@ textarea {
 
 .t-marqueblanche .app-content-marqueblanche {
   margin-left: 0px;
-  padding: calc(2rem + 3.45rem + 1.3rem) 2rem 10rem;
+  padding: calc(2rem + 3.45rem + 1.3rem) 2rem 5rem;
   min-height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2668,6 +2668,9 @@ textarea {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
 }
 
 .t-marqueblanche .logo_marqueblanche {
@@ -2675,7 +2678,7 @@ textarea {
 }
 
 .t-marqueblanche .logo_marqueblanche img {
-  max-width: 300px;
+  max-width: 270px;
   height: auto;
 }
 
@@ -2692,11 +2695,37 @@ textarea {
           flex-direction: column;
 }
 
+.t-marqueblanche .t-objectif-marqueblanche {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  height: 110px;
+  background: url("../../images/marqueblanche/gdp/bulle-gdp.svg") no-repeat center;
+  background-size: contain;
+}
+
+.t-marqueblanche .t-objectif-marqueblanche h3 {
+  font-size: 28px;
+  font-family: 'Dosis';
+}
+
 .t-marqueblanche .t-question-marqueblanche {
   font-family: 'Themysion';
   font-size: 80px;
   color: #040404;
-  margin-top: 80px;
+  margin-top: 50px;
+}
+
+.t-marqueblanche .t-question-marqueblanche img {
+  width: 100px;
+  height: auto;
 }
 
 .t-marqueblanche .title-contender-marqueblanche {
@@ -2712,6 +2741,17 @@ textarea {
   max-width: 130px;
 }
 
+.t-marqueblanche .social-media-marqueblanche {
+  position: absolute;
+  bottom: 30px;
+  left: 50px;
+}
+
+.t-marqueblanche .social-media-marqueblanche img {
+  max-width: 50px;
+  height: auto;
+}
+
 @media (max-width: 768px) {
   .t-marqueblanche .app-content-marqueblanche {
     padding: calc(1rem - 0.8rem + 6.45rem + 1.3rem) calc(2rem - 0.8rem) 0 calc(2rem - 0.8rem) !important;
@@ -2722,6 +2762,36 @@ textarea {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
+  }
+  .t-marqueblanche .content-wrapper {
+    margin-bottom: 80px;
+  }
+  .t-marqueblanche .logo_marqueblanche {
+    margin-top: -100px;
+  }
+  .t-marqueblanche .logo_marqueblanche img {
+    max-width: 240px;
+    height: auto;
+  }
+  .t-marqueblanche .t-objectif-marqueblanche {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    width: 100%;
+    height: 90px;
+    background: url("../../images/marqueblanche/gdp/bulle-gdp.svg") no-repeat center;
+    background-size: contain;
+  }
+  .t-marqueblanche .t-objectif-marqueblanche h3 {
+    font-size: 22px;
+    font-family: 'Dosis';
+    width: 80%;
   }
   .t-marqueblanche .t-question-marqueblanche {
     font-size: 60px;
@@ -2741,6 +2811,10 @@ textarea {
     height: auto;
     position: relative;
     z-index: 33;
+  }
+  .t-marqueblanche .social-media-marqueblanche {
+    bottom: 17px;
+    left: 20px;
   }
 }
 
