@@ -2658,6 +2658,92 @@ textarea {
   height: auto;
 }
 
+.t-marqueblanche .app-content-marqueblanche {
+  margin-left: 0px;
+  padding: calc(2rem + 3.45rem + 1.3rem) 2rem 10rem;
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.t-marqueblanche .logo_marqueblanche {
+  margin-top: -80px;
+}
+
+.t-marqueblanche .logo_marqueblanche img {
+  max-width: 300px;
+  height: auto;
+}
+
+.t-marqueblanche .intro-marqueblanche {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.t-marqueblanche .t-question-marqueblanche {
+  font-family: 'Themysion';
+  font-size: 80px;
+  color: #040404;
+  margin-top: 80px;
+}
+
+.t-marqueblanche .title-contender-marqueblanche {
+  font-family: 'Dosis';
+  color: #040404;
+  text-transform: uppercase;
+  font-size: 26px;
+  margin-top: -30px;
+}
+
+.t-marqueblanche .versus-marqueblanche img {
+  border-radius: 0 !important;
+  max-width: 130px;
+}
+
+@media (max-width: 768px) {
+  .t-marqueblanche .app-content-marqueblanche {
+    padding: calc(1rem - 0.8rem + 6.45rem + 1.3rem) calc(2rem - 0.8rem) 0 calc(2rem - 0.8rem) !important;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .t-marqueblanche .t-question-marqueblanche {
+    font-size: 60px;
+  }
+  .t-marqueblanche .title-contender-marqueblanche {
+    width: 50%;
+    margin: 10px 0 0;
+    padding: 0 5px;
+  }
+  .t-marqueblanche .versus-marqueblanche {
+    margin: 15px auto;
+    position: relative;
+  }
+  .t-marqueblanche .versus-marqueblanche img {
+    max-width: 80px !important;
+    border-radius: 0;
+    height: auto;
+    position: relative;
+    z-index: 33;
+  }
+}
+
 .mobile-navbar {
   background: linear-gradient(150deg, #0c0a27, #471867, #0c0a27, #230b36, #0c0a27);
   background-size: 400% 400%;

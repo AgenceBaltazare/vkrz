@@ -32,10 +32,18 @@ $creator_id         = get_post_field('post_author', $id_top);
 $creator_uuiduser   = get_field('uuiduser_user', 'user_' . $creator_id);
 $creator_data       = get_user_infos($creator_uuiduser);
 ?>
-<div class="app-content content cover" style="background: url(<?php echo $top_infos['top_cover']; ?>) center center no-repeat">
-    <div class="content-overlay"></div>
+<div class="app-content-marqueblanche content cover" style="background: url(<?php echo $top_infos['top_cover']; ?>) center center no-repeat">
+    <div class="logo_marqueblanche">
+        <img src="<?php bloginfo('template_directory'); ?>/assets/images/marqueblanche/gdp/logo-gdp.png" alt="">
+    </div>
     <div class="content-wrapper">
         <div class="content-body tournoi-content">
+            <div class="intro-marqueblanche">
+                <h3 class="mb-0 t-titre-tournoi">Top <?php echo $top_infos['top_number']; ?> <span class="ico">⚔️</span> <?php echo $top_infos['top_title']; ?></h3>
+                <h4 class="text-center t-question-marqueblanche">
+                    <?php echo $top_infos['top_question']; ?> <br>
+                </h4>    
+            </div>
 
             <?php if (!$id_ranking) : ?>
 
@@ -226,15 +234,6 @@ $creator_data       = get_user_infos($creator_uuiduser);
 
             <?php else : ?>
 
-                <div class="intro-mobile">
-                    <div class="tournament-heading text-center">
-                        <h3 class="mb-0 t-titre-tournoi">Top <?php echo $top_infos['top_number']; ?> <span class="ico">⚔️</span> <?php echo $top_infos['top_title']; ?></h3>
-                        <h4 class="text-center t-question">
-                            <?php echo $top_infos['top_question']; ?> <br>
-                        </h4>
-                    </div>
-                </div>
-
                 <div class="row">
                     <div class="col-md-12">
                         <?php if ($top_infos['top_type'] != "top3") : ?>
@@ -280,7 +279,3 @@ $creator_data       = get_user_infos($creator_uuiduser);
         </div>
     </div>
 </div>
-
-
-
-<?php get_footer(); ?>

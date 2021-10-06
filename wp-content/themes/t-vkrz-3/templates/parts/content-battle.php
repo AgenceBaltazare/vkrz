@@ -9,9 +9,15 @@
                 <?php echo get_the_post_thumbnail($contender_1, 'full', array('class' => 'img-fluid')); ?>
             <?php endif; ?>
             <?php if (!get_field('ne_pas_afficher_les_titres_t', $id_top)) : ?>
-                <h2 class="title-contender">
-                    <?php echo get_the_title($contender_1); ?>
-                </h2>
+                <?php if(get_field('marqueblanche_t', $id_top)): ?>
+                    <h2 class="title-contender-marqueblanche">
+                        <?php echo get_the_title($contender_1); ?>
+                    </h2>
+                <?php else: ?>
+                    <h2 class="title-contender">
+                        <?php echo get_the_title($contender_1); ?>
+                    </h2>
+                <?php endif; ?>
             <?php endif; ?>
         </div>
     </div>
@@ -30,9 +36,15 @@
                 </h6>
             </div>
         <?php endif; ?>
-        <h4 class="text-center versus">
-            <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/vainkeurz-eclair.svg" alt="" class="img-fluid">
-        </h4>
+        <?php if(get_field('marqueblanche_t', $id_top)): ?>
+            <h4 class="text-center versus-marqueblanche">
+                <img src="<?php bloginfo('template_directory'); ?>/assets/images/marqueblanche/gdp/versus.svg" alt="" class="img-fluid">
+            </h4>
+        <?php else: ?>
+            <h4 class="text-center versus">
+                <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/vainkeurz-eclair.svg" alt="" class="img-fluid">
+            </h4>
+        <?php endif; ?>
     </div>
 
     <div class="col-sm-5 col-12 bloc-contenders link-contender_2 contender_2 cover_contenders link-contender">
@@ -44,9 +56,15 @@
                 <?php echo get_the_post_thumbnail($contender_2, 'full', array('class' => 'img-fluid')); ?>
             <?php endif; ?>
             <?php if (!get_field('ne_pas_afficher_les_titres_t', $id_top)) : ?>
-                <h2 class="title-contender">
-                    <?php echo get_the_title($contender_2); ?>
-                </h2>
+                <?php if(get_field('marqueblanche_t', $id_top)): ?>
+                    <h2 class="title-contender-marqueblanche">
+                        <?php echo get_the_title($contender_1); ?>
+                    </h2>
+                <?php else: ?>
+                    <h2 class="title-contender">
+                        <?php echo get_the_title($contender_1); ?>
+                    </h2>
+                <?php endif; ?>
             <?php endif; ?>
         </div>
     </div>
