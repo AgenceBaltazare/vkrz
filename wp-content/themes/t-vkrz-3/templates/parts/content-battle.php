@@ -24,17 +24,31 @@
 
     <div class="col-sm-2">
         <?php if (isset($nb_user_votes) && $nb_user_votes != "") : ?>
-            <div class="display_votes d-none d-sm-block">
-                <h6>
-                    <?php if ($nb_user_votes == 0) : ?>
-                        Aucun vote encore
-                    <?php elseif ($nb_user_votes == 1) : ?>
-                        🖖 1er vote
-                    <?php else : ?>
-                        <?php echo $nb_user_votes; ?> votes
-                    <?php endif; ?>
-                </h6>
-            </div>
+            <?php if(!get_field('marqueblanche_t', $id_top)): ?>
+                <div class="display_votes d-none d-sm-block">
+                    <h6>
+                        <?php if ($nb_user_votes == 0) : ?>
+                            Aucun vote encore
+                        <?php elseif ($nb_user_votes == 1) : ?>
+                            🖖 1er vote
+                        <?php else : ?>
+                            <?php echo $nb_user_votes; ?> votes
+                        <?php endif; ?>
+                    </h6>
+                </div>
+            <?php else: ?>
+                <div class="display_votes d-none d-sm-block">
+                    <h6 class="txt_votes_marqueblanche">
+                        <?php if ($nb_user_votes == 0) : ?>
+                            Aucun vote encore
+                        <?php elseif ($nb_user_votes == 1) : ?>
+                            🖖 1er vote
+                        <?php else : ?>
+                            <?php echo $nb_user_votes; ?> votes
+                        <?php endif; ?>
+                    </h6>
+                </div>
+            <?php endif; ?>
         <?php endif; ?>
         <?php if(get_field('marqueblanche_t', $id_top)): ?>
             <h4 class="text-center versus-marqueblanche">

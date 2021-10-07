@@ -2682,6 +2682,10 @@ textarea {
   height: auto;
 }
 
+.t-marqueblanche .txt_votes_marqueblanche {
+  color: #040404;
+}
+
 @media (max-width: 768px) {
   .t-marqueblanche .app-content-marqueblanche {
     padding: calc(1rem - 0.8rem + 6.45rem + 1.3rem) calc(2rem - 0.8rem) 0 calc(2rem - 0.8rem) !important;

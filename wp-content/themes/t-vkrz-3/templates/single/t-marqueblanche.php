@@ -278,7 +278,9 @@ $creator_data       = get_user_infos($creator_uuiduser);
                     <?php if(have_rows('reseaux_sociaux_marque_blanche_t', $id_top)):
                         while ( have_rows('reseaux_sociaux_marque_blanche_t', $id_top) ) : the_row(); ?>
                             <a href=<?php the_sub_field('lien_reseaux_sociaux_marque_blanche_t', $id_top); ?> target="_blank">
-                                <?php echo wp_get_attachment_image(get_sub_field('image_reseaux_sociaux_marque_blanche_t', $id_top), 'full', '', array('class' => 'img-fluid')); ?>
+                                <?php if(get_sub_field('image_reseaux_sociaux_marque_blanche_t', $id_top)) : ?>
+                                    <?php echo wp_get_attachment_image(get_sub_field('image_reseaux_sociaux_marque_blanche_t', $id_top), 'full', '', array('class' => 'img-fluid')); ?>
+                                <?php endif; ?>
                             </a>
                         <?php endwhile; ?>
                     <?php endif; ?>
