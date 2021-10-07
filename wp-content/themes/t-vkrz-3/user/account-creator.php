@@ -38,9 +38,11 @@ if (false === ( $data_t_created = get_transient( 'user_'.$user_id.'_get_creator_
                                                     <span class="ico4">⚔️</span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">
-                                                    <?php echo $data_t_created['creator_nb_tops']; ?>
+                                                    <?php echo number_format($data_t_created['creator_nb_tops'], 0, ",", " "); ?>
                                                 </h2>
-                                                <p class="card-text legende">Tops créés</p>
+                                                <p class="card-text legende">
+                                                    <?php echo ($data_t_created['creator_nb_tops'] > 1) ? "Tops créés" : "Top créé"; ?>
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
@@ -53,7 +55,9 @@ if (false === ( $data_t_created = get_transient( 'user_'.$user_id.'_get_creator_
                                                 <h2 class="font-weight-bolder">
                                                     <?php echo number_format($data_t_created['creator_all_v'], 0, ",", " "); ?>
                                                 </h2>
-                                                <p class="card-text legende">Votes générés</p>
+                                                <p class="card-text legende">
+                                                    <?php echo ($data_t_created['creator_all_v'] > 1) ? "Votes générés" : "Vote généré"; ?>
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
@@ -64,9 +68,11 @@ if (false === ( $data_t_created = get_transient( 'user_'.$user_id.'_get_creator_
                                                     <span class="ico4">🏆</span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">
-                                                    <?php echo $data_t_created['creator_all_t']; ?>
+                                                    <?php echo number_format($data_t_created['creator_all_t'], 0, ",", " "); ?>
                                                 </h2>
-                                                <p class="card-text legende">Classements générés</p>
+                                                <p class="card-text legende">
+                                                    <?php echo ($data_t_created['creator_all_t'] > 1) ? "Classements générés" : "Classement généré"; ?>
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
@@ -77,9 +83,9 @@ if (false === ( $data_t_created = get_transient( 'user_'.$user_id.'_get_creator_
                                                     <span class="ico4">🌟</span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">
-                                                    <?php echo $data_t_created['creator_note']; ?>
+                                                    <?php echo $data_t_created['total_completed_top'] ? round($data_t_created['total_completed_top'] / $data_t_created['creator_all_t'] * 100).'%' : '0%'; ?>
                                                 </h2>
-                                                <p class="card-text legende">Note moyenne / 3</p>
+                                                <p class="card-text legende">Taux moyen de finition</p>
                                             </div>
                                         </div>
                                     </div>
@@ -115,7 +121,7 @@ if (false === ( $data_t_created = get_transient( 'user_'.$user_id.'_get_creator_
                                                             <tbody>
                                                             <?php
                                                             foreach($data_t_created['creator_tops'] as $item) : ?>
-                                                                <?php if (!get_field('private_t', $item['id_top'])) : ?>
+                                                                <?php if (!get_field('private_t', $item['top_id'])) : ?>
                                                                     <tr>
                                                                         <td>
                                                                             <div class="media-body">
@@ -138,7 +144,7 @@ if (false === ( $data_t_created = get_transient( 'user_'.$user_id.'_get_creator_
                                                                             <?php echo $item['top_ranks']; ?> <span class="ico3">🏆</span>
                                                                         </td>
                                                                         <td class="text-right">
-                                                                            <?php echo $item['top_note']; ?>
+                                                                            <?php echo $item['top_completed'] ? round($item['top_completed'] / $item['top_ranks'] * 100).'%' : '0%'; ?>
                                                                         </td>
                                                                         <td class="text-right">
                                                                             <div class="d-flex align-items-center justify-content-end col-actions">

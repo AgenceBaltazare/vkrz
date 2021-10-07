@@ -60,6 +60,7 @@ function get_top_data($id_top){
 
     $count_votes_of_t       = 0;
     $count_note_of_t        = 0;
+    $count_completed_top    = 0;
 
     $all_ranking_of_t = new WP_Query(array(
         'post_type'                 => 'classement',
@@ -85,6 +86,9 @@ function get_top_data($id_top){
     while ($all_ranking_of_t->have_posts()) : $all_ranking_of_t->the_post();
 
         $count_votes_of_t = $count_votes_of_t + get_field('nb_votes_r');
+        if (get_field('done_r')) {
+            $count_completed_top++;
+        }
 
     endwhile;
 
@@ -122,11 +126,12 @@ function get_top_data($id_top){
     $nb_comments    = get_comments('status=approve&type=comments&hierarchical=true&count=true&post_id='.$id_top);
 
     return array(
-        "nb_tops"       => $all_ranking_of_t->post_count,
-        "nb_votes"      => $count_votes_of_t,
-        "nb_note"       => $all_notes_of_t->post_count,
-        "moy_note"      => $moyenne_note,
-        'nb_comments'   => $nb_comments
+        "nb_tops"           => $all_ranking_of_t->post_count,
+        "nb_votes"          => $count_votes_of_t,
+        "nb_note"           => $all_notes_of_t->post_count,
+        "moy_note"          => $moyenne_note,
+        "nb_completed_top"  => $count_completed_top,
+        'nb_comments'       => $nb_comments
     );
 }
 
