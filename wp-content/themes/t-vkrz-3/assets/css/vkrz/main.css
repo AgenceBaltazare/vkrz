@@ -304,6 +304,10 @@ a.sociallink:hover i {
   width: 10px;
 }
 
+.vertical-layout.vertical-menu-modern.menu-expanded .footer {
+  margin-right: 80px;
+}
+
 .dark-layout {
   background: linear-gradient(35deg, #0c0a27 40%, #230b36 100%) fixed;
 }

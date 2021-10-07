@@ -6,9 +6,13 @@
     background-size: contain !important;
 }
 
-.space{
+.space {
     display: inline-block;
     width: 10px;
+}
+
+.vertical-layout.vertical-menu-modern.menu-expanded .footer {
+    margin-right: 80px;
 }
 
 .dark-layout {
@@ -493,7 +497,8 @@ html .content {
 
 .stats-mondiales {
     font-size: 18px;
-    b{
+
+    b {
         color: $c5;
         font-weight: normal;
     }

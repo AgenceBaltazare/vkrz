@@ -21,8 +21,8 @@
                 Twitter
             </a>
             <span class="space"></span>
-            <a href="https://www.facebook.com/vainkeurz" target="_blank" class="btn-footer">
-                Facebook
+            <a href="https://www.tiktok.com/@vainkeurz" target="_blank" class="btn-footer">
+                TikTok
             </a>
         </span>
     </p>
