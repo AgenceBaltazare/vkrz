@@ -1,11 +1,8 @@
 .t-marqueblanche {
     .app-content-marqueblanche {
         margin-left: 0px;
-        padding: calc(2rem + 3.45rem + 1.3rem) 2rem 5rem;
+        padding: calc(2rem + 3.45rem + 1.3rem) 2rem 2rem;
         min-height: 100vh;
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-evenly;
     }
     .logo_marqueblanche {
         margin-top: -80px;
@@ -16,8 +13,7 @@
     }
     .intro-marqueblanche {
         display: flex;
-        justify-content: center;
-        flex-direction: column;
+        flex-direction: row;
     }
     .t-objectif-marqueblanche {
         display: flex;
@@ -42,6 +38,14 @@
             height: auto;
         }
     }
+    .app-content-marqueblanche-result {
+        margin-left: 0px;
+        padding: calc(2rem + 3.45rem + 1.3rem) 0rem 0rem;
+        min-height: 100vh;
+    }
+    .battle-marqueblanche {
+        margin-left:230px;
+    }
     .title-contender-marqueblanche {
             font-family: 'Dosis';
             color: #040404;
@@ -56,29 +60,156 @@
         }
     }
     .social-media-marqueblanche {
-        position:absolute;
-        bottom: 30px;
-        left: 50px;
+        display: flex;
+        margin-top: 40px;
+        a {
+            margin: 0 10px;
+        }
         img {
-            max-width: 50px;
+            max-width: 70px;
             height:auto;
         }
     }
     .txt_votes_marqueblanche {
         color: #040404;
     }
-
+    .r-resultat-marqueblanche {
+        font-family: 'Themysion';
+        font-size: 96px;
+        color: #040404;
+        margin-top: 20px;
+        width:100%;
+    }
+    .crown:before {
+        content: url("../../images/marqueblanche/gdp/crown-gdp.svg");
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        top: 30px;
+    }
+    .top1:after {
+        content: url("../../images/marqueblanche/gdp/top1.svg");
+        position: absolute;
+        right: 100px;
+        bottom: 135px;
+    }
+    .top2:after {
+        content: url("../../images/marqueblanche/gdp/top2.svg");
+        position: absolute;
+        right: 60px;
+        bottom: 105px;
+    }
+    .top3:after {
+        content: url("../../images/marqueblanche/gdp/top3.svg");
+        position: absolute;
+        right: 15px;
+        bottom: 85px;
+    }
+    @media (min-width: 768px) and (max-width: 1300px) {
+        .top1:after {
+            right: 10px;
+            bottom: 90px;
+        }
+        .top2:after {
+            right: 0px;
+            bottom: 70px;
+        }
+        .top3:after {
+            right: -20px;
+            bottom: 50px;
+        }
+    }
+    .footer-resultat {
+        display:flex;
+        justify-content: space-evenly;
+        align-items: flex-end;
+    }
+    .cover-coupon {
+        background: url("../../images/marqueblanche/gdp/bg-coupon.svg") no-repeat center;
+        background-size: cover;
+        padding: 50px 153px 60px 60px;
+        float: left;
+        margin-left: -30px;
+    }
+    .coupon-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        h3 {
+            font-family: 'Themysion';
+            font-size:75px;
+            color:#000;
+            letter-spacing: 5px;
+            margin-bottom: -15px;
+        }
+        p {
+            font-family: 'Dosis';
+            font-size:25px;
+            color:#000;
+            width: 50%;
+            line-height: 31px;
+        }
+        form {
+            width: 400px;
+            margin-top: 15px;
+            input {
+                background: rgba(255, 255, 255, 0.6);
+                border: none;
+                padding: 15px 30px;
+                width: 100%;
+                &::placeholder {
+                    font-family: 'Cormorant';
+                    font-size:20px;
+                    color:#000;
+                    opacity: 40%;
+                }
+                &:focus {
+                    border: 2px solid #040404;
+                    outline: none !important;
+                }
+            }
+        }
+        a {
+            background: #000;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            border-radius: 0;
+            margin-top: 15px;
+            font-family: 'Birthstone Bounce';
+            font-weight: 500;
+            font-size: 24px;
+        }
+    }
+    .social-media-marqueblanche-resultat {
+        margin-bottom: 60px;
+        a {
+            margin: 0 10px;
+        }
+        img {
+            max-width: 70px;
+            height:auto;
+        }
+    }
+    .more-marqueblanche {
+        margin-bottom: 60px;
+        background: url(../../images/marqueblanche/gdp/bulle-gdp.svg) no-repeat center;
+        background-size: contain;
+        padding: 20px 100px;
+        font-family: 'Dosis';
+        font-size: 18px;
+    }
     @media (max-width: 768px) {
         .app-content-marqueblanche {
             padding: calc(1rem - 0.8rem + 6.45rem + 1.3rem) calc(2rem - 0.8rem) 0 calc(2rem - 0.8rem) !important;
             flex-direction: column;
             align-items: center;
         }
-        .content-wrapper {
-            margin-bottom: 80px;
+        .intro-marqueblanche {
+            flex-direction: column;
         }
         .logo_marqueblanche {
-            margin-top: -100px;
+            margin-bottom: 50px;
             img {
                 max-width: 240px;
                 height: auto;
@@ -101,6 +232,16 @@
         .t-question-marqueblanche {
             font-size: 60px;
         }
+        .t-question-marqueblanche {
+            font-size: 60px;
+            img {
+                width: 70px;
+                height: auto;
+            }
+        }
+        .battle-marqueblanche {
+            margin-left:0;
+        }
         .title-contender-marqueblanche {
             width: 50%;
             margin: 10px 0 0;
@@ -120,6 +261,14 @@
         .social-media-marqueblanche {
             bottom: 17px;
             left: 20px;
+        }
+        .intro-marqueblanche {
+            align-items: center;
+        }
+        .footer-resultat {
+            display:flex;
+            flex-direction: column-reverse;
+            align-items: center;
         }
     }
 }

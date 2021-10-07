@@ -1,5 +1,5 @@
 <?php extract($battle_vars); ?>
-<div class="row align-items-center contenders-containers justify-content-center">
+<div class="row align-items-center contenders-containers justify-content-center battle-marqueblanche">
     <div class="col-sm-5 col-12 bloc-contenders link-contender_1 contender_1 cover_contenders link-contender">
         <div class="contender_zone animate__animated animate__slideInDown" data-id-winner="<?= $contender_1 ?>" data-id-looser="<?= $contender_2 ?>" data-id-top="<?= $id_top ?>" data-id-ranking="<?= $id_ranking ?>" id="c_1">
             <?php if (get_field('visuel_cover_t', $id_top)) : ?>

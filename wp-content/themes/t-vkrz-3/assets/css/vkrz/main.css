@@ -2590,17 +2590,8 @@ textarea {
 
 .t-marqueblanche .app-content-marqueblanche {
   margin-left: 0px;
-  padding: calc(2rem + 3.45rem + 1.3rem) 2rem 5rem;
+  padding: calc(2rem + 3.45rem + 1.3rem) 2rem 2rem;
   min-height: 100vh;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
 }
 
 .t-marqueblanche .logo_marqueblanche {
@@ -2616,13 +2607,10 @@ textarea {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-orient: vertical;
+  -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+      -ms-flex-direction: row;
+          flex-direction: row;
 }
 
 .t-marqueblanche .t-objectif-marqueblanche {
@@ -2658,6 +2646,16 @@ textarea {
   height: auto;
 }
 
+.t-marqueblanche .app-content-marqueblanche-result {
+  margin-left: 0px;
+  padding: calc(2rem + 3.45rem + 1.3rem) 0rem 0rem;
+  min-height: 100vh;
+}
+
+.t-marqueblanche .battle-marqueblanche {
+  margin-left: 230px;
+}
+
 .t-marqueblanche .title-contender-marqueblanche {
   font-family: 'Dosis';
   color: #040404;
@@ -2672,18 +2670,203 @@ textarea {
 }
 
 .t-marqueblanche .social-media-marqueblanche {
-  position: absolute;
-  bottom: 30px;
-  left: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 40px;
+}
+
+.t-marqueblanche .social-media-marqueblanche a {
+  margin: 0 10px;
 }
 
 .t-marqueblanche .social-media-marqueblanche img {
-  max-width: 50px;
+  max-width: 70px;
   height: auto;
 }
 
 .t-marqueblanche .txt_votes_marqueblanche {
   color: #040404;
+}
+
+.t-marqueblanche .r-resultat-marqueblanche {
+  font-family: 'Themysion';
+  font-size: 96px;
+  color: #040404;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.t-marqueblanche .crown:before {
+  content: url("../../images/marqueblanche/gdp/crown-gdp.svg");
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: 30px;
+}
+
+.t-marqueblanche .top1:after {
+  content: url("../../images/marqueblanche/gdp/top1.svg");
+  position: absolute;
+  right: 100px;
+  bottom: 135px;
+}
+
+.t-marqueblanche .top2:after {
+  content: url("../../images/marqueblanche/gdp/top2.svg");
+  position: absolute;
+  right: 60px;
+  bottom: 105px;
+}
+
+.t-marqueblanche .top3:after {
+  content: url("../../images/marqueblanche/gdp/top3.svg");
+  position: absolute;
+  right: 15px;
+  bottom: 85px;
+}
+
+@media (min-width: 768px) and (max-width: 1300px) {
+  .t-marqueblanche .top1:after {
+    right: 10px;
+    bottom: 90px;
+  }
+  .t-marqueblanche .top2:after {
+    right: 0px;
+    bottom: 70px;
+  }
+  .t-marqueblanche .top3:after {
+    right: -20px;
+    bottom: 50px;
+  }
+}
+
+.t-marqueblanche .footer-resultat {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.t-marqueblanche .cover-coupon {
+  background: url("../../images/marqueblanche/gdp/bg-coupon.svg") no-repeat center;
+  background-size: cover;
+  padding: 50px 153px 60px 60px;
+  float: left;
+  margin-left: -30px;
+}
+
+.t-marqueblanche .coupon-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.t-marqueblanche .coupon-content h3 {
+  font-family: 'Themysion';
+  font-size: 75px;
+  color: #000;
+  letter-spacing: 5px;
+  margin-bottom: -15px;
+}
+
+.t-marqueblanche .coupon-content p {
+  font-family: 'Dosis';
+  font-size: 25px;
+  color: #000;
+  width: 50%;
+  line-height: 31px;
+}
+
+.t-marqueblanche .coupon-content form {
+  width: 400px;
+  margin-top: 15px;
+}
+
+.t-marqueblanche .coupon-content form input {
+  background: rgba(255, 255, 255, 0.6);
+  border: none;
+  padding: 15px 30px;
+  width: 100%;
+}
+
+.t-marqueblanche .coupon-content form input::-webkit-input-placeholder {
+  font-family: 'Cormorant';
+  font-size: 20px;
+  color: #000;
+  opacity: 40%;
+}
+
+.t-marqueblanche .coupon-content form input:-ms-input-placeholder {
+  font-family: 'Cormorant';
+  font-size: 20px;
+  color: #000;
+  opacity: 40%;
+}
+
+.t-marqueblanche .coupon-content form input::-ms-input-placeholder {
+  font-family: 'Cormorant';
+  font-size: 20px;
+  color: #000;
+  opacity: 40%;
+}
+
+.t-marqueblanche .coupon-content form input::placeholder {
+  font-family: 'Cormorant';
+  font-size: 20px;
+  color: #000;
+  opacity: 40%;
+}
+
+.t-marqueblanche .coupon-content form input:focus {
+  border: 2px solid #040404;
+  outline: none !important;
+}
+
+.t-marqueblanche .coupon-content a {
+  background: #000;
+  border: none;
+  padding: 15px;
+  width: 100%;
+  border-radius: 0;
+  margin-top: 15px;
+  font-family: 'Birthstone Bounce';
+  font-weight: 500;
+  font-size: 24px;
+}
+
+.t-marqueblanche .social-media-marqueblanche-resultat {
+  margin-bottom: 60px;
+}
+
+.t-marqueblanche .social-media-marqueblanche-resultat a {
+  margin: 0 10px;
+}
+
+.t-marqueblanche .social-media-marqueblanche-resultat img {
+  max-width: 70px;
+  height: auto;
+}
+
+.t-marqueblanche .more-marqueblanche {
+  margin-bottom: 60px;
+  background: url(../../images/marqueblanche/gdp/bulle-gdp.svg) no-repeat center;
+  background-size: contain;
+  padding: 20px 100px;
+  font-family: 'Dosis';
+  font-size: 18px;
 }
 
 @media (max-width: 768px) {
@@ -2697,11 +2880,14 @@ textarea {
         -ms-flex-align: center;
             align-items: center;
   }
-  .t-marqueblanche .content-wrapper {
-    margin-bottom: 80px;
+  .t-marqueblanche .intro-marqueblanche {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
   }
   .t-marqueblanche .logo_marqueblanche {
-    margin-top: -100px;
+    margin-bottom: 50px;
   }
   .t-marqueblanche .logo_marqueblanche img {
     max-width: 240px;
@@ -2730,6 +2916,16 @@ textarea {
   .t-marqueblanche .t-question-marqueblanche {
     font-size: 60px;
   }
+  .t-marqueblanche .t-question-marqueblanche {
+    font-size: 60px;
+  }
+  .t-marqueblanche .t-question-marqueblanche img {
+    width: 70px;
+    height: auto;
+  }
+  .t-marqueblanche .battle-marqueblanche {
+    margin-left: 0;
+  }
   .t-marqueblanche .title-contender-marqueblanche {
     width: 50%;
     margin: 10px 0 0;
@@ -2749,6 +2945,23 @@ textarea {
   .t-marqueblanche .social-media-marqueblanche {
     bottom: 17px;
     left: 20px;
+  }
+  .t-marqueblanche .intro-marqueblanche {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .t-marqueblanche .footer-resultat {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
   }
 }
 

@@ -33,20 +33,20 @@ $creator_uuiduser   = get_field('uuiduser_user', 'user_' . $creator_id);
 $creator_data       = get_user_infos($creator_uuiduser);
 ?>
 <div class="app-content-marqueblanche content cover" style="background: url(<?php echo $top_infos['top_cover']; ?>) center center no-repeat">
-    <div class="logo_marqueblanche">
-        <?php echo wp_get_attachment_image(get_field('logo_marque_blanche_t', $id_top), 'full', '', array('class' => 'img-fluid')); ?>
-    </div>
     <div class="content-wrapper">
         <div class="content-body tournoi-content">
             <div class="intro-marqueblanche">
-                <div class="t-objectif-marqueblanche">
-                    <h3>
+                <div class="logo_marqueblanche">
+                    <?php echo wp_get_attachment_image(get_field('logo_marque_blanche_t', $id_top), 'full', '', array('class' => 'img-fluid')); ?>
+                </div>
+                <div class="w-100">
+                    <h3 class="t-objectif-marqueblanche">
                         <?php the_field('objectif_marque_blanche_t', $id_top); ?>
                     </h3>
-                </div>
-                <h4 class="text-center t-question-marqueblanche">
-                    <?php echo $top_infos['top_question']; ?><img src="<?php bloginfo('template_directory'); ?>/assets/images/marqueblanche/gdp/coeur.svg" alt="coeur"> <br>
-                </h4>    
+                    <h4 class="text-center t-question-marqueblanche">
+                        <?php echo $top_infos['top_question']; ?><img src="<?php bloginfo('template_directory'); ?>/assets/images/marqueblanche/gdp/coeur.svg" alt="coeur"> <br>
+                    </h4>
+                </div>   
             </div>
 
             <?php if (!$id_ranking) : ?>
