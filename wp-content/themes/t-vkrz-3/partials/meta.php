@@ -52,7 +52,7 @@
     <?php
     $user_top3  = get_user_ranking($id_ranking);
     $l=1;
-    foreach($user_top3 as $top => $p) {
+    foreach($user_top3 as $top) {
 
         if ($l == 1) {
             $picture_contender_1 = get_the_post_thumbnail_url($top, 'medium');

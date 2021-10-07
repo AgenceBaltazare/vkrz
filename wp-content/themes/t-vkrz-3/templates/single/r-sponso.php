@@ -97,7 +97,7 @@ $top_datas    = get_top_data($id_top);
                             <div class="row align-items-end justify-content-center">
                                 <?php
                                 $i = 1;
-                                foreach ($user_ranking as $c => $p) : ?>
+                                foreach ($user_ranking as $c) : ?>
                                     <?php if ($i == 1) : ?>
                                         <div class="col-12 col-md-5">
                                         <?php elseif ($i == 2) : ?>
@@ -288,7 +288,7 @@ $top_datas    = get_top_data($id_top);
         <nav class="navbar fixed-bottom mobile-navbar">
             <div class="icons-navbar">
                 <div class="ico-nav-mobile box-info-show">
-                    <span class="ico">📌</span> <span class="hide-spot">Infos du Top</span>
+                    <span class="ico">🪧</span> <span class="hide-spot">Infos du Top</span>
                 </div>
                 <div class="ico-nav-mobile share-content-show">
                     <span class="ico ico-reverse">📣</span> <span class="hide-spot">Partager</span>
@@ -398,7 +398,7 @@ $top_datas    = get_top_data($id_top);
         </div>
         <div class="box-info-content">
             <h3>
-                <span class="ico-social">📌</span>
+                <span class="ico-social">🪧</span>
                 Tous les infos du Top
             </h3>
             <div class="close-share">
