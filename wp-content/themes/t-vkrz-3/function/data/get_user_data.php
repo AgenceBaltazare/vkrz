@@ -256,7 +256,7 @@ function get_user_percent(
 
     return array(
         "percent" => $percent,
-        "nb_similar" => $count_same_ranking + 1,
+        "nb_similar" => $count_same_ranking,
     );
 }
 

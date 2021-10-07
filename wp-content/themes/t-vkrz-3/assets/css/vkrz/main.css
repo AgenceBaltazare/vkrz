@@ -2800,4 +2800,10 @@ textarea {
     position: relative;
     transition: all 0.2s ease-in;
   }
+}
+@media (min-width: 768px) and (max-width: 1500px) {
+  .space {
+    display: inline-block;
+    width: 3px;
+  }
 }/*# sourceMappingURL=main.css.map */
