@@ -8,7 +8,9 @@
   margin: 20px 0 5px;
 }
 
-@-webkit-keyframes rotating /* Safari and Chrome */ {
+@-webkit-keyframes rotating
+
+/* Safari and Chrome */ {
   from {
     transform: rotate(0deg);
   }

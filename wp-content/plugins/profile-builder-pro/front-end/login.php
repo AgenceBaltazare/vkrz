@@ -285,27 +285,31 @@ function wppb_resend_confirmation_email() {
 add_action('init', 'wppb_resend_confirmation_email');
 
 function wppb_change_error_message($error_message) {
-    global $wpdb;
-    $check_user = $_REQUEST['log'];
 
-    if ( is_email($check_user) )
-        $sql_result = $wpdb->get_row( $wpdb->prepare("SELECT * FROM " . $wpdb->base_prefix . "signups WHERE user_email = %s", sanitize_email( $check_user )), ARRAY_A );
-    else {
-        $sql_result = $wpdb->get_row( $wpdb->prepare("SELECT * FROM " . $wpdb->base_prefix . "signups WHERE user_login = %s", sanitize_user( $check_user )), ARRAY_A );
-        if ( $sql_result )
-            $check_user = $sql_result['user_email'];
-    }
+	if( isset( $_REQUEST['log'] ) ){
+		global $wpdb;
+		$check_user = sanitize_text_field( $_REQUEST['log'] );
 
-    // if the email address exists in wp_signups table, display message and link to resend Confirmation Email
-    if ( isset($sql_result) ) {
-        $confirmation_url_nonce = wp_create_nonce( 'wppb_confirmation_url_nonce' );
-        $current_url = wppb_curpageurl();
-        $arr_params = array('email' => sanitize_email( $check_user ), 'wppb-action' => 'resend_email_confirmation', '_wpnonce' => $confirmation_url_nonce);
-        $confirmation_url = add_query_arg($arr_params, $current_url);
-        $error_message = '<strong>' . __('ERROR', 'profile-builder') . '</strong>: ' . sprintf( __( 'You need to confirm your Email Address before logging in! To resend the Confirmation Email  %1$sclick here%2$s', 'profile-builder' ), '<a href="' . esc_url( $confirmation_url ) . '" title="Resend Confirmation Email">', '</a>.' );
-    }
+		if ( is_email($check_user) )
+			$sql_result = $wpdb->get_row( $wpdb->prepare("SELECT * FROM " . $wpdb->base_prefix . "signups WHERE user_email = %s", sanitize_email( $check_user )), ARRAY_A );
+		else {
+			$sql_result = $wpdb->get_row( $wpdb->prepare("SELECT * FROM " . $wpdb->base_prefix . "signups WHERE user_login = %s", sanitize_user( $check_user )), ARRAY_A );
+			if ( $sql_result )
+				$check_user = $sql_result['user_email'];
+		}
+
+		// if the email address exists in wp_signups table, display message and link to resend Confirmation Email
+		if ( isset($sql_result) ) {
+			$confirmation_url_nonce = wp_create_nonce( 'wppb_confirmation_url_nonce' );
+			$current_url = wppb_curpageurl();
+			$arr_params = array('email' => sanitize_email( $check_user ), 'wppb-action' => 'resend_email_confirmation', '_wpnonce' => $confirmation_url_nonce);
+			$confirmation_url = add_query_arg($arr_params, $current_url);
+			$error_message = '<strong>' . __('ERROR', 'profile-builder') . '</strong>: ' . sprintf( __( 'You need to confirm your Email Address before logging in! To resend the Confirmation Email  %1$sclick here%2$s', 'profile-builder' ), '<a href="' . esc_url( $confirmation_url ) . '" title="Resend Confirmation Email">', '</a>.' );
+		}
+	}
 
     return $error_message;
+
 }
 add_filter('wppb_login_invalid_username_error_message', 'wppb_change_error_message');
 

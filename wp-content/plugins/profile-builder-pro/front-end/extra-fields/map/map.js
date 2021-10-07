@@ -185,7 +185,7 @@ function wppb_initialize_map() {
         // if( map.jq_obj.parents('form').length > 0 ) {
 		if (map.editable) {
             var infoWindow = new google.maps.InfoWindow({
-                content : '<a class="wppb-map-remove-marker" data-map="' + maps.indexOf( map ) + '" data-marker="' + map.markers.indexOf( marker ) + '" href="#">Remove Marker</a>'
+                content : '<a class="wppb-map-remove-marker" data-map="' + maps.indexOf( map ) + '" data-marker="' + map.markers.indexOf( marker ) + '" href="#">' + wppb_maps_data.map_marker_text_remove + '</a>'
             });
 
 			marker.addListener( 'click', function(){

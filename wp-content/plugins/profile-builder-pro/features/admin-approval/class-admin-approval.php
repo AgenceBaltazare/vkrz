@@ -349,7 +349,7 @@ class wpp_list_approved_unapproved_users extends PB_WP_List_Table {
 
             /* get user status */
             $user_status = wp_get_object_terms( $user->ID, 'user_status' );
-            if ( !$user_status ) {
+            if ( !$user_status || is_wp_error($user_status) ) {
                 $status = '<span class="dashicons dashicons-yes" style="color: mediumseagreen;"></span>' . __('Approved', 'profile-builder');
             } else if ( $user_status[0]->slug === 'unapproved' ) {
                 $status = '<span class="dashicons dashicons-warning" style="color: red;"></span> ' . __('Unapproved', 'profile-builder');

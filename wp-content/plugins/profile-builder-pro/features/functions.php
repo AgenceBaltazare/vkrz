@@ -888,21 +888,20 @@ function wppb_enqueue_password_visibility_toggle() {
         ?>
         <script type="text/javascript">
             jQuery( document ).ready( function() {
+
                 jQuery( "button.wppb-toggle-pw" ).on( "click", wppb_password_visibility_toggle );
 
-                var toggle = jQuery( 'button.wppb-toggle-pw' )
+				jQuery( 'button.wppb-toggle-pw' ).each( function( index, toggle ){
 
-                if( toggle.length > 0 ){
+					var parent = jQuery( toggle ).parent()
 
-                    var parent = toggle.parent()
+					if( parent.hasClass( 'wppb-form-field' ) && jQuery( '.wppb-description-delimiter', parent ) ){
 
-                    if( parent.hasClass( 'wppb-form-field' ) && jQuery( '.wppb-description-delimiter', parent ) ){
+						jQuery( toggle ).css( 'top', parseInt( jQuery( toggle ).css('top') ) - ( jQuery( '.wppb-description-delimiter', parent ).outerHeight() / 2 ) )
 
-                        toggle.css( 'top', parseInt( toggle.css('top') ) - ( jQuery( '.wppb-description-delimiter', parent ).outerHeight() / 2 ) )
+					}
 
-                    }
-
-                }
+				})
 
             });
             function wppb_password_visibility_toggle() {
@@ -1354,7 +1353,7 @@ function wppb_sanitize_value( $string ){
 }
 
 /**
- * Function that receives a user role and returns it's label.
+ * Function that receives a user role and returns its label.
  * Returns the original role if not found.
  *
  * @since v.2.7.1
@@ -1370,6 +1369,28 @@ function wppb_get_role_name($role){
         return $wp_roles->role_names[$role];
 
     return $role;
+}
+
+/**
+ * Function that receives a user role label and returns its slug.
+ * Returns the original role label if not found.
+ *
+ * @since v.3.5.6
+ *
+ * @param string $role
+ *
+ * @return string
+ */
+function wppb_get_role_slug($role) {
+	global $wp_roles;
+
+    foreach ( $wp_roles->role_names as $slug => $label ) {
+        if ( $label === $role) {
+            return $slug;
+        }
+    }
+
+	return $role;
 }
 
 /**

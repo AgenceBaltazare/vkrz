@@ -310,7 +310,7 @@ abstract class PB_Elementor_Widget extends \Elementor\Widget_Base {
                     'logout_redirect_url' => $settings['pb_after_logout_redirect_url'],
                     'register_url'        => $settings['pb_register_url'],
                     'lostpassword_url'    => $settings['pb_lostpassword_url'],
-                    'show_2fa_field'      => $settings['pb_auth_field'],
+                    'show_2fa_field'      => isset( $settings['pb_auth_field'] ) ? $settings['pb_auth_field'] : false,
                 ];
                 return wppb_front_end_login( $atts );
             case 'rp':

@@ -8,7 +8,9 @@
   margin: 20px 0 5px;
 }
 
-@-webkit-keyframes rotating /* Safari and Chrome */ {
+@-webkit-keyframes rotating
+
+/* Safari and Chrome */ {
   from {
     transform: rotate(0deg);
   }
@@ -295,6 +297,11 @@ a.sociallink:hover i {
 
 .contain {
   background-size: contain !important;
+}
+
+.space {
+  display: inline-block;
+  width: 10px;
 }
 
 .dark-layout {
@@ -2212,26 +2219,21 @@ textarea {
 }
 
 .mobile-navbar {
-  background: linear-gradient(150deg, #0c0a27, #471867, #0c0a27, #230b36, #0c0a27);
-  background-size: 400% 400%;
-  -webkit-animation: gradient 15s ease infinite;
-  animation: gradient 15s ease infinite;
   display: block;
   position: fixed;
   z-index: 1023;
   right: 0;
-  left: 80px;
-  border-top: 5px solid #7367f0;
-  bottom: 0;
-}
-.mobile-navbar .icons-navbar {
-  display: flex;
-  padding: 15px 5px 10px 55px;
+  left: 0;
+  bottom: 10px;
+  margin-left: 80px;
 }
 
 .icons-navbar {
-  width: 80%;
-  justify-content: space-between;
+  background: #2c2072;
+  display: flex;
+  padding: 15px 40px;
+  border-radius: 10px;
+  justify-content: space-around;
 }
 .icons-navbar .ico-nav-mobile {
   cursor: pointer;
@@ -2258,6 +2260,8 @@ textarea {
   text-transform: uppercase;
   margin: 0 0 0 5px;
   font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
 }
 
 .share-content {
@@ -2330,7 +2334,7 @@ textarea {
 .share-top-content ul,
 .box-info-content ul,
 .share-content ul {
-  margin: 25px 25px 25px 15px;
+  margin: 25px 50px 25px 15px;
   padding-left: 0px;
 }
 .share-classement-content li,
@@ -2341,6 +2345,9 @@ textarea {
   list-style-type: none;
   font-size: 18px;
   margin-top: 15px;
+  border: 2px solid #fff;
+  padding: 20px;
+  border-radius: 10px;
 }
 .share-classement-content li:active,
 .share-top-content li:active,
@@ -2454,7 +2461,7 @@ textarea {
 
   .intro-mobile {
     display: block;
-    margin: 0;
+    margin: 0 0 20px;
   }
 
   .display_current_user_rank {
@@ -2739,8 +2746,16 @@ textarea {
   }
 
   .mobile-navbar {
-    right: 0;
-    left: 0;
+    margin-left: 0;
+  }
+
+  .hide-xs {
+    display: none;
+  }
+
+  .single .crisp-client .cc-kv6t[data-full-view=true] .cc-1xry .cc-unoo {
+    bottom: 60px !important;
+    right: 5px !important;
   }
 
   .swal2-header,
@@ -2759,7 +2774,8 @@ textarea {
 
   .mobile-navbar .icons-navbar {
     display: flex;
-    padding: 15px 5px 10px;
+    padding: 10px 15px 9px;
+    background: #7367f0;
   }
 
   .single footer.footer {

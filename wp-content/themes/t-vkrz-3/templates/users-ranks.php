@@ -40,6 +40,12 @@ $top_datas = get_top_data($id_top);
                         'update_post_meta_cache' => false,
                         'no_found_rows'          => true,
                         'meta_query' => array(
+                            'relation' => 'AND',
+                            array(
+                                'key'       => 'done_r',
+                                'value'     => 'done',
+                                'compare'   => '=',
+                            ),
                             array(
                                 'key' => 'id_tournoi_r',
                                 'value' => $id_top,

@@ -546,6 +546,9 @@ Class PB_Conditional_Fields {
 							case 'select-user-role':
 								return 'custom_field_user_role';
 								break;
+							case 'subscription-plans':
+								return 'subscription_plans';
+								break;
 						}
 					}
 				}

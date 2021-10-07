@@ -6,6 +6,11 @@
     background-size: contain !important;
 }
 
+.space{
+    display: inline-block;
+    width: 10px;
+}
+
 .dark-layout {
     background: linear-gradient(35deg, $c1 40%, #230b36 100%) fixed;
 

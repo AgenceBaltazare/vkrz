@@ -205,9 +205,9 @@ function get_user_percent(
         'meta_query'                => array(
             'relation' => 'AND',
             array(
-                'key'       => 'nb_votes_r',
-                'value'     => 0,
-                'compare'   => '>',
+                'key'       => 'done_r',
+                'value'     => 'done',
+                'compare'   => '=',
             ),
             array(
                 'key'       => 'id_tournoi_r',
@@ -219,10 +219,10 @@ function get_user_percent(
 
     while ($all_ranking_of_t->have_posts()) : $all_ranking_of_t->the_post();
 
-        if(get_field('uuid_user_r') == $uuiduser){
-            $current_user_id_ranking = get_the_id();
-            $current_user_top3       = get_user_ranking($current_user_id_ranking, 3);
-        }
+            if(get_field('uuid_user_r') == $uuiduser){
+                $current_user_id_ranking = get_the_id();
+                $current_user_top3       = get_user_ranking($current_user_id_ranking, 3);
+            }
 
         if(get_field('uuid_user_r') != $uuiduser) {
             array_push($list_ranking_of_t, array(
@@ -248,7 +248,7 @@ function get_user_percent(
     if ($nb_tops === 0){
         $percent = 0;
     }else{
-        $percent = round($count_same_ranking * 100 / $nb_tops);
+        $percent = round($count_same_ranking * 100 / ($nb_tops - 1));
     }
     $all_ranking_of_t->reset_postdata();
 

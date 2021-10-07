@@ -12,7 +12,6 @@ function wppb_get_settings_pages(){
 		'profile-builder-admin-bar-settings' => __( 'Admin Bar', 'profile-builder' ),
 		'profile-builder-content_restriction' => __( 'Content Restriction', 'profile-builder' ),
 		'profile-builder-private-website' => __( 'Private Website', 'profile-builder' ),
-        'profile-builder-two-factor-authentication' => __( 'Two-Factor Authentication', 'profile-builder' ),
 		'profile-builder-toolbox-settings' => __( 'Advanced Settings', 'profile-builder' ),
 	);
 
@@ -23,6 +22,11 @@ function wppb_get_settings_pages(){
         $settings_pages['sub-tabs']['profile-builder-toolbox-settings']['userlisting'] = __( 'Userlisting', 'profile-builder' );
     $settings_pages['sub-tabs']['profile-builder-toolbox-settings']['shortcodes'] = __( 'Shortcodes', 'profile-builder' );
     $settings_pages['sub-tabs']['profile-builder-toolbox-settings']['admin'] = __( 'Admin', 'profile-builder' );
+
+	//add tab for 2FA
+	if (file_exists(WPPB_PLUGIN_DIR . '/features/two-factor-authentication/class-two-factor-authentication.php')) {
+		$settings_pages['pages']['profile-builder-two-factor-authentication'] = __( 'Two-Factor Authentication', 'profile-builder' );
+	}
 
     //add sub-pages here for email customizer
 	if (file_exists(WPPB_PLUGIN_DIR . '/add-ons/add-ons.php')) {

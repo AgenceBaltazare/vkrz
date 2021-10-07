@@ -111,8 +111,6 @@ $(document).ready(function ($) {
                             timer: 5000
                         })
 
-
-
                     });
                 }
             });
