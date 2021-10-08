@@ -53,9 +53,9 @@ $top_datas    = get_top_data($id_top);
                 </section>
             <?php endif; ?>
             <div class="classement">
-                <div class="row justify-content-center">
+                <div class="d-flex justify-content-center">
                     <div class="col-md-10">
-                        <div class="list-classement">
+                        <div class="list-classement mt-2">
                             <div class="row align-items-end justify-content-center">
                                 <?php
                                 $i = 1;
@@ -88,7 +88,7 @@ $top_datas    = get_top_data($id_top);
                                                     </div>
                                                     </div>
                                                 <?php $i++;
-                                            endforeach; ?>
+                                                endforeach; ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -132,7 +132,8 @@ $top_datas    = get_top_data($id_top);
                     <?php endif; ?>
                 </div>
             </div>
-
+        </div>
+    </div>
 </div>
 
-        <?php get_footer(); ?>
+<?php get_footer(); ?>

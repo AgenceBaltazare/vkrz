@@ -107,7 +107,7 @@
     }
     @media (min-width: 768px) and (max-width: 1300px) {
         .top1:after {
-            right: 10px;
+            right: 30px;
             bottom: 90px;
         }
         .top2:after {
@@ -117,6 +117,20 @@
         .top3:after {
             right: -20px;
             bottom: 50px;
+        }
+    }
+    @media (min-width: 610px) and (max-width: 768px) {
+        .top1:after {
+            right: 160px;
+            bottom: 150px;
+        }
+        .top2:after {
+            right: 50px;
+            bottom: 90px;
+        }
+        .top3:after {
+            right: 10px;
+            bottom: 70px;
         }
     }
     .footer-resultat {
