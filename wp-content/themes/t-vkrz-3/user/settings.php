@@ -52,16 +52,7 @@ get_header();
                                             </div>
                                             <div class="tab-pane" id="tab3" role="tabpanel" aria-labelledby="tab3">
 
-                                                <div class="auth-register-form">
-                                                    <div class="classic-form">
-                                                        <?php echo do_shortcode('[wppb-edit-profile form_name="parametres"]'); ?>
-                                                    </div>
-                                                    <div class="separateur separateur-1 "></div>
-                                                    <div class="login-form">
-                                                        <h3>Falicite ta connexion :</h3>
-                                                        <?php do_action('oa_social_link'); ?>
-                                                    </div>
-                                                </div>
+                                                <?php echo do_shortcode('[wppb-edit-profile form_name="parametres"]'); ?>
 
                                             </div>
                                         </div>
