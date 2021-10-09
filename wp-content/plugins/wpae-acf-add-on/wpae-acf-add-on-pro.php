@@ -3,7 +3,7 @@
 Plugin Name: WP All Export - ACF Export Add-On Pro
 Plugin URI: http://www.wpallimport.com/
 Description: Export ACF data from WordPress. Requires WP All Export Pro.
-Version: 1.0.1
+Version: 1.0.2
 Author: Soflyy
 */
 
@@ -25,7 +25,7 @@ define('PMAE_ROOT_URL', rtrim(plugin_dir_url(__FILE__), '/'));
  */
 define('PMAE_PREFIX', 'pmae_');
 
-define('PMAE_VERSION', '1.0.1');
+define('PMAE_VERSION', '1.0.2');
 
 if ( class_exists('PMAE_Plugin') and PMAE_EDITION == "free"){
 
@@ -225,13 +225,13 @@ else {
 
 		public function custom_update_message( $file, $plugin, $status ) {
 
-			$wp_list_table = _get_list_table( 'WP_Plugins_List_Table' );
+			/*$wp_list_table = _get_list_table( 'WP_Plugins_List_Table' );
 			printf(
 				'<tr class="plugin-update-tr"><td colspan="%s" class="plugin-update update-message notice inline notice-warning notice-alt"><div class="update-message"><h4 style="margin: 0; font-size: 14px;">%s</h4>%s</div></td></tr>',
 				$wp_list_table->get_column_count(),
 				'Add-on required to export ACF data with WP All Export',
 				'<br/>WP All Export will soon receive an update that requires this add-on to export ACF data. Keep this add-on active to avoid any interruption in service.'
-			);
+			);*/
 
 		}
 	}
