@@ -81,4 +81,8 @@
   text-transform: uppercase;
   font-size: 16px;
   font-weight: normal;
+}
+
+#oa_social_link {
+  display: none !important;
 }/*# sourceMappingURL=login.css.map */

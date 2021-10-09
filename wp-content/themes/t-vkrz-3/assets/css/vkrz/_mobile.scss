@@ -14,7 +14,7 @@
     display: flex;
     padding: 15px 40px;
     border-radius: 10px;
-    justify-content: space-around;
+    justify-content: space-evenly;
 
     .ico-nav-mobile {
 
@@ -47,7 +47,7 @@
     margin: 0 0 0 5px;
     font-size: 12px;
     font-weight: 700;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
 }
 
 .share-content {

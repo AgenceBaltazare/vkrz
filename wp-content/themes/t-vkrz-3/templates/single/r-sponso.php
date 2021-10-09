@@ -288,7 +288,7 @@ $top_datas    = get_top_data($id_top);
         <nav class="navbar fixed-bottom mobile-navbar">
             <div class="icons-navbar">
                 <div class="ico-nav-mobile box-info-show">
-                    <span class="ico">🪧</span> <span class="hide-spot">Infos du Top</span>
+                    <span class="ico">🪧</span> <span class="hide-spot">Infos <span class="hide-xs">du Top</span></span>
                 </div>
                 <div class="ico-nav-mobile share-content-show">
                     <span class="ico ico-reverse">📣</span> <span class="hide-spot">Partager</span>

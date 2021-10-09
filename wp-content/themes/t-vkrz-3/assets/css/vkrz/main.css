@@ -605,7 +605,12 @@ html .content {
 }
 
 .single-tournoi .intro-mobile {
-  z-index: 9999999;
+  z-index: 7;
+}
+
+.dark-layout .dropdown-menu {
+  background-color: #0a0921;
+  box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.24);
 }
 
 .hide-lg {
@@ -2244,7 +2249,7 @@ textarea {
   display: flex;
   padding: 15px 40px;
   border-radius: 10px;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 .icons-navbar .ico-nav-mobile {
   cursor: pointer;
@@ -2272,7 +2277,7 @@ textarea {
   margin: 0 0 0 5px;
   font-size: 12px;
   font-weight: 700;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
 }
 
 .share-content {
@@ -2700,9 +2705,6 @@ textarea {
     min-height: 100px;
   }
 
-  .nav-fill li {
-    width: 50%;
-  }
   .nav-fill li a {
     font-size: 12px;
   }
@@ -2749,9 +2751,13 @@ textarea {
     flex-direction: column;
   }
 
+  .icons-navbar {
+    justify-content: space-between;
+  }
+
   .hide-spot {
     text-transform: uppercase;
-    margin: 5px 0 0 0;
+    margin: 0 0 0 0;
     font-size: 8px;
     display: block;
   }
