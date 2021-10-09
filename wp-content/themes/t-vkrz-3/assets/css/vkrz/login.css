@@ -62,12 +62,23 @@
 .auth-wrapper .auth-inner .card-title {
   width: 100%;
 }
-.auth-wrapper .auth-inner .form-submit, .auth-wrapper .auth-inner .login-submit {
+.auth-wrapper .auth-inner .form-submit,
+.auth-wrapper .auth-inner .login-submit {
   text-align: center;
 }
-.auth-wrapper .auth-inner .form-submit input, .auth-wrapper .auth-inner .login-submit input {
+.auth-wrapper .auth-inner .form-submit input,
+.auth-wrapper .auth-inner .login-submit input {
   margin: 0 auto !important;
 }
 .auth-wrapper .divider {
   margin: 20px auto !important;
+}
+
+.auth-register-form h3 {
+  color: #7367f0;
+  -moz-text-align-last: left;
+       text-align-last: left;
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: normal;
 }/*# sourceMappingURL=login.css.map */
