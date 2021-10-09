@@ -308,6 +308,13 @@ a.sociallink:hover i {
   margin-right: 80px;
 }
 
+.separateur {
+  height: 1px;
+  width: 100%;
+  margin: 30px 0;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
 .dark-layout {
   background: linear-gradient(35deg, #0c0a27 40%, #230b36 100%) fixed;
 }
@@ -2791,6 +2798,11 @@ textarea {
     margin: 10px 0 0 0;
     width: 100%;
     display: block;
+  }
+
+  .header-navbar .value-user-stats {
+    display: block;
+    text-align: center;
   }
 }
 @media (max-width: 425px) {
