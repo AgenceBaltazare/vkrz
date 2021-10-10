@@ -25,7 +25,7 @@ get_header();
                 'meta_key'               => 'nb_vote_vkrz',
                 'orderby'                => 'meta_value_num',
                 'order'                  => 'DESC',
-                'author__in'             => $users_ids_list,
+                'author'                 => $users_ids_list,
                 'author__not_in'         => array(1),
                 'ignore_sticky_posts'    => true,
                 'update_post_meta_cache' => false,
