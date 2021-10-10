@@ -52,7 +52,7 @@ if (!is_single() || get_post_type() != "tournoi") {
     <meta name="twitter:creator" content="@Vainkeurz">
     <meta name="twitter:domain" content="vainkeurz.com">
 
-    <?php if (is_page(26626)) : ?>
+    <?php if (is_page(array(26626, 256697, 256700))) : ?>
         <meta name='robots' content='noindex, nofollow' />
     <?php endif; ?>
 
