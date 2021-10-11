@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Dosis&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Birthstone+Bounce&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant&display=swap");
 .text-rose {
   color: #f4167f !important;
 }
@@ -2588,6 +2591,18 @@ textarea {
   z-index: 3;
 }
 
+.t-marqueblanche {
+}
+
+@font-face {
+  .t-marqueblanche {
+    font-family: 'Themysion Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local("Themysion Regular"), url("../fonts/Themysion-2OjKo.woff") format("woff");
+  }
+}
+
 .t-marqueblanche .app-content-marqueblanche {
   margin-left: 0px;
   padding: calc(2rem + 3.45rem + 1.3rem) 2rem 2rem;
@@ -2627,15 +2642,12 @@ textarea {
   height: 110px;
   background: url("../../images/marqueblanche/gdp/bulle-gdp.svg") no-repeat center;
   background-size: contain;
-}
-
-.t-marqueblanche .t-objectif-marqueblanche h3 {
   font-size: 28px;
-  font-family: 'Dosis';
+  font-family: 'Dosis', sans-serif;
 }
 
 .t-marqueblanche .t-question-marqueblanche {
-  font-family: 'Themysion';
+  font-family: 'Themysion Regular';
   font-size: 80px;
   color: #040404;
   margin-top: 50px;
@@ -2652,8 +2664,17 @@ textarea {
   min-height: 100vh;
 }
 
+.t-marqueblanche .classement {
+  overflow-x: hidden;
+}
+
 .t-marqueblanche .battle-marqueblanche {
   margin-left: 230px;
+}
+
+.t-marqueblanche .top-marque-blanche {
+  text-align: end;
+  margin-top: -50px;
 }
 
 .t-marqueblanche .title-contender-marqueblanche {
@@ -2690,7 +2711,7 @@ textarea {
 }
 
 .t-marqueblanche .r-resultat-marqueblanche {
-  font-family: 'Themysion';
+  font-family: 'Themysion Regular';
   font-size: 96px;
   color: #040404;
   margin-top: 20px;
@@ -2702,57 +2723,31 @@ textarea {
   position: absolute;
   width: 100%;
   text-align: center;
-  top: 30px;
+  padding-right: 20px;
 }
 
-.t-marqueblanche .top1:after {
-  content: url("../../images/marqueblanche/gdp/top1.svg");
-  position: absolute;
-  right: 100px;
-  bottom: 135px;
+.t-marqueblanche .top1 {
+  margin-top: -70px;
+  margin-right: 30px;
 }
 
-.t-marqueblanche .top2:after {
-  content: url("../../images/marqueblanche/gdp/top2.svg");
-  position: absolute;
-  right: 60px;
-  bottom: 105px;
+.t-marqueblanche .top2 {
+  margin-top: -20px;
 }
 
-.t-marqueblanche .top3:after {
-  content: url("../../images/marqueblanche/gdp/top3.svg");
-  position: absolute;
-  right: 15px;
-  bottom: 85px;
+.t-marqueblanche .top3 {
+  margin-right: -10px;
 }
 
-@media (min-width: 768px) and (max-width: 1300px) {
-  .t-marqueblanche .top1:after {
-    right: 30px;
-    bottom: 90px;
-  }
-  .t-marqueblanche .top2:after {
-    right: 0px;
-    bottom: 70px;
-  }
-  .t-marqueblanche .top3:after {
-    right: -20px;
-    bottom: 50px;
+@media (max-width: 1000px) {
+  .t-marqueblanche .top-marque-blanche img {
+    max-width: 45px;
   }
 }
 
-@media (min-width: 610px) and (max-width: 768px) {
-  .t-marqueblanche .top1:after {
-    right: 160px;
-    bottom: 150px;
-  }
-  .t-marqueblanche .top2:after {
-    right: 50px;
-    bottom: 90px;
-  }
-  .t-marqueblanche .top3:after {
-    right: 10px;
-    bottom: 70px;
+@media (max-width: 500px) {
+  .t-marqueblanche .top-marque-blanche img {
+    max-width: 35px;
   }
 }
 
@@ -2790,7 +2785,7 @@ textarea {
 }
 
 .t-marqueblanche .coupon-content h3 {
-  font-family: 'Themysion';
+  font-family: 'Themysion Regular';
   font-size: 75px;
   color: #000;
   letter-spacing: 5px;
@@ -2860,6 +2855,7 @@ textarea {
   font-family: 'Birthstone Bounce';
   font-weight: 500;
   font-size: 24px;
+  width: 400px;
 }
 
 .t-marqueblanche .social-media-marqueblanche-resultat {

@@ -35,7 +35,7 @@ $top_datas    = get_top_data($id_top);
                     <?php the_field('titre_resultat_marque_blanche_t', $id_top); ?> <br>
                 </h4>    
             </div>
-            <?php if (!is_user_logged_in()) : ?>
+            <?php if ((!is_user_logged_in()) && (!get_field('marqueblanche_t', $id_top))) : ?>
                 <section class="please-rejoin app-user-view">
                     <div role="alert" aria-live="polite" aria-atomic="true" class="alert alert-account" data-v-aa799a9e="">
                         <div class="alert-body d-flex align-items-center justify-content-between">
@@ -61,11 +61,11 @@ $top_datas    = get_top_data($id_top);
                                 $i = 1;
                                 foreach ($user_ranking as $c => $p) : ?>
                                     <?php if ($i == 1) : ?>
-                                        <div class="col-12 col-md-5 crown top1">
+                                        <div class="col-12 col-md-5 crown">
                                         <?php elseif ($i == 2) : ?>
-                                            <div class="col-7 col-md-4 top2">
+                                            <div class="col-7 col-md-4">
                                             <?php elseif ($i == 3) : ?>
-                                                <div class="col-5 col-md-3 top3">
+                                                <div class="col-5 col-md-3">
                                                 <?php else : ?>
                                                     <div class="col-md-2 col-4">
                                                     <?php endif; ?>
@@ -84,6 +84,19 @@ $top_datas    = get_top_data($id_top);
                                                             <?php else : ?>
                                                                 <?php echo get_the_post_thumbnail($c, 'large', array('class' => 'img-fluid')); ?>
                                                             <?php endif; ?>
+                                                        </div>
+                                                        <div class="name eh2">
+                                                            <div class="top-marque-blanche">
+                                                                <?php if ($i == 1) : ?>
+                                                                    <img src="<?php bloginfo('template_directory'); ?>/assets/images/marqueblanche/gdp/top1.svg" alt="" class="top1">
+                                                                <?php elseif ($i == 2) : ?>
+                                                                    <img src="<?php bloginfo('template_directory'); ?>/assets/images/marqueblanche/gdp/top2.svg" alt="" class="top2">
+                                                                <?php elseif ($i == 3) : ?>
+                                                                    <img src="<?php bloginfo('template_directory'); ?>/assets/images/marqueblanche/gdp/top3.svg" alt="" class="top3">
+                                                                <?php else : ?>
+                                                                    <span><?php echo $i; ?><br></span>
+                                                                <?php endif; ?>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     </div>
