@@ -118,10 +118,10 @@ $top_datas    = get_top_data($id_top);
                             <p>
                                 Vous avez gagné un coupon de -10% !
                             </p>
-                            <form action="">
-                                <input type="email" placeholder="Mon adresse mail" name="" id="">
+                            <form action="" method="post" name="form2">
+                                <input type="email" placeholder="Mon adresse mail" name="input" id="mail">
                             </form>
-                            <a href="" class="btn">Recevoir mon coupon</a>
+                            <button onclick="openForm()" onclick="getValue()" class="btn">Recevoir mon coupon</button>
                         </div>
                     </div>
                     <div class="social-media-marqueblanche-resultat">
@@ -145,8 +145,47 @@ $top_datas    = get_top_data($id_top);
                     <?php endif; ?>
                 </div>
             </div>
+
+            <div class="form-popup" id="myForm">
+                <form action="" name="form3" class="form-container">
+                    <h1>Recevoir mon coupon</h1>
+
+                    <label for="email"><b>Nom</b></label>
+                    <input type="text" placeholder="Entrez votre nom" name="nom" required>
+
+                    <label for="email"><b>Prénom</b></label>
+                    <input type="text" placeholder="Entrez votre prénom" name="prenom" required>
+
+                    <label for="email"><b>Email</b></label>
+                    <input type="text" placeholder="Entrez votre Email" name="" id="mail2" required>
+                    
+                    <input type="checkbox" name="check" id="chek">
+                    <label for="check">Valider les conditions</label>
+
+                    <button type="submit" class="btn">Valider</button>
+                    <button type="button" class="btn cancel" onclick="closeForm()">Fermer</button>
+                </form>
+            </div>
+
         </div>
     </div>
 </div>
+
+<script>
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+
+function getValue() {
+    // Sélectionner l'élément input et récupérer sa valeur
+    var mail_coupon = document.getElementById("mail").value;
+    // Afficher la valeur
+    document.getElementById("mail2").value = mail_coupon;
+}
+</script>
 
 <?php get_footer(); ?>

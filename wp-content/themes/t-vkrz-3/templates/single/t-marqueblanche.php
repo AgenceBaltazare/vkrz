@@ -35,19 +35,6 @@ $creator_data       = get_user_infos($creator_uuiduser);
 <div class="app-content-marqueblanche content cover" style="background: url(<?php echo $top_infos['top_cover']; ?>) center center no-repeat">
     <div class="content-wrapper">
         <div class="content-body tournoi-content">
-            <div class="intro-marqueblanche">
-                <div class="logo_marqueblanche">
-                    <?php echo wp_get_attachment_image(get_field('logo_marque_blanche_t', $id_top), 'full', '', array('class' => 'img-fluid')); ?>
-                </div>
-                <div class="w-100">
-                    <h3 class="t-objectif-marqueblanche">
-                        <?php the_field('objectif_marque_blanche_t', $id_top); ?>
-                    </h3>
-                    <h4 class="text-center t-question-marqueblanche">
-                        <?php echo $top_infos['top_question']; ?><img src="<?php bloginfo('template_directory'); ?>/assets/images/marqueblanche/gdp/coeur.svg" alt="coeur"> <br>
-                    </h4>
-                </div>   
-            </div>
 
             <?php if (!$id_ranking) : ?>
 
@@ -238,6 +225,20 @@ $creator_data       = get_user_infos($creator_uuiduser);
 
             <?php else : ?>
 
+                <div class="intro-marqueblanche">
+                    <div class="logo_marqueblanche">
+                        <?php echo wp_get_attachment_image(get_field('logo_marque_blanche_t', $id_top), 'full', '', array('class' => 'img-fluid')); ?>
+                    </div>
+                    <div class="w-100">
+                        <h3 class="t-objectif-marqueblanche">
+                            <?php the_field('objectif_marque_blanche_t', $id_top); ?>
+                        </h3>
+                        <h4 class="text-center t-question-marqueblanche">
+                            <?php echo $top_infos['top_question']; ?><img src="<?php bloginfo('template_directory'); ?>/assets/images/marqueblanche/gdp/coeur.svg" alt="coeur"> <br>
+                        </h4>
+                    </div>   
+                </div>
+
                 <div class="row">
                     <div class="col-md-12">
                         <?php if ($top_infos['top_type'] != "top3") : ?>
@@ -274,16 +275,25 @@ $creator_data       = get_user_infos($creator_uuiduser);
                     </div>
                 </div>
 
-                <div class="social-media-marqueblanche">
-                    <?php if(have_rows('reseaux_sociaux_marque_blanche_t', $id_top)):
-                        while ( have_rows('reseaux_sociaux_marque_blanche_t', $id_top) ) : the_row(); ?>
-                            <a href=<?php the_sub_field('lien_reseaux_sociaux_marque_blanche_t', $id_top); ?> target="_blank">
-                                <?php if(get_sub_field('image_reseaux_sociaux_marque_blanche_t', $id_top)) : ?>
-                                    <?php echo wp_get_attachment_image(get_sub_field('image_reseaux_sociaux_marque_blanche_t', $id_top), 'full', '', array('class' => 'img-fluid')); ?>
-                                <?php endif; ?>
+                <div class="footer-battle">
+                    <div class="social-media-marqueblanche">
+                        <?php if(have_rows('reseaux_sociaux_marque_blanche_t', $id_top)):
+                            while ( have_rows('reseaux_sociaux_marque_blanche_t', $id_top) ) : the_row(); ?>
+                                <a href=<?php the_sub_field('lien_reseaux_sociaux_marque_blanche_t', $id_top); ?> target="_blank">
+                                    <?php if(get_sub_field('image_reseaux_sociaux_marque_blanche_t', $id_top)) : ?>
+                                        <?php echo wp_get_attachment_image(get_sub_field('image_reseaux_sociaux_marque_blanche_t', $id_top), 'full', '', array('class' => 'img-fluid')); ?>
+                                    <?php endif; ?>
+                                </a>
+                            <?php endwhile; ?>
+                        <?php endif; ?>
+                    </div>
+                    <div class="w-100">
+                            <a ata-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" href="#" class="confirm_delete" class="btn">
+                                <h3 class="restart-marqueblanche">
+                                    Recommencer le top
+                                </h3>
                             </a>
-                        <?php endwhile; ?>
-                    <?php endif; ?>
+                    </div>
                 </div>
 
                 <?php

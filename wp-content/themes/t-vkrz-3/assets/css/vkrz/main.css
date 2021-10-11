@@ -2598,6 +2598,10 @@ textarea {
   src: local("Themysion Regular"), url("../../fonts/Themysion-2OjKo.woff") format("woff");
 }
 
+.t-marqueblanche {
+  /* The popup form - hidden by default */
+}
+
 .t-marqueblanche .app-content-marqueblanche {
   margin-left: 0px;
   padding: calc(2rem + 3.45rem + 1.3rem) 2rem 2rem;
@@ -2651,6 +2655,23 @@ textarea {
 .t-marqueblanche .t-question-marqueblanche img {
   width: 100px;
   height: auto;
+}
+
+.t-marqueblanche .footer-battle {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.t-marqueblanche .restart-marqueblanche {
+  background: url(../../images/marqueblanche/gdp/bulle-gdp.svg) no-repeat center;
+  background-size: contain;
+  padding: 20px 100px;
+  font-family: 'Dosis';
+  font-size: 18px;
 }
 
 .t-marqueblanche .app-content-marqueblanche-result {
@@ -2839,7 +2860,20 @@ textarea {
   outline: none !important;
 }
 
-.t-marqueblanche .coupon-content a {
+.t-marqueblanche .coupon-content .coupon-btn {
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 0;
+  margin-top: 15px;
+  font-family: 'Birthstone Bounce';
+  font-weight: 500;
+  font-size: 24px;
+  width: 400px;
+}
+
+.t-marqueblanche .coupon-content button {
   background: #000;
   border: none;
   padding: 15px;
@@ -2898,6 +2932,16 @@ textarea {
     max-width: 240px;
     height: auto;
   }
+  .t-marqueblanche .footer-battle {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+    margin-top: 50px;
+  }
+  .t-marqueblanche .footer-battle .social-media-marqueblanche {
+    margin-top: 60px;
+  }
   .t-marqueblanche .t-objectif-marqueblanche {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -2953,7 +2997,7 @@ textarea {
     margin: 30px 0px 60px;
     background: none;
   }
-  .t-marqueblanche .coupon-content form, .t-marqueblanche .coupon-content a {
+  .t-marqueblanche .coupon-content form, .t-marqueblanche .coupon-content button {
     width: 300px;
   }
   .t-marqueblanche .social-media-marqueblanche-resultat {
@@ -2976,6 +3020,107 @@ textarea {
         -ms-flex-align: center;
             align-items: center;
   }
+}
+
+.t-marqueblanche .form-popup {
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  z-index: 9;
+  /* Add styles to the form container */
+  /* Full-width input fields */
+  /* When the inputs get focus, do something */
+  /* Set a style for the submit/login button */
+  /* Add a red background color to the cancel button */
+  /* Add some hover effects to buttons */
+}
+
+.t-marqueblanche .form-popup label {
+  color: #000;
+}
+
+.t-marqueblanche .form-popup .form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+}
+
+.t-marqueblanche .form-popup .form-container h1 {
+  color: #000;
+}
+
+.t-marqueblanche .form-popup .form-container input {
+  background: rgba(255, 255, 255, 0.6);
+  border: none;
+  padding: 15px 30px;
+}
+
+.t-marqueblanche .form-popup .form-container input::-webkit-input-placeholder {
+  font-family: 'Cormorant';
+  font-size: 20px;
+  color: #000;
+  opacity: 40%;
+}
+
+.t-marqueblanche .form-popup .form-container input:-ms-input-placeholder {
+  font-family: 'Cormorant';
+  font-size: 20px;
+  color: #000;
+  opacity: 40%;
+}
+
+.t-marqueblanche .form-popup .form-container input::-ms-input-placeholder {
+  font-family: 'Cormorant';
+  font-size: 20px;
+  color: #000;
+  opacity: 40%;
+}
+
+.t-marqueblanche .form-popup .form-container input::placeholder {
+  font-family: 'Cormorant';
+  font-size: 20px;
+  color: #000;
+  opacity: 40%;
+}
+
+.t-marqueblanche .form-popup .form-container input:focus {
+  border: 2px solid #040404;
+  outline: none !important;
+}
+
+.t-marqueblanche .form-popup .form-container input[type=text], .t-marqueblanche .form-popup .form-container input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+.t-marqueblanche .form-popup .form-container input[type=text]:focus, .t-marqueblanche .form-popup .form-container input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+.t-marqueblanche .form-popup .form-container .btn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom: 10px;
+  opacity: 0.8;
+}
+
+.t-marqueblanche .form-popup .form-container .cancel {
+  background-color: red;
+}
+
+.t-marqueblanche .form-popup .form-container .btn:hover, .t-marqueblanche .form-popup .open-button:hover {
+  opacity: 1;
 }
 
 .mobile-navbar {
