@@ -2953,6 +2953,9 @@ textarea {
     margin: 30px 0px 60px;
     background: none;
   }
+  .t-marqueblanche .coupon-content form, .t-marqueblanche .coupon-content a {
+    width: 300px;
+  }
   .t-marqueblanche .social-media-marqueblanche-resultat {
     margin-bottom: 40px;
   }
