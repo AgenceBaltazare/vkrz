@@ -2591,16 +2591,11 @@ textarea {
   z-index: 3;
 }
 
-.t-marqueblanche {
-}
-
 @font-face {
-  .t-marqueblanche {
-    font-family: 'Themysion Regular';
-    font-style: normal;
-    font-weight: normal;
-    src: local("Themysion Regular"), url("../fonts/Themysion-2OjKo.woff") format("woff");
-  }
+  font-family: 'Themysion Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: local("Themysion Regular"), url("../../fonts/Themysion-2OjKo.woff") format("woff");
 }
 
 .t-marqueblanche .app-content-marqueblanche {
@@ -2755,9 +2750,9 @@ textarea {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -webkit-box-align: end;
       -ms-flex-align: end;
           align-items: flex-end;
@@ -2767,7 +2762,6 @@ textarea {
   background: url("../../images/marqueblanche/gdp/bg-coupon.svg") no-repeat center;
   background-size: cover;
   padding: 50px 153px 60px 60px;
-  float: left;
   margin-left: -30px;
 }
 
@@ -2953,9 +2947,14 @@ textarea {
     position: relative;
     z-index: 33;
   }
-  .t-marqueblanche .social-media-marqueblanche {
-    bottom: 17px;
-    left: 20px;
+  .t-marqueblanche .cover-coupon {
+    padding: 0;
+    margin-left: 0;
+    margin: 30px 0px 60px;
+    background: none;
+  }
+  .t-marqueblanche .social-media-marqueblanche-resultat {
+    margin-bottom: 40px;
   }
   .t-marqueblanche .intro-marqueblanche {
     -webkit-box-align: center;
@@ -2967,9 +2966,9 @@ textarea {
     display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: vertical;
-    -webkit-box-direction: reverse;
-        -ms-flex-direction: column-reverse;
-            flex-direction: column-reverse;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
