@@ -118,10 +118,10 @@ $top_datas    = get_top_data($id_top);
                             <p>
                                 Vous avez gagné un coupon de -10% !
                             </p>
-                            <form action="" method="post" name="form2">
-                                <input type="email" placeholder="Mon adresse mail" name="input" id="mail">
+                            <form action="" method="post" name="form2" id="form-coupon" onsubmit="Validate();">
+                                <input type="email" placeholder="Mon adresse mail" name="input" id="mail-coupon">
+                                <button class="btn" id="btn-coupon">Recevoir mon coupon</button>
                             </form>
-                            <button onclick="openForm()" onclick="getValue()" class="btn">Recevoir mon coupon</button>
                         </div>
                     </div>
                     <div class="social-media-marqueblanche-resultat">
@@ -146,7 +146,7 @@ $top_datas    = get_top_data($id_top);
                 </div>
             </div>
 
-            <div class="form-popup" id="myForm">
+            <div class="form-popup" id="form-coupon-2">
                 <form action="" name="form3" class="form-container">
                     <h1>Recevoir mon coupon</h1>
 
@@ -157,13 +157,13 @@ $top_datas    = get_top_data($id_top);
                     <input type="text" placeholder="Entrez votre prénom" name="prenom" required>
 
                     <label for="email"><b>Email</b></label>
-                    <input type="text" placeholder="Entrez votre Email" name="" id="mail2" required>
+                    <input type="text" placeholder="Entrez votre Email" name="" id="mail-coupon-2" required>
                     
                     <input type="checkbox" name="check" id="chek">
                     <label for="check">Valider les conditions</label>
 
                     <button type="submit" class="btn">Valider</button>
-                    <button type="button" class="btn cancel" onclick="closeForm()">Fermer</button>
+                    <button type="button" class="btn cancel" id="btn-close-coupon">Fermer</button>
                 </form>
             </div>
 
@@ -172,20 +172,47 @@ $top_datas    = get_top_data($id_top);
 </div>
 
 <script>
-function openForm() {
-  document.getElementById("myForm").style.display = "block";
-}
 
-function closeForm() {
-  document.getElementById("myForm").style.display = "none";
-}
+$('#form-coupon').submit(function(event) {
+    event.preventDefault();
 
-function getValue() {
-    // Sélectionner l'élément input et récupérer sa valeur
-    var mail_coupon = document.getElementById("mail").value;
-    // Afficher la valeur
-    document.getElementById("mail2").value = mail_coupon;
-}
+    var valid = Validate();
+    if ( !valid ) {
+        document.getElementById("form-coupon-2").style.display = "none";
+    } else {
+        document.getElementById("form-coupon-2").style.display = "block";
+    }
+});
+
+// $('#btn-coupon').click(function() {
+//     var valid = Validate();
+//     if ( !valid ) {
+//         document.getElementById("form-coupon-2").style.display = "none";
+//     } else {
+//         document.getElementById("form-coupon-2").style.display = "block";
+//     }
+// });
+
+// function validateEmail(email) {
+//     var testEmail = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
+//     return testEmail.test( email );
+// }
+
+
+$('#btn-coupon').click(function() {
+    document.getElementById("form-coupon-2").style.display = "block";
+});
+
+$('#btn-close-coupon').click(function() {
+    document.getElementById("form-coupon-2").style.display = "none";
+});
+
+$(document).ready(function(){
+    $("#btn-coupon").click(function(){
+        var mail = $("#mail-coupon").val();
+        document.getElementById("mail-coupon-2").value=mail;
+    });
+});
 </script>
 
 <?php get_footer(); ?>
