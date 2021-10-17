@@ -6,58 +6,65 @@ $c4: rgba(97, 84, 167, 0.10);
 $c5: #7367f0;
 $c6: #2a1f70;
 
-.text-rose{
-  color: $rose !important;
+.text-rose {
+    color: $rose !important;
 }
 
 .big-cat .heading-cat h2 {
-  font-weight: 900;
-  letter-spacing: 2px;
-  margin: 20px 0 5px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    margin: 20px 0 5px;
 }
 
-@-webkit-keyframes rotating /* Safari and Chrome */ {
-  from {
-    -webkit-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  to {
-    -webkit-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
+@-webkit-keyframes rotating
+
+/* Safari and Chrome */
+    {
+    from {
+        -webkit-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    to {
+        -webkit-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
 }
+
 @keyframes rotating {
-  from {
-    -ms-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -webkit-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  to {
-    -ms-transform: rotate(360deg);
-    -moz-transform: rotate(360deg);
-    -webkit-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
+    from {
+        -ms-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    to {
+        -ms-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
 }
 
-.btn-rose{
-  background: $rose !important;
-  border-color: $rose !important;
-  &:hover{
+.btn-rose {
     background: $rose !important;
     border-color: $rose !important;
-  }
+
+    &:hover {
+        background: $rose !important;
+        border-color: $rose !important;
+    }
 }
 
-.mt-10p{
-  margin-top: 10px;
+.mt-10p {
+    margin-top: 10px;
 }
 
-.mr-10p{
-  margin-right: 10px;
+.mr-10p {
+    margin-right: 10px;
 }
