@@ -5,6 +5,7 @@ global $user_tops;
 global $user_infos;
 global $id_vainkeur;
 global $utm;
+global $id_top;
 if (!is_single() || get_post_type() != "tournoi") {
     $user_id        = get_user_logged_id();
     $uuiduser       = deal_uuiduser();
@@ -110,6 +111,9 @@ if (is_single() || is_page(get_page_by_path('monitor'))) {
 } else {
     $list_body_class = "vertical-layout vertical-menu-modern navbar-floating footer-static";
 }
+if(get_field('marqueblanche_t', $id_top)){
+    $list_body_class = $list_body_class." t-marqueblanche";
+}
 ?>
 
 <body <?php body_class($list_body_class); ?> data-open="click" data-menu="vertical-menu-modern" data-col="">
@@ -129,8 +133,9 @@ if (is_single() || is_page(get_page_by_path('monitor'))) {
         <!-- End Google Tag Manager (noscript) -->
     <?php endif; ?>
 
-    
-    <?php
-    get_template_part('partials/menu-user');
-    get_template_part('partials/menu-vkrz');
-    ?>
+    <?php if (!get_field('marqueblanche_t', $id_top)): ?>
+        <?php
+        get_template_part('partials/menu-user');
+        get_template_part('partials/menu-vkrz');
+        ?>
+    <?php endif; ?>

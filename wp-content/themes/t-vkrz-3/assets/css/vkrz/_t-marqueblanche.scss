@@ -1,0 +1,498 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Birthstone+Bounce&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant&display=swap');
+
+@font-face {
+    font-family: 'Themysion Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Themysion Regular'), url('../../fonts/Themysion-2OjKo.woff') format('woff');
+}
+
+.t-marqueblanche {
+    .app-content-marqueblanche {
+        margin-left: 0px;
+        padding: calc(2rem + 3.45rem + 1.3rem) 2rem 2rem;
+        min-height: 100vh;
+    }
+
+    .logo_marqueblanche {
+        margin-top: -80px;
+        max-width: 270px;
+
+    }
+
+    .intro-marqueblanche {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .t-objectif-marqueblanche {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 110px;
+        background: url("../../images/marqueblanche/gdp/bulle-gdp.svg") no-repeat center;
+        background-size: contain;
+        font-size: 28px;
+        font-family: 'Dosis', sans-serif;
+    }
+
+    .t-question-marqueblanche {
+        font-family: 'Themysion Regular';
+        font-size: 80px;
+        color: #040404;
+        margin-top: 50px;
+
+        img {
+            width: 100px;
+            height: auto;
+        }
+    }
+
+    .footer-battle {
+        display: flex;
+        align-items: center;
+    }
+
+    .restart-marqueblanche {
+        background: url(../../images/marqueblanche/gdp/bulle-gdp.svg) no-repeat center;
+        background-size: contain;
+        padding: 20px 100px;
+        font-family: 'Dosis';
+        font-size: 18px;
+    }
+
+    .app-content-marqueblanche-result {
+        margin-left: 0px;
+        padding: calc(2rem + 3.45rem + 1.3rem) 0rem 0rem;
+        min-height: 100vh;
+    }
+
+    .classement {
+        overflow-x: hidden;
+    }
+
+    .battle-marqueblanche {
+        margin-left: 230px;
+    }
+
+    .top-marque-blanche {
+        text-align: end;
+        margin-top: -50px;
+    }
+
+    .title-contender-marqueblanche {
+        font-family: 'Dosis';
+        color: #040404;
+        text-transform: uppercase;
+        font-size: 26px;
+        margin-top: -30px;
+    }
+
+    .versus-marqueblanche {
+        img {
+            border-radius: 0 !important;
+            max-width: 130px;
+        }
+    }
+
+    .social-media-marqueblanche {
+        display: flex;
+        margin-top: 40px;
+
+        a {
+            margin: 0 10px;
+        }
+
+        img {
+            max-width: 70px;
+            height: auto;
+        }
+    }
+
+    .txt_votes_marqueblanche {
+        color: #040404;
+    }
+
+    .r-resultat-marqueblanche {
+        font-family: 'Themysion Regular';
+        font-size: 46px;
+        color: #040404;
+        margin-top: 20px;
+        width: 100%;
+    }
+
+    .crown:before {
+        content: url("../../images/marqueblanche/gdp/crown-gdp.svg");
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        padding-right: 20px;
+    }
+
+    .top1 {
+        margin-top: -70px;
+        margin-right: 30px;
+    }
+
+    .top2 {
+        margin-top: -20px;
+    }
+
+    .top3 {
+        margin-right: -10px;
+    }
+
+    @media (max-width: 1000px) {
+        .top-marque-blanche img {
+            max-width: 45px;
+        }
+    }
+
+    @media (max-width: 500px) {
+        .top-marque-blanche img {
+            max-width: 35px;
+        }
+    }
+
+    .footer-resultat {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+
+    .cover-coupon {
+        padding: 20px 0 40px;
+    }
+
+    .coupon-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        h3 {
+            font-family: 'Themysion Regular';
+            font-size: 75px;
+            color: #000;
+            letter-spacing: 5px;
+            margin-bottom: -15px;
+        }
+
+        p {
+            font-family: 'Dosis';
+            font-size: 20px;
+            color: #000;
+            padding: 0 20px;
+            line-height: 31px;
+        }
+
+        form {
+            width: 400px;
+            margin-top: 15px;
+
+            input {
+                background: rgba(255, 255, 255, 0.6);
+                border: none;
+                border: 2px solid #040404;
+                padding: 15px 30px;
+                width: 100%;
+                color: #000 !important;
+                -webkit-text-fill-color: #000 !important;
+                -webkit-text-size-adjust: 100% !important;
+
+                &::placeholder {
+                    font-family: 'Cormorant';
+                    font-size: 20px;
+                    color: #000;
+                    opacity: 40%;
+                }
+
+                &:focus {
+                    border: 2px solid #2e0058;
+                    outline: none !important;
+                }
+            }
+        }
+
+        .coupon-btn {
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 0;
+            margin-top: 15px;
+            font-family: 'Dosis';
+            font-weight: 500;
+            font-size: 24px;
+            width: 400px;
+        }
+
+        button {
+            background: #000;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            border-radius: 0;
+            margin-top: 15px;
+            font-family: 'Dosis';
+            font-weight: 500;
+            font-size: 24px;
+            width: 400px;
+        }
+    }
+
+    .coupon-finish {
+        display: none;
+
+        h3 {
+            font-family: 'Themysion Regular';
+            font-size: 75px;
+            color: #000;
+            letter-spacing: 5px;
+            margin-bottom: -15px;
+        }
+
+        p {
+            font-family: 'Dosis';
+            font-size: 20px;
+            color: #000;
+            padding: 0 20px;
+            line-height: 31px;
+        }
+
+    }
+
+    .social-media-marqueblanche-resultat {
+        margin-bottom: 20px;
+
+        a {
+            margin: 0 10px;
+        }
+
+        img {
+            max-width: 70px;
+            height: auto;
+        }
+    }
+
+    .more-marqueblanche {
+        margin-bottom: 60px;
+        background: url(../../images/marqueblanche/gdp/bulle-gdp.svg) no-repeat center;
+        background-size: contain;
+        padding: 20px 70px;
+        font-family: 'Dosis';
+        font-size: 18px;
+    }
+
+    @media (max-width: 768px) {
+        .app-content-marqueblanche {
+            padding: calc(1rem - 0.8rem + 6.45rem + 1.3rem) calc(2rem - 0.8rem) 0 calc(2rem - 0.8rem) !important;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .intro-marqueblanche {
+            flex-direction: column;
+        }
+
+        .t-marqueblanche .logo_marqueblanche {
+            margin-top: -80px;
+            max-width: 180px;
+        }
+
+        .t-marqueblanche .t-objectif-marqueblanche {
+            font-size: 19px;
+        }
+
+        .footer-battle {
+            flex-direction: column-reverse;
+            margin-top: 50px;
+
+            .social-media-marqueblanche {
+                margin-top: 60px;
+            }
+        }
+
+        .t-marqueblanche .logo_marqueblanche img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .t-objectif-marqueblanche {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 90px;
+            background: url("../../images/marqueblanche/gdp/bulle-gdp.svg") no-repeat center;
+            background-size: contain;
+
+            h3 {
+                font-size: 22px;
+                font-family: 'Dosis';
+                width: 80%;
+            }
+        }
+
+        .t-question-marqueblanche {
+            font-size: 60px;
+        }
+
+        .t-question-marqueblanche {
+            font-size: 60px;
+
+            img {
+                width: 70px;
+                height: auto;
+            }
+        }
+
+        .battle-marqueblanche {
+            margin-left: 0;
+        }
+
+        .title-contender-marqueblanche {
+            width: 50%;
+            margin: 10px 0 0;
+            padding: 0 5px;
+        }
+
+        .versus-marqueblanche {
+            margin: 15px auto;
+            position: relative;
+
+            img {
+                max-width: 80px !important;
+                border-radius: 0;
+                height: auto;
+                position: relative;
+                z-index: 33;
+            }
+        }
+
+        .cover-coupon {
+            padding: 0;
+            margin-left: 0;
+            margin: 30px 0px 60px;
+            background: none;
+        }
+
+        .coupon-content {
+
+            form,
+            button {
+                width: 300px;
+            }
+        }
+
+        .social-media-marqueblanche-resultat {
+            margin-bottom: 40px;
+        }
+
+        .intro-marqueblanche {
+            align-items: center;
+        }
+
+        .footer-resultat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+
+
+
+    /* The popup form - hidden by default */
+    .form-popup {
+        display: none;
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9;
+
+        label {
+            color: #000;
+        }
+
+        /* Add styles to the form container */
+        .form-container {
+            max-width: 300px;
+            padding: 10px;
+            background-color: white;
+
+            h1 {
+                color: #000;
+            }
+
+            input {
+                background: rgba(255, 255, 255, 0.6);
+                border: none;
+                padding: 15px 30px;
+
+                &::placeholder {
+                    font-family: 'Cormorant';
+                    font-size: 20px;
+                    color: #000;
+                    opacity: 40%;
+                }
+
+                &:focus {
+                    border: 2px solid #040404;
+                    outline: none !important;
+                }
+            }
+        }
+
+        /* Full-width input fields */
+        .form-container input[type=text],
+        .form-container input[type=password] {
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0 22px 0;
+            border: none;
+            background: #f1f1f1;
+        }
+
+        /* When the inputs get focus, do something */
+        .form-container input[type=text]:focus,
+        .form-container input[type=password]:focus {
+            background-color: #ddd;
+            outline: none;
+        }
+
+        /* Set a style for the submit/login button */
+        .form-container .btn {
+            background-color: #04AA6D;
+            color: white;
+            padding: 16px 20px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 10px;
+            opacity: 0.8;
+        }
+
+        /* Add a red background color to the cancel button */
+        .form-container .cancel {
+            background-color: red;
+        }
+
+        /* Add some hover effects to buttons */
+        .form-container .btn:hover,
+        .open-button:hover {
+            opacity: 1;
+        }
+    }
+
+    .card-developer-meetup {
+        background: rgba(203, 194, 185, 0.5) !important;
+        border-radius: 50px;
+    }
+
+    .card-text {
+        color: #2d2d2d;
+    }
+}

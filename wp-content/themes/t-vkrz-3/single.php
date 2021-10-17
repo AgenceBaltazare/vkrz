@@ -8,6 +8,8 @@ switch (get_post_type()) {
                 get_template_part("templates/single/t-sponso");
             } elseif (get_field('private_t')) {
                 get_template_part("templates/single/t-private");
+            } elseif (get_field('marqueblanche_t')) {
+                get_template_part("templates/single/t-marqueblanche");
             }
             else{
                 get_template_part("templates/single/t");
@@ -18,6 +20,8 @@ switch (get_post_type()) {
         $id_top = get_field('id_tournoi_r');
         if (get_field('sponso_t', $id_top)) {
             get_template_part("templates/single/r-sponso");
+        } elseif (get_field('marqueblanche_t', $id_top)) {
+            get_template_part("templates/single/r-marqueblanche");
         }
         else{
             get_template_part("templates/single/r");
