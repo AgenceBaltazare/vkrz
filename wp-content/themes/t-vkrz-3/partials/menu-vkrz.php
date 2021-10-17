@@ -40,8 +40,8 @@
                         <a data-rs-name="twitter" href="https://twitter.com/Vainkeurz" target="_blank" class="btn btn-outline-primary waves-effect sociallink">
                             <i class="fab fa-twitter"></i>
                         </a>
-                        <a data-rs-name="facebook" href="https://www.facebook.com/vainkeurz" target="_blank" class="btn btn-outline-primary waves-effect sociallink">
-                            <i class="fab fa-facebook-f"></i>
+                        <a data-rs-name="tiktok" href="https://www.tiktok.com/@vainkeurz" target="_blank" class="btn btn-outline-primary waves-effect sociallink">
+                            <i class="fab fa-tiktok"></i>
                         </a>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                 <span data-i18n="">Catégories de Tops</span> <i data-feather="more-horizontal"></i>
             </li>
             <?php
-            $cat_t = get_terms( array(
+            $cat_t = get_terms(array(
                 'taxonomy'      => 'categorie',
                 'orderby'       => 'count',
                 'order'         => 'DESC',
@@ -59,10 +59,10 @@
                     get_term_by('slug', 'welcome', 'categorie')->term_id
                 )
             ));
-            foreach($cat_t as $cat) : ?>
+            foreach ($cat_t as $cat) : ?>
                 <li class="nav-item">
                     <a class="d-flex align-items-center" href="<?php echo get_category_link($cat->term_id); ?>">
-                        <span class="ico"><?php the_field('icone_cat', 'term_'.$cat->term_id); ?></span> <span class="menu-title text-truncate"><?php echo $cat->name; ?></span>
+                        <span class="ico"><?php the_field('icone_cat', 'term_' . $cat->term_id); ?></span> <span class="menu-title text-truncate"><?php echo $cat->name; ?></span>
                     </a>
                 </li>
             <?php endforeach; ?>

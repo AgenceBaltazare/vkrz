@@ -350,7 +350,7 @@ foreach ($list_user_tops as $top) {
                                                                                 <?php
                                                                                 $user_top3 = get_user_ranking($r_user['id_ranking']);
                                                                                 $l = 1;
-                                                                                foreach ($user_top3 as $top => $p) : ?>
+                                                                                foreach ($user_top3 as $top) : ?>
 
                                                                                     <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="<?php echo get_the_title($top); ?>" class="avatartop3 avatar pull-up">
                                                                                         <?php $illu = get_the_post_thumbnail_url($top, 'thumbnail'); ?>

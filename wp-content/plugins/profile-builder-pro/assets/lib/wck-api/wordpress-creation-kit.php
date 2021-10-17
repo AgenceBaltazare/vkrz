@@ -498,7 +498,7 @@ class Wordpress_Creation_Kit_PB{
                 } elseif ( $details['type'] == 'checkbox' && is_array( $value ) ){
                     $display_value = implode( ', ', $value );
 				} elseif ( $details['type'] == 'select' || $details['type'] === 'select-2' ){
-				    if ( $details['slug'] === 'pble-label' ){
+				    if ( $details['slug'] === 'pble-label' || $details['slug'] === 'field'){
                         $display_value = '<pre>' . self::wck_get_entry_field_select( $value, $details ) . '</pre>';
                     } else {
                         $display_value = '<pre>' . __(self::wck_get_entry_field_select( $value, $details ), 'profile-builder') . '</pre>'; //phpcs:ignore  WordPress.WP.I18n.NonSingularStringLiteralText

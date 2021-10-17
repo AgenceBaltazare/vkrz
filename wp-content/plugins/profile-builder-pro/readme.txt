@@ -7,7 +7,7 @@ custom registration, custom registration form, custom registration page, extra u
 front-end register, front-end registration, frontend edit profile, edit profileregistration, customize profile, user fields, builder, profile builder, custom fields, avatar
 Requires at least: 3.1
 Tested up to: 5.8
-Stable tag: 3.5.4
+Stable tag: 3.5.6
 
 
 Login, registration and edit profile shortcodes for the front-end. Also you can choose what fields should be displayed or add custom ones.
@@ -101,6 +101,25 @@ This plugin only adds/removes fields in the front-end. The default information-f
 
 
 == Changelog ==
+= 3.5.6 =
+* Fix: issue with 2FA settings tab incorrectly appearing for free version users
+* Fix: a compatibility issue with Conditional Logic for the Paid Member Subscriptions Subscription Plans field
+* Misc: added filter over the Display Name field select options
+* Misc: added an extra Userlisting tag for Upload fields that returns the ID of the attachment
+* Misc: improved searching and filtering for user roles in the Userlisting
+* Misc: added translation support for Map field `Remove marker` string
+* Misc: improved updates unavailable message prompting users to insert their licence key
+
+= 3.5.5 =
+* Fix: A display issue in the Form Fields interface for Select fields
+* Fix: Don't show required asterisk for password fields on the edit profile form
+* Fix: A display issue for the Show Password toggle on Repeat Password fields
+* Fix: Strings changed through Labels Edit are not only changed in the front-end
+* Fix: An error related to the status of Admin Approval for a user
+* Fix: Fix a notice coming from Elementor and 2FA
+* Misc: Updated 2FA field descriptions, fixed some typos
+* Misc: Added a filter for the contents of the Map User Pin: wppb_filter_map_user_pin_bubble_contents
+
 = 3.5.4 =
 * Feature: Improved login error when an user with an unconfirmed email address is trying to login
 * Feature: Added the ability resend the email confirmation from the login error message
@@ -1717,3 +1736,4 @@ Changes to the ReadMe File
 
 = 1.0 =
 Added the posibility of displaying/hiding default WordPress information-fields, and to modify basic layout.
+

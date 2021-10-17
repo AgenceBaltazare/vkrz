@@ -95,7 +95,7 @@
 
     .intro-mobile {
         display: block;
-        margin: 0;
+        margin: 0 0 20px;
     }
 
     .display_current_user_rank {
@@ -334,8 +334,6 @@
 
     .nav-fill {
         li {
-            width: 50%;
-
             a {
                 font-size: 12px;
             }
@@ -390,16 +388,31 @@
         }
     }
 
+    .icons-navbar {
+        justify-content: space-between;
+    }
+
+
     .hide-spot {
         text-transform: uppercase;
-        margin: 5px 0 0 0;
+        margin: 0 0 0 0;
         font-size: 8px;
         display: block;
     }
 
     .mobile-navbar {
-        right: 0;
-        left: 0;
+        margin-left: 0;
+    }
+
+    .hide-xs {
+        display: none;
+    }
+
+    .single {
+        .crisp-client .cc-kv6t[data-full-view=true] .cc-1xry .cc-unoo {
+            bottom: 60px !important;
+            right: 5px !important;
+        }
     }
 
     .swal2-header,
@@ -421,7 +434,8 @@
 
     .mobile-navbar .icons-navbar {
         display: flex;
-        padding: 15px 5px 10px;
+        padding: 10px 15px 9px;
+        background: $c5;
     }
 
     .single {
@@ -435,6 +449,13 @@
             margin: 10px 0 0 0;
             width: 100%;
             display: block;
+        }
+    }
+
+    .header-navbar {
+        .value-user-stats {
+            display: block;
+            text-align: center;
         }
     }
 }
@@ -455,6 +476,15 @@
         max-width: 350px;
         position: relative;
         transition: all 0.2s ease-in;
+    }
+
+}
+
+@media (min-width: 768px) and (max-width: 1500px) {
+
+    .space {
+        display: inline-block;
+        width: 3px;
     }
 
 }

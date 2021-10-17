@@ -329,7 +329,7 @@ foreach($list_user_tops as $top){
                                                                             <?php
                                                                             $user_top3 = get_user_ranking($top['id_ranking']);
                                                                             $l=1;
-                                                                            foreach($user_top3 as $contender => $p): ?>
+                                                                            foreach($user_top3 as $contender): ?>
 
                                                                                 <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="<?php echo get_the_title($contender); ?>" class="avatartop3 avatar pull-up">
                                                                                     <?php $illu = get_the_post_thumbnail_url($contender, 'thumbnail'); ?>

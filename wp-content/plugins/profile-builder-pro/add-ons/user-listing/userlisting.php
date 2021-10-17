@@ -131,6 +131,9 @@ function wppb_generate_userlisting_merge_tags( $type, $template = '' ){
 
             elseif ( $value['field'] == 'Upload' ){
 				$merge_tags[] = array( 'name' => $type.'_'.$value['meta-name'], 'type' => $user_meta, 'label' => $value['field-title'] );
+                if ( $type == 'meta' ) {
+                    $merge_tags[] = array( 'name' => $type.'_'.$value['meta-name'].'_id', 'type' => 'user_meta_custom_upload_id', 'label' => $value['field-title'] . ' ID' );
+                }
 			}
             elseif ( $value['field'] == 'Textarea' ){
                 $merge_tags[] = array( 'name' => $type.'_'.$value['meta-name'], 'type' => $user_meta, 'unescaped' => true, 'label' => $value['field-title'] );
@@ -710,6 +713,27 @@ function wppb_userlisting_show_user_meta_select_cpt( $value, $name, $children, $
 }
 add_filter( 'mustache_variable_user_meta_select_cpt', 'wppb_userlisting_show_user_meta_select_cpt', 10, 4 );
 
+// retrieve the ID of the uploaded file
+function wppb_userlisting_show_user_meta_custom_upload_id( $value, $name, $children, $extra_info ){
+
+    $userID = wppb_get_query_var( 'username' );
+
+    $user_id = ( !empty( $extra_info['user_id'] ) ? $extra_info['user_id'] : '' );
+
+    if( empty( $userID ) )
+        $userID = $user_id;
+
+    // strip first meta_ & _id from $name
+    $name = preg_replace('/meta_/', '', $name, 1);
+    $name = preg_replace('/_id/', '', $name, 1);
+
+    $value = get_user_meta( $userID, $name, true );
+    if ( !empty( $value ) ) {
+        return $value;
+    }
+}
+add_filter( 'mustache_variable_user_meta_custom_upload_id', 'wppb_userlisting_show_user_meta_custom_upload_id', 10, 4 );
+
 /* select, checkbox and radio can have their labels displayed */
 function wppb_userlisting_show_user_meta_labels( $value, $name, $children, $extra_info ){
     $userID = wppb_get_query_var( 'username' );
@@ -1074,10 +1098,15 @@ function wppb_userlisting_users_loop( $value, $name, $children, $extra_values ){
                                 );
                             }
                             else if( $faceted_setting['facet-type'] == 'search' ){
+	                            $value = apply_filters( 'wppb_ul_search_meta_value', stripslashes( sanitize_text_field( $_GET['ul_filter_'.$faceted_setting['facet-meta']] ) ), $faceted_setting['facet-meta'], $wppb_manage_fields );
+	                            /* handle roles facet differently */
+	                            if( $wpdb->get_blog_prefix().'capabilities' === $faceted_setting['facet-meta'] ) {
+									$value = wppb_get_role_slug( $value );
+	                            }
                                 $args['meta_query'][0][$faceted_setting['facet-meta']] = array(
                                     'key' => $faceted_setting['facet-meta'],
                                     'compare_key' => $compare_key,
-                                    'value' => apply_filters( 'wppb_ul_search_meta_value', stripslashes( sanitize_text_field( $_GET['ul_filter_'.$faceted_setting['facet-meta']] ) ), $faceted_setting['facet-meta'], $wppb_manage_fields ),
+                                    'value' => $value,
                                     'compare' => 'LIKE'
                                 );
                             }
@@ -1092,7 +1121,7 @@ function wppb_userlisting_users_loop( $value, $name, $children, $extra_values ){
                                     /* handle roles facet differently */
                                     if( $wpdb->get_blog_prefix().'capabilities' == $faceted_setting['facet-meta'] ) {
                                         $compare = 'LIKE';
-                                        $val = '"'. sanitize_text_field( $_GET['ul_filter_'.$faceted_setting['facet-meta']] ) . '"';
+                                        $val = '"'. wppb_get_role_slug(sanitize_text_field( $_GET['ul_filter_'.$faceted_setting['facet-meta']] )) . '"';
                                     }
                                     else{
                                         $compare = '=';
@@ -1130,7 +1159,7 @@ function wppb_userlisting_users_loop( $value, $name, $children, $extra_values ){
                                             $args['meta_query'][0][$faceted_setting['facet-meta']][] = array(
                                                 'key' => $faceted_setting['facet-meta'],
                                                 'compare_key' => $compare_key,
-                                                'value' => '"'.$val.'"',
+                                                'value' => '"'.wppb_get_role_slug($val).'"',
                                                 'compare' => 'LIKE'
                                             );
                                         }
@@ -1200,9 +1229,14 @@ function wppb_userlisting_users_loop( $value, $name, $children, $extra_values ){
 
                     foreach ($user_meta_keys as $user_meta_key) {
                         if( !in_array($user_meta_key, $wppb_exclude_search_fields ) ) {
+	                        $value = apply_filters( 'wppb_ul_search_meta_value', stripslashes($search_for), $user_meta_key, $wppb_manage_fields );
+							/* handle roles differently */
+	                        if( $user_meta_key === 'wp_capabilities' ) {
+		                        $value = wppb_get_role_slug( $value );
+	                        }
                             $args['meta_query'][2][] = array(
                                 'key' => $user_meta_key,
-                                'value' => apply_filters( 'wppb_ul_search_meta_value', stripslashes($search_for), $user_meta_key, $wppb_manage_fields ),
+                                'value' => $value,
                                 'compare' => apply_filters( 'wppb_ul_search_all_meta_compare', 'LIKE' )
                             );
                         }
@@ -1494,6 +1528,9 @@ function wppb_userlisting_show_user_meta_map( $value, $name, $children, $extra_i
 
                     wp_enqueue_script('wppb-google-maps-api-script', 'https://maps.googleapis.com/maps/api/js?key=' . $field['map-api-key'], array('jquery'), PROFILE_BUILDER_VERSION, true);
                     wp_enqueue_script('wppb-google-maps-script', WPPB_PLUGIN_URL . 'front-end/extra-fields/map/map.js', array('jquery'), PROFILE_BUILDER_VERSION, true);
+
+                    $map_data_vars_array['map_marker_text_remove'] = __( "Remove Marker", 'profile-builder' );
+                    wp_localize_script( 'wppb-google-maps-script', 'wppb_maps_data', $map_data_vars_array );
 
                     $map_markers = wppb_get_user_map_markers($userID, $field['meta-name']);
 

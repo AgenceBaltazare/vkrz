@@ -14,6 +14,10 @@ function delete_ranking($id_ranking, $id_vainkeur){
 
     }
 
+    if (is_user_logged_in()) {
+        delete_transient('user_' . get_current_user_id() . '_get_user_tops');
+    }
+
     return die(json_encode( array(
         'id_ranking'        => $id_ranking,
         'id_top'            => $id_top,
@@ -33,6 +37,10 @@ function delete_real_ranking($id_ranking, $id_vainkeur){
 
     }
 
+    if (is_user_logged_in()) {
+        delete_transient('user_' . get_current_user_id() . '_get_user_tops');
+    }
+    
     return die(json_encode( array(
         'id_ranking'        => $id_ranking,
     )));

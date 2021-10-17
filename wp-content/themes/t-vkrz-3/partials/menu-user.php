@@ -1,15 +1,14 @@
 <?php
 global $user_infos;
-if(is_single() && get_post_type() == "tournoi"){
+global $cat_name;
+if (is_single() && get_post_type() == "tournoi") {
     global $top_infos;
     global $id_top;
     global $id_ranking;
-}
-elseif(is_single() && get_post_type() == "classement"){
+} elseif (is_single() && get_post_type() == "classement") {
     global $top_infos;
     $id_top = get_field('id_tournoi_r');
-}
-elseif(is_author()){
+} elseif (is_author()) {
     global $vainkeur_info;
 }
 ?>
@@ -30,7 +29,7 @@ elseif(is_author()){
             </li>
         </ul>
 
-        <?php if(!is_home()): ?>
+        <?php if (!is_home()) : ?>
             <div class="navquick d-flex align-items-center">
                 <div class="content-header row">
                     <div class="content-header-left col-12">
@@ -45,29 +44,29 @@ elseif(is_author()){
                                             </a>
                                         </li>
 
-                                        <?php if((is_single() && get_post_type() == "tournoi") || (is_single() && get_post_type() == "classement")): ?>
+                                        <?php if ((is_single() && get_post_type() == "tournoi") || (is_single() && get_post_type() == "classement")) : ?>
 
                                             <li class="breadcrumb-item">
                                                 <?php
-                                                foreach(get_the_terms($id_top, 'categorie') as $cat ) {
+                                                foreach (get_the_terms($id_top, 'categorie') as $cat) {
                                                     $cat_id     = $cat->term_id;
                                                     $cat_name   = $cat->name;
                                                 }
                                                 ?>
                                                 <a href="<?php echo get_category_link($cat_id); ?>">
                                                     <span class="ico">
-                                                        <?php the_field('icone_cat', 'term_'.$cat_id); ?>
-                                                    </span> 
+                                                        <?php the_field('icone_cat', 'term_' . $cat_id); ?>
+                                                    </span>
                                                     <span class="menu-title text-truncate">
                                                         <?php echo $cat_name; ?>
                                                     </span>
                                                 </a>
                                             </li>
 
-                                        <?php elseif(!is_author() && is_archive()): ?>
+                                        <?php elseif (!is_author() && is_archive()) : ?>
 
                                             <?php
-                                            if(is_archive()){
+                                            if (is_archive()) {
                                                 global $current_cat;
                                                 global $cat_name;
                                                 global $cat_id;
@@ -75,23 +74,23 @@ elseif(is_author()){
                                             ?>
                                             <li class="breadcrumb-item">
                                                 <a href="<?php echo get_category_link($cat_id); ?>">
-                                                    <span class="ico"><?php the_field('icone_cat', 'term_'.$cat_id); ?></span> <span class="menu-title text-truncate"><?php echo $cat_name; ?></span>
+                                                    <span class="ico"><?php the_field('icone_cat', 'term_' . $cat_id); ?></span> <span class="menu-title text-truncate"><?php echo $cat_name; ?></span>
                                                 </a>
                                             </li>
 
-                                        <?php elseif(is_page(get_page_by_path('elo'))): ?>
+                                        <?php elseif (is_page(get_page_by_path('elo'))) : ?>
 
                                             <?php global $id_top; ?>
 
                                             <li class="breadcrumb-item">
                                                 <?php
-                                                foreach(get_the_terms($id_top, 'categorie') as $cat ) {
+                                                foreach (get_the_terms($id_top, 'categorie') as $cat) {
                                                     $cat_id     = $cat->term_id;
                                                     $cat_name   = $cat->name;
                                                 }
                                                 ?>
                                                 <a href="<?php echo get_category_link($cat_id); ?>">
-                                                    <span class="ico"><?php the_field('icone_cat', 'term_'.$cat_id); ?></span> <span class="menu-title text-truncate"><?php echo $cat_name; ?></span>
+                                                    <span class="ico"><?php the_field('icone_cat', 'term_' . $cat_id); ?></span> <span class="menu-title text-truncate"><?php echo $cat_name; ?></span>
                                                 </a>
                                             </li>
                                             <li class="breadcrumb-item">
@@ -102,21 +101,21 @@ elseif(is_author()){
                                                 </a>
                                             </li>
 
-                                        <?php elseif(is_page(get_page_by_path('liste-des-tops'))): ?>
+                                        <?php elseif (is_page(get_page_by_path('liste-des-tops'))) : ?>
 
                                             <?php global $id_top; ?>
 
                                             <li class="breadcrumb-item">
                                                 <?php
-                                                if(get_the_terms($id_top, 'categorie')){
-                                                    foreach(get_the_terms($id_top, 'categorie') as $cat ) {
+                                                if (get_the_terms($id_top, 'categorie')) {
+                                                    foreach (get_the_terms($id_top, 'categorie') as $cat) {
                                                         $cat_id     = $cat->term_id;
                                                         $cat_name   = $cat->name;
                                                     }
                                                 }
                                                 ?>
                                                 <a href="<?php echo get_category_link($cat_id); ?>">
-                                                    <span class="ico"><?php the_field('icone_cat', 'term_'.$cat_id); ?></span> <span class="menu-title text-truncate"><?php echo $cat_name; ?></span>
+                                                    <span class="ico"><?php the_field('icone_cat', 'term_' . $cat_id); ?></span> <span class="menu-title text-truncate"><?php echo $cat_name; ?></span>
                                                 </a>
                                             </li>
                                             <li class="breadcrumb-item">
@@ -139,27 +138,27 @@ elseif(is_author()){
 
         <div class="bookmark-wrapper d-flex align-items-baseline">
 
-            <?php if(is_home()): ?>
+            <?php if (is_home()) : ?>
 
                 <h3 class="mb-0 animate__animated animate__slideInLeft">🖖 Bienvenue</h3>
                 <h4 class="mb-0 kick animate__animated animate__slideInRight" data-kick="Commence par choisir un Top qui t'intéresse et enchaîne les votes 👇">Tu vas pouvoir générer et revendiquer tes propres classements !</h4>
 
-            <?php elseif(is_single() && (get_post_type() == "tournoi")): ?>
+            <?php elseif (is_single() && (get_post_type() == "tournoi")) : ?>
 
-                <?php if($id_ranking): ?>
+                <?php if ($id_ranking) : ?>
                     <div class="tournament-heading text-center">
                         <h3 class="mb-0 t-titre-tournoi">Top <?php echo $top_infos['top_number']; ?> <span class="ico">⚡</span> <?php echo $top_infos['top_title']; ?></h3>
                         <h4 class="mb-0 t-rose t-max">
                             <?php echo $top_infos['top_question']; ?>
                         </h4>
                     </div>
-                <?php else: ?>
+                <?php else : ?>
                     <div class="tournament-heading text-center">
                         <h3 class="mb-0 t-titre-tournoi">Introduction</h3>
                     </div>
                 <?php endif; ?>
 
-            <?php elseif(is_single() && (get_post_type() == "classement")): ?>
+            <?php elseif (is_single() && (get_post_type() == "classement")) : ?>
 
                 <div class="tournament-heading text-center">
                     <h3 class="mb-0 t-titre-tournoi">
@@ -170,7 +169,7 @@ elseif(is_author()){
                     </h4>
                 </div>
 
-            <?php elseif(is_page(get_page_by_path('elo'))): ?>
+            <?php elseif (is_page(get_page_by_path('elo'))) : ?>
 
                 <?php $id_top = $_GET['id_top']; ?>
                 <div class="tournament-heading text-center">
@@ -180,7 +179,7 @@ elseif(is_author()){
                     </h4>
                 </div>
 
-            <?php elseif(is_page(get_page_by_path('liste-des-tops'))): ?>
+            <?php elseif (is_page(get_page_by_path('liste-des-tops'))) : ?>
 
                 <?php $id_top = $_GET['id_top']; ?>
                 <div class="tournament-heading text-center">
@@ -190,14 +189,14 @@ elseif(is_author()){
                     </h4>
                 </div>
 
-            <?php elseif(!is_author() && is_archive()): ?>
+            <?php elseif (!is_author() && is_archive()) : ?>
 
                 <div class="tournament-heading text-center">
-                    <h3 class="mb-0 t-titre-tournoi"><span class="ico"><?php the_field('icone_cat', 'term_'.$cat_id); ?></span> <?php echo $cat_name; ?></h3>
+                    <h3 class="mb-0 t-titre-tournoi"><span class="ico"><?php the_field('icone_cat', 'term_' . $cat_id); ?></span> <?php echo $cat_name; ?></h3>
                     <h4 class="mb-0"><?php echo $current_cat->description; ?></h4>
                 </div>
 
-            <?php elseif(is_author()): ?>
+            <?php elseif (is_author()) : ?>
 
                 <div class="tournament-heading text-center">
                     <h3 class="mb-0 t-titre-tournoi">
@@ -228,9 +227,9 @@ elseif(is_author()){
                     <li class="dropdown-menu-footer">
                         <div class="text-center mb-2">
                             <h6 class="font-weight-bolder mb-0">
-                                <?php if(is_user_logged_in()): ?>
+                                <?php if (is_user_logged_in()) : ?>
                                     Encore <span class="decompte_vote"><?php echo get_vote_to_next_level($user_infos['level_number'], $user_infos['nb_vote_vkrz']); ?></span> 💎 pour passer au niveau <?php echo $user_infos['next_level']; ?>
-                                <?php else: ?>
+                                <?php else : ?>
                                     Il te faut un compte pour monter en niveau 🚀
                                 <?php endif; ?>
                             </h6>
@@ -241,34 +240,13 @@ elseif(is_author()){
                     </li>
                 </ul>
             </li>
-            <li class="nav-item dropdown dropdown-notification mr-25">
-                <a class="nav-link" href="javascript:void(0);" data-toggle="dropdown">
+            <li class="nav-item mr-25">
+                <a class="nav-link" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>">
                     <span class="ico text-center">🏆</span>
                     <span class="value-user-stats">
                         <?php echo $user_infos['nb_top_vkrz']; ?>
                     </span>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
-                    <li class="dropdown-menu-header">
-                        <div class="dropdown-header d-flex">
-                            <h4 class="notification-title mb-0 mr-auto">🏆</h4>
-                            <div class="badge badge-pill badge-light-primary">
-                                <?php if($user_infos['nb_top_vkrz'] >= 1): ?>
-                                    Mes Tops terminés
-                                <?php else: ?>
-                                    Aucun Top terminé <span class="ico">😑</span>
-                                <?php endif; ?>
-                            </div>
-                        </div>
-                    </li>
-                    <?php if($user_infos['nb_top_vkrz'] >= 1): ?>
-                        <li class="dropdown-menu-footer">
-                            <a class="btn btn-primary btn-block" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>">
-                                Voir tous mes Tops terminés
-                            </a>
-                        </li>
-                    <?php endif; ?>
-                </ul>
             </li>
             <li class="nav-item dropdown dropdown-user ml-25">
                 <a class="nav-link dropdown-toggle dropdown-user-link" id="dropdown-user" href="javascript:void(0);" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -280,7 +258,7 @@ elseif(is_author()){
                     </span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-user">
-                    <?php if(is_user_logged_in()): ?>
+                    <?php if (is_user_logged_in()) : ?>
                         <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>">
                             <span class="ico">🐣</span> Mon compte
                         </a>
@@ -291,7 +269,7 @@ elseif(is_author()){
                         <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('deconnexion')); ?>">
                             <span class="ico">👋</span> Déconnexion
                         </a>
-                    <?php else: ?>
+                    <?php else : ?>
                         <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>">
                             <span class="ico">🥷</span> Mon compte
                         </a>

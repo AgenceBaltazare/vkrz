@@ -121,6 +121,9 @@ add_action( 'admin_notices', 'wppb_le_rescan_success_message' );
  * @link http://codex.wordpress.org/Plugin_API/Filter_Reference/gettext
  */
 function wppb_le_text_strings( $translated_text, $text, $domain ) {
+	if( is_admin() )
+		return $translated_text;
+
 	$edited_labels = get_option( 'pble' );
 
 	if( empty( $edited_labels ) || $edited_labels === 'not_set' ) {
@@ -140,6 +143,9 @@ function wppb_le_text_strings( $translated_text, $text, $domain ) {
 add_filter( 'gettext', 'wppb_le_text_strings', 8, 3 );
 
 function wppb_le_ngettext_strings( $translated_text, $single, $plural, $number, $domain ){
+	if( is_admin() )
+		return $translated_text;
+
     if( $domain != 'profile-builder' )
         return $translated_text;
 

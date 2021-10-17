@@ -302,6 +302,22 @@ a.sociallink:hover i {
   background-size: contain !important;
 }
 
+.space {
+  display: inline-block;
+  width: 10px;
+}
+
+.vertical-layout.vertical-menu-modern.menu-expanded .footer {
+  margin-right: 80px;
+}
+
+.separateur {
+  height: 1px;
+  width: 100%;
+  margin: 30px 0;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
 .dark-layout {
   background: linear-gradient(35deg, #0c0a27 40%, #230b36 100%) fixed;
 }
@@ -592,7 +608,12 @@ html .content {
 }
 
 .single-tournoi .intro-mobile {
-  z-index: 9999999;
+  z-index: 7;
+}
+
+.dark-layout .dropdown-menu {
+  background-color: #0a0921;
+  box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.24);
 }
 
 .hide-lg {
@@ -837,10 +858,8 @@ html .content {
   box-shadow: none;
 }
 
-.recrutement-page h1 {
-  font-family: "montserrat";
-  font-weight: bold;
-  font-size: 35px;
+.typeform iframe {
+  min-height: 800px;
 }
 
 #commentform textarea, #commentform input {
@@ -2651,26 +2670,21 @@ textarea {
 }
 
 .mobile-navbar {
-  background: linear-gradient(150deg, #0c0a27, #471867, #0c0a27, #230b36, #0c0a27);
-  background-size: 400% 400%;
-  -webkit-animation: gradient 15s ease infinite;
-  animation: gradient 15s ease infinite;
   display: block;
   position: fixed;
   z-index: 1023;
   right: 0;
-  left: 80px;
-  border-top: 5px solid #7367f0;
-  bottom: 0;
-}
-.mobile-navbar .icons-navbar {
-  display: flex;
-  padding: 15px 5px 10px 55px;
+  left: 0;
+  bottom: 10px;
+  margin-left: 80px;
 }
 
 .icons-navbar {
-  width: 80%;
-  justify-content: space-between;
+  background: #2c2072;
+  display: flex;
+  padding: 15px 40px;
+  border-radius: 10px;
+  justify-content: space-evenly;
 }
 .icons-navbar .ico-nav-mobile {
   cursor: pointer;
@@ -2697,6 +2711,8 @@ textarea {
   text-transform: uppercase;
   margin: 0 0 0 5px;
   font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
 }
 
 .share-content {
@@ -2769,7 +2785,7 @@ textarea {
 .share-top-content ul,
 .box-info-content ul,
 .share-content ul {
-  margin: 25px 25px 25px 15px;
+  margin: 25px 50px 25px 15px;
   padding-left: 0px;
 }
 .share-classement-content li,
@@ -2780,6 +2796,9 @@ textarea {
   list-style-type: none;
   font-size: 18px;
   margin-top: 15px;
+  border: 2px solid #fff;
+  padding: 20px;
+  border-radius: 10px;
 }
 .share-classement-content li:active,
 .share-top-content li:active,
@@ -2893,7 +2912,7 @@ textarea {
 
   .intro-mobile {
     display: block;
-    margin: 0;
+    margin: 0 0 20px;
   }
 
   .display_current_user_rank {
@@ -3121,9 +3140,6 @@ textarea {
     min-height: 100px;
   }
 
-  .nav-fill li {
-    width: 50%;
-  }
   .nav-fill li a {
     font-size: 12px;
   }
@@ -3170,16 +3186,28 @@ textarea {
     flex-direction: column;
   }
 
+  .icons-navbar {
+    justify-content: space-between;
+  }
+
   .hide-spot {
     text-transform: uppercase;
-    margin: 5px 0 0 0;
+    margin: 0 0 0 0;
     font-size: 8px;
     display: block;
   }
 
   .mobile-navbar {
-    right: 0;
-    left: 0;
+    margin-left: 0;
+  }
+
+  .hide-xs {
+    display: none;
+  }
+
+  .single .crisp-client .cc-kv6t[data-full-view=true] .cc-1xry .cc-unoo {
+    bottom: 60px !important;
+    right: 5px !important;
   }
 
   .swal2-header,
@@ -3198,7 +3226,8 @@ textarea {
 
   .mobile-navbar .icons-navbar {
     display: flex;
-    padding: 15px 5px 10px;
+    padding: 10px 15px 9px;
+    background: #7367f0;
   }
 
   .single footer.footer {
@@ -3211,6 +3240,11 @@ textarea {
     width: 100%;
     display: block;
   }
+
+  .header-navbar .value-user-stats {
+    display: block;
+    text-align: center;
+  }
 }
 @media (max-width: 425px) {
   .app-user-view .btns-alert .btn-outline-white {
@@ -3222,5 +3256,11 @@ textarea {
     max-width: 350px;
     position: relative;
     transition: all 0.2s ease-in;
+  }
+}
+@media (min-width: 768px) and (max-width: 1500px) {
+  .space {
+    display: inline-block;
+    width: 3px;
   }
 }/*# sourceMappingURL=main.css.map */

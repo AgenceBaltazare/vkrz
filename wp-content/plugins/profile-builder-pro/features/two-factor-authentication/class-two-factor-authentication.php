@@ -226,39 +226,39 @@ class WPPB_Two_Factor_Authenticator {
 
                         $output .= '
                             <ul class="wppb-2fa-fields">
-                                <li class="wppb-form-field wppb_2fa_heading"><h4>' . __( 'Two-Factor Authentication', 'profile-builder' ) . '</h4></li>
+                                <li class="wppb-form-field wppb_2fa_heading"><h4>' . esc_html__( 'Two-Factor Authentication', 'profile-builder' ) . '</h4></li>
                                 <li class="wppb-form-field wppb_auth_enabled">
-                                    <label for="wppb_auth_enabled">' . __( 'Activate', 'profile-builder' ) . '</label>
+                                    <label for="wppb_auth_enabled">' . esc_html__( 'Activate', 'profile-builder' ) . '</label>
                                     <input name="wppb_auth_enabled" id="wppb_auth_enabled" type="checkbox" ' . checked( $enabled, 'enabled', false ) . '/>
                                 </li>
                                 <div id="wppb_auth_active">
                                     <li class="wppb-form-field wppb_auth_relaxedmode">
-                                        <label for="wppb_auth_relaxedmode">' . __( 'Relaxed Mode', 'profile-builder' ) . '</label>
+                                        <label for="wppb_auth_relaxedmode">' . esc_html__( 'Relaxed Mode', 'profile-builder' ) . '</label>
                                         <input name="wppb_auth_relaxedmode" id="wppb_auth_relaxedmode" type="checkbox" ' . checked( $relaxedmode, 'enabled', false ) . '/>
-                                        <span class="wppb-description-delimiter">' . __( " Allow for higher time drifting on your phone clock ( &#177;4 min ).", "profile-builder" ) . '</span>
+                                        <span class="wppb-description-delimiter">' . esc_html__( "Allow for more time drift on your phone clock ( &#177;4 min ).", "profile-builder" ) . '</span>
                                     </li>
                                     <li class="wppb-form-field wppb_auth_description">
-                                        <label for="wppb_auth_description">' . __( 'Description', 'profile-builder' ) . '</label>
+                                        <label for="wppb_auth_description">' . esc_html__( 'Description', 'profile-builder' ) . '</label>
                                         <input name="wppb_auth_description" id="wppb_auth_description" type="text" value="' . $description . '"/>
-                                        <span class="wppb-description-delimiter">' . __( 'Description that you\'ll see in the Authenticator app.', 'profile-builder' ) . '</span>
+                                        <span class="wppb-description-delimiter">' . esc_html__( 'Description that you\'ll see in the Authenticator app.', 'profile-builder' ) . '</span>
                                     </li>
                                     <li class="wppb-form-field wppb_auth_secret">
-                                        <label for="wppb_auth_secret">' . __( 'Secret', 'profile-builder' ) . '</label>
+                                        <label for="wppb_auth_secret">' . esc_html__( 'Secret', 'profile-builder' ) . '</label>
                                         <input name="wppb_auth_secret" id="wppb_auth_secret" type="text" readonly="readonly" size="25" value="' . $secret . '"/>
                                     </li>
                                     <li id="wppb_auth_secret_buttons" style="">
-                                        <input name="wppb_auth_newsecret" id="wppb_auth_newsecret" value="' . __( 'New Secret', 'profile-builder' ) . '" type="button" class="button wppb_auth_button wppb_auth_new_button" />
-                                        <input name="wppb_show_qr" id="wppb_show_qr" value="' . __( 'QR Code', 'profile-builder' ) . '" type="button" class="button wppb_auth_button wppb_auth_qr_button" onclick="ShowOrHideQRCode( )" />
+                                        <input name="wppb_auth_newsecret" id="wppb_auth_newsecret" value="' . esc_html__( 'New Secret', 'profile-builder' ) . '" type="button" class="button wppb_auth_button wppb_auth_new_button" />
+                                        <input name="wppb_show_qr" id="wppb_show_qr" value="' . esc_html__( 'QR Code', 'profile-builder' ) . '" type="button" class="button wppb_auth_button wppb_auth_qr_button" onclick="ShowOrHideQRCode( )" />
                                     </li>
                                     <li id="wppb_auth_QR_INFO" style="display: none">
-                                        <span class="wppb-description-delimiter">' . __( 'Scan this with the Authenticator app:', 'profile-builder' ) . '</span>
+                                        <span class="wppb-description-delimiter">' . esc_html__( 'Scan this with the Authenticator app:', 'profile-builder' ) . '</span>
                                         <div id="wppb_auth_QRCODE"></div>
                                     </li>
                                     <li class="wppb-form-field wppb_auth_verify">
-                                        <label for="wppb_auth_passw">'.__( 'Verify TOTP', 'profile-builder' ).'</label>
+                                        <label for="wppb_auth_passw">' . esc_html__( 'Verify TOTP', 'profile-builder' ) . '</label>
                                         <input name="wppb_auth_passw" id="wppb_auth_passw" type="text"/>
                                     <li id="wppb_auth_verify_buttons" style="">
-                                        <input name="wppb_auth_verify_button" id="wppb_auth_verify_button" value="'.__( 'Check', 'profile-builder' ).'" type="button" class="button wppb_auth_button wppb_auth_verify_button" />
+                                        <input name="wppb_auth_verify_button" id="wppb_auth_verify_button" value="' . esc_html__( 'Check', 'profile-builder' ) . '" type="button" class="button wppb_auth_button wppb_auth_verify_button" />
                                         <input name="wppb_auth_verify_indicator" id="wppb_auth_verify_indicator" value="&nbsp" type="button" class="button wppb_auth_button wppb_auth_verify_indicator" disabled />
                                         <input type="hidden" value="" name="wppb_auth_verify_result" id="wppb_auth_verify_result"/>
                                     </li>
@@ -349,7 +349,7 @@ class WPPB_Two_Factor_Authenticator {
                                 <th scope="row"><?php echo esc_html__( "Relaxed Mode", "profile-builder" ); ?></th>
                                 <td>
                                     <input name="wppb_auth_relaxedmode" id="wppb_auth_relaxedmode" class="tog" type="checkbox"<?php echo checked( $relaxedmode, "enabled", false ); ?>/>
-                                    <span class="description"><?php echo esc_html__( " Allow for more time drifting on your phone clock ( &#177;4 min ).", "profile-builder" ); ?></span>
+                                    <span class="description"><?php echo esc_html__( "Allow for more time drift on your phone clock ( &#177;4 min ).", "profile-builder" ); ?></span>
                                 </td>
                             </tr>
                             <tr class="wppb_auth_active wppb_auth_description">
@@ -370,7 +370,7 @@ class WPPB_Two_Factor_Authenticator {
                             <tr id="wppb_auth_QR_INFO" style="display: none">
                                 <th></th>
                                 <td>
-                                    <span class="description"><br/><?php echo esc_html__( 'Scan this your Authenticator app:', 'profile-builder' ); ?></span>
+                                    <span class="description"><br/><?php echo esc_html__( 'Scan this with the Authenticator app:', 'profile-builder' ); ?></span>
                                     <br/>
                                     <div id="wppb_auth_QRCODE"></div>
                                 </td>

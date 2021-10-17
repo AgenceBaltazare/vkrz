@@ -9,7 +9,7 @@ function wppb_password_handler( $output, $form_location, $field, $user_id, $fiel
 	$item_description = wppb_icl_t( 'plugin profile-builder-pro', 'default_field_'.$field['id'].'_description_translation', $field['description'] );
 
 	if ( $form_location != 'back_end' ){
-		$error_mark = ( ( $field['required'] == 'Yes' ) ? '<span class="wppb-required" title="'.wppb_required_field_error($field["field-title"]).'">*</span>' : '' );
+		$error_mark = ( ( $field['required'] == 'Yes' ) ? ( $form_location != 'edit_profile' ? '<span class="wppb-required" title="'.wppb_required_field_error($field["field-title"]).'">*</span>' : '' ) : '' );
 					
 		if ( array_key_exists( $field['id'], $field_check_errors ) )
 			$error_mark = '<img src="'.WPPB_PLUGIN_URL.'assets/images/pencil_delete.png" title="'.wppb_required_field_error($field["field-title"]).'"/>';

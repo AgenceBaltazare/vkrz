@@ -205,9 +205,9 @@ function get_user_percent(
         'meta_query'                => array(
             'relation' => 'AND',
             array(
-                'key'       => 'nb_votes_r',
-                'value'     => 0,
-                'compare'   => '>',
+                'key'       => 'done_r',
+                'value'     => 'done',
+                'compare'   => '=',
             ),
             array(
                 'key'       => 'id_tournoi_r',
@@ -219,10 +219,10 @@ function get_user_percent(
 
     while ($all_ranking_of_t->have_posts()) : $all_ranking_of_t->the_post();
 
-        if(get_field('uuid_user_r') == $uuiduser){
-            $current_user_id_ranking = get_the_id();
-            $current_user_top3       = get_user_ranking($current_user_id_ranking, 3);
-        }
+            if(get_field('uuid_user_r') == $uuiduser){
+                $current_user_id_ranking = get_the_id();
+                $current_user_top3       = get_user_ranking($current_user_id_ranking, 3);
+            }
 
         if(get_field('uuid_user_r') != $uuiduser) {
             array_push($list_ranking_of_t, array(
@@ -248,7 +248,7 @@ function get_user_percent(
     if ($nb_tops === 0){
         $percent = 0;
     }else{
-        $percent = round($count_same_ranking * 100 / $nb_tops);
+        $percent = round($count_same_ranking * 100 / ($nb_tops - 1));
     }
     $all_ranking_of_t->reset_postdata();
 
@@ -256,7 +256,7 @@ function get_user_percent(
 
     return array(
         "percent" => $percent,
-        "nb_similar" => $count_same_ranking + 1,
+        "nb_similar" => $count_same_ranking,
     );
 }
 
@@ -477,7 +477,7 @@ function get_creator_t($creator_id){
     $creator_data       = get_user_by('ID', $creator_id);
     $nb_votes_all_t     = 0;
     $nb_ranks_all_t     = 0;
-    $total_note_moy     = array();
+    $total_nb_completed_top     = 0;
 
     $list_tops = new WP_Query(array(
         'post_type'              => 'tournoi',
@@ -503,14 +503,11 @@ function get_creator_t($creator_id){
         $nb_votes_t    = $top_data['nb_votes'];
         $nb_ranks_t    = $top_data['nb_tops'];
         $nb_notes_t    = $top_data['nb_note'];
-        $moy_notes_t   = $top_data['moy_note'];
+        $nb_completed_top = $top_data['nb_completed_top'];
 
         $nb_votes_all_t = $nb_votes_all_t + $nb_votes_t;
         $nb_ranks_all_t = $nb_ranks_all_t + $nb_ranks_t;
-
-        if($moy_notes_t != 0){
-            array_push($total_note_moy, $moy_notes_t);
-        }
+        $total_nb_completed_top = $total_nb_completed_top + $nb_completed_top;
 
         array_push($list_creator_tops, array(
             "top_id"        => $id_top,
@@ -518,11 +515,10 @@ function get_creator_t($creator_id){
             "nb_top"        => get_field('count_contenders_t', $id_top),
             "top_votes"     => $nb_votes_t,
             "top_ranks"     => $nb_ranks_t,
-            "top_note"      => $moy_notes_t,
+            "top_completed" => $nb_completed_top,
         ));
     endwhile;
 
-    $creator_note    = round(array_sum($total_note_moy) / count($total_note_moy), 2);
     $avatar_url      = get_avatar_url($creator_id, ['size' => '80', 'force_default' => false]);
     $info_user_level = get_user_level($creator_id);
     
@@ -540,7 +536,7 @@ function get_creator_t($creator_id){
         "creator_role"      => $creator_data->roles[0],
         "creator_all_v"     => $nb_votes_all_t,
         "creator_all_t"     => $nb_ranks_all_t,
-        "creator_note"      => $creator_note,
+        "total_completed_top" => $total_nb_completed_top,
     );
 
 }

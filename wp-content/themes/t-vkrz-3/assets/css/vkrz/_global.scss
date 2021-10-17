@@ -6,6 +6,22 @@
     background-size: contain !important;
 }
 
+.space {
+    display: inline-block;
+    width: 10px;
+}
+
+.vertical-layout.vertical-menu-modern.menu-expanded .footer {
+    margin-right: 80px;
+}
+
+.separateur {
+    height: 1px;
+    width: 100%;
+    margin: 30px 0;
+    background-color: rgba(255, 255, 255, 0.20);
+}
+
 .dark-layout {
     background: linear-gradient(35deg, $c1 40%, #230b36 100%) fixed;
 
@@ -303,8 +319,13 @@ html .content {
 
 .single-tournoi {
     .intro-mobile {
-        z-index: 9999999;
+        z-index: 7;
     }
+}
+
+.dark-layout .dropdown-menu {
+    background-color: $c2;
+    box-shadow: 0 4px 24px 0 rgb(0 0 0 / 24%);
 }
 
 .hide-lg {
@@ -488,7 +509,8 @@ html .content {
 
 .stats-mondiales {
     font-size: 18px;
-    b{
+
+    b {
         color: $c5;
         font-weight: normal;
     }

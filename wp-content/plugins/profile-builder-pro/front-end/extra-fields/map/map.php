@@ -9,6 +9,9 @@ function wppb_map_handler( $output, $form_location, $field, $user_id, $field_che
             wp_enqueue_script( 'wppb-google-maps-api-script', 'https://maps.googleapis.com/maps/api/js?key=' . $map_api_key . '&libraries=places', array('jquery'), PROFILE_BUILDER_VERSION, true );
             wp_enqueue_script( 'wppb-google-maps-script', WPPB_PLUGIN_URL . 'front-end/extra-fields/map/map.js', array('jquery'), PROFILE_BUILDER_VERSION, true );
 
+            $map_data_vars_array['map_marker_text_remove'] = __( "Remove Marker", 'profile-builder' );
+            wp_localize_script( 'wppb-google-maps-script', 'wppb_maps_data', $map_data_vars_array );
+
             if( $form_location == 'back_end' )
                 wp_enqueue_style( 'wppb-google-maps-style', WPPB_PLUGIN_URL . 'front-end/extra-fields/map/map.css', array(), PROFILE_BUILDER_VERSION );
         }

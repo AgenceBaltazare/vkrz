@@ -303,7 +303,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
     <nav class="navbar mobile-navbar">
         <div class="icons-navbar">
             <div class="ico-nav-mobile box-info-show">
-                <span class="ico">📌</span> <span class="hide-spot">Infos du Top</span>
+                <span class="ico">🪧</span> <span class="hide-spot">Infos <span class="hide-xs">du Top</span></span>
             </div>
             <div class="ico-nav-mobile share-natif-top">
                 <span class="ico ico-reverse">📣</span> <span class="hide-spot">Partager</span>
@@ -351,7 +351,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
     </div>
     <div class="box-info-content">
         <h3>
-            <span class="ico-social">📌</span>
+            <span class="ico-social">🪧</span>
             Tous les infos du Top
         </h3>
         <div class="close-share">

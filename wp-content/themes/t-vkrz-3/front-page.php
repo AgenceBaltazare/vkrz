@@ -45,7 +45,7 @@ $list_t_already_done = $user_tops['list_user_tops_done_ids'];
                                     array(
                                         'taxonomy' => 'categorie',
                                         'field'    => 'slug',
-                                        'terms'    => array( 'welcome' ),
+                                        'terms'    => array('welcome'),
                                         'operator' => 'NOT IN',
                                     )
                                 ),
@@ -66,7 +66,7 @@ $list_t_already_done = $user_tops['list_user_tops_done_ids'];
 
                                 <?php get_template_part('partials/min-t'); ?>
 
-                            <?php endwhile;?>
+                            <?php endwhile; ?>
                         </div>
                         <div class="swiper-button-next swiper-button-next-0"></div>
                         <div class="swiper-button-prev swiper-button-prev-0"></div>
@@ -86,7 +86,7 @@ $list_t_already_done = $user_tops['list_user_tops_done_ids'];
                                     C'est clairement le moyen le plus douloureux de classer tout ce que tu préfères 🥴
                                     <br><br>
                                     Ici, c'est pas aussi simple qu'une Tier List 😝 car pas d'égalité possible.
-                                    <br>  
+                                    <br>
                                     Tu vas forcément devoir faire des choix que tu voulais clairement pas avoir 😱
                                     <br><br>
                                     Ensuite, tu pourras comparer tes 🏆 à ceux de tes amis - si tu en as bien sûr. Et puis si tu n'en pas, 🤗 rejoins notre Discord.
@@ -104,8 +104,8 @@ $list_t_already_done = $user_tops['list_user_tops_done_ids'];
                                     <a href="https://twitter.com/Vainkeurz" class="sociallink btn btn-outline-primary waves-effect mr-10p mt-10p" target="_blank">
                                         Twitter
                                     </a>
-                                    <a href="https://www.facebook.com/vainkeurz" class="sociallink btn btn-outline-primary waves-effect mt-10p" target="_blank">
-                                        Facebook
+                                    <a href="https://www.tiktok.com/@vainkeurz" target="_blank" class="sociallink btn btn-outline-primary waves-effect mt-10p">
+                                        TikTok
                                     </a>
                                 </div>
                             </div>
@@ -114,7 +114,7 @@ $list_t_already_done = $user_tops['list_user_tops_done_ids'];
                     <div class="col-md-7">
                         <div class="row">
                             <?php
-                            $cat_t = get_terms( array(
+                            $cat_t = get_terms(array(
                                 'taxonomy'      => 'categorie',
                                 'orderby'       => 'count',
                                 'order'         => 'DESC',
@@ -123,15 +123,17 @@ $list_t_already_done = $user_tops['list_user_tops_done_ids'];
                                     get_term_by('slug', 'welcome', 'categorie')->term_id
                                 )
                             ));
-                            foreach($cat_t as $cat) : ?>
+                            foreach ($cat_t as $cat) : ?>
                                 <div class="col-6">
                                     <div class="card scaler cat-min">
                                         <div class="card-header">
                                             <div>
                                                 <h2 class="font-weight-bolder mb-0">
                                                     <span class="ico2 ">
-                                                        <span class="<?php if($cat->term_id == 2){echo 'rotating';} ?>">
-                                                            <?php the_field('icone_cat', 'term_'.$cat->term_id); ?>
+                                                        <span class="<?php if ($cat->term_id == 2) {
+                                                                            echo 'rotating';
+                                                                        } ?>">
+                                                            <?php the_field('icone_cat', 'term_' . $cat->term_id); ?>
                                                         </span>
                                                     </span> <?php echo $cat->name; ?>
                                                 </h2>
@@ -150,7 +152,8 @@ $list_t_already_done = $user_tops['list_user_tops_done_ids'];
             </section>
 
             <section class="list-tournois">
-                <?php $swip = 1; foreach($cat_t as $cat) : ?>
+                <?php $swip = 1;
+                foreach ($cat_t as $cat) : ?>
                     <?php
                     $tournois_in_cat = new WP_Query(array(
                         'post_type' => 'tournoi',
@@ -181,14 +184,14 @@ $list_t_already_done = $user_tops['list_user_tops_done_ids'];
                             ),
                         )
                     ));
-                    if($tournois_in_cat->have_posts()): ?>
+                    if ($tournois_in_cat->have_posts()) : ?>
                         <div class="big-cat">
                             <div class="heading-cat">
                                 <div class="row">
                                     <div class="col">
                                         <h2 class="text-primary text-uppercase">
                                             <a href="<?php echo get_category_link($cat->term_id); ?>">
-                                                <span class="ico"><?php the_field('icone_cat', 'term_'.$cat->term_id); ?></span> <?php echo $cat->name; ?>
+                                                <span class="ico"><?php the_field('icone_cat', 'term_' . $cat->term_id); ?></span> <?php echo $cat->name; ?>
                                                 <small class="text-muted"><?php echo $cat->description; ?></small>
                                             </a>
                                         </h2>
@@ -204,15 +207,17 @@ $list_t_already_done = $user_tops['list_user_tops_done_ids'];
 
                                         <?php get_template_part('partials/min-t'); ?>
 
-                                    <?php endwhile;?>
+                                    <?php endwhile; ?>
                                 </div>
-                                <?php if($cat->count > 2): ?>
+                                <?php if ($cat->count > 2) : ?>
                                     <div class="swiper-button-next swiper-button-next-<?php echo $swip; ?>"></div>
                                     <div class="swiper-button-prev swiper-button-prev-<?php echo $swip; ?>"></div>
                                 <?php endif; ?>
                             </div>
                         </div>
-                <?php endif; $swip++; endforeach; ?>
+                <?php endif;
+                    $swip++;
+                endforeach; ?>
             </section>
         </div>
     </div>

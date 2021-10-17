@@ -375,6 +375,8 @@ if ( ! function_exists( 'wppb_get_users_pins' ) ) {
 						), $row->ID
 					);
 
+					$pin_info = apply_filters( 'wppb_filter_map_user_pin_bubble_contents', $pin_info, $row->ID );
+
 					// The user has at least one pin.
 					foreach ( $u_pins as $coord ) {
 						$loc  = explode( ',', $coord );

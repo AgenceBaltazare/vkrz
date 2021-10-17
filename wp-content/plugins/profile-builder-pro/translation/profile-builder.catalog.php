@@ -190,6 +190,8 @@
 <?php __("Wrong password!", "profile-builder"); ?>
 <?php __("Please enter a valid email!", "profile-builder"); ?>
 <?php __("You can only login on this form.<br>Register with your social account on the register form.", "profile-builder"); ?>
+<?php __("Continue", "profile-builder"); ?>
+<?php __("Ok", "profile-builder"); ?>
 <?php __("To create a new account please confirm:", "profile-builder"); ?>
 <?php __("You must agree to the Terms And Conditions to create a new account.", "profile-builder"); ?>
 <?php __("Please enter your Facebook email!", "profile-builder"); ?>
@@ -245,6 +247,8 @@
 <?php __("Select which Profile Builder Register form to display on My Account page from WooCommerce. <br/> This will also add the Profile Builder Login form to MyAccount page.", "profile-builder"); ?>
 <?php __("Choose Edit Profile form to display on My Account page:", "profile-builder"); ?>
 <?php __("Select which Profile Builder Edit-profile form to display on My Account page from WooCommerce.", "profile-builder"); ?>
+<?php __("To enable updates, your licence needs to be renewed. Please go to the <a href=\"%s\">Cozmoslabs Account</a> page and login to renew.", "profile-builder"); ?>
+<?php __("To enable updates, please enter your serial number on the <a href=\"%s\">Register Version</a> page. If you don't have a serial number, please see <a href=\"%s\" target=\"_blank\">details & pricing</a>.", "profile-builder"); ?>
 <?php __("%s is also activated. You need to deactivate it before activating this version of the plugin.", "profile-builder"); ?>
 <?php __("MailChimp", "profile-builder"); ?>
 <?php __("MailChimp Integration", "profile-builder"); ?>
@@ -480,13 +484,13 @@
 <?php __("Submit and Deactivate", "profile-builder"); ?>
 <?php __("Admin Bar", "profile-builder"); ?>
 <?php __("Private Website", "profile-builder"); ?>
-<?php __("Two-Factor Authentication", "profile-builder"); ?>
 <?php __("Advanced Settings", "profile-builder"); ?>
 <?php __("Forms", "profile-builder"); ?>
 <?php __("Fields", "profile-builder"); ?>
 <?php __("Userlisting", "profile-builder"); ?>
 <?php __("Shortcodes", "profile-builder"); ?>
 <?php __("Admin", "profile-builder"); ?>
+<?php __("Two-Factor Authentication", "profile-builder"); ?>
 <?php __("User Emails", "profile-builder"); ?>
 <?php __("Administrator Emails", "profile-builder"); ?>
 <?php __("Profile Builder Settings", "profile-builder"); ?>
@@ -546,7 +550,7 @@
 <?php __("Avatar Size", "profile-builder"); ?>
 <?php __("Enter a value (between 20 and 200) for the size of the 'Avatar'<br/>If not specified, defaults to 100", "profile-builder"); ?>
 <?php __("Date-format", "profile-builder"); ?>
-<?php __("Specify the format of the date when using Datepicker<br/>Valid options: mm/dd/yy, mm/yy/dd, dd/yy/mm, dd/mm/yy, yy/dd/mm, yy/mm/dd, mm-dd-yy, yy-mm-dd, D, dd M yy, D, d M y, DD, dd-M-y, D, d M yy, mm/yy, mm/dd, dd/mm, @<br/>If not specified, defaults to mm/dd/yy", "profile-builder"); ?>
+<?php __("Specify the format of the date when using Datepicker<br/>Valid options: mm/dd/yy, mm/yy/dd, dd/yy/mm, dd/mm/yy, yy/dd/mm, yy/mm/dd, mm-dd-yy, yy-mm-dd, D, dd M yy, D, d M y, DD, dd-M-y, D, d M yy, mm/yy, mm/dd, dd/mm, @<br/>If not specified, defaults to mm/dd/yy<br/>ATTENTION: if you plan to use this field for sorting, please make sure to use year first, then month, and day last.", "profile-builder"); ?>
 <?php __("Terms of Agreement", "profile-builder"); ?>
 <?php __("Enter a detailed description of the terms of agreement for the user to read.<br/>Links can be inserted by using standard HTML syntax: &lt;a href=\"custom_url\"&gt;custom_text&lt;/a&gt;", "profile-builder"); ?>
 <?php __("Options", "profile-builder"); ?>
@@ -1160,7 +1164,10 @@
 <?php __("Username or Email Address", "profile-builder"); ?>
 <?php __("Remember Me", "profile-builder"); ?>
 <?php __("Log In", "profile-builder"); ?>
+<?php __("SUCCESS", "profile-builder"); ?>
+<?php __("Activation email sent to %s", "profile-builder"); ?>
 <?php __("ERROR", "profile-builder"); ?>
+<?php __("You need to confirm your Email Address before logging in! To resend the Confirmation Email  %1$sclick here%2$s", "profile-builder"); ?>
 <?php __("The password field is empty.", "profile-builder"); ?>
 <?php __("The password you entered is incorrect.", "profile-builder"); ?>
 <?php __("The username field is empty", "profile-builder"); ?>
@@ -1411,12 +1418,12 @@
 <?php __("Yim", "profile-builder"); ?>
 <?php __("Aim", "profile-builder"); ?>
 <?php __("Display Name", "profile-builder"); ?>
-<?php __("Lastname", "profile-builder"); ?>
 <?php __("First/Lastname", "profile-builder"); ?>
 <?php __("Search Users by All Fields", "profile-builder"); ?>
 <?php __("Click here to see more information about this user.", "profile-builder"); ?>
 <?php __("Click here to see more information about this user", "profile-builder"); ?>
 <?php __("More...", "profile-builder"); ?>
+<?php __("Remove Marker", "profile-builder"); ?>
 <?php __("View Map", "profile-builder"); ?>
 <?php __("Click here to go back", "profile-builder"); ?>
 <?php __("Back", "profile-builder"); ?>
@@ -1438,6 +1445,7 @@
 <?php __("Remember though, that the field-value combination must exist in the database.", "profile-builder"); ?>
 <?php __("displays only the users that you specified the user_id for", "profile-builder"); ?>
 <?php __("displays all users except the ones you specified the user_id for", "profile-builder"); ?>
+<?php __("Lastname", "profile-builder"); ?>
 <?php __("Random (very slow on large databases > 10K user)", "profile-builder"); ?>
 <?php __("Ascending", "profile-builder"); ?>
 <?php __("Descending", "profile-builder"); ?>
@@ -1532,6 +1540,8 @@
 <?php __("Profile Builder Content Restriction", "profile-builder"); ?>
 <?php __("Restrict to logged in users", "profile-builder"); ?>
 <?php __("Allow only logged in users to see this content.", "profile-builder"); ?>
+<?php __("Restrict to logged out users", "profile-builder"); ?>
+<?php __("Allow only logged out users to see this content.", "profile-builder"); ?>
 <?php __("Restrict by User Roles", "profile-builder"); ?>
 <?php __("Allow users which have the specified role to see this content.", "profile-builder"); ?>
 <?php __("Restriction Messages", "profile-builder"); ?>
@@ -1662,17 +1672,9 @@
 <?php __("Activate the Authenticator functionality", "profile-builder"); ?>
 <?php __("Enable Authenticator for these user roles", "profile-builder"); ?>
 <?php __("\"*\" - Two-Factor Authentication will be enabled for all user roles.", "profile-builder"); ?>
-<?php __("Show Authenticator code field", "profile-builder"); ?>
-<?php __("Backend", "profile-builder"); ?>
-<?php __("Frontend", "profile-builder"); ?>
-<?php __("Everywhere", "profile-builder"); ?>
-<?php __("\"No\" - only show the field when a user that has Two-Factor Authentication enabled attempts to log in.", "profile-builder"); ?>
-<?php __("\"Backend\" - always show the field on the default backend form.", "profile-builder"); ?>
-<?php __("\"Frontend\" - always show the field on the Profile Builder frontend form.", "profile-builder"); ?>
-<?php __("\"Everywhere\" - always show the field both on the Profile Builder frontend form and on the default backend form.", "profile-builder"); ?>
 <?php __("2fa_settings", "profile-builder"); ?>
 <?php __("Relaxed Mode", "profile-builder"); ?>
-<?php __(" Allow for higher time drifting on your phone clock ( &#177;4 min ).", "profile-builder"); ?>
+<?php __("Allow for more time drift on your phone clock ( &#177;4 min ).", "profile-builder"); ?>
 <?php __("Description that you'll see in the Authenticator app.", "profile-builder"); ?>
 <?php __("Secret", "profile-builder"); ?>
 <?php __("New Secret", "profile-builder"); ?>
@@ -1680,15 +1682,12 @@
 <?php __("Scan this with the Authenticator app:", "profile-builder"); ?>
 <?php __("Verify TOTP", "profile-builder"); ?>
 <?php __("Check", "profile-builder"); ?>
-<?php __(" Allow for more time drifting on your phone clock ( &#177;4 min ).", "profile-builder"); ?>
 <?php __("Description that you'll see in the Authenticator app on your phone.", "profile-builder"); ?>
 <?php __("Create new secret", "profile-builder"); ?>
 <?php __("Show/Hide QR code", "profile-builder"); ?>
-<?php __("Scan this your Authenticator app:", "profile-builder"); ?>
 <?php __("Please verify TOTP to change Two-Factor Authentication settings", "profile-builder"); ?>
-<?php __("Please enter your Authenticator code.", "profile-builder"); ?>
-<?php __("Your Authenticator code was incorrect. Please try again.", "profile-builder"); ?>
 <?php __("Please enter the code from your Authenticator app.", "profile-builder"); ?>
+<?php __("Your Authenticator code was incorrect. Please try again.", "profile-builder"); ?>
 <?php __("Authenticator Code", "profile-builder"); ?>
 <?php __("The usernames cannot be changed.", "profile-builder"); ?>
 <?php __("This Profile Builder add-on has been migrated to the main plugin and is no longer used. You can delete it.", "profile-builder"); ?>
@@ -1890,3 +1889,13 @@
 <?php __("Redirect after Registration", "profile-builder"); ?>
 <?php __("Redirect after Logout", "profile-builder"); ?>
 <?php __("There are no available controls for the Password Recovery form", "profile-builder"); ?>
+<?php __("Listing Settings", "profile-builder"); ?>
+<?php __("Single", "profile-builder"); ?>
+<?php __("Meta Key", "profile-builder"); ?>
+<?php __("Enter Meta Key", "profile-builder"); ?>
+<?php __("Meta Value", "profile-builder"); ?>
+<?php __("Enter Meta Value", "profile-builder"); ?>
+<?php __("Include", "profile-builder"); ?>
+<?php __("Enter User IDs", "profile-builder"); ?>
+<?php __("Exclude", "profile-builder"); ?>
+<?php __("Enter User ID", "profile-builder"); ?>

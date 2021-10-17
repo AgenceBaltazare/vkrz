@@ -40,6 +40,12 @@ $top_datas = get_top_data($id_top);
                         'update_post_meta_cache' => false,
                         'no_found_rows'          => true,
                         'meta_query' => array(
+                            'relation' => 'AND',
+                            array(
+                                'key'       => 'done_r',
+                                'value'     => 'done',
+                                'compare'   => '=',
+                            ),
                             array(
                                 'key' => 'id_tournoi_r',
                                 'value' => $id_top,
@@ -121,9 +127,9 @@ $top_datas = get_top_data($id_top);
                                                             </td>
                                                             <td>
                                                                 <?php
-                                                                $user_top3 = get_user_ranking($id_rank);
+                                                                $user_top3 = get_user_ranking($id_rank, 3);
                                                                 $l=1;
-                                                                foreach($user_top3 as $top => $p): ?>
+                                                                foreach($user_top3 as $top): ?>
 
                                                                     <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="<?php echo get_the_title($top); ?>" class="avatartop3 avatar pull-up">
                                                                         <?php $illu = get_the_post_thumbnail_url($top, 'thumbnail'); ?>
