@@ -19,17 +19,32 @@ $tops_in_cat        = new WP_Query(array(
         ),
     ),
     'meta_query' => array(
-        'relation' => 'OR',
+        'relation' => 'AND',
         array(
-            'key'     => 'private_t',
-            'compare' => 'NOT EXISTS',
+            'relation' => 'OR',
+            array(
+                'key'     => 'private_t',
+                'compare' => 'NOT EXISTS',
+            ),
+            array(
+                'key'     => 'private_t',
+                'value'   => '1',
+                'compare' => 'NOT LIKE',
+            ),
         ),
         array(
-            'key'     => 'private_t',
-            'value'   => '1',
-            'compare' => 'NOT LIKE',
+            'relation' => 'OR',
+            array(
+                'key'     => 'marqueblanche_t',
+                'compare' => 'NOT EXISTS',
+            ),
+            array(
+                'key'     => 'marqueblanche_t',
+                'value'   => '1',
+                'compare' => 'NOT LIKE',
+            ),
         ),
-    )
+    ),
 ));
 $list_tags        = array();
 $list_concepts    = array();

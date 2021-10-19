@@ -220,7 +220,34 @@ $top_datas    = get_top_data($id_top);
                                                             'field' => 'slug',
                                                             'terms' => $list_souscat
                                                         )
-                                                    )
+                                                    ),
+                                                    'meta_query' => array(
+                                                        'relation' => 'AND',
+                                                        array(
+                                                            'relation' => 'OR',
+                                                            array(
+                                                                'key'     => 'private_t',
+                                                                'compare' => 'NOT EXISTS',
+                                                            ),
+                                                            array(
+                                                                'key'     => 'private_t',
+                                                                'value'   => '1',
+                                                                'compare' => 'NOT LIKE',
+                                                            ),
+                                                        ),
+                                                        array(
+                                                            'relation' => 'OR',
+                                                            array(
+                                                                'key'     => 'marqueblanche_t',
+                                                                'compare' => 'NOT EXISTS',
+                                                            ),
+                                                            array(
+                                                                'key'     => 'marqueblanche_t',
+                                                                'value'   => '1',
+                                                                'compare' => 'NOT LIKE',
+                                                            ),
+                                                        ),
+                                                    ),
                                                 ));
                                                 $count_similar = $tops_in_close_cat->post_count;
                                                 $count_next    = 4 - $count_similar;
@@ -243,7 +270,34 @@ $top_datas    = get_top_data($id_top);
                                                                 'field'    => 'term_id',
                                                                 'terms'    => array($top_cat_id)
                                                             )
-                                                        )
+                                                        ),
+                                                        'meta_query' => array(
+                                                            'relation' => 'AND',
+                                                            array(
+                                                                'relation' => 'OR',
+                                                                array(
+                                                                    'key'     => 'private_t',
+                                                                    'compare' => 'NOT EXISTS',
+                                                                ),
+                                                                array(
+                                                                    'key'     => 'private_t',
+                                                                    'value'   => '1',
+                                                                    'compare' => 'NOT LIKE',
+                                                                ),
+                                                            ),
+                                                            array(
+                                                                'relation' => 'OR',
+                                                                array(
+                                                                    'key'     => 'marqueblanche_t',
+                                                                    'compare' => 'NOT EXISTS',
+                                                                ),
+                                                                array(
+                                                                    'key'     => 'marqueblanche_t',
+                                                                    'value'   => '1',
+                                                                    'compare' => 'NOT LIKE',
+                                                                ),
+                                                            ),
+                                                        ),
                                                     ));
                                                 }
                                                 ?>
