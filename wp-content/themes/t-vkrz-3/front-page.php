@@ -45,7 +45,8 @@ $list_t_already_done = $user_tops['list_user_tops_done_ids'];
                                     array(
                                         'taxonomy' => 'type',
                                         'field'    => 'slug',
-                                        'terms'    => array('classik', 'sponso')
+                                        'terms'    => array('private', 'whitelabel', 'onboarding'),
+                                        'operator' => 'NOT IN'
                                     ),
                                 ),
                             ));
@@ -162,7 +163,8 @@ $list_t_already_done = $user_tops['list_user_tops_done_ids'];
                             array(
                                 'taxonomy' => 'type',
                                 'field'    => 'slug',
-                                'terms'    => array('classik', 'sponso')
+                                'terms'    => array('private', 'whitelabel', 'onboarding'),
+                                'operator' => 'NOT IN'
                             ),
                         ),
                     ));

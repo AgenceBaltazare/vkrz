@@ -12,8 +12,16 @@
     }
 }
 
-.avatar {
-    padding: 2px;
+.avatar-group {
+    overflow: visible !important;
+
+    .avatar {
+        padding: 2px;
+
+        &.pull-up:hover {
+            transform: translateY(-4px) scale(1.2);
+        }
+    }
 }
 
 // Stepbar

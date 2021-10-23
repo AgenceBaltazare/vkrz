@@ -21,7 +21,8 @@ $tops_in_cat        = new WP_Query(array(
         array(
             'taxonomy' => 'type',
             'field'    => 'slug',
-            'terms'    => array('classik', 'sponso')
+            'terms'    => array('private', 'whitelabel', 'onboarding'),
+            'operator' => 'NOT IN'
         ),
     ),
 ));

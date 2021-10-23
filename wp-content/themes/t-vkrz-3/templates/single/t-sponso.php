@@ -48,7 +48,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                     <div class="d-flex justify-content-between align-items-center mb-1">
                                         <div class="title-win">
                                             <h4>
-                                                Une Switch Lite à gagner
+                                                <?php the_field('titre_de_la_sponso_t_sponso', $id_top); ?>
                                             </h4>
                                         </div>
                                         <div class="mr-1 ml-3">
@@ -56,35 +56,36 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                         </div>
                                     </div>
                                     <div class="text-rules">
-                                        <p>Termine ton Top pour participer au tirage au sort afin de repartir avec ta <span class="t-rose">Switch Lite préférée</span> !</p>
-                                        <p>Il te suffit de finir ce Top puis de RT + Follow le compte VAINKEURZ sur <a href="https://twitter.com/Vainkeurz" target="_blank" title="Twitter">Twitter</a> pour participer au tirage au sort.</p>
-                                        <p>Bonne chance à toi !</p>
+                                        <?php the_field('description_t_sponso', $id_top); ?>
                                     </div>
                                 </div>
                                 <div class="card-footer timer-content-sponso">
                                     <p class="fs-12px">
-                                        Fin du jeu le 1er octobre
+                                        <?php the_field('fin_de_la_sponso_t_sponso', $id_top); ?>
                                     </p>
                                 </div>
                                 <div class="card-footer share-content-sponso">
                                     <div class="text-left">
-                                        <p>Ce Top est proposé par nous mêmes 😘</p>
+                                        <p>
+                                            <?php the_field('top_propose_par_t_sponso', $id_top); ?>
+                                        </p>
                                     </div>
                                     <div class="d-flex align-items-center">
                                         <div class="logo-vkrz-sponso">
-                                            <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/logo-vkrz.png" alt="VAINKEURZ logo" class="img-fluid">
+                                            <?php
+                                            if (get_field('logo_de_la_sponso_t_sponso', $id_top)) : ?>
+                                                <?php echo wp_get_attachment_image(get_field('logo_de_la_sponso_t_sponso', $id_top), 'large', '', array('class' => 'img-fluid')); ?>
+                                            <?php endif; ?>
                                         </div>
                                         <div class="mt-2 social-media-sponso">
                                             <div class="d-flex buttons-social-media">
-                                                <a href="https://twitter.com/Vainkeurz" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-outline-primary waves-effect waves-float waves-light" target="_blank">
-                                                    TWITTER
-                                                </a>
-                                                <a href="https://www.instagram.com/wearevainkeurz/" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-outline-primary waves-effect waves-float waves-light" target="_blank">
-                                                    INSTAGRAM
-                                                </a>
-                                                <a href="https://discord.gg/E9H9e8NYp7" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-outline-primary waves-effect waves-float waves-light" target="_blank">
-                                                    DISCORD
-                                                </a>
+                                                <?php if (have_rows('liste_des_liens_t_sponso', $id_top)) : ?>
+                                                    <?php while (have_rows('liste_des_liens_t_sponso', $id_top)) : the_row(); ?>
+                                                        <a href="<?php the_sub_field('lien_vers_t_sponso'); ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-outline-primary waves-effect waves-float waves-light" target="_blank">
+                                                            <?php the_sub_field('intitule_t_sponso'); ?>
+                                                        </a>
+                                                    <?php endwhile; ?>
+                                                <?php endif; ?>
                                             </div>
                                         </div>
                                     </div>
@@ -162,7 +163,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                         <div class="choosecta">
                                             <div class="cta-begin cta-complet">
                                                 <a href="#" id="begin_t" data-typetop="complet" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
-                                                    Faire mon Top pour participer au concours
+                                                    <?php the_field('intitule_du_cta_t_sponso', $id_top); ?>
                                                 </a>
                                                 <small class="text-muted">
                                                     <?php
@@ -176,21 +177,6 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                                     <?php endif; ?>
                                                 </small>
                                             </div>
-                                            <?php if ($top_infos['top_number'] > 10) : ?>
-                                                <div class="cta-begin cta-top3">
-                                                    <a href="#" id="begin_top3" data-typetop="top3" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
-                                                        Top 3
-                                                    </a>
-                                                    <small class="text-muted">
-                                                        <?php
-                                                        $max = (floor($top_infos['top_number'] / 2)) + (3 * ((round($top_infos['top_number'] / 2)) - 1));
-                                                        $min = (floor($top_infos['top_number'] / 2)) + ((round($top_infos['top_number'] / 2)) - 1) + 3;
-                                                        $moy = ($max + $min) / 2;
-                                                        ?>
-                                                        Prévoir environ <?php echo round($moy); ?> votes pour juste faire ton podium
-                                                    </small>
-                                                </div>
-                                            <?php endif; ?>
                                         </div>
                                     </div>
                                     <div class="card-footer">
@@ -228,9 +214,9 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                                     </div>
                                                     <div class="content-body text-left">
                                                         <h4 class="mb-0">
-                                                            Une Switch Lite
+                                                            <?php the_field('gain_champs_1_t_sponso', $id_top); ?>
                                                         </h4>
-                                                        <small class="text-muted">de ton choix</small>
+                                                        <small class="text-muted"><?php the_field('gain_champs_2_t_sponso', $id_top); ?></small>
                                                     </div>
                                                 </div>
                                             </div>

@@ -1043,8 +1043,14 @@ html .content {
   margin: 30px 0 0 0;
 }
 
-.avatar {
+.avatar-group {
+  overflow: visible !important;
+}
+.avatar-group .avatar {
   padding: 2px;
+}
+.avatar-group .avatar.pull-up:hover {
+  transform: translateY(-4px) scale(1.2);
 }
 
 .stepbar {
