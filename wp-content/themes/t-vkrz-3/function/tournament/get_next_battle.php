@@ -118,7 +118,7 @@ function get_next_duel($id_ranking, $id_top, $current_id_vainkeur){
                     update_field('done_date_r', date('Y-m-d H:i:s'), $id_ranking);
                     update_field('suspected_cheating_r', $is_suspected_cheating, $id_ranking);
 
-                    if (!in_array($id_top, get_top_welcome())) {
+                    if (!in_array($id_top, get_exclude_top())) {
                         increase_top_counter($current_id_vainkeur);
                     }
                 }
@@ -248,7 +248,7 @@ function get_next_duel($id_ranking, $id_top, $current_id_vainkeur){
                         update_field('done_date_r', date('Y-m-d H:i:s'), $id_ranking);
                         update_field('suspected_cheating_r', $is_suspected_cheating, $id_ranking);
 
-                        if (!in_array($id_top, get_top_welcome())) {
+                        if (!in_array($id_top, get_exclude_top())) {
                             increase_top_counter($current_id_vainkeur);
                         }
                     }
@@ -282,7 +282,7 @@ function get_next_duel($id_ranking, $id_top, $current_id_vainkeur){
                     update_field('done_date_r', date('Y-m-d H:i:s'), $id_ranking);
                     update_field('suspected_cheating_r', $is_suspected_cheating, $id_ranking);
 
-                    if (!in_array($id_top, get_top_welcome())) {
+                    if (!in_array($id_top, get_exclude_top())) {
                         increase_top_counter($current_id_vainkeur);
                     }
                 }
@@ -327,7 +327,7 @@ function get_next_duel($id_ranking, $id_top, $current_id_vainkeur){
                     update_field('done_r', 'done', $id_ranking);
                     update_field('done_date_r', date('Y-m-d H:i:s'), $id_ranking);
                     update_field('suspected_cheating_r', $is_suspected_cheating, $id_ranking);
-                    if (!in_array($id_top, get_top_welcome())) {
+                    if (!in_array($id_top, get_exclude_top())) {
                         increase_top_counter($current_id_vainkeur);
                     }
                 }

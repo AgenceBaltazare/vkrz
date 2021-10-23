@@ -188,10 +188,7 @@ foreach ($list_user_tops as $top) {
                                             'taxonomy'      => 'categorie',
                                             'orderby'       => 'count',
                                             'order'         => 'DESC',
-                                            'hide_empty'    => true,
-                                            'exclude'       => array(
-                                                get_term_by('slug', 'welcome', 'categorie')->term_id
-                                            )
+                                            'hide_empty'    => true
                                         ));
 
                                         foreach ($cat_t as $cat) :
@@ -327,7 +324,13 @@ foreach ($list_user_tops as $top) {
                                                             <tbody>
                                                                 <?php
                                                                 foreach ($list_t_done as $r_user) : ?>
-                                                                    <?php if (!get_field('private_t', $r_user['id_top'])) : ?>
+                                                                    <?php
+                                                                    $get_top_type = get_the_terms($r_user['id_top'], 'type');
+                                                                    foreach ($get_top_type as $type_top) {
+                                                                        $type_top = $type_top->slug;
+                                                                    }
+                                                                    ?>
+                                                                    <?php if ($type_top == "classik" || $type_top == "sponso") : ?>
                                                                         <tr id="top-<?php echo $r_user['id_ranking']; ?>">
                                                                             <td>
                                                                                 <div class="media-body">

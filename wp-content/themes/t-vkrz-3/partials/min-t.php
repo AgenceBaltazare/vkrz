@@ -17,11 +17,15 @@ if ($user_single_top_data !== false) {
 } else {
     $state = "todo";
 }
+$get_top_type = get_the_terms($id_top, 'type');
+foreach ($get_top_type as $type_top) {
+    $type_top = $type_top->slug;
+}
 ?>
 <div class="<?php echo $class; ?>">
     <div class="min-tournoi card scaler">
         <div class="cov-illu cover" style="background: url(<?php echo $illu; ?>) center center no-repeat">
-            <?php if (get_field('sponso_t', $id_top)) : ?>
+            <?php if ($type_top == "sponso") : ?>
                 <span class="badge badge-light-rose ml-0">Top sponsorisé</span>
             <?php endif; ?>
             <?php if ($state == "done") : ?>

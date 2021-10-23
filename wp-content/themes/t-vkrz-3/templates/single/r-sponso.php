@@ -215,34 +215,12 @@ $top_datas    = get_top_data($id_top);
                                                             'taxonomy' => 'concept',
                                                             'field' => 'slug',
                                                             'terms' => $list_souscat
+                                                        ),
+                                                        array(
+                                                            'taxonomy' => 'type',
+                                                            'field'    => 'slug',
+                                                            'terms'    => array('classik', 'sponso')
                                                         )
-                                                    ),
-                                                    'meta_query' => array(
-                                                        'relation' => 'AND',
-                                                        array(
-                                                            'relation' => 'OR',
-                                                            array(
-                                                                'key'     => 'private_t',
-                                                                'compare' => 'NOT EXISTS',
-                                                            ),
-                                                            array(
-                                                                'key'     => 'private_t',
-                                                                'value'   => '1',
-                                                                'compare' => 'NOT LIKE',
-                                                            ),
-                                                        ),
-                                                        array(
-                                                            'relation' => 'OR',
-                                                            array(
-                                                                'key'     => 'marqueblanche_t',
-                                                                'compare' => 'NOT EXISTS',
-                                                            ),
-                                                            array(
-                                                                'key'     => 'marqueblanche_t',
-                                                                'value'   => '1',
-                                                                'compare' => 'NOT LIKE',
-                                                            ),
-                                                        ),
                                                     ),
                                                 ));
                                                 $count_similar = $tops_in_close_cat->post_count;
@@ -264,34 +242,12 @@ $top_datas    = get_top_data($id_top);
                                                                 'taxonomy' => 'categorie',
                                                                 'field'    => 'term_id',
                                                                 'terms'    => array($top_cat_id)
+                                                            ),
+                                                            array(
+                                                                'taxonomy' => 'type',
+                                                                'field'    => 'slug',
+                                                                'terms'    => array('classik', 'sponso')
                                                             )
-                                                        ),
-                                                        'meta_query' => array(
-                                                            'relation' => 'AND',
-                                                            array(
-                                                                'relation' => 'OR',
-                                                                array(
-                                                                    'key'     => 'private_t',
-                                                                    'compare' => 'NOT EXISTS',
-                                                                ),
-                                                                array(
-                                                                    'key'     => 'private_t',
-                                                                    'value'   => '1',
-                                                                    'compare' => 'NOT LIKE',
-                                                                ),
-                                                            ),
-                                                            array(
-                                                                'relation' => 'OR',
-                                                                array(
-                                                                    'key'     => 'marqueblanche_t',
-                                                                    'compare' => 'NOT EXISTS',
-                                                                ),
-                                                                array(
-                                                                    'key'     => 'marqueblanche_t',
-                                                                    'value'   => '1',
-                                                                    'compare' => 'NOT LIKE',
-                                                                ),
-                                                            ),
                                                         ),
                                                     ));
                                                 }

@@ -41,7 +41,7 @@ function new_vainkeur($user_id){
                     ),
                     array(
                         'key' => 'id_tournoi_r',
-                        'value' => get_top_welcome(),
+                        'value' => get_exclude_top(),
                         'compare' => 'NOT IN'
                     )
                 )

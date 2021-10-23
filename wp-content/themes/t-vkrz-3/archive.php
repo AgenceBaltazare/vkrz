@@ -12,37 +12,16 @@ $tops_in_cat        = new WP_Query(array(
     'update_post_meta_cache'    => false,
     'no_found_rows'             => true,
     'tax_query'                 => array(
+        'relation' => 'AND',
         array(
             'taxonomy' => 'categorie',
             'field'    => 'term_id',
             'terms'    => $current_cat->term_id,
         ),
-    ),
-    'meta_query' => array(
-        'relation' => 'AND',
         array(
-            'relation' => 'OR',
-            array(
-                'key'     => 'private_t',
-                'compare' => 'NOT EXISTS',
-            ),
-            array(
-                'key'     => 'private_t',
-                'value'   => '1',
-                'compare' => 'NOT LIKE',
-            ),
-        ),
-        array(
-            'relation' => 'OR',
-            array(
-                'key'     => 'marqueblanche_t',
-                'compare' => 'NOT EXISTS',
-            ),
-            array(
-                'key'     => 'marqueblanche_t',
-                'value'   => '1',
-                'compare' => 'NOT LIKE',
-            ),
+            'taxonomy' => 'type',
+            'field'    => 'slug',
+            'terms'    => array('classik', 'sponso')
         ),
     ),
 ));
@@ -270,11 +249,15 @@ $list_sujets      = array();
                     $top_question   = get_field('question_t', $id_top);
                     $top_title      = get_the_title($id_top);
                     $term_to_search = $sujet_slug . " " . $concept_slug . " " . $top_question . " " . $top_title;
+                    $get_top_type = get_the_terms($id_top, 'type');
+                    foreach ($get_top_type as $type_top) {
+                        $type_top = $type_top->slug;
+                    }
                     ?>
                     <div data-filter-item data-filter-name="<?php echo $term_to_search; ?>" class="same-h grid-item col-md-3 col-6 <?php echo $sujet_slug; ?> <?php echo $state; ?> <?php echo $concept_slug; ?> <?php echo $tag_slug; ?>">
                         <div class="min-tournoi card scaler">
                             <div class="cov-illu cover" style="background: url(<?php echo $illu; ?>) center center no-repeat">
-                                <?php if (get_field('sponso_t', $id_top)) : ?>
+                                <?php if ($type_top == "sponso") : ?>
                                     <span class="badge badge-light-rose ml-0">Top sponsorisé</span>
                                 <?php endif; ?>
                                 <?php if ($state == "done") : ?>

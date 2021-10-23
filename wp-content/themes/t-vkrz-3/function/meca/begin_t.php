@@ -14,6 +14,11 @@ function begin_t($id_top, $uuiduser, $typetop){
         $title_rank = 'Top '.get_field('count_contenders_t', $id_top).' - '.get_the_title($id_top);
     }
 
+    $get_top_type = get_the_terms($id_top, 'type');
+    foreach($get_top_type as $type_top){
+        $type_top = $type_top->slug;
+    }
+
     $new_ranking = array(
         'post_type'   => 'classement',
         'post_title'  => $title_rank,
@@ -57,6 +62,7 @@ function begin_t($id_top, $uuiduser, $typetop){
 
     $i++; endwhile;
 
+    wp_set_post_terms($id_ranking, $type_top, 'type');
     update_field('type_top_r', $typetop, $id_ranking);
     update_field('uuid_user_r', $uuiduser, $id_ranking);
     update_field('id_tournoi_r', $id_top, $id_ranking);
