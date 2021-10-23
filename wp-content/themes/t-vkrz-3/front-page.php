@@ -50,17 +50,32 @@ $list_t_already_done = $user_tops['list_user_tops_done_ids'];
                                     )
                                 ),
                                 'meta_query' => array(
-                                    'relation' => 'OR',
+                                    'relation' => 'AND',
                                     array(
-                                        'key'     => 'private_t',
-                                        'compare' => 'NOT EXISTS',
+                                        'relation' => 'OR',
+                                        array(
+                                            'key'     => 'private_t',
+                                            'compare' => 'NOT EXISTS',
+                                        ),
+                                        array(
+                                            'key'     => 'private_t',
+                                            'value'   => '1',
+                                            'compare' => 'NOT LIKE',
+                                        ),
                                     ),
                                     array(
-                                        'key'     => 'private_t',
-                                        'value'   => '1',
-                                        'compare' => 'NOT LIKE',
+                                        'relation' => 'OR',
+                                        array(
+                                            'key'     => 'marqueblanche_t',
+                                            'compare' => 'NOT EXISTS',
+                                        ),
+                                        array(
+                                            'key'     => 'marqueblanche_t',
+                                            'value'   => '1',
+                                            'compare' => 'NOT LIKE',
+                                        ),
                                     ),
-                                )
+                                ),
                             ));
                             while ($tournois_in_cat->have_posts()) : $tournois_in_cat->the_post(); ?>
 
@@ -181,17 +196,32 @@ $list_t_already_done = $user_tops['list_user_tops_done_ids'];
                             ),
                         ),
                         'meta_query' => array(
-                            'relation' => 'OR',
+                            'relation' => 'AND',
                             array(
-                                'key'     => 'private_t',
-                                'compare' => 'NOT EXISTS',
+                                'relation' => 'OR',
+                                array(
+                                    'key'     => 'private_t',
+                                    'compare' => 'NOT EXISTS',
+                                ),
+                                array(
+                                    'key'     => 'private_t',
+                                    'value'   => '1',
+                                    'compare' => 'NOT LIKE',
+                                ),
                             ),
                             array(
-                                'key'     => 'private_t',
-                                'value'   => '1',
-                                'compare' => 'NOT LIKE',
+                                'relation' => 'OR',
+                                array(
+                                    'key'     => 'marqueblanche_t',
+                                    'compare' => 'NOT EXISTS',
+                                ),
+                                array(
+                                    'key'     => 'marqueblanche_t',
+                                    'value'   => '1',
+                                    'compare' => 'NOT LIKE',
+                                ),
                             ),
-                        )
+                        ),
                     ));
                     if ($tournois_in_cat->have_posts()) : ?>
                         <div class="big-cat">

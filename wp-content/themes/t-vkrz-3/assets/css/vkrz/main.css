@@ -1490,6 +1490,14 @@ html .content {
   text-align: center;
 }
 
+.name h5 span.pointselo {
+  color: rgba(255, 255, 255, 0.25);
+  display: block;
+  margin: 5px 0 0 0;
+  font-size: 12px;
+  text-transform: lowercase;
+}
+
 .cover-profil {
   background-color: #0c0a27;
   min-height: 200px;

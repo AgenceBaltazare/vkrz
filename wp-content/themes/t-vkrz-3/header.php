@@ -133,7 +133,7 @@ if(get_field('marqueblanche_t', $id_top)){
         <!-- End Google Tag Manager (noscript) -->
     <?php endif; ?>
 
-    <?php if (!get_field('marqueblanche_t', $id_top)): ?>
+    <?php if (!is_single() || !get_field('marqueblanche_t', $id_top)): ?>
         <?php
         get_template_part('partials/menu-user');
         get_template_part('partials/menu-vkrz');

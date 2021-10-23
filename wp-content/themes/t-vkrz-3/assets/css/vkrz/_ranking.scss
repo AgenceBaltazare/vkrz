@@ -1,9 +1,11 @@
-.list-share{
+.list-share {
   flex-wrap: wrap;
-  div{
+
+  div {
     margin-bottom: 5px;
   }
-  a{
+
+  a {
     width: 45px;
     height: 45px;
     display: inline-block;
@@ -12,66 +14,84 @@
     font-size: 20px;
   }
 }
-.name{
-  h5{
+
+.name {
+  h5 {
     text-transform: uppercase;
     text-align: center;
-    span{
+
+    span {
       color: $rose;
     }
   }
 }
 
-.illu{
+.illu {
   text-align: center;
-  img{
+
+  img {
     margin: 0 auto;
     max-width: 100%;
     height: auto;
   }
-  .cov-illu{
+
+  .cov-illu {
     min-height: 200px;
     background-size: cover !important;
   }
 }
 
-.star{
+.star {
   opacity: 0.4;
   font-size: 20px;
   transition: opacity 0.35s;
   cursor: pointer;
   transform: scale(1);
   display: inline-block;
-  &:hover{
+
+  &:hover {
     transform: scale(1.2);
   }
-  &.active{
+
+  &.active {
     opacity: 1;
   }
-  &.activechoice{
+
+  &.activechoice {
     opacity: 1;
   }
 }
-.startchoicedone{
+
+.startchoicedone {
   font-size: 20px;
   display: none;
-  .ico{
+
+  .ico {
     font-size: 20px;
     width: 15px;
   }
 }
 
-.contenders_min:not(.rounded){
-  .illu{
-    img{
+.contenders_min:not(.rounded) {
+  .illu {
+    img {
       border-radius: 10px;
     }
   }
 }
 
-.merci{
+.merci {
   display: none;
   padding: 20px;
   text-align: center;
 }
 
+
+
+.name h5 span.pointselo {
+  color: rgba(255, 255, 255, 0.25);
+  display: block;
+  margin: 5px 0 0 0;
+  font-size: 12px;
+  text-transform: lowercase;
+}
