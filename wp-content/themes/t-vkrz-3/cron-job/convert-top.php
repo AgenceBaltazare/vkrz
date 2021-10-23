@@ -20,10 +20,11 @@ $all_classement = new WP_Query(array(
         ),
     ),
 ));
+echo $all_classement->post_count;
 while ($all_classement->have_posts()) : $all_classement->the_post();
 
     $id_rank = get_the_ID();
-    $id_top = get_field('id_tournoi_r', $id_rank);
+    $id_top  = get_field('id_tournoi_r', $id_rank);
 
     if (get_field('sponso_t', $id_top)) {
         wp_set_post_terms($id_rank, 'sponso', 'type');
