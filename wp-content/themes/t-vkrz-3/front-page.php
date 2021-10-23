@@ -168,6 +168,15 @@ $list_t_already_done = $user_tops['list_user_tops_done_ids'];
 
             <section class="list-tournois">
                 <?php $swip = 1;
+                $cat_t = get_terms(array(
+                    'taxonomy'      => 'categorie',
+                    'orderby'       => 'count',
+                    'order'         => 'DESC',
+                    'hide_empty'    => true,
+                    'exclude'       => array(
+                        get_term_by('slug', 'welcome', 'categorie')->term_id
+                    )
+                ));
                 foreach ($cat_t as $cat) : ?>
                     <?php
                     $tournois_in_cat = new WP_Query(array(

@@ -1043,6 +1043,10 @@ html .content {
   margin: 30px 0 0 0;
 }
 
+.avatar {
+  padding: 2px;
+}
+
 .stepbar {
   position: fixed;
   top: 0;
