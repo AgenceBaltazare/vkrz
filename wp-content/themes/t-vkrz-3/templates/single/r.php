@@ -219,33 +219,11 @@ $top_datas    = get_top_data($id_top);
                                                             'taxonomy' => 'concept',
                                                             'field' => 'slug',
                                                             'terms' => $list_souscat
-                                                        )
-                                                    ),
-                                                    'meta_query' => array(
-                                                        'relation' => 'AND',
-                                                        array(
-                                                            'relation' => 'OR',
-                                                            array(
-                                                                'key'     => 'private_t',
-                                                                'compare' => 'NOT EXISTS',
-                                                            ),
-                                                            array(
-                                                                'key'     => 'private_t',
-                                                                'value'   => '1',
-                                                                'compare' => 'NOT LIKE',
-                                                            ),
                                                         ),
                                                         array(
-                                                            'relation' => 'OR',
-                                                            array(
-                                                                'key'     => 'marqueblanche_t',
-                                                                'compare' => 'NOT EXISTS',
-                                                            ),
-                                                            array(
-                                                                'key'     => 'marqueblanche_t',
-                                                                'value'   => '1',
-                                                                'compare' => 'NOT LIKE',
-                                                            ),
+                                                            'taxonomy' => 'type',
+                                                            'field'    => 'slug',
+                                                            'terms'    => array('classik', 'sponso')
                                                         ),
                                                     ),
                                                 ));
@@ -269,33 +247,11 @@ $top_datas    = get_top_data($id_top);
                                                                 'taxonomy' => 'categorie',
                                                                 'field'    => 'term_id',
                                                                 'terms'    => array($top_cat_id)
-                                                            )
-                                                        ),
-                                                        'meta_query' => array(
-                                                            'relation' => 'AND',
-                                                            array(
-                                                                'relation' => 'OR',
-                                                                array(
-                                                                    'key'     => 'private_t',
-                                                                    'compare' => 'NOT EXISTS',
-                                                                ),
-                                                                array(
-                                                                    'key'     => 'private_t',
-                                                                    'value'   => '1',
-                                                                    'compare' => 'NOT LIKE',
-                                                                ),
                                                             ),
                                                             array(
-                                                                'relation' => 'OR',
-                                                                array(
-                                                                    'key'     => 'marqueblanche_t',
-                                                                    'compare' => 'NOT EXISTS',
-                                                                ),
-                                                                array(
-                                                                    'key'     => 'marqueblanche_t',
-                                                                    'value'   => '1',
-                                                                    'compare' => 'NOT LIKE',
-                                                                ),
+                                                                'taxonomy' => 'type',
+                                                                'field'    => 'slug',
+                                                                'terms'    => array('classik', 'sponso')
                                                             ),
                                                         ),
                                                     ));

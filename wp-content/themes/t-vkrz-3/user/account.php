@@ -65,10 +65,7 @@ foreach($list_user_tops as $top){
                                             'taxonomy'      => 'categorie',
                                             'orderby'       => 'count',
                                             'order'         => 'DESC',
-                                            'hide_empty'    => true,
-                                            'exclude'       => array(
-                                                get_term_by('slug', 'welcome', 'categorie')->term_id
-                                            )
+                                            'hide_empty'    => true
                                         ));
                                         foreach($cat_t as $cat) : ?>
                                             <?php

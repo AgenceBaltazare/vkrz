@@ -1,32 +1,38 @@
 <?php
 switch (get_post_type()) {
     case "tournoi":
-        if (get_the_terms(get_the_ID(), 'categorie')[0]->term_id == get_term_by('slug', 'welcome', 'categorie')->term_id) {
+        $get_top_type = get_the_terms(get_the_ID(), 'type');
+        foreach ($get_top_type as $type_top) {
+            $type_top = $type_top->slug;
+        }
+        if($type_top == "onboarding"){
             get_template_part("templates/single/t-welcome");
+        } elseif ($type_top == "whitelabel") {
+            get_template_part("templates/single/t-marqueblanche");
+        } elseif ($type_top == "sponso") {
+            get_template_part("templates/single/t-sponso");
+        } elseif ($type_top == "private") {
+            get_template_part("templates/single/t-private");
         } else {
-            if(get_field('sponso_t')){
-                get_template_part("templates/single/t-sponso");
-            } elseif (get_field('private_t')) {
-                get_template_part("templates/single/t-private");
-            } elseif (get_field('marqueblanche_t')) {
-                get_template_part("templates/single/t-marqueblanche");
-            }
-            else{
-                get_template_part("templates/single/t");
-            }
+            get_template_part("templates/single/t");
         }
         break;
+        
     case "classement": 
-        $id_top = get_field('id_tournoi_r');
-        if (get_field('sponso_t', $id_top)) {
-            get_template_part("templates/single/r-sponso");
-        } elseif (get_field('marqueblanche_t', $id_top)) {
-            get_template_part("templates/single/r-marqueblanche");
+        $get_top_type = get_the_terms($id_top, 'type');
+        foreach ($get_top_type as $type_top) {
+            $type_top = $type_top->slug;
         }
-        else{
+        if ($type_top == "whitelabel") {
+            get_template_part("templates/single/r-marqueblanche");
+        } elseif ($type_top == "sponso") {
+            get_template_part("templates/single/r-sponso");
+        } else {
             get_template_part("templates/single/r");
         }
+
         break;
+
     case "post": get_template_part("templates/single/post");
         break;
 }

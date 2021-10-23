@@ -43,37 +43,9 @@ $list_t_already_done = $user_tops['list_user_tops_done_ids'];
                                 'posts_per_page'         => 10,
                                 'tax_query' => array(
                                     array(
-                                        'taxonomy' => 'categorie',
+                                        'taxonomy' => 'type',
                                         'field'    => 'slug',
-                                        'terms'    => array('welcome'),
-                                        'operator' => 'NOT IN',
-                                    )
-                                ),
-                                'meta_query' => array(
-                                    'relation' => 'AND',
-                                    array(
-                                        'relation' => 'OR',
-                                        array(
-                                            'key'     => 'private_t',
-                                            'compare' => 'NOT EXISTS',
-                                        ),
-                                        array(
-                                            'key'     => 'private_t',
-                                            'value'   => '1',
-                                            'compare' => 'NOT LIKE',
-                                        ),
-                                    ),
-                                    array(
-                                        'relation' => 'OR',
-                                        array(
-                                            'key'     => 'marqueblanche_t',
-                                            'compare' => 'NOT EXISTS',
-                                        ),
-                                        array(
-                                            'key'     => 'marqueblanche_t',
-                                            'value'   => '1',
-                                            'compare' => 'NOT LIKE',
-                                        ),
+                                        'terms'    => array('classik', 'sponso')
                                     ),
                                 ),
                             ));
@@ -134,9 +106,6 @@ $list_t_already_done = $user_tops['list_user_tops_done_ids'];
                                 'orderby'       => 'count',
                                 'order'         => 'DESC',
                                 'hide_empty'    => true,
-                                'exclude'       => array(
-                                    get_term_by('slug', 'welcome', 'categorie')->term_id
-                                )
                             ));
                             foreach ($cat_t as $cat) : ?>
                                 <div class="col-6">
@@ -145,9 +114,7 @@ $list_t_already_done = $user_tops['list_user_tops_done_ids'];
                                             <div>
                                                 <h2 class="font-weight-bolder mb-0">
                                                     <span class="ico2 ">
-                                                        <span class="<?php if ($cat->term_id == 2) {
-                                                                            echo 'rotating';
-                                                                        } ?>">
+                                                        <span>
                                                             <?php the_field('icone_cat', 'term_' . $cat->term_id); ?>
                                                         </span>
                                                     </span> <?php echo $cat->name; ?>
@@ -173,9 +140,6 @@ $list_t_already_done = $user_tops['list_user_tops_done_ids'];
                     'orderby'       => 'count',
                     'order'         => 'DESC',
                     'hide_empty'    => true,
-                    'exclude'       => array(
-                        get_term_by('slug', 'welcome', 'categorie')->term_id
-                    )
                 ));
                 foreach ($cat_t as $cat) : ?>
                     <?php
@@ -189,37 +153,16 @@ $list_t_already_done = $user_tops['list_user_tops_done_ids'];
                         'update_post_meta_cache' => false,
                         'no_found_rows'          => true,
                         'tax_query' => array(
+                            'relation' => 'AND',
                             array(
                                 'taxonomy' => 'categorie',
                                 'field'    => 'term_id',
                                 'terms'    => $cat->term_id,
                             ),
-                        ),
-                        'meta_query' => array(
-                            'relation' => 'AND',
                             array(
-                                'relation' => 'OR',
-                                array(
-                                    'key'     => 'private_t',
-                                    'compare' => 'NOT EXISTS',
-                                ),
-                                array(
-                                    'key'     => 'private_t',
-                                    'value'   => '1',
-                                    'compare' => 'NOT LIKE',
-                                ),
-                            ),
-                            array(
-                                'relation' => 'OR',
-                                array(
-                                    'key'     => 'marqueblanche_t',
-                                    'compare' => 'NOT EXISTS',
-                                ),
-                                array(
-                                    'key'     => 'marqueblanche_t',
-                                    'value'   => '1',
-                                    'compare' => 'NOT LIKE',
-                                ),
+                                'taxonomy' => 'type',
+                                'field'    => 'slug',
+                                'terms'    => array('classik', 'sponso')
                             ),
                         ),
                     ));

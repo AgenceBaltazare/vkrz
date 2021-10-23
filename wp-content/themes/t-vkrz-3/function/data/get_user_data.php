@@ -95,7 +95,7 @@ function get_user_tops($user_id = false){
         $args_meta_query = array(
             array(
                 'key' => 'id_tournoi_r',
-                'value' => get_top_welcome(),
+                'value' => get_exclude_top(),
                 'compare' => 'NOT IN'
             )
         );
@@ -111,7 +111,7 @@ function get_user_tops($user_id = false){
             ),
             array(
                 'key' => 'id_tournoi_r',
-                'value' => get_top_welcome(),
+                'value' => get_exclude_top(),
                 'compare' => 'NOT IN'
             ),
         );
@@ -458,7 +458,7 @@ function get_creators_ids(){
             array(
                 'taxonomy' => 'categorie',
                 'field'    => 'slug',
-                'terms'    => array( 'welcome' ),
+                'terms'    => array('onboarding', 'whitelabel', 'private'),
                 'operator' => 'NOT IN',
             )
         ),
@@ -491,7 +491,7 @@ function get_creator_t($creator_id){
             array(
                 'taxonomy' => 'categorie',
                 'field'    => 'slug',
-                'terms'    => array( 'welcome' ),
+                'terms'    => array('onboarding', 'private', 'whitelabel'),
                 'operator' => 'NOT IN',
             )
         ),

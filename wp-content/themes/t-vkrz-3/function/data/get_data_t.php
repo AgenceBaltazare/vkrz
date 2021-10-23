@@ -135,7 +135,7 @@ function get_top_data($id_top){
     );
 }
 
-function get_top_welcome() {
+function get_exclude_top() {
     $tops = new WP_Query(array(
         'post_type'              => 'tournoi',
         'posts_per_page'         => -1,
@@ -145,11 +145,10 @@ function get_top_welcome() {
         'no_found_rows'          => true,
         'tax_query' => array(
             array(
-                'taxonomy' => 'categorie',
+                'taxonomy' => 'type',
                 'field'    => 'slug',
-                'terms'    => array( 'welcome' ),
-                'operator' => 'IN',
-            )
+                'terms'    => array('onboarding', 'whitelabel')
+            ),
         ),
     ));
 
