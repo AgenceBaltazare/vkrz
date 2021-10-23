@@ -67,3 +67,9 @@ add_action( 'wp_ajax_nopriv_vkzr_get_monitor_data', 'vkzr_get_monitor_data' );
 function vkzr_get_monitor_data() {
     get_monitor_data();
 }
+
+add_action( 'wp_ajax_vkzr_get_contenders_ranking', 'vkzr_get_contenders_ranking' );
+add_action( 'wp_ajax_nopriv_vkzr_get_contenders_ranking', 'vkzr_get_contenders_ranking' );
+function vkzr_get_contenders_ranking() {
+    get_contenders_ranking_json($_POST['topId']);
+}

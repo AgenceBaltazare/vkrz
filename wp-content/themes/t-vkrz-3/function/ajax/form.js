@@ -2,11 +2,7 @@ $(document).ready(function ($) {
 
     var form = $('#form-coupon');
 
-    console.log("aaa");
-
     form.submit(function (e) {
-
-        console.log("fdfd");
 
         e.preventDefault();
 
@@ -19,12 +15,10 @@ $(document).ready(function ($) {
                 uuiduser: form.find('#uuiduser').val(),
                 ranking: form.find('#ranking').val(),
             }
-        }).done(function (response) {
-            $('.coupon-content').hide();
-            $('.coupon-finish').show();
-
-        }).always(function () {
-            
-        });
+        })
+            .done(function () {
+                $('.coupon-content').hide();
+                $('.coupon-finish').show();
+            });
     });
 });

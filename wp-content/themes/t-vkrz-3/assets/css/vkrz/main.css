@@ -15,17 +15,29 @@
 
 /* Safari and Chrome */ {
   from {
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
     transform: rotate(0deg);
   }
   to {
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }
 @keyframes rotating {
   from {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
     transform: rotate(0deg);
   }
   to {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }
@@ -233,7 +245,7 @@ div.dataTables_wrapper div.dataTables_length label {
 }
 
 .main-menu.menu-dark .navigation .navigation-header {
-  margin: calc(2rem) 0 0.8rem 2.2rem;
+  margin: 2rem 0 0.8rem 2.2rem;
 }
 
 .main-menu.menu-dark .navigation li.nav-item a.sociallink:hover > * {
@@ -267,14 +279,6 @@ a.sociallink:hover i {
 
 .reset_size {
   height: auto !important;
-}
-
-.dark-layout input.form-control::-moz-placeholder, .dark-layout .custom-file-label::-moz-placeholder, .dark-layout textarea.form-control::-moz-placeholder, .dark-layout input.form-control::-moz-placeholder, .dark-layout .custom-file-label::-moz-placeholder, .dark-layout textarea.form-control::-moz-placeholder {
-  color: white !important;
-}
-
-.dark-layout input.form-control:-ms-input-placeholder, .dark-layout .custom-file-label:-ms-input-placeholder, .dark-layout textarea.form-control:-ms-input-placeholder, .dark-layout input.form-control:-ms-input-placeholder, .dark-layout .custom-file-label:-ms-input-placeholder, .dark-layout textarea.form-control:-ms-input-placeholder {
-  color: white !important;
 }
 
 .dark-layout input.form-control::placeholder,
@@ -328,19 +332,7 @@ a.sociallink:hover i {
 .dark-layout .main-menu {
   background: linear-gradient(150deg, #0c0a27, #471867, #0c0a27, #230b36, #0c0a27);
   background-size: 400% 400%;
-  -webkit-animation: gradient 15s ease infinite;
-          animation: gradient 15s ease infinite;
-}
-@-webkit-keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+  animation: gradient 15s ease infinite;
 }
 @keyframes gradient {
   0% {
@@ -366,7 +358,7 @@ a.sociallink:hover i {
 }
 
 html .content.app-content {
-  padding: calc(2rem + 3.45rem + 1.3rem) 2rem 10rem;
+  padding: 6.75rem 2rem 10rem;
   min-height: 100vh;
 }
 
@@ -410,6 +402,10 @@ html .content.app-content .content-overlay {
 
 .breadcrumbs-top a {
   color: #fff;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   display: inline-block;
   position: relative;
@@ -434,6 +430,10 @@ html .content.app-content .content-overlay {
 }
 
 .scaler {
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
 .scaler:hover {
@@ -452,6 +452,10 @@ html .content {
 }
 
 .heading-cat a {
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   display: block;
   position: relative;
@@ -473,23 +477,9 @@ html .content {
 
 .lele2 {
   width: 0;
-  -webkit-animation-name: appear2;
-          animation-name: appear2;
+  animation-name: appear2;
   overflow: hidden;
-  -webkit-animation: appear2 3s infinite ease-in-out;
-          animation: appear2 3s infinite ease-in-out;
-}
-
-@-webkit-keyframes appear2 {
-  20%, 100% {
-    width: 0;
-  }
-  0% {
-    width: 0;
-  }
-  5% {
-    width: auto;
-  }
+  animation: appear2 3s infinite ease-in-out;
 }
 
 @keyframes appear2 {
@@ -506,20 +496,7 @@ html .content {
 .lele1 {
   width: auto;
   overflow: hidden;
-  -webkit-animation: appear 3s infinite ease-in-out;
-          animation: appear 3s infinite ease-in-out;
-}
-
-@-webkit-keyframes appear {
-  20%, 100% {
-    width: auto;
-  }
-  0% {
-    width: auto;
-  }
-  5% {
-    width: 0;
-  }
+  animation: appear 3s infinite ease-in-out;
 }
 
 @keyframes appear {
@@ -573,8 +550,7 @@ html .content {
 }
 
 .avatar img {
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 .ico-reverse {
@@ -1127,6 +1103,10 @@ html .content {
 }
 
 .min-tournoi {
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   padding: 0;
 }
@@ -1330,6 +1310,10 @@ html .content {
 .card-developer-meetup .infos-card-t a {
   color: #fff;
   transform: scale(1);
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
 .card-developer-meetup .infos-card-t a:hover {
@@ -1378,22 +1362,8 @@ html .content {
 .versus {
   opacity: 0.3;
   transition: all 0.2s ease-in;
-  -webkit-animation: opa 2s 2s 1;
-          animation: opa 2s 2s 1;
-  -webkit-animation-iteration-count: infinite;
-          animation-iteration-count: infinite;
-}
-
-@-webkit-keyframes opa {
-  0% {
-    opacity: 0.3;
-  }
-  50% {
-    opacity: 0.5;
-  }
-  100% {
-    opacity: 0.3;
-  }
+  animation: opa 2s 2s 1;
+  animation-iteration-count: infinite;
 }
 
 @keyframes opa {
@@ -1428,12 +1398,28 @@ html .content {
   font-size: 20px;
 }
 
-.name h5 {
-  text-transform: uppercase;
+.name {
   text-align: center;
 }
-.name h5 span {
+.name h5 {
+  text-transform: uppercase;
   color: #f4167f;
+  margin-bottom: 5px;
+}
+.name h5 .ranking-title {
+  color: #fff;
+}
+.name .pointselo {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 12px;
+}
+.name .pointselo .fa-angle-double-up,
+.name .pointselo .fa-caret-up {
+  color: greenyellow;
+}
+.name .pointselo .fa-angle-double-down,
+.name .pointselo .fa-caret-down {
+  color: red;
 }
 
 .illu {
@@ -1486,14 +1472,6 @@ html .content {
   text-align: center;
 }
 
-.name h5 span.pointselo {
-  color: rgba(255, 255, 255, 0.25);
-  display: block;
-  margin: 5px 0 0 0;
-  font-size: 12px;
-  text-transform: lowercase;
-}
-
 .cover-profil {
   background-color: #0c0a27;
   min-height: 200px;
@@ -1512,6 +1490,10 @@ html .content {
   width: 30px;
   height: 30px;
   transform: scale(1);
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
 .avatartop3 img {
@@ -1530,8 +1512,7 @@ html .content {
 .dark-layout body.user-page, .dark-layout #user-profile .profile-header .navbar {
   background: linear-gradient(50deg, #0c0a27, #471867, #0c0a27, #0c0a27);
   background-size: 400% 400%;
-  -webkit-animation: gradient 60s ease infinite;
-          animation: gradient 60s ease infinite;
+  animation: gradient 60s ease infinite;
 }
 @keyframes gradient {
   0% {
@@ -1550,7 +1531,6 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active,
 textarea {
-  -webkit-transition: background-color 5000s ease-in-out 0s !important;
   transition: background-color 5000s ease-in-out 0s !important;
   color: #fff !important;
   -webkit-text-fill-color: #fff !important;
@@ -1590,12 +1570,6 @@ textarea {
   border-radius: 10px !important;
   color: #fff !important;
   transition: all 0.2s ease-in-out;
-}
-.wppb-user-forms input[type=text]::-moz-placeholder, .wppb-user-forms input[type=email]::-moz-placeholder, .wppb-user-forms input[type=password]::-moz-placeholder, .wppb-user-forms textarea::-moz-placeholder {
-  color: rgba(255, 255, 255, 0.8);
-}
-.wppb-user-forms input[type=text]:-ms-input-placeholder, .wppb-user-forms input[type=email]:-ms-input-placeholder, .wppb-user-forms input[type=password]:-ms-input-placeholder, .wppb-user-forms textarea:-ms-input-placeholder {
-  color: rgba(255, 255, 255, 0.8);
 }
 .wppb-user-forms input[type=text]::placeholder, .wppb-user-forms input[type=email]::placeholder, .wppb-user-forms input[type=password]::placeholder, .wppb-user-forms textarea::placeholder {
   color: rgba(255, 255, 255, 0.8);
@@ -1644,6 +1618,10 @@ textarea {
   display: block;
   color: #7367f0;
   position: relative;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   left: 0;
 }
@@ -1674,6 +1652,10 @@ textarea {
 }
 
 .scali {
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   transform: scale(1);
   display: inline-block;
@@ -1707,10 +1689,7 @@ textarea {
   font-size: 16px;
   font-weight: 500;
   display: block;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  user-select: none;
   border-radius: 0.358rem;
   -webkit-appearance: button;
 }
@@ -1798,12 +1777,6 @@ textarea {
   border: 1px solid #7367f0 !important;
   color: #fff;
 }
-.dataTables_filter input::-moz-placeholder {
-  color: #7367f0 !important;
-}
-.dataTables_filter input:-ms-input-placeholder {
-  color: #7367f0 !important;
-}
 .dataTables_filter input::placeholder {
   color: #7367f0 !important;
 }
@@ -1841,8 +1814,7 @@ textarea {
 .dodo .basic-pricing {
   background: linear-gradient(150deg, #0c0a27, #471867, #0c0a27, #230b36, #0c0a27);
   background-size: 400% 400%;
-  -webkit-animation: gradient 15s ease infinite;
-          animation: gradient 15s ease infinite;
+  animation: gradient 15s ease infinite;
 }
 .dodo .ico-masterclass {
   font-size: 185px;
@@ -2020,26 +1992,6 @@ textarea {
   height: 45px;
   border-radius: 0.358rem;
 }
-#search_form input::-moz-placeholder {
-  color: #7367f0 !important;
-  font-size: 1rem;
-  line-height: 1;
-  text-transform: uppercase;
-  border-radius: 0.358rem;
-  text-transform: uppercase;
-  font-weight: bold;
-  letter-spacing: 1px;
-}
-#search_form input:-ms-input-placeholder {
-  color: #7367f0 !important;
-  font-size: 1rem;
-  line-height: 1;
-  text-transform: uppercase;
-  border-radius: 0.358rem;
-  text-transform: uppercase;
-  font-weight: bold;
-  letter-spacing: 1px;
-}
 #search_form input::placeholder {
   color: #7367f0 !important;
   font-size: 1rem;
@@ -2107,7 +2059,7 @@ textarea {
 
 .share-text {
   color: #7367f0 !important;
-  font-size: calc(1rem);
+  font-size: 1rem;
 }
 
 .fs-12px {
@@ -2256,7 +2208,7 @@ textarea {
 }
 .t-marqueblanche .app-content-marqueblanche {
   margin-left: 0px;
-  padding: calc(2rem + 3.45rem + 1.3rem) 2rem 2rem;
+  padding: 6.75rem 2rem 2rem;
   min-height: 100vh;
 }
 .t-marqueblanche .logo_marqueblanche {
@@ -2301,7 +2253,7 @@ textarea {
 }
 .t-marqueblanche .app-content-marqueblanche-result {
   margin-left: 0px;
-  padding: calc(2rem + 3.45rem + 1.3rem) 0rem 0rem;
+  padding: 6.75rem 0rem 0rem;
   min-height: 100vh;
 }
 .t-marqueblanche .classement {
@@ -2414,18 +2366,6 @@ textarea {
   -webkit-text-fill-color: #000 !important;
   -webkit-text-size-adjust: 100% !important;
 }
-.t-marqueblanche .coupon-content form input::-moz-placeholder {
-  font-family: "Cormorant";
-  font-size: 20px;
-  color: #000;
-  opacity: 40%;
-}
-.t-marqueblanche .coupon-content form input:-ms-input-placeholder {
-  font-family: "Cormorant";
-  font-size: 20px;
-  color: #000;
-  opacity: 40%;
-}
 .t-marqueblanche .coupon-content form input::placeholder {
   font-family: "Cormorant";
   font-size: 20px;
@@ -2497,7 +2437,7 @@ textarea {
 }
 @media (max-width: 768px) {
   .t-marqueblanche .app-content-marqueblanche {
-    padding: calc(1rem - 0.8rem + 6.45rem + 1.3rem) calc(2rem - 0.8rem) 0 calc(2rem - 0.8rem) !important;
+    padding: 7.95rem 1.2rem 0 1.2rem !important;
     flex-direction: column;
     align-items: center;
   }
@@ -2616,18 +2556,6 @@ textarea {
   background: rgba(255, 255, 255, 0.6);
   border: none;
   padding: 15px 30px;
-}
-.t-marqueblanche .form-popup .form-container input::-moz-placeholder {
-  font-family: "Cormorant";
-  font-size: 20px;
-  color: #000;
-  opacity: 40%;
-}
-.t-marqueblanche .form-popup .form-container input:-ms-input-placeholder {
-  font-family: "Cormorant";
-  font-size: 20px;
-  color: #000;
-  opacity: 40%;
 }
 .t-marqueblanche .form-popup .form-container input::placeholder {
   font-family: "Cormorant";
@@ -2959,7 +2887,7 @@ textarea {
   }
 
   html body .app-content {
-    padding: calc(1rem - 0.8rem + 6.45rem + 1.3rem) calc(2rem - 0.8rem) 0 calc(2rem - 0.8rem) !important;
+    padding: 7.95rem 1.2rem 0 1.2rem !important;
   }
 
   .bookmark-wrapper {
@@ -3061,24 +2989,6 @@ textarea {
   #ecommerce-header .ecommerce-searchbar #search_form input {
     padding: 0 15px;
     font-size: 1rem;
-  }
-  #ecommerce-header .ecommerce-searchbar #search_form input::-moz-placeholder {
-    color: #7367f0 !important;
-    font-size: 0.8rem;
-    line-height: 1;
-    text-transform: none;
-    border-radius: 0.358rem;
-    font-weight: bold;
-    letter-spacing: 1px;
-  }
-  #ecommerce-header .ecommerce-searchbar #search_form input:-ms-input-placeholder {
-    color: #7367f0 !important;
-    font-size: 0.8rem;
-    line-height: 1;
-    text-transform: none;
-    border-radius: 0.358rem;
-    font-weight: bold;
-    letter-spacing: 1px;
   }
   #ecommerce-header .ecommerce-searchbar #search_form input::placeholder {
     color: #7367f0 !important;
@@ -3271,4 +3181,6 @@ textarea {
     display: inline-block;
     width: 3px;
   }
-}/*# sourceMappingURL=main.css.map */
+}
+
+/*# sourceMappingURL=main.css.map */
