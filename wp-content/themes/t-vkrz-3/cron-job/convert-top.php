@@ -11,7 +11,15 @@ $all_tops = new WP_Query(array(
     'post_type'              => 'classement',
     'orderby'                => 'date',
     'order'                  => 'DESC',
-    'posts_per_page'         => -1
+    'posts_per_page'         => -1,
+    'tax_query' => array(
+        array(
+            'taxonomy' => 'type',
+            'field'    => 'slug',
+            'terms'    => array('classik', 'private'),
+            'operator' => 'NOT IN'
+        ),
+    )
 ));
 while ($all_tops->have_posts()) : $all_tops->the_post();
 
