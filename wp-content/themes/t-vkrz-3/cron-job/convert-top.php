@@ -15,6 +15,16 @@ $all_tops = new WP_Query(array(
 ));
 while ($all_tops->have_posts()) : $all_tops->the_post();
 
-    wp_set_post_terms( get_the_ID(), 'classik', 'type');
+    $id_top = get_the_ID();
+    
+    if(get_field('sponso_t', $id_top)){
+        wp_set_post_terms($id_top, 'sponso', 'type');
+    } elseif (get_field('private_t', $id_top)) {
+        wp_set_post_terms($id_top, 'private', 'type');
+    } elseif (get_field('marqueblanche_t', $id_top)) {
+        wp_set_post_terms($id_top, 'whitelabel', 'type');
+    } else{
+        wp_set_post_terms($id_top, 'classik', 'type');
+    }
 
 endwhile; ?>
