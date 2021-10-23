@@ -52,7 +52,7 @@ function tax_init() {
     # Type de Top
     register_taxonomy(
         'type',
-        array('tournoi'),
+        array('tournoi', 'classement'),
         array(
             'label'         => 'Type',
             'rewrite'       => array('slug' => 'type'),
