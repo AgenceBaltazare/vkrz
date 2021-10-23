@@ -6,6 +6,13 @@ global $user_infos;
 global $id_vainkeur;
 global $utm;
 global $id_top;
+global $type_top;
+if (is_single()) {
+    $get_top_type = get_the_terms(get_the_ID(), 'type');
+    foreach ($get_top_type as $type_top) {
+        $type_top = $type_top->slug;
+    }
+}
 if (!is_single() || get_post_type() != "tournoi") {
     $user_id        = get_user_logged_id();
     $uuiduser       = deal_uuiduser();
@@ -111,21 +118,12 @@ if (is_single() || is_page(get_page_by_path('monitor'))) {
 } else {
     $list_body_class = "vertical-layout vertical-menu-modern navbar-floating footer-static";
 }
-if(get_field('marqueblanche_t', $id_top)){
+if($type_top == "whitelabel"){
     $list_body_class = $list_body_class." t-marqueblanche";
 }
 ?>
 
 <body <?php body_class($list_body_class); ?> data-open="click" data-menu="vertical-menu-modern" data-col="">
-
-    <?php if ($uuiduser == get_field('uuid_1m_votes', 'options')) : ?>
-        <div class="alert alert-success" role="alert">
-            <h4 class="alert-heading"><span class="ico">🎉</span> Félicitations <span class="ico">🎉</span></h4>
-            <div class="alert-body">
-                Tu as gagné la SWITCH en faisant LE vote du Milli. Contacte-nous pour la récup <span class="ico">🤗</span>
-            </div>
-        </div>
-    <?php endif; ?>
 
     <?php if ($user_infos['user_role'] != "administrator" && env() != "local") : ?>
         <!-- Google Tag Manager (noscript) -->
@@ -133,7 +131,7 @@ if(get_field('marqueblanche_t', $id_top)){
         <!-- End Google Tag Manager (noscript) -->
     <?php endif; ?>
 
-    <?php if (!is_single() || !get_field('marqueblanche_t', $id_top)): ?>
+    <?php if (!is_single() || $type_top != "whitelabel"): ?>
         <?php
         get_template_part('partials/menu-user');
         get_template_part('partials/menu-vkrz');
