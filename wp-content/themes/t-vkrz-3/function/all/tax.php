@@ -1,7 +1,7 @@
 <?php
 function tax_init() {
 
-    # Catégorie tournoi
+    # Catégorie Top
     register_taxonomy(
         'categorie',
         array('tournoi'),
@@ -13,7 +13,7 @@ function tax_init() {
         )
     );
 
-    # Target tournoi
+    # Target Top
     register_taxonomy(
         'sous-cat',
         array('tournoi'),
@@ -25,7 +25,7 @@ function tax_init() {
         )
     );
 
-    # Tags tournoi
+    # Tags Top
     register_taxonomy(
         'tag',
         array('tournoi'),
@@ -37,13 +37,25 @@ function tax_init() {
         )
     );
 
-    # Concept tournoi
+    # Concept Top
     register_taxonomy(
         'concept',
         array('tournoi'),
         array(
             'label'         => 'Sujet',
             'rewrite'       => array('slug' => 'concept'),
+            'hierarchical'  => false,
+            'show_in_rest'  => true,
+        )
+    );
+
+    # Type de Top
+    register_taxonomy(
+        'type',
+        array('tournoi'),
+        array(
+            'label'         => 'Type',
+            'rewrite'       => array('slug' => 'type'),
             'hierarchical'  => false,
             'show_in_rest'  => true,
         )
