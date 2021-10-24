@@ -21,6 +21,14 @@ $cyan: #77efe6;
 
 html {
 
+    .card-developer-meetup .meetup-img-wrapper .badge {
+        background: $bleu;
+    }
+
+    .badge-light-rose {
+        background: #5ebfd5 !important;
+    }
+
     .t-titre-tournoi,
     .breadcrumb .breadcrumb-item,
     .breadcrumbs-top a,
@@ -105,7 +113,7 @@ html {
                     padding: 20px;
 
                     strong {
-                        color: $cyan;
+                        color: $bleu;
                     }
                 }
             }
