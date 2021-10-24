@@ -110,16 +110,24 @@ if (!is_single() || get_post_type() != "tournoi") {
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-rqn26AG5Pj86AF4SO72RK5fyefcQ/x32DNQfChxWvbXIyXFePlEktwD18fEz+kQU" crossorigin="anonymous">
 
     <?php wp_head(); ?>
+
+    <?php if ((is_single() && get_field('fichier_css', $id_top)) || (is_page(get_page_by_path('elo')) && $_GET['sponso'] == "active")) : ?>
+        <link rel='stylesheet' href='<?php bloginfo('template_directory'); ?>/assets/special/css/<?php the_field('fichier_css', $id_top); ?>' type='text/css' media='all' />
+    <?php endif; ?>
 </head>
 
 <?php
 if (is_single() || is_page(get_page_by_path('monitor'))) {
     $list_body_class = "vertical-layout vertical-menu-modern navbar-floating footer-static menu-collapsed";
-} else {
+}
+elseif (is_page(get_page_by_path('elo')) && $_GET['sponso'] == "active") {
+    $list_body_class = "vertical-layout vertical-menu-modern navbar-floating footer-static menu-collapsed";
+}
+else {
     $list_body_class = "vertical-layout vertical-menu-modern navbar-floating footer-static";
 }
-if($type_top == "whitelabel"){
-    $list_body_class = $list_body_class." t-marqueblanche";
+if ($type_top == "whitelabel") {
+    $list_body_class = $list_body_class . " t-marqueblanche";
 }
 ?>
 
@@ -131,7 +139,7 @@ if($type_top == "whitelabel"){
         <!-- End Google Tag Manager (noscript) -->
     <?php endif; ?>
 
-    <?php if (!is_single() || $type_top != "whitelabel"): ?>
+    <?php if (!is_single() || $type_top != "whitelabel") : ?>
         <?php
         get_template_part('partials/menu-user');
         get_template_part('partials/menu-vkrz');

@@ -51,10 +51,9 @@ extract($battle_vars);
             <?php endif; ?>
         <?php endif; ?>
 
-        <?php if($type_top == "whitelabel"): ?>
-            <h4 class="text-center versus-marqueblanche">
-                <!-- todotodo -->
-                <img src="<?php bloginfo('template_directory'); ?>/assets/images/marqueblanche/gdp/versus.svg" alt="" class="img-fluid">
+        <?php if(get_field('versus_t_sponso', $id_top)): ?>
+            <h4 class="text-center versus">
+                <?php echo wp_get_attachment_image(get_field('versus_t_sponso', $id_top), 'large', '', array('class' => 'img-fluid')); ?>
             </h4>
         <?php else: ?>
             <h4 class="text-center versus">

@@ -177,6 +177,39 @@ function cpt_init() {
     );
     register_post_type('note', $args);
 
+    // Players
+    $labels = array(
+        'name' => 'Player',
+        'singular_name' => 'Player',
+        'add_new' => 'Ajouter un player',
+        'add_new_item' => 'Ajouter un player',
+        'edit_item' => 'Editer un player',
+        'new_item' => 'Nouveau player',
+        'all_items' => 'Tous les players',
+        'view_item' => 'Voir player',
+        'search_items' => 'Chercher un player',
+        'not_found' =>  'Aucun player trouvé',
+        'not_found_in_trash' => 'Aucun player trouvé dans la corbeille',
+        'menu_name' => 'Players'
+    );
+    $args = array(
+        'labels' => $labels,
+        'public' => true,
+        'publicly_queryable' => false,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'query_var' => true,
+        'rewrite' => array('slug' => 'p'),
+        'map_meta_cap' => true,
+        'has_archive' => true,
+        'hierarchical' => false,
+        'menu_position' => null,
+        'menu_icon' => 'dashicons-buddicons-activity',
+        'show_in_rest' => true,
+        'supports' => array('title', 'author')
+    );
+    register_post_type('player', $args);
+
 }
 add_action( 'init', 'cpt_init' );
 

@@ -51,9 +51,6 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                                 <?php the_field('titre_de_la_sponso_t_sponso', $id_top); ?>
                                             </h4>
                                         </div>
-                                        <div class="mr-1 ml-3">
-                                            <span class="icone-cadeau">🎁</span>
-                                        </div>
                                     </div>
                                     <div class="text-rules">
                                         <?php the_field('description_t_sponso', $id_top); ?>
@@ -70,7 +67,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                             <?php the_field('top_propose_par_t_sponso', $id_top); ?>
                                         </p>
                                     </div>
-                                    <div class="d-flex align-items-center">
+                                    <div class="d-flex align-items-center reseaux-sponso">
                                         <div class="logo-vkrz-sponso">
                                             <?php
                                             if (get_field('logo_de_la_sponso_t_sponso', $id_top)) : ?>
@@ -163,7 +160,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                         <div class="choosecta">
                                             <div class="cta-begin cta-complet">
                                                 <a href="#" id="begin_t" data-typetop="complet" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
-                                                    <?php the_field('intitule_du_cta_t_sponso', $id_top); ?>
+                                                    Top <?php echo $top_infos['top_number']; ?>
                                                 </a>
                                                 <small class="text-muted">
                                                     <?php
@@ -177,6 +174,21 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                                     <?php endif; ?>
                                                 </small>
                                             </div>
+                                            <?php if ($top_infos['top_number'] > 10) : ?>
+                                                <div class="cta-begin cta-top3">
+                                                    <a href="#" id="begin_top3" data-typetop="top3" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
+                                                        Top 3
+                                                    </a>
+                                                    <small class="text-muted">
+                                                        <?php
+                                                        $max = (floor($top_infos['top_number'] / 2)) + (3 * ((round($top_infos['top_number'] / 2)) - 1));
+                                                        $min = (floor($top_infos['top_number'] / 2)) + ((round($top_infos['top_number'] / 2)) - 1) + 3;
+                                                        $moy = ($max + $min) / 2;
+                                                        ?>
+                                                        Prévoir environ <?php echo round($moy); ?> votes pour juste faire ton podium
+                                                    </small>
+                                                </div>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
                                     <div class="card-footer">

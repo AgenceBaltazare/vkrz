@@ -59,7 +59,7 @@ add_action('wp_ajax_vkzr_form_newplayer', 'vkzr_form_newplayer');
 add_action('wp_ajax_nopriv_vkzr_form_newplayer', 'vkzr_form_newplayer');
 function vkzr_form_newplayer()
 {
-    form_newplayer($_POST['emailplayer'], $_POST['uuiduser'], $_POST['ranking']);
+    form_newplayer($_POST['emailplayer'], $_POST['uuiduser'], $_POST['ranking'], $_POST['top']);
 }
 
 add_action( 'wp_ajax_vkzr_get_monitor_data', 'vkzr_get_monitor_data' );

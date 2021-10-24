@@ -141,6 +141,10 @@ html .content.app-content .content-overlay {
 
 .card-text {
     font-size: 15px;
+
+    @media (max-width: 768px) {
+        font-size: 14px;
+    }
 }
 
 .scaler {
@@ -276,7 +280,7 @@ html .content {
 }
 
 .main-menu .main-menu-content {
-    height: calc(100% - 220px) !important;
+    height: calc(100%) !important;
     position: relative;
 }
 

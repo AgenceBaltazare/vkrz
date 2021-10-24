@@ -1,0 +1,285 @@
+$marron : #68441e;
+$bleu: #105079;
+$cyan: #77efe6;
+
+@import url('https://fonts.googleapis.com/css2?family=Zen+Antique+Soft&display=swap');
+
+.dark-layout .header-navbar .navbar-container .nav .nav-item .nav-link i,
+.dark-layout .header-navbar .navbar-container .nav .nav-item .nav-link svg {
+    color: $marron !important;
+}
+
+.breadcrumb:not([class*=breadcrumb-]) .breadcrumb-item+.breadcrumb-item:before {
+    content: '>';
+    background: transparent !important;
+    color: $marron;
+}
+
+.tournament-heading h4 {
+    color: $bleu !important;
+}
+
+html {
+
+    .t-titre-tournoi,
+    .breadcrumb .breadcrumb-item,
+    .breadcrumbs-top a,
+    .dark-layout .breadcrumb .breadcrumb-item+.breadcrumb-item::before,
+    .header-navbar .navbar-container .nav .nav-item .nav-link {
+        color: $marron !important;
+    }
+
+    .intro-mobile {
+        background: url('../img/beige.jpg') center center !important;
+        border: 2px solid $marron;
+    }
+
+    .header-navbar {
+        background: url('../img/menu.png') center center repeat-x !important;
+        border: 3px solid $marron;
+        background-size: cover !important;
+    }
+
+    .tournament-heading:after {
+        border-top: 2px solid $cyan;
+    }
+
+    .content.app-content {
+        font-family: 'Zen Antique Soft', serif;
+
+        .btn-outline-primary {
+            border: 1px solid $bleu !important;
+            background-color: transparent;
+            color: $bleu;
+            text-transform: uppercase;
+
+            &:hover {
+                background-color: $bleu;
+                color: #fff;
+            }
+        }
+
+        .share-text {
+            color: $marron !important;
+        }
+
+        .t-rose {
+            color: $bleu !important;
+        }
+
+        .content-overlay {
+            position: absolute;
+            opacity: 0.5;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #744516;
+            z-index: 0;
+        }
+
+        .card-developer-meetup {
+            background: url('../img/beige.jpg') center center !important;
+            background-size: contain !important;
+            color: $marron;
+
+            .card-title {
+                font-size: 22px;
+                line-height: 28px;
+                color: $marron;
+            }
+
+            .rules-content {
+                padding: 0;
+
+                .title-win {
+                    background: url(../img/bleu.png) center top !important;
+                    background-size: cover !important;
+                    border-radius: 0;
+                    padding: 20px;
+                }
+
+                .text-rules {
+                    padding: 20px;
+
+                    strong {
+                        color: $cyan;
+                    }
+                }
+            }
+
+            .btn-primary {
+                border: none !important;
+                background-color: transparent !important;
+                background: url('../img/btn1.png') center center no-repeat;
+                color: #fff !important;
+                background-size: contain;
+                transition: all 0.2s ease-in;
+                box-shadow: none;
+
+                &:hover {
+                    background: url('../img/btn2.png') center center no-repeat;
+                    background-size: contain;
+                    box-shadow: none;
+                }
+
+                @media (max-width: 768px) {
+
+                    border: none !important;
+                    background-color: transparent !important;
+                    background: url('../img/btn1-m.png') center center no-repeat;
+                    color: #fff !important;
+                    background-size: 100%;
+                    transition: all 0.2s ease-in;
+                    box-shadow: none;
+                    font-size: 19px;
+                    padding: 13px 10px;
+
+                    &:hover {
+                        background: url('../img/btn2-m.png') center center no-repeat;
+                        background-size: contain;
+                        box-shadow: none;
+                    }
+                }
+            }
+
+            .content-body {
+                h4 {
+                    color: $marron;
+                }
+            }
+        }
+    }
+
+    .icons-navbar {
+        background: $bleu;
+    }
+
+    .title-contender,
+    .name h5 {
+        background: rgb(18, 80, 121);
+        background: radial-gradient(circle, rgba(18, 80, 121, 1) 0%, rgba(24, 115, 175, 1) 100%);
+        color: #fff;
+        text-transform: uppercase;
+        font-size: 13px;
+        margin: 0 !important;
+        padding: 5px;
+        border: 2px solid #b59100;
+
+        span {
+            color: #b59100;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .mobile-navbar .icons-navbar {
+        background: $bleu;
+    }
+
+    .single-tournoi .tournoi-content .contenders-containers .versus:before {
+        background-color: $cyan;
+    }
+}
+
+.stepbar {
+    background: $cyan;
+
+    .stepbar-content span {
+        color: $cyan;
+    }
+}
+
+.participation-content-sponso {
+    background: transparent;
+
+    .info-win {
+        strong {
+            color: $cyan;
+        }
+    }
+}
+
+.stats-mondiales {
+    color: $marron !important;
+}
+
+.single-classement,
+.page-template-elo-mondial {
+    .content.app-content .content-overlay {
+        opacity: 0.85 !important;
+        background-color: #744516;
+    }
+
+    .card {
+        background: url('../img/beige.jpg') center center !important;
+        background-size: contain !important;
+        color: $marron;
+
+        .card-body h2 {
+            color: $marron;
+        }
+    }
+
+    .social-media-sponso {
+        width: 100%;
+    }
+
+    .bravo {
+        border: 5px solid #77efe6;
+    }
+
+    #form-coupon {
+        input[type=email] {
+            border: 2px solid $cyan;
+
+            &::placeholder {
+                color: #fff;
+            }
+        }
+
+        #btn-coupon {
+            background: $cyan;
+            color: $bleu;
+        }
+    }
+
+    .stats-mondiales b {
+        color: $marron;
+        font-weight: normal;
+    }
+
+    .card {
+        .btn-primary {
+            border-color: $marron !important;
+            background-color: $marron !important;
+            color: #fff !important;
+        }
+    }
+
+    .participation-content-sponso h1 {
+        font-family: 'Zen Antique Soft', serif;
+        font-weight: 900;
+        font-style: italic;
+        font-size: 38.89px;
+        line-height: 44.39px;
+        text-transform: uppercase;
+        color: #ffffff;
+        text-shadow: 2px 2px 0px $marron;
+
+        @media (max-width: 768px) {
+            font-size: 22px;
+            line-height: 28px;
+        }
+    }
+}
+
+.tournament-heading {
+
+    h3,
+    h4 {
+        font-family: 'Zen Antique Soft', serif;
+    }
+}

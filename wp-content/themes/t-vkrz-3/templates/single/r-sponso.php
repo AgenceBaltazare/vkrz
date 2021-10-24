@@ -28,23 +28,6 @@ $top_datas    = get_top_data($id_top);
     <div class="content-overlay"></div>
     <div class="content-wrapper">
         <div class="content-body">
-            <?php if (!is_user_logged_in()) : ?>
-                <section class="please-rejoin app-user-view">
-                    <div role="alert" aria-live="polite" aria-atomic="true" class="alert alert-account" data-v-aa799a9e="">
-                        <div class="alert-body d-flex align-items-center justify-content-between">
-                            <span><span class="ico">💾</span> Pour sauvegarder et retrouver sur tous tes supports ta progression l'idéal serait de te créer un compte.</span>
-                            <div class="btns-alert text-right">
-                                <a class="btn btn-primary waves-effect btn-rose" href="<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>">
-                                    Excellente idée - je créé mon compte <span class="ico">🎉</span>
-                                </a>
-                                <a class="btn btn-outline-white waves-effect t-white ml-1" href="<?php the_permalink(get_page_by_path('se-connecter')); ?>">
-                                    J'ai déjà un compte
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            <?php endif; ?>
             <div class="intro-mobile">
                 <div class="tournament-heading text-center">
                     <h3 class="mb-0 t-titre-tournoi">
@@ -58,39 +41,94 @@ $top_datas    = get_top_data($id_top);
             <div class="classement">
                 <div class="row">
                     <div class="col-md-8">
-
                         <div class="participation-content-sponso mb-4">
                             <div class="row">
-                                <div class="col-md-8 ml-2 mt-1">
+                                <div class="col-md-12 mt-1">
                                     <h1>
-                                        Merci <span class="participation">pour ta participation au concours</span> <span class="vainkeurz">VAINKEURZ ! 👑</span>
+                                        <?php the_field('titre_de_la_fin_t_sponso', $id_top); ?>
                                     </h1>
                                 </div>
                             </div>
-                            <div class="row d-flex align-items-center pr-1 pl-1">
-                                <div class="col-md-6 d-flex justify-content-around">
-                                    <div class="image-recompense">
-                                        <img src="<?php bloginfo('template_directory'); ?>/assets/images/concours/recompense-switch-bleu.svg" alt="" class="img-fluid">
+                            <?php if (get_field('choix_du_template_t_sponso', $id_top) == 'template_1') : ?>
+                                <div class="row">
+                                    <div class="col-md-6 d-flex justify-content-around">
+                                        <div class="image-recompense">
+                                            <?php
+                                            if (get_field('illustration_de_la_sponso_t_sponso', $id_top)) : ?>
+                                                <?php echo wp_get_attachment_image(get_field('illustration_de_la_sponso_t_sponso', $id_top), 'large', '', array('class' => 'img-fluid')); ?>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5 info-concours">
+                                        <div class="info-win">
+                                            <?php the_field('message_de_fin_t_sponso', $id_top); ?>
+                                        </div>
+                                        <div class="d-flex align-items-center buttons-share-top">
+                                            <?php if (get_field('type_de_fin_t_sponso', $id_top) == "mail_1") : ?>
+                                                <form action="" method="post" name="form2" id="form-coupon">
+                                                    <?php if (is_user_logged_in()) : ?>
+                                                        <input type="email" value="<?php echo $user_infos['pseudo']; ?>" name="email-player-input" id="email-player-input" required>
+                                                    <?php else : ?>
+                                                        <input type="email" placeholder="Mon adresse mail" name="email-player-input" id="email-player-input" required>
+                                                    <?php endif; ?>
+                                                    <input type="hidden" value="<?php echo $id_ranking; ?>" name="ranking" id="ranking">
+                                                    <input type="hidden" value="<?php echo $uuiduser; ?>" name="uuiduser" id="uuiduser">
+                                                    <input type="hidden" value="<?php echo $id_top; ?>" name="top" id="top">
+                                                    <button class="btn" id="btn-coupon">
+                                                        <?php the_field('intitule_cta_mail_t_sponso', $id_top); ?>
+                                                    </button>
+                                                </form>
+                                            <?php elseif (get_field('type_de_fin_t_sponso', $id_top) == "twitter_1") : ?>
+                                                <a href="javascript: void(0)" class="sharelinkbtn2 w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-outline-primary waves-effect waves-float waves-light">
+                                                    <input type="text" value="<?php echo get_the_permalink($id_ranking); ?>" class="input_to_share2">
+                                                    Copier le lien du Top
+                                                </a>
+                                                <a href="<?php the_field('lien_du_tweet_t_sponso', $id_top); ?>" target="_blank" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light">
+                                                    Post Twitter
+                                                </a>
+                                            <?php endif; ?>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-5 info-concours">
-                                    <p class="info-share">
-                                        Pour participer, tu dois <span class="t-rose">partager</span> ce Top en commentaire de notre post pour le concours sur Twitter et <span class="t-rose">RT</span> + <span class="t-rose">follow</span> <a href="https://twitter.com/Vainkeurz">@Vainkeurz</a>
-                                    </p>
-                                    <p class="info-share text-muted">
-                                        Pour partager ton classement dans les commentaires du post du concours, clique juste en dessous et copie colle le lien sur Twitter !
-                                    </p>
-                                    <div class="d-flex align-items-center buttons-share-top">
-                                        <a href="javascript: void(0)" class="sharelinkbtn2 w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-outline-primary waves-effect waves-float waves-light">
-                                            <input type="text" value="<?php echo get_the_permalink($id_ranking); ?>" class="input_to_share2">
-                                            Copier le lien du Top
-                                        </a>
-                                        <a href="https://twitter.com/Vainkeurz/status/1441764476525719555" target="_blank" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light">
-                                            Post Twitter
-                                        </a>
+                            <?php elseif (get_field('choix_du_template_t_sponso', $id_top) == 'template_2') : ?>
+                                <div class="row">
+                                    <div class="col-md-12 info-concours">
+                                        <div class="info-win">
+                                            <?php the_field('message_de_fin_t_sponso', $id_top); ?>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="d-flex align-items-center buttons-share-top">
+                                            <?php if (get_field('type_de_fin_t_sponso', $id_top) == "mail_1") : ?>
+                                                <form action="" method="post" name="form2" id="form-coupon">
+                                                    <?php if (is_user_logged_in()) : ?>
+                                                        <input type="email" value="<?php echo $user_infos['user_email']; ?>" name="email-player-input" id="email-player-input" required>
+                                                    <?php else : ?>
+                                                        <input type="email" placeholder="Mon adresse mail" name="email-player-input" id="email-player-input" required>
+                                                    <?php endif; ?>
+                                                    <input type="hidden" value="<?php echo $id_ranking; ?>" name="ranking" id="ranking">
+                                                    <input type="hidden" value="<?php echo $uuiduser; ?>" name="uuiduser" id="uuiduser">
+                                                    <input type="hidden" value="<?php echo $id_top; ?>" name="top" id="top">
+                                                    <button class="btn" id="btn-coupon">
+                                                        <?php the_field('intitule_cta_mail_t_sponso', $id_top); ?>
+                                                    </button>
+                                                </form>
+                                                <div class="bravo">
+                                                    <?php the_field('message_de_confirmation_t_sponso', $id_top); ?>
+                                                </div>
+                                            <?php elseif (get_field('type_de_fin_t_sponso', $id_top) == "twitter_1") : ?>
+                                                <a href="javascript: void(0)" class="sharelinkbtn2 w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-outline-primary waves-effect waves-float waves-light">
+                                                    <input type="text" value="<?php echo get_the_permalink($id_ranking); ?>" class="input_to_share2">
+                                                    Copier le lien du Top
+                                                </a>
+                                                <a href="<?php the_field('lien_du_tweet_t_sponso', $id_top); ?>" target="_blank" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light">
+                                                    Post Twitter
+                                                </a>
+                                            <?php endif; ?>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            <?php endif; ?>
                         </div>
 
                         <div class="list-classement mt-2">
@@ -98,15 +136,7 @@ $top_datas    = get_top_data($id_top);
                                 <?php
                                 $i = 1;
                                 foreach ($user_ranking as $c) : ?>
-                                    <?php if ($i == 1) : ?>
-                                        <div class="col-12 col-md-5">
-                                        <?php elseif ($i == 2) : ?>
-                                            <div class="col-7 col-md-4">
-                                            <?php elseif ($i == 3) : ?>
-                                                <div class="col-5 col-md-3">
-                                                <?php else : ?>
-                                                    <div class="col-md-2 col-4">
-                                                    <?php endif; ?>
+                                    <?php if ($i == 1) : ?><div class="col-12 col-md-5"><?php elseif ($i == 2) : ?><div class="col-7 col-md-4"><?php elseif ($i == 3) : ?><div class="col-5 col-md-3"><?php else : ?><div class="col-md-2 col-4"><?php endif; ?>
                                                     <?php
                                                     if ($i >= 4) {
                                                         $d = 3;
@@ -154,13 +184,42 @@ $top_datas    = get_top_data($id_top);
                                                 <div class="separate mt-1 mb-2 d-block d-sm-none"></div>
 
                                                 <div class="card">
+                                                    <div class="share-content-sponso">
+                                                        <div class="text-left">
+                                                            <p>
+                                                                <?php the_field('top_propose_par_t_sponso', $id_top); ?>
+                                                            </p>
+                                                        </div>
+                                                        <div class="d-flex align-items-center flex-column">
+                                                            <div class="logo-vkrz-sponso">
+                                                                <?php
+                                                                if (get_field('logo_de_la_sponso_t_sponso', $id_top)) : ?>
+                                                                    <?php echo wp_get_attachment_image(get_field('logo_de_la_sponso_t_sponso', $id_top), 'large', '', array('class' => 'img-fluid')); ?>
+                                                                <?php endif; ?>
+                                                            </div>
+                                                            <div class="mt-2 social-media-sponso">
+                                                                <div class="d-flex buttons-social-media">
+                                                                    <?php if (have_rows('liste_des_liens_t_sponso', $id_top)) : ?>
+                                                                        <?php while (have_rows('liste_des_liens_t_sponso', $id_top)) : the_row(); ?>
+                                                                            <a href="<?php the_sub_field('lien_vers_t_sponso'); ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-outline-primary waves-effect waves-float waves-light" target="_blank">
+                                                                                <?php the_sub_field('intitule_t_sponso'); ?>
+                                                                            </a>
+                                                                        <?php endwhile; ?>
+                                                                    <?php endif; ?>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="card">
                                                     <div class="card-body">
                                                         <h2 class="stats-mondiales mb-0">
                                                             <b>Stats mondiales :</b>
                                                             <?php echo $top_datas['nb_tops']; ?> 🏆 <?php echo $top_datas['nb_votes']; ?> 💎
                                                         </h2>
                                                         <div class="mt-1">
-                                                            <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_top; ?>" class="w-100 btn btn-primary waves-effect">
+                                                            <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_top; ?>&sponso=active" class="w-100 btn btn-primary waves-effect">
                                                                 <span class="ico">🌎</span> Voir le Top mondial
                                                             </a>
                                                         </div>
@@ -179,119 +238,29 @@ $top_datas    = get_top_data($id_top);
                                                     </div>
                                                 </div>
 
-                                                <?php
-                                                $list_t_already_done = $user_tops['list_user_tops_done_ids'];
-
-                                                $top_cat = $top_infos['top_cat'];
-                                                foreach ($top_cat as $cat) {
-                                                    $top_cat_id = $cat->term_id;
-                                                }
-
-                                                $list_souscat  = array();
-                                                $top_souscat   = get_the_terms($id_top, 'concept');
-                                                if (!empty($top_souscat)) {
-                                                    foreach ($top_souscat as $souscat) {
-                                                        array_push($list_souscat, $souscat->slug);
-                                                    }
-                                                }
-
-                                                $tops_in_close_cat     = new WP_Query(array(
-                                                    'ignore_sticky_posts'    => true,
-                                                    'update_post_meta_cache' => false,
-                                                    'no_found_rows'          => true,
-                                                    'post_type'              => 'tournoi',
-                                                    'post__not_in'           => $list_t_already_done,
-                                                    'orderby'                => 'rand',
-                                                    'order'                  => 'ASC',
-                                                    'posts_per_page'         => 4,
-                                                    'tax_query' => array(
-                                                        'relation' => 'AND',
-                                                        array(
-                                                            'taxonomy' => 'categorie',
-                                                            'field'    => 'term_id',
-                                                            'terms'    => array($top_cat_id)
-                                                        ),
-                                                        array(
-                                                            'taxonomy' => 'concept',
-                                                            'field' => 'slug',
-                                                            'terms' => $list_souscat
-                                                        ),
-                                                        array(
-                                                            'taxonomy' => 'type',
-                                                            'field'    => 'slug',
-                                                            'terms'    => array('classik', 'sponso')
-                                                        )
-                                                    ),
-                                                ));
-                                                $count_similar = $tops_in_close_cat->post_count;
-                                                $count_next    = 4 - $count_similar;
-                                                if ($count_similar < 4) {
-
-                                                    $tops_in_large_cat     = new WP_Query(array(
-                                                        'ignore_sticky_posts'    => true,
-                                                        'update_post_meta_cache' => false,
-                                                        'no_found_rows'          => true,
-                                                        'post_type'              => 'tournoi',
-                                                        'post__not_in'           => $list_t_already_done,
-                                                        'orderby'                => 'rand',
-                                                        'order'                  => 'ASC',
-                                                        'posts_per_page'         => $count_next,
-                                                        'tax_query' => array(
-                                                            'relation' => 'AND',
-                                                            array(
-                                                                'taxonomy' => 'categorie',
-                                                                'field'    => 'term_id',
-                                                                'terms'    => array($top_cat_id)
-                                                            ),
-                                                            array(
-                                                                'taxonomy' => 'type',
-                                                                'field'    => 'slug',
-                                                                'terms'    => array('classik', 'sponso')
-                                                            )
-                                                        ),
-                                                    ));
-                                                }
-                                                ?>
-
-                                                <?php if ($tops_in_close_cat->have_posts() || $tops_in_large_cat->have_posts()) : ?>
-
-                                                    <div class="separate mt-2 mb-2"></div>
-
-                                                    <section class="list-tournois">
-                                                        <div class="mt-1 pslim">
-                                                            <h4 class="card-title">
-                                                                <span class="ico">🥰</span> Tops similaires
-                                                            </h4>
-                                                            <h6 class="card-subtitle text-muted mb-1">
-                                                                Voici quelques Tops qui devraient te plaire <span class="ico">👇</span>
-                                                            </h6>
-                                                        </div>
-                                                        <div class="similar-list mt-2">
-                                                            <div class="row">
-                                                                <?php
-                                                                while ($tops_in_close_cat->have_posts()) : $tops_in_close_cat->the_post(); ?>
-
-                                                                    <?php get_template_part('partials/min-t'); ?>
-
-                                                                <?php endwhile; ?>
-                                                                <?php if ($count_similar < 4) : ?>
-                                                                    <?php
-                                                                    while ($tops_in_large_cat->have_posts()) : $tops_in_large_cat->the_post(); ?>
-
-                                                                        <?php get_template_part('partials/min-t'); ?>
-
-                                                                    <?php endwhile; ?>
-                                                                <?php endif; ?>
-                                                            </div>
-                                                        </div>
-                                                    </section>
-                                                <?php endif; ?>
                                             </div>
                                         </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <?php if (!is_user_logged_in()) : ?>
+                    <section class="please-rejoin app-user-view">
+                        <div role="alert" aria-live="polite" aria-atomic="true" class="alert alert-account" data-v-aa799a9e="">
+                            <div class="alert-body d-flex align-items-center justify-content-between">
+                                <span><span class="ico">💾</span> Pour sauvegarder et retrouver sur tous tes supports ta progression l'idéal serait de te créer un compte.</span>
+                                <div class="btns-alert text-right">
+                                    <a class="btn btn-primary waves-effect btn-rose" href="<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>">
+                                        Excellente idée - je créé mon compte <span class="ico">🎉</span>
+                                    </a>
+                                    <a class="btn btn-outline-white waves-effect t-white ml-1" href="<?php the_permalink(get_page_by_path('se-connecter')); ?>">
+                                        J'ai déjà un compte
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                <?php endif; ?>
             </div>
         </div>
 

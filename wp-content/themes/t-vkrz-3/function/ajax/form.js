@@ -2,11 +2,9 @@ $(document).ready(function ($) {
 
     var form = $('#form-coupon');
 
-    console.log("aaa");
-
     form.submit(function (e) {
 
-        console.log("fdfd");
+        form.find('#btn-coupon').html('Go')
 
         e.preventDefault();
 
@@ -18,10 +16,11 @@ $(document).ready(function ($) {
                 emailplayer: form.find('#email-player-input').val(),
                 uuiduser: form.find('#uuiduser').val(),
                 ranking: form.find('#ranking').val(),
+                top: form.find('#top').val(),
             }
         }).done(function (response) {
-            $('.coupon-content').hide();
-            $('.coupon-finish').show();
+            form.hide();
+            $('.bravo').show();
 
         }).always(function () {
             

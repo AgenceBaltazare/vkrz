@@ -432,6 +432,11 @@ html .content.app-content .content-overlay {
 .card-text {
   font-size: 15px;
 }
+@media (max-width: 768px) {
+  .card-text {
+    font-size: 14px;
+  }
+}
 
 .scaler {
   transition: all 0.2s ease-in-out;
@@ -568,7 +573,7 @@ html .content {
 }
 
 .main-menu .main-menu-content {
-  height: calc(100% - 220px) !important;
+  height: calc(100%) !important;
   position: relative;
 }
 
@@ -1497,11 +1502,78 @@ html .content {
 }
 
 .name h5 span.pointselo {
-  color: rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.5);
   display: block;
   margin: 5px 0 0 0;
   font-size: 12px;
   text-transform: lowercase;
+}
+
+.page .name h5 {
+  text-align: center;
+}
+.page .name h5 span.ico {
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  position: relative;
+  top: -2px;
+}
+
+.infoelomondial .card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+}
+.infoelomondial .card-body h2 {
+  margin: 0 5px 0 10px;
+}
+@media (max-width: 768px) {
+  .infoelomondial .card-body {
+    flex-direction: column;
+  }
+}
+
+.page-template-elo-mondial .list-classement {
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.page-template-elo-mondial .list-classement .contender-item {
+  flex: 1 0 8%;
+  padding: 0 10px;
+}
+.page-template-elo-mondial .list-classement .contender-item.contender-item-n1 {
+  flex: 1 0 20%;
+}
+.page-template-elo-mondial .list-classement .contender-item.contender-item-n2 {
+  flex: 1 0 15%;
+}
+.page-template-elo-mondial .list-classement .contender-item.contender-item-n3 {
+  flex: 1 0 10%;
+}
+@media (max-width: 768px) {
+  .page-template-elo-mondial .list-classement .contender-item {
+    flex: 1 0 30%;
+    padding: 0 10px;
+  }
+  .page-template-elo-mondial .list-classement .contender-item.contender-item-n1 {
+    flex: 1 0 100%;
+  }
+  .page-template-elo-mondial .list-classement .contender-item.contender-item-n2 {
+    flex: 1 0 55%;
+  }
+  .page-template-elo-mondial .list-classement .contender-item.contender-item-n3 {
+    flex: 1 0 45%;
+  }
+}
+
+.break {
+  flex-basis: 100%;
+  height: 0;
 }
 
 .cover-profil {
@@ -2178,10 +2250,6 @@ textarea {
   margin-bottom: 0;
 }
 
-.participation-content-sponso {
-  background: linear-gradient(180deg, #230b36 12.44%, #0c0a27 100%);
-  border-radius: 10.7037px;
-}
 .participation-content-sponso h1 {
   font-family: "Lato";
   font-weight: 900;
@@ -2203,6 +2271,17 @@ textarea {
 .participation-content-sponso a {
   text-decoration: none;
 }
+.participation-content-sponso .info-win {
+  -moz-text-align-last: left;
+       text-align-last: left;
+  font-size: 18px;
+  line-height: 24px;
+  margin: 10px 0 15px;
+}
+.participation-content-sponso .info-win strong {
+  font-weight: normal;
+  color: #f4167f;
+}
 .participation-content-sponso .info-share2 {
   font-family: "Roboto";
   font-size: 14px;
@@ -2211,36 +2290,6 @@ textarea {
 }
 .participation-content-sponso .buttons-share-top a:first-child {
   margin-right: 10px;
-}
-@media (min-width: 767px) and (max-width: 1383px) {
-  .participation-content-sponso .buttons-share-top {
-    flex-direction: column;
-  }
-  .participation-content-sponso .buttons-share-top a:first-child {
-    margin-bottom: 10px;
-    margin-right: 0px;
-  }
-}
-@media (max-width: 433px) {
-  .participation-content-sponso .buttons-share-top {
-    flex-direction: column;
-  }
-  .participation-content-sponso .buttons-share-top a:first-child {
-    margin-bottom: 10px;
-    margin-right: 0px;
-  }
-}
-@media (min-width: 767px) and (max-width: 1036px) {
-  .participation-content-sponso .info-concours {
-    margin-bottom: 1.5rem;
-  }
-}
-@media (max-width: 767px) {
-  .participation-content-sponso .info-concours {
-    margin-bottom: 1.5rem;
-    text-align: center;
-    padding: 0px 20px;
-  }
 }
 
 .badge-light-rose {
@@ -2255,6 +2304,106 @@ textarea {
   z-index: 3;
 }
 
+.title-win {
+  width: 100%;
+}
+
+#form-coupon {
+  display: flex;
+  max-width: 100%;
+}
+#form-coupon input[type=email] {
+  background: transparent;
+  border: 2px solid #7367f0;
+  padding: 10px;
+  color: #fff;
+  height: 50px;
+  width: 480px;
+  max-width: 80%;
+  border-radius: 5px 0 0 5px !important;
+}
+#form-coupon #btn-coupon {
+  max-width: 20%;
+  height: 50px;
+  background: #7367f0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 0px 5px 5px 0 !important;
+}
+
+.single-classement .logo-vkrz-sponso {
+  width: 100%;
+}
+.single-classement .content-wrapper {
+  margin-bottom: 200px;
+}
+.single-classement .content.app-content {
+  padding: calc(2rem + 3.45rem + 1.3rem) 2rem 10px;
+  min-height: 100vh;
+}
+.single-classement .bravo {
+  background: rgba(255, 255, 255, 0.2);
+  width: 100%;
+  padding: 20px 20px 10px 20px;
+  border: 5px solid rgba(97, 84, 167, 0.1);
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .participation-content-sponso h1 {
+    font-size: 22px;
+    line-height: 28px;
+  }
+
+  .reseaux-sponso {
+    flex-direction: column;
+  }
+
+  .logo-vkrz-sponso {
+    width: 100%;
+  }
+
+  .social-media-sponso {
+    width: 100%;
+  }
+
+  .share-top-sponsor {
+    align-items: center !important;
+  }
+
+  html .content.app-content .card-developer-meetup .card-title {
+    font-size: 17px;
+    line-height: 20px;
+    color: #68441e;
+  }
+
+  .infos-card-t {
+    margin: 10px 0;
+  }
+
+  #form-coupon {
+    flex-direction: column;
+    width: 100%;
+  }
+  #form-coupon input[type=email] {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 10px !important;
+  }
+  #form-coupon #btn-coupon {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 10px !important;
+  }
+
+  .please-rejoin {
+    padding: 20px 0 10px;
+  }
+
+  .single-classement .content-wrapper {
+    margin-bottom: 20px;
+  }
+}
 @font-face {
   font-family: "Themysion Regular";
   font-style: normal;
@@ -2888,6 +3037,7 @@ textarea {
 @media (max-width: 768px) {
   .single-tournoi .content-intro {
     margin: 20px 0;
+    padding: 0;
   }
   .single-tournoi .tournoi-content .contenders-containers .versus {
     margin: 15px auto;
@@ -3146,7 +3296,7 @@ textarea {
   }
 
   .intro-mobile h4 {
-    font-size: 20px;
+    font-size: 18px;
     color: #f4167f;
   }
 

@@ -97,9 +97,6 @@
 }
 
 .participation-content-sponso {
-    background: linear-gradient(180deg, #230b36 12.44%, #0c0a27 100%);
-    border-radius: 10.7037px;
-
     h1 {
         font-family: "Lato";
         font-weight: 900;
@@ -126,6 +123,18 @@
         text-decoration: none;
     }
 
+    .info-win {
+        text-align-last: left;
+        font-size: 18px;
+        line-height: 24px;
+        margin: 10px 0 15px;
+
+        strong {
+            font-weight: normal;
+            color: $rose;
+        }
+    }
+
     .info-share2 {
         font-family: "Roboto";
         font-size: 14px;
@@ -136,42 +145,6 @@
     .buttons-share-top {
         a:first-child {
             margin-right: 10px;
-        }
-    }
-
-    @media (min-width: 767px) and (max-width: 1383px) {
-        .buttons-share-top {
-            flex-direction: column;
-
-            a:first-child {
-                margin-bottom: 10px;
-                margin-right: 0px;
-            }
-        }
-    }
-
-    @media (max-width: 433px) {
-        .buttons-share-top {
-            flex-direction: column;
-
-            a:first-child {
-                margin-bottom: 10px;
-                margin-right: 0px;
-            }
-        }
-    }
-
-    @media (min-width: 767px) and (max-width: 1036px) {
-        .info-concours {
-            margin-bottom: 1.5rem;
-        }
-    }
-
-    @media (max-width: 767px) {
-        .info-concours {
-            margin-bottom: 1.5rem;
-            text-align: center;
-            padding: 0px 20px;
         }
     }
 }
@@ -186,4 +159,118 @@
     left: 5px;
     top: 5px;
     z-index: 3;
+}
+
+.title-win {
+    width: 100%;
+}
+
+#form-coupon {
+    display: flex;
+    max-width: 100%;
+
+    input[type="email"] {
+        background: transparent;
+        border: 2px solid #7367f0;
+        padding: 10px;
+        color: #fff;
+        height: 50px;
+        width: 480px;
+        max-width: 80%;
+        border-radius: 5px 0 0 5px !important;
+    }
+
+    #btn-coupon {
+        max-width: 20%;
+        height: 50px;
+        background: #7367f0;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        border-radius: 0px 5px 5px 0 !important;
+    }
+}
+
+.single-classement {
+    .logo-vkrz-sponso {
+        width: 100%;
+    }
+
+    .content-wrapper {
+        margin-bottom: 200px;
+    }
+
+    .content.app-content {
+        padding: calc(2rem + 3.45rem + 1.3rem) 2rem 10px;
+        min-height: 100vh;
+    }
+
+    .bravo {
+        background: rgba(255, 255, 255, 0.2);
+        width: 100%;
+        padding: 20px 20px 10px 20px;
+        border: 5px solid $c4;
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .participation-content-sponso h1 {
+        font-size: 22px;
+        line-height: 28px;
+    }
+
+    .reseaux-sponso {
+        flex-direction: column;
+    }
+
+    .logo-vkrz-sponso {
+        width: 100%;
+    }
+
+    .social-media-sponso {
+        width: 100%;
+    }
+
+    .share-top-sponsor {
+        align-items: center !important;
+    }
+
+    html .content.app-content .card-developer-meetup .card-title {
+        font-size: 17px;
+        line-height: 20px;
+        color: #68441e;
+    }
+
+    .infos-card-t {
+        margin: 10px 0;
+    }
+
+    #form-coupon {
+        flex-direction: column;
+        width: 100%;
+
+        input[type="email"] {
+            width: 100%;
+            max-width: 100%;
+            border-radius: 10px !important;
+        }
+
+        #btn-coupon {
+            width: 100%;
+            max-width: 100%;
+            border-radius: 10px !important;
+        }
+    }
+
+    .please-rejoin {
+        padding: 20px 0 10px;
+    }
+
+    .single-classement {
+        .content-wrapper {
+            margin-bottom: 20px;
+        }
+    }
+
 }
