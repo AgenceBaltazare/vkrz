@@ -573,7 +573,7 @@ html .content {
 }
 
 .main-menu .main-menu-content {
-  height: calc(100%) !important;
+  height: calc(100% - 220px) !important;
   position: relative;
 }
 
