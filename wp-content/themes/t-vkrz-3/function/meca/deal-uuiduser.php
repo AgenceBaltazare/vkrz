@@ -5,28 +5,20 @@ function deal_uuiduser(){
 
         global $user_id;
 
-        $uuiuser        = get_field('uuiduser_user', 'user_'.$user_id);
+        $uuiuser = get_field('uuiduser_user', 'user_'.$user_id);
 
-        if(isset($uuiuser) && $uuiuser != ""){
-
+        if (isset($uuiuser) && !empty($uuiuser)) {
             $result = $uuiuser;
-
-        }
-        else{
-
-            if(isset($_COOKIE["vainkeurz_user_id"]) && $_COOKIE["vainkeurz_user_id"] != ""){
+        } else {
+            if (isset($_COOKIE["vainkeurz_user_id"]) && $_COOKIE["vainkeurz_user_id"] != "") {
                 $result = $_COOKIE["vainkeurz_user_id"];
-            }
-            else{
+            } else {
                 $result = uniqidReal();
             }
 
             update_field('uuiduser_user', $result, 'user_' . $user_id);
-
         }
-
-    }
-    else{
+    } else {
 
         if(isset($_COOKIE["vainkeurz_user_id"]) && $_COOKIE["vainkeurz_user_id"] != ""){
             $result = $_COOKIE["vainkeurz_user_id"];
@@ -37,8 +29,9 @@ function deal_uuiduser(){
 
     }
 
-    setcookie("vainkeurz_user_id", $result, time()+31556926, "/");
+    if (!isset($_COOKIE['vainkeurz_user_id']) || empty($_COOKIE["vainkeurz_user_id"])) {
+        setcookie("vainkeurz_user_id", $result, time()+31556926, "/");
+    }
 
     return $result;
-
 }
