@@ -74,6 +74,13 @@ function begin_t($id_top, $uuiduser, $typetop){
     update_field('timeline_5', 0, $id_ranking);
     update_field('utm_campaign_r', $utm, $id_ranking);
 
+    if (is_user_logged_in()) {
+        global $user_id;
+        if ($user_id && !get_field('uuiduser_user', 'user_'.$user_id) && $uuiduser) {
+            update_field('uuiduser_user', $uuiduser, 'user_' . $user_id);
+        }
+    }
+
     return $id_ranking;
 
 }
