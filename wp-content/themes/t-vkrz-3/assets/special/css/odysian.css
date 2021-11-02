@@ -45,6 +45,10 @@ html .tournament-heading:after {
   border-top: 2px solid #77efe6;
 }
 
+html .choosecta .laucher_t:active {
+  font-size: 8px;
+}
+
 html .content.app-content {
   font-family: 'Zen Antique Soft', serif;
 }
@@ -67,6 +71,12 @@ html .content.app-content .share-text {
 
 html .content.app-content .t-rose {
   color: #105079 !important;
+  font-weight: bold;
+}
+
+html .content.app-content .c-jaune {
+  color: #FCE894;
+  text-shadow: 0 0 2px #000;
 }
 
 html .content.app-content .content-overlay {
@@ -78,7 +88,7 @@ html .content.app-content .content-overlay {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #744516;
+  background-color: #4527A0;
   z-index: 0;
 }
 
@@ -105,12 +115,59 @@ html .content.app-content .card-developer-meetup .rules-content .title-win {
   padding: 20px;
 }
 
+html .content.app-content .card-developer-meetup .rules-content .title-win h4 {
+  text-shadow: 0 0 2px #FCE894, 0 0 3px #000;
+  letter-spacing: -1px;
+}
+
 html .content.app-content .card-developer-meetup .rules-content .text-rules {
-  padding: 20px;
+  padding: 0px 15px;
+}
+
+html .content.app-content .card-developer-meetup .rules-content .text-rules img {
+  width: 100%;
+  height: auto;
+  border: 2px solid #000;
+  margin-bottom: 10px;
 }
 
 html .content.app-content .card-developer-meetup .rules-content .text-rules strong {
   color: #105079;
+}
+
+html .content.app-content .card-developer-meetup .rules-content .text-rules strong a {
+  color: #105079 !important;
+  border-bottom: 2px solid;
+}
+
+html .content.app-content .card-developer-meetup .share-content-sponso {
+  padding: 15px 20px 3px 20px !important;
+}
+
+html .content.app-content .card-developer-meetup .share-content-sponso .reseaux-sponso {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+html .content.app-content .card-developer-meetup .share-content-sponso .reseaux-sponso .logo-vkrz-sponso {
+  width: 100% !important;
+}
+
+html .content.app-content .card-developer-meetup .share-content-sponso .reseaux-sponso .social-media-sponso {
+  width: 100% !important;
+}
+
+html .content.app-content .card-developer-meetup .share-content-sponso .reseaux-sponso .social-media-sponso .buttons-social-media {
+  -webkit-box-orient: horizontal !important;
+  -webkit-box-direction: normal !important;
+      -ms-flex-direction: row !important;
+          flex-direction: row !important;
+}
+
+html .content.app-content .card-developer-meetup .share-content-sponso .reseaux-sponso .social-media-sponso .buttons-social-media a:last-child {
+  margin-bottom: 10px;
 }
 
 html .content.app-content .card-developer-meetup .btn-primary {
@@ -204,14 +261,46 @@ html .name h5 span {
   color: #77efe6;
 }
 
+.participation-content-sponso .info-win strong a {
+  color: #77efe6 !important;
+  border-bottom: 2px solid;
+}
+
 .stats-mondiales {
   color: #68441e !important;
+}
+
+.share-content-sponso {
+  padding: 15px 20px 3px 20px !important;
+}
+
+.share-content-sponso .text-left img {
+  border: 2px solid #000;
+}
+
+.share-content-sponso .logo-vkrz-sponso {
+  width: 100% !important;
+}
+
+.share-content-sponso .social-media-sponso {
+  width: 100% !important;
+}
+
+.share-content-sponso .social-media-sponso .buttons-social-media {
+  -webkit-box-orient: horizontal !important;
+  -webkit-box-direction: normal !important;
+      -ms-flex-direction: row !important;
+          flex-direction: row !important;
+}
+
+.share-content-sponso .social-media-sponso .buttons-social-media a:last-child {
+  margin-bottom: 10px;
 }
 
 .single-classement .content.app-content .content-overlay,
 .page-template-elo-mondial .content.app-content .content-overlay {
   opacity: 0.85 !important;
-  background-color: #744516;
+  background-color: #4527A0;
 }
 
 .single-classement .card,
@@ -226,9 +315,40 @@ html .name h5 span {
   color: #68441e;
 }
 
-.single-classement .social-media-sponso,
-.page-template-elo-mondial .social-media-sponso {
-  width: 100%;
+.single-classement .share-content-sponso,
+.page-template-elo-mondial .share-content-sponso {
+  padding: 15px 20px 3px 20px !important;
+}
+
+.single-classement .share-content-sponso .reseaux-sponso,
+.page-template-elo-mondial .share-content-sponso .reseaux-sponso {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.single-classement .share-content-sponso .reseaux-sponso .logo-vkrz-sponso,
+.page-template-elo-mondial .share-content-sponso .reseaux-sponso .logo-vkrz-sponso {
+  width: 100% !important;
+}
+
+.single-classement .share-content-sponso .reseaux-sponso .social-media-sponso,
+.page-template-elo-mondial .share-content-sponso .reseaux-sponso .social-media-sponso {
+  width: 100% !important;
+}
+
+.single-classement .share-content-sponso .reseaux-sponso .social-media-sponso .buttons-social-media,
+.page-template-elo-mondial .share-content-sponso .reseaux-sponso .social-media-sponso .buttons-social-media {
+  -webkit-box-orient: horizontal !important;
+  -webkit-box-direction: normal !important;
+      -ms-flex-direction: row !important;
+          flex-direction: row !important;
+}
+
+.single-classement .share-content-sponso .reseaux-sponso .social-media-sponso .buttons-social-media a:last-child,
+.page-template-elo-mondial .share-content-sponso .reseaux-sponso .social-media-sponso .buttons-social-media a:last-child {
+  margin-bottom: 10px;
 }
 
 .single-classement .bravo,
@@ -284,7 +404,7 @@ html .name h5 span {
 .page-template-elo-mondial .participation-content-sponso h1 {
   font-family: 'Zen Antique Soft', serif;
   font-weight: 900;
-  font-style: italic;
+  font-style: normal !important;
   font-size: 38.89px;
   line-height: 44.39px;
   text-transform: uppercase;
