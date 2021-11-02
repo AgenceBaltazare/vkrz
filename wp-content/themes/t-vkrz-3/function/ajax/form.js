@@ -5,7 +5,6 @@ $(document).ready(function ($) {
     form.submit(function (e) {
 
         form.find('#btn-coupon').html('Go')
-
         e.preventDefault();
 
         $.ajax({
