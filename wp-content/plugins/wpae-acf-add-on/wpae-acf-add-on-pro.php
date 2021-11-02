@@ -3,7 +3,7 @@
 Plugin Name: WP All Export - ACF Export Add-On Pro
 Plugin URI: http://www.wpallimport.com/
 Description: Export ACF data from WordPress. Requires WP All Export Pro.
-Version: 1.0.2
+Version: 1.0.3
 Author: Soflyy
 */
 
@@ -25,7 +25,7 @@ define('PMAE_ROOT_URL', rtrim(plugin_dir_url(__FILE__), '/'));
  */
 define('PMAE_PREFIX', 'pmae_');
 
-define('PMAE_VERSION', '1.0.2');
+define('PMAE_VERSION', '1.0.3');
 
 if ( class_exists('PMAE_Plugin') and PMAE_EDITION == "free"){
 

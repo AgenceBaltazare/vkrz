@@ -1,1 +1,9 @@
-{"version":3,"sources":["svgs-admin-edit-post.scss"],"names":[],"mappings":"AAAA;;;;;EAAA;AAMA;;EAEC,WAAA;AACD","file":"svgs-admin-edit-post.css"}
+{
+    "version": 3,
+    "mappings": "AAAA;;;;;GAKG;AACH,AAAA,IAAI,CAAC,mBAAmB;AACxB,IAAI,CAAC,aAAa,CAAC,OAAO,CAAC,GAAG,CAAA,AAAA,GAAC,EAAK,MAAM,AAAX,EAAa;EAC3C,KAAK,EAAE,IAAI;CACX",
+    "sources": [
+        "svgs-admin-edit-post.scss"
+    ],
+    "names": [],
+    "file": "svgs-admin-edit-post.css"
+}

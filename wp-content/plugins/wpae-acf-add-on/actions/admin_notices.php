@@ -6,7 +6,7 @@ function pmae_admin_notices() {
 		?>
 		<div class="error"><p>
 			<?php printf(
-					__('<b>%s Plugin</b>: WP All Export Pro must be installed and activated. You can download it here <a href="http://www.wpallimport.com/portal" target="_blank">http://www.wpallimport.com/portal/</a>', 'PMAE_Plugin'),
+					__('<b>%s Plugin</b>: WP All Export Pro must be installed and activated. You can download it here <a href="https://www.wpallimport.com/portal" target="_blank">https://www.wpallimport.com/portal/</a>', 'PMAE_Plugin'),
 					PMAE_Plugin::getInstance()->getName()
 			) ?>
 		</p></div>

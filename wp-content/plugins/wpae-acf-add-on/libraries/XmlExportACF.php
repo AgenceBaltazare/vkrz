@@ -210,7 +210,7 @@ if ( ! class_exists('XmlExportACF') )
 
 		private static $fc_sub_field_names = array();
 
-		public static function export_acf_field($field_value  = '', $exportOptions, $ID, $pid, &$article, $xmlWriter = false, &$acfs, $element_name = '', $element_name_ns = '', $fieldSnipped = '', $group_id = '', $preview = false, $return_value = false, $is_sub_field = false, $implode_delimiter = '' )
+		public static function export_acf_field($field_value, $exportOptions, $ID, $pid, &$article, $xmlWriter, &$acfs, $element_name = '', $element_name_ns = '', $fieldSnipped = '', $group_id = '', $preview = false, $return_value = false, $is_sub_field = false, $implode_delimiter = '' )
 		{
             global $acf;
 
