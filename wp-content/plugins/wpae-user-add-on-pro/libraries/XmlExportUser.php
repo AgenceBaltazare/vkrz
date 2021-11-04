@@ -408,7 +408,7 @@ if (!class_exists('XmlExportUser')) {
             return stripos($uc_title, "width") === false ? str_ireplace(array('id', 'url', 'sku', 'wp', 'ssl'), array('ID', 'URL', 'SKU', 'WP', 'SSL'), $uc_title) : $uc_title;
         }
 
-        public static function prepare_data($user, $exportOptions, $xmlWriter = false, &$acfs, $implode_delimiter, $preview)
+        public static function prepare_data($user, $exportOptions, $xmlWriter, &$acfs, $implode_delimiter, $preview)
         {
             $combineMultipleFieldsFactory = new \Pmue\Common\CombineFields\CombineFieldsFactory();
             $combineMultipleFields = $combineMultipleFieldsFactory->create();
