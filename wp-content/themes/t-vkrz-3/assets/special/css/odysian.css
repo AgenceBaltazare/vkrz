@@ -75,7 +75,7 @@ html .content.app-content .content-overlay {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #4527A0;
+  background-color: #6e6361;
   z-index: 0;
 }
 html .content.app-content .card-developer-meetup {
@@ -95,11 +95,12 @@ html .content.app-content .card-developer-meetup .rules-content .title-win {
   background: url(../img/bleu.png) center top !important;
   background-size: cover !important;
   border-radius: 0;
-  padding: 20px;
+  padding: 20px 10px;
 }
 html .content.app-content .card-developer-meetup .rules-content .title-win h4 {
   text-shadow: 0 0 2px #FCE894, 0 0 3px #000;
   letter-spacing: -1px;
+  font-size: 18px;
 }
 html .content.app-content .card-developer-meetup .rules-content .text-rules {
   padding: 0px 15px;

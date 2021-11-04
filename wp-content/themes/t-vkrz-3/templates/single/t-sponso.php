@@ -71,7 +71,9 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                         <div class="logo-vkrz-sponso">
                                             <?php
                                             if (get_field('logo_de_la_sponso_t_sponso', $id_top)) : ?>
-                                                <?php echo wp_get_attachment_image(get_field('logo_de_la_sponso_t_sponso', $id_top), 'large', '', array('class' => 'img-fluid')); ?>
+                                                <a href="<?php the_field('lien_de_la_sponso_t_sponso', $id_top); ?>" target="_blank">
+                                                    <?php echo wp_get_attachment_image(get_field('logo_de_la_sponso_t_sponso', $id_top), 'large', '', array('class' => 'img-fluid')); ?>
+                                                </a>
                                             <?php endif; ?>
                                         </div>
                                         <div class="mt-2 social-media-sponso">

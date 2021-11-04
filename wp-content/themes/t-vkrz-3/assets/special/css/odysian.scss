@@ -99,7 +99,7 @@ html {
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: #4527A0;
+            background-color: #6e6361;
             z-index: 0;
         }
 
@@ -121,23 +121,28 @@ html {
                     background: url(../img/bleu.png) center top !important;
                     background-size: cover !important;
                     border-radius: 0;
-                    padding: 20px;
+                    padding: 20px 10px;
+
                     h4 {
                         text-shadow: 0 0 2px $jaune, 0 0 3px #000;
                         letter-spacing: -1px;
+                        font-size: 18px;
                     }
                 }
 
                 .text-rules {
                     padding: 0px 15px;
+
                     img {
-                        width:100%;
-                        height:auto;
+                        width: 100%;
+                        height: auto;
                         border: 2px solid #000;
                         margin-bottom: 10px;
                     }
+
                     strong {
                         color: $bleu;
+
                         a {
                             color: $bleu !important;
                             border-bottom: 2px solid;
@@ -148,15 +153,20 @@ html {
 
             .share-content-sponso {
                 padding: 15px 20px 3px 20px !important;
+
                 .reseaux-sponso {
                     flex-direction: column;
+
                     .logo-vkrz-sponso {
-                        width:100% !important;
+                        width: 100% !important;
                     }
+
                     .social-media-sponso {
-                        width:100% !important;
+                        width: 100% !important;
+
                         .buttons-social-media {
                             flex-direction: row !important;
+
                             a:last-child {
                                 margin-bottom: 10px;
                             }
@@ -253,6 +263,7 @@ html {
     .info-win {
         strong {
             color: $cyan;
+
             a {
                 color: $cyan !important;
                 border-bottom: 2px solid;
@@ -267,23 +278,28 @@ html {
 
 .share-content-sponso {
     padding: 15px 20px 3px 20px !important;
+
     .text-left {
         img {
             border: 2px solid #000;
         }
     }
-        .logo-vkrz-sponso {
-            width:100% !important;
-        }
-        .social-media-sponso {
-            width:100% !important;
-            .buttons-social-media {
-                flex-direction: row !important;
-                a:last-child {
-                    margin-bottom: 10px;
-                }
+
+    .logo-vkrz-sponso {
+        width: 100% !important;
+    }
+
+    .social-media-sponso {
+        width: 100% !important;
+
+        .buttons-social-media {
+            flex-direction: row !important;
+
+            a:last-child {
+                margin-bottom: 10px;
             }
         }
+    }
 }
 
 .single-classement,
@@ -305,15 +321,20 @@ html {
 
     .share-content-sponso {
         padding: 15px 20px 3px 20px !important;
+
         .reseaux-sponso {
             flex-direction: column;
+
             .logo-vkrz-sponso {
-                width:100% !important;
+                width: 100% !important;
             }
+
             .social-media-sponso {
-                width:100% !important;
+                width: 100% !important;
+
                 .buttons-social-media {
                     flex-direction: row !important;
+
                     a:last-child {
                         margin-bottom: 10px;
                     }
@@ -357,7 +378,7 @@ html {
     .participation-content-sponso h1 {
         font-family: 'Zen Antique Soft', serif;
         font-weight: 900;
-        font-style: normal !important; 
+        font-style: normal !important;
         font-size: 38.89px;
         line-height: 44.39px;
         text-transform: uppercase;
