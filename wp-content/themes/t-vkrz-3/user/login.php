@@ -36,7 +36,6 @@ if (is_user_logged_in()) {
                                 <div class="separateur separateur-1 mt-0"></div>
                                 -->
                                 <div class="classic-form">
-                                    <h3>ou en mode classik</h3>
                                     <?php echo do_shortcode('[wppb-login form_name="log-in"]'); ?>
                                 </div>
                             </div>

@@ -30,7 +30,6 @@ if (is_user_logged_in()) {
 
                             <div class="auth-register-form mt-2">
                                 <div class="classic-form">
-                                    <h3>ou en mode classik</h3>
                                     <?php echo do_shortcode('[wppb-register form_name="sign-on"]'); ?>
                                 </div>
                             </div>
