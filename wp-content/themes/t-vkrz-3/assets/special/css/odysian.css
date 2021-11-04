@@ -337,7 +337,7 @@ html .name h5 span {
   font-family: "Zen Antique Soft", serif;
 }
 
-html .content.app-content .logo-vkrz-sponso .btn-outline-primary {
+.logo-vkrz-sponso .btn-outline-primary {
   padding: 0;
   display: inline-block;
   width: 50px !important;
