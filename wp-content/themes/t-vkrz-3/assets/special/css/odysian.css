@@ -335,4 +335,14 @@ html .name h5 span {
 .tournament-heading h3,
 .tournament-heading h4 {
   font-family: "Zen Antique Soft", serif;
+}
+
+html .content.app-content .logo-vkrz-sponso .btn-outline-primary {
+  padding: 0;
+  display: inline-block;
+  width: 50px !important;
+  height: 50px;
+  line-height: 50px;
+  margin: 0 0 0 5px;
+  font-size: 11px;
 }/*# sourceMappingURL=odysian.css.map */
