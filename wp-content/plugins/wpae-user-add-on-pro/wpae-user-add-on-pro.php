@@ -3,7 +3,7 @@
 Plugin Name: WP All Export - User Export Add-On Pro
 Plugin URI: http://www.wpallimport.com/
 Description: Export Users and User meta from WordPress. Requires WP All Export Pro.
-Version: 1.0.6
+Version: 1.0.7
 Author: Soflyy
 */
 /**
@@ -24,7 +24,7 @@ define('PMUE_ROOT_URL', rtrim(plugin_dir_url(__FILE__), '/'));
  */
 define('PMUE_PREFIX', 'pmue_');
 
-define('PMUE_VERSION', '1.0.6');
+define('PMUE_VERSION', '1.0.7');
 
 if ( class_exists('PMUE_Plugin') and PMUE_EDITION == "free"){
 

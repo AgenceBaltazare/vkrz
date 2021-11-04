@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WordPress - 5.8.x - Development package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-09-16 12:33:36+0000\n"
+"PO-Revision-Date: 2021-10-20 20:32:54+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -5817,7 +5817,7 @@ msgstr "Annuler les modifications"
 
 #: wp-includes/script-loader.php:1158
 msgid "Please save your changes in order to share the preview."
-msgstr "Veuillez enregistrer vos modifications pour pouvoir partager la prévisualisation."
+msgstr "Veuillez enregistrer vos modifications afin de pouvoir partager la prévisualisation."
 
 #: wp-includes/script-loader.php:1154
 msgid "Updating"
@@ -6428,7 +6428,7 @@ msgstr "Thèmes installés"
 #: wp-includes/script-loader.php:1208 wp-admin/customize.php:204
 #: wp-admin/customize.php:209 wp-admin/edit-form-advanced.php:396
 msgid "Publish Settings"
-msgstr "Publier les réglages"
+msgstr "Réglages de publication"
 
 #: wp-includes/class-wp-customize-manager.php:4347
 msgid "Copied"
@@ -14150,7 +14150,7 @@ msgstr "Thème sans %s"
 #: wp-includes/class-wp-xmlrpc-server.php:6315
 #: wp-includes/class-wp-xmlrpc-server.php:6557
 msgid "Sorry, you must be able to edit posts on this site in order to view categories."
-msgstr "Désolé, vous devez avoir le droit d’écrire des articles sur ce site si vous vous visualisez les catégories."
+msgstr "Désolé, vous devez avoir le droit de modifier des articles sur ce site afin de pouvoir visualiser les catégories."
 
 #: wp-includes/class-wp-xmlrpc-server.php:5352
 msgid "Sorry, you are not allowed to publish pages on this site."
@@ -14177,7 +14177,7 @@ msgstr "Désolé, vous n’avez pas l’autorisation d’accéder aux détails d
 
 #: wp-includes/class-wp-xmlrpc-server.php:3342
 msgid "Sorry, you must be able to edit posts on this site in order to view tags."
-msgstr "Désolé, vous devez avoir le droit de modifier des articles sur ce site si vous voulez visualiser les étiquettes."
+msgstr "Désolé, vous devez avoir le droit de modifier des articles sur ce site afin de pouvoir visualiser les étiquettes."
 
 #: wp-includes/class-wp-xmlrpc-server.php:593
 msgid "Site Tagline"

@@ -1443,12 +1443,31 @@ html .content {
   font-size: 20px;
 }
 
+.name {
+  text-align: center;
+}
 .name h5 {
   text-transform: uppercase;
-  text-align: center;
+  color: #fff;
+  margin-bottom: 5px;
 }
 .name h5 span {
   color: #f4167f;
+}
+.name h5 .ranking-title {
+  color: #fff;
+}
+.name .pointselo {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 12px;
+}
+.name .pointselo .fa-angle-double-up,
+.name .pointselo .fa-caret-up {
+  color: greenyellow;
+}
+.name .pointselo .fa-angle-double-down,
+.name .pointselo .fa-caret-down {
+  color: red;
 }
 
 .illu {

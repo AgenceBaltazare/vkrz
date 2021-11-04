@@ -1,6 +1,7 @@
 $marron : #68441e;
 $bleu: #105079;
 $cyan: #77efe6;
+$jaune: #FCE894;
 
 @import url('https://fonts.googleapis.com/css2?family=Zen+Antique+Soft&display=swap');
 
@@ -52,6 +53,14 @@ html {
         border-top: 2px solid $cyan;
     }
 
+    .choosecta {
+        .laucher_t {
+            &:active {
+                font-size: 8px;
+            }
+        }
+    }
+
     .content.app-content {
         font-family: 'Zen Antique Soft', serif;
 
@@ -73,6 +82,12 @@ html {
 
         .t-rose {
             color: $bleu !important;
+            font-weight: bold;
+        }
+
+        .c-jaune {
+            color: $jaune;
+            text-shadow: 0 0 2px #000;
         }
 
         .content-overlay {
@@ -84,7 +99,7 @@ html {
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: #744516;
+            background-color: #4527A0;
             z-index: 0;
         }
 
@@ -107,13 +122,45 @@ html {
                     background-size: cover !important;
                     border-radius: 0;
                     padding: 20px;
+                    h4 {
+                        text-shadow: 0 0 2px $jaune, 0 0 3px #000;
+                        letter-spacing: -1px;
+                    }
                 }
 
                 .text-rules {
-                    padding: 20px;
-
+                    padding: 0px 15px;
+                    img {
+                        width:100%;
+                        height:auto;
+                        border: 2px solid #000;
+                        margin-bottom: 10px;
+                    }
                     strong {
                         color: $bleu;
+                        a {
+                            color: $bleu !important;
+                            border-bottom: 2px solid;
+                        }
+                    }
+                }
+            }
+
+            .share-content-sponso {
+                padding: 15px 20px 3px 20px !important;
+                .reseaux-sponso {
+                    flex-direction: column;
+                    .logo-vkrz-sponso {
+                        width:100% !important;
+                    }
+                    .social-media-sponso {
+                        width:100% !important;
+                        .buttons-social-media {
+                            flex-direction: row !important;
+                            a:last-child {
+                                margin-bottom: 10px;
+                            }
+                        }
                     }
                 }
             }
@@ -206,6 +253,10 @@ html {
     .info-win {
         strong {
             color: $cyan;
+            a {
+                color: $cyan !important;
+                border-bottom: 2px solid;
+            }
         }
     }
 }
@@ -214,11 +265,32 @@ html {
     color: $marron !important;
 }
 
+.share-content-sponso {
+    padding: 15px 20px 3px 20px !important;
+    .text-left {
+        img {
+            border: 2px solid #000;
+        }
+    }
+        .logo-vkrz-sponso {
+            width:100% !important;
+        }
+        .social-media-sponso {
+            width:100% !important;
+            .buttons-social-media {
+                flex-direction: row !important;
+                a:last-child {
+                    margin-bottom: 10px;
+                }
+            }
+        }
+}
+
 .single-classement,
 .page-template-elo-mondial {
     .content.app-content .content-overlay {
         opacity: 0.85 !important;
-        background-color: #744516;
+        background-color: #4527A0;
     }
 
     .card {
@@ -231,8 +303,23 @@ html {
         }
     }
 
-    .social-media-sponso {
-        width: 100%;
+    .share-content-sponso {
+        padding: 15px 20px 3px 20px !important;
+        .reseaux-sponso {
+            flex-direction: column;
+            .logo-vkrz-sponso {
+                width:100% !important;
+            }
+            .social-media-sponso {
+                width:100% !important;
+                .buttons-social-media {
+                    flex-direction: row !important;
+                    a:last-child {
+                        margin-bottom: 10px;
+                    }
+                }
+            }
+        }
     }
 
     .bravo {
@@ -270,7 +357,7 @@ html {
     .participation-content-sponso h1 {
         font-family: 'Zen Antique Soft', serif;
         font-weight: 900;
-        font-style: italic;
+        font-style: normal !important; 
         font-size: 38.89px;
         line-height: 44.39px;
         text-transform: uppercase;

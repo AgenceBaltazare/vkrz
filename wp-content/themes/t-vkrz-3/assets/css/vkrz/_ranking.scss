@@ -16,12 +16,34 @@
 }
 
 .name {
+  text-align: center;
+
   h5 {
     text-transform: uppercase;
-    text-align: center;
+    color: #fff;
+    margin-bottom: 5px;
 
     span {
       color: $rose;
+    }
+
+    .ranking-title {
+      color: #fff;
+    }
+  }
+
+  .pointselo {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 12px;
+
+    .fa-angle-double-up,
+    .fa-caret-up {
+      color: greenyellow;
+    }
+
+    .fa-angle-double-down,
+    .fa-caret-down {
+      color: red;
     }
   }
 }
