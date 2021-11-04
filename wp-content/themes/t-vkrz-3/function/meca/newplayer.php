@@ -11,10 +11,11 @@ function form_newplayer($emailplayer, $uuiduser, $ranking, $top){
     $args   = array(
         'body' => array(
             'email'             => $emailplayer,
-            'date'              => date('d/m/Y'),
-            'ranking'           => $ranking,
+            'sponsor'           => get_field('nom_de_la_sponso_t_sponso', $top),
+            'date'              => date('Y-m-d H:i:s'),
+            'id_ranking'        => $ranking,
             'uuiduser'          => $uuiduser,
-            'top'               => $top,
+            'id_top'            => $top,
         )
     );
     wp_remote_post($url, $args);

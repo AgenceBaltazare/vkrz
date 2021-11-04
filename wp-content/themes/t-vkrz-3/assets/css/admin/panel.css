@@ -25,7 +25,6 @@ h1, h2, h3, p, li, .form-table th, .form-wrap label {
   color: #fff;
   background: #312673;
   cursor: pointer;
-  -webkit-transition: all 0.2s ease-in;
   transition: all 0.2s ease-in;
 }
 
@@ -39,7 +38,6 @@ h1, h2, h3, p, li, .form-table th, .form-wrap label {
   color: #fff;
   background-color: transparent;
 }
-
 #adminmenu .wp-submenu a:focus:after, #adminmenu .wp-submenu a:hover:after, #adminmenu a:hover:after, #adminmenu li.menu-top > a:focus:after {
   display: none;
 }
@@ -64,8 +62,7 @@ h1, h2, h3, p, li, .form-table th, .form-wrap label {
 
 .wrap .page-title-action:focus {
   border-color: #f4167f;
-  -webkit-box-shadow: 0 0 0 1px #f4167f;
-          box-shadow: 0 0 0 1px #f4167f;
+  box-shadow: 0 0 0 1px #f4167f;
   outline: 2px solid transparent;
 }
 
@@ -75,5 +72,4 @@ body {
 
 .acf-field-611baa2616381, .acf-field-5eb85c9180d01, #column-view-selector, #footer-thankyou, #footer-upgrade, #wp-admin-bar-archive, #wp-admin-bar-edit-profile, #wp-admin-bar-user-info {
   display: none;
-}
-/*# sourceMappingURL=panel.css.map */
+}/*# sourceMappingURL=panel.css.map */

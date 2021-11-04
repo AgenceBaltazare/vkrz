@@ -52,9 +52,7 @@ $contenders_ranking = get_contenders_ranking($id_top);
                                     $d = $i - 1;
                                 }
                                 ?>
-                                <?php if ($i == 6) : ?>
-                                    <div class="break"></div>
-                                <?php endif; ?>
+                                
                                 <div class="contender-item contender-item-n<?php echo $i; ?>" id="ranking-<?php echo $i; ?>" data-id="<?php echo $contender["id"]; ?>">
                                     <?php
                                     if ($i >= 4) {

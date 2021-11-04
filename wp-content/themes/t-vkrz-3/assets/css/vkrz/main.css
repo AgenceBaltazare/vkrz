@@ -2423,6 +2423,11 @@ textarea {
     margin-bottom: 20px;
   }
 }
+.logo-vkrz-sponso img {
+  max-height: 150px;
+  width: auto;
+}
+
 @font-face {
   font-family: "Themysion Regular";
   font-style: normal;

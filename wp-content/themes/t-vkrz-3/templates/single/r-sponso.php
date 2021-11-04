@@ -223,13 +223,14 @@ $top_datas    = get_top_data($id_top);
                                                                 <span class="ico">🌎</span> Voir le Top mondial
                                                             </a>
                                                         </div>
-                                                        <h2 class="stats-mondiales mt-2 mb-0">
-                                                            <b>Ressemblance :</b>
-                                                            <?php
-                                                            $similar = get_user_percent(get_field('uuid_user_r', $id_ranking), $id_top);
-                                                            echo $similar['percent'] . "％";
-                                                            ?>
-                                                        </h2>
+                                                        <?php
+                                                        $similar = get_user_percent(get_field('uuid_user_r', $id_ranking), $id_top);
+                                                        if ($similar) : ?>
+                                                            <h2 class="stats-mondiales mt-2 mb-0">
+                                                                <b>Ressemblance :</b>
+                                                                <?php echo $similar['percent'] . "％"; ?>
+                                                            </h2>
+                                                        <?php endif; ?>
                                                         <div class="mt-1">
                                                             <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_top; ?>" class="w-100 btn btn-outline-primary waves-effect">
                                                                 <span class="ico ico-reverse">👀</span> voir les autres Tops

@@ -1,9 +1,1 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,iCAAiC,CAAA;EAC7B,OAAO,EAAE,IAAI;CAChB;;AACD,AAAA,yBAAyB,EAAE,sBAAsB,CAAA;EAC7C,OAAO,EAAE,IAAI;CAChB;;AACD,AACI,UADM,CACN,IAAI,EADR,UAAU,CACA,MAAM,EADhB,UAAU,CACQ,QAAQ,CAAA;EAClB,OAAO,EAAE,IAAI;CAChB;;AAEL,AAAA,SAAS,CAAA;EACL,OAAO,EAAE,IAAI;CAChB;;AACD,AAAA,WAAW,CAAA;EACP,aAAa,EAAE,eAAe;CACjC;;AACD,AAAA,iBAAiB,EAAE,UAAU,EAAE,oBAAoB,EAAE,QAAQ,EAAE,sBAAsB,CAAA;EACjF,OAAO,EAAE,IAAI;CAChB",
-    "sources": [
-        "panel-author.scss"
-    ],
-    "names": [],
-    "file": "panel-author.css"
-}
+{"version":3,"sources":["panel-author.scss"],"names":[],"mappings":"AAAA;EACI,aAAA;AACJ;;AACA;EACI,aAAA;AAEJ;;AACI;EACI,aAAA;AAER;;AACA;EACI,aAAA;AAEJ;;AAAA;EACI,8BAAA;AAGJ;;AADA;EACI,aAAA;AAIJ","file":"panel-author.css"}
