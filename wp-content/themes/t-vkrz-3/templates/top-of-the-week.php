@@ -28,7 +28,6 @@ $latest_rankings = new WP_Query(
         )
     )
 );
-
 $best_tops = best_tops($latest_rankings);
 ?>
 <div class="app-content content cover">
