@@ -66,7 +66,7 @@ function load_css_js() {
         wp_enqueue_script('responsive.bootstrap', get_template_directory_uri().'/assets/vendors/js/tables/datatable/responsive.bootstrap.min.js', array(), null, true);
         wp_enqueue_script('vainkeurz-table', get_template_directory_uri().'/assets/vendors/js/tables/datatable/vainkeurz-table.js', array(), $template_version, true);
     }
-    if(is_page_template("templates/classement.php")) {
+    if(is_page_template("templates/elo-mondial.php")) {
         wp_enqueue_script('ranking', get_template_directory_uri().'/function/ajax/ranking.js', array(), $template_version, true);
     }
 }

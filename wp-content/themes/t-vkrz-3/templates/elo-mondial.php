@@ -88,10 +88,10 @@ $contenders_ranking = get_contenders_ranking($id_top);
                                                 <?php if (!$top_infos['top_d_titre']) : ?>
                                                     <span class="ranking-title"><?php echo $contender["title"]; ?></span>
                                                 <?php endif; ?>
+                                                <div class="pointselo" data-points="<?php echo $contender["points"]; ?>">
+                                                    <?php echo $contender["points"]; ?> pts
+                                                </div>
                                             </h5>
-                                            <div class="pointselo" data-points="<?php echo $contender["points"]; ?>">
-                                                <?php echo $contender["points"]; ?> pts
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
