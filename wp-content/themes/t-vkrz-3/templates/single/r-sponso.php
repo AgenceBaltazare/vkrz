@@ -193,7 +193,11 @@ $top_datas    = get_top_data($id_top);
                                                         <div class="d-flex align-items-center flex-column">
                                                             <div class="logo-vkrz-sponso">
                                                                 <?php
-                                                                if (get_field('logo_de_la_sponso_t_sponso', $id_top)) : ?>
+                                                                if (get_field('illustration_de_la_sponso_t_sponso', $id_top)) : ?>
+                                                                    <a href="<?php the_field('lien_de_la_sponso_t_sponso', $id_top); ?>" target="_blank">
+                                                                        <?php echo wp_get_attachment_image(get_field('illustration_de_la_sponso_t_sponso', $id_top), 'large', '', array('class' => 'img-fluid')); ?>
+                                                                    </a>
+                                                                <?php elseif (get_field('logo_de_la_sponso_t_sponso', $id_top)) : ?>
                                                                     <a href="<?php the_field('lien_de_la_sponso_t_sponso', $id_top); ?>" target="_blank">
                                                                         <?php echo wp_get_attachment_image(get_field('logo_de_la_sponso_t_sponso', $id_top), 'large', '', array('class' => 'img-fluid')); ?>
                                                                     </a>
