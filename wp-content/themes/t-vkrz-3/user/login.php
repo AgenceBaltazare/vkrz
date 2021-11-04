@@ -28,7 +28,13 @@ if (is_user_logged_in()) {
                             </div>
 
                             <div class="auth-register-form mt-2">
+                                <div class="login-form">
+                                    <h3>En un seul click</h3>
+                                    <?php do_action('oa_social_login'); ?>
+                                </div>
+                                <div class="separateur separateur-1 mt-0"></div>
                                 <div class="classic-form">
+                                    <h3>ou en mode classik</h3>
                                     <?php echo do_shortcode('[wppb-login form_name="log-in"]'); ?>
                                 </div>
                             </div>
