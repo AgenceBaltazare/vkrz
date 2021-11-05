@@ -12,6 +12,7 @@ function form_newplayer($emailplayer, $uuiduser, $ranking, $top){
         'body' => array(
             'email'             => $emailplayer,
             'sponsor'           => get_field('nom_de_la_sponso_t_sponso', $top),
+            'content_email'     => get_field('message_email_t_sponso', $top),
             'date'              => date('Y-m-d H:i:s'),
             'id_ranking'        => $ranking,
             'uuiduser'          => $uuiduser,
