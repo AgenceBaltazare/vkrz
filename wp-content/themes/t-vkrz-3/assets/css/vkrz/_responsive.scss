@@ -33,6 +33,11 @@
 
 @media (max-width: 768px) {
 
+    .share-content-sponso,
+    .share-top-sponsor {
+        display: none !important;
+    }
+
     .single-tournoi {
 
         .content-intro {

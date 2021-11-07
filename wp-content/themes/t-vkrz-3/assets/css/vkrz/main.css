@@ -3054,6 +3054,11 @@ textarea {
   }
 }
 @media (max-width: 768px) {
+  .share-content-sponso,
+.share-top-sponsor {
+    display: none !important;
+  }
+
   .single-tournoi .content-intro {
     margin: 20px 0;
     padding: 0;
