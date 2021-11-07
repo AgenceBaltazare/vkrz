@@ -177,8 +177,7 @@ html {
 
             .btn-primary {
                 border: none !important;
-                background-color: transparent !important;
-                background: url('../img/btn1.png') center center no-repeat;
+                background: #004162 !important;
                 color: #fff !important;
                 background-size: contain;
                 transition: all 0.2s ease-in;
@@ -193,7 +192,7 @@ html {
                 @media (max-width: 768px) {
 
                     border: none !important;
-                    background-color: transparent !important;
+                    background: #004162 !important;
                     background: url('../img/btn1-m.png') center center no-repeat;
                     color: #fff !important;
                     background-size: 100%;

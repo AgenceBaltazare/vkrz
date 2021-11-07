@@ -138,8 +138,7 @@ html .content.app-content .card-developer-meetup .share-content-sponso .reseaux-
 }
 html .content.app-content .card-developer-meetup .btn-primary {
   border: none !important;
-  background-color: transparent !important;
-  background: url("../img/btn1.png") center center no-repeat;
+  background: #004162 !important;
   color: #fff !important;
   background-size: contain;
   transition: all 0.2s ease-in;
@@ -153,7 +152,7 @@ html .content.app-content .card-developer-meetup .btn-primary:hover {
 @media (max-width: 768px) {
   html .content.app-content .card-developer-meetup .btn-primary {
     border: none !important;
-    background-color: transparent !important;
+    background: #004162 !important;
     background: url("../img/btn1-m.png") center center no-repeat;
     color: #fff !important;
     background-size: 100%;

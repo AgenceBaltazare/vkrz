@@ -143,7 +143,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                         <div class="meetup-header d-flex align-items-center justify-content-center">
                                             <div class="my-auto">
                                                 <h4 class="card-title mb-25">
-                                                    Top <?php echo $top_infos['top_number']; ?> ⚡ <?php echo $top_infos['top_title']; ?>
+                                                    Faire mon Top <?php echo $top_infos['top_number']; ?> ⚡ <?php echo $top_infos['top_title']; ?>
                                                 </h4>
                                                 <p class="card-text mb-0 t-rose animate__animated animate__flash">
                                                     <?php echo $top_infos['top_question']; ?>
@@ -162,7 +162,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                         <div class="choosecta">
                                             <div class="cta-begin cta-complet">
                                                 <a href="#" id="begin_t" data-typetop="complet" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
-                                                    Top <?php echo $top_infos['top_number']; ?>
+                                                    Faire mon Top <?php echo $top_infos['top_number']; ?>
                                                 </a>
                                                 <small class="text-muted">
                                                     <?php
@@ -179,7 +179,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                             <?php if ($top_infos['top_number'] > 10) : ?>
                                                 <div class="cta-begin cta-top3">
                                                     <a href="#" id="begin_top3" data-typetop="top3" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
-                                                        Top 3
+                                                        Faire mon Top 3
                                                     </a>
                                                     <small class="text-muted">
                                                         <?php
