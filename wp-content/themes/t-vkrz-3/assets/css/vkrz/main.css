@@ -3029,6 +3029,25 @@ textarea {
   bottom: 0;
 }
 
+.logopm {
+  width: 310px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.bloc-result {
+  margin-bottom: 40px;
+  text-align: center;
+}
+.bloc-result h3 {
+  text-align: center;
+  margin-bottom: 40px !important;
+  font-size: 25px;
+}
+.bloc-result h3 span {
+  font-size: 14px;
+}
+
 @media (min-width: 1200px) {
   .col-xxl-2 {
     flex: 0 0 16.66667%;
