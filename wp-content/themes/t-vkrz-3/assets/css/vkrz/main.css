@@ -3052,6 +3052,12 @@ textarea {
   font-size: 1.5rem;
 }
 
+.big {
+  text-align: center;
+  font-size: 50px;
+  margin: 100px 0;
+}
+
 @media (min-width: 1200px) {
   .col-xxl-2 {
     flex: 0 0 16.66667%;

@@ -65,9 +65,6 @@ get_header();
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <a href="<?php the_permalink(get_sub_field('id_du_ranking_result')); ?>/" class="btn btn-primary mt-1">
-                                                    Voir son Top
-                                                </a>
                                             </div>
                                         </div>
                                     </div>
