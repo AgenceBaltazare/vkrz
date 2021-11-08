@@ -34,7 +34,7 @@ get_header();
 
                                 <?php while (have_rows('liste_des_tops_sponso_resultats')) : the_row(); ?>
 
-                                    <div class="col-12 col-md-4">
+                                    <div class="col-12 col-sm-6 col-md-3">
                                         <div class="card basic-pricing text-center">
                                             <div class="card-body">
                                                 <div class="pricing-badge text-right">
