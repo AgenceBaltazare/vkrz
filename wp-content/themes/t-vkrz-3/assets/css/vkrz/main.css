@@ -3047,6 +3047,9 @@ textarea {
 .bloc-result h3 span {
   font-size: 14px;
 }
+.bloc-result .pricing-card .annual-plan .plan-price span {
+  font-size: 1.5rem;
+}
 
 @media (min-width: 1200px) {
   .col-xxl-2 {
