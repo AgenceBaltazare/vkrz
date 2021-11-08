@@ -22,7 +22,7 @@ get_header();
                         <br><br>
                         Ce fut un <span class="t-rose">immense Kiff </span> pour toute l'équipe de vous rencontrer et vous présenter notre concept pour notre première convention 🥰
                         <br>
-                        On redouble de motivation pour <span class="t-rose">créer de nouveaux Tops</span> et chercher des collab pour vous faire <span class="t-rose">gagner des lots de folie</span> 🤩
+                        On redouble de motivation pour <span class="t-rose">créer de nouveaux Tops</span> et chercher des collabs pour vous faire <span class="t-rose">gagner des lots de folie</span> 🤩
                     </p>
                 </div>
 
