@@ -207,9 +207,9 @@ if (is_single() && get_post_type() == "tournoi") {
             <?php endif; ?>
         </div>
 
-        <ul class="nav navbar-nav align-items-center justify-content-end">
+        <ul class="nav navbar-nav align-items-center justify-content-around">
             <li class="nav-item dropdown dropdown-cart">
-                <a class="nav-link" href="javascript:void(0);" data-toggle="dropdown">
+                <a class="nav-link d-flex flex-column align-items-center" href="javascript:void(0);" data-toggle="dropdown">
                     <span class="ico text-center">💎</span>
                     <span class="value-user-stats user-total-vote-value">
                         <?php echo $user_infos['nb_vote_vkrz']; ?>
@@ -241,7 +241,7 @@ if (is_single() && get_post_type() == "tournoi") {
                 </ul>
             </li>
             <li class="nav-item mr-25">
-                <a class="nav-link" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>">
+                <a class="nav-link d-flex flex-column align-items-center" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>">
                     <span class="ico text-center">🏆</span>
                     <span class="value-user-stats">
                         <?php echo $user_infos['nb_top_vkrz']; ?>

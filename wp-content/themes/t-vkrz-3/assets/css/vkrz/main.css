@@ -1687,6 +1687,7 @@ html .content {
 
 .name {
   text-align: center;
+  word-break: break-word;
 }
 
 .name h5 {

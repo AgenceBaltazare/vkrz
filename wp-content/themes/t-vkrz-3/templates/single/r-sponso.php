@@ -313,7 +313,7 @@ $top_datas    = get_top_data($id_top);
             <ul>
                 <li>
                     <a href="javascript: void(0)" class="sharelinkbtn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copier le lien de ton Classement">
-                        <input type="text" value="<?php echo $top_infos['top_url']; ?>" class="input_to_share">
+                        <input type="text" value="<?php echo $url_ranking; ?>" class="input_to_share">
                         <i class="social-media fas fa-paperclip"></i> Copier le lien du classement
                     </a>
                 </li>
