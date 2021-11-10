@@ -285,7 +285,7 @@ $top_datas    = get_top_data($id_top);
                     </a>
                 </div>
 
-                <?php if (get_field('uuid_user_r', $id_ranking) == $uuiduser) : ?>
+                <?php if (get_field('uuid_user_r', $id_ranking) == $uuiduser && $id_top != 271927) : ?>
                     <div class="ico-nav-mobile">
                         <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" href="#" class="confirm_delete">
                             <span class="ico">🆕</span> <span class="hide-spot">Recommencer</span>
