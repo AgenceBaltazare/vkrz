@@ -14,8 +14,7 @@ global $user_tops;
 $list_t_already_done  = $user_tops['list_user_tops_done_ids'];
 $top_datas            = get_top_data($id_top);
 $user_single_top_data = array_search($id_top, $list_t_already_done);
-
-$contenders_ranking = get_contenders_ranking($id_top);
+$contenders_ranking   = get_contenders_ranking($id_top);
 ?>
 <div class="page-template-elo-mondial app-content content cover" style="background: url(<?php echo $top_infos['top_cover']; ?>) center center no-repeat">
     <div class="content-overlay"></div>
@@ -43,7 +42,14 @@ $contenders_ranking = get_contenders_ranking($id_top);
 
                             <?php
                             $i = 1;
+                            if($id_top == 271927){
+                                $limit = 25;
+                            }
+                            else{
+                                $limit = 10000;
+                            }
                             foreach ($contenders_ranking as $contender) :
+                                if($limit <= $i) :
                             ?>
                                 <?php
                                 if ($i >= 4) {
@@ -96,7 +102,7 @@ $contenders_ranking = get_contenders_ranking($id_top);
                                     </div>
                                 </div>
                             <?php $i++;
-                            endforeach; ?>
+                            endif; endforeach; ?>
                         </div>
                     </div>
 
