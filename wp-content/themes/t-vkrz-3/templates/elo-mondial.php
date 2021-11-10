@@ -49,7 +49,7 @@ $contenders_ranking   = get_contenders_ranking($id_top);
                                 $limit = 10000;
                             }
                             foreach ($contenders_ranking as $contender) :
-                                if($limit <= $i) :
+                                if($i <= $limit) :
                             ?>
                                 <?php
                                 if ($i >= 4) {
