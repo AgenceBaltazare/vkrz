@@ -157,6 +157,9 @@ function wppb_rpf_get_all_rpf_meta_names( $tag_prefix ) {
                 foreach ($repeater_group as $rpf_field) {
                     $rpf_group_meta_names[$field['meta-name']]['children'][] = $rpf_field['meta-name'];
                     $rpf_group_meta_names[$field['meta-name']]['children'][] = $rpf_field['meta-name'] . '_labels';
+                    if ( $rpf_field['field'] === 'Upload' ) {
+                        $rpf_group_meta_names[$field['meta-name']]['children'][] = $rpf_field['meta-name'] . '_id';
+                    }
                 }
             }
         }

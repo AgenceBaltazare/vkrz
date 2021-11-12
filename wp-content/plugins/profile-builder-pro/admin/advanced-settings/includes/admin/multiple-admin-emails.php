@@ -6,6 +6,7 @@ function wppb_as_overwrite_mail_to( $to, $context ){
         'email_admin_recover_success',
         'wppb_epaa_admin_email',
         'email_admin_approve',
+	    'email_admin_new_subscriber'
     );
 
     if( isset( $wppb_toolbox_admin_settings['admin-emails'] ) &&

@@ -9,6 +9,7 @@ function wppb_process_login(){
 
 	do_action( 'login_init' );
 	do_action( "login_form_login" );
+	do_action( 'wppb_process_login_start' );
 
 	$secure_cookie = '';
 	// If the user wants ssl but the session is not ssl, force a secure cookie.
@@ -47,6 +48,8 @@ function wppb_process_login(){
 	 * Filters the login redirect URL.
 	 */
 	$redirect_to = apply_filters( 'login_redirect', $redirect_to, $requested_redirect_to, $user );
+
+	do_action( 'wppb_process_login_end' );
 
 	if ( !is_wp_error($user) ) {
 		if ( $redirect_to == 'wp-admin/' || $redirect_to == admin_url() ) {
@@ -356,12 +359,18 @@ if( isset( $wppb_generalSettings['loginWith'] ) && ( $wppb_generalSettings['logi
 function wppb_login_redirect( $redirect_to, $requested_redirect_to, $user ){
     // custom redirect after login on default wp login form
     if( ! isset( $_POST['wppb_login'] ) && ! is_wp_error( $user ) ) {
+		$original_redirect_to = $redirect_to;
+
         // we don't have an error make sure to remove the error from the query arg
         $redirect_to = remove_query_arg( 'loginerror', $redirect_to );
 
         // CHECK FOR REDIRECT
         $redirect_to = wppb_get_redirect_url( 'normal', 'after_login', $redirect_to, $user );
         $redirect_to = apply_filters( 'wppb_after_login_redirect_url', $redirect_to );
+
+		if ( $redirect_to === '' ){
+			$redirect_to = $original_redirect_to;
+		}
     }
 
 	// if login action initialized by our form

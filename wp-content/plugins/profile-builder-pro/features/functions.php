@@ -539,13 +539,12 @@ function wppb_changeDefaultAvatarUrl( $url, $id_or_email, $args ){
 		$customUserAvatar = get_user_meta( $my_user_id, Wordpress_Creation_Kit_PB::wck_generate_slug( $avatar_field['meta-name'] ), true );
 		if( !empty( $customUserAvatar ) ){
 			if( is_numeric( $customUserAvatar ) ){
-				$img_attr = wp_get_attachment_image_src( $customUserAvatar, 'wppb-avatar-size-'.$args['size'] );
-				if( $img_attr[3] === false ){
-					$img_attr = wp_get_attachment_image_src( $customUserAvatar, 'thumbnail' );
+				if( $img_attr = wp_get_attachment_image_src( $customUserAvatar, 'wppb-avatar-size-'.$args['size'] ) ) {
+					if ( $img_attr[3] === false ) {
+						$img_attr   = wp_get_attachment_image_src( $customUserAvatar, 'thumbnail' );
+					}
 					$avatar_url = $img_attr[0];
 				}
-				else
-					$avatar_url = $img_attr[0];;
 			}
 			else {
 				$customUserAvatar = get_user_meta($my_user_id, 'resized_avatar_' . $avatar_field['id'], true);

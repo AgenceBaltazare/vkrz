@@ -363,7 +363,7 @@ function wppb_cr_replace_tags( $redirect_url, $wppb_cr_username = NULL ) {
 					$redirect_url = '';
 				}
 			} elseif( $key == '{{http_referer}}' && $value === NULL ) {
-				if( isset( $_SERVER['HTTP_REFERER'] ) ) {
+				if( isset( $_SERVER['HTTP_REFERER'], $_SERVER['REQUEST_URI'] ) && strpos( sanitize_text_field( $_SERVER['REQUEST_URI'] ), '/wp-login.php' ) === false ) {
 					$redirect_url = str_replace( $key, esc_url_raw( $_SERVER['HTTP_REFERER'] ), $redirect_url );
                     $redirect_url = remove_query_arg( 'reauth', $redirect_url );
 				} else {

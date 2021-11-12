@@ -7,7 +7,7 @@ custom registration, custom registration form, custom registration page, extra u
 front-end register, front-end registration, frontend edit profile, edit profileregistration, customize profile, user fields, builder, profile builder, custom fields, avatar
 Requires at least: 3.1
 Tested up to: 5.8
-Stable tag: 3.5.6
+Stable tag: 3.5.8
 
 
 Login, registration and edit profile shortcodes for the front-end. Also you can choose what fields should be displayed or add custom ones.
@@ -101,6 +101,20 @@ This plugin only adds/removes fields in the front-end. The default information-f
 
 
 == Changelog ==
+= 3.5.8 =
+* Fix: some incorrect translations which were causing errors
+* Fix: styling issues with Elementor widget
+* Fix: disable reCaptcha functionality in case of API credentials error
+* Fix: compatibility issue with Email Confirmation and the classic Upload field
+* Fix: Repeater field tags for Upload subfields
+* Misc: highlight correct admin subpage when editing emails
+
+= 3.5.7 =
+* Fix: Login form compatibility with LearnDash plugin which is hijacking the default 'wp_login_failed' hook
+* Fix: Issue with Multiple Admin Emails not sending in a case
+* Fix: A notice appearing in some cases relating to the Avatar functionality
+* Misc: Disable the Custom Redirects {{http_referer}} tag for the default WordPress login form
+
 = 3.5.6 =
 * Fix: issue with 2FA settings tab incorrectly appearing for free version users
 * Fix: a compatibility issue with Conditional Logic for the Paid Member Subscriptions Subscription Plans field
