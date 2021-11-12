@@ -32,6 +32,7 @@ include($templatepath . '/function/meca.php');
 include($templatepath . '/function/tournament.php');
 include($templatepath . '/function/data.php');
 include($templatepath . '/function/webhook.php');
+include($templatepath . '/function/api.php');
 
 @ini_set('upload_max_size' , '64M');
 @ini_set('post_max_size', '64M');
