@@ -66,7 +66,8 @@ function wppb_generate_settings_tabs(){
 	</nav>
 	<?php
 
-    $active_subpage = $active_tab;
+    // this is not always the same as the active tab
+    $active_subpage = sanitize_text_field($_GET['page']);
 
 	if( !empty( $pages['sub-pages'] ) ) {
 		foreach ($pages['sub-pages'] as $parent_slug => $subpages) {

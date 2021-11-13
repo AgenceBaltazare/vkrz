@@ -459,17 +459,17 @@ abstract class PB_Elementor_Register_Edit_Profile_Widget extends PB_Elementor_Wi
                     $targets['username'] = '';
                     break;
                 case 'Default - E-mail':
-                    $field_meta = 'default_email';
+                    $field_meta = 'email';
                     $targets = $this->handle_placeholder_labels_active( $targets );
                     $targets['input'] = '';
                     break;
                 case 'Default - Password':
-                    $field_meta = 'default_password';
+                    $field_meta = 'passw1';
                     $targets = $this->handle_placeholder_labels_active( $targets );
                     $targets['input'] = '';
                     break;
                 case 'Default - Repeat Password':
-                    $field_meta = 'default_password_repeat';
+                    $field_meta = 'passw2';
                     $targets = $this->handle_placeholder_labels_active( $targets );
                     $targets['input'] = '';
                     break;
@@ -483,7 +483,7 @@ abstract class PB_Elementor_Register_Edit_Profile_Widget extends PB_Elementor_Wi
                     }
                     break;
                 case 'Default - Website':
-                    $field_meta = 'default_website';
+                    $field_meta = 'website';
                     $targets = $this->handle_placeholder_labels_active( $targets );
                     $targets['input'] = '';
                     break;

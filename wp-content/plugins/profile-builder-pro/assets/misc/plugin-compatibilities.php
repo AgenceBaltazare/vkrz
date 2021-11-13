@@ -381,3 +381,19 @@
             do_action( 'bbp_template_before_user_profile' );
         }
     }
+
+	/****************************************************
+	 * Plugin Name: LearnDash LMS
+	 * This plugin hijacks the 'wp_login_failed' hook not allowing the PB login form to show errors
+	 ****************************************************/
+	if ( class_exists( 'Semper_Fi_Module' ) ){
+		add_action( 'wppb_process_login_start', 'wppb_learndash_compatibility_login_start' );
+		function wppb_learndash_compatibility_login_start (){
+			remove_action( 'wp_login_failed', 'learndash_login_failed', 1 );
+		}
+		add_action( 'wppb_process_login_end', 'wppb_learndash_compatibility_login_end' );
+		function wppb_learndash_compatibility_login_end (){
+			add_action( 'wp_login_failed', 'learndash_login_failed', 1, 1 );
+		}
+	}
+

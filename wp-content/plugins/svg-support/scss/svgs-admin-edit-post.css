@@ -7,4 +7,5 @@
 body #set-post-thumbnail,
 body #postimagediv .inside img[src$=".svg"] {
   width: 100%;
-}/*# sourceMappingURL=svgs-admin-edit-post.css.map */
+}
+/*# sourceMappingURL=svgs-admin-edit-post.css.map */
