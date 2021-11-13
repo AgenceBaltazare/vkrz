@@ -174,8 +174,8 @@ $top_datas    = get_top_data($id_top);
                                                                 <?php endif; ?>
                                                             </h2>
                                                             <div class="mt-1">
-                                                                <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_top; ?>" class="w-100 btn btn-outline-primary waves-effect">
-                                                                    <span class="ico ico-reverse">👀</span> Voir tous les autres Tops
+                                                                <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_top; ?>" class="d-flex align-items-center w-100 btn btn-outline-primary waves-effect">
+                                                                    <span class="ico ico-reverse">👀</span> Voir le classement des autres utilisateurs
                                                                 </a>
                                                             </div>
                                                         </div>
@@ -367,7 +367,7 @@ $top_datas    = get_top_data($id_top);
             <ul>
                 <li>
                     <a href="javascript: void(0)" class="sharelinkbtn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copier le lien de ton Classement">
-                        <input type="text" value="<?php echo $top_infos['top_url']; ?>" class="input_to_share">
+                        <input type="text" value="<?php echo $url_ranking; ?>" class="input_to_share">
                         <i class="social-media fas fa-paperclip"></i> Copier le lien du classement
                     </a>
                 </li>

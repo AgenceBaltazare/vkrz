@@ -287,18 +287,6 @@ html {
     .logo-vkrz-sponso {
         width: 100% !important;
     }
-
-    .social-media-sponso {
-        width: 100% !important;
-
-        .buttons-social-media {
-            flex-direction: row !important;
-
-            a:last-child {
-                margin-bottom: 10px;
-            }
-        }
-    }
 }
 
 .single-classement,
@@ -329,15 +317,19 @@ html {
             }
 
             .social-media-sponso {
-                width: 100% !important;
-
-                .buttons-social-media {
-                    flex-direction: row !important;
-
-                    a:last-child {
+                width: 100%;
+                display: inline-flex;
+                justify-content: center;
+                vertical-align: middle;
+                    a {
+                        display: block;
+                        width: 100%;
                         margin-bottom: 10px;
+                        margin: 0 3px;
                     }
-                }
+                    .btn {
+                        padding: 0.786rem 0.5rem;
+                    }
             }
         }
     }

@@ -28,16 +28,6 @@ $top_datas    = get_top_data($id_top);
     <div class="content-overlay"></div>
     <div class="content-wrapper">
         <div class="content-body">
-            <div class="intro-mobile">
-                <div class="tournament-heading text-center">
-                    <h3 class="mb-0 t-titre-tournoi">
-                        Top <?php echo $top_infos['top_number']; ?> <span class="ico text-center">🏆</span> <?php echo $top_infos['top_title']; ?>
-                    </h3>
-                    <h4 class="mb-0">
-                        <?php echo $top_infos['top_question']; ?>
-                    </h4>
-                </div>
-            </div>
             <div class="classement">
                 <div class="row">
                     <div class="col-md-8">
@@ -203,16 +193,14 @@ $top_datas    = get_top_data($id_top);
                                                                     </a>
                                                                 <?php endif; ?>
                                                             </div>
-                                                            <div class="mt-2 social-media-sponso">
-                                                                <div class="d-flex buttons-social-media">
-                                                                    <?php if (have_rows('liste_des_liens_t_sponso', $id_top)) : ?>
-                                                                        <?php while (have_rows('liste_des_liens_t_sponso', $id_top)) : the_row(); ?>
-                                                                            <a href="<?php the_sub_field('lien_vers_t_sponso'); ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-outline-primary waves-effect waves-float waves-light" target="_blank">
-                                                                                <?php the_sub_field('intitule_t_sponso'); ?>
-                                                                            </a>
-                                                                        <?php endwhile; ?>
-                                                                    <?php endif; ?>
-                                                                </div>
+                                                            <div class="mt-2 social-media-sponso btn-group">
+                                                                <?php if (have_rows('liste_des_liens_t_sponso', $id_top)) : ?>
+                                                                    <?php while (have_rows('liste_des_liens_t_sponso', $id_top)) : the_row(); ?>
+                                                                        <a href="<?php the_sub_field('lien_vers_t_sponso'); ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-icon btn-outline-primary waves-effect waves-float waves-light" target="_blank">
+                                                                            <?php the_sub_field('intitule_t_sponso'); ?>
+                                                                        </a>
+                                                                    <?php endwhile; ?>
+                                                                <?php endif; ?>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -328,7 +316,7 @@ $top_datas    = get_top_data($id_top);
             <ul>
                 <li>
                     <a href="javascript: void(0)" class="sharelinkbtn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copier le lien de ton Classement">
-                        <input type="text" value="<?php echo $top_infos['top_url']; ?>" class="input_to_share">
+                        <input type="text" value="<?php echo $url_ranking; ?>" class="input_to_share">
                         <i class="social-media fas fa-paperclip"></i> Copier le lien du classement
                     </a>
                 </li>

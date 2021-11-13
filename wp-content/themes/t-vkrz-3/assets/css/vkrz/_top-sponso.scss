@@ -52,16 +52,8 @@
 }
 
 
-.social-media-sponso {
-    padding: 0px 10px;
-
-    a {
-        margin-right: 10px;
-    }
-}
-
 .timer-content-sponso {
-    padding: 20px 10px 5px !important;
+    padding: 15px 10px 5px !important;
 
     p {
         margin: 0;
@@ -73,27 +65,19 @@
     padding: 15px 20px !important;
 }
 
-.logo-vkrz-sponso {
-    width: 40%;
-}
-
 .social-media-sponso {
-
-    width: 60%;
-
-    .buttons-social-media {
-        flex-direction: column;
-
+    width: 100%;
+    display: inline-flex;
+    justify-content: center;
+    vertical-align: middle;
         a {
             display: block;
             width: 100%;
             margin-bottom: 10px;
-
-            &:last-child {
-                margin-bottom: 0;
-            }
         }
-    }
+        .btn {
+            padding: 0.786rem 0.5rem;
+        }
 }
 
 .participation-content-sponso {
@@ -228,10 +212,6 @@
         width: 100%;
     }
 
-    .social-media-sponso {
-        width: 100%;
-    }
-
     .share-top-sponsor {
         align-items: center !important;
     }
@@ -260,6 +240,7 @@
             width: 100%;
             max-width: 100%;
             border-radius: 10px !important;
+            margin-top: 0.6rem;
         }
     }
 
