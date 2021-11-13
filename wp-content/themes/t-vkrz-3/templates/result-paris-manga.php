@@ -22,7 +22,7 @@ get_header();
                         <br><br>
                         Ce fut un <span class="t-rose">immense Kiff </span> pour toute l'équipe de vous rencontrer et vous présenter notre concept pour notre première convention 🥰
                         <br>
-                        On redouble de motivation pour <span class="t-rose">créer de nouveaux Tops</span> et chercher des collab pour vous faire <span class="t-rose">gagner des lots de folie</span> 🤩
+                        On redouble de motivation pour <span class="t-rose">créer de nouveaux Tops</span> et chercher des collabs pour vous faire <span class="t-rose">gagner des lots de folie</span> 🤩
                     </p>
                 </div>
 
@@ -34,7 +34,7 @@ get_header();
 
                                 <?php while (have_rows('liste_des_tops_sponso_resultats')) : the_row(); ?>
 
-                                    <div class="col-12 col-md-4">
+                                    <div class="col-12 col-sm-6 col-md-3">
                                         <div class="card basic-pricing text-center">
                                             <div class="card-body">
                                                 <div class="pricing-badge text-right">
@@ -65,9 +65,6 @@ get_header();
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <a href="<?php the_permalink(get_sub_field('id_du_ranking_result')); ?>/" class="btn btn-primary mt-1">
-                                                    Voir son Top
-                                                </a>
                                             </div>
                                         </div>
                                     </div>

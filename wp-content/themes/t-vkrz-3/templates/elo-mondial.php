@@ -14,8 +14,7 @@ global $user_tops;
 $list_t_already_done  = $user_tops['list_user_tops_done_ids'];
 $top_datas            = get_top_data($id_top);
 $user_single_top_data = array_search($id_top, $list_t_already_done);
-
-$contenders_ranking = get_contenders_ranking($id_top);
+$contenders_ranking   = get_contenders_ranking($id_top);
 ?>
 <div class="page-template-elo-mondial app-content content cover" style="background: url(<?php echo $top_infos['top_cover']; ?>) center center no-repeat">
     <div class="content-overlay"></div>
@@ -39,23 +38,22 @@ $contenders_ranking = get_contenders_ranking($id_top);
 
                     <div class="col-md-10">
 
+                        <?php if ($id_top == 271927) : ?>
+                            <h2>Liste des 25 premiers du classement mondial</h2>
+                        <?php endif; ?>
+
                         <div class="list-classement">
 
                             <?php
                             $i = 1;
+                            if ($id_top == 271927) {
+                                $limit = 25;
+                            } else {
+                                $limit = 10000;
+                            }
                             foreach ($contenders_ranking as $contender) :
+                                if ($i <= $limit) :
                             ?>
-                                <?php
-                                if ($i >= 4) {
-                                    $d = 3;
-                                } else {
-                                    $d = $i - 1;
-                                }
-                                ?>
-                                <?php if ($i == 6 && $top_infos['top_number'] > 10) : ?>
-                                    <div class="break"></div>
-                                <?php endif; ?>
-                                <div class="contender-item contender-item-n<?php echo $i; ?>" id="ranking-<?php echo $i; ?>" data-id="<?php echo $contender["id"]; ?>">
                                     <?php
                                     if ($i >= 4) {
                                         $d = 3;
@@ -63,39 +61,51 @@ $contenders_ranking = get_contenders_ranking($id_top);
                                         $d = $i - 1;
                                     }
                                     ?>
-                                    <div class="animate__jackInTheBox animate__animated animate__delay-<?php echo $d; ?>s contenders_min mb-2 <?php echo ($top_infos['top_d_rounded']) ? 'rounded' : ''; ?>">
-                                        <div class="illu">
-                                            <?php
-                                            $illu = $contender["illustration"];
-                                            if (get_field('visuel_cover_t', $id_top)) :
-                                            ?>
-                                                <div class="cov-illu" style="background: url(<?php echo $illu; ?>) center center no-repeat"></div>
-                                            <?php else : ?>
-                                                <img src="<?php echo $illu; ?>" class="img-fluid" />
-                                            <?php endif; ?>
-                                        </div>
-                                        <div class="name eh2">
-                                            <h5 class="mt-2">
-                                                <?php if ($i == 1) : ?>
-                                                    <span class="ico">🥇</span>
-                                                <?php elseif ($i == 2) : ?>
-                                                    <span class="ico">🥈</span>
-                                                <?php elseif ($i == 3) : ?>
-                                                    <span class="ico">🥉</span>
+                                    <?php if ($i == 6 && $top_infos['top_number'] > 10) : ?>
+                                        <div class="break"></div>
+                                    <?php endif; ?>
+                                    <div class="contender-item contender-item-n<?php echo $i; ?>" id="ranking-<?php echo $i; ?>" data-id="<?php echo $contender["id"]; ?>">
+                                        <?php
+                                        if ($i >= 4) {
+                                            $d = 3;
+                                        } else {
+                                            $d = $i - 1;
+                                        }
+                                        ?>
+                                        <div class="animate__jackInTheBox animate__animated animate__delay-<?php echo $d; ?>s contenders_min mb-2 <?php echo ($top_infos['top_d_rounded']) ? 'rounded' : ''; ?>">
+                                            <div class="illu">
+                                                <?php
+                                                $illu = $contender["illustration"];
+                                                if (get_field('visuel_cover_t', $id_top)) :
+                                                ?>
+                                                    <div class="cov-illu" style="background: url(<?php echo $illu; ?>) center center no-repeat"></div>
                                                 <?php else : ?>
-                                                    <span><?php echo $i; ?><br></span>
+                                                    <img src="<?php echo $illu; ?>" class="img-fluid" />
                                                 <?php endif; ?>
-                                                <?php if (!$top_infos['top_d_titre']) : ?>
-                                                    <span class="ranking-title"><?php echo $contender["title"]; ?></span>
-                                                <?php endif; ?>
-                                                <div class="pointselo" data-points="<?php echo $contender["points"]; ?>">
-                                                    <?php echo $contender["points"]; ?> pts
-                                                </div>
-                                            </h5>
+                                            </div>
+                                            <div class="name eh2">
+                                                <h5 class="mt-2">
+                                                    <?php if ($i == 1) : ?>
+                                                        <span class="ico">🥇</span>
+                                                    <?php elseif ($i == 2) : ?>
+                                                        <span class="ico">🥈</span>
+                                                    <?php elseif ($i == 3) : ?>
+                                                        <span class="ico">🥉</span>
+                                                    <?php else : ?>
+                                                        <span><?php echo $i; ?><br></span>
+                                                    <?php endif; ?>
+                                                    <?php if (!$top_infos['top_d_titre']) : ?>
+                                                        <span class="ranking-title"><?php echo $contender["title"]; ?></span>
+                                                    <?php endif; ?>
+                                                    <div class="pointselo" data-points="<?php echo $contender["points"]; ?>">
+                                                        <?php echo $contender["points"]; ?> pts
+                                                    </div>
+                                                </h5>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
                             <?php $i++;
+                                endif;
                             endforeach; ?>
                         </div>
                     </div>

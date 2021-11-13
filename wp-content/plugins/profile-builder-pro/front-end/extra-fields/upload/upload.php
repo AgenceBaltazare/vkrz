@@ -287,20 +287,27 @@ function wppb_save_simple_upload_file ( $field_name ){
     }
 }
 
-/* save file when ec and simple upload are enabled */
+/* save file when ec is enabled */
 function wppb_add_upload_for_user_signup( $field_value, $field, $request_data ){
 
-    // Save the file uploaded with the simple upload filed
+    // Save the uploaded file
     // It will have no author until the user's email is confirmed
-    if( $field['field'] == 'Upload' && (isset( $field[ 'simple-upload' ] ) && $field['simple-upload'] === 'yes') ) {
-        $field_name = 'simple_upload_' . $field['meta-name'];
+    if( $field['field'] == 'Upload' ) {
+        if( isset( $field[ 'simple-upload' ] ) && $field['simple-upload'] === 'yes' ) {
+            $field_name = 'simple_upload_' . $field['meta-name'];
 
-        if( isset($_FILES[$field_name]) &&
-            isset( $_FILES[$field_name]['size'] ) && $_FILES[$field_name]['size'] !== 0 &&
-            !(wppb_belongs_to_repeater_with_conditional_logic($field) && !isset($request_data[wppb_handle_meta_name($field['meta-name'])])) &&
-            !(isset($field['conditional-logic-enabled']) && $field['conditional-logic-enabled'] == 'yes' && !isset($request_data[wppb_handle_meta_name($field['meta-name'])])) &&
-            wppb_valid_simple_upload($field, $_FILES[$field_name])) { /* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */ /* no need here */
-                return wppb_save_simple_upload_file( $field_name );
+            if (isset($_FILES[$field_name]) &&
+                isset($_FILES[$field_name]['size']) && $_FILES[$field_name]['size'] !== 0 &&
+                !(wppb_belongs_to_repeater_with_conditional_logic($field) && !isset($request_data[wppb_handle_meta_name($field['meta-name'])])) &&
+                !(isset($field['conditional-logic-enabled']) && $field['conditional-logic-enabled'] == 'yes' && !isset($request_data[wppb_handle_meta_name($field['meta-name'])])) &&
+                wppb_valid_simple_upload($field, $_FILES[$field_name])) { /* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */ /* no need here */
+                return wppb_save_simple_upload_file($field_name);
+            }
+        } else {
+            $attachment_id = $request_data[wppb_handle_meta_name( $field['meta-name'] )];
+            if ( isset( $attachment_id ) ) {
+                return absint( trim( $attachment_id ) );
+            }
         }
     }
 

@@ -113,7 +113,8 @@ function wppb_recaptcha_script_footer(){
     }
     //the section below is properly escaped or the variables contain static strings
     // phpcs:disable
-    echo '<script>
+    echo '
+    <script>
         var wppbRecaptchaCallback = function() {
             if( typeof window.wppbRecaptchaCallbackExecuted == "undefined" ){//see if we executed this before
                 '.$callback_conditions.'.each(function(){
@@ -130,6 +131,18 @@ function wppb_recaptcha_script_footer(){
         /* the callback function for when the captcha does not load propperly, maybe network problem or wrong keys  */
         function wppbRecaptchaInitializationError(){
             window.wppbRecaptchaInitError = true;
+        ';
+
+    if( $field['recaptcha-type'] === 'invisible' ) {
+        echo '
+            /* make sure that if the invisible recaptcha did not load properly ( network error or wrong keys ) we can still submit the form */
+            jQuery("input[type=\'submit\']", jQuery( ".wppb-recaptcha-element" ).closest("form") ).on("click", function(e){
+                        jQuery(this).closest("form").submit();
+                });
+            ';
+    }
+
+    echo '
             //add a captcha field so we do not just let the form submit if we do not have a captcha response
             jQuery( ".wppb-recaptcha-element" ).after(\''. wp_nonce_field( 'wppb_recaptcha_init_error', 'wppb_recaptcha_load_error', false, false ) .'\');
         }
@@ -165,17 +178,7 @@ function wppb_recaptcha_script_footer(){
                 } else {
                     jQuery(document).trigger( "wppb_invisible_recaptcha_success", jQuery( ".form-submit input[type=\'submit\']", elem.closest("form") ) )
                 }
-
             }
-
-            /* make sure if the invisible recaptcha did not load properly ( network error or wrong keys ) we can still submit the form */
-            jQuery(document).ready(function(){
-                if( window.wppbRecaptchaInitError === true ){
-                    jQuery("input[type=\'submit\']", jQuery( ".wppb-recaptcha-element" ).closest("form") ).on("click", function(e){
-                            jQuery(this).closest("form").submit();
-                    });
-                }
-            });
         </script>';
     }
 
