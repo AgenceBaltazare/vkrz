@@ -104,11 +104,13 @@
                             <span class="ico">🏆</span> <span class="menu-title text-truncate">Tops</span>
                         </a>
                     </li>
+                    <!--
                     <li>
                         <a class="d-flex align-items-center" href="<?php the_permalink(get_page_by_path('best-of/best-createurs')); ?>">
                             <span class="ico">👨‍🎤</span> <span class="menu-title text-truncate">Créateurs</span>
                         </a>
                     </li>
+                    -->
                 </ul>
             </li>
             <li class="nav-item">
@@ -118,7 +120,7 @@
             </li>
             <li class="nav-item">
                 <a class="d-flex align-items-center" href="<?php the_permalink(get_page_by_path('recrutement')); ?>/">
-                    <span class="ico">🎨</span> <span class="menu-title text-truncate">Créer des Tops</span>
+                    <span class="ico">👨‍🎤</span> <span class="menu-title text-truncate">Créer des Tops</span>
                 </a>
             </li>
             <li class="nav-item">

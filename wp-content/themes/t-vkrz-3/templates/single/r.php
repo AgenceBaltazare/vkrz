@@ -472,7 +472,7 @@ $top_datas    = get_top_data($id_top);
                                         <?php endif; ?>
                                         <?php if ($creator_data['user_role']  == "administrator" || $creator_data['user_role'] == "author") : ?>
                                             <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
-                                                🎨
+                                                👨‍🎤
                                             </span>
                                         <?php endif; ?>
                                     </h4>

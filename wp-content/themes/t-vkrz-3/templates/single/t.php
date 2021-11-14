@@ -211,7 +211,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                                         <?php endif; ?>
                                                         <?php if ($creator_data['user_role']  == "administrator" || $creator_data['user_role'] == "author") : ?>
                                                             <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
-                                                                🎨
+                                                                👨‍🎤
                                                             </span>
                                                         <?php endif; ?>
                                                     </a>
@@ -377,7 +377,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                     <?php endif; ?>
                                     <?php if ($creator_data['user_role']  == "administrator" || $creator_data['user_role'] == "author") : ?>
                                         <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
-                                            🎨
+                                            👨‍🎤
                                         </span>
                                     <?php endif; ?>
                                 </h4>

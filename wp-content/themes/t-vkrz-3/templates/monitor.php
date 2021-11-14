@@ -19,6 +19,41 @@
                     <div class="row match-height">
                         <div class="col-md-5">
                             <div class="card text-center">
+                                <div class="card-body">
+                                    <div class="mb-1">
+                                        <span class="ico4">💎</span>
+                                    </div>
+                                    <h1 class="font-weight-bolder">
+                                        <span class="count" id="votes_number">
+                                            <?php the_field('nb_total_votes', 'options'); ?>
+                                        </span>
+                                    </h1>
+                                    <p class="card-text legende">votes effectués</p>
+                                </div>
+                            </div>
+                            <div class="card text-center mt-2">
+                                <div class="card-body">
+                                    <div class="pricing-badge text-right">
+                                        <div class="badge badge-pill badge-light-primary">
+                                            <a href="<?php the_permalink(get_page_by_path('best-of/best-tops')); ?>" data-toggle="tooltip" data-popup="tooltip-custom" data-placement="top" data-original-title="Voir les Tops les plus populaires">
+                                                💫
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="mb-1">
+                                        <span class="ico4">🏆</span>
+                                    </div>
+                                    <h1 class="font-weight-bolder">
+                                        <span class="count" id="tops_number">
+                                            <?php the_field('nb_total_tops', 'options'); ?>
+                                        </span>
+                                    </h1>
+                                    <p class="card-text legende">Tops terminés</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card text-center">
                                 <div class="card-body d-flex align-items-center winbloc">
                                     <?php
                                     if (get_field('nb_total_tops', 'options') < 100000) : ?>
@@ -63,33 +98,101 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-7">
-                            <div class="card text-center">
-                                <div class="card-body">
-                                    <div class="mb-1">
-                                        <span class="ico4">💎</span>
+                        <div class="col-md-3">
+                            <section class="app-user-view">
+                                <div class="row match-height">
+                                    <div class="col-sm-12">
+                                        <div class="card text-center">
+                                            <div class="card-body">
+                                                <div class="pricing-badge text-right">
+                                                    <div class="badge badge-pill badge-light-primary">
+                                                        <a href="<?php the_permalink(get_page_by_path('best-of/best-vainkeurs')); ?>" data-toggle="tooltip" data-popup="tooltip-custom" data-placement="top" data-original-title="Voir le Top 20 des vainkeurs">
+                                                            🔥
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-1">
+                                                    <span class="ico4">🦃</span>
+                                                </div>
+                                                <h2 class="font-weight-bolder">
+                                                    <?php echo count_users_by_level(4); ?>
+                                                </h2>
+                                                <p class="card-text legende list-vainkeur-monitor">
+                                                    <?php
+                                                    $list_level_4 = get_users_by_level(4, 'total_vote', 'DESC');
+                                                    foreach ($list_level_4 as $vainkeur) :
+                                                    ?>
+                                                        <a href="<?php echo esc_url(get_author_posts_url($vainkeur['ID'])); ?>">
+                                                            <?php echo $vainkeur['pseudo']; ?>
+                                                        </a>
+                                                    <?php endforeach; ?>
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <h1 class="font-weight-bolder">
-                                        <span class="count" id="votes_number">
-                                            <?php the_field('nb_total_votes', 'options'); ?>
-                                        </span>
-                                    </h1>
-                                    <p class="card-text legende">votes effectués</p>
-                                </div>
-                            </div>
-                            <div class="card text-center mt-2">
-                                <div class="card-body">
-                                    <div class="mb-1">
-                                        <span class="ico4">🏆</span>
+                                    <div class="col-sm-4">
+                                        <div class="card text-center">
+                                            <div class="card-body">
+                                                <div class="mb-1">
+                                                    <span class="ico4">🐓</span>
+                                                </div>
+                                                <h2 class="font-weight-bolder">
+                                                    <?php echo count_users_by_level(3); ?>
+                                                </h2>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <h1 class="font-weight-bolder">
-                                        <span class="count" id="tops_number">
-                                            <?php the_field('nb_total_tops', 'options'); ?>
-                                        </span>
-                                    </h1>
-                                    <p class="card-text legende">Tops terminés</p>
+                                    <div class="col-sm-4">
+                                        <div class="card text-center">
+                                            <div class="card-body">
+                                                <div class="mb-1">
+                                                    <span class="ico4">🐥</span>
+                                                </div>
+                                                <h2 class="font-weight-bolder">
+                                                    <?php echo count_users_by_level(2); ?>
+                                                </h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="card text-center">
+                                            <div class="card-body">
+                                                <div class="mb-1">
+                                                    <span class="ico4">🐣</span>
+                                                </div>
+                                                <h2 class="font-weight-bolder">
+                                                    <?php echo count_users_by_level(1); ?>
+                                                </h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="card text-center">
+                                            <div class="card-body">
+                                                <div class="pricing-badge text-right">
+                                                    <div class="badge badge-pill badge-light-primary">
+                                                        <a href="<?php the_permalink(get_page_by_path('recrutement')); ?>" data-toggle="tooltip" data-popup="tooltip-custom" data-placement="top" data-original-title="Postuler pour devenir créateur">
+                                                            ✊
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-1">
+                                                    <span class="ico4">👨‍🎤</span>
+                                                </div>
+                                                <h2 class="font-weight-bolder">
+                                                    <?php
+                                                    $user_query = new WP_User_Query(array('role__in' => array('author', 'administrator')));
+                                                    echo $user_query->get_total();
+                                                    ?>
+                                                </h2>
+                                                <p class="card-text legende">
+                                                    Créateurs de Tops
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            </section>
                         </div>
                     </div>
                 </div>

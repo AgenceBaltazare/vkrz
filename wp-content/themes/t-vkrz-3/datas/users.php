@@ -95,7 +95,7 @@
                                                                                     <?php endif; ?>
                                                                                     <?php if ($user_infos['user_role'] == "administrator" || $user_infos['user_role'] == "author") : ?>
                                                                                         <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
-                                                                                            🎨
+                                                                                            👨‍🎤
                                                                                         </span>
                                                                                     <?php endif; ?>
                                                                                 </div>
