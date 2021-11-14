@@ -90,17 +90,17 @@
                 <span>VAINKEURZ</span> <i data-feather="more-horizontal"></i>
             </li>
             <li class="nav-item has-sub">
-                <a class="d-flex align-items-center" href="<?php the_permalink(get_page_by_path('best-of')); ?>/">
+                <a class="d-flex align-items-center" href="#">
                     <span class="ico">🤯</span> <span class="menu-title text-truncate">Best Of</span>
                 </a>
                 <ul class="menu-content">
                     <li>
-                        <a class="d-flex align-items-center" href="<?php the_permalink(get_page_by_path('best-of/liste-des-vainkeurs')); ?>">
+                        <a class="d-flex align-items-center" href="<?php the_permalink(get_page_by_path('best-of/best-vainkeurs')); ?>">
                             <span class="ico">👑</span> <span class="menu-title text-truncate">Vainkeurs</span>
                         </a>
                     </li>
                     <li>
-                        <a class="d-flex align-items-center" href="<?php the_permalink(get_page_by_path('best-of/bests-tops')); ?>">
+                        <a class="d-flex align-items-center" href="<?php the_permalink(get_page_by_path('best-of/best-tops')); ?>">
                             <span class="ico">🏆</span> <span class="menu-title text-truncate">Tops</span>
                         </a>
                     </li>
