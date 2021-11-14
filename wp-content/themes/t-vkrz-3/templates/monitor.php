@@ -130,7 +130,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-4 pr-0">
                                         <div class="card text-center">
                                             <div class="card-body">
                                                 <div class="mb-1">
@@ -142,7 +142,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-4 pr-0">
                                         <div class="card text-center">
                                             <div class="card-body">
                                                 <div class="mb-1">
