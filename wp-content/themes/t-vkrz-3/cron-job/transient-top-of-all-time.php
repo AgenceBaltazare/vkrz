@@ -10,7 +10,7 @@ include __DIR__.'/../../../../wp-load.php';
 $rankings = new WP_Query(
     array(
         'post_type'              => 'classement',
-        'posts_per_page'         => '40000',
+        'posts_per_page'         => '-1',
         'fields'                 => 'ids',
         'post_status'            => 'publish',
         'ignore_sticky_posts'    => true,
