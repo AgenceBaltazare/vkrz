@@ -10,6 +10,14 @@ body {
     background-color: $c4;
 }
 
+.dark-layout .main-menu-content .navigation-main .nav-item .menu-content {
+    background-color: transparent;
+}
+
+.dark-layout .main-menu-content .navigation-main .nav-item.open>a {
+    background-color: #31267347 !important;
+}
+
 .swiper-button-next,
 .swiper-button-prev {
     width: 40px !important;
@@ -251,12 +259,12 @@ a.sociallink:hover {
     color: rgba(255, 255, 255, 1) !important;
 }
 
-.title-contender{
-    img{
+.title-contender {
+    img {
         border-radius: 0 !important;
     }
 }
 
-.card{
+.card {
     margin-bottom: 1rem;
 }

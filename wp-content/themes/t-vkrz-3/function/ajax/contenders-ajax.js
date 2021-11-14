@@ -16,6 +16,8 @@ $(document).ready(function ($) {
         $('.contender_zone').removeClass('animate__slideInDown');
         $('.contender_zone').removeClass('animate__slideInUp');
 
+        console.log(link_to_ranking);
+
         e.preventDefault();
 
         if (!ajaxRunning) {
@@ -106,6 +108,8 @@ $(document).ready(function ($) {
                     'event_score': 1,
                 });
 
+                console.log(link_to_ranking);
+
                 if(!data.is_next_duel){
                     window.dataLayer.push({
                         'event': 'track_event',
@@ -121,7 +125,8 @@ $(document).ready(function ($) {
                         'event_score': 20
                     });
 
-                    location.reload()
+                    $(location).attr('href', link_to_ranking);
+
                 }
             }).always(function () {
                 ajaxRunning = false;

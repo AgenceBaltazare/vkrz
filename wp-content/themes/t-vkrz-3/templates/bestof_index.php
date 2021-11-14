@@ -1,6 +1,6 @@
 <?php
 /*
-    Template Name: Best Of
+    Template Name: Best of
 */
 get_header();
 ?>

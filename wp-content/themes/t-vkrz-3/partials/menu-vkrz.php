@@ -54,7 +54,8 @@
                 'taxonomy'      => 'categorie',
                 'orderby'       => 'count',
                 'order'         => 'DESC',
-                'hide_empty'    => true
+                'hide_empty'    => true,
+                'include'       => array(3, 7, 5)
             ));
             foreach ($cat_t as $cat) : ?>
                 <li class="nav-item">
@@ -63,17 +64,61 @@
                     </a>
                 </li>
             <?php endforeach; ?>
+            <li class="nav-item has-sub">
+                <a class="d-flex align-items-center" href="#">
+                    <span class="ico">4️⃣</span> <span class="menu-title text-truncate">Autres catégories</span>
+                </a>
+                <ul class="menu-content">
+                    <?php
+                    $cat_t = get_terms(array(
+                        'taxonomy'      => 'categorie',
+                        'orderby'       => 'count',
+                        'order'         => 'DESC',
+                        'hide_empty'    => true,
+                        'include'       => array(2, 4, 10, 56)
+                    ));
+                    foreach ($cat_t as $cat) : ?>
+                        <li>
+                            <a class="d-flex align-items-center" href="<?php echo get_category_link($cat->term_id); ?>">
+                                <span class="ico"><?php the_field('icone_cat', 'term_' . $cat->term_id); ?></span> <span class="menu-title text-truncate"><?php echo $cat->name; ?></span>
+                            </a>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </li>
             <li class="navigation-header">
                 <span>VAINKEURZ</span> <i data-feather="more-horizontal"></i>
             </li>
-            <li class="nav-item">
-                <a class="d-flex align-items-center" href="<?php the_permalink(104853); ?>">
-                    <span class="ico">🦙</span> <span class="menu-title text-truncate">A propos</span>
+            <li class="nav-item has-sub">
+                <a class="d-flex align-items-center" href="<?php the_permalink(get_page_by_path('best-of')); ?>/">
+                    <span class="ico">🤯</span> <span class="menu-title text-truncate">Best Of</span>
                 </a>
+                <ul class="menu-content">
+                    <li>
+                        <a class="d-flex align-items-center" href="<?php the_permalink(get_page_by_path('best-of/liste-des-vainkeurs')); ?>">
+                            <span class="ico">👑</span> <span class="menu-title text-truncate">Vainkeurs</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="d-flex align-items-center" href="<?php the_permalink(get_page_by_path('best-of/bests-tops')); ?>">
+                            <span class="ico">🏆</span> <span class="menu-title text-truncate">Tops</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="d-flex align-items-center" href="<?php the_permalink(get_page_by_path('best-of/best-createurs')); ?>">
+                            <span class="ico">👨‍🎤</span> <span class="menu-title text-truncate">Créateurs</span>
+                        </a>
+                    </li>
+                </ul>
             </li>
             <li class="nav-item">
                 <a class="d-flex align-items-center" href="<?php the_permalink(get_page_by_path('monitor')); ?>">
                     <span class="ico">📡</span> <span class="menu-title text-truncate">Monitor</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="d-flex align-items-center" href="<?php the_permalink(get_page_by_path('recrutement')); ?>/">
+                    <span class="ico">🎨</span> <span class="menu-title text-truncate">Créer des Tops</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -82,13 +127,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="d-flex align-items-center" href="<?php the_permalink(143788); ?>">
-                    <span class="ico">👑</span> <span class="menu-title text-truncate">Les Vainkeurs</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="d-flex align-items-center" href="<?php the_permalink(get_page_by_path('recrutement')); ?>/">
-                    <span class="ico">🎨</span> <span class="menu-title text-truncate">Créer des Tops</span>
+                <a class="d-flex align-items-center" href="<?php the_permalink(104853); ?>">
+                    <span class="ico">🦙</span> <span class="menu-title text-truncate">A propos</span>
                 </a>
             </li>
         </ul>

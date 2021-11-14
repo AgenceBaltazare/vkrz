@@ -1,6 +1,6 @@
 <?php
 /*
-    Template Name: Users List
+    Template Name: Best of - vainkeurs
 */
 global $uuiduser;
 get_header();

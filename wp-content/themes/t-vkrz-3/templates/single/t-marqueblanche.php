@@ -32,6 +32,9 @@ $creator_id         = get_post_field('post_author', $id_top);
 $creator_uuiduser   = get_field('uuiduser_user', 'user_' . $creator_id);
 $creator_data       = get_user_infos($creator_uuiduser);
 ?>
+<script>
+    const link_to_ranking = "<?= get_the_permalink($id_ranking) ?>";
+</script>
 <div class="app-content-marqueblanche content cover" style="background: url(<?php echo $top_infos['top_cover']; ?>) center center no-repeat">
     <div class="content-wrapper">
         <div class="content-body tournoi-content">

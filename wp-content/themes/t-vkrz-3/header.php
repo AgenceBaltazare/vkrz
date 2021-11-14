@@ -31,6 +31,7 @@ if (!is_single() || get_post_type() != "tournoi") {
     $user_infos  = deal_vainkeur_entry();
     $id_vainkeur = $user_infos['id_vainkeur'];
 }
+wp_reset_query();
 ?>
 <!DOCTYPE html>
 <html class="loading dark-layout" lang="fr" data-layout="dark-layout" data-textdirection="ltr">
@@ -119,11 +120,9 @@ if (!is_single() || get_post_type() != "tournoi") {
 <?php
 if (is_single() || is_page(get_page_by_path('monitor'))) {
     $list_body_class = "vertical-layout vertical-menu-modern navbar-floating footer-static menu-collapsed";
-}
-elseif (is_page(get_page_by_path('elo')) && $_GET['sponso'] == "active") {
+} elseif (is_page(get_page_by_path('elo')) && $_GET['sponso'] == "active") {
     $list_body_class = "vertical-layout vertical-menu-modern navbar-floating footer-static menu-collapsed";
-}
-else {
+} else {
     $list_body_class = "vertical-layout vertical-menu-modern navbar-floating footer-static";
 }
 if ($type_top == "whitelabel") {
