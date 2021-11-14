@@ -809,6 +809,10 @@ html .content {
 .page-template-monitor .list-vainkeur-monitor a {
   color: #fff;
   font-size: 10px;
+  transition: all 0.2s ease-in;
+}
+.page-template-monitor .list-vainkeur-monitor a:hover {
+  color: #7367f0;
 }
 .page-template-monitor .header-monitor {
   text-align: center;

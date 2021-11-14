@@ -5,6 +5,10 @@
         a {
             color: #fff;
             font-size: 10px;
+            transition: all 0.2s ease-in;
+            &:hover{
+                color: $c5;
+            }
         }
     }
 
