@@ -66,7 +66,7 @@
             <?php endforeach; ?>
             <li class="nav-item has-sub">
                 <a class="d-flex align-items-center" href="#">
-                    <span class="ico">4️⃣</span> <span class="menu-title text-truncate">Autres catégories</span>
+                    <span class="ico">5️⃣</span> <span class="menu-title text-truncate">Autres catégories</span>
                 </a>
                 <ul class="menu-content">
                     <?php
