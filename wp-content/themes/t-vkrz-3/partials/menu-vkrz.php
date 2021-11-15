@@ -75,7 +75,7 @@
                         'orderby'       => 'count',
                         'order'         => 'DESC',
                         'hide_empty'    => true,
-                        'include'       => array(2, 4, 10, 56)
+                        'include'       => array(2, 4, 10, 56, 6)
                     ));
                     foreach ($cat_t as $cat) : ?>
                         <li>
