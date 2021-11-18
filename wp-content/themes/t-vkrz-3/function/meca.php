@@ -18,3 +18,4 @@ require_once 'meca/deal-utm.php';
 require_once 'meca/begin_t.php';
 require_once 'meca/check_user_level.php';
 require_once 'meca/newplayer.php';
+require_once 'meca/vainkeur_badge.php';
