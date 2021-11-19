@@ -121,6 +121,14 @@ function get_next_duel($id_ranking, $id_top, $current_id_vainkeur){
                     if (!in_array($id_top, get_exclude_top())) {
                         increase_top_counter($current_id_vainkeur);
                     }
+
+                    // Badge : Top with at least 50 contenders
+                    if (!get_vainkeur_badge($current_id_vainkeur, "Top with at least 50 contenders")) {
+                        if ($nb_contenders >= 50) {
+                            update_vainkeur_badge($current_id_vainkeur, "Top with at least 50 contenders");
+                        }
+                    }
+
                 }
 
                 if (is_user_logged_in()) {
@@ -251,6 +259,13 @@ function get_next_duel($id_ranking, $id_top, $current_id_vainkeur){
                         if (!in_array($id_top, get_exclude_top())) {
                             increase_top_counter($current_id_vainkeur);
                         }
+
+                        // Badge : Top with at least 50 contenders
+                        if (!get_vainkeur_badge($current_id_vainkeur, "Top with at least 50 contenders")) {
+                            if ($nb_contenders >= 50) {
+                                update_vainkeur_badge($current_id_vainkeur, "Top with at least 50 contenders");
+                            }
+                        }
                     }
 
                     if (is_user_logged_in()) {
@@ -284,6 +299,13 @@ function get_next_duel($id_ranking, $id_top, $current_id_vainkeur){
 
                     if (!in_array($id_top, get_exclude_top())) {
                         increase_top_counter($current_id_vainkeur);
+                    }
+
+                    // Badge : Top with at least 50 contenders
+                    if (!get_vainkeur_badge($current_id_vainkeur, "Top with at least 50 contenders")) {
+                        if ($nb_contenders >= 50) {
+                            update_vainkeur_badge($current_id_vainkeur, "Top with at least 50 contenders");
+                        }
                     }
                 }
 
@@ -329,6 +351,13 @@ function get_next_duel($id_ranking, $id_top, $current_id_vainkeur){
                     update_field('suspected_cheating_r', $is_suspected_cheating, $id_ranking);
                     if (!in_array($id_top, get_exclude_top())) {
                         increase_top_counter($current_id_vainkeur);
+                    }
+
+                    // Badge : Top with at least 50 contenders
+                    if (!get_vainkeur_badge($current_id_vainkeur, "Top with at least 50 contenders")) {
+                        if ($nb_contenders >= 50) {
+                            update_vainkeur_badge($current_id_vainkeur, "Top with at least 50 contenders");
+                        }
                     }
                 }
 

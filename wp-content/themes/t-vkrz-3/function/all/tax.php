@@ -61,5 +61,28 @@ function tax_init() {
         )
     );
 
+    register_taxonomy( 
+        'badges',
+        array('vainkeur'),
+        array(
+            'label' => 'Badges',
+            'labels' => array(
+                'name'              => _x( 'Badges', 'taxonomy general name' ),
+                'singular_name'     => _x( 'Badge', 'taxonomy singular name' ),
+                'search_items'      => __( 'Chercher un badge' ),
+                'all_items'         => __( 'Tous les badges' ),
+                'edit_item'         => __( 'Modifier le badge' ),
+                'update_item'       => __( 'Sauvegarder le badge' ),
+                'add_new_item'      => __( 'Ajouter un badge' ),
+                'new_item_name'     => __( 'Nouveau nom de badge' ),
+                'menu_name'         => __( 'Badges' )
+            ),
+            'hierarchical'      => false,
+            'show_ui'           => true,
+            'show_admin_column' => true,
+            'query_var'         => true,
+            'rewrite'           => array( 'slug' => 'badges' )
+        )
+    );
 }
 add_action('init', 'tax_init');
