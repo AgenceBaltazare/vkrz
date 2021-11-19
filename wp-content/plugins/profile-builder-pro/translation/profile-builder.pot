@@ -733,7 +733,7 @@ msgstr ""
 msgid "You have successfully linked your account to %%."
 msgstr ""
 
-#: ../pb-add-on-social-connect/index.php:390, ../pb-add-on-social-connect/twitter/twitter.php:109
+#: ../pb-add-on-social-connect/index.php:390, ../pb-add-on-social-connect/twitter/twitter.php:112
 msgid "Something went wrong. Please try again later!"
 msgstr ""
 
@@ -1265,11 +1265,11 @@ msgstr ""
 msgid "Connection with twitter Failed"
 msgstr ""
 
-#: ../pb-add-on-social-connect/twitter/twitter.php:148
+#: ../pb-add-on-social-connect/twitter/twitter.php:151
 msgid "Sign in with Twitter"
 msgstr ""
 
-#: ../pb-add-on-social-connect/twitter/twitter.php:142
+#: ../pb-add-on-social-connect/twitter/twitter.php:145
 msgid "Link with Twitter"
 msgstr ""
 

@@ -7,7 +7,7 @@ custom registration, custom registration form, custom registration page, extra u
 front-end register, front-end registration, frontend edit profile, edit profileregistration, customize profile, user fields, builder, profile builder, custom fields, avatar
 Requires at least: 3.1
 Tested up to: 5.8
-Stable tag: 3.5.8
+Stable tag: 3.5.9
 
 
 Login, registration and edit profile shortcodes for the front-end. Also you can choose what fields should be displayed or add custom ones.
@@ -101,6 +101,11 @@ This plugin only adds/removes fields in the front-end. The default information-f
 
 
 == Changelog ==
+= 3.5.9 =
+* Fix: Allow HTML in the register success messages
+* Misc: Added a filter that allows adding extra attributes to the login form password field: wppb_login_password_extra_attributes
+* Misc: Added filters for Select Multiple labels and values
+
 = 3.5.8 =
 * Fix: some incorrect translations which were causing errors
 * Fix: styling issues with Elementor widget

@@ -4,7 +4,7 @@ namespace ACA\ACF;
 
 /**
  * Show a notice when plugin dependencies are not met
- * @version 1.5
+ * @version 1.6
  */
 final class Dependencies {
 
@@ -227,7 +227,7 @@ final class Dependencies {
 		?>
 
 		<tr class="plugin-update-tr <?= $this->is_plugin_active() ? 'active' : 'inactive'; ?>">
-			<td colspan="3" class="plugin-update colspanchange">
+			<td colspan="100%" class="plugin-update colspanchange">
 				<div class="update-message notice inline notice-error notice-alt">
 					<?php if ( count( $this->messages ) > 1 )  : ?>
 						<p>
@@ -258,10 +258,10 @@ final class Dependencies {
 		?>
 
 		<style>
-			.plugins tr[data-plugin='<?php echo $this->basename; ?>'] th,
-			.plugins tr[data-plugin='<?php echo $this->basename; ?>'] td {
-				box-shadow: none;
-			}
+            .plugins tr[data-plugin='<?php echo $this->basename; ?>'] th,
+            .plugins tr[data-plugin='<?php echo $this->basename; ?>'] td {
+                box-shadow: none;
+            }
 		</style>
 
 		<?php

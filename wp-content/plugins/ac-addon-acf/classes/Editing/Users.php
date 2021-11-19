@@ -2,38 +2,43 @@
 
 namespace ACA\ACF\Editing;
 
+use ACP\Editing\View\AjaxSelect;
+
 class Users extends User {
 
-	public function get_view_settings() {
-		$field = $this->column->get_field();
-		$data = [
-			'type'                => 'acf_select2',
-			'ajax_populate'       => true,
-			'multiple'            => true,
-			'disable_revisioning' => 'true',
-		];
+	public function get_view( $context ) {
+		$view = new AjaxSelect();
+		$view->set_multiple( true )
+		     ->set_revisioning( false );
 
-		if ( $field->get( 'allow_null' ) ) {
-			$data['clear_button'] = true;
+		if ( $this->column->get_field()->get( 'allow_null' ) ) {
+			$view->set_clear_button( true );
 		}
 
-		return $data;
+		if ( $context === self::CONTEXT_BULK ) {
+			$view->has_methods( true );
+		}
+
+		return $view;
 	}
 
 	public function save( $id, $value ) {
-		if ( ! isset( $value['values'] ) ) {
-			return parent::save( $id, $value );
+		if ( ! isset( $value['method'] ) ) {
+			$value = [
+				'method' => 'replace',
+				'value'  => $value,
+			];
 		}
 
-		switch ( $value['save_strategy'] ) {
+		switch ( $value['method'] ) {
 			case 'add':
-				return parent::save( $id, $this->extend_value( $id, $value['values'] ) );
+				return parent::save( $id, $this->extend_value( $id, $value['value'] ) );
 
 			case 'remove':
-				return parent::save( $id, $this->reduce_value( $id, $value['values'] ) );
+				return parent::save( $id, $this->reduce_value( $id, $value['value'] ) );
 
 			default:
-				return parent::save( $id, $value['values'] );
+				return parent::save( $id, $value['value'] );
 		}
 	}
 

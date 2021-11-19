@@ -60,7 +60,13 @@ class Taxonomy extends Field
 	}
 
 	public function editing() {
-		return new Editing\Taxonomy( $this->column );
+		switch ( $this->column->get_acf_field_option( 'field_type' ) ) {
+			case 'checkbox' :
+			case 'multi_select' :
+				return new Editing\Taxonomies( $this->column );
+			default:
+				return new Editing\Taxonomy( $this->column );
+		}
 	}
 
 	public function search() {

@@ -54,6 +54,10 @@ abstract class Column extends AC\Column\Meta
 			$value = $value->filter()->implode( $this->get_separator() );
 		}
 
+		if ( is_array( $value ) ) {
+			return $this->get_empty_char();
+		}
+
 		// Wrap in ACF Append Prepend
 		if ( $value ) {
 			$prepend = $this->get_field()->get( 'prepend' );

@@ -17,6 +17,7 @@ class User extends Meta
 		$operators = new Operators( [
 			Operators::EQ,
 			Operators::NEQ,
+			Operators::CURRENT_USER,
 			Operators::IS_EMPTY,
 			Operators::NOT_IS_EMPTY,
 		] );

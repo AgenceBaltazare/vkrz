@@ -14,7 +14,7 @@ class Relationship extends PostObject {
 	}
 
 	public function editing() {
-		return new Editing\Relationship( $this->column );
+		return new Editing\PostObjects( $this->column );
 	}
 
 	public function filtering() {

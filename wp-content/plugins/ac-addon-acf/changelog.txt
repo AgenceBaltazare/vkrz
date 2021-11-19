@@ -1,12 +1,19 @@
 == Changelog ==
 
+= 2.7 =
+Release Date: September 21st, 2021
+
+* [Improved] It is now possible to smart filter user relation ships on 'current user'
+* [Improved] Refactor editing to make compatible with Admin Columns Pro 5.6
+* [Improved] Array check to prevent PHP warnings for unsupported fields.
+
 = 2.6.4 =
 Release Date: March 1st, 2021
 
 * [Improved] Better URL display for urlencoded URLs
 * [Improved] Better ACF field recognition for complex ACF Location settings
-* [Improved] Allow to clear value for Checkbox field
-* [Fixed] Prevent errors for nested group and repeater fields
+* [Improved] Allow clearing the value for Checkbox field
+* [Fixed] Prevent errors for nested groups and repeater fields
 
 = 2.6.3 =
 Release Date: September 1st, 2020

@@ -7,7 +7,6 @@ use ACA\ACF\Editing;
 use ACA\ACF\Field;
 use ACA\ACF\Filtering;
 use ACP;
-use ACP\Sorting\Type\DataType;
 
 class Wysiwyg extends Field {
 
@@ -18,7 +17,7 @@ class Wysiwyg extends Field {
 	}
 
 	public function editing() {
-		return new Editing\Wysiwyg( $this->column );
+		return new Editing\Wysiwyg( $this->column, $this->column->get_option( 'editable_type' ) );
 	}
 
 	public function filtering() {

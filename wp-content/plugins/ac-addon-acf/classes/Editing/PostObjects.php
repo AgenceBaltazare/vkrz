@@ -2,39 +2,40 @@
 
 namespace ACA\ACF\Editing;
 
+use ACP\Editing\View\AjaxSelect;
+
 class PostObjects extends PostObject {
 
-	/**
-	 * @return array
-	 */
-	public function get_view_settings() {
-		$data = parent::get_view_settings();
-
-		$data['type'] = 'acf_select2';
-		$data['multiple'] = true;
-		$data['disable_revisioning'] = true;
+	public function get_view( $context ) {
+		$view = new AjaxSelect();
+		$view->set_multiple( true )
+		     ->set_revisioning( false );
 
 		if ( $this->column->get_field()->get( 'allow_null' ) ) {
-			$data['clear_button'] = true;
+			$view->set_clear_button( true );
 		}
 
-		return $data;
+		if ( $context === self::CONTEXT_BULK ) {
+			$view->has_methods( true );
+		}
+
+		return $view;
 	}
 
 	public function save( $id, $value ) {
-		if ( ! isset( $value['save_strategy'] ) ) {
+		if ( ! isset( $value['method'] ) ) {
 			return parent::save( $id, $value );
 		}
 
-		switch ( $value['save_strategy'] ) {
+		switch ( $value['method'] ) {
 			case 'add':
-				return parent::save( $id, $this->extend_value( $id, $value['values'] ) );
+				return parent::save( $id, $this->extend_value( $id, $value['value'] ) );
 
 			case 'remove':
-				return parent::save( $id, $this->reduce_value( $id, $value['values'] ) );
+				return parent::save( $id, $this->reduce_value( $id, $value['value'] ) );
 
 			default:
-				return parent::save( $id, $value['values'] );
+				return parent::save( $id, $value['value'] );
 
 		}
 	}

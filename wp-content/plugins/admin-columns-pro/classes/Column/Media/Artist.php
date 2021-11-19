@@ -16,7 +16,7 @@ class Artist extends AC\Column\Media\Artist
 	}
 
 	public function editing() {
-		return new Editing\Model\Media\MetaData( $this, 'artist' );
+		return new Editing\Service\Media\MetaData( new Editing\View\Text(), 'artist' );
 	}
 
 	public function export() {

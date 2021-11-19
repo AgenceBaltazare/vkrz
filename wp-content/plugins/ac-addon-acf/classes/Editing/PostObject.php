@@ -46,7 +46,6 @@ class PostObject extends Editing
 
 		$data['type'] = 'select2_dropdown';
 		$data['ajax_populate'] = true;
-		$data['store_values'] = false;
 
 		if ( $this->column->get_field()->get( 'allow_null' ) ) {
 			$data['clear_button'] = true;

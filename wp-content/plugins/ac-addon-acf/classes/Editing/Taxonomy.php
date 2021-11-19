@@ -5,11 +5,22 @@ namespace ACA\ACF\Editing;
 use AC;
 use ACA\ACF\Editing;
 use ACP;
+use ACP\Editing\View\AjaxSelect;
 use ACP\Helper\Select;
 use ACP\Helper\Select\Formatter;
 
 class Taxonomy extends Editing
 	implements ACP\Editing\PaginatedOptions {
+
+	public function get_view( $context ) {
+		$view = new AjaxSelect();
+
+		if ( $this->column->get_field()->get( 'allow_null' ) ) {
+			$view->set_clear_button( true );
+		}
+
+		return $view;
+	}
 
 	public function get_view_settings() {
 		$data = parent::get_view_settings();
@@ -63,62 +74,6 @@ class Taxonomy extends Editing
 		$values = [];
 		foreach ( ac_helper()->taxonomy->get_terms_by_ids( $term_ids, $taxonomy ) as $term ) {
 			$values[ $term->term_id ] = $term->name;
-		}
-
-		return $values;
-	}
-
-	/**
-	 * @param $id
-	 * @param $value
-	 *
-	 * @return bool
-	 */
-	public function save( $id, $value ) {
-		if ( ! isset( $value['save_strategy'] ) ) {
-			return parent::save( $id, $value );
-		}
-
-		switch ( $value['save_strategy'] ) {
-			case 'add':
-				return parent::save( $id, $this->extend_value( $id, $value['values'] ) );
-
-			case 'remove':
-				return parent::save( $id, $this->reduce_value( $id, $value['values'] ) );
-
-			default:
-				return parent::save( $id, $value['values'] );
-
-		}
-
-	}
-
-	/**
-	 * @param int   $id
-	 * @param array $terms
-	 *
-	 * @return array
-	 */
-	private function extend_value( $id, $terms ) {
-		$values = array_keys( $this->get_edit_value( $id ) );
-		$new_values = array_merge( $values, $terms );
-
-		return array_unique( $new_values );
-	}
-
-	/**
-	 * @param int   $id
-	 * @param array $terms
-	 *
-	 * @return array
-	 */
-	private function reduce_value( $id, $terms ) {
-		$values = array_keys( $this->get_edit_value( $id ) );
-
-		foreach ( $values as $key => $term ) {
-			if ( in_array( $term, $terms ) ) {
-				unset( $values[ $key ] );
-			}
 		}
 
 		return $values;

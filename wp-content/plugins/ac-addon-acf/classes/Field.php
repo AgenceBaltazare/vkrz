@@ -54,7 +54,7 @@ class Field
 	}
 
 	public function editing() {
-		return new Editing\Disabled( $this->column );
+		return false;
 	}
 
 	public function filtering() {

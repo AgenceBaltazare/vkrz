@@ -15,7 +15,7 @@ class User extends Editing
 		$user_ids = parent::get_edit_value( $id );
 
 		if ( empty( $user_ids ) ) {
-			return false;
+			return [];
 		}
 
 		$values = [];

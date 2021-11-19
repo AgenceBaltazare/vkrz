@@ -6,30 +6,15 @@ use AC;
 
 final class AdvancedCustomFields extends AC\Plugin {
 
-	/**
-	 * @var string
-	 */
-	protected $file;
-
-	/**
-	 * @param string $file Location of the plugin main file
-	 */
 	public function __construct( $file ) {
-		$this->file = $file;
-	}
-
-	protected function get_file() {
-		return $this->file;
-	}
-
-	protected function get_version_key() {
-		return 'aca_acf';
+		parent::__construct( $file, 'aca_acf' );
 	}
 
 	/**
 	 * Register hooks
 	 */
 	public function register() {
+		add_action( 'ac/column/settings', [ $this, 'register_editing_sections' ] );
 		add_action( 'ac/column_groups', [ $this, 'register_column_groups' ] );
 		add_action( 'ac/column_types', [ $this, 'add_columns' ] );
 		add_action( 'ac/table_scripts/editing', [ $this, 'table_scripts_editing' ] );
@@ -67,12 +52,20 @@ final class AdvancedCustomFields extends AC\Plugin {
 	}
 
 	public function table_scripts_editing() {
-		wp_enqueue_script( 'ac-acf-table', $this->get_url() . 'assets/js/table.js', [ 'jquery' ], $this->get_version() );
-		wp_enqueue_style( 'ac-acf-table', $this->get_url() . 'assets/css/table.css' );
+		$script = new AC\Asset\Script( 'ac-acf-table', $this->get_location()->with_suffix( 'assets/js/table.js' ), [ 'jquery' ] );
+		$script->enqueue();
+
+		$style = new AC\Asset\Style( 'ac-acf-table', $this->get_location()->with_suffix( 'assets/css/table.css' ) );
+		$style->enqueue();
 	}
 
 	public function settings_scripts() {
-		wp_enqueue_script( 'ac-acf-settings', $this->get_url() . 'assets/js/admin.js', [ 'jquery' ], $this->get_version() );
+		$script = new AC\Asset\Script( 'ac-acf-settings', $this->get_location()->with_suffix( 'assets/js/admin.js' ), [ 'jquery' ] );
+		$script->enqueue();
+	}
+
+	public function register_editing_sections( AC\Column $column ) {
+		( new ColumnEditingSettingSetter() )->register( $column );
 	}
 
 }

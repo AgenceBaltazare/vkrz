@@ -6,8 +6,8 @@ function wppb_multiple_select_handler( $output, $form_location, $field, $user_id
 		$item_description = wppb_icl_t( 'plugin profile-builder-pro', 'custom_field_'.$field['id'].'_description_translation', $field['description'] );
 		$item_option_labels = wppb_icl_t( 'plugin profile-builder-pro', 'custom_field_'.$field['id'].'_labels_translation', $field['labels'] );
 
-		$select_labels = explode( ',', $item_option_labels );
-		$select_values = explode( ',', $field['options'] );
+        $select_labels = apply_filters( 'wppb_multiple_select_labels_array', explode( ',', $item_option_labels ), $field, $form_location, $user_id, $request_data );
+        $select_values = apply_filters( 'wppb_multiple_select_options_array', explode( ',', $field['options'] ), $field, $form_location, $user_id, $request_data );
 
 		$extra_attr = apply_filters( 'wppb_extra_attribute', '', $field, $form_location );
 

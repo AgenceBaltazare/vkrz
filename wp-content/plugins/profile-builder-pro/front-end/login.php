@@ -167,7 +167,7 @@ function wppb_login_form( $args = array() ) {
 			</p>
 			<p class="login-password">
 				<label for="' . esc_attr( $args['id_password'] ) . '">' . esc_html( $args['label_password'] ) . '</label>
-				<input type="password" name="pwd" id="' . esc_attr( $args['id_password'] ) . '" class="input" value="" size="20" />';
+				<input type="password" name="pwd" id="' . esc_attr( $args['id_password'] ) . '" class="input" value="" size="20" '. apply_filters( 'wppb_login_password_extra_attributes', '' ) .'/>';
 
     /* add the HTML for the visibility toggle */
     $form .= wppb_password_visibility_toggle_html();

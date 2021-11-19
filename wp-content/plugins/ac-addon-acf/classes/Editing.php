@@ -51,7 +51,7 @@ class Editing extends ACP\Editing\Model {
 		}
 
 		if ( 'uploadedTo' === $field->get( 'library' ) ) {
-			$editable['attachment']['library']['uploaded_to_post'] = true;
+			$data['attachment']['library']['uploaded_to_post'] = true;
 		}
 
 		if ( $field->get( 'multiple' ) ) {

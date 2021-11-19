@@ -40,7 +40,7 @@ class AjaxResetSorting implements Registrable {
 			$list_screen = $this->storage->find( new ListScreenId( filter_input( INPUT_POST, 'layout' ) ) );
 
 			if ( ! $list_screen ) {
-				wp_die();
+				exit;
 			}
 
 			$storage_key = $list_screen->get_storage_key();

@@ -20,7 +20,7 @@ class Album extends AC\Column\Media\Album
 	}
 
 	public function editing() {
-		return new Editing\Model\Media\MetaData( $this, $this->get_sub_key() );
+		return new Editing\Service\Media\MetaData( new Editing\View\Text(), $this->get_sub_key() );
 	}
 
 	public function search() {

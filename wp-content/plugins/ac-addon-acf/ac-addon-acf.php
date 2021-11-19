@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: 	Admin Columns Pro - Advanced Custom Fields (ACF)
-Version: 		2.6.4
+Version: 		2.7
 Description: 	Supercharges Admin Columns Pro with columns for Advanced Custom Fields (ACF)
 Author:         AdminColumns.com
 Author URI:     https://www.admincolumns.com
@@ -24,8 +24,8 @@ if ( ! is_admin() ) {
 require_once __DIR__ . '/classes/Dependencies.php';
 
 add_action( 'after_setup_theme', function () {
-	$dependencies = new Dependencies( plugin_basename( __FILE__ ), '2.6.4' );
-	$dependencies->requires_acp( '5.4' );
+	$dependencies = new Dependencies( plugin_basename( __FILE__ ), '2.7' );
+	$dependencies->requires_acp( '5.6' );
 	$dependencies->requires_php( '5.6.20' );
 
 	if ( ! class_exists( 'acf', false ) ) {
@@ -52,6 +52,12 @@ add_action( 'after_setup_theme', function () {
 	$addon->register();
 } );
 
+/**
+ * @return AdvancedCustomFields
+ * @deprecated 2.7
+ */
 function ac_addon_acf() {
+	_deprecated_function( __METHOD__, '2.7' );
+
 	return new AdvancedCustomFields( __FILE__ );
 }

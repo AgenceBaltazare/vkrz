@@ -26,7 +26,7 @@ class PostObject extends Field {
 		$value = $this->column->get_formatted_value( new Collection( $this->get_raw_value( $id ) ) );
 		$setting_limit = $this->column->get_setting( 'number_of_items' );
 
-		return ac_helper()->html->more( $value->all(), $setting_limit ? $setting_limit->get_value() : false );
+		return ac_helper()->html->more( ac_helper()->array->filter( $value->all() ), $setting_limit ? $setting_limit->get_value() : false );
 	}
 
 	/**
