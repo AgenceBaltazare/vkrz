@@ -399,40 +399,4 @@ foreach($list_user_tops as $top){
     </div>
 </div>
 
-<?php foreach($list_user_tops as $r_user) : ?>
-    <?php if($r_user['nb_votes'] > 0 && $r_user['state'] == 'done'): ?>
-        <div class="vertical-modal-ex">
-            <div class="modal fade" id="commentModal-<?php echo $r_user['id_top']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalCenterTitle">Qu'as-tu pensé de ce Top <?php echo get_the_title($r_user['id_top']); ?>?</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <form class="form form-vertical form-note" data-id-top="<?php echo $r_user['id_top']; ?>" data-uuiduser="<?php echo $uuiduser; ?>">
-                            <div class="modal-body">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <textarea class="form-control commentairezone" rows="4" placeholder="Ton commenaire..."></textarea>
-                                            <p class="merci">
-                                                Un grand Merci pour ce retour <span class="ico">🙏</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer text-center">
-                                <button type="submit" class="tohidecta btn btn-primary mr-1 waves-effect waves-float waves-light">Valider</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    <?php endif; ?>
-<?php endforeach; ?>
-
 <?php get_footer(); ?>

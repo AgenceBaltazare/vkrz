@@ -5,6 +5,9 @@
 global $uuiduser;
 if (isset($_GET['id_top']) && !empty($_GET['id_top'])) {
     $id_top  = $_GET['id_top'];
+    if(get_post_status($id_top) != "publish"){
+        header('Location: ' . get_bloginfo('url'));
+    }
 } else {
     header('Location: ' . get_bloginfo('url'));
 }
@@ -38,18 +41,18 @@ $contenders_ranking   = get_contenders_ranking($id_top);
 
                     <div class="col-md-10">
 
-                        <?php if ($id_top == 271927) : ?>
-                            <h2>Liste des 25 premiers du classement mondial</h2>
+                        <?php if (get_field('limitation_elo_m_t', $id_top)) : ?>
+                            <h2>Liste des <?php the_field('limitation_elo_m_t', $id_top); ?> premiers du classement mondial</h2>
                         <?php endif; ?>
 
                         <div class="list-classement">
 
                             <?php
                             $i = 1;
-                            if ($id_top == 271927) {
-                                $limit = 25;
+                            if (get_field('limitation_elo_m_t', $id_top)) {
+                                $limit = get_field('limitation_elo_m_t', $id_top);
                             } else {
-                                $limit = 10000;
+                                $limit = 1000000;
                             }
                             foreach ($contenders_ranking as $contender) :
                                 if ($i <= $limit) :

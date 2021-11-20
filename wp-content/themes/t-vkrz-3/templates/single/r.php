@@ -223,7 +223,8 @@ $top_datas    = get_top_data($id_top);
                                                         array(
                                                             'taxonomy' => 'type',
                                                             'field'    => 'slug',
-                                                            'terms'    => array('classik', 'sponso')
+                                                            'terms'    => array('private', 'whitelabel'),
+                                                            'operator' => 'NOT IN'
                                                         ),
                                                     ),
                                                 ));
@@ -251,7 +252,8 @@ $top_datas    = get_top_data($id_top);
                                                             array(
                                                                 'taxonomy' => 'type',
                                                                 'field'    => 'slug',
-                                                                'terms'    => array('classik', 'sponso')
+                                                                'terms'    => array('private','whitelabel', 'onboarding'),
+                                                                'operator' => 'NOT IN'
                                                             ),
                                                         ),
                                                     ));
