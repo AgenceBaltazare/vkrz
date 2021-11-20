@@ -342,7 +342,7 @@ $sponso_datas           = get_players_of_top($id_top);
                                                     <?php elseif ($i == 3) : ?>
                                                         <span class="ico">🥉</span>
                                                     <?php else : ?>
-                                                        <span><?php echo $i; ?></span>
+                                                        <span><?php echo $i; ?><br></span>
                                                     <?php endif; ?>
                                                     <?php if (!$top_infos['top_d_titre']) : ?>
                                                         <span class="ranking-title"><?php echo $contender["contender_name"]; ?></span>
