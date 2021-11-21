@@ -13,6 +13,70 @@ $top_datas              = get_top_data($id_top);
 $user_single_top_data   = array_search($id_top, $list_t_already_done);
 $contenders_ranking     = get_contenders_ranking($id_top);
 $sponso_datas           = get_players_of_top($id_top);
+$contender_list         = $contenders_ranking;
+$nb_contender           = count($contender_list);
+$ranking_points         = array();
+$ranking_position       = array();
+
+foreach ($contender_list as $contender) {
+    for ($nbc = 0; $nbc <= $nb_contender; $nbc++) {
+        ${"contender_" . $contender['id'] . "_place_" . $pt} = 0;
+    }
+}
+
+$player_rank = new WP_Query(array(
+    'ignore_sticky_posts'       => true,
+    'update_post_meta_cache'    => false,
+    'no_found_rows'             => true,
+    'post_type'                 => 'classement',
+    'orderby'                   => 'date',
+    'order'                     => 'DESC',
+    'posts_per_page'            => -1,
+    'meta_query' => array(
+        'relation' => 'AND',
+        array(
+            'key' => 'done_r',
+            'value' => 'done',
+            'compare' => '=',
+        ),
+        array(
+            'key'       => 'id_tournoi_r',
+            'value'     => $id_top,
+            'compare'   => '=',
+        )
+    )
+));
+while ($player_rank->have_posts()) : $player_rank->the_post();
+
+    $user_ranking = get_user_ranking(get_the_id());
+    $pt = 0;
+
+    foreach ($user_ranking as $c) {
+
+        $points = $nb_contender - $pt;
+        ${"contender_" . $c} = ${"contender_" . $c} + $points;
+
+        for ($nbc = 0; $nbc <= $nb_contender; $nbc++) {
+            if ($nbc == $pt) {
+                ${"contender_" . $c . "_place_" . $nbc} = ${"contender_" . $c . "_place_" . $nbc} + 1;
+            }
+        }
+        $pt++;
+    }
+
+endwhile;
+
+$nb_ranks = $player_rank->post_count;
+
+foreach ($contender_list as $contender) {
+
+    array_push($ranking_points, array(
+        'contender_id'   => $contender['id'],
+        'contender_name' => get_the_title($contender['id']),
+        'contender_pts'  => ${"contender_" . $contender['id']},
+    ));
+}
+?>
 ?>
 <div class="page-template-elo-mondial app-content content cover" style="background: url(<?php echo $top_infos['top_cover']; ?>) center center no-repeat">
     <div class="content-overlay"></div>
@@ -99,13 +163,13 @@ $sponso_datas           = get_players_of_top($id_top);
                                                 <span class="ico4">🏆</span>
                                             </div>
                                             <h2 class="font-weight-bolder">
-                                                <?php echo $top_datas['nb_tops']; ?>
+                                                <?php echo $top_datas['nb_completed_top']; ?>
                                             </h2>
                                             <p class="card-text legende">
-                                                <?php if ($top_datas['nb_tops'] <= 1) : ?>
-                                                    Top
+                                                <?php if ($top_datas['nb_completed_top'] <= 1) : ?>
+                                                    Top finalisé
                                                 <?php else : ?>
-                                                    Tops
+                                                    Tops finalisés
                                                 <?php endif; ?>
                                             </p>
                                         </div>
@@ -144,7 +208,7 @@ $sponso_datas           = get_players_of_top($id_top);
                             <section class="app-user-view">
                                 <div class="row match-height">
 
-                                    <div class="col-sm-4 col-6">
+                                    <div class="col-sm-2 col-6">
                                         <div class="card text-center">
                                             <div class="card-body">
                                                 <div class="ico-stats">
@@ -160,7 +224,7 @@ $sponso_datas           = get_players_of_top($id_top);
                                         </div>
                                     </div>
 
-                                    <div class="col-sm-4 col-6">
+                                    <div class="col-sm-2 col-6">
                                         <div class="card text-center">
                                             <div class="card-body">
                                                 <div class="ico-stats">
@@ -176,11 +240,11 @@ $sponso_datas           = get_players_of_top($id_top);
                                         </div>
                                     </div>
 
-                                    <div class="col-sm-4 col-6">
+                                    <div class="col-sm-2 col-6">
                                         <div class="card text-center">
                                             <div class="card-body">
                                                 <div class="ico-stats">
-                                                    <span class="ico4">1️⃣</span>
+                                                    <span class="ico4">☝️</span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">
                                                     <?php
@@ -195,20 +259,49 @@ $sponso_datas           = get_players_of_top($id_top);
                                         </div>
                                     </div>
 
-                                    <div class="col-sm-4 col-6">
+                                    <div class="col-sm-2 col-6">
                                         <div class="card text-center">
                                             <div class="card-body">
                                                 <div class="ico-stats">
-                                                    <span class="ico4">1️⃣</span>
+                                                    <span class="ico4">✅</span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">
-                                                    <?php
-                                                    $vainkeur_info = vainkeur_info_by_uuid($sponso_datas['players_list_uuid']);
-                                                    echo round($vainkeur_info['one_top_percent']) . "%";
-                                                    ?>
+                                                    <?php echo round($top_datas['nb_top_complet'] * 100 / $nb_ranks); ?>%
                                                 </h2>
                                                 <p class="card-text legende">
-                                                    un seul Top
+                                                    <?php echo $top_datas['nb_top_complet']; ?> Tops complet sur <?php echo $nb_ranks; ?>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-2 col-6">
+                                        <div class="card text-center">
+                                            <div class="card-body">
+                                                <div class="ico-stats">
+                                                    <span class="ico4">3️⃣</span>
+                                                </div>
+                                                <h2 class="font-weight-bolder">
+                                                    <?php echo round($top_datas['nb_top_3'] * 100 / $nb_ranks); ?>%
+                                                </h2>
+                                                <p class="card-text legende">
+                                                    <?php echo $top_datas['nb_top_3']; ?> Tops 3
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-2 col-6">
+                                        <div class="card text-center">
+                                            <div class="card-body">
+                                                <div class="ico-stats">
+                                                    <span class="ico4">👌</span>
+                                                </div>
+                                                <h2 class="font-weight-bolder">
+                                                    <?php echo $top_datas['percent_finition']; ?>%
+                                                </h2>
+                                                <p class="card-text legende">
+                                                    finition du Top
                                                 </p>
                                             </div>
                                         </div>
@@ -266,70 +359,6 @@ $sponso_datas           = get_players_of_top($id_top);
                         <div class="card">
                             <div class="card-body">
                                 <h3 class="titrage-classement">Classement aux points</h3>
-                                <?php
-                                $contender_list = $contenders_ranking;
-                                $nb_contender   = count($contender_list);
-                                $ranking_points = array();
-                                $ranking_position = array();
-
-                                foreach ($contender_list as $contender) {
-                                    for ($nbc = 0; $nbc <= $nb_contender; $nbc++) {
-                                        ${"contender_" . $contender['id'] . "_place_" . $pt} = 0;
-                                    }
-                                }
-
-                                $player_rank = new WP_Query(array(
-                                    'ignore_sticky_posts'       => true,
-                                    'update_post_meta_cache'    => false,
-                                    'no_found_rows'             => true,
-                                    'post_type'                 => 'classement',
-                                    'orderby'                   => 'date',
-                                    'order'                     => 'DESC',
-                                    'posts_per_page'            => -1,
-                                    'meta_query' => array(
-                                        'relation' => 'AND',
-                                        array(
-                                            'key'       => 'nb_votes_r',
-                                            'value'     => 0,
-                                            'compare'   => '>',
-                                        ),
-                                        array(
-                                            'key'       => 'id_tournoi_r',
-                                            'value'     => $id_top,
-                                            'compare'   => '=',
-                                        )
-                                    )
-                                ));
-                                while ($player_rank->have_posts()) : $player_rank->the_post();
-
-                                    $user_ranking = get_user_ranking(get_the_id());
-                                    $pt = 0;
-
-                                    foreach ($user_ranking as $c) {
-
-                                        $points = $nb_contender - $pt;
-                                        ${"contender_" . $c} = ${"contender_" . $c} + $points;
-
-                                        for ($nbc = 0; $nbc <= $nb_contender; $nbc++) {
-                                            if ($nbc == $pt) {
-                                                ${"contender_" . $c . "_place_" . $nbc} = ${"contender_" . $c . "_place_" . $nbc} + 1;
-                                            }
-                                        }
-                                        $pt++;
-                                    }
-
-                                endwhile;
-
-                                foreach ($contender_list as $contender) {
-
-                                    array_push($ranking_points, array(
-                                        'contender_id'   => $contender['id'],
-                                        'contender_name' => get_the_title($contender['id']),
-                                        'contender_pts'  => ${"contender_" . $contender['id']},
-                                    ));
-                                }
-                                ?>
-
                                 <div class="list-elo">
                                     <?php
                                     array_sort_by_column($ranking_points, 'contender_pts');

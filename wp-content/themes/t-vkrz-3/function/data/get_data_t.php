@@ -59,8 +59,10 @@ function get_top_infos($id_top, $id_ranking = false){
 function get_top_data($id_top){
 
     $count_votes_of_t       = 0;
-    $count_note_of_t        = 0;
     $count_completed_top    = 0;
+    $nb_top_3               = 0;
+    $nb_top_complet         = 0;
+    $percent_finition       = 0;
 
     $all_ranking_of_t = new WP_Query(array(
         'post_type'                 => 'classement',
@@ -88,50 +90,30 @@ function get_top_data($id_top){
         $count_votes_of_t = $count_votes_of_t + get_field('nb_votes_r');
         if (get_field('done_r')) {
             $count_completed_top++;
+
+            if (get_field('type_top_r') == "top3") {
+                $nb_top_3++;
+            } elseif (get_field('type_top_r') == "complet") {
+                $nb_top_complet++;
+            }
+
         }
 
     endwhile;
 
-    $all_notes_of_t = new WP_Query(array(
-        'post_type'                 => 'note',
-        'posts_per_page'            => '-1',
-        'ignore_sticky_posts'       => true,
-        'update_post_meta_cache'    => false,
-        'no_found_rows'             => true,
-        'meta_query'                => array(
-            array(
-                'key'       => 'id_t_n',
-                'value'     => $id_top,
-                'compare'   => '=',
-            )
-        )
-    ));
-    while ($all_notes_of_t->have_posts()) : $all_notes_of_t->the_post();
-
-        $top_note        = get_field('id_s_n');
-        if($top_note > 3){
-            $top_note = 3;
-        }
-        $count_note_of_t = $count_note_of_t + $top_note;
-
-    endwhile;
-
-    if($all_notes_of_t->post_count > 0){
-        $moyenne_note = round($count_note_of_t / $all_notes_of_t->post_count);
-    }
-    else{
-        $moyenne_note = 0;
-    }
+    $nb_ranks         = $all_ranking_of_t->post_count;
+    $percent_finition = round($count_completed_top * 100 / $nb_ranks);
 
     $nb_comments    = get_comments('status=approve&type=comments&hierarchical=true&count=true&post_id='.$id_top);
 
     return array(
-        "nb_tops"           => $all_ranking_of_t->post_count,
+        "nb_tops"           => $nb_ranks,
         "nb_votes"          => $count_votes_of_t,
-        "nb_note"           => $all_notes_of_t->post_count,
-        "moy_note"          => $moyenne_note,
         "nb_completed_top"  => $count_completed_top,
-        'nb_comments'       => $nb_comments
+        'nb_comments'       => $nb_comments,
+        'nb_top_3'          => $nb_top_3,
+        'nb_top_complet'    => $nb_top_complet,
+        'percent_finition'  => $percent_finition
     );
 }
 
