@@ -148,38 +148,40 @@ $top_datas    = get_top_data($id_top);
 
                                                 <?php else : ?>
 
-                                                    <div class="separate mt-1 mb-2 d-block d-sm-none"></div>
+                                                    <?php if(get_post_status($id_top) == "publish") : ?>
+                                                        <div class="separate mt-1 mb-2 d-block d-sm-none"></div>
 
-                                                    <div class="card">
-                                                        <div class="card-body">
-                                                            <h2 class="stats-mondiales mb-0">
-                                                                <b>Stats mondiales :</b>
-                                                                <?php echo $top_datas['nb_tops']; ?> 🏆 <span class="space"></span> <?php echo $top_datas['nb_votes']; ?> 💎
-                                                            </h2>
-                                                            <div class="mt-1">
-                                                                <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_top; ?>" class="w-100 btn btn-primary waves-effect">
-                                                                    <span class="ico">🌎</span> Voir le Top mondial
-                                                                </a>
-                                                            </div>
-                                                            <h2 class="stats-mondiales mt-2 mb-0">
-                                                                <b>Ressemblance :</b>
-                                                                <?php
-                                                                $similar = get_user_percent(get_field('uuid_user_r', $id_ranking), $id_top);
-                                                                echo $similar['percent'] . "％";
-                                                                ?>
-                                                                <?php if ($similar['nb_similar'] == 1) : ?>
-                                                                    <small>(<?php echo $similar['nb_similar']; ?> podium identique)</small>
-                                                                <?php elseif ($similar['nb_similar'] > 1) : ?>
-                                                                    <small>(<?php echo $similar['nb_similar']; ?> podiums identiques)</small>
-                                                                <?php endif; ?>
-                                                            </h2>
-                                                            <div class="mt-1">
-                                                                <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_top; ?>" class="d-flex align-items-center w-100 btn btn-outline-primary waves-effect">
-                                                                    <span class="ico ico-reverse">👀</span> Voir le classement des autres utilisateurs
-                                                                </a>
+                                                        <div class="card">
+                                                            <div class="card-body">
+                                                                <h2 class="stats-mondiales mb-0">
+                                                                    <b>Stats mondiales :</b>
+                                                                    <?php echo $top_datas['nb_tops']; ?> 🏆 <span class="space"></span> <?php echo $top_datas['nb_votes']; ?> 💎
+                                                                </h2>
+                                                                <div class="mt-1">
+                                                                    <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_top; ?>" class="w-100 btn btn-primary waves-effect">
+                                                                        <span class="ico">🌎</span> Voir le Top mondial
+                                                                    </a>
+                                                                </div>
+                                                                <h2 class="stats-mondiales mt-2 mb-0">
+                                                                    <b>Ressemblance :</b>
+                                                                    <?php
+                                                                    $similar = get_user_percent(get_field('uuid_user_r', $id_ranking), $id_top);
+                                                                    echo $similar['percent'] . "％";
+                                                                    ?>
+                                                                    <?php if ($similar['nb_similar'] == 1) : ?>
+                                                                        <small>(<?php echo $similar['nb_similar']; ?> podium identique)</small>
+                                                                    <?php elseif ($similar['nb_similar'] > 1) : ?>
+                                                                        <small>(<?php echo $similar['nb_similar']; ?> podiums identiques)</small>
+                                                                    <?php endif; ?>
+                                                                </h2>
+                                                                <div class="mt-1">
+                                                                    <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_top; ?>" class="d-flex align-items-center w-100 btn btn-outline-primary waves-effect">
+                                                                        <span class="ico ico-reverse">👀</span> Voir le classement des autres utilisateurs
+                                                                    </a>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    <?php endif; ?>
 
                                                 <?php endif; ?>
 
@@ -252,7 +254,7 @@ $top_datas    = get_top_data($id_top);
                                                             array(
                                                                 'taxonomy' => 'type',
                                                                 'field'    => 'slug',
-                                                                'terms'    => array('private','whitelabel', 'onboarding'),
+                                                                'terms'    => array('private', 'whitelabel', 'onboarding'),
                                                                 'operator' => 'NOT IN'
                                                             ),
                                                         ),
@@ -375,7 +377,7 @@ $top_datas    = get_top_data($id_top);
                 </li>
                 <li>
                     <a href="<?php echo $banner; ?>" download target="_blank">
-                        <i class="social-media mb-12 fas fa-download"></i> Télécharger une image
+                        <i class="social-media mb-12 fas fa-download"></i> Télécharger l'image de mon Top
                     </a>
                 </li>
                 <li>
