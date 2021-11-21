@@ -21,5 +21,5 @@ function get_single_ranking($data){
         "classement" => $list_ranking,
     ));
         
-    return $total_rank;
+    return $list_ranking;
 }
