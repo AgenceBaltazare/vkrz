@@ -140,13 +140,7 @@ $sponso_datas           = get_players_of_top($id_top);
                             </div>
                         </section>
 
-                        <?php
-                        $get_top_type = get_the_terms($id_top, 'type');
-                        foreach ($get_top_type as $type_top) {
-                            $type_top = $type_top->slug;
-                        }
-                        ?>
-                        <?php if ($type_top == "sponso") : ?>
+                        <?php if (isset($sponso_datas['nb_players_unique']) && $sponso_datas['nb_players_unique'] > 0) : ?>
                             <section class="app-user-view">
                                 <div class="row match-height">
 
@@ -177,6 +171,25 @@ $sponso_datas           = get_players_of_top($id_top);
                                                 </h2>
                                                 <p class="card-text legende">
                                                     Vainkeur
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-4 col-6">
+                                        <div class="card text-center">
+                                            <div class="card-body">
+                                                <div class="ico-stats">
+                                                    <span class="ico4">1️⃣</span>
+                                                </div>
+                                                <h2 class="font-weight-bolder">
+                                                    <?php
+                                                    $vainkeur_info = vainkeur_info_by_uuid($sponso_datas['players_list_uuid']);
+                                                    echo round($vainkeur_info['one_top_percent']) . "%";
+                                                    ?>
+                                                </h2>
+                                                <p class="card-text legende">
+                                                    un seul Top
                                                 </p>
                                             </div>
                                         </div>
