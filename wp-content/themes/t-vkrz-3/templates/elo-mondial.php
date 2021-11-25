@@ -5,7 +5,7 @@
 global $uuiduser;
 if (isset($_GET['id_top']) && !empty($_GET['id_top'])) {
     $id_top  = $_GET['id_top'];
-    if(get_post_status($id_top) != "publish"){
+    if(get_post_status($id_top) == "draft"){
         header('Location: ' . get_bloginfo('url'));
     }
 } else {
