@@ -1273,7 +1273,6 @@ html .content {
 
 .content-intro {
   min-height: 80vh;
-  display: flex;
   align-items: center;
 }
 .content-intro .intro {
