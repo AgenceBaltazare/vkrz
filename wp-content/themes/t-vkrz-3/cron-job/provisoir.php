@@ -17,14 +17,8 @@ while ($vainkeur->have_posts()) : $vainkeur->the_post();
 
     $id_vainkeur = get_the_ID();
 
-    if(get_field('nb_vote_vkrz') >= 1000){
-        update_vainkeur_badge($id_vainkeur, '1 000 votes');
-    }
-    if (get_field('nb_vote_vkrz') >= 10000) {
-        update_vainkeur_badge($id_vainkeur, '10 000 votes');
-    }
-    if (get_field('nb_vote_vkrz') >= 100000) {
-        update_vainkeur_badge($id_vainkeur, '100 000 votes');
+    if(get_field('nb_top_vkrz') >= 1){
+        update_vainkeur_badge($id_vainkeur, 'Premier Top');
     }
 
 endwhile; ?>
