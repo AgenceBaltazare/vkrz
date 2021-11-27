@@ -12,14 +12,19 @@ $vainkeur = new WP_Query(array(
     'post_type'              => 'vainkeur',
     'orderby'                => 'date',
     'order'                  => 'DESC',
-    'posts_per_page'         => 30000
+    'posts_per_page'         => -1,
+    'meta_query' => array(
+        array(
+            'key'       => 'nb_top_vkrz',
+            'value'     => 1,
+            'compare'   => '>=',
+        )
+    )
 ));
 while ($vainkeur->have_posts()) : $vainkeur->the_post();
 
     $id_vainkeur = get_the_ID();
 
-    if(get_field('nb_top_vkrz') >= 1){
-        update_vainkeur_badge($id_vainkeur, '1 000 votes');
-    }
+    update_vainkeur_badge($id_vainkeur, '1 000 votes');
 
 endwhile; ?>

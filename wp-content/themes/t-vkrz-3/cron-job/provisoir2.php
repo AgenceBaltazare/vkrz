@@ -13,7 +13,7 @@ $player = new WP_Query(array(
     'post_type'              => 'player',
     'orderby'                => 'date',
     'order'                  => 'DESC',
-    'posts_per_page'         => 30000
+    'posts_per_page'         => -1
 ));
 while ($player->have_posts()) : $player->the_post();
 
