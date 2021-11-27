@@ -129,6 +129,11 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="d-flex align-items-center" href="<?php the_permalink(get_page_by_path('trophes')); ?>">
+                    <span class="ico">🏅</span> <span class="menu-title text-truncate">Les trophés</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="d-flex align-items-center" href="<?php the_permalink(104853); ?>">
                     <span class="ico">🦙</span> <span class="menu-title text-truncate">A propos</span>
                 </a>

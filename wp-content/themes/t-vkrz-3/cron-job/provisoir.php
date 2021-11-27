@@ -4,28 +4,27 @@
     */
 ?>
 <?php
-$players = new WP_Query(array(
+$vainkeur = new WP_Query(array(
     'ignore_sticky_posts'    => true,
     'update_post_meta_cache' => false,
     'no_found_rows'          => true,
-    'post_type'              => 'player',
+    'post_type'              => 'vainkeur',
     'orderby'                => 'date',
     'order'                  => 'DESC',
-    'posts_per_page'         => -1
+    'posts_per_page'         => 30000
 ));
-while ($players->have_posts()) : $players->the_post();
+while ($vainkeur->have_posts()) : $vainkeur->the_post();
 
-    $list_ranking = "";
-    $id_ranking   = get_field('id_r_p');
-    $user_ranking = get_user_ranking($id_ranking);
+    $id_vainkeur = get_the_ID();
 
-    foreach ($user_ranking as $c) :
-
-        $list_ranking .= get_the_title($c) . " ";
-
-    $i++;
-    endforeach;
-
-    update_field('classement_p', $list_ranking, get_the_ID());
+    if(get_field('nb_vote_vkrz') >= 1000){
+        update_vainkeur_badge($id_vainkeur, '1 000 votes');
+    }
+    if (get_field('nb_vote_vkrz') >= 10000) {
+        update_vainkeur_badge($id_vainkeur, '10 000 votes');
+    }
+    if (get_field('nb_vote_vkrz') >= 100000) {
+        update_vainkeur_badge($id_vainkeur, '100 000 votes');
+    }
 
 endwhile; ?>
