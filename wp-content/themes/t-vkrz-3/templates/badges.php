@@ -96,14 +96,14 @@ get_header();
                                     <div class="card-body">
                                         <div class="eh">
                                             <span class="ico-master">
-                                                🦸‍♀️
+                                                🥷
                                             </span>
                                         </div>
                                         <h3>
-                                            e masqué
+                                            Trophée secret
                                         </h3>
                                         <p class="card-text eh2">
-                                            Se dévoile à une seule condition
+                                            Arrivera sans prévenir
                                         </p>
                                     </div>
                                 </div>
@@ -113,14 +113,31 @@ get_header();
                                     <div class="card-body">
                                         <div class="eh">
                                             <span class="ico-master">
-                                                🌫
+                                                🥷
                                             </span>
                                         </div>
                                         <h3>
-                                            Trophée caché
+                                            Trophée secret
                                         </h3>
                                         <p class="card-text eh2">
-                                            Jusqu'à sa découverte
+                                            Arrivera sans prévenir
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <div class="card basic-pricing text-center">
+                                    <div class="card-body">
+                                        <div class="eh">
+                                            <span class="ico-master">
+                                                🥷
+                                            </span>
+                                        </div>
+                                        <h3>
+                                            Trophée secret
+                                        </h3>
+                                        <p class="card-text eh2">
+                                            Arrivera sans prévenir
                                         </p>
                                     </div>
                                 </div>
@@ -135,7 +152,7 @@ get_header();
                                     <div class="card basic-pricing text-center">
                                         <div class="card-body">
                                             <h3 class="mb-2">💡 Proposes <span class="t-rose">ton idée de Trophée</span> <br>& si c'est cool, nous l'ajouterons à la liste</h3>
-                                            <a href="<?php the_permalink(get_template_part('proposition-de-trophe')); ?>/" class="btn btn-primary waves-effect">
+                                            <a href="<?php the_permalink(get_page_by_path('proposition-de-trophe')); ?>/" class="btn btn-primary waves-effect">
                                                 Proposer mon Trophée
                                             </a>
                                         </div>
