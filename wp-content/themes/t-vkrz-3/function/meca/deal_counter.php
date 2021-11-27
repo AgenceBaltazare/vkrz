@@ -8,13 +8,16 @@ function increase_vote_counter($id_vainkeur){
         update_field('nb_vote_vkrz', $user_vote_counter+1, $id_vainkeur);
 
         // Badge : x votes
-        if (!get_vainkeur_badge($id_vainkeur, '1000 votes') || !get_vainkeur_badge($id_vainkeur, '100000 votes')) {
+        if (!get_vainkeur_badge($id_vainkeur, '1 000 votes') || !get_vainkeur_badge($id_vainkeur, '10 000 votes') || !get_vainkeur_badge($id_vainkeur, '100 000 votes')) {
             switch($user_vote_counter+1) {
                 case 1000:
-                    update_vainkeur_badge($id_vainkeur, '1000 votes');
+                    update_vainkeur_badge($id_vainkeur, '1 000 votes');
                     break;
                 case 100000:
-                    update_vainkeur_badge($id_vainkeur, '100000 votes');
+                    update_vainkeur_badge($id_vainkeur, '10 000 votes');
+                    break;
+                case 1000000:
+                    update_vainkeur_badge($id_vainkeur, '100 000 votes');
                     break;
             }
         }
@@ -35,15 +38,15 @@ function increase_top_counter($id_vainkeur){
         $user_top_counter = get_field('nb_top_vkrz', $id_vainkeur);
         update_field('nb_top_vkrz', $user_top_counter+1, $id_vainkeur);
 
-        // Badge : First top
-        if (!get_vainkeur_badge($id_vainkeur, "First top")) {
+        // Badge : Premier Top
+        if (!get_vainkeur_badge($id_vainkeur, "Premier Top")) {
             if ($user_top_counter+1 == 1) {
-                update_vainkeur_badge($id_vainkeur, "First top");
+                update_vainkeur_badge($id_vainkeur, "Premier Top");
             }
         }
 
-        // Badge : Night top
-        if (!get_vainkeur_badge($id_vainkeur, "Night top")) {
+        // Badge : Nocturne
+        if (!get_vainkeur_badge($id_vainkeur, "Nocturne")) {
             if (
                 (
                     strtotime("now") >= strtotime("today 23:30") &&
@@ -54,7 +57,7 @@ function increase_top_counter($id_vainkeur){
                     strtotime("now") <= strtotime("today 05:00")
                 )
             ) {
-                update_vainkeur_badge($id_vainkeur, "Night top");
+                update_vainkeur_badge($id_vainkeur, "Nocturne");
             }
         }
 
