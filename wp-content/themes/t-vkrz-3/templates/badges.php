@@ -53,6 +53,28 @@ get_header();
                                 </div>
                             <?php endforeach; ?>
                             <div class="col-12 col-md-4">
+                                <div class="card basic-pricing text-center <?php if (is_user_logged_in()) : ?>popular<?php endif; ?>">
+                                    <?php if (is_user_logged_in()) : ?>
+                                        <div class="pricing-badge text-right">
+                                            <div class="badge badge-pill badge-light-primary">Trophée obtenu</div>
+                                        </div>
+                                    <?php endif; ?>
+                                    <div class="card-body">
+                                        <div class="eh">
+                                            <span class="ico-master">
+                                                🦙
+                                            </span>
+                                        </div>
+                                        <h3>
+                                            Être un Vainkeur
+                                        </h3>
+                                        <p class="card-text eh2">
+                                            Créer son compte
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4">
                                 <div class="card basic-pricing text-center">
                                     <div class="card-body">
                                         <div class="eh">

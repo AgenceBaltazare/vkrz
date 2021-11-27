@@ -1,11 +1,5 @@
 <?php
-/*
-        Template Name: Badge Top sponso
-    */
 include __DIR__ . '/../../../../wp-load.php';
-?>
-
-<?php
 $player = new WP_Query(array(
     'ignore_sticky_posts'    => true,
     'update_post_meta_cache' => false,

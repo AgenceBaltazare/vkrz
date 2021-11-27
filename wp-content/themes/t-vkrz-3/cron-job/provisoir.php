@@ -1,10 +1,5 @@
 <?php
-/*
-        Template Name: Provisoir player
-    */
 include __DIR__ . '/../../../../wp-load.php';
-?>
-<?php
 $vainkeur = new WP_Query(array(
     'ignore_sticky_posts'    => true,
     'update_post_meta_cache' => false,

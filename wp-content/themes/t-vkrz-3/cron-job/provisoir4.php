@@ -9,16 +9,10 @@ $player = new WP_Query(array(
     'order'                  => 'DESC',
     'posts_per_page'         => -1,
     'meta_query' => array(
-        'relation' => 'and',
         array(
             'key'       => 'id_tournoi_r',
             'value'     => array(279356, 271927, 268679, 237126, 236148, 218860, 188690, 174969, 171780, 154360, 166267, 24453),
             'compare'   => 'IN',
-        ),
-        array(
-            'key' => 'done_r',
-            'value' => 'done',
-            'compare' => '=',
         )
     )
 ));
@@ -52,5 +46,3 @@ while ($player->have_posts()) : $player->the_post();
 
 
 endwhile;
-
-?>
