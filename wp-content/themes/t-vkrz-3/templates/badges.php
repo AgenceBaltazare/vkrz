@@ -125,23 +125,6 @@ get_header();
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-md-4">
-                                <div class="card basic-pricing text-center">
-                                    <div class="card-body">
-                                        <div class="eh">
-                                            <span class="ico-master">
-                                                🥷
-                                            </span>
-                                        </div>
-                                        <h3>
-                                            Trophée secret
-                                        </h3>
-                                        <p class="card-text eh2">
-                                            Arrivera sans prévenir
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
 
                         <div class="row mt-2">
