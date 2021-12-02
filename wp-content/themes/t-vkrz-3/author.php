@@ -186,21 +186,12 @@ foreach ($list_user_tops as $top) {
                                         <?php
                                         $vainkeur_badges = get_the_terms($vainkeur_info['id_vainkeur'], 'badges');
                                         foreach ($vainkeur_badges as $badge) : ?>
-                                            <div class="col-6">
-                                                <div class="card text-center">
-                                                    <div class="card-body">
-                                                        <div class="pricing-badge text-right">
-                                                            <div class="badge badge-pill badge-light-primary">
-                                                                <a data-toggle="tooltip" data-placement="top" title="" data-original-title="<?php echo $badge->name; ?> : <?php echo $badge->description; ?>">
-                                                                    ?
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                        <div class="user-level">
-                                                            <span class="icomax">
-                                                                <?php the_field('symbole_badge', 'badges_' . $badge->term_id); ?>
-                                                            </span>
-                                                        </div>
+                                            <div class="col-4 col-sm-6 col-lg-4">
+                                                <div class="text-center">
+                                                    <div class="user-level" data-toggle="tooltip" data-placement="top" title="" data-original-title="<?php echo $badge->name; ?> : <?php echo $badge->description; ?>">
+                                                        <span class="icomedium">
+                                                            <?php the_field('symbole_badge', 'badges_' . $badge->term_id); ?>
+                                                        </span>
                                                     </div>
                                                 </div>
                                             </div>

@@ -64,20 +64,11 @@ foreach ($list_user_tops as $top) {
                                         $vainkeur_badges = get_the_terms($id_vainkeur, 'badges');
                                         foreach ($vainkeur_badges as $badge) : ?>
                                             <div class="col-4 col-sm-6 col-lg-4">
-                                                <div class="card text-center">
-                                                    <div class="card-body">
-                                                        <div class="pricing-badge text-right">
-                                                            <div class="badge badge-pill badge-light-primary">
-                                                                <a data-toggle="tooltip" data-placement="top" title="" data-original-title="<?php echo $badge->name; ?> : <?php echo $badge->description; ?>">
-                                                                    ?
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                        <div class="user-level">
-                                                            <span class="icomedium">
-                                                                <?php the_field('symbole_badge', 'badges_' . $badge->term_id); ?>
-                                                            </span>
-                                                        </div>
+                                                <div class="text-center">
+                                                    <div class="user-level" data-toggle="tooltip" data-placement="top" title="" data-original-title="<?php echo $badge->name; ?> : <?php echo $badge->description; ?>">
+                                                        <span class="icomedium">
+                                                            <?php the_field('symbole_badge', 'badges_' . $badge->term_id); ?>
+                                                        </span>
                                                     </div>
                                                 </div>
                                             </div>
