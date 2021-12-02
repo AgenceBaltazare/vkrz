@@ -1,48 +1,53 @@
 <?php
 include __DIR__ . '/../../../../wp-load.php';
-$player = new WP_Query(array(
+
+$vainkeur = new WP_Query(array(
     'ignore_sticky_posts'    => true,
     'update_post_meta_cache' => false,
     'no_found_rows'          => true,
-    'post_type'              => 'classement',
+    'post_type'              => 'vainkeur',
     'orderby'                => 'date',
     'order'                  => 'DESC',
     'posts_per_page'         => -1,
-    'meta_query' => array(
-        array(
-            'key'       => 'id_tournoi_r',
-            'value'     => array(279356, 271927, 268679, 237126, 236148, 218860, 188690, 174969, 171780, 154360, 166267, 24453),
-            'compare'   => 'IN',
-        )
-    )
 ));
-while ($player->have_posts()) : $player->the_post();
+while ($vainkeur->have_posts()) : $vainkeur->the_post();
 
-    $player_uuid = get_field('uuid_user_r');
+    $id_vainkeur = get_the_ID();
 
-    $vainkeur = new WP_Query(array(
-        'ignore_sticky_posts'    => true,
-        'update_post_meta_cache' => false,
-        'no_found_rows'          => true,
-        'post_type'              => 'vainkeur',
-        'orderby'                => 'date',
-        'order'                  => 'DESC',
-        'posts_per_page'         => -1,
-        'meta_query' => array(
+    // Badge : All categories & Complete category
+    if (!get_vainkeur_badge($id_vainkeur, "Polyvalence") || !get_vainkeur_badge($id_vainkeur, "Complete category")) {
+        $user_tops = get_user_tops();
+        $categories = get_terms(
             array(
-                'key'       => 'uuid_user_vkrz',
-                'value'     => $player_uuid,
-                'compare'   => '=',
+                "taxonomy" => "categorie",
+                "hide_empty" => false,
             )
-        )
-    ));
-    while ($vainkeur->have_posts()) : $vainkeur->the_post();
+        );
+        $at_least_one_top_by_category = array();
+        $complete_category = array();
 
-        $id_vainkeur = get_the_ID();
+        foreach ($categories as $category) {
+            $at_least_one_top_by_category[$category->term_id] = false;
+            $complete_category[$category->term_id]["count"] = $category->count;
+            $complete_category[$category->term_id]["done"] = 0;
+        }
 
-        update_vainkeur_badge($id_vainkeur, 'BIG TOP');
+        foreach ($user_tops["list_user_tops"] as $top) {
+            if ($top["state"] == "done") {
+                $at_least_one_top_by_category[$top["cat_t"]] = true;
+                $complete_category[$top["cat_t"]]["done"] = $complete_category[$top["cat_t"]]["done"] + 1;
+            }
+        }
 
-    endwhile;
+        if (!in_array(false, $at_least_one_top_by_category)) {
+            update_vainkeur_badge($id_vainkeur, "Polyvalence");
+        }
 
+        foreach ($complete_category as $key => $value) {
+            if ($value["done"] == $value["count"]) {
+                update_vainkeur_badge($id_vainkeur, "Complete category id " . $key);
+            }
+        }
+    }
 
 endwhile;

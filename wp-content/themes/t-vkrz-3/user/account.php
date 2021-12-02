@@ -11,11 +11,11 @@ $list_user_tops = $user_tops['list_user_tops'];
 $list_t_begin   = array();
 $list_t_done    = array();
 $has_t_begin    = false;
-foreach($list_user_tops as $top){
-    if($top['state'] == 'begin') {
+foreach ($list_user_tops as $top) {
+    if ($top['state'] == 'begin') {
         array_push($list_t_begin, $top);
     }
-    if($top['state'] == 'done') {
+    if ($top['state'] == 'done') {
         array_push($list_t_done, $top);
     }
 }
@@ -23,7 +23,7 @@ foreach($list_user_tops as $top){
 <div class="app-content content ">
     <div class="content-wrapper">
         <div class="content-body">
-            <?php if(!is_user_logged_in()): ?>
+            <?php if (!is_user_logged_in()) : ?>
                 <section class="please-rejoin app-user-view">
                     <div role="alert" aria-live="polite" aria-atomic="true" class="alert alert-account">
                         <div class="alert-body d-flex align-items-center justify-content-between">
@@ -55,44 +55,85 @@ foreach($list_user_tops as $top){
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">
+                                        <span class="ico">🏅</span> Trophées
+                                    </h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <?php
+                                        $vainkeur_badges = get_the_terms($id_vainkeur, 'badges');
+                                        foreach ($vainkeur_badges as $badge) : ?>
+                                            <div class="col-4 col-sm-6 col-lg-4">
+                                                <div class="card text-center">
+                                                    <div class="card-body">
+                                                        <div class="pricing-badge text-right">
+                                                            <div class="badge badge-pill badge-light-primary">
+                                                                <a data-toggle="tooltip" data-placement="top" title="" data-original-title="<?php echo $badge->name; ?> : <?php echo $badge->description; ?>">
+                                                                    ?
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="user-level">
+                                                            <span class="icomedium">
+                                                                <?php the_field('symbole_badge', 'badges_' . $badge->term_id); ?>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <?php endforeach; ?>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <a class="btn btn-primary btn-block waves-effect waves-float waves-light" href="<?php the_permalink(get_page_by_path('trophees')); ?>">
+                                                Découvrir tous les trophées 👀
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">
                                         <span class="ico">⏳</span> Progression
                                     </h4>
                                 </div>
                                 <div class="card-body">
                                     <div class="row avg-sessions pt-50">
                                         <?php
-                                        $cat_t = get_terms( array(
+                                        $cat_t = get_terms(array(
                                             'taxonomy'      => 'categorie',
                                             'orderby'       => 'count',
                                             'order'         => 'DESC',
                                             'hide_empty'    => true
                                         ));
-                                        foreach($cat_t as $cat) : ?>
+                                        foreach ($cat_t as $cat) : ?>
                                             <?php
                                             $tops_in_cat = $cat->count;
                                             $id_cat      = $cat->term_id;
                                             $count_top_done_in_cat = 0;
-                                            foreach($list_user_tops as $top_done){
-                                                if($id_cat == $top_done['cat_t'] && $top_done['state'] == 'done'){
+                                            foreach ($list_user_tops as $top_done) {
+                                                if ($id_cat == $top_done['cat_t'] && $top_done['state'] == 'done') {
                                                     $count_top_done_in_cat++;
                                                 }
                                             }
                                             $percent_done_cat = round($count_top_done_in_cat * 100 / $tops_in_cat);
-                                            if($percent_done_cat >= 100){
+                                            if ($percent_done_cat >= 100) {
                                                 $classbar = "success";
-                                            }
-                                            elseif($percent_done_cat < 100 && $percent_done_cat >= 25){
+                                            } elseif ($percent_done_cat < 100 && $percent_done_cat >= 25) {
                                                 $classbar = "primary";
-                                            }
-                                            else{
+                                            } else {
                                                 $classbar = "warning";
                                             }
                                             ?>
                                             <div class="col-12 mt-1 mb-1">
                                                 <p class="mb-50">
                                                     <span class="ico2">
-                                                        <span class="<?php if($cat->term_id == 2){echo 'rotating';} ?>">
-                                                            <?php the_field('icone_cat', 'term_'.$cat->term_id); ?>
+                                                        <span class="<?php if ($cat->term_id == 2) {
+                                                                            echo 'rotating';
+                                                                        } ?>">
+                                                            <?php the_field('icone_cat', 'term_' . $cat->term_id); ?>
                                                         </span>
                                                     </span>
                                                     <?php echo $cat->name; ?>
@@ -141,9 +182,9 @@ foreach($list_user_tops as $top){
                                                 <h2 class="font-weight-bolder">
                                                     <?php echo $user_infos['nb_vote_vkrz']; ?>
                                                 </h2>
-                                                <?php if($vainkeur_info['nb_vote_vkrz'] > 1) : ?>
+                                                <?php if ($vainkeur_info['nb_vote_vkrz'] > 1) : ?>
                                                     <p class="card-text legende">Votes</p>
-                                                <?php else: ?>
+                                                <?php else : ?>
                                                     <p class="card-text legende">Vote</p>
                                                 <?php endif; ?>
                                             </div>
@@ -158,9 +199,9 @@ foreach($list_user_tops as $top){
                                                 <h2 class="font-weight-bolder">
                                                     <?php echo $user_infos['nb_top_vkrz']; ?>
                                                 </h2>
-                                                <?php if(count($list_t_done) > 1) : ?>
+                                                <?php if (count($list_t_done) > 1) : ?>
                                                     <p class="card-text legende">Tops terminés</p>
-                                                <?php else: ?>
+                                                <?php else : ?>
                                                     <p class="card-text legende">Top terminé</p>
                                                 <?php endif; ?>
                                             </div>
@@ -170,218 +211,138 @@ foreach($list_user_tops as $top){
                             </section>
                             <section id="basic-tabs-components">
                                 <ul class="nav nav-tabs" role="tablist">
-                                    <?php if(count($list_t_begin) > 0): ?>
-                                        <?php $has_t_begin = true; ?>
-                                        <li class="nav-item">
-                                            <a class="nav-link active" id="homeIcon-tab" data-toggle="tab" href="#tab1" aria-controls="home" role="tab" aria-selected="true">
-                                                <?php if(count($list_t_begin) > 1) : ?>
-                                                    Tops à terminer
-                                                <?php else: ?>
-                                                    Top à terminer
-                                                <?php endif; ?>
-                                            </a>
-                                        </li>
-                                    <?php endif; ?>
                                     <li class="nav-item">
-                                        <a class="nav-link <?php if(!$has_t_begin){echo 'active';} ?>" id="profileIcon-tab" data-toggle="tab" href="#tab2" aria-controls="profile" role="tab" aria-selected="false">
-                                            <?php if(count($list_t_done) > 1) : ?>
+                                        <a class="nav-link active" id="profileIcon-tab" data-toggle="tab" href="#tab2" aria-controls="profile" role="tab" aria-selected="false">
+                                            <?php if (count($list_t_done) > 1) : ?>
                                                 Tops terminés
-                                            <?php else: ?>
+                                            <?php else : ?>
                                                 Top terminé
+                                            <?php endif; ?>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="homeIcon-tab" data-toggle="tab" href="#tab1" aria-controls="home" role="tab" aria-selected="true">
+                                            <?php if (count($list_t_begin) > 1) : ?>
+                                                Tops à terminer
+                                            <?php else : ?>
+                                                Top à terminer
                                             <?php endif; ?>
                                         </a>
                                     </li>
                                 </ul>
                                 <div class="tab-content">
-                                    <?php if($has_t_begin): ?>
-                                        <div class="tab-pane active" id="tab1" aria-labelledby="homeIcon-tab" role="tabpanel">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <div class="card invoice-list-wrapper">
-                                                    <div class="card-datatable table-responsive">
-                                                        <table class="invoice-list-table table table-tbegin">
-                                                            <thead>
-                                                            <tr>
-                                                                <th class="">
-                                                                    <?php if(count($list_t_done) > 1) : ?>
-                                                                        <span class="t-rose"><?php echo count($list_t_begin); ?></span> Tops à terminer
-                                                                    <?php else: ?>
-                                                                        <span class="t-rose"><?php echo count($list_t_begin); ?></span> Top à terminer
-                                                                    <?php endif; ?>
-                                                                </th>
-                                                                <th class="text-center">
-                                                                    💎
-                                                                </th>
-                                                                <th>
-                                                                    👀
-                                                                </th>
-                                                                <th>
-
-                                                                </th>
-                                                            </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                            <?php
-                                                            foreach($list_t_begin as $top) : ?>
-                                                                <tr id="top-<?php echo $top['id_ranking']; ?>">
-                                                                    <td>
-                                                                        <div class="media-body">
-                                                                            <div class="media-heading">
-                                                                                <h6 class="cart-item-title mb-0">
-                                                                                    <a class="text-body" href="<?php the_permalink($top['id_top']); ?>">
-                                                                                        Top <?php echo $top['nb_top']; ?> - <?php echo get_the_title($top['id_top']); ?>
-                                                                                    </a>
-                                                                                </h6>
-                                                                                <small class="cart-item-by legende">
-                                                                                    <?php the_field('question_t', $top['id_top']); ?>
-                                                                                </small>
-                                                                            </div>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td class="text-center">
-                                                                        <?php echo $top['nb_votes']; ?> <span class="ico3">💎</span>
-                                                                    </td>
-                                                                    <td>
-                                                                        <a class="mr-1" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $top['id_top']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir le Top mondial">
-                                                                            <span class="ico">
-                                                                                🌍
-                                                                            </span>
-                                                                        </a>
-                                                                    </td>
-                                                                    <td class="text-center">
-                                                                        <div class="d-flex align-items-center col-actions">
-                                                                            <a href="<?php the_permalink($top['id_top']); ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Continuer le Top">
-                                                                                <span class="ico-action">▶️</span>
-                                                                            </a>
-                                                                            <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0"  data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-id_ranking="<?php echo $top['id_ranking']; ?>" class="confirm_delete" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Recommencer le Top">
-                                                                                <span class="ico-action">🆕</span>
-                                                                            </a>
-                                                                            <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Le Top sera supprimé définitivement 😱"  data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-id_ranking="<?php echo $top['id_ranking']; ?>" class="confirmDeleteReal" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Abandonner le Top">
-                                                                                <span class="ico-action">🚮</span>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                            <?php endforeach; ?>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <?php endif; ?>
-                                    <div class="tab-pane <?php if(!$has_t_begin){echo 'active';} ?>" id="tab2" aria-labelledby="profileIcon-tab" role="tabpanel">
+                                    <div class="tab-pane active" id="tab2" aria-labelledby="profileIcon-tab" role="tabpanel">
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="card invoice-list-wrapper">
                                                     <div class="card-datatable table-responsive">
                                                         <table class="invoice-list-table table table-tdone">
                                                             <thead>
-                                                            <tr>
-                                                                <th class="">
-                                                                    <?php if(count($list_t_done) > 1) : ?>
-                                                                        <span class="t-rose"><?php echo count($list_t_done); ?></span> Tops terminés
-                                                                    <?php else: ?>
-                                                                        <span class="t-rose"><?php echo count($list_t_done); ?></span> Top terminé
-                                                                    <?php endif; ?>
-                                                                </th>
-                                                                <th class="text-right">
-                                                                    💎
-                                                                </th>
-                                                                <th class="">
-                                                                    🥇🥈🥉
-                                                                </th>
-                                                                <th>
-                                                                    👀
-                                                                </th>
-                                                                <th>
+                                                                <tr>
+                                                                    <th class="">
+                                                                        <?php if (count($list_t_done) > 1) : ?>
+                                                                            <span class="t-rose"><?php echo count($list_t_done); ?></span> Tops terminés
+                                                                        <?php else : ?>
+                                                                            <span class="t-rose"><?php echo count($list_t_done); ?></span> Top terminé
+                                                                        <?php endif; ?>
+                                                                    </th>
+                                                                    <th class="text-right">
+                                                                        💎
+                                                                    </th>
+                                                                    <th class="">
+                                                                        🥇🥈🥉
+                                                                    </th>
+                                                                    <th>
+                                                                        👀
+                                                                    </th>
+                                                                    <th>
 
-                                                                </th>
-                                                            </tr>
+                                                                    </th>
+                                                                </tr>
                                                             </thead>
                                                             <tbody>
-                                                            <?php
-                                                            foreach($list_t_done as $top) : ?>
-                                                                <?php if (!get_field('private_t', $top['id_top'])) : ?>
-                                                                    <tr id="top-<?php echo $top['id_ranking']; ?>">
-                                                                        <td>
-                                                                            <div class="media-body">
-                                                                                <div class="media-heading">
-                                                                                    <h6 class="cart-item-title mb-0">
-                                                                                        <a class="text-body" href="<?php the_permalink($top['id_top']); ?>">
-                                                                                            Top <?php echo $top['nb_top']; ?> - <?php echo get_the_title($top['id_top']); ?>
-                                                                                        </a>
-                                                                                    </h6>
-                                                                                    <small class="cart-item-by legende">
-                                                                                        <?php the_field('question_t', $top['id_top']); ?>
-                                                                                    </small>
+                                                                <?php
+                                                                foreach ($list_t_done as $top) : ?>
+                                                                    <?php if (!get_field('private_t', $top['id_top'])) : ?>
+                                                                        <tr id="top-<?php echo $top['id_ranking']; ?>">
+                                                                            <td>
+                                                                                <div class="media-body">
+                                                                                    <div class="media-heading">
+                                                                                        <h6 class="cart-item-title mb-0">
+                                                                                            <a class="text-body" href="<?php the_permalink($top['id_top']); ?>">
+                                                                                                Top <?php echo $top['nb_top']; ?> - <?php echo get_the_title($top['id_top']); ?>
+                                                                                            </a>
+                                                                                        </h6>
+                                                                                        <small class="cart-item-by legende">
+                                                                                            <?php the_field('question_t', $top['id_top']); ?>
+                                                                                        </small>
+                                                                                    </div>
                                                                                 </div>
-                                                                            </div>
-                                                                        </td>
-                                                                        <td class="text-right">
-                                                                            <?php echo $top['nb_votes']; ?> <span class="ico3">💎</span>
-                                                                        </td>
-                                                                        <td>
-                                                                            <?php
-                                                                            $user_top3 = get_user_ranking($top['id_ranking']);
-                                                                            $l=1;
-                                                                            foreach($user_top3 as $contender): ?>
-
-                                                                                <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="<?php echo get_the_title($contender); ?>" class="avatartop3 avatar pull-up">
-                                                                                    <?php $illu = get_the_post_thumbnail_url($contender, 'thumbnail'); ?>
-                                                                                    <img src="<?php echo $illu; ?>" alt="Avatar">
-                                                                                </div>
-
-                                                                            <?php $l++; if($l==4) break; endforeach; ?>
-                                                                        </td>
-                                                                        <td>
-                                                                            <div class="d-flex align-items-center col-actions">
+                                                                            </td>
+                                                                            <td class="text-right">
+                                                                                <?php echo $top['nb_votes']; ?> <span class="ico3">💎</span>
+                                                                            </td>
+                                                                            <td>
                                                                                 <?php
-                                                                                if($top['typetop'] == "top3"){
-                                                                                    $wording = "Voir le Top 3";
-                                                                                }
-                                                                                else{
-                                                                                    $wording = "Voir le Top complet";
-                                                                                }
-                                                                                ?>
-                                                                                <a class="mr-1" href="<?php the_permalink($top['id_ranking']); ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="<?php echo $wording; ?>">
-                                                                                    <span class="ico">
-                                                                                        🏆
-                                                                                    </span>
-                                                                                </a>
-                                                                                <a class="mr-1" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $top['id_top']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir le Top mondial">
-                                                                                    <span class="ico">
-                                                                                        🌍
-                                                                                    </span>
-                                                                                </a>
-                                                                            </div>
-                                                                        </td>
-                                                                        <td class="text-center">
-                                                                            <div class="dropdown">
-                                                                                <a class="btn btn-sm btn-icon px-0" data-toggle="dropdown">
-                                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical font-medium-2">
-                                                                                        <circle cx="12" cy="12" r="1"></circle>
-                                                                                        <circle cx="12" cy="5" r="1"></circle>
-                                                                                        <circle cx="12" cy="19" r="1"></circle>
-                                                                                    </svg>
-                                                                                </a>
-                                                                                <div class="dropdown-menu dropdown-menu-right">
-                                                                                    <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-id_ranking="<?php echo $top['id_ranking']; ?>" class="confirm_delete dropdown-item" href="#">
-                                                                                        <span class="ico-action">🆕</span> Recommencer
+                                                                                $user_top3 = get_user_ranking($top['id_ranking']);
+                                                                                $l = 1;
+                                                                                foreach ($user_top3 as $contender) : ?>
+
+                                                                                    <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="<?php echo get_the_title($contender); ?>" class="avatartop3 avatar pull-up">
+                                                                                        <?php $illu = get_the_post_thumbnail_url($contender, 'thumbnail'); ?>
+                                                                                        <img src="<?php echo $illu; ?>" alt="Avatar">
+                                                                                    </div>
+
+                                                                                <?php $l++;
+                                                                                    if ($l == 4) break;
+                                                                                endforeach; ?>
+                                                                            </td>
+                                                                            <td>
+                                                                                <div class="d-flex align-items-center col-actions">
+                                                                                    <?php
+                                                                                    if ($top['typetop'] == "top3") {
+                                                                                        $wording = "Voir le Top 3";
+                                                                                    } else {
+                                                                                        $wording = "Voir le Top complet";
+                                                                                    }
+                                                                                    ?>
+                                                                                    <a class="mr-1" href="<?php the_permalink($top['id_ranking']); ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="<?php echo $wording; ?>">
+                                                                                        <span class="ico">
+                                                                                            🏆
+                                                                                        </span>
                                                                                     </a>
-                                                                                    <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Le Top sera supprimé définitivement 😱" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-id_ranking="<?php echo $top['id_ranking']; ?>" class="confirmDeleteReal dropdown-item" href="#">
-                                                                                        <span class="ico-action">🚮</span> Supprimer
-                                                                                    </a>
-                                                                                    <a href="#" class="dropdown-item" data-toggle="modal" data-target="#commentModal-<?php echo $top['id_top']; ?>">
-                                                                                        <span class="ico-action">🆓</span> Commenter
+                                                                                    <a class="mr-1" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $top['id_top']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir le Top mondial">
+                                                                                        <span class="ico">
+                                                                                            🌍
+                                                                                        </span>
                                                                                     </a>
                                                                                 </div>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-                                                                <?php endif; ?>
-                                                            <?php endforeach; ?>
+                                                                            </td>
+                                                                            <td class="text-center">
+                                                                                <div class="dropdown">
+                                                                                    <a class="btn btn-sm btn-icon px-0" data-toggle="dropdown">
+                                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical font-medium-2">
+                                                                                            <circle cx="12" cy="12" r="1"></circle>
+                                                                                            <circle cx="12" cy="5" r="1"></circle>
+                                                                                            <circle cx="12" cy="19" r="1"></circle>
+                                                                                        </svg>
+                                                                                    </a>
+                                                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                                                        <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-id_ranking="<?php echo $top['id_ranking']; ?>" class="confirm_delete dropdown-item" href="#">
+                                                                                            <span class="ico-action">🆕</span> Recommencer
+                                                                                        </a>
+                                                                                        <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Le Top sera supprimé définitivement 😱" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-id_ranking="<?php echo $top['id_ranking']; ?>" class="confirmDeleteReal dropdown-item" href="#">
+                                                                                            <span class="ico-action">🚮</span> Supprimer
+                                                                                        </a>
+                                                                                        <a href="#" class="dropdown-item" data-toggle="modal" data-target="#commentModal-<?php echo $top['id_top']; ?>">
+                                                                                            <span class="ico-action">🆓</span> Commenter
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                    <?php endif; ?>
+                                                                <?php endforeach; ?>
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -389,6 +350,84 @@ foreach($list_user_tops as $top){
                                             </div>
                                         </div>
                                     </div>
+                                    <?php if ($has_t_begin) : ?>
+                                        <div class="tab-pane" id="tab1" aria-labelledby="homeIcon-tab" role="tabpanel">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="card invoice-list-wrapper">
+                                                        <div class="card-datatable table-responsive">
+                                                            <table class="invoice-list-table table table-tbegin">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th class="">
+                                                                            <?php if (count($list_t_done) > 1) : ?>
+                                                                                <span class="t-rose"><?php echo count($list_t_begin); ?></span> Tops à terminer
+                                                                            <?php else : ?>
+                                                                                <span class="t-rose"><?php echo count($list_t_begin); ?></span> Top à terminer
+                                                                            <?php endif; ?>
+                                                                        </th>
+                                                                        <th class="text-center">
+                                                                            💎
+                                                                        </th>
+                                                                        <th>
+                                                                            👀
+                                                                        </th>
+                                                                        <th>
+
+                                                                        </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <?php
+                                                                    foreach ($list_t_begin as $top) : ?>
+                                                                        <tr id="top-<?php echo $top['id_ranking']; ?>">
+                                                                            <td>
+                                                                                <div class="media-body">
+                                                                                    <div class="media-heading">
+                                                                                        <h6 class="cart-item-title mb-0">
+                                                                                            <a class="text-body" href="<?php the_permalink($top['id_top']); ?>">
+                                                                                                Top <?php echo $top['nb_top']; ?> - <?php echo get_the_title($top['id_top']); ?>
+                                                                                            </a>
+                                                                                        </h6>
+                                                                                        <small class="cart-item-by legende">
+                                                                                            <?php the_field('question_t', $top['id_top']); ?>
+                                                                                        </small>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </td>
+                                                                            <td class="text-center">
+                                                                                <?php echo $top['nb_votes']; ?> <span class="ico3">💎</span>
+                                                                            </td>
+                                                                            <td>
+                                                                                <a class="mr-1" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $top['id_top']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir le Top mondial">
+                                                                                    <span class="ico">
+                                                                                        🌍
+                                                                                    </span>
+                                                                                </a>
+                                                                            </td>
+                                                                            <td class="text-center">
+                                                                                <div class="d-flex align-items-center col-actions">
+                                                                                    <a href="<?php the_permalink($top['id_top']); ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Continuer le Top">
+                                                                                        <span class="ico-action">▶️</span>
+                                                                                    </a>
+                                                                                    <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-id_ranking="<?php echo $top['id_ranking']; ?>" class="confirm_delete" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Recommencer le Top">
+                                                                                        <span class="ico-action">🆕</span>
+                                                                                    </a>
+                                                                                    <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Le Top sera supprimé définitivement 😱" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-id_ranking="<?php echo $top['id_ranking']; ?>" class="confirmDeleteReal" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Abandonner le Top">
+                                                                                        <span class="ico-action">🚮</span>
+                                                                                    </a>
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                    <?php endforeach; ?>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php endif; ?>
                                 </div>
                             </section>
                         </div>

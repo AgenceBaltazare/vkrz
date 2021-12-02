@@ -62,7 +62,7 @@ function increase_top_counter($id_vainkeur){
         }
 
         // Badge : All categories & Complete category
-        if (!get_vainkeur_badge($id_vainkeur, "All categories") || !get_vainkeur_badge($id_vainkeur, "Complete category")) {
+        if (!get_vainkeur_badge($id_vainkeur, "Polyvalence") || !get_vainkeur_badge($id_vainkeur, "Complete category")) {
             $user_tops = get_user_tops();
             $categories = get_terms(
                 array(
@@ -87,7 +87,7 @@ function increase_top_counter($id_vainkeur){
             }
 
             if (!in_array(false, $at_least_one_top_by_category)) {
-                update_vainkeur_badge($id_vainkeur, "All categories");
+                update_vainkeur_badge($id_vainkeur, "Polyvalence");
             }
 
             foreach($complete_category as $key => $value) {

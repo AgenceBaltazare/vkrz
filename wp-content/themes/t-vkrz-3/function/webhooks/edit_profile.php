@@ -18,14 +18,14 @@ function edit_profile( $http_request, $form_name, $user_id ){
     if($vainkeur->have_posts()){
         $vainkeur_id = $vainkeur->posts[0];
 
-        if (!get_vainkeur_badge($vainkeur_id, "All social network fills")) {
+        if (!get_vainkeur_badge($vainkeur_id, "Connecté")) {
            if (
                get_userdata($user_id)->twitch_user &&
                get_userdata($user_id)->youtube_user &&
                get_userdata($user_id)->Instagram_user &&
                get_userdata($user_id)->tiktok_user
            ) {
-               update_vainkeur_badge($vainkeur_id, "All social network fills");
+               update_vainkeur_badge($vainkeur_id, "Connecté");
            }
        }
     }

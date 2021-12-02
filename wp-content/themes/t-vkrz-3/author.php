@@ -178,6 +178,40 @@ foreach ($list_user_tops as $top) {
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">
+                                        <span class="ico">🏅</span> Trophées
+                                    </h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <?php
+                                        $vainkeur_badges = get_the_terms($vainkeur_info['id_vainkeur'], 'badges');
+                                        foreach ($vainkeur_badges as $badge) : ?>
+                                            <div class="col-6">
+                                                <div class="card text-center">
+                                                    <div class="card-body">
+                                                        <div class="pricing-badge text-right">
+                                                            <div class="badge badge-pill badge-light-primary">
+                                                                <a data-toggle="tooltip" data-placement="top" title="" data-original-title="<?php echo $badge->name; ?> : <?php echo $badge->description; ?>">
+                                                                    ?
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="user-level">
+                                                            <span class="icomax">
+                                                                <?php the_field('symbole_badge', 'badges_' . $badge->term_id); ?>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <?php endforeach; ?>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">
                                         <span class="ico">⏳</span> Progression
                                     </h4>
                                 </div>
