@@ -61,42 +61,6 @@ function increase_top_counter($id_vainkeur){
             }
         }
 
-        // Badge : All categories & Complete category
-        if (!get_vainkeur_badge($id_vainkeur, "Polyvalence") || !get_vainkeur_badge($id_vainkeur, "Complete category")) {
-            $user_tops = get_user_tops();
-            $categories = get_terms(
-                array(
-                    "taxonomy" => "categorie",
-                    "hide_empty" => false,
-                )
-            );
-            $at_least_one_top_by_category = array();
-            $complete_category = array();
-
-            foreach($categories as $category) {
-                $at_least_one_top_by_category[$category->term_id] = false;
-                $complete_category[$category->term_id]["count"] = $category->count;
-                $complete_category[$category->term_id]["done"] = 0;
-            }
-
-            foreach($user_tops["list_user_tops"] as $top) {
-                if($top["state"] == "done"){
-                    $at_least_one_top_by_category[$top["cat_t"]] = true;
-                    $complete_category[$top["cat_t"]]["done"] = $complete_category[$top["cat_t"]]["done"] + 1;
-                }
-            }
-
-            if (!in_array(false, $at_least_one_top_by_category)) {
-                update_vainkeur_badge($id_vainkeur, "Polyvalence");
-            }
-
-            foreach($complete_category as $key => $value) {
-                if ($value["done"] == $value["count"]) {
-                    update_vainkeur_badge($id_vainkeur, "Complete category id ".$key);
-                }
-            }
-        }
-
         // Increase VAINKEURZ total tops
         $vkrz_top_counter = get_field('nb_total_tops', 'options');
         update_field('nb_total_tops', $vkrz_top_counter+1, 'options');
