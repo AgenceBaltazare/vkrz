@@ -74,7 +74,7 @@ foreach ($list_user_tops as $top) {
                                             </div>
                                         <?php endforeach; ?>
                                     </div>
-                                    <div class="row">
+                                    <div class="row mt-2">
                                         <div class="col-12">
                                             <a class="btn btn-primary btn-block waves-effect waves-float waves-light" href="<?php the_permalink(get_page_by_path('trophees')); ?>">
                                                 Découvrir tous les trophées 👀
