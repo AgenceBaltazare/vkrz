@@ -44,10 +44,10 @@ $top_datas    = get_top_data($id_top);
                                     <div class="col-md-12 info-concours">
                                         <div class="info-win">
                                             <p>
-                                                aujourd'hui tu te tournes vers un avenir meilleur en rejoignant le concept VAINKEURZ 🚀 !
+                                                aujourd'hui tu peux te tourner vers un avenir meilleur en rejoignant le concept VAINKEURZ 🚀 !
                                             </p>
                                             <p>
-                                                Tu souhaites participer au tirage au sort, n'hésites pas et créé ton compte ou simplement connecte-toi si tu fais déjà partie des Vainkeur 👇
+                                                Si tu souhaites participer au Tirage au Sort, n'hésites pas et crée ton compte ! Si tu fais déjà parti des Vainkeurs, connecte-toi simplement 👇
                                             </p>
                                         </div>
                                     </div>
@@ -67,7 +67,7 @@ $top_datas    = get_top_data($id_top);
                             <?php else : ?>
                                 <div class="row">
                                     <div class="col-md-12 mt-1">
-                                        <?php if(isset($_GET['message'])): ?>
+                                        <?php if (isset($_GET['message'])) : ?>
                                             <div class="label">
                                                 <p>Félicitation pour votre connexion, vous pouvez maintenant participer :)</p>
                                             </div>
