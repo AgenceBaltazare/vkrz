@@ -139,6 +139,24 @@
             </tr>
         <?php endif; ?>
 
+
+        <tr>
+            <th><?php esc_html_e( '“Email confirmation” when changing user email address', 'profile-builder' ); ?></th>
+
+            <td>
+                <label><input type="checkbox" name="wppb_toolbox_forms_settings[confirm-user-email-change]"<?php echo ( ( isset( $settings['confirm-user-email-change'] ) && ( $settings['confirm-user-email-change'] == 'yes' ) ) ? ' checked' : '' ); ?> value="yes">
+                    <?php esc_html_e( 'Yes', 'profile-builder' ); ?>
+                </label>
+
+                <ul>
+                    <li class="description">
+                        <?php esc_html_e( 'If checked, an activation email is sent for the new email address.', 'profile-builder' ); ?>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+
+
         <?php if ( is_plugin_active( 'pb-add-on-social-connect/index.php' ) ) : ?>
             <tr>
                 <th><?php esc_html_e( 'Disable Email Confirmation for Social Connect registrations', 'profile-builder' ); ?></th>

@@ -666,10 +666,6 @@ ul.wppb-faceted-list .hide-this{
     padding: 5px 0;
 }
 
-.wppb-userlisting-container .wppb-facet-select-multiple{
-    height:auto;
-}
-
 .wppb-userlisting-container:after {
     visibility: hidden;
     display: block;

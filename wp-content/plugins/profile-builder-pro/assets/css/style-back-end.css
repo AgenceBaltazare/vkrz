@@ -110,8 +110,6 @@
 #container_wppb_ul_faceted_settings .facet_type_checkboxes .row-facet-limit,
 #container_wppb_ul_faceted_settings .update_container_wppb_ul_faceted_settings.facet_checkboxes .row-facet-behaviour,
 #container_wppb_ul_faceted_settings .update_container_wppb_ul_faceted_settings.facet_checkboxes .row-facet-limit,
-#container_wppb_ul_faceted_settings .facet_type_select_multiple .row-facet-behaviour,
-#container_wppb_ul_faceted_settings .facet_type_select_multiple .row-facet-limit,
 #container_wppb_ul_faceted_settings .update_container_wppb_ul_faceted_settings.facet_select_multiple .row-facet-behaviour,
 #container_wppb_ul_faceted_settings .update_container_wppb_ul_faceted_settings.facet_select_multiple .row-facet-limit{
     display:block;

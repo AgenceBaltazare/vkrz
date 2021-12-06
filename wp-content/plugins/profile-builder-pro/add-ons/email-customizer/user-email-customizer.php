@@ -294,9 +294,43 @@ function wppb_user_email_customizer_add_mustache_in_backend(){
 
 	new PB_Mustache_Generate_Admin_Box( 'uec_reset_success', __( 'Password Reset Success Email', 'profile-builder' ), 'profile-builder_page_user-email-customizer', 'core', $mustache_vars, '', $fields );
 
-	/*
-	* Change Email Address Notification
-	*/
+    /*
+    * Change Email Address Request Notification
+    */
+    $admin_email = get_option('admin_email');
+
+    // we format the var like this for proper line breaks.
+    $uec_change_email_request = sprintf( __( "<h3>Hi {{username}},</h3>\n<p>There is an email address change request on {{site_name}}.</p>\n<p>To change your email address click on: {{{user_email_change_link}}}</p>\n<p>Regards,<br>\nAll at {{site_name}}<br>\n<a href=\"{{site_url}}\">{{site_url}}</a></p>", 'profile-builder' ), $admin_email );
+    $mustache_vars = wppb_email_customizer_generate_merge_tags( 'change_email_address_request' );
+    $fields = array(
+        array(
+            'label'	=> __( 'Email Subject', 'profile-builder' ), // <label>
+            'desc'	=> '', // description
+            'id'	=> 'wppb_user_emailc_change_email_address_request_subject', // field id and name
+            'type'	=> 'text', // type of field
+            'default'	=> __( '[{{site_name}}] Notice of Email Change Request', 'profile-builder' ), // type of field
+        ),
+        array(
+            'label'   => __( 'Enable email', 'profile-builder' ), // <label>
+            'desc'    => '', // description
+            'id'      => 'wppb_user_emailc_change_email_address_request_enabled', // field id and name
+            'type'    => 'checkbox', // type of field
+            'default' => 'on',
+        ),
+        array( // Textarea
+            'label'	=> '', // <label>
+            'desc'	=> '', // description
+            'id'	=> 'wppb_user_emailc_change_email_address_request_content', // field id and name
+            'type'	=> 'textarea', // type of field
+            'default'	=> $uec_change_email_request, // type of field
+        )
+    );
+
+    new PB_Mustache_Generate_Admin_Box( 'uec_change_email_request', __( 'Change Email Address Request Notification', 'profile-builder' ), 'profile-builder_page_user-email-customizer', 'core', $mustache_vars, '', $fields );
+
+    /*
+    * Change Email Address Notification
+    */
 	$admin_email = get_option('admin_email');
 
 	// we format the var like this for proper line breaks.

@@ -78,24 +78,10 @@ function wppb_activate_signup( $key ) {
 
 		wppb_add_meta_to_user_on_activation( $user_id, '', $meta );
 		
-		// if admin approval is activated, then block the user untill he gets approved
+		// if admin approval is activated, then block the user until he gets approved
 		$wppb_generalSettings = get_option('wppb_general_settings');
 		if( wppb_get_admin_approval_option_value() === 'yes' ){
-			$user_data = get_userdata( $user_id );
-
-			if( $wppb_generalSettings != 'not_found' && ! empty( $wppb_generalSettings['adminApprovalOnUserRole'] ) ) {
-				foreach( $user_data->roles as $role ) {
-					if( in_array( $role, $wppb_generalSettings['adminApprovalOnUserRole'] ) ) {
-						wp_set_object_terms( $user_id, array( 'unapproved' ), 'user_status', false);
-						clean_object_term_cache( $user_id, 'user_status' );
-					} else {
-						add_filter( 'wppb_register_success_message', 'wppb_noAdminApproval_successMessage' );
-					}
-				}
-			} else {
-				wp_set_object_terms( $user_id, array( 'unapproved' ), 'user_status', false);
-				clean_object_term_cache( $user_id, 'user_status' );
-			}
+            wppb_update_user_status_to_pending( $user_id, $wppb_generalSettings );
 		}
 
         if ( !isset( $wppb_generalSettings['adminApproval'] ) )

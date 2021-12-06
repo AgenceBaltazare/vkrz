@@ -7,7 +7,7 @@ custom registration, custom registration form, custom registration page, extra u
 front-end register, front-end registration, frontend edit profile, edit profileregistration, customize profile, user fields, builder, profile builder, custom fields, avatar
 Requires at least: 3.1
 Tested up to: 5.8
-Stable tag: 3.5.9
+Stable tag: 3.6.0
 
 
 Login, registration and edit profile shortcodes for the front-end. Also you can choose what fields should be displayed or add custom ones.
@@ -101,6 +101,13 @@ This plugin only adds/removes fields in the front-end. The default information-f
 
 
 == Changelog ==
+= 3.6.0 =
+* Feature: Added an option to request Email Confirmation from the user when he changes his email address from the edit profile form. Can be activated from Advanced Settings
+* Fix: A notice regarding the Email Confirmation table that appeared in some cases
+* Fix: A bug user status bug when both Admin Approval and Email Confirmation were active
+* Fix: An issue with the Userlisting map feature where it was trying to center the map without markers
+* Misc: Select Multiple Facet type is now using Select2
+
 = 3.5.9 =
 * Fix: Allow HTML in the register success messages
 * Misc: Added a filter that allows adding extra attributes to the login form password field: wppb_login_password_extra_attributes

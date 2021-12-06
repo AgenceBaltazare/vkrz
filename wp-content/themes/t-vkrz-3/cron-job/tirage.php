@@ -19,7 +19,7 @@
                                 <div class="card-text mb-2 mt-2">
                                     <div class="big">
 
-                                        <?php echo rand(176, 461); ?>
+                                        <?php echo rand(1, 30); ?>
 
                                     </div>
                                 </div>

@@ -32,92 +32,131 @@ $top_datas    = get_top_data($id_top);
                 <div class="row">
                     <div class="col-md-8">
                         <div class="participation-content-sponso mb-4">
-                            <div class="row">
-                                <div class="col-md-12 mt-1">
-                                    <h1>
-                                        <?php the_field('titre_de_la_fin_t_sponso', $id_top); ?>
-                                    </h1>
-                                </div>
-                            </div>
-                            <?php if (get_field('choix_du_template_t_sponso', $id_top) == 'template_1') : ?>
+                            <?php if (get_field('inscription_requise_t_sponso', $id_top) && !is_user_logged_in()) : ?>
                                 <div class="row">
-                                    <div class="col-md-6 d-flex justify-content-around">
-                                        <div class="image-recompense">
-                                            <?php
-                                            if (get_field('illustration_de_la_sponso_t_sponso', $id_top)) : ?>
-                                                <?php echo wp_get_attachment_image(get_field('illustration_de_la_sponso_t_sponso', $id_top), 'large', '', array('class' => 'img-fluid')); ?>
-                                            <?php endif; ?>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-5 info-concours">
-                                        <div class="info-win">
-                                            <?php the_field('message_de_fin_t_sponso', $id_top); ?>
-                                        </div>
-                                        <div class="d-flex align-items-center buttons-share-top">
-                                            <?php if (get_field('type_de_fin_t_sponso', $id_top) == "mail_1") : ?>
-                                                <form action="" method="post" name="form2" id="form-coupon">
-                                                    <?php if (is_user_logged_in()) : ?>
-                                                        <input type="email" value="<?php echo $user_infos['pseudo']; ?>" name="email-player-input" id="email-player-input" required>
-                                                    <?php else : ?>
-                                                        <input type="email" placeholder="Mon adresse mail" name="email-player-input" id="email-player-input" required>
-                                                    <?php endif; ?>
-                                                    <input type="hidden" value="<?php echo $id_ranking; ?>" name="ranking" id="ranking">
-                                                    <input type="hidden" value="<?php echo $uuiduser; ?>" name="uuiduser" id="uuiduser">
-                                                    <input type="hidden" value="<?php echo $id_top; ?>" name="top" id="top">
-                                                    <button class="btn" id="btn-coupon">
-                                                        <?php the_field('intitule_cta_mail_t_sponso', $id_top); ?>
-                                                    </button>
-                                                </form>
-                                            <?php elseif (get_field('type_de_fin_t_sponso', $id_top) == "twitter_1") : ?>
-                                                <a href="javascript: void(0)" class="sharelinkbtn2 w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-outline-primary waves-effect waves-float waves-light">
-                                                    <input type="text" value="<?php echo get_the_permalink($id_ranking); ?>" class="input_to_share2">
-                                                    Copier le lien du Top
-                                                </a>
-                                                <a href="<?php the_field('lien_du_tweet_t_sponso', $id_top); ?>" target="_blank" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light">
-                                                    Post Twitter
-                                                </a>
-                                            <?php endif; ?>
-                                        </div>
+                                    <div class="col-md-12 mt-1">
+                                        <h1>
+                                            Hier c'était hier mais..
+                                        </h1>
                                     </div>
                                 </div>
-                            <?php elseif (get_field('choix_du_template_t_sponso', $id_top) == 'template_2') : ?>
                                 <div class="row">
                                     <div class="col-md-12 info-concours">
                                         <div class="info-win">
-                                            <?php the_field('message_de_fin_t_sponso', $id_top); ?>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="d-flex align-items-center buttons-share-top">
-                                            <?php if (get_field('type_de_fin_t_sponso', $id_top) == "mail_1") : ?>
-                                                <form action="" method="post" name="form2" id="form-coupon">
-                                                    <?php if (is_user_logged_in()) : ?>
-                                                        <input type="email" value="<?php echo $user_infos['user_email']; ?>" name="email-player-input" id="email-player-input" required>
-                                                    <?php else : ?>
-                                                        <input type="email" placeholder="Mon adresse mail" name="email-player-input" id="email-player-input" required>
-                                                    <?php endif; ?>
-                                                    <input type="hidden" value="<?php echo $id_ranking; ?>" name="ranking" id="ranking">
-                                                    <input type="hidden" value="<?php echo $uuiduser; ?>" name="uuiduser" id="uuiduser">
-                                                    <input type="hidden" value="<?php echo $id_top; ?>" name="top" id="top">
-                                                    <button class="btn" id="btn-coupon">
-                                                        <?php the_field('intitule_cta_mail_t_sponso', $id_top); ?>
-                                                    </button>
-                                                </form>
-                                                <div class="bravo">
-                                                    <?php the_field('message_de_confirmation_t_sponso', $id_top); ?>
-                                                </div>
-                                            <?php elseif (get_field('type_de_fin_t_sponso', $id_top) == "twitter_1") : ?>
-                                                <a href="javascript: void(0)" class="sharelinkbtn2 w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-outline-primary waves-effect waves-float waves-light">
-                                                    <input type="text" value="<?php echo get_the_permalink($id_ranking); ?>" class="input_to_share2">
-                                                    Copier le lien du Top
-                                                </a>
-                                                <a href="<?php the_field('lien_du_tweet_t_sponso', $id_top); ?>" target="_blank" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light">
-                                                    Post Twitter
-                                                </a>
-                                            <?php endif; ?>
+                                            <p>
+                                                aujourd'hui tu te tournes vers un avenir meilleur en rejoignant le concept VAINKEURZ 🚀 !
+                                            </p>
+                                            <p>
+                                                Tu souhaites participer au tirage au sort, n'hésites pas et créé ton compte ou simplement connecte-toi si tu fais déjà partie des Vainkeur 👇
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <a href="<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>?redirect=<?php the_permalink($id_ranking); ?>/" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light">
+                                            Créer mon compte 🎉
+                                        </a>
+                                    </div>
+                                    <div class="col-6">
+                                        <a href="<?php the_permalink(get_page_by_path('se-connecter')); ?>?redirect=<?php the_permalink($id_ranking); ?>/" class="sharelinkbtn2 w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-outline-primary waves-effect waves-float waves-light">
+                                            Me connecter
+                                        </a>
+                                    </div>
+                                </div>
+                            <?php else : ?>
+                                <div class="row">
+                                    <div class="col-md-12 mt-1">
+                                        <?php if(isset($_GET['message'])): ?>
+                                            <div class="label">
+                                                <p>Félicitation pour votre connexion, vous pouvez maintenant participer :)</p>
+                                            </div>
+                                        <?php endif; ?>
+                                        <h1>
+                                            <?php the_field('titre_de_la_fin_t_sponso', $id_top); ?>
+                                        </h1>
+                                    </div>
+                                </div>
+                                <?php if (get_field('choix_du_template_t_sponso', $id_top) == 'template_1') : ?>
+                                    <div class="row">
+                                        <div class="col-md-6 d-flex justify-content-around">
+                                            <div class="image-recompense">
+                                                <?php
+                                                if (get_field('illustration_de_la_sponso_t_sponso', $id_top)) : ?>
+                                                    <?php echo wp_get_attachment_image(get_field('illustration_de_la_sponso_t_sponso', $id_top), 'large', '', array('class' => 'img-fluid')); ?>
+                                                <?php endif; ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5 info-concours">
+                                            <div class="info-win">
+                                                <?php the_field('message_de_fin_t_sponso', $id_top); ?>
+                                            </div>
+                                            <div class="d-flex align-items-center buttons-share-top">
+                                                <?php if (get_field('type_de_fin_t_sponso', $id_top) == "mail_1") : ?>
+                                                    <form action="" method="post" name="form2" id="form-coupon">
+                                                        <?php if (is_user_logged_in()) : ?>
+                                                            <input type="email" value="<?php echo $user_infos['pseudo']; ?>" name="email-player-input" id="email-player-input" required>
+                                                        <?php else : ?>
+                                                            <input type="email" placeholder="Mon adresse mail" name="email-player-input" id="email-player-input" required>
+                                                        <?php endif; ?>
+                                                        <input type="hidden" value="<?php echo $id_ranking; ?>" name="ranking" id="ranking">
+                                                        <input type="hidden" value="<?php echo $uuiduser; ?>" name="uuiduser" id="uuiduser">
+                                                        <input type="hidden" value="<?php echo $id_top; ?>" name="top" id="top">
+                                                        <button class="btn" id="btn-coupon">
+                                                            <?php the_field('intitule_cta_mail_t_sponso', $id_top); ?>
+                                                        </button>
+                                                    </form>
+                                                <?php elseif (get_field('type_de_fin_t_sponso', $id_top) == "twitter_1") : ?>
+                                                    <a href="javascript: void(0)" class="sharelinkbtn2 w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-outline-primary waves-effect waves-float waves-light">
+                                                        <input type="text" value="<?php echo get_the_permalink($id_ranking); ?>" class="input_to_share2">
+                                                        Copier le lien du Top
+                                                    </a>
+                                                    <a href="<?php the_field('lien_du_tweet_t_sponso', $id_top); ?>" target="_blank" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light">
+                                                        Post Twitter
+                                                    </a>
+                                                <?php endif; ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php elseif (get_field('choix_du_template_t_sponso', $id_top) == 'template_2') : ?>
+                                    <div class="row">
+                                        <div class="col-md-12 info-concours">
+                                            <div class="info-win">
+                                                <?php the_field('message_de_fin_t_sponso', $id_top); ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="d-flex align-items-center buttons-share-top">
+                                                <?php if (get_field('type_de_fin_t_sponso', $id_top) == "mail_1") : ?>
+                                                    <form action="" method="post" name="form2" id="form-coupon">
+                                                        <?php if (is_user_logged_in()) : ?>
+                                                            <input type="email" value="<?php echo $user_infos['user_email']; ?>" name="email-player-input" id="email-player-input" required>
+                                                        <?php else : ?>
+                                                            <input type="email" placeholder="Mon adresse mail" name="email-player-input" id="email-player-input" required>
+                                                        <?php endif; ?>
+                                                        <input type="hidden" value="<?php echo $id_ranking; ?>" name="ranking" id="ranking">
+                                                        <input type="hidden" value="<?php echo $uuiduser; ?>" name="uuiduser" id="uuiduser">
+                                                        <input type="hidden" value="<?php echo $id_top; ?>" name="top" id="top">
+                                                        <button class="btn" id="btn-coupon">
+                                                            <?php the_field('intitule_cta_mail_t_sponso', $id_top); ?>
+                                                        </button>
+                                                    </form>
+                                                    <div class="bravo">
+                                                        <?php the_field('message_de_confirmation_t_sponso', $id_top); ?>
+                                                    </div>
+                                                <?php elseif (get_field('type_de_fin_t_sponso', $id_top) == "twitter_1") : ?>
+                                                    <a href="javascript: void(0)" class="sharelinkbtn2 w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-outline-primary waves-effect waves-float waves-light">
+                                                        <input type="text" value="<?php echo get_the_permalink($id_ranking); ?>" class="input_to_share2">
+                                                        Copier le lien du Top
+                                                    </a>
+                                                    <a href="<?php the_field('lien_du_tweet_t_sponso', $id_top); ?>" target="_blank" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light">
+                                                        Post Twitter
+                                                    </a>
+                                                <?php endif; ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php endif; ?>
                             <?php endif; ?>
                         </div>
 

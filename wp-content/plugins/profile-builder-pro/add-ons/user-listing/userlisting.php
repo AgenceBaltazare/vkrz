@@ -1854,13 +1854,56 @@ function wppb_ul_faceted_select($faceted_filter_options, $meta_values, $wppb_man
 }
 
 /**
- * Function that creates the filter for selects
+ * Function that creates the filter for the select multiple facet
  * @param $faceted_filter_options the options for the current filter
  * @return string
  */
 function wppb_ul_faceted_select_multiple($faceted_filter_options, $meta_values, $wppb_manage_fields ){
-    $filter = wppb_ul_faceted_select( $faceted_filter_options, $meta_values, $wppb_manage_fields, true );
-    return $filter;
+    if( $faceted_filter_options['facet-behaviour'] !== 'expand' ) {
+        return wppb_ul_faceted_select($faceted_filter_options, $meta_values, $wppb_manage_fields);
+    }
+
+    $current_value = wppb_ul_get_current_filter_value( $faceted_filter_options['facet-meta'] );
+
+    //sort by country name not country code
+    $meta_values = wppb_sort_country_values_by_name( $meta_values, $wppb_manage_fields, $faceted_filter_options );
+
+    if( !empty( $meta_values ) ){
+        /* initialize the select2 */
+        wp_enqueue_script( 'wppb_select2_js', WPPB_PLUGIN_URL .'assets/js/select2/select2.min.js', array( 'jquery' ), PROFILE_BUILDER_VERSION );
+        wp_enqueue_style( 'wppb_select2_css', WPPB_PLUGIN_URL .'assets/css/select2/select2.min.css', array(), PROFILE_BUILDER_VERSION );
+        wp_enqueue_script( 'wppb-facet-select-multiple', WPPB_PLUGIN_URL.'add-ons/user-listing/facet-select-multiple.js', array('wppb_select2_js'), PROFILE_BUILDER_VERSION, true );
+        wp_enqueue_style( 'wppb-facet-select-multiple-style', WPPB_PLUGIN_URL.'add-ons/user-listing/facet-select-multiple.css', array(), PROFILE_BUILDER_VERSION );
+        wp_localize_script( 'wppb-facet-select-multiple', 'wppb_facet_select_multiple_obj', array( 'placeholder' => __( 'Choose or type in an option...', 'profile-builder' ) ) );
+        
+        $filter = '<select class="wppb-facet-select-multiple" data-filter-behaviour="'. esc_attr( $faceted_filter_options['facet-behaviour'] ) .'" data-current-page="'. esc_attr( get_query_var('wppb_page') ) .'" data-meta-name="'. esc_attr( $faceted_filter_options['facet-meta'] ) .'" multiple ';
+        if( !empty( $faceted_filter_options['facet-limit'] ) && is_numeric( trim( $faceted_filter_options['facet-limit'] ) ) )
+            $filter .= ' size="'.$faceted_filter_options['facet-limit'].'" ';
+        $filter .= '>';
+        foreach( $meta_values as $meta_value => $repetitions ){
+            $filter .= '<option value="'.esc_attr( $meta_value ).'" '. wppb_ul_selected( $meta_value, $current_value ) .'>'.esc_html( wppb_ul_facet_value_or_label( $meta_value, $faceted_filter_options, $wppb_manage_fields ) );
+            if( apply_filters( 'wppb_ul_show_filter_count', true ) )
+                $filter .= ' ('. $repetitions .')';
+            $filter .= '</option>';
+        }
+        $filter .= '</select>';
+
+        $filter .= '<script type="text/javascript">
+            if (window.jQuery) {
+                jQuery(function(){ wppbFacetSelectMultipleInit() });
+                jQuery(".wppb-facet-select-multiple").on("select2:unselect", function (evt) {
+                    if (!evt.params.originalEvent) {
+                        return;
+                    }
+                    evt.params.originalEvent.stopPropagation();
+                });
+            }
+        </script>';
+
+        return $filter;
+    }
+    else
+        return wppb_get_facet_no_options_message( $faceted_filter_options );
 }
 
 

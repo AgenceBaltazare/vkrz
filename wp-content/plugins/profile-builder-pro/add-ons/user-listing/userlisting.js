@@ -273,13 +273,14 @@ function wppbRemoveURLParameter( url, parameter, parameterValue ){
 
     if( typeof parameterValue !== 'undefined' ){
         allParamValue = wppbGetUrlParam( parameter, url );
-        if( allParamValue.search( "\\|\\|" + parameterValue ) !== -1 ) {
-            changedAllParamValue = allParamValue.replace('||' + parameterValue, '');
+        decodedAllParamValue = decodeURIComponent( allParamValue );
+        if( decodedAllParamValue.search( "\\|\\|" + parameterValue ) !== -1 ) {
+            changedAllParamValue = encodeURIComponent( decodedAllParamValue.replace('||' + parameterValue, '') );
             url = url.replace( allParamValue, changedAllParamValue );
             return url;
         }
-        if( allParamValue.search( parameterValue + "\\|\\|" ) !== -1 ) {
-            changedAllParamValue = allParamValue.replace( parameterValue + '||', '');
+        if( decodedAllParamValue.search( parameterValue + "\\|\\|" ) !== -1 ) {
+            changedAllParamValue = encodeURIComponent( decodedAllParamValue.replace( parameterValue + '||', '') );
             url = url.replace( allParamValue, changedAllParamValue );
             return url;
         }

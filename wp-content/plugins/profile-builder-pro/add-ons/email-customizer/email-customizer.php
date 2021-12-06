@@ -49,6 +49,10 @@ function wppb_email_customizer_generate_default_meta_merge_tags( $special_merge_
 		$merge_tags[] = array( 'name' => 'reset_link', 'type' => 'ec_reset_link', 'unescaped' => true, 'label' => __( 'Reset Link', 'profile-builder' )  );
 	}
 
+    if ( $special_merge_tags == 'change_email_address_request' ){
+        $merge_tags[] = array( 'name' => 'user_email_change_link', 'type' => 'ec_user_email_change_link', 'unescaped' => true, 'label' => __( 'Change Email Address Link', 'profile-builder' )  );
+    }
+
 	if ( $special_merge_tags == 'admin_approval' ){
         $merge_tags[] = array( 'name' => 'approve_url', 'type' => 'ec_approve_url', 'label' => __( 'Approve User Url', 'profile-builder' )  );
         $merge_tags[] = array( 'name' => 'approve_link', 'type' => 'ec_approve_link', 'unescaped' => true, 'label' => __( 'Approve User Link', 'profile-builder' )  );
@@ -255,6 +259,29 @@ function wppb_admin_email_customizer_password_reset_title_filter_handler( $defau
 	return $default_string;
 }
 
+function wppb_email_customizer_user_email_change_request_subject_filter_handler($default_string, $user) {
+    $email_customizer_option = get_option( 'wppb_user_emailc_change_email_address_request_subject', 'not_found' );
+
+    if( $email_customizer_option != 'not_found' && class_exists( 'PB_Mustache_Generate_Template' ) ) {
+        wppb_change_email_from_headers();
+        return (string) new PB_Mustache_Generate_Template( wppb_email_customizer_generate_merge_tags( 'change_email_address_request' ), $email_customizer_option, array( 'user_login' => $user->user_login, 'user_email' => $user->user_email, 'user_id' => $user->ID ));
+    }
+
+    return $default_string;
+}
+
+function wppb_email_customizer_user_email_change_request_content_filter_handler($default_string, $user, $email_change_request_url) {
+    $email_customizer_option = get_option( 'wppb_user_emailc_change_email_address_request_content', 'not_found' );
+
+    if( $email_customizer_option != 'not_found' && class_exists( 'PB_Mustache_Generate_Template' ) ) {
+        wppb_change_email_from_headers();
+
+        return (string) new PB_Mustache_Generate_Template( wppb_email_customizer_generate_merge_tags( 'change_email_address_request' ), $email_customizer_option, array( 'user_login' => $user->user_login, 'user_email' => $user->user_email, 'user_id' => $user->ID, 'change_email_url' => $email_change_request_url ));
+    }
+
+    return $default_string;
+}
+
 function wppb_email_customizer_change_email_address_title_filter_handler ( $default, $old_user_data, $new_user_data ){
 	$email_customizer_option = get_option( 'wppb_user_emailc_change_email_address_subject', 'not_found' );
 
@@ -375,6 +402,9 @@ if ( $wppb_email_customizer_activate == 'show' ){
 
 	add_filter ( 'wppb_recover_password_message_content_sent_to_user2', 'wppb_email_customizer_password_reset_success_content_filter_handler', 10, 4 );
 	add_filter ( 'wppb_recover_password_message_title_sent_to_user2', 'wppb_email_customizer_password_reset_success_title_filter_handler', 10, 2 );
+
+    add_filter ( 'wppb_user_email_change_request_notification_subject', 'wppb_email_customizer_user_email_change_request_subject_filter_handler', 10, 3);
+    add_filter ( 'wppb_user_email_change_request_notification_content', 'wppb_email_customizer_user_email_change_request_content_filter_handler', 10, 3);
 
 	add_filter ( 'email_change_email', 'wppb_email_customizer_change_email_address_content_filter_handler', 10, 3);
 	add_filter ( 'email_change_email', 'wppb_email_customizer_change_email_address_title_filter_handler', 10, 3);
@@ -828,6 +858,25 @@ add_filter( 'mustache_variable_ec_reset_link', 'wppb_ec_replace_reset_link', 10,
 
 
 /**
+ * Function that filters and returns the users user_email_change_link in the Email Customizer
+ *
+ * @since v.
+ *
+ * @param string $value
+ * @param string $merge_tag_name
+ * @param string $merge_tag
+ * @param array $extra_data
+ *
+ * @return string
+ */
+function wppb_ec_generate_user_email_change_link( $value, $merge_tag_name, $merge_tag, $extra_data ){
+    if ( isset( $extra_data['change_email_url'] ) )
+        return $extra_data['change_email_url'];
+}
+add_filter( 'mustache_variable_ec_user_email_change_link', 'wppb_ec_generate_user_email_change_link', 10, 4 );
+
+
+/**
  * Function that filters and returns the approve user link in the (Admin) Email Customizer.
  * This allows the admin to approve directly from his email a newly registered user.
  *
@@ -1218,6 +1267,7 @@ function wppb_disable_emails( $send_email, $to, $subject, $message, $context ) {
 		'email_user_unapproved'       => 'wppb_user_emailc_admin_approval_notif_unapproved_email_enabled',
 		'email_user_recover'          => 'wppb_user_emailc_reset_email_enabled',
 		'email_user_recover_success'  => 'wppb_user_emailc_reset_success_email_enabled',
+        'email_user_update_email'     => 'wppb_user_emailc_change_email_address_request_enabled',
         'wppb_epaa_user_email'        => 'wppb_user_emailc_epaa_notification_enabled',
 		'email_admin_new_subscriber'  => 'wppb_admin_emailc_default_registration_email_enabled',
 		'email_admin_approve'         => 'wppb_admin_emailc_registration_with_admin_approval_email_enabled',

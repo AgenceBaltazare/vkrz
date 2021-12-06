@@ -1295,6 +1295,7 @@
 <?php __("Reset Key", "profile-builder"); ?>
 <?php __("Reset Url", "profile-builder"); ?>
 <?php __("Reset Link", "profile-builder"); ?>
+<?php __("Change Email Address Link", "profile-builder"); ?>
 <?php __("Approve User Url", "profile-builder"); ?>
 <?php __("Approve User Link", "profile-builder"); ?>
 <?php __("Unapprove User Url", "profile-builder"); ?>
@@ -1326,6 +1327,9 @@
 <?php __("<p>You have successfully reset your password.</p>\n", "profile-builder"); ?>
 <?php __("[{{site_name}}] Password Reset Successfully", "profile-builder"); ?>
 <?php __("Password Reset Success Email", "profile-builder"); ?>
+<?php __("<h3>Hi {{username}},</h3>\n<p>There is an email address change request on {{site_name}}.</p>\n<p>To change your email address click on: {{{user_email_change_link}}}</p>\n<p>Regards,<br>\nAll at {{site_name}}<br>\n<a href=\"{{site_url}}\">{{site_url}}</a></p>", "profile-builder"); ?>
+<?php __("[{{site_name}}] Notice of Email Change Request", "profile-builder"); ?>
+<?php __("Change Email Address Request Notification", "profile-builder"); ?>
 <?php __("<h3>Hi {{username}},</h3>\n<p>This notice confirms that your email was changed on {{site_name}}.</p>\n<p>If you did not change your email, please contact the Site Administrator at %s</p>\n<p>This email has been sent to {{user_email}}</p>\n<p>Regards,<br>\nAll at {{site_name}}<br>\n<a href=\"{{site_url}}\">{{site_url}}</a></p>", "profile-builder"); ?>
 <?php __("[{{site_name}}] Notice of Email Change", "profile-builder"); ?>
 <?php __("Changed Email Address Notification", "profile-builder"); ?>
@@ -1434,6 +1438,7 @@
 <?php __("Last &raquo;&raquo;", "profile-builder"); ?>
 <?php __("Show All", "profile-builder"); ?>
 <?php __("Choose...", "profile-builder"); ?>
+<?php __("Choose or type in an option...", "profile-builder"); ?>
 <?php __("No options available", "profile-builder"); ?>
 <?php __("Remove All Filters", "profile-builder"); ?>
 <?php __("Search", "profile-builder"); ?>
@@ -1715,6 +1720,9 @@
 <?php __("Site URL slug", "profile-builder"); ?>
 <?php __("Site Title", "profile-builder"); ?>
 <?php __("Privacy: I would like my site to appear in search engines, and in public listings around this network.", "profile-builder"); ?>
+<?php __("There is a pending change request of your email to: %s", "profile-builder"); ?>
+<?php __("Cancel request", "profile-builder"); ?>
+<?php __("If you change this, we will send you an email at your new address to confirm it. <br /><strong>The new address will not become active until confirmed.</strong>", "profile-builder"); ?>
 <?php __("You must enter a valid email address.", "profile-builder"); ?>
 <?php __("This email is already reserved to be used soon.", "profile-builder"); ?>
 <?php __("Please try a different one!", "profile-builder"); ?>
@@ -1752,6 +1760,8 @@
 <?php __("Sorry, you cannot upload this file type for this field.", "profile-builder"); ?>
 <?php __("An error occurred, please try again later.", "profile-builder"); ?>
 <?php __("This display name is already in use. Please choose another one.", "profile-builder"); ?>
+<?php __("Email address change request for %s", "profile-builder"); ?>
+<?php __("Someone requested to change the email address for your account.<br/>If this was a mistake, just ignore this email and nothing will happen.<br/>To update your account email address to the one requested (%1$s), visit the following link: %2$s", "profile-builder"); ?>
 <?php __("Placeholder Labels", "profile-builder"); ?>
 <?php __("Replace labels with placeholders:", "profile-builder"); ?>
 <?php __("Resend activation email", "profile-builder"); ?>
@@ -1812,6 +1822,8 @@
 <?php __("You should add only the domain in the list from above. eg.: gmail.com", "profile-builder"); ?>
 <?php __("Forms that should bypass Email Confirmation", "profile-builder"); ?>
 <?php __("Users registering through any of the selected forms will not need to confirm their email address.", "profile-builder"); ?>
+<?php __("“Email confirmation” when changing user email address", "profile-builder"); ?>
+<?php __("If checked, an activation email is sent for the new email address.", "profile-builder"); ?>
 <?php __("Disable Email Confirmation for Social Connect registrations", "profile-builder"); ?>
 <?php __("If checked, will allow users that register through the Social Connect add-on to bypass the Email Confirmation feature.", "profile-builder"); ?>
 <?php __("Remember me checked by default", "profile-builder"); ?>

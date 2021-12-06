@@ -208,33 +208,36 @@ function wppb_unapproved_user_password_recovery( $allow, $userID ){
 		return true;
 }
 
-// function to add the "unapproved" status for the user who just registered using the WP registration form (only if the admin approval feature is active)
+// function to add the "pending" status for the user who just registered using the WP registration form (only if the admin approval feature is active)
 function wppb_update_user_status_on_admin_registration( $user_id ){
     if( ! current_user_can( apply_filters( 'wppb_admin_approval_user_capability', 'manage_options' ) ) ) {
-        $user_data = get_userdata($user_id);
-
         $wppb_generalSettings = get_option('wppb_general_settings', 'not_found');
+        wppb_update_user_status_to_pending( $user_id, $wppb_generalSettings );
+    }
+}
 
-        if ($wppb_generalSettings != 'not_found' && !empty($wppb_generalSettings['adminApprovalOnUserRole'])) {
-            foreach ($user_data->roles as $role) {
-                if (in_array($role, $wppb_generalSettings['adminApprovalOnUserRole'])) {
-                    wp_set_object_terms($user_id, apply_filters( 'wppb_admin_approval_update_user_status', array('pending'), $user_id ), 'user_status', false);
-                    clean_object_term_cache($user_id, 'user_status');
-                    // save admin approval email link unique parameter ( used for outputting Admin Email Customizer {{{approve_link}}} or {{approve_url}} tags )
-                    add_user_meta( $user_id, '_wppb_admin_approval_link_param', wppb_get_admin_approval_email_link_key($user_id) );
-                    do_action('wppb_new_user_pending_approval', $user_id );
+function wppb_update_user_status_to_pending( $user_id, $wppb_generalSettings ){
+    $user_data = get_userdata($user_id);
 
-                } else {
-                    add_filter('wppb_register_success_message', 'wppb_noAdminApproval_successMessage');
-                }
+    if ($wppb_generalSettings !== 'not_found' && !empty($wppb_generalSettings['adminApprovalOnUserRole'])) {
+        foreach ($user_data->roles as $role) {
+            if (in_array($role, $wppb_generalSettings['adminApprovalOnUserRole'])) {
+                wp_set_object_terms($user_id, apply_filters( 'wppb_admin_approval_update_user_status', array('pending'), $user_id ), 'user_status', false);
+                clean_object_term_cache($user_id, 'user_status');
+                // save admin approval email link unique parameter ( used for outputting Admin Email Customizer {{{approve_link}}} or {{approve_url}} tags )
+                add_user_meta( $user_id, '_wppb_admin_approval_link_param', wppb_get_admin_approval_email_link_key($user_id) );
+                do_action('wppb_new_user_pending_approval', $user_id );
+
+            } else {
+                add_filter('wppb_register_success_message', 'wppb_noAdminApproval_successMessage');
             }
-        } else {
-            wp_set_object_terms($user_id, apply_filters( 'wppb_admin_approval_update_user_status', array('pending'), $user_id ), 'user_status', false);
-            clean_object_term_cache($user_id, 'user_status');
-            // save admin approval email link unique parameter ( used for outputting Admin Email Customizer {{{approve_link}}} or {{approve_url}} tags )
-            add_user_meta( $user_id, '_wppb_admin_approval_link_param', wppb_get_admin_approval_email_link_key($user_id) );;
-            do_action('wppb_new_user_pending_approval', $user_id );
         }
+    } else {
+        wp_set_object_terms($user_id, apply_filters( 'wppb_admin_approval_update_user_status', array('pending'), $user_id ), 'user_status', false);
+        clean_object_term_cache($user_id, 'user_status');
+        // save admin approval email link unique parameter ( used for outputting Admin Email Customizer {{{approve_link}}} or {{approve_url}} tags )
+        add_user_meta( $user_id, '_wppb_admin_approval_link_param', wppb_get_admin_approval_email_link_key($user_id) );;
+        do_action('wppb_new_user_pending_approval', $user_id );
     }
 }
 
