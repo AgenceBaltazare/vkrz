@@ -4,6 +4,8 @@
 */
 global $uuiduser;
 get_header();
+
+$vainkeurs = get_best_vainkeur("vote", NULL, 20);
 ?>
 <div class="app-content content cover">
     <div class="content-overlay"></div>
@@ -16,29 +18,13 @@ get_header();
                     </h3>
                 </div>
             </div>
-            <?php
-            $users_ids_list = get_vkrz_users_list();
-            $vainkeur_boss = new WP_Query(array(
-                'post_type'              => 'vainkeur',
-                'posts_per_page'         => '20',
-                'post_status'            => 'publish',
-                'meta_key'               => 'nb_vote_vkrz',
-                'orderby'                => 'meta_value_num',
-                'order'                  => 'DESC',
-                'author'                 => $users_ids_list,
-                'author__not_in'         => array(1),
-                'ignore_sticky_posts'    => true,
-                'update_post_meta_cache' => false,
-                'no_found_rows'          => false,
-            ));
-            ?>
             <div class="classement">
                 <div class="container-fluid">
                     <section id="profile-info">
                         <div class="row">
                             <div class="col-md-12">
                                 <?php
-                                if ($vainkeur_boss->have_posts()) : ?>
+                                if (!empty($vainkeurs)) : ?>
                                     <div class="row" id="table-bordered">
                                         <div class="col-12">
                                             <div class="card">
@@ -60,7 +46,7 @@ get_header();
                                                         </thead>
                                                         <tbody>
                                                             <?php $r = 1;
-                                                            while ($vainkeur_boss->have_posts()) : $vainkeur_boss->the_post(); ?>
+                                                            foreach ($vainkeurs as $vainkeur) : ?>
                                                                 <tr>
                                                                     <td>
                                                                         <?php if ($r == 1) : ?>
@@ -76,9 +62,10 @@ get_header();
                                                                     <td>
                                                                         <div class="d-flex align-items-center">
                                                                             <?php
-                                                                            $user_id            = get_the_author_meta('ID');
+                                                                            $user_id            = $vainkeur["author_id"];
+                                                                            $total_vote         = $vainkeur["total_vote"];
+                                                                            $total_top          = $vainkeur["total_top"];
                                                                             $user_infos         = deal_vainkeur_entry($user_id);
-                                                                            $nb_user_votes      = $user_infos['nb_vote_vkrz'];
                                                                             $avatar             = $user_infos['avatar'];
                                                                             $info_user_level    = get_user_level($user_id);
                                                                             ?>
@@ -92,8 +79,7 @@ get_header();
                                                                             </div>
                                                                             <div class="font-weight-bold championname">
                                                                                 <span>
-                                                                                    <?php echo get_the_author_meta('nickname'); ?>
-                                                                                    <!-- #<?php the_ID(); ?> - #<?php echo $user_id; ?> - <?php echo $user_infos['uuid_user_vkrz']; ?> -->
+                                                                                    <?php echo get_the_author_meta('nickname', $user_id); ?>
                                                                                 </span>
                                                                                 <?php if ($user_infos['user_role'] == "administrator") : ?>
                                                                                     <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
@@ -110,11 +96,11 @@ get_header();
                                                                     </td>
 
                                                                     <td class="text-right">
-                                                                        <?php the_field('nb_vote_vkrz'); ?> <span class="ico">💎</span>
+                                                                        <?php echo $total_vote; ?> <span class="ico">💎</span>
                                                                     </td>
 
                                                                     <td class="text-right">
-                                                                        <?php the_field('nb_top_vkrz'); ?> <span class="ico">🏆</span>
+                                                                        <?php echo $total_top; ?> <span class="ico">🏆</span>
                                                                     </td>
 
                                                                     <td>
@@ -124,7 +110,7 @@ get_header();
                                                                     </td>
                                                                 </tr>
                                                             <?php $r++;
-                                                            endwhile; ?>
+                                                            endforeach; ?>
                                                         </tbody>
                                                     </table>
                                                 </div>
