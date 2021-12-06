@@ -103,10 +103,12 @@ $list_t_already_done = $user_tops['list_user_tops_done_ids'];
                                 )
                             );
                             $best_tops = best_tops($latest_rankings);
-                            foreach (array_slice($best_tops, 0, 20, true) as $top_id => $completed_top_number) : ?>
-
-                                <?php if (get_post_status($top_id) == "publish") : ?>
-                                    <?php
+                            foreach (array_slice($best_tops, 0, 20, true) as $top_id => $completed_top_number) :
+                            
+                                $type_top = array();
+                                $type_top = get_the_terms($top_id, 'type');
+                                
+                                if (get_post_status($top_id) == "publish" && !in_array('private', $type_top)) :
                                     global $user_tops;
                                     $list_user_tops   = $user_tops['list_user_tops'];
                                     $state            = "";
