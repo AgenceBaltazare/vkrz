@@ -107,8 +107,11 @@ $list_t_already_done = $user_tops['list_user_tops_done_ids'];
                             
                                 $type_top = array();
                                 $type_top = get_the_terms($top_id, 'type');
-                                
-                                if (get_post_status($top_id) == "publish" && !in_array('private', $type_top)) :
+                                $slug_type_top = array();
+                                foreach ($type_top as $type) {
+                                    array_push($slug_type_top, $type->slug);
+                                }
+                                if (get_post_status($top_id) == "publish" && !in_array('private', $slug_type_top)) :
                                     global $user_tops;
                                     $list_user_tops   = $user_tops['list_user_tops'];
                                     $state            = "";

@@ -45,8 +45,11 @@ $best_tops = get_transient('best_tops_of_all_time');
                                                         foreach (array_slice($best_tops, 0, 20, true) as $top_id => $completed_top_number) :
                                                             $type_top = array();
                                                             $type_top = get_the_terms($top_id, 'type');
-
-                                                            if (get_post_status($top_id) == "publish" && !in_array('private', $type_top)) : ?>
+                                                            $slug_type_top = array();
+                                                            foreach ($type_top as $type) {
+                                                                array_push($slug_type_top, $type->slug);
+                                                            }
+                                                            if (get_post_status($top_id) == "publish" && !in_array('private', $slug_type_top)) : ?>
                                                                 <tr>
                                                                     <td>
                                                                         <?php if ($r == 1) : ?>
