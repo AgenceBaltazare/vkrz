@@ -35,7 +35,7 @@ $level_user = $user_infos['level_number'];
                                             </div>
                                         <?php endif; ?>
                                         <div class="eh">
-                                            <span class="ico-master">🥚</span>
+                                            <span class="ico-master vap vap-z-85 vap-egg"></span>
                                         </div>
                                         <h3>Niveau 0</h3>
                                         <?php if(is_user_logged_in()): ?>
@@ -63,7 +63,7 @@ $level_user = $user_infos['level_number'];
                                             </div>
                                         <?php endif; ?>
                                         <div class="eh">
-                                            <span class="ico-master">🐣</span>
+                                            <span class="ico-master vap vap-z-85 vap-hatching-chick"></span>
                                         </div>
                                         <h3>Niveau 1</h3>
                                         <p class="card-text eh2">
@@ -89,7 +89,7 @@ $level_user = $user_infos['level_number'];
                                             </div>
                                         <?php endif; ?>
                                         <div class="eh">
-                                            <span class="ico-master">🐥</span>
+                                            <span class="ico-master vap vap-z-85 vap-chick"></span>
                                         </div>
                                         <h3>Niveau 2</h3>
                                         <p class="card-text eh2">
@@ -114,9 +114,10 @@ $level_user = $user_infos['level_number'];
                                                 <div class="badge badge-pill badge-light-primary">Niveau actuel</div>
                                             </div>
                                         <?php endif; ?>
-                                        <span class="ico-master">
-                                            🐓
-                                        </span>
+                                        <div class="eh">
+                                            <span class="ico-master vap vap-z-85 vap-rooster">
+                                            </span>
+                                        </div>
                                         <h3>Niveau 3</h3>
                                         <p class="card-text">
                                             Clairement tu fais parti des Boss de VAINKEURZ maintenant et on est fier de toi <span class="ico">🤩</span>
@@ -140,9 +141,10 @@ $level_user = $user_infos['level_number'];
                                                 <div class="badge badge-pill badge-light-primary">Niveau actuel</div>
                                             </div>
                                         <?php endif; ?>
-                                        <span class="ico-master">
-                                            🦃
-                                        </span>
+                                        <div class="eh">
+                                            <span class="ico-master vap vap-z-85 vap-turkey">
+                                            </span>
+                                        </div>
                                         <h3>Niveau 4</h3>
                                         <p class="card-text">
                                             Fini la rigolade, maintenant les <span class="ico">🐓</span> te doivent le respect
@@ -166,9 +168,10 @@ $level_user = $user_infos['level_number'];
                                                 <div class="badge badge-pill badge-light-primary">Niveau actuel</div>
                                             </div>
                                         <?php endif; ?>
-                                        <span class="ico-master">
-                                            🦢
-                                        </span>
+                                        <div class="eh">
+                                            <span class="ico-master vap vap-z-85 vap-swan">
+                                            </span>
+                                        </div>
                                         <h3>Niveau 5</h3>
                                         <p class="card-text">
                                             Atteindre ce niveau, est le signe que tu adhères totalement au concept
@@ -192,9 +195,10 @@ $level_user = $user_infos['level_number'];
                                                 <div class="badge badge-pill badge-light-primary">Niveau actuel</div>
                                             </div>
                                         <?php endif; ?>
-                                        <span class="ico-master">
-                                            🦩
-                                        </span>
+                                        <div class="eh">
+                                            <span class="ico-master vap vap-z-85 vap-flamingo">
+                                            </span>
+                                        </div>
                                         <h3>Niveau 6</h3>
                                         <p class="card-text">
                                             Uniquement l'élite atteindra ce niveau - le noyau dur. La crème de la crème <span class="ico">😍</span>
@@ -218,9 +222,10 @@ $level_user = $user_infos['level_number'];
                                                 <div class="badge badge-pill badge-light-primary">Niveau actuel</div>
                                             </div>
                                         <?php endif; ?>
-                                        <span class="ico-master">
-                                            🦚
-                                        </span>
+                                        <div class="eh">
+                                            <span class="ico-master vap vap-z-85 vap-peacock">
+                                            </span>
+                                        </div>
                                         <h3>Niveau 7</h3>
                                         <p class="card-text">
                                             Majestueux - Admirable - Précieux - Tu as poncé le concept et tu mérites tout notre respect !
@@ -244,9 +249,10 @@ $level_user = $user_infos['level_number'];
                                                 <div class="badge badge-pill badge-light-primary">Niveau actuel</div>
                                             </div>
                                         <?php endif; ?>
-                                        <span class="ico-master">
-                                            🐉
-                                        </span>
+                                        <div class="eh">
+                                            <span class="ico-master vap vap-z-85 vap-dragon">
+                                            </span>
+                                        </div>
                                         <h3>Niveau final</h3>
                                         <p class="card-text">
                                             Est-il seulement possible qu'un humain atteigne ce niveau ?

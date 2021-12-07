@@ -140,7 +140,7 @@ if (is_single() && get_post_type() == "tournoi") {
 
             <?php if (is_home()) : ?>
 
-                <h3 class="mb-0 animate__animated animate__slideInLeft">🖖 Bienvenue</h3>
+                <h3 class="mb-0 animate__animated animate__slideInLeft"><span class="vap vap-vulcan-salute vap-1x"></span> Bienvenue</h3>
                 <h4 class="mb-0 kick animate__animated animate__slideInRight" data-kick="Commence par choisir un Top qui t'intéresse et enchaîne les votes 👇">Tu vas pouvoir générer et revendiquer tes propres classements !</h4>
 
             <?php elseif (is_single() && (get_post_type() == "tournoi")) : ?>
@@ -210,7 +210,7 @@ if (is_single() && get_post_type() == "tournoi") {
         <ul class="nav navbar-nav align-items-center justify-content-around">
             <li class="nav-item dropdown dropdown-cart">
                 <a class="nav-link d-flex flex-column align-items-center" href="javascript:void(0);" data-toggle="dropdown">
-                    <span class="ico text-center">💎</span>
+                    <span class="ico text-center vap vap-gem vap-1x"></span>
                     <span class="value-user-stats user-total-vote-value">
                         <?php echo $user_infos['nb_vote_vkrz']; ?>
                     </span>
