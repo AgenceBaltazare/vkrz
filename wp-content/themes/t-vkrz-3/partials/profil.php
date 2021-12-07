@@ -25,13 +25,13 @@ $vainkeur_info = isset($vainkeur_info) ? $vainkeur_info : $user_infos;
                         <?php echo $vainkeur_info['level']; ?>
                     </span>
                     <?php if ($vainkeur_info['user_role']  == "administrator") : ?>
-                        <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
-                            🦙
+                        <span class="ico va va-llama va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
+                            
                         </span>
                     <?php endif; ?>
                     <?php if ($vainkeur_info['user_role']  == "administrator" || $vainkeur_info['user_role'] == "author") : ?>
-                        <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
-                            👨‍🎤
+                        <span class="ico va va-man-singer va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
+                            
                         </span>
                     <?php endif; ?>
                 </p>
