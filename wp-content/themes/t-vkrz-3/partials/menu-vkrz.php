@@ -135,7 +135,7 @@
             </li>
             <li class="nav-item">
                 <a class="d-flex align-items-center" href="<?php the_permalink(104853); ?>">
-                    <span class="ico">🦙</span> <span class="menu-title text-truncate">A propos</span>
+                    <span class="ico">&#129433;</span> <span class="menu-title text-truncate">A propos</span>
                 </a>
             </li>
         </ul>
