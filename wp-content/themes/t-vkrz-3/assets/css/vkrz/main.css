@@ -3655,6 +3655,7 @@ textarea {
 
 .vap {
   display: inline-block;
+  vertical-align: middle;
   background-size: contain;
   background-repeat: no-repeat;
 }
@@ -3775,6 +3776,16 @@ textarea {
   height: 10px;
 }
 
+.vap-z-15 {
+  width: 15px;
+  height: 15px;
+}
+
+.vap-z-17 {
+  width: 17px;
+  height: 17px;
+}
+
 .vap-z-20 {
   width: 20px;
   height: 20px;
@@ -3842,8 +3853,72 @@ textarea {
   background-image: url(../../images/emojis/vulcan-salute_1f596.png);
 }
 
+.vap-waving-hand {
+  background-image: url(../../images/emojis/waving-hand_1f44b.png);
+}
+
+.vap-backhand-index-pointing-down {
+  background-image: url(../../images/emojis/backhand-index-pointing-down_1f447.png);
+}
+
+.vap-call-me-hand {
+  background-image: url(../../images/emojis/call-me-hand_1f919.png);
+}
+
 .vap-gem {
   background-image: url(../../images/emojis/gem-stone_1f48e.png);
+}
+
+.vap-setting {
+  background-image: url(../../images/emojis/gear_2699-fe0f.png);
+}
+
+.vap-rocket {
+  background-image: url(../../images/emojis/rocket_1f680.png);
+}
+
+.vap-trophy {
+  background-image: url(../../images/emojis/trophy_1f3c6.png);
+}
+
+.vap-house {
+  background-image: url(../../images/emojis/house_1f3e0.png);
+}
+
+.vap-party-popper {
+  background-image: url(../../images/emojis/party-popper_1f389.png);
+}
+
+.vap-woozy-face {
+  background-image: url(../../images/emojis/woozy-face_1f974.png);
+}
+
+.vap-hugging-face {
+  background-image: url(../../images/emojis/hugging-face_1f917.png);
+}
+
+.vap-star-struck {
+  background-image: url(../../images/emojis/star-struck_1f929.png);
+}
+
+.vap-smiling-face-with-heart-eyes {
+  background-image: url(../../images/emojis/smiling-face-with-heart-eyes_1f60d.png);
+}
+
+.vap-ninja {
+  background-image: url(../../images/emojis/ninja_1f977.png);
+}
+
+.vap-eyes {
+  background-image: url(../../images/emojis/eyes_1f440.png);
+}
+
+.vap-globe {
+  background-image: url(../../images/emojis/globe-showing-americas_1f30e.png);
+}
+
+.vap-person-gesturing-no {
+  background-image: url(../../images/emojis/person-gesturing-no_1f645.png);
 }
 
 /***** Icons END *****/

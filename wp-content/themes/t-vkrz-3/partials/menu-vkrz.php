@@ -20,7 +20,7 @@
             </li>
             <li class="nav-item nav-toggle hide-lg">
                 <a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse">
-                    <span class="ico">🙅</span>
+                    <span class="ico vap vap-person-gesturing-no vap-lg"></span>
                     fermer
                 </a>
             </li>
