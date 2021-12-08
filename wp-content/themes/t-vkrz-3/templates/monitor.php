@@ -21,7 +21,7 @@
                             <div class="card text-center">
                                 <div class="card-body">
                                     <div class="mb-1">
-                                        <span class="ico4">💎</span>
+                                        <span class="ico4 va va-gem va-1x"></span>
                                     </div>
                                     <h1 class="font-weight-bolder">
                                         <span class="count" id="votes_number">
@@ -36,7 +36,7 @@
                                     <div class="pricing-badge text-right">
                                         <div class="badge badge-pill badge-light-primary">
                                             <a href="<?php the_permalink(get_page_by_path('best-of/best-tops')); ?>" data-toggle="tooltip" data-popup="tooltip-custom" data-placement="top" data-original-title="Voir les Tops les plus populaires">
-                                                💫
+                                            <span class="va va-dizzy va-1x"></span>
                                             </a>
                                         </div>
                                     </div>

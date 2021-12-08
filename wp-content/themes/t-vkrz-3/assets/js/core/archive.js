@@ -44,7 +44,7 @@ $(document).ready(function() {
         $grid.isotope();
         if($quicksearch.val() != ""){
             $('.ico-search-result').hide();
-            $('.ico-search-clear').show();
+            $('.').show();
         }
         else{
             $('.ico-search-result').show();
