@@ -64,6 +64,34 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                         <?php the_field('fin_de_la_sponso_t_sponso', $id_top); ?>
                                     </p>
                                 </div>
+                                <div class="card-footer share-content-sponso">
+                                    <div class="text-left">
+                                        <p>
+                                            <?php the_field('top_propose_par_t_sponso', $id_top); ?>
+                                        </p>
+                                    </div>
+                                    <div class="d-flex align-items-center reseaux-sponso">
+                                        <div class="logo-vkrz-sponso">
+                                            <?php
+                                            if (get_field('logo_de_la_sponso_t_sponso', $id_top)) : ?>
+                                                <a href="<?php the_field('lien_de_la_sponso_t_sponso', $id_top); ?>" target="_blank">
+                                                    <?php echo wp_get_attachment_image(get_field('logo_de_la_sponso_t_sponso', $id_top), 'large', '', array('class' => 'img-fluid')); ?>
+                                                </a>
+                                            <?php endif; ?>
+                                        </div>
+                                        <div class="mt-2 social-media-sponso">
+                                            <div class="d-flex buttons-social-media">
+                                                <?php if (have_rows('liste_des_liens_t_sponso', $id_top)) : ?>
+                                                    <?php while (have_rows('liste_des_liens_t_sponso', $id_top)) : the_row(); ?>
+                                                        <a href="<?php the_sub_field('lien_vers_t_sponso'); ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-outline-primary waves-effect waves-float waves-light" target="_blank">
+                                                            <?php the_sub_field('intitule_t_sponso'); ?>
+                                                        </a>
+                                                    <?php endwhile; ?>
+                                                <?php endif; ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="card-footer share-top-sponsor d-flex align-items-baseline justify-content-between">
                                     <h6 class="share-text">
                                         Partage le lien du Top 👉
@@ -288,7 +316,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                     <span class="ico">💬</span> <span class="hide-spot">Commenter</span>
                 </a>
             </div>
-            <?php if(get_post_status($id_top) != "draft") : ?>
+            <?php if (get_post_status($id_top) != "draft") : ?>
                 <div class="ico-nav-mobile">
                     <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" href="#" class="confirm_delete">
                         <span class="ico">🆕</span> <span class="hide-spot">Recommencer</span>
