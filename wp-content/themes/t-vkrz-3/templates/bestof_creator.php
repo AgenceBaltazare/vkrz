@@ -23,7 +23,7 @@ foreach ($creators as $user) {
             <div class="intro-mobile">
                 <div class="tournament-heading text-center">
                     <h3 class="mb-0 t-titre-tournoi">
-                        Top des créateurs les plus prolifiques <span>🦾</span>
+                        Top des créateurs les plus prolifiques <span class="va va-mechanical-arm va-lg"></span>
                     </h3>
                 </div>
             </div>
@@ -37,18 +37,28 @@ foreach ($creators as $user) {
                                         <div class="card">
                                             <div class="card-header">
                                                 <h4 class="card-title pt-1 pb-1">
-                                                    <span class="t-rose">TOP</span> des créateurs les plus prolifiques <span>🦾</span>
+                                                    <span class="t-rose">TOP</span> des créateurs les plus prolifiques <span class="va va-mechanical-arm va-lg"></span>
                                                 </h4>
                                             </div>
                                             <div class="table-responsive">
                                                 <table class="table">
                                                     <thead>
                                                         <tr>
-                                                            <th>🏁</th>
-                                                            <th>🤴</th>
-                                                            <th class="text-right">💎</th>
-                                                            <th class="text-right">🏆</th>
-                                                            <th>👀</th>
+                                                            <th>
+                                                                <span class="va va-chequered-flag va-lg"></span>
+                                                            </th>
+                                                            <th>
+                                                                <span class="va va-prince va-lg"></span>
+                                                            </th>
+                                                            <th class="text-right">
+                                                                <span class="va va-gem va-lg"></span>
+                                                            </th>
+                                                            <th class="text-right">
+                                                                <span class="va va-trophy va-lg"></span>
+                                                            </th>
+                                                            <th>
+                                                                <span class="va va-eyes va-lg"></span>
+                                                            </th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -62,11 +72,11 @@ foreach ($creators as $user) {
                                                             <tr>
                                                                 <td>
                                                                     <?php if ($r == 1) : ?>
-                                                                        <span class="ico">🥇</span>
+                                                                        <span class="ico va va-medal-1 va-lg"></span>
                                                                     <?php elseif ($r == 2) : ?>
-                                                                        <span class="ico">🥈</span>
+                                                                        <span class="ico va va-medal-2 va-lg"></span>
                                                                     <?php elseif ($r == 3) : ?>
-                                                                        <span class="ico">🥉</span>
+                                                                        <span class="ico va va-medal-3 va-lg"></span>
                                                                     <?php else : ?>
                                                                         #<?php echo $r; ?>
                                                                     <?php endif; ?>
@@ -94,8 +104,7 @@ foreach ($creators as $user) {
                                                                                 <?php echo $creator_data['level']; ?>
                                                                             </span>
                                                                             <?php if ($creator_data['user_role']  == "administrator") : ?>
-                                                                                <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
-                                                                                    🦙
+                                                                                <span class="ico va va-llama va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
                                                                                 </span>
                                                                             <?php endif; ?>
                                                                         </div>
@@ -103,11 +112,11 @@ foreach ($creators as $user) {
                                                                 </td>
 
                                                                 <td class="text-right">
-                                                                    <?php echo number_format($data_t_created['creator_all_v'], 0, ",", " "); ?> <span class="ico">💎</span>
+                                                                    <?php echo number_format($data_t_created['creator_all_v'], 0, ",", " "); ?> <span class="ico va va-gem va-lg"></span>
                                                                 </td>
 
                                                                 <td class="text-right">
-                                                                    <?php echo number_format($creator['total_completed_top'], 0, ",", " "); ?> <span class="ico">🏆</span>
+                                                                    <?php echo number_format($creator['total_completed_top'], 0, ",", " "); ?> <span class="ico va va-trophy va-lg">🏆</span>
                                                                 </td>
 
                                                                 <td>

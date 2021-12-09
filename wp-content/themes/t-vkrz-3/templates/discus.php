@@ -15,7 +15,7 @@ get_header();
 
         <div class="content-header mt-1">
             <a href="#" onclick="window.history.back();" class="btn btn-outline-primary waves-effect mb-1 mr-1">
-                <span class="ico">⬅️</span> Retour en arrière
+                <span class="ico va va-left-arrow va-lg"></span> Retour en arrière
             </a>
         </div>
 

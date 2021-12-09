@@ -3865,6 +3865,34 @@ textarea {
   background-image: url(../../images/emojis/call-me-hand_1f919.png);
 }
 
+.va-writing-hand {
+  background-image: url(../../images/emojis/writing-hand_270d-fe0f.png);
+}
+
+.va-raised-fist {
+  background-image: url(../../images/emojis/raised-fist.png);
+}
+
+.va-right-facing-fist {
+  background-image: url(../../images/emojis/right-facing-fist_1f91c.png);
+}
+
+.va-left-facing-fist {
+  background-image: url(../../images/emojis/left-facing-fist_1f91b.png);
+}
+
+.va-folded-hands {
+  background-image: url(../../images/emojis/folded-hands_1f64f.png);
+}
+
+.va-victory-hand {
+  background-image: url(../../images/emojis/victory-hand_270c-fe0f.png);
+}
+
+.va-backhand-index-pointing-right {
+  background-image: url(../../images/emojis/backhand-index-pointing-right_1f449.png);
+}
+
 .va-gem {
   background-image: url(../../images/emojis/gem-stone_1f48e.png);
 }
@@ -3905,7 +3933,7 @@ textarea {
   background-image: url(../../images/emojis/smiling-face-with-heart-eyes_1f60d.png);
 }
 
-.va-smiling-face-screaming {
+.va-face-screaming {
   background-image: url(../../images/emojis/face-screaming-in-fear_1f631.png);
 }
 
@@ -3915,6 +3943,26 @@ textarea {
 
 .va-anxious-face-with-sweat {
   background-image: url(../../images/emojis/anxious-face-with-sweat_1f630.png);
+}
+
+.va-smiling-face-with-hearts {
+  background-image: url(../../images/emojis/smiling-face-with-hearts_1f970.png);
+}
+
+.va-face-with-monocle {
+  background-image: url(../../images/emojis/face-with-monocle_1f9d0.png);
+}
+
+.va-squinting-face-with-tongue {
+  background-image: url(../../images/emojis/squinting-face-with-tongue_1f61d.png);
+}
+
+.va-swinking-face-with-tongue {
+  background-image: url(../../images/emojis/winking-face-with-tongue_1f61c.png);
+}
+
+.va-cold-face {
+  background-image: url(../../images/emojis/cold-face_1f976.png);
 }
 
 .va-full-moon-face {
@@ -4009,6 +4057,10 @@ textarea {
   background-image: url(../../images/emojis/play-button_25b6-fe0f.png);
 }
 
+.va-left-arrow {
+  background-image: url(../../images/emojis/left-arrow_2b05-fe0f.png);
+}
+
 .va-crossed-swords {
   background-image: url(../../images/emojis/crossed-swords_2694-fe0f.png);
 }
@@ -4035,6 +4087,54 @@ textarea {
 
 .va-dizzy {
   background-image: url(../../images/emojis/dizzy_1f4ab.png);
+}
+
+.va-high-voltage {
+  background-image: url(../../images/emojis/high-voltage_26a1.png);
+}
+
+.va-stopwatch {
+  background-image: url(../../images/emojis/stopwatch_23f1-fe0f.png);
+}
+
+.va-light-bulb {
+  background-image: url(../../images/emojis/light-bulb_1f4a1.png);
+}
+
+.va-mechanical-arm {
+  background-image: url(../../images/emojis/mechanical-arm_1f9be.png);
+}
+
+.va-chequered-flag {
+  background-image: url(../../images/emojis/chequered-flag_1f3c1.png);
+}
+
+.va-prince {
+  background-image: url(../../images/emojis/prince_1f934.png);
+}
+
+.va-speech-balloon {
+  background-image: url(../../images/emojis/speech-balloon_1f4ac.png);
+}
+
+.va-birthday-cake {
+  background-image: url(../../images/emojis/birthday-cake_1f382.png);
+}
+
+.va-four-leaf-clover {
+  background-image: url(../../images/emojis/four-leaf-clover_1f340.png);
+}
+
+.va-wrapped-gift {
+  background-image: url(../../images/emojis/wrapped-gift_1f381.png);
+}
+
+.va-placard {
+  background-image: url(../../images/emojis/placard_1faa7.png);
+}
+
+.va-megaphone {
+  background-image: url(../../images/emojis/megaphone_1f4e3.png);
 }
 
 /***** Icons END *****/

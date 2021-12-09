@@ -27,7 +27,7 @@ $contenders_ranking   = get_contenders_ranking($id_top);
             <div class="intro-mobile">
                 <div class="tournament-heading text-center">
                     <h3 class="mb-0 t-titre-tournoi">
-                        Top <?php echo $top_infos['top_number']; ?> <span class="ico text-center">🏆</span> <?php echo $top_infos['top_title']; ?>
+                        Top <?php echo $top_infos['top_number']; ?> <span class="ico text-center va va-trophy va-lg"></span> <?php echo $top_infos['top_title']; ?>
                     </h3>
                     <h4 class="mb-0">
                         <?php echo $top_infos['top_question']; ?>
@@ -89,11 +89,11 @@ $contenders_ranking   = get_contenders_ranking($id_top);
                                             <div class="name eh2">
                                                 <h5 class="mt-2">
                                                     <?php if ($i == 1) : ?>
-                                                        <span class="ico">🥇</span>
+                                                        <span class="ico va va-medal-1 va-lg"></span>
                                                     <?php elseif ($i == 2) : ?>
-                                                        <span class="ico">🥈</span>
+                                                        <span class="ico va va-medal-2 va-lg"></span>
                                                     <?php elseif ($i == 3) : ?>
-                                                        <span class="ico">🥉</span>
+                                                        <span class="ico va va-medal-3 va-lg"></span>
                                                     <?php else : ?>
                                                         <span><?php echo $i; ?><br></span>
                                                     <?php endif; ?>
@@ -125,12 +125,12 @@ $contenders_ranking   = get_contenders_ranking($id_top);
                                             <div class="pricing-badge text-right">
                                                 <div class="badge badge-pill badge-light-primary">
                                                     <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_top; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir les <?php echo $top_datas['nb_tops']; ?> Tops">
-                                                        👀
+                                                        <span class="va va-eyes va-lg"></span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div class="ico-stats">
-                                                <span class="ico4">🏆</span>
+                                                <span class="ico4 va va-trophy va-lg"></span>
                                             </div>
                                             <h2 class="font-weight-bolder">
                                                 <?php echo $top_datas['nb_tops']; ?>
@@ -149,7 +149,7 @@ $contenders_ranking   = get_contenders_ranking($id_top);
                                     <div class="card text-center">
                                         <div class="card-body">
                                             <div class="ico-stats">
-                                                <span class="ico4">💎</span>
+                                                <span class="ico4 va va-gem va-lg">💎</span>
                                             </div>
                                             <h2 class="font-weight-bolder">
                                                 <?php echo $top_datas['nb_votes']; ?>
@@ -170,12 +170,12 @@ $contenders_ranking   = get_contenders_ranking($id_top);
                                             <div class="pricing-badge text-right">
                                                 <div class="badge badge-pill badge-light-primary">
                                                     <a href="<?php echo get_the_permalink(get_page_by_path('discuz')) . '?id_top=' . $id_top; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir ou laisser un com">
-                                                        ✍️
+                                                        <span class="va va-writing-hand va-lg"></span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div class="ico-stats">
-                                                <span class="ico4">💬</span>
+                                                <span class="ico4 va va-speech-balloon va-lg">💬</span>
                                             </div>
                                             <h2 class="font-weight-bolder">
                                                 <?php echo $top_datas['nb_comments']; ?>
@@ -194,7 +194,7 @@ $contenders_ranking   = get_contenders_ranking($id_top);
                                     <div class="card text-center">
                                         <div class="card-body">
                                             <div class="ico-stats">
-                                                <span class="ico4">🎂</span>
+                                                <span class="ico4 va va-birthday-cake va-lg"></span>
                                             </div>
                                             <h2 class="font-weight-bolder">
                                                 <?php
@@ -223,13 +223,11 @@ $contenders_ranking   = get_contenders_ranking($id_top);
                                                     <?php echo $creator_data['level']; ?>
                                                 </span>
                                                 <?php if ($creator_data['user_role']  == "administrator") : ?>
-                                                    <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
-                                                        🦙
+                                                    <span class="ico va va-llama va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
                                                     </span>
                                                 <?php endif; ?>
                                                 <?php if ($creator_data['user_role']  == "administrator" || $creator_data['user_role'] == "author") : ?>
-                                                    <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
-                                                        👨‍🎤
+                                                    <span class="ico va va-man-singer va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
                                                     </span>
                                                 <?php endif; ?>
                                             </p>

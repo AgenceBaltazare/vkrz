@@ -15,14 +15,14 @@ get_header();
                         <img src="https://www.dcplanet.fr/wp-content/uploads/2020/02/logo-parismang.png" class="img-fluid" alt="">
                     </div>
                     <h1 class="mt-1">
-                        Résultats des Tops sponso 🥶
+                        Résultats des Tops sponso <span class="va va-cold-face va-1x"></span>
                     </h1>
                     <p class="mb-4 mt-3">
-                        Déjà un grand MERCI 🙏 à tous ceux qui sont venus découvrir le concept de VAINKEURZ à notre stand.
+                        Déjà un grand MERCI <span class="va va-folded-hands va-lg"></span> à tous ceux qui sont venus découvrir le concept de VAINKEURZ à notre stand.
                         <br><br>
-                        Ce fut un <span class="t-rose">immense Kiff </span> pour toute l'équipe de vous rencontrer et vous présenter notre concept pour notre première convention 🥰
+                        Ce fut un <span class="t-rose">immense Kiff </span> pour toute l'équipe de vous rencontrer et vous présenter notre concept pour notre première convention <span class="va va-smiling-face-with-hearts va-z-17"></span>
                         <br>
-                        On redouble de motivation pour <span class="t-rose">créer de nouveaux Tops</span> et chercher des collabs pour vous faire <span class="t-rose">gagner des lots de folie</span> 🤩
+                        On redouble de motivation pour <span class="t-rose">créer de nouveaux Tops</span> et chercher des collabs pour vous faire <span class="t-rose">gagner des lots de folie</span> <span class="va va-star-struck va-z-17"></span>
                     </p>
                 </div>
 
@@ -57,7 +57,7 @@ get_header();
                                                     <div class="plan-price mt-2 d-flex align-items-center justify-content-center">
                                                         <div class="need">
                                                             <span class="pricing-basic-value text-rose d-block mb-1">
-                                                                Le gagnant est 👇
+                                                                Le gagnant est <span class="va va-backhand-index-pointing-down va-lg"></span>
                                                             </span>
                                                             <span class="pricing-basic-value font-weight-bolder text-primary">
                                                                 <?php the_sub_field('email_gagnant_result'); ?>
@@ -80,7 +80,7 @@ get_header();
 
                         <div class="bloc-result">
                             <h3>
-                                🍀
+                                <span class="va va-four-leaf-clover va-2x"></span>
                                 <br>
                                 Voici la vidéo du tirage au sort en live 🎥
                             </h3>
@@ -98,11 +98,11 @@ get_header();
 
                         <div class="bloc-result">
                             <h3>
-                                🏆
+                                <span class="va va-trophy va-2x"></span>
                                 <br>
                                 La ParisManga continue avec le Top du meilleur Cosplay
                                 <br>
-                                <span class="t-rose">A toi de voter 👇</span>
+                                <span class="t-rose">A toi de voter <span class="va va-backhand-index-pointing-down va-lg"></span></span>
                             </h3>
 
                             <a href="https://vainkeurz.com/t/cosplay/">
@@ -120,7 +120,7 @@ get_header();
 
                         <div class="bloc-result">
                             <h3>
-                                Si on restait connecté ? 🤜 🤛
+                                Si on restait connecté ? <span class="va va-right-facing-fist va-2x"></span> <span class="va va-left-facing-fist va-2x"></span>
                             </h3>
                             <div class="mt-10p">
                                 <a href="https://discord.gg/w882sUnrhE" class="sociallink btn btn-outline-primary waves-effect mr-10p mt-10p" target="_blank">

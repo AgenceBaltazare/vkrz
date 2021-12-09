@@ -12,7 +12,7 @@ $best_tops = get_transient('best_tops_of_all_time');
             <div class="intro-mobile">
                 <div class="tournament-heading text-center">
                     <h3 class="mb-0 t-titre-tournoi">
-                        Top 20 des Tops les plus populaires <span>💫</span>
+                        Top 20 des Tops les plus populaires <span class="va va-dizzy va-lg"></span>
                     </h3>
                 </div>
             </div>
@@ -26,18 +26,26 @@ $best_tops = get_transient('best_tops_of_all_time');
                                         <div class="card">
                                             <div class="card-header">
                                                 <h4 class="card-title pt-1 pb-1">
-                                                    <span class="t-rose">TOP 20</span> des Tops les plus populaires <span>💫</span>
+                                                    <span class="t-rose">TOP 20</span> des Tops les plus populaires <span class="va va-dizzy va-lg"></span>
                                                 </h4>
                                             </div>
                                             <div class="table-responsive">
                                                 <table class="table">
                                                     <thead>
                                                         <tr>
-                                                            <th>🏁</th>
-                                                            <th>🤴</th>
-                                                            <th class="text-right">🏆</th>
+                                                            <th>
+                                                                <span class="va va-chequered-flag va-lg"></span>
+                                                            </th>
+                                                            <th>
+                                                                <span class="va va-prince va-lg"></span>
+                                                            </th>
+                                                            <th class="text-right">
+                                                                <span class="va va-trophy va-lg"></span>
+                                                            </th>
                                                             <th class="text-right"><small class="text-muted">Conçu par</small></th>
-                                                            <th>⚡️</th>
+                                                            <th>
+                                                                <span class="va va-high-voltage va-lg"></span>
+                                                            </th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -53,11 +61,11 @@ $best_tops = get_transient('best_tops_of_all_time');
                                                                 <tr>
                                                                     <td>
                                                                         <?php if ($r == 1) : ?>
-                                                                            <span class="ico">🥇</span>
+                                                                            <span class="ico va va-medal-1 va-lg"></span>
                                                                         <?php elseif ($r == 2) : ?>
-                                                                            <span class="ico">🥈</span>
+                                                                            <span class="ico va va-medal-2 va-lg"></span>
                                                                         <?php elseif ($r == 3) : ?>
-                                                                            <span class="ico">🥉</span>
+                                                                            <span class="ico va va-medal-3 va-lg"></span>
                                                                         <?php else : ?>
                                                                             #<?php echo $r; ?>
                                                                         <?php endif; ?>
@@ -113,8 +121,7 @@ $best_tops = get_transient('best_tops_of_all_time');
                                                                                     <?php echo $creator_data['level']; ?>
                                                                                 </span>
                                                                                 <?php if ($creator_data['user_role']  == "administrator") : ?>
-                                                                                    <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
-                                                                                        🦙
+                                                                                    <span class="ico va va-llama va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
                                                                                     </span>
                                                                                 <?php endif; ?>
                                                                             </a>

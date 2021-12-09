@@ -19,7 +19,7 @@ $top_datas = get_top_data($id_top);
             <div class="intro-mobile">
                 <div class="tournament-heading text-center">
                     <h3 class="mb-0 t-titre-tournoi">
-                        Liste de tous les Tops <?php echo $top_infos['top_number']; ?> <span class="ico text-center">🏆</span> <?php echo $top_infos['top_title']; ?>
+                        Liste de tous les Tops <?php echo $top_infos['top_number']; ?> <span class="ico text-center va va-trophy va-lg"></span> <?php echo $top_infos['top_title']; ?>
                     </h3>
                     <h4 class="mb-0">
                         <?php echo $top_infos['top_question']; ?>
@@ -61,7 +61,7 @@ $top_datas = get_top_data($id_top);
                                         <div class="card">
                                             <div class="card-header">
                                                 <h4 class="card-title pt-1 pb-1">
-                                                    Liste des <?php echo $top_datas['nb_tops']; ?> <span>🏆</span> créés sur VAINKEURZ pour ce Top !
+                                                    Liste des <?php echo $top_datas['nb_tops']; ?> <span class="va va-sports-medal va-lg"></span> créés sur VAINKEURZ pour ce Top !
                                                 </h4>
                                             </div>
                                             <div class="table-responsive">
@@ -104,13 +104,11 @@ $top_datas = get_top_data($id_top);
                                                                             <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_vainkeur'])); ?>">
                                                                                 <?php echo $vainkeur_data_selected['pseudo']; ?>
                                                                                 <?php if ($vainkeur_data_selected['user_role'] == "administrator") : ?>
-                                                                                    <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
-                                                                                        🦙
+                                                                                    <span class="ico va va-llama va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
                                                                                     </span>
                                                                                 <?php endif; ?>
                                                                                 <?php if ($vainkeur_data_selected['user_role'] == "administrator" || $vainkeur_data_selected['user_role'] == "author") : ?>
-                                                                                    <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
-                                                                                        👨‍🎤
+                                                                                    <span class="ico va va-man-singer va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
                                                                                     </span>
                                                                                 <?php endif; ?>
                                                                             </a>
@@ -142,7 +140,7 @@ $top_datas = get_top_data($id_top);
 
                                                                 <td>
                                                                     <a href="<?php the_permalink($id_rank); ?>" class="mr-1 btn btn-outline-primary waves-effect">
-                                                                        <span class="ico ico-reverse">👀</span>
+                                                                        <span class="ico ico-reverse va va-eyes va-lg"></span>
                                                                     </a>
                                                                 </td>
 
@@ -186,7 +184,7 @@ $top_datas = get_top_data($id_top);
                                                         $info_date = "depuis " . $interval->days . " jours";
                                                     }
                                                     ?>
-                                                    <span class="ico">🎂</span> Créé <span class="t-violet"><?php echo $info_date; ?></span> par :
+                                                    <span class="ico va va-birthday-cake va-lg"></span> Créé <span class="t-violet"><?php echo $info_date; ?></span> par :
                                                 </h4>
                                                 <div class="employee-task d-flex justify-content-between align-items-center">
                                                     <a href="<?php echo $creator_data['profil']; ?>" class="d-flex flex-row link-to-creator">
@@ -200,13 +198,11 @@ $top_datas = get_top_data($id_top);
                                                                     <?php echo $creator_data['level']; ?>
                                                                 </span>
                                                                 <?php if ($creator_data['user_role']  == "administrator") : ?>
-                                                                    <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
-                                                                        🦙
+                                                                    <span class="ico va va-llama va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
                                                                     </span>
                                                                 <?php endif; ?>
                                                                 <?php if ($creator_data['user_role']  == "administrator" || $creator_data['user_role'] == "author") : ?>
-                                                                    <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
-                                                                        👨‍🎤
+                                                                    <span class="ico va va-man-singer va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
                                                                     </span>
                                                                 <?php endif; ?>
                                                             </h3>
@@ -220,7 +216,7 @@ $top_datas = get_top_data($id_top);
                                         <div class="card text-center">
                                             <div class="card-body">
                                                 <div class="mb-1">
-                                                    <span class="ico4">💎</span>
+                                                    <span class="ico4 va va-gem va-lg"></span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">
                                                     <?php echo $top_datas['nb_votes']; ?>
@@ -241,7 +237,7 @@ $top_datas = get_top_data($id_top);
                                                 <div class="pricing-badge text-right">
                                                     <div class="badge badge-pill badge-light-primary">
                                                         <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_top; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir les <?php echo $top_datas['nb_tops']; ?> Tops">
-                                                            👀
+                                                        <span class="va va-llama va-lg"></span>
                                                         </a>
                                                     </div>
                                                 </div>
@@ -267,7 +263,7 @@ $top_datas = get_top_data($id_top);
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">
-                                        <span class="ico">💬</span> <?php echo $top_datas['nb_comments']; ?>
+                                        <span class="ico va va-speech-balloon va-lg"></span> <?php echo $top_datas['nb_comments']; ?>
                                         <?php if ($top_datas['nb_comments'] <= 1) : ?>
                                             Commentaire
                                         <?php else : ?>
@@ -300,7 +296,7 @@ $top_datas = get_top_data($id_top);
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">
-                                        <span class="ico">✌️</span> Participe à ce Top
+                                        <span class="ico va va-victory-hand va-lg"></span> Participe à ce Top
                                     </h4>
                                     <h6 class="card-subtitle text-muted mb-1">
                                         Toi aussi fais ton Top afin de faire bouger les positions !

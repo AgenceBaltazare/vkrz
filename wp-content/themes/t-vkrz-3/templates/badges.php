@@ -11,7 +11,7 @@ get_header();
             <section id="pricing-plan">
                 <div class="text-center">
                     <h1 class="mt-5">
-                        🏅 Les Trophées disponibles🏅
+                        <span class="va va-sports-medal va-1x"></span> Les Trophées disponibles <span class="va va-sports-medal va-1x"></span>
                     </h1>
                     <p class="mb-4 mt-3">
                         Réalise des actions spécifiques pour ajouter des Trophées à ta collection !
@@ -61,9 +61,7 @@ get_header();
                                     <?php endif; ?>
                                     <div class="card-body">
                                         <div class="eh">
-                                            <span class="ico-master">
-                                                🦙
-                                            </span>
+                                            <span class="ico-master va va-llama va-1x"></span>
                                         </div>
                                         <h3>
                                             Être un Vainkeur
@@ -78,9 +76,7 @@ get_header();
                                 <div class="card basic-pricing text-center">
                                     <div class="card-body">
                                         <div class="eh">
-                                            <span class="ico-master">
-                                                🥷
-                                            </span>
+                                            <span class="ico-master va va-ninja va-1x"></span>
                                         </div>
                                         <h3>
                                             Trophée secret
@@ -95,9 +91,7 @@ get_header();
                                 <div class="card basic-pricing text-center">
                                     <div class="card-body">
                                         <div class="eh">
-                                            <span class="ico-master">
-                                                🥷
-                                            </span>
+                                            <span class="ico-master va va-ninja va-1x"></span>
                                         </div>
                                         <h3>
                                             Trophée secret
@@ -112,9 +106,7 @@ get_header();
                                 <div class="card basic-pricing text-center">
                                     <div class="card-body">
                                         <div class="eh">
-                                            <span class="ico-master">
-                                                🥷
-                                            </span>
+                                            <span class="ico-master va va-ninja va-1x"></span>
                                         </div>
                                         <h3>
                                             Trophée secret
@@ -134,7 +126,7 @@ get_header();
                                 <div class="cta">
                                     <div class="card basic-pricing text-center">
                                         <div class="card-body">
-                                            <h3 class="mb-2">💡 Proposes <span class="t-rose">ton idée de Trophée</span> <br>& si c'est cool, nous l'ajouterons à la liste</h3>
+                                            <h3 class="mb-2"><span class="va va-light-bulb va-lg"></span> Proposes <span class="t-rose">ton idée de Trophée</span> <br>& si c'est cool, nous l'ajouterons à la liste</h3>
                                             <a href="<?php the_permalink(get_page_by_path('proposition-de-trophe')); ?>/" class="btn btn-primary waves-effect">
                                                 Proposer mon Trophée
                                             </a>

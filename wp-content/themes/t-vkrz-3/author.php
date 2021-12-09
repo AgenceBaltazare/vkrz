@@ -178,7 +178,7 @@ foreach ($list_user_tops as $top) {
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">
-                                        <span class="ico">🏅</span> Trophées
+                                        <span class="ico va va-medal-1 va-lg"></span> Trophées
                                     </h4>
                                 </div>
                                 <div class="card-body">
@@ -203,7 +203,7 @@ foreach ($list_user_tops as $top) {
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">
-                                        <span class="ico">⏳</span> Progression
+                                        <span class="ico va va-hourglass va-lg"></span> Progression
                                     </h4>
                                 </div>
                                 <div class="card-body">
@@ -284,7 +284,7 @@ foreach ($list_user_tops as $top) {
                                         <div class="card text-center">
                                             <div class="card-body">
                                                 <div class="mb-1">
-                                                    <span class="ico4">💎</span>
+                                                    <span class="ico4 va va-gem va-z-30"></span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">
                                                     <?php echo $vainkeur_info['nb_vote_vkrz']; ?>
@@ -301,7 +301,7 @@ foreach ($list_user_tops as $top) {
                                         <div class="card text-center">
                                             <div class="card-body">
                                                 <div class="mb-1">
-                                                    <span class="ico4">🏆</span>
+                                                    <span class="ico4 va va-trophy va-z-30"></span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">
                                                     <?php echo $vainkeur_info['nb_top_vkrz']; ?>
@@ -336,13 +336,13 @@ foreach ($list_user_tops as $top) {
                                                                         <?php endif; ?>
                                                                     </th>
                                                                     <th class="text-right">
-                                                                        💎
+                                                                        <span class="va va-gem va-lg"></span>
                                                                     </th>
                                                                     <th class="">
-                                                                        🥇🥈🥉
+                                                                        <span class="va va-medal-1 va-lg"></span><span class="va va-medal-2 va-lg"></span><span class="va va-medal-3 va-lg"></span>
                                                                     </th>
                                                                     <th>
-                                                                        👀
+                                                                        <span class="va va-eyes va-lg"></span>
                                                                     </th>
                                                                 </tr>
                                                             </thead>
@@ -372,7 +372,7 @@ foreach ($list_user_tops as $top) {
                                                                                 </div>
                                                                             </td>
                                                                             <td class="text-right">
-                                                                                <?php echo $r_user['nb_votes']; ?> <span class="ico3">💎</span>
+                                                                                <?php echo $r_user['nb_votes']; ?> <span class="ico3 va va-gem va-lg"></span>
                                                                             </td>
                                                                             <td>
                                                                                 <?php
@@ -400,12 +400,12 @@ foreach ($list_user_tops as $top) {
                                                                                     ?>
                                                                                     <a class="mr-1" href="<?php the_permalink($r_user['id_ranking']); ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="<?php echo $wording; ?>">
                                                                                         <span class="ico">
-                                                                                            🏆
+                                                                                            <span class="va va-trophy va-lg"></span>
                                                                                         </span>
                                                                                     </a>
                                                                                     <a class="mr-1" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $r_user['id_top']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir le Top mondial">
                                                                                         <span class="ico">
-                                                                                            🌍
+                                                                                            <span class="va va-globe va-lg"></span>
                                                                                         </span>
                                                                                     </a>
                                                                                 </div>
