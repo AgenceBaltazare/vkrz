@@ -3470,6 +3470,26 @@ textarea {
   background-image: url(../../images/emojis/sports-medal_1f3c5.png);
 }
 
+.va-velo {
+  background-image: url(../../images/emojis/person-biking_1f6b4.png);
+}
+
+.va-velo-hard {
+  background-image: url(../../images/emojis/person-mountain-biking_1f6b5.png);
+}
+
+.va-cheese1 {
+  background-image: url(../../images/emojis/face-savoring-food_1f60b.png);
+}
+
+.va-cheese2 {
+  background-image: url(../../images/emojis/winking-face-with-tongue_1f61c-1.png);
+}
+
+.va-cheese3 {
+  background-image: url(../../images/emojis/zany-face_1f92a.png);
+}
+
 .va-llama {
   background-image: url(../../images/emojis/llama_1f999.png);
 }
