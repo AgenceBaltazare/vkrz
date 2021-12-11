@@ -250,14 +250,14 @@ $creator_data       = get_user_infos($creator_uuiduser);
     <nav class="navbar mobile-navbar">
         <div class="icons-navbar">
             <div class="ico-nav-mobile box-info-show">
-                <span class="ico">🪧</span> <span class="hide-spot">Infos du Top</span>
+                <span class="ico va va-placard va-lg"></span>  <span class="hide-spot">Infos du Top</span>
             </div>
             <div class="ico-nav-mobile share-natif-top">
-                <span class="ico ico-reverse">📣</span> <span class="hide-spot">Partager</span>
+                <span class="ico va va-megaphone va-lg"></span>  <span class="hide-spot">Partager</span>
             </div>
             <div class="ico-nav-mobile">
                 <a href="<?php echo get_the_permalink(get_page_by_path('discuz')) . '?id_top=' . $id_top; ?>">
-                    <span class="ico">💬</span> <span class="hide-spot">Commenter</span>
+                    <span class="ico va va-speech-balloon va-lg"></span> <span class="hide-spot">Commenter</span>
                 </a>
             </div>
             <div class="ico-nav-mobile">
@@ -298,7 +298,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
     </div>
     <div class="box-info-content">
         <h3>
-            <span class="ico-social">🪧</span>
+            <span class="ico va va-placard va-lg"></span> 
             Tous les infos du Top
         </h3>
         <div class="close-share">

@@ -8,8 +8,8 @@ $list_t_already_done = $user_tops['list_user_tops_done_ids'];
         <div class="content-body">
 
             <div class="intro-mobile">
-                <h3 class="mb-0 animate__animated animate__slideInLeft">🖖 Bienvenue</h3>
-                <h4 class="mb-0 kick animate__animated animate__slideInRight" data-kick="Commence par choisir un Top qui t'intéresse et enchaîne les votes 👇">
+                <h3 class="mb-0 animate__animated animate__slideInLeft"><span class="va va-vulcan-salute va-1x"></span>  Bienvenue</h3>
+                <h4 class="mb-0 kick animate__animated animate__slideInRight" data-kick="Commence par choisir un Top qui t'intéresse et enchaîne les votes <span class='va va-backhand-index-pointing-down va-1x'>">
                     Ici, tu fais et revendique tes propres Tops !
                 </h4>
             </div>
@@ -20,7 +20,7 @@ $list_t_already_done = $user_tops['list_user_tops_done_ids'];
                         <div class="row">
                             <div class="col">
                                 <h2 class="text-primary text-uppercase">
-                                    <span class="ico">⏱</span> Tops les plus récents
+                                    <span class="ico va va-stopwatch va-1x"></span> Tops les plus récents
                                     <small class="text-muted">Toutes catégories confondues</small>
                                 </h2>
                             </div>
@@ -67,7 +67,7 @@ $list_t_already_done = $user_tops['list_user_tops_done_ids'];
                         <div class="row">
                             <div class="col">
                                 <h2 class="text-primary text-uppercase">
-                                    <span class="ico">🥰</span> Tops les plus populaires
+                                    <span class="ico va va-smiling-face-with-hearts va-1x"></span> Tops les plus populaires
                                     <small class="text-muted">Des 7 derniers jours</small>
                                 </h2>
                             </div>
@@ -195,16 +195,16 @@ $list_t_already_done = $user_tops['list_user_tops_done_ids'];
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">
-                                    <span class="ico">🧐</span> VAINKEURZ, c'est quoi ?
+                                    <span class="ico va va-face-with-monocle va-z-20"></span> VAINKEURZ, c'est quoi ?
                                 </h4>
                                 <p class="card-text mb-2">
-                                    C'est clairement le moyen le plus douloureux de classer tout ce que tu préfères 🥴
+                                    C'est clairement le moyen le plus douloureux de classer tout ce que tu préfères <span class="ico va va-woozy-face va-z-20"></span>
                                     <br><br>
-                                    Ici, c'est pas aussi simple qu'une Tier List 😝 car pas d'égalité possible.
+                                    Ici, c'est pas aussi simple qu'une Tier List <span class="ico va va-squinting-face-with-tongue va-z-20"></span> car pas d'égalité possible.
                                     <br>
-                                    Tu vas forcément devoir faire des choix que tu voulais clairement pas avoir 😱
+                                    Tu vas forcément devoir faire des choix que tu voulais clairement pas avoir à faire <span class="ico va va-face-screaming va-z-20"></span>
                                     <br><br>
-                                    Ensuite, tu pourras comparer tes 🏆 à ceux de tes amis - si tu en as bien sûr. Et puis si tu n'en pas, 🤗 rejoins notre Discord.
+                                    Ensuite, tu pourras comparer tes <span class="ico va va-trophy va-z-20"></span> à ceux de tes amis - si tu en as bien sûr. Et puis si tu n'en pas, <span class="ico va va-hugging-face va-z-20"></span> rejoins notre Discord.
                                 </p>
                                 <a href="<?php the_permalink(104853); ?>" class="btn btn-primary waves-effect">
                                     Découvrir l'histoire de VAINKEURZ

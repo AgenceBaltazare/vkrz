@@ -23,7 +23,7 @@ if (is_user_logged_in()) {
                         <div class="col-12">
                             <div class="d-flex align-items-center">
                                 <h2 class="card-title font-weight-bold mb-1">
-                                    Bienvenue <span class="ico">🖖</span>
+                                    Bienvenue <span class="ico va va-vulcan-salute va-1x"></span>
                                 </h2>
                             </div>
 
@@ -49,14 +49,14 @@ if (is_user_logged_in()) {
 
                             <p class="text-center mt-2">
                                 <a href="<?php the_permalink(get_page_by_path('mot-de-passe')); ?>">
-                                    <span>Mot de passe oublié ? <span class="ico text-center">🙃</span></span>
+                                    <span>Mot de passe oublié ? <span class="ico text-center va va-upside-down-face va-lg"></span></span>
                                 </a>
                             </p>
 
                             <hr class="divider">
 
                             <p class="already-account">
-                                <span>Tu n'as pas encore de compte <span class="ico text-center">🥴</span></span>
+                                <span>Tu n'as pas encore de compte <span class="ico text-center va va-woozy-face va-lg"></span></span>
                                 <a href="<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>">
                                     <span>Clique ici pour te créer un compte</span>
                                 </a>

@@ -14,7 +14,7 @@ $vainkeurs = get_best_vainkeur("vote", NULL, 20);
             <div class="intro-mobile">
                 <div class="tournament-heading text-center">
                     <h3 class="mb-0 t-titre-tournoi">
-                        Top 20 des Vainkeurs les plus actifs <span>🔥</span>
+                        Top 20 des Vainkeurs les plus actifs <span class="va va-fire va-lg"></span>
                     </h3>
                 </div>
             </div>
@@ -37,11 +37,21 @@ $vainkeurs = get_best_vainkeur("vote", NULL, 20);
                                                     <table class="table">
                                                         <thead>
                                                             <tr>
-                                                                <th>🏁</th>
-                                                                <th>🤴</th>
-                                                                <th class="text-right">💎</th>
-                                                                <th class="text-right">🏆</th>
-                                                                <th>👀</th>
+                                                                <th>
+                                                                    <span class="va va-chequered-flag va-lg"></span>
+                                                                </th>
+                                                                <th>
+                                                                    <span class="va va-prince va-lg"></span>
+                                                                </th>
+                                                                <th class="text-right">
+                                                                    <span class="va va-gem va-lg"></span>
+                                                                </th>
+                                                                <th class="text-right">
+                                                                    <span class="va va-trophy va-lg"></span>
+                                                                </th>
+                                                                <th>
+                                                                    <span class="va va-eyes va-lg"></span>
+                                                                </th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -50,11 +60,11 @@ $vainkeurs = get_best_vainkeur("vote", NULL, 20);
                                                                 <tr>
                                                                     <td>
                                                                         <?php if ($r == 1) : ?>
-                                                                            <span class="ico">🥇</span>
+                                                                            <span class="ico va va-medal-1 va-lg"></span>
                                                                         <?php elseif ($r == 2) : ?>
-                                                                            <span class="ico">🥈</span>
+                                                                            <span class="ico va va-medal-2 va-lg"></span>
                                                                         <?php elseif ($r == 3) : ?>
-                                                                            <span class="ico">🥉</span>
+                                                                            <span class="ico va va-medal-3 va-lg"></span>
                                                                         <?php else : ?>
                                                                             #<?php echo $r; ?>
                                                                         <?php endif; ?>
@@ -82,13 +92,11 @@ $vainkeurs = get_best_vainkeur("vote", NULL, 20);
                                                                                     <?php echo get_the_author_meta('nickname', $user_id); ?>
                                                                                 </span>
                                                                                 <?php if ($user_infos['user_role'] == "administrator") : ?>
-                                                                                    <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
-                                                                                        🦙
+                                                                                    <span class="ico va va-llama va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
                                                                                     </span>
                                                                                 <?php endif; ?>
                                                                                 <?php if ($user_infos['user_role'] == "administrator" || $user_infos['user_role'] == "author") : ?>
-                                                                                    <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
-                                                                                        👨‍🎤
+                                                                                    <span class="ico va va-man-singer va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
                                                                                     </span>
                                                                                 <?php endif; ?>
                                                                             </div>
@@ -96,11 +104,11 @@ $vainkeurs = get_best_vainkeur("vote", NULL, 20);
                                                                     </td>
 
                                                                     <td class="text-right">
-                                                                        <?php echo $total_vote; ?> <span class="ico">💎</span>
+                                                                        <?php echo $total_vote; ?> <span class="ico va va-gem va-lg"></span>
                                                                     </td>
 
                                                                     <td class="text-right">
-                                                                        <?php echo $total_top; ?> <span class="ico">🏆</span>
+                                                                        <?php echo $total_top; ?> <span class="ico va va-trophy va-lg"></span>
                                                                     </td>
 
                                                                     <td>

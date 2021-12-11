@@ -23,7 +23,7 @@ else{
                     <div class="col-lg-12">
                         <div class="d-flex align-items-center">
                             <h2 class="card-title font-weight-bold mb-1">
-                                Reset ton mot de passe <span class="ico">🥴</span>
+                                Reset ton mot de passe <span class="ico va va-woozy-face va-lg"></span>
                             </h2>
                         </div>
 

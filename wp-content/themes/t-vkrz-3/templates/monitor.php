@@ -21,7 +21,7 @@
                             <div class="card text-center">
                                 <div class="card-body">
                                     <div class="mb-1">
-                                        <span class="ico4">💎</span>
+                                        <span class="ico4 va va-gem va-1x"></span>
                                     </div>
                                     <h1 class="font-weight-bolder">
                                         <span class="count" id="votes_number">
@@ -36,12 +36,12 @@
                                     <div class="pricing-badge text-right">
                                         <div class="badge badge-pill badge-light-primary">
                                             <a href="<?php the_permalink(get_page_by_path('best-of/best-tops')); ?>" data-toggle="tooltip" data-popup="tooltip-custom" data-placement="top" data-original-title="Voir les Tops les plus populaires">
-                                                💫
+                                            <span class="va va-dizzy va-1x"></span>
                                             </a>
                                         </div>
                                     </div>
                                     <div class="mb-1">
-                                        <span class="ico4">🏆</span>
+                                        <span class="ico4 va va-trophy va-1x"></span>
                                     </div>
                                     <h1 class="font-weight-bolder">
                                         <span class="count" id="tops_number">
@@ -65,7 +65,7 @@
                                         </h3>
                                         <p class="card-text mt-2">
                                             Le Vainkeur qui fera le <span class="t-rose">100 000<sup>ème</sup> Top</span> l'emporte. <br>
-                                            L'identifiant du gagnant sera annoncé sur Twitter et sur cette même page. <span class="ico">🥶</span>
+                                            L'identifiant du gagnant sera annoncé sur Twitter et sur cette même page. <span class="ico va va-cold-face va-lg"></span>
                                         </p>
                                     <?php else : ?>
                                         <div class="illuwin">
@@ -76,7 +76,7 @@
                                         </h3>
                                         <p class="card-text mt-2">
                                             Félicitation au Vainkeur qui a fait le <span class="t-rose">100 000<sup>ème</sup> Top</span>. <br>
-                                            Go sur notre Twitter pour découvrir le gagnant, c'est peut-être toi <span class="ico">😜</span>
+                                            Go sur notre Twitter pour découvrir le gagnant, c'est peut-être toi <span class="ico va va-swinking-face-with-tongue va-lg"></span>
                                         </p>
                                     <?php endif; ?>
                                     <div class="mt-2">
@@ -107,12 +107,12 @@
                                                 <div class="pricing-badge text-right">
                                                     <div class="badge badge-pill badge-light-primary">
                                                         <a href="<?php the_permalink(get_page_by_path('best-of/best-vainkeurs')); ?>" data-toggle="tooltip" data-popup="tooltip-custom" data-placement="top" data-original-title="Voir le Top 20 des vainkeurs">
-                                                            🔥
+                                                        <span class="va va-fire va-1x"></span>
                                                         </a>
                                                     </div>
                                                 </div>
                                                 <div class="mb-1">
-                                                    <span class="ico4">🦃</span>
+                                                    <span class="ico4 va va-turkey va-1x"></span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">
                                                     <?php echo count_users_by_level(4); ?>
@@ -134,7 +134,7 @@
                                         <div class="card text-center">
                                             <div class="card-body">
                                                 <div class="mb-1">
-                                                    <span class="ico4">🐓</span>
+                                                    <span class="ico4 va va-rooster va-1x"></span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">
                                                     <?php echo count_users_by_level(3); ?>
@@ -146,7 +146,7 @@
                                         <div class="card text-center">
                                             <div class="card-body">
                                                 <div class="mb-1">
-                                                    <span class="ico4">🐥</span>
+                                                    <span class="ico4 va va-chick va-1x"></span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">
                                                     <?php echo count_users_by_level(2); ?>
@@ -158,7 +158,7 @@
                                         <div class="card text-center">
                                             <div class="card-body">
                                                 <div class="mb-1">
-                                                    <span class="ico4">🐣</span>
+                                                    <span class="ico4 va va-hatching-chick va-1x"></span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">
                                                     <?php echo count_users_by_level(1); ?>
@@ -172,12 +172,12 @@
                                                 <div class="pricing-badge text-right">
                                                     <div class="badge badge-pill badge-light-primary">
                                                         <a href="<?php the_permalink(get_page_by_path('recrutement')); ?>" data-toggle="tooltip" data-popup="tooltip-custom" data-placement="top" data-original-title="Postuler pour devenir créateur">
-                                                            ✊
+                                                            <span class="va va-raised-fist va-1x"></span>
                                                         </a>
                                                     </div>
                                                 </div>
                                                 <div class="mb-1">
-                                                    <span class="ico4">👨‍🎤</span>
+                                                    <span class="ico4 va va-man-singer va-1x"></span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">
                                                     <?php

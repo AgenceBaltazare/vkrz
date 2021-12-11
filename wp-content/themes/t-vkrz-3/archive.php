@@ -50,8 +50,8 @@ $list_sujets      = array();
                 <div class="ecommerce-header-items">
                     <div class="result-toggler">
                         <a class="btn btn-outline-primary waves-effect" href="#">
-                            <span class="ico ico-filtreshow">🌝</span>
-                            <span class="ico ico-filtrehide hide">🌚</span>
+                            <span class="ico ico-filtreshow va va-full-moon-face va-lg"></span>
+                            <span class="ico ico-filtrehide hide va va-new-moon-face va-lg"></span>
                             Afficher les filtres
                         </a>
                     </div>
@@ -59,7 +59,7 @@ $list_sujets      = array();
                 <div id="ecommerce-searchbar" class="ecommerce-searchbar">
                     <div class="input-group input-group-merge">
                         <form action="?" method="get" id="search_form">
-                            <span class="ico ico-search ico-search-result">🔍</span>
+                            <span class="ico ico-search ico-search-result va va-magnifying-glass-tilted-left va-lg"></span>
                             <span class="ico ico-search ico-search-clear">❌</span>
                             <input type="text" class="form-control search-product" placeholder="Rechercher dans les <?php echo $tops_in_cat->post_count; ?> Tops..." aria-label="Rechercher..." aria-describedby="shop-search" />
                         </form>

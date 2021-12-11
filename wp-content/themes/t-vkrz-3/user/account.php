@@ -27,10 +27,10 @@ foreach ($list_user_tops as $top) {
                 <section class="please-rejoin app-user-view">
                     <div role="alert" aria-live="polite" aria-atomic="true" class="alert alert-account">
                         <div class="alert-body d-flex align-items-center justify-content-between">
-                            <span><span class="ico">💾</span> Pour sauvegarder et retrouver sur tous tes supports ta progression l'idéal serait de te créer un compte.</span>
+                            <span><span class="ico va va-floppy-disk va-lg"></span> Pour sauvegarder et retrouver sur tous tes supports ta progression l'idéal serait de te créer un compte.</span>
                             <div class="btns-alert text-right">
                                 <a class="btn btn-primary waves-effect btn-rose" href="<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>">
-                                    Excellente idée - je créé mon compte <span class="ico">🎉</span>
+                                    Excellente idée - je créé mon compte <span class="ico va va-party-popper va-lg"></span>
                                 </a>
                                 <a class="btn btn-outline-white waves-effect t-white ml-1" href="<?php the_permalink(get_page_by_path('se-connecter')); ?>">
                                     J'ai déjà un compte
@@ -55,7 +55,7 @@ foreach ($list_user_tops as $top) {
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">
-                                        <span class="ico">🏅</span> Trophées
+                                        <span class="ico va va-sports-medal va-lg"></span> Trophées
                                     </h4>
                                 </div>
                                 <div class="card-body">
@@ -77,7 +77,7 @@ foreach ($list_user_tops as $top) {
                                     <div class="row mt-2">
                                         <div class="col-12">
                                             <a class="btn btn-primary btn-block waves-effect waves-float waves-light" href="<?php the_permalink(get_page_by_path('trophees')); ?>">
-                                                Découvrir tous les trophées 👀
+                                                Découvrir tous les trophées <span class="va va-eyes va-z-20"></span>
                                             </a>
                                         </div>
                                     </div>
@@ -87,7 +87,7 @@ foreach ($list_user_tops as $top) {
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">
-                                        <span class="ico">⏳</span> Progression
+                                        <span class="ico va va-hourglass va-lg"></span> Progression
                                     </h4>
                                 </div>
                                 <div class="card-body">
@@ -168,7 +168,7 @@ foreach ($list_user_tops as $top) {
                                         <div class="card text-center">
                                             <div class="card-body">
                                                 <div class="mb-1">
-                                                    <span class="ico4">💎</span>
+                                                    <span class="ico4 va va-gem va-z-30"></span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">
                                                     <?php echo $user_infos['nb_vote_vkrz']; ?>
@@ -185,7 +185,7 @@ foreach ($list_user_tops as $top) {
                                         <div class="card text-center">
                                             <div class="card-body">
                                                 <div class="mb-1">
-                                                    <span class="ico4">🏆</span>
+                                                    <span class="ico4 va va-trophy va-z-30"></span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">
                                                     <?php echo $user_infos['nb_top_vkrz']; ?>
@@ -238,13 +238,13 @@ foreach ($list_user_tops as $top) {
                                                                         <?php endif; ?>
                                                                     </th>
                                                                     <th class="text-right">
-                                                                        💎
+                                                                        <span class="va va-gem va-lg"></span>
                                                                     </th>
                                                                     <th class="">
-                                                                        🥇🥈🥉
+                                                                        <span class="va va-medal-1 va-lg"></span><span class="va va-medal-2 va-lg"></span><span class="va va-medal-3 va-lg"></span>
                                                                     </th>
                                                                     <th>
-                                                                        👀
+                                                                        <span class="va va-eyes va-lg"></span>
                                                                     </th>
                                                                     <th>
 
@@ -271,7 +271,7 @@ foreach ($list_user_tops as $top) {
                                                                                 </div>
                                                                             </td>
                                                                             <td class="text-right">
-                                                                                <?php echo $top['nb_votes']; ?> <span class="ico3">💎</span>
+                                                                                <?php echo $top['nb_votes']; ?> <span class="ico3 va va-gem va-lg"></span>
                                                                             </td>
                                                                             <td>
                                                                                 <?php
@@ -298,13 +298,13 @@ foreach ($list_user_tops as $top) {
                                                                                     }
                                                                                     ?>
                                                                                     <a class="mr-1" href="<?php the_permalink($top['id_ranking']); ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="<?php echo $wording; ?>">
-                                                                                        <span class="ico">
-                                                                                            🏆
+                                                                                        <span class="ico va va-trophy va-lg">
+                                                                                            
                                                                                         </span>
                                                                                     </a>
                                                                                     <a class="mr-1" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $top['id_top']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir le Top mondial">
-                                                                                        <span class="ico">
-                                                                                            🌍
+                                                                                        <span class="ico va va-globe va-lg">
+                                                                                            
                                                                                         </span>
                                                                                     </a>
                                                                                 </div>
@@ -320,13 +320,13 @@ foreach ($list_user_tops as $top) {
                                                                                     </a>
                                                                                     <div class="dropdown-menu dropdown-menu-right">
                                                                                         <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-id_ranking="<?php echo $top['id_ranking']; ?>" class="confirm_delete dropdown-item" href="#">
-                                                                                            <span class="ico-action">🆕</span> Recommencer
+                                                                                            <span class="ico-action va va-new-button va-z-20"></span> Recommencer
                                                                                         </a>
                                                                                         <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Le Top sera supprimé définitivement 😱" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-id_ranking="<?php echo $top['id_ranking']; ?>" class="confirmDeleteReal dropdown-item" href="#">
-                                                                                            <span class="ico-action">🚮</span> Supprimer
+                                                                                            <span class="ico-action va va-throw-bin-button va-z-20"></span> Supprimer
                                                                                         </a>
                                                                                         <a href="#" class="dropdown-item" data-toggle="modal" data-target="#commentModal-<?php echo $top['id_top']; ?>">
-                                                                                            <span class="ico-action">🆓</span> Commenter
+                                                                                            <span class="ico-action va va-free-button va-z-20"></span> Commenter
                                                                                         </a>
                                                                                     </div>
                                                                                 </div>
@@ -358,10 +358,10 @@ foreach ($list_user_tops as $top) {
                                                                             <?php endif; ?>
                                                                         </th>
                                                                         <th class="text-center">
-                                                                            💎
+                                                                            <span class="va va-gem va-lg"></span>
                                                                         </th>
                                                                         <th>
-                                                                            👀
+                                                                        <span class="va va-eyes va-lg"></span>
                                                                         </th>
                                                                         <th>
 
@@ -387,25 +387,25 @@ foreach ($list_user_tops as $top) {
                                                                                 </div>
                                                                             </td>
                                                                             <td class="text-center">
-                                                                                <?php echo $top['nb_votes']; ?> <span class="ico3">💎</span>
+                                                                                <?php echo $top['nb_votes']; ?> <span class="ico3 va va-gem va-lg"></span>
                                                                             </td>
                                                                             <td>
                                                                                 <a class="mr-1" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $top['id_top']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir le Top mondial">
-                                                                                    <span class="ico">
-                                                                                        🌍
+                                                                                    <span class="ico va va-globe va-lg">
+                                                                                        
                                                                                     </span>
                                                                                 </a>
                                                                             </td>
                                                                             <td class="text-center">
                                                                                 <div class="d-flex align-items-center col-actions">
                                                                                     <a href="<?php the_permalink($top['id_top']); ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Continuer le Top">
-                                                                                        <span class="ico-action">▶️</span>
+                                                                                        <span class="ico-action va va-play-button va-z-20"></span>
                                                                                     </a>
                                                                                     <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-id_ranking="<?php echo $top['id_ranking']; ?>" class="confirm_delete" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Recommencer le Top">
-                                                                                        <span class="ico-action">🆕</span>
+                                                                                        <span class="ico-action va va-new-button va-z-20"></span>
                                                                                     </a>
                                                                                     <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Le Top sera supprimé définitivement 😱" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-id_ranking="<?php echo $top['id_ranking']; ?>" class="confirmDeleteReal" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Abandonner le Top">
-                                                                                        <span class="ico-action">🚮</span>
+                                                                                        <span class="ico-action va va-throw-bin-button va-z-20"></span>
                                                                                     </a>
                                                                                 </div>
                                                                             </td>

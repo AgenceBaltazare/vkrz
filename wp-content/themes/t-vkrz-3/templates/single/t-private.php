@@ -219,7 +219,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
         <div class="icons-navbar">
             <div class="ico-nav-mobile">
                 <a href="<?php echo get_the_permalink(get_page_by_path('discuz')) . '?id_top=' . $id_top; ?>">
-                    <span class="ico">💬</span> <span class="hide-spot">Commenter</span>
+                    <span class="ico va va-speech-balloon va-lg"></span> <span class="hide-spot">Commenter</span>
                 </a>
             </div>
             <?php if(get_post_status($id_top) != "draft") : ?>

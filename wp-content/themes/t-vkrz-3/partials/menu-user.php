@@ -40,7 +40,7 @@ if (is_single() && get_post_type() == "tournoi") {
 
                                         <li class="breadcrumb-item">
                                             <a href="<?php bloginfo('url'); ?>/">
-                                                🏠 Home
+                                                <span class="va va-house va-lg"></span> Home
                                             </a>
                                         </li>
 
@@ -140,14 +140,14 @@ if (is_single() && get_post_type() == "tournoi") {
 
             <?php if (is_home()) : ?>
 
-                <h3 class="mb-0 animate__animated animate__slideInLeft">🖖 Bienvenue</h3>
-                <h4 class="mb-0 kick animate__animated animate__slideInRight" data-kick="Commence par choisir un Top qui t'intéresse et enchaîne les votes 👇">Tu vas pouvoir générer et revendiquer tes propres classements !</h4>
+                <h3 class="mb-0 animate__animated animate__slideInLeft"><span class="va va-vulcan-salute va-1x"></span> Bienvenue</h3>
+                <h4 class="mb-0 kick animate__animated animate__slideInRight" data-kick="Commence par choisir un Top qui t'intéresse et enchaîne les votes <span class='va va-backhand-index-pointing-down va-1x'></span>">Tu vas pouvoir générer et revendiquer tes propres classements !</h4>
 
             <?php elseif (is_single() && (get_post_type() == "tournoi")) : ?>
 
                 <?php if ($id_ranking) : ?>
                     <div class="tournament-heading text-center">
-                        <h3 class="mb-0 t-titre-tournoi">Top <?php echo $top_infos['top_number']; ?> <span class="ico">⚡</span> <?php echo $top_infos['top_title']; ?></h3>
+                        <h3 class="mb-0 t-titre-tournoi">Top <?php echo $top_infos['top_number']; ?> <span class="ico va va-high-voltage va-lg">⚡</span> <?php echo $top_infos['top_title']; ?></h3>
                         <h4 class="mb-0 t-rose t-max">
                             <?php echo $top_infos['top_question']; ?>
                         </h4>
@@ -162,7 +162,7 @@ if (is_single() && get_post_type() == "tournoi") {
 
                 <div class="tournament-heading text-center">
                     <h3 class="mb-0 t-titre-tournoi">
-                        Top <?php echo $top_infos['top_number']; ?> <span class="ico text-center">🏆</span> <?php echo $top_infos['top_title']; ?>
+                        Top <?php echo $top_infos['top_number']; ?> <span class="ico text-center va va-trophy va-lg"></span> <?php echo $top_infos['top_title']; ?>
                     </h3>
                     <h4 class="mb-0">
                         <?php echo $top_infos['top_question']; ?>
@@ -173,7 +173,7 @@ if (is_single() && get_post_type() == "tournoi") {
 
                 <?php $id_top = $_GET['id_top']; ?>
                 <div class="tournament-heading text-center">
-                    <h3 class="mb-0 t-titre-tournoi">Top <?php echo get_field('count_contenders_t', $id_top); ?> mondial <span class="ico text-center">🌎</span> <?php echo get_the_title($id_top); ?></h3>
+                    <h3 class="mb-0 t-titre-tournoi">Top <?php echo get_field('count_contenders_t', $id_top); ?> mondial <span class="ico text-center va va-globe va-lg"></span> <?php echo get_the_title($id_top); ?></h3>
                     <h4 class="mb-0">
                         <?php the_field('question_t', $id_top); ?>
                     </h4>
@@ -183,7 +183,7 @@ if (is_single() && get_post_type() == "tournoi") {
 
                 <?php $id_top = $_GET['id_top']; ?>
                 <div class="tournament-heading text-center">
-                    <h3 class="mb-0 t-titre-tournoi">Liste des Tops <span class="ico text-center">🏆</span> <?php echo get_the_title($id_top); ?></h3>
+                    <h3 class="mb-0 t-titre-tournoi">Liste des Tops <span class="ico text-center va va-trophy va-lg"></span> <?php echo get_the_title($id_top); ?></h3>
                     <h4 class="mb-0">
                         <?php the_field('question_t', $id_top); ?>
                     </h4>
@@ -210,7 +210,7 @@ if (is_single() && get_post_type() == "tournoi") {
         <ul class="nav navbar-nav align-items-center justify-content-around">
             <li class="nav-item dropdown dropdown-cart">
                 <a class="nav-link d-flex flex-column align-items-center" href="javascript:void(0);" data-toggle="dropdown">
-                    <span class="ico text-center">💎</span>
+                    <span class="ico text-center va va-gem va-lg"></span>
                     <span class="value-user-stats user-total-vote-value">
                         <?php echo $user_infos['nb_vote_vkrz']; ?>
                     </span>
@@ -218,9 +218,9 @@ if (is_single() && get_post_type() == "tournoi") {
                 <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
                     <li class="dropdown-menu-header">
                         <div class="dropdown-header d-flex">
-                            <h4 class="notification-title mb-0 mr-auto">💎</h4>
+                            <h4 class="notification-title mb-0 mr-auto"><span class="va va-gem va-lg"></span></h4>
                             <div class="badge badge-pill badge-light-primary">
-                                Enchaîne les votes pour gagner des 💎
+                                Enchaîne les votes pour gagner des <span class="va va-gem va-z-17"></span>
                             </div>
                         </div>
                     </li>
@@ -228,21 +228,21 @@ if (is_single() && get_post_type() == "tournoi") {
                         <div class="text-center mb-2">
                             <h6 class="font-weight-bolder mb-0">
                                 <?php if (is_user_logged_in()) : ?>
-                                    Encore <span class="decompte_vote"><?php echo get_vote_to_next_level($user_infos['level_number'], $user_infos['nb_vote_vkrz']); ?></span> 💎 pour passer au niveau <?php echo $user_infos['next_level']; ?>
+                                    Encore <span class="decompte_vote"><?php echo get_vote_to_next_level($user_infos['level_number'], $user_infos['nb_vote_vkrz']); ?></span> <span class="va va-gem va-lg"></span> pour passer au niveau <?php echo $user_infos['next_level']; ?>
                                 <?php else : ?>
-                                    Il te faut un compte pour monter en niveau 🚀
+                                    Il te faut un compte pour monter en niveau <span class="va va-rocket va-lg"></span>
                                 <?php endif; ?>
                             </h6>
                         </div>
                         <a class="btn btn-primary btn-block" href="<?php the_permalink(get_page_by_path('evolution')); ?>">
-                            Découvre les niveaux 👀
+                            Découvre les niveaux <span class="va va-eyes va-lg"></span>
                         </a>
                     </li>
                 </ul>
             </li>
             <li class="nav-item mr-25">
                 <a class="nav-link d-flex flex-column align-items-center" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>">
-                    <span class="ico text-center">🏆</span>
+                    <span class="ico text-center va va-trophy va-lg"></span>
                     <span class="value-user-stats">
                         <?php echo $user_infos['nb_top_vkrz']; ?>
                     </span>
@@ -260,25 +260,25 @@ if (is_single() && get_post_type() == "tournoi") {
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-user">
                     <?php if (is_user_logged_in()) : ?>
                         <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>">
-                            <span class="ico">🐣</span> Mon compte
+                            <span class="ico va va-hatching-chick va-lg"></span> Mon compte
                         </a>
                         <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('parametres')); ?>">
-                            <span class="ico">⚙️</span> Paramètres
+                            <span class="ico va va-setting va-lg"></span> Paramètres
                         </a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('deconnexion')); ?>">
-                            <span class="ico">👋</span> Déconnexion
+                            <span class="ico va va-waving-hand va-lg"></span> Déconnexion
                         </a>
                     <?php else : ?>
                         <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>">
-                            <span class="ico">🥷</span> Mon compte
+                            <span class="ico va va-ninja va-lg"></span> Mon compte
                         </a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('se-connecter')); ?>">
-                            <span class="ico">🤙</span> Me connecter
+                            <span class="ico va va-call-me-hand va-lg"></span> Me connecter
                         </a>
                         <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>">
-                            <span class="ico">🎉</span> M'inscrire
+                            <span class="ico va va-party-pooper va-lg">🎉</span> M'inscrire
                         </a>
                     <?php endif; ?>
 

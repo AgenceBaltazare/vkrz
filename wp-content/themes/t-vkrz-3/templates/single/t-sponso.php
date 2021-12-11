@@ -94,7 +94,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                 </div>
                                 <div class="card-footer share-top-sponsor d-flex align-items-baseline justify-content-between">
                                     <h6 class="share-text">
-                                        Partage le lien du Top 👉
+                                        Partage le lien du Top  <span class="va va-backhand-index-pointing-right va-lg"></span>
                                     </h6>
                                     <div class="btn-group justify-content-center share-t w-60" role="group">
                                         <a href="https://twitter.com/intent/tweet?text=J'ai fait mon TOP <?php echo $top_infos['top_number']; ?> <?php echo $top_infos['top_title']; ?> maintenant c'est à vous 🤪🤪 &via=vainkeurz&hashtags=VKRZ&url=<?php echo $top_infos['top_url']; ?>" target="_blank" title="Tweet" class="btn btn-icon btn-outline-primary">
@@ -201,7 +201,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                             <div class="col">
                                                 <div class="infos-card-t info-card-t-v d-flex align-items-center">
                                                     <div class="mr-1">
-                                                        <span class="ico">💎</span>
+                                                        <span class="ico va va-gem va-lg"></span>
                                                     </div>
                                                     <div class="content-body text-left">
                                                         <h4 class="mb-0">
@@ -214,7 +214,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                             <div class="col">
                                                 <div class="infos-card-t d-flex align-items-center">
                                                     <div class="mr-1">
-                                                        <span class="ico">🏆</span>
+                                                        <span class="ico va va-trophy va-lg"></span>
                                                     </div>
                                                     <div class="content-body text-left">
                                                         <h4 class="mb-0">
@@ -227,7 +227,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                             <div class="col">
                                                 <div class="infos-card-t d-flex align-items-center">
                                                     <div class="mr-1">
-                                                        <span class="ico">🎁</span>
+                                                        <span class="ico va va-wrapped-gift va-lg"></span>
                                                     </div>
                                                     <div class="content-body text-left">
                                                         <h4 class="mb-0">
@@ -306,14 +306,14 @@ $creator_data       = get_user_infos($creator_uuiduser);
     <nav class="navbar mobile-navbar">
         <div class="icons-navbar">
             <div class="ico-nav-mobile box-info-show">
-                <span class="ico">🪧</span> <span class="hide-spot">Infos <span class="hide-xs">du Top</span></span>
+                <span class="ico va va-placard va-lg"></span> <span class="hide-spot">Infos <span class="hide-xs">du Top</span></span>
             </div>
             <div class="ico-nav-mobile share-natif-top">
-                <span class="ico ico-reverse">📣</span> <span class="hide-spot">Partager</span>
+                <span class="ico ico-reverse va va-megaphone va-lg">📣</span> <span class="hide-spot">Partager</span>
             </div>
             <div class="ico-nav-mobile">
                 <a href="<?php echo get_the_permalink(get_page_by_path('discuz')) . '?id_top=' . $id_top; ?>">
-                    <span class="ico">💬</span> <span class="hide-spot">Commenter</span>
+                    <span class="ico va va-speech-balloon va-lg"></span> <span class="hide-spot">Commenter</span>
                 </a>
             </div>
             <?php if (get_post_status($id_top) != "draft") : ?>
@@ -356,7 +356,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
     </div>
     <div class="box-info-content">
         <h3>
-            <span class="ico-social">🪧</span>
+            <span class="ico va va-placard va-lg"></span> 
             Tous les infos du Top
         </h3>
         <div class="close-share">

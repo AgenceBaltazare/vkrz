@@ -303,14 +303,14 @@ $top_datas    = get_top_data($id_top);
         <nav class="navbar fixed-bottom mobile-navbar">
             <div class="icons-navbar">
                 <div class="ico-nav-mobile box-info-show">
-                    <span class="ico">🪧</span> <span class="hide-spot">Infos <span class="hide-xs">du Top</span></span>
+                    <span class="ico va va-placard va-lg"></span> <span class="hide-spot">Infos <span class="hide-xs">du Top</span></span>
                 </div>
                 <div class="ico-nav-mobile share-content-show">
-                    <span class="ico ico-reverse">📣</span> <span class="hide-spot">Partager</span>
+                    <span class="ico va va-megaphone va-lg"></span>  <span class="hide-spot">Partager</span>
                 </div>
                 <div class="ico-nav-mobile">
                     <a href="<?php echo get_the_permalink(get_page_by_path('discuz')) . '?id_top=' . $id_top; ?>">
-                        <span class="ico">💬</span> <span class="hide-spot">Commenter</span>
+                        <span class="ico va va-speech-balloon va-lg"></span> <span class="hide-spot">Commenter</span>
                     </a>
                 </div>
 
@@ -416,7 +416,7 @@ $top_datas    = get_top_data($id_top);
         </div>
         <div class="box-info-content">
             <h3>
-                <span class="ico-social">🪧</span>
+                <span class="ico va va-placard va-lg"></span> 
                 Tous les infos du Top
             </h3>
             <div class="close-share">

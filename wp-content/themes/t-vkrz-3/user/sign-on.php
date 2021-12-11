@@ -24,7 +24,7 @@ if (is_user_logged_in()) {
                             <div class="d-flex align-items-center">
                                 <h2 class="card-title font-weight-bold mb-1">
                                     Créer ton compte <br>
-                                    pour enregistrer tes Tops <span class="ico">🤩</span>
+                                    pour enregistrer tes Tops <span class="ico va va-star-struck va-1x"></span>
                                 </h2>
                             </div>
 
@@ -49,7 +49,7 @@ if (is_user_logged_in()) {
                             </div>
 
                             <p class="mt-2 already-account">
-                                <span>Tu as déjà un compte <span class="ico text-center">🥴</span></span>
+                                <span>Tu as déjà un compte <span class="ico text-center va va-woozy-face va-lg"></span></span>
                                 <a href="<?php the_permalink(get_page_by_path('se-connecter')); ?>">
                                     <span>Clique ici pour te connecter</span>
                                 </a>
