@@ -10,368 +10,521 @@
     width: .75em;
     height: .75em;
 }
+
 .va-sm {
     width: .875em;
     height: .875em;
 }
+
 .va-lg {
     width: 1.33em;
     height: 1.33em;
 }
+
 .va-1x {
     width: 1em;
     height: 1em;
 }
+
 .va-2x {
     width: 2em;
     height: 2em;
 }
+
 .va-3x {
     width: 3em;
     height: 3em;
 }
+
 .va-4x {
     width: 4em;
     height: 4em;
 }
+
 .va-5x {
     width: 5em;
     height: 5em;
 }
+
 .va-6x {
     width: 6em;
     height: 6em;
 }
+
 .va-7x {
     width: 7em;
     height: 7em;
 }
+
 .va-8x {
     width: 8em;
     height: 8em;
 }
+
 .va-9x {
     width: 9em;
     height: 9em;
 }
+
 .va-10x {
     width: 10em;
     height: 10em;
 }
+
 .va-z-1 {
     width: 1px;
     height: 1px;
 }
+
 .va-z-2 {
     width: 2px;
     height: 2px;
 }
+
 .va-z-3 {
     width: 3px;
     height: 3px;
 }
+
 .va-z-4 {
     width: 4px;
     height: 4px;
 }
+
 .va-z-5 {
     width: 5px;
     height: 5px;
 }
+
 .va-z-6 {
     width: 6px;
     height: 6px;
 }
+
 .va-z-7 {
     width: 7px;
     height: 7px;
 }
+
 .va-z-8 {
     width: 8px;
     height: 8px;
 }
+
 .va-z-9 {
     width: 9px;
     height: 9px;
 }
+
 .va-z-10 {
     width: 10px;
     height: 10px;
 }
+
 .va-z-15 {
     width: 15px;
     height: 15px;
 }
+
 .va-z-17 {
     width: 17px;
     height: 17px;
 }
+
 .va-z-20 {
     width: 20px;
     height: 20px;
 }
+
 .va-z-30 {
     width: 30px;
     height: 30px;
 }
+
 .va-z-40 {
     width: 40px;
     height: 40px;
 }
+
 .va-z-50 {
     width: 50px;
     height: 50px;
 }
+
 .va-z-85 {
     width: 85px;
     height: 85px;
 }
+
 /***** Sizes END *****/
 
 /***** Icons START *****/
 .va-dragon {
     background-image: url(../../images/emojis/dragon-face_1f432.png);
 }
+
+.va-chance {
+    background-image: url(../../images/emojis/four-leaf-clover_1f340-1.png);
+}
+
+.va-jv {
+    background-image: url(../../images/emojis/joystick_1f579-fe0f.png);
+}
+
+.va-tv {
+    background-image: url(../../images/emojis/television_1f4fa.png);
+}
+
+.va-food {
+    background-image: url(../../images/emojis/pretzel_1f968.png);
+}
+
+.va-music {
+    background-image: url(../../images/emojis/optical-disk_1f4bf.png);
+}
+
+.va-sport {
+    background-image: url(../../images/emojis/ping-pong_1f3d3.png);
+}
+
+.va-comics {
+    background-image: url(../../images/emojis/spider-web_1f578-fe0f.png);
+}
+
+.va-chouette {
+    background-image: url(../../images/emojis/owl_1f989.png);
+}
+
+.va-dodo {
+    background-image: url(../../images/emojis/dodo_1f9a4.png);
+}
+
+.va-ninja {
+    background-image: url(../../images/emojis/ninja_1f977-1.png);
+}
+
+.va-visionnaire {
+    background-image: url(../../images/emojis/telescope_1f52d.png);
+}
+
 .va-egg {
     background-image: url(../../images/emojis/egg_1f95a.png);
 }
+
 .va-hatching-chick {
     background-image: url(../../images/emojis/hatching-chick_1f423.png);
 }
+
 .va-chick {
     background-image: url(../../images/emojis/front-facing-baby-chick_1f425.png);
 }
+
 .va-rooster {
     background-image: url(../../images/emojis/rooster_1f413.png);
 }
+
 .va-turkey {
     background-image: url(../../images/emojis/turkey_1f983.png);
 }
+
 .va-swan {
     background-image: url(../../images/emojis/swan_1f9a2.png);
 }
+
 .va-flamingo {
     background-image: url(../../images/emojis/flamingo_1f9a9.png);
 }
+
 .va-peacock {
     background-image: url(../../images/emojis/peacock_1f99a.png);
 }
+
 .va-vulcan-salute {
     background-image: url(../../images/emojis/vulcan-salute_1f596.png);
 }
+
 .va-waving-hand {
     background-image: url(../../images/emojis/waving-hand_1f44b.png);
 }
+
 .va-backhand-index-pointing-down {
     background-image: url(../../images/emojis/backhand-index-pointing-down_1f447.png);
 }
+
 .va-call-me-hand {
     background-image: url(../../images/emojis/call-me-hand_1f919.png);
 }
+
 .va-writing-hand {
     background-image: url(../../images/emojis/writing-hand_270d-fe0f.png);
 }
+
 .va-raised-fist {
     background-image: url(../../images/emojis/raised-fist.png);
 }
+
 .va-right-facing-fist {
     background-image: url(../../images/emojis/right-facing-fist_1f91c.png);
 }
+
 .va-left-facing-fist {
     background-image: url(../../images/emojis/left-facing-fist_1f91b.png);
 }
+
 .va-folded-hands {
     background-image: url(../../images/emojis/folded-hands_1f64f.png);
 }
+
 .va-victory-hand {
     background-image: url(../../images/emojis/victory-hand_270c-fe0f.png);
 }
+
 .va-backhand-index-pointing-right {
     background-image: url(../../images/emojis/backhand-index-pointing-right_1f449.png);
 }
+
 .va-gem {
     background-image: url(../../images/emojis/gem-stone_1f48e.png);
 }
+
 .va-setting {
     background-image: url(../../images/emojis/gear_2699-fe0f.png);
 }
+
 .va-rocket {
     background-image: url(../../images/emojis/rocket_1f680.png);
 }
+
 .va-trophy {
     background-image: url(../../images/emojis/trophy_1f3c6.png);
 }
+
 .va-house {
     background-image: url(../../images/emojis/house_1f3e0.png);
 }
+
 .va-party-popper {
     background-image: url(../../images/emojis/party-popper_1f389.png);
 }
+
 .va-woozy-face {
     background-image: url(../../images/emojis/woozy-face_1f974.png);
 }
+
 .va-hugging-face {
     background-image: url(../../images/emojis/hugging-face_1f917.png);
 }
+
 .va-star-struck {
     background-image: url(../../images/emojis/star-struck_1f929.png);
 }
+
 .va-smiling-face-with-heart-eyes {
     background-image: url(../../images/emojis/smiling-face-with-heart-eyes_1f60d.png);
 }
+
 .va-face-screaming {
     background-image: url(../../images/emojis/face-screaming-in-fear_1f631.png);
 }
+
 .va-upside-down-face {
     background-image: url(../../images/emojis/upside-down-face_1f643.png);
 }
+
 .va-anxious-face-with-sweat {
     background-image: url(../../images/emojis/anxious-face-with-sweat_1f630.png);
 }
+
 .va-smiling-face-with-hearts {
     background-image: url(../../images/emojis/smiling-face-with-hearts_1f970.png);
 }
+
 .va-face-with-monocle {
     background-image: url(../../images/emojis/face-with-monocle_1f9d0.png);
 }
+
 .va-squinting-face-with-tongue {
     background-image: url(../../images/emojis/squinting-face-with-tongue_1f61d.png);
 }
+
 .va-swinking-face-with-tongue {
     background-image: url(../../images/emojis/winking-face-with-tongue_1f61c.png);
 }
+
 .va-cold-face {
     background-image: url(../../images/emojis/cold-face_1f976.png);
 }
+
 .va-full-moon-face {
     background-image: url(../../images/emojis/full-moon-face_1f31d.png);
 }
+
 .va-new-moon-face {
     background-image: url(../../images/emojis/new-moon-face_1f31a.png);
 }
+
 .va-ninja {
     background-image: url(../../images/emojis/ninja_1f977.png);
 }
+
 .va-eyes {
     background-image: url(../../images/emojis/eyes_1f440.png);
 }
+
 .va-globe {
     background-image: url(../../images/emojis/globe-showing-americas_1f30e.png);
 }
+
 .va-person-gesturing-no {
     background-image: url(../../images/emojis/person-gesturing-no_1f645.png);
 }
+
 .va-exploding-head {
     background-image: url(../../images/emojis/exploding-head_1f92f.png);
 }
+
 .va-crown {
     background-image: url(../../images/emojis/crown_1f451.png);
 }
+
 .va-satellite-antenna {
     background-image: url(../../images/emojis/satellite-antenna_1f4e1.png);
 }
+
 .va-man-singer {
     background-image: url(../../images/emojis/man-singer_1f468-200d-1f3a4.png);
 }
+
 .va-sports-medal {
     background-image: url(../../images/emojis/sports-medal_1f3c5.png);
 }
+
 .va-llama {
     background-image: url(../../images/emojis/llama_1f999.png);
 }
+
 .va-fire {
     background-image: url(../../images/emojis/fire_1f525.png);
 }
+
 .va-floppy-disk {
     background-image: url(../../images/emojis/floppy-disk_1f4be.png);
 }
+
 .va-hourglass {
     background-image: url(../../images/emojis/hourglass-not-done_23f3.png);
 }
+
 .va-medal-1 {
     background-image: url(../../images/emojis/1st-place-medal_1f947.png);
 }
+
 .va-medal-2 {
     background-image: url(../../images/emojis/2nd-place-medal_1f948.png);
 }
+
 .va-medal-3 {
     background-image: url(../../images/emojis/3rd-place-medal_1f949.png);
 }
+
 .va-new-button {
     background-image: url(../../images/emojis/new-button_1f195.png);
 }
+
 .va-keycap-5 {
     background-image: url(../../images/emojis/keycap-digit-five_35-fe0f-20e3.png);
 }
+
 .va-throw-bin-button {
     background-image: url(../../images/emojis/litter-in-bin-sign_1f6ae.png);
 }
+
 .va-free-button {
     background-image: url(../../images/emojis/free-button_1f193.png);
 }
+
 .va-play-button {
     background-image: url(../../images/emojis/play-button_25b6-fe0f.png);
 }
+
 .va-left-arrow {
     background-image: url(../../images/emojis/left-arrow_2b05-fe0f.png);
 }
+
 .va-crossed-swords {
     background-image: url(../../images/emojis/crossed-swords_2694-fe0f.png);
 }
+
 .va-glowing-star {
     background-image: url(../../images/emojis/glowing-star_1f31f.png);
 }
+
 .va-magnifying-glass-tilted-left {
     background-image: url(../../images/emojis/magnifying-glass-tilted-left_1f50d.png);
 }
+
 .va-cross-mark {
     background-image: url(../../images/emojis/cross-mark_274c.png);
 }
+
 .va-timer-clock {
     background-image: url(../../images/emojis/timer-clock_23f2-fe0f.png);
 }
+
 .va-flexed-biceps {
     background-image: url(../../images/emojis/flexed-biceps_1f4aa.png);
 }
+
 .va-dizzy {
     background-image: url(../../images/emojis/dizzy_1f4ab.png);
 }
+
 .va-high-voltage {
     background-image: url(../../images/emojis/high-voltage_26a1.png);
 }
+
 .va-stopwatch {
     background-image: url(../../images/emojis/stopwatch_23f1-fe0f.png);
 }
+
 .va-light-bulb {
     background-image: url(../../images/emojis/light-bulb_1f4a1.png);
 }
+
 .va-mechanical-arm {
     background-image: url(../../images/emojis/mechanical-arm_1f9be.png);
 }
+
 .va-chequered-flag {
     background-image: url(../../images/emojis/chequered-flag_1f3c1.png);
 }
+
 .va-prince {
     background-image: url(../../images/emojis/prince_1f934.png);
 }
+
 .va-speech-balloon {
     background-image: url(../../images/emojis/speech-balloon_1f4ac.png);
 }
+
 .va-birthday-cake {
     background-image: url(../../images/emojis/birthday-cake_1f382.png);
 }
+
 .va-four-leaf-clover {
     background-image: url(../../images/emojis/four-leaf-clover_1f340.png);
 }
+
 .va-wrapped-gift {
     background-image: url(../../images/emojis/wrapped-gift_1f381.png);
 }
+
 .va-placard {
     background-image: url(../../images/emojis/placard_1faa7.png);
 }
+
 .va-megaphone {
     background-image: url(../../images/emojis/megaphone_1f4e3.png);
 }
+
 /***** Icons END *****/
-
-
