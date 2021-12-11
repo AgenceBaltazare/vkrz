@@ -3,18 +3,9 @@
     Template Name: Best of - creator
 */
 get_header();
-$creators = new WP_User_Query(
-    array(
-        'number' => -1,
-        'role__in' => array('author', 'administrator')
-    )
-);
-$creators = $creators->get_results();
-$best_creators = array();
-foreach ($creators as $user) {
-    $user_id = $user->ID;
-    array_push($best_creators, get_creator_t($user_id));
-}
+
+$best_creators = get_transient('best_creators');
+
 ?>
 <div class="app-content content cover">
     <div class="content-overlay"></div>
@@ -53,47 +44,35 @@ foreach ($creators as $user) {
                                                     </thead>
                                                     <tbody>
                                                         <?php
-                                                        $r = 1;
-                                                        usort($best_creators, function ($a, $b) {
-                                                            return $b['total_completed_top'] <=> $a['total_completed_top'];
-                                                        });
-                                                        foreach ($best_creators as $creator) : 
+                                                        $i = 1;
+
+                                                        foreach ($best_creators as $creator):
                                                         ?>
                                                             <tr>
                                                                 <td>
-                                                                    <?php if ($r == 1) : ?>
+                                                                    <?php if ($i == 1) : ?>
                                                                         <span class="ico">🥇</span>
-                                                                    <?php elseif ($r == 2) : ?>
+                                                                    <?php elseif ($i == 2) : ?>
                                                                         <span class="ico">🥈</span>
-                                                                    <?php elseif ($r == 3) : ?>
+                                                                    <?php elseif ($i == 3) : ?>
                                                                         <span class="ico">🥉</span>
                                                                     <?php else : ?>
-                                                                        #<?php echo $r; ?>
+                                                                        #<?php echo $i; ?>
                                                                     <?php endif; ?>
                                                                 </td>
                                                                 <td>
                                                                     <div class="d-flex align-items-center">
-                                                                        <?php
-                                                                        $creator_uuiduser   = get_field('uuiduser_user', 'user_' . $creator['creator_id']);
-                                                                        $creator_data       = get_user_infos($creator_uuiduser);
-                                                                        $data_t_created     = get_transient('user_' . $creator['creator_id'] . '_get_creator_t');
-                                                                        ?>
                                                                         <div class="avatar">
-                                                                            <span class="avatar-picture" style="background-image: url(<?php echo $creator_data['avatar']; ?>);"></span>
-                                                                            <?php if ($info_user_level) : ?>
-                                                                                <span class="user-niveau">
-                                                                                    <?php echo $info_user_level['level_ico']; ?>
-                                                                                </span>
-                                                                            <?php endif; ?>
+                                                                            <span class="avatar-picture" style="background-image: url(<?php //echo $creator['user_avatar']; ?>);"></span>
                                                                         </div>
                                                                         <div class="font-weight-bold championname">
                                                                             <span>
-                                                                                <?php echo $creator_data['pseudo']; ?>
+                                                                                <?php echo $creator['user_pseudo']; ?>
                                                                             </span>
                                                                             <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Niveau actuel">
-                                                                                <?php echo $creator_data['level']; ?>
+                                                                                <?php echo $creator['user_level_icon']; ?>
                                                                             </span>
-                                                                            <?php if ($creator_data['user_role']  == "administrator") : ?>
+                                                                            <?php if ($creator['user_role']  == "administrator") : ?>
                                                                                 <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
                                                                                     🦙
                                                                                 </span>
@@ -103,7 +82,7 @@ foreach ($creators as $user) {
                                                                 </td>
 
                                                                 <td class="text-right">
-                                                                    <?php echo number_format($data_t_created['creator_all_v'], 0, ",", " "); ?> <span class="ico">💎</span>
+                                                                    <?php echo number_format($creator['total_vote'], 0, ",", " "); ?> <span class="ico">💎</span>
                                                                 </td>
 
                                                                 <td class="text-right">
@@ -111,12 +90,12 @@ foreach ($creators as $user) {
                                                                 </td>
 
                                                                 <td>
-                                                                    <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator_id; ?>" class="mr-1 btn btn-outline-primary waves-effect">
+                                                                    <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator['user_id']; ?>" class="mr-1 btn btn-outline-primary waves-effect">
                                                                         Voir le profil
                                                                     </a>
                                                                 </td>
                                                             </tr>
-                                                        <?php $r++;
+                                                        <?php $i++;
                                                         endforeach; ?>
                                                     </tbody>
                                                 </table>
