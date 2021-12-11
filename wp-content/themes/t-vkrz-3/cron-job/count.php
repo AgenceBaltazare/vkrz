@@ -11,7 +11,7 @@ $classement = new WP_Query(array(
     'update_post_meta_cache' => false,
     'no_found_rows'          => true,
     'post_type'              => 'classement',
-    'posts_per_page'         => 5000,
+    'posts_per_page'         => -1,
 ));
 while ($classement->have_posts()) : $classement->the_post();
     
