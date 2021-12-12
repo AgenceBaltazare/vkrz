@@ -92,7 +92,7 @@ $best_creators = best_creators();
                                                                 </td>
 
                                                                 <td class="text-right">
-                                                                    <?php echo $creator['top_created']; ?> <span class="ico va va-crossed-swords va-lg"></span>
+                                                                    <?php echo count_user_posts($creator['user_id'], 'tournoi'); ?> <span class="ico va va-crossed-swords va-lg"></span>
                                                                 </td>
 
                                                                 <td class="text-right">

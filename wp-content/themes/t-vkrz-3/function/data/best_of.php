@@ -99,7 +99,6 @@ function best_creators(){
             "user_avatar" => get_avatar_url($user_id, ["size" => "80", "force_default" => false]),
             "user_level_icon" => get_user_level($user_id)["level_ico"],
             "user_role" => $user_info->roles[0],
-            "top_created" => count_user_posts($user_id , 'tournoi'), 
             "total_vote" => $count_vote,
             "total_completed_top" => $count_completed_top
         );
