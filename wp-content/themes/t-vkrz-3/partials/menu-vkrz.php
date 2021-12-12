@@ -134,13 +134,16 @@
                             </span>
                         </a>
                     </li>
-                    <!--
                     <li>
                         <a class="d-flex align-items-center" href="<?php the_permalink(get_page_by_path('best-of/best-createurs')); ?>">
-                            <span class="ico">👨‍🎤</span> <span class="menu-title text-truncate">Créateurs</span>
+                            <span class="ico">
+                                <span class="va va-man-singer  va-lg"></span>
+                            </span>
+                            <span class="menu-title text-truncate">
+                                Créateurs
+                            </span>
                         </a>
                     </li>
-                    -->
                 </ul>
             </li>
             <li class="nav-item">

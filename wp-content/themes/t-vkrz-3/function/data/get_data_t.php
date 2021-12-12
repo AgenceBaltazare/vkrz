@@ -58,53 +58,18 @@ function get_top_infos($id_top, $id_ranking = false){
 
 function get_top_data($id_top){
 
-    $count_votes_of_t       = 0;
-    $count_completed_top    = 0;
-    $nb_top_3               = 0;
-    $nb_top_complet         = 0;
+    $id_resume = get_resume_id($id_top);
+
+    $nb_ranks               = get_field('nb_tops_resume', $id_resume);
+    $count_votes_of_t       = get_field('nb_votes_resume', $id_resume);
+    $count_completed_top    = get_field("nb_done_resume", $id_resume);
+    $nb_top_3               = get_field('nb_top_3_resume', $id_resume);;
+    $nb_top_complet         = get_field('nb_top_complet_resume', $id_resume);
+    $nb_tops_triche         = get_field('nb_triche_resume', $id_resume);
     $percent_finition       = 0;
-
-    $all_ranking_of_t = new WP_Query(array(
-        'post_type'                 => 'classement',
-        'posts_per_page'            => '-1',
-        'ignore_sticky_posts'       => true,
-        'update_post_meta_cache'    => false,
-        'no_found_rows'             => true,
-        'meta_query' => array(
-            'relation' => 'AND',
-                array(
-                    'key'       => 'nb_votes_r',
-                    'value'     => 0,
-                    'compare'   => '>',
-                ),
-                array(
-                    'key'       => 'id_tournoi_r',
-                    'value'     => $id_top,
-                    'compare'   => '=',
-                )
-            )
-        )
-    );
-    while ($all_ranking_of_t->have_posts()) : $all_ranking_of_t->the_post();
-
-        $count_votes_of_t = $count_votes_of_t + get_field('nb_votes_r');
-        if (get_field('done_r')) {
-            $count_completed_top++;
-
-            if (get_field('type_top_r') == "top3") {
-                $nb_top_3++;
-            } elseif (get_field('type_top_r') == "complet") {
-                $nb_top_complet++;
-            }
-
-        }
-
-    endwhile;
-
-    $nb_ranks         = $all_ranking_of_t->post_count;
-    $percent_finition = round($count_completed_top * 100 / $nb_ranks);
-
-    $nb_comments    = get_comments('status=approve&type=comments&hierarchical=true&count=true&post_id='.$id_top);
+    $percent_finition       = round($count_completed_top * 100 / $nb_ranks);
+    $percent_triche         = round($nb_tops_triche * 100 / $count_completed_top);
+    $nb_comments            = get_comments('status=approve&type=comments&hierarchical=true&count=true&post_id='.$id_top);
 
     return array(
         "nb_tops"           => $nb_ranks,
@@ -113,7 +78,8 @@ function get_top_data($id_top){
         'nb_comments'       => $nb_comments,
         'nb_top_3'          => $nb_top_3,
         'nb_top_complet'    => $nb_top_complet,
-        'percent_finition'  => $percent_finition
+        'percent_finition'  => $percent_finition,
+        'percent_triche'    => $percent_triche
     );
 }
 
