@@ -36,4 +36,5 @@ $pr_complete    = $nb_tops_complete * 100 / $count_tops;
 
 echo "Votes : ". $nb_votes."<br>";
 echo "Tops : " . $classement->post_count . " (" . round($pr_complete) . "%)<br>";
+echo "Tops finis: " . $nb_tops_complete."<br>";
 echo "Triche : " . $nb_tops_triche . " (". round($pr_triche)."%)<br>";

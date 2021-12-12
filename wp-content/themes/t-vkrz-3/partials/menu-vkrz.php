@@ -60,13 +60,23 @@
             foreach ($cat_t as $cat) : ?>
                 <li class="nav-item">
                     <a class="d-flex align-items-center" href="<?php echo get_category_link($cat->term_id); ?>">
-                        <span class="ico"><?php the_field('icone_cat', 'term_' . $cat->term_id); ?></span> <span class="menu-title text-truncate"><?php echo $cat->name; ?></span>
+                        <span class="ico">
+                            <?php the_field('icone_cat', 'term_' . $cat->term_id); ?>
+                        </span>
+                        <span class="menu-title text-truncate">
+                            <?php echo $cat->name; ?>
+                        </span>
                     </a>
                 </li>
             <?php endforeach; ?>
             <li class="nav-item has-sub">
                 <a class="d-flex align-items-center" href="#">
-                    <span class="ico va va-keycap-5 va-lg"></span> <span class="menu-title text-truncate">Autres catégories</span>
+                    <span class="ico">
+                        <span class="va va-keycap-5 va-lg"></span>
+                    </span>
+                    <span class="menu-title text-truncate">
+                        Autres catégories
+                    </span>
                 </a>
                 <ul class="menu-content">
                     <?php
@@ -80,7 +90,12 @@
                     foreach ($cat_t as $cat) : ?>
                         <li>
                             <a class="d-flex align-items-center" href="<?php echo get_category_link($cat->term_id); ?>">
-                                <span class="ico"><?php the_field('icone_cat', 'term_' . $cat->term_id); ?></span> <span class="menu-title text-truncate"><?php echo $cat->name; ?></span>
+                                <span class="ico">
+                                    <?php the_field('icone_cat', 'term_' . $cat->term_id); ?>
+                                </span>
+                                <span class="menu-title text-truncate">
+                                    <?php echo $cat->name; ?>
+                                </span>
                             </a>
                         </li>
                     <?php endforeach; ?>
@@ -91,17 +106,32 @@
             </li>
             <li class="nav-item has-sub">
                 <a class="d-flex align-items-center" href="#">
-                    <span class="ico va va-exploding-head va-lg"></span> <span class="menu-title text-truncate">Best Of</span>
+                    <span class="ico">
+                        <span class="va va-exploding-head va-lg"></span>
+                    </span>
+                    <span class="menu-title text-truncate">
+                        Best Of
+                    </span>
                 </a>
                 <ul class="menu-content">
                     <li>
                         <a class="d-flex align-items-center" href="<?php the_permalink(get_page_by_path('best-of/best-vainkeurs')); ?>">
-                            <span class="ico va va-crown va-lg"></span> <span class="menu-title text-truncate">Vainkeurs</span>
+                            <span class="ico">
+                                <span class="va va-crown va-lg"></span>
+                            </span>
+                            <span class="menu-title text-truncate">
+                                Vainkeurs
+                            </span>
                         </a>
                     </li>
                     <li>
                         <a class="d-flex align-items-center" href="<?php the_permalink(get_page_by_path('best-of/best-tops')); ?>">
-                            <span class="ico va va-trophy va-lg"></span> <span class="menu-title text-truncate">Tops</span>
+                            <span class="ico">
+                                <span class="va va-trophy va-lg"></span>
+                            </span>
+                            <span class="menu-title text-truncate">
+                                Tops
+                            </span>
                         </a>
                     </li>
                     <!--
@@ -115,27 +145,52 @@
             </li>
             <li class="nav-item">
                 <a class="d-flex align-items-center" href="<?php the_permalink(get_page_by_path('monitor')); ?>">
-                    <span class="ico va va-satellite-antenna va-lg"></span> <span class="menu-title text-truncate">Monitor</span>
+                    <span class="ico">
+                        <span class="va va-satellite-antenna va-lg"></span>
+                    </span>
+                    <span class="menu-title text-truncate">
+                        Monitor
+                    </span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="d-flex align-items-center" href="<?php the_permalink(get_page_by_path('recrutement')); ?>/">
-                    <span class="ico va va-man-singer va-lg"></span> <span class="menu-title text-truncate">Créer des Tops</span>
+                    <span class="ico">
+                        <span class="va va-man-singer va-lg"></span>
+                    </span>
+                    <span class="menu-title text-truncate">
+                        Créer des Tops
+                    </span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="d-flex align-items-center" href="<?php the_permalink(get_page_by_path('evolution')); ?>">
-                    <span class="ico va va-rocket va-lg"></span> <span class="menu-title text-truncate">Les niveaux</span>
+                    <span class="ico">
+                        <span class="va va-rocket va-lg"></span>
+                    </span>
+                    <span class="menu-title text-truncate">
+                        Les niveaux
+                    </span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="d-flex align-items-center" href="<?php the_permalink(get_page_by_path('trophees')); ?>">
-                    <span class="ico va va-sports-medal va-lg"></span> <span class="menu-title text-truncate">Les trophées</span>
+                    <span class="ico">
+                        <span class="va va-sports-medal va-lg"></span>
+                    </span>
+                    <span class="menu-title text-truncate">
+                        Les trophées
+                    </span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="d-flex align-items-center" href="<?php the_permalink(104853); ?>">
-                    <span class="ico va va-llama va-lg"></span> <span class="menu-title text-truncate">A propos</span>
+                    <span class="ico">
+                        <span class="va va-llama va-lg"></span>
+                    </span>
+                    <span class="menu-title text-truncate">
+                        A propos
+                    </span>
                 </a>
             </li>
         </ul>
