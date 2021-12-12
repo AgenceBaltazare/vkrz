@@ -81,6 +81,8 @@ function begin_t($id_top, $uuiduser, $typetop){
         }
     }
 
+    increase_top_resume($id_ranking, 'new');
+
     return $id_ranking;
 
 }

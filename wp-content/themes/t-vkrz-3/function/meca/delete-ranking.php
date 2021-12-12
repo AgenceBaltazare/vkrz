@@ -12,6 +12,7 @@ function delete_ranking($id_ranking, $id_vainkeur){
             'post_status'   =>  'draft'
         ));
 
+        increase_top_resume($id_ranking, 'again');
     }
 
     if (is_user_logged_in()) {
