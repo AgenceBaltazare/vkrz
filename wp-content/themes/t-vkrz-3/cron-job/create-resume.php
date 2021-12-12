@@ -7,7 +7,7 @@ $classement = new WP_Query(array(
     'no_found_rows'          => true,
     'post_type'              => 'classement',
     'post_status'            => array('publish', 'draft', 'trash'),
-    'posts_per_page'         => -1,
+    'posts_per_page'         => -1
 ));
 while ($classement->have_posts()) : $classement->the_post();
 
@@ -29,9 +29,8 @@ while ($classement->have_posts()) : $classement->the_post();
         )
     ));
     if($check_resume->have_posts()){
-        while ($check_resume->have_posts()) : $check_resume->the_postcheck_resume();
-            $id_resume = get_the_id();
-        endwhile;
+        $id_resume = wp_list_pluck($check_resume->posts, 'ID');
+        $id_resume = $id_resume[0];
     }
     else{
 
@@ -44,8 +43,6 @@ while ($classement->have_posts()) : $classement->the_post();
         update_field('id_top_resume', $id_top, $id_resume);
 
     }
-    wp_reset_query();
-    $classement->reset_postdata();
 
     $nb_votes           = get_field('nb_votes_resume', $id_resume);
     $nb_tops            = get_field('nb_tops_resume', $id_resume);
