@@ -210,6 +210,39 @@ function cpt_init() {
     );
     register_post_type('player', $args);
 
+    // Top résume
+    $labels = array(
+        'name' => 'Résume',
+        'singular_name' => 'Résume',
+        'add_new' => 'Ajouter un resumé',
+        'add_new_item' => 'Ajouter un resumé',
+        'edit_item' => 'Editer un resumé',
+        'new_item' => 'Nouveau resumé',
+        'all_items' => 'Tous les resumés',
+        'view_item' => 'Voir resumé',
+        'search_items' => 'Chercher un resumé',
+        'not_found' =>  'Aucun resumé trouvé',
+        'not_found_in_trash' => 'Aucun resumé trouvé dans la corbeille',
+        'menu_name' => 'Resumés'
+    );
+    $args = array(
+        'labels' => $labels,
+        'public' => true,
+        'publicly_queryable' => false,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'query_var' => true,
+        'rewrite' => array('slug' => 'resume'),
+        'map_meta_cap' => true,
+        'has_archive' => true,
+        'hierarchical' => false,
+        'menu_position' => null,
+        'menu_icon' => 'dashicons-media-spreadsheet',
+        'show_in_rest' => true,
+        'supports' => array('title')
+    );
+    register_post_type('resume', $args);
+
 }
 add_action( 'init', 'cpt_init' );
 
