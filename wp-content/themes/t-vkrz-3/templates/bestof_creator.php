@@ -56,10 +56,8 @@ $best_creators = best_creators();
                                                     <tbody>
                                                         <?php
                                                         $i = 1;
-
                                                         foreach ($best_creators as $creator) :
-                                                        $nb_tops_created = count_user_posts($creator['user_id'], 'tournoi');
-                                                        if ($nb_tops_created >= 1) :
+                                                            
                                                         ?>
                                                             <tr>
                                                                 <td>
@@ -94,7 +92,7 @@ $best_creators = best_creators();
                                                                 </td>
 
                                                                 <td class="text-right">
-                                                                    <?php echo $nb_tops_created; ?> <span class="ico va va-crossed-swords va-lg"></span>
+                                                                     <span class="ico va va-crossed-swords va-lg"></span>
                                                                 </td>
 
                                                                 <td class="text-right">
@@ -112,7 +110,7 @@ $best_creators = best_creators();
                                                                 </td>
                                                             </tr>
                                                         <?php $i++;
-                                                            endif; 
+                                                            
                                                             endforeach; ?>
                                                     </tbody>
                                                 </table>
