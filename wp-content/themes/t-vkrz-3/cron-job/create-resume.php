@@ -8,10 +8,17 @@ $classement = new WP_Query(array(
     'post_type'              => 'classement',
     'post_status'            => array('publish', 'draft', 'trash'),
     'posts_per_page'         => 10,
+    'meta_query' => array(
+        array(
+            'key'       => 'id_tournoi_r',
+            'value'     => 177303,
+            'compare'   => '=',
+        )
+    )
 ));
 while ($classement->have_posts()) : $classement->the_post();
 
-    $id_top     = get_field('type_top_r');
+    $id_top     = get_field('id_tournoi_r');
     $id_ranking = get_the_ID();
 
     $nb_votes           = 0;
