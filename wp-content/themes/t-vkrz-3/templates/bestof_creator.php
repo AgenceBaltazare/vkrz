@@ -57,61 +57,62 @@ $best_creators = best_creators();
                                                         <?php
                                                         $r = 1;
                                                         foreach ($best_creators as $creator) :
-                                                        $nb_tops_created = count_user_posts($creator['user_id'], 'tournoi');
-                                                        if ($nb_tops_created >= 1) :
+                                                            $nb_tops_created = count_user_posts($creator['user_id'], 'tournoi');
+                                                            if ($nb_tops_created >= 1) :
                                                         ?>
-                                                            <tr>
-                                                                <td>
-                                                                    <?php if ($r == 1) : ?>
-                                                                        <span class="ico va va-medal-1 va-lg"></span>
-                                                                    <?php elseif ($r == 2) : ?>
-                                                                        <span class="ico va va-medal-2 va-lg"></span>
-                                                                    <?php elseif ($r == 3) : ?>
-                                                                        <span class="ico va va-medal-3 va-lg"></span>
-                                                                    <?php else : ?>
-                                                                        #<?php echo $r; ?>
-                                                                    <?php endif; ?>
-                                                                </td>
-                                                                <td>
-                                                                    <div class="d-flex align-items-center">
-                                                                        <div class="avatar">
-                                                                            <span class="avatar-picture" style="background-image: url(<?php echo $creator['user_avatar']; ?>);"></span>
-                                                                        </div>
-                                                                        <div class="font-weight-bold championname">
-                                                                            <span>
-                                                                                <?php echo $creator['user_pseudo']; ?>
-                                                                            </span>
-                                                                            <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Niveau actuel">
-                                                                                <?php echo $creator['user_level_icon']; ?>
-                                                                            </span>
-                                                                            <?php if ($creator_data['user_role']  == "administrator") : ?>
-                                                                                <span class="ico va va-llama va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
+                                                                <tr>
+                                                                    <td>
+                                                                        <?php if ($r == 1) : ?>
+                                                                            <span class="ico va va-medal-1 va-lg"></span>
+                                                                        <?php elseif ($r == 2) : ?>
+                                                                            <span class="ico va va-medal-2 va-lg"></span>
+                                                                        <?php elseif ($r == 3) : ?>
+                                                                            <span class="ico va va-medal-3 va-lg"></span>
+                                                                        <?php else : ?>
+                                                                            #<?php echo $r; ?>
+                                                                        <?php endif; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="d-flex align-items-center">
+                                                                            <div class="avatar">
+                                                                                <span class="avatar-picture" style="background-image: url(<?php echo $creator['user_avatar']; ?>);"></span>
+                                                                            </div>
+                                                                            <div class="font-weight-bold championname">
+                                                                                <span>
+                                                                                    <?php echo $creator['user_pseudo']; ?>
                                                                                 </span>
-                                                                            <?php endif; ?>
+                                                                                <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Niveau actuel">
+                                                                                    <?php echo $creator['user_level_icon']; ?>
+                                                                                </span>
+                                                                                <?php if ($creator_data['user_role']  == "administrator") : ?>
+                                                                                    <span class="ico va va-llama va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
+                                                                                    </span>
+                                                                                <?php endif; ?>
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
-                                                                </td>
+                                                                    </td>
 
-                                                                <td class="text-right">
-                                                                    <?php echo $nb_tops_created; ?> <span class="ico va va-crossed-swords va-lg"></span>
-                                                                </td>
+                                                                    <td class="text-right">
+                                                                        <?php echo $nb_tops_created; ?> <span class="ico va va-crossed-swords va-lg"></span>
+                                                                    </td>
 
-                                                                <td class="text-right">
-                                                                    <?php echo $creator['total_vote']; ?> <span class="ico va va-gem va-lg"></span>
-                                                                </td>
+                                                                    <td class="text-right">
+                                                                        <?php echo number_format($creator['total_vote'], 0, ",", " "); ?> <span class="ico va va-gem va-lg"></span>
+                                                                    </td>
 
-                                                                <td class="text-right">
-                                                                    <?php echo $creator['total_completed_top']; ?> <span class="ico va va-trophy va-lg"></span>
-                                                                </td>
+                                                                    <td class="text-right">
+                                                                        <?php echo number_format($creator['total_completed_top'], 0, ",", " "); ?> <span class="ico va va-trophy va-lg"></span>
+                                                                    </td>
 
-                                                                <td>
-                                                                    <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator['user_id']; ?>" class="mr-1 btn btn-outline-primary waves-effect">
-                                                                        Voir tous les Tops créés
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
+                                                                    <td>
+                                                                        <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator['user_id']; ?>" class="mr-1 btn btn-outline-primary waves-effect">
+                                                                            Voir tous les Tops créés
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
                                                         <?php $r++;
-                                                        endif; endforeach; ?>
+                                                            endif;
+                                                        endforeach; ?>
                                                     </tbody>
                                                 </table>
                                             </div>

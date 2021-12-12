@@ -19,34 +19,25 @@ function best_creators(){
     $best_creators = array();
 
     $rankings = new WP_Query(array(
-        "post_type" => "classement",
+        "post_type" => "resume",
         "posts_per_page" => -1,
         "fields" => "ids",
         "ignore_sticky_posts" => true,
         "update_post_meta_cache" => false,
-        "no_found_rows" => true,
-        "meta_query" => array(
-                array(
-                    "key"       => "nb_votes_r",
-                    "value"     => 0,
-                    "compare"   => ">",
-                )
-            )
-        )
-    );
+        "no_found_rows" => true
+    ));
 
     if ($rankings->have_posts()) {
         foreach ($rankings->posts as $ranking_id) {
-            $top_id = get_field("id_tournoi_r", $ranking_id);
+            $top_id = get_field("id_top_resume", $ranking_id);
 
             if (array_key_exists($top_id, $rankings_by_top)) {
-                $rankings_by_top[$top_id]["total_vote"] = $rankings_by_top[$top_id]["total_vote"] + get_field("nb_votes_r", $ranking_id);
-                if(get_field('done_r', $ranking_id) == "done") { $rankings_by_top[$top_id]["total_completed_top"]++; }
-
+                $rankings_by_top[$top_id]["total_vote"] = $rankings_by_top[$top_id]["total_vote"] + get_field("nb_votes_resume", $ranking_id);
+                $rankings_by_top[$top_id]["total_completed_top"] = $rankings_by_top[$top_id]["total_completed_top"] + get_field("nb_done_resume", $ranking_id);
             } else {
                 $rankings_by_top[$top_id] = array(
-                    "total_vote" => get_field("nb_votes_r", $ranking_id),
-                    "total_completed_top" => get_field('done_r', $ranking_id) == "done" ? intval(1) : intval(0)
+                    "total_vote" => get_field("nb_votes_resume", $ranking_id),
+                    "total_completed_top" => get_field("nb_done_resume", $ranking_id),
                 );
             }
         }
@@ -105,7 +96,7 @@ function best_creators(){
     }
 
     usort($best_creators, function ($a, $b) {
-        return $b["total_completed_top"] <=> $a["total_completed_top"];
+        return $b["total_vote"] <=> $a["total_vote"];
     });
 
     return $best_creators;
