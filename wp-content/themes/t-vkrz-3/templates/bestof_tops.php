@@ -117,7 +117,7 @@ get_header();
                                                                     </td>
 
                                                                     <td class="text-right">
-                                                                        <?php the_field('nb_top_complet_resume'); ?> <span class="ico">🏆</span>
+                                                                        <?php the_field('nb_done_resume'); ?> <span class="ico">🏆</span>
                                                                     </td>
 
                                                                     <td class="text-right">
