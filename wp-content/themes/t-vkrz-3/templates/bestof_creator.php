@@ -3,9 +3,7 @@
     Template Name: Best of - creator
 */
 get_header();
-
-$best_creators = get_transient('best_creators');
-
+$best_creators = best_creators();
 ?>
 <div class="app-content content cover">
     <div class="content-overlay"></div>
@@ -42,7 +40,10 @@ $best_creators = get_transient('best_creators');
                                                                 <span class="va va-prince va-lg"></span>
                                                             </th>
                                                             <th class="text-right">
-                                                                <span class="va va-gem va-lg"></span>
+                                                                Tops créés
+                                                            </th>
+                                                            <th class="text-right">
+                                                                Votes
                                                             </th>
                                                             <th class="text-right">
                                                                 <span class="va va-trophy va-lg"></span>
@@ -56,7 +57,7 @@ $best_creators = get_transient('best_creators');
                                                         <?php
                                                         $i = 1;
 
-                                                        foreach ($best_creators as $creator):
+                                                        foreach ($best_creators as $creator) :
                                                         ?>
                                                             <tr>
                                                                 <td>
@@ -73,7 +74,7 @@ $best_creators = get_transient('best_creators');
                                                                 <td>
                                                                     <div class="d-flex align-items-center">
                                                                         <div class="avatar">
-                                                                            <span class="avatar-picture" style="background-image: url(<?php //echo $creator['user_avatar']; ?>);"></span>
+                                                                            <span class="avatar-picture" style="background-image: url(<?php echo $creator['user_avatar']; ?>);"></span>
                                                                         </div>
                                                                         <div class="font-weight-bold championname">
                                                                             <span>
@@ -81,7 +82,7 @@ $best_creators = get_transient('best_creators');
                                                                             </span>
                                                                             <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Niveau actuel">
                                                                                 <?php echo $creator['user_level_icon']; ?>
-                                                                            </span
+                                                                            </span>
                                                                             <?php if ($creator_data['user_role']  == "administrator") : ?>
                                                                                 <span class="ico va va-llama va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
                                                                                 </span>
@@ -91,16 +92,20 @@ $best_creators = get_transient('best_creators');
                                                                 </td>
 
                                                                 <td class="text-right">
-                                                                    <?php echo number_format($data_t_created['creator_all_v'], 0, ",", " "); ?> <span class="ico va va-gem va-lg"></span>
+                                                                    <?php echo $creator['top_created']; ?> <span class="ico va va-crossed-swords va-lg"></span>
                                                                 </td>
 
                                                                 <td class="text-right">
-                                                                    <?php echo number_format($creator['total_completed_top'], 0, ",", " "); ?> <span class="ico va va-trophy va-lg">🏆</span>
+                                                                    <?php echo $creator['total_vote']; ?> <span class="ico va va-gem va-lg"></span>
+                                                                </td>
+
+                                                                <td class="text-right">
+                                                                    <?php echo $creator['total_completed_top']; ?> <span class="ico va va-trophy va-lg"></span>
                                                                 </td>
 
                                                                 <td>
                                                                     <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator['user_id']; ?>" class="mr-1 btn btn-outline-primary waves-effect">
-                                                                        Voir le profil
+                                                                        Voir tous les Tops créés
                                                                     </a>
                                                                 </td>
                                                             </tr>
