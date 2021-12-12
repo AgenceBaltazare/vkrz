@@ -218,7 +218,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                                     </div>
                                                     <div class="content-body text-left">
                                                         <h4 class="mb-0">
-                                                            <?php echo $top_datas['nb_tops']; ?>
+                                                            <?php echo $top_datas['nb_completed_top']; ?>
                                                         </h4>
                                                         <small class="text-muted">Tops terminés</small>
                                                     </div>

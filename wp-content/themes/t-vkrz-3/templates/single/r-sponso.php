@@ -250,7 +250,7 @@ $top_datas    = get_top_data($id_top);
                                                         <div class="card-body">
                                                             <h2 class="stats-mondiales mb-0">
                                                                 <b>Stats mondiales :</b>
-                                                                <?php echo $top_datas['nb_tops']; ?> 🏆 <?php echo $top_datas['nb_votes']; ?> 💎
+                                                                <?php echo $top_datas['nb_completed_top']; ?> 🏆 <?php echo $top_datas['nb_votes']; ?> 💎
                                                             </h2>
                                                             <div class="mt-1">
                                                                 <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_top; ?>&sponso=active" class="w-100 btn btn-primary waves-effect">

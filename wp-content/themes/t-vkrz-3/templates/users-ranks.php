@@ -61,7 +61,7 @@ $top_datas = get_top_data($id_top);
                                         <div class="card">
                                             <div class="card-header">
                                                 <h4 class="card-title pt-1 pb-1">
-                                                    Liste des <?php echo $top_datas['nb_tops']; ?> <span class="va va-sports-medal va-lg"></span> créés sur VAINKEURZ pour ce Top !
+                                                    Liste des <?php echo $top_datas['nb_completed_top']; ?> <span class="va va-sports-medal va-lg"></span> créés sur VAINKEURZ pour ce Top !
                                                 </h4>
                                             </div>
                                             <div class="table-responsive">
@@ -236,7 +236,7 @@ $top_datas = get_top_data($id_top);
                                             <div class="card-body">
                                                 <div class="pricing-badge text-right">
                                                     <div class="badge badge-pill badge-light-primary">
-                                                        <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_top; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir les <?php echo $top_datas['nb_tops']; ?> Tops">
+                                                        <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_top; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir les <?php echo $top_datas['nb_completed_top']; ?> Tops">
                                                         <span class="va va-llama va-lg"></span>
                                                         </a>
                                                     </div>
@@ -245,10 +245,10 @@ $top_datas = get_top_data($id_top);
                                                     <span class="ico4">🏆</span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">
-                                                    <?php echo $top_datas['nb_tops']; ?>
+                                                    <?php echo $top_datas['nb_completed_top']; ?>
                                                 </h2>
                                                 <p class="card-text legende">
-                                                    <?php if ($top_datas['nb_tops'] <= 1) : ?>
+                                                    <?php if ($top_datas['nb_completed_top'] <= 1) : ?>
                                                         Top
                                                     <?php else : ?>
                                                         Tops
