@@ -3,6 +3,7 @@ include __DIR__ . '/../../../../wp-load.php';
 
 $nb_votes           = 0;
 $nb_tops_complete   = 0;
+$nb_tops_again      = 0;
 $nb_tops_notdone    = 0;
 $nb_tops_triche     = 0;
 
@@ -29,13 +30,18 @@ while ($classement->have_posts()) : $classement->the_post();
         $nb_tops_triche++;
     }
 
+    if(get_post_status() == 'draft'){
+        $nb_tops_again++;
+    }
+
 endwhile;
 
 $count_tops     = $classement->post_count;
 $pr_triche      = $nb_tops_triche * 100 / $count_tops;
 $pr_complete    = $nb_tops_complete * 100 / $count_tops;
 
-echo "Votes : ". $nb_votes."<br>";
-echo "Tops : " . $classement->post_count . " (" . round($pr_complete) . "%)<br>";
-echo "Tops finis: " . $nb_tops_complete."<br>";
-echo "Triche : " . $nb_tops_triche . " (". round($pr_triche)."%)<br>";
+echo "Votes : ". $nb_votes."\n";
+echo "Tops : " . $classement->post_count . " (" . round($pr_complete) . "%)\n";
+echo "Tops finis: " . $nb_tops_complete."\n";
+echo "Tops recommencés: " . $nb_tops_again . "\n";
+echo "Triche : " . $nb_tops_triche . " (". round($pr_triche)."%)\n";
