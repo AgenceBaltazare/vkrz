@@ -55,9 +55,10 @@ $best_creators = best_creators();
                                                     </thead>
                                                     <tbody>
                                                         <?php
-                                                        $i = 1;
+                                                        $r = 1;
                                                         foreach ($best_creators as $creator) :
-                                                            
+                                                        $nb_tops_created = count_user_posts($creator['user_id'], 'tournoi');
+                                                        if ($nb_tops_created >= 1) :
                                                         ?>
                                                             <tr>
                                                                 <td>
@@ -68,7 +69,7 @@ $best_creators = best_creators();
                                                                     <?php elseif ($r == 3) : ?>
                                                                         <span class="ico va va-medal-3 va-lg"></span>
                                                                     <?php else : ?>
-                                                                        #<?php echo $i; ?>
+                                                                        #<?php echo $r; ?>
                                                                     <?php endif; ?>
                                                                 </td>
                                                                 <td>
@@ -92,7 +93,7 @@ $best_creators = best_creators();
                                                                 </td>
 
                                                                 <td class="text-right">
-                                                                     <span class="ico va va-crossed-swords va-lg"></span>
+                                                                    <?php echo $nb_tops_created; ?> <span class="ico va va-crossed-swords va-lg"></span>
                                                                 </td>
 
                                                                 <td class="text-right">
@@ -109,9 +110,8 @@ $best_creators = best_creators();
                                                                     </a>
                                                                 </td>
                                                             </tr>
-                                                        <?php $i++;
-                                                            
-                                                            endforeach; ?>
+                                                        <?php $r++;
+                                                        endif; endforeach; ?>
                                                     </tbody>
                                                 </table>
                                             </div>
