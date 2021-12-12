@@ -181,7 +181,11 @@
                                                 </div>
                                                 <h2 class="font-weight-bolder">
                                                     <?php
-                                                    $user_query = new WP_User_Query(array('role__in' => array('author', 'administrator')));
+                                                    $user_query = new WP_User_Query(array(
+                                                        'role__in' => array('author', 'administrator'),
+                                                        'count_total'  => true,
+                                                        'has_published_posts' => array('tournoi'),
+                                                    ));
                                                     echo $user_query->get_total();
                                                     ?>
                                                 </h2>

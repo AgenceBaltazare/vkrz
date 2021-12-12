@@ -3,7 +3,6 @@
     Template Name: Best of - Tops
 */
 get_header();
-$best_tops = get_transient('best_tops_of_all_time');
 ?>
 <div class="app-content content cover">
     <div class="content-overlay"></div>
@@ -49,8 +48,21 @@ $best_tops = get_transient('best_tops_of_all_time');
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <?php $r = 1;
-                                                        foreach (array_slice($best_tops, 0, 20, true) as $top_id => $completed_top_number) :
+                                                        <?php
+                                                        $r = 1;
+                                                        $best_tops = new WP_Query(array(
+                                                            'ignore_sticky_posts'	    => true,
+                                                            'update_post_meta_cache'    => false,
+                                                            'no_found_rows'		        => true,
+                                                            'post_type'			        => 'resume',
+                                                            'orderby'				    => 'meta_value_num',
+                                                            'meta_key'                  => 'nb_top_complet_resume',
+                                                            'order'				        => 'DESC',
+                                                            'posts_per_page'		    => 20
+                                                        ));
+                                                        while ($best_tops->have_posts()) : $best_tops->the_post(); ?>
+                                                        <?php
+                                                            $top_id   = get_field('id_top_resume');
                                                             $type_top = array();
                                                             $type_top = get_the_terms($top_id, 'type');
                                                             $slug_type_top = array();
@@ -105,7 +117,7 @@ $best_tops = get_transient('best_tops_of_all_time');
                                                                     </td>
 
                                                                     <td class="text-right">
-                                                                        <?php echo $completed_top_number; ?> <span class="ico">🏆</span>
+                                                                        <?php the_field('nb_top_complet_resume'); ?> <span class="ico">🏆</span>
                                                                     </td>
 
                                                                     <td class="text-right">
@@ -136,7 +148,7 @@ $best_tops = get_transient('best_tops_of_all_time');
                                                                 </tr>
                                                             <?php endif;
                                                             $r++;
-                                                        endforeach; ?>
+                                                        endwhile; ?>
                                                     </tbody>
                                                 </table>
                                             </div>

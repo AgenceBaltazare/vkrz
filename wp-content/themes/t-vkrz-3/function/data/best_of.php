@@ -56,7 +56,9 @@ function best_creators(){
         array(
             "fields" => "ID",
             "number" => -1,
-            "role__in" => array("author", "administrator")
+            "role__in" => array("author", "administrator"),
+            'count_total'  => true,
+            'has_published_posts' => array('tournoi'),
         )
     );
     $users = $users->get_results();
