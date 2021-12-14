@@ -77,6 +77,13 @@ if (is_single() && get_post_type() == "tournoi") {
                                                     <span class="ico"><?php the_field('icone_cat', 'term_' . $cat_id); ?></span> <span class="menu-title text-truncate"><?php echo $cat_name; ?></span>
                                                 </a>
                                             </li>
+                                        <?php elseif (is_page(get_page_by_path('tops-sponso'))) : ?>
+
+                                            <li class="breadcrumb-item">
+                                                <a href="<?php the_permalink(get_page_by_path('tops-sponso')); ?>">
+                                                    <span class="ico va va-wrapped-gift va-lg"></span> <span class="menu-title text-truncate">Tops sponso</span>
+                                                </a>
+                                            </li>
 
                                         <?php elseif (is_page(get_page_by_path('elo'))) : ?>
 
@@ -194,6 +201,13 @@ if (is_single() && get_post_type() == "tournoi") {
                 <div class="tournament-heading text-center">
                     <h3 class="mb-0 t-titre-tournoi"><span class="ico"><?php the_field('icone_cat', 'term_' . $cat_id); ?></span> <?php echo $cat_name; ?></h3>
                     <h4 class="mb-0"><?php echo $current_cat->description; ?></h4>
+                </div>
+
+            <?php elseif (is_page(get_page_by_path('tops-sponso'))) : ?>
+
+                <div class="tournament-heading text-center">
+                    <h3 class="mb-0 t-titre-tournoi"><span class="ico va va-wrapped-gift va-lg"></span> Tops sponso</h3>
+                    <h4 class="mb-0">Plein de choses à gagner par ici</h4>
                 </div>
 
             <?php elseif (is_author()) : ?>

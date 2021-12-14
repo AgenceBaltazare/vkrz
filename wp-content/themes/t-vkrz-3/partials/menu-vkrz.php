@@ -102,6 +102,19 @@
                 </ul>
             </li>
             <li class="navigation-header">
+                <span>Des lots à gagner</span> <i data-feather="more-horizontal"></i>
+            </li>
+            <li class="nav-item">
+                <a class="d-flex align-items-center" href="<?php the_permalink(get_page_by_path('tops-sponso')); ?>/">
+                    <span class="ico">
+                        <span class="va va-wrapped-gift va-lg"></span>
+                    </span>
+                    <span class="menu-title text-truncate">
+                        Tops sponso
+                    </span>
+                </a>
+            </li>
+            <li class="navigation-header">
                 <span>VAINKEURZ</span> <i data-feather="more-horizontal"></i>
             </li>
             <li class="nav-item has-sub">
