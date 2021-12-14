@@ -6,6 +6,37 @@ function vkrz_push_level_up($user_id, $level){
 
         $new_user_infos = deal_vainkeur_entry($user_id);
         $user_url       = get_author_posts_url($user_id);
+        $level_number   = $level;
+
+        switch ($level_number) {
+            case $level_number <= 0:
+                $level_icon = "🥚";
+                break;
+            case $level_number == 1:
+                $level_icon = "🐣";
+                break;
+            case $level_number == 2:
+                $level_icon = "🐥";
+                break;
+            case $level_number == 3:
+                $level_icon = "🐓";
+                break;
+            case $level_number == 4:
+                $level_icon = "🦃";
+                break;
+            case $level_number == 5:
+                $level_icon = "🦢";
+                break;
+            case $level_number == 6:
+                $level_icon = "🦩";
+                break;
+            case $level_number == 7:
+                $level_icon = "🦚";
+                break;
+            case $level_number == 8:
+                $level_icon = "🐉";
+                break;
+        }
 
         $url    = "https://hook.integromat.com/5395gfiwt0abf2y7uimxpp329tdnn27s";
         $args   = array(
@@ -16,7 +47,7 @@ function vkrz_push_level_up($user_id, $level){
                 'pseudo'            => $new_user_infos['pseudo'],
                 'avatar'            => $new_user_infos['avatar'],
                 'user_email'        => $new_user_infos['user_email'],
-                'level'             => $new_user_infos['level'],
+                'level'             => $level_icon,
                 'level_number'      => $level,
                 'nb_vote_vkrz'      => $new_user_infos['nb_vote_vkrz'],
                 'nb_top_vkrz'       => $new_user_infos['nb_top_vkrz']
