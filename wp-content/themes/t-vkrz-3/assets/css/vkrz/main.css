@@ -1944,6 +1944,11 @@ textarea {
   background-size: cover !important;
 }
 
+.icomax span {
+  width: 60px !important;
+  height: 60px !important;
+}
+
 .ico-master {
   font-size: 85px;
 }

@@ -260,7 +260,7 @@ if (is_single() && get_post_type() == "tournoi") {
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-user">
                     <?php if (is_user_logged_in()) : ?>
                         <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>">
-                            <span class="ico va va-hatching-chick va-lg"></span> Mon compte
+                            <span class="ico va va-llama va-lg"></span> Mon compte
                         </a>
                         <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('parametres')); ?>">
                             <span class="ico va va-setting va-lg"></span> Paramètres
