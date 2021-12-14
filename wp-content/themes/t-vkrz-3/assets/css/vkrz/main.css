@@ -807,6 +807,10 @@ html .content {
   color: #e9e500;
 }
 
+.p-20 {
+  padding: 20px !important;
+}
+
 .page-template-monitor .list-vainkeur-monitor {
   line-height: 14px;
 }
@@ -2237,8 +2241,8 @@ textarea {
   border-radius: 3px;
 }
 .rules-content .title-win h4 {
-  padding: 10px 15px 0px 10px;
-  font-size: 22px;
+  padding: 8px 8px 0px;
+  font-size: 18px;
   font-weight: bold;
   text-transform: uppercase;
 }
@@ -2295,7 +2299,10 @@ textarea {
   margin-bottom: 10px;
 }
 .social-media-sponso .btn {
-  padding: 0.786rem 0.5rem;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .participation-content-sponso h1 {
@@ -2449,6 +2456,20 @@ textarea {
     margin-bottom: 20px;
   }
 }
+.logo-vkrz-sponso {
+  flex: 40%;
+}
+
+.buttons-social-media a {
+  margin-right: 10px;
+}
+
+.text-rules img {
+  max-height: 100px;
+  width: auto;
+  margin: 0 auto;
+}
+
 @font-face {
   font-family: "Themysion Regular";
   font-style: normal;

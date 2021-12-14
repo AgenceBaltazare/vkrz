@@ -59,18 +59,13 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                         <?php the_field('description_t_sponso', $id_top); ?>
                                     </div>
                                 </div>
-                                <div class="card-footer timer-content-sponso">
-                                    <p class="fs-12px">
-                                        <?php the_field('fin_de_la_sponso_t_sponso', $id_top); ?>
-                                    </p>
-                                </div>
                                 <div class="card-footer share-content-sponso">
                                     <div class="text-left">
                                         <p>
                                             <?php the_field('top_propose_par_t_sponso', $id_top); ?>
                                         </p>
                                     </div>
-                                    <div class="d-flex align-items-center reseaux-sponso">
+                                    <div class="d-flex align-items-center reseaux-sponso m-0">
                                         <div class="logo-vkrz-sponso">
                                             <?php
                                             if (get_field('logo_de_la_sponso_t_sponso', $id_top)) : ?>
@@ -92,25 +87,10 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-footer share-top-sponsor d-flex align-items-baseline justify-content-between">
-                                    <h6 class="share-text">
-                                        Partage le lien du Top  <span class="va va-backhand-index-pointing-right va-lg"></span>
-                                    </h6>
-                                    <div class="btn-group justify-content-center share-t w-60" role="group">
-                                        <a href="https://twitter.com/intent/tweet?text=J'ai fait mon TOP <?php echo $top_infos['top_number']; ?> <?php echo $top_infos['top_title']; ?> maintenant c'est à vous 🤪🤪 &via=vainkeurz&hashtags=VKRZ&url=<?php echo $top_infos['top_url']; ?>" target="_blank" title="Tweet" class="btn btn-icon btn-outline-primary">
-                                            <i class="fab fa-twitter"></i>
-                                        </a>
-                                        <a href="whatsapp://send?text=<?php echo $top_infos['top_url']; ?>" data-action="share/whatsapp/share" class="btn btn-icon btn-outline-primary">
-                                            <i class="fab fa-whatsapp"></i>
-                                        </a>
-                                        <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $top_infos['top_url']; ?>" title="Partager sur Facebook" target="_blank" class="btn btn-icon btn-outline-primary">
-                                            <i class="fab fa-facebook-f"></i>
-                                        </a>
-                                        <a href="javascript: void(0)" class="sharelinkbtn2 btn btn-icon btn-outline-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copier le lien du Top">
-                                            <input type="text" value="<?php echo $top_infos['top_url']; ?>" class="input_to_share2">
-                                            <i class="far fa-link"></i>
-                                        </a>
-                                    </div>
+                                <div class="card-footer text-center p-20 m-0">
+                                    <span class="t-rose">
+                                        <?php the_field('fin_de_la_sponso_t_sponso', $id_top); ?>
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -356,7 +336,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
     </div>
     <div class="box-info-content">
         <h3>
-            <span class="ico va va-placard va-lg"></span> 
+            <span class="ico va va-placard va-lg"></span>
             Tous les infos du Top
         </h3>
         <div class="close-share">

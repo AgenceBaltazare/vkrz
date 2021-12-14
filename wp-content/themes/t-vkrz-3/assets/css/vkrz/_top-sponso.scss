@@ -14,8 +14,8 @@
         border-radius: 3px;
 
         h4 {
-            padding: 10px 15px 0px 10px;
-            font-size: 22px;
+            padding: 8px 8px 0px;
+            font-size: 18px;
             font-weight: bold;
             text-transform: uppercase;
         }
@@ -70,14 +70,19 @@
     display: inline-flex;
     justify-content: center;
     vertical-align: middle;
-        a {
-            display: block;
-            width: 100%;
-            margin-bottom: 10px;
-        }
-        .btn {
-            padding: 0.786rem 0.5rem;
-        }
+
+    a {
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .btn {
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 }
 
 .participation-content-sponso {
@@ -254,4 +259,22 @@
         }
     }
 
+}
+
+.logo-vkrz-sponso {
+    flex: 40%;
+}
+
+.buttons-social-media {
+    a {
+        margin-right: 10px;
+    }
+}
+
+.text-rules {
+    img {
+        max-height: 100px;
+        width: auto;
+        margin: 0 auto;
+    }
 }
