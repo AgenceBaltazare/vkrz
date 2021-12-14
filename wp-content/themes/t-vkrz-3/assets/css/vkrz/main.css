@@ -1352,10 +1352,6 @@ html .content {
 .card-developer-meetup .infos-card-t .avatar {
   margin-right: 10px;
 }
-.card-developer-meetup .infos-card-t .ico {
-  font-size: 30px;
-  width: auto;
-}
 .card-developer-meetup .infos-card-t .content-body {
   display: flex;
   flex-direction: column;
@@ -3086,6 +3082,11 @@ textarea {
 .va-sm {
   width: 0.875em;
   height: 0.875em;
+}
+
+.va-md {
+  width: 1em;
+  height: 1em;
 }
 
 .va-lg {

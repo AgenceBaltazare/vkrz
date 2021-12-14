@@ -345,47 +345,47 @@ function get_user_level($user_id = false){
     switch($level_number){
 
         case 0 || false:
-            $level          = "🥚";
+            $level          = '<span class="ico-master va va-z-20 va-egg"></span>';
             $level_number   = 0;
-            $next_level     = "🐣";
+            $next_level     = '<span class="ico-master va va-z-20 va-hatching-chick"></span>';
             break;
         case 1 :
-            $level          = "🐣";
+            $level          = '<span class="ico-master va va-z-20 va-hatching-chick"></span>';
             $level_number   = 1;
-            $next_level     = "🐥";
+            $next_level     = '<span class="ico-master va va-z-20 va-chick"></span>';
             break;
         case 2 :
-            $level          = "🐥";
+            $level          = '<span class="ico-master va va-z-20 va-chick"></span>';
             $level_number   = 2;
-            $next_level     = "🐓";
+            $next_level     = '<span class="ico-master va va-z-20 va-rooster"></span>';
             break;
         case 3 :
-            $level          = "🐓";
+            $level          = '<span class="ico-master va va-z-20 va-rooster"></span>';
             $level_number   = 3;
-            $next_level     = "🦃";
+            $next_level     = '<span class="ico-master va va-z-20 va-turkey"></span>';
             break;
         case 4 :
-            $level          = "🦃";
+            $level          = '<span class="ico-master va va-z-20 va-turkey"></span>';
             $level_number   = 4;
-            $next_level     = "🦢";
+            $next_level     = '<span class="ico-master va va-z-20 va-swan"></span>';
             break;
         case 5 :
-            $level          = "🦢";
+            $level          = '<span class="ico-master va va-z-20 va-swan"></span>';
             $level_number   = 5;
-            $next_level     = "🦩";
+            $next_level     = '<span class="ico-master va va-z-20 va-flamingo"></span>';
             break;
         case 6 :
-            $level          = "🦩";
+            $level          = '<span class="ico-master va va-z-20 va-flamingo"></span>';
             $level_number   = 6;
-            $next_level     = "🦚";
+            $next_level     = '<span class="ico-master va va-z-20 va-peacock"></span>';
             break;
         case 7 :
-            $level          = "🦚";
+            $level          = '<span class="ico-master va va-z-20 va-peacock"></span>';
             $level_number   = 7;
-            $next_level     = "🐉";
+            $next_level     = '<span class="ico-master va va-z-20 va-dragon"></span>';
             break;
         case 8 :
-            $level          = "🐉";
+            $level          = '<span class="ico-master va va-z-20 va-dragon"></span>';
             $level_number   = 7;
             $next_level     = false;
             break;

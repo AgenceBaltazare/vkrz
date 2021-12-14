@@ -8,7 +8,7 @@ $list_t_already_done = $user_tops['list_user_tops_done_ids'];
         <div class="content-body">
 
             <div class="intro-mobile">
-                <h3 class="mb-0 animate__animated animate__slideInLeft"><span class="va va-vulcan-salute va-1x"></span>  Bienvenue</h3>
+                <h3 class="mb-0 animate__animated animate__slideInLeft"><span class="va va-vulcan-salute va-1x"></span> Bienvenue</h3>
                 <h4 class="mb-0 kick animate__animated animate__slideInRight" data-kick="Commence par choisir un Top qui t'intéresse et enchaîne les votes <span class='va va-backhand-index-pointing-down va-1x'>">
                     Ici, tu fais et revendique tes propres Tops !
                 </h4>
@@ -20,7 +20,7 @@ $list_t_already_done = $user_tops['list_user_tops_done_ids'];
                         <div class="row">
                             <div class="col">
                                 <h2 class="text-primary text-uppercase">
-                                    <span class="ico va va-stopwatch va-1x"></span> Tops les plus récents
+                                    <span class="va va-stopwatch va-lg"></span> Tops les plus récents
                                     <small class="text-muted">Toutes catégories confondues</small>
                                 </h2>
                             </div>
@@ -67,7 +67,7 @@ $list_t_already_done = $user_tops['list_user_tops_done_ids'];
                         <div class="row">
                             <div class="col">
                                 <h2 class="text-primary text-uppercase">
-                                    <span class="ico va va-smiling-face-with-hearts va-1x"></span> Tops les plus populaires
+                                    <span class="va va-smiling-face-with-hearts va-lg"></span> Tops les plus populaires
                                     <small class="text-muted">Des 7 derniers jours</small>
                                 </h2>
                             </div>
@@ -104,7 +104,7 @@ $list_t_already_done = $user_tops['list_user_tops_done_ids'];
                             );
                             $best_tops = best_tops($latest_rankings);
                             foreach (array_slice($best_tops, 0, 20, true) as $top_id => $completed_top_number) :
-                            
+
                                 $type_top = array();
                                 $type_top = get_the_terms($top_id, 'type');
                                 $slug_type_top = array();
@@ -134,7 +134,7 @@ $list_t_already_done = $user_tops['list_user_tops_done_ids'];
                                     foreach ($get_top_type as $type_top) {
                                         $type_top = $type_top->slug;
                                     }
-                                    ?>
+                            ?>
                                     <div class="<?php echo $class; ?>">
                                         <div class="min-tournoi card scaler">
                                             <div class="cov-illu cover" style="background: url(<?php echo $illu; ?>) center center no-repeat">
@@ -302,7 +302,7 @@ $list_t_already_done = $user_tops['list_user_tops_done_ids'];
                                     <div class="col">
                                         <h2 class="text-primary text-uppercase">
                                             <a href="<?php echo get_category_link($cat->term_id); ?>">
-                                                <span class="ico"><?php the_field('icone_cat', 'term_' . $cat->term_id); ?></span> <?php echo $cat->name; ?>
+                                                <?php the_field('icone_cat', 'term_' . $cat->term_id); ?> <?php echo $cat->name; ?>
                                                 <small class="text-muted"><?php echo $cat->description; ?></small>
                                             </a>
                                         </h2>

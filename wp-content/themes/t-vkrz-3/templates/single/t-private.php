@@ -128,7 +128,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                     <div class="col">
                                         <div class="infos-card-t info-card-t-v d-flex align-items-center">
                                             <div class="mr-1">
-                                                <span class="ico">💎</span>
+                                                <span class="ico va va-gem va-2x"></span>
                                             </div>
                                             <div class="content-body text-left">
                                                 <h4 class="mb-0">
@@ -141,7 +141,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                     <div class="col">
                                         <div class="infos-card-t d-flex align-items-center">
                                             <div class="mr-1">
-                                                <span class="ico">🏆</span>
+                                                <span class="ico va va-trophy va-2x"></span>
                                             </div>
                                             <div class="content-body text-left">
                                                 <h4 class="mb-0">
@@ -222,7 +222,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                     <span class="ico va va-speech-balloon va-lg"></span> <span class="hide-spot">Commenter</span>
                 </a>
             </div>
-            <?php if(get_post_status($id_top) != "draft") : ?>
+            <?php if (get_post_status($id_top) != "draft") : ?>
                 <div class="ico-nav-mobile">
                     <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" href="#" class="confirm_delete">
                         <span class="ico">🆕</span> <span class="hide-spot">Recommencer</span>

@@ -201,7 +201,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                             <div class="col">
                                                 <div class="infos-card-t info-card-t-v d-flex align-items-center">
                                                     <div class="mr-1">
-                                                        <span class="ico va va-gem va-lg"></span>
+                                                        <span class="ico va va-gem va-2x"></span>
                                                     </div>
                                                     <div class="content-body text-left">
                                                         <h4 class="mb-0">
@@ -214,7 +214,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                             <div class="col">
                                                 <div class="infos-card-t d-flex align-items-center">
                                                     <div class="mr-1">
-                                                        <span class="ico va va-trophy va-lg"></span>
+                                                        <span class="ico va va-trophy va-2x"></span>
                                                     </div>
                                                     <div class="content-body text-left">
                                                         <h4 class="mb-0">
@@ -227,7 +227,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                             <div class="col">
                                                 <div class="infos-card-t d-flex align-items-center">
                                                     <div class="mr-1">
-                                                        <span class="ico va va-wrapped-gift va-lg"></span>
+                                                        <span class="ico va va-wrapped-gift va-2x"></span>
                                                     </div>
                                                     <div class="content-body text-left">
                                                         <h4 class="mb-0">

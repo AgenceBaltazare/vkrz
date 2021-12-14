@@ -134,7 +134,9 @@ foreach ($contender_list as $contender) {
                                     <div class="card text-center">
                                         <div class="card-body">
                                             <div class="ico-stats">
-                                                <span class="ico4">💎</span>
+                                                <span class="ico4">
+                                                    <span class="ico va va-gem va-2x"></span>
+                                                </span>
                                             </div>
                                             <h2 class="font-weight-bolder">
                                                 <?php echo $top_datas['nb_votes']; ?>

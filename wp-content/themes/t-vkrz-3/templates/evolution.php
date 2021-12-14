@@ -115,8 +115,7 @@ $level_user = $user_infos['level_number'];
                                             </div>
                                         <?php endif; ?>
                                         <div class="eh">
-                                            <span class="ico-master va va-z-85 va-rooster">
-                                            </span>
+                                            <span class="ico-master va va-z-85 va-rooster"></span>
                                         </div>
                                         <h3>Niveau 3</h3>
                                         <p class="card-text">
@@ -142,8 +141,7 @@ $level_user = $user_infos['level_number'];
                                             </div>
                                         <?php endif; ?>
                                         <div class="eh">
-                                            <span class="ico-master va va-z-85 va-turkey">
-                                            </span>
+                                            <span class="ico-master va va-z-85 va-turkey"></span>
                                         </div>
                                         <h3>Niveau 4</h3>
                                         <p class="card-text">
@@ -169,8 +167,7 @@ $level_user = $user_infos['level_number'];
                                             </div>
                                         <?php endif; ?>
                                         <div class="eh">
-                                            <span class="ico-master va va-z-85 va-swan">
-                                            </span>
+                                            <span class="ico-master va va-z-85 va-swan"></span>
                                         </div>
                                         <h3>Niveau 5</h3>
                                         <p class="card-text">
@@ -196,8 +193,7 @@ $level_user = $user_infos['level_number'];
                                             </div>
                                         <?php endif; ?>
                                         <div class="eh">
-                                            <span class="ico-master va va-z-85 va-flamingo">
-                                            </span>
+                                            <span class="ico-master va va-z-85 va-flamingo"></span>
                                         </div>
                                         <h3>Niveau 6</h3>
                                         <p class="card-text">
@@ -223,8 +219,7 @@ $level_user = $user_infos['level_number'];
                                             </div>
                                         <?php endif; ?>
                                         <div class="eh">
-                                            <span class="ico-master va va-z-85 va-peacock">
-                                            </span>
+                                            <span class="ico-master va va-z-85 va-peacock"></span>
                                         </div>
                                         <h3>Niveau 7</h3>
                                         <p class="card-text">
@@ -250,8 +245,7 @@ $level_user = $user_infos['level_number'];
                                             </div>
                                         <?php endif; ?>
                                         <div class="eh">
-                                            <span class="ico-master va va-z-85 va-dragon">
-                                            </span>
+                                            <span class="ico-master va va-z-85 va-dragon"></span>
                                         </div>
                                         <h3>Niveau final</h3>
                                         <p class="card-text">
