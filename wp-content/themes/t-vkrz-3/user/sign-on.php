@@ -31,17 +31,24 @@ if (is_user_logged_in()) {
                             <div class="auth-register-form mt-2">
                                 <div class="login-form">
                                     <h3>En un seul click</h3>
+                                    <?php
+                                    if (isset($_GET['redirect']) && $_GET['redirect'] != "") {
+                                        $link_to_redirect = $_GET['redirect'] . "?message=logyes";
+                                    }
+                                    ?>
+                                    <script>
+                                        _oneall.push(['social_login', 'set_callback_uri', '<?php echo $link_to_redirect; ?>']);
+                                    </script>
                                     <?php do_action('oa_social_login'); ?>
                                 </div>
                                 <div class="separateur separateur-1 mt-0"></div>
                                 <div class="classic-form">
                                     <h3>ou en mode classik</h3>
                                     <?php
-                                    if(isset($_GET['redirect']) && $_GET['redirect'] != ""){
-                                        $link_to_redirect = $_GET['redirect']."?message=logyes";
-                                        echo do_shortcode('[wppb-register form_name="sign-on" redirect_url="'. $link_to_redirect.'"]');
-                                    }
-                                    else{
+                                    if (isset($_GET['redirect']) && $_GET['redirect'] != "") {
+                                        $link_to_redirect = $_GET['redirect'] . "?message=logyes";
+                                        echo do_shortcode('[wppb-register form_name="sign-on" redirect_url="' . $link_to_redirect . '"]');
+                                    } else {
                                         echo do_shortcode('[wppb-register form_name="sign-on"]');
                                     }
                                     ?>
