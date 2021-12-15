@@ -46,3 +46,14 @@ function wpse_58613_comment_redirect( $location ) {
 }
 
 add_filter( 'comment_post_redirect', 'wpse_58613_comment_redirect' );
+function oa_social_login_set_redirect_url($url, $user_data){
+    if(isset($_GET['redirect']) && $_GET['redirect'] != ""){
+        $url = $_GET['redirect'];
+    }
+    else{
+        $url = get_site_url(null, '/mon-compte/');
+    }
+    return $url;
+}
+add_filter('oa_social_login_filter_registration_redirect_url', 'oa_social_login_set_redirect_url', 10, 2);
+add_filter('oa_social_login_filter_login_redirect_url', 'oa_social_login_set_redirect_url', 10, 2);
