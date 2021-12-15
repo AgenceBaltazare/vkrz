@@ -1,12 +1,12 @@
 <?php
-  global $id_top;
+global $id_top;
 ?>
 
-<?php if (!get_field('marqueblanche_t', $id_top)): ?>
+<?php if (!get_field('marqueblanche_t', $id_top)) : ?>
     <div class="sidenav-overlay"></div>
     <footer class="footer footer-static footer-light">
         <p class="clearfix mb-0">
-            <span class="float-md-left d-block d-md-inline-block mt-25">VAINKEURZ ©<?php echo date('Y')+1000; ?>
+            <span class="float-md-left d-block d-md-inline-block mt-25">VAINKEURZ ©<?php echo date('Y') + 1000; ?>
                 <a class="ml-25" href="<?php the_permalink(104853); ?>">A propos</a>
                 -
                 <a class="ml-25" href="<?php the_permalink(get_page_by_path('ml')); ?>">CGU</a>
@@ -41,6 +41,15 @@
 </script>
 
 <?php wp_footer(); ?>
+
+<?php
+if (isset($_GET['redirect']) && $_GET['redirect'] != "") :
+    $link_to_redirect = $_GET['redirect'] . "?message=logyes";
+?>
+<script>
+    _oneall.push(['social_login', 'set_callback_uri', '<?php echo $link_to_redirect; ?>']);
+</script>
+<?php endif; ?>
 
 </body>
 
