@@ -42,15 +42,6 @@ global $id_top;
 
 <?php wp_footer(); ?>
 
-<?php
-if (isset($_GET['redirect']) && $_GET['redirect'] != "") :
-    $link_to_redirect = $_GET['redirect'] . "?message=logyes";
-?>
-<script>
-    _oneall.push(['social_login', 'set_callback_uri', '<?php echo $link_to_redirect; ?>']);
-</script>
-<?php endif; ?>
-
 </body>
 
 </html>
