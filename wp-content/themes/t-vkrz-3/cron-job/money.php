@@ -45,7 +45,7 @@ while ($vainkeur->have_posts()) : $vainkeur->the_post();
             $data_t_created = get_creator_t($user_id);
         }
 
-        $creator_money = round(($data_t_created['creator_nb_tops'] * 20) + ($data_t_created['creator_all_v'] * 0.01));
+        $creator_money = round($data_t_created['total_completed_top'] * 10) + round($data_t_created['creator_all_v'] * 1) + $data_t_created['creator_nb_tops'] * 100;
     }
 
     $total_money = $creator_money + $money_vkrz;

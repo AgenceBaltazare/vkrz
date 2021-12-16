@@ -17,6 +17,16 @@ if ($vainkeur_info['user_role'] == "administrator" || $vainkeur_info['user_role'
         $data_t_created = get_transient('user_' . $user_id . '_get_creator_t');
     }
 }
+$money_votes = $user_infos['nb_vote_vkrz'];
+$money_tops  = $user_infos['nb_top_vkrz'] * 5;
+$money_badges = 0;
+$vainkeur_badges = get_the_terms($vainkeur_info['id_vainkeur'], 'badges');
+if ($vainkeur_badges) {
+    foreach ($vainkeur_badges as $badge) {
+        $money_badges = $money_badges + get_field('recompense_badge', 'badges_' . $badge->term_id);
+    }
+}
+$money_createur = round($data_t_created['total_completed_top'] * 10) + round($data_t_created['creator_all_v'] * 1) + $data_t_created['creator_nb_tops'] * 100;
 ?>
 <div class="app-content content ">
     <div class="content-wrapper">
@@ -34,26 +44,56 @@ if ($vainkeur_info['user_role'] == "administrator" || $vainkeur_info['user_role'
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="card">
-                                <div class="card text-center">
-                                    <div class="card-body">
-                                        <div class="mb-1">
-                                            <span class="ico4 va va-gem va va-z-85"></span>
-                                        </div>
-                                        <h2 class="font-weight-bolder">
-                                            <?php if ($user_infos['money_vkrz']) : ?>
-                                                <?php echo $user_infos['money_vkrz']; ?>
-                                            <?php else : ?>
-                                                -
-                                            <?php endif; ?>
-                                        </h2>
-                                        <p class="card-text legende">KEURZ</p>
+                                <div class="card-body text-center">
+                                    <div class="mb-1">
+                                        <span class="ico4 va va-gem va va-z-85"></span>
+                                    </div>
+                                    <h2 class="font-weight-bolder">
+                                        <?php if ($user_infos['money_vkrz']) : ?>
+                                            <?php echo number_format($user_infos['money_vkrz'], 0, ",", " "); ?>
+                                        <?php else : ?>
+                                            -
+                                        <?php endif; ?>
+                                    </h2>
+                                    <p class="card-text legende">KEURZ</p>
 
-                                        <div class="row mt-2">
-                                            <div class="col-12">
-                                                <a class="btn btn-primary btn-block waves-effect waves-float waves-light" href="<?php the_permalink(get_page_by_path('trophees')); ?>">
-                                                    Voir le Store
-                                                </a>
+                                    <div class="row mt-2">
+                                        <div class="col-12">
+                                            <a class="btn btn-primary btn-block waves-effect waves-float waves-light" href="<?php the_permalink(get_page_by_path('trophees')); ?>">
+                                                Voir le Store
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="card text-center">
+                                        <div class="card-body">
+                                            <div class="mb-1">
+                                                <span class="ico4 va va-llama va va-z-30"></span>
                                             </div>
+                                            <h2 class="font-weight-bolder">
+                                                <?php echo number_format($user_infos['nb_vote_vkrz'] + $money_tops + $money_badges, 0, ",", " "); ?> <span class="va-gem va va-1x"></span>
+                                            </h2>
+                                            <p class="card-text legende">
+                                                Collecté en tant que Vainkeur
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="card text-center">
+                                        <div class="card-body">
+                                            <div class="mb-1">
+                                                <span class="ico4 va va-man-singer va va-z-30"></span>
+                                            </div>
+                                            <h2 class="font-weight-bolder">
+                                                <?php echo number_format($money_createur, 0, ",", " "); ?> <span class="va-gem va va-1x"></span>
+                                            </h2>
+                                            <p class="card-text legende">
+                                                Collecté en tant que créateur
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -102,7 +142,7 @@ if ($vainkeur_info['user_role'] == "administrator" || $vainkeur_info['user_role'
                                                                         <span class="text-muted">1 x</span> <?php echo $user_infos['nb_vote_vkrz']; ?>
                                                                     </th>
                                                                     <th class="text-right">
-                                                                        <?php echo $user_infos['nb_vote_vkrz']; ?> <span class="va-gem va va-1x"></span>
+                                                                        <?php echo $money_votes; ?> <span class="va-gem va va-1x"></span>
                                                                     </th>
                                                                 </tr>
                                                                 <tr>
@@ -113,11 +153,10 @@ if ($vainkeur_info['user_role'] == "administrator" || $vainkeur_info['user_role'
                                                                         <span class="text-muted">5 x</span> <?php echo $user_infos['nb_top_vkrz']; ?>
                                                                     </th>
                                                                     <th class="text-right">
-                                                                        <?php echo $user_infos['nb_top_vkrz'] * 5; ?> <span class="va-gem va va-1x"></span>
+                                                                        <?php echo $money_tops; ?> <span class="va-gem va va-1x"></span>
                                                                     </th>
                                                                 </tr>
                                                                 <?php
-                                                                $vainkeur_badges = get_the_terms($vainkeur_info['id_vainkeur'], 'badges');
                                                                 foreach ($vainkeur_badges as $badge) : ?>
                                                                     <tr>
                                                                         <th>
@@ -137,10 +176,21 @@ if ($vainkeur_info['user_role'] == "administrator" || $vainkeur_info['user_role'
                                                                             Créateur : Top créés
                                                                         </th>
                                                                         <th class="text-right">
-                                                                            <span class="text-muted">20 x</span> <?php echo $data_t_created['creator_nb_tops']; ?>
+                                                                            <span class="text-muted">10 x</span> <?php echo $data_t_created['creator_nb_tops']; ?>
                                                                         </th>
                                                                         <th class="text-right">
-                                                                            <?php echo $data_t_created['creator_nb_tops'] * 20; ?> <span class="va-gem va va-1x"></span>
+                                                                            <?php echo $data_t_created['creator_nb_tops'] * 100; ?> <span class="va-gem va va-1x"></span>
+                                                                        </th>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th>
+                                                                            Créateur : Top générés
+                                                                        </th>
+                                                                        <th class="text-right">
+                                                                            <span class="text-muted">1 x</span> <?php echo $data_t_created['total_completed_top']; ?>
+                                                                        </th>
+                                                                        <th class="text-right">
+                                                                            <?php echo round($data_t_created['total_completed_top'] * 10); ?> <span class="va-gem va va-1x"></span>
                                                                         </th>
                                                                     </tr>
                                                                     <tr>
@@ -148,10 +198,10 @@ if ($vainkeur_info['user_role'] == "administrator" || $vainkeur_info['user_role'
                                                                             Créateur : Votes reçus sur les Tops créés
                                                                         </th>
                                                                         <th class="text-right">
-                                                                            <span class="text-muted">0.01 x</span> <?php echo $data_t_created['creator_all_v']; ?>
+                                                                            <span class="text-muted">0.1 x</span> <?php echo $data_t_created['creator_all_v']; ?>
                                                                         </th>
                                                                         <th class="text-right">
-                                                                            <?php echo round($data_t_created['creator_all_v'] * 0.01); ?> <span class="va-gem va va-1x"></span>
+                                                                            <?php echo round($data_t_created['creator_all_v'] * 1); ?> <span class="va-gem va va-1x"></span>
                                                                         </th>
                                                                     </tr>
                                                                 <?php endif; ?>
