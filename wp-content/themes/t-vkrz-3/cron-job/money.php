@@ -3,7 +3,7 @@ include __DIR__ . '/../../../../wp-load.php';
 
 $vainkeur = new WP_Query(array(
     "post_type"              => "vainkeur",
-    "posts_per_page"         => 100,
+    "posts_per_page"         => -1,
     "fields"                 => "ids",
     "post_status"            => "publish",
     "orderby"                => "date",
