@@ -43,7 +43,7 @@ get_header();
                                                             </th>
                                                             <th class="text-right"><small class="text-muted">Conçu par</small></th>
                                                             <th>
-                                                                <span class="va va-high-voltage va-lg"></span>
+                                                                <span class="va va-high-voltage va va-lg"></span>
                                                             </th>
                                                         </tr>
                                                     </thead>

@@ -532,6 +532,25 @@ html .content {
     color: rgb(233, 229, 0);
 }
 
-.p-20{
+.p-20 {
     padding: 20px !important;
+}
+
+.m-l-5 {
+    margin-left: 5px;
+}
+
+.m-l-10 {
+    margin-left: 10px;
+}
+
+.nobold {
+    th {
+        font-weight: normal;
+        .text-muted{
+            width: 45px;
+            text-align: right;
+            display: inline-block;
+        }
+    }
 }

@@ -47,6 +47,7 @@ function deal_vainkeur_entry($user_id = false){
         $uuid_user_vkrz = get_field('uuid_user_vkrz', $id_vainkeur);
         $nb_vote_vkrz   = get_field('nb_vote_vkrz', $id_vainkeur);
         $nb_top_vkrz    = get_field('nb_top_vkrz', $id_vainkeur);
+        $money_vkrz     = get_field('money_vkrz', $id_vainkeur);
 
     }
     else{
@@ -116,7 +117,8 @@ function deal_vainkeur_entry($user_id = false){
         'level_number'      => $info_user_level['level_number'],
         'next_level'        => $info_user_level['next_level'],
         'nb_vote_vkrz'      => $nb_vote_vkrz,
-        'nb_top_vkrz'       => $nb_top_vkrz
+        'nb_top_vkrz'       => $nb_top_vkrz,
+        'money_vkrz'        => $money_vkrz
     );
 
 }

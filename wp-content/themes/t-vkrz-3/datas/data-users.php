@@ -44,7 +44,7 @@
                                                                     <th>🤴</th>
                                                                     <th>⏰</th>
                                                                     <th>🗓️</th>
-                                                                    <th class="text-right">💎</th>
+                                                                    <th class="text-right">⚡️</th>
                                                                     <th class="text-right">🏆</th>
                                                                     <th>📣</th>
                                                                     <th>👀</th>

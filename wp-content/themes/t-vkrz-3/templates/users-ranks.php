@@ -216,7 +216,7 @@ $top_datas = get_top_data($id_top);
                                         <div class="card text-center">
                                             <div class="card-body">
                                                 <div class="mb-1">
-                                                    <span class="ico4 va va-gem va-lg"></span>
+                                                    <span class="ico4 va-high-voltage va va-lg"></span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">
                                                     <?php echo $top_datas['nb_votes']; ?>

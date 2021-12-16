@@ -44,7 +44,7 @@ $vainkeurs = get_best_vainkeur("vote", NULL, 20);
                                                                     <span class="va va-prince va-lg"></span>
                                                                 </th>
                                                                 <th class="text-right">
-                                                                    <span class="va va-gem va-lg"></span>
+                                                                    <span class="va-high-voltage va va-lg"></span>
                                                                 </th>
                                                                 <th class="text-right">
                                                                     <span class="va va-trophy va-lg"></span>
@@ -104,7 +104,7 @@ $vainkeurs = get_best_vainkeur("vote", NULL, 20);
                                                                     </td>
 
                                                                     <td class="text-right">
-                                                                        <?php echo $total_vote; ?> <span class="ico va va-gem va-lg"></span>
+                                                                        <?php echo $total_vote; ?> <span class="ico va-high-voltage va va-lg"></span>
                                                                     </td>
 
                                                                     <td class="text-right">

@@ -97,7 +97,7 @@ $best_creators = best_creators();
                                                                     </td>
 
                                                                     <td class="text-right">
-                                                                        <?php echo number_format($creator['total_vote'], 0, ",", " "); ?> <span class="ico va va-gem va-lg"></span>
+                                                                        <?php echo number_format($creator['total_vote'], 0, ",", " "); ?> <span class="ico va-high-voltage va va-lg"></span>
                                                                     </td>
 
                                                                     <td class="text-right">
