@@ -126,7 +126,7 @@
     $cat_id      = $current_cat->term_id;
     ?>
     <title>
-        Tous les Tops <?php echo $cat_name; ?> <?php the_field('icone_cat', 'term_'.$cat_id); ?> sur VAINKEURZ
+        Tops <?php echo $cat_name; ?> sur VAINKEURZ
     </title>
     <meta name="description" content="<?php echo $current_cat->description; ?>" />
 
