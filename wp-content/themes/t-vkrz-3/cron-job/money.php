@@ -26,8 +26,10 @@ while ($vainkeur->have_posts()) : $vainkeur->the_post();
     $tops_money     = get_field('nb_top_vkrz') * 10;
 
     $vainkeur_badges = get_the_terms($id_vainkeur, 'badges');
-    foreach ($vainkeur_badges as $badge){
-        $trophy_money = $trophy_money + get_field('recompense_badge', 'badges_' . $badge->term_id);
+    if($vainkeur_badges){
+        foreach ($vainkeur_badges as $badge) {
+            $trophy_money = $trophy_money + get_field('recompense_badge', 'badges_' . $badge->term_id);
+        }
     }
 
     $money_vkrz = $trophy_money + $votes_money + $tops_money;
