@@ -2,6 +2,7 @@
 include __DIR__ . '/../../../../wp-load.php';
 
 $total_money = 0;
+$total_money_creator = 0;
 
 $vainkeur = new WP_Query(array(
     "post_type"              => "vainkeur",
@@ -18,6 +19,15 @@ while ($vainkeur->have_posts()) : $vainkeur->the_post();
 
     $total_money = $total_money + get_field('money_vkrz');
 
+    $user_id = get_the_author_meta('ID');
+    if ($user_id) {
+
+        $total_money_creator = $total_money_creator + get_field('money_vkrz');
+
+    }
+
+
 endwhile;
 
-echo $total_money;
+echo $total_money."/n";
+echo $total_money_creator . "/n";
