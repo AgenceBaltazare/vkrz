@@ -18,6 +18,6 @@ while ($vainkeur->have_posts()) : $vainkeur->the_post();
 
     $total_money = $total_money + get_field('money_vkrz');
 
-    echo $total_money;
-
 endwhile;
+
+echo $total_money;
