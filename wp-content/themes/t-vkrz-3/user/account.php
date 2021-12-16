@@ -53,38 +53,6 @@ foreach ($list_user_tops as $top) {
                         <div class="col-lg-3 col-12 order-2 order-lg-1">
 
                             <div class="hide-xs">
-
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4 class="card-title">
-                                            <span class="ico va-gem va va-lg"></span> Money
-                                        </h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <?php
-                                            $vainkeur_badges = get_the_terms($id_vainkeur, 'badges');
-                                            foreach ($vainkeur_badges as $badge) : ?>
-                                                <div class="col-4 col-sm-6 col-lg-4">
-                                                    <div class="text-center">
-                                                        <div class="user-level" data-toggle="tooltip" data-placement="top" title="" data-original-title="<?php echo $badge->name; ?> : <?php echo $badge->description; ?>">
-                                                            <span class="icomedium">
-                                                                <?php the_field('symbole_badge', 'badges_' . $badge->term_id); ?>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            <?php endforeach; ?>
-                                        </div>
-                                        <div class="row mt-2">
-                                            <div class="col-12">
-                                                <a class="btn btn-primary btn-block waves-effect waves-float waves-light" href="<?php the_permalink(get_page_by_path('trophees')); ?>">
-                                                    Découvrir tous les trophées <span class="va va-eyes va-z-20"></span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 
                                 <div class="card">
                                     <div class="card-header">

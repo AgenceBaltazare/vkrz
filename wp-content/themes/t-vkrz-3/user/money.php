@@ -67,7 +67,7 @@ $money_createur = round($data_t_created['total_completed_top'] * 10) + round($da
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-6 col-md-12 col-lg-6">
+                                <div class="col-6 col-sm-12">
                                     <div class="card text-center">
                                         <div class="card-body">
                                             <div class="mb-1">
@@ -82,7 +82,7 @@ $money_createur = round($data_t_created['total_completed_top'] * 10) + round($da
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-6 col-md-12 col-lg-6">
+                                <div class="col-6 col-sm-12">
                                     <div class="card text-center">
                                         <div class="card-body">
                                             <div class="mb-1">
