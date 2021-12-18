@@ -260,9 +260,11 @@ if (is_single() && get_post_type() == "tournoi") {
                 <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
                     <li class="dropdown-menu-header">
                         <div class="dropdown-header d-flex">
-                            <h4 class="notification-title mb-0 mr-auto"><span class="va-gem va va-lg"></span></h4>
+                            <h4 class="notification-title mb-0 mr-auto">
+                                <span class="va-gem va va-lg"></span> <?php echo $user_infos['current_money_vkrz']; ?>
+                            </h4>
                             <div class="badge badge-pill badge-light-primary">
-                                Enchaîne les votes et gagne des trophées
+                                Solde de KEURZ disponible
                             </div>
                         </div>
                     </li>
@@ -270,24 +272,39 @@ if (is_single() && get_post_type() == "tournoi") {
                         <div class="text-center mb-2">
                             <h6 class="font-weight-bolder mb-0">
                                 <?php if (is_user_logged_in()) : ?>
-                                    Encore <span class="decompte_vote"><?php echo get_vote_to_next_level($user_infos['level_number'], $user_infos['money_vkrz']); ?></span> <span class="va-gem va va-lg"></span> pour passer au niveau <?php echo $user_infos['next_level']; ?>
+                                    Profite du Shop pour dépenser tes KEURZ
                                 <?php else : ?>
-                                    Il te faut un compte pour monter en niveau <span class="va va-rocket va-lg"></span>
+                                    Il te faut un compte commander dans le shop
                                 <?php endif; ?>
                             </h6>
                         </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <a class="btn btn-primary btn-block" href="<?php the_permalink(get_page_by_path('evolution')); ?>">
-                                    Voir les niveaux
-                                </a>
+                        <?php if (is_user_logged_in()) : ?>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <a class="btn btn-outline-primary btn-block" href="<?php the_permalink(get_page_by_path('shop')); ?>">
+                                        Aller dans le shop
+                                    </a>
+                                </div>
+                                <div class="col-sm-6">
+                                    <a class="btn btn-primary btn-block" href="<?php the_permalink(get_page_by_path('mon-compte/keurz')); ?>">
+                                        Détail des KEURZ
+                                    </a>
+                                </div>
                             </div>
-                            <div class="col-6">
-                                <a class="btn btn-primary btn-block" href="<?php the_permalink(get_page_by_path('evolution')); ?>">
-                                    Voir les trophées
-                                </a>
+                        <?php else : ?>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <a class="btn btn-outline-primary btn-block" href="<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>">
+                                        Créer mon compte
+                                    </a>
+                                </div>
+                                <div class="col-sm-6">
+                                    <a class="btn btn-primary btn-block" href="<?php the_permalink(get_page_by_path('mon-compte/keurz')); ?>">
+                                        Détail des KEURZ
+                                    </a>
+                                </div>
                             </div>
-                        </div>
+                        <?php endif; ?>
                     </li>
                 </ul>
             </li>
