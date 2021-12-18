@@ -15,6 +15,7 @@ function do_transaction($id_produit, $user_uuid, $price, $user_email, $idvainkeu
         update_field('id_produit_transaction', $id_produit, $id_new_transaction);
         update_field('montant_transaction', $price, $id_new_transaction);
         update_field('email_acheteur_transaction', $user_email, $id_new_transaction);
+        update_field('etat_transaction', 'pending', $id_new_transaction);
 
         $current_money = get_current_money($idvainkeur);
 
