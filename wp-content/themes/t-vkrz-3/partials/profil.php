@@ -55,6 +55,13 @@ $vainkeur_info = isset($vainkeur_info) ? $vainkeur_info : $user_infos;
                                     Récap
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link font-weight-bold <?php if (is_page(get_page_by_path('mon-compte/keurz'))) {
+                                                                        echo 'btn btn-primary';
+                                                                    } ?>" href="<?php the_permalink(get_page_by_path('mon-compte/keurz')); ?>">
+                                    Mes KEURZ
+                                </a>
+                            </li>
                             <?php if ($vainkeur_info['user_role'] == "administrator" || $vainkeur_info['user_role'] == "author") : ?>
                                 <li class="nav-item">
                                     <a class="nav-link font-weight-bold <?php if (is_page(172849)) {

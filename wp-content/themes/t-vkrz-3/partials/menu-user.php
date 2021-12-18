@@ -330,6 +330,9 @@ if (is_single() && get_post_type() == "tournoi") {
                         <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>">
                             <span class="ico va va-llama va-lg"></span> Mon compte
                         </a>
+                        <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('mon-compte/keurz')); ?>">
+                            <span class="ico va va-gem va-lg"></span> Mes KEURZ
+                        </a>
                         <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('parametres')); ?>">
                             <span class="ico va va-setting va-lg"></span> Paramètres
                         </a>
