@@ -5,7 +5,7 @@
 global $uuiduser;
 get_header();
 
-$vainkeurs = get_best_vainkeur("vote", NULL, 20);
+$vainkeurs = get_best_vainkeur("money", NULL, 20);
 ?>
 <div class="app-content content cover">
     <div class="content-overlay"></div>
@@ -44,10 +44,13 @@ $vainkeurs = get_best_vainkeur("vote", NULL, 20);
                                                                     <span class="va va-prince va-lg"></span>
                                                                 </th>
                                                                 <th class="text-right">
-                                                                    <span class="va-high-voltage va va-lg"></span>
+                                                                    <small class="text-muted">KEURZ</small>
                                                                 </th>
                                                                 <th class="text-right">
-                                                                    <span class="va va-trophy va-lg"></span>
+                                                                    <small class="text-muted">Votes effectués</small>
+                                                                </th>
+                                                                <th class="text-right">
+                                                                    <small class="text-muted">Top terminés</small>
                                                                 </th>
                                                                 <th>
                                                                     <span class="va va-eyes va-lg"></span>
@@ -75,6 +78,7 @@ $vainkeurs = get_best_vainkeur("vote", NULL, 20);
                                                                             $user_id            = $vainkeur["author_id"];
                                                                             $total_vote         = $vainkeur["total_vote"];
                                                                             $total_top          = $vainkeur["total_top"];
+                                                                            $money              = $vainkeur["money"];
                                                                             $user_infos         = deal_vainkeur_entry($user_id);
                                                                             $avatar             = $user_infos['avatar'];
                                                                             $info_user_level    = get_user_level($user_id);
@@ -92,7 +96,7 @@ $vainkeurs = get_best_vainkeur("vote", NULL, 20);
                                                                                     <?php echo get_the_author_meta('nickname', $user_id); ?>
                                                                                 </span>
                                                                                 <?php if ($user_infos['user_role'] == "administrator") : ?>
-                                                                                    <span class="ico va va-llama va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
+                                                                                    <span class="ico va va-vkrzteam va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
                                                                                     </span>
                                                                                 <?php endif; ?>
                                                                                 <?php if ($user_infos['user_role'] == "administrator" || $user_infos['user_role'] == "author") : ?>
@@ -101,6 +105,10 @@ $vainkeurs = get_best_vainkeur("vote", NULL, 20);
                                                                                 <?php endif; ?>
                                                                             </div>
                                                                         </div>
+                                                                    </td>
+
+                                                                    <td class="text-right">
+                                                                        <?php echo $money; ?> <span class="ico va-gem va va-lg"></span>
                                                                     </td>
 
                                                                     <td class="text-right">

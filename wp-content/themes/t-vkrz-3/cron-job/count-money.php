@@ -22,12 +22,12 @@ while ($vainkeur->have_posts()) : $vainkeur->the_post();
     $user_id = get_the_author_meta('ID');
     if ($user_id) {
 
-        $total_money_creator = $total_money_creator + get_field('money_vkrz');
+        $total_money_creator = $total_money_creator + get_field('money_creator_vkrz');
 
     }
 
 
 endwhile;
 
-echo $total_money."/n";
-echo $total_money_creator . "/n";
+echo "Money vainkeur : " . $total_money. "\n";
+echo "Money creator : " . $total_money_creator . "\n";

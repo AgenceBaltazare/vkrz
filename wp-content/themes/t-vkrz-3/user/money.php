@@ -26,7 +26,6 @@ if ($vainkeur_badges) {
         $money_badges = $money_badges + get_field('recompense_badge', 'badges_' . $badge->term_id);
     }
 }
-$money_createur = round($data_t_created['total_completed_top'] * 10) + round($data_t_created['creator_all_v'] * 1) + $data_t_created['creator_nb_tops'] * 100;
 ?>
 <div class="app-content content ">
     <div class="content-wrapper">
@@ -49,18 +48,17 @@ $money_createur = round($data_t_created['total_completed_top'] * 10) + round($da
                                         <span class="ico4 va va-gem va va-z-85"></span>
                                     </div>
                                     <h2 class="font-weight-bolder">
-                                        <?php if ($user_infos['money_vkrz']) : ?>
-                                            <?php echo number_format($user_infos['money_vkrz'], 0, ",", " "); ?>
+                                        <?php if ($user_infos['current_money_vkrz']) : ?>
+                                            <?php echo number_format($user_infos['current_money_vkrz'], 0, ",", " "); ?>
                                         <?php else : ?>
                                             -
                                         <?php endif; ?>
                                     </h2>
                                     <p class="card-text legende">KEURZ</p>
-
                                     <div class="row mt-2">
                                         <div class="col-12">
-                                            <a class="btn btn-primary btn-block waves-effect waves-float waves-light" href="<?php the_permalink(get_page_by_path('trophees')); ?>">
-                                                Voir le Store
+                                            <a href="<?php the_permalink(get_page_by_path('shop')); ?>/" class="btn btn-primary btn-block waves-effect waves-float waves-light">
+                                                Accéder au Shop
                                             </a>
                                         </div>
                                     </div>
@@ -74,10 +72,12 @@ $money_createur = round($data_t_created['total_completed_top'] * 10) + round($da
                                                 <span class="ico4 va va-llama va va-z-30"></span>
                                             </div>
                                             <h2 class="font-weight-bolder">
-                                                <?php echo number_format($user_infos['nb_vote_vkrz'] + $money_tops + $money_badges, 0, ",", " "); ?> <span class="va-gem va va-1x"></span>
+                                                <?php echo number_format($user_infos['money_vkrz'], 0, ",", " "); ?> <span class="va-gem va va-1x"></span>
                                             </h2>
                                             <p class="card-text legende">
                                                 Collecté en tant que Vainkeur
+                                                <br>
+                                                <small class="text-primary">Mis à jour en temps réel</small>
                                             </p>
                                         </div>
                                     </div>
@@ -89,10 +89,12 @@ $money_createur = round($data_t_created['total_completed_top'] * 10) + round($da
                                                 <span class="ico4 va va-man-singer va va-z-30"></span>
                                             </div>
                                             <h2 class="font-weight-bolder">
-                                                <?php echo number_format($money_createur, 0, ",", " "); ?> <span class="va-gem va va-1x"></span>
+                                                <?php echo number_format($user_infos['money_creator_vkrz'], 0, ",", " "); ?> <span class="va-gem va va-1x"></span>
                                             </h2>
                                             <p class="card-text legende">
-                                                Collecté en tant que créateur
+                                                Collecté en tant que créateur de Top
+                                                <br>
+                                                <small class="text-primary">Mis à jour tous les 24h</small>
                                             </p>
                                         </div>
                                     </div>
@@ -104,12 +106,19 @@ $money_createur = round($data_t_created['total_completed_top'] * 10) + round($da
                                 <ul class="nav nav-tabs" role="tablist">
                                     <li class="nav-item">
                                         <a class="nav-link active" id="profileIcon-tab" data-toggle="tab" href="#tab2" aria-controls="profile" role="tab" aria-selected="false">
-                                            Détails de la collecte de <span class="m-l-5 va-gem va va-1x"></span>
+                                            Collecte en tant que <span class="m-l-5 va-llama va va-1x"></span>
                                         </a>
                                     </li>
+                                    <?php if ($vainkeur_info['user_role'] == "administrator" || $vainkeur_info['user_role'] == "author") : ?>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="homeIcon-tab" data-toggle="tab" href="#tab1" aria-controls="home" role="tab" aria-selected="false">
+                                                Collecte en tant que <span class="m-l-5 va-man-singer va va-1x"></span>
+                                            </a>
+                                        </li>
+                                    <?php endif; ?>
                                     <li class="nav-item">
-                                        <a class="nav-link" id="homeIcon-tab" data-toggle="tab" href="#tab1" aria-controls="home" role="tab" aria-selected="true">
-                                            Historique
+                                        <a class="nav-link" id="profileIcon-tab" data-toggle="tab" href="#tab3" aria-controls="profile" role="tab" aria-selected="false">
+                                            Historique des commandes
                                         </a>
                                     </li>
                                 </ul>
@@ -157,6 +166,7 @@ $money_createur = round($data_t_created['total_completed_top'] * 10) + round($da
                                                                     </th>
                                                                 </tr>
                                                                 <?php
+                                                                if($vainkeur_badges):
                                                                 foreach ($vainkeur_badges as $badge) : ?>
                                                                     <tr>
                                                                         <th>
@@ -169,42 +179,7 @@ $money_createur = round($data_t_created['total_completed_top'] * 10) + round($da
                                                                             <?php the_field('recompense_badge', 'badges_' . $badge->term_id); ?> <span class="va-gem va va-1x"></span>
                                                                         </th>
                                                                     </tr>
-                                                                <?php endforeach; ?>
-                                                                <?php if ($vainkeur_info['user_role'] == "administrator" || $vainkeur_info['user_role'] == "author") : ?>
-                                                                    <tr>
-                                                                        <th>
-                                                                            Créateur : Top créés
-                                                                        </th>
-                                                                        <th class="text-right">
-                                                                            <span class="text-muted">10 x</span> <?php echo $data_t_created['creator_nb_tops']; ?>
-                                                                        </th>
-                                                                        <th class="text-right">
-                                                                            <?php echo $data_t_created['creator_nb_tops'] * 100; ?> <span class="va-gem va va-1x"></span>
-                                                                        </th>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th>
-                                                                            Créateur : Top générés
-                                                                        </th>
-                                                                        <th class="text-right">
-                                                                            <span class="text-muted">1 x</span> <?php echo $data_t_created['total_completed_top']; ?>
-                                                                        </th>
-                                                                        <th class="text-right">
-                                                                            <?php echo round($data_t_created['total_completed_top'] * 10); ?> <span class="va-gem va va-1x"></span>
-                                                                        </th>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th>
-                                                                            Créateur : Votes reçus sur les Tops créés
-                                                                        </th>
-                                                                        <th class="text-right">
-                                                                            <span class="text-muted">0.1 x</span> <?php echo $data_t_created['creator_all_v']; ?>
-                                                                        </th>
-                                                                        <th class="text-right">
-                                                                            <?php echo round($data_t_created['creator_all_v'] * 1); ?> <span class="va-gem va va-1x"></span>
-                                                                        </th>
-                                                                    </tr>
-                                                                <?php endif; ?>
+                                                                <?php endforeach; endif; ?>
                                                                 <tr>
                                                                     <th>
                                                                         Total collecté
@@ -223,76 +198,71 @@ $money_createur = round($data_t_created['total_completed_top'] * 10) + round($da
                                             </div>
                                         </div>
                                     </div>
-                                    <?php if ($has_t_begin) : ?>
-                                        <div class="tab-pane" id="tab1" aria-labelledby="homeIcon-tab" role="tabpanel">
+                                    <?php if ($vainkeur_info['user_role'] == "administrator" || $vainkeur_info['user_role'] == "author") : ?>
+                                        <div class="tab-pane" id="tab1" aria-labelledby="profileIcon-tab" role="tabpanel">
                                             <div class="row">
                                                 <div class="col-12">
                                                     <div class="card invoice-list-wrapper">
                                                         <div class="card-datatable table-responsive">
-                                                            <table class="invoice-list-table table table-tbegin">
+                                                            <table class="invoice-list-table table table-tdone">
                                                                 <thead>
                                                                     <tr>
                                                                         <th class="">
-                                                                            <?php if (count($list_t_done) > 1) : ?>
-                                                                                <span class="t-rose"><?php echo count($list_t_begin); ?></span> Tops à terminer
-                                                                            <?php else : ?>
-                                                                                <span class="t-rose"><?php echo count($list_t_begin); ?></span> Top à terminer
-                                                                            <?php endif; ?>
+                                                                            Récompenses
                                                                         </th>
-                                                                        <th class="text-center">
-                                                                            <span class="va-high-voltage va va-lg"></span>
+                                                                        <th class="text-right">
+                                                                            Détail
                                                                         </th>
-                                                                        <th>
-                                                                            <span class="va va-eyes va-lg"></span>
-                                                                        </th>
-                                                                        <th>
-
+                                                                        <th class="text-right">
+                                                                            KEURZ <span class="va-gem va va-lg"></span>
                                                                         </th>
                                                                     </tr>
                                                                 </thead>
-                                                                <tbody>
-                                                                    <?php
-                                                                    foreach ($list_t_begin as $top) : ?>
-                                                                        <tr id="top-<?php echo $top['id_ranking']; ?>">
-                                                                            <td>
-                                                                                <div class="media-body">
-                                                                                    <div class="media-heading">
-                                                                                        <h6 class="cart-item-title mb-0">
-                                                                                            <a class="text-body" href="<?php the_permalink($top['id_top']); ?>">
-                                                                                                Top <?php echo $top['nb_top']; ?> - <?php echo get_the_title($top['id_top']); ?>
-                                                                                            </a>
-                                                                                        </h6>
-                                                                                        <small class="cart-item-by legende">
-                                                                                            <?php the_field('question_t', $top['id_top']); ?>
-                                                                                        </small>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </td>
-                                                                            <td class="text-center">
-                                                                                <?php echo $top['nb_votes']; ?> <span class="ico3 va-high-voltage va va-lg"></span>
-                                                                            </td>
-                                                                            <td>
-                                                                                <a class="mr-1" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $top['id_top']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir le Top mondial">
-                                                                                    <span class="ico va va-globe va-lg">
+                                                                <tbody class="nobold">
+                                                                    <tr>
+                                                                        <th>
+                                                                            Créateur : Top créés
+                                                                        </th>
+                                                                        <th class="text-right">
+                                                                            <span class="text-muted">50 x</span> <?php echo $data_t_created['creator_nb_tops']; ?>
+                                                                        </th>
+                                                                        <th class="text-right">
+                                                                            <?php echo $data_t_created['creator_nb_tops'] * 50; ?> <span class="va-gem va va-1x"></span>
+                                                                        </th>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th>
+                                                                            Créateur : Top générés
+                                                                        </th>
+                                                                        <th class="text-right">
+                                                                            <span class="text-muted">5 x</span> <?php echo $data_t_created['total_completed_top']; ?>
+                                                                        </th>
+                                                                        <th class="text-right">
+                                                                            <?php echo round($data_t_created['total_completed_top'] * 5); ?> <span class="va-gem va va-1x"></span>
+                                                                        </th>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th>
+                                                                            Créateur : Votes reçus sur les Tops créés
+                                                                        </th>
+                                                                        <th class="text-right">
+                                                                            <span class="text-muted">0.5 x</span> <?php echo $data_t_created['creator_all_v']; ?>
+                                                                        </th>
+                                                                        <th class="text-right">
+                                                                            <?php echo round($data_t_created['creator_all_v'] * 0.5); ?> <span class="va-gem va va-1x"></span>
+                                                                        </th>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th>
+                                                                            Total collecté
+                                                                        </th>
+                                                                        <th class="text-right">
 
-                                                                                    </span>
-                                                                                </a>
-                                                                            </td>
-                                                                            <td class="text-center">
-                                                                                <div class="d-flex align-items-center col-actions">
-                                                                                    <a href="<?php the_permalink($top['id_top']); ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Continuer le Top">
-                                                                                        <span class="ico-action va va-play-button va-z-20"></span>
-                                                                                    </a>
-                                                                                    <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-id_ranking="<?php echo $top['id_ranking']; ?>" class="confirm_delete" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Recommencer le Top">
-                                                                                        <span class="ico-action va va-new-button va-z-20"></span>
-                                                                                    </a>
-                                                                                    <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Le Top sera supprimé définitivement 😱" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-id_ranking="<?php echo $top['id_ranking']; ?>" class="confirmDeleteReal" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Abandonner le Top">
-                                                                                        <span class="ico-action va va-throw-bin-button va-z-20"></span>
-                                                                                    </a>
-                                                                                </div>
-                                                                            </td>
-                                                                        </tr>
-                                                                    <?php endforeach; ?>
+                                                                        </th>
+                                                                        <th class="text-right">
+                                                                            <?php echo $user_infos['money_creator_vkrz']; ?> <span class="va-gem va va-1x"></span>
+                                                                        </th>
+                                                                    </tr>
                                                                 </tbody>
                                                             </table>
                                                         </div>
@@ -301,6 +271,83 @@ $money_createur = round($data_t_created['total_completed_top'] * 10) + round($da
                                             </div>
                                         </div>
                                     <?php endif; ?>
+                                    <div class="tab-pane" id="tab3" aria-labelledby="profileIcon-tab" role="tabpanel">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="card invoice-list-wrapper">
+                                                    <div class="card-datatable table-responsive">
+                                                        <table class="invoice-list-table table table-tdone">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="">
+                                                                        Produit commandé
+                                                                    </th>
+                                                                    <th class="text-right">
+                                                                        Date
+                                                                    </th>
+                                                                    <th class="text-right">
+                                                                        Montant
+                                                                    </th>
+                                                                    <th class="text-right">
+                                                                        Etat
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody class="nobold">
+                                                                <?php
+                                                                $transaction = new WP_Query(array(
+                                                                    'ignore_sticky_posts'        => true,
+                                                                    'update_post_meta_cache'     => false,
+                                                                    'no_found_rows'              => true,
+                                                                    'post_type'                  => 'transaction',
+                                                                    'posts_per_page'             => -1,
+                                                                    'meta_query'                 => array(
+                                                                        array(
+                                                                            'key'       => 'id_vainkeur_transaction',
+                                                                            'value'     => $vainkeur_info['id_vainkeur'],
+                                                                            'compare'   => '='
+                                                                        )
+                                                                    ),
+                                                                ));
+                                                                if ($transaction->have_posts()) :
+                                                                    while ($transaction->have_posts()) : $transaction->the_post(); ?>
+
+                                                                        <tr>
+                                                                            <td>
+                                                                                <?php echo get_the_title(get_field('id_produit_transaction')); ?>
+                                                                            </td>
+                                                                            <td class="text-right">
+                                                                                <?php echo get_the_date('d/m/Y'); ?>
+                                                                            </td>
+                                                                            <td class="text-right">
+                                                                                <?php the_field('montant_transaction'); ?> <span class="va-gem va va-1x"></span>
+                                                                            </td>
+                                                                            <td class="text-right">
+                                                                                <?php if (get_field('etat_transaction') == "pending") : ?>
+                                                                                    <span class="badge rounded-pill badge-light-warning me-1">En traitement</span>
+                                                                                <?php elseif (get_field('etat_transaction') == "done") : ?>
+                                                                                    <span class="badge rounded-pill badge-light-success me-1">Livré</span>
+                                                                                <?php elseif (get_field('etat_transaction') == "problem") : ?>
+                                                                                    <span class="badge rounded-pill badge-light-danger me-1">Incident</span>
+                                                                                <?php endif; ?>
+                                                                            </td>
+                                                                        </tr>
+
+                                                                    <?php endwhile; ?>
+                                                                <?php else : ?>
+                                                                    <tr>
+                                                                        <td colspan="4">
+                                                                            <span class="text-muted">Aucune commande effectuée depuis le shop</span>
+                                                                        </td>
+                                                                    </tr>
+                                                                <?php endif; ?>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </section>
                         </div>
