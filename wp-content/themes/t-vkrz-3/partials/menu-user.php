@@ -248,9 +248,39 @@ if (is_single() && get_post_type() == "tournoi") {
                                 <?php endif; ?>
                             </h6>
                         </div>
+<<<<<<< Updated upstream
                         <a class="btn btn-primary btn-block" href="<?php the_permalink(get_page_by_path('evolution')); ?>">
                             Découvre les niveaux <span class="va va-eyes va-lg"></span>
                         </a>
+=======
+                        <?php if (is_user_logged_in()) : ?>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <a class="btn btn-outline-primary btn-block" href="<?php the_permalink(get_page_by_path('shop')); ?>">
+                                        Aller dans le shop
+                                    </a>
+                                </div>
+                                <div class="col-sm-6">
+                                    <a class="btn btn-primary btn-block" href="<?php the_permalink(get_page_by_path('mon-compte/keurz')); ?>">
+                                        Détail des KEURZ
+                                    </a>
+                                </div>
+                            </div>
+                        <?php else : ?>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <a class="btn btn-outline-primary btn-block" href="<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>">
+                                        Créer mon compte
+                                    </a>
+                                </div>
+                                <div class="col-sm-6">
+                                    <a class="btn btn-primary btn-block" href="<?php the_permalink(305107); ?>">
+                                        Détail des KEURZ
+                                    </a>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+>>>>>>> Stashed changes
                     </li>
                 </ul>
             </li>
@@ -276,6 +306,12 @@ if (is_single() && get_post_type() == "tournoi") {
                         <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>">
                             <span class="ico va va-llama va-lg"></span> Mon compte
                         </a>
+<<<<<<< Updated upstream
+=======
+                        <a class="dropdown-item" href="<?php the_permalink(305107); ?>">
+                            <span class="ico va va-gem va-lg"></span> Mes KEURZ
+                        </a>
+>>>>>>> Stashed changes
                         <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('parametres')); ?>">
                             <span class="ico va va-setting va-lg"></span> Paramètres
                         </a>

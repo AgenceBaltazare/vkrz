@@ -55,6 +55,16 @@ $vainkeur_info = isset($vainkeur_info) ? $vainkeur_info : $user_infos;
                                     Récap
                                 </a>
                             </li>
+<<<<<<< Updated upstream
+=======
+                            <li class="nav-item">
+                                <a class="nav-link font-weight-bold <?php if (is_page(305107)) {
+                                                                        echo 'btn btn-primary';
+                                                                    } ?>" href="<?php the_permalink(305107); ?>">
+                                    Mes KEURZ
+                                </a>
+                            </li>
+>>>>>>> Stashed changes
                             <?php if ($vainkeur_info['user_role'] == "administrator" || $vainkeur_info['user_role'] == "author") : ?>
                                 <li class="nav-item">
                                     <a class="nav-link font-weight-bold <?php if (is_page(172849)) {
