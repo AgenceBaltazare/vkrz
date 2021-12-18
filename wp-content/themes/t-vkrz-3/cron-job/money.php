@@ -45,15 +45,15 @@ while ($vainkeur->have_posts()) : $vainkeur->the_post();
 
         if ($user_role == "administrator" || $user_role == "author") {
             $data_t_created = get_creator_t($user_id);
+            $creator_money = round(($data_t_created['total_completed_top'] * 5) + ($data_t_created['creator_all_v'] * 0.5) + ($data_t_created['creator_nb_tops'] * 50));
+            update_field('money_creator_vkrz', $creator_money, $id_vainkeur);
+        } 
+        else {
+            update_field('money_creator_vkrz', 0, $id_vainkeur);
         }
 
-        $creator_money = round(($data_t_created['total_completed_top'] * 5) + ($data_t_created['creator_all_v'] * 0.5) + ($data_t_created['creator_nb_tops'] * 50));
+        
 
-        update_field('money_creator_vkrz', $creator_money, $id_vainkeur);
-
-    }
-    else{
-        update_field('money_creator_vkrz', 0, $id_vainkeur);
     }
 
 endwhile;
