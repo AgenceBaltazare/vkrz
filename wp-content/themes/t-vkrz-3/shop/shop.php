@@ -85,12 +85,12 @@ $solde_disponible = $user_infos['current_money_vkrz'];
                         <div class="item-options text-center px-1 pb-1 pt-0">
                             <?php if (get_field('reserve_aux_createurs_produit')) : ?>
                                 <?php if ($vainkeur_info['user_role'] == "administrator" || $vainkeur_info['user_role'] == "author") : ?>
-                                    <button type="button" class="btn bt-primary w-100 waves-effect" data-toggle="modal" data-target="#cart-<?php echo $p; ?>">
+                                    <button type="button" class="btn btn-primary w-100 waves-effect" data-toggle="modal" data-target="#cart-<?php echo $p; ?>">
                                         <span class="add-to-cart">Commander</span>
                                     </button>
                                 <?php else : ?>
                                     <button type="button" class="btn btn-outline-primary w-100 disabled">
-                                        <span class="add-to-cart">Réserver aux créateurs</span>
+                                        <span class="add-to-cart">Réservé aux créateurs</span>
                                     </button>
                                 <?php endif; ?>
 
@@ -118,7 +118,7 @@ $solde_disponible = $user_infos['current_money_vkrz'];
                                 <div class="modal-body">
                                     <?php if ($solde_disponible >= get_field('montant_produit')) : ?>
                                         <p>
-                                            Tu recevras ta commande par email (<span class="t-rose"><?php echo $user_infos['user_email']; ?></span>) dans les 5 prochains jours.
+                                            On revient vite vers toi par email (<span class="t-rose"><?php echo $user_infos['user_email']; ?></span>) pour finaliser la commande.
                                             Promi, juré <span class="m-l-5 va-water va va-lg"></span>
                                         </p>
                                     <?php else : ?>
