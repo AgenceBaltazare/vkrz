@@ -282,9 +282,6 @@ if (is_single() && get_post_type() == "tournoi") {
                                 <?php endif; ?>
                             </h6>
                         </div>
-                        <a class="btn btn-primary btn-block" href="<?php the_permalink(get_page_by_path('evolution')); ?>">
-                            Découvre les niveaux <span class="va va-eyes va-lg"></span>
-                        </a>
                         <?php if (is_user_logged_in()) : ?>
                             <div class="row">
                                 <div class="col-sm-6">
