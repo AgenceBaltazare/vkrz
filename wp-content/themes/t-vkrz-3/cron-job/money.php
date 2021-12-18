@@ -33,9 +33,11 @@ while ($vainkeur->have_posts()) : $vainkeur->the_post();
     }
 
     $money_vkrz = $trophy_money + $votes_money + $tops_money;
+    update_field('money_vkrz', $money_vkrz, $id_vainkeur);
 
     $user_id = get_the_author_meta('ID');
     if($user_id){
+        $creator_money  = 0;
         $user_info   = get_userdata($user_id);
         $user_pseudo = $user_info->nickname;
         $user_email  = $user_info->user_email;
@@ -46,9 +48,9 @@ while ($vainkeur->have_posts()) : $vainkeur->the_post();
         }
 
         $creator_money = round(($data_t_created['total_completed_top'] * 5) + ($data_t_created['creator_all_v'] * 0.5) + ($data_t_created['creator_nb_tops'] * 50));
-    }
 
-    update_field('money_vkrz', $money_vkrz, $id_vainkeur);
-    update_field('money_creator_vkrz', $creator_money, $id_vainkeur);
+        update_field('money_creator_vkrz', $creator_money, $id_vainkeur);
+
+    }    
 
 endwhile;

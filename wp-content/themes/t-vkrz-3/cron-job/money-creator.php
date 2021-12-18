@@ -15,7 +15,7 @@ $users = $user_query->get_results();
 foreach ($users as $user) {
     $user_id = $user->ID;
     $data_t_created = get_creator_t($user_id);
-    $creator_money = round($data_t_created['total_completed_top'] * 5) + round($data_t_created['creator_all_v'] * 50) + $data_t_created['creator_nb_tops'] * 0.5;
+    $creator_money = round(($data_t_created['total_completed_top'] * 5) + ($data_t_created['creator_all_v'] * 0.5) + ($data_t_created['creator_nb_tops'] * 50));
 
     $vainkeur_entry = new WP_Query(array(
         'post_type'              => 'vainkeur',
