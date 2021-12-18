@@ -85,19 +85,25 @@ $solde_disponible = $user_infos['current_money_vkrz'];
                         <div class="item-options text-center px-1 pb-1 pt-0">
                             <?php if (get_field('reserve_aux_createurs_produit')) : ?>
                                 <?php if ($vainkeur_info['user_role'] == "administrator" || $vainkeur_info['user_role'] == "author") : ?>
-                                    <button type="button" class="btn btn-outline-primary w-100 waves-effect" data-toggle="modal" data-target="#cart-<?php echo $p; ?>">
+                                    <button type="button" class="btn bt-primary w-100 waves-effect" data-toggle="modal" data-target="#cart-<?php echo $p; ?>">
                                         <span class="add-to-cart">Commander</span>
                                     </button>
                                 <?php else : ?>
-                                    <button type="button" class="btn btn-primary w-100 disabled">
+                                    <button type="button" class="btn btn-outline-primary w-100 disabled">
                                         <span class="add-to-cart">Réserver aux créateurs</span>
                                     </button>
                                 <?php endif; ?>
 
                             <?php else : ?>
-                                <button type="button" class="btn btn-outline-primary w-100 waves-effect" data-toggle="modal" data-target="#cart-<?php echo $p; ?>">
-                                    <span class="add-to-cart">Commander</span>
-                                </button>
+                                <?php if (is_user_logged_in()) : ?>
+                                    <button type="button" class="btn btn-primary w-100 waves-effect" data-toggle="modal" data-target="#cart-<?php echo $p; ?>">
+                                        <span class="add-to-cart">Commander</span>
+                                    </button>
+                                <?php else : ?>
+                                    <a href="<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>" class="btn btn-primary w-100 waves-effect">
+                                        <span class="add-to-cart">Inscris-toi pour commander</span>
+                                    </a>
+                                <?php endif; ?>
                             <?php endif; ?>
 
                         </div>

@@ -254,7 +254,11 @@ if (is_single() && get_post_type() == "tournoi") {
                 <a class="nav-link d-flex flex-column align-items-center" href="javascript:void(0);" data-toggle="dropdown">
                     <span class="ico text-center va-gem va va-lg"></span>
                     <span class="value-user-stats user-total-vote-value">
-                        <?php echo $user_infos['current_money_vkrz']; ?>
+                        <?php if ($user_infos['current_money_vkrz']) : ?>
+                            <?php echo $user_infos['current_money_vkrz']; ?>
+                        <?php else: ?>
+                            0
+                        <?php endif; ?>
                     </span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
