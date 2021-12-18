@@ -108,8 +108,6 @@ $(document).ready(function ($) {
                     'event_score': 1,
                 });
 
-                console.log(link_to_ranking);
-
                 if(!data.is_next_duel){
                     window.dataLayer.push({
                         'event': 'track_event',

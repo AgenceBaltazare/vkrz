@@ -284,7 +284,7 @@ foreach ($list_user_tops as $top) {
                                         <div class="card text-center">
                                             <div class="card-body">
                                                 <div class="mb-1">
-                                                    <span class="ico4 va va-gem va-z-30"></span>
+                                                    <span class="ico4 va-high-voltage va va-z-30"></span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">
                                                     <?php echo $vainkeur_info['nb_vote_vkrz']; ?>
@@ -336,7 +336,7 @@ foreach ($list_user_tops as $top) {
                                                                         <?php endif; ?>
                                                                     </th>
                                                                     <th class="text-right">
-                                                                        <span class="va va-gem va-lg"></span>
+                                                                        <span class="va-high-voltage va va-lg"></span>
                                                                     </th>
                                                                     <th class="">
                                                                         <span class="va va-medal-1 va-lg"></span><span class="va va-medal-2 va-lg"></span><span class="va va-medal-3 va-lg"></span>
@@ -372,7 +372,7 @@ foreach ($list_user_tops as $top) {
                                                                                 </div>
                                                                             </td>
                                                                             <td class="text-right">
-                                                                                <?php echo $r_user['nb_votes']; ?> <span class="ico3 va va-gem va-lg"></span>
+                                                                                <?php echo $r_user['nb_votes']; ?> <span class="ico3 va-high-voltage va va-lg"></span>
                                                                             </td>
                                                                             <td>
                                                                                 <?php

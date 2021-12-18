@@ -104,7 +104,7 @@ $top_datas = get_top_data($id_top);
                                                                             <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_vainkeur'])); ?>">
                                                                                 <?php echo $vainkeur_data_selected['pseudo']; ?>
                                                                                 <?php if ($vainkeur_data_selected['user_role'] == "administrator") : ?>
-                                                                                    <span class="ico va va-llama va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
+                                                                                    <span class="ico va va-vkrzteam va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
                                                                                     </span>
                                                                                 <?php endif; ?>
                                                                                 <?php if ($vainkeur_data_selected['user_role'] == "administrator" || $vainkeur_data_selected['user_role'] == "author") : ?>
@@ -198,7 +198,7 @@ $top_datas = get_top_data($id_top);
                                                                     <?php echo $creator_data['level']; ?>
                                                                 </span>
                                                                 <?php if ($creator_data['user_role']  == "administrator") : ?>
-                                                                    <span class="ico va va-llama va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
+                                                                    <span class="ico va va-vkrzteam va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
                                                                     </span>
                                                                 <?php endif; ?>
                                                                 <?php if ($creator_data['user_role']  == "administrator" || $creator_data['user_role'] == "author") : ?>
@@ -216,7 +216,7 @@ $top_datas = get_top_data($id_top);
                                         <div class="card text-center">
                                             <div class="card-body">
                                                 <div class="mb-1">
-                                                    <span class="ico4 va va-gem va-lg"></span>
+                                                    <span class="ico4 va-high-voltage va va-lg"></span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">
                                                     <?php echo $top_datas['nb_votes']; ?>
@@ -237,7 +237,7 @@ $top_datas = get_top_data($id_top);
                                                 <div class="pricing-badge text-right">
                                                     <div class="badge badge-pill badge-light-primary">
                                                         <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_top; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir les <?php echo $top_datas['nb_completed_top']; ?> Tops">
-                                                        <span class="va va-llama va-lg"></span>
+                                                            <span class="va va-llama va-lg"></span>
                                                         </a>
                                                     </div>
                                                 </div>

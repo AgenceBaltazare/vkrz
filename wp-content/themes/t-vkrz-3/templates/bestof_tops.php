@@ -39,11 +39,14 @@ get_header();
                                                                 <span class="va va-prince va-lg"></span>
                                                             </th>
                                                             <th class="text-right">
-                                                                <span class="va va-trophy va-lg"></span>
+                                                                <small class="text-muted">Votes effectués</small>
+                                                            </th>
+                                                            <th class="text-right">
+                                                                <small class="text-muted">Top terminés</small>
                                                             </th>
                                                             <th class="text-right"><small class="text-muted">Conçu par</small></th>
                                                             <th>
-                                                                <span class="va va-high-voltage va-lg"></span>
+                                                                <span class="va va-high-voltage va va-lg"></span>
                                                             </th>
                                                         </tr>
                                                     </thead>
@@ -51,17 +54,17 @@ get_header();
                                                         <?php
                                                         $r = 1;
                                                         $best_tops = new WP_Query(array(
-                                                            'ignore_sticky_posts'	    => true,
+                                                            'ignore_sticky_posts'        => true,
                                                             'update_post_meta_cache'    => false,
-                                                            'no_found_rows'		        => true,
-                                                            'post_type'			        => 'resume',
-                                                            'orderby'				    => 'meta_value_num',
+                                                            'no_found_rows'                => true,
+                                                            'post_type'                    => 'resume',
+                                                            'orderby'                    => 'meta_value_num',
                                                             'meta_key'                  => 'nb_top_complet_resume',
-                                                            'order'				        => 'DESC',
-                                                            'posts_per_page'		    => 20
+                                                            'order'                        => 'DESC',
+                                                            'posts_per_page'            => 20
                                                         ));
                                                         while ($best_tops->have_posts()) : $best_tops->the_post(); ?>
-                                                        <?php
+                                                            <?php
                                                             $top_id   = get_field('id_top_resume');
                                                             $type_top = array();
                                                             $type_top = get_the_terms($top_id, 'type');
@@ -117,7 +120,11 @@ get_header();
                                                                     </td>
 
                                                                     <td class="text-right">
-                                                                        <?php the_field('nb_done_resume'); ?> <span class="ico">🏆</span>
+                                                                        <?php the_field('nb_votes_resume'); ?> <span class="ico va-high-voltage va va-lg"></span>
+                                                                    </td>
+
+                                                                    <td class="text-right">
+                                                                        <?php the_field('nb_done_resume'); ?> <span class="ico va-trophy va va-lg"></span>
                                                                     </td>
 
                                                                     <td class="text-right">
@@ -133,7 +140,7 @@ get_header();
                                                                                     <?php echo $creator_data['level']; ?>
                                                                                 </span>
                                                                                 <?php if ($creator_data['user_role']  == "administrator") : ?>
-                                                                                    <span class="ico va va-llama va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
+                                                                                    <span class="ico va va-vkrzteam va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
                                                                                     </span>
                                                                                 <?php endif; ?>
                                                                             </a>
@@ -146,7 +153,7 @@ get_header();
                                                                         </a>
                                                                     </td>
                                                                 </tr>
-                                                            <?php endif;
+                                                        <?php endif;
                                                             $r++;
                                                         endwhile; ?>
                                                     </tbody>

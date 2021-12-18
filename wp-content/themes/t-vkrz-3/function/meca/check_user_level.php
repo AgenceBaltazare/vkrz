@@ -15,7 +15,7 @@ function check_user_level($id_vainkeur){
         $niv_7 = 450000;
         $niv_8 = 1000000;
 
-        $user_vote_counter  = get_field('nb_vote_vkrz', $id_vainkeur);
+        $user_vote_counter  = get_field('money_vkrz', $id_vainkeur);
         $user_level         = get_field('level_user', 'user_' . $user_id);
             
         switch($user_vote_counter){

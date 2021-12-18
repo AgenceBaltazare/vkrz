@@ -16,9 +16,9 @@ $level_user = $user_infos['level_number'];
                         Ton projet d'évolution <span class="va va-rocket va-z-30"></span>
                     </h1>
                     <p class="mb-4 mt-3">
-                        En enchaînant les votes, tu accumules des <span class="va va-gem va-z-17"></span>. Voici toutes les étapes à franchir pour devenir légendaire <span class="va va-backhand-index-pointing-down va-z-17"></span>
-                        <br><br>
-                        Par contre, calmons-nous <span class="va va-woozy-face va-z-17"></span> pour arriver au sommet il faudra sans doute attendre que de nouveaux moyens de gagner des <span class="va va-gem va-z-17"></span> voient le jour #ProjetLongTerme
+                        En enchaînant les votes et les tops ainsi qu'en optenant des Trophées, tu accumules des <span class="va-gem va va-z-17"></span>. 
+                        <br>
+                        Voici toutes les étapes à franchir pour devenir légendaire <span class="va va-backhand-index-pointing-down va-z-17"></span>
                     </p>
                 </div>
 
@@ -40,7 +40,7 @@ $level_user = $user_infos['level_number'];
                                         <h3>Niveau 0</h3>
                                         <?php if(is_user_logged_in()): ?>
                                             <p class="card-text eh2">
-                                                Maintenant que tu fais parti des Vainkeurs, il te faut 50 <span class="ico va va-gem va-lg"></span> pour éclore et passer au niveau 1.
+                                                Maintenant que tu fais parti des Vainkeurs, il te faut 50 <span class="ico va-gem va va-lg"></span> pour éclore et passer au niveau 1.
                                             </p>
                                         <?php else: ?>
                                             <p class="card-text eh2">
@@ -72,7 +72,7 @@ $level_user = $user_infos['level_number'];
                                         <div class="annual-plan">
                                             <div class="plan-price mt-2 d-flex align-items-center justify-content-center">
                                                 <div class="need">
-                                                    <span class="pricing-basic-value font-weight-bolder text-primary">50 <span class="ico va va-gem va-z-30"></span></span>
+                                                    <span class="pricing-basic-value font-weight-bolder text-primary">50 <span class="ico va-gem va va-z-30"></span></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -98,7 +98,7 @@ $level_user = $user_infos['level_number'];
                                         <div class="annual-plan">
                                             <div class="plan-price mt-2 d-flex align-items-center justify-content-center">
                                                 <div class="need">
-                                                    <span class="pricing-basic-value font-weight-bolder text-primary">500 <span class="ico va va-gem va-z-30"></span></span>
+                                                    <span class="pricing-basic-value font-weight-bolder text-primary">500 <span class="ico va-gem va va-z-30"></span></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -124,7 +124,7 @@ $level_user = $user_infos['level_number'];
                                         <div class="annual-plan">
                                             <div class="plan-price mt-2 d-flex align-items-center justify-content-center">
                                                 <div class="need">
-                                                    <span class="pricing-basic-value font-weight-bolder text-primary">2 000 <span class="ico va va-gem va-z-30"></span></span>
+                                                    <span class="pricing-basic-value font-weight-bolder text-primary">2 000 <span class="ico va-gem va va-z-30"></span></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -150,7 +150,7 @@ $level_user = $user_infos['level_number'];
                                         <div class="annual-plan">
                                             <div class="plan-price mt-2 d-flex align-items-center justify-content-center">
                                                 <div class="need">
-                                                    <span class="pricing-basic-value font-weight-bolder text-primary">5 000 <span class="ico va va-gem va-z-30"></span></span>
+                                                    <span class="pricing-basic-value font-weight-bolder text-primary">5 000 <span class="ico va-gem va va-z-30"></span></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -176,7 +176,7 @@ $level_user = $user_infos['level_number'];
                                         <div class="annual-plan">
                                             <div class="plan-price mt-2 d-flex align-items-center justify-content-center">
                                                 <div class="need">
-                                                    <span class="pricing-basic-value font-weight-bolder text-primary">35 000 <span class="ico va va-gem va-z-30"></span></span>
+                                                    <span class="pricing-basic-value font-weight-bolder text-primary">35 000 <span class="ico va-gem va va-z-30"></span></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -202,7 +202,7 @@ $level_user = $user_infos['level_number'];
                                         <div class="annual-plan">
                                             <div class="plan-price mt-2 d-flex align-items-center justify-content-center">
                                                 <div class="need">
-                                                    <span class="pricing-basic-value font-weight-bolder text-primary">100 000 <span class="ico va va-gem va-z-30"></span></span>
+                                                    <span class="pricing-basic-value font-weight-bolder text-primary">100 000 <span class="ico va-gem va va-z-30"></span></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -228,7 +228,7 @@ $level_user = $user_infos['level_number'];
                                         <div class="annual-plan">
                                             <div class="plan-price mt-2 d-flex align-items-center justify-content-center">
                                                 <div class="need">
-                                                    <span class="pricing-basic-value font-weight-bolder text-primary">450 000 <span class="ico va va-gem va-z-30"></span></span>
+                                                    <span class="pricing-basic-value font-weight-bolder text-primary">450 000 <span class="ico va-gem va va-z-30"></span></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -254,7 +254,7 @@ $level_user = $user_infos['level_number'];
                                         <div class="annual-plan">
                                             <div class="plan-price mt-2 d-flex align-items-center justify-content-center">
                                                 <div class="need">
-                                                    <span class="pricing-basic-value font-weight-bolder text-primary">1 MILLION<span class="ico va va-gem va-z-30"></span></span>
+                                                    <span class="pricing-basic-value font-weight-bolder text-primary">1 MILLION<span class="ico va-gem va va-z-30"></span></span>
                                                 </div>
                                             </div>
                                         </div>

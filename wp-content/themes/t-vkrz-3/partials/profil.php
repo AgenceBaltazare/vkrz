@@ -25,13 +25,13 @@ $vainkeur_info = isset($vainkeur_info) ? $vainkeur_info : $user_infos;
                         <?php echo $vainkeur_info['level']; ?>
                     </span>
                     <?php if ($vainkeur_info['user_role']  == "administrator") : ?>
-                        <span class="ico va va-llama va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
-                            
+                        <span class="ico va va-vkrzteam va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
+
                         </span>
                     <?php endif; ?>
                     <?php if ($vainkeur_info['user_role']  == "administrator" || $vainkeur_info['user_role'] == "author") : ?>
                         <span class="ico va va-man-singer va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
-                            
+
                         </span>
                     <?php endif; ?>
                 </p>
@@ -55,8 +55,6 @@ $vainkeur_info = isset($vainkeur_info) ? $vainkeur_info : $user_infos;
                                     Récap
                                 </a>
                             </li>
-<<<<<<< Updated upstream
-=======
                             <li class="nav-item">
                                 <a class="nav-link font-weight-bold <?php if (is_page(305107)) {
                                                                         echo 'btn btn-primary';
@@ -64,7 +62,6 @@ $vainkeur_info = isset($vainkeur_info) ? $vainkeur_info : $user_infos;
                                     Mes KEURZ
                                 </a>
                             </li>
->>>>>>> Stashed changes
                             <?php if ($vainkeur_info['user_role'] == "administrator" || $vainkeur_info['user_role'] == "author") : ?>
                                 <li class="nav-item">
                                     <a class="nav-link font-weight-bold <?php if (is_page(172849)) {

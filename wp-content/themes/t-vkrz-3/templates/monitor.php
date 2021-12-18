@@ -21,7 +21,7 @@
                             <div class="card text-center">
                                 <div class="card-body">
                                     <div class="mb-1">
-                                        <span class="ico4 va va-gem va-1x"></span>
+                                        <span class="ico4 va-high-voltage va va-1x"></span>
                                     </div>
                                     <h1 class="font-weight-bolder">
                                         <span class="count" id="votes_number">

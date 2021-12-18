@@ -58,17 +58,21 @@ function get_top_infos($id_top, $id_ranking = false){
 
 function get_top_data($id_top){
 
-    $id_resume = get_resume_id($id_top);
-
+    $id_resume              = get_resume_id($id_top);
+    $percent_triche         = 0;
+    $percent_finition       = 0;
     $nb_ranks               = get_field('nb_tops_resume', $id_resume);
     $count_votes_of_t       = get_field('nb_votes_resume', $id_resume);
     $count_completed_top    = get_field("nb_done_resume", $id_resume);
     $nb_top_3               = get_field('nb_top_3_resume', $id_resume);;
     $nb_top_complet         = get_field('nb_top_complet_resume', $id_resume);
     $nb_tops_triche         = get_field('nb_triche_resume', $id_resume);
-    $percent_finition       = 0;
-    $percent_finition       = round($count_completed_top * 100 / $nb_ranks);
-    $percent_triche         = round($nb_tops_triche * 100 / $count_completed_top);
+    if($$nb_ranks > 0){
+        $percent_finition   = round($count_completed_top * 100 / $nb_ranks);
+    }
+    if($count_completed_top > 0){
+        $percent_triche     = round($nb_tops_triche * 100 / $count_completed_top);
+    }
     $nb_comments            = get_comments('status=approve&type=comments&hierarchical=true&count=true&post_id='.$id_top);
 
     return array(

@@ -5,7 +5,7 @@
 global $uuiduser;
 if (isset($_GET['id_top']) && !empty($_GET['id_top'])) {
     $id_top  = $_GET['id_top'];
-    if(get_post_status($id_top) == "draft"){
+    if (get_post_status($id_top) == "draft") {
         header('Location: ' . get_bloginfo('url'));
     }
 } else {
@@ -149,7 +149,7 @@ $contenders_ranking   = get_contenders_ranking($id_top);
                                     <div class="card text-center">
                                         <div class="card-body">
                                             <div class="ico-stats">
-                                                <span class="ico4 va va-gem va-lg">💎</span>
+                                                <span class="ico4 va-high-voltage va va-lg">⚡️</span>
                                             </div>
                                             <h2 class="font-weight-bolder">
                                                 <?php echo $top_datas['nb_votes']; ?>
@@ -223,7 +223,7 @@ $contenders_ranking   = get_contenders_ranking($id_top);
                                                     <?php echo $creator_data['level']; ?>
                                                 </span>
                                                 <?php if ($creator_data['user_role']  == "administrator") : ?>
-                                                    <span class="ico va va-llama va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
+                                                    <span class="ico va va-vkrzteam va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
                                                     </span>
                                                 <?php endif; ?>
                                                 <?php if ($creator_data['user_role']  == "administrator" || $creator_data['user_role'] == "author") : ?>
