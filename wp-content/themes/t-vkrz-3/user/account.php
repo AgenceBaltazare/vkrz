@@ -52,33 +52,36 @@ foreach ($list_user_tops as $top) {
                     <div class="row">
                         <div class="col-lg-3 col-12 order-2 order-lg-1">
 
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">
-                                        <span class="ico va va-sports-medal va-lg"></span> Trophées
-                                    </h4>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <?php
-                                        $vainkeur_badges = get_the_terms($id_vainkeur, 'badges');
-                                        foreach ($vainkeur_badges as $badge) : ?>
-                                            <div class="col-4 col-sm-6 col-lg-4">
-                                                <div class="text-center">
-                                                    <div class="user-level" data-toggle="tooltip" data-placement="top" title="" data-original-title="<?php echo $badge->name; ?> : <?php echo $badge->description; ?>">
-                                                        <span class="icomedium">
-                                                            <?php the_field('symbole_badge', 'badges_' . $badge->term_id); ?>
-                                                        </span>
+                            <div class="hide-xs">
+                                
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">
+                                            <span class="ico va va-sports-medal va-lg"></span> Trophées
+                                        </h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <?php
+                                            $vainkeur_badges = get_the_terms($id_vainkeur, 'badges');
+                                            foreach ($vainkeur_badges as $badge) : ?>
+                                                <div class="col-4 col-sm-6 col-lg-4">
+                                                    <div class="text-center">
+                                                        <div class="user-level" data-toggle="tooltip" data-placement="top" title="" data-original-title="<?php echo $badge->name; ?> : <?php echo $badge->description; ?>">
+                                                            <span class="icomedium">
+                                                                <?php the_field('symbole_badge', 'badges_' . $badge->term_id); ?>
+                                                            </span>
+                                                        </div>
                                                     </div>
                                                 </div>
+                                            <?php endforeach; ?>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <div class="col-12">
+                                                <a class="btn btn-primary btn-block waves-effect waves-float waves-light" href="<?php the_permalink(get_page_by_path('trophees')); ?>">
+                                                    Découvrir tous les trophées <span class="va va-eyes va-z-20"></span>
+                                                </a>
                                             </div>
-                                        <?php endforeach; ?>
-                                    </div>
-                                    <div class="row mt-2">
-                                        <div class="col-12">
-                                            <a class="btn btn-primary btn-block waves-effect waves-float waves-light" href="<?php the_permalink(get_page_by_path('trophees')); ?>">
-                                                Découvrir tous les trophées <span class="va va-eyes va-z-20"></span>
-                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -168,7 +171,7 @@ foreach ($list_user_tops as $top) {
                                         <div class="card text-center">
                                             <div class="card-body">
                                                 <div class="mb-1">
-                                                    <span class="ico4 va va-gem va-z-30"></span>
+                                                    <span class="ico4 va va-high-voltage va va-z-30"></span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">
                                                     <?php echo $user_infos['nb_vote_vkrz']; ?>
@@ -195,6 +198,39 @@ foreach ($list_user_tops as $top) {
                                                 <?php else : ?>
                                                     <p class="card-text legende">Top terminé</p>
                                                 <?php endif; ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="moredata hide-sm hide-md hide-lg hide-lg">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">
+                                            <span class="ico va va-sports-medal va-lg"></span> Trophées
+                                        </h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <?php
+                                            $vainkeur_badges = get_the_terms($id_vainkeur, 'badges');
+                                            foreach ($vainkeur_badges as $badge) : ?>
+                                                <div class="col-4 col-sm-6 col-lg-4">
+                                                    <div class="text-center">
+                                                        <div class="user-level" data-toggle="tooltip" data-placement="top" title="" data-original-title="<?php echo $badge->name; ?> : <?php echo $badge->description; ?>">
+                                                            <span class="icomedium">
+                                                                <?php the_field('symbole_badge', 'badges_' . $badge->term_id); ?>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <?php endforeach; ?>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <div class="col-12">
+                                                <a class="btn btn-primary btn-block waves-effect waves-float waves-light" href="<?php the_permalink(get_page_by_path('trophees')); ?>">
+                                                    Découvrir tous les trophées <span class="va va-eyes va-z-20"></span>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -238,7 +274,7 @@ foreach ($list_user_tops as $top) {
                                                                         <?php endif; ?>
                                                                     </th>
                                                                     <th class="text-right">
-                                                                        <span class="va va-gem va-lg"></span>
+                                                                        <span class="va-high-voltage va va-lg"></span>
                                                                     </th>
                                                                     <th class="">
                                                                         <span class="va va-medal-1 va-lg"></span><span class="va va-medal-2 va-lg"></span><span class="va va-medal-3 va-lg"></span>
@@ -271,7 +307,7 @@ foreach ($list_user_tops as $top) {
                                                                                 </div>
                                                                             </td>
                                                                             <td class="text-right">
-                                                                                <?php echo $top['nb_votes']; ?> <span class="ico3 va va-gem va-lg"></span>
+                                                                                <?php echo $top['nb_votes']; ?> <span class="ico3 va-high-voltage va va-lg"></span>
                                                                             </td>
                                                                             <td>
                                                                                 <?php
@@ -299,12 +335,12 @@ foreach ($list_user_tops as $top) {
                                                                                     ?>
                                                                                     <a class="mr-1" href="<?php the_permalink($top['id_ranking']); ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="<?php echo $wording; ?>">
                                                                                         <span class="ico va va-trophy va-lg">
-                                                                                            
+
                                                                                         </span>
                                                                                     </a>
                                                                                     <a class="mr-1" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $top['id_top']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir le Top mondial">
                                                                                         <span class="ico va va-globe va-lg">
-                                                                                            
+
                                                                                         </span>
                                                                                     </a>
                                                                                 </div>
@@ -358,10 +394,10 @@ foreach ($list_user_tops as $top) {
                                                                             <?php endif; ?>
                                                                         </th>
                                                                         <th class="text-center">
-                                                                            <span class="va va-gem va-lg"></span>
+                                                                            <span class="va-high-voltage va va-lg"></span>
                                                                         </th>
                                                                         <th>
-                                                                        <span class="va va-eyes va-lg"></span>
+                                                                            <span class="va va-eyes va-lg"></span>
                                                                         </th>
                                                                         <th>
 
@@ -387,12 +423,12 @@ foreach ($list_user_tops as $top) {
                                                                                 </div>
                                                                             </td>
                                                                             <td class="text-center">
-                                                                                <?php echo $top['nb_votes']; ?> <span class="ico3 va va-gem va-lg"></span>
+                                                                                <?php echo $top['nb_votes']; ?> <span class="ico3 va-high-voltage va va-lg"></span>
                                                                             </td>
                                                                             <td>
                                                                                 <a class="mr-1" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $top['id_top']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir le Top mondial">
                                                                                     <span class="ico va va-globe va-lg">
-                                                                                        
+
                                                                                     </span>
                                                                                 </a>
                                                                             </td>

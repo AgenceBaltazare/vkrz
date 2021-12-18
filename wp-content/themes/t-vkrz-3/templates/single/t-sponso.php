@@ -181,7 +181,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                             <div class="col">
                                                 <div class="infos-card-t info-card-t-v d-flex align-items-center">
                                                     <div class="mr-1">
-                                                        <span class="ico va va-gem va-2x"></span>
+                                                        <span class="ico va-high-voltage va va-2x"></span>
                                                     </div>
                                                     <div class="content-body text-left">
                                                         <h4 class="mb-0">

@@ -243,6 +243,72 @@ function cpt_init() {
     );
     register_post_type('resume', $args);
 
+    // Shop
+    $labels = array(
+        'name' => 'Produit',
+        'singular_name' => 'Produit',
+        'add_new' => 'Ajouter un produit',
+        'add_new_item' => 'Ajouter un produit',
+        'edit_item' => 'Editer un produit',
+        'new_item' => 'Nouveau produit',
+        'all_items' => 'Tous les produits',
+        'view_item' => 'Voir produit',
+        'search_items' => 'Chercher un produit',
+        'not_found' =>  'Aucun produit trouvé',
+        'not_found_in_trash' => 'Aucun produit trouvé dans la corbeille',
+        'menu_name' => 'produits'
+    );
+    $args = array(
+        'labels' => $labels,
+        'public' => true,
+        'publicly_queryable' => false,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'query_var' => true,
+        'rewrite' => array('slug' => 'p'),
+        'map_meta_cap' => true,
+        'has_archive' => true,
+        'hierarchical' => false,
+        'menu_position' => null,
+        'menu_icon' => 'dashicons-cart',
+        'show_in_rest' => true,
+        'supports' => array('title', 'thumbnail')
+    );
+    register_post_type('produit', $args);
+
+    // Transaction
+    $labels = array(
+        'name' => 'Transaction',
+        'singular_name' => 'Transaction',
+        'add_new' => 'Ajouter une transaction',
+        'add_new_item' => 'Ajouter une transaction',
+        'edit_item' => 'Editer une transaction',
+        'new_item' => 'Nouveau transaction',
+        'all_items' => 'Tous les transactions',
+        'view_item' => 'Voir transaction',
+        'search_items' => 'Chercher une transaction',
+        'not_found' =>  'Aucune transaction trouvé',
+        'not_found_in_trash' => 'Aucune transaction trouvé dans la corbeille',
+        'menu_name' => 'transactions'
+    );
+    $args = array(
+        'labels' => $labels,
+        'public' => true,
+        'publicly_queryable' => false,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'query_var' => true,
+        'rewrite' => array('slug' => 'tr'),
+        'map_meta_cap' => true,
+        'has_archive' => true,
+        'hierarchical' => false,
+        'menu_position' => null,
+        'menu_icon' => 'dashicons-buddicons-activity',
+        'show_in_rest' => true,
+        'supports' => array('title', 'author')
+    );
+    register_post_type('transaction', $args);
+
 }
 add_action( 'init', 'cpt_init' );
 

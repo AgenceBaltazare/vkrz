@@ -58,7 +58,7 @@ if (false === ( $data_t_created = get_transient( 'user_'.$vainkeur_id.'_get_crea
                                         <div class="card text-center">
                                             <div class="card-body">
                                                 <div class="mb-1">
-                                                    <span class="ico4 va va-gem va-z-30""></span>
+                                                    <span class="ico4 va-high-voltage va va-z-30""></span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">
                                                     <?php echo number_format($data_t_created['creator_all_v'], 0, ",", " "); ?>
@@ -113,7 +113,7 @@ if (false === ( $data_t_created = get_transient( 'user_'.$vainkeur_id.'_get_crea
                                                                     Liste des <span class="t-rose"><?php echo $data_t_created['creator_nb_tops']; ?></span> Tops créés
                                                                 </th>
                                                                 <th class="text-right">
-                                                                    <span class="va va-gem va-lg"></span>
+                                                                    <span class="va-high-voltage va va-lg"></span>
                                                                 </th>
                                                                 <th class="text-right">
                                                                     <span class="va va-trophy va-lg"></span>
@@ -145,7 +145,7 @@ if (false === ( $data_t_created = get_transient( 'user_'.$vainkeur_id.'_get_crea
                                                                         </div>
                                                                     </td>
                                                                     <td class="text-right">
-                                                                        <?php echo number_format($item['top_votes'], 0, ",", " "); ?> <span class="ico3 va va-gem va-lg"></span>
+                                                                        <?php echo number_format($item['top_votes'], 0, ",", " "); ?> <span class="ico3 va-high-voltage va va-lg"></span>
                                                                     </td>
                                                                     <td class="text-right">
                                                                         <?php echo number_format($item['top_ranks'], 0, ",", " "); ?> <span class="ico3 va va-trophy va-lg"></span>

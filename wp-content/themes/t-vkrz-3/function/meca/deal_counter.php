@@ -7,6 +7,10 @@ function increase_vote_counter($id_vainkeur){
         $user_vote_counter = get_field('nb_vote_vkrz', $id_vainkeur);
         update_field('nb_vote_vkrz', $user_vote_counter+1, $id_vainkeur);
 
+        // Increase user total money
+        $user_money        = get_field('money_vkrz', $id_vainkeur);
+        update_field('money_vkrz', $user_money+1, $id_vainkeur);
+
         // Badge : x votes
         if (!get_vainkeur_badge($id_vainkeur, '1 000 votes') || !get_vainkeur_badge($id_vainkeur, '10 000 votes') || !get_vainkeur_badge($id_vainkeur, '100 000 votes')) {
             switch($user_vote_counter+1) {
@@ -34,9 +38,13 @@ function increase_top_counter($id_vainkeur){
     
     if($id_vainkeur){
 
+        // Increase user total money
+        $user_money        = get_field('money_vkrz', $id_vainkeur);
+        update_field('money_vkrz', $user_money+5, $id_vainkeur);
+
         // Increase user total tops
         $user_top_counter = get_field('nb_top_vkrz', $id_vainkeur);
-        update_field('nb_top_vkrz', $user_top_counter+1, $id_vainkeur);
+        update_field('nb_top_vkrz', $user_top_counter + 1, $id_vainkeur);
 
         // Badge : Premier Top
         if (!get_vainkeur_badge($id_vainkeur, "Premier Top")) {
@@ -82,12 +90,13 @@ function increase_top_counter($id_vainkeur){
 
 }
 
-function decrease_user_counter($id_vainkeur, $nb_to_decrease, $id_ranking){
+function decrease_user_counter($id_vainkeur, $id_ranking){
     
     if($id_vainkeur){
 
         // Decrease user total votes
         $user_vote_counter           = get_field('nb_vote_vkrz', $id_vainkeur);
+        $nb_to_decrease              = get_field('nb_votes_r', $id_ranking);
         $user_vote_counter_new_value = $user_vote_counter - $nb_to_decrease;
         update_field('nb_vote_vkrz', $user_vote_counter_new_value, $id_vainkeur);
 
@@ -97,6 +106,10 @@ function decrease_user_counter($id_vainkeur, $nb_to_decrease, $id_ranking){
             $user_top_counter_new_value = $user_top_counter - 1;
             update_field('nb_top_vkrz', $user_top_counter_new_value, $id_vainkeur);
         }
+
+        // Decrease user total money
+        $user_money        = get_field('money_vkrz', $id_vainkeur);
+        update_field('money_vkrz', $user_money - ($nb_to_decrease + 5), $id_vainkeur);
 
     }
 

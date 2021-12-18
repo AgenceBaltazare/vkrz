@@ -44,6 +44,12 @@ function vkzr_process_note() {
     do_note($_POST['id_top'], $_POST['uuiduser'], $_POST['star']);
 }
 
+add_action('wp_ajax_vkzr_do_transaction', 'vkzr_do_transaction');
+add_action('wp_ajax_nopriv_vkzr_vkzr_do_transaction', 'vkzr_do_transaction');
+function vkzr_do_transaction(){
+    do_transaction($_POST['id_produit'], $_POST['user_uuid'], $_POST['price'], $_POST['user_email'], $_POST['idvainkeur']);
+}
+
 add_action( 'wp_ajax_vkzr_process_commentaire_note', 'vkzr_process_commentaire_note' );
 add_action( 'wp_ajax_nopriv_vkzr_process_commentaire_note', 'vkzr_process_commentaire_note' );
 function vkzr_process_commentaire_note() {
@@ -58,8 +64,7 @@ function vkzr_begin_t() {
 
 add_action('wp_ajax_vkzr_form_newplayer', 'vkzr_form_newplayer');
 add_action('wp_ajax_nopriv_vkzr_form_newplayer', 'vkzr_form_newplayer');
-function vkzr_form_newplayer()
-{
+function vkzr_form_newplayer(){
     form_newplayer($_POST['emailplayer'], $_POST['uuiduser'], $_POST['ranking'], $_POST['top']);
 }
 

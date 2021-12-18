@@ -13,7 +13,7 @@
                             <div class="card">
                                 <div class="card-body apropos">
                                     <h1>
-                                        Curieux d'en savoir plus <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/vainkeurz.png" alt="" class="img-fluid"> ?
+                                        Curieux d'en savoir plus sur <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/vainkeurz.png" alt="" class="img-fluid"> ?
                                     </h1>
                                     <h2 class="infoabout">
                                         <span class="va va-timer-clock va-1x"></span> <span class="space"></span> Temps de lecture estimé : <b>je vais pas te mentir c'est dense - mais tu peux arriver au bout <span class="va va-flexed-biceps va-1x"></span></b>

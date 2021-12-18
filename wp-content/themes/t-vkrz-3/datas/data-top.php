@@ -135,7 +135,7 @@ foreach ($contender_list as $contender) {
                                         <div class="card-body">
                                             <div class="ico-stats">
                                                 <span class="ico4">
-                                                    <span class="ico va va-gem va-2x"></span>
+                                                    <span class="ico va-high-voltage va va-2x"></span>
                                                 </span>
                                             </div>
                                             <h2 class="font-weight-bolder">

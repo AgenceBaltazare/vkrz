@@ -85,7 +85,7 @@ $best_creators = best_creators();
                                                                                     <?php echo $creator['user_level_icon']; ?>
                                                                                 </span>
                                                                                 <?php if ($creator_data['user_role']  == "administrator") : ?>
-                                                                                    <span class="ico va va-llama va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
+                                                                                    <span class="ico va va-vkrzteam va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
                                                                                     </span>
                                                                                 <?php endif; ?>
                                                                             </div>
@@ -97,7 +97,7 @@ $best_creators = best_creators();
                                                                     </td>
 
                                                                     <td class="text-right">
-                                                                        <?php echo number_format($creator['total_vote'], 0, ",", " "); ?> <span class="ico va va-gem va-lg"></span>
+                                                                        <?php echo number_format($creator['total_vote'], 0, ",", " "); ?> <span class="ico va-high-voltage va va-lg"></span>
                                                                     </td>
 
                                                                     <td class="text-right">

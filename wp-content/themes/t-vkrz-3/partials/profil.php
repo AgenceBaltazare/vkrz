@@ -25,13 +25,13 @@ $vainkeur_info = isset($vainkeur_info) ? $vainkeur_info : $user_infos;
                         <?php echo $vainkeur_info['level']; ?>
                     </span>
                     <?php if ($vainkeur_info['user_role']  == "administrator") : ?>
-                        <span class="ico va va-llama va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
-                            
+                        <span class="ico va va-vkrzteam va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
+
                         </span>
                     <?php endif; ?>
                     <?php if ($vainkeur_info['user_role']  == "administrator" || $vainkeur_info['user_role'] == "author") : ?>
                         <span class="ico va va-man-singer va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
-                            
+
                         </span>
                     <?php endif; ?>
                 </p>
@@ -53,6 +53,13 @@ $vainkeur_info = isset($vainkeur_info) ? $vainkeur_info : $user_infos;
                                                                         echo 'btn btn-primary';
                                                                     } ?>" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>">
                                     Récap
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link font-weight-bold <?php if (is_page(get_page_by_path('mon-compte/keurz'))) {
+                                                                        echo 'btn btn-primary';
+                                                                    } ?>" href="<?php the_permalink(get_page_by_path('mon-compte/keurz')); ?>">
+                                    Mes KEURZ
                                 </a>
                             </li>
                             <?php if ($vainkeur_info['user_role'] == "administrator" || $vainkeur_info['user_role'] == "author") : ?>

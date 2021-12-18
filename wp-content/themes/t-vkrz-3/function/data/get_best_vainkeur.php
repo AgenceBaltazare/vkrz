@@ -10,7 +10,14 @@
  * return array of [vainkeur_id, author_id, uuid, total_vote, total_top]
  */
 function get_best_vainkeur($type = "top", $period = NULL, $limit = 1) {
-    $meta_key = $type == "top" ? "nb_top_vkrz" : "nb_vote_vkrz";
+
+    if($type == "top"){
+        $meta_key = "nb_top_vkrz";
+    } elseif ($type == "top") {
+        $meta_key = "nb_vote_vkrz";
+    } elseif ($type == "money") {
+        $meta_key = "money_vkrz";
+    }
     $return = array();
 
     if (is_null($period)) {
@@ -33,6 +40,7 @@ function get_best_vainkeur($type = "top", $period = NULL, $limit = 1) {
                     "vainkeur_id" => $vainkeur_id,
                     "author_id" => get_post_field("post_author", $vainkeur_id),
                     "uuid" => get_field("uuid_user_vkrz", $vainkeur_id),
+                    "money" => get_field("money_vkrz", $vainkeur_id),
                     "total_vote" => get_field("nb_vote_vkrz", $vainkeur_id),
                     "total_top" => get_field("nb_top_vkrz", $vainkeur_id)
                 );
@@ -80,6 +88,7 @@ function get_best_vainkeur($type = "top", $period = NULL, $limit = 1) {
                         "vainkeur_id" => $vainkeur_id,
                         "author_id" => $author_id,
                         "uuid" => get_field("uuid_user_r", $top_id),
+                        "money" => get_field("money_vkrz", $vainkeur_id),
                         "total_vote" => intval(get_field("nb_votes_r", $top_id)),
                         "total_top" => get_field("done_r", $top_id) == "done" ? 1 : 0
                     );

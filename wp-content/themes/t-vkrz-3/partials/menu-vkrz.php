@@ -114,6 +114,16 @@
                     </span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="d-flex align-items-center" href="<?php the_permalink(get_page_by_path('shop')); ?>/">
+                    <span class="ico">
+                        <span class="va va-shopping va-lg"></span>
+                    </span>
+                    <span class="menu-title text-truncate">
+                        Shop
+                    </span>
+                </a>
+            </li>
             <li class="navigation-header">
                 <span>VAINKEURZ</span> <i data-feather="more-horizontal"></i>
             </li>
