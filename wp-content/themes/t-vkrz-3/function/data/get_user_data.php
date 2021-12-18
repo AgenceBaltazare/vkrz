@@ -508,7 +508,6 @@ function get_creator_t($creator_id){
         $top_data      = get_top_data($id_top);
         $nb_votes_t    = $top_data['nb_votes'];
         $nb_ranks_t    = $top_data['nb_tops'];
-        $nb_notes_t    = $top_data['nb_note'];
         $nb_completed_top = $top_data['nb_completed_top'];
 
         $nb_votes_all_t = $nb_votes_all_t + $nb_votes_t;
