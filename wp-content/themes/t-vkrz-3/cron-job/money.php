@@ -51,9 +51,8 @@ while ($vainkeur->have_posts()) : $vainkeur->the_post();
         else {
             update_field('money_creator_vkrz', 0, $id_vainkeur);
         }
-
-        
-
     }
+
+    check_user_level($id_vainkeur);
 
 endwhile;
