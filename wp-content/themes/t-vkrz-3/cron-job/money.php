@@ -51,6 +51,9 @@ while ($vainkeur->have_posts()) : $vainkeur->the_post();
 
         update_field('money_creator_vkrz', $creator_money, $id_vainkeur);
 
-    }    
+    }
+    else{
+        update_field('money_creator_vkrz', 0, $id_vainkeur);
+    }
 
 endwhile;
