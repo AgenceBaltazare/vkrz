@@ -5,7 +5,7 @@
             <li class="nav-item mr-auto">
                 <a class="navbar-brand" href="<?php bloginfo('url'); ?>/">
                     <h2 class="brand-text">
-                        <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/logo-vkrz.png" alt="VAINKEURZ logo" class="img-fluid">
+                        <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/logo-vkrz-2.png" alt="VAINKEURZ logo" class="img-fluid">
                     </h2>
                     <div class="badge-beta">
                         <span class="badge">

@@ -19,7 +19,7 @@ if (is_single() && get_post_type() == "tournoi") {
             <div class="menu-logo d-flex align-items-center d-xl-none">
                 <div class="d-block d-sm-none">
                     <a href="<?php bloginfo('url'); ?>/">
-                        <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/logo-vkrz.png" alt="VAINKEURZ logo" class="logo img-fluid">
+                        <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/logo-vkrz-2.png" alt="VAINKEURZ logo" class="logo img-fluid">
                     </a>
                 </div>
 
@@ -38,7 +38,7 @@ if (is_single() && get_post_type() == "tournoi") {
                 <div class="menu-logo d-flex align-items-center d-xl-none">
                     <div class="d-block d-sm-none">
                         <a href="<?php bloginfo('url'); ?>/">
-                            <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/logo-vkrz.png" alt="VAINKEURZ logo" class="logo img-fluid">
+                            <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/logo-vkrz-2.png" alt="VAINKEURZ logo" class="logo img-fluid">
                         </a>
                     </div>
 
@@ -256,7 +256,7 @@ if (is_single() && get_post_type() == "tournoi") {
                     <span class="value-user-stats user-total-vote-value">
                         <?php if ($user_infos['current_money_vkrz']) : ?>
                             <?php echo $user_infos['current_money_vkrz']; ?>
-                        <?php else: ?>
+                        <?php else : ?>
                             0
                         <?php endif; ?>
                     </span>
@@ -285,26 +285,26 @@ if (is_single() && get_post_type() == "tournoi") {
                         <?php if (is_user_logged_in()) : ?>
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <a class="btn btn-outline-primary btn-block" href="<?php the_permalink(get_page_by_path('shop')); ?>">
-                                        Aller dans le shop
+                                    <a class="btn btn-outline-primary btn-block" href="<?php the_permalink(get_page_by_path('mon-compte/keurz')); ?>">
+                                        Détail des KEURZ
                                     </a>
                                 </div>
                                 <div class="col-sm-6">
-                                    <a class="btn btn-primary btn-block" href="<?php the_permalink(get_page_by_path('mon-compte/keurz')); ?>">
-                                        Détail des KEURZ
+                                    <a class="btn btn-primary btn-block" href="<?php the_permalink(get_page_by_path('shop')); ?>">
+                                        Aller dans le shop
                                     </a>
                                 </div>
                             </div>
                         <?php else : ?>
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <a class="btn btn-outline-primary btn-block" href="<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>">
-                                        Créer mon compte
+                                    <a class="btn btn-outline-primary btn-block" href="<?php the_permalink(305107); ?>">
+                                        Détail des KEURZ
                                     </a>
                                 </div>
                                 <div class="col-sm-6">
-                                    <a class="btn btn-primary btn-block" href="<?php the_permalink(305107); ?>">
-                                        Détail des KEURZ
+                                    <a class="btn btn-primary btn-block" href="<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>">
+                                        Créer mon compte
                                     </a>
                                 </div>
                             </div>
@@ -331,14 +331,25 @@ if (is_single() && get_post_type() == "tournoi") {
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-user">
                     <?php if (is_user_logged_in()) : ?>
+                        <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>#levelbloc">
+                            <div class="progress-wrapper">
+                                <?php
+                                $nb_need_money = get_vote_to_next_level($user_infos['level_number'], $user_infos['money_vkrz']); ?>
+                                <div id="example-caption-5">Encore <?php echo $nb_need_money; ?><span class="ico text-center va va-gem va-z-15"></span> pour <?php echo $user_infos['next_level']; ?></div>
+                                <div class="progress progress-bar-primary w-100" style="height: 6px; margin-top: 5px;">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="50" aria-valuemin="50" aria-valuemax="100" style="width: 50%"></div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>">
-                            <span class="ico va va-llama va-lg"></span> Mon compte
+                            Mon compte
                         </a>
                         <a class="dropdown-item" href="<?php the_permalink(305107); ?>">
-                            <span class="ico va va-gem va-lg"></span> Mes KEURZ
+                            Mes KEURZ <span class="ico va va-gem va-lg"></span>
                         </a>
                         <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('parametres')); ?>">
-                            <span class="ico va va-setting va-lg"></span> Paramètres
+                            Paramètres
                         </a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('deconnexion')); ?>">
@@ -346,7 +357,7 @@ if (is_single() && get_post_type() == "tournoi") {
                         </a>
                     <?php else : ?>
                         <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>">
-                            <span class="ico va va-ninja va-lg"></span> Mon compte
+                            Mon compte
                         </a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('se-connecter')); ?>">

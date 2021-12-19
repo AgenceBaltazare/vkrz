@@ -23,7 +23,7 @@ class WPPB_Pagination{
 			$this->perPage = $perPage;
 
 		// Assign the page variable
-		$this->page = get_query_var ('wppb_page');
+		$this->page = wppb_get_query_var ('wppb_page');
 		if($this->page == 0)
 			$this->page = 1;
 
@@ -133,7 +133,14 @@ class WPPB_Pagination{
             }
         }
 
-        return esc_attr( add_query_arg( $args, trailingslashit( get_permalink() ). wppb_get_users_pagination_slug(). '/'. $counter.'/' ) );
+        if ( isset( $_GET['page_id'] ) ){
+            $url = get_permalink();
+            $args['wppb_page'] = $counter;
+        } else {
+            $url = trailingslashit(get_permalink()) . wppb_get_users_pagination_slug() . '/' . $counter . '/';
+        }
+
+        return esc_attr( add_query_arg( $args, $url ) );
 
     }
 }

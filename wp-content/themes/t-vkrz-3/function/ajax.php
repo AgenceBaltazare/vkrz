@@ -14,8 +14,8 @@ function vkzr_process_vote() {
 	if(is_user_logged_in()){
         $user_levels_infos = check_user_level($_POST['current_id_vainkeur']);
     }
-
-	genrerate_tournament_response($top_infos, $user_levels_infos);
+    
+	genererate_tournament_response($top_infos, $user_levels_infos);
 }
 
 add_action( 'wp_ajax_vkzr_check_level', 'vkzr_check_level' );

@@ -69,7 +69,7 @@ function check_user_level($id_vainkeur){
         if($level_number != $user_level){
             $level_up = true;
             update_field('level_user', $level_number, 'user_' . $user_id);
-            vkrz_push_level_up($user_id, $level);
+            vkrz_push_level_up($user_id, $level_number);
         }
 
         return array(

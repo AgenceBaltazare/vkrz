@@ -53,7 +53,7 @@ foreach ($list_user_tops as $top) {
                         <div class="col-lg-3 col-12 order-2 order-lg-1">
 
                             <div class="hide-xs">
-                                
+
                                 <div class="card">
                                     <div class="card-header">
                                         <h4 class="card-title">
@@ -145,7 +145,7 @@ foreach ($list_user_tops as $top) {
                             </div>
                         </div>
 
-                        <div class="col-lg-9 col-12 order-1 order-lg-2">
+                        <div id="levelbloc" class="col-lg-9 col-12 order-1 order-lg-2">
                             <section class="app-user-view">
                                 <div class="row match-height">
                                     <div class="col-sm-4">

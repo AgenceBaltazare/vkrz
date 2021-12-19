@@ -43,5 +43,4 @@ global $id_top;
 <?php wp_footer(); ?>
 
 </body>
-
 </html>

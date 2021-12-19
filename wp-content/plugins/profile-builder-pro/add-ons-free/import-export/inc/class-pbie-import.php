@@ -70,25 +70,32 @@ class WPPB_ImpEx_Import {
 	/* upload json file function */
 	public function upload_json_file() {
 		if( isset( $_POST['cozmos-import'] ) ) {
-			if( ! empty( $_FILES['cozmos-upload']['tmp_name'] ) ) {
-				$json_content = file_get_contents( $_FILES['cozmos-upload']['tmp_name'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-				/* save uploaded file to server (for later versions).
-				$target = dirname( plugin_dir_path( __FILE__ ) ) . '/upload/';
-				$target = $target . basename( $_FILES['cozmos-upload']['name'] );
-				move_uploaded_file( $_FILES['cozmos-upload']['tmp_name'], $target );
-				*/
-				$this->json_to_db( $json_content );
-				if( empty( $this->pbie_import_messages ) ) {
-					$this->import_messages[$this->j]['message'] = __( 'Import successfully!', 'profile-builder' );
-					$this->import_messages[$this->j]['type'] = 'updated';
-					$this->j++;
-					flush_rewrite_rules( false );
-				}
-			} else {
-				$this->import_messages[$this->j]['message'] = __( 'Please select a .json file to import!', 'profile-builder' );
-				$this->import_messages[$this->j]['type'] = 'error';
-				$this->j++;
-			}
+            if( ( !is_multisite() && current_user_can( apply_filters( 'wppb_settings_import_user_capability', 'manage_options' ) ) ) ||
+                ( is_multisite() && current_user_can( apply_filters( 'wppb_multi_settings_import_user_capability', 'manage_network' ) ) ) ) {
+                if (!empty($_FILES['cozmos-upload']['tmp_name'])) {
+                    $json_content = file_get_contents($_FILES['cozmos-upload']['tmp_name']); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+                    /* save uploaded file to server (for later versions).
+                    $target = dirname( plugin_dir_path( __FILE__ ) ) . '/upload/';
+                    $target = $target . basename( $_FILES['cozmos-upload']['name'] );
+                    move_uploaded_file( $_FILES['cozmos-upload']['tmp_name'], $target );
+                    */
+                    $this->json_to_db($json_content);
+                    if (empty($this->pbie_import_messages)) {
+                        $this->import_messages[$this->j]['message'] = __('Import successfully!', 'profile-builder');
+                        $this->import_messages[$this->j]['type'] = 'updated';
+                        $this->j++;
+                        flush_rewrite_rules(false);
+                    }
+                } else {
+                    $this->import_messages[$this->j]['message'] = __('Please select a .json file to import!', 'profile-builder');
+                    $this->import_messages[$this->j]['type'] = 'error';
+                    $this->j++;
+                }
+            } else {
+                $this->import_messages[$this->j]['message'] = __('You do not have the capabilities required to do this!', 'profile-builder');
+                $this->import_messages[$this->j]['type'] = 'error';
+                $this->j++;
+            }
 		}
 	}
 

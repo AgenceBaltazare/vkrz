@@ -32,7 +32,8 @@ function wppb_email_handler( $output, $form_location, $field, $user_id, $field_c
         if( !empty( $item_description ) )
             $output .= '<span class="wppb-description-delimiter">'. $item_description .'</span>';
 
-        if ( $email_input_status == 'enabled' && is_user_logged_in() ) {
+        if( $form_location == 'edit_profile' && is_user_logged_in() ) {
+            if ( $email_input_status == 'enabled' ) {
                 $output .= '<span class="wppb-description-delimiter">' . __('If you change this, we will send you an email at your new address to confirm it. <br /><strong>The new address will not become active until confirmed.</strong>', 'profile-builder') . '</span>';
             }
         else if ( $email_input_status == 'disabled' ) {
@@ -42,8 +43,9 @@ function wppb_email_handler( $output, $form_location, $field, $user_id, $field_c
             $cancel_request_url = add_query_arg($arr_params, $current_url);
             $pending_new_email_address = apply_filters('wppb_new_email_address','');
 
-            $output .= '<span class="wppb-description-delimiter">'. sprintf( __('There is a pending change request of your email to: %s', 'profile-builder'), '<strong>'. $pending_new_email_address .'</strong>' );
-            $output .= '<a style="float: right;" href="'. esc_url( $cancel_request_url ) .'">'. __('Cancel request', 'profile-builder') .'</a></span>';
+                $output .= '<span class="wppb-description-delimiter">' . sprintf(__('There is a pending change request of your email to: %s', 'profile-builder'), '<strong>' . $pending_new_email_address . '</strong>');
+                $output .= '<a style="float: right;" href="' . esc_url($cancel_request_url) . '">' . __('Cancel request', 'profile-builder') . '</a></span>';
+            }
         }
 
 

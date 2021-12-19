@@ -14,6 +14,8 @@ function load_css_js() {
     wp_enqueue_style('swiper', get_template_directory_uri().'/assets/vendors/css/extensions/swiper.min.css', array(), null);
     wp_enqueue_style('ext-swiper', get_template_directory_uri().'/assets/css/plugins/extensions/ext-component-swiper.css', array(), null);
     wp_enqueue_style('ext-sweet-alerts', get_template_directory_uri().'/assets/css/plugins/extensions/ext-component-sweet-alerts.css', array(), null);
+    wp_enqueue_style('toastr', get_template_directory_uri() . '/assets/vendors/css/extensions/toastr.min.css', array(), null);
+    wp_enqueue_style('ext-toastr', get_template_directory_uri() . '/assets/css/plugins/extensions/ext-component-toastr.min.css', array(), null);
     wp_enqueue_style('page-pricing', get_template_directory_uri().'/assets/css/pages/page-pricing.css', array(), null);
     wp_enqueue_style('vertical-menu', get_template_directory_uri().'/assets/css/theme/vertical-menu.css', array(), null);
     wp_enqueue_style('profil', get_template_directory_uri().'/assets/css/pages/page-profile.css', array(), null);
@@ -39,6 +41,7 @@ function load_css_js() {
     wp_enqueue_script('polyfill', get_template_directory_uri().'/assets/vendors/js/extensions/polyfill.min.js', array(), null, true);
     wp_enqueue_script('swiper', get_template_directory_uri().'/assets/vendors/js/extensions/swiper.min.js', array(), null, true);
     wp_enqueue_script('component-swiper', get_template_directory_uri().'/assets/js/scripts/extensions/ext-component-swiper.js', array(), null, true);
+    wp_enqueue_script('component-toastr', get_template_directory_uri() . '/assets/vendors/js/extensions/toastr.min.js', array(), null, true);
     wp_enqueue_script('modals', get_template_directory_uri().'/assets/js/scripts/components/components-modals.js', array(), null, true);
     wp_enqueue_script('app', get_template_directory_uri().'/assets/js/core/app.js', array(), null, true);
     wp_enqueue_script('app-menu', get_template_directory_uri().'/assets/js/core/app-menu.js', array(), null, true);

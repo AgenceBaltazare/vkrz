@@ -24,16 +24,6 @@ $solde_disponible = $user_infos['current_money_vkrz'];
     <div class="header-navbar-shadow"></div>
     <div class="content-wrapper">
         <div class="content-body">
-            <div class="valid-commande">
-                <div class="alert alert-info alert-dismissible d-flex align-items-center justify-content-between p-1" role="alert">
-                    <div class="alert-body">
-                        Ta commande est bien passée 👌
-                    </div>
-                    <button type="button" class="btn btn-outline-info waves-effect" data-dismiss="alert" aria-label="Close">
-                        Fermer
-                    </button>
-                </div>
-            </div>
             <section id="wishlist" class="grid-view wishlist-items mt-2">
                 <?php
                 $shop = new WP_Query(array(
@@ -58,18 +48,9 @@ $solde_disponible = $user_infos['current_money_vkrz'];
                         </div>
                         <div class="card-body">
                             <div class="item-wrapper">
-                                <div class="item-rating">
-                                    <!--
-                                    <div class="row avg-sessions">
-                                        <div class="progress progress-bar-primary" style="height: 6px">
-                                            <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="50" aria-valuemax="100" style="width: 50%"></div>
-                                        </div>
-                                    </div>
-                                    -->
-                                </div>
                                 <div class="item-cost">
                                     <h6 class="item-price">
-                                        <?php echo number_format(get_field('montant_produit'), 0, ",", " "); ?> <span class="m-l-5 va-gem va va-lg"></span>
+                                        <span class="m-l-5 va-gem va va-lg"></span> <?php echo number_format(get_field('montant_produit'), 0, ",", " "); ?>
                                     </h6>
                                 </div>
                             </div>

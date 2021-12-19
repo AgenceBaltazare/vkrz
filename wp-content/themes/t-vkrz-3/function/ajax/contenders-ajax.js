@@ -16,8 +16,6 @@ $(document).ready(function ($) {
         $('.contender_zone').removeClass('animate__slideInDown');
         $('.contender_zone').removeClass('animate__slideInUp');
 
-        console.log(link_to_ranking);
-
         e.preventDefault();
 
         if (!ajaxRunning) {
@@ -49,6 +47,15 @@ $(document).ready(function ($) {
 
                 if(data.level_up !== undefined && data.level_up){
                     $('.dropdown-user-link .user-niveau').html(data.user_level_icon);
+                    toastr['success']('Félicitations, tu passes au niveau ' + data.user_level_icon, 
+                        'Progression', {
+                            closeButton: true,
+                            tapToDismiss: true,
+                            timeOut: 6000,
+                            progressBar: true,
+                            showMethod: 'slideDown',
+                            hideMethod: 'slideUp'
+                    });
                     window.dataLayer.push({
                         'event': 'track_event',
                         'event_name': 'level_up',

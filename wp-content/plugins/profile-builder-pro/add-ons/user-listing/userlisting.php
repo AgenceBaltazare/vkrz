@@ -966,7 +966,7 @@ function wppb_userlisting_users_loop( $value, $name, $children, $extra_values ){
 		$userlisting_args = get_post_meta( $userlisting_form_id, 'wppb_ul_page_settings', true );
 
         if( !empty( $userlisting_args[0] ) ){
-            $paged = (get_query_var('wppb_page')) ? get_query_var('wppb_page') : 1;
+            $paged = (wppb_get_query_var('wppb_page')) ? wppb_get_query_var('wppb_page') : 1;
             if( !is_int( (int)$userlisting_args[0]['number-of-userspage'] ) || (int)$userlisting_args[0]['number-of-userspage'] == 0 )
                 $userlisting_args[0]['number-of-userspage'] = 5;
 
@@ -1633,6 +1633,15 @@ function wppb_change_returned_username_var_on_default_permalinks( $var ){
     return $var;
 }
 
+/* when we are on default permalinks we need to return $_GET['wppb_page'] */
+add_filter( 'wppb_get_query_var_wppb_page', 'wppb_change_returned_wppb_page_var_on_default_permalinks' );
+function wppb_change_returned_wppb_page_var_on_default_permalinks( $var ){
+    if( empty( $var ) && isset( $_GET['wppb_page'] ) )
+        return (int)$_GET['wppb_page'];
+
+    return $var;
+}
+
 /**
  * Function that returns the link for the previous page
  *
@@ -1798,7 +1807,7 @@ function wppb_ul_faceted_checkboxes( $faceted_filter_options, $meta_values, $wpp
             else
                 $filter .= '<div>';
 
-            $filter .= '<label for="wppb-facet-value-'. Wordpress_Creation_Kit_PB::wck_generate_slug($meta_value) .'"><input type="checkbox" id="wppb-facet-value-'. Wordpress_Creation_Kit_PB::wck_generate_slug($meta_value) .'" class="wppb-facet-checkbox" value="'. esc_attr( $meta_value ) .'" data-current-page="'. esc_attr( get_query_var('wppb_page') ) .'" data-filter-behaviour="'. esc_attr( $faceted_filter_options['facet-behaviour'] ) .'" data-meta-name="'. esc_attr( $faceted_filter_options['facet-meta'] ) .'" '. wppb_ul_checked( $meta_value, $current_value ) .'>';
+            $filter .= '<label for="wppb-facet-value-'. Wordpress_Creation_Kit_PB::wck_generate_slug($meta_value) .'"><input type="checkbox" id="wppb-facet-value-'. Wordpress_Creation_Kit_PB::wck_generate_slug($meta_value) .'" class="wppb-facet-checkbox" value="'. esc_attr( $meta_value ) .'" data-current-page="'. esc_attr( wppb_get_query_var('wppb_page') ) .'" data-filter-behaviour="'. esc_attr( $faceted_filter_options['facet-behaviour'] ) .'" data-meta-name="'. esc_attr( $faceted_filter_options['facet-meta'] ) .'" '. wppb_ul_checked( $meta_value, $current_value ) .'>';
             $filter .= esc_html( wppb_ul_facet_value_or_label( $meta_value, $faceted_filter_options, $wppb_manage_fields ) );
             $filter .= '<span class="wppb-facet-checkbox-repetitions">';
             if( apply_filters( 'wppb_ul_show_filter_count', true ) )
@@ -1831,7 +1840,7 @@ function wppb_ul_faceted_select($faceted_filter_options, $meta_values, $wppb_man
         $filter = '<select class="wppb-facet-select';
         if( $multiple )
             $filter .= '-multiple';
-        $filter .= '" data-filter-behaviour="'. esc_attr( $faceted_filter_options['facet-behaviour'] ) .'" data-current-page="'. esc_attr( get_query_var('wppb_page') ) .'" data-meta-name="'. esc_attr( $faceted_filter_options['facet-meta'] ) .'"';
+        $filter .= '" data-filter-behaviour="'. esc_attr( $faceted_filter_options['facet-behaviour'] ) .'" data-current-page="'. esc_attr( wppb_get_query_var('wppb_page') ) .'" data-meta-name="'. esc_attr( $faceted_filter_options['facet-meta'] ) .'"';
         /* only add multiple attr for the expand behaviour. for narrow just have a normal select with a size attribute so it fakes a multiple select. this means we will handle it differently in js */
         if( $multiple && $faceted_filter_options['facet-behaviour'] == 'expand' )
             $filter .= ' multiple ';
@@ -1876,7 +1885,7 @@ function wppb_ul_faceted_select_multiple($faceted_filter_options, $meta_values, 
         wp_enqueue_style( 'wppb-facet-select-multiple-style', WPPB_PLUGIN_URL.'add-ons/user-listing/facet-select-multiple.css', array(), PROFILE_BUILDER_VERSION );
         wp_localize_script( 'wppb-facet-select-multiple', 'wppb_facet_select_multiple_obj', array( 'placeholder' => __( 'Choose or type in an option...', 'profile-builder' ) ) );
         
-        $filter = '<select class="wppb-facet-select-multiple" data-filter-behaviour="'. esc_attr( $faceted_filter_options['facet-behaviour'] ) .'" data-current-page="'. esc_attr( get_query_var('wppb_page') ) .'" data-meta-name="'. esc_attr( $faceted_filter_options['facet-meta'] ) .'" multiple ';
+        $filter = '<select class="wppb-facet-select-multiple" data-filter-behaviour="'. esc_attr( $faceted_filter_options['facet-behaviour'] ) .'" data-current-page="'. esc_attr( wppb_get_query_var('wppb_page') ) .'" data-meta-name="'. esc_attr( $faceted_filter_options['facet-meta'] ) .'" multiple ';
         if( !empty( $faceted_filter_options['facet-limit'] ) && is_numeric( trim( $faceted_filter_options['facet-limit'] ) ) )
             $filter .= ' size="'.$faceted_filter_options['facet-limit'].'" ';
         $filter .= '>';
@@ -1953,7 +1962,7 @@ function wppb_ul_faceted_range( $faceted_filter_options, $meta_values, $wppb_man
 
 
             $filter .= '<div class="wppb-ul-range-values ' . esc_attr($faceted_filter_options['facet-meta']) . '">' . $first_current_value . '-' . $last_current_value . '</div>';
-            $filter .= '<div class="wppb-ul-slider-range ' . esc_attr($faceted_filter_options['facet-meta']) . '" value="" data-meta-name="' . esc_attr($faceted_filter_options['facet-meta']) . '" data-filter-behaviour="' . esc_attr($faceted_filter_options['facet-behaviour']) . '" data-current-page="' . esc_attr(get_query_var('wppb_page')) . '"></div>
+            $filter .= '<div class="wppb-ul-slider-range ' . esc_attr($faceted_filter_options['facet-meta']) . '" value="" data-meta-name="' . esc_attr($faceted_filter_options['facet-meta']) . '" data-filter-behaviour="' . esc_attr($faceted_filter_options['facet-behaviour']) . '" data-current-page="' . esc_attr(wppb_get_query_var('wppb_page')) . '"></div>
             <script type="text/javascript">
                 jQuery(function(){
                     wppbRangeFacet( "' . esc_attr($faceted_filter_options['facet-meta']) . '", ' . $first_value . ', ' . $last_value . ', ' . $first_current_value . ', ' . $last_current_value . ' );
@@ -1990,7 +1999,7 @@ function wppb_get_facet_no_options_message( $faceted_filter_options ){
 function wppb_ul_faceted_search( $faceted_filter_options, $meta_values, $wppb_manage_fields ){
     $current_value = wppb_ul_get_current_filter_value( $faceted_filter_options['facet-meta'] );
 
-    $filter  = '<div class="wppb-facet-search-wrap"><label><input type="text" value="'. $current_value .'" class="wppb-facet-search" data-filter-behaviour="'. esc_attr( $faceted_filter_options['facet-behaviour'] ) .'" data-current-page="'. esc_attr( get_query_var('wppb_page') ) .'" data-meta-name="'. esc_attr( $faceted_filter_options['facet-meta'] ) .'">';
+    $filter  = '<div class="wppb-facet-search-wrap"><label><input type="text" value="'. $current_value .'" class="wppb-facet-search" data-filter-behaviour="'. esc_attr( $faceted_filter_options['facet-behaviour'] ) .'" data-current-page="'. esc_attr( wppb_get_query_var('wppb_page') ) .'" data-meta-name="'. esc_attr( $faceted_filter_options['facet-meta'] ) .'">';
     $filter .= '<button type="submit" class="wppb-search-submit"><span class="screen-reader-text">Search</span></button></label></div>';
 
     return $filter;
@@ -2124,7 +2133,7 @@ function wppb_ul_faceted_remove( $faceted_filters_options, $wppb_manage_fields )
                 $filter_values = explode( '||', stripslashes( sanitize_text_field( $_GET['ul_filter_'.$faceted_filter_options['facet-meta']] ) ) );
                 foreach( $filter_values as $filter_value ) {
                     $filter .= '<li>';
-                    $filter .= '<a href="#" class="wppb-remove-facet" data-meta-name="' . esc_attr($faceted_filter_options['facet-meta']) . '" data-meta-value="' . esc_attr($filter_value) . '" data-current-page="' . esc_attr(get_query_var('wppb_page')) . '">' . $faceted_filter_options['facet-name'] . ': ' . esc_html(  wppb_ul_facet_value_or_label( $filter_value, $faceted_filter_options, $wppb_manage_fields ) ) . '</a>';
+                    $filter .= '<a href="#" class="wppb-remove-facet" data-meta-name="' . esc_attr($faceted_filter_options['facet-meta']) . '" data-meta-value="' . esc_attr($filter_value) . '" data-current-page="' . esc_attr(wppb_get_query_var('wppb_page')) . '">' . $faceted_filter_options['facet-name'] . ': ' . esc_html(  wppb_ul_facet_value_or_label( $filter_value, $faceted_filter_options, $wppb_manage_fields ) ) . '</a>';
                     $filter .= '</li>';
                 }
             }
@@ -2132,7 +2141,7 @@ function wppb_ul_faceted_remove( $faceted_filters_options, $wppb_manage_fields )
 
         if( $have_filters ){
             $filter .= '<li>';
-            $filter .= '<a href="#" class="wppb-remove-all-facets" data-all-filters="'. implode(',', $have_filters ) .'" data-current-page="' . esc_attr(get_query_var('wppb_page')) . '">' . __( 'Remove All Filters', 'profile-builder' ) . '</a>';
+            $filter .= '<a href="#" class="wppb-remove-all-facets" data-all-filters="'. implode(',', $have_filters ) .'" data-current-page="' . esc_attr(wppb_get_query_var('wppb_page')) . '">' . __( 'Remove All Filters', 'profile-builder' ) . '</a>';
             $filter .= '</li>';
         }
 
@@ -2902,7 +2911,7 @@ add_filter( 'redirect_canonical', 'wppb_allow_userlisting_pagination_on_front_pa
 function wppb_allow_userlisting_pagination_on_front_page( $redirect_url, $requested_url ){
     $wppb_addonOptions = get_option('wppb_module_settings');
     if( $wppb_addonOptions['wppb_userListing'] == 'show' ) {
-        if (is_front_page() && !empty( get_query_var('wppb_page') ) ) {
+        if (is_front_page() && !empty( wppb_get_query_var('wppb_page') ) ) {
             return $requested_url;
         }
     }

@@ -28,12 +28,16 @@ $(document).ready(function ($) {
             })
             .done(function (response) {
 
+                Swal.fire({
+                    title: 'Commande validey 👌',
+                    icon: 'success',
+                    showConfirmButton: false,
+                    timer: 1500,
+                    buttonsStyling: false
+                });
+
                 let data = JSON.parse(response);
-
-                console.log(data);
-
                 var currentmoney = parseInt(data);
-                $('.valid-commande').show();
                 $('.user-total-vote-value').html(currentmoney);
                 
             })

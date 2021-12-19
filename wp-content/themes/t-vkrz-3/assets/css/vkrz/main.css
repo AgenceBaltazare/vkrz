@@ -1051,7 +1051,8 @@ html .content {
   text-align: center !important;
 }
 
-.dark-layout .main-menu-content .navigation-main .nav-item a.btn-outline-primary i, .dark-layout .main-menu-content .navigation-main .nav-item a.btn-outline-primary svg {
+.dark-layout .main-menu-content .navigation-main .nav-item a.btn-outline-primary i,
+.dark-layout .main-menu-content .navigation-main .nav-item a.btn-outline-primary svg {
   color: #7367f0 !important;
   margin: 0 auto;
   text-align: center !important;
@@ -1080,6 +1081,11 @@ html .content {
 }
 .nav-toggle a span {
   margin-right: 5px;
+}
+
+.header-navbar .navbar-container ul.navbar-nav li.dropdown-user .dropdown-menu {
+  width: 15rem;
+  margin-top: 10px;
 }
 
 .single-tournoi .tournoi-content {

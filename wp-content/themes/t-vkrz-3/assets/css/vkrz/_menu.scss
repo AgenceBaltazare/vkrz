@@ -1,16 +1,20 @@
 .main-menu {
   border-right: 10px solid #14122f;
+
   .navbar-header {
     height: auto;
+
     .navbar-brand {
       position: relative;
     }
-    .badge-beta{
+
+    .badge-beta {
       position: absolute;
       bottom: 0;
       text-align: center;
       width: 100%;
-      .badge{
+
+      .badge {
         background: $rose !important;
         color: #fff;
         font-weight: bold;
@@ -19,61 +23,69 @@
     }
   }
 }
-.menu-collapsed{
-  .brand-text{
+
+.menu-collapsed {
+  .brand-text {
     display: block !important;
-    img{
+
+    img {
       max-width: 60px;
       height: auto;
       position: relative;
       right: 30px;
     }
   }
-  .rs-menu{
+
+  .rs-menu {
     display: none;
   }
+
   .badge-beta {
     display: none;
   }
-  .expanded{
-    img{
+
+  .expanded {
+    img {
       max-width: 100%;
       height: auto;
       position: inherit;
       right: unset;
     }
-    .rs-menu{
+
+    .rs-menu {
       display: block;
     }
   }
 }
 
 // User menu
-.bookmark-wrapper{
-  h4{
+.bookmark-wrapper {
+  h4 {
     font-size: 14px;
     margin-top: 5px;
   }
 }
-.home{
-  .bookmark-wrapper{
-    h4{
+
+.home {
+  .bookmark-wrapper {
+    h4 {
       margin-left: 10px;
     }
   }
 }
-.min-t-thumb{
+
+.min-t-thumb {
   width: 60px;
   margin-right: 10px;
 }
 
-.value-user-stats{
+.value-user-stats {
   font-size: 1.07rem;
   font-weight: 500;
   line-height: 1.2;
 }
 
-.user-niveau{
+.user-niveau {
   width: 11px;
   height: 11px;
   position: absolute;
@@ -81,8 +93,8 @@
   bottom: 0;
 }
 
-.avatar{
-  .avatar-picture{
+.avatar {
+  .avatar-picture {
     display: block;
     height: 40px;
     width: 40px;
@@ -96,6 +108,7 @@
   font-weight: 500;
   color: rgba(255, 255, 255, 0.45);
 }
+
 .dark-layout .main-menu-content .navigation-main li a {
   color: #fff !important;
 }
@@ -106,19 +119,23 @@
   color: #7367f0 !important;
   text-align: center !important;
 }
-.dark-layout .main-menu-content .navigation-main .nav-item a.btn-outline-primary i, .dark-layout .main-menu-content .navigation-main .nav-item a.btn-outline-primary svg{
+
+.dark-layout .main-menu-content .navigation-main .nav-item a.btn-outline-primary i,
+.dark-layout .main-menu-content .navigation-main .nav-item a.btn-outline-primary svg {
   color: #7367f0 !important;
   margin: 0 auto;
   text-align: center !important;
 }
-.rs-menu{
+
+.rs-menu {
   margin: 0 15px 0 10px;
   padding: 10px 15px 10px 15px;
 }
 
-.nav-toggle{
+.nav-toggle {
   width: 100%;
-  a{
+
+  a {
     position: fixed;
     top: 10px;
     left: 10px;
@@ -130,8 +147,14 @@
     letter-spacing: 2px;
     color: $c5;
     text-transform: uppercase;
-    span{
+
+    span {
       margin-right: 5px;
     }
   }
+}
+
+.header-navbar .navbar-container ul.navbar-nav li.dropdown-user .dropdown-menu {
+  width: 15rem;
+  margin-top: 10px;
 }

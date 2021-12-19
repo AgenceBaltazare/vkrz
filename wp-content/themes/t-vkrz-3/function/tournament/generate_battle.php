@@ -1,5 +1,5 @@
 <?php
-function genrerate_tournament_response($top_infos, $user_levels_infos = []){
+function genererate_tournament_response($top_infos, $user_levels_infos = []){
 
     extract($top_infos);
 
@@ -22,7 +22,6 @@ function genrerate_tournament_response($top_infos, $user_levels_infos = []){
     set_query_var( 'user_votes_vars', compact( 'nb_user_votes' ) );
     get_template_part( 'templates/parts/content', 'user-votes' );
     $uservotes_html = ob_get_clean();
-
 
     $response =  array(
         'id_ranking'        => $id_ranking,

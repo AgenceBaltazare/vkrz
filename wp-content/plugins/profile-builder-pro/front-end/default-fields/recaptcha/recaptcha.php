@@ -167,7 +167,7 @@ function wppb_recaptcha_script_footer(){
                 /* dont submit form if PMS gateway is Stripe */
                 if( jQuery(".pms_pay_gate").length > 0 ){
                     jQuery(".pms_pay_gate").each( function(){
-                        if( jQuery(this).val() == "stripe_intents" || jQuery(this).val() == "stripe" )
+                        if( jQuery(this).is(":checked") && ( jQuery(this).val() == "stripe_intents" || jQuery(this).val() == "stripe" ) )
                             submitForm = false
                     })
                 }

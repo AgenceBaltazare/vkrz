@@ -7,7 +7,7 @@ custom registration, custom registration form, custom registration page, extra u
 front-end register, front-end registration, frontend edit profile, edit profileregistration, customize profile, user fields, builder, profile builder, custom fields, avatar
 Requires at least: 3.1
 Tested up to: 5.8
-Stable tag: 3.6.0
+Stable tag: 3.6.1
 
 
 Login, registration and edit profile shortcodes for the front-end. Also you can choose what fields should be displayed or add custom ones.
@@ -101,6 +101,14 @@ This plugin only adds/removes fields in the front-end. The default information-f
 
 
 == Changelog ==
+= 3.6.1 = 
+* Fix: make sure email change request UI only appears on edit profile forms
+* Fix: pass referer url as get parameter when content is restricted with a redirect
+* Fix: issue with an advanced setting hiding the Social Connect buttons from the login form
+* Fix: recaptcha compatibility issue with PMS when Stripe was in the form but not selected as a gateway
+* Fix: restricted the settings import functions to administrators
+* Misc: Userlisting pagination to work correctly if pretty permalinks are not used
+
 = 3.6.0 =
 * Feature: Added an option to request Email Confirmation from the user when he changes his email address from the edit profile form. Can be activated from Advanced Settings
 * Fix: A notice regarding the Email Confirmation table that appeared in some cases
