@@ -5,7 +5,7 @@ function do_transaction($id_produit, $user_uuid, $price, $user_email, $idvainkeu
 
         $new_transaction = array(
             'post_type'   => 'transaction',
-            'post_title'  => 'U:' . $user_uuid . ' P:' . $id_produit . ' M:' . $price . ' V:' . $idvainkeur,
+            'post_title'  => get_the_title($id_produit),
             'post_status' => 'publish',
         );
         $id_new_transaction  = wp_insert_post($new_transaction);
@@ -18,6 +18,9 @@ function do_transaction($id_produit, $user_uuid, $price, $user_email, $idvainkeu
         update_field('etat_transaction', 'pending', $id_new_transaction);
 
         $current_money = get_current_money($idvainkeur);
+
+
+        update_vainkeur_badge($idvainkeur, 'Shopper');
 
         return die(json_encode($current_money));
 

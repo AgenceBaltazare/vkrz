@@ -331,13 +331,16 @@ if (is_single() && get_post_type() == "tournoi") {
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-user">
                     <?php if (is_user_logged_in()) : ?>
-                        <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>#levelbloc">
+                        <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>">
                             <div class="progress-wrapper">
                                 <?php
-                                $nb_need_money = get_vote_to_next_level($user_infos['level_number'], $user_infos['money_vkrz']); ?>
-                                <div id="example-caption-5">Encore <?php echo $nb_need_money; ?><span class="ico text-center va va-gem va-z-15"></span> pour <?php echo $user_infos['next_level']; ?></div>
+                                $nb_need_money       = get_vote_to_next_level($user_infos['level_number'], $user_infos['money_vkrz']);
+                                $money_to_next_level = $nb_need_money + $user_infos['money_vkrz'];
+                                $percent_progression = round($user_infos['money_vkrz'] * 100 / $money_to_next_level);
+                                ?>
+                                <div id="example-caption-5">Encore <span class="decompte_vote"><?php echo $nb_need_money; ?></span> <span class="ico text-center va va-gem va-z-15"></span> pour <?php echo $user_infos['next_level']; ?></div>
                                 <div class="progress progress-bar-primary w-100" style="height: 6px; margin-top: 5px;">
-                                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="50" aria-valuemin="50" aria-valuemax="100" style="width: 50%"></div>
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="<?php echo $percent_progression; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $percent_progression; ?>%"></div>
                                 </div>
                             </div>
                         </a>

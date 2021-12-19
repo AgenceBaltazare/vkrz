@@ -79,7 +79,7 @@ foreach ($list_user_tops as $top) {
                                         <div class="row mt-2">
                                             <div class="col-12">
                                                 <a class="btn btn-primary btn-block waves-effect waves-float waves-light" href="<?php the_permalink(get_page_by_path('trophees')); ?>">
-                                                    Découvrir tous les trophées <span class="va va-eyes va-z-20"></span>
+                                                    Découvrir les trophées <span class="va va-eyes va-z-20"></span>
                                                 </a>
                                             </div>
                                         </div>
@@ -136,7 +136,7 @@ foreach ($list_user_tops as $top) {
                                                     </small>
                                                 </p>
                                                 <div class="progress progress-bar-<?php echo $classbar; ?>" style="height: 6px">
-                                                    <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $percent_done_cat; ?>" aria-valuemin="<?php echo $percent_done_cat; ?>" aria-valuemax="100" style="width: <?php echo $percent_done_cat; ?>%"></div>
+                                                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="<?php echo $percent_done_cat; ?>" aria-valuemin="<?php echo $percent_done_cat; ?>" aria-valuemax="100" style="width: <?php echo $percent_done_cat; ?>%"></div>
                                                 </div>
                                             </div>
                                         <?php endforeach; ?>
@@ -164,6 +164,17 @@ foreach ($list_user_tops as $top) {
                                                     </span>
                                                 </div>
                                                 <p class="card-text legende">Niveau actuel</p>
+                                                <div class="progress-wrapper mt-1">
+                                                    <?php
+                                                    $nb_need_money       = get_vote_to_next_level($user_infos['level_number'], $user_infos['money_vkrz']);
+                                                    $money_to_next_level = $nb_need_money + $user_infos['money_vkrz'];
+                                                    $percent_progression = round($user_infos['money_vkrz'] * 100 / $money_to_next_level);
+                                                    ?>
+                                                    <div class="progress progress-bar-primary w-100 mb-1" style="height: 6px; margin-top: 5px;">
+                                                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="<?php echo $percent_progression; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $percent_progression; ?>%"></div>
+                                                    </div>
+                                                    <div id="example-caption-5">Encore <span class="decompte_vote"><?php echo $nb_need_money; ?></span> <span class="ico text-center va va-gem va-z-15"></span> pour <?php echo $user_infos['next_level']; ?></div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -171,7 +182,9 @@ foreach ($list_user_tops as $top) {
                                         <div class="card text-center">
                                             <div class="card-body">
                                                 <div class="mb-1">
-                                                    <span class="ico4 va va-high-voltage va va-z-30"></span>
+                                                    <span class="icomax">
+                                                        <span class="va-z-20 va-high-voltage va"></span>
+                                                    </span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">
                                                     <?php echo $user_infos['nb_vote_vkrz']; ?>
@@ -188,7 +201,9 @@ foreach ($list_user_tops as $top) {
                                         <div class="card text-center">
                                             <div class="card-body">
                                                 <div class="mb-1">
-                                                    <span class="ico4 va va-trophy va-z-30"></span>
+                                                    <span class="icomax">
+                                                        <span class="va-z-20 va va-trophy"></span>
+                                                    </span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">
                                                     <?php echo $user_infos['nb_top_vkrz']; ?>
@@ -229,7 +244,7 @@ foreach ($list_user_tops as $top) {
                                         <div class="row mt-2">
                                             <div class="col-12">
                                                 <a class="btn btn-primary btn-block waves-effect waves-float waves-light" href="<?php the_permalink(get_page_by_path('trophees')); ?>">
-                                                    Découvrir tous les trophées <span class="va va-eyes va-z-20"></span>
+                                                    Découvrir les trophées <span class="va va-eyes va-z-20"></span>
                                                 </a>
                                             </div>
                                         </div>
