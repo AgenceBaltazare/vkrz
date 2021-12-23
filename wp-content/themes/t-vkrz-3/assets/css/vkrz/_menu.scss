@@ -158,3 +158,18 @@
   width: 15rem;
   margin-top: 10px;
 }
+
+@media (max-width: 768px) {
+  .header-navbar .navbar-nav {
+    width: 40%;
+  }
+  .mt-3px {
+    margin-top: 3px;
+  }
+}
+
+@media (max-width: 500px) {
+  .header-navbar .navbar-nav {
+    width: 60%;
+  }
+}

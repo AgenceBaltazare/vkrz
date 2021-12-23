@@ -210,6 +210,10 @@
                 }
             }
         }
+
+        .info-top {
+            display: block;
+        }
     }
 
     .card-title {
@@ -225,6 +229,21 @@
 
         h4 {
             font-size: 15px;
+        }
+    }
+
+    .info-top {
+        display: none;
+        text-align: center;
+        p {
+            line-height: initial;
+            font-size: 0.857rem;
+        }
+        .pt-075 {
+            padding-top: 0.75rem;
+        }
+        .mt-01 {
+            margin-top: 0.1rem;
         }
     }
 }
