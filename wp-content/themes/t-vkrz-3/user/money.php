@@ -236,10 +236,10 @@ if ($vainkeur_badges) {
                                                                             Créateur : Top générés
                                                                         </th>
                                                                         <th class="text-right">
-                                                                            <span class="text-muted">3 x</span> <?php echo $data_t_created['total_completed_top']; ?>
+                                                                            <span class="text-muted">5 x</span> <?php echo $data_t_created['total_completed_top']; ?>
                                                                         </th>
                                                                         <th class="text-right">
-                                                                            <?php echo round($data_t_created['total_completed_top'] * 3); ?> <span class="va-gem va va-1x"></span>
+                                                                            <?php echo round($data_t_created['total_completed_top'] * 5); ?> <span class="va-gem va va-1x"></span>
                                                                         </th>
                                                                     </tr>
                                                                     <tr>
@@ -247,10 +247,10 @@ if ($vainkeur_badges) {
                                                                             Créateur : Votes reçus sur les Tops créés
                                                                         </th>
                                                                         <th class="text-right">
-                                                                            <span class="text-muted">0.1 x</span> <?php echo $data_t_created['creator_all_v']; ?>
+                                                                            <span class="text-muted">0.3 x</span> <?php echo $data_t_created['creator_all_v']; ?>
                                                                         </th>
                                                                         <th class="text-right">
-                                                                            <?php echo round($data_t_created['creator_all_v'] * 0.1); ?> <span class="va-gem va va-1x"></span>
+                                                                            <?php echo round($data_t_created['creator_all_v'] * 0.3); ?> <span class="va-gem va va-1x"></span>
                                                                         </th>
                                                                     </tr>
                                                                     <tr>
