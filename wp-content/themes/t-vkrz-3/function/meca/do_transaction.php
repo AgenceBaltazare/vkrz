@@ -19,8 +19,8 @@ function do_transaction($id_produit, $user_uuid, $price, $user_email, $idvainkeu
 
         $current_money = get_current_money($idvainkeur);
 
-
         update_vainkeur_badge($idvainkeur, 'Shopper');
+
         vkrz_push_transaction($id_new_transaction);
 
         return die(json_encode($current_money));
