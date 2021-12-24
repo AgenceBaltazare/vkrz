@@ -206,3 +206,4 @@ shareTopNatif.addEventListener("click", (event) => {
     }
 });
 // Partage en mode natif FIN
+
