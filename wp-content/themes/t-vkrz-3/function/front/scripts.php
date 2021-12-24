@@ -66,6 +66,7 @@ function load_css_js() {
     }
     if(is_author() || is_page(get_page_by_path('mon-compte')) || is_page(get_page_by_path('mon-compte/createur'))){
         wp_enqueue_script('datatables', get_template_directory_uri().'/assets/vendors/js/tables/datatable/datatables.min.js', array(), null, true);
+        wp_enqueue_script('datatables-advanced', get_template_directory_uri() . '/assets/js/scripts/tables/table-datatables-advanced.js', array(), null, true);
         wp_enqueue_script('datatables.buttons', get_template_directory_uri().'/assets/vendors/js/tables/datatable/datatables.buttons.min.js', array(), null, true);
         wp_enqueue_script('datatables.bootstrap', get_template_directory_uri().'/assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js', array(), null, true);
         wp_enqueue_script('dataTables.responsive', get_template_directory_uri().'/assets/vendors/js/tables/datatable/dataTables.responsive.min.js', array(), null, true);

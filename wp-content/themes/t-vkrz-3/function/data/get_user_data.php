@@ -129,7 +129,9 @@ function get_user_tops($user_id = false){
 
     $user_all_ranking = new WP_Query(array(
         'post_type'              => 'classement',
-        'posts_per_page'         => '1000',
+        'posts_per_page'         => 3000,
+        'order'                  => 'DESC',
+        'orderby'                => 'date',
         'fields'                 => 'ids',
         'post_status'            => 'publish',
         'ignore_sticky_posts'    => true,

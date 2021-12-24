@@ -85,7 +85,8 @@ $('.table-4').DataTable({
 });
 $('.table-tdone').DataTable({
     autoWidth: false,
-    lengthMenu: [5000],
+    lengthMenu: [10],
+    pagingType: "full_numbers",
     columns: [
         { orderable: false },
         { orderable: false },

@@ -102,6 +102,7 @@ $top_datas    = get_top_data($id_top);
                                                         <input type="hidden" value="<?php echo $id_ranking; ?>" name="ranking" id="ranking">
                                                         <input type="hidden" value="<?php echo $uuiduser; ?>" name="uuiduser" id="uuiduser">
                                                         <input type="hidden" value="<?php echo $id_top; ?>" name="top" id="top">
+                                                        <input type="hidden" value="<?php echo $id_vainkeur; ?>" name="id_vainkeur" id="id_vainkeur">
                                                         <button class="btn" id="btn-coupon">
                                                             <?php the_field('intitule_cta_mail_t_sponso', $id_top); ?>
                                                         </button>
@@ -137,6 +138,7 @@ $top_datas    = get_top_data($id_top);
                                                         <input type="hidden" value="<?php echo $id_ranking; ?>" name="ranking" id="ranking">
                                                         <input type="hidden" value="<?php echo $uuiduser; ?>" name="uuiduser" id="uuiduser">
                                                         <input type="hidden" value="<?php echo $id_top; ?>" name="top" id="top">
+                                                        <input type="hidden" value="<?php echo $id_vainkeur; ?>" name="id_vainkeur" id="id_vainkeur">
                                                         <button class="btn" id="btn-coupon">
                                                             <?php the_field('intitule_cta_mail_t_sponso', $id_top); ?>
                                                         </button>
@@ -306,7 +308,7 @@ $top_datas    = get_top_data($id_top);
                     <span class="ico va va-placard va-lg"></span> <span class="hide-spot">Infos <span class="hide-xs">du Top</span></span>
                 </div>
                 <div class="ico-nav-mobile share-content-show">
-                    <span class="ico va va-megaphone va-lg"></span>  <span class="hide-spot">Partager</span>
+                    <span class="ico va va-megaphone va-lg"></span> <span class="hide-spot">Partager</span>
                 </div>
                 <div class="ico-nav-mobile">
                     <a href="<?php echo get_the_permalink(get_page_by_path('discuz')) . '?id_top=' . $id_top; ?>">
@@ -416,7 +418,7 @@ $top_datas    = get_top_data($id_top);
         </div>
         <div class="box-info-content">
             <h3>
-                <span class="ico va va-placard va-lg"></span> 
+                <span class="ico va va-placard va-lg"></span>
                 Tous les infos du Top
             </h3>
             <div class="close-share">
