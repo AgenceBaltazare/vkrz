@@ -3480,8 +3480,20 @@ textarea {
   background-image: url(../../images/emojis/anxious-face-with-sweat_1f630.png);
 }
 
+.va-santa {
+  background-image: url(../../images/emojis/santa-claus_1f385.png);
+}
+
 .va-smiling-face-with-hearts {
   background-image: url(../../images/emojis/smiling-face-with-hearts_1f970.png);
+}
+
+.va-man-raising {
+  background-image: url(../../images/emojis/man-raising-hand_1f64b-200d-2642-fe0f.png);
+}
+
+.va-link {
+  background-image: url(../../images/emojis/link_1f517.png);
 }
 
 .va-face-with-monocle {
