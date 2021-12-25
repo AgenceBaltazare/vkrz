@@ -1473,6 +1473,29 @@ html .content {
   transition: 300ms ease all;
 }
 
+.waiter {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 9999;
+  right: 0;
+  left: 0;
+  background: linear-gradient(150deg, #0c0a27, #471867, #0c0a27, #230b36, #0c0a27);
+  background-size: 400% 400%;
+  -webkit-animation: gradient 15s ease infinite;
+          animation: gradient 15s ease infinite;
+  padding-top: 200px;
+  text-align: center;
+  display: none;
+}
+.waiter .loader {
+  flex-direction: column;
+}
+.waiter h4 {
+  text-transform: uppercase;
+  margin-top: 20px;
+}
+
 .list-share {
   flex-wrap: wrap;
 }

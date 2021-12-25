@@ -61,7 +61,7 @@ function check_user_level($id_vainkeur){
                 break;
             case $niv_8 <= $user_vote_counter :
                 $level          = '<span class="va va-z-20 va-dragon"></span>';
-                $level_number   = 7;
+                $level_number   = 8;
                 $next_level     = false;
                 break;
         }

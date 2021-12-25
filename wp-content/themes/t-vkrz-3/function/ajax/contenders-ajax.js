@@ -116,6 +116,9 @@ $(document).ready(function ($) {
                 });
 
                 if(!data.is_next_duel){
+
+                    $('.waiter').show();
+
                     window.dataLayer.push({
                         'event': 'track_event',
                         'event_name': 'end_top',

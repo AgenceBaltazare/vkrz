@@ -172,4 +172,5 @@ $creator_data       = get_user_infos($creator_uuiduser);
     </div>
 </div>
 
+<?php get_template_part('partials/loader'); ?>
 <?php get_footer(); ?>

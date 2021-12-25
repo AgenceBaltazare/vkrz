@@ -25,6 +25,4 @@ function form_newplayer($emailplayer, $uuiduser, $ranking, $top, $id_vainkeur){
         update_vainkeur_badge($id_vainkeur, "TOP sponso");
     }
 
-    vkrz_push_player($emailplayer, $uuiduser, $ranking, $top, $id_vainkeur);
-
 }

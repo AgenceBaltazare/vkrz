@@ -394,7 +394,7 @@ function get_user_level($user_id = false){
             break;
         case 8 :
             $level          = '<span class="va va-z-20 va-dragon"></span>';
-            $level_number   = 7;
+            $level_number   = 8;
             $next_level     = false;
             break;
     }
