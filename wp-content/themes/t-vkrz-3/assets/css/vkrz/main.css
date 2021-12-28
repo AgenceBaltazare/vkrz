@@ -1800,6 +1800,29 @@ html .content {
   transition: 300ms ease all;
 }
 
+.waiter {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 9999;
+  right: 0;
+  left: 0;
+  background: linear-gradient(150deg, #0c0a27, #471867, #0c0a27, #230b36, #0c0a27);
+  background-size: 400% 400%;
+  -webkit-animation: gradient 15s ease infinite;
+          animation: gradient 15s ease infinite;
+  padding-top: 200px;
+  text-align: center;
+  display: none;
+}
+.waiter .loader {
+  flex-direction: column;
+}
+.waiter h4 {
+  text-transform: uppercase;
+  margin-top: 20px;
+}
+
 .list-share {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
@@ -2945,6 +2968,7 @@ textarea {
 
 .single-classement .logo-vkrz-sponso {
   width: 100%;
+  text-align: center;
 }
 
 .single-classement .content-wrapper {
@@ -4168,8 +4192,20 @@ textarea {
   background-image: url(../../images/emojis/anxious-face-with-sweat_1f630.png);
 }
 
+.va-santa {
+  background-image: url(../../images/emojis/santa-claus_1f385.png);
+}
+
 .va-smiling-face-with-hearts {
   background-image: url(../../images/emojis/smiling-face-with-hearts_1f970.png);
+}
+
+.va-man-raising {
+  background-image: url(../../images/emojis/man-raising-hand_1f64b-200d-2642-fe0f.png);
+}
+
+.va-link {
+  background-image: url(../../images/emojis/link_1f517.png);
 }
 
 .va-face-with-monocle {

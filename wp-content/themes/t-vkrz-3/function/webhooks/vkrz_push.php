@@ -99,7 +99,7 @@ function vkrz_push_note($note_id){
 
 function vkrz_push_transaction($id_transaction){
 
-    if(env() != "local"){
+    if(env() != "local" && $id_transaction){
         $name_produit       = get_the_title(get_field('id_produit_transaction', $id_transaction));
         $price_produit      = get_field('montant_transaction', $id_transaction);
 

@@ -34,7 +34,7 @@ function increase_vote_counter($id_vainkeur){
 
 }
 
-function increase_top_counter($id_vainkeur){
+function increase_top_counter($id_vainkeur, $id_top){
     
     if($id_vainkeur){
 

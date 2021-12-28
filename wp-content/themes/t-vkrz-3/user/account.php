@@ -173,7 +173,13 @@ foreach ($list_user_tops as $top) {
                                                     <div class="progress progress-bar-primary w-100 mb-1" style="height: 6px; margin-top: 5px;">
                                                         <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="<?php echo $percent_progression; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $percent_progression; ?>%"></div>
                                                     </div>
-                                                    <div id="example-caption-5">Encore <span class="decompte_vote"><?php echo $nb_need_money; ?></span> <span class="ico text-center va va-gem va-z-15"></span> pour <?php echo $user_infos['next_level']; ?></div>
+                                                    <?php if (is_user_logged_in()) : ?>
+                                                        <div id="example-caption-5">Encore <span class="decompte_vote"><?php echo $nb_need_money; ?></span> <span class="ico text-center va va-gem va-z-15"></span> pour <?php echo $user_infos['next_level']; ?></div>
+                                                    <?php else : ?>
+                                                        <a href="<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>" class="t-white">
+                                                            <div id="example-caption-5">Créé ton compte pour passer <?php echo $user_infos['next_level']; ?></div>
+                                                        </a>
+                                                    <?php endif; ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -262,15 +268,17 @@ foreach ($list_user_tops as $top) {
                                             <?php endif; ?>
                                         </a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="homeIcon-tab" data-toggle="tab" href="#tab1" aria-controls="home" role="tab" aria-selected="true">
-                                            <?php if (count($list_t_begin) > 1) : ?>
-                                                Tops à terminer
-                                            <?php else : ?>
-                                                Top à terminer
-                                            <?php endif; ?>
-                                        </a>
-                                    </li>
+                                    <?php if ($has_t_begin) : ?>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="homeIcon-tab" data-toggle="tab" href="#tab1" aria-controls="home" role="tab" aria-selected="true">
+                                                <?php if (count($list_t_begin) > 1) : ?>
+                                                    Tops à terminer
+                                                <?php else : ?>
+                                                    Top à terminer
+                                                <?php endif; ?>
+                                            </a>
+                                        </li>
+                                    <?php endif; ?>
                                 </ul>
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="tab2" aria-labelledby="profileIcon-tab" role="tabpanel">
@@ -282,10 +290,10 @@ foreach ($list_user_tops as $top) {
                                                             <thead>
                                                                 <tr>
                                                                     <th class="">
-                                                                        <?php if (count($list_t_done) > 1) : ?>
-                                                                            <span class="t-rose"><?php echo count($list_t_done); ?></span> Tops terminés
+                                                                        <?php if ($user_infos['nb_top_vkrz'] > 1) : ?>
+                                                                            <span class="t-rose"><?php echo $user_infos['nb_top_vkrz']; ?></span> Tops terminés
                                                                         <?php else : ?>
-                                                                            <span class="t-rose"><?php echo count($list_t_done); ?></span> Top terminé
+                                                                            <span class="t-rose"><?php echo $user_infos['nb_top_vkrz']; ?></span> Top terminé
                                                                         <?php endif; ?>
                                                                     </th>
                                                                     <th class="text-right">

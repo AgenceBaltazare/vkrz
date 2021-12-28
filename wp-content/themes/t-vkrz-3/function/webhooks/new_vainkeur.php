@@ -5,31 +5,6 @@ function new_vainkeur($user_id){
     $new_user_infos = get_user_infos($_COOKIE["vainkeurz_user_id"]);
     $user_url       = get_author_posts_url($user_id);
 
-    /*
-    // Logguer l'erreur du user sans uuid
-    if (!isset($_COOKIE['vainkeurz_user_id']) || empty($_COOKIE["vainkeurz_user_id"])){
-        // TODO: Logguer une erreur avec des infos (plugin d'inscription, email, uuid, user_id, navigateur, version, os, est-ce qu'il rentre bien dans les fonctions, est-ce que les fonctions s'execute intégrallement)
-    }
-
-    $url    = "https://hook.integromat.com/q6wsg4hejd3k3mveq9nn6ycvwgc5y7kp";
-    $args   = array(
-        'body' => array(
-            'id_vainkeur'       => $new_user_infos['id_vainkeur'],
-            'user_url'          => $user_url,
-            'uuid_user_vkrz'    => $new_user_infos['uuid_user_vkrz'],
-            'pseudo'            => $new_user_infos['pseudo'],
-            'avatar'            => $new_user_infos['avatar'],
-            'user_email'        => $new_user_infos['user_email'],
-            'level'             => $new_user_infos['level'],
-            'level_number'      => $new_user_infos['level_number'],
-            'nb_vote_vkrz'      => $new_user_infos['nb_vote_vkrz'],
-            'nb_top_vkrz'       => $new_user_infos['nb_top_vkrz']
-        )
-    );
-    wp_remote_post($url, $args);
-    */
-
-
     if (isset($_COOKIE["vainkeurz_user_id"]) && !empty($_COOKIE["vainkeurz_user_id"])) {
 
         update_field('uuiduser_user', $_COOKIE["vainkeurz_user_id"], 'user_' . $user_id);

@@ -108,6 +108,8 @@ $top_datas    = get_top_data($id_top);
                                             <input type="email" placeholder="Mon adresse mail" name="email-player-input" id="email-player-input" required>
                                             <input type="hidden" value="<?php echo $id_ranking; ?>" name="ranking" id="ranking">
                                             <input type="hidden" value="<?php echo $uuiduser; ?>" name="uuiduser" id="uuiduser">
+                                            <input type="hidden" value="<?php echo $id_top; ?>" name="top" id="top">
+                                            <input type="hidden" value="<?php echo $id_vainkeur; ?>" name="id_vainkeur" id="id_vainkeur">
                                             <button class="btn" id="btn-coupon">Recevoir mon coupon et participer au tirage au sort</button>
                                         </form>
                                     </div>

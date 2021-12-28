@@ -20,7 +20,7 @@ while ($player->have_posts()) : $player->the_post();
         'post_type'              => 'vainkeur',
         'orderby'                => 'date',
         'order'                  => 'DESC',
-        'posts_per_page'         => 30000,
+        'posts_per_page'         => -1,
         'meta_query' => array(
             array(
                 'key'       => 'uuid_user_vkrz',

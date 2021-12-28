@@ -16,6 +16,7 @@ $(document).ready(function ($) {
                 uuiduser: form.find('#uuiduser').val(),
                 ranking: form.find('#ranking').val(),
                 top: form.find('#top').val(),
+                id_vainkeur: form.find('#id_vainkeur').val()
             }
         }).done(function (response) {
             form.hide();

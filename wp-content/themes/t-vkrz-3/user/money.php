@@ -166,20 +166,21 @@ if ($vainkeur_badges) {
                                                                     </th>
                                                                 </tr>
                                                                 <?php
-                                                                if($vainkeur_badges):
-                                                                foreach ($vainkeur_badges as $badge) : ?>
-                                                                    <tr>
-                                                                        <th>
-                                                                            Trophée : <?php echo $badge->name; ?>
-                                                                        </th>
-                                                                        <th class="text-right">
-                                                                            <?php the_field('recompense_badge', 'badges_' . $badge->term_id); ?>
-                                                                        </th>
-                                                                        <th class="text-right">
-                                                                            <?php the_field('recompense_badge', 'badges_' . $badge->term_id); ?> <span class="va-gem va va-1x"></span>
-                                                                        </th>
-                                                                    </tr>
-                                                                <?php endforeach; endif; ?>
+                                                                if ($vainkeur_badges) :
+                                                                    foreach ($vainkeur_badges as $badge) : ?>
+                                                                        <tr>
+                                                                            <th>
+                                                                                Trophée : <?php echo $badge->name; ?>
+                                                                            </th>
+                                                                            <th class="text-right">
+                                                                                <?php the_field('recompense_badge', 'badges_' . $badge->term_id); ?>
+                                                                            </th>
+                                                                            <th class="text-right">
+                                                                                <?php the_field('recompense_badge', 'badges_' . $badge->term_id); ?> <span class="va-gem va va-1x"></span>
+                                                                            </th>
+                                                                        </tr>
+                                                                <?php endforeach;
+                                                                endif; ?>
                                                                 <tr>
                                                                     <th>
                                                                         Total collecté
@@ -224,10 +225,10 @@ if ($vainkeur_badges) {
                                                                             Créateur : Top créés
                                                                         </th>
                                                                         <th class="text-right">
-                                                                            <span class="text-muted">50 x</span> <?php echo $data_t_created['creator_nb_tops']; ?>
+                                                                            <span class="text-muted">1000 x</span> <?php echo $data_t_created['creator_nb_tops']; ?>
                                                                         </th>
                                                                         <th class="text-right">
-                                                                            <?php echo $data_t_created['creator_nb_tops'] * 50; ?> <span class="va-gem va va-1x"></span>
+                                                                            <?php echo $data_t_created['creator_nb_tops'] * 1000; ?> <span class="va-gem va va-1x"></span>
                                                                         </th>
                                                                     </tr>
                                                                     <tr>
@@ -246,10 +247,10 @@ if ($vainkeur_badges) {
                                                                             Créateur : Votes reçus sur les Tops créés
                                                                         </th>
                                                                         <th class="text-right">
-                                                                            <span class="text-muted">0.5 x</span> <?php echo $data_t_created['creator_all_v']; ?>
+                                                                            <span class="text-muted">0.3 x</span> <?php echo $data_t_created['creator_all_v']; ?>
                                                                         </th>
                                                                         <th class="text-right">
-                                                                            <?php echo round($data_t_created['creator_all_v'] * 0.5); ?> <span class="va-gem va va-1x"></span>
+                                                                            <?php echo round($data_t_created['creator_all_v'] * 0.3); ?> <span class="va-gem va va-1x"></span>
                                                                         </th>
                                                                     </tr>
                                                                     <tr>
