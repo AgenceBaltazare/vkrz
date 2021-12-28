@@ -1,6 +1,12 @@
 <?php
+global $id_top;
+$id_top        = get_the_ID();
 get_header();
 global $user_tops;
+$top_datas          = get_top_data($id_top);
+$creator_id         = get_post_field('post_author', $id_top);
+$creator_uuiduser   = get_field('uuiduser_user', 'user_' . $creator_id);
+$creator_data       = get_user_infos($creator_uuiduser);
 $list_t_already_done = $user_tops['list_user_tops_done_ids'];
 ?>
 <div class="app-content content ">
@@ -167,7 +173,7 @@ $list_t_already_done = $user_tops['list_user_tops_done_ids'];
                                                     <?php endif; ?>
                                                 </div>
                                             </div>
-                                            <div class="card-body eh">
+                                            <div class="card-body eh mb-3-hover">
                                                 <p class="card-text text-primary">
                                                     TOP <?php echo get_field('count_contenders_t', $id_top); ?> : <?php echo get_the_title($id_top); ?>
                                                 </p>
@@ -176,6 +182,54 @@ $list_t_already_done = $user_tops['list_user_tops_done_ids'];
                                                 </h4>
                                             </div>
                                             <a href="<?php the_permalink($id_top); ?>" class="stretched-link"></a>
+                                            <div class="info-top">
+                                                <div class="card-footer p-04">
+                                                    <div class="row meetings align-items-center m-0">
+                                                        <div class="col-4">
+                                                            <div class="infos-card-t info-card-t-v d-flex align-items-center flex-column">
+                                                                <div class="">
+                                                                    <span class="ico va-high-voltage va va-md"></span>
+                                                                </div>
+                                                                <div class="content-body mt-01">
+                                                                    <h4 class="mb-0">
+                                                                        <?php echo $top_datas['nb_votes']; ?>
+                                                                    </h4>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-4">
+                                                            <div class="infos-card-t d-flex align-items-center flex-column">
+                                                                <div class="">
+                                                                    <span class="ico va va-trophy va-md"></span>
+                                                                </div>
+                                                                <div class="content-body mt-01">
+                                                                    <h4 class="mb-0">
+                                                                        <?php echo $top_datas['nb_completed_top']; ?>
+                                                                    </h4>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-4">
+                                                            <div class="infos-card-t d-flex align-items-center infos-card-t-c flex-column">
+                                                                <div class="mb-2px">
+                                                                    <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator_id; ?>" target="_blank">
+                                                                        <div class="avatar me-50">
+                                                                            <img src="<?php echo $creator_data['avatar']; ?>" alt="Avatar" width="38" height="38">
+                                                                        </div>
+                                                                    </a>
+                                                                </div>
+                                                                <div class="content-body mt-01">
+                                                                    <h4 class="mb-0 link-creator">
+                                                                        <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator_id; ?>" target="_blank" class="link-to-creator">
+                                                                            <?php echo $creator_data['pseudo']; ?>
+                                                                        </a>
+                                                                    </h4>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 <?php endif; ?>

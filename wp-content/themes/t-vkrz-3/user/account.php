@@ -189,7 +189,7 @@ foreach ($list_user_tops as $top) {
                                             <div class="card-body">
                                                 <div class="mb-1">
                                                     <span class="icomax">
-                                                        <span class="va-z-20 va-high-voltage va"></span>
+                                                        <span class="va-sm va-high-voltage va"></span>
                                                     </span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">
@@ -208,7 +208,7 @@ foreach ($list_user_tops as $top) {
                                             <div class="card-body">
                                                 <div class="mb-1">
                                                     <span class="icomax">
-                                                        <span class="va-z-20 va va-trophy"></span>
+                                                        <span class="va-sm va va-trophy"></span>
                                                     </span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">

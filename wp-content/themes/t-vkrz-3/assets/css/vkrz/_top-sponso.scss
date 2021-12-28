@@ -206,8 +206,17 @@
 @media (max-width: 768px) {
 
     .participation-content-sponso h1 {
-        font-size: 22px;
-        line-height: 28px;
+        font-size: 20px;
+        line-height: 8px;
+    }
+
+    .info-win {
+        font-size: 12px;
+        line-height: 18px;
+
+        p {
+            margin-bottom: 5px;
+        }
     }
 
     .reseaux-sponso {

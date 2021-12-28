@@ -319,15 +319,15 @@ $top_datas    = get_top_data($id_top);
                     <div class="icons-navbar">
                         <?php if (!get_field('private_t', $id_top)) : ?>
                             <div class="ico-nav-mobile box-info-show">
-                                <span class="ico va va-placard va-lg"></span> <span class="hide-spot">Infos <span class="hide-xs">du Top</span></span>
+                                <span class="hide-spot">Infos <span class="hide-xs">du Top</span></span>
                             </div>
                             <div class="ico-nav-mobile share-content-show">
-                                <span class="ico va va-megaphone va-lg"></span>  <span class="hide-spot">Partager</span>
+                                <span class="hide-spot">Partager</span>
                             </div>
                         <?php endif; ?>
                         <div class="ico-nav-mobile">
                             <a href="<?php echo get_the_permalink(get_page_by_path('discuz')) . '?id_top=' . $id_top; ?>">
-                                <span class="ico va va-speech-balloon va-lg"></span> <span class="hide-spot">Commenter</span>
+                                <span class="hide-spot">Commenter</span>
                             </a>
                         </div>
 
@@ -335,13 +335,13 @@ $top_datas    = get_top_data($id_top);
                             <?php if (get_field('uuid_user_r', $id_ranking) == $uuiduser) : ?>
                                 <div class="ico-nav-mobile">
                                     <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" href="#" class="confirm_delete">
-                                        <span class="ico">🆕</span> <span class="hide-spot">Recommencer</span>
+                                        <span class="hide-spot">Recommencer</span>
                                     </a>
                                 </div>
                             <?php else : ?>
                                 <div class="ico-nav-mobile">
                                     <a href="<?php echo $top_infos['top_url']; ?>">
-                                        <span class="ico">⚡️</span> <span class="hide-spot">Faire mon Top</span>
+                                        <span class="hide-spot">Faire mon Top</span>
                                     </a>
                                 </div>
                             <?php endif; ?>

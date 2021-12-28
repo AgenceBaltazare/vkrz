@@ -250,7 +250,7 @@ if (is_single() && get_post_type() == "tournoi") {
         </div>
 
         <ul class="nav navbar-nav align-items-center justify-content-around">
-            <li class="nav-item dropdown dropdown-cart">
+            <li class="nav-item dropdown dropdown-cart mt-3px">
                 <a class="nav-link d-flex flex-column align-items-center" href="javascript:void(0);" data-toggle="dropdown">
                     <span class="ico text-center va-gem va va-lg"></span>
                     <span class="value-user-stats user-total-vote-value">

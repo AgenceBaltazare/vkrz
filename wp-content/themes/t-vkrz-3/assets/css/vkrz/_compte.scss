@@ -331,3 +331,13 @@ textarea{
     height: 60px !important;
   }
 }
+
+@media (max-width: 500px) {
+  .profile-img{
+    height: 60px !important;
+    width: 60px !important;
+  }
+  .profile-title h2 {
+    font-size: 1rem !important;
+  }
+}
