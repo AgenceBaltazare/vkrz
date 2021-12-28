@@ -69,6 +69,7 @@ if (isset($_GET['id_top']) && $_GET['id_top'] != "") {
                             $list_players_unique = array_unique($list_players);
                             $gagnant             = array_rand($list_players_unique);
                             $realgagnant         = $list_players_unique[$gagnant];
+                            update_vainkeur_badge($realgagnant, "Chanceux");
                             ?>
 
                             <section class="app-user-view mt-2">
