@@ -1,6 +1,9 @@
 <?php
 
 function update_vainkeur_badge($id_vainkeur, $badge_name) {
+
+
+
     $vainkeur_badges = get_the_terms($id_vainkeur, 'badges');
     $badge           = get_term_by('name', $badge_name, 'badges');
 
@@ -11,15 +14,22 @@ function update_vainkeur_badge($id_vainkeur, $badge_name) {
         $recompense_badge  = get_field('recompense_badge', 'badges_' . $badge->term_id);
         $user_money        = get_field('money_vkrz', $id_vainkeur);
         update_field('money_vkrz', $user_money + $recompense_badge, $id_vainkeur);
+        // Si un utilisateur change de badge, alors on va faire l'alerte. On peut
+        return [
+            'user_has_new_badge' => true,
+            'new_badge' => null,
+        ];
     }
 
     if (is_user_logged_in()) {
         check_user_level($id_vainkeur);
     }
 
-    echo "<script>
-        alert('do JS');
-    </script>";
+    // Si non, on retourne un tableau de data vide
+    return [
+        'user_has_new_badge' => true,
+        'new_badge' => null,
+    ];
 }
 
 function get_vainkeur_badge($vainkeur_id, $badge_name) {

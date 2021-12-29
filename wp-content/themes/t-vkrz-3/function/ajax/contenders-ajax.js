@@ -44,7 +44,12 @@ $(document).ready(function ($) {
             .done(function (response) {
 
                 let data = JSON.parse(response);
-
+                //Normalement ici y'a la badge data
+                console.log(data.badge_data);
+                if(data.badge_data && data.badge_data.user_has_new_badge){
+                    // dans l'objet le nouveau badge
+                    console.log(data.badge_data.new_badge);
+                }
                 if(data.level_up !== undefined && data.level_up){
                     $('.dropdown-user-link .user-niveau').html(data.user_level_icon);
                     toastr['success']('Tu passes au niveau ' + data.user_level_icon, 

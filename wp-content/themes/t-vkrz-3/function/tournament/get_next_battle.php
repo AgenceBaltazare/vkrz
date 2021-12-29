@@ -3,6 +3,8 @@ function get_next_duel($id_ranking, $id_top, $current_id_vainkeur){
 
     global $id_vainkeur;
     $next_duel          = [];
+    // init d'une variable vide pour la donnée des badges
+    $badge_data = [];
     $is_next_duel       = true;
     $contender_1        = 0;
     $contender_2        = 0;
@@ -126,14 +128,14 @@ function get_next_duel($id_ranking, $id_top, $current_id_vainkeur){
                     // Badge : Top with at least 50 contenders
                     if (!get_vainkeur_badge($current_id_vainkeur, "BIG TOP")) {
                         if ($nb_contenders >= 50) {
-                            update_vainkeur_badge($current_id_vainkeur, "BIG TOP");
+                            $badge_data = update_vainkeur_badge($current_id_vainkeur, "BIG TOP");
                         }
                     }
 
                     // Badge : Top with at least 100 contenders
                     if (!get_vainkeur_badge($current_id_vainkeur, "BIG BIG TOP")) {
                         if ($nb_contenders >= 100) {
-                            update_vainkeur_badge($current_id_vainkeur, "BIG BIG TOP");
+                            $badge_data = update_vainkeur_badge($current_id_vainkeur, "BIG BIG TOP");
                         }
                     }
 
@@ -272,14 +274,14 @@ function get_next_duel($id_ranking, $id_top, $current_id_vainkeur){
                         // Badge : Top with at least 50 contenders
                         if (!get_vainkeur_badge($current_id_vainkeur, "BIG TOP")) {
                             if ($nb_contenders >= 50) {
-                                update_vainkeur_badge($current_id_vainkeur, "BIG TOP");
+                                $badge_data = update_vainkeur_badge($current_id_vainkeur, "BIG TOP");
                             }
                         }
 
                         // Badge : Top with at least 100 contenders
                         if (!get_vainkeur_badge($current_id_vainkeur, "BIG BIG TOP")) {
                             if ($nb_contenders >= 100) {
-                                update_vainkeur_badge($current_id_vainkeur, "BIG BIG TOP");
+                                $badge_data = update_vainkeur_badge($current_id_vainkeur, "BIG BIG TOP");
                             }
                         }
                     }
@@ -321,14 +323,14 @@ function get_next_duel($id_ranking, $id_top, $current_id_vainkeur){
                     // Badge : Top with at least 50 contenders
                     if (!get_vainkeur_badge($current_id_vainkeur, "BIG TOP")) {
                         if ($nb_contenders >= 50) {
-                            update_vainkeur_badge($current_id_vainkeur, "BIG TOP");
+                            $badge_data = update_vainkeur_badge($current_id_vainkeur, "BIG TOP");
                         }
                     }
 
                     // Badge : Top with at least 100 contenders
                     if (!get_vainkeur_badge($current_id_vainkeur, "BIG BIG TOP")) {
                         if ($nb_contenders >= 100) {
-                            update_vainkeur_badge($current_id_vainkeur, "BIG BIG TOP");
+                            $badge_data = update_vainkeur_badge($current_id_vainkeur, "BIG BIG TOP");
                         }
                     }
                 }
@@ -381,14 +383,14 @@ function get_next_duel($id_ranking, $id_top, $current_id_vainkeur){
                     // Badge : Top with at least 50 contenders
                     if (!get_vainkeur_badge($current_id_vainkeur, "BIG TOP")) {
                         if ($nb_contenders >= 50) {
-                            update_vainkeur_badge($current_id_vainkeur, "BIG TOP");
+                            $badge_data = update_vainkeur_badge($current_id_vainkeur, "BIG TOP");
                         }
                     }
 
                     // Badge : Top with at least 100 contenders
                     if (!get_vainkeur_badge($current_id_vainkeur, "BIG BIG TOP")) {
                         if ($nb_contenders >= 100) {
-                            update_vainkeur_badge($current_id_vainkeur, "BIG BIG TOP");
+                            $badge_data = update_vainkeur_badge($current_id_vainkeur, "BIG BIG TOP");
                         }
                     }
                 }
@@ -428,6 +430,7 @@ function get_next_duel($id_ranking, $id_top, $current_id_vainkeur){
         'nb_contenders',
         'id_top',
         'id_ranking',
-        'current_id_vainkeur'
+        'current_id_vainkeur',
+        'badge_data'
     );
 }
