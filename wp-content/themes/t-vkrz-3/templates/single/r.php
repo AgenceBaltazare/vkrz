@@ -24,6 +24,11 @@ if (is_user_logged_in() && env() != "local") {
 $user_ranking = get_user_ranking($id_ranking);
 $url_ranking  = get_the_permalink($id_ranking);
 $top_datas    = get_top_data($id_top);
+$get_top_type = get_the_terms($id_top, 'type');
+$types_top     = array();
+foreach ($get_top_type as $type_top) {
+    array_push($types_top, $type_top->slug);
+}
 ?>
 <div class="app-content content cover" style="background: url(<?php echo $top_infos['top_cover']; ?>) center center no-repeat">
     <div class="content-overlay"></div>
@@ -117,18 +122,19 @@ $top_datas    = get_top_data($id_top);
 
                                             <div class="animate__fadeInUp animate__animated animate__delay-2s">
 
-                                                <?php if (get_field('private_t', $id_top)) : ?>
+                                                <?php if (!in_array('private', $types_top)) : ?>
+
                                                     <div class="separate mt-1 mb-2 d-block d-sm-none"></div>
 
                                                     <div class="card">
                                                         <div class="card-body">
                                                             <h2 class="stats-mondiales mb-0">
-                                                                <b>Stats globales :</b>
-                                                                <?php echo $top_datas['nb_completed_top']; ?> 🏆 <?php echo $top_datas['nb_votes']; ?> ⚡️
+                                                                <b>Stats mondiales :</b>
+                                                                <?php echo $top_datas['nb_completed_top']; ?> 🏆 <span class="space"></span> <?php echo $top_datas['nb_votes']; ?> ⚡️
                                                             </h2>
                                                             <div class="mt-1">
                                                                 <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_top; ?>" class="w-100 btn btn-primary waves-effect">
-                                                                    <span class="ico">🌎</span> Voir le Top global
+                                                                    <span class="ico">🌎</span> Voir le Top mondial
                                                                 </a>
                                                             </div>
                                                             <h2 class="stats-mondiales mt-2 mb-0">
@@ -137,52 +143,19 @@ $top_datas    = get_top_data($id_top);
                                                                 $similar = get_user_percent(get_field('uuid_user_r', $id_ranking), $id_top);
                                                                 echo $similar['percent'] . "％";
                                                                 ?>
+                                                                <?php if ($similar['nb_similar'] == 1) : ?>
+                                                                    <small>(<?php echo $similar['nb_similar']; ?> podium identique)</small>
+                                                                <?php elseif ($similar['nb_similar'] > 1) : ?>
+                                                                    <small>(<?php echo $similar['nb_similar']; ?> podiums identiques)</small>
+                                                                <?php endif; ?>
                                                             </h2>
                                                             <div class="mt-1">
-                                                                <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_top; ?>" class="w-100 btn btn-outline-primary waves-effect">
-                                                                    <span class="ico ico-reverse">👀</span> voir les autres Tops
+                                                                <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_top; ?>" class="d-flex align-items-center w-100 btn btn-outline-primary waves-effect">
+                                                                    <span class="ico ico-reverse">👀</span> Voir le classement des autres utilisateurs
                                                                 </a>
                                                             </div>
                                                         </div>
                                                     </div>
-
-                                                <?php else : ?>
-
-                                                    <?php if (get_post_status($id_top) != "draft") : ?>
-                                                        <div class="separate mt-1 mb-2 d-block d-sm-none"></div>
-
-                                                        <div class="card">
-                                                            <div class="card-body">
-                                                                <h2 class="stats-mondiales mb-0">
-                                                                    <b>Stats mondiales :</b>
-                                                                    <?php echo $top_datas['nb_completed_top']; ?> 🏆 <span class="space"></span> <?php echo $top_datas['nb_votes']; ?> ⚡️
-                                                                </h2>
-                                                                <div class="mt-1">
-                                                                    <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_top; ?>" class="w-100 btn btn-primary waves-effect">
-                                                                        <span class="ico">🌎</span> Voir le Top mondial
-                                                                    </a>
-                                                                </div>
-                                                                <h2 class="stats-mondiales mt-2 mb-0">
-                                                                    <b>Ressemblance :</b>
-                                                                    <?php
-                                                                    $similar = get_user_percent(get_field('uuid_user_r', $id_ranking), $id_top);
-                                                                    echo $similar['percent'] . "％";
-                                                                    ?>
-                                                                    <?php if ($similar['nb_similar'] == 1) : ?>
-                                                                        <small>(<?php echo $similar['nb_similar']; ?> podium identique)</small>
-                                                                    <?php elseif ($similar['nb_similar'] > 1) : ?>
-                                                                        <small>(<?php echo $similar['nb_similar']; ?> podiums identiques)</small>
-                                                                    <?php endif; ?>
-                                                                </h2>
-                                                                <div class="mt-1">
-                                                                    <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_top; ?>" class="d-flex align-items-center w-100 btn btn-outline-primary waves-effect">
-                                                                        <span class="ico ico-reverse">👀</span> Voir le classement des autres utilisateurs
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    <?php endif; ?>
-
                                                 <?php endif; ?>
 
                                                 <?php
@@ -317,17 +290,17 @@ $top_datas    = get_top_data($id_top);
             <div class="row">
                 <div class="col-md-9">
                     <div class="icons-navbar">
-                        <?php if (!get_field('private_t', $id_top)) : ?>
+                        <?php if (!in_array('private', $types_top)) : ?>
                             <div class="ico-nav-mobile box-info-show">
-                                <span class="hide-spot">Infos <span class="hide-xs">du Top</span></span>
+                                <span class="ico va va-placard va-lg hide-xs"></span> <span class="hide-spot">Infos <span class="hide-xs">du Top</span></span>
                             </div>
                             <div class="ico-nav-mobile share-content-show">
-                                <span class="hide-spot">Partager</span>
+                                <span class="ico va va-megaphone va-lg hide-xs"></span> <span class="hide-spot">Partager</span>
                             </div>
                         <?php endif; ?>
                         <div class="ico-nav-mobile">
                             <a href="<?php echo get_the_permalink(get_page_by_path('discuz')) . '?id_top=' . $id_top; ?>">
-                                <span class="hide-spot">Commenter</span>
+                                <span class="ico va va-speech-balloon va-lg hide-xs"></span> <span class="hide-spot">Commenter</span>
                             </a>
                         </div>
 
@@ -335,7 +308,7 @@ $top_datas    = get_top_data($id_top);
                             <?php if (get_field('uuid_user_r', $id_ranking) == $uuiduser) : ?>
                                 <div class="ico-nav-mobile">
                                     <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" href="#" class="confirm_delete">
-                                        <span class="hide-spot">Recommencer</span>
+                                        <span class="ico hide-xs">🆕</span> <span class="hide-spot">Recommencer</span>
                                     </a>
                                 </div>
                             <?php else : ?>
@@ -432,7 +405,7 @@ $top_datas    = get_top_data($id_top);
         </div>
         <div class="box-info-content">
             <h3>
-                <span class="ico va va-placard va-lg"></span> 
+                <span class="ico va va-placard va-lg"></span>
                 Tous les infos du Top
             </h3>
             <div class="close-share">

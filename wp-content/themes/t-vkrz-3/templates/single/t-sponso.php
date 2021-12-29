@@ -286,20 +286,20 @@ $creator_data       = get_user_infos($creator_uuiduser);
     <nav class="navbar mobile-navbar">
         <div class="icons-navbar">
             <div class="ico-nav-mobile box-info-show">
-                <span class="hide-spot">Infos <span class="hide-xs">du Top</span></span>
+                <span class="ico va va-placard va-lg hide-xs"></span> <span class="hide-spot">Infos <span class="hide-xs">du Top</span></span>
             </div>
             <div class="ico-nav-mobile share-natif-top">
-                <span class="hide-spot">Partager</span>
+                <span class="ico va va-megaphone va-lg hide-xs"></span> <span class="hide-spot">Partager</span>
             </div>
             <div class="ico-nav-mobile">
                 <a href="<?php echo get_the_permalink(get_page_by_path('discuz')) . '?id_top=' . $id_top; ?>">
-                    <span class="hide-spot">Commenter</span>
+                    <span class="ico va va-speech-balloon va-lg hide-xs"></span> <span class="hide-spot">Commenter</span>
                 </a>
             </div>
             <?php if (get_post_status($id_top) != "draft") : ?>
                 <div class="ico-nav-mobile">
                     <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" href="#" class="confirm_delete">
-                        <span class="hide-spot">Recommencer</span>
+                        <span class="ico hide-xs">🆕</span> <span class="hide-spot">Recommencer</span>
                     </a>
                 </div>
             <?php endif; ?>

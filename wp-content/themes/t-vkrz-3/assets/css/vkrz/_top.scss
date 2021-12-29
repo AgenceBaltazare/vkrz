@@ -134,8 +134,9 @@
 }
 
 .swiper-slide:hover {
-    z-index:999;
+    z-index: 999;
 }
+
 .min-tournoi {
     -webkit-transition: all .2s ease-in-out;
     -moz-transition: all .2s ease-in-out;
@@ -143,15 +144,6 @@
     -o-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
     padding: 0;
-    &:hover {
-        transform: scale(1.25);
-        margin-bottom: 2.5rem;
-        background-color: #1D1439;
-        z-index:999;
-        .mb-3-hover {
-            margin-bottom:2.7rem !important;
-        }
-    }
 
     .cov-illu {
         min-height: 120px;
@@ -199,9 +191,57 @@
                 }
             }
         }
+
+        .info-top {
+            display: flex;
+            text-align: center;
+            position: absolute;
+            bottom: 0;
+            left: 20px;
+            right: 20px;
+            padding: 5px 10px;
+            z-index: 99;
+            opacity: 0;
+            transition: all 0.2s ease-in;
+
+            .avatar-infomore {
+                margin-right: 5px;
+            }
+
+            .mr-10px {
+                margin-right: 5px;
+            }
+
+            .info-top-col{
+                padding: 0 10px;
+            }
+
+            .avatar img {
+                width: 20px;
+                height: 20px;
+            }
+
+            h4 {
+                font-size: 12px;
+            }
+
+            .content-body .link-creator {
+                font-size: 9px;
+            }
+
+            .content-body .link-to-creator {
+                color: #fff;
+            }
+        }
     }
 
     &:hover {
+        transform: scale(1.05);
+        
+        .info-top{
+            opacity: 1;
+        }
+
         .cov-illu {
             .badge {
                 display: none;
@@ -221,10 +261,6 @@
                 }
             }
         }
-
-        .info-top {
-            display: block;
-        }
     }
 
     .card-title {
@@ -233,6 +269,7 @@
 
     .card-body {
         padding: 10px;
+        position: relative;
 
         p {
             margin-bottom: 5px;
@@ -240,36 +277,6 @@
 
         h4 {
             font-size: 15px;
-        }
-    }
-
-    .info-top {
-        display: none;
-        text-align: center;
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        .p-04 {
-            padding: 0.4rem;
-        }
-        .mt-01 {
-            margin-top: 0.1rem;
-        }
-        .mb-2px {
-            margin-bottom:2px;
-        }
-        .avatar img {
-            width: 20px;
-            height: 20px;
-        }
-        h4 {
-            font-size: 12px;
-        }
-        .content-body .link-creator {
-            font-size: 9px;
-        }
-        .content-body .link-to-creator {
-            color: #fff;
         }
     }
 }

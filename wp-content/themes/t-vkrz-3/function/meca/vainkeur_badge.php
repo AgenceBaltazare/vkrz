@@ -16,6 +16,10 @@ function update_vainkeur_badge($id_vainkeur, $badge_name) {
     if (is_user_logged_in()) {
         check_user_level($id_vainkeur);
     }
+
+    echo "<script>
+        alert('do JS');
+    </script>";
 }
 
 function get_vainkeur_badge($vainkeur_id, $badge_name) {
