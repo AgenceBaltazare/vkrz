@@ -32,7 +32,7 @@ foreach ($get_top_type as $type_top) {
     <div class="min-tournoi card scaler">
         <div class="cov-illu cover" style="background: url(<?php echo $illu; ?>) center center no-repeat">
             <?php if ($type_top == "sponso") : ?>
-                <span class="badge badge-light-rose ml-0">Top sponsorisé</span>
+                <span class="badge badge-light-rose ml-0">Top sponso</span>
             <?php endif; ?>
             <?php if ($state == "done") : ?>
                 <div class="badge badge-success">Terminé</div>
@@ -44,18 +44,15 @@ foreach ($get_top_type as $type_top) {
             <div class="voile">
                 <?php if ($state == "done") : ?>
                     <div class="spoun">
-                        🏆
-                        <h5>Voir mon TOP</h5>
+                        <h5>Voir mon 🏆</h5>
                     </div>
                 <?php elseif ($state == "begin") : ?>
                     <div class="spoun">
-                        ⚔️
                         <h5>Terminer</h5>
                     </div>
                 <?php else : ?>
                     <div class="spoun">
-                        ⚔️
-                        <h5>Faire mon Top</h5>
+                        <h5>Faire mon 🏆</h5>
                     </div>
                 <?php endif; ?>
             </div>

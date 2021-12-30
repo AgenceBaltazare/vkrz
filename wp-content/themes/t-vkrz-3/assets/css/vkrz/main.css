@@ -1248,9 +1248,10 @@ html .content {
   transition: all 0.2s ease-in-out;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   flex-direction: column;
   z-index: 1;
+  padding: 30px 0 0 0;
 }
 .min-tournoi .cov-illu .voile .spoun {
   display: none;
@@ -1267,7 +1268,7 @@ html .content {
   margin-top: 10px;
   text-align: center;
 }
-.min-tournoi .cov-illu .info-top {
+.min-tournoi .info-top {
   display: flex;
   text-align: center;
   position: absolute;
@@ -1279,26 +1280,26 @@ html .content {
   opacity: 0;
   transition: all 0.2s ease-in;
 }
-.min-tournoi .cov-illu .info-top .avatar-infomore {
+.min-tournoi .info-top .avatar-infomore {
   margin-right: 5px;
 }
-.min-tournoi .cov-illu .info-top .mr-10px {
+.min-tournoi .info-top .mr-10px {
   margin-right: 5px;
 }
-.min-tournoi .cov-illu .info-top .info-top-col {
+.min-tournoi .info-top .info-top-col {
   padding: 0 10px;
 }
-.min-tournoi .cov-illu .info-top .avatar img {
+.min-tournoi .info-top .avatar img {
   width: 20px;
   height: 20px;
 }
-.min-tournoi .cov-illu .info-top h4 {
+.min-tournoi .info-top h4 {
   font-size: 12px;
 }
-.min-tournoi .cov-illu .info-top .content-body .link-creator {
+.min-tournoi .info-top .content-body .link-creator {
   font-size: 9px;
 }
-.min-tournoi .cov-illu .info-top .content-body .link-to-creator {
+.min-tournoi .info-top .content-body .link-to-creator {
   color: #fff;
 }
 .min-tournoi:hover {

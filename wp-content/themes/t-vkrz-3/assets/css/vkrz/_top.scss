@@ -169,9 +169,10 @@
             transition: all .2s ease-in-out;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: start;
             flex-direction: column;
             z-index: 1;
+            padding: 30px 0 0 0;
 
             .spoun {
                 display: none;
@@ -191,54 +192,54 @@
                 }
             }
         }
+    }
 
-        .info-top {
-            display: flex;
-            text-align: center;
-            position: absolute;
-            bottom: 0;
-            left: 20px;
-            right: 20px;
-            padding: 5px 10px;
-            z-index: 99;
-            opacity: 0;
-            transition: all 0.2s ease-in;
+    .info-top {
+        display: flex;
+        text-align: center;
+        position: absolute;
+        bottom: 0;
+        left: 20px;
+        right: 20px;
+        padding: 5px 10px;
+        z-index: 99;
+        opacity: 0;
+        transition: all 0.2s ease-in;
 
-            .avatar-infomore {
-                margin-right: 5px;
-            }
+        .avatar-infomore {
+            margin-right: 5px;
+        }
 
-            .mr-10px {
-                margin-right: 5px;
-            }
+        .mr-10px {
+            margin-right: 5px;
+        }
 
-            .info-top-col{
-                padding: 0 10px;
-            }
+        .info-top-col {
+            padding: 0 10px;
+        }
 
-            .avatar img {
-                width: 20px;
-                height: 20px;
-            }
+        .avatar img {
+            width: 20px;
+            height: 20px;
+        }
 
-            h4 {
-                font-size: 12px;
-            }
+        h4 {
+            font-size: 12px;
+        }
 
-            .content-body .link-creator {
-                font-size: 9px;
-            }
+        .content-body .link-creator {
+            font-size: 9px;
+        }
 
-            .content-body .link-to-creator {
-                color: #fff;
-            }
+        .content-body .link-to-creator {
+            color: #fff;
         }
     }
 
     &:hover {
         transform: scale(1.05);
-        
-        .info-top{
+
+        .info-top {
             opacity: 1;
         }
 
