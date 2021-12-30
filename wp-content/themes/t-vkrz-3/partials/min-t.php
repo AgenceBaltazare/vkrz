@@ -1,14 +1,13 @@
 <?php
 global $user_tops;
 global $id_top;
-$id_top        = get_the_ID();
+$id_top             = get_the_ID();
 $top_datas          = get_top_data($id_top);
 $creator_id         = get_post_field('post_author', $id_top);
 $creator_uuiduser   = get_field('uuiduser_user', 'user_' . $creator_id);
 $creator_data       = get_user_infos($creator_uuiduser);
-$list_user_tops   = $user_tops['list_user_tops'];
+$list_user_tops     = $user_tops['list_user_tops'];
 $state            = "";
-$id_top           = get_the_ID();
 $illu             = get_the_post_thumbnail_url($id_top, 'medium');
 if (is_home()) {
     $class        = "swiper-slide";
