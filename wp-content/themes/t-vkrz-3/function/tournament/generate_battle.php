@@ -33,9 +33,9 @@ function genererate_tournament_response($top_infos, $user_levels_infos = []){
         'nb_user_votes'     => $nb_user_votes,
         'user_ranking_html' => $user_ranking_html,
         'is_next_duel'      => $is_next_duel,
-        'current_id_vainkeur' => $current_id_vainkeur
+        'current_id_vainkeur' => $current_id_vainkeur,
+        'badge_data' => $badge_data
     );
-
     $response = array_merge($response, $user_levels_infos);
 
     return die(json_encode($response));

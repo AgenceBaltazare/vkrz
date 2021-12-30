@@ -47,15 +47,6 @@ $(document).ready(function ($) {
                 
                 if(data.level_up !== undefined && data.level_up){
                     $('.dropdown-user-link .user-niveau').html(data.user_level_icon);
-                    toastr['success']('Tu passes au niveau ' + data.user_level_icon, 
-                        'Félicitations', {
-                            closeButton: true,
-                            tapToDismiss: true,
-                            timeOut: 6000,
-                            progressBar: true,
-                            showMethod: 'slideDown',
-                            hideMethod: 'slideUp'
-                    });
                     window.dataLayer.push({
                         'event': 'track_event',
                         'event_name': 'level_up',
