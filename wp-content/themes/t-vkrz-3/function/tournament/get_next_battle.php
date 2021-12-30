@@ -3,8 +3,6 @@ function get_next_duel($id_ranking, $id_top, $current_id_vainkeur){
 
     global $id_vainkeur;
     $next_duel          = [];
-    // init d'une variable vide pour la donnée des badges
-    $badge_data = [];
     $is_next_duel       = true;
     $contender_1        = 0;
     $contender_2        = 0;
@@ -431,6 +429,5 @@ function get_next_duel($id_ranking, $id_top, $current_id_vainkeur){
         'id_top',
         'id_ranking',
         'current_id_vainkeur',
-        'badge_data'
     );
 }
