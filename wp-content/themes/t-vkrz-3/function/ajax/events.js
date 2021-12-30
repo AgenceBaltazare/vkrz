@@ -25,7 +25,7 @@ $(document).ready(function () {
                 ev.title, {
                     closeButton: true,
                     tapToDismiss: true,
-                    timeOut: 6000,
+                    timeOut: 4000,
                     progressBar: true,
                     showMethod: 'slideDown',
                     hideMethod: 'slideUp',
