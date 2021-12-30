@@ -194,7 +194,7 @@ $list_t_already_done = $user_tops['list_user_tops_done_ids'];
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="info-top-col">
+                                                    <div class="info-top-col hide-xs">
                                                         <div class="infos-card-t d-flex align-items-center infos-card-t-c">
                                                             <div class="avatar-infomore">
                                                                 <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator_id; ?>" target="_blank">
