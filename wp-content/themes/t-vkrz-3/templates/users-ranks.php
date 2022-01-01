@@ -8,6 +8,7 @@ if (isset($_GET['id_top'])) {
     header('Location: ' . get_bloginfo('url'));
 }
 get_header();
+global $id_vainkeur;
 global $top_infos;
 $top_datas = get_top_data($id_top);
 ?>
@@ -31,13 +32,13 @@ $top_datas = get_top_data($id_top);
                 <div class="row">
                     <div class="col-md-8">
                         <?php
-                        $all_users_ranks_of_t       = new WP_Query(array(
-                            'post_type' => 'classement',
-                            'posts_per_page' => '-1',
-                            'post_status' => 'publish',
-                            'ignore_sticky_posts'    => true,
-                            'update_post_meta_cache' => false,
-                            'no_found_rows'          => true,
+                        $all_users_ranks_of_t = new WP_Query(array(
+                            'post_type'                     => 'classement',
+                            'posts_per_page'                => '-1',
+                            'post_status'                   => 'publish',
+                            'ignore_sticky_posts'           => true,
+                            'update_post_meta_cache'        => false,
+                            'no_found_rows'                 => true,
                             'meta_query' => array(
                                 'relation' => 'AND',
                                 array(
@@ -46,16 +47,15 @@ $top_datas = get_top_data($id_top);
                                     'compare'   => '=',
                                 ),
                                 array(
-                                    'key' => 'id_tournoi_r',
-                                    'value' => $id_top,
-                                    'compare' => '=',
+                                    'key'       => 'id_tournoi_r',
+                                    'value'     => $id_top,
+                                    'compare'   => '=',
                                 )
                             )
                         ));
                         ?>
                         <section id="profile-info">
-                            <?php
-                            if ($all_users_ranks_of_t->have_posts()) : ?>
+                            <?php if ($all_users_ranks_of_t->have_posts()) : ?>
                                 <div class="row" id="table-bordered">
                                     <div class="col-12">
                                         <div class="card">
@@ -77,7 +77,6 @@ $top_datas = get_top_data($id_top);
                                                         <tbody>
                                                             <?php while ($all_users_ranks_of_t->have_posts()) : $all_users_ranks_of_t->the_post(); ?>
                                                                 <tr>
-
                                                                     <td class="vainkeur-table">
                                                                         <?php
                                                                         $id_rank                 = get_the_ID();
@@ -120,10 +119,10 @@ $top_datas = get_top_data($id_top);
                                                                                 <i>Anonyme</i>
                                                                             <?php endif; ?>
                                                                             <!--
-                                                                        UUID    : <?php the_field('uuid_user_r', $id_rank); ?>
-                                                                        ID rank : <?php echo $id_rank; ?>
-                                                                        Date    : <?php echo get_the_date('d/m/Y - H:i:s', $id_rank); ?>
-                                                                        -->
+                                                                            UUID    : <?php the_field('uuid_user_r', $id_rank); ?>
+                                                                            ID rank : <?php echo $id_rank; ?>
+                                                                            Date    : <?php echo get_the_date('d/m/Y - H:i:s', $id_rank); ?>
+                                                                            -->
                                                                         </span>
                                                                     </td>
                                                                     <td>
@@ -291,19 +290,21 @@ $top_datas = get_top_data($id_top);
                                 </div>
                             </div>
 
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title">
-                                        <span class="ico va va-victory-hand va-lg"></span> Participe à ce Top
-                                    </h4>
-                                    <h6 class="card-subtitle text-muted mb-1">
-                                        Toi aussi fais ton Top afin de faire bouger les positions !
-                                    </h6>
-                                    <a href="<?php the_permalink($id_top); ?>" class="btn btn-outline-primary waves-effect">
-                                        Faire mon propre Top
-                                    </a>
+                            <?php if (!get_top_done_by_current_vainkeur($id_top, $id_vainkeur)) : ?>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title">
+                                            <span class="ico va va-victory-hand va-lg"></span> Participe à ce Top
+                                        </h4>
+                                        <h6 class="card-subtitle text-muted mb-1">
+                                            Toi aussi fais ton Top afin de faire bouger les positions !
+                                        </h6>
+                                        <a href="<?php the_permalink($id_top); ?>" class="btn btn-outline-primary waves-effect">
+                                            Faire mon propre Top
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
+                            <?php endif; ?>
 
                         </div>
                     </div>

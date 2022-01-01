@@ -167,13 +167,6 @@ $contenders_ranking   = get_contenders_ranking($id_top);
                                 <div class="col-6 col-sm-12">
                                     <div class="card text-center">
                                         <div class="card-body">
-                                            <div class="pricing-badge text-right">
-                                                <div class="badge badge-pill badge-light-primary">
-                                                    <a href="<?php echo get_the_permalink(get_page_by_path('discuz')) . '?id_top=' . $id_top; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir ou laisser un com">
-                                                        <span class="va va-writing-hand va-lg"></span>
-                                                    </a>
-                                                </div>
-                                            </div>
                                             <div class="ico-stats">
                                                 <span class="ico4 va va-speech-balloon va-md"></span>
                                             </div>
@@ -187,6 +180,9 @@ $contenders_ranking   = get_contenders_ranking($id_top);
                                                     Commentaires
                                                 <?php endif; ?>
                                             </p>
+                                            <a href="<?php echo get_the_permalink(get_page_by_path('discuz')) . '?id_top=' . $id_top; ?>" class="btn btn-outline-primary waves-effect">
+                                                Commenter
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -194,7 +190,7 @@ $contenders_ranking   = get_contenders_ranking($id_top);
                                     <div class="card text-center">
                                         <div class="card-body">
                                             <div class="ico-stats">
-                                                <span class="ico4 va va-birthday-cake va-lg"></span>
+                                                <span class="ico4 va va-birthday-cake va-md"></span>
                                             </div>
                                             <h2 class="font-weight-bolder">
                                                 <?php
@@ -234,6 +230,24 @@ $contenders_ranking   = get_contenders_ranking($id_top);
                                         </div>
                                     </div>
                                 </div>
+
+                                <?php if (get_top_done_by_current_vainkeur($id_top, $id_vainkeur)) : ?>
+                                    <div class="col-12">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h4 class="card-title mt-1">
+                                                    <span class="ico va va-victory-hand va-lg"></span> Participe à ce Top
+                                                </h4>
+                                                <h6 class="card-subtitle text-muted mb-1 text-center pr-1 pl-1">
+                                                    Toi aussi fais ton Top afin de faire bouger les positions !
+                                                </h6>
+                                                <a href="<?php the_permalink($id_top); ?>" class="btn btn-outline-primary waves-effect">
+                                                    Faire mon propre Top
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
