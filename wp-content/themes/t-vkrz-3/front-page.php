@@ -1,12 +1,6 @@
 <?php
-global $id_top;
-$id_top        = get_the_ID();
 get_header();
 global $user_tops;
-$top_datas          = get_top_data($id_top);
-$creator_id         = get_post_field('post_author', $id_top);
-$creator_uuiduser   = get_field('uuiduser_user', 'user_' . $creator_id);
-$creator_data       = get_user_infos($creator_uuiduser);
 $list_t_already_done = $user_tops['list_user_tops_done_ids'];
 ?>
 <div class="app-content content ">

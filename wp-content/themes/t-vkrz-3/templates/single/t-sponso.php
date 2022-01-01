@@ -306,7 +306,9 @@ $creator_data       = get_user_infos($creator_uuiduser);
         </div>
     </nav>
     <div class="share-top-content">
-        <h3><span class="ico-social">⚡️</span> Partager le lien du Top</h3>
+        <h3>
+            <span class="ico va va-megaphone va-lg hide-xs"></span> Partager le lien du Top
+        </h3>
         <div class="close-share">
             <i class="fal fa-times"></i>
         </div>
@@ -373,14 +375,10 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                         <?php echo $creator_data['level']; ?>
                                     </span>
                                     <?php if ($creator_data['user_role']  == "administrator") : ?>
-                                        <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
-                                            🦙
-                                        </span>
+                                        <span class="ico va va-vkrzteam va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ"></span>
                                     <?php endif; ?>
                                     <?php if ($creator_data['user_role']  == "administrator" || $creator_data['user_role'] == "author") : ?>
-                                        <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
-                                            👨‍🎤
-                                        </span>
+                                        <span class="ico va va-man-singer va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops"></span>
                                     <?php endif; ?>
                                 </h4>
                             </div>

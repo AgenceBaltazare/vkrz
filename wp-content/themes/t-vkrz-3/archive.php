@@ -1,13 +1,6 @@
 <?php
-global $id_top;
-$id_top        = get_the_ID();
 get_header();
 global $user_tops;
-$top_datas          = get_top_data($id_top);
-$creator_id         = get_post_field('post_author', $id_top);
-$creator_uuiduser   = get_field('uuiduser_user', 'user_' . $creator_id);
-$creator_data       = get_user_infos($creator_uuiduser);
-$list_user_tops     = $user_tops['list_user_tops'];
 $current_cat        = get_queried_object();
 $tops_in_cat        = new WP_Query(array(
     'post_type'                 => 'tournoi',
@@ -20,9 +13,9 @@ $tops_in_cat        = new WP_Query(array(
     'tax_query'                 => array(
         'relation' => 'AND',
         array(
-            'taxonomy' => 'categorie',
+            'taxonomy' => $current_cat->taxonomy,
             'field'    => 'term_id',
-            'terms'    => $current_cat->term_id,
+            'terms'    => $current_cat->term_taxonomy_id,
         ),
         array(
             'taxonomy' => 'type',
@@ -44,7 +37,7 @@ $list_sujets      = array();
             <div class="intro-mobile">
                 <div class="tournament-heading text-center">
                     <h3 class="mb-0 t-titre-tournoi">
-                        <span class="ico"><?php the_field('icone_cat', 'term_' . $current_cat->term_id); ?></span> <?php echo $current_cat->name; ?>
+                        <?php the_field('icone_cat', 'term_' . $current_cat->term_id); ?> <?php echo $current_cat->name; ?>
                     </h3>
                     <h4 class="mb-0">
                         <?php echo $current_cat->description; ?>
@@ -222,9 +215,7 @@ $list_sujets      = array();
             <section class="grid-to-filtre row match-height mt-2">
 
                 <?php $i = 1;
-                while ($tops_in_cat->have_posts()) : $tops_in_cat->the_post(); ?>
-
-                    <?php
+                while ($tops_in_cat->have_posts()) : $tops_in_cat->the_post();
                     $id_top    = get_the_ID();
                     $illu             = get_the_post_thumbnail_url($id_top, 'medium');
                     $user_sinle_top_data = array_search($id_top, array_column($list_user_tops, 'id_top'));
@@ -260,7 +251,7 @@ $list_sujets      = array();
                     foreach ($get_top_type as $type_top) {
                         $type_top = $type_top->slug;
                     }
-                    ?>
+                ?>
                     <div data-filter-item data-filter-name="<?php echo $term_to_search; ?>" class="same-h grid-item col-md-3 col-6 <?php echo $sujet_slug; ?> <?php echo $state; ?> <?php echo $concept_slug; ?> <?php echo $tag_slug; ?>">
                         <div class="min-tournoi card scaler">
                             <div class="cov-illu cover" style="background: url(<?php echo $illu; ?>) center center no-repeat">
@@ -349,7 +340,6 @@ $list_sujets      = array();
                 <?php $i++;
                 endwhile; ?>
             </section>
-
         </div>
     </div>
 </div>

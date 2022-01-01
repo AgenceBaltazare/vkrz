@@ -61,93 +61,98 @@ $top_datas = get_top_data($id_top);
                                         <div class="card">
                                             <div class="card-header">
                                                 <h4 class="card-title pt-1 pb-1">
-                                                    Liste des <?php echo $top_datas['nb_completed_top']; ?> <span class="va va-sports-medal va-lg"></span> créés sur VAINKEURZ pour ce Top !
+                                                    Liste des <?php echo $all_users_ranks_of_t->post_count; ?> <span class="va va-trophy va-lg"></span> générés pour ce Top !
                                                 </h4>
                                             </div>
                                             <div class="table-responsive">
-                                                <table class="table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>
-                                                                Vainkeurs
-                                                            </th>
-                                                            <th>Top 3</th>
-                                                            <th></th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <?php while ($all_users_ranks_of_t->have_posts()) : $all_users_ranks_of_t->the_post(); ?>
+                                                <div class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                                    <table class="invoice-list-table table table-tdone dataTable no-footer">
+                                                        <thead>
                                                             <tr>
-
-                                                                <td>
-                                                                    <?php
-                                                                    $id_rank                 = get_the_ID();
-                                                                    $uuid_user_r             = get_field('uuid_user_r', $id_rank);
-                                                                    $vainkeur_data_selected  = find_vkrz_user($uuid_user_r);
-                                                                    ?>
-                                                                    <span class="avatar">
-                                                                        <?php if ($vainkeur_data_selected) : ?>
-                                                                            <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_vainkeur'])); ?>">
-                                                                                <span class="avatar-picture" style="background-image: url(<?php echo $vainkeur_data_selected['avatar']; ?>);"></span>
-                                                                            </a>
-                                                                        <?php else : ?>
-                                                                            <span class="avatar-picture" style="background-image: url(<?php echo $vainkeur_data_selected['avatar']; ?>);"></span>
-                                                                        <?php endif; ?>
-                                                                        <?php if ($vainkeur_data_selected) : ?>
-                                                                            <span class="user-niveau">
-                                                                                <?php echo $vainkeur_data_selected['level']; ?>
-                                                                            </span>
-                                                                        <?php endif; ?>
-                                                                    </span>
-                                                                    <span class="font-weight-bold championname">
-                                                                        <?php if ($vainkeur_data_selected) : ?>
-                                                                            <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_vainkeur'])); ?>">
-                                                                                <?php echo $vainkeur_data_selected['pseudo']; ?>
-                                                                                <?php if ($vainkeur_data_selected['user_role'] == "administrator") : ?>
-                                                                                    <span class="ico va va-vkrzteam va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
-                                                                                    </span>
-                                                                                <?php endif; ?>
-                                                                                <?php if ($vainkeur_data_selected['user_role'] == "administrator" || $vainkeur_data_selected['user_role'] == "author") : ?>
-                                                                                    <span class="ico va va-man-singer va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
-                                                                                    </span>
-                                                                                <?php endif; ?>
-                                                                            </a>
-                                                                        <?php else : ?>
-                                                                            <i>Anonyme</i>
-                                                                        <?php endif; ?>
-                                                                        <!--
-                                                                    UUID    : <?php the_field('uuid_user_r', $id_rank); ?>
-                                                                    ID rank : <?php echo $id_rank; ?>
-                                                                    Date    : <?php echo get_the_date('d/m/Y - H:i:s', $id_rank); ?>
-                                                                    -->
-                                                                    </span>
-                                                                </td>
-                                                                <td>
-                                                                    <?php
-                                                                    $user_top3 = get_user_ranking($id_rank, 3);
-                                                                    $l = 1;
-                                                                    foreach ($user_top3 as $top) : ?>
-
-                                                                        <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="<?php echo get_the_title($top); ?>" class="avatartop3 avatar pull-up">
-                                                                            <?php $illu = get_the_post_thumbnail_url($top, 'thumbnail'); ?>
-                                                                            <img src="<?php echo $illu; ?>" alt="Avatar">
-                                                                        </div>
-
-                                                                    <?php $l++;
-                                                                        if ($l == 4) break;
-                                                                    endforeach; ?>
-                                                                </td>
-
-                                                                <td>
-                                                                    <a href="<?php the_permalink($id_rank); ?>" class="mr-1 btn btn-outline-primary waves-effect">
-                                                                        <span class="ico ico-reverse va va-eyes va-lg"></span>
-                                                                    </a>
-                                                                </td>
-
+                                                                <th>Vainkeurs</th>
+                                                                <th>Podium</th>
+                                                                <th></th>
                                                             </tr>
-                                                        <?php endwhile; ?>
-                                                    </tbody>
-                                                </table>
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php while ($all_users_ranks_of_t->have_posts()) : $all_users_ranks_of_t->the_post(); ?>
+                                                                <tr>
+
+                                                                    <td class="vainkeur-table">
+                                                                        <?php
+                                                                        $id_rank                 = get_the_ID();
+                                                                        $uuid_user_r             = get_field('uuid_user_r', $id_rank);
+                                                                        $vainkeur_data_selected  = find_vkrz_user($uuid_user_r);
+                                                                        ?>
+                                                                        <span class="avatar">
+                                                                            <?php if ($vainkeur_data_selected) : ?>
+                                                                                <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_vainkeur'])); ?>">
+                                                                                    <span class="avatar-picture" style="background-image: url(<?php echo $vainkeur_data_selected['avatar']; ?>);"></span>
+                                                                                </a>
+                                                                            <?php else : ?>
+                                                                                <span class="avatar-picture" style="background-image: url(<?php echo $vainkeur_data_selected['avatar']; ?>);"></span>
+                                                                            <?php endif; ?>
+                                                                            <?php if ($vainkeur_data_selected) : ?>
+                                                                                <span class="user-niveau">
+                                                                                    <?php echo $vainkeur_data_selected['level']; ?>
+                                                                                </span>
+                                                                            <?php endif; ?>
+                                                                        </span>
+                                                                        <span class="font-weight-bold championname">
+                                                                            <?php if ($vainkeur_data_selected) : ?>
+                                                                                <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_vainkeur'])); ?>">
+                                                                                    <?php echo $vainkeur_data_selected['pseudo']; ?>
+                                                                                    <?php if ($vainkeur_data_selected) : ?>
+                                                                                        <span class="user-niveau-xs">
+                                                                                            <?php echo $vainkeur_data_selected['level']; ?>
+                                                                                        </span>
+                                                                                    <?php endif; ?>
+                                                                                    <?php if ($vainkeur_data_selected['user_role'] == "administrator") : ?>
+                                                                                        <span class="ico va va-vkrzteam va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
+                                                                                        </span>
+                                                                                    <?php endif; ?>
+                                                                                    <?php if ($vainkeur_data_selected['user_role'] == "administrator" || $vainkeur_data_selected['user_role'] == "author") : ?>
+                                                                                        <span class="ico va va-man-singer va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
+                                                                                        </span>
+                                                                                    <?php endif; ?>
+                                                                                </a>
+                                                                            <?php else : ?>
+                                                                                <i>Anonyme</i>
+                                                                            <?php endif; ?>
+                                                                            <!--
+                                                                        UUID    : <?php the_field('uuid_user_r', $id_rank); ?>
+                                                                        ID rank : <?php echo $id_rank; ?>
+                                                                        Date    : <?php echo get_the_date('d/m/Y - H:i:s', $id_rank); ?>
+                                                                        -->
+                                                                        </span>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php
+                                                                        $user_top3 = get_user_ranking($id_rank, 3);
+                                                                        $l = 1;
+                                                                        foreach ($user_top3 as $top) : ?>
+
+                                                                            <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="<?php echo get_the_title($top); ?>" class="avatartop3 avatar pull-up">
+                                                                                <?php $illu = get_the_post_thumbnail_url($top, 'thumbnail'); ?>
+                                                                                <img src="<?php echo $illu; ?>" alt="Avatar">
+                                                                            </div>
+
+                                                                        <?php $l++;
+                                                                            if ($l == 4) break;
+                                                                        endforeach; ?>
+                                                                    </td>
+
+                                                                    <td>
+                                                                        <a href="<?php the_permalink($id_rank); ?>" class="mr-1 btn btn-outline-primary waves-effect">
+                                                                            <span class="ico ico-reverse va va-eyes va-lg"></span>
+                                                                        </a>
+                                                                    </td>
+
+                                                                </tr>
+                                                            <?php endwhile; ?>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -212,11 +217,11 @@ $top_datas = get_top_data($id_top);
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-6">
                                         <div class="card text-center">
                                             <div class="card-body">
                                                 <div class="mb-1">
-                                                    <span class="ico4 va-high-voltage va va-lg"></span>
+                                                    <span class="ico4 va-high-voltage va va-md"></span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">
                                                     <?php echo $top_datas['nb_votes']; ?>
@@ -231,24 +236,17 @@ $top_datas = get_top_data($id_top);
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-6">
                                         <div class="card text-center">
                                             <div class="card-body">
-                                                <div class="pricing-badge text-right">
-                                                    <div class="badge badge-pill badge-light-primary">
-                                                        <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_top; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir les <?php echo $top_datas['nb_completed_top']; ?> Tops">
-                                                            <span class="va va-llama va-lg"></span>
-                                                        </a>
-                                                    </div>
-                                                </div>
                                                 <div class="mb-1">
-                                                    <span class="ico4">🏆</span>
+                                                    <span class="ico4 va-trophy va va-md"></span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">
-                                                    <?php echo $top_datas['nb_completed_top']; ?>
+                                                    <?php echo $all_users_ranks_of_t->post_count; ?>
                                                 </h2>
                                                 <p class="card-text legende">
-                                                    <?php if ($top_datas['nb_completed_top'] <= 1) : ?>
+                                                    <?php if ($all_users_ranks_of_t->post_count <= 1) : ?>
                                                         Top
                                                     <?php else : ?>
                                                         Tops

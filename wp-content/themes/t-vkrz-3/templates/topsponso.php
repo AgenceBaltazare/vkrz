@@ -4,44 +4,34 @@
     */
 ?>
 <?php
-    get_header();
-    global $user_tops;
-    global $id_top;
-    $id_top             = get_the_ID();
-    $top_datas          = get_top_data($id_top);
-    $creator_id         = get_post_field('post_author', $id_top);
-    $creator_uuiduser   = get_field('uuiduser_user', 'user_' . $creator_id);
-    $creator_data       = get_user_infos($creator_uuiduser);
-    $list_user_tops     = $user_tops['list_user_tops'];
-    $current_cat        = get_queried_object();
-    $tops_in_cat        = new WP_Query(array(
-        'post_type'                 => 'tournoi',
-        'orderby'                   => 'date',
-        'order'                     => 'DESC',
-        'posts_per_page'            => -1,
-        'ignore_sticky_posts'       => true,
-        'update_post_meta_cache'    => false,
-        'no_found_rows'             => true,
-        'tax_query'                 => array(
-            'relation' => 'AND',
-            array(
-                'taxonomy' => 'type',
-                'field'    => 'slug',
-                'terms'    => array('sponso'),
-                'operator' => 'IN'
-            ),
-            array(
-                'taxonomy' => 'type',
-                'field'    => 'slug',
-                'terms'    => array('private'),
-                'operator' => 'NOT IN'
-            ),
+get_header();
+global $user_tops;
+$list_user_tops     = $user_tops['list_user_tops'];
+$tops_in_cat        = new WP_Query(array(
+    'post_type'                 => 'tournoi',
+    'orderby'                   => 'date',
+    'order'                     => 'DESC',
+    'posts_per_page'            => -1,
+    'ignore_sticky_posts'       => true,
+    'update_post_meta_cache'    => false,
+    'no_found_rows'             => true,
+    'tax_query'                 => array(
+        'relation' => 'AND',
+        array(
+            'taxonomy' => 'type',
+            'field'    => 'slug',
+            'terms'    => array('sponso'),
+            'operator' => 'IN'
         ),
-    ));
-    $list_tags        = array();
-    $list_concepts    = array();
-    $list_sujets      = array();
-    ?>
+        array(
+            'taxonomy' => 'type',
+            'field'    => 'slug',
+            'terms'    => array('private'),
+            'operator' => 'NOT IN'
+        ),
+    ),
+));
+?>
 <div class="app-content content ecommerce-application">
     <div class="content-overlay"></div>
     <div class="content-wrapper">
@@ -72,26 +62,6 @@
                     } else {
                         $state = "todo";
                     }
-                    $tag_slug         = "";
-                    $concept_slug     = "";
-                    $sujet_slug       = "";
-                    $term_to_search   = "";
-
-                    if (get_the_terms($id_top, 'sous-cat')) {
-                        foreach (get_the_terms($id_top, 'sous-cat') as $sujet) {
-                            $sujet_slug     .= $sujet->slug . " ";
-                        }
-                    }
-                    if (get_the_terms($id_top, 'tag')) {
-                        foreach (get_the_terms($id_top, 'tag') as $tag) {
-                            $tag_slug     .= $tag->slug . " ";
-                        }
-                    }
-                    if (get_the_terms($id_top, 'concept')) {
-                        foreach (get_the_terms($id_top, 'concept') as $concept) {
-                            $concept_slug   .= $concept->slug . " ";
-                        }
-                    }
                     $top_question   = get_field('question_t', $id_top);
                     $top_title      = get_the_title($id_top);
                     $term_to_search = $sujet_slug . " " . $concept_slug . " " . $top_question . " " . $top_title;
@@ -100,7 +70,7 @@
                         $type_top = $type_top->slug;
                     }
                     ?>
-                    <div data-filter-item data-filter-name="<?php echo $term_to_search; ?>" class="same-h grid-item col-md-3 col-6 <?php echo $sujet_slug; ?> <?php echo $state; ?> <?php echo $concept_slug; ?> <?php echo $tag_slug; ?>">
+                    <div class="same-h grid-item col-md-3 col-6">
                         <div class="min-tournoi card scaler">
                             <div class="cov-illu cover" style="background: url(<?php echo $illu; ?>) center center no-repeat">
                                 <?php if ($type_top == "sponso") : ?>

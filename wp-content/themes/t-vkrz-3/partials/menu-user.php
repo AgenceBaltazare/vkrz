@@ -59,7 +59,7 @@ if (is_single() && get_post_type() == "tournoi") {
 
                                         <li class="breadcrumb-item">
                                             <a href="<?php bloginfo('url'); ?>/">
-                                                <span class="va va-house va-lg"></span> Home
+                                                <span class="va va-house va-lg"></span>
                                             </a>
                                         </li>
 
@@ -93,7 +93,7 @@ if (is_single() && get_post_type() == "tournoi") {
                                             ?>
                                             <li class="breadcrumb-item">
                                                 <a href="<?php echo get_category_link($cat_id); ?>">
-                                                    <span class="ico"><?php the_field('icone_cat', 'term_' . $cat_id); ?></span> <span class="menu-title text-truncate"><?php echo $cat_name; ?></span>
+                                                    <?php the_field('icone_cat', 'term_' . $cat_id); ?> <span class="menu-title text-truncate"><?php echo $cat_name; ?></span>
                                                 </a>
                                             </li>
                                         <?php elseif (is_page(get_page_by_path('tops-sponso'))) : ?>
@@ -227,7 +227,7 @@ if (is_single() && get_post_type() == "tournoi") {
             <?php elseif (!is_author() && is_archive()) : ?>
 
                 <div class="tournament-heading text-center">
-                    <h3 class="mb-0 t-titre-tournoi"><span class="ico"><?php the_field('icone_cat', 'term_' . $cat_id); ?></span> <?php echo $cat_name; ?></h3>
+                    <h3 class="mb-0 t-titre-tournoi"><?php the_field('icone_cat', 'term_' . $cat_id); ?> <?php echo $cat_name; ?></h3>
                     <h4 class="mb-0"><?php echo $current_cat->description; ?></h4>
                 </div>
 
@@ -236,6 +236,13 @@ if (is_single() && get_post_type() == "tournoi") {
                 <div class="tournament-heading text-center">
                     <h3 class="mb-0 t-titre-tournoi"><span class="ico va va-wrapped-gift va-lg"></span> Tops sponso</h3>
                     <h4 class="mb-0">Plein de choses à gagner par ici</h4>
+                </div>
+
+            <?php elseif (is_page(get_page_by_path('tous-les-sujets'))) : ?>
+
+                <div class="tournament-heading text-center">
+                    <h3 class="mb-0 t-titre-tournoi"><span class="ico va va-package va-lg"></span> Tous les sujets</h3>
+                    <h4 class="mb-0">que tu retrouves sur VAINKEURZ</h4>
                 </div>
 
             <?php elseif (is_author()) : ?>

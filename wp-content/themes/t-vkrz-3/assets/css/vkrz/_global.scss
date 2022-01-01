@@ -547,7 +547,8 @@ html .content {
 .nobold {
     th {
         font-weight: normal;
-        .text-muted{
+
+        .text-muted {
             width: 45px;
             text-align: right;
             display: inline-block;
@@ -559,8 +560,20 @@ html .content {
     h2 {
         font-size: 20px;
     }
+
     h3 {
         font-size: 14px;
     }
 }
 
+.list-tags {
+    a {
+        color: #fff;
+        margin-bottom: 10px;
+        display: block;
+    }
+}
+
+.user-niveau-xs{
+    display: none;
+}

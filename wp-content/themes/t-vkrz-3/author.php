@@ -238,14 +238,11 @@ foreach ($list_user_tops as $top) {
                                             <div class="col-12 mt-1 mb-1">
                                                 <p class="mb-50">
                                                     <span class="ico2">
-                                                        <span class="<?php if ($cat->term_id == 2) {
-                                                                            echo 'rotating';
-                                                                        } ?>">
-                                                            <?php the_field('icone_cat', 'term_' . $cat->term_id); ?>
-                                                        </span>
+                                                        <?php the_field('icone_cat', 'term_' . $cat->term_id); ?>
                                                     </span>
                                                     <?php echo $cat->name; ?>
-                                                    <small class="infosmall text-<?php echo $classbar; ?>"><?php echo $count_top_done_in_cat; ?> sur <?php echo $tops_in_cat; ?>
+                                                    <small class="infosmall text-<?php echo $classbar; ?>">
+                                                        <?php echo $count_top_done_in_cat; ?> sur <?php echo $tops_in_cat; ?>
                                                     </small>
                                                 </p>
                                                 <div class="progress progress-bar-<?php echo $classbar; ?>" style="height: 6px">
@@ -272,7 +269,7 @@ foreach ($list_user_tops as $top) {
                                                     </div>
                                                 </div>
                                                 <div class="user-level">
-                                                    <span class="icomax">
+                                                    <span class="icomax2">
                                                         <?php echo $vainkeur_info['level']; ?>
                                                     </span>
                                                 </div>

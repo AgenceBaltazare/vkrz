@@ -137,21 +137,23 @@ foreach ($get_top_type as $type_top) {
                                                                     <span class="ico">🌎</span> Voir le Top mondial
                                                                 </a>
                                                             </div>
-                                                            <h2 class="stats-mondiales mt-2 mb-0">
-                                                                <b>Ressemblance :</b>
-                                                                <?php
-                                                                $similar = get_user_percent(get_field('uuid_user_r', $id_ranking), $id_top);
-                                                                echo $similar['percent'] . "％";
-                                                                ?>
-                                                                <?php if ($similar['nb_similar'] == 1) : ?>
-                                                                    <small>(<?php echo $similar['nb_similar']; ?> podium identique)</small>
-                                                                <?php elseif ($similar['nb_similar'] > 1) : ?>
-                                                                    <small>(<?php echo $similar['nb_similar']; ?> podiums identiques)</small>
-                                                                <?php endif; ?>
-                                                            </h2>
+                                                            <?php
+                                                            $similar = get_user_percent(get_field('uuid_user_r', $id_ranking), $id_top);
+                                                            if ($similar['percent'] >= 0) :
+                                                            ?>
+                                                                <h2 class="stats-mondiales mt-2 mb-0">
+                                                                    <b>Ressemblance :</b>
+                                                                    <?php echo $similar['percent'] . "％"; ?>
+                                                                    <?php if ($similar['nb_similar'] == 1) : ?>
+                                                                        <small>(<?php echo $similar['nb_similar']; ?> podium identique)</small>
+                                                                    <?php elseif ($similar['nb_similar'] > 1) : ?>
+                                                                        <small>(<?php echo $similar['nb_similar']; ?> podiums identiques)</small>
+                                                                    <?php endif; ?>
+                                                                </h2>
+                                                            <?php endif; ?>
                                                             <div class="mt-1">
                                                                 <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_top; ?>" class="d-flex align-items-center w-100 btn btn-outline-primary waves-effect">
-                                                                    <span class="ico ico-reverse">👀</span> Voir le classement des autres utilisateurs
+                                                                    <span class="ico ico-reverse">👀</span> Voir le classement des autres
                                                                 </a>
                                                             </div>
                                                         </div>
@@ -445,14 +447,10 @@ foreach ($get_top_type as $type_top) {
                                             <?php echo $creator_data['level']; ?>
                                         </span>
                                         <?php if ($creator_data['user_role']  == "administrator") : ?>
-                                            <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
-                                                🦙
-                                            </span>
+                                            <span class="ico va va-vkrzteam va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ"></span>
                                         <?php endif; ?>
                                         <?php if ($creator_data['user_role']  == "administrator" || $creator_data['user_role'] == "author") : ?>
-                                            <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
-                                                👨‍🎤
-                                            </span>
+                                            <span class="ico va va-man-singer va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops"></span>
                                         <?php endif; ?>
                                     </h4>
                                 </div>

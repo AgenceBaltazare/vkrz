@@ -9,7 +9,6 @@ global $utm;
 global $user_infos;
 global $id_vainkeur;
 global $banner;
-
 if (is_user_logged_in() && env() != "local") {
     if (false === ($user_tops = get_transient('user_' . $user_id . '_get_user_tops'))) {
         $user_tops = get_user_tops();
@@ -261,7 +260,7 @@ $top_datas    = get_top_data($id_top);
                                                             </div>
                                                             <?php
                                                             $similar = get_user_percent(get_field('uuid_user_r', $id_ranking), $id_top);
-                                                            if ($similar) : ?>
+                                                            if ($similar['percent'] >= 0) : ?>
                                                                 <h2 class="stats-mondiales mt-2 mb-0">
                                                                     <b>Ressemblance :</b>
                                                                     <?php echo $similar['percent'] . "％"; ?>
@@ -577,14 +576,10 @@ $top_datas    = get_top_data($id_top);
                                             <?php echo $creator_data['level']; ?>
                                         </span>
                                         <?php if ($creator_data['user_role']  == "administrator") : ?>
-                                            <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
-                                                🦙
-                                            </span>
+                                            <span class="ico va va-vkrzteam va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ"></span>
                                         <?php endif; ?>
                                         <?php if ($creator_data['user_role']  == "administrator" || $creator_data['user_role'] == "author") : ?>
-                                            <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
-                                                👨‍🎤
-                                            </span>
+                                            <span class="ico va va-man-singer va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops"></span>
                                         <?php endif; ?>
                                     </h4>
                                 </div>

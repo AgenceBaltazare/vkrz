@@ -159,7 +159,7 @@ foreach ($list_user_tops as $top) {
                                                     </div>
                                                 </div>
                                                 <div class="user-level">
-                                                    <span class="icomax">
+                                                    <span class="icomax2">
                                                         <?php echo $user_infos['level']; ?>
                                                     </span>
                                                 </div>
@@ -187,7 +187,7 @@ foreach ($list_user_tops as $top) {
                                     <div class="col-sm-4 col-6">
                                         <div class="card text-center">
                                             <div class="card-body">
-                                                <div class="mb-1">
+                                                <div>
                                                     <span class="icomax">
                                                         <span class="va-sm va-high-voltage va"></span>
                                                     </span>
@@ -206,7 +206,7 @@ foreach ($list_user_tops as $top) {
                                     <div class="col-sm-4 col-6">
                                         <div class="card text-center">
                                             <div class="card-body">
-                                                <div class="mb-1">
+                                                <div class="">
                                                     <span class="icomax">
                                                         <span class="va-sm va va-trophy"></span>
                                                     </span>

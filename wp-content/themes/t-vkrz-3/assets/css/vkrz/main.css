@@ -835,6 +835,16 @@ html .content {
   font-size: 14px;
 }
 
+.list-tags a {
+  color: #fff;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.user-niveau-xs {
+  display: none;
+}
+
 .page-template-monitor .list-vainkeur-monitor {
   line-height: 14px;
 }
@@ -1689,7 +1699,7 @@ html .content {
   padding: 10px 0;
 }
 .infoelomondial .card-body h2 {
-  margin: 0 5px 0 10px;
+  margin: 10px 5px 0 5px;
 }
 @media (max-width: 768px) {
   .infoelomondial .card-body {
@@ -1770,7 +1780,8 @@ html .content {
   margin-right: 10px;
 }
 
-.dark-layout body.user-page, .dark-layout #user-profile .profile-header .navbar {
+.dark-layout body.user-page,
+.dark-layout #user-profile .profile-header .navbar {
   background: linear-gradient(50deg, #0c0a27, #471867, #0c0a27, #0c0a27);
   background-size: 400% 400%;
   -webkit-animation: gradient 60s ease infinite;
@@ -1825,7 +1836,10 @@ textarea {
   display: block;
   margin-bottom: 20px;
 }
-.wppb-user-forms input[type=text], .wppb-user-forms input[type=email], .wppb-user-forms input[type=password], .wppb-user-forms textarea {
+.wppb-user-forms input[type=text],
+.wppb-user-forms input[type=email],
+.wppb-user-forms input[type=password],
+.wppb-user-forms textarea {
   background: transparent !important;
   border: 2px solid rgba(255, 255, 255, 0.2) !important;
   padding: 20px 15px !important;
@@ -1840,13 +1854,22 @@ textarea {
 .wppb-user-forms input[type=text]:-ms-input-placeholder, .wppb-user-forms input[type=email]:-ms-input-placeholder, .wppb-user-forms input[type=password]:-ms-input-placeholder, .wppb-user-forms textarea:-ms-input-placeholder {
   color: rgba(255, 255, 255, 0.8);
 }
-.wppb-user-forms input[type=text]::placeholder, .wppb-user-forms input[type=email]::placeholder, .wppb-user-forms input[type=password]::placeholder, .wppb-user-forms textarea::placeholder {
+.wppb-user-forms input[type=text]::placeholder,
+.wppb-user-forms input[type=email]::placeholder,
+.wppb-user-forms input[type=password]::placeholder,
+.wppb-user-forms textarea::placeholder {
   color: rgba(255, 255, 255, 0.8);
 }
-.wppb-user-forms input[type=text]:valid, .wppb-user-forms input[type=email]:valid, .wppb-user-forms input[type=password]:valid, .wppb-user-forms textarea:valid {
+.wppb-user-forms input[type=text]:valid,
+.wppb-user-forms input[type=email]:valid,
+.wppb-user-forms input[type=password]:valid,
+.wppb-user-forms textarea:valid {
   border: 2px solid #fff !important;
 }
-.wppb-user-forms input[type=text]:focus, .wppb-user-forms input[type=email]:focus, .wppb-user-forms input[type=password]:focus, .wppb-user-forms textarea:focus {
+.wppb-user-forms input[type=text]:focus,
+.wppb-user-forms input[type=email]:focus,
+.wppb-user-forms input[type=password]:focus,
+.wppb-user-forms textarea:focus {
   border: 2px solid #f4167f !important;
   transition: background-color 5000s ease-in-out 0s !important;
   background: transparent !important;
@@ -1857,7 +1880,12 @@ textarea {
   min-height: 40px;
 }
 
-.wppb-send-credentials-checkbox, #select_user_to_edit_form, .wppb-description-delimiter, .file-type, .file-name, .login-remember {
+.wppb-send-credentials-checkbox,
+#select_user_to_edit_form,
+.wppb-description-delimiter,
+.file-type,
+.file-name,
+.login-remember {
   display: none !important;
 }
 
@@ -1899,7 +1927,9 @@ textarea {
   font-size: 15px;
 }
 
-.gif2, .gif3, .gif4 {
+.gif2,
+.gif3,
+.gif4 {
   display: none;
 }
 
@@ -1932,7 +1962,8 @@ textarea {
   background: #fff;
 }
 
-.form-submit .submit, #wppb-submit {
+.form-submit .submit,
+#wppb-submit {
   padding: 10px 20px;
   line-height: 1.5;
   text-align: center;
@@ -1957,7 +1988,8 @@ textarea {
   border-radius: 0.358rem;
   -webkit-appearance: button;
 }
-.form-submit .submit:hover, #wppb-submit:hover {
+.form-submit .submit:hover,
+#wppb-submit:hover {
   box-shadow: 0 8px 25px -8px #7367f0;
 }
 
@@ -2007,7 +2039,8 @@ textarea {
   font-size: 14px;
   width: 15px;
 }
-.invoice-list-wrapper td, .invoice-list-wrapper th {
+.invoice-list-wrapper td,
+.invoice-list-wrapper th {
   padding: 10px 15px 8px !important;
 }
 
@@ -2063,6 +2096,11 @@ textarea {
 }
 
 .icomax span {
+  width: 40px !important;
+  height: 40px !important;
+}
+
+.icomax2 span {
   width: 60px !important;
   height: 60px !important;
 }
@@ -3413,6 +3451,10 @@ textarea {
   background-image: url(../../images/emojis/dragon-face_1f432.png);
 }
 
+.va-package {
+  background-image: url(../../images/emojis/package_1f4e6.png);
+}
+
 .va-chance {
   background-image: url(../../images/emojis/four-leaf-clover_1f340-1.png);
 }
@@ -3912,6 +3954,20 @@ textarea {
   }
 }
 @media (max-width: 768px) {
+  .vainkeur-table {
+    display: flex;
+    flex-direction: column;
+  }
+  .vainkeur-table .championname {
+    margin: 0;
+  }
+  .vainkeur-table .user-niveau {
+    display: none;
+  }
+  .vainkeur-table .user-niveau-xs {
+    display: inline-block;
+  }
+
   .share-content-sponso,
 .share-top-sponsor {
     display: none !important;
@@ -3922,11 +3978,11 @@ textarea {
     padding: 0;
   }
   .single-tournoi .tournoi-content .contenders-containers .versus {
-    margin: 15px auto;
+    margin: 5px auto;
     position: relative;
   }
   .single-tournoi .tournoi-content .contenders-containers .versus img {
-    max-width: 80px !important;
+    max-width: 50px !important;
     border-radius: 0;
     height: auto;
     position: relative;
@@ -3962,7 +4018,7 @@ textarea {
 
   .intro-mobile {
     display: block;
-    margin: 0 0 20px;
+    margin: 0 0 5px;
   }
 
   .display_current_user_rank {
@@ -4177,7 +4233,7 @@ textarea {
   }
 
   .display_battle {
-    margin: 15px -1rem 0;
+    margin: 0 -1rem 0;
     padding: 0;
   }
 
@@ -4186,7 +4242,7 @@ textarea {
   }
 
   .intro-mobile h4 {
-    font-size: 18px;
+    font-size: 13px;
     color: #f4167f;
   }
 

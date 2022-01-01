@@ -130,7 +130,7 @@ $contenders_ranking   = get_contenders_ranking($id_top);
                                                 </div>
                                             </div>
                                             <div class="ico-stats">
-                                                <span class="ico4 va va-trophy va-lg"></span>
+                                                <span class="ico4 va va-trophy va-md"></span>
                                             </div>
                                             <h2 class="font-weight-bolder">
                                                 <?php echo $top_datas['nb_completed_top']; ?>
@@ -149,7 +149,7 @@ $contenders_ranking   = get_contenders_ranking($id_top);
                                     <div class="card text-center">
                                         <div class="card-body">
                                             <div class="ico-stats">
-                                                <span class="ico4 va-high-voltage va va-lg">⚡️</span>
+                                                <span class="ico4 va-high-voltage va va-md"></span>
                                             </div>
                                             <h2 class="font-weight-bolder">
                                                 <?php echo $top_datas['nb_votes']; ?>
@@ -175,7 +175,7 @@ $contenders_ranking   = get_contenders_ranking($id_top);
                                                 </div>
                                             </div>
                                             <div class="ico-stats">
-                                                <span class="ico4 va va-speech-balloon va-lg">💬</span>
+                                                <span class="ico4 va va-speech-balloon va-md"></span>
                                             </div>
                                             <h2 class="font-weight-bolder">
                                                 <?php echo $top_datas['nb_comments']; ?>

@@ -43,7 +43,7 @@ function tax_init() {
         array('tournoi'),
         array(
             'label'         => 'Sujet',
-            'rewrite'       => array('slug' => 'concept'),
+            'rewrite'       => array('slug' => 'sujet'),
             'hierarchical'  => false,
             'show_in_rest'  => true,
         )

@@ -33,6 +33,23 @@
 
 @media (max-width: 768px) {
 
+    .vainkeur-table {
+        display: flex;
+        flex-direction: column;
+
+        .championname {
+            margin: 0;
+        }
+
+        .user-niveau {
+            display: none;
+        }
+
+        .user-niveau-xs {
+            display: inline-block;
+        }
+    }
+
     .share-content-sponso,
     .share-top-sponsor {
         display: none !important;
@@ -48,11 +65,11 @@
         .tournoi-content .contenders-containers {
 
             .versus {
-                margin: 15px auto;
+                margin: 5px auto;
                 position: relative;
 
                 img {
-                    max-width: 80px !important;
+                    max-width: 50px !important;
                     border-radius: 0;
                     height: auto;
                     position: relative;
@@ -101,7 +118,7 @@
 
     .intro-mobile {
         display: block;
-        margin: 0 0 20px;
+        margin: 0 0 5px;
     }
 
     .display_current_user_rank {
@@ -325,7 +342,7 @@
     }
 
     .display_battle {
-        margin: 15px -1rem 0;
+        margin: 0 -1rem 0;
         padding: 0;
     }
 
@@ -334,7 +351,7 @@
     }
 
     .intro-mobile h4 {
-        font-size: 18px;
+        font-size: 13px;
         color: $rose;
     }
 
