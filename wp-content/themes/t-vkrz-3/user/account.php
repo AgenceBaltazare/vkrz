@@ -214,7 +214,7 @@ foreach ($list_user_tops as $top) {
                                                 <h2 class="font-weight-bolder">
                                                     <?php echo $user_infos['nb_top_vkrz']; ?>
                                                 </h2>
-                                                <?php if (count($list_t_done) > 1) : ?>
+                                                <?php if ($user_infos['nb_top_vkrz'] > 1) : ?>
                                                     <p class="card-text legende">Tops terminés</p>
                                                 <?php else : ?>
                                                     <p class="card-text legende">Top terminé</p>
@@ -290,23 +290,30 @@ foreach ($list_user_tops as $top) {
                                                             <thead>
                                                                 <tr>
                                                                     <th class="">
-                                                                        <?php if ($user_infos['nb_top_vkrz'] > 1) : ?>
-                                                                            <span class="t-rose"><?php echo $user_infos['nb_top_vkrz']; ?></span> Tops terminés
-                                                                        <?php else : ?>
-                                                                            <span class="t-rose"><?php echo $user_infos['nb_top_vkrz']; ?></span> Top terminé
-                                                                        <?php endif; ?>
+                                                                        <span class="text-muted">
+                                                                            <?php if ($user_infos['nb_top_vkrz'] > 1) : ?>
+                                                                                <span class="t-rose"><?php echo $user_infos['nb_top_vkrz']; ?></span> Tops terminés
+                                                                            <?php else : ?>
+                                                                                <span class="t-rose"><?php echo $user_infos['nb_top_vkrz']; ?></span> Top terminé
+                                                                            <?php endif; ?>
+                                                                        </span>
+                                                                    </th>
+                                                                    <th class="text-center">
+                                                                        <span class="text-muted">
+                                                                            Cat
+                                                                        </span>
                                                                     </th>
                                                                     <th class="text-right">
-                                                                        <span class="va-high-voltage va va-lg"></span>
+                                                                        <span class="text-muted">Votes</span>
                                                                     </th>
                                                                     <th class="">
-                                                                        <span class="va va-medal-1 va-lg"></span><span class="va va-medal-2 va-lg"></span><span class="va va-medal-3 va-lg"></span>
+                                                                        <span class="text-muted">Podium</span>
                                                                     </th>
                                                                     <th>
-                                                                        <span class="va va-eyes va-lg"></span>
+                                                                        <span class="text-muted">Voir</span>
                                                                     </th>
                                                                     <th>
-
+                                                                        <span class="text-muted">Action</span>
                                                                     </th>
                                                                 </tr>
                                                             </thead>
@@ -316,18 +323,38 @@ foreach ($list_user_tops as $top) {
                                                                     <?php if (!get_field('private_t', $top['id_top'])) : ?>
                                                                         <tr id="top-<?php echo $top['id_ranking']; ?>">
                                                                             <td>
-                                                                                <div class="media-body">
-                                                                                    <div class="media-heading">
-                                                                                        <h6 class="cart-item-title mb-0">
-                                                                                            <a class="text-body" href="<?php the_permalink($top['id_top']); ?>">
-                                                                                                Top <?php echo $top['nb_top']; ?> - <?php echo get_the_title($top['id_top']); ?>
-                                                                                            </a>
-                                                                                        </h6>
-                                                                                        <small class="cart-item-by legende">
-                                                                                            <?php the_field('question_t', $top['id_top']); ?>
-                                                                                        </small>
+                                                                                <div class="d-flex align-items-center">
+                                                                                    <div class="avatar">
+                                                                                        <?php
+                                                                                        $minia = get_the_post_thumbnail_url($top['id_top'], 'large')
+                                                                                        ?>
+                                                                                        <span class="avatar-picture avatar-top" style="background-image: url(<?php echo $minia; ?>);"></span>
+                                                                                    </div>
+                                                                                    <div class="font-weight-bold topnamebestof">
+                                                                                        <div class="media-body">
+                                                                                            <div class="media-heading">
+                                                                                                <h6 class="cart-item-title mb-0">
+                                                                                                    <a class="text-body" href="<?php the_permalink($top['id_top']); ?>">
+                                                                                                        Top <?php the_field('count_contenders_t', $top['id_top']); ?> <span class="ico">⚡</span> <?php echo get_the_title($top['id_top']); ?>
+                                                                                                    </a>
+                                                                                                </h6>
+                                                                                                <small class="cart-item-by legende">
+                                                                                                    <?php the_field('question_t', $top['id_top']); ?>
+                                                                                                </small>
+                                                                                            </div>
+                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
+                                                                            </td>
+                                                                            <td class="text-center">
+                                                                                <?php
+                                                                                foreach (get_the_terms($top['id_top'], 'categorie') as $cat) {
+                                                                                    $cat_id     = $cat->term_id;
+                                                                                    $cat_name   = $cat->name;
+                                                                                }
+                                                                                ?>
+                                                                                <span class="hide"><?php echo $cat_name; ?></span>
+                                                                                <?php the_field('icone_cat', 'term_' . $cat_id); ?>
                                                                             </td>
                                                                             <td class="text-right">
                                                                                 <?php echo $top['nb_votes']; ?> <span class="ico3 va-high-voltage va va-lg"></span>

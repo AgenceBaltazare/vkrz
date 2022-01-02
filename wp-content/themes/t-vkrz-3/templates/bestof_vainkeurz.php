@@ -4,7 +4,6 @@
 */
 global $uuiduser;
 get_header();
-
 $vainkeurs = get_best_vainkeur("money", NULL, 20);
 ?>
 <div class="app-content content cover">
@@ -34,14 +33,14 @@ $vainkeurs = get_best_vainkeur("money", NULL, 20);
                                                     </h4>
                                                 </div>
                                                 <div class="table-responsive">
-                                                    <table class="table">
+                                                    <table class="table table-vainkeurz">
                                                         <thead>
                                                             <tr>
                                                                 <th>
                                                                     <span class="va va-chequered-flag va-lg"></span>
                                                                 </th>
                                                                 <th>
-                                                                    <span class="va va-prince va-lg"></span>
+                                                                    <span class="va va-llama va-lg"></span> <small class="text-muted">Vainkeur</small>
                                                                 </th>
                                                                 <th class="text-right">
                                                                     <small class="text-muted">KEURZ</small>
@@ -52,8 +51,8 @@ $vainkeurs = get_best_vainkeur("money", NULL, 20);
                                                                 <th class="text-right">
                                                                     <small class="text-muted">Top terminés</small>
                                                                 </th>
-                                                                <th>
-                                                                    <span class="va va-eyes va-lg"></span>
+                                                                <th class="text-right">
+                                                                    <small class="text-muted">Guetter ses Tops</small>
                                                                 </th>
                                                             </tr>
                                                         </thead>
@@ -119,9 +118,9 @@ $vainkeurs = get_best_vainkeur("money", NULL, 20);
                                                                         <?php echo $total_top; ?> <span class="ico va va-trophy va-lg"></span>
                                                                     </td>
 
-                                                                    <td>
+                                                                    <td class="text-right">
                                                                         <a href="<?php echo esc_url(get_author_posts_url($user_id)); ?>" class="mr-1 btn btn-outline-primary waves-effect">
-                                                                            Guetter ses Tops
+                                                                            <span class="va va-eyes va-lg"></span>
                                                                         </a>
                                                                     </td>
                                                                 </tr>
@@ -139,7 +138,6 @@ $vainkeurs = get_best_vainkeur("money", NULL, 20);
                     </section>
                 </div>
             </div>
-
         </div>
     </div>
 </div>

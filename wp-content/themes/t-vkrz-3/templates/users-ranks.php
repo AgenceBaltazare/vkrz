@@ -69,9 +69,21 @@ $top_datas = get_top_data($id_top);
                                                     <table class="invoice-list-table table table-tdone dataTable no-footer">
                                                         <thead>
                                                             <tr>
-                                                                <th>Vainkeurs</th>
-                                                                <th>Podium</th>
-                                                                <th></th>
+                                                                <th>
+                                                                    <span class="text-muted">
+                                                                        Vainkeurs
+                                                                    </span>
+                                                                </th>
+                                                                <th>
+                                                                    <span class="text-muted">
+                                                                        Podium
+                                                                    </span>
+                                                                </th>
+                                                                <th class="text-right">
+                                                                    <span class="text-muted">
+                                                                        Voir
+                                                                    </span>
+                                                                </th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -141,7 +153,7 @@ $top_datas = get_top_data($id_top);
                                                                         endforeach; ?>
                                                                     </td>
 
-                                                                    <td>
+                                                                    <td class="text-right">
                                                                         <a href="<?php the_permalink($id_rank); ?>" class="mr-1 btn btn-outline-primary waves-effect">
                                                                             <span class="ico ico-reverse va va-eyes va-lg"></span>
                                                                         </a>

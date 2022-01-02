@@ -11,6 +11,14 @@
 
 }
 
+@media (min-width: 768px) {
+
+    .table-responsive {
+        overflow-x: inherit;
+    }
+
+}
+
 @media (max-width: 1700px) {
 
     .basic-pricing {

@@ -157,10 +157,19 @@ body {
 }
 
 .pagination {
-  display: none;
   text-align: right;
   float: right;
-  padding: 0 20px 0 0;
+  padding: 0 5px 0 0;
+  margin: 10px 0;
+}
+.pagination a {
+  background-color: #140b2c !important;
+}
+.pagination .page-item.active {
+  background: transparent !important;
+}
+.pagination .page-item.active .page-link {
+  background-color: #7367f0 !important;
 }
 
 div.dataTables_wrapper div.dataTables_filter label,
@@ -190,10 +199,6 @@ div.dataTables_wrapper div.dataTables_length label {
 .dark-layout .modal .modal-header,
 .dark-layout .modal .modal-header[class*=bg-] {
   background-color: #170c31;
-}
-
-.table-responsive {
-  overflow-x: inherit;
 }
 
 .dark-layout pre {
@@ -3937,6 +3942,11 @@ textarea {
 
   .mb-xs {
     margin-bottom: 10px;
+  }
+}
+@media (min-width: 768px) {
+  .table-responsive {
+    overflow-x: inherit;
   }
 }
 @media (max-width: 1700px) {

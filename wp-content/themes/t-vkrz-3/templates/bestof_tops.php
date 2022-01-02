@@ -29,7 +29,7 @@ get_header();
                                                 </h4>
                                             </div>
                                             <div class="table-responsive">
-                                                <table class="table">
+                                                <table class="table bestops">
                                                     <thead>
                                                         <tr>
                                                             <th>
@@ -44,9 +44,11 @@ get_header();
                                                             <th class="text-right">
                                                                 <small class="text-muted">Top terminés</small>
                                                             </th>
-                                                            <th class="text-right"><small class="text-muted">Conçu par</small></th>
-                                                            <th>
-                                                                <span class="va va-high-voltage va va-lg"></span>
+                                                            <th class="text-right">
+                                                                <small class="text-muted">Conçu par</small>
+                                                            </th>
+                                                            <th class="text-right">
+                                                                <small class="text-muted">Faire le Top</small>
                                                             </th>
                                                         </tr>
                                                     </thead>
@@ -147,9 +149,9 @@ get_header();
                                                                         </h4>
                                                                     </td>
 
-                                                                    <td>
+                                                                    <td class="text-right">
                                                                         <a href="<?php the_permalink($top_id); ?>" class="mr-1 btn btn-outline-primary waves-effect">
-                                                                            Faire le Top
+                                                                            <span class="va va-trophy va va-lg"></span>
                                                                         </a>
                                                                     </td>
                                                                 </tr>

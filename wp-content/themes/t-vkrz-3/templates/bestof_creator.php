@@ -24,32 +24,38 @@ $best_creators = best_creators();
                                 <div class="row" id="table-bordered">
                                     <div class="col-12">
                                         <div class="card">
-                                            <div class="card-header">
-                                                <h4 class="card-title pt-1 pb-1">
+                                            <div class="card-header justify-content-between align-items-center">
+                                                <h4 class="card-title pt-1 pb-1 mb-1 mb-sm-0">
                                                     <span class="t-rose">TOP</span> des créateurs les plus prolifiques <span class="va va-mechanical-arm va-lg"></span>
                                                 </h4>
+                                                <div class="cta text-right d-flex flex-column">
+                                                    <a href="<?php the_permalink(get_page_by_path('recrutement')); ?>/" class="btn btn-primary waves-effect">
+                                                        Postuler pour devenir Créateur <br>
+                                                        & cumuler des <span class="va va-gem va-md"></span>
+                                                    </a>
+                                                </div>
                                             </div>
                                             <div class="table-responsive">
-                                                <table class="table">
+                                                <table class="table table-bestcreator">
                                                     <thead>
                                                         <tr>
                                                             <th>
                                                                 <span class="va va-chequered-flag va-lg"></span>
                                                             </th>
                                                             <th>
-                                                                <span class="va va-prince va-lg"></span>
+                                                                <span class="va va-man-singer va-lg"></span> <span class="text-muted">Créateur</span>
                                                             </th>
                                                             <th class="text-right">
-                                                                Tops créés
+                                                                <span class="text-muted">Tops créés</span>
                                                             </th>
                                                             <th class="text-right">
-                                                                Votes
+                                                                <span class="text-muted">Votes</span>
                                                             </th>
                                                             <th class="text-right">
-                                                                Tops terminés
+                                                                <span class="text-muted">Tops générés</span>
                                                             </th>
-                                                            <th>
-                                                                <span class="va va-eyes va-lg"></span>
+                                                            <th class="text-right">
+                                                                <span class="text-muted">Voir ses Tops</span>
                                                             </th>
                                                         </tr>
                                                     </thead>
@@ -93,7 +99,7 @@ $best_creators = best_creators();
                                                                     </td>
 
                                                                     <td class="text-right">
-                                                                        <?php echo $nb_tops_created; ?> <span class="ico va va-crossed-swords va-lg"></span>
+                                                                        <?php echo $nb_tops_created; ?>
                                                                     </td>
 
                                                                     <td class="text-right">
@@ -104,9 +110,9 @@ $best_creators = best_creators();
                                                                         <?php echo number_format($creator['total_completed_top'], 0, ",", " "); ?> <span class="ico va va-trophy va-lg"></span>
                                                                     </td>
 
-                                                                    <td>
+                                                                    <td class="text-right">
                                                                         <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator['user_id']; ?>" class="mr-1 btn btn-outline-primary waves-effect">
-                                                                            Voir tous les Tops créés
+                                                                            <span class="va va-eyes va-lg"></span>
                                                                         </a>
                                                                     </td>
                                                                 </tr>
