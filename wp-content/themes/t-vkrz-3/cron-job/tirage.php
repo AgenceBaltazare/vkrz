@@ -33,7 +33,7 @@ $roles = (array) $user->roles;
                                                         <input class="form-control" type="number" name="id_top" placeholder="ID du Top" value="<?php echo $id_top; ?>">
                                                     </div>
                                                     <div class="col-sm-4">
-                                                        <input type="submit" value="valider" class="btn btn-primary btn-block waves-effect waves-float waves-light">
+                                                        <input type="submit" value="valider" class="btn btn-primary waves-effect waves-float waves-light">
                                                     </div>
                                                     <?php if (isset($_GET['id_top']) && $_GET['id_top'] != "") : ?>
                                                         <div class="col-sm-2">
