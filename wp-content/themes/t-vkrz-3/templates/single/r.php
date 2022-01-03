@@ -133,7 +133,7 @@ foreach ($get_top_type as $type_top) {
                                                                 <?php echo $top_datas['nb_completed_top']; ?> 🏆 <span class="space"></span> <?php echo $top_datas['nb_votes']; ?> ⚡️
                                                             </h2>
                                                             <div class="mt-1">
-                                                                <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top_=<?php echo $id_top_global; ?>" class="w-100 btn btn-primary waves-effect">
+                                                                <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_top_global; ?>" class="w-100 btn btn-primary waves-effect">
                                                                     <span class="ico">🌎</span> Voir le Top mondial
                                                                 </a>
                                                             </div>
@@ -152,7 +152,7 @@ foreach ($get_top_type as $type_top) {
                                                                 </h2>
                                                             <?php endif; ?>
                                                             <div class="mt-1">
-                                                                <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top_=<?php echo $id_top_global; ?>" class="d-flex align-items-center w-100 btn btn-outline-primary waves-effect">
+                                                                <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_top_global; ?>" class="d-flex align-items-center w-100 btn btn-outline-primary waves-effect">
                                                                     <span class="ico ico-reverse">👀</span> Voir le classement des autres
                                                                 </a>
                                                             </div>
@@ -301,7 +301,7 @@ foreach ($get_top_type as $type_top) {
                             </div>
                         <?php endif; ?>
                         <div class="ico-nav-mobile">
-                            <a href="<?php echo get_the_permalink(get_page_by_path('discuz')) . '?id_top_=' . $id_top_global; ?>">
+                            <a href="<?php echo get_the_permalink(get_page_by_path('discuz')) . '?id_top=' . $id_top_global; ?>">
                                 <span class="ico va va-speech-balloon va-lg hide-xs"></span> <span class="hide-spot">Commenter</span>
                             </a>
                         </div>

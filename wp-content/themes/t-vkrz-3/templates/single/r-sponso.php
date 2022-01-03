@@ -255,7 +255,7 @@ $top_datas    = get_top_data($id_top_global);
                                                                 <?php echo $top_datas['nb_completed_top']; ?> 🏆 <?php echo $top_datas['nb_votes']; ?> ⚡️
                                                             </h2>
                                                             <div class="mt-1">
-                                                                <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top_=<?php echo $id_top_global; ?>&sponso=active" class="w-100 btn btn-primary waves-effect">
+                                                                <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_top_global; ?>&sponso=active" class="w-100 btn btn-primary waves-effect">
                                                                     <span class="ico">🌎</span> Voir le Top mondial
                                                                 </a>
                                                             </div>
@@ -268,7 +268,7 @@ $top_datas    = get_top_data($id_top_global);
                                                                 </h2>
                                                             <?php endif; ?>
                                                             <div class="mt-1">
-                                                                <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top_=<?php echo $id_top_global; ?>" class="w-100 btn btn-outline-primary waves-effect">
+                                                                <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_top_global; ?>" class="w-100 btn btn-outline-primary waves-effect">
                                                                     <span class="ico ico-reverse">👀</span> voir les autres Tops
                                                                 </a>
                                                             </div>
@@ -431,7 +431,7 @@ $top_datas    = get_top_data($id_top_global);
                     <span class="ico va va-megaphone va-lg hide-xs"></span> <span class="hide-spot">Partager</span>
                 </div>
                 <div class="ico-nav-mobile">
-                    <a href="<?php echo get_the_permalink(get_page_by_path('discuz')) . '?id_top_=' . $id_top_global; ?>">
+                    <a href="<?php echo get_the_permalink(get_page_by_path('discuz')) . '?id_top=' . $id_top_global; ?>">
                         <span class="ico va va-speech-balloon va-lg hide-xs"></span> <span class="hide-spot">Commenter</span>
                     </a>
                 </div>
