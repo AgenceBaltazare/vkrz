@@ -9,6 +9,7 @@ global $utm;
 global $user_infos;
 global $id_vainkeur;
 global $banner;
+$id_top_global = $id_top;
 if (is_user_logged_in() && env() != "local") {
     if (false === ($user_tops = get_transient('user_' . $user_id . '_get_user_tops'))) {
         $user_tops = get_user_tops();
@@ -21,7 +22,7 @@ if (is_user_logged_in() && env() != "local") {
 }
 $user_ranking = get_user_ranking($id_ranking);
 $url_ranking  = get_the_permalink($id_ranking);
-$top_datas    = get_top_data($id_top);
+$top_datas    = get_top_data($id_top_global);
 ?>
 <div class="app-content content cover" style="background: url(<?php echo $top_infos['top_cover']; ?>) center center no-repeat">
     <div class="content-overlay"></div>
@@ -31,7 +32,7 @@ $top_datas    = get_top_data($id_top);
                 <div class="row">
                     <div class="col-md-8">
                         <div class="participation-content-sponso mb-4">
-                            <?php if (get_field('inscription_requise_t_sponso', $id_top) && !is_user_logged_in()) : ?>
+                            <?php if (get_field('inscription_requise_t_sponso', $id_top_global) && !is_user_logged_in()) : ?>
                                 <div class="row">
                                     <div class="col-md-12 mt-1">
                                         <h1>
@@ -72,26 +73,26 @@ $top_datas    = get_top_data($id_top);
                                             </div>
                                         <?php endif; ?>
                                         <h1>
-                                            <?php the_field('titre_de_la_fin_t_sponso', $id_top); ?>
+                                            <?php the_field('titre_de_la_fin_t_sponso', $id_top_global); ?>
                                         </h1>
                                     </div>
                                 </div>
-                                <?php if (get_field('choix_du_template_t_sponso', $id_top) == 'template_1') : ?>
+                                <?php if (get_field('choix_du_template_t_sponso', $id_top_global) == 'template_1') : ?>
                                     <div class="row">
                                         <div class="col-md-6 d-flex justify-content-around">
                                             <div class="image-recompense">
                                                 <?php
-                                                if (get_field('illustration_de_la_sponso_t_sponso', $id_top)) : ?>
-                                                    <?php echo wp_get_attachment_image(get_field('illustration_de_la_sponso_t_sponso', $id_top), 'large', '', array('class' => 'img-fluid')); ?>
+                                                if (get_field('illustration_de_la_sponso_t_sponso', $id_top_global)) : ?>
+                                                    <?php echo wp_get_attachment_image(get_field('illustration_de_la_sponso_t_sponso', $id_top_global), 'large', '', array('class' => 'img-fluid')); ?>
                                                 <?php endif; ?>
                                             </div>
                                         </div>
                                         <div class="col-md-5 info-concours">
                                             <div class="info-win">
-                                                <?php the_field('message_de_fin_t_sponso', $id_top); ?>
+                                                <?php the_field('message_de_fin_t_sponso', $id_top_global); ?>
                                             </div>
                                             <div class="d-flex align-items-center buttons-share-top">
-                                                <?php if (get_field('type_de_fin_t_sponso', $id_top) == "mail_1") : ?>
+                                                <?php if (get_field('type_de_fin_t_sponso', $id_top_global) == "mail_1") : ?>
                                                     <form action="" method="post" name="form2" id="form-coupon">
                                                         <?php if (is_user_logged_in()) : ?>
                                                             <input type="email" value="<?php echo $user_infos['pseudo']; ?>" name="email-player-input" id="email-player-input" required>
@@ -100,34 +101,34 @@ $top_datas    = get_top_data($id_top);
                                                         <?php endif; ?>
                                                         <input type="hidden" value="<?php echo $id_ranking; ?>" name="ranking" id="ranking">
                                                         <input type="hidden" value="<?php echo $uuiduser; ?>" name="uuiduser" id="uuiduser">
-                                                        <input type="hidden" value="<?php echo $id_top; ?>" name="top" id="top">
+                                                        <input type="hidden" value="<?php echo $id_top_global; ?>" name="top" id="top">
                                                         <input type="hidden" value="<?php echo $id_vainkeur; ?>" name="id_vainkeur" id="id_vainkeur">
                                                         <button class="btn" id="btn-coupon">
-                                                            <?php the_field('intitule_cta_mail_t_sponso', $id_top); ?>
+                                                            <?php the_field('intitule_cta_mail_t_sponso', $id_top_global); ?>
                                                         </button>
                                                     </form>
-                                                <?php elseif (get_field('type_de_fin_t_sponso', $id_top) == "twitter_1") : ?>
+                                                <?php elseif (get_field('type_de_fin_t_sponso', $id_top_global) == "twitter_1") : ?>
                                                     <a href="javascript: void(0)" class="sharelinkbtn2 w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-outline-primary waves-effect waves-float waves-light">
                                                         <input type="text" value="<?php echo get_the_permalink($id_ranking); ?>" class="input_to_share2">
                                                         Copier le lien du Top
                                                     </a>
-                                                    <a href="<?php the_field('lien_du_tweet_t_sponso', $id_top); ?>" target="_blank" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light">
+                                                    <a href="<?php the_field('lien_du_tweet_t_sponso', $id_top_global); ?>" target="_blank" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light">
                                                         Post Twitter
                                                     </a>
                                                 <?php endif; ?>
                                             </div>
                                         </div>
                                     </div>
-                                <?php elseif (get_field('choix_du_template_t_sponso', $id_top) == 'template_2') : ?>
+                                <?php elseif (get_field('choix_du_template_t_sponso', $id_top_global) == 'template_2') : ?>
                                     <div class="row">
                                         <div class="col-md-12 info-concours">
                                             <div class="info-win">
-                                                <?php the_field('message_de_fin_t_sponso', $id_top); ?>
+                                                <?php the_field('message_de_fin_t_sponso', $id_top_global); ?>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="d-flex align-items-center buttons-share-top">
-                                                <?php if (get_field('type_de_fin_t_sponso', $id_top) == "mail_1") : ?>
+                                                <?php if (get_field('type_de_fin_t_sponso', $id_top_global) == "mail_1") : ?>
                                                     <form action="" method="post" name="form2" id="form-coupon">
                                                         <?php if (is_user_logged_in()) : ?>
                                                             <input type="email" value="<?php echo $user_infos['user_email']; ?>" name="email-player-input" id="email-player-input" required>
@@ -136,21 +137,21 @@ $top_datas    = get_top_data($id_top);
                                                         <?php endif; ?>
                                                         <input type="hidden" value="<?php echo $id_ranking; ?>" name="ranking" id="ranking">
                                                         <input type="hidden" value="<?php echo $uuiduser; ?>" name="uuiduser" id="uuiduser">
-                                                        <input type="hidden" value="<?php echo $id_top; ?>" name="top" id="top">
+                                                        <input type="hidden" value="<?php echo $id_top_global; ?>" name="top" id="top">
                                                         <input type="hidden" value="<?php echo $id_vainkeur; ?>" name="id_vainkeur" id="id_vainkeur">
                                                         <button class="btn" id="btn-coupon">
-                                                            <?php the_field('intitule_cta_mail_t_sponso', $id_top); ?>
+                                                            <?php the_field('intitule_cta_mail_t_sponso', $id_top_global); ?>
                                                         </button>
                                                     </form>
                                                     <div class="bravo">
-                                                        <?php the_field('message_de_confirmation_t_sponso', $id_top); ?>
+                                                        <?php the_field('message_de_confirmation_t_sponso', $id_top_global); ?>
                                                     </div>
-                                                <?php elseif (get_field('type_de_fin_t_sponso', $id_top) == "twitter_1") : ?>
+                                                <?php elseif (get_field('type_de_fin_t_sponso', $id_top_global) == "twitter_1") : ?>
                                                     <a href="javascript: void(0)" class="sharelinkbtn2 w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-outline-primary waves-effect waves-float waves-light">
                                                         <input type="text" value="<?php echo get_the_permalink($id_ranking); ?>" class="input_to_share2">
                                                         Copier le lien du Top
                                                     </a>
-                                                    <a href="<?php the_field('lien_du_tweet_t_sponso', $id_top); ?>" target="_blank" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light">
+                                                    <a href="<?php the_field('lien_du_tweet_t_sponso', $id_top_global); ?>" target="_blank" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light">
                                                         Post Twitter
                                                     </a>
                                                 <?php endif; ?>
@@ -217,25 +218,25 @@ $top_datas    = get_top_data($id_top);
                                                     <div class="share-content-sponso">
                                                         <div class="text-left">
                                                             <p>
-                                                                <?php the_field('top_propose_par_t_sponso', $id_top); ?>
+                                                                <?php the_field('top_propose_par_t_sponso', $id_top_global); ?>
                                                             </p>
                                                         </div>
                                                         <div class="d-flex align-items-center flex-column">
                                                             <div class="logo-vkrz-sponso">
                                                                 <?php
-                                                                if (get_field('illustration_de_la_sponso_t_sponso', $id_top)) : ?>
-                                                                    <a href="<?php the_field('lien_de_la_sponso_t_sponso', $id_top); ?>" target="_blank">
-                                                                        <?php echo wp_get_attachment_image(get_field('illustration_de_la_sponso_t_sponso', $id_top), 'large', '', array('class' => 'img-fluid')); ?>
+                                                                if (get_field('illustration_de_la_sponso_t_sponso', $id_top_global)) : ?>
+                                                                    <a href="<?php the_field('lien_de_la_sponso_t_sponso', $id_top_global); ?>" target="_blank">
+                                                                        <?php echo wp_get_attachment_image(get_field('illustration_de_la_sponso_t_sponso', $id_top_global), 'large', '', array('class' => 'img-fluid')); ?>
                                                                     </a>
-                                                                <?php elseif (get_field('logo_de_la_sponso_t_sponso', $id_top)) : ?>
-                                                                    <a href="<?php the_field('lien_de_la_sponso_t_sponso', $id_top); ?>" target="_blank">
-                                                                        <?php echo wp_get_attachment_image(get_field('logo_de_la_sponso_t_sponso', $id_top), 'large', '', array('class' => 'img-fluid')); ?>
+                                                                <?php elseif (get_field('logo_de_la_sponso_t_sponso', $id_top_global)) : ?>
+                                                                    <a href="<?php the_field('lien_de_la_sponso_t_sponso', $id_top_global); ?>" target="_blank">
+                                                                        <?php echo wp_get_attachment_image(get_field('logo_de_la_sponso_t_sponso', $id_top_global), 'large', '', array('class' => 'img-fluid')); ?>
                                                                     </a>
                                                                 <?php endif; ?>
                                                             </div>
                                                             <div class="mt-2 social-media-sponso btn-group">
-                                                                <?php if (have_rows('liste_des_liens_t_sponso', $id_top)) : ?>
-                                                                    <?php while (have_rows('liste_des_liens_t_sponso', $id_top)) : the_row(); ?>
+                                                                <?php if (have_rows('liste_des_liens_t_sponso', $id_top_global)) : ?>
+                                                                    <?php while (have_rows('liste_des_liens_t_sponso', $id_top_global)) : the_row(); ?>
                                                                         <a href="<?php the_sub_field('lien_vers_t_sponso'); ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-icon btn-outline-primary waves-effect waves-float waves-light" target="_blank">
                                                                             <?php the_sub_field('intitule_t_sponso'); ?>
                                                                         </a>
@@ -246,7 +247,7 @@ $top_datas    = get_top_data($id_top);
                                                     </div>
                                                 </div>
 
-                                                <?php if (get_post_status($id_top) != "draft") : ?>
+                                                <?php if (get_post_status($id_top_global) != "draft") : ?>
                                                     <div class="card">
                                                         <div class="card-body">
                                                             <h2 class="stats-mondiales mb-0">
@@ -254,12 +255,12 @@ $top_datas    = get_top_data($id_top);
                                                                 <?php echo $top_datas['nb_completed_top']; ?> 🏆 <?php echo $top_datas['nb_votes']; ?> ⚡️
                                                             </h2>
                                                             <div class="mt-1">
-                                                                <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_top; ?>&sponso=active" class="w-100 btn btn-primary waves-effect">
+                                                                <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top_global=<?php echo $id_top_global; ?>&sponso=active" class="w-100 btn btn-primary waves-effect">
                                                                     <span class="ico">🌎</span> Voir le Top mondial
                                                                 </a>
                                                             </div>
                                                             <?php
-                                                            $similar = get_user_percent(get_field('uuid_user_r', $id_ranking), $id_top);
+                                                            $similar = get_user_percent(get_field('uuid_user_r', $id_ranking), $id_top_global);
                                                             if ($similar['percent'] >= 0) : ?>
                                                                 <h2 class="stats-mondiales mt-2 mb-0">
                                                                     <b>Ressemblance :</b>
@@ -267,7 +268,7 @@ $top_datas    = get_top_data($id_top);
                                                                 </h2>
                                                             <?php endif; ?>
                                                             <div class="mt-1">
-                                                                <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_top; ?>" class="w-100 btn btn-outline-primary waves-effect">
+                                                                <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top_global=<?php echo $id_top_global; ?>" class="w-100 btn btn-outline-primary waves-effect">
                                                                     <span class="ico ico-reverse">👀</span> voir les autres Tops
                                                                 </a>
                                                             </div>
@@ -284,7 +285,7 @@ $top_datas    = get_top_data($id_top);
                                                 }
 
                                                 $list_souscat  = array();
-                                                $top_souscat   = get_the_terms($id_top, 'concept');
+                                                $top_souscat   = get_the_terms($id_top_global, 'concept');
                                                 if (!empty($top_souscat)) {
                                                     foreach ($top_souscat as $souscat) {
                                                         array_push($list_souscat, $souscat->slug);
@@ -430,12 +431,12 @@ $top_datas    = get_top_data($id_top);
                     <span class="ico va va-megaphone va-lg hide-xs"></span> <span class="hide-spot">Partager</span>
                 </div>
                 <div class="ico-nav-mobile">
-                    <a href="<?php echo get_the_permalink(get_page_by_path('discuz')) . '?id_top=' . $id_top; ?>">
+                    <a href="<?php echo get_the_permalink(get_page_by_path('discuz')) . '?id_top_global=' . $id_top_global; ?>">
                         <span class="ico va va-speech-balloon va-lg hide-xs"></span> <span class="hide-spot">Commenter</span>
                     </a>
                 </div>
 
-                <?php if (get_post_status($id_top) != "draft") : ?>
+                <?php if (get_post_status($id_top_global) != "draft") : ?>
                     <?php if (get_field('uuid_user_r', $id_ranking) == $uuiduser) : ?>
                         <div class="ico-nav-mobile">
                             <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" href="#" class="confirm_delete">
@@ -537,7 +538,7 @@ $top_datas    = get_top_data($id_top);
         </div>
         <div class="box-info-content">
             <?php
-            $creator_id         = get_post_field('post_author', $id_top);
+            $creator_id         = get_post_field('post_author', $id_top_global);
             $creator_uuiduser   = get_field('uuiduser_user', 'user_' . $creator_id);
             $creator_data       = get_user_infos($creator_uuiduser);
             ?>
@@ -559,10 +560,10 @@ $top_datas    = get_top_data($id_top);
                                     <h5 class="t-rose">
                                         <?php echo $top_infos['top_question']; ?> <br>
                                     </h5>
-                                    <?php if (get_field('precision_t', $id_top)) : ?>
+                                    <?php if (get_field('precision_t', $id_top_global)) : ?>
                                         <div class="card-precision">
                                             <p class="card-text mb-1">
-                                                <?php the_field('precision_t', $id_top); ?>
+                                                <?php the_field('precision_t', $id_top_global); ?>
                                             </p>
                                         </div>
                                     <?php endif; ?>
@@ -572,7 +573,7 @@ $top_datas    = get_top_data($id_top);
                                 <h4 class="card-title">
                                     <?php
                                     date_default_timezone_set('Europe/Paris');
-                                    $origin     = new DateTime(get_the_date('Y-m-d', $id_top));
+                                    $origin     = new DateTime(get_the_date('Y-m-d', $id_top_global));
                                     $target     = new DateTime(date('Y-m-d'));
                                     $interval   = $origin->diff($target);
                                     if ($interval->days == 0) {
