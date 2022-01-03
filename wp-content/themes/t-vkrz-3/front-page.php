@@ -104,7 +104,7 @@ $list_t_already_done = $user_tops['list_user_tops_done_ids'];
                             );
                             $best_tops = best_tops($latest_rankings);
                             foreach (array_slice($best_tops, 0, 20, true) as $top_id => $completed_top_number) :
-
+                            
                                 $type_top = array();
                                 $type_top = get_the_terms($top_id, 'type');
                                 $slug_type_top = array();
@@ -113,14 +113,13 @@ $list_t_already_done = $user_tops['list_user_tops_done_ids'];
                                 }
                                 if (get_post_status($top_id) == "publish" && !in_array('private', $slug_type_top)) :
                                     global $user_tops;
+                                    $id_top             = $top_id;
                                     $list_user_tops     = $user_tops['list_user_tops'];
-                                    $id_top             = get_the_ID();
                                     $top_datas          = get_top_data($id_top);
                                     $creator_id         = get_post_field('post_author', $id_top);
                                     $creator_uuiduser   = get_field('uuiduser_user', 'user_' . $creator_id);
                                     $creator_data       = get_user_infos($creator_uuiduser);
                                     $state            = "";
-                                    $id_top           = $top_id;
                                     $illu             = get_the_post_thumbnail_url($id_top, 'medium');
                                     if (is_home()) {
                                         $class        = "swiper-slide";
