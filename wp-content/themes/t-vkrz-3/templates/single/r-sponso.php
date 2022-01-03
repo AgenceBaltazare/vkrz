@@ -536,6 +536,11 @@ $top_datas    = get_top_data($id_top);
             </ul>
         </div>
         <div class="box-info-content">
+            <?php
+            $creator_id         = get_post_field('post_author', $id_top);
+            $creator_uuiduser   = get_field('uuiduser_user', 'user_' . $creator_id);
+            $creator_data       = get_user_infos($creator_uuiduser);
+            ?>
             <h3>
                 <span class="ico va va-placard va-lg"></span> Tous les infos du Top
             </h3>
@@ -545,45 +550,63 @@ $top_datas    = get_top_data($id_top);
             <div class="box-info-list">
                 <div class="card text-left">
                     <div class="card-body">
-                        <h4 class="card-title">
-                            <?php
-                            $creator_id         = get_post_field('post_author', $id_top);
-                            $creator_uuiduser   = get_field('uuiduser_user', 'user_' . $creator_id);
-                            $creator_data       = get_user_infos($creator_uuiduser);
-                            date_default_timezone_set('Europe/Paris');
-                            $origin     = new DateTime(get_the_date('Y-m-d', $id_top));
-                            $target     = new DateTime(date('Y-m-d'));
-                            $interval   = $origin->diff($target);
-                            if ($interval->days == 0) {
-                                $info_date = "aujourd'hui";
-                            } elseif ($interval->days == 1) {
-                                $info_date = "hier";
-                            } else {
-                                $info_date = "depuis " . $interval->days . " jours";
-                            }
-                            ?>
-                            <span class="ico">🎂</span> Créé <span class="t-violet"><?php echo $info_date; ?></span> par :
-                        </h4>
-                        <div class="employee-task d-flex justify-content-between align-items-center">
-                            <a href="<?php echo $creator_data['profil']; ?>" class="d-flex flex-row link-to-creator">
-                                <div class="avatar me-75 mr-1">
-                                    <img src="<?php echo $creator_data['avatar']; ?>" class="circle" width="42" height="42" alt="Avatar">
-                                </div>
-                                <div class="my-auto">
-                                    <h4 class="mb-0">
-                                        <?php echo $creator_data['pseudo']; ?> <br>
-                                        <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Niveau actuel">
-                                            <?php echo $creator_data['level']; ?>
-                                        </span>
-                                        <?php if ($creator_data['user_role']  == "administrator") : ?>
-                                            <span class="ico va va-vkrzteam va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ"></span>
-                                        <?php endif; ?>
-                                        <?php if ($creator_data['user_role']  == "administrator" || $creator_data['user_role'] == "author") : ?>
-                                            <span class="ico va va-man-singer va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops"></span>
-                                        <?php endif; ?>
+                        <div class="row">
+                            <div class="col-md-5 mb-2 mb-md-0">
+                                <div class="top-resume-tool">
+                                    <h4 class="mb-1">
+                                        Top <?php echo $top_infos['top_number']; ?> <span class="ico">⚔️</span> <?php echo $top_infos['top_title']; ?>
                                     </h4>
+                                    <h5 class="t-rose">
+                                        <?php echo $top_infos['top_question']; ?> <br>
+                                    </h5>
+                                    <?php if (get_field('precision_t', $id_top)) : ?>
+                                        <div class="card-precision">
+                                            <p class="card-text mb-1">
+                                                <?php the_field('precision_t', $id_top); ?>
+                                            </p>
+                                        </div>
+                                    <?php endif; ?>
                                 </div>
-                            </a>
+                            </div>
+                            <div class="col-md-4">
+                                <h4 class="card-title">
+                                    <?php
+                                    date_default_timezone_set('Europe/Paris');
+                                    $origin     = new DateTime(get_the_date('Y-m-d', $id_top));
+                                    $target     = new DateTime(date('Y-m-d'));
+                                    $interval   = $origin->diff($target);
+                                    if ($interval->days == 0) {
+                                        $info_date = "aujourd'hui";
+                                    } elseif ($interval->days == 1) {
+                                        $info_date = "hier";
+                                    } else {
+                                        $info_date = "depuis " . $interval->days . " jours";
+                                    }
+                                    ?>
+                                    <span class="ico">🎂</span> Créé <span class="t-violet"><?php echo $info_date; ?></span> par :
+                                </h4>
+                                <div class="employee-task d-flex justify-content-between align-items-center">
+                                    <a href="<?php echo $creator_data['profil']; ?>" class="d-flex flex-row link-to-creator">
+                                        <div class="avatar me-75 mr-1">
+                                            <img src="<?php echo $creator_data['avatar']; ?>" class="circle" width="42" height="42" alt="Avatar">
+                                        </div>
+                                        <div class="my-auto">
+                                            <h4 class="mb-0">
+                                                <?php echo $creator_data['pseudo']; ?> <br>
+                                                <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Niveau actuel">
+                                                    <?php echo $creator_data['level']; ?>
+                                                </span>
+                                                <?php if ($creator_data['user_role']  == "administrator") : ?>
+                                                    <span class="ico va va-vkrzteam va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ"></span>
+                                                <?php endif; ?>
+                                                <?php if ($creator_data['user_role']  == "administrator" || $creator_data['user_role'] == "author") : ?>
+                                                    <span class="ico va va-man-singer va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops"></span>
+                                                <?php endif; ?>
+                                            </h4>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
