@@ -9,7 +9,7 @@
                 $users_ids_list = get_vkrz_users_list();
                 $all_users      = new WP_Query(array(
                     'post_type'              => 'vainkeur',
-                    'posts_per_page'         => '-1',
+                    'posts_per_page'         => '3000',
                     'post_status'            => 'publish',
                     'meta_key'               => 'nb_vote_vkrz',
                     'orderby'                => 'meta_value_num',
@@ -19,6 +19,13 @@
                     'ignore_sticky_posts'    => true,
                     'update_post_meta_cache' => false,
                     'no_found_rows'          => false,
+                    'meta_query' => array(
+                        array(
+                            'key'       => 'nb_vote_vkrz',
+                            'value'     => 10,
+                            'compare'   => '>',
+                        )
+                    )
                 ));
                 ?>
                 <div class="classement">
