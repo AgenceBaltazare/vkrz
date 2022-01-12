@@ -54,8 +54,12 @@ $tops_in_cat        = new WP_Query(array(
                 while ($tops_in_cat->have_posts()) : $tops_in_cat->the_post(); ?>
 
                     <?php
-                    $id_top    = get_the_ID();
-                    $illu             = get_the_post_thumbnail_url($id_top, 'medium');
+                    $id_top             = get_the_ID();
+                    $illu               = get_the_post_thumbnail_url($id_top, 'medium');
+                    $top_datas          = get_top_data($id_top);
+                    $creator_id         = get_post_field('post_author', $id_top);
+                    $creator_uuiduser   = get_field('uuiduser_user', 'user_' . $creator_id);
+                    $creator_data       = get_user_infos($creator_uuiduser);
                     $user_sinle_top_data = array_search($id_top, array_column($list_user_tops, 'id_top'));
                     if ($user_sinle_top_data !== false) {
                         $state = $list_user_tops[$user_sinle_top_data]['state'];
