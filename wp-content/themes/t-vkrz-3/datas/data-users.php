@@ -9,7 +9,7 @@
                 $users_ids_list = get_vkrz_users_list();
                 $all_users      = new WP_Query(array(
                     'post_type'              => 'vainkeur',
-                    'posts_per_page'         => '3000',
+                    'posts_per_page'         => -1,
                     'post_status'            => 'publish',
                     'meta_key'               => 'nb_vote_vkrz',
                     'orderby'                => 'meta_value_num',
