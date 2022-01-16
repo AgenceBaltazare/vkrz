@@ -2676,9 +2676,7 @@ textarea {
   font-weight: normal;
   src: local("Themysion Regular"), url("../../fonts/Themysion-2OjKo.woff") format("woff");
 }
-.t-marqueblanche {
-  /* The popup form - hidden by default */
-}
+
 .t-marqueblanche .app-content-marqueblanche {
   margin-left: 0px;
   padding: calc(2rem + 3.45rem + 1.3rem) 2rem 2rem;
@@ -3614,6 +3612,10 @@ textarea {
 
 .va-star-struck {
   background-image: url(../../images/emojis/star-struck_1f929.png);
+}
+
+.va-twitch {
+  background-image: url(../../images/emojis/twitch.png);
 }
 
 .va-smiling-face-with-heart-eyes {
