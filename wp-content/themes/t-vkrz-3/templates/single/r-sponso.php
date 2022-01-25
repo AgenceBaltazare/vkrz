@@ -36,7 +36,7 @@ $top_datas    = get_top_data($id_top_global);
     <div class="content-overlay"></div>
     <div class="d-block d-sm-none">
         <div class="other-topsponso other-topsponso-mobile">
-            <a href="<?php the_permalink('tops-sponso'); ?>/" class="w-100 btn btn-rose waves-effect">
+            <a href="<?php the_permalink(get_page_by_path('tops-sponso')); ?>/" class="w-100 btn btn-rose waves-effect">
                 Voir les autres TOPS sponso avec des <span class="va va-wrapped-gift va-lg"></span> à gagner !
             </a>
         </div>
@@ -235,7 +235,7 @@ $top_datas    = get_top_data($id_top_global);
 
                                                 <div class="card d-none d-sm-block">
                                                     <div class="other-topsponso">
-                                                        <a href="<?php the_permalink('tops-sponso'); ?>/" class="w-100 btn btn-rose waves-effect">
+                                                        <a href="<?php the_permalink(get_page_by_path('tops-sponso')); ?>/" class="w-100 btn btn-rose waves-effect">
                                                             Voir tous les autres TOPS sponso avec des <span class="va va-wrapped-gift va-lg"></span> à gagner !
                                                         </a>
                                                     </div>
