@@ -10,3 +10,4 @@ require_once('data/get_data_sponso.php');
 require_once('data/get_users_by_level.php');
 require_once('data/monitor_data.php');
 require_once('data/get_resume.php');
+require_once('data/played.php');

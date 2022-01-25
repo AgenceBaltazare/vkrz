@@ -200,6 +200,7 @@
         padding: 20px 20px 10px 20px;
         border: 5px solid $c4;
         display: none;
+        border-radius: 10px;
     }
 }
 
@@ -207,7 +208,7 @@
 
     .participation-content-sponso h1 {
         font-size: 20px;
-        line-height: 8px;
+        line-height: 25px;
     }
 
     .info-win {
@@ -286,5 +287,45 @@
         max-height: 100px;
         width: auto;
         margin: 0 auto;
+    }
+}
+
+.other-topsponso {
+    text-align: center;
+
+    .btn-rose {
+        color: #fff;
+        transition: all 0.2s ease-in;
+
+        &:hover {
+            transform: scale(1.05);
+            color: #fff;
+        }
+    }
+}
+
+.other-topsponso-mobile {
+    position: fixed;
+    bottom: 0;
+    z-index: 999;
+    text-align: left;
+    right: 0;
+    left: 0;
+
+    a {
+        border-radius: 0 !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .is-sponso {
+        &.mobile-navbar {
+            bottom: 65px !important;
+        }
+
+        .crisp-client .cc-kv6t[data-full-view=true] .cc-1xry .cc-unoo {
+            bottom: 110px !important;
+            right: 5px !important;
+        }
     }
 }

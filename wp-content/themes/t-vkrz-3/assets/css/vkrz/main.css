@@ -789,7 +789,8 @@ html .content {
 
 .single-tournoi .crisp-client .cc-kv6t .cc-1xry .cc-unoo,
 .single-classement .crisp-client .cc-kv6t .cc-1xry .cc-unoo {
-  bottom: 10px !important;
+  bottom: 40px !important;
+  right: 10px !important;
 }
 
 .pslim {
@@ -1752,6 +1753,10 @@ html .content {
   height: 0;
 }
 
+.label-coco {
+  color: #f4167f;
+}
+
 .cover-profil {
   background-color: #0c0a27;
   min-height: 200px;
@@ -2594,12 +2599,13 @@ textarea {
   padding: 20px 20px 10px 20px;
   border: 5px solid rgba(97, 84, 167, 0.1);
   display: none;
+  border-radius: 10px;
 }
 
 @media (max-width: 768px) {
   .participation-content-sponso h1 {
     font-size: 20px;
-    line-height: 8px;
+    line-height: 25px;
   }
 
   .info-win {
@@ -2670,6 +2676,39 @@ textarea {
   margin: 0 auto;
 }
 
+.other-topsponso {
+  text-align: center;
+}
+.other-topsponso .btn-rose {
+  color: #fff;
+  transition: all 0.2s ease-in;
+}
+.other-topsponso .btn-rose:hover {
+  transform: scale(1.05);
+  color: #fff;
+}
+
+.other-topsponso-mobile {
+  position: fixed;
+  bottom: 0;
+  z-index: 999;
+  text-align: left;
+  right: 0;
+  left: 0;
+}
+.other-topsponso-mobile a {
+  border-radius: 0 !important;
+}
+
+@media (max-width: 768px) {
+  .is-sponso.mobile-navbar {
+    bottom: 65px !important;
+  }
+  .is-sponso .crisp-client .cc-kv6t[data-full-view=true] .cc-1xry .cc-unoo {
+    bottom: 110px !important;
+    right: 5px !important;
+  }
+}
 @font-face {
   font-family: "Themysion Regular";
   font-style: normal;
