@@ -9,11 +9,14 @@
 
 				<form method="get" style="">
 
-					<?php 
+					<?php
 					// Generate current parameters in URL
 					foreach($_GET as $name => $value){
-						if($name != "s" && $name != "paged" && $name != "aDBc_cat")
+						if($name != "s" && $name != "paged" && $name != "aDBc_cat"){
+							$name 	= esc_attr(sanitize_text_field($name));
+							$value 	= esc_attr(sanitize_text_field($value));
 							echo "<input type='hidden' name='$name' value='$value'/>";
+						}
 					}
 					// Return always paged to page 1
 					echo "<input type='hidden' name='paged' value='1'/>";
@@ -38,7 +41,7 @@
 						</select>
 						<?php } ?>
 						
-						<?php 
+						<?php
 						// Show autoload only for options
 						if(isset($_GET['aDBc_tab']) && $_GET['aDBc_tab'] == 'options'){ ?>
 						<select name="autoload" style="font-size:13px;width:100px;height:30px;border:1px solid #e5e5e5;border-radius:2px;box-shadow:0 0 10px #f1f1f1;">
@@ -62,7 +65,7 @@
 							}
 							?>
 							<optgroup label="<?php echo __('Plugins','advanced-database-cleaner') . " (" . $total_plugins . ")"  ?>">
-								<?php 
+								<?php
 
 									foreach($this->array_belongs_to_counts as $name => $info){
 										if($info['type'] == "p"){
@@ -118,11 +121,14 @@
 
 			<form method="get">
 
-				<?php 
+				<?php
 				// Generate current parameters in URL
 				foreach($_GET as $name => $value){
-					if($name != "per_page" && $name != "paged")
+					if($name != "per_page" && $name != "paged"){
+						$name 	= esc_attr(sanitize_text_field($name));
+						$value 	= esc_attr(sanitize_text_field($value));
 						echo "<input type='hidden' name='$name' value='$value'/>";
+					}
 				}
 				// Return paged to page 1
 				echo "<input type='hidden' name='paged' value='1'/>";

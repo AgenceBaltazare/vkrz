@@ -5,7 +5,7 @@ Tags: clean, clean up, cleanup, database, optimize, performance, speed, optimizi
 Requires at least: 3.1.0
 Requires PHP: 5.0
 Tested up to: 5.5
-Stable tag: 3.1.6
+Stable tag: 3.1.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -134,6 +134,10 @@ This section describes how to install the plugin. In general, there are 3 ways t
 8. Overview and settings page
 
 == Changelog ==
+
+= 3.1.7 - 21/01/2022 =
+- Tweak: Enhancing the security of the plugin
+- Tweak: Tested with the latest versions of WP
 
 = 3.1.6 - 06/10/2020 =
 - Tweak: Cleaning the code by deleting unused blocks of code

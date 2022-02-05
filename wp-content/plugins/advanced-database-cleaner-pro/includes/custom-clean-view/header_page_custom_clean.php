@@ -5,6 +5,7 @@
 </div>
 
 <div>
+
 	<div class="aDBc-float-right aDBc-custom-clean-text">
 		<div>
 		<?php echo __('Custom cleaning of','advanced-database-cleaner') . " : <strong>" . $this->aDBc_plural_title . "</strong> - " . __('Total Found','advanced-database-cleaner') . " : <b><span style='background:#ffe4b5;border-radius:8px;padding:2px 6px'>" . count($this->aDBc_elements_to_display) . "</span></b>"; ?>
@@ -20,11 +21,14 @@
 
 				<form style="float:left" method="get">
 
-					<?php 
+					<?php
 					// Generate current parameters in URL
 					foreach($_GET as $name => $value){
-						if($name != "s" && $name != "in" && $name != "paged")
+						if($name != "s" && $name != "in" && $name != "paged"){
+							$name 	= esc_attr(sanitize_text_field($name));
+							$value 	= esc_attr(sanitize_text_field($value));
 							echo "<input type='hidden' name='$name' value='$value'/>";
+						}
 					}
 					// Return paged to page 1
 					echo "<input type='hidden' name='paged' value='1'/>";				
@@ -52,11 +56,14 @@
 
 			<form style="float:left" method="get">
 
-				<?php 
+				<?php
 				// Generate current parameters in URL
 				foreach($_GET as $name => $value){
-					if($name != "per_page" && $name != "paged")
+					if($name != "per_page" && $name != "paged"){
+						$name 	= esc_attr(sanitize_text_field($name));
+						$value 	= esc_attr(sanitize_text_field($value));
 						echo "<input type='hidden' name='$name' value='$value'/>";
+					}
 				}
 				// Return paged to page 1
 				echo "<input type='hidden' name='paged' value='1'/>";
