@@ -399,6 +399,9 @@ function WPPB_Conditional_Logic_Option( field_id ) {
 
 			if( field['options'] != '' ) {
 				select_values = field['options'];
+			}else if ( field['user-roles'] ) {
+				select_values = field['user-roles'];
+				select_labels = field['user-role-names'];
 			}else if ( field['subscription-plan-ids'] ){
 				select_values = field['subscription-plan-ids'];
 				select_labels = field['subscription-plan-names'];

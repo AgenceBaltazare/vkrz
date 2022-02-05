@@ -37,26 +37,24 @@ $paramSocialOption = get_option('wp_maintenance_social_options');
     <?php echo wpm_get_header( $messageUpdate ) ?>
     <!-- END HEADER -->
 
-    <div class="wp-maintenance-wrapper wp-maintenance-flex wp-maintenance-flex-top">
-        
-        <?php echo wpm_get_nav(); ?>
+    <div class="wp-maintenance-wrapper">
+
+        <?php echo wpm_get_nav2(); ?>
 
         <div class="wp-maintenance-tab-content wp-maintenance-tab-content-welcome" id="wp-maintenance-tab-content">
-            
-            <div class="wp-maintenance-tab-content-header"><i class="dashicons dashicons-format-status" style="margin-right: 10px;height:50px;width:50px;font-size:50px;padding: 8px 8px 14px 10px;border-radius: 5px;display: inline;float:left;"></i>  <h2 class="wp-maintenance-tc-title"><?php _e('Social Networks', 'wp-maintenance'); ?></h2></div>
 
-            <div class="wp-maintenance-module-options-block" id="block-advanced_options" data-module="welcome">
+            <form method="post" action="" id="valide_settings" name="valide_settings">
+                <input type="hidden" name="action" value="update_footer" />
+                <?php wp_nonce_field('valid-footer', 'security-footer'); ?>
                 
-                <form method="post" action="" id="valide_settings" name="valide_settings">
-                    <input type="hidden" name="action" value="update_footer" />
-                    <?php wp_nonce_field('valid-footer', 'security-footer'); ?>
-
-                    <!-- LINK TO LOGIN -->
+                <!-- LINK TO LOGIN -->
+                <div class="wp-maintenance-module-options-block">
+                
                     <div class="wp-maintenance-settings-section-header">
                         <h3 class="wp-maintenance-settings-section-title" id="module-import_export"><?php _e('Enable social networks', 'wp-maintenance'); ?></h3>
                     </div>
 
-                    <p class="wp-maintenance-fieldset-item ">
+                    <p>
                         <label class="wp-maintenance-container"><span class="wp-maintenance-label-text"><?php _e('Yes, enable social networks options', 'wp-maintenance'); ?></span>
                             <input type="checkbox" name="wp_maintenance_social_options[enable]" value="1" <?php if( isset($paramSocialOption['enable']) && $paramSocialOption['enable']==1) { echo ' checked'; } ?>>
                             <span class="wp-maintenance-checkmark"></span>
@@ -64,7 +62,9 @@ $paramSocialOption = get_option('wp_maintenance_social_options');
                     </p>
                         
                     <p class="submit"><button type="submit" name="footer_submit" id="footer_submit" class="wp-maintenance-button wp-maintenance-button-primary"><?php _e('Save', 'wp-maintenance'); ?></button></p>
+                </div>
 
+                <div class="wp-maintenance-module-options-block">
                     <div class="wp-maintenance-settings-section-header">
                         <h3 class="wp-maintenance-settings-section-title" id="module-import_export"><?php _e('List of Social networks', 'wp-maintenance'); ?></h3>
                     </div>
@@ -101,7 +101,9 @@ $paramSocialOption = get_option('wp_maintenance_social_options');
                         </ul>
                     </div>
                     <p class="submit"><button type="submit" name="footer_submit" id="footer_submit" class="wp-maintenance-button wp-maintenance-button-primary"><?php _e('Save', 'wp-maintenance'); ?></button></p>
+                </div>
 
+                <div class="wp-maintenance-module-options-block">
                     <div class="wp-maintenance-settings-section-header">
                         <h3 class="wp-maintenance-settings-section-title" id="module-import_export"><?php _e('Social Networks Style', 'wp-maintenance'); ?></h3>
                     </div>
@@ -157,11 +159,13 @@ $paramSocialOption = get_option('wp_maintenance_social_options');
                     </div>
 
                     <p class="submit"><button type="submit" name="footer_submit" id="footer_submit" class="wp-maintenance-button wp-maintenance-button-primary"><?php _e('Save', 'wp-maintenance'); ?></button></p>
+                </div>
 
+                <div class="wp-maintenance-module-options-block">
                     <div class="wp-maintenance-settings-section-header">
                         <h3 class="wp-maintenance-settings-section-title" id="module-import_export"><?php _e('Reset Social Networks Icons Options', 'wp-maintenance'); ?></h3>
                     </div>
-                    <p class="wp-maintenance-fieldset-item ">
+                    <p>
                         <label class="wp-maintenance-container"><span class="wp-maintenance-label-text"><?php _e('Yes, reset Social Networks Icons?', 'wp-maintenance'); ?></span>
                             <input type="checkbox" name="wp_maintenance_social_options[reset]" value="1" <?php if( isset($paramSocialOption['reset']) && $paramSocialOption['reset']==1) { echo ' checked'; } ?>>
                             <span class="wp-maintenance-checkmark"></span>
@@ -169,9 +173,8 @@ $paramSocialOption = get_option('wp_maintenance_social_options');
                     </p>
                     <p class="submit"><button type="submit" name="footer_submit" id="footer_submit" class="wp-maintenance-button wp-maintenance-button-primary"><?php _e('Save', 'wp-maintenance'); ?></button></p>
 
-                </form>
-
-            </div>
+                </div>
+            </form>
         </div>
 
     </div>

@@ -253,6 +253,12 @@ function wppb_add_meta_to_user_on_activation( $user_id, $password, $meta ){
                         if( !empty( $meta[$value['meta-name']] ) ) {
                             if (is_numeric($meta[$value['meta-name']])) {
                                 update_user_meta($user_id, $value['meta-name'], trim($meta[$value['meta-name']]));
+
+                                // use this to update the post author to the correct user
+                                wp_update_post( array(
+                                    'ID'            => trim( $meta[$value['meta-name']] ),
+                                    'post_author'   => $user_id
+                                ) );
                             } else {
                                 $wp_upload_array = wp_upload_dir(); // Array of key => value pairs
 
@@ -330,8 +336,17 @@ function wppb_add_meta_to_user_on_activation( $user_id, $password, $meta ){
 
 
 // function to add the new user to the signup table if email confirmation is selected as active or it is a wpmu installation
-function wppb_signup_user( $username, $user_email, $meta = '' ) {
+function wppb_signup_user( $username, $user_email, $meta = '', $login_after_register ) {
 	global $wpdb;
+
+    // check for automatic login
+    // using case-insensitive string comparison to allow for both 'Yes' and 'yes'
+    if( strcasecmp($login_after_register, 'Yes') === 0 ) {
+        $login_after_register = true;
+    } else {
+        $login_after_register = false;
+    }
+    $meta [ 'wppb_login_after_register_'.$meta['user_login'] ] = $login_after_register;
 
 	// Format data
 	$user = sanitize_user( $username, true );

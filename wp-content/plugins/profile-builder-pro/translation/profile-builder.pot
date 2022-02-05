@@ -1,4 +1,4 @@
-# Copyright (C) 2021 Profile Builder
+# Copyright (C) 2022 Profile Builder
 # This file is distributed under the same license as the Profile Builder package.
 msgid ""
 msgstr ""
@@ -477,7 +477,7 @@ msgstr ""
 msgid "MailPoet Newsletters needs to be installed and activated for Profile Builder - MailPoet Add-on to work!"
 msgstr ""
 
-#: ../pb-add-on-multi-step-forms/index.php:102, ../pb-add-on-multi-step-forms/index.php:530
+#: ../pb-add-on-multi-step-forms/index.php:102, ../pb-add-on-multi-step-forms/index.php:556
 msgid "Step"
 msgstr ""
 
@@ -549,11 +549,11 @@ msgstr ""
 msgid "Update Multi-Step"
 msgstr ""
 
-#: ../pb-add-on-multi-step-forms/index.php:459
+#: ../pb-add-on-multi-step-forms/index.php:477
 msgid "Next"
 msgstr ""
 
-#: ../pb-add-on-multi-step-forms/index.php:460
+#: ../pb-add-on-multi-step-forms/index.php:478
 msgid "Previous"
 msgstr ""
 
@@ -757,7 +757,7 @@ msgstr ""
 msgid "You will be redirected in 5 seconds. If not, click %%."
 msgstr ""
 
-#: ../pb-add-on-social-connect/index.php:422, features/functions.php:1337
+#: ../pb-add-on-social-connect/index.php:422, features/functions.php:1348
 msgid "here"
 msgstr ""
 
@@ -1065,7 +1065,7 @@ msgstr ""
 msgid "Edit this item"
 msgstr ""
 
-#: ../pb-add-on-mailchimp-integration/admin/mailchimp-page.php:171, features/functions.php:1026, features/roles-editor/roles-editor.php:181, assets/lib/wck-api/wordpress-creation-kit.php:406
+#: ../pb-add-on-mailchimp-integration/admin/mailchimp-page.php:171, features/functions.php:1037, features/roles-editor/roles-editor.php:181, assets/lib/wck-api/wordpress-creation-kit.php:406
 msgid "Cancel"
 msgstr ""
 
@@ -1549,7 +1549,7 @@ msgstr ""
 msgid "Hide"
 msgstr ""
 
-#: admin/admin-bar.php:92, admin/general-settings.php:346, admin/private-website.php:162, admin/register-version.php:96, features/functions.php:1019, features/content-restriction/content-restriction.php:162, features/two-factor-authentication/class-two-factor-authentication.php:156, assets/lib/class-mustache-templates/class-mustache-templates.php:392, assets/lib/wck-api/wordpress-creation-kit.php:405, admin/advanced-settings/includes/views/view-admin.php:112, admin/advanced-settings/includes/views/view-fields.php:309, admin/advanced-settings/includes/views/view-forms.php:392, admin/advanced-settings/includes/views/view-shortcodes.php:77, admin/advanced-settings/includes/views/view-userlisting.php:91
+#: admin/admin-bar.php:92, admin/general-settings.php:346, admin/private-website.php:162, admin/register-version.php:96, features/functions.php:1030, features/content-restriction/content-restriction.php:162, features/two-factor-authentication/class-two-factor-authentication.php:156, assets/lib/class-mustache-templates/class-mustache-templates.php:392, assets/lib/wck-api/wordpress-creation-kit.php:405, admin/advanced-settings/includes/views/view-admin.php:112, admin/advanced-settings/includes/views/view-fields.php:309, admin/advanced-settings/includes/views/view-forms.php:392, admin/advanced-settings/includes/views/view-shortcodes.php:77, admin/advanced-settings/includes/views/view-userlisting.php:91
 msgid "Save Changes"
 msgstr ""
 
@@ -1573,15 +1573,15 @@ msgstr ""
 msgid "Very weak"
 msgstr ""
 
-#: admin/admin-functions.php:138, admin/general-settings.php:333, features/functions.php:768, features/functions.php:792
+#: admin/admin-functions.php:138, admin/general-settings.php:333, features/functions.php:779, features/functions.php:803
 msgid "Weak"
 msgstr ""
 
-#: admin/admin-functions.php:138, admin/general-settings.php:334, features/functions.php:768, features/functions.php:792
+#: admin/admin-functions.php:138, admin/general-settings.php:334, features/functions.php:779, features/functions.php:803
 msgid "Medium"
 msgstr ""
 
-#: admin/admin-functions.php:138, admin/general-settings.php:335, features/functions.php:768, features/functions.php:792
+#: admin/admin-functions.php:138, admin/general-settings.php:335, features/functions.php:779, features/functions.php:803
 msgid "Strong"
 msgstr ""
 
@@ -4241,11 +4241,11 @@ msgstr ""
 msgid "<pre>Title</pre><pre>Type</pre><pre>Meta Name</pre><pre class=\"wppb-mb-head-required\">Required</pre>"
 msgstr ""
 
-#: admin/manage-fields.php:1362, features/functions.php:1040, features/functions.php:1047, add-ons/custom-redirects/custom_redirects_admin.php:183, add-ons/custom-redirects/custom_redirects_admin.php:197, add-ons/custom-redirects/custom_redirects_admin.php:211, add-ons/custom-redirects/custom_redirects_admin.php:225, add-ons/multiple-forms/multiple-forms.php:411, features/admin-approval/class-admin-approval.php:111, features/roles-editor/roles-editor.php:869, assets/lib/wck-api/wordpress-creation-kit.php:447, assets/lib/wck-api/wordpress-creation-kit.php:548
+#: admin/manage-fields.php:1362, features/functions.php:1051, features/functions.php:1058, add-ons/custom-redirects/custom_redirects_admin.php:183, add-ons/custom-redirects/custom_redirects_admin.php:197, add-ons/custom-redirects/custom_redirects_admin.php:211, add-ons/custom-redirects/custom_redirects_admin.php:225, add-ons/multiple-forms/multiple-forms.php:411, features/admin-approval/class-admin-approval.php:111, features/roles-editor/roles-editor.php:869, assets/lib/wck-api/wordpress-creation-kit.php:447, assets/lib/wck-api/wordpress-creation-kit.php:548
 msgid "Edit"
 msgstr ""
 
-#: admin/manage-fields.php:1362, features/functions.php:1033, features/functions.php:1047, add-ons/custom-redirects/custom_redirects_admin.php:183, add-ons/custom-redirects/custom_redirects_admin.php:197, add-ons/custom-redirects/custom_redirects_admin.php:211, add-ons/custom-redirects/custom_redirects_admin.php:225, features/admin-approval/class-admin-approval.php:116, features/admin-approval/class-admin-approval.php:232, features/email-confirmation/class-email-confirmation.php:121, features/email-confirmation/class-email-confirmation.php:218, features/roles-editor/roles-editor.php:180, features/roles-editor/roles-editor.php:907, features/roles-editor/roles-editor.php:896, features/roles-editor/roles-editor.php:887, assets/lib/wck-api/wordpress-creation-kit.php:447, assets/lib/wck-api/wordpress-creation-kit.php:549, front-end/default-fields/gdpr-delete/gdpr-delete.php:20
+#: admin/manage-fields.php:1362, features/functions.php:1044, features/functions.php:1058, add-ons/custom-redirects/custom_redirects_admin.php:183, add-ons/custom-redirects/custom_redirects_admin.php:197, add-ons/custom-redirects/custom_redirects_admin.php:211, add-ons/custom-redirects/custom_redirects_admin.php:225, features/admin-approval/class-admin-approval.php:116, features/admin-approval/class-admin-approval.php:232, features/email-confirmation/class-email-confirmation.php:121, features/email-confirmation/class-email-confirmation.php:218, features/roles-editor/roles-editor.php:180, features/roles-editor/roles-editor.php:907, features/roles-editor/roles-editor.php:896, features/roles-editor/roles-editor.php:887, assets/lib/wck-api/wordpress-creation-kit.php:447, assets/lib/wck-api/wordpress-creation-kit.php:549, front-end/default-fields/gdpr-delete/gdpr-delete.php:20
 msgid "Delete"
 msgstr ""
 
@@ -4545,75 +4545,75 @@ msgstr ""
 msgid "If you enjoy using <strong> %1$s </strong> please <a href=\"%2$s\" target=\"_blank\">rate us on WordPress.org</a>. More happy users means more features, less bugs and better support for everyone. "
 msgstr ""
 
-#: features/functions.php:329
+#: features/functions.php:340
 msgid "GDPR Checkbox"
 msgstr ""
 
-#: features/functions.php:329
+#: features/functions.php:340
 msgid "I allow the website to collect and store the data I submit through this form."
 msgstr ""
 
-#: features/functions.php:329
+#: features/functions.php:340
 msgid "Honeypot"
 msgstr ""
 
-#: features/functions.php:742
+#: features/functions.php:753
 msgid "Strength indicator"
 msgstr ""
 
-#: features/functions.php:768, features/functions.php:792
+#: features/functions.php:779, features/functions.php:803
 msgid "Very Weak"
 msgstr ""
 
-#: features/functions.php:782
+#: features/functions.php:793
 msgid "Minimum length of %d characters."
 msgstr ""
 
-#: features/functions.php:793, front-end/recover.php:384, front-end/default-fields/password/password.php:59
+#: features/functions.php:804, front-end/recover.php:384, front-end/default-fields/password/password.php:59
 msgid "The password must have a minimum strength of %s"
 msgstr ""
 
-#: features/functions.php:938
+#: features/functions.php:949
 msgid "This field is required"
 msgstr ""
 
-#: features/functions.php:976, front-end/default-fields/recaptcha/recaptcha.php:533, front-end/default-fields/recaptcha/recaptcha.php:524, front-end/default-fields/recaptcha/recaptcha.php:589, front-end/default-fields/recaptcha/recaptcha.php:637
+#: features/functions.php:987, front-end/default-fields/recaptcha/recaptcha.php:533, front-end/default-fields/recaptcha/recaptcha.php:524, front-end/default-fields/recaptcha/recaptcha.php:589, front-end/default-fields/recaptcha/recaptcha.php:637
 msgid "Please enter a (valid) reCAPTCHA value"
 msgstr ""
 
-#: features/functions.php:983
+#: features/functions.php:994
 msgid "Incorrect phone number"
 msgstr ""
 
-#: features/functions.php:1047, assets/lib/wck-api/wordpress-creation-kit.php:447
+#: features/functions.php:1058, assets/lib/wck-api/wordpress-creation-kit.php:447
 msgid "Content"
 msgstr ""
 
-#: features/functions.php:1235
+#: features/functions.php:1246
 msgid "<br><br>Also, you will be able to visit your site at "
 msgstr ""
 
-#: features/functions.php:1248
+#: features/functions.php:1259
 msgid "<br><br>You can visit your site at "
 msgstr ""
 
-#: features/functions.php:1338
+#: features/functions.php:1349
 msgid "You will soon be redirected automatically. If you see this page for more than %1$d seconds, please click %2$s.%3$s"
 msgstr ""
 
-#: features/functions.php:1514
+#: features/functions.php:1525
 msgid "No feed available,please visit our <a href=\"%s\">homepage</a>!"
 msgstr ""
 
-#: features/functions.php:1555
+#: features/functions.php:1566
 msgid "You are not currently logged in."
 msgstr ""
 
-#: features/functions.php:1592
+#: features/functions.php:1603
 msgid "Profile Builder"
 msgstr ""
 
-#: features/functions.php:1610, features/email-confirmation/class-email-confirmation.php:92, features/email-confirmation/class-email-confirmation.php:171
+#: features/functions.php:1621, features/email-confirmation/class-email-confirmation.php:92, features/email-confirmation/class-email-confirmation.php:171
 msgid "User Meta"
 msgstr ""
 
@@ -4898,31 +4898,31 @@ msgstr ""
 msgid "ERROR:"
 msgstr ""
 
-#: front-end/register.php:56
+#: front-end/register.php:58
 msgid "Invalid activation key!"
 msgstr ""
 
-#: front-end/register.php:60
+#: front-end/register.php:62
 msgid "This username is now active!"
 msgstr ""
 
-#: front-end/register.php:139
+#: front-end/register.php:164
 msgid "There was an error while trying to activate the user."
 msgstr ""
 
-#: front-end/register.php:110
+#: front-end/register.php:121
 msgid "Your email was successfully confirmed."
 msgstr ""
 
-#: front-end/register.php:111, features/email-confirmation/email-confirmation.php:669
+#: front-end/register.php:122, features/email-confirmation/email-confirmation.php:684
 msgid "Before you can access your account, an administrator needs to approve it. You will be notified via email."
 msgstr ""
 
-#: front-end/register.php:74
+#: front-end/register.php:84
 msgid "This username is already activated!"
 msgstr ""
 
-#: front-end/register.php:71, features/email-confirmation/email-confirmation.php:468
+#: front-end/register.php:81, features/email-confirmation/email-confirmation.php:483
 msgid "Could not create user!"
 msgstr ""
 
@@ -5150,7 +5150,7 @@ msgstr ""
 msgid "Email Subject"
 msgstr ""
 
-#: add-ons/email-customizer/admin-email-customizer.php:84, features/email-confirmation/email-confirmation.php:542
+#: add-ons/email-customizer/admin-email-customizer.php:84, features/email-confirmation/email-confirmation.php:557
 msgid "A new subscriber has (been) registered!"
 msgstr ""
 
@@ -5299,7 +5299,7 @@ msgstr ""
 msgid "The users selected password at signup"
 msgstr ""
 
-#: add-ons/email-customizer/email-customizer.php:615, add-ons/email-customizer/email-customizer.php:622, add-ons/email-customizer/email-customizer.php:636, features/email-confirmation/email-confirmation.php:600
+#: add-ons/email-customizer/email-customizer.php:615, add-ons/email-customizer/email-customizer.php:622, add-ons/email-customizer/email-customizer.php:636, features/email-confirmation/email-confirmation.php:615
 msgid "Your selected password at signup"
 msgstr ""
 
@@ -5635,7 +5635,7 @@ msgid "Automatically Log In"
 msgstr ""
 
 #: add-ons/multiple-forms/register-forms.php:229
-msgid "Whether to automatically log in the newly registered user or not<br/>Only works on single-sites without \"Admin Approval\" and \"Email Confirmation\" features activated<br/>WARNING: Caching the registration form will make automatic login not work"
+msgid "Whether to automatically log in the newly registered user or not<br/>Only works on single-sites without \"Admin Approval\" feature activated<br/>WARNING: Caching the registration form will make automatic login not work"
 msgstr ""
 
 #: add-ons/multiple-forms/register-forms.php:232
@@ -6286,7 +6286,7 @@ msgstr ""
 msgid "Conditional Rules"
 msgstr ""
 
-#: features/conditional-fields/conditional-fields.php:573
+#: features/conditional-fields/conditional-fields.php:588
 msgid "This field has conditional logic enabled."
 msgstr ""
 
@@ -6534,39 +6534,39 @@ msgstr ""
 msgid "There was an error performing that action!"
 msgstr ""
 
-#: features/email-confirmation/email-confirmation.php:424
+#: features/email-confirmation/email-confirmation.php:439
 msgid "[%1$s] Activate %2$s"
 msgstr ""
 
-#: features/email-confirmation/email-confirmation.php:427
+#: features/email-confirmation/email-confirmation.php:442
 msgid "To activate your user, please click the following link:<br><br>%s%s%s<br><br>After you activate it you will receive yet *another email* with your login."
 msgstr ""
 
-#: features/email-confirmation/email-confirmation.php:494
+#: features/email-confirmation/email-confirmation.php:509
 msgid "There was an error while trying to activate the user"
 msgstr ""
 
-#: features/email-confirmation/email-confirmation.php:471
+#: features/email-confirmation/email-confirmation.php:486
 msgid "That username is already activated!"
 msgstr ""
 
-#: features/email-confirmation/email-confirmation.php:545
+#: features/email-confirmation/email-confirmation.php:560
 msgid "New subscriber on %1$s.<br/><br/>Username:%2$s<br/>Email:%3$s<br/>"
 msgstr ""
 
-#: features/email-confirmation/email-confirmation.php:596
+#: features/email-confirmation/email-confirmation.php:611
 msgid "[%1$s] Your new account information"
 msgstr ""
 
-#: features/email-confirmation/email-confirmation.php:608
+#: features/email-confirmation/email-confirmation.php:623
 msgid "Welcome to %1$s!<br/><br/><br/>Your username is: %2$s and the password: %3$s<br/><br/>Access your account: %4$s "
 msgstr ""
 
-#: features/email-confirmation/email-confirmation.php:606
+#: features/email-confirmation/email-confirmation.php:621
 msgid "Welcome to %1$s!<br/><br/><br/>Your username is: %2$s and your password is the one that you have selected during registration.<br/><br/>Access your account: %3$s "
 msgstr ""
 
-#: features/email-confirmation/email-confirmation.php:661
+#: features/email-confirmation/email-confirmation.php:676
 msgid "The \"Admin Approval\" feature was activated at the time of registration, so please remember that you need to approve this user before he/she can log in!"
 msgstr ""
 
@@ -7099,7 +7099,7 @@ msgstr ""
 msgid "Remove"
 msgstr ""
 
-#: front-end/extra-fields/avatar/avatar.php:85, front-end/extra-fields/checkbox/checkbox.php:45, front-end/extra-fields/colorpicker/colorpicker.php:45, front-end/extra-fields/datepicker/datepicker.php:40, front-end/extra-fields/input/input.php:30, front-end/extra-fields/input-email/input-email.php:30, front-end/extra-fields/input-hidden/input-hidden.php:34, front-end/extra-fields/input-url/input-url.php:30, front-end/extra-fields/language/language.php:34, front-end/extra-fields/map/map.php:57, front-end/extra-fields/number/number.php:30, front-end/extra-fields/phone/phone.php:39, front-end/extra-fields/radio/radio.php:44, front-end/extra-fields/select/select.php:51, front-end/extra-fields/select-cpt/select-cpt.php:59, front-end/extra-fields/select-multiple/select-multiple.php:47, front-end/extra-fields/select-timezone/select-timezone.php:49, front-end/extra-fields/select2/select2-multiple.php:88, front-end/extra-fields/select2/select2.php:74, front-end/extra-fields/textarea/textarea.php:30, front-end/extra-fields/upload/upload.php:80, front-end/extra-fields/wysiwyg/wysiwyg.php:33
+#: front-end/extra-fields/avatar/avatar.php:85, front-end/extra-fields/checkbox/checkbox.php:45, front-end/extra-fields/colorpicker/colorpicker.php:45, front-end/extra-fields/datepicker/datepicker.php:40, front-end/extra-fields/input/input.php:30, front-end/extra-fields/input-email/input-email.php:30, front-end/extra-fields/input-hidden/input-hidden.php:34, front-end/extra-fields/input-url/input-url.php:30, front-end/extra-fields/language/language.php:34, front-end/extra-fields/map/map.php:57, front-end/extra-fields/number/number.php:30, front-end/extra-fields/phone/phone.php:39, front-end/extra-fields/radio/radio.php:44, front-end/extra-fields/select/select.php:51, front-end/extra-fields/select-cpt/select-cpt.php:59, front-end/extra-fields/select-multiple/select-multiple.php:47, front-end/extra-fields/select-timezone/select-timezone.php:49, front-end/extra-fields/select2/select2-multiple.php:88, front-end/extra-fields/select2/select2.php:74, front-end/extra-fields/textarea/textarea.php:30, front-end/extra-fields/upload/upload.php:80, front-end/extra-fields/wysiwyg/wysiwyg.php:56
 msgid "required"
 msgstr ""
 

@@ -1706,16 +1706,16 @@ function wppb_userlisting_pagination( $value, $name, $children, $extra_info ){
 				$searchtext_label = apply_filters( 'wppb_userlisting_search_field_text', __( 'Search Users by All Fields', 'profile-builder' ) );
 
 				if ( ( sanitize_text_field( $_POST['searchFor'] ) == $searchtext_label ) || ( sanitize_text_field( $_POST['searchFor'] ) == '' ) )
-					$pagination->generate( $totalUsers, $this_form_settings[0]['number-of-userspage'], '', $first, $prev, $next, $last, $currentPage );
+					$pagination->generate($totalUsers, '', $first, $prev, $next, $last, $currentPage, $this_form_settings[0]['number-of-userspage']);
 
 				else
-					$pagination->generate( $totalUsers, $this_form_settings[0]['number-of-userspage'], sanitize_text_field($_POST['searchFor']), $first, $prev, $next, $last, $currentPage );
+					$pagination->generate($totalUsers, sanitize_text_field($_POST['searchFor']), $first, $prev, $next, $last, $currentPage, $this_form_settings[0]['number-of-userspage']);
 
 			}elseif ( isset( $_GET['searchFor'] ) ){
-				$pagination->generate( $totalUsers, $this_form_settings[0]['number-of-userspage'], sanitize_text_field( $_GET['searchFor'] ), $first, $prev, $next, $last, $currentPage );
+				$pagination->generate($totalUsers, sanitize_text_field($_GET['searchFor']), $first, $prev, $next, $last, $currentPage, $this_form_settings[0]['number-of-userspage']);
 
 			}else{
-				$pagination->generate( $totalUsers, $this_form_settings[0]['number-of-userspage'], '', $first, $prev, $next, $last, $currentPage );
+				$pagination->generate($totalUsers, '', $first, $prev, $next, $last, $currentPage, $this_form_settings[0]['number-of-userspage']);
 			}
 
 			return apply_filters( 'wppb_userlisting_userlisting_table_pagination', '<div class="userlisting_pagination" id="userlisting_pagination" align="right">'.$pagination->links().'</div>' );

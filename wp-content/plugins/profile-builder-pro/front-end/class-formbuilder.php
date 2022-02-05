@@ -665,7 +665,7 @@ class Profile_Builder_Form_Creator{
                 $userdata = wp_unslash( $userdata );
             }
 
-            wppb_signup_user( $userdata['user_login'], $userdata['user_email'], $userdata );
+            wppb_signup_user( $userdata['user_login'], $userdata['user_email'], $userdata, $this->args['login_after_register'] );
         }else{
 			if( ! isset( $userdata['role'] ) ) {
 				$userdata['role'] = $this->args['role'];

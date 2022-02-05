@@ -84,7 +84,7 @@ abstract class PB_Elementor_Register_Edit_Profile_Widget extends PB_Elementor_Wi
         $wppb_module_settings = get_option( 'wppb_module_settings', 'not_found' );
 
         $this->start_controls_section(
-            $section_id_prefix.'_settings_section',
+            sprintf( '%s_settings_section', $section_id_prefix ),
             array(
                 'label' => __( 'Form Settings', 'profile-builder' ),
                 'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,

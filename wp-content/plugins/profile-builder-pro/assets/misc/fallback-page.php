@@ -9,7 +9,6 @@ include_once ( $path_to_wp_install_dir.'wp-load.php' );
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 $site_name = ( isset( $_GET['site_name'] ) ? filter_var ( urldecode( $_GET['site_name'] ), FILTER_SANITIZE_STRING ) : '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-$site_url = ( isset( $_GET['site_url'] ) ? filter_var ( urldecode( $_GET['site_url'] ), FILTER_SANITIZE_STRING ) : '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 $message = ( isset( $_GET['message'] ) ? filter_var ( urldecode( $_GET['message'] ), FILTER_SANITIZE_STRING ) : '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 ?>
 
@@ -27,6 +26,6 @@ $message = ( isset( $_GET['message'] ) ? filter_var ( urldecode( $_GET['message'
 
 		<?php echo '<p>'. htmlspecialchars( strip_tags( $message ) ). '</p>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 
-		<?php echo 'Click <a href="'. htmlspecialchars(  $site_url, ENT_QUOTES ) .'">here</a> to return to the main site'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+		<?php echo 'Click <a href="/">here</a> to return to the main site'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 	</body>
 </html>

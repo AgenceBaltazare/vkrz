@@ -36,6 +36,17 @@ function wppb_icl_t($context, $name, $value){
 		return $value;
 }
 
+function wppb_icl_register_string( $context, $name, $value ) {
+    if( function_exists( 'icl_register_string' )) {
+        if ( $name === 'msf_previous_button_text_translation' || $name === 'msf_next_button_text_translation' )
+            $wpml_default_lang = 'en';
+        else
+            $wpml_default_lang = apply_filters('wpml_default_language', NULL );
+        $allow_empty_value = false;
+        icl_register_string($context, $name , $value , $allow_empty_value , $wpml_default_lang );
+    }
+}
+
 
 function wppb_add_plugin_stylesheet() {
 	$wppb_generalSettings = get_option( 'wppb_general_settings' );
@@ -272,7 +283,7 @@ function wppb_activate_account_check(){
 		}elseif ( strpos( $post->post_content, '[wppb-register' ) === false ){
 			//no activation page was selected, and the sent link pointed to the home url
             nocache_headers();
-			wp_redirect( apply_filters( 'wppb_activatate_account_redirect_url', WPPB_PLUGIN_URL.'assets/misc/fallback-page.php?activation_key='.urlencode( $activation_key ).'&site_name='.urlencode( get_bloginfo( 'name' ) ).'&site_url='.urlencode( get_bloginfo( 'url' ) ).'&message='.urlencode( $activation_message = wppb_activate_signup( $activation_key ) ), $activation_key, $activation_message ) );
+			wp_redirect( apply_filters( 'wppb_activatate_account_redirect_url', WPPB_PLUGIN_URL.'assets/misc/fallback-page.php?activation_key='.urlencode( $activation_key ).'&site_name='.urlencode( get_bloginfo( 'name' ) ).'&message='.urlencode( $activation_message = wppb_activate_signup( $activation_key ) ), $activation_key, $activation_message ) );
 			exit;
 		}
 	}
@@ -828,7 +839,7 @@ function wppb_password_strength_check(){
                         return;
                     }
 
-                    strength = wp.passwordStrength.meter( pass1, wp.passwordStrength.userInputBlacklist(), pass2 );
+                    strength = wp.passwordStrength.meter( pass1, wp.passwordStrength.userInputDisallowedList(), pass2 );
 
                     switch ( strength ) {
                         case 2:

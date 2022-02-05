@@ -1445,19 +1445,19 @@ function wppb_wpml_compat_with_fields( $oldvalue, $_newvalue ){
 			} else {
 				$prefix = 'custom_field_';
 			}
-            if (function_exists('icl_register_string')){
+            if (function_exists('wppb_icl_register_string')){
                 if( !empty( $field['field-title'] ) )
-                    icl_register_string('plugin profile-builder-pro', $prefix . $field['id'].'_title_translation' , $field['field-title'] );
+                    wppb_icl_register_string('plugin profile-builder-pro', $prefix . $field['id'].'_title_translation' , $field['field-title'] );
                 if( !empty( $field['description'] ) )
-                    icl_register_string('plugin profile-builder-pro', $prefix . $field['id'].'_description_translation', $field['description'] );
+                    wppb_icl_register_string('plugin profile-builder-pro', $prefix . $field['id'].'_description_translation', $field['description'] );
                 if( !empty( $field['labels'] ) )
-                    icl_register_string('plugin profile-builder-pro', $prefix . $field['id'].'_labels_translation', $field['labels'] );
+                    wppb_icl_register_string('plugin profile-builder-pro', $prefix . $field['id'].'_labels_translation', $field['labels'] );
                 if( !empty( $field['default-value'] ) )
-                    icl_register_string('plugin profile-builder-pro', $prefix . $field['id'].'_default_value_translation', $field['default-value'] );
+                    wppb_icl_register_string('plugin profile-builder-pro', $prefix . $field['id'].'_default_value_translation', $field['default-value'] );
                 if( !empty( $field['default-content'] ) )
-                    icl_register_string('plugin profile-builder-pro', $prefix . $field['id'].'_default_content_translation', $field['default-content'] );
+                    wppb_icl_register_string('plugin profile-builder-pro', $prefix . $field['id'].'_default_content_translation', $field['default-content'] );
                 if( !empty( $field['html-content'] ) )
-                    icl_register_string('plugin profile-builder-pro', $prefix . $field['id'].'_html_content_translation', $field['html-content'] );
+                    wppb_icl_register_string('plugin profile-builder-pro', $prefix . $field['id'].'_html_content_translation', $field['html-content'] );
             }
         }
     }

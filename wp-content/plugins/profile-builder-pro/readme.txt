@@ -6,8 +6,8 @@ Tags: registration, profile, user registration, custom field registration, custo
 custom registration, custom registration form, custom registration page, extra user fields, registration page, user custom fields, user listing, user login, user registration form, front-end login,
 front-end register, front-end registration, frontend edit profile, edit profileregistration, customize profile, user fields, builder, profile builder, custom fields, avatar
 Requires at least: 3.1
-Tested up to: 5.8
-Stable tag: 3.6.1
+Tested up to: 5.9
+Stable tag: 3.6.3
 
 
 Login, registration and edit profile shortcodes for the front-end. Also you can choose what fields should be displayed or add custom ones.
@@ -101,6 +101,20 @@ This plugin only adds/removes fields in the front-end. The default information-f
 
 
 == Changelog ==
+= 3.6.3 = 
+* Feature: add support for automatically login after email confirmation
+* Fix: for admin defined strings which have WPML support. They are now registered in the default site language instead of always being registered in english
+* Fix: issue with Avatar simple upload field not saving the file after Email Confirmation
+* Fix: for EPAA add-on to work correctly for WYSIWYG fields
+* Fix: PHP 8 compatibility for Userlisting pagination
+* Misc: prefill user role names in Conditinal Rules when they are based on the User Role field
+
+= 3.6.2 = 
+* Fix: a notice regarding wp.passwordStrength.userInputBlacklist()
+* Fix: default focus not working anymore on add new fields select2
+* Fix: Issue with email field getting disabled in registration when using the Change Email Confirmation option
+* Fix: a security issue regarding the Email Confirmation fallback landing page. Thanks to Chloe Chamberland
+
 = 3.6.1 = 
 * Fix: make sure email change request UI only appears on edit profile forms
 * Fix: pass referer url as get parameter when content is restricted with a redirect

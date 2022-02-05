@@ -122,32 +122,13 @@ function wppb_save_avatar_value( $field, $user_id, $request_data, $form_location
                             update_user_meta( $user_id, $field[ 'meta-name' ], '' );
                         }
                         else {
-                            wppb_add_avatar_sizes( $field );
-                            wppb_userlisting_avatar();
-                            require_once( ABSPATH . 'wp-admin/includes/file.php' );
-                            $upload_overrides = array( 'test_form' => false );
-                            $file = wp_handle_upload( $_FILES[$field_name], $upload_overrides );
-                            if ( isset( $file[ 'error' ] ) ) {
-                                return new WP_Error( 'upload_error', $file[ 'error' ] );
-                            }
-                            $filename = isset( $_FILES[ $field_name ][ 'name' ] ) ? sanitize_text_field( $_FILES[ $field_name ][ 'name' ] ) : '';
-                            $wp_filetype = wp_check_filetype( $filename, null );
-                            $attachment = array(
-                                'post_mime_type'    => $wp_filetype[ 'type' ],
-                                'post_title'        => $filename,
-                                'post_content'      => '',
-                                'post_status'       => 'inherit'
-                            );
-                            $attachment_id = wp_insert_attachment( $attachment, $file[ 'file' ] );
-                            if ( !is_wp_error( $attachment_id ) && is_numeric( $attachment_id ) ) {
-                                require_once( ABSPATH . 'wp-admin/includes/image.php' );
-                                $attachment_data = wp_generate_attachment_metadata( $attachment_id, $file[ 'file' ] );
-                                wp_update_attachment_metadata( $attachment_id, $attachment_data );
-                                update_user_meta( $user_id, $field[ 'meta-name' ], $attachment_id );
-                                wp_update_post( array(
-                                    'ID'            => absint( trim( $attachment_id ) ),
-                                    'post_author'   => $user_id
-                                ) );
+                            $attachment_id = wppb_avatar_save_simple_upload_file ( $field_name, $field );
+                            update_user_meta( $user_id, $field[ 'meta-name' ], $attachment_id );
+                            if ( $attachment_id !== '' ) {
+                                wp_update_post(array(
+                                    'ID' => absint(trim($attachment_id)),
+                                    'post_author' => $user_id
+                                ));
                             }
                         }
                     }
@@ -165,6 +146,72 @@ function wppb_save_avatar_value( $field, $user_id, $request_data, $form_location
 add_action( 'wppb_save_form_field', 'wppb_save_avatar_value', 10, 4 );
 add_action( 'wppb_backend_save_form_field', 'wppb_save_avatar_value', 10, 4 );
 
+/**
+ * Function that saves an attachment from the simple upload version of the Avatar field
+ * @param $field_name
+ * @return string|WP_Error
+ */
+function wppb_avatar_save_simple_upload_file ( $field_name, $field ){
+    wppb_add_avatar_sizes( $field );
+    wppb_userlisting_avatar();
+
+    require_once( ABSPATH . 'wp-admin/includes/file.php' );
+    $upload_overrides = array( 'test_form' => false );
+
+    if( isset( $_FILES[$field_name] ) )
+    $file = wp_handle_upload( $_FILES[$field_name], $upload_overrides );
+
+    if ( isset( $file[ 'error' ] ) ) {
+        return new WP_Error( 'upload_error', $file[ 'error' ] );
+    }
+    $filename = isset( $_FILES[ $field_name ][ 'name' ] ) ? sanitize_text_field( $_FILES[ $field_name ][ 'name' ] ) : '';
+    $wp_filetype = wp_check_filetype( $filename, null );
+    $attachment = array(
+        'post_mime_type'    => $wp_filetype[ 'type' ],
+        'post_title'        => $filename,
+        'post_content'      => '',
+        'post_status'       => 'inherit'
+    );
+
+    $attachment_id = wp_insert_attachment( $attachment, $file[ 'file' ] );
+
+    if (!is_wp_error($attachment_id) && is_numeric($attachment_id)) {
+        require_once(ABSPATH . 'wp-admin/includes/image.php');
+        $attachment_data = wp_generate_attachment_metadata($attachment_id, $file['file']);
+        wp_update_attachment_metadata($attachment_id, $attachment_data);
+        return trim($attachment_id);
+    } else {
+        return '';
+    }
+}
+
+/* save file when ec is enabled */
+function wppb_avatar_add_upload_for_user_signup( $field_value, $field, $request_data ){
+
+    // Save the uploaded file
+    // It will have no author until the user's email is confirmed
+    if( $field['field'] == 'Avatar' ) {
+        if( isset( $field[ 'simple-upload' ] ) && $field['simple-upload'] === 'yes' ) {
+            $field_name = 'simple_upload_' . $field['meta-name'];
+
+            if (isset($_FILES[$field_name]) &&
+                isset($_FILES[$field_name]['size']) && $_FILES[$field_name]['size'] !== 0 &&
+                !(wppb_belongs_to_repeater_with_conditional_logic($field) && !isset($request_data[wppb_handle_meta_name($field['meta-name'])])) &&
+                !(isset($field['conditional-logic-enabled']) && $field['conditional-logic-enabled'] == 'yes' && !isset($request_data[wppb_handle_meta_name($field['meta-name'])])) &&
+                wppb_valid_simple_upload($field, $_FILES[$field_name])) { /* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */ /* no need here */
+                return wppb_save_simple_upload_file($field_name);
+            }
+        } else {
+            $attachment_id = $request_data[wppb_handle_meta_name( $field['meta-name'] )];
+            if ( isset( $attachment_id ) ) {
+                return absint( trim( $attachment_id ) );
+            }
+        }
+    }
+
+    return '';
+}
+add_filter( 'wppb_add_to_user_signup_form_field_avatar', 'wppb_avatar_add_upload_for_user_signup', 10, 3 );
 
 /* handle field validation */
 function wppb_check_avatar_value( $message, $field, $request_data, $form_location ){

@@ -42,6 +42,8 @@ function wppb_activate_signup( $key ) {
 	$bloginfo = get_bloginfo( 'name' );
 	$wppb_general_settings = get_option( 'wppb_general_settings' );
 
+    $login_after_register = ( isset( $wppb_general_settings['automaticallyLogIn'] ) ? $wppb_general_settings['automaticallyLogIn'] : apply_filters( 'wppb_automatically_login_after_register', 'No' ) );
+
 	$signup = ( is_multisite() ? $wpdb->get_row( $wpdb->prepare("SELECT * FROM $wpdb->signups WHERE activation_key = %s", $key) ) : $wpdb->get_row( $wpdb->prepare( "SELECT * FROM ".$wpdb->base_prefix."signups WHERE activation_key = %s", $key ) ) );
 
     $user_login = ( ( isset( $wppb_general_settings['loginWith'] ) && ( $wppb_general_settings['loginWith'] == 'email' ) ) ? trim( $signup->user_email ) : trim( $signup->user_login ) );
@@ -57,10 +59,18 @@ function wppb_activate_signup( $key ) {
 
 	if ( $signup->active )
 		if ( empty( $signup->domain ) )
-			return apply_filters( 'wppb_register_activate_user_error_message2', '<p class="error">'.__( 'This username is now active!', 'profile-builder' ).'</p>', $user_id );
+			return apply_filters( 'wppb_register_activate_user_error_message2', '<p class="wppb-success">'.__( 'This username is now active!', 'profile-builder' ).'</p>', $user_id );
 
 	$meta = unserialize( $signup->meta );
 
+    if( strcasecmp($login_after_register, 'Yes') === 0 ) {
+        $login_after_register = true;
+    } elseif( isset( $meta [ 'wppb_login_after_register_'.$meta['user_login'] ] ) ) {
+        $login_after_register = $meta [ 'wppb_login_after_register_'.$meta['user_login'] ];
+        unset( $meta [ 'wppb_login_after_register_'.$meta['user_login'] ] );
+    } else {
+        $login_after_register = false;
+    }
 
 	if ( !$user_id )
 		$user_id = wppb_create_user( $user_login, $password, $user_email );
@@ -104,6 +114,7 @@ function wppb_activate_signup( $key ) {
 		if( $inserted_user ) {
             // CHECK FOR REDIRECT
             $redirect_url = wppb_get_redirect_url( 'normal', 'after_success_email_confirmation', '', $user_login );
+
             $redirect_delay = apply_filters( 'wppb_success_email_confirmation_redirect_delay', 3, $user_id );
             $redirect_message = wppb_build_redirect( $redirect_url, $redirect_delay, 'after_success_email_confirmation' );
 
@@ -123,6 +134,13 @@ function wppb_activate_signup( $key ) {
 							wp_set_object_terms( $user_id, NULL, 'user_status' );
 							clean_object_term_cache( $user_id, 'user_status' );
 
+                            if( $login_after_register ) {
+                                if( empty( $redirect_url ) ) {
+                                    $redirect_url = wppb_curpageurl();
+                                }
+                                $redirect_message = wppb_activate_signup_autologin_redirect_url($user_id, $redirect_url, $redirect_delay);
+                            }
+
 							return $success_message . ( ! empty ( $redirect_message ) ? $redirect_message : '' );
 						}
 					}
@@ -133,12 +151,31 @@ function wppb_activate_signup( $key ) {
 				wp_set_object_terms( $user_id, NULL, 'user_status' );
 				clean_object_term_cache( $user_id, 'user_status' );
 
+                if( $login_after_register ) {
+                    if( empty( $redirect_url ) ) {
+                        $redirect_url = wppb_curpageurl();
+                    }
+                    $redirect_message = wppb_activate_signup_autologin_redirect_url($user_id, $redirect_url, $redirect_delay);
+                }
+
                 return $success_message . ( ! empty ( $redirect_message ) ? $redirect_message : '' );
             }
         } else {
 			return apply_filters('wppb_register_failed_user_activation', '<p class="error">'. __('There was an error while trying to activate the user.', 'profile-builder') .'</p><!-- .error -->');
         }
 	}		
+}
+
+//function that generates the redirect message when the user should be automatically logged in
+function wppb_activate_signup_autologin_redirect_url( $user_id, $redirect_url, $redirect_delay ){
+    $nonce = wp_create_nonce( 'autologin-'. $user_id .'-'. (int)( time() / 60 ) );
+
+    $redirect_url = remove_query_arg( 'activation_key' ,$redirect_url );
+
+    $redirect_url = apply_filters( 'wppb_login_after_reg_redirect_url', $redirect_url );
+    $redirect_url = add_query_arg( array( 'autologin' => 'true', 'uid' => $user_id, '_wpnonce' => $nonce ), $redirect_url );
+
+    return wppb_build_redirect( $redirect_url, $redirect_delay, 'after_success_email_confirmation' );
 }
 
 //function to display the registration page

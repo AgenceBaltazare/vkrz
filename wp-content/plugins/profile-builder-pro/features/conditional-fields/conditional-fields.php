@@ -116,8 +116,23 @@ Class PB_Conditional_Fields {
 
         if( !empty( $wppb_manage_fields ) ) {
             foreach( $wppb_manage_fields as $key => $field ) {
-                if( in_array( $field['field'], $fields_not_allowed ) )
-                    unset( $wppb_manage_fields[$key] );
+                if( in_array( $field['field'], $fields_not_allowed ) ) {
+                    unset($wppb_manage_fields[$key]);
+                }
+
+                // Add the actual names for the Select (User Role) field
+                if( $field['field'] === 'Select (User Role)' ) {
+                    global $wp_roles;
+                    $user_role_names = array();
+                    foreach ( explode( ', ', $field['user-roles'] ) as $user_role_slug ) {
+                        if (isset($wp_roles->roles[$user_role_slug]['name'])) {
+                            $user_role_names[] = $wp_roles->roles[$user_role_slug]['name'];
+                        } else {
+                            $user_role_names[] = $user_role_slug;
+                        }
+                    }
+                    $wppb_manage_fields[$key]['user-role-names'] = implode( ',', $user_role_names );
+                }
             }
         }
 

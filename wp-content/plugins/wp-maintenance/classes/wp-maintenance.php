@@ -402,25 +402,11 @@ class WP_maintenance {
             wp_register_script('imagepickerjs', WPM_PLUGIN_URL.'js/image-picker.min.js', 'jquery', '1.0');
             wp_enqueue_script('imagepickerjs');
 
-            //wp_enqueue_script('nomikos_my_plugin_js_comment', site_url('wp-admin/js/comment.js'));
-
-            /* ****************************************
-             * Create a simple CodeMirror instance
-             * ****************************************
-             */
-            // Mode http://codemirror.net/mode/php/index.html
-            wp_register_style( 'wpm_codemirror_css', WPM_PLUGIN_URL.'js/codemirror/codemirror.css', false, '1.0.0' );
-            wp_enqueue_style( 'wpm_codemirror_css' );
-
-            wp_register_style( 'wpm_codemirror_theme_css', WPM_PLUGIN_URL.'js/codemirror/theme/material.css', false, '1.0.0' );
-            wp_enqueue_style( 'wpm_codemirror_theme_css' );
-
-            wp_register_script('wpm_codemirror', WPM_PLUGIN_URL.'js/codemirror/codemirror.js', 'jquery', '1.0');
-            wp_enqueue_script('wpm_codemirror');
-            wp_register_script('wpm_codemirror_css', WPM_PLUGIN_URL.'js/codemirror/css.js', 'jquery', '1.0');
-            wp_enqueue_script('wpm_codemirror_css');
-
-            /* END CODE MIRROR */
+            $wpm_settings['codeEditor'] = wp_enqueue_code_editor(array('type' => 'text/css'));
+            wp_localize_script('jquery', 'cm_settings', $wpm_settings);
+            
+            wp_enqueue_script('wp-theme-plugin-editor');
+            wp_enqueue_style('wp-codemirror');
 
             wp_register_script('wpm_sticky', WPM_PLUGIN_URL.'js/jquery.sticky.js', 'jquery', '1.0');
             wp_enqueue_script('wpm_sticky');

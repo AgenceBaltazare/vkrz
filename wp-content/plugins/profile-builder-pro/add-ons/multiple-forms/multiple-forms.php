@@ -29,7 +29,7 @@ function wppb_multiple_forms_change_fields( $fields, $args ){
 	}
 
     // let's get the fields that we should display on that form
-    if( isset( $args['ID'] ) ) {
+    if( isset( $args['ID'], $meta_name ) ) {
         $this_forms_fields = get_post_meta($args['ID'], $meta_name, true);
         if (!empty($this_forms_fields)) {
             $this_forms_fields_ids = array();

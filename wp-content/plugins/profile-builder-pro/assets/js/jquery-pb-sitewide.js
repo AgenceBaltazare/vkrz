@@ -233,3 +233,8 @@ jQuery( function() {
     }
 });
 
+// Fix for Select2 search not focusing
+jQuery(document).on('select2:open', function() {
+    let allSelect2Found = document.querySelectorAll('.select2-container--open .select2-search__field');
+    allSelect2Found[allSelect2Found.length - 1].focus();
+});

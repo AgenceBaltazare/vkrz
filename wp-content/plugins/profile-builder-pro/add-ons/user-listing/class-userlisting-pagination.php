@@ -4,7 +4,7 @@ class WPPB_Pagination{
 	var $perPage = 10; // Items on each page, defaulted to 10
 	var $showFirstAndLast = true; // if you would like the first and last page options.
 
-	function generate($total, $perPage = 10, $searchFor, $first, $prev, $next, $last, $currentPage){
+	function generate($total, $searchFor, $first, $prev, $next, $last, $currentPage, $perPage = 10){
 		//Assign the page navigation buttons
 		$this->first = $first;
 		$this->prev = $prev;

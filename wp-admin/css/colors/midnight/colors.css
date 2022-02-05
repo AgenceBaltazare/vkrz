@@ -1,3 +1,4 @@
+/*! This file is auto-generated */
 /*
  * Button mixin- creates a button effect with correct
  * highlights/shadows, based on a base color.
@@ -701,4 +702,13 @@ div#wp-responsive-toggle a:before {
 .wp-core-ui.wp-customizer .theme-overlay .theme-header .close:focus, .wp-core-ui.wp-customizer .theme-overlay .theme-header .close:hover, .wp-core-ui.wp-customizer .theme-overlay .theme-header .right:focus, .wp-core-ui.wp-customizer .theme-overlay .theme-header .right:hover, .wp-core-ui.wp-customizer .theme-overlay .theme-header .left:focus, .wp-core-ui.wp-customizer .theme-overlay .theme-header .left:hover {
   border-bottom-color: #e14d43;
   color: #0073aa;
-}/*# sourceMappingURL=colors.css.map */
+}
+
+/* Welcome Panel */
+.welcome-panel {
+  background-color: #e14d43;
+}
+
+[class*=welcome-panel-icon] {
+  background-color: #363b3f;
+}

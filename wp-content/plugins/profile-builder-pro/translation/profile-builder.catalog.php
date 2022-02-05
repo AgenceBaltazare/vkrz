@@ -1378,7 +1378,7 @@
 <?php __("Set Role", "profile-builder"); ?>
 <?php __("Choose what role the user will have after (s)he registered<br/>If not specified, defaults to the role set in the WordPress settings", "profile-builder"); ?>
 <?php __("Automatically Log In", "profile-builder"); ?>
-<?php __("Whether to automatically log in the newly registered user or not<br/>Only works on single-sites without \"Admin Approval\" and \"Email Confirmation\" features activated<br/>WARNING: Caching the registration form will make automatic login not work", "profile-builder"); ?>
+<?php __("Whether to automatically log in the newly registered user or not<br/>Only works on single-sites without \"Admin Approval\" feature activated<br/>WARNING: Caching the registration form will make automatic login not work", "profile-builder"); ?>
 <?php __("Specify the URL of the page users will be redirected once registered using this form<br/>Use the following format: http://www.mysite.com", "profile-builder"); ?>
 <?php __("After Registration...", "profile-builder"); ?>
 <?php __("Are you sure you want to delete this?", "profile-builder"); ?>
