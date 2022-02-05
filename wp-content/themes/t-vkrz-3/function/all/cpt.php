@@ -303,11 +303,44 @@ function cpt_init() {
         'has_archive' => true,
         'hierarchical' => false,
         'menu_position' => null,
-        'menu_icon' => 'dashicons-buddicons-activity',
+        'menu_icon' => 'dashicons-money-alt',
         'show_in_rest' => true,
         'supports' => array('title', 'author')
     );
     register_post_type('transaction', $args);
+
+    // Tirage au sort
+    $labels = array(
+        'name' => 'TAS',
+        'singular_name' => 'TAS',
+        'add_new' => 'Ajouter un TAS',
+        'add_new_item' => 'Ajouter un TAS',
+        'edit_item' => 'Editer un TAS',
+        'new_item' => 'Nouveau TAS',
+        'all_items' => 'Tous les TAS',
+        'view_item' => 'Voir TAS',
+        'search_items' => 'Chercher un TAS',
+        'not_found' =>  'Aucun TAS trouvé',
+        'not_found_in_trash' => 'Aucun TAS trouvé dans la corbeille',
+        'menu_name' => 'TAS'
+    );
+    $args = array(
+        'labels' => $labels,
+        'public' => true,
+        'publicly_queryable' => false,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'query_var' => true,
+        'rewrite' => array('slug' => 'tas'),
+        'map_meta_cap' => true,
+        'has_archive' => true,
+        'hierarchical' => false,
+        'menu_position' => null,
+        'menu_icon' => 'dashicons-smiley',
+        'show_in_rest' => true,
+        'supports' => array('title')
+    );
+    register_post_type('tas', $args);
 
 }
 add_action( 'init', 'cpt_init' );

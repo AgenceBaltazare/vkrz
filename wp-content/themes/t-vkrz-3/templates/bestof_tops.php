@@ -36,7 +36,7 @@ get_header();
                                                                 <span class="va va-chequered-flag va-lg"></span>
                                                             </th>
                                                             <th>
-                                                                <span class="va va-prince va-lg"></span>
+                                                                <small class="text-muted">TOP</small>
                                                             </th>
                                                             <th class="text-right">
                                                                 <small class="text-muted">Votes effectués</small>
@@ -56,13 +56,13 @@ get_header();
                                                         <?php
                                                         $r = 1;
                                                         $best_tops = new WP_Query(array(
-                                                            'ignore_sticky_posts'        => true,
+                                                            'ignore_sticky_posts'       => true,
                                                             'update_post_meta_cache'    => false,
-                                                            'no_found_rows'                => true,
-                                                            'post_type'                    => 'resume',
-                                                            'orderby'                    => 'meta_value_num',
-                                                            'meta_key'                  => 'nb_top_complet_resume',
-                                                            'order'                        => 'DESC',
+                                                            'no_found_rows'             => true,
+                                                            'post_type'                 => 'resume',
+                                                            'orderby'                   => 'meta_value_num',
+                                                            'meta_key'                  => 'nb_tops_resume',
+                                                            'order'                     => 'DESC',
                                                             'posts_per_page'            => 20
                                                         ));
                                                         while ($best_tops->have_posts()) : $best_tops->the_post(); ?>
@@ -126,7 +126,7 @@ get_header();
                                                                     </td>
 
                                                                     <td class="text-right">
-                                                                        <?php the_field('nb_done_resume'); ?> <span class="ico va-trophy va va-lg"></span>
+                                                                        <?php the_field('nb_tops_resume'); ?> <span class="ico va-trophy va va-lg"></span>
                                                                     </td>
 
                                                                     <td class="text-right">

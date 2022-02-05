@@ -74,7 +74,33 @@ $roles = (array) $user->roles;
                                 $list_players_unique = array_unique($list_players);
                                 $gagnant             = array_rand($list_players_unique);
                                 $realgagnant         = $list_players_unique[$gagnant];
-                                update_vainkeur_badge($realgagnant, "Chanceux");
+                                $uuid_player         = get_field('uuid_vainkeur_p');
+                                $vainkeur_of_top     = new WP_Query(array(
+                                    'ignore_sticky_posts'       => true,
+                                    'update_post_meta_cache'    => false,
+                                    'no_found_rows'             => true,
+                                    'post_type'                 => 'vainkeur',
+                                    'orderby'                   => 'date',
+                                    'order'                     => 'DESC',
+                                    'posts_per_page'            => 1,
+                                    'meta_query' => array(
+                                        array(
+                                            'key'       => 'uuid_user_vkrz',
+                                            'value'     => $uuid_player,
+                                            'compare'   => '=',
+                                        )
+                                    )
+                                ));
+                                while ($vainkeur_of_top->have_posts()) : $vainkeur_of_top->the_post();
+
+                                    $id_vainkeur_gagnant = get_the_ID();
+
+                                endwhile; wp_reset_query();
+                                update_vainkeur_badge($id_vainkeur_gagnant, "Chanceux");
+                                $mail_gagnant = get_field('email_player_p', $realgagnant);
+                                update_field('gagnant_email_t_sponso', $mail_gagnant, $id_top);
+                                update_field('gagnant_idplayer_t_sponso', $realgagnant, $id_top);
+                                update_field('gagnant_idvainkeur_t_sponso', $id_vainkeur_gagnant, $id_top);
                                 ?>
 
                                 <section class="app-user-view mt-2">
@@ -108,7 +134,7 @@ $roles = (array) $user->roles;
                                                     <h2 class="mt-1">
                                                         <span class="t-rose">Gagnant</span>
                                                         <br>
-                                                        <?php the_field('email_player_p', $realgagnant); ?>
+                                                        <?php echo $mail_gagnant; ?>
                                                     </h2>
                                                     <p class="card-text legende">
                                                         <?php

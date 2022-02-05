@@ -173,7 +173,7 @@ if (is_single() && get_post_type() == "tournoi") {
 
                 <?php if ($id_ranking) : ?>
                     <div class="tournament-heading text-center">
-                        <h3 class="mb-0 t-titre-tournoi">Top <?php echo $top_infos['top_number']; ?> <span class="ico va va-high-voltage va va-lg">⚡</span> <?php echo $top_infos['top_title']; ?></h3>
+                        <h3 class="mb-0 t-titre-tournoi">Top <?php echo $top_infos['top_number']; ?> <span class="ico va va-high-voltage va va-lg"></span> <?php echo $top_infos['top_title']; ?></h3>
                         <h4 class="mb-0 t-rose t-max">
                             <?php echo $top_infos['top_question']; ?>
                         </h4>

@@ -115,6 +115,16 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="d-flex align-items-center" href="<?php the_permalink(get_page_by_path('annonces-des-tirages-au-sort')); ?>/">
+                    <span class="ico">
+                        <span class="va va-four-leaf-clover va-lg"></span>
+                    </span>
+                    <span class="menu-title text-truncate">
+                        Tirages au sort
+                    </span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="d-flex align-items-center" href="<?php the_permalink(get_page_by_path('shop')); ?>/">
                     <span class="ico">
                         <span class="va va-shopping va-lg"></span>
