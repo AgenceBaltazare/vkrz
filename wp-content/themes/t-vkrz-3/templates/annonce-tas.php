@@ -244,7 +244,7 @@ $tops_sponso_old = new WP_Query(array(
                                                                     </td>
 
                                                                     <td class="text-right">
-                                                                        <?php if (get_field('gagnant_idvainkeur_t_sponso', $id_top)) : ?>
+                                                                        <?php if (get_field('gagnant_idplayer_t_sponso', $id_top)) : ?>
                                                                             <?php
                                                                             $gagnant_id         = get_post_field('post_author', get_field('gagnant_idplayer_t_sponso', $id_top));
                                                                             $gagnant_id_uuid    = get_field('uuiduser_user', 'user_' . $gagnant_id);
@@ -412,7 +412,7 @@ $tops_sponso_old = new WP_Query(array(
                                                                     </td>
 
                                                                     <td class="text-right">
-                                                                        <?php if (get_field('gagnant_idvainkeur_t_sponso', $id_top)) : ?>
+                                                                        <?php if (get_field('gagnant_idplayer_t_sponso', $id_top)) : ?>
                                                                             <?php
                                                                             $gagnant_id         = get_post_field('post_author', get_field('gagnant_idplayer_t_sponso', $id_top));
                                                                             $gagnant_id_uuid    = get_field('uuiduser_user', 'user_' . $gagnant_id);
