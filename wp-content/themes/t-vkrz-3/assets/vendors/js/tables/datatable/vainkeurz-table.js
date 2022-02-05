@@ -143,7 +143,7 @@ $('.table-vainkeurz').DataTable({
 $('.table-bestops').DataTable({
     autoWidth: true,
     lengthMenu: [20],
-    searching: false,
+    searching: true,
     paging: false,
     columns: [
         { orderable: false },
@@ -168,6 +168,22 @@ $('.table-bestcreator').DataTable({
         { orderable: true },
         { orderable: true },
         { orderable: false },
+    ],
+    order: [],
+});
+
+$('.table-tas').DataTable({
+    autoWidth: true,
+    lengthMenu: [20],
+    searching: false,
+    paging: false,
+    columns: [
+        { orderable: false },
+        { orderable: false },
+        { orderable: true },
+        { orderable: false },
+        { orderable: true },
+        { orderable: false }
     ],
     order: [],
 });
