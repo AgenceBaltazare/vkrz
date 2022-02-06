@@ -114,7 +114,6 @@
                     </span>
                 </a>
             </li>
-            <!--
             <li class="nav-item">
                 <a class="d-flex align-items-center" href="<?php the_permalink(get_page_by_path('annonces-des-tirages-au-sort')); ?>/">
                     <span class="ico">
@@ -125,7 +124,6 @@
                     </span>
                 </a>
             </li>
-            -->
             <li class="nav-item">
                 <a class="d-flex align-items-center" href="<?php the_permalink(get_page_by_path('shop')); ?>/">
                     <span class="ico">
