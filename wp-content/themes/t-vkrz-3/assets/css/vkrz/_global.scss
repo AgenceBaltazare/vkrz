@@ -579,6 +579,40 @@ html .content {
     display: none;
 }
 
-.scale-xs{
+.scale-xs {
     transform: scale(0.8);
+}
+
+.next-bloc {
+    margin-top: 10px;
+
+    .seemore {
+        position: relative;
+        z-index: 999999999;
+        display: inline-block;
+        background: $c5;
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 3px;
+        transition: all 0.2s ease-in;
+
+        &:hover {
+            transform: scale(1.05);
+            background: $rose;
+            color: #fff;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+
+    .next-bloc1 {
+        text-align: left;
+
+    }
+
+    .next-bloc2 {
+        text-align: right;
+
+    }
 }

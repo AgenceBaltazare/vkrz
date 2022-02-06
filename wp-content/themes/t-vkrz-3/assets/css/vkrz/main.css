@@ -855,6 +855,34 @@ html .content {
   transform: scale(0.8);
 }
 
+.next-bloc {
+  margin-top: 10px;
+}
+.next-bloc .seemore {
+  position: relative;
+  z-index: 999999999;
+  display: inline-block;
+  background: #7367f0;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 3px;
+  transition: all 0.2s ease-in;
+}
+.next-bloc .seemore:hover {
+  transform: scale(1.05);
+  background: #f4167f;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .next-bloc1 {
+    text-align: left;
+  }
+
+  .next-bloc2 {
+    text-align: right;
+  }
+}
 .page-template-monitor .list-vainkeur-monitor {
   line-height: 14px;
 }
@@ -1216,6 +1244,7 @@ html .content {
   max-width: 400px;
   position: relative;
   transition: all 0.2s ease-in;
+  margin: 0 auto;
 }
 .contenders-containers .link-contender:hover {
   transform: scale(1.03);
