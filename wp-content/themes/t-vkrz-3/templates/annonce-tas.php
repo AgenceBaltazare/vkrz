@@ -56,7 +56,7 @@ $tops_sponso_old = new WP_Query(array(
     ),
     'meta_query'                => array(
         array(
-            'key'     => 'description_t_sponso',
+            'key'     => 'date_fin_de_la_sponso_t_sponso',
             'compare' => '!=',
             'value'   => ''
         ),
