@@ -851,6 +851,10 @@ html .content {
   display: none;
 }
 
+.scale-xs {
+  transform: scale(0.8);
+}
+
 .page-template-monitor .list-vainkeur-monitor {
   line-height: 14px;
 }
