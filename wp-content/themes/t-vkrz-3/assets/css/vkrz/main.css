@@ -1298,7 +1298,7 @@ html .content {
   justify-content: start;
   flex-direction: column;
   z-index: 1;
-  padding: 30px 0 0 0;
+  padding: 20px 0 0 0;
 }
 .min-tournoi .cov-illu .voile .spoun {
   display: none;
@@ -1312,7 +1312,6 @@ html .content {
   font-weight: 700;
   text-transform: uppercase;
   color: #fff;
-  margin-top: 10px;
   text-align: center;
 }
 .min-tournoi .info-top {
@@ -2662,7 +2661,6 @@ textarea {
   html .content.app-content .card-developer-meetup .card-title {
     font-size: 17px;
     line-height: 20px;
-    color: #68441e;
   }
 
   .infos-card-t {
@@ -4450,6 +4448,19 @@ textarea {
   .header-navbar .value-user-stats {
     display: block;
     text-align: center;
+  }
+
+  .card-developer-meetup .meetup-img-wrapper {
+    min-height: 220px;
+  }
+
+  .card-developer-meetup .meetup-header .card-text {
+    font-size: 20px;
+    line-height: 22px;
+  }
+
+  .card-precision p {
+    margin-bottom: 0 !important;
   }
 }
 @media (max-width: 425px) {

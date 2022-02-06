@@ -220,6 +220,17 @@ $top_datas    = get_top_data($id_top_global);
                                                                     <?php echo get_the_title($c); ?>
                                                                 <?php endif; ?>
                                                             </h5>
+                                                            <?php if (get_field('lien_vers_contender', $c)) : ?>
+                                                                <div class="next-bloc">
+                                                                    <a href="<?php the_field('lien_vers_contender', $c); ?>" class="seemore" target="_blank">
+                                                                        <?php if (get_field('choix_de_licone_contender', $c) == "shop") : ?>
+                                                                            Acheter
+                                                                        <?php elseif (get_field('choix_de_licone_contender', $c) == "info") : ?>
+                                                                            Découvrir
+                                                                        <?php endif; ?>
+                                                                    </a>
+                                                                </div>
+                                                            <?php endif; ?>
                                                         </div>
                                                     </div>
                                                     </div>

@@ -45,6 +45,130 @@ $creator_data       = get_user_infos($creator_uuiduser);
                 <div class="content-intro container intro-sponso">
 
                     <div class="row match-height">
+                        <div class="col-md-8 start-top">
+                            <div class="card animate__animated animate__flipInX card-developer-meetup d-block d-sm-none">
+                                <div class="card-body rules-content p-0">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="title-win">
+                                            <h4>
+                                                <?php the_field('titre_de_la_sponso_t_sponso', $id_top); ?>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="intro">
+                                <div class="card animate__animated animate__flipInX card-developer-meetup">
+                                    <div class="meetup-img-wrapper rounded-top text-left" style="background-image: url(<?php echo $top_infos['top_img']; ?>);">
+                                        <span class="badge badge-light-primary">Créé le <?php echo $top_infos['top_date']; ?></span>
+                                        <span class="badge badge-light-rose ml-0">Top sponsorisé</span>
+                                        <div class="voile_contenders"></div>
+                                        <?php if ($top_infos['top_number'] < 30) : ?>
+                                            <div class="avatar-group list-contenders">
+                                                <?php $contenders_t = new WP_Query(array(
+                                                    'post_type' => 'contender', 'orderby' => 'date', 'posts_per_page' => '-1',
+                                                    'meta_query'     => array(
+                                                        array(
+                                                            'key'     => 'id_tournoi_c',
+                                                            'value'   => $id_top,
+                                                            'compare' => '=',
+                                                        )
+                                                    )
+                                                )); ?>
+                                                <?php while ($contenders_t->have_posts()) : $contenders_t->the_post(); ?>
+                                                    <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="top" data-original-title="<?php echo get_the_title(get_the_id()); ?>" class="avatar pull-up">
+                                                        <?php $illu = get_the_post_thumbnail_url(get_the_id(), 'medium'); ?>
+                                                        <img src="<?php echo $illu; ?>" alt="Avatar" height="32" width="32">
+                                                    </div>
+                                                <?php endwhile; ?>
+                                            </div>
+                                        <?php endif; ?>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="meetup-header d-flex align-items-center justify-content-center">
+                                            <div class="my-auto">
+                                                <h4 class="card-title mb-25">
+                                                    Top <?php echo $top_infos['top_number']; ?> <span class="va-high-voltage va va-md"></span> <?php echo $top_infos['top_title']; ?>
+                                                </h4>
+                                                <p class="card-text mb-0 t-rose animate__animated animate__flash">
+                                                    <?php echo $top_infos['top_question']; ?>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <?php if (get_field('precision_t', $id_top)) : ?>
+                                            <div class="card-precision">
+                                                <p class="card-text mb-1">
+                                                    <?php the_field('precision_t', $id_top); ?>
+                                                </p>
+                                            </div>
+                                        <?php endif; ?>
+                                    </div>
+                                    <div class="card-cta">
+                                        <div class="choosecta">
+                                            <div class="cta-begin cta-complet">
+                                                <a href="#" id="begin_t" data-typetop="complet" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
+                                                    Participer
+                                                </a>
+                                                <small class="text-muted">
+                                                    <?php
+                                                    $min = ($top_infos['top_number'] - 5) * 2 + 6;
+                                                    $max = $min * 2;
+                                                    ?>
+                                                    <?php if ($top_infos['top_number'] < 3) : ?>
+                                                        Un seul vote suffira pour finir ce Top
+                                                    <?php else : ?>
+                                                        Prévoir entre <?php echo $min; ?> et <?php echo $max; ?> votes pour finir ton Top du 1er au dernier
+                                                    <?php endif; ?>
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="row meetings align-items-center">
+                                            <div class="col">
+                                                <div class="infos-card-t info-card-t-v d-flex align-items-center">
+                                                    <div class="mr-1">
+                                                        <span class="ico va-high-voltage va va-2x"></span>
+                                                    </div>
+                                                    <div class="content-body text-left">
+                                                        <h4 class="mb-0">
+                                                            <?php echo $top_datas['nb_votes']; ?>
+                                                        </h4>
+                                                        <small class="text-muted">votes réalisés</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="infos-card-t d-flex align-items-center">
+                                                    <div class="mr-1">
+                                                        <span class="ico va va-trophy va-2x"></span>
+                                                    </div>
+                                                    <div class="content-body text-left">
+                                                        <h4 class="mb-0">
+                                                            <?php echo $top_datas['nb_completed_top']; ?>
+                                                        </h4>
+                                                        <small class="text-muted">Tops terminés</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="infos-card-t d-flex align-items-center">
+                                                    <div class="mr-1">
+                                                        <span class="ico va va-wrapped-gift va-2x"></span>
+                                                    </div>
+                                                    <div class="content-body text-left">
+                                                        <h4 class="mb-0">
+                                                            <?php the_field('gain_champs_1_t_sponso', $id_top); ?>
+                                                        </h4>
+                                                        <small class="text-muted"><?php the_field('gain_champs_2_t_sponso', $id_top); ?></small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-md-4">
                             <div class="card animate__animated animate__flipInX card-developer-meetup">
                                 <div class="card-body rules-content">
@@ -91,134 +215,6 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                     <span class="t-rose">
                                         <?php the_field('fin_de_la_sponso_t_sponso', $id_top); ?>
                                     </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-8 start-top">
-                            <div class="intro">
-                                <div class="card animate__animated animate__flipInX card-developer-meetup">
-                                    <div class="meetup-img-wrapper rounded-top text-left" style="background-image: url(<?php echo $top_infos['top_img']; ?>);">
-                                        <span class="badge badge-light-primary">Créé le <?php echo $top_infos['top_date']; ?></span>
-                                        <span class="badge badge-light-rose ml-0">Top sponsorisé</span>
-                                        <div class="voile_contenders"></div>
-                                        <?php if ($top_infos['top_number'] < 30) : ?>
-                                            <div class="avatar-group list-contenders">
-                                                <?php $contenders_t = new WP_Query(array(
-                                                    'post_type' => 'contender', 'orderby' => 'date', 'posts_per_page' => '-1',
-                                                    'meta_query'     => array(
-                                                        array(
-                                                            'key'     => 'id_tournoi_c',
-                                                            'value'   => $id_top,
-                                                            'compare' => '=',
-                                                        )
-                                                    )
-                                                )); ?>
-                                                <?php while ($contenders_t->have_posts()) : $contenders_t->the_post(); ?>
-                                                    <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="top" data-original-title="<?php echo get_the_title(get_the_id()); ?>" class="avatar pull-up">
-                                                        <?php $illu = get_the_post_thumbnail_url(get_the_id(), 'medium'); ?>
-                                                        <img src="<?php echo $illu; ?>" alt="Avatar" height="32" width="32">
-                                                    </div>
-                                                <?php endwhile; ?>
-                                            </div>
-                                        <?php endif; ?>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="meetup-header d-flex align-items-center justify-content-center">
-                                            <div class="my-auto">
-                                                <h4 class="card-title mb-25">
-                                                    Top <?php echo $top_infos['top_number']; ?> ⚡ <?php echo $top_infos['top_title']; ?>
-                                                </h4>
-                                                <p class="card-text mb-0 t-rose animate__animated animate__flash">
-                                                    <?php echo $top_infos['top_question']; ?>
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <?php if (get_field('precision_t', $id_top)) : ?>
-                                            <div class="card-precision">
-                                                <p class="card-text mb-1">
-                                                    <?php the_field('precision_t', $id_top); ?>
-                                                </p>
-                                            </div>
-                                        <?php endif; ?>
-                                    </div>
-                                    <div class="card-cta">
-                                        <div class="choosecta">
-                                            <div class="cta-begin cta-complet">
-                                                <a href="#" id="begin_t" data-typetop="complet" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
-                                                    Faire mon Top <?php echo $top_infos['top_number']; ?>
-                                                </a>
-                                                <small class="text-muted">
-                                                    <?php
-                                                    $min = ($top_infos['top_number'] - 5) * 2 + 6;
-                                                    $max = $min * 2;
-                                                    ?>
-                                                    <?php if ($top_infos['top_number'] < 3) : ?>
-                                                        Un seul vote suffira pour finir ce Top
-                                                    <?php else : ?>
-                                                        Prévoir entre <?php echo $min; ?> et <?php echo $max; ?> votes pour finir ton Top du 1er au dernier
-                                                    <?php endif; ?>
-                                                </small>
-                                            </div>
-                                            <?php if ($top_infos['top_number'] > 10) : ?>
-                                                <div class="cta-begin cta-top3">
-                                                    <a href="#" id="begin_top3" data-typetop="top3" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
-                                                        Faire mon Top 3
-                                                    </a>
-                                                    <small class="text-muted">
-                                                        <?php
-                                                        $max = (floor($top_infos['top_number'] / 2)) + (3 * ((round($top_infos['top_number'] / 2)) - 1));
-                                                        $min = (floor($top_infos['top_number'] / 2)) + ((round($top_infos['top_number'] / 2)) - 1) + 3;
-                                                        $moy = ($max + $min) / 2;
-                                                        ?>
-                                                        Prévoir environ <?php echo round($moy); ?> votes pour juste faire ton podium
-                                                    </small>
-                                                </div>
-                                            <?php endif; ?>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer">
-                                        <div class="row meetings align-items-center">
-                                            <div class="col">
-                                                <div class="infos-card-t info-card-t-v d-flex align-items-center">
-                                                    <div class="mr-1">
-                                                        <span class="ico va-high-voltage va va-2x"></span>
-                                                    </div>
-                                                    <div class="content-body text-left">
-                                                        <h4 class="mb-0">
-                                                            <?php echo $top_datas['nb_votes']; ?>
-                                                        </h4>
-                                                        <small class="text-muted">votes réalisés</small>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="infos-card-t d-flex align-items-center">
-                                                    <div class="mr-1">
-                                                        <span class="ico va va-trophy va-2x"></span>
-                                                    </div>
-                                                    <div class="content-body text-left">
-                                                        <h4 class="mb-0">
-                                                            <?php echo $top_datas['nb_completed_top']; ?>
-                                                        </h4>
-                                                        <small class="text-muted">Tops terminés</small>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="infos-card-t d-flex align-items-center">
-                                                    <div class="mr-1">
-                                                        <span class="ico va va-wrapped-gift va-2x"></span>
-                                                    </div>
-                                                    <div class="content-body text-left">
-                                                        <h4 class="mb-0">
-                                                            <?php the_field('gain_champs_1_t_sponso', $id_top); ?>
-                                                        </h4>
-                                                        <small class="text-muted"><?php the_field('gain_champs_2_t_sponso', $id_top); ?></small>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>

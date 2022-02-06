@@ -497,6 +497,21 @@
             text-align: center;
         }
     }
+
+    .card-developer-meetup .meetup-img-wrapper {
+        min-height: 220px;
+    }
+
+    .card-developer-meetup .meetup-header .card-text {
+        font-size: 20px;
+        line-height: 22px;
+    }
+
+    .card-precision {
+        p {
+            margin-bottom: 0 !important;
+        }
+    }
 }
 
 
