@@ -244,48 +244,54 @@ $tops_sponso_old = new WP_Query(array(
                                                                     </td>
 
                                                                     <td class="text-right">
-                                                                        <?php if (get_field('gagnant_idplayer_t_sponso', $id_top)) : ?>
-                                                                            <?php
-                                                                            $gagnant_id         = get_post_field('post_author', get_field('gagnant_idplayer_t_sponso', $id_top));
-                                                                            $gagnant_id_uuid    = get_field('uuiduser_user', 'user_' . $gagnant_id);
-                                                                            $vainkeur_data_selected  = find_vkrz_user($gagnant_id_uuid);
-                                                                            ?>
-                                                                            <span class="avatar">
-                                                                                <?php if ($vainkeur_data_selected) : ?>
-                                                                                    <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_vainkeur'])); ?>">
+                                                                        <?php if (get_field('gagnant_idplayer_t_sponso', $id_top) || get_field('gagnant_non_inscrit_t_sponso', $id_top)) : ?>
+                                                                            <?php if (get_field('gagnant_non_inscrit_t_sponso', $id_top)) : ?>
+                                                                                <span class="font-weight-bold championname">
+                                                                                    <?php the_field('gagnant_non_inscrit_t_sponso', $id_top); ?>
+                                                                                </span>
+                                                                            <?php else : ?>
+                                                                                <?php
+                                                                                $gagnant_id         = get_post_field('post_author', get_field('gagnant_idplayer_t_sponso', $id_top));
+                                                                                $gagnant_id_uuid    = get_field('uuiduser_user', 'user_' . $gagnant_id);
+                                                                                $vainkeur_data_selected  = find_vkrz_user($gagnant_id_uuid);
+                                                                                ?>
+                                                                                <span class="avatar">
+                                                                                    <?php if ($vainkeur_data_selected) : ?>
+                                                                                        <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_vainkeur'])); ?>">
+                                                                                            <span class="avatar-picture" style="background-image: url(<?php echo $vainkeur_data_selected['avatar']; ?>);"></span>
+                                                                                        </a>
+                                                                                    <?php else : ?>
                                                                                         <span class="avatar-picture" style="background-image: url(<?php echo $vainkeur_data_selected['avatar']; ?>);"></span>
-                                                                                    </a>
-                                                                                <?php else : ?>
-                                                                                    <span class="avatar-picture" style="background-image: url(<?php echo $vainkeur_data_selected['avatar']; ?>);"></span>
-                                                                                <?php endif; ?>
-                                                                                <?php if ($vainkeur_data_selected) : ?>
-                                                                                    <span class="user-niveau">
-                                                                                        <?php echo $vainkeur_data_selected['level']; ?>
-                                                                                    </span>
-                                                                                <?php endif; ?>
-                                                                            </span>
-                                                                            <span class="font-weight-bold championname">
-                                                                                <?php if ($vainkeur_data_selected) : ?>
-                                                                                    <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_vainkeur'])); ?>">
-                                                                                        <?php echo $vainkeur_data_selected['pseudo']; ?>
-                                                                                        <?php if ($vainkeur_data_selected) : ?>
-                                                                                            <span class="user-niveau-xs">
-                                                                                                <?php echo $vainkeur_data_selected['level']; ?>
-                                                                                            </span>
-                                                                                        <?php endif; ?>
-                                                                                        <?php if ($vainkeur_data_selected['user_role'] == "administrator") : ?>
-                                                                                            <span class="ico va va-vkrzteam va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
-                                                                                            </span>
-                                                                                        <?php endif; ?>
-                                                                                        <?php if ($vainkeur_data_selected['user_role'] == "administrator" || $vainkeur_data_selected['user_role'] == "author") : ?>
-                                                                                            <span class="ico va va-man-singer va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
-                                                                                            </span>
-                                                                                        <?php endif; ?>
-                                                                                    </a>
-                                                                                <?php else : ?>
-                                                                                    <i>Anonyme</i>
-                                                                                <?php endif; ?>
-                                                                            </span>
+                                                                                    <?php endif; ?>
+                                                                                    <?php if ($vainkeur_data_selected) : ?>
+                                                                                        <span class="user-niveau">
+                                                                                            <?php echo $vainkeur_data_selected['level']; ?>
+                                                                                        </span>
+                                                                                    <?php endif; ?>
+                                                                                </span>
+                                                                                <span class="font-weight-bold championname">
+                                                                                    <?php if ($vainkeur_data_selected) : ?>
+                                                                                        <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_vainkeur'])); ?>">
+                                                                                            <?php echo $vainkeur_data_selected['pseudo']; ?>
+                                                                                            <?php if ($vainkeur_data_selected) : ?>
+                                                                                                <span class="user-niveau-xs">
+                                                                                                    <?php echo $vainkeur_data_selected['level']; ?>
+                                                                                                </span>
+                                                                                            <?php endif; ?>
+                                                                                            <?php if ($vainkeur_data_selected['user_role'] == "administrator") : ?>
+                                                                                                <span class="ico va va-vkrzteam va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
+                                                                                                </span>
+                                                                                            <?php endif; ?>
+                                                                                            <?php if ($vainkeur_data_selected['user_role'] == "administrator" || $vainkeur_data_selected['user_role'] == "author") : ?>
+                                                                                                <span class="ico va va-man-singer va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
+                                                                                                </span>
+                                                                                            <?php endif; ?>
+                                                                                        </a>
+                                                                                    <?php else : ?>
+                                                                                        <i>Anonyme</i>
+                                                                                    <?php endif; ?>
+                                                                                </span>
+                                                                            <?php endif; ?>
                                                                         <?php else : ?>
                                                                             <span class="va va-exclamation-question va-md"></span>
                                                                         <?php endif; ?>
@@ -412,48 +418,54 @@ $tops_sponso_old = new WP_Query(array(
                                                                     </td>
 
                                                                     <td class="text-right">
-                                                                        <?php if (get_field('gagnant_idplayer_t_sponso', $id_top)) : ?>
-                                                                            <?php
-                                                                            $gagnant_id         = get_post_field('post_author', get_field('gagnant_idplayer_t_sponso', $id_top));
-                                                                            $gagnant_id_uuid    = get_field('uuiduser_user', 'user_' . $gagnant_id);
-                                                                            $vainkeur_data_selected  = find_vkrz_user($gagnant_id_uuid);
-                                                                            ?>
-                                                                            <span class="avatar">
-                                                                                <?php if ($vainkeur_data_selected) : ?>
-                                                                                    <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_vainkeur'])); ?>">
+                                                                        <?php if (get_field('gagnant_idplayer_t_sponso', $id_top) || get_field('gagnant_non_inscrit_t_sponso', $id_top)) : ?>
+                                                                            <?php if (get_field('gagnant_non_inscrit_t_sponso', $id_top)) : ?>
+                                                                                <span class="font-weight-bold championname">
+                                                                                    <?php the_field('gagnant_non_inscrit_t_sponso', $id_top); ?>
+                                                                                </span>
+                                                                            <?php else : ?>
+                                                                                <?php
+                                                                                $gagnant_id         = get_post_field('post_author', get_field('gagnant_idplayer_t_sponso', $id_top));
+                                                                                $gagnant_id_uuid    = get_field('uuiduser_user', 'user_' . $gagnant_id);
+                                                                                $vainkeur_data_selected  = find_vkrz_user($gagnant_id_uuid);
+                                                                                ?>
+                                                                                <span class="avatar">
+                                                                                    <?php if ($vainkeur_data_selected) : ?>
+                                                                                        <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_vainkeur'])); ?>">
+                                                                                            <span class="avatar-picture" style="background-image: url(<?php echo $vainkeur_data_selected['avatar']; ?>);"></span>
+                                                                                        </a>
+                                                                                    <?php else : ?>
                                                                                         <span class="avatar-picture" style="background-image: url(<?php echo $vainkeur_data_selected['avatar']; ?>);"></span>
-                                                                                    </a>
-                                                                                <?php else : ?>
-                                                                                    <span class="avatar-picture" style="background-image: url(<?php echo $vainkeur_data_selected['avatar']; ?>);"></span>
-                                                                                <?php endif; ?>
-                                                                                <?php if ($vainkeur_data_selected) : ?>
-                                                                                    <span class="user-niveau">
-                                                                                        <?php echo $vainkeur_data_selected['level']; ?>
-                                                                                    </span>
-                                                                                <?php endif; ?>
-                                                                            </span>
-                                                                            <span class="font-weight-bold championname">
-                                                                                <?php if ($vainkeur_data_selected) : ?>
-                                                                                    <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_vainkeur'])); ?>">
-                                                                                        <?php echo $vainkeur_data_selected['pseudo']; ?>
-                                                                                        <?php if ($vainkeur_data_selected) : ?>
-                                                                                            <span class="user-niveau-xs">
-                                                                                                <?php echo $vainkeur_data_selected['level']; ?>
-                                                                                            </span>
-                                                                                        <?php endif; ?>
-                                                                                        <?php if ($vainkeur_data_selected['user_role'] == "administrator") : ?>
-                                                                                            <span class="ico va va-vkrzteam va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
-                                                                                            </span>
-                                                                                        <?php endif; ?>
-                                                                                        <?php if ($vainkeur_data_selected['user_role'] == "administrator" || $vainkeur_data_selected['user_role'] == "author") : ?>
-                                                                                            <span class="ico va va-man-singer va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
-                                                                                            </span>
-                                                                                        <?php endif; ?>
-                                                                                    </a>
-                                                                                <?php else : ?>
-                                                                                    <i>Anonyme</i>
-                                                                                <?php endif; ?>
-                                                                            </span>
+                                                                                    <?php endif; ?>
+                                                                                    <?php if ($vainkeur_data_selected) : ?>
+                                                                                        <span class="user-niveau">
+                                                                                            <?php echo $vainkeur_data_selected['level']; ?>
+                                                                                        </span>
+                                                                                    <?php endif; ?>
+                                                                                </span>
+                                                                                <span class="font-weight-bold championname">
+                                                                                    <?php if ($vainkeur_data_selected) : ?>
+                                                                                        <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_vainkeur'])); ?>">
+                                                                                            <?php echo $vainkeur_data_selected['pseudo']; ?>
+                                                                                            <?php if ($vainkeur_data_selected) : ?>
+                                                                                                <span class="user-niveau-xs">
+                                                                                                    <?php echo $vainkeur_data_selected['level']; ?>
+                                                                                                </span>
+                                                                                            <?php endif; ?>
+                                                                                            <?php if ($vainkeur_data_selected['user_role'] == "administrator") : ?>
+                                                                                                <span class="ico va va-vkrzteam va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
+                                                                                                </span>
+                                                                                            <?php endif; ?>
+                                                                                            <?php if ($vainkeur_data_selected['user_role'] == "administrator" || $vainkeur_data_selected['user_role'] == "author") : ?>
+                                                                                                <span class="ico va va-man-singer va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
+                                                                                                </span>
+                                                                                            <?php endif; ?>
+                                                                                        </a>
+                                                                                    <?php else : ?>
+                                                                                        <i>Anonyme</i>
+                                                                                    <?php endif; ?>
+                                                                                </span>
+                                                                            <?php endif; ?>
                                                                         <?php else : ?>
                                                                             <span class="va va-exclamation-question va-md"></span>
                                                                         <?php endif; ?>
