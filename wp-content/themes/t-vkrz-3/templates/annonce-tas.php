@@ -110,10 +110,10 @@ $tops_sponso_old = new WP_Query(array(
                                                                 <th class="text-left">
                                                                     <small class="text-muted">Récompense</small>
                                                                 </th>
-                                                                <th class="text-right">
+                                                                <th class="text-center">
                                                                     <small class="text-muted">Date</small>
                                                                 </th>
-                                                                <th class="text-right">
+                                                                <th class="text-center">
                                                                     <small class="text-muted">Gagnant</small>
                                                                 </th>
                                                             </tr>
@@ -236,14 +236,14 @@ $tops_sponso_old = new WP_Query(array(
                                                                         <?php the_field('gain_champs_1_t_sponso', $id_top); ?> <?php the_field('gain_champs_2_t_sponso', $id_top); ?>
                                                                     </td>
 
-                                                                    <td class="text-right t-rose">
+                                                                    <td class="text-center t-rose">
                                                                         <?php
                                                                         $date_tas = get_field('date_fin_de_la_sponso_t_sponso', $id_top);
                                                                         echo $date_tas . " à midi";
                                                                         ?>
                                                                     </td>
 
-                                                                    <td class="text-right">
+                                                                    <td class="text-center">
                                                                         <?php if (get_field('gagnant_idplayer_t_sponso', $id_top) || get_field('gagnant_non_inscrit_t_sponso', $id_top)) : ?>
                                                                             <div class="scale-xs">
                                                                                 <?php if (get_field('gagnant_non_inscrit_t_sponso', $id_top)) : ?>
@@ -412,14 +412,14 @@ $tops_sponso_old = new WP_Query(array(
                                                                         <?php the_field('gain_champs_1_t_sponso', $id_top); ?> <?php the_field('gain_champs_2_t_sponso', $id_top); ?>
                                                                     </td>
 
-                                                                    <td class="text-right">
+                                                                    <td class="text-center">
                                                                         <?php
                                                                         $date_tas = get_field('date_fin_de_la_sponso_t_sponso', $id_top);
-                                                                        echo "<strike>" . $date_tas . " à midi</strike>";
+                                                                        echo "<strike>" . $date_tas;
                                                                         ?>
                                                                     </td>
 
-                                                                    <td class="text-right">
+                                                                    <td class="text-center">
                                                                         <?php if (get_field('gagnant_idplayer_t_sponso', $id_top) || get_field('gagnant_non_inscrit_t_sponso', $id_top)) : ?>
                                                                             <div class="scale-xs">
                                                                                 <?php if (get_field('gagnant_non_inscrit_t_sponso', $id_top)) : ?>
