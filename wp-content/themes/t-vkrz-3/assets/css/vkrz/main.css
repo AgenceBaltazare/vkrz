@@ -859,8 +859,6 @@ html .content {
   margin-top: 10px;
 }
 .next-bloc .seemore {
-  position: relative;
-  z-index: 999999999;
   display: inline-block;
   background: #7367f0;
   color: #fff;

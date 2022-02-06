@@ -105,13 +105,10 @@ $tops_sponso_old = new WP_Query(array(
                                                                     <small class="text-muted">TOP</small>
                                                                 </th>
                                                                 <th class="text-center">
-                                                                    <small class="text-muted">Participations</small>
+                                                                    <small class="text-muted">Participants</small>
                                                                 </th>
                                                                 <th class="text-left">
                                                                     <small class="text-muted">Récompense</small>
-                                                                </th>
-                                                                <th class="text-center">
-                                                                    <small class="text-muted">Date</small>
                                                                 </th>
                                                                 <th class="text-center">
                                                                     <small class="text-muted">Gagnant</small>
@@ -177,7 +174,12 @@ $tops_sponso_old = new WP_Query(array(
                                                                 wp_reset_query();
                                                             ?>
                                                                 <tr>
-                                                                    <td class="text-center">
+                                                                    <td class="text-center t-rose">
+                                                                        <?php
+                                                                        $date_tas = get_field('date_fin_de_la_sponso_t_sponso', $id_top);
+                                                                        echo $date_tas . " à midi";
+                                                                        ?>
+                                                                        <br>
                                                                         <a href="<?php the_permalink($id_top); ?>">
                                                                             <?php if (get_field('gagnant_idplayer_t_sponso', $id_top)) : ?>
                                                                                 <div class="badge badge-danger">Terminé</div>
@@ -192,6 +194,7 @@ $tops_sponso_old = new WP_Query(array(
                                                                             <?php endif; ?>
                                                                         </a>
                                                                     </td>
+
                                                                     <td>
                                                                         <div class="d-flex align-items-center">
                                                                             <div class="avatar">
@@ -234,13 +237,6 @@ $tops_sponso_old = new WP_Query(array(
 
                                                                     <td class="text-left">
                                                                         <?php the_field('gain_champs_1_t_sponso', $id_top); ?> <?php the_field('gain_champs_2_t_sponso', $id_top); ?>
-                                                                    </td>
-
-                                                                    <td class="text-center t-rose">
-                                                                        <?php
-                                                                        $date_tas = get_field('date_fin_de_la_sponso_t_sponso', $id_top);
-                                                                        echo $date_tas . " à midi";
-                                                                        ?>
                                                                     </td>
 
                                                                     <td class="text-center">
@@ -360,6 +356,11 @@ $tops_sponso_old = new WP_Query(array(
                                                             ?>
                                                                 <tr>
                                                                     <td class="text-center">
+                                                                        <?php
+                                                                        $date_tas = get_field('date_fin_de_la_sponso_t_sponso', $id_top);
+                                                                        echo "<strike>" . $date_tas;
+                                                                        ?>
+                                                                        <br>
                                                                         <a href="<?php the_permalink($id_top); ?>">
                                                                             <?php if ($state == "participation") : ?>
                                                                                 <div class="badge badge-success">Déjà fait !</div>
@@ -410,13 +411,6 @@ $tops_sponso_old = new WP_Query(array(
 
                                                                     <td class="text-left">
                                                                         <?php the_field('gain_champs_1_t_sponso', $id_top); ?> <?php the_field('gain_champs_2_t_sponso', $id_top); ?>
-                                                                    </td>
-
-                                                                    <td class="text-center">
-                                                                        <?php
-                                                                        $date_tas = get_field('date_fin_de_la_sponso_t_sponso', $id_top);
-                                                                        echo "<strike>" . $date_tas;
-                                                                        ?>
                                                                     </td>
 
                                                                     <td class="text-center">
