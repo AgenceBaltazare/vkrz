@@ -98,7 +98,7 @@ $tops_sponso_old = new WP_Query(array(
                                                     <table class="table table-tas">
                                                         <thead>
                                                             <tr>
-                                                                <th>
+                                                                <th class="text-center">
                                                                     <small class="text-muted">Tirage</small>
                                                                 </th>
                                                                 <th>
@@ -177,7 +177,7 @@ $tops_sponso_old = new WP_Query(array(
                                                                 wp_reset_query();
                                                             ?>
                                                                 <tr>
-                                                                    <td>
+                                                                    <td class="text-center">
                                                                         <a href="<?php the_permalink($id_top); ?>">
                                                                             <?php if (get_field('gagnant_idplayer_t_sponso', $id_top)) : ?>
                                                                                 <div class="badge badge-danger">Terminé</div>
@@ -359,7 +359,7 @@ $tops_sponso_old = new WP_Query(array(
                                                                 wp_reset_query();
                                                             ?>
                                                                 <tr>
-                                                                    <td>
+                                                                    <td class="text-center">
                                                                         <a href="<?php the_permalink($id_top); ?>">
                                                                             <?php if ($state == "participation") : ?>
                                                                                 <div class="badge badge-success">Déjà fait !</div>
