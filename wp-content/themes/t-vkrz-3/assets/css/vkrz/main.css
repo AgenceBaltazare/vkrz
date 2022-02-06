@@ -3935,6 +3935,10 @@ textarea {
   background-image: url(../../images/emojis/megaphone_1f4e3.png);
 }
 
+.va-exclamation-question {
+  background-image: url(../../images/emojis/exclamation-question.png);
+}
+
 /***** Icons END *****/
 .logopm {
   width: 310px;

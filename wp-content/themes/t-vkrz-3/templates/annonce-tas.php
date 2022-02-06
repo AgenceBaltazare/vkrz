@@ -99,7 +99,7 @@ $tops_sponso_old = new WP_Query(array(
                                                         <thead>
                                                             <tr>
                                                                 <th>
-                                                                    <small class="text-muted">Etat</small>
+                                                                    <small class="text-muted">Tirage</small>
                                                                 </th>
                                                                 <th>
                                                                     <small class="text-muted">TOP</small>
@@ -111,7 +111,7 @@ $tops_sponso_old = new WP_Query(array(
                                                                     <small class="text-muted">Récompense</small>
                                                                 </th>
                                                                 <th class="text-right">
-                                                                    <small class="text-muted">Date du tirage</small>
+                                                                    <small class="text-muted">Date</small>
                                                                 </th>
                                                                 <th class="text-right">
                                                                     <small class="text-muted">Gagnant</small>
@@ -236,7 +236,7 @@ $tops_sponso_old = new WP_Query(array(
                                                                         <?php the_field('gain_champs_1_t_sponso', $id_top); ?> <?php the_field('gain_champs_2_t_sponso', $id_top); ?>
                                                                     </td>
 
-                                                                    <td class="text-right">
+                                                                    <td class="text-right t-rose">
                                                                         <?php
                                                                         $date_tas = get_field('date_fin_de_la_sponso_t_sponso', $id_top);
                                                                         echo $date_tas . " à midi";
@@ -287,7 +287,7 @@ $tops_sponso_old = new WP_Query(array(
                                                                                 <?php endif; ?>
                                                                             </span>
                                                                         <?php else : ?>
-                                                                            -
+                                                                            <span class="va va-exclamation-question va-md"></span>
                                                                         <?php endif; ?>
                                                                     </td>
                                                                 </tr>
@@ -455,7 +455,7 @@ $tops_sponso_old = new WP_Query(array(
                                                                                 <?php endif; ?>
                                                                             </span>
                                                                         <?php else : ?>
-                                                                            -
+                                                                            <span class="va va-exclamation-question va-md"></span>
                                                                         <?php endif; ?>
                                                                     </td>
                                                                 </tr>
