@@ -83,7 +83,7 @@ class Wordpress_Creation_Kit_PB{
 		$wck_objects[$this->args['metabox_id']] = $this->args;
 
 		/*print scripts*/
-		add_action('admin_enqueue_scripts', array( &$this, 'wck_print_scripts' ));
+		add_action('admin_enqueue_scripts', array( &$this, 'wck_print_scripts' ), 9);
 		/* add our own ajaxurl because we are going to use the wck script also in frontend and we want to avoid any conflicts */
 		add_action( 'admin_head', array( &$this, 'wck_print_ajax_url' ) );
 
@@ -702,6 +702,7 @@ class Wordpress_Creation_Kit_PB{
 
         //select 2 KEEP the wppb-select2 handle so we don't include it multiple times, seeing we include it from PB as well
         wp_enqueue_script( 'wppb-select2', plugins_url( '/assets/js/select2/select2.min.js', __FILE__ ), array(), PROFILE_BUILDER_VERSION, true );
+        wp_enqueue_script( 'wppb-select2-compat', WPPB_PLUGIN_URL . 'assets/js/select2-compat.js', array(), PROFILE_BUILDER_VERSION, true );
         wp_enqueue_style( 'wppb-select2-style', plugins_url( '/assets/js/select2/select2.min.css', __FILE__ ), false, PROFILE_BUILDER_VERSION );
 
 		//datepicker

@@ -105,7 +105,7 @@ $list_user_tops      = $user_tops['list_user_tops'];
                             );
                             $best_tops = best_tops($latest_rankings);
                             foreach (array_slice($best_tops, 0, 20, true) as $top_id => $completed_top_number) :
-                            
+
                                 $type_top = array();
                                 $type_top = get_the_terms($top_id, 'type');
                                 $slug_type_top = array();
@@ -116,9 +116,11 @@ $list_user_tops      = $user_tops['list_user_tops'];
                                     global $user_tops;
                                     $id_top             = $top_id;
                                     $top_datas          = get_top_data($id_top);
-                                    $creator_id         = get_post_field('post_author', $id_top);
-                                    $creator_uuiduser   = get_field('uuiduser_user', 'user_' . $creator_id);
-                                    $creator_data       = get_user_infos($creator_uuiduser);
+                                    $creator_id       = get_post_field('post_author', $id_top);
+                                    $creator_info     = get_userdata($creator_id);
+                                    $creator_pseudo   = $creator_info->nickname;
+                                    $creator_avatar   = get_avatar_url($creator_id, ['size' => '80', 'force_default' => false]);
+                                    $list_user_tops   = $user_tops['list_user_tops'];
                                     $state            = "";
                                     $illu             = get_the_post_thumbnail_url($id_top, 'medium');
                                     if (is_home()) {
@@ -197,7 +199,7 @@ $list_user_tops      = $user_tops['list_user_tops'];
                                                             <div class="avatar-infomore">
                                                                 <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator_id; ?>" target="_blank">
                                                                     <div class="avatar me-50">
-                                                                        <img src="<?php echo $creator_data['avatar']; ?>" alt="<?php echo $creator_id; ?>" width="38" height="38">
+                                                                        <img src="<?php echo $creator_avatar; ?>" alt="<?php echo $creator_pseudo; ?>" width="38" height="38">
                                                                     </div>
                                                                 </a>
                                                             </div>
@@ -205,7 +207,7 @@ $list_user_tops      = $user_tops['list_user_tops'];
                                                                 <h4 class="mb-0 link-creator d-flex flex-column text-left">
                                                                     <span class="text-muted">Créé par</span>
                                                                     <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator_id; ?>" target="_blank" class="link-to-creator">
-                                                                        <?php echo $creator_data['pseudo']; ?>
+                                                                        <?php echo $creator_pseudo; ?>
                                                                     </a>
                                                                 </h4>
                                                             </div>

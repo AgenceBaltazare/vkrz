@@ -141,6 +141,9 @@ jQuery( function() {
 
 jQuery( function() {
     if( jQuery( '.wppb-private-website' ).length != 0 ) {
+
+        jQuery.fn.select2 = wppbSelect2;
+
         jQuery('#private-website-redirect-to-login').select2();
         jQuery('#private-website-allowed-pages').select2();
 
@@ -192,6 +195,8 @@ jQuery( function() {
 
 jQuery( function() {
     if( jQuery('body.profile-builder_page_profile-builder-toolbox-settings').length != 0 ) {
+
+        jQuery.fn.select2 = wppbSelect2;
 
         jQuery('#toolbox-bypass-ec').select2();
 

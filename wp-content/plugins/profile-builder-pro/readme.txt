@@ -7,7 +7,7 @@ custom registration, custom registration form, custom registration page, extra u
 front-end register, front-end registration, frontend edit profile, edit profileregistration, customize profile, user fields, builder, profile builder, custom fields, avatar
 Requires at least: 3.1
 Tested up to: 5.9
-Stable tag: 3.6.3
+Stable tag: 3.6.4
 
 
 Login, registration and edit profile shortcodes for the front-end. Also you can choose what fields should be displayed or add custom ones.
@@ -101,6 +101,13 @@ This plugin only adds/removes fields in the front-end. The default information-f
 
 
 == Changelog ==
+= 3.6.4 = 
+* Fix: compatibility issue with MailPoet where our menu was showing different items when opened from their pages
+* Fix: issue with Select2 not working correctly in the back-end due to to some compatibility issues
+* Fix: case where the password visibility feature was not working
+* Fix: issue with admin approval status not being removed on bulk delete users
+* Misc: Added an User ID default sorting option for Userlistings
+
 = 3.6.3 = 
 * Feature: add support for automatically login after email confirmation
 * Fix: for admin defined strings which have WPML support. They are now registered in the default site language instead of always being registered in english

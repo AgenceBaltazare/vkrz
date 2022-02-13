@@ -345,7 +345,8 @@ function wppb_print_cpt_script( $hook ){
 
 	if ( $hook == 'admin_page_profile-builder-private-website' ){
 		wp_enqueue_script( 'wppb-select2', WPPB_PLUGIN_URL . 'assets/js/select2/select2.min.js', array(), PROFILE_BUILDER_VERSION, true );
-		wp_enqueue_style( 'wppb-select2-style', WPPB_PLUGIN_URL . 'assets/css/select2/select2.min.css', false, PROFILE_BUILDER_VERSION );
+        wp_enqueue_script( 'wppb-select2-compat', WPPB_PLUGIN_URL . 'assets/js/select2-compat.js', array(), PROFILE_BUILDER_VERSION, true );
+        wp_enqueue_style( 'wppb-select2-style', WPPB_PLUGIN_URL . 'assets/css/select2/select2.min.css', false, PROFILE_BUILDER_VERSION );
 	}
 
 	if (( $hook == 'profile-builder_page_manage-fields' ) ||
@@ -401,7 +402,7 @@ function wppb_print_cpt_script( $hook ){
 
     wp_enqueue_style( 'wppb-serial-notice-css', WPPB_PLUGIN_URL . 'assets/css/serial-notice.css', false, PROFILE_BUILDER_VERSION );
 }
-add_action( 'admin_enqueue_scripts', 'wppb_print_cpt_script' );
+add_action( 'admin_enqueue_scripts', 'wppb_print_cpt_script', 9 );
 
 /**
  * Highlight the settings page under Profile Builder in the admin menu for these pages
@@ -895,6 +896,12 @@ add_action( 'wp_footer', 'wppb_enqueue_password_visibility_toggle' );
 function wppb_enqueue_password_visibility_toggle() {
     global $wppb_shortcode_on_front;
     if( $wppb_shortcode_on_front && apply_filters( 'wppb_show_password_visibility_toggle', false ) ){
+
+        //load jQuery if needed
+        if( !wp_script_is('jquery', 'done') ){
+            wp_print_scripts('jquery');
+        }
+
         ?>
         <script type="text/javascript">
             jQuery( document ).ready( function() {

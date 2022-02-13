@@ -97,10 +97,11 @@ function wppb_generate_userlisting_merge_tags( $type, $template = '' ){
 	if( $type == 'meta' ){
 		$default_field_type = 'default_user_field';
 		$user_meta = 'user_meta';
+		$user_id = 'user_id';
 		$number_of_posts = 'number_of_posts';
 	}
 	else if( $type == 'sort' ){
-		$default_field_type = $user_meta = $number_of_posts = 'sort_tag';
+		$default_field_type = $user_meta = $user_id = $number_of_posts = 'sort_tag';
 	}
 
 	if ( $wppb_manage_fields != 'not_found' )
@@ -164,17 +165,17 @@ function wppb_generate_userlisting_merge_tags( $type, $template = '' ){
 
 
 
+    $merge_tags[] = array( 'name' => $type.'_user_id', 'type' => $user_id, 'label' => __( 'User ID', 'profile-builder' ) );
 	$merge_tags[] = array( 'name' => $type.'_role', 'type' => $default_field_type, 'label' => __( 'Role', 'profile-builder' ) );
 	$merge_tags[] = array( 'name' => $type.'_role_slug', 'type' => $default_field_type, 'label' => __( 'Role Slug', 'profile-builder' ) );
 	$merge_tags[] = array( 'name' => $type.'_registration_date', 'type' => $default_field_type, 'label' => __( 'Registration Date', 'profile-builder' ) );
 	$merge_tags[] = array( 'name' => $type.'_number_of_posts', 'type' => $number_of_posts, 'unescaped' => true, 'label' => __( 'Number of Posts', 'profile-builder' ) );
 
-	// we can't sort by this fields so only generate the meta
+	// we can't sort by these fields so only generate the meta tags
 	if( $type == 'meta' ){
 		$merge_tags[] = array( 'name' => 'more_info', 'type' => 'more_info', 'unescaped' => true, 'label' => __( 'More Info', 'profile-builder' ) );
 		$merge_tags[] = array( 'name' => 'more_info_url', 'type' => 'more_info_url', 'unescaped' => true, 'label' => __( 'More Info Url', 'profile-builder' ) );
 		$merge_tags[] = array( 'name' => 'avatar_or_gravatar', 'type' => 'avatar_or_gravatar', 'unescaped' => true, 'label' => __( 'Avatar or Gravatar', 'profile-builder' ) );
-		$merge_tags[] = array( 'name' => 'user_id', 'type' => 'user_id', 'label' => __( 'User Id', 'profile-builder' ) );
 		$merge_tags[] = array( 'name' => 'user_nicename', 'type' => 'user_nicename', 'unescaped' => true, 'label' => __( 'User Nicename', 'profile-builder' ) );
 	}
 
@@ -918,6 +919,9 @@ function wppb_userlisting_sort_tags( $value, $name, $children, $extra_info ){
     elseif ( $name == 'sort_role' )
         return '<a href="'.wppb_get_new_url( 'role', $extra_info ).'" class="sortLink ' . wppb_get_sorting_class( 'role' ) . '" id="sortLink14">'.apply_filters( 'sort_role_filter', __( 'Role', 'profile-builder' ) ).'</a>';
 
+    elseif ( $name == 'sort_user_id' )
+        return '<a href="'.wppb_get_new_url( 'user_id', $extra_info ).'" class="sortLink ' . wppb_get_sorting_class( 'user_id' ) . '" id="sortLink15">'.apply_filters( 'sort_user_id_filter', __( 'ID', 'profile-builder' ) ).'</a>';
+
     else{
         global $wppb_manage_fields;
         if( !isset( $wppb_manage_fields ) )
@@ -1011,7 +1015,7 @@ function wppb_userlisting_users_loop( $value, $name, $children, $extra_values ){
             else
                 $sorting_criteria = $userlisting_args[0]['default-sorting-criteria'];
 
-            if( in_array( $sorting_criteria, array( 'login', 'email', 'url', 'registered', 'post_count', 'nicename' ) ) ){
+            if( in_array( $sorting_criteria, array( 'login', 'email', 'url', 'registered', 'post_count', 'nicename', 'user_id' ) ) ){
                 if( $sorting_criteria == 'nicename' )
                     $args['orderby']  = 'display_name';
                 else
@@ -1375,6 +1379,9 @@ function wppb_user_query_modifications($query) {
         switch( $sorting_criteria ){
             case "role":
                 $query->query_orderby = 'ORDER by REPLACE( '.$wpdb->prefix.'usermeta.meta_value, SUBSTRING_INDEX( '.$wpdb->prefix.'usermeta.meta_value, \'"\', 1 ), \'\' ) '.$sorting_order;
+                break;
+            case "user_id":
+                $query->query_orderby = 'ORDER by ID '.$sorting_order;
                 break;
             case "RAND()":
                 $seed = apply_filters( 'wppb_userlisting_random_seed', '' );
@@ -2518,6 +2525,7 @@ function wppb_manage_ul_cpt(){
 	// Set sorting criteria
 	$sorting_criteria[] = '%'.__( 'Username', 'profile-builder' ).'%login';
 	$sorting_criteria[] = '%'.__( 'Email', 'profile-builder' ).'%email';
+	$sorting_criteria[] = '%'.__( 'User ID', 'profile-builder' ).'%user_id';
 	$sorting_criteria[] = '%'.__( 'Website', 'profile-builder' ).'%url';
 	$sorting_criteria[] = '%'.__( 'Biographical Info', 'profile-builder' ).'%bio';
 	$sorting_criteria[] = '%'.__( 'Registration Date', 'profile-builder' ).'%registered';

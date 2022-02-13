@@ -221,9 +221,11 @@ $list_sujets      = array();
                     $illu               = get_the_post_thumbnail_url($id_top, 'medium');
                     $id_top             = get_the_ID();
                     $top_datas          = get_top_data($id_top);
-                    $creator_id         = get_post_field('post_author', $id_top);
-                    $creator_uuiduser   = get_field('uuiduser_user', 'user_' . $creator_id);
-                    $creator_data       = get_user_infos($creator_uuiduser);
+                    $creator_id       = get_post_field('post_author', $id_top);
+                    $creator_info     = get_userdata($creator_id);
+                    $creator_pseudo   = $creator_info->nickname;
+                    $creator_avatar   = get_avatar_url($creator_id, ['size' => '80', 'force_default' => false]);
+                    $list_user_tops   = $user_tops['list_user_tops'];
                     $user_single_top_data = array_search($id_top, array_column($list_user_tops, 'id_top'));
                     if ($user_single_top_data !== false) {
                         $state = $list_user_tops[$user_single_top_data]['state'];
@@ -316,7 +318,7 @@ $list_sujets      = array();
                                             <div class="avatar-infomore">
                                                 <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator_id; ?>" target="_blank">
                                                     <div class="avatar me-50">
-                                                        <img src="<?php echo $creator_data['avatar']; ?>" alt="<?php echo $creator_id; ?>" width="38" height="38">
+                                                        <img src="<?php echo $creator_avatar; ?>" alt="<?php echo $creator_pseudo; ?>" width="38" height="38">
                                                     </div>
                                                 </a>
                                             </div>
@@ -324,7 +326,7 @@ $list_sujets      = array();
                                                 <h4 class="mb-0 link-creator d-flex flex-column text-left">
                                                     <span class="text-muted">Créé par</span>
                                                     <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator_id; ?>" target="_blank" class="link-to-creator">
-                                                        <?php echo $creator_data['pseudo']; ?>
+                                                        <?php echo $creator_pseudo; ?>
                                                     </a>
                                                 </h4>
                                             </div>

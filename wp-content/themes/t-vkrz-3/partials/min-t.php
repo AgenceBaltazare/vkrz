@@ -1,12 +1,14 @@
 <?php
 global $user_tops;
 global $id_top;
-$id_top             = get_the_ID();
-$top_datas          = get_top_data($id_top);
-$creator_id         = get_post_field('post_author', $id_top);
-$creator_uuiduser   = get_field('uuiduser_user', 'user_' . $creator_id);
-$creator_data       = get_user_infos($creator_uuiduser);
-$list_user_tops     = $user_tops['list_user_tops'];
+$id_top           = get_the_ID();
+$top_datas        = get_top_data($id_top);
+$creator_id       = get_post_field('post_author', $id_top);
+$creator_info     = get_userdata($creator_id);
+$creator_pseudo   = $creator_info->nickname;
+$creator_avatar   = get_avatar_url($creator_id, ['size' => '80', 'force_default' => false]);
+$list_user_tops   = $user_tops['list_user_tops'];
+$type_top         = "";
 $state            = "";
 $illu             = get_the_post_thumbnail_url($id_top, 'medium');
 if (is_home()) {
@@ -23,8 +25,10 @@ if ($user_single_top_data !== false) {
     $state = "todo";
 }
 $get_top_type = get_the_terms($id_top, 'type');
-foreach ($get_top_type as $type_top) {
-    $type_top = $type_top->slug;
+if($get_top_type){
+    foreach ($get_top_type as $type_top) {
+        $type_top = $type_top->slug;
+    }
 }
 ?>
 <div class="<?php echo $class; ?>">
@@ -85,7 +89,7 @@ foreach ($get_top_type as $type_top) {
                         <div class="avatar-infomore">
                             <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator_id; ?>" target="_blank">
                                 <div class="avatar me-50">
-                                    <img src="<?php echo $creator_data['avatar']; ?>" alt="<?php echo $creator_id; ?>" width="38" height="38">
+                                    <img src="<?php echo $creator_avatar; ?>" alt="<?php echo $creator_pseudo; ?>" width="38" height="38">
                                 </div>
                             </a>
                         </div>
@@ -93,7 +97,7 @@ foreach ($get_top_type as $type_top) {
                             <h4 class="mb-0 link-creator d-flex flex-column text-left">
                                 <span class="text-muted">Créé par</span>
                                 <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator_id; ?>" target="_blank" class="link-to-creator">
-                                    <?php echo $creator_data['pseudo']; ?>
+                                    <?php echo $creator_pseudo; ?>
                                 </a>
                             </h4>
                         </div>

@@ -397,3 +397,25 @@
 		}
 	}
 
+    /****************************************************
+     * Plugin Name: MailPoet
+     * By default MailPoet disables custom scripts and styles to prevent JavaScript and CSS conflicts with their interface
+     * With these filters we can whitelist our styles and scripts
+     ****************************************************/
+
+    function wppb_mailpoet_conflict_resolver_whitelist_style($styles) {
+        $current_file_path = explode('/',plugin_basename( __FILE__ ));
+        $plugin_name = reset($current_file_path);
+        array_push($styles, $plugin_name);
+        return $styles;
+    }
+    add_filter('mailpoet_conflict_resolver_whitelist_style', 'wppb_mailpoet_conflict_resolver_whitelist_style');
+
+    function wppb_mailpoet_conflict_resolver_whitelist_script($scripts) {
+        $current_file_path = explode('/',plugin_basename( __FILE__ ));
+        $plugin_name = reset($current_file_path);
+        array_push($scripts, $plugin_name);
+        return $scripts;
+    }
+    add_filter('mailpoet_conflict_resolver_whitelist_script', 'wppb_mailpoet_conflict_resolver_whitelist_script');
+

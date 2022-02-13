@@ -54,7 +54,7 @@ $tops_sponso_old = new WP_Query(array(
             'operator' => 'NOT IN'
         ),
     ),
-    'meta_query'                => array(
+    'meta_query'      => array(
         array(
             'key'     => 'date_fin_de_la_sponso_t_sponso',
             'compare' => '!=',

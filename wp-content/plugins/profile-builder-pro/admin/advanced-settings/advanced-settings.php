@@ -28,7 +28,7 @@ if( !class_exists('WPPB_toolbox') ){
             $this->generate_settings();
 
             add_action( 'admin_menu',            array( &$this, 'register_submenu_page' ) );
-            add_action( 'admin_enqueue_scripts', array( &$this, 'enqueue_scripts' ) );
+            add_action( 'admin_enqueue_scripts', array( &$this, 'enqueue_scripts' ), 9 );
             add_action( 'admin_init',            array( &$this, 'register_settings' ) );
 
             $this->setup_functions();
@@ -148,6 +148,7 @@ if( !class_exists('WPPB_toolbox') ){
         public function enqueue_scripts( $hook ) {
             if ( $hook == 'profile-builder_page_profile-builder-toolbox-settings' ) {
                 wp_enqueue_script( 'wppb-select2', WPPB_PLUGIN_URL . 'assets/js/select2/select2.min.js', array(), PROFILE_BUILDER_VERSION );
+                wp_enqueue_script( 'wppb-select2-compat', WPPB_PLUGIN_URL . 'assets/js/select2-compat.js', array(), PROFILE_BUILDER_VERSION );
                 wp_enqueue_style( 'wppb-select2-style', WPPB_PLUGIN_URL . 'assets/css/select2/select2.min.css', array(), PROFILE_BUILDER_VERSION );
             }
         }

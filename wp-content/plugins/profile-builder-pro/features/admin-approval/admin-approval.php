@@ -138,6 +138,7 @@ function wppb_handle_bulk_approve_unapprove_cases(){
 				require_once(ABSPATH.'wp-admin/includes/user.php');
 				foreach( $users as $user ){
 					if ($current_user->ID != $user ){
+                        wp_remove_object_terms( $user, array('pending'), 'user_status' );
 						wp_delete_user( $user );
 					}
 				}
