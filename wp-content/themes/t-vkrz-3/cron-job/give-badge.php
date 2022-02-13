@@ -21,7 +21,7 @@ $roles = (array) $user->roles;
                         <div class="col-12">
 
                             <h1 class="text-center mt-2">
-                                Tirage au sort des gagnants 🍀
+                                Attribution de trophées 🎖
                             </h1>
 
                             <div class="row">
@@ -35,7 +35,7 @@ $roles = (array) $user->roles;
                                                     </div>
                                                     <div class="col-sm-4">
                                                         <select class="form-control" name="badge-selection">
-                                                            <option value="">Choix du badget</option>
+                                                            <option value="">Choix du trophée</option>
                                                             <?php
                                                             $list_badge = get_terms(array(
                                                                 'taxonomy'      => 'badges',
@@ -73,7 +73,7 @@ $roles = (array) $user->roles;
                                             <div class="card">
                                                 <div class="card-body text-center">
                                                     <h2>
-                                                        Le badge <span class="t-rose"><?php echo $badge_selection; ?></span> a été attribué au vainkeur <a href="https://vainkeurz.com/wp-admin/post.php?post=<?php echo $id_vainkeur; ?>&action=edit"><?php echo $id_vainkeur; ?></a>
+                                                        Le trophée <span class="t-rose"><?php echo $badge_selection; ?></span> a été attribué au vainkeur <a href="https://vainkeurz.com/wp-admin/post.php?post=<?php echo $id_vainkeur; ?>&action=edit"><?php echo $id_vainkeur; ?></a>
                                                     </h2>
                                                 </div>
                                             </div>
