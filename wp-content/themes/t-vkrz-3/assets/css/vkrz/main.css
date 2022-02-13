@@ -1298,7 +1298,7 @@ html .content {
   justify-content: start;
   flex-direction: column;
   z-index: 1;
-  padding: 20px 0 0 0;
+  padding: 40px 0 0 0;
 }
 .min-tournoi .cov-illu .voile .spoun {
   display: none;
@@ -1634,7 +1634,7 @@ html .content {
   word-break: break-word;
 }
 .name h5 {
-  text-transform: uppercase;
+  font-style: 12px;
   color: #fff;
   margin-bottom: 5px;
 }
@@ -2624,12 +2624,15 @@ textarea {
   min-height: 100vh;
 }
 .single-classement .bravo {
-  background: rgba(255, 255, 255, 0.2);
   width: 100%;
-  padding: 20px 20px 10px 20px;
-  border: 5px solid rgba(97, 84, 167, 0.1);
+  padding: 5px;
+  border: 3px solid #f4167f;
   display: none;
   border-radius: 10px;
+}
+.single-classement .bravo img {
+  max-width: 100%;
+  height: auto;
 }
 
 @media (max-width: 768px) {
@@ -2729,15 +2732,6 @@ textarea {
   border-radius: 0 !important;
 }
 
-@media (max-width: 768px) {
-  .is-sponso.mobile-navbar {
-    bottom: 65px !important;
-  }
-  .is-sponso .crisp-client .cc-kv6t[data-full-view=true] .cc-1xry .cc-unoo {
-    bottom: 110px !important;
-    right: 5px !important;
-  }
-}
 @font-face {
   font-family: "Themysion Regular";
   font-style: normal;

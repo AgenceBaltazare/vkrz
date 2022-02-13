@@ -195,12 +195,16 @@
     }
 
     .bravo {
-        background: rgba(255, 255, 255, 0.2);
         width: 100%;
-        padding: 20px 20px 10px 20px;
-        border: 5px solid $c4;
+        padding: 5px;
+        border: 3px solid $rose;
         display: none;
         border-radius: 10px;
+
+        img{
+            max-width: 100%;
+            height: auto;
+        }
     }
 }
 
@@ -313,18 +317,5 @@
 
     a {
         border-radius: 0 !important;
-    }
-}
-
-@media (max-width: 768px) {
-    .is-sponso {
-        &.mobile-navbar {
-            bottom: 65px !important;
-        }
-
-        .crisp-client .cc-kv6t[data-full-view=true] .cc-1xry .cc-unoo {
-            bottom: 110px !important;
-            right: 5px !important;
-        }
     }
 }

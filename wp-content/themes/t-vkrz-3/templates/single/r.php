@@ -95,7 +95,7 @@ foreach ($get_top_type as $type_top) {
                                                             <?php endif; ?>
                                                         </div>
                                                         <div class="name eh2">
-                                                            <h5 class="mt-2">
+                                                            <h5 class="mt-2 eh3">
                                                                 <?php if ($i == 1) : ?>
                                                                     <span class="ico">🥇</span>
                                                                 <?php elseif ($i == 2) : ?>

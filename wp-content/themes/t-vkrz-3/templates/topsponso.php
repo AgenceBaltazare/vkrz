@@ -78,7 +78,7 @@ $tops_in_cat        = new WP_Query(array(
                         <div class="min-tournoi card scaler">
                             <div class="cov-illu cover" style="background: url(<?php echo $illu; ?>) center center no-repeat">
                                 <?php if ($type_top == "sponso") : ?>
-                                    <span class="badge badge-light-rose ml-0">Top sponsorisé</span>
+                                    <span class="badge badge-light-rose ml-0">Top sponso</span>
                                 <?php endif; ?>
                                 <?php if ($state == "done") : ?>
                                     <div class="badge badge-success">Terminé</div>
@@ -90,18 +90,15 @@ $tops_in_cat        = new WP_Query(array(
                                 <div class="voile">
                                     <?php if ($state == "done") : ?>
                                         <div class="spoun">
-                                            <span class="ico">🏆</span>
-                                            <h5>Voir mon TOP</h5>
+                                            <h5>Voir mon 🏆</h5>
                                         </div>
                                     <?php elseif ($state == "begin") : ?>
                                         <div class="spoun">
-                                            <span class="ico">⚡</span>
-                                            <h5>Terminer le Top</h5>
+                                            <h5>Terminer</h5>
                                         </div>
                                     <?php else : ?>
                                         <div class="spoun">
-                                            <span class="ico">⚡</span>
-                                            <h5>Faire mon Top</h5>
+                                            <h5>Faire mon 🏆</h5>
                                         </div>
                                     <?php endif; ?>
                                 </div>
@@ -126,25 +123,6 @@ $tops_in_cat        = new WP_Query(array(
                                             <div class="content-body mt-01">
                                                 <h4 class="mb-0">
                                                     <?php echo $top_datas['nb_completed_top']; ?>
-                                                </h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="info-top-col hide-xs">
-                                        <div class="infos-card-t d-flex align-items-center infos-card-t-c">
-                                            <div class="avatar-infomore">
-                                                <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator_id; ?>" target="_blank">
-                                                    <div class="avatar me-50">
-                                                        <img src="<?php echo $creator_data['avatar']; ?>" alt="<?php echo $creator_id; ?>" width="38" height="38">
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class="content-body mt-01">
-                                                <h4 class="mb-0 link-creator d-flex flex-column text-left">
-                                                    <span class="text-muted">Créé par</span>
-                                                    <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator_id; ?>" target="_blank" class="link-to-creator">
-                                                        <?php echo $creator_data['pseudo']; ?>
-                                                    </a>
                                                 </h4>
                                             </div>
                                         </div>

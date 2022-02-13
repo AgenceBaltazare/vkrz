@@ -24,23 +24,8 @@ $user_ranking = get_user_ranking($id_ranking);
 $url_ranking  = get_the_permalink($id_ranking);
 $top_datas    = get_top_data($id_top_global);
 ?>
-<style>
-    @media (max-width: 768px) {
-        .single .crisp-client .cc-kv6t[data-full-view=true] .cc-1xry .cc-unoo {
-            bottom: 110px !important;
-            right: 5px !important;
-        }
-    }
-</style>
 <div class="app-content content cover is-sponso" style="background: url(<?php echo $top_infos['top_cover']; ?>) center center no-repeat">
     <div class="content-overlay"></div>
-    <div class="d-block d-sm-none">
-        <div class="other-topsponso other-topsponso-mobile">
-            <a href="<?php the_permalink(get_page_by_path('tops-sponso')); ?>/" class="w-100 btn btn-rose waves-effect">
-                Voir les autres TOPS sponso avec des <span class="va va-wrapped-gift va-lg"></span> à gagner !
-            </a>
-        </div>
-    </div>
     <div class="content-wrapper">
         <div class="content-body">
             <div class="classement">
@@ -244,7 +229,7 @@ $top_datas    = get_top_data($id_top_global);
 
                                             <div class="animate__fadeInUp animate__animated animate__delay-2s">
 
-                                                <div class="card d-none d-sm-block">
+                                                <div class="card">
                                                     <div class="other-topsponso">
                                                         <a href="<?php the_permalink(get_page_by_path('tops-sponso')); ?>/" class="w-100 btn btn-rose waves-effect">
                                                             Voir tous les autres TOPS sponso avec des <span class="va va-wrapped-gift va-lg"></span> à gagner !

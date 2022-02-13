@@ -11,6 +11,7 @@ $.fn.equalHeights = function () {
 $(document).ready(function () {
     $(".eh").equalHeights();
     $(".eh2").equalHeights();
+    $(".eh3").equalHeights();
     $(".ico-master").equalHeights();
     $(".same-h").equalHeights();
 
