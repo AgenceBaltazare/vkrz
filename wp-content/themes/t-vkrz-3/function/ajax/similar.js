@@ -31,7 +31,7 @@ $(document).ready(function ($) {
                 $('.percentword').show();
             }
             else{
-                $('.similarpercent').html("Aucun podium similaire !");
+                $('.similarpercent').html("0 %");
             }
             if (data.nb_similar > 0) {
                 if (data.nb_similar > 1) {
