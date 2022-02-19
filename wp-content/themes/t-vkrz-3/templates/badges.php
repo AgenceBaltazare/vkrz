@@ -29,7 +29,7 @@ get_header();
                             ));
 
                             foreach ($all_badges as $badge) : ?>
-                                <div class="col-12 col-md-4">
+                                <div class="col-6 col-md-4 col-lg-3">
                                     <div class="card basic-pricing text-center <?php if (get_vainkeur_badge($id_vainkeur, $badge->name)) : ?>popular<?php endif; ?>">
                                         <?php if (get_vainkeur_badge($id_vainkeur, $badge->name)) : ?>
                                             <div class="pricing-badge text-right">
@@ -37,10 +37,10 @@ get_header();
                                             </div>
                                         <?php endif; ?>
                                         <div class="card-body">
-                                            <div class="eh">
-                                                <span class="ico-master">
+                                            <div>
+                                                <div class="ico-master ico-badge">
                                                     <?php the_field('symbole_badge', 'badges_' . $badge->term_id); ?>
-                                                </span>
+                                                </div>
                                             </div>
                                             <h3>
                                                 <?php echo $badge->name; ?>
@@ -52,7 +52,7 @@ get_header();
                                     </div>
                                 </div>
                             <?php endforeach; ?>
-                            <div class="col-12 col-md-4">
+                            <div class="col-6 col-md-4 col-lg-3">
                                 <div class="card basic-pricing text-center <?php if (is_user_logged_in()) : ?>popular<?php endif; ?>">
                                     <?php if (is_user_logged_in()) : ?>
                                         <div class="pricing-badge text-right">
@@ -60,8 +60,10 @@ get_header();
                                         </div>
                                     <?php endif; ?>
                                     <div class="card-body">
-                                        <div class="eh">
-                                            <span class="ico-master va va-llama va-1x"></span>
+                                        <div>
+                                            <div class="ico-master ico-badge">
+                                                <span class="va va-llama va-1x"></span>
+                                            </div>
                                         </div>
                                         <h3>
                                             Être un Vainkeur
@@ -72,11 +74,13 @@ get_header();
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-md-4">
+                            <div class="col-6 col-md-4 col-lg-3">
                                 <div class="card basic-pricing text-center">
                                     <div class="card-body">
-                                        <div class="eh">
-                                            <span class="ico-master va va-ninja va-1x"></span>
+                                        <div>
+                                            <div class="ico-master ico-badge">
+                                                <span class="va va-ninja va-1x"></span>
+                                            </div>
                                         </div>
                                         <h3>
                                             Trophée secret
@@ -87,11 +91,13 @@ get_header();
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-md-4">
+                            <div class="col-6 col-md-4 col-lg-3">
                                 <div class="card basic-pricing text-center">
                                     <div class="card-body">
-                                        <div class="eh">
-                                            <span class="ico-master va va-ninja va-1x"></span>
+                                        <div>
+                                            <div class="ico-master ico-badge">
+                                                <span class="va va-ninja va-1x"></span>
+                                            </div>
                                         </div>
                                         <h3>
                                             Trophée secret
@@ -102,11 +108,13 @@ get_header();
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-md-4">
+                            <div class="col-6 col-md-4 col-lg-3">
                                 <div class="card basic-pricing text-center">
                                     <div class="card-body">
-                                        <div class="eh">
-                                            <span class="ico-master va va-ninja va-1x"></span>
+                                        <div>
+                                            <div class="ico-master ico-badge">
+                                                <span class="va va-ninja va-1x"></span>
+                                            </div>
                                         </div>
                                         <h3>
                                             Trophée secret
@@ -118,11 +126,8 @@ get_header();
                                 </div>
                             </div>
                         </div>
-
                         <div class="row mt-2">
-
                             <div class="col-md-8 offset-md-2">
-
                                 <div class="cta">
                                     <div class="card basic-pricing text-center">
                                         <div class="card-body">
@@ -133,9 +138,7 @@ get_header();
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
-
                         </div>
                     </div>
                 </div>

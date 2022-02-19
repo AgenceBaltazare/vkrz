@@ -898,6 +898,14 @@ html .content {
   margin-top: 5px;
 }
 
+.ico-badge {
+  font-size: 55px !important;
+  margin: 20px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .page-template-monitor .list-vainkeur-monitor {
   line-height: 14px;
 }
