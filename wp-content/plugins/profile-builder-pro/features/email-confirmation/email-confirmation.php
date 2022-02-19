@@ -60,7 +60,7 @@ function wppb_add_pending_users_header_script(){
 			actionText = '<?php esc_html_e( 'Do you want to', 'profile-builder' ); ?>' + ' ' + actionText;
 
 			if (confirm(actionText)) {
-				jQuery.post( ajaxurl ,  { action:"wppb_handle_email_confirmation_cases", URL:URL, todo:todo, user_email:user_email}, function(response) {
+				jQuery.post( ajaxurl ,  { action:"wppb_handle_email_confirmation_cases", URL:URL, todo:todo, user_email:user_email, nonce:<?php wp_create_nonce( 'wppb_handle_email_confirmation' ) ?>}, function(response) {
 					if (response.trim() == 'ok')
 						window.location=URL;
 
@@ -96,6 +96,9 @@ function wppb_get_unconfirmed_email_number(){
 
 function wppb_handle_email_confirmation_cases() {
 	global $wpdb;
+
+	if( !isset( $_POST['nonce'] ) || !wp_verify_nonce( sanitize_text_field( $_POST['nonce'] ), 'wppb_handle_email_confirmation' ) )
+        die( esc_html__("You either don't have permission for that action or there was an error!", "profile-builder") );
 
 	$todo = isset( $_POST['todo'] ) ? sanitize_text_field( $_POST['todo'] ) : '';
 	$user_email = isset( $_POST['user_email'] ) ? sanitize_email($_POST['user_email']) : '';

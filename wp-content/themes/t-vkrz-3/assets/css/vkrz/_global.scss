@@ -614,3 +614,21 @@ html .content {
 
     }
 }
+
+.loader {
+    display: inline-block;
+    vertical-align: top;
+
+    svg path,
+    svg rect {
+        fill: $c5;
+    }
+}
+
+.percentword {
+    display: none;
+}
+
+.similarcount{
+    margin-top: 5px;
+}

@@ -105,12 +105,13 @@ function wppb_handle_approve_unapprove_cases(){
 function wppb_handle_bulk_approve_unapprove_cases(){
 	global $current_user;
 
-	$todo = isset($_POST['todo']) ? sanitize_text_field($_POST['todo']) : '';
-	$users = !empty( $_POST['users'] ) ? array_map( 'absint', explode(',', sanitize_text_field( $_POST['users'] ) ) ) : array();
 	$nonce = isset( $_POST['_ajax_nonce'] ) ? sanitize_text_field($_POST['_ajax_nonce']) : '';
 
 	if (! wp_verify_nonce($nonce, '_nonce_'.$current_user->ID.'_bulk') )
 		die( esc_html__( "Your session has expired! Please refresh the page and try again.", "profile-builder" ));
+
+    $todo = isset($_POST['todo']) ? sanitize_text_field($_POST['todo']) : '';
+    $users = !empty( $_POST['users'] ) ? array_map( 'absint', explode(',', sanitize_text_field( $_POST['users'] ) ) ) : array();
 
 	if (current_user_can( apply_filters( 'wppb_admin_approval_user_capability', 'manage_options' ) )){
 		if (($todo != '') && (is_array($users)) && !empty( $users ) ){
@@ -288,7 +289,8 @@ function wppb_approve_user_from_email_url_listener(){
 
         // add extra confirmation step
         if( apply_filters( 'wppb_enable_admin_approval_confirmation', true ) ) {
-            if (!isset($_GET['approval_confirmation'])) {
+
+            if ( !isset( $_GET['approval_confirmation'] ) ) {
 
                 $form_style = apply_filters('wppb_approval_confirmation_form_style', '
                     <style>
@@ -314,6 +316,7 @@ function wppb_approve_user_from_email_url_listener(){
                         <p>' . esc_html( $approval_notification ) . '</p>
                         <input type="hidden" id="pbapprove" name="pbapprove" value="' . esc_attr( $_GET['pbapprove'] ) . '">
                         <input type="hidden" id="pbaction" name="pbaction" value="' . esc_attr( $_GET['pbaction'] ) . '">
+                        <input type="hidden" name="wppb_nonce" value="'. esc_attr( wp_create_nonce( 'wppb_approval_request' ) ) . '" />
                         <p class="form-submit">
                             <input name="approval_confirmation" type="submit" id="wppb-approval-confirmation-button" class="submit button" value="Yes">
                             <input name="approval_confirmation" type="submit" id="wppb-approval-confirmation-button" class="submit button" value="No">
@@ -323,17 +326,22 @@ function wppb_approve_user_from_email_url_listener(){
 
                 wp_die('', 'Admin Approval');
 
-            } elseif ($_GET['approval_confirmation'] === 'Yes') {
-                wppb_approve_unapprove_user_from_email_url_listener( $userID, $action );
-            } elseif ($_GET['approval_confirmation'] === 'No') {
-                $message = apply_filters('wppb_approve_user_from_email_decline_message', __('User not approved!', 'profile-builder'), $userID);
+            } elseif ( isset( $_POST['wppb_nonce'] ) && wp_verify_nonce( sanitize_text_field( $_POST['wppb_nonce'] ), 'wppb_approval_request' ) ){
 
-                wp_die( esc_html( $message ), esc_html__( 'Admin Approval Declined', 'profile-builder' ) );
+                if($_GET['approval_confirmation'] === 'Yes') {
+                    wppb_approve_unapprove_user_from_email_url_listener( $userID, $action );
+                } elseif ($_GET['approval_confirmation'] === 'No') {
+                    $message = apply_filters('wppb_approve_user_from_email_decline_message', __('User not approved!', 'profile-builder'), $userID);
+
+                    wp_die( esc_html( $message ), esc_html__( 'Admin Approval Declined', 'profile-builder' ) );
+                }
+
             } else {
                 $message = apply_filters('wppb_approve_user_from_email_decline_message', __('Something went wrong!', 'profile-builder'), $userID);
 
                 wp_die( esc_html( $message ), esc_html__( 'Admin Approval Error', 'profile-builder' ) );
             }
+
         } else {
             wppb_approve_unapprove_user_from_email_url_listener( $userID, $action );
         }

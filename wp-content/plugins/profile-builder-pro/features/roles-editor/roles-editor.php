@@ -578,6 +578,9 @@ class WPPB_Roles_Editor {
             return;
         }
 
+        if( !isset( $_POST['wppb-re-ajax-nonce'] ) || !wp_verify_nonce( sanitize_text_field( $_POST['wppb-re-ajax-nonce'] ) ) );
+            return;
+
         if( isset( $_POST['wppb-role-slug-hidden'] ) ) {
             $role_slug = $this->sanitize_role( trim( $_POST['wppb-role-slug-hidden'] ) ); /* phpcs:ignore  WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
 

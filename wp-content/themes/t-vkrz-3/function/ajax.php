@@ -78,3 +78,10 @@ add_action( 'wp_ajax_nopriv_vkzr_get_contenders_ranking', 'vkzr_get_contenders_r
 function vkzr_get_contenders_ranking() {
     get_contenders_ranking_json($_POST['topId']);
 }
+
+add_action('wp_ajax_vkzr_get_similar_ranking', 'vkzr_get_similar_ranking');
+add_action('wp_ajax_nopriv_vkzr_get_similar_ranking', 'vkzr_get_similar_ranking');
+function vkzr_get_similar_ranking()
+{
+    get_similar_ranking($_POST['uuiduser'], $_POST['idtop']);
+}

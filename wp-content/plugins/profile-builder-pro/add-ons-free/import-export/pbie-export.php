@@ -8,7 +8,7 @@ add_action( 'admin_init', 'wppb_pbie_export_our_json' );
 
 /* export class arguments and call */
 function wppb_pbie_export_our_json() {
-	if( isset( $_POST['cozmos-export'] ) ) {
+	if( isset( $_POST['cozmos-export'] ) && isset( $_POST['wppb_nonce'] ) && wp_verify_nonce( sanitize_text_field( $_POST['wppb_nonce'] ), 'wppb_export_settings' ) ) {
 		/* get Profile Builder version */
 		if ( PROFILE_BUILDER == 'Profile Builder Pro' ) {
 			$version = 'pro';
@@ -116,7 +116,10 @@ function wppb_pbie_export() {
 	?>
 	<p><?php esc_html_e( 'Export Profile Builder options as a .json file. This allows you to easily import the configuration into another site.', 'profile-builder' ); ?></p>
 	<div class="wrap">
-		<form action="" method="post"><input class="button-secondary" type="submit" name="cozmos-export" value=<?php esc_html_e( 'Export', 'profile-builder' ); ?> id="cozmos-export" /></form>
+		<form action="" method="post">
+			<input type="hidden" name="wppb_nonce" value="<?php echo esc_attr( wp_create_nonce( 'wppb_export_settings' ) ); ?>" />
+			<input class="button-secondary" type="submit" name="cozmos-export" value=<?php esc_html_e( 'Export', 'profile-builder' ); ?> id="cozmos-export" />
+		</form>
 	</div>
 <?php
 }

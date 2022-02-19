@@ -11,6 +11,9 @@ function wppb_process_login(){
 	do_action( "login_form_login" );
 	do_action( 'wppb_process_login_start' );
 
+	if( !isset( $_POST['CSRFToken-wppb'] ) || ! wp_verify_nonce( sanitize_text_field( $_POST['CSRFToken-wppb'] ), 'wppb_login' ) )
+	    return;
+
 	$secure_cookie = '';
 	// If the user wants ssl but the session is not ssl, force a secure cookie.
 	if ( !empty($_POST['log']) && !force_ssl_admin() ) {

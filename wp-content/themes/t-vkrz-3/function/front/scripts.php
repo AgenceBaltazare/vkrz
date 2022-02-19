@@ -76,5 +76,8 @@ function load_css_js() {
     if(is_page_template("templates/elo-mondial.php")) {
         wp_enqueue_script('ranking', get_template_directory_uri().'/function/ajax/ranking.js', array(), $template_version, true);
     }
+    if (get_post_type() == "classement") {
+        wp_enqueue_script('similar', get_template_directory_uri() . '/function/ajax/similar.js', array(), $template_version, true);
+    }
 }
 add_action('wp_enqueue_scripts', 'load_css_js');

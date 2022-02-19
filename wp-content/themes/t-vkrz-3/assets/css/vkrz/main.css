@@ -881,6 +881,23 @@ html .content {
     text-align: right;
   }
 }
+.loader {
+  display: inline-block;
+  vertical-align: top;
+}
+.loader svg path,
+.loader svg rect {
+  fill: #7367f0;
+}
+
+.percentword {
+  display: none;
+}
+
+.similarcount {
+  margin-top: 5px;
+}
+
 .page-template-monitor .list-vainkeur-monitor {
   line-height: 14px;
 }

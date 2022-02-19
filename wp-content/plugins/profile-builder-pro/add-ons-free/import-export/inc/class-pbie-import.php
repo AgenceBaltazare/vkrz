@@ -29,9 +29,10 @@ class WPPB_ImpEx_Import {
 
 			/* import options to database */
 			foreach( $imported_options as $key => $value ) {
-				if( ! empty( $value ) ) {
+
+				if( ! empty( $value ) && strpos( $key, 'wppb_' ) !== false )
 					update_option( $key, $value );
-				}
+
 			}
 
 			/* import custom posts to database */
@@ -69,7 +70,7 @@ class WPPB_ImpEx_Import {
 
 	/* upload json file function */
 	public function upload_json_file() {
-		if( isset( $_POST['cozmos-import'] ) ) {
+		if( isset( $_POST['cozmos-import'] ) && isset( $_POST['wppb_nonce'] ) && wp_verify_nonce( sanitize_text_field( $_POST['wppb_nonce'] ), 'wppb_import_setttings' ) ) {
             if( ( !is_multisite() && current_user_can( apply_filters( 'wppb_settings_import_user_capability', 'manage_options' ) ) ) ||
                 ( is_multisite() && current_user_can( apply_filters( 'wppb_multi_settings_import_user_capability', 'manage_network' ) ) ) ) {
                 if (!empty($_FILES['cozmos-upload']['tmp_name'])) {

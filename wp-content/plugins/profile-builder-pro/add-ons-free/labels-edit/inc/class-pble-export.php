@@ -28,7 +28,7 @@ class WPPB_LE_Export {
 	public function download_to_json_format( $prefix ) {
 		$all_for_export = $this->export_array();
 
-		if( isset( $_POST['pble-export'] ) ) {
+		if( isset( $_POST['pble-export'] ) && isset( $_POST['wppb_nonce'] ) && wp_verify_nonce( sanitize_text_field( $_POST['wppb_nonce'] ), 'wppb_export_labels' ) ) {
 			$json = json_encode( $all_for_export );
 			$filename = $prefix . date( 'Y-m-d_h.i.s', time() );
 			$filename .= '.json';

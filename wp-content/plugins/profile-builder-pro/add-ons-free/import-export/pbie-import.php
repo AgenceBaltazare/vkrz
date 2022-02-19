@@ -5,7 +5,8 @@ require_once 'inc/class-pbie-import.php';
 
 /* Import tab content function */
 function wppb_pbie_import() {
-	if( isset( $_POST['cozmos-import'] ) ) {
+
+	if( isset( $_POST['cozmos-import'] ) && isset( $_POST['wppb_nonce'] ) && wp_verify_nonce( sanitize_text_field( $_POST['wppb_nonce'] ), 'wppb_import_setttings' ) ) {
 		if( isset( $_FILES['cozmos-upload'] ) ) {
 			$pbie_cpts = array(
 				'wppb-ul-cpt',
@@ -29,8 +30,11 @@ function wppb_pbie_import() {
 		}
 	}
 	?>
+	
 	<p><?php esc_html_e( 'Import Profile Builder options from a .json file. This allows you to easily import the configuration from another site. ', 'profile-builder' ); ?></p>
 	<form name="cozmos-upload" method="post" action="" enctype= "multipart/form-data">
+		<input type="hidden" name="wppb_nonce" value="<?php echo esc_attr( wp_create_nonce( 'wppb_import_setttings' ) ); ?>" />
+
 		<div class="wrap">
 			<input type="file" name="cozmos-upload" value="cozmos-upload" id="cozmos-upload" />
 		</div>

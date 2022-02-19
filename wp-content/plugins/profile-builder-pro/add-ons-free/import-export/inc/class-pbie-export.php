@@ -45,7 +45,7 @@ class WPPB_ImpEx_Export {
 	/* export to json file */
 	public function download_to_json_format( $prefix ) {
 		$all_for_export = $this->export_array();
-		if( isset( $_POST['cozmos-export'] ) ) {
+		if( isset( $_POST['cozmos-export'] ) && isset( $_POST['wppb_nonce'] ) && wp_verify_nonce( sanitize_text_field( $_POST['wppb_nonce'] ), 'wppb_export_settings' ) ) {
 			$json = json_encode( $all_for_export );
 			$filename = $prefix . date( 'Y-m-d_h.i.s', time() );
 			$filename .= '.json';

@@ -26,7 +26,7 @@ class WPPB_LE_Import {
 		if ( $imported_array_from_json !== NULL ) {
 			/* import labels to database */
 			foreach( $imported_array_from_json as $key => $value ) {
-				if( ! empty( $value ) ) {
+				if( $key == 'pble' && ! empty( $value ) ) {
 					update_option( $key, $value );
 				}
 			}
@@ -39,7 +39,7 @@ class WPPB_LE_Import {
 
 	/* upload json file function */
 	public function upload_json_file() {
-		if( isset( $_POST['pble-import'] ) ) {
+		if( isset( $_POST['pble-import'] ) && isset( $_POST['wppb_nonce'] ) && wp_verify_nonce( sanitize_text_field( $_POST['wppb_nonce'] ), 'wppb_import_labels' ) ) {
 			if( ! empty( $_FILES['pble-upload']['tmp_name'] ) ) {
 				$json_content = file_get_contents( $_FILES['pble-upload']['tmp_name'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 				$this->json_to_db( $json_content );

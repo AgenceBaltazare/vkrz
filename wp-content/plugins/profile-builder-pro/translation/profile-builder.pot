@@ -377,7 +377,7 @@ msgstr ""
 msgid "Edit Profile"
 msgstr ""
 
-#: ../pb-add-on-custom-profile-menus/index.php:311, ../pb-add-on-custom-profile-menus/wppb-custom-profile-menus.php:74, front-end/class-formbuilder.php:464, front-end/login.php:578, assets/misc/elementor/widgets/class-pb-widget-rf.php:32
+#: ../pb-add-on-custom-profile-menus/index.php:311, ../pb-add-on-custom-profile-menus/wppb-custom-profile-menus.php:74, front-end/class-formbuilder.php:464, front-end/login.php:581, assets/misc/elementor/widgets/class-pb-widget-rf.php:32
 msgid "Register"
 msgstr ""
 
@@ -749,7 +749,7 @@ msgstr ""
 msgid "Before you can access your account an administrator has to approve it. You will be notified via email."
 msgstr ""
 
-#: ../pb-add-on-social-connect/index.php:420, features/admin-approval/admin-approval.php:195
+#: ../pb-add-on-social-connect/index.php:420, features/admin-approval/admin-approval.php:196
 msgid "<strong>ERROR</strong>: Your account has to be confirmed by an administrator before you can log in."
 msgstr ""
 
@@ -2077,11 +2077,11 @@ msgstr ""
 msgid "Username and Email"
 msgstr ""
 
-#: admin/general-settings.php:302, admin/manage-fields.php:333, front-end/login.php:334, front-end/login.php:348, front-end/login.php:532, add-ons/custom-redirects/custom_redirects_admin.php:60, add-ons/email-customizer/email-customizer.php:28, add-ons/user-listing/userlisting.php:113, add-ons/user-listing/userlisting.php:336, add-ons/user-listing/userlisting.php:878, add-ons/user-listing/userlisting.php:2526, features/admin-approval/class-admin-approval.php:174, features/email-confirmation/class-email-confirmation.php:168, admin/advanced-settings/includes/views/view-fields.php:121
+#: admin/general-settings.php:302, admin/manage-fields.php:333, front-end/login.php:337, front-end/login.php:351, front-end/login.php:535, add-ons/custom-redirects/custom_redirects_admin.php:60, add-ons/email-customizer/email-customizer.php:28, add-ons/user-listing/userlisting.php:113, add-ons/user-listing/userlisting.php:336, add-ons/user-listing/userlisting.php:878, add-ons/user-listing/userlisting.php:2526, features/admin-approval/class-admin-approval.php:174, features/email-confirmation/class-email-confirmation.php:168, admin/advanced-settings/includes/views/view-fields.php:121
 msgid "Username"
 msgstr ""
 
-#: admin/general-settings.php:303, front-end/login.php:529, front-end/recover.php:118, add-ons/email-customizer/email-customizer.php:29, add-ons/user-listing/userlisting.php:119, add-ons/user-listing/userlisting.php:884, add-ons/user-listing/userlisting.php:2527, features/admin-approval/class-admin-approval.php:177, features/email-confirmation/class-email-confirmation.php:169, admin/advanced-settings/includes/shortcodes/resend-activation.php:9
+#: admin/general-settings.php:303, front-end/login.php:532, front-end/recover.php:118, add-ons/email-customizer/email-customizer.php:29, add-ons/user-listing/userlisting.php:119, add-ons/user-listing/userlisting.php:884, add-ons/user-listing/userlisting.php:2527, features/admin-approval/class-admin-approval.php:177, features/email-confirmation/class-email-confirmation.php:169, admin/advanced-settings/includes/shortcodes/resend-activation.php:9
 msgid "Email"
 msgstr ""
 
@@ -2637,7 +2637,7 @@ msgstr ""
 msgid "Share a little biographical information to fill out your profile. This may be shown publicly."
 msgstr ""
 
-#: admin/manage-fields.php:351, front-end/login.php:116, front-end/recover.php:72, add-ons/email-customizer/email-customizer.php:30
+#: admin/manage-fields.php:351, front-end/login.php:119, front-end/recover.php:72, add-ons/email-customizer/email-customizer.php:30
 msgid "Password"
 msgstr ""
 
@@ -4241,11 +4241,11 @@ msgstr ""
 msgid "<pre>Title</pre><pre>Type</pre><pre>Meta Name</pre><pre class=\"wppb-mb-head-required\">Required</pre>"
 msgstr ""
 
-#: admin/manage-fields.php:1362, features/functions.php:1058, features/functions.php:1065, add-ons/custom-redirects/custom_redirects_admin.php:183, add-ons/custom-redirects/custom_redirects_admin.php:197, add-ons/custom-redirects/custom_redirects_admin.php:211, add-ons/custom-redirects/custom_redirects_admin.php:225, add-ons/multiple-forms/multiple-forms.php:411, features/admin-approval/class-admin-approval.php:111, features/roles-editor/roles-editor.php:869, assets/lib/wck-api/wordpress-creation-kit.php:447, assets/lib/wck-api/wordpress-creation-kit.php:548
+#: admin/manage-fields.php:1362, features/functions.php:1058, features/functions.php:1065, add-ons/custom-redirects/custom_redirects_admin.php:183, add-ons/custom-redirects/custom_redirects_admin.php:197, add-ons/custom-redirects/custom_redirects_admin.php:211, add-ons/custom-redirects/custom_redirects_admin.php:225, add-ons/multiple-forms/multiple-forms.php:411, features/admin-approval/class-admin-approval.php:111, features/roles-editor/roles-editor.php:872, assets/lib/wck-api/wordpress-creation-kit.php:447, assets/lib/wck-api/wordpress-creation-kit.php:548
 msgid "Edit"
 msgstr ""
 
-#: admin/manage-fields.php:1362, features/functions.php:1051, features/functions.php:1065, add-ons/custom-redirects/custom_redirects_admin.php:183, add-ons/custom-redirects/custom_redirects_admin.php:197, add-ons/custom-redirects/custom_redirects_admin.php:211, add-ons/custom-redirects/custom_redirects_admin.php:225, features/admin-approval/class-admin-approval.php:116, features/admin-approval/class-admin-approval.php:232, features/email-confirmation/class-email-confirmation.php:121, features/email-confirmation/class-email-confirmation.php:218, features/roles-editor/roles-editor.php:180, features/roles-editor/roles-editor.php:907, features/roles-editor/roles-editor.php:896, features/roles-editor/roles-editor.php:887, assets/lib/wck-api/wordpress-creation-kit.php:447, assets/lib/wck-api/wordpress-creation-kit.php:549, front-end/default-fields/gdpr-delete/gdpr-delete.php:20
+#: admin/manage-fields.php:1362, features/functions.php:1051, features/functions.php:1065, add-ons/custom-redirects/custom_redirects_admin.php:183, add-ons/custom-redirects/custom_redirects_admin.php:197, add-ons/custom-redirects/custom_redirects_admin.php:211, add-ons/custom-redirects/custom_redirects_admin.php:225, features/admin-approval/class-admin-approval.php:116, features/admin-approval/class-admin-approval.php:232, features/email-confirmation/class-email-confirmation.php:121, features/email-confirmation/class-email-confirmation.php:218, features/roles-editor/roles-editor.php:180, features/roles-editor/roles-editor.php:910, features/roles-editor/roles-editor.php:899, features/roles-editor/roles-editor.php:890, assets/lib/wck-api/wordpress-creation-kit.php:447, assets/lib/wck-api/wordpress-creation-kit.php:549, front-end/default-fields/gdpr-delete/gdpr-delete.php:20
 msgid "Delete"
 msgstr ""
 
@@ -4649,7 +4649,7 @@ msgstr ""
 msgid "Only an administrator can add new users."
 msgstr ""
 
-#: front-end/class-formbuilder.php:302, front-end/login.php:636, assets/lib/wck-api/wordpress-creation-kit.php:787
+#: front-end/class-formbuilder.php:302, front-end/login.php:639, assets/lib/wck-api/wordpress-creation-kit.php:787
 msgid "You are not allowed to do this."
 msgstr ""
 
@@ -4702,95 +4702,95 @@ msgid "Something went wrong. Please try again!"
 msgstr ""
 
 #. translators: 1: Browser cookie documentation URL, 2: Support forums URL
-#: front-end/login.php:41
+#: front-end/login.php:44
 msgid "<strong>ERROR</strong>: Cookies are blocked due to unexpected output. For help, please see <a href=\"%1$s\">this documentation</a> or try the <a href=\"%2$s\">support forums</a>."
 msgstr ""
 
-#: front-end/login.php:115
+#: front-end/login.php:118
 msgid "Username or Email Address"
 msgstr ""
 
-#: front-end/login.php:117
+#: front-end/login.php:120
 msgid "Remember Me"
 msgstr ""
 
-#: front-end/login.php:118
+#: front-end/login.php:121
 msgid "Log In"
 msgstr ""
 
-#: front-end/login.php:277
+#: front-end/login.php:280
 msgid "SUCCESS"
 msgstr ""
 
-#: front-end/login.php:277
+#: front-end/login.php:280
 msgid "Activation email sent to %s"
 msgstr ""
 
-#: front-end/login.php:313, front-end/login.php:405, front-end/login.php:443, front-end/recover.php:18, front-end/recover.php:324, features/two-factor-authentication/class-two-factor-authentication.php:574, front-end/extra-fields/extra-fields.php:95
+#: front-end/login.php:316, front-end/login.php:408, front-end/login.php:446, front-end/recover.php:18, front-end/recover.php:324, features/two-factor-authentication/class-two-factor-authentication.php:574, front-end/extra-fields/extra-fields.php:95
 msgid "ERROR"
 msgstr ""
 
-#: front-end/login.php:313
+#: front-end/login.php:316
 msgid "You need to confirm your Email Address before logging in! To resend the Confirmation Email  %1$sclick here%2$s"
 msgstr ""
 
-#: front-end/login.php:409
+#: front-end/login.php:412
 msgid "The password field is empty."
 msgstr ""
 
-#: front-end/login.php:413
+#: front-end/login.php:416
 msgid "The password you entered is incorrect."
 msgstr ""
 
-#: front-end/login.php:422
+#: front-end/login.php:425
 msgid "The username field is empty"
 msgstr ""
 
-#: front-end/login.php:420
+#: front-end/login.php:423
 msgid "The username/email field is empty"
 msgstr ""
 
-#: front-end/login.php:418
+#: front-end/login.php:421
 msgid "The email field is empty."
 msgstr ""
 
-#: front-end/login.php:431
+#: front-end/login.php:434
 msgid "Invalid username."
 msgstr ""
 
-#: front-end/login.php:429
+#: front-end/login.php:432
 msgid "Invalid username or email."
 msgstr ""
 
-#: front-end/login.php:427
+#: front-end/login.php:430
 msgid "Invalid email."
 msgstr ""
 
-#: front-end/login.php:437
+#: front-end/login.php:440
 msgid "Password Lost and Found."
 msgstr ""
 
-#: front-end/login.php:437, front-end/login.php:584
+#: front-end/login.php:440, front-end/login.php:587
 msgid "Lost your password?"
 msgstr ""
 
-#: front-end/login.php:443
+#: front-end/login.php:446
 msgid "Both fields are empty."
 msgstr ""
 
-#: front-end/login.php:623, front-end/logout.php:38
+#: front-end/login.php:626, front-end/logout.php:38
 msgid "Log out of this account"
 msgstr ""
 
-#: front-end/login.php:623, front-end/logout.php:25
+#: front-end/login.php:626, front-end/logout.php:25
 msgid "Log out &raquo;"
 msgstr ""
 
-#: front-end/login.php:624
+#: front-end/login.php:627
 msgid "You are currently logged in as %1$s. %2$s"
 msgstr ""
 
-#: front-end/login.php:536, front-end/recover.php:122
+#: front-end/login.php:539, front-end/recover.php:122
 msgid "Username or Email"
 msgstr ""
 
@@ -4914,7 +4914,7 @@ msgstr ""
 msgid "Your email was successfully confirmed."
 msgstr ""
 
-#: front-end/register.php:122, features/email-confirmation/email-confirmation.php:684
+#: front-end/register.php:122, features/email-confirmation/email-confirmation.php:687
 msgid "Before you can access your account, an administrator needs to approve it. You will be notified via email."
 msgstr ""
 
@@ -4922,7 +4922,7 @@ msgstr ""
 msgid "This username is already activated!"
 msgstr ""
 
-#: front-end/register.php:81, features/email-confirmation/email-confirmation.php:483
+#: front-end/register.php:81, features/email-confirmation/email-confirmation.php:486
 msgid "Could not create user!"
 msgstr ""
 
@@ -5150,7 +5150,7 @@ msgstr ""
 msgid "Email Subject"
 msgstr ""
 
-#: add-ons/email-customizer/admin-email-customizer.php:84, features/email-confirmation/email-confirmation.php:557
+#: add-ons/email-customizer/admin-email-customizer.php:84, features/email-confirmation/email-confirmation.php:560
 msgid "A new subscriber has (been) registered!"
 msgstr ""
 
@@ -5299,7 +5299,7 @@ msgstr ""
 msgid "The users selected password at signup"
 msgstr ""
 
-#: add-ons/email-customizer/email-customizer.php:615, add-ons/email-customizer/email-customizer.php:622, add-ons/email-customizer/email-customizer.php:636, features/email-confirmation/email-confirmation.php:615
+#: add-ons/email-customizer/email-customizer.php:615, add-ons/email-customizer/email-customizer.php:622, add-ons/email-customizer/email-customizer.php:636, features/email-confirmation/email-confirmation.php:618
 msgid "Your selected password at signup"
 msgstr ""
 
@@ -6114,7 +6114,7 @@ msgstr ""
 msgid "Your account has to be confirmed by an administrator before you can log in."
 msgstr ""
 
-#: features/admin-approval/admin-approval.php:27, features/admin-approval/admin-approval.php:396, features/admin-approval/admin-approval.php:380, features/admin-approval/class-admin-approval.php:472, features/admin-approval/class-admin-approval.php:545
+#: features/admin-approval/admin-approval.php:27, features/admin-approval/admin-approval.php:404, features/admin-approval/admin-approval.php:388, features/admin-approval/class-admin-approval.php:472, features/admin-approval/class-admin-approval.php:545
 msgid "Admin Approval"
 msgstr ""
 
@@ -6122,11 +6122,11 @@ msgstr ""
 msgid "Do you want to"
 msgstr ""
 
-#: features/admin-approval/admin-approval.php:64, features/admin-approval/admin-approval.php:113
+#: features/admin-approval/admin-approval.php:64, features/admin-approval/admin-approval.php:111
 msgid "Your session has expired! Please refresh the page and try again."
 msgstr ""
 
-#: features/admin-approval/admin-approval.php:102, features/admin-approval/admin-approval.php:149, features/email-confirmation/email-confirmation.php:134
+#: features/admin-approval/admin-approval.php:102, features/admin-approval/admin-approval.php:150, features/email-confirmation/email-confirmation.php:101, features/email-confirmation/email-confirmation.php:137
 msgid "You either don't have permission for that action or there was an error!"
 msgstr ""
 
@@ -6134,87 +6134,87 @@ msgstr ""
 msgid "User successfully deleted!"
 msgstr ""
 
-#: features/admin-approval/admin-approval.php:90, features/admin-approval/admin-approval.php:394
+#: features/admin-approval/admin-approval.php:90, features/admin-approval/admin-approval.php:402
 msgid "User successfully unapproved!"
 msgstr ""
 
-#: features/admin-approval/admin-approval.php:80, features/admin-approval/admin-approval.php:378
+#: features/admin-approval/admin-approval.php:80, features/admin-approval/admin-approval.php:386
 msgid "User successfully approved!"
 msgstr ""
 
-#: features/admin-approval/admin-approval.php:145
+#: features/admin-approval/admin-approval.php:146
 msgid "Users successfully deleted!"
 msgstr ""
 
-#: features/admin-approval/admin-approval.php:136
+#: features/admin-approval/admin-approval.php:137
 msgid "Users successfully unapproved!"
 msgstr ""
 
-#: features/admin-approval/admin-approval.php:126
+#: features/admin-approval/admin-approval.php:127
 msgid "Users successfully approved!"
 msgstr ""
 
-#: features/admin-approval/admin-approval.php:173
+#: features/admin-approval/admin-approval.php:174
 msgid "Your account on %1$s has been unapproved!"
 msgstr ""
 
-#: features/admin-approval/admin-approval.php:174, features/admin-approval/admin-approval.php:177
+#: features/admin-approval/admin-approval.php:175, features/admin-approval/admin-approval.php:178
 msgid "unapproved"
 msgstr ""
 
-#: features/admin-approval/admin-approval.php:176
+#: features/admin-approval/admin-approval.php:177
 msgid "An administrator has just unapproved your account on %1$s (%2$s)."
 msgstr ""
 
-#: features/admin-approval/admin-approval.php:165
+#: features/admin-approval/admin-approval.php:166
 msgid "Your account on %1$s has been approved!"
 msgstr ""
 
-#: features/admin-approval/admin-approval.php:166, features/admin-approval/admin-approval.php:169
+#: features/admin-approval/admin-approval.php:167, features/admin-approval/admin-approval.php:170
 msgid "approved"
 msgstr ""
 
-#: features/admin-approval/admin-approval.php:168
+#: features/admin-approval/admin-approval.php:169
 msgid "An administrator has just approved your account on %1$s (%2$s)."
 msgstr ""
 
-#: features/admin-approval/admin-approval.php:207
+#: features/admin-approval/admin-approval.php:208
 msgid "Your account has to be confirmed by an administrator before you can use the \"Password Recovery\" feature."
 msgstr ""
 
-#: features/admin-approval/admin-approval.php:246
+#: features/admin-approval/admin-approval.php:247
 msgid "Your account has been successfully created!"
 msgstr ""
 
-#: features/admin-approval/admin-approval.php:333
+#: features/admin-approval/admin-approval.php:340
 msgid "Something went wrong!"
 msgstr ""
 
-#: features/admin-approval/admin-approval.php:335
+#: features/admin-approval/admin-approval.php:342
 msgid "Admin Approval Error"
 msgstr ""
 
-#: features/admin-approval/admin-approval.php:329
+#: features/admin-approval/admin-approval.php:334
 msgid "User not approved!"
 msgstr ""
 
-#: features/admin-approval/admin-approval.php:331
+#: features/admin-approval/admin-approval.php:336
 msgid "Admin Approval Declined"
 msgstr ""
 
-#: features/admin-approval/admin-approval.php:309
+#: features/admin-approval/admin-approval.php:311
 msgid "Do you wish to unapprove the registration?"
 msgstr ""
 
-#: features/admin-approval/admin-approval.php:307
+#: features/admin-approval/admin-approval.php:309
 msgid "Do you wish to approve the registration?"
 msgstr ""
 
-#: features/admin-approval/admin-approval.php:354
+#: features/admin-approval/admin-approval.php:362
 msgid "The approval link is not valid! Please <a href=\"%s\"> log in </a> to approve the user manually. "
 msgstr ""
 
-#: features/admin-approval/admin-approval.php:357
+#: features/admin-approval/admin-approval.php:365
 msgid "Admin Approval Unsuccessful"
 msgstr ""
 
@@ -6522,51 +6522,51 @@ msgstr ""
 msgid "Users with Unconfirmed Email Address"
 msgstr ""
 
-#: features/email-confirmation/email-confirmation.php:128
+#: features/email-confirmation/email-confirmation.php:131
 msgid "Email notification resent to user"
 msgstr ""
 
-#: features/email-confirmation/email-confirmation.php:117
+#: features/email-confirmation/email-confirmation.php:120
 msgid "The selected user couldn't be deleted"
 msgstr ""
 
-#: features/email-confirmation/email-confirmation.php:109
+#: features/email-confirmation/email-confirmation.php:112
 msgid "There was an error performing that action!"
 msgstr ""
 
-#: features/email-confirmation/email-confirmation.php:439
+#: features/email-confirmation/email-confirmation.php:442
 msgid "[%1$s] Activate %2$s"
 msgstr ""
 
-#: features/email-confirmation/email-confirmation.php:442
+#: features/email-confirmation/email-confirmation.php:445
 msgid "To activate your user, please click the following link:<br><br>%s%s%s<br><br>After you activate it you will receive yet *another email* with your login."
 msgstr ""
 
-#: features/email-confirmation/email-confirmation.php:509
+#: features/email-confirmation/email-confirmation.php:512
 msgid "There was an error while trying to activate the user"
 msgstr ""
 
-#: features/email-confirmation/email-confirmation.php:486
+#: features/email-confirmation/email-confirmation.php:489
 msgid "That username is already activated!"
 msgstr ""
 
-#: features/email-confirmation/email-confirmation.php:560
+#: features/email-confirmation/email-confirmation.php:563
 msgid "New subscriber on %1$s.<br/><br/>Username:%2$s<br/>Email:%3$s<br/>"
 msgstr ""
 
-#: features/email-confirmation/email-confirmation.php:611
+#: features/email-confirmation/email-confirmation.php:614
 msgid "[%1$s] Your new account information"
 msgstr ""
 
-#: features/email-confirmation/email-confirmation.php:623
+#: features/email-confirmation/email-confirmation.php:626
 msgid "Welcome to %1$s!<br/><br/><br/>Your username is: %2$s and the password: %3$s<br/><br/>Access your account: %4$s "
 msgstr ""
 
-#: features/email-confirmation/email-confirmation.php:621
+#: features/email-confirmation/email-confirmation.php:624
 msgid "Welcome to %1$s!<br/><br/><br/>Your username is: %2$s and your password is the one that you have selected during registration.<br/><br/>Access your account: %3$s "
 msgstr ""
 
-#: features/email-confirmation/email-confirmation.php:676
+#: features/email-confirmation/email-confirmation.php:679
 msgid "The \"Admin Approval\" feature was activated at the time of registration, so please remember that you need to approve this user before he/she can log in!"
 msgstr ""
 
@@ -6781,27 +6781,27 @@ msgstr ""
 msgid "Custom"
 msgstr ""
 
-#: features/roles-editor/roles-editor.php:880
+#: features/roles-editor/roles-editor.php:883
 msgid "Clone"
 msgstr ""
 
-#: features/roles-editor/roles-editor.php:906
+#: features/roles-editor/roles-editor.php:909
 msgid "Are you sure?\nThis will permanently delete the role and cannot be undone!\nUsers assigned only on this role will be moved to the default role."
 msgstr ""
 
-#: features/roles-editor/roles-editor.php:895
+#: features/roles-editor/roles-editor.php:898
 msgid "Change Default"
 msgstr ""
 
-#: features/roles-editor/roles-editor.php:896
+#: features/roles-editor/roles-editor.php:899
 msgid "You can't delete the default role. Change it first."
 msgstr ""
 
-#: features/roles-editor/roles-editor.php:887
+#: features/roles-editor/roles-editor.php:890
 msgid "You can't delete your role."
 msgstr ""
 
-#: features/roles-editor/roles-editor.php:1123
+#: features/roles-editor/roles-editor.php:1126
 msgid "Edit User Roles"
 msgstr ""
 

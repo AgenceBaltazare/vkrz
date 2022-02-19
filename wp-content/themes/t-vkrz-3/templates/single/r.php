@@ -148,20 +148,26 @@ foreach ($get_top_type as $type_top) {
                                                                     <span class="ico">🌎</span> Voir le Top mondial
                                                                 </a>
                                                             </div>
-                                                            <?php
-                                                            $similar = get_user_percent(get_field('uuid_user_r', $id_ranking), $id_top_global);
-                                                            if ($similar['percent'] >= 0) :
-                                                            ?>
-                                                                <h2 class="stats-mondiales mt-2 mb-0">
-                                                                    <b>Ressemblance :</b>
-                                                                    <?php echo $similar['percent'] . "％"; ?>
-                                                                    <?php if ($similar['nb_similar'] == 1) : ?>
-                                                                        <small>(<?php echo $similar['nb_similar']; ?> podium identique)</small>
-                                                                    <?php elseif ($similar['nb_similar'] > 1) : ?>
-                                                                        <small>(<?php echo $similar['nb_similar']; ?> podiums identiques)</small>
-                                                                    <?php endif; ?>
-                                                                </h2>
-                                                            <?php endif; ?>
+                                                            <h2 class="stats-mondiales mt-2 mb-0">
+                                                                <b>Ressemblance :</b>
+                                                                <div class="d-inline">
+                                                                    <span class="similarpercent" data-uuiduser="<?php echo get_field('uuid_user_r', $id_ranking); ?>" data-idtop="<?php echo $id_top_global; ?>">
+                                                                        <div class="loader loader--style1" title="0">
+                                                                            <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
+                                                                                <path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946
+    s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634
+    c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z" />
+                                                                                <path fill="#000" d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0
+    C22.32,8.481,24.301,9.057,26.013,10.047z">
+                                                                                    <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 20 20" to="360 20 20" dur="0.5s" repeatCount="indefinite" />
+                                                                                </path>
+                                                                            </svg>
+                                                                        </div>
+                                                                    </span>
+                                                                    <span class="percentword"> %</span>
+                                                                </div>
+                                                                <small class="similarcount d-block"></small>
+                                                            </h2>
                                                             <div class="mt-1">
                                                                 <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_top_global; ?>" class="d-flex align-items-center w-100 btn btn-outline-primary waves-effect">
                                                                     <span class="ico ico-reverse">👀</span> Voir le classement des autres

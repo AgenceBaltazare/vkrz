@@ -93,7 +93,7 @@ function _wppb_le_output_str2( $str ) {
 
 /* scan pble labels on Rescan button click */
 function wppb_le_rescan() {
-	if( isset( $_POST['rescan'] ) ) {
+	if( isset( $_POST['rescan'] ) && isset( $_POST['wppb_nonce'] ) && wp_verify_nonce( sanitize_text_field( $_POST['wppb_nonce'] ), 'wppb_rescan_labels' ) ) {
         wppb_le_scan_labels();
 	}
 
@@ -105,7 +105,7 @@ add_action( 'init', 'wppb_le_rescan' );
 
 /* rescan success message */
 function wppb_le_rescan_success_message() {
-	if( isset( $_POST['rescan'] ) ) {
+	if( isset( $_POST['rescan'] ) && isset( $_POST['wppb_nonce'] ) && wp_verify_nonce( sanitize_text_field( $_POST['wppb_nonce'] ), 'wppb_rescan_labels' ) ) {
 		global $wppb_strings;
 		$wppb_strings_count = count( $wppb_strings );
 
@@ -247,6 +247,7 @@ function wppb_le_rescan_button() {
 		<p>Rescan all Profile Builder labels.</p>
 
 		<form action="" method="post">
+            <input type="hidden" name="wppb_nonce" value="<?php echo esc_attr( wp_create_nonce( 'wppb_rescan_labels' ) ); ?>" />
 			<input type="submit" class="button-primary" name="rescan" value="Rescan" />
 		</form>
 	</div>
@@ -310,6 +311,9 @@ function wppb_le_impexp_content() {
 		<?php esc_html_e( 'Easily import the labels from another site.', 'profile-builder' ); ?>
 	</p>
 	<form name="pble-upload" method="post" action="" enctype= "multipart/form-data">
+
+		<input type="hidden" name="wppb_nonce" value="<?php echo esc_attr( wp_create_nonce( 'wppb_import_labels' ) ); ?>" />
+
 		<div class="wrap">
 			<input type="file" name="pble-upload" value="pble-upload" id="pble-upload" />
 		</div>
@@ -324,7 +328,10 @@ function wppb_le_impexp_content() {
 		<?php esc_html_e( 'Easily import the labels into another site.', 'profile-builder' ); ?>
 	</p>
 	<div class="wrap">
-		<form action="" method="post"><input class="button-primary" type="submit" name="pble-export" value=<?php esc_html_e( 'Export', 'profile-builder' ); ?> id="pble-export" /></form>
+		<form action="" method="post">
+			<input type="hidden" name="wppb_nonce" value="<?php echo esc_attr( wp_create_nonce( 'wppb_export_labels' ) ); ?>" />
+			<input class="button-primary" type="submit" name="pble-export" value=<?php esc_html_e( 'Export', 'profile-builder' ); ?> id="pble-export" />
+		</form>
 	</div>
 <?php
 }
@@ -389,7 +396,7 @@ add_action( "wck_after_adding_form_pble", "wppb_le_chosen_pble" );
 
 /* import class arguments and call */
 function wppb_le_import() {
-	if( isset( $_POST['pble-import'] ) ) {
+	if( isset( $_POST['pble-import'] ) && isset( $_POST['wppb_nonce'] ) && wp_verify_nonce( sanitize_text_field( $_POST['wppb_nonce'] ), 'wppb_import_labels' ) ) {
 		if( isset( $_FILES['pble-upload'] ) ) {
 			$pble_args = array(
 				'pble'
@@ -409,7 +416,7 @@ function wppb_le_import() {
 /* export class arguments and call */
 add_action( 'admin_init', 'wppb_le_export' );
 function wppb_le_export() {
-	if( isset( $_POST['pble-export'] ) ) {
+	if( isset( $_POST['pble-export'] ) && isset( $_POST['wppb_nonce'] ) && wp_verify_nonce( sanitize_text_field( $_POST['wppb_nonce'] ), 'wppb_export_labels' ) ) {
 		$check_export = get_option( 'pble', 'not_set' );
 		if( empty( $check_export ) || $check_export === 'not_set' ) {
 			echo '<div id="message" class="error"><p>' . esc_html__('No labels edited, nothing to export!', 'profile-builder') . '</p></div>';

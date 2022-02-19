@@ -21,10 +21,10 @@ $(document).ready(function ($) {
                 const data = JSON.parse(response);
 
                 for (let place = 1; place <= data.length; place++) {
-                    const placeSelector = $(`#ranking-${place}`);
-                    const illustrationSelector = $(`#ranking-${place} .illu img`);
-                    const titleSelector = $(`#ranking-${place} .ranking-title`);
-                    const pointsSelector = $(`#ranking-${place} .pointselo`);
+                    const placeSelector = $('#ranking-${place}');
+                    const illustrationSelector = $('#ranking-${place} .illu img');
+                    const titleSelector = $('#ranking-${place} .ranking-title');
+                    const pointsSelector = $('#ranking-${place} .pointselo');
 
                     const newId = data[place - 1].id;
                     const newIllustration = data[place - 1].illustration;
@@ -36,9 +36,9 @@ $(document).ready(function ($) {
                         pointsSelector.attr('data-points', newPoints);
 
                         if (previousPoints < newPoints) {
-                            pointsSelector.html(`<i class="fas fa-caret-up"></i> ${newPoints} pts`);
+                            pointsSelector.html('<i class="fas fa-caret-up"></i> ${newPoints} pts');
                         } else if (previousPoints > newPoints) {
-                            pointsSelector.html(`<i class="fas fa-caret-down"></i> ${newPoints} pts`);
+                            pointsSelector.html('<i class="fas fa-caret-down"></i> ${newPoints} pts');
                         } else if (previousPoints === newPoints) {
                             pointsSelector.find('.fas').remove();
                         }
@@ -51,9 +51,9 @@ $(document).ready(function ($) {
                         pointsSelector.attr('data-points', newPoints);
 
                         if (previousPoints < newPoints) {
-                            pointsSelector.html(`<i class="fas fa-angle-double-up"></i> ${newPoints} pts`);
+                            pointsSelector.html('<i class="fas fa-angle-double-up"></i> ${newPoints} pts');
                         } else if (previousPoints > newPoints) {
-                            pointsSelector.html(`<i class="fas fa-angle-double-down"></i> ${newPoints} pts`);
+                            pointsSelector.html('<i class="fas fa-angle-double-down"></i> ${newPoints} pts');
                         }
                     }
                 }
