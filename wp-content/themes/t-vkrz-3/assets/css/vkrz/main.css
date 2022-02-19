@@ -3979,6 +3979,10 @@ textarea {
   background-image: url(../../images/emojis/exclamation-question.png);
 }
 
+.va-horn {
+  background-image: url(../../images/emojis/postal-horn_1f4ef);
+}
+
 /***** Icons END *****/
 .logopm {
   width: 310px;
