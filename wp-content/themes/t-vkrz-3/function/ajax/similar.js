@@ -30,6 +30,9 @@ $(document).ready(function ($) {
                 });
                 $('.percentword').show();
             }
+            else{
+                $('.similarpercent').html("Aucun podium similaire !");
+            }
             if (data.nb_similar > 0) {
                 if (data.nb_similar > 1) {
                     $('.similarcount').html(data.nb_similar + " podiums identiques au tien");
