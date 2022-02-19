@@ -67,30 +67,29 @@ $(document).ready(function ($) {
                     contenders = $('.display_battle .link-contender');
                     $('.contender_1 .contender_zone').addClass('animate__zoomIn');
                     $('.contender_2 .contender_zone').addClass('animate__zoomIn');
+
+                    $('.stepbar').width(data.current_step + "%");
+                    $('.stepbar span').html(data.current_step + "%");
+
+                    // +1 au compteur de votes du tournoi
+                    var current_user_t_votes = parseInt($('#rank-' + data.id_ranking + ' span.value-span').html());
+                    $('#rank-' + data.id_ranking + ' span.value-span').html(current_user_t_votes + 1);
+
+                    // +1 au compteur de votes global
+                    var current_user_total_votes = parseInt($('.user-total-vote-value').html());
+                    $('.user-total-vote-value').html(current_user_total_votes + 1);
+
+                    // -1 au décompte du prochain niveau
+                    var current_decompte_vote = parseInt($('.decompte_vote').html());
+                    $new_decompte_vote_val = current_decompte_vote - 1;
+                    if ($new_decompte_vote_val <= 0) {
+                        $new_decompte_vote_val = 0;
+                    }
+                    $('.decompte_vote').html($new_decompte_vote_val);
+
+                    $('.display_users_votes h6').replaceWith(data.uservotes_html);
+                    $('.current_rank').html(data.user_ranking_html);
                 }
-
-                $('.stepbar').width(data.current_step + "%");
-                $('.stepbar span').html(data.current_step + "%");
-
-                // +1 au compteur de votes du tournoi
-                var current_user_t_votes = parseInt($('#rank-'+data.id_ranking+' span.value-span').html());
-                $('#rank-'+data.id_ranking+' span.value-span').html(current_user_t_votes + 1);
-
-                // +1 au compteur de votes global
-                var current_user_total_votes = parseInt($('.user-total-vote-value').html());
-                $('.user-total-vote-value').html(current_user_total_votes + 1);
-
-                // -1 au décompte du prochain niveau
-                var current_decompte_vote = parseInt($('.decompte_vote').html());
-                $new_decompte_vote_val = current_decompte_vote - 1;
-                if($new_decompte_vote_val <= 0){
-                    $new_decompte_vote_val = 0;
-                }
-                $('.decompte_vote').html($new_decompte_vote_val);
-
-                $('.display_users_votes h6').replaceWith(data.uservotes_html);
-                $('.current_rank').html(data.user_ranking_html);
-
 
                 window.dataLayer.push({
                     'event': 'track_event',

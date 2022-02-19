@@ -39,8 +39,6 @@ global $id_top;
     const vkrz_ajaxurl = "<?= admin_url('admin-ajax.php') ?>";
     const id_vainkeur = "<?= $id_vainkeur ?>";
 </script>
-
 <?php wp_footer(); ?>
-
 </body>
 </html>

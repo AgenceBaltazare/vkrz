@@ -2,19 +2,21 @@
 add_action( 'wp_ajax_vkzr_process_vote', 'vkzr_process_vote' );
 add_action( 'wp_ajax_nopriv_vkzr_process_vote', 'vkzr_process_vote' );
 function vkzr_process_vote() {
-	do_elo_ranking($_POST['id_winner'], $_POST['id_looser']);
-	if (!in_array($_POST['id_top'], get_exclude_top())) {
-        increase_vote_counter($_POST['current_id_vainkeur']);
-        increase_vote_resume($_POST['id_top']);
-    }
-	$top_infos = do_user_ranking($_POST['id_top'], $_POST['id_ranking'], $_POST['id_winner'], $_POST['id_looser'], $_POST['current_id_vainkeur']);
-	$user_levels_infos = [];
+    if(get_field('done_r', $_POST['id_ranking']) != "done"){
+        do_elo_ranking($_POST['id_winner'], $_POST['id_looser']);
+        if (!in_array($_POST['id_top'], get_exclude_top())) {
+            increase_vote_counter($_POST['current_id_vainkeur']);
+            increase_vote_resume($_POST['id_top']);
+        }
+        $top_infos = do_user_ranking($_POST['id_top'], $_POST['id_ranking'], $_POST['id_winner'], $_POST['id_looser'], $_POST['current_id_vainkeur']);
+        $user_levels_infos = [];
 
-	if(is_user_logged_in()){
-        $user_levels_infos = check_user_level($_POST['current_id_vainkeur']);
+        if (is_user_logged_in()) {
+            $user_levels_infos = check_user_level($_POST['current_id_vainkeur']);
+        }
+
+        genererate_tournament_response($top_infos, $user_levels_infos);
     }
-    
-	genererate_tournament_response($top_infos, $user_levels_infos);
 }
 
 add_action( 'wp_ajax_vkzr_check_level', 'vkzr_check_level' );
