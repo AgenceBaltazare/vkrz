@@ -48,12 +48,10 @@ $creator_data       = get_user_infos($creator_uuiduser);
                         <div class="col-md-8 start-top">
                             <div class="card animate__animated animate__flipInX card-developer-meetup d-block d-sm-none">
                                 <div class="card-body rules-content p-0">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="title-win">
-                                            <h4>
-                                                <?php the_field('titre_de_la_sponso_t_sponso', $id_top); ?>
-                                            </h4>
-                                        </div>
+                                    <div class="title-win">
+                                        <h4>
+                                            <?php the_field('titre_de_la_sponso_t_sponso', $id_top); ?>
+                                        </h4>
                                     </div>
                                 </div>
                             </div>
@@ -172,7 +170,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                         <div class="col-md-4">
                             <div class="card animate__animated animate__flipInX card-developer-meetup">
                                 <div class="card-body rules-content">
-                                    <div class="d-flex justify-content-between align-items-center mb-1 d-none d-sm-block">
+                                    <div class="mb-1 d-none d-sm-block">
                                         <div class="title-win">
                                             <h4>
                                                 <?php the_field('titre_de_la_sponso_t_sponso', $id_top); ?>
