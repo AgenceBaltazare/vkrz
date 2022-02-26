@@ -269,6 +269,41 @@ $top_datas    = get_top_data($id_top_global);
                                                     </div>
                                                 <?php endif; ?>
 
+                                                <?php if (get_field('liste_des_createurs_top', $id_top)) : ?>
+
+                                                    <div class="separate mt-2 mb-2"></div>
+
+                                                    <div class="card text-left">
+                                                        <div class="card-body">
+                                                            <h4 class="card-title">
+                                                                <span class="ico va va-star-struck va-lg"></span> Ce TOP a été fait par :
+                                                            </h4>
+                                                            <?php if (have_rows('liste_des_createurs_top', $id_top)) : ?>
+                                                                <?php while (have_rows('liste_des_createurs_top', $id_top)) : the_row(); ?>
+                                                                    <div class="employee-task d-flex justify-content-between align-items-center mb-1 mt-1">
+                                                                        <a href="<?php the_sub_field('lien_vers_la_video_top'); ?>" class="d-flex flex-row link-to-creator" target="_blank">
+                                                                            <div class="avatar me-75 mr-1">
+                                                                                <?php
+                                                                                if (get_sub_field('avatar_createur_top')) {
+                                                                                    $avatar_creator = wp_get_attachment_image_src(get_sub_field('avatar_createur_top'), 'medium');
+                                                                                }
+                                                                                ?>
+                                                                                <div class="avatar-creator" style="background-image: url(<?php echo $avatar_creator[0]; ?>);"></div>
+                                                                            </div>
+                                                                            <div class="my-auto">
+                                                                                <h3 class="mb-0">
+                                                                                    <?php the_sub_field('nom_du_createur'); ?>
+                                                                                </h3>
+                                                                                <span class="seevideocreator">Voir sa vidéo sur <?php the_sub_field('plateforme_top'); ?></span>
+                                                                            </div>
+                                                                        </a>
+                                                                    </div>
+                                                                <?php endwhile; ?>
+                                                            <?php endif; ?>
+                                                        </div>
+                                                    </div>
+                                                <?php endif; ?>
+
                                                 <?php
                                                 $list_t_already_done = $user_tops['list_user_tops_done_ids'];
 
