@@ -66,8 +66,6 @@ while ($player_rank->have_posts()) : $player_rank->the_post();
 
 endwhile;
 
-$nb_ranks = $player_rank->post_count;
-
 foreach ($contender_list as $contender) {
 
     array_push($ranking_points, array(
@@ -268,10 +266,10 @@ foreach ($contender_list as $contender) {
                                                     <span class="ico4">✅</span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">
-                                                    <?php echo round($top_datas['nb_top_complet'] * 100 / $top_datas['nb_completed_top']); ?>%
+                                                    <?php echo round($top_datas['nb_top_complet'] * 100 / $top_datas['nb_tops']); ?>%
                                                 </h2>
                                                 <p class="card-text legende">
-                                                    <?php echo $top_datas['nb_top_complet']; ?> Tops complet sur <?php echo $top_datas['nb_completed_top']; ?>
+                                                    <?php echo $top_datas['nb_top_complet']; ?> Tops complet sur <?php echo $top_datas['nb_tops']; ?>
                                                 </p>
                                             </div>
                                         </div>
@@ -284,7 +282,7 @@ foreach ($contender_list as $contender) {
                                                     <span class="ico4">3️⃣</span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">
-                                                    <?php echo round($top_datas['nb_top_3'] * 100 / $top_datas['nb_completed_top']); ?>%
+                                                    <?php echo round($top_datas['nb_top_3'] * 100 / $top_datas['nb_tops']); ?>%
                                                 </h2>
                                                 <p class="card-text legende">
                                                     <?php echo $top_datas['nb_top_3']; ?> Tops 3
