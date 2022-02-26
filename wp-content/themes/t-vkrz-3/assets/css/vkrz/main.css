@@ -2666,7 +2666,8 @@ textarea {
 }
 .single-classement .bravo {
   width: 100%;
-  padding: 5px;
+  padding: 15px 15px 0;
+  text-align: center;
   border: 3px solid #f4167f;
   display: none;
   border-radius: 10px;
