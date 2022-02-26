@@ -67,7 +67,7 @@ function get_top_data($id_top){
     $nb_top_3               = get_field('nb_top_3_resume', $id_resume);;
     $nb_top_complet         = get_field('nb_top_complet_resume', $id_resume);
     $nb_tops_triche         = get_field('nb_triche_resume', $id_resume);
-    if($$nb_ranks > 0){
+    if($nb_ranks > 0){
         $percent_finition   = round($count_completed_top * 100 / $nb_ranks);
     }
     if($count_completed_top > 0){

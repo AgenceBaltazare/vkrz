@@ -109,8 +109,10 @@ $list_user_tops      = $user_tops['list_user_tops'];
                                 $type_top = array();
                                 $type_top = get_the_terms($top_id, 'type');
                                 $slug_type_top = array();
-                                foreach ($type_top as $type) {
-                                    array_push($slug_type_top, $type->slug);
+                                if($type_top){
+                                    foreach ($type_top as $type) {
+                                        array_push($slug_type_top, $type->slug);
+                                    }
                                 }
                                 if (get_post_status($top_id) == "publish" && !in_array('private', $slug_type_top)) :
                                     global $user_tops;
@@ -137,8 +139,10 @@ $list_user_tops      = $user_tops['list_user_tops'];
                                         $state = "todo";
                                     }
                                     $get_top_type = get_the_terms($id_top, 'type');
-                                    foreach ($get_top_type as $type_top) {
-                                        $type_top = $type_top->slug;
+                                    if($get_top_type){
+                                        foreach ($get_top_type as $type_top) {
+                                            $type_top = $type_top->slug;
+                                        }
                                     }
                             ?>
                                     <div class="<?php echo $class; ?>">
