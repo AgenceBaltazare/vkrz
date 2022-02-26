@@ -29,14 +29,18 @@ function wppb_le_scan_on_plugin_activate() {
 	if( empty( $pble_check ) || $pble_check === 'not_set' ) {
 		// use of output buffer to fix "headers already sent" notice on plugin activation
 		ob_start();
-        wppb_le_scan_labels();
+        wppb_le_scan_labels( wp_create_nonce( 'wppb_rescan_labels' ) );
 		$output = ob_get_clean();
 	}
 }
 register_activation_hook( __FILE__, 'wppb_le_scan_on_plugin_activate' );
 
 /* scan pble labels */
-function wppb_le_scan_labels() {
+function wppb_le_scan_labels( $nonce ) {
+
+	if( !wp_verify_nonce( $nonce, 'wppb_rescan_labels' ) )
+		return;
+
 	// create directory iterator
 	$ite = new RecursiveDirectoryIterator( WPPB_PLUGIN_DIR );
 
@@ -81,6 +85,7 @@ function wppb_le_scan_labels() {
 	}
 
 	update_option( 'pble_backup', $wppb_strings );
+
 }
 
 // populate array with Profile Builder labels
@@ -93,12 +98,10 @@ function _wppb_le_output_str2( $str ) {
 
 /* scan pble labels on Rescan button click */
 function wppb_le_rescan() {
+	
 	if( isset( $_POST['rescan'] ) && isset( $_POST['wppb_nonce'] ) && wp_verify_nonce( sanitize_text_field( $_POST['wppb_nonce'] ), 'wppb_rescan_labels' ) ) {
-        wppb_le_scan_labels();
+        wppb_le_scan_labels( sanitize_text_field( $_POST['wppb_nonce'] ) );
 	}
-
-//	$edited_labels = get_option( 'pble' );
-//	var_dump($edited_labels );
 
 }
 add_action( 'init', 'wppb_le_rescan' );
@@ -407,7 +410,7 @@ function wppb_le_import() {
 			/* show error/success messages */
 			$pble_messages = $pble_json_upload->get_messages();
 			foreach ( $pble_messages as $pble_message ) {
-				echo '<div id="message" class='. esc_attr( $pble_message['type'] ) .'><p>'. esc_html( $pble_message['message'] ) .'</p></div>';
+				echo '<div id="message" class='. esc_attr( $pble_message['type'] ) .'><p>'. $pble_message['message'] .'</p></div>';  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 		}
 	}

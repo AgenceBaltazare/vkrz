@@ -384,7 +384,7 @@ class Profile_Builder_Form_Creator{
                             $redirect = $this->wppb_log_in_user( $this->args['redirect_url'], $redirect );
                         }
 
-						echo $form_message_tpl_start . $wppb_register_success_message  . $form_message_tpl_end . $redirect; /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */  /* properly escaped above */
+						echo $form_message_tpl_start . wp_kses_post( $wppb_register_success_message )  . $form_message_tpl_end . $redirect; /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */  /* properly escaped above */
 						//action hook after registration success
 	                    do_action( 'wppb_register_success', $_REQUEST, $this->args['form_name'], $user_id );
                         return;
@@ -665,7 +665,7 @@ class Profile_Builder_Form_Creator{
                 $userdata = wp_unslash( $userdata );
             }
 
-            wppb_signup_user( $userdata['user_login'], $userdata['user_email'], $userdata, $this->args['login_after_register'] );
+            wppb_signup_user( $userdata['user_login'], $userdata['user_email'], $this->args['login_after_register'], $userdata );
         }else{
 			if( ! isset( $userdata['role'] ) ) {
 				$userdata['role'] = $this->args['role'];

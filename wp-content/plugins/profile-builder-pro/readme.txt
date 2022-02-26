@@ -7,7 +7,7 @@ custom registration, custom registration form, custom registration page, extra u
 front-end register, front-end registration, frontend edit profile, edit profileregistration, customize profile, user fields, builder, profile builder, custom fields, avatar
 Requires at least: 3.1
 Tested up to: 5.9
-Stable tag: 3.6.5
+Stable tag: 3.6.7
 
 
 Login, registration and edit profile shortcodes for the front-end. Also you can choose what fields should be displayed or add custom ones.
@@ -101,6 +101,19 @@ This plugin only adds/removes fields in the front-end. The default information-f
 
 
 == Changelog ==
+= 3.6.7 =
+* Fix: issue with back-end Users with unconfirmed emails page
+* Misc: remove unnecessary code
+* Misc: sanitize outputted register sucesss message
+
+= 3.6.6 =
+* Feature: login users automatically after a password reset. Can be activated from the Advanced Settings -> Forms tab
+* Fix: notice when deleting a labels edit add-on entry
+* Fix: issue with Labels Edit page not refreshing after an import
+* Fix: compatibility issue between Stripe and Invisible reCaptcha
+* Misc: corrected a notice relating to PHP 8
+* Added more security improvements
+
 = 3.6.5 = 
 * Fixed some security issues
 

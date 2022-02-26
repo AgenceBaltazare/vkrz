@@ -267,8 +267,10 @@ function wppb_resend_confirmation_email() {
             return;
 
         include_once(plugin_dir_path(__FILE__) . '../features/email-confirmation/email-confirmation.php');
-        if ( !class_exists('PB_Mustache_Generate_Template'))
+
+        if ( !class_exists('PB_Mustache_Generate_Template') && file_exists( plugin_dir_path(__FILE__) . '../assets/lib/class-mustache-templates/class-mustache-templates.php' ) )
             include_once(plugin_dir_path(__FILE__) . '../assets/lib/class-mustache-templates/class-mustache-templates.php');
+
         global $wpdb;
         $sql_result = $wpdb->get_row( $wpdb->prepare("SELECT * FROM " . $wpdb->base_prefix . "signups WHERE user_email = %s", sanitize_email( $_GET['email'] )), ARRAY_A );
 

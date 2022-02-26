@@ -20,7 +20,15 @@ class WPPB_LE_Import {
 	 *
 	 * @param string  $json_content  imported json.
 	 */
-	public function json_to_db( $json_content ) {
+	private function json_to_db( $json_content, $nonce ) {
+
+		if( !wp_verify_nonce( $nonce, 'wppb_import_labels' ) ){
+			$this->import_messages[$this->j]['message'] = __( 'You are not allowed to do this!', 'profile-builder' );
+			$this->import_messages[$this->j]['type'] = 'error';
+			$this->j++;
+			return;
+		}
+
 		/* decode and put json to array */
 		$imported_array_from_json = json_decode( $json_content, true );
 		if ( $imported_array_from_json !== NULL ) {
@@ -42,7 +50,7 @@ class WPPB_LE_Import {
 		if( isset( $_POST['pble-import'] ) && isset( $_POST['wppb_nonce'] ) && wp_verify_nonce( sanitize_text_field( $_POST['wppb_nonce'] ), 'wppb_import_labels' ) ) {
 			if( ! empty( $_FILES['pble-upload']['tmp_name'] ) ) {
 				$json_content = file_get_contents( $_FILES['pble-upload']['tmp_name'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-				$this->json_to_db( $json_content );
+				$this->json_to_db( $json_content, sanitize_text_field( $_POST['wppb_nonce'] ) );
 
 				if( empty( $this->import_messages ) ) {
 					$this->import_messages[$this->j]['message'] = __( 'Import successfully!', 'profile-builder' ) . "</p><p>" . __( 'Page will refresh in 3 seconds...', 'profile-builder' ) . '<META HTTP-EQUIV="refresh" CONTENT="3">';

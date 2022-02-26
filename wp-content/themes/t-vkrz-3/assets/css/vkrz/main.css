@@ -246,7 +246,7 @@ div.dataTables_wrapper div.dataTables_length label {
 }
 
 .main-menu.menu-dark .navigation .navigation-header {
-  margin: calc(2rem) 0 0.8rem 2.2rem;
+  margin: 2rem 0 0.8rem 2.2rem;
 }
 
 .main-menu.menu-dark .navigation li.nav-item a.sociallink:hover > * {
@@ -379,7 +379,7 @@ a.sociallink:hover i {
 }
 
 html .content.app-content {
-  padding: calc(2rem + 3.45rem + 1.3rem) 2rem 10rem;
+  padding: 6.75rem 2rem 10rem;
   min-height: 100vh;
 }
 
@@ -2495,18 +2495,24 @@ textarea {
 
 .rules-content {
   text-align: start;
-  padding: 1.5rem 1.5rem 0 1.5rem;
+  padding: 0;
+}
+.rules-content .text-rules {
+  padding: 0 10px;
 }
 .rules-content .title-win {
   background: #f4167f;
   border: #f4167f;
   border-radius: 3px;
+  text-align: center;
 }
 .rules-content .title-win h4 {
   padding: 8px 8px 0px;
-  font-size: 18px;
+  font-size: 15px;
   font-weight: bold;
   text-transform: uppercase;
+  text-align: center;
+  line-height: 21px;
 }
 .rules-content .icone-cadeau {
   font-size: 30px;
@@ -2514,7 +2520,7 @@ textarea {
 
 .share-text {
   color: #7367f0 !important;
-  font-size: calc(1rem);
+  font-size: 1rem;
 }
 
 .fs-12px {
@@ -2570,20 +2576,19 @@ textarea {
 .participation-content-sponso h1 {
   font-family: "Lato";
   font-weight: 900;
-  font-style: italic;
-  font-size: 38.89px;
-  line-height: 44.39px;
+  font-size: 38px;
+  line-height: 44px;
   text-transform: uppercase;
   color: #ffffff;
-  text-shadow: 3.4618px 3.4618px 0px #312673;
+  text-shadow: 3px 3px 0px #312673;
 }
 .participation-content-sponso h1 .participation {
-  font-size: 28.22px;
-  line-height: 35.53px;
+  font-size: 282px;
+  line-height: 35px;
 }
 .participation-content-sponso h1 .vainkeurz {
-  font-size: 39.06px;
-  line-height: 35.53px;
+  font-size: 39px;
+  line-height: 35px;
 }
 .participation-content-sponso a {
   text-decoration: none;
@@ -2656,7 +2661,7 @@ textarea {
   margin-bottom: 200px;
 }
 .single-classement .content.app-content {
-  padding: calc(2rem + 3.45rem + 1.3rem) 2rem 10px;
+  padding: 6.75rem 2rem 10px;
   min-height: 100vh;
 }
 .single-classement .bravo {
@@ -2779,7 +2784,7 @@ textarea {
 }
 .t-marqueblanche .app-content-marqueblanche {
   margin-left: 0px;
-  padding: calc(2rem + 3.45rem + 1.3rem) 2rem 2rem;
+  padding: 6.75rem 2rem 2rem;
   min-height: 100vh;
 }
 .t-marqueblanche .logo_marqueblanche {
@@ -2824,7 +2829,7 @@ textarea {
 }
 .t-marqueblanche .app-content-marqueblanche-result {
   margin-left: 0px;
-  padding: calc(2rem + 3.45rem + 1.3rem) 0rem 0rem;
+  padding: 6.75rem 0rem 0rem;
   min-height: 100vh;
 }
 .t-marqueblanche .classement {
@@ -3020,7 +3025,7 @@ textarea {
 }
 @media (max-width: 768px) {
   .t-marqueblanche .app-content-marqueblanche {
-    padding: calc(1rem - 0.8rem + 6.45rem + 1.3rem) calc(2rem - 0.8rem) 0 calc(2rem - 0.8rem) !important;
+    padding: 7.95rem 1.2rem 0 1.2rem !important;
     flex-direction: column;
     align-items: center;
   }
@@ -4185,7 +4190,7 @@ textarea {
   }
 
   html body .app-content {
-    padding: calc(1rem - 0.8rem + 6.45rem + 1.3rem) calc(2rem - 0.8rem) 0 calc(2rem - 0.8rem) !important;
+    padding: 7.95rem 1.2rem 0 1.2rem !important;
   }
 
   .bookmark-wrapper {

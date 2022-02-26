@@ -60,7 +60,7 @@ function wppb_add_pending_users_header_script(){
 			actionText = '<?php esc_html_e( 'Do you want to', 'profile-builder' ); ?>' + ' ' + actionText;
 
 			if (confirm(actionText)) {
-				jQuery.post( ajaxurl ,  { action:"wppb_handle_email_confirmation_cases", URL:URL, todo:todo, user_email:user_email, nonce:<?php wp_create_nonce( 'wppb_handle_email_confirmation' ) ?>}, function(response) {
+				jQuery.post( ajaxurl ,  { action:"wppb_handle_email_confirmation_cases", URL:URL, todo:todo, user_email:user_email, nonce:"<?php echo esc_js( wp_create_nonce( 'wppb_handle_email_confirmation' ) ) ?>" }, function(response) {
 					if (response.trim() == 'ok')
 						window.location=URL;
 
@@ -339,7 +339,7 @@ function wppb_add_meta_to_user_on_activation( $user_id, $password, $meta ){
 
 
 // function to add the new user to the signup table if email confirmation is selected as active or it is a wpmu installation
-function wppb_signup_user( $username, $user_email, $meta = '', $login_after_register ) {
+function wppb_signup_user( $username, $user_email, $login_after_register, $meta = '' ) {
 	global $wpdb;
 
     // check for automatic login

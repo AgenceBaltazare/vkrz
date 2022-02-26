@@ -172,7 +172,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                         <div class="col-md-4">
                             <div class="card animate__animated animate__flipInX card-developer-meetup">
                                 <div class="card-body rules-content">
-                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <div class="d-flex justify-content-between align-items-center mb-1 d-none d-sm-block">
                                         <div class="title-win">
                                             <h4>
                                                 <?php the_field('titre_de_la_sponso_t_sponso', $id_top); ?>

@@ -1828,6 +1828,8 @@
 <?php __("If checked, will allow users that register through the Social Connect add-on to bypass the Email Confirmation feature.", "profile-builder"); ?>
 <?php __("Remember me checked by default", "profile-builder"); ?>
 <?php __("Check the 'Remember Me' checkbox on Login forms, by default.", "profile-builder"); ?>
+<?php __("Automatically log in users after password reset", "profile-builder"); ?>
+<?php __("Automatically log in users after they reset their password using the Recover Password form.", "profile-builder"); ?>
 <?php __("Remove validation from back-end profile page", "profile-builder"); ?>
 <?php __("When saving the back-end user profile, Profile Builder fields will not be validated anymore. eg.: bypass required attribute", "profile-builder"); ?>
 <?php __("Always show edit other users dropdown", "profile-builder"); ?>

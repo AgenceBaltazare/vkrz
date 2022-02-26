@@ -457,7 +457,8 @@ add_filter( 'wck_add_meta_filter_values_wppb_manage_fields', 'wppb_rpf_add_missi
 function wppb_rpf_remove_repeater_field_option( $meta, $id, $element_id ){
     $manage_fields = get_option( $meta );
     $field = $manage_fields[$element_id];
-    delete_option( $field['meta-name'] );
+    if( !empty( $field['meta-name'] ) )
+        delete_option( $field['meta-name'] );
 }
 add_action( 'wck_before_remove_meta', 'wppb_rpf_remove_repeater_field_option', 10, 3 );
 

@@ -85,7 +85,7 @@ function wppb_create_recover_password_form( $user, $post_data ){
 				<label for="passw2">'. esc_html( $repeat_password_label ) .'</label>
 				<input class="password" name="passw2" type="password" id="passw2" value="" autocomplete="off" '. apply_filters( 'wppb_recover_password_extra_attr', '', esc_html( $repeat_password_label ), 'repeat_password' ) .' />
 			</li><!-- .passw2 -->';
-
+			
 		echo apply_filters( 'wppb_recover_password_form_input', $recover_inputPassword, $passw_one, $passw_two, $user->ID ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 ?>
 		</ul>
@@ -415,6 +415,23 @@ function wppb_front_end_password_recovery(){
 
                 // CHECK FOR REDIRECT
                 $redirect_url = wppb_get_redirect_url( 'normal', 'after_success_password_reset', '', sanitize_user( $user_info->user_login ) );
+
+                //log the user in if the option was selected
+                if ( apply_filters( 'wppb_recover_password_autologin', false ) ){
+                    $nonce = wp_create_nonce( 'autologin-'. sanitize_user( $user_info->ID ) .'-'. (int)( time() / 60 ) );
+
+                    //use the after_login redirect if no after_success_password_reset redirect is set
+                    if( empty( $redirect_url ) ) {
+                        $redirect_url = wppb_get_redirect_url( 'normal', 'after_login', '', sanitize_user( $user_info->user_login ) );
+                        $redirect_url = apply_filters( 'wppb_after_recover_and_login', $redirect_url );
+                    }
+                    if( empty( $redirect_url ) ) {
+                        $redirect_url = remove_query_arg( 'key', wppb_curpageurl() );
+                    }
+
+                    $redirect_url = add_query_arg( array( 'autologin' => 'true', 'uid' => sanitize_user( $user_info->ID ), '_wpnonce' => $nonce ), $redirect_url );
+                }
+
                 $redirect_delay = apply_filters( 'wppb_success_password_reset_redirect_delay', 3, sanitize_user( $user_info->user_login ) );
                 $redirect_message = wppb_build_redirect( $redirect_url, $redirect_delay, 'after_success_password_reset' );
 

@@ -20,7 +20,15 @@ class WPPB_ImpEx_Import {
 	 *
 	 * @param string  $json_content  imported json.
 	 */
-	public function json_to_db( $json_content ) {
+	private function json_to_db( $json_content, $nonce ) {
+
+		if( !wp_verify_nonce( $nonce, 'wppb_import_setttings' ) ){
+			$this->import_messages[$this->j]['message'] = __( 'You are not allowed to do this!', 'profile-builder' );
+			$this->import_messages[$this->j]['type'] = 'error';
+			$this->j++;
+			return;
+		}
+
 		/* decode and put json to array */
 		$imported_array_from_json = json_decode( $json_content, true );
 		if ( $imported_array_from_json !== NULL ) {
@@ -80,7 +88,7 @@ class WPPB_ImpEx_Import {
                     $target = $target . basename( $_FILES['cozmos-upload']['name'] );
                     move_uploaded_file( $_FILES['cozmos-upload']['tmp_name'], $target );
                     */
-                    $this->json_to_db($json_content);
+                    $this->json_to_db( $json_content, sanitize_text_field( $_POST['wppb_nonce'] ) );
                     if (empty($this->pbie_import_messages)) {
                         $this->import_messages[$this->j]['message'] = __('Import successfully!', 'profile-builder');
                         $this->import_messages[$this->j]['type'] = 'updated';

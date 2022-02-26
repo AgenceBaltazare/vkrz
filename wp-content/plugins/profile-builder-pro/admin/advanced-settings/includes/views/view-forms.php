@@ -191,6 +191,21 @@
         </tr>
 
         <tr>
+            <th><?php esc_html_e( 'Automatically log in users after password reset', 'profile-builder' ); ?></th>
+
+            <td>
+                <label><input type="checkbox" name="wppb_toolbox_forms_settings[recover-password-autologin]"<?php echo ( ( isset( $settings['recover-password-autologin'] ) && ( $settings['recover-password-autologin'] == 'yes' ) ) ? ' checked' : '' ); ?> value="yes">
+                    <?php esc_html_e( 'Yes', 'profile-builder' ); ?>
+                </label>
+
+                <ul>
+                    <li class="description">
+                        <?php esc_html_e( 'Automatically log in users after they reset their password using the Recover Password form.', 'profile-builder' ); ?></li>
+                </ul>
+            </td>
+        </tr>
+
+        <tr>
             <th><?php esc_html_e( 'Remove validation from back-end profile page', 'profile-builder' ); ?></th>
 
             <td>
