@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Themes - Twenty Twenty-Two package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-01-26 21:29:24+0000\n"
+"PO-Revision-Date: 2022-02-28 06:40:23+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,6 +18,15 @@ msgstr "Twenty Twenty-Two"
 #. Description of the theme
 msgid "Built on a solidly designed foundation, Twenty Twenty-Two embraces the idea that everyone deserves a truly unique website. The theme’s subtle styles are inspired by the diversity and versatility of birds: its typography is lightweight yet strong, its color palette is drawn from nature, and its layout elements sit gently on the page. The true richness of Twenty Twenty-Two lies in its opportunity for customization. The theme is built to take advantage of the Full Site Editing features introduced in WordPress 5.9, which means that colors, typography, and the layout of every single page on your site can be customized to suit your vision. It also includes dozens of block patterns, opening the door to a wide range of professionally designed layouts in just a few clicks. Whether you’re building a single-page website, a blog, a business website, or a portfolio, Twenty Twenty-Two will help you create a site that is uniquely yours."
 msgstr "Construit sur une base solidement désignée, Twenty Twenty-Two embrasse l‘idée que tout le monde mérite un site vraiment unique. Les styles subtils du thème sont inspirés par la diversité et la polyvalence des oiseaux : sa typographie est légère mais forte, sa palette de couleurs est tirée de la nature et ses éléments de mise en page se positionnent doucement sur la page. La vraie richesse de Twenty Twenty-Two réside dans ses possibilités de personnalisation. Le thème est conçu pour tirer parti des fonctionnalités d'édition de site complète introduites dans WordPress 5.9, ce qui signifie que les couleurs, la typographie et la mise en page de chaque page de votre site peuvent être personnalisées en fonction de votre vision. Il comprend également des dizaines de compositions de blocs, ouvrant la porte à un large éventail de mises en page professionnels en quelques clics. Que vous construisiez un site d‘une seule page, un blog, un site web d‘entreprise ou un portfolio, Twenty Twenty-Two vous aidera à créer un site qui vous est propre."
+
+#: inc/patterns/hidden-404.php:14
+msgid "Search"
+msgstr "Rechercher"
+
+#: inc/patterns/hidden-404.php:14
+msgctxt "label"
+msgid "Search"
+msgstr "Rechercher"
 
 #: theme.json
 msgctxt "Template part name"
@@ -775,6 +784,10 @@ msgstr "Grand en-tête avec arrière-plan sombre"
 msgid "Take a class"
 msgstr "Prendre un cours"
 
+#. Theme URI of the theme
+msgid "https://wordpress.org/themes/twentytwentytwo/"
+msgstr "https://fr.wordpress.org/themes/twentytwentytwo/"
+
 #. Author of the theme
 msgid "the WordPress team"
 msgstr "L’équipe WordPress"
@@ -782,7 +795,3 @@ msgstr "L’équipe WordPress"
 #. Author URI of the theme
 msgid "https://wordpress.org/"
 msgstr "https://fr.wordpress.org/"
-
-#. Theme URI of the theme
-msgid "https://github.com/wordpress/twentytwentytwo/"
-msgstr "https://github.com/wordpress/twentytwentytwo/"

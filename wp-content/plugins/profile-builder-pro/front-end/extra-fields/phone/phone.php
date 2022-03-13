@@ -7,8 +7,8 @@ function wppb_phone_handler( $output, $form_location, $field, $user_id, $field_c
 
 		$phone_data = json_encode( array( 'phone_data'	=>	wppb_make_phone_number_format( $field, $request_data ) ) );
 
-		$item_title = apply_filters( 'wppb_'.$form_location.'_phone_custom_field_'.$field['id'].'_item_title', wppb_icl_t( 'plugin profile-builder-pro', 'custom_field_'.$field['id'].'_title_translation', $field['field-title'] ) );
-		$item_description = wppb_icl_t( 'plugin profile-builder-pro', 'custom_field_'.$field['id'].'_description_translation', $field['description'] );
+		$item_title = apply_filters( 'wppb_'.$form_location.'_phone_custom_field_'.$field['id'].'_item_title', wppb_icl_t( 'plugin profile-builder-pro', 'custom_field_'.$field['id'].'_title_translation', $field['field-title'], true ) );
+		$item_description = wppb_icl_t( 'plugin profile-builder-pro', 'custom_field_'.$field['id'].'_description_translation', $field['description'], true );
 
 		$extra_attr = apply_filters( 'wppb_extra_attribute', '', $field, $form_location );
 

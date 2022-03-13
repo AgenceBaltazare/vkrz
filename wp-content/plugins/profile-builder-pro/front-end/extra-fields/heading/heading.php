@@ -2,8 +2,8 @@
 /* handle field output */
 function wppb_heading_handler( $output, $form_location, $field, $user_id, $field_check_errors, $request_data ){
 	if ( $field['field'] == 'Heading' ){
-		$item_title = apply_filters( 'wppb_'.$form_location.'_heading_custom_field_'.$field['id'].'_item_title', wppb_icl_t( 'plugin profile-builder-pro', 'custom_field_'.$field['id'].'_title_translation', $field['field-title'] ) );
-		$item_description = wppb_icl_t( 'plugin profile-builder-pro', 'custom_field_'.$field['id'].'_description_translation', $field['description'] );
+		$item_title = apply_filters( 'wppb_'.$form_location.'_heading_custom_field_'.$field['id'].'_item_title', wppb_icl_t( 'plugin profile-builder-pro', 'custom_field_'.$field['id'].'_title_translation', $field['field-title'], true ) );
+		$item_description = wppb_icl_t( 'plugin profile-builder-pro', 'custom_field_'.$field['id'].'_description_translation', $field['description'], true );
 
         if( isset( $field['heading-tag'] ) ) {
             $heading_tag = $field['heading-tag'];

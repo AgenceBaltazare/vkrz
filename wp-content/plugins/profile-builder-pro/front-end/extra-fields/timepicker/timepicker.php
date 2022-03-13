@@ -3,8 +3,8 @@
 function wppb_timepicker_handler( $output, $form_location, $field, $user_id, $field_check_errors, $request_data ){
 
     if ( $field['field'] == 'Timepicker' ){
-        $item_title = apply_filters( 'wppb_'.$form_location.'_timepicker_custom_field_'.$field['id'].'_item_title', wppb_icl_t( 'plugin profile-builder-pro', 'custom_field_'.$field['id'].'_title_translation', $field['field-title'] ) );
-        $item_description = wppb_icl_t( 'plugin profile-builder-pro', 'custom_field_'.$field['id'].'_description_translation', $field['description'] );
+        $item_title = apply_filters( 'wppb_'.$form_location.'_timepicker_custom_field_'.$field['id'].'_item_title', wppb_icl_t( 'plugin profile-builder-pro', 'custom_field_'.$field['id'].'_title_translation', $field['field-title'], true ) );
+        $item_description = wppb_icl_t( 'plugin profile-builder-pro', 'custom_field_'.$field['id'].'_description_translation', $field['description'], true );
 
         $extra_attr = apply_filters( 'wppb_extra_attribute', '', $field, $form_location );
 

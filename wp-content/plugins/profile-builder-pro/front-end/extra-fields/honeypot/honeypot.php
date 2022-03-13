@@ -2,7 +2,7 @@
 /* handle field output */
 function wppb_honeypot_handler( $output, $form_location, $field, $user_id, $field_check_errors, $request_data ){
     if ( $field['field'] == 'Honeypot' && $form_location != 'back_end' ){
-        $item_title = apply_filters( 'wppb_'.$form_location.'_input_custom_field_'.$field['id'].'_item_title', wppb_icl_t( 'plugin profile-builder-pro', 'custom_field_'.$field['id'].'_title_translation', $field['field-title'] ) );
+        $item_title = apply_filters( 'wppb_'.$form_location.'_input_custom_field_'.$field['id'].'_item_title', wppb_icl_t( 'plugin profile-builder-pro', 'custom_field_'.$field['id'].'_title_translation', $field['field-title'], true ) );
 
         $extra_attr = apply_filters( 'wppb_extra_attribute', '', $field, $form_location );
 

@@ -16,8 +16,8 @@ function wppb_colorpicker_handler( $output, $form_location, $field, $user_id, $f
 		}
 		wp_localize_script( 'wppb-colorpicker-script', 'wppb_colorpicker_data', $is_frontend );
 
-		$item_title = apply_filters( 'wppb_'.$form_location.'_colorpicker_custom_field_'.$field['id'].'_item_title', wppb_icl_t( 'plugin profile-builder-pro', 'custom_field_'.$field['id'].'_title_translation', $field['field-title'] ) );
-		$item_description = wppb_icl_t( 'plugin profile-builder-pro', 'custom_field_'.$field['id'].'_description_translation', $field['description'] );
+		$item_title = apply_filters( 'wppb_'.$form_location.'_colorpicker_custom_field_'.$field['id'].'_item_title', wppb_icl_t( 'plugin profile-builder-pro', 'custom_field_'.$field['id'].'_title_translation', $field['field-title'], true ) );
+		$item_description = wppb_icl_t( 'plugin profile-builder-pro', 'custom_field_'.$field['id'].'_description_translation', $field['description'], true );
 
 		$field['default-value'] = apply_filters( 'wppb_colorpicker_default_color_'. $field['meta-name'], '' );
 

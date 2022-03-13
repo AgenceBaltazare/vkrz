@@ -16,20 +16,21 @@ function wppb_avatar_handler( $output, $form_location, $field, $user_id, $field_
         }
         add_action( 'get_footer', 'wppb_dequeue_script' );
          */
-        $remove_link_text = array(
-            'remove_link_text'       => __( 'Remove', 'profile-builder' )
+        $upload_script_vars = array(
+            'nonce'            => wp_create_nonce( 'wppb_woo_simple_upload' ),
+            'ajaxUrl'          => admin_url( 'admin-ajax.php' ),
+            'remove_link_text' => __( 'Remove', 'profile-builder' )
         );
-
         wp_enqueue_script( 'wppb-upload-script', WPPB_PLUGIN_URL.'front-end/extra-fields/upload/upload.js', array('jquery'), PROFILE_BUILDER_VERSION, true );
-        wp_localize_script( 'wppb-upload-script', 'wppb_upload_remove_link_text', $remove_link_text );
+        wp_localize_script( 'wppb-upload-script', 'wppb_upload_script_vars', $upload_script_vars );
 
 		$wppb_generalSettings = get_option( 'wppb_general_settings' );
 
 		if ( ( isset( $wppb_generalSettings['extraFieldsLayout'] ) && ( $wppb_generalSettings['extraFieldsLayout'] == 'default' ) ) )
 			wp_enqueue_style( 'profile-builder-upload-css', WPPB_PLUGIN_URL.'front-end/extra-fields/upload/upload.css', false, PROFILE_BUILDER_VERSION );
 
-        $item_title = apply_filters( 'wppb_'.$form_location.'_avatar_custom_field_'.$field['id'].'_item_title', wppb_icl_t( 'plugin profile-builder-pro', 'custom_field_'.$field['id'].'_title_translation', $field['field-title'] ) );
-		$item_description = wppb_icl_t( 'plugin profile-builder-pro', 'custom_field_'.$field['id'].'_description_translation', $field['description'] );
+        $item_title = apply_filters( 'wppb_'.$form_location.'_avatar_custom_field_'.$field['id'].'_item_title', wppb_icl_t( 'plugin profile-builder-pro', 'custom_field_'.$field['id'].'_title_translation', $field['field-title'], true ) );
+		$item_description = wppb_icl_t( 'plugin profile-builder-pro', 'custom_field_'.$field['id'].'_description_translation', $field['description'], true );
 
         if( $form_location != 'register' ) {
             if( empty( $request_data[wppb_handle_meta_name( $field['meta-name'] )] ) )
@@ -107,7 +108,7 @@ add_filter( 'wppb_admin_output_form_field_avatar', 'wppb_avatar_handler', 10, 6 
 function wppb_save_avatar_value( $field, $user_id, $request_data, $form_location ){
 	if( $field['field'] == 'Avatar' ){
         $field['meta-name'] = Wordpress_Creation_Kit_PB::wck_generate_slug( $field['meta-name'] );
-        if ( isset( $field[ 'simple-upload' ] ) && $field[ 'simple-upload' ] == 'yes') {
+        if ( isset( $field[ 'simple-upload' ] ) && $field[ 'simple-upload' ] == 'yes' && $field[ 'woocommerce-checkout-field' ] !== 'Yes' ) {
             //Save data in the case the simple upload field is used
             $field_name = 'simple_upload_' . wppb_handle_meta_name( $field[ 'meta-name' ] );
             if( isset( $_FILES[ $field_name ] ) ) {
@@ -191,7 +192,7 @@ function wppb_avatar_add_upload_for_user_signup( $field_value, $field, $request_
     // Save the uploaded file
     // It will have no author until the user's email is confirmed
     if( $field['field'] == 'Avatar' ) {
-        if( isset( $field[ 'simple-upload' ] ) && $field['simple-upload'] === 'yes' ) {
+        if( isset( $field[ 'simple-upload' ] ) && $field[ 'simple-upload' ] === 'yes' && $field[ 'woocommerce-checkout-field' ] !== 'Yes' ) {
             $field_name = 'simple_upload_' . $field['meta-name'];
 
             if (isset($_FILES[$field_name]) &&
@@ -213,12 +214,23 @@ function wppb_avatar_add_upload_for_user_signup( $field_value, $field, $request_
 }
 add_filter( 'wppb_add_to_user_signup_form_field_avatar', 'wppb_avatar_add_upload_for_user_signup', 10, 3 );
 
+/* handle simple upload at the WooCommerce Checkout */
+function wppb_woo_simple_avatar(){
+    check_ajax_referer( 'wppb_woo_simple_upload', 'nonce' );
+    if ( isset($_POST["name"]) ) {
+        echo json_encode( wppb_save_simple_upload_file( sanitize_text_field( $_POST["name"] ) ) );
+    }
+    wp_die();
+}
+add_action( 'wp_ajax_nopriv_wppb_woo_simple_avatar', 'wppb_woo_simple_avatar' );
+add_action( 'wp_ajax_wppb_woo_simple_avatar', 'wppb_woo_simple_avatar' );
+
 /* handle field validation */
 function wppb_check_avatar_value( $message, $field, $request_data, $form_location ){
 	if( $field['field'] == 'Avatar' ){
         if( $field['required'] == 'Yes' ){
             $field['meta-name'] = Wordpress_Creation_Kit_PB::wck_generate_slug( $field['meta-name'] );
-            if ( isset( $field[ 'simple-upload' ] ) && $field[ 'simple-upload' ] == 'yes' ) {
+            if ( isset( $field[ 'simple-upload' ] ) && $field[ 'simple-upload' ] == 'yes' && $field[ 'woocommerce-checkout-field' ] !== 'Yes' ) {
                 //Check the required field in case simple upload is used
                 $field_name = 'simple_upload_' . wppb_handle_meta_name( $field[ 'meta-name' ] );
                 if ( (!isset( $_FILES[ $field_name ] ) || ( isset( $_FILES[ $field_name ] ) && isset( $_FILES[ $field_name ][ 'size' ] ) && $_FILES[ $field_name ][ 'size' ] == 0 ) || !wppb_valid_simple_upload( $field, $_FILES[ $field_name ] ) ) && isset( $request_data[ $field[ 'meta-name' ] ] ) && empty( $request_data[ $field[ 'meta-name' ] ] ) ){ /* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */ /* no need here for wppb_valid_simple_upload() */

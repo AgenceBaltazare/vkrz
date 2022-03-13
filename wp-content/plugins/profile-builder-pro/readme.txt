@@ -7,7 +7,7 @@ custom registration, custom registration form, custom registration page, extra u
 front-end register, front-end registration, frontend edit profile, edit profileregistration, customize profile, user fields, builder, profile builder, custom fields, avatar
 Requires at least: 3.1
 Tested up to: 5.9
-Stable tag: 3.6.7
+Stable tag: 3.6.8
 
 
 Login, registration and edit profile shortcodes for the front-end. Also you can choose what fields should be displayed or add custom ones.
@@ -101,6 +101,13 @@ This plugin only adds/removes fields in the front-end. The default information-f
 
 
 == Changelog ==
+= 3.6.8 =
+* Fix: Sanitize form field titles and descriptions
+* Fix: Issue with simple upload field not working when used on the WooCommerce Checkout page
+* Fix: Issue with Select2 not working in Repeater fields
+* Misc: Improve back-end compatibility with other plugins that use Select2
+* Misc: Add width and height for password visibility image
+
 = 3.6.7 =
 * Fix: issue with back-end Users with unconfirmed emails page
 * Misc: remove unnecessary code

@@ -381,11 +381,11 @@ function WPPB_RepeaterGroup( setNumber, setOrder, template, repeaterField ){
         }
 
         var select2Fields = uiObject.find('.wppb-select2, .wppb-select2-multiple');
-        if ( select2Fields.length > 0 && ( typeof wppb_initialize_select2 === "function" ) ){
+        if ( select2Fields.length > 0 && ( typeof wppb_select2_initialize === "function" ) ){
             select2Fields.each(function(){
                 jQuery( '.select2-container' ).remove();
             });
-            wppb_initialize_select2();
+            wppb_select2_initialize();
         }
 
         var selectCPTFields = uiObject.find('.wppb-select-cpt');

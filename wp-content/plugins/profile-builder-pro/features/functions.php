@@ -28,12 +28,20 @@ function wppb_register_settings() {
 
 
 // WPML support
-function wppb_icl_t($context, $name, $value){
-	if( function_exists( 'icl_t' ) )
-		return icl_t( $context, $name, $value );
+function wppb_icl_t( $context, $name, $value, $kses = false ){
 
-	else
-		return $value;
+	if( $kses === false ){
+		if( function_exists( 'icl_t' ) )
+			return icl_t( $context, $name, $value );
+		else
+			return $value;
+	} else {
+		if( function_exists( 'icl_t' ) )
+			return wp_kses_post( icl_t( $context, $name, $value ) );
+		else
+			return wp_kses_post( $value );
+	}
+
 }
 
 function wppb_icl_register_string( $context, $name, $value ) {
@@ -883,7 +891,7 @@ function wppb_password_visibility_toggle_html(){
     if( apply_filters( 'wppb_show_password_visibility_toggle', false ) ){
         return '
             <button type="button" class="wppb-toggle-pw wppb-show-pw hide-if-no-js" data-toggle="0" aria-label="Show password" tabindex="-1">
-                <img src="'.WPPB_PLUGIN_URL.'/assets/images/eye-outline.svg"/>
+                <img src="'.WPPB_PLUGIN_URL.'/assets/images/eye-outline.svg" width="20px" height="20px" />
             </button>';
     }
     return '';
