@@ -27,6 +27,7 @@ if ($id_ranking) {
     }
 }
 get_header();
+$url_ranking        = get_the_permalink($id_ranking);
 $top_datas          = get_top_data($id_top);
 $creator_id         = get_post_field('post_author', $id_top);
 $creator_uuiduser   = get_field('uuiduser_user', 'user_' . $creator_id);
