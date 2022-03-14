@@ -5,9 +5,9 @@ require_once('fct.php');
 function get_single_ranking($data){
 
     $list_ranking      = "";
-    $id_ranking = $data['id_ranking'];
-    $user_ranking = get_user_ranking($id_ranking);
-    $total_rank  = array();
+    $id_ranking        = $data['id_ranking'];
+    $user_ranking      = get_user_ranking($id_ranking);
+    $total_rank        = array();
 
     $i=1;
     foreach ($user_ranking as $c) :
@@ -22,4 +22,30 @@ function get_single_ranking($data){
     ));
         
     return $list_ranking;
+}
+
+function add_contender_from_api(){
+    
+    $id_visual   = $_POST['idphoto'];
+    $url_visual  = $_POST['url_visual'];
+    $pseudo      = $_POST['pseudo'];
+    $id_top      = $_POST['id_top'];
+
+    if ($id_visual) {
+
+        $new_contender = array(
+            'post_type'   => 'contender',
+            'post_title'  => $pseudo,
+            'post_status' => 'publish',
+        );
+        $id_new_contender  = wp_insert_post($new_contender);
+
+        update_field('visuel_instagram_contender', $url_visual, $id_new_contender);
+        update_field('id_tournoi_c', $id_top, $id_new_contender);
+        update_field('ELO_c', '1200', $id_new_contender);
+
+        if($id_new_contender){
+            return "Nouveau contender dans le Top ".get_the_title($id_top);
+        }
+    }
 }

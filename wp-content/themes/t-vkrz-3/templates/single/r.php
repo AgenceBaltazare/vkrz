@@ -91,7 +91,11 @@ foreach ($get_top_type as $type_top) {
                                                                 <?php $illu = get_the_post_thumbnail_url($c, 'large'); ?>
                                                                 <div class="cov-illu" style="background: url(<?php echo $illu; ?>) center center no-repeat"></div>
                                                             <?php else : ?>
-                                                                <?php echo get_the_post_thumbnail($c, 'large', array('class' => 'img-fluid')); ?>
+                                                                <?php if (get_field('visuel_instagram_contender', $c)) : ?>
+                                                                    <img src="<?php the_field('visuel_instagram_contender', $c); ?>" alt="" class="img-fluid">
+                                                                <?php else : ?>
+                                                                    <?php echo get_the_post_thumbnail($c, 'large', array('class' => 'img-fluid')); ?>
+                                                                <?php endif; ?>
                                                             <?php endif; ?>
                                                         </div>
                                                         <div class="name eh2">

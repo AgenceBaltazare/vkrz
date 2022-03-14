@@ -64,8 +64,12 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                     )); ?>
                                     <?php while ($contenders_t->have_posts()) : $contenders_t->the_post(); ?>
                                         <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="top" data-original-title="<?php echo get_the_title(get_the_id()); ?>" class="avatar pull-up">
-                                            <?php $illu = get_the_post_thumbnail_url(get_the_id(), 'medium'); ?>
-                                            <img src="<?php echo $illu; ?>" alt="Avatar" height="32" width="32">
+                                            <?php if (get_field('visuel_instagram_contender', get_the_id())) : ?>
+                                                <img src="<?php the_field('visuel_instagram_contender', get_the_id()); ?>" alt="<?php echo get_the_title(get_the_id()); ?>" height="32" width="32">
+                                            <?php else : ?>
+                                                <?php $illu = get_the_post_thumbnail_url(get_the_id(), 'thumbnail'); ?>
+                                                <img src="<?php echo $illu; ?>" alt="<?php echo get_the_title(get_the_id()); ?>" height="32" width="32">
+                                            <?php endif; ?>
                                         </div>
                                     <?php endwhile; ?>
                                 </div>

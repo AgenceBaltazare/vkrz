@@ -366,8 +366,12 @@ foreach ($list_user_tops as $top) {
                                                                                 foreach ($user_top3 as $contender) : ?>
 
                                                                                     <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="<?php echo get_the_title($contender); ?>" class="avatartop3 avatar pull-up">
-                                                                                        <?php $illu = get_the_post_thumbnail_url($contender, 'thumbnail'); ?>
-                                                                                        <img src="<?php echo $illu; ?>" alt="Avatar">
+                                                                                        <?php if (get_field('visuel_instagram_contender', $contender)) : ?>
+                                                                                            <img src="<?php the_field('visuel_instagram_contender', $contender); ?>" alt="<?php echo get_the_title($contender); ?>">
+                                                                                        <?php else : ?>
+                                                                                            <?php $illu = get_the_post_thumbnail_url($contender, 'thumbnail'); ?>
+                                                                                            <img src="<?php echo $illu; ?>" alt="<?php echo get_the_title($contender); ?>">
+                                                                                        <?php endif; ?>
                                                                                     </div>
 
                                                                                 <?php $l++;

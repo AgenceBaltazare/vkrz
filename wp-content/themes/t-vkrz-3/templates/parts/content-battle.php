@@ -10,7 +10,11 @@ extract($battle_vars);
                     <?php $illu = get_the_post_thumbnail_url($contender_1, 'full'); ?>
                     <div class="cov-illu" style="background: url(<?php echo $illu; ?>) center center no-repeat"></div>
                 <?php else : ?>
-                    <?php echo get_the_post_thumbnail($contender_1, 'full', array('class' => 'img-fluid')); ?>
+                    <?php if (get_field('visuel_instagram_contender', $contender_1)) : ?>
+                        <img src="<?php the_field('visuel_instagram_contender', $contender_1); ?>" alt="" class="img-fluid">
+                    <?php else : ?>
+                        <?php echo get_the_post_thumbnail($contender_1, 'full', array('class' => 'img-fluid')); ?>
+                    <?php endif; ?>
                 <?php endif; ?>
                 <?php if (!get_field('ne_pas_afficher_les_titres_t', $id_top)) : ?>
                     <h2 class="title-contender">
@@ -80,7 +84,11 @@ extract($battle_vars);
                     <?php $illu = get_the_post_thumbnail_url($contender_2, 'full'); ?>
                     <div class="cov-illu" style="background: url(<?php echo $illu; ?>) center center no-repeat"></div>
                 <?php else : ?>
-                    <?php echo get_the_post_thumbnail($contender_2, 'full', array('class' => 'img-fluid')); ?>
+                    <?php if (get_field('visuel_instagram_contender', $contender_2)) : ?>
+                        <img src="<?php the_field('visuel_instagram_contender', $contender_2); ?>" alt="" class="img-fluid">
+                    <?php else : ?>
+                        <?php echo get_the_post_thumbnail($contender_2, 'full', array('class' => 'img-fluid')); ?>
+                    <?php endif; ?>
                 <?php endif; ?>
                 <?php if (!get_field('ne_pas_afficher_les_titres_t', $id_top)) : ?>
                     <h2 class="title-contender">
