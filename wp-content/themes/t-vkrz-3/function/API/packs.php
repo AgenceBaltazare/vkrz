@@ -26,10 +26,10 @@ function get_single_ranking($data){
 
 function add_contender_from_api(){
     
-    $id_visual   = $_POST['idphoto'];
-    $url_visual  = $_POST['url_visual'];
-    $pseudo      = $_POST['pseudo'];
-    $id_top      = $_POST['id_top'];
+    $id_visual   = $_GET['idphoto'];
+    $url_visual  = $_GET['url_visual'];
+    $pseudo      = $_GET['pseudo'];
+    $id_top      = $_GET['id_top'];
 
     if ($id_visual) {
 

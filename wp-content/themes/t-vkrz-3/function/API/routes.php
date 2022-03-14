@@ -14,7 +14,7 @@ add_action('rest_api_init', function(){
 
     // Create contender
     register_rest_route('vkrz/v1', '/addcontender/', array(
-        'methods' => 'POST',
+        'methods' => 'GET',
         'callback' => 'add_contender_from_api',
     ));
 });
