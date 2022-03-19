@@ -47,9 +47,13 @@ function vkrz_tracking_vars()
 
         $taxs = get_object_taxonomies(get_post($post_id));
         $terms = [];
-        foreach ($taxs as $tax) {
-            foreach (get_the_terms($post_id, $tax) as $term) {
-                $terms[] = $term->name;
+        if($taxs){
+            foreach ($taxs as $tax) {
+                if(get_the_terms($post_id, $tax)){
+                    foreach (get_the_terms($post_id, $tax) as $term) {
+                        $terms[] = $term->name;
+                    }
+                }
             }
         }
 

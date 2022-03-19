@@ -26,8 +26,10 @@ $url_ranking  = get_the_permalink($id_ranking);
 $top_datas    = get_top_data($id_top_global);
 $get_top_type = get_the_terms($id_top_global, 'type');
 $types_top     = array();
-foreach ($get_top_type as $type_top) {
-    array_push($types_top, $type_top->slug);
+if($get_top_type){
+    foreach ($get_top_type as $type_top) {
+        array_push($types_top, $type_top->slug);
+    }
 }
 ?>
 <div class="app-content content cover" style="background: url(<?php echo $top_infos['top_cover']; ?>) center center no-repeat">

@@ -10,8 +10,11 @@ function deal_vainkeur_entry($user_id = false){
         global $user_id;
     }
 
-    $nb_vote_vkrz = 0;
-    $nb_top_vkrz  = 0;
+    $nb_vote_vkrz           = 0;
+    $nb_top_vkrz            = 0;
+    $money_vkrz             = 0;
+    $money_createur_vkrz    = 0;
+    $current_money_vkrz     = 0;
 
     if($user_id){
         $args_author__in = array($user_id);

@@ -9,8 +9,10 @@ global $id_top;
 global $type_top;
 if (is_single()) {
     $get_top_type = get_the_terms(get_the_ID(), 'type');
-    foreach ($get_top_type as $type_top) {
-        $type_top = $type_top->slug;
+    if($get_top_type){
+        foreach ($get_top_type as $type_top) {
+            $type_top = $type_top->slug;
+        }
     }
 }
 if (!is_single() || get_post_type() != "tournoi") {
