@@ -16,15 +16,13 @@ function update_vainkeur_badge($id_vainkeur, $badge_name) {
         update_field('money_vkrz', $user_money + $recompense_badge, $id_vainkeur);
 
         // Si un utilisateur change de badge, alors on va faire l'alerte.
-        
-        /* 
         vkzr_create_event(
             "Félicitation",
             "Tu obtiens le badge ". $icon_badge." ".$badge->name,
             null,
             "success"
         );
-        */
+        
     }
 
     if (is_user_logged_in()) {

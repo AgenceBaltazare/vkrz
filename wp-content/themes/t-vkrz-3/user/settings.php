@@ -58,7 +58,7 @@ get_header();
                                                     </div>
                                                     <div class="separateur separateur-1 "></div>
                                                     <div class="login-form">
-                                                        <h3>Falicite ta connexion :</h3>
+                                                        <h3>Facilite ta connexion :</h3>
                                                         <?php do_action('oa_social_link'); ?>
                                                     </div>
                                                 </div>

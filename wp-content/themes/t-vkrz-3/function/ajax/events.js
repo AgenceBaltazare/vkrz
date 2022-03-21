@@ -16,7 +16,7 @@ $(document).ready(function () {
                     }
                 }
             });
-    }, 2000);
+    }, 5000);
 
     function presentEvent(ev){
         if(!seen_events.includes(ev.id)){
