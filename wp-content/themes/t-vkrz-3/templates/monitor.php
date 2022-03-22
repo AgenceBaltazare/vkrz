@@ -145,19 +145,19 @@
                     } else if ($n < 900000) {
 
                       // Thausand
-                      $n_format = number_format($n / 1000, $precision) . '<sup>K</sup>';
+                      $n_format = number_format($n / 1000, $precision) . 'K';
                     } else if ($n < 900000000) {
 
                       // Million
-                      $n_format = number_format($n / 1000000, $precision) . '<sup>M</sup>';
+                      $n_format = number_format($n / 1000000, $precision) . 'M';
                     } else if ($n < 900000000000) {
 
                       // Billion
-                      $n_format = number_format($n / 1000000000, $precision) . '<sup>B</sup>';
+                      $n_format = number_format($n / 1000000000, $precision) . 'B';
                     } else {
 
                       // Trillion
-                      $n_format = number_format($n / 1000000000000, $precision) . '<sup>T</sup>';
+                      $n_format = number_format($n / 1000000000000, $precision) . 'T';
                     }
                     return $n_format;
                   }
@@ -170,13 +170,9 @@
                         <div class="mb-1">
                           <span class="ico4 va va-rooster va-1x"></span>
                         </div>
-                        <h2 class="font-weight-bolder">
-                          <!-- REEL NUMBER : -->
-                          <!-- <?= niceNumber(count_users_by_level(3)); ?> -->
-
-                          <!-- TEST NUMBER : -->
-                          <?= niceNumber(58574) ?>
-                        </h2>
+                        <h5 class="font-weight-bolder">
+                          <?= niceNumber(count_users_by_level(3)); ?>
+                        </h5>
                       </div>
                     </div>
                   </div>
@@ -187,13 +183,9 @@
                         <div class="mb-1">
                           <span class="ico4 va va-chick va-1x"></span>
                         </div>
-                        <h2 class="font-weight-bolder">
-                          <!-- REEL NUMBER : -->
-                          <!-- <?= niceNumber(count_users_by_level(2)); ?> -->
-
-                          <!-- TEST NUMBER : -->
-                          <?= niceNumber(9438947397) ?>
-                        </h2>
+                        <h5 class="font-weight-bolder">
+                          <?= niceNumber(count_users_by_level(2)); ?>
+                        </h5>
                       </div>
                     </div>
                   </div>
@@ -204,13 +196,9 @@
                         <div class="mb-1">
                           <span class="ico4 va va-hatching-chick va-1x"></span>
                         </div>
-                        <h2 class="font-weight-bolder">
-                          <!-- REEL NUMBER : -->
-                          <!-- <?= niceNumber(count_users_by_level(1)); ?> -->
-
-                          <!-- TEST NUMBER : -->
-                          <?= niceNumber(30293092304902) ?>
-                        </h2>
+                        <h5 class="font-weight-bolder">
+                          <?= niceNumber(count_users_by_level(1)); ?>
+                        </h5>
                       </div>
                     </div>
                   </div>
