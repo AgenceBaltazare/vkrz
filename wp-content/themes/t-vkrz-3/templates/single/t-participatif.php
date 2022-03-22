@@ -43,10 +43,10 @@ $creator_data       = get_user_infos($creator_uuiduser);
       <?php
 
       // NOMBRE DE PARTICIPATIONS
-      $number_of_attendees = 100;
+      $number_of_attendees = get_field("minimum_participations_t", $id_top);
 
       // LE NOMBRE ACTUEL DES PARTICIPATIONS
-      $actual_number_of_attendees = 50;
+      $actual_number_of_attendees = $top_infos['top_number'];
 
       ?>
 
@@ -236,12 +236,12 @@ $creator_data       = get_user_infos($creator_uuiduser);
             </div>
           </div>
 
-          <!-- LE NOMBRE ACTUEL DE PARTICIPATIONS EST INFERIEUR DU NOMBRE DEMANDE ⛔ -->
+          <!-- LE NOMBRE ACTUEL DE PARTICIPATIONS EST INFERIEUR AU NOMBRE DEMANDE ⛔ -->
         <?php elseif ($actual_number_of_attendees < $number_of_attendees) : ?>
 
-          <div class="content-intro container intro-sponso">
+          <div class="content-intro container intro-sponso participatif__container participatif__container-disabled">
 
-            <div class="row match-height">
+            <div class="row match-height participatif__container-disabled__content">
               <div class="col-md-8 start-top">
                 <div class="card animate__animated animate__flipInX card-developer-meetup d-block d-sm-none">
                   <div class="card-body rules-content p-0">
@@ -252,9 +252,11 @@ $creator_data       = get_user_infos($creator_uuiduser);
                     </div>
                   </div>
                 </div>
+
                 <div class="intro">
                   <div class="card animate__animated animate__flipInX card-developer-meetup">
-                    <div class="meetup-img-wrapper rounded-top text-left" style="background-image: url(<?php echo $top_infos['top_img']; ?>);">
+
+                    <div class="meetup-img-wrapper rounded-top text-left blur" style="background-image: url(<?= $top_infos['top_img']; ?>);">
                       <span class="badge badge-light-primary">Créé le <?php echo $top_infos['top_date']; ?></span>
                       <span class="badge badge-light-rose ml-0">Top sponsorisé</span>
                       <div class="voile_contenders"></div>
@@ -283,7 +285,8 @@ $creator_data       = get_user_infos($creator_uuiduser);
                         </div>
                       <?php endif; ?>
                     </div>
-                    <div class="card-body">
+
+                    <div class="card-body blur">
                       <div class="meetup-header d-flex align-items-center justify-content-center">
                         <div class="my-auto">
                           <h4 class="card-title mb-25">
@@ -302,13 +305,15 @@ $creator_data       = get_user_infos($creator_uuiduser);
                         </div>
                       <?php endif; ?>
                     </div>
-                    <div class="card-cta">
+
+                    <div class="card-cta blur">
                       <div class="choosecta">
                         <div class="cta-begin cta-complet">
-                          <a href="#" id="begin_t" data-typetop="complet" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
-                            Participer
+                          <a href="#" id="begin_t" aria-readonly="true" data-typetop="complet" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 btn btn-max btn-primary waves-effect waves-float waves-light laucher_t participatif-cta">
+                            Il manque encore <?= $number_of_attendees - $actual_number_of_attendees ?> participants pour Commencer
                           </a>
-                          <small class="text-muted">
+
+                          <!-- <small class="text-muted">
                             <?php
                             $min = ($top_infos['top_number'] - 5) * 2 + 6;
                             $max = $min * 2;
@@ -318,11 +323,16 @@ $creator_data       = get_user_infos($creator_uuiduser);
                             <?php else : ?>
                               Prévoir entre <?php echo $min; ?> et <?php echo $max; ?> votes pour finir ton Top du 1er au dernier
                             <?php endif; ?>
+                          </small> -->
+
+                          <small class="text-muted">
+                            Share it with your friends to participate!
                           </small>
                         </div>
                       </div>
                     </div>
-                    <div class="card-footer">
+
+                    <div class="card-footer blur">
                       <div class="row meetings align-items-center">
                         <div class="col">
                           <div class="infos-card-t info-card-t-v d-flex align-items-center">
@@ -365,9 +375,16 @@ $creator_data       = get_user_infos($creator_uuiduser);
                         </div>
                       </div>
                     </div>
+
+                    <div class="card-status noBlur">
+                      <h1 class="animate__jello animate__animated animate__delay-1s">
+                        Ouverture des votes dans <br> <?= $number_of_attendees - $actual_number_of_attendees ?> participants 😉
+                      </h1>
+                    </div>
                   </div>
                 </div>
               </div>
+
               <div class="col-md-4">
                 <div class="card animate__animated animate__flipInX card-developer-meetup">
                   <div class="card-body rules-content">
@@ -420,7 +437,6 @@ $creator_data       = get_user_infos($creator_uuiduser);
             </div>
           </div>
 
-          <!--  -->
         <?php endif; ?>
 
       <?php else : ?>
