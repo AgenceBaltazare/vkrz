@@ -131,10 +131,8 @@ $tops_in_cat        = new WP_Query(array(
                 </div>
               </div>
 
-              <<<<<<< HEAD <div class="card-body mb-3-hover text-center">
-                =======
+              <div class="card-body mb-3-hover text-center">
                 <div class="card-body mb-3-hover">
-                  >>>>>>> 8950bf789314266f0c43e6ce567d14ae2f907b71
                   <p class="card-text text-primary font-weight-bold">
                     TOP <?= get_field('count_contenders_t', $id_top); ?> ⚡ <span class="namecontenders"><?= $top_title; ?></span>
                   </p>
@@ -157,10 +155,10 @@ $tops_in_cat        = new WP_Query(array(
                   </div>
                 </div>
                 <a href="<?php the_permalink($id_top); ?>" class="stretched-link"></a>
+              </div>
             </div>
-          </div>
 
-        <?php $i++;
+          <?php $i++;
         endwhile; ?>
       </section>
     </div>
