@@ -58,8 +58,8 @@ $creator_data       = get_user_infos($creator_uuiduser);
               <div class="intro">
                 <div class="card animate__animated animate__flipInX card-developer-meetup">
                   <div class="meetup-img-wrapper rounded-top text-left" style="background-image: url(<?php echo $top_infos['top_img']; ?>);">
-                    <span class="badge badge-light-primary">Créé le <?php echo $top_infos['top_date']; ?></span>
-                    <span class="badge badge-light-rose ml-0">Top sponsorisé</span>
+                    <span class="badge badge-light-primary d-none d-md-inline-block">Créé le <?php echo $top_infos['top_date']; ?></span>
+                    <span class="badge badge-light-rose ml-0 d-none d-md-inline-block">Top sponsorisé</span>
                     <div class="voile_contenders"></div>
                     <?php if ($top_infos['top_number'] < 30) : ?>
                       <div class="avatar-group list-contenders">
