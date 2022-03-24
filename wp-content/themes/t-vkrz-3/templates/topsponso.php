@@ -131,7 +131,7 @@ $tops_in_cat        = new WP_Query(array(
                 </div>
               </div>
 
-              <div class="card-body mb-3-hover">
+              <div class="card-body mb-3-hover text-center">
                 <p class="card-text text-primary font-weight-bold">
                   TOP <?= get_field('count_contenders_t', $id_top); ?> ⚡ <span class="namecontenders"><?= $top_title; ?></span>
                 </p>
@@ -148,7 +148,7 @@ $tops_in_cat        = new WP_Query(array(
 
                   <h2 class="mt-2"><?= the_field('titre_de_la_sponso_t_sponso', $id_top); ?></h2>
 
-                  <small class="text-primary" style="margin-top: -5px;">
+                  <small class="text-primary" style="margin-top: -3px;">
                     <?= the_field('fin_de_la_sponso_t_sponso', $id_top); ?>
                   </small>
                 </div>
