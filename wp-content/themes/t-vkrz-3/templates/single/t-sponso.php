@@ -215,7 +215,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                 </div>
                 <div class="card-footer text-center p-20 m-0">
                   <span class="t-rose">
-                    📅 <?php the_field('fin_de_la_sponso_t_sponso', $id_top); ?> 📅
+                    <?php the_field('fin_de_la_sponso_t_sponso', $id_top); ?>
                   </span>
                 </div>
               </div>
