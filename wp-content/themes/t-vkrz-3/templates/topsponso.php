@@ -72,8 +72,8 @@ $tops_in_cat        = new WP_Query(array(
           }
           ?>
 
-          <div class="same-h grid-item  col-12 col-md-4">
-            <div class="min-tournoi card scaler" style="position: relative;">
+          <div class="same-h grid-item col-12 col-md-4">
+            <div class="min-tournoi card scaler">
               <div class="cov-illu cover" style="background: url(<?php echo $illu; ?>) center center no-repeat; height: 200px;">
 
                 <?php if ($type_top == "sponso") : ?>
@@ -152,15 +152,14 @@ $tops_in_cat        = new WP_Query(array(
                     <?= the_field('fin_de_la_sponso_t_sponso', $id_top); ?>
                   </small>
                 </div>
-                <a href="<?php the_permalink($id_top); ?>" class="stretched-link"></a>
               </div>
+              <a href="<?php the_permalink($id_top); ?>" class="stretched-link"></a>
             </div>
           </div>
 
         <?php $i++;
         endwhile; ?>
       </section>
-
     </div>
   </div>
 </div>
