@@ -1,8 +1,5 @@
-<?php
-/*
-        Template Name: Tops sponso
-    */
-?>
+<?php /* Template Name: Tops sponso */ ?>
+
 <?php
 get_header();
 global $user_tops;
@@ -74,9 +71,11 @@ $tops_in_cat        = new WP_Query(array(
             $type_top = $type_top->slug;
           }
           ?>
-          <div class="same-h grid-item col-md-4 col-6">
+
+          <div class="same-h grid-item col-12 col-md-4">
             <div class="min-tournoi card scaler">
-              <div class="cov-illu cover" style="background: url(<?php echo $illu; ?>) center center no-repeat">
+              <div class="cov-illu cover" style="background: url(<?php echo $illu; ?>) center center no-repeat; height: 200px;">
+
                 <?php if ($type_top == "sponso") : ?>
                   <span class="badge badge-light-rose ml-0">Top sponso</span>
                 <?php endif; ?>
@@ -90,7 +89,7 @@ $tops_in_cat        = new WP_Query(array(
                 <div class="voile">
                   <?php if ($state == "done") : ?>
                     <div class="spoun">
-                      <h5>Voir mon 🏆</h5>
+                      <h5>Participer</h5>
                     </div>
                   <?php elseif ($state == "begin") : ?>
                     <div class="spoun">
@@ -98,10 +97,11 @@ $tops_in_cat        = new WP_Query(array(
                     </div>
                   <?php else : ?>
                     <div class="spoun">
-                      <h5>Faire mon 🏆</h5>
+                      <h5>Participer</h5>
                     </div>
                   <?php endif; ?>
                 </div>
+
                 <div class="info-top row align-items-center justify-content-center">
                   <div class="info-top-col">
                     <div class="infos-card-t info-card-t-v d-flex align-items-center">
@@ -115,6 +115,7 @@ $tops_in_cat        = new WP_Query(array(
                       </div>
                     </div>
                   </div>
+
                   <div class="info-top-col">
                     <div class="infos-card-t d-flex align-items-center">
                       <div class="d-flex align-items-center mr-10px">
@@ -129,21 +130,36 @@ $tops_in_cat        = new WP_Query(array(
                   </div>
                 </div>
               </div>
+
               <div class="card-body mb-3-hover">
-                <p class="card-text text-primary">
-                  TOP <?php echo get_field('count_contenders_t', $id_top); ?> : <span class="namecontenders"><?php echo $top_title; ?></span>
+                <p class="card-text text-primary font-weight-bold">
+                  TOP <?= get_field('count_contenders_t', $id_top); ?> ⚡ <span class="namecontenders"><?= $top_title; ?></span>
                 </p>
-                <h4 class="card-title">
-                  <?php echo $top_question; ?>
-                </h4>
+
+                <h3 class="card-title t-rose">
+                  <?= $top_question; ?>
+                </h3>
+
+                <div class="card-footer a-gagner mt-1 p-1 d-flex flex-column align-items-left justify-content-between">
+                  <span class="text-muted mb-1 d-block">À gagner</span>
+
+                  <div style="background: url(<?= wp_get_attachment_image_url(get_field('cadeau_t_sponso', $id_top), 'large', false); ?>) no-repeat center center / contain; height: 150px;">
+                  </div>
+
+                  <h2 class="mt-2"><?= the_field('titre_de_la_sponso_t_sponso', $id_top); ?></h2>
+
+                  <small class="text-primary" style="margin-top: -5px;">
+                    <?= the_field('fin_de_la_sponso_t_sponso', $id_top); ?>
+                  </small>
+                </div>
               </div>
               <a href="<?php the_permalink($id_top); ?>" class="stretched-link"></a>
             </div>
           </div>
+
         <?php $i++;
         endwhile; ?>
       </section>
-
     </div>
   </div>
 </div>
