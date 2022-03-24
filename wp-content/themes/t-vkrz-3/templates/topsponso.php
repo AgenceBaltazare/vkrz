@@ -131,29 +131,32 @@ $tops_in_cat        = new WP_Query(array(
                 </div>
               </div>
 
-              <div class="card-body mb-3-hover text-center">
-                <p class="card-text text-primary font-weight-bold">
-                  TOP <?= get_field('count_contenders_t', $id_top); ?> ⚡ <span class="namecontenders"><?= $top_title; ?></span>
-                </p>
+              <<<<<<< HEAD <div class="card-body mb-3-hover text-center">
+                =======
+                <div class="card-body mb-3-hover">
+                  >>>>>>> 8950bf789314266f0c43e6ce567d14ae2f907b71
+                  <p class="card-text text-primary font-weight-bold">
+                    TOP <?= get_field('count_contenders_t', $id_top); ?> ⚡ <span class="namecontenders"><?= $top_title; ?></span>
+                  </p>
 
-                <h3 class="card-title t-rose">
-                  <?= $top_question; ?>
-                </h3>
+                  <h3 class="card-title t-rose">
+                    <?= $top_question; ?>
+                  </h3>
 
-                <div class="card-footer a-gagner mt-1 p-1 d-flex flex-column align-items-left justify-content-between">
-                  <span class="text-muted mb-1 d-block">À gagner</span>
+                  <div class="card-footer a-gagner mt-1 p-1 d-flex flex-column align-items-left justify-content-between">
+                    <span class="text-muted mb-1 d-block">À gagner</span>
 
-                  <div style="background: url(<?= wp_get_attachment_image_url(get_field('cadeau_t_sponso', $id_top), 'large', false); ?>) no-repeat center center / contain; height: 150px;">
+                    <div style="background: url(<?= wp_get_attachment_image_url(get_field('cadeau_t_sponso', $id_top), 'large', false); ?>) no-repeat center center / contain; height: 150px;">
+                    </div>
+
+                    <h2 class="mt-2"><?= the_field('titre_de_la_sponso_t_sponso', $id_top); ?></h2>
+
+                    <small class="text-primary" style="margin-top: -3px;">
+                      <?= the_field('fin_de_la_sponso_t_sponso', $id_top); ?>
+                    </small>
                   </div>
-
-                  <h2 class="mt-2"><?= the_field('titre_de_la_sponso_t_sponso', $id_top); ?></h2>
-
-                  <small class="text-primary" style="margin-top: -3px;">
-                    <?= the_field('fin_de_la_sponso_t_sponso', $id_top); ?>
-                  </small>
                 </div>
-              </div>
-              <a href="<?php the_permalink($id_top); ?>" class="stretched-link"></a>
+                <a href="<?php the_permalink($id_top); ?>" class="stretched-link"></a>
             </div>
           </div>
 

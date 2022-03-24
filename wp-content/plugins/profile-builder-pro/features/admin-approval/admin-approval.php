@@ -326,7 +326,7 @@ function wppb_approve_user_from_email_url_listener(){
 
                 wp_die('', 'Admin Approval');
 
-            } elseif ( isset( $_POST['wppb_nonce'] ) && wp_verify_nonce( sanitize_text_field( $_POST['wppb_nonce'] ), 'wppb_approval_request' ) ){
+            } elseif ( isset( $_GET['wppb_nonce'] ) && wp_verify_nonce( sanitize_text_field( $_GET['wppb_nonce'] ), 'wppb_approval_request' ) ){
 
                 if($_GET['approval_confirmation'] === 'Yes') {
                     wppb_approve_unapprove_user_from_email_url_listener( $userID, $action );
@@ -359,10 +359,11 @@ function wppb_approve_user_from_email_url_listener(){
                          ),
                         admin_url('users.php')
     );
-    $message = sprintf( wp_kses( __( 'The approval link is not valid! Please <a href="%s"> log in </a> to approve the user manually. ', 'profile-builder'), array(  'a' => array( 'href' => array() ) ) ), esc_url( $admin_approval_url ) );
+    $message = sprintf( __( 'The approval link is not valid! Please <a href="%s"> log in </a> to approve the user manually. ', 'profile-builder' ), esc_url( $admin_approval_url ) );
 
     $message = apply_filters('wppb_approve_user_from_email_error_message', $message);
-    wp_die( esc_html( $message ) , esc_html__( 'Admin Approval Unsuccessful', 'profile-builder' ) );
+
+    wp_die( wp_kses_post( $message ), esc_html__( 'Admin Approval Unsuccessful', 'profile-builder' ) );
 
 }
 add_action('wp_loaded', 'wppb_approve_user_from_email_url_listener');
