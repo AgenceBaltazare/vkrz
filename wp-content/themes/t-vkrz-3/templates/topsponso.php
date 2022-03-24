@@ -72,9 +72,9 @@ $tops_in_cat        = new WP_Query(array(
           }
           ?>
 
-          <div class="same-h grid-item col-md-5 col-6">
+          <div class="same-h grid-item  col-12 col-md-4">
             <div class="min-tournoi card scaler" style="position: relative;">
-              <div class="cov-illu cover" style="background: url(<?php echo $illu; ?>) center center no-repeat; height: 200px; -webkit-backdrop-filter: blur(2em);">
+              <div class="cov-illu cover" style="background: url(<?php echo $illu; ?>) center center no-repeat; height: 200px;">
 
                 <?php if ($type_top == "sponso") : ?>
                   <span class="badge badge-light-rose ml-0">Top sponso</span>
@@ -89,7 +89,7 @@ $tops_in_cat        = new WP_Query(array(
                 <div class="voile">
                   <?php if ($state == "done") : ?>
                     <div class="spoun">
-                      <h5>Voir mon 🏆</h5>
+                      <h5>Participer</h5>
                     </div>
                   <?php elseif ($state == "begin") : ?>
                     <div class="spoun">
@@ -97,7 +97,7 @@ $tops_in_cat        = new WP_Query(array(
                     </div>
                   <?php else : ?>
                     <div class="spoun">
-                      <h5>Faire mon 🏆</h5>
+                      <h5>Participer</h5>
                     </div>
                   <?php endif; ?>
                 </div>
@@ -131,8 +131,6 @@ $tops_in_cat        = new WP_Query(array(
                 </div>
               </div>
 
-              <?= wp_get_attachment_image(get_field('cadeau_t_sponso', $id_top), 'small', '', array('class' => 'img-fluid', 'style' => 'width: 150px !important; position: absolute; top: 20%; left: 50%; transform: translate(-50%, -50%);')); ?>
-
               <div class="card-body mb-3-hover">
                 <p class="card-text text-primary font-weight-bold">
                   TOP <?= get_field('count_contenders_t', $id_top); ?> ⚡ <span class="namecontenders"><?= $top_title; ?></span>
@@ -142,33 +140,20 @@ $tops_in_cat        = new WP_Query(array(
                   <?= $top_question; ?>
                 </h3>
 
-                <?php if (get_field('precision_t', $id_top)) : ?>
-                  <div class="card-precision">
-                    <p class="card-text my-2">
-                      <?php the_field('precision_t', $id_top); ?>
-                    </p>
-                  </div>
-                <?php endif; ?>
+                <div class="card-footer a-gagner mt-1 p-1 d-flex flex-column align-items-left justify-content-between">
+                  <span class="text-muted mb-1 d-block">À gagner</span>
 
-                <hr class="my-2">
-
-                <div class="a-gagner p-1 d-flex flex-sm-row flex-column align-items-center justify-content-between" style="gap: 3rem;">
-                  <div class="a-gagner-left">
-                    <?= wp_get_attachment_image(get_field('cadeau_t_sponso', $id_top), 'small', '', array('class' => 'img-fluid', 'style' => 'width: 150px !important;')); ?>
+                  <div style="background: url(<?= wp_get_attachment_image_url(get_field('cadeau_t_sponso', $id_top), 'large', false); ?>) no-repeat center center / contain; height: 150px;">
                   </div>
 
-                  <div class="a-gagner-right">
-                    <span class="text-muted mb-1">À gagner</span>
+                  <h2 class="mt-2"><?= the_field('titre_de_la_sponso_t_sponso', $id_top); ?></h2>
 
-                    <h2><?= the_field('titre_de_la_sponso_t_sponso', $id_top); ?></h2>
-
-                    <small class="text-primary">
-                      <?= the_field('fin_de_la_sponso_t_sponso', $id_top); ?>
-                    </small>
-                  </div>
+                  <small class="text-primary" style="margin-top: -5px;">
+                    <?= the_field('fin_de_la_sponso_t_sponso', $id_top); ?>
+                  </small>
                 </div>
+                <a href="<?php the_permalink($id_top); ?>" class="stretched-link"></a>
               </div>
-              <a href="<?php the_permalink($id_top); ?>" class="stretched-link"></a>
             </div>
           </div>
 
