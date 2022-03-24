@@ -7,7 +7,7 @@ custom registration, custom registration form, custom registration page, extra u
 front-end register, front-end registration, frontend edit profile, edit profileregistration, customize profile, user fields, builder, profile builder, custom fields, avatar
 Requires at least: 3.1
 Tested up to: 5.9
-Stable tag: 3.6.8
+Stable tag: 3.6.9
 
 
 Login, registration and edit profile shortcodes for the front-end. Also you can choose what fields should be displayed or add custom ones.
@@ -101,6 +101,18 @@ This plugin only adds/removes fields in the front-end. The default information-f
 
 
 == Changelog ==
+= 3.6.9 =
+* Fix: Fix a notice coming from content restriction function
+* Fix: Typo in back-end form fields select
+* Fix: Issue with Admin Approval email link not being able to approve users
+* Fix: Translation issue with missing placeholder for the german files from the plugin
+* Fix: Admin Approval email link showing html characters when the invalid message was being displayed
+* Misc: Don't wrap content restriction messages in spans at save
+* Misc: Password strength to respect the back-end weak password checkbox
+* Misc: Mobile display improvements
+* Misc: Execute shortcodes in the conten of the compare shortcode
+* Misc: Order users by display name in the Edit Other Users Dropdown
+
 = 3.6.8 =
 * Fix: Sanitize form field titles and descriptions
 * Fix: Issue with simple upload field not working when used on the WooCommerce Checkout page

@@ -857,7 +857,7 @@ function wppb_enable_select2(container_name){
     // Select2 initialization on manage fields.
 
 	wppbSelect2.call( jQuery( container_name + ' #field'), {
-        placeholder: 'Select an23q12 option',
+        placeholder: 'Select an option',
         allowClear: true
     });
 
