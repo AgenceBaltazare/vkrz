@@ -152,7 +152,7 @@ $tops_in_cat        = new WP_Query(array(
 
                 <hr class="my-2">
 
-                <div class="a-gagner p-1 d-flex align-items-center justify-content-between" style="gap: 3rem;">
+                <div class="a-gagner p-1 d-flex flex-sm-row flex-column align-items-center justify-content-between" style="gap: 3rem;">
                   <div class="a-gagner-left">
                     <?= wp_get_attachment_image(get_field('cadeau_t_sponso', $id_top), 'small', '', array('class' => 'img-fluid', 'style' => 'width: 150px !important;')); ?>
                   </div>
