@@ -230,6 +230,17 @@ $top_datas    = get_top_data($id_top_global);
                               </div>
                             </div>
                           </div>
+
+                          <div class="card-footer text-center p-20 m-0">
+                            <span class="t-rose">
+                              📅 On te rappelle que la date du
+                              <?php
+
+                              echo lcfirst(get_field('fin_de_la_sponso_t_sponso', $id_top));
+
+                              ?> 📅
+                            </span>
+                          </div>
                         </div>
 
                         <?php if (get_post_status($id_top_global) != "draft") : ?>
