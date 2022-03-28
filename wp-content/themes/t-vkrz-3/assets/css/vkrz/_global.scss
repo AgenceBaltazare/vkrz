@@ -258,7 +258,10 @@ html .content {
 }
 
 .legende {
-    color: rgba(106, 104, 109, 1);
+  display: block;
+  line-height: 100%;
+  color: rgba(106, 104, 109, 1);
+  margin-top: 3px;
 }
 
 .main-menu {

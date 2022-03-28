@@ -564,7 +564,10 @@ html .content {
 }
 
 .legende {
+  display: block;
+  line-height: 100%;
   color: #6a686d;
+  margin-top: 3px;
 }
 
 .main-menu {
@@ -1425,6 +1428,10 @@ html .content {
 }
 .min-tournoi .card-body h4 {
   font-size: 15px;
+}
+
+.cat-link {
+  margin: 0 3px;
 }
 
 .display_battle {
