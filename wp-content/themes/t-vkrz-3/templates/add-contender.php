@@ -1,4 +1,6 @@
 <?php /* Template Name: Ajouter Contenders */ ?>
+<?php /* CETTE PAGE EST ACTUELLEMENT EN COURS DE FINITION. DES CHANGEMENTS PEUVENT ÊTRE EFFECTUER ! ⛔ */ ?>
+
 <?php get_header(); ?>
 
 <?php if (isset($_REQUEST['envoyer'])) {

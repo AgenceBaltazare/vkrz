@@ -88,15 +88,15 @@ $tops_in_cat        = new WP_Query(array(
                 <?php endif; ?>
                 <div class="voile">
                   <?php if ($state == "done") : ?>
-                    <div class="spoun">
+                    <div class="spoun topsponso">
                       <h5>Participer</h5>
                     </div>
                   <?php elseif ($state == "begin") : ?>
-                    <div class="spoun">
+                    <div class="spoun topsponso">
                       <h5>Terminer</h5>
                     </div>
                   <?php else : ?>
-                    <div class="spoun">
+                    <div class="spoun topsponso">
                       <h5>Participer</h5>
                     </div>
                   <?php endif; ?>
