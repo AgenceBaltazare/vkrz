@@ -88,15 +88,15 @@ $tops_in_cat        = new WP_Query(array(
                 <?php endif; ?>
                 <div class="voile">
                   <?php if ($state == "done") : ?>
-                    <div class="spoun">
+                    <div class="spoun topsponso">
                       <h5>Participer</h5>
                     </div>
                   <?php elseif ($state == "begin") : ?>
-                    <div class="spoun">
+                    <div class="spoun topsponso">
                       <h5>Terminer</h5>
                     </div>
                   <?php else : ?>
-                    <div class="spoun">
+                    <div class="spoun topsponso">
                       <h5>Participer</h5>
                     </div>
                   <?php endif; ?>
@@ -133,7 +133,18 @@ $tops_in_cat        = new WP_Query(array(
 
               <div class="card-body mb-3-hover text-center">
                 <p class="card-text text-primary font-weight-bold">
-                  TOP <?= get_field('count_contenders_t', $id_top); ?> ⚡ <span class="namecontenders"><?= $top_title; ?></span>
+
+                  <?php
+                  foreach (get_the_terms($id_top, 'categorie') as $cat) {
+                    $cat_id     = $cat->term_id;
+                    $cat_name   = $cat->name;
+                  }
+                  ?>
+                  TOP <?= get_field('count_contenders_t', $id_top); ?><a href="<?php echo get_category_link($cat_id); ?>" class="cat-link">
+                    <?php the_field('icone_cat', 'term_' . $cat_id); ?>
+                  </a><?php echo $top_infos['top_title']; ?>
+
+                  <span class="namecontenders"><?= $top_title; ?></span>
                 </p>
 
                 <h3 class="card-title t-rose">
