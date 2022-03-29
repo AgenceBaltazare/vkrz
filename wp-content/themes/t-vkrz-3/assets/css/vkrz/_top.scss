@@ -176,32 +176,30 @@
             padding: 40px 0 0 0;
 
             .spoun {
-              display: none;
-              text-align: center;
+                display: none;
+                text-align: center;
 
-              i {
-                  font-size: 40px;
-                  color: #fff;
-              }
-
-              h5 {
-                  font-weight: 700;
-                  text-transform: uppercase;
-                  color: #fff;
-                  text-align: center;
-              }
-
-              &.topsponso {
+                i {
+                    font-size: 40px;
+                    color: #fff;
+                }
 
                 h5 {
-                  font-size: 1.8rem;
-                  letter-spacing: .5px;
-                  position: absolute;
-                  top: 50%;
-                  left: 50%;
-                  transform: translate(-50%, -50%);
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    color: #fff;
+                    text-align: center;
                 }
-              }
+
+                &.topsponso {
+
+                    h5 {
+                        font-size: 1.8rem;
+                        letter-spacing: .5px;
+                        position: relative;
+                        top: 40px;
+                    }
+                }
             }
         }
     }
@@ -295,7 +293,7 @@
 }
 
 .cat-link {
-  margin: 0 3px;
+    margin: 0 3px;
 }
 
 .display_battle {

@@ -105,7 +105,6 @@ $list_user_tops      = $user_tops['list_user_tops'];
               );
               $best_tops = best_tops($latest_rankings);
               foreach (array_slice($best_tops, 0, 20, true) as $top_id => $completed_top_number) :
-
                 $type_top = array();
                 $type_top = get_the_terms($top_id, 'type');
                 $slug_type_top = array();
@@ -116,8 +115,8 @@ $list_user_tops      = $user_tops['list_user_tops'];
                 }
                 if (get_post_status($top_id) == "publish" && !in_array('private', $slug_type_top)) :
                   global $user_tops;
-                  $id_top             = $top_id;
-                  $top_datas          = get_top_data($id_top);
+                  $id_top           = $top_id;
+                  $top_datas        = get_top_data($id_top);
                   $creator_id       = get_post_field('post_author', $id_top);
                   $creator_info     = get_userdata($creator_id);
                   $creator_pseudo   = $creator_info->nickname;
@@ -227,9 +226,7 @@ $list_user_tops      = $user_tops['list_user_tops'];
                             $cat_name   = $cat->name;
                           }
                           ?>
-                          TOP <?php echo get_field('count_contenders_t', $id_top); ?> <a href="<?php echo get_category_link($cat_id); ?>" class="cat-link">
-                            <?php the_field('icone_cat', 'term_' . $cat_id); ?>
-                          </a> <?php echo get_the_title($id_top); ?>
+                          TOP <?php echo get_field('count_contenders_t', $id_top); ?> <?php the_field('icone_cat', 'term_' . $cat_id); ?> <?php echo get_the_title($id_top); ?>
                         </p>
                         <h4 class="card-title">
                           <?php the_field('question_t', $id_top); ?>

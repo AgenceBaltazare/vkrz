@@ -1342,9 +1342,6 @@ html .content {
 .min-tournoi .cov-illu .voile .spoun {
   display: none;
   text-align: center;
-
-  position: relative;
-  height: 100%;
 }
 .min-tournoi .cov-illu .voile .spoun i {
   font-size: 40px;
@@ -1355,22 +1352,12 @@ html .content {
   text-transform: uppercase;
   color: #fff;
   text-align: center;
-
-  font-size: 1.8rem;
-  letter-spacing: .5px;
-
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 .min-tournoi .cov-illu .voile .spoun.topsponso h5 {
   font-size: 1.8rem;
-  letter-spacing: .5px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  letter-spacing: 0.5px;
+  position: relative;
+  top: 40px;
 }
 .min-tournoi .info-top {
   display: flex;

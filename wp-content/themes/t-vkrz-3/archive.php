@@ -336,7 +336,13 @@ $list_sujets      = array();
                             </div>
                             <div class="card-body mb-3-hover">
                                 <p class="card-text text-primary">
-                                    TOP <?php echo get_field('count_contenders_t', $id_top); ?> : <span class="namecontenders"><?php echo $top_title; ?></span>
+                                    <?php
+                                    foreach (get_the_terms($id_top, 'categorie') as $cat) {
+                                        $cat_id     = $cat->term_id;
+                                        $cat_name   = $cat->name;
+                                    }
+                                    ?>
+                                    TOP <?php echo get_field('count_contenders_t', $id_top); ?> <?php the_field('icone_cat', 'term_' . $cat_id); ?> <?php echo get_the_title($id_top); ?>
                                 </p>
                                 <h4 class="card-title">
                                     <?php echo $top_question; ?>
