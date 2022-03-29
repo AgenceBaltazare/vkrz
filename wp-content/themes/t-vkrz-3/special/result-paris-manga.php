@@ -1,6 +1,6 @@
 <?php
 /*
-    Template Name: Paris Manga
+    Template Name: Résultat Paris Manga 21
 */
 global $user_id;
 global $user_infos;
