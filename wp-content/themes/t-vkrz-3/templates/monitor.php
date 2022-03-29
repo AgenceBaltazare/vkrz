@@ -56,7 +56,7 @@
               <div class="card text-center">
                 <div class="card-body d-flex align-items-center winbloc">
                   <?php
-                  if (get_field('nb_total_tops', 'options') < 100000) : ?>
+                  if (get_field('nb_total_tops', 'options') < 10000000) : ?>
                     <div class="illuwin">
                       <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/switch-towin.png" alt="" class="img-fluid">
                     </div>
@@ -122,7 +122,7 @@
                           $list_level_4 = get_users_by_level(4, 'total_vote', 'DESC');
                           foreach ($list_level_4 as $vainkeur) :
                           ?>
-                            <a href="<?php echo esc_url(get_author_posts_url($vainkeur['ID'])); ?>">
+                            <a href="<?php echo get_author_posts_url($vainkeur['ID'], $vainkeur['pseudo']); ?>">
                               <?php echo $vainkeur['pseudo']; ?>
                             </a>
                           <?php endforeach; ?>
@@ -132,11 +132,6 @@
                   </div>
 
                   <?php
-                  /*
-                    NICE NUMBERS ✨
-                    SOURCE : https://stackoverflow.com/questions/4371059/shorten-long-numbers-to-k-m-b
-                  */
-
                   function niceNumber($n, $precision = 1)
                   {
                     if ($n < 900) {
