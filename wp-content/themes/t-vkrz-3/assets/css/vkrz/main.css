@@ -1355,11 +1355,9 @@ html .content {
 }
 .min-tournoi .cov-illu .voile .spoun.topsponso h5 {
   font-size: 1.8rem;
-  letter-spacing: .5px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  letter-spacing: 0.5px;
+  position: relative;
+  top: 40px;
 }
 .min-tournoi .info-top {
   display: flex;

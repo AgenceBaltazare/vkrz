@@ -107,19 +107,13 @@ if ($get_top_type) {
     </div>
     <div class="card-body eh mb-3-hover">
       <p class="card-text text-primary">
-        TOP <?php echo get_field('count_contenders_t', $id_top); ?>
-
         <?php
         foreach (get_the_terms($id_top, 'categorie') as $cat) {
           $cat_id     = $cat->term_id;
           $cat_name   = $cat->name;
         }
         ?>
-        <a href="<?php echo get_category_link($cat_id); ?>" class="cat-link">
-          <?php the_field('icone_cat', 'term_' . $cat_id); ?>
-        </a>
-
-        <?php echo get_the_title($id_top); ?>
+        TOP <?php echo get_field('count_contenders_t', $id_top); ?> <?php the_field('icone_cat', 'term_' . $cat_id); ?> <?php echo get_the_title($id_top); ?>
       </p>
       <h4 class="card-title">
         <?php the_field('question_t', $id_top); ?>
