@@ -103,18 +103,13 @@ $creator_data       = get_user_infos($creator_uuiduser);
                       <div class="meetup-header d-flex align-items-center justify-content-center">
                         <div class="my-auto">
                           <h4 class="card-title mb-25">
-                            TOP <?php echo get_field('count_contenders_t', $id_top); ?>
                             <?php
                             foreach (get_the_terms($id_top, 'categorie') as $cat) {
                               $cat_id     = $cat->term_id;
                               $cat_name   = $cat->name;
                             }
                             ?>
-                            <a href="<?php echo get_category_link($cat_id); ?>" class="cat-link">
-                              <?php the_field('icone_cat', 'term_' . $cat_id); ?>
-                            </a>
-
-                            <?php echo get_the_title($id_top); ?>
+                            TOP <?php the_field('count_contenders_t', $id_top); ?> <?php the_field('icone_cat', 'term_' . $cat_id); ?> <?php echo get_the_title($id_top); ?>
                           </h4>
                           <p class="card-text mb-0 t-rose animate__animated animate__flash">
                             <?php echo $top_infos['top_question']; ?>
@@ -301,18 +296,13 @@ $creator_data       = get_user_infos($creator_uuiduser);
                       <div class="meetup-header d-flex align-items-center justify-content-center">
                         <div class="my-auto">
                           <h4 class="card-title mb-25">
-                            TOP <?php echo get_field('count_contenders_t', $id_top); ?>
                             <?php
                             foreach (get_the_terms($id_top, 'categorie') as $cat) {
                               $cat_id     = $cat->term_id;
                               $cat_name   = $cat->name;
                             }
                             ?>
-                            <a href="<?php echo get_category_link($cat_id); ?>" class="cat-link">
-                              <?php the_field('icone_cat', 'term_' . $cat_id); ?>
-                            </a>
-
-                            <?php echo get_the_title($id_top); ?>
+                            TOP <?php the_field('count_contenders_t', $id_top); ?> <?php the_field('icone_cat', 'term_' . $cat_id); ?> <?php echo get_the_title($id_top); ?>
                           </h4>
                           <p class="card-text mb-0 t-rose animate__animated animate__flash">
                             <?php echo $top_infos['top_question']; ?>

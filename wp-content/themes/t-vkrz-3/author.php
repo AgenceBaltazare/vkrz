@@ -370,14 +370,14 @@ foreach ($list_user_tops as $top) {
                                             <div class="media-body">
                                               <div class="media-heading">
                                                 <h6 class="cart-item-title mb-0">
-                                                  <a class="text-body" href="<?php the_permalink($top['id_top']); ?>">
+                                                  <a class="text-body" href="<?php the_permalink($r_user['id_top']); ?>">
                                                     <?php
-                                                    foreach (get_the_terms($top['id_top'], 'categorie') as $cat) {
+                                                    foreach (get_the_terms($r_user['id_top'], 'categorie') as $cat) {
                                                       $cat_id     = $cat->term_id;
                                                       $cat_name   = $cat->name;
                                                     }
                                                     ?>
-                                                    TOP <?php the_field('count_contenders_t', $top['id_top']); ?> <?php the_field('icone_cat', 'term_' . $cat_id); ?> <?php echo get_the_title($top['id_top']); ?>
+                                                    TOP <?php the_field('count_contenders_t', $r_user['id_top']); ?> <?php the_field('icone_cat', 'term_' . $cat_id); ?> <?php echo get_the_title($r_user['id_top']); ?>
                                                   </a>
                                                 </h6>
                                                 <small class="cart-item-by legende">
