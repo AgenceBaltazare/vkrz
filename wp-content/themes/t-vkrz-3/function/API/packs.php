@@ -53,10 +53,12 @@ function get_single_ranking($data)
 
 function get_info()
 {
+  // TODAY'S DATE
   $today = date('d-m-Y');
   $todayFormatted = strtotime($today);
   $tomorrow = date("d-m-Y", strtotime("+1 day", $todayFormatted));
 
+  // COMPTE ENREGISTRE
   $args = array(
     'date_query' => array(
       array(
@@ -69,6 +71,7 @@ function get_info()
   $user_query = new WP_User_Query($args);
   $comptes = $user_query->get_total();
 
+  // CLASSEMENT PUBLIE
   $args2 = array(
     'post_type' => 'classement',
     'date_query' => array(
@@ -82,6 +85,7 @@ function get_info()
   $query2 = new WP_Query($args2);
   $classements = $query2->found_posts;
 
+  // PLAYER PUBLIE
   $args3 = array(
     'post_type' => 'player',
     'date_query' => array(
@@ -95,12 +99,18 @@ function get_info()
   $query3 = new WP_Query($args3);
   $players = $query3->found_posts;
 
+  // CLASSEMENT NB VOTES
+  $nb_classement_votes = 0;
+  while ($query2->have_posts()) : $query2->the_post();
+    $nb_classement_votes =  $nb_classement_votes + get_field('nb_votes_r');
+  endwhile;
 
   $results = array(
-    "KPI'S" => date("d/m/Y", strtotime($today)),
-    "Compte enregistré" => $comptes,
-    "Classement publié" => $classements,
-    "Player publié" => $players,
+    "KPI'S" => date("d-m-Y", strtotime($today)),
+    "Compte enregistre" => $comptes,
+    "Classement publie" => $classements,
+    "Player publie" => $players,
+    "Classement NB votes" =>  $nb_classement_votes,
   );
 
   // $test = json_encode($results);
