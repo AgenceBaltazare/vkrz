@@ -383,14 +383,6 @@ if ($get_top_type) {
                     <span class="ico hide-xs">🆕</span> <span class="hide-spot">Recommencer</span>
                   </a>
                 </div>
-              <?php else : ?>
-                <!-- 
-                  <div class="ico-nav-mobile">
-                    <a href="<?php echo $top_infos['top_url']; ?>">
-                      <span class="hide-spot">Faire mon Top</span>
-                    </a>
-                  </div> 
-                -->
               <?php endif; ?>
             <?php endif; ?>
           </div>
