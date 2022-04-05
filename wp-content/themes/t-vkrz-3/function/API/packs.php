@@ -105,12 +105,20 @@ function get_info()
     $nb_classement_votes =  $nb_classement_votes + get_field('nb_votes_r');
   endwhile;
 
+  // $results = array(
+  //   "KPI'S" => date("d-m-Y", strtotime($today)),
+  //   "Compte enregistre" => $comptes,
+  //   "Classement publie" => $classements,
+  //   "Player publie" => $players,
+  //   "Classement NB votes" =>  $nb_classement_votes,
+  // );
+
   $results = array(
-    "KPI'S" => date("d-m-Y", strtotime($today)),
-    "Compte enregistre" => $comptes,
-    "Classement publie" => $classements,
-    "Player publie" => $players,
-    "Classement NB votes" =>  $nb_classement_votes,
+    date("d-m-Y", strtotime($today)),
+    $comptes,
+    $classements,
+    $players,
+    $nb_classement_votes,
   );
 
   // $test = json_encode($results);

@@ -1,52 +1,94 @@
 @import '_variables';
 
 .auth-bg {
-    .card-title {
-        font-size: 1.5rem;
-    }
+  .card-title {
+    font-size: 1.5rem;
+  }
 }
 
 .already-account {
-    text-align: center;
+  text-align: center;
 }
 
 .auth-wrapper {
-    text-align: center;
-    padding: 70px;
+  text-align: center;
+  padding: 70px;
 
-    .auth-inner {
-        max-width: 550px;
-        margin: 0 auto;
+  .auth-inner {
+    max-width: 550px;
+    margin: 0 auto;
 
-        .card-title {
-            width: 100%;
-        }
-
-        .form-submit,
-        .login-submit {
-            text-align: center;
-
-            input {
-                margin: 0 auto !important;
-            }
-        }
+    .card-title {
+      width: 100%;
     }
 
-    .divider {
-        margin: 20px auto !important;
+    .form-submit,
+    .login-submit {
+      text-align: center;
+
+      input {
+        margin: 0 auto !important;
+      }
     }
+  }
+
+  .divider {
+    margin: 20px auto !important;
+  }
 }
 
 .auth-register-form {
-    h3 {
-        color: $c5;
-        text-align-last: left;
-        text-transform: uppercase;
-        font-size: 16px;
-        font-weight: normal;
-    }
+  h3 {
+    color: $c5;
+    text-align-last: left;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: normal;
+  }
 }
 
-#oa_social_link{
-    display: none !important;
+.get-connected {
+
+  .auth-wrapper {
+    padding: 0;
+  }
+
+  .auth-inner {
+    max-width: 100%;
+  }
+
+  .sign-in,
+  .sign-up {
+    padding: 1.5rem;
+    border-radius: 12px;
+    transform: scale(0.98);
+    transition: all .6s;
+  }
+
+  .sign-in {
+    background: rgb(18, 11, 43);
+    background: linear-gradient(306deg, rgba(18, 11, 43, 1) 0%, rgba(41, 17, 70, 0.5) 100%);
+  }
+
+  .sign-up {
+    background: rgb(18, 11, 43);
+    background: linear-gradient(135deg, rgba(18, 11, 43, 1) 0%, rgba(41, 17, 70, 1) 150%);
+  }
+
+  .sign-in:hover,
+  .sign-up:hover {
+    transform: scale(1.02);
+  }
+
+  .col-lg-6:nth-of-type(1):hover+.col-lg-6:nth-of-type(2) .sign-up {
+    opacity: 0.3;
+  }
+
+  .shade {
+    opacity: 0.3;
+  }
+}
+
+#oa_social_link {
+  display: none !important;
 }

@@ -48,23 +48,16 @@ $top_datas    = get_top_data($id_top_global);
                           aujourd'hui tu peux te tourner vers un avenir meilleur en rejoignant le concept VAINKEURZ 🚀 !
                         </p>
                         <p>
-                          Si tu souhaites participer au Tirage au Sort, n'hésites pas et créer ton compte ! Si tu fais déjà parti des Vainkeurs, connecte-toi simplement 👇
+                          Si tu souhaites participer au <strong class="t-rose">Tirage au Sort</strong>, n'hésites pas et créer ton compte ! Si tu fais déjà parti des Vainkeurs, connecte-toi simplement 👇
                         </p>
                       </div>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-6">
-                      <a href="<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>?redirect=<?php the_permalink($id_ranking); ?>/" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light">
-                        Créer mon compte 🎉
-                      </a>
-                    </div>
-                    <div class="col-6">
-                      <a href="<?php the_permalink(get_page_by_path('se-connecter')); ?>?redirect=<?php the_permalink($id_ranking); ?>/" class="sharelinkbtn2 w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-outline-primary waves-effect waves-float waves-light">
-                        Me connecter
-                      </a>
-                    </div>
-                  </div>
+                  <a href="<?php the_permalink(get_page_by_path('get-connected')); ?>?redirect=<?php the_permalink($id_ranking); ?>/" class="w-100 btn btn-rose waves-effect p-1">
+                    <p class="h4 text-white m-0">
+                      S'INSCRIRE (ou se connecter)
+                    </p>
+                  </a>
                 <?php else : ?>
                   <div class="row">
                     <div class="col-md-12 mt-1">
