@@ -1,9 +1,17 @@
 == Changelog ==
 
+= 2.8 =
+Release Date: March 22nd, 2022
+
+* [Improved] Sorting and Filtering on Number field now also works on decimals
+* [Improved] Smart Filtering for the Date Time field improved (More ways to filter)
+* [Improved] Javascript is now compiled with target set to ES6
+* [Dependency] Requires Admin Columns Pro 5.7
+
 = 2.7 =
 Release Date: September 21st, 2021
 
-* [Improved] It is now possible to smart filter user relation ships on 'current user'
+* [Improved] It is now possible to smart filter user relationships on 'current user'
 * [Improved] Refactor editing to make compatible with Admin Columns Pro 5.6
 * [Improved] Array check to prevent PHP warnings for unsupported fields.
 
