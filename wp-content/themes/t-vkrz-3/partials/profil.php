@@ -36,6 +36,14 @@ $vainkeur_info = isset($vainkeur_info) ? $vainkeur_info : $user_infos;
           <?php endif; ?>
         </p>
       </div>
+
+      <?php if (!is_author() && is_user_logged_in() && !is_page(218587)) : ?>
+        <div class="ml-auto mb-2">
+          <a href="<?php echo get_author_posts_url($user_id); ?>" class="btn btn-outline-primary waves-effect">
+            Profil public
+          </a>
+        </div>
+      <?php endif; ?>
     </div>
   </div>
 
@@ -106,13 +114,6 @@ $vainkeur_info = isset($vainkeur_info) ? $vainkeur_info : $user_infos;
               <?php endif; ?>
             <?php endif; ?>
           </ul>
-          <?php if (!is_author() && is_user_logged_in() && !is_page(218587)) : ?>
-            <div class="">
-              <a href="<?php echo get_author_posts_url($user_id); ?>" class="btn btn-outline-primary waves-effect">
-                Profil public
-              </a>
-            </div>
-          <?php endif; ?>
         </div>
       </div>
     </nav>
