@@ -241,6 +241,20 @@ if (is_single() && get_post_type() == "tournoi") {
           <h4 class="mb-0">Plein de choses à gagner par ici</h4>
         </div>
 
+      <?php elseif (is_page(get_page_by_path('rechercher'))) : ?>
+
+        <?php
+        if (isset($_GET['term']) && $_GET['term'] != "") {
+          $term_to_search = $_GET['term'];
+        }
+        global $total_top_founded;
+        ?>
+
+        <div class="tournament-heading text-center">
+          <h3 class="mb-0 t-titre-tournoi">Recherche : <?php echo $term_to_search; ?></h3>
+          <h4 class="mb-0"><?php echo $total_top_founded; ?> tops trouvés</h4>
+        </div>
+
       <?php elseif (is_page(get_page_by_path('paris-manga-2022'))) : ?>
 
         <div class="tournament-heading text-center">
