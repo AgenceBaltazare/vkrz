@@ -113,7 +113,7 @@ $top_datas    = get_top_data($id_top_global);
                             Post Twitter
                           </a>
                         <?php elseif (get_field('type_de_fin_t_sponso', $id_top_global) == "twitter_2") : ?>
-                          <a href="https://twitter.com/intent/tweet?hashtags=<?php the_field('hashtags_du_tweet_twitter_2', $id_top_global); ?>&original_referer=<?php echo $url_ranking; ?>&ref_src=&text=<?php the_field('message_du_tweet_twitter_2', $id_top_global); ?>&url=<?php echo $url_ranking; ?>&via=Vainkeurz" class="animate__jello animate__animated animate__delay-1s btn btn-max btn-tweet btn-rose waves-effect waves-float waves-light">
+                          <a href="https://twitter.com/intent/tweet?hashtags=<?php the_field('hashtags_du_tweet_twitter_2', $id_top_global); ?>&original_referer=<?php echo $url_ranking; ?>&ref_src=&text=<?php the_field('message_du_tweet_twitter_2', $id_top_global); ?>&url=<?php echo $url_ranking; ?>&via=Vainkeurz" class="animate__jello animate__animated animate__delay-1s btn btn-max btn-tweet btn-rose waves-effect waves-float waves-light" target="_blank">
                             <?php the_field('message_du_bouton_tweet_twitter2', $id_top_global); ?>
                           </a>
                         <?php endif; ?>
