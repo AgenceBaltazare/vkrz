@@ -117,22 +117,38 @@ $creator_data       = get_user_infos($creator_uuiduser);
                   </div>
                   <div class="card-cta">
                     <div class="choosecta">
-                      <div class="cta-begin cta-complet">
-                        <a href="#" id="begin_t" data-typetop="complet" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
-                          Participer
-                        </a>
-                        <small class="text-muted">
-                          <?php
-                          $min = ($top_infos['top_number'] - 5) * 2 + 6;
-                          $max = $min * 2;
-                          ?>
-                          <?php if ($top_infos['top_number'] < 3) : ?>
-                            Un seul vote suffira pour finir ce Top
-                          <?php else : ?>
-                            Prévoir entre <?php echo $min; ?> et <?php echo $max; ?> votes pour finir ton Top du 1er au dernier
-                          <?php endif; ?>
-                        </small>
-                      </div>
+                      <?php if ($top_infos['top_number'] > 15) : ?>
+                        <div class="cta-begin cta-top3">
+                          <a href="#" id="begin_top3" data-typetop="top3" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
+                            Participer
+                          </a>
+                          <small class="text-muted">
+                            <?php
+                            $max = (floor($top_infos['top_number'] / 2)) + (3 * ((round($top_infos['top_number'] / 2)) - 1));
+                            $min = (floor($top_infos['top_number'] / 2)) + ((round($top_infos['top_number'] / 2)) - 1) + 3;
+                            $moy = ($max + $min) / 2;
+                            ?>
+                            Prévoir environ <?php echo round($moy); ?> votes pour faire ton <b>TOP 3</b>
+                          </small>
+                        </div>
+                      <?php else : ?>
+                        <div class="cta-begin cta-complet">
+                          <a href="#" id="begin_t" data-typetop="complet" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
+                            Participer
+                          </a>
+                          <small class="text-muted">
+                            <?php
+                            $min = ($top_infos['top_number'] - 5) * 2 + 6;
+                            $max = $min * 2;
+                            ?>
+                            <?php if ($top_infos['top_number'] < 3) : ?>
+                              Un seul vote suffira pour finir ce Top
+                            <?php else : ?>
+                              Prévoir entre <?php echo $min; ?> et <?php echo $max; ?> votes pour finir ton Top <b>complet</b>
+                            <?php endif; ?>
+                          </small>
+                        </div>
+                      <?php endif; ?>
                     </div>
                   </div>
                   <div class="card-footer">
