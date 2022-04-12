@@ -8,9 +8,8 @@
 
 if (isset($_POST['term']) && $_POST['term'] != "") {
   $term_to_search = $_POST['term'];
-} else {
-  echo '<h1 style="position: absolute; top:5rem; left: 0; z-index: 10000;">' . 'NO PARAMETER PASSED!'  . '</h1>';
 }
+
 $list_tops = array();
 $tops_to_find = new WP_Query(array(
   'post_type'                 => 'tournoi',
@@ -77,53 +76,6 @@ $tops_to_find = new WP_Query(array(
 while ($tops_to_find->have_posts()) : $tops_to_find->the_post();
   array_push($list_tops, get_the_ID());
 endwhile;
-
-/*
-function checkIn($term_to_search, $which_one)
-{
-$which_one_id = 0;
-$list_tops = array();
-$parent = get_terms(array(
-'taxonomy' => "$which_one",
-'orderby' => 'count',
-'order' => 'DESC',
-'hide_empty' => true,
-));
-foreach ($parent as $child) :
-if (mb_strtolower(sans_accents($term_to_search)) == mb_strtolower(sans_accents($child->name))) {
-$which_one_id = $child->term_id;
-}
-endforeach;
-$tops_to_find = new WP_Query(array(
-'post_type' => 'tournoi',
-'posts_per_page' => -1,
-'ignore_sticky_posts' => true,
-'update_post_meta_cache' => false,
-'no_found_rows' => true,
-'tax_query' => array(
-'relation' => 'AND',
-array(
-'taxonomy' => "$which_one",
-'field' => 'term_id',
-'terms' => "$which_one_id",
-),
-array(
-'taxonomy' => 'type',
-'field' => 'slug',
-'terms' => array('private', 'whitelabel', 'onboarding'),
-'operator' => 'NOT IN'
-),
-),
-));
-while ($tops_to_find->have_posts()) : $tops_to_find->the_post();
-array_push($list_tops, get_the_ID());
-endwhile;
-
-return $list_tops;
-}
-
-$list_tops = checkIn($term_to_search, "categorie");
-*/
 
 //////////////////////////////////////////////
 
@@ -387,10 +339,13 @@ get_header();
         <div id="ecommerce-searchbar" class="ecommerce-searchbar">
           <div class="input-group input-group-merge">
             <form id="search_form" method="POST">
-              <span class="ico ico-search ico-search-result va va-magnifying-glass-tilted-left va-lg"></span>
               <span class="ico ico-search ico-search-clear">❌</span>
 
-              <input type="text" class="form-control search-product" id="search_text" placeholder="Rechercher..." aria-label="Rechercher..." name="term" aria-describedby="shop-search" />
+              <input type="text" class="form-control search-product" id="search_text" placeholder="Rechercher..." aria-label="Rechercher..." name="term" aria-describedby="shop-search" required />
+
+              <button type="submit">
+                <span class="ico ico-search ico-search-result va va-magnifying-glass-tilted-left va-lg"></span>
+              </button>
             </form>
           </div>
         </div>

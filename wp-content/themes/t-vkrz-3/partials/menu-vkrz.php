@@ -49,11 +49,11 @@
 
       <?php if (!is_page(390772)) : ?>
         <li class="mx-auto" style="width: 90%;">
-          <form action="<?= the_permalink(get_page_by_path('recherche')); ?>" method="POST" class="mt-2 d-flex">
+          <form action="<?= the_permalink(get_page_by_path('recherche')); ?>" method="POST" class="mt-2 d-flex rechercher-form" autocomplete="off">
 
-            <input type="search" name="term" id="term" class="form-control w-75 badge-light-rose rounded-0 border-0" placeholder="Just search for it...">
+            <input type="search" name="term" id="term" class="form-control w-100 rounded-0 border-0 rechercher-input" placeholder="Trouve ton meilleur Top..." required>
 
-            <input type="submit" name="go" value="🚀" class="form-control w-25 badge-light-rose rounded-0 border-0 lead">
+            <input type="submit" name="go" value="🚀" class="form-control rounded-0 border-0 lead go-input">
           </form>
         </li>
       <?php endif; ?>
