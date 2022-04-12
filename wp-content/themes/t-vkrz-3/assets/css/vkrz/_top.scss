@@ -190,6 +190,16 @@
                     color: #fff;
                     text-align: center;
                 }
+
+                &.topsponso {
+
+                    h5 {
+                        font-size: 1.8rem;
+                        letter-spacing: .5px;
+                        position: relative;
+                        top: 40px;
+                    }
+                }
             }
         }
     }
@@ -280,6 +290,10 @@
             font-size: 15px;
         }
     }
+}
+
+.cat-link {
+    margin: 0 3px;
 }
 
 .display_battle {

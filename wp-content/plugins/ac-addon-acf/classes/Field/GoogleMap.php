@@ -9,6 +9,10 @@ class GoogleMap extends Field {
 	public function get_value( $id ) {
 		$value = parent::get_value( $id );
 
+		if ( ! is_array( $value ) ) {
+			return '';
+		}
+
 		$map_data = [];
 		if ( ! empty( $value['address'] ) ) {
 			$map_data[] = $value['address'];

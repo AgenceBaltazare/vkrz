@@ -63,7 +63,7 @@ body {
 }
 
 .dark-layout .main-menu-content .navigation-main .nav-item.open > a {
-  background-color: #31267347 !important;
+  background-color: rgba(49, 38, 115, 0.2784313725) !important;
 }
 
 .swiper-button-next,
@@ -283,11 +283,11 @@ a.sociallink:hover i {
 }
 
 .dark-layout input.form-control::-moz-placeholder, .dark-layout .custom-file-label::-moz-placeholder, .dark-layout textarea.form-control::-moz-placeholder, .dark-layout input.form-control::-moz-placeholder, .dark-layout .custom-file-label::-moz-placeholder, .dark-layout textarea.form-control::-moz-placeholder {
-  color: white !important;
+  color: rgb(255, 255, 255) !important;
 }
 
 .dark-layout input.form-control:-ms-input-placeholder, .dark-layout .custom-file-label:-ms-input-placeholder, .dark-layout textarea.form-control:-ms-input-placeholder, .dark-layout input.form-control:-ms-input-placeholder, .dark-layout .custom-file-label:-ms-input-placeholder, .dark-layout textarea.form-control:-ms-input-placeholder {
-  color: white !important;
+  color: rgb(255, 255, 255) !important;
 }
 
 .dark-layout input.form-control::placeholder,
@@ -296,7 +296,7 @@ a.sociallink:hover i {
 .dark-layout input.form-control::placeholder,
 .dark-layout .custom-file-label::placeholder,
 .dark-layout textarea.form-control::placeholder {
-  color: white !important;
+  color: rgb(255, 255, 255) !important;
 }
 
 .title-contender img {
@@ -564,7 +564,10 @@ html .content {
 }
 
 .legende {
-  color: #6a686d;
+  display: block;
+  line-height: 100%;
+  color: rgb(106, 104, 109);
+  margin-top: 3px;
 }
 
 .main-menu {
@@ -635,7 +638,7 @@ html .content {
 
 .dark-layout .dropdown-menu {
   background-color: #0a0921;
-  box-shadow: 0 4px 24px 0 black;
+  box-shadow: 0 4px 24px 0 rgb(0, 0, 0);
 }
 
 .hide-lg {
@@ -806,11 +809,11 @@ html .content {
 }
 
 .t-cyan {
-  color: #00a7e9;
+  color: rgb(0, 167, 233);
 }
 
 .t-yellow {
-  color: #e9e500;
+  color: rgb(233, 229, 0);
 }
 
 .p-20 {
@@ -915,6 +918,15 @@ html .content {
 
 .seevideocreator {
   text-transform: none;
+}
+
+.btn-rose {
+  color: #fff !important;
+}
+
+.btn-tweet {
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 .page-template-monitor .list-vainkeur-monitor {
@@ -1326,8 +1338,8 @@ html .content {
   left: 0;
   bottom: 0;
   opacity: 0.2;
-  background: #0c0a27;
-  background: linear-gradient(200deg, #0c0a27 0%, rgba(12, 10, 39, 0) 100%);
+  background: rgb(12, 10, 39);
+  background: linear-gradient(200deg, rgb(12, 10, 39) 0%, rgba(12, 10, 39, 0) 100%);
   transition: all 0.2s ease-in-out;
   display: flex;
   align-items: center;
@@ -1349,6 +1361,12 @@ html .content {
   text-transform: uppercase;
   color: #fff;
   text-align: center;
+}
+.min-tournoi .cov-illu .voile .spoun.topsponso h5 {
+  font-size: 1.8rem;
+  letter-spacing: 0.5px;
+  position: relative;
+  top: 40px;
 }
 .min-tournoi .info-top {
   display: flex;
@@ -1400,7 +1418,7 @@ html .content {
   left: 0;
   bottom: 0;
   opacity: 0.9;
-  background: #0c0a27;
+  background: rgb(12, 10, 39);
 }
 .min-tournoi:hover .cov-illu .voile .spoun {
   display: block;
@@ -1417,6 +1435,10 @@ html .content {
 }
 .min-tournoi .card-body h4 {
   font-size: 15px;
+}
+
+.cat-link {
+  margin: 0 3px;
 }
 
 .display_battle {
@@ -1506,7 +1528,7 @@ html .content {
   right: 0;
   opacity: 0.6;
   height: 80px;
-  background: #0c0a28;
+  background: rgb(12, 10, 40);
   background: linear-gradient(0deg, #0c0a27 5%, rgba(0, 0, 0, 0) 100%);
 }
 .card-developer-meetup .meetup-header {
@@ -2048,7 +2070,7 @@ textarea {
   border: none;
   cursor: pointer;
   transition: 0.35s all ease-out;
-  box-shadow: 0 1px 3px #b5bacf26;
+  box-shadow: 0 1px 3px rgba(181, 186, 207, 0.1490196078);
   border-color: #7367f0 !important;
   background-color: #7367f0 !important;
   color: #fff !important;
@@ -2071,7 +2093,7 @@ textarea {
 
 .wppb-success {
   color: #ffffff;
-  background: #ffd2e71c;
+  background: rgba(255, 210, 231, 0.1098039216);
   padding: 15px 20px;
 }
 

@@ -77,7 +77,7 @@
         $sub_comments    = get_comments('status=approve&type=comments&hierarchical=true&parent=' . $comment->comment_ID);
         $nb_sub_comments = count($sub_comments);
         if ($nb_sub_comments > 0) :
-          foreach ($sub_comments as $comment) : ?>
+          foreach (array_reverse($sub_comments) as $comment) : ?>
             <div class="col-12 comment-min sub-comment-min">
               <div class="card" data-comment-id="<?php echo $comment->comment_ID; ?>">
                 <div class="card-body">

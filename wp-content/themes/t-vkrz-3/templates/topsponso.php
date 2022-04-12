@@ -52,7 +52,6 @@ $tops_in_cat        = new WP_Query(array(
 
           <?php
           $id_top             = get_the_ID();
-          $illu               = get_the_post_thumbnail_url($id_top, 'medium');
           $top_datas          = get_top_data($id_top);
           $creator_id         = get_post_field('post_author', $id_top);
           $creator_uuiduser   = get_field('uuiduser_user', 'user_' . $creator_id);
@@ -63,10 +62,8 @@ $tops_in_cat        = new WP_Query(array(
           } else {
             $state = "todo";
           }
-          $top_question   = get_field('question_t', $id_top);
-          $top_title      = get_the_title($id_top);
-          $term_to_search = $sujet_slug . " " . $concept_slug . " " . $top_question . " " . $top_title;
-          $get_top_type = get_the_terms($id_top, 'type');
+          $top_info       = get_top_infos($id_top);
+          $get_top_type   = get_the_terms($id_top, 'type');
           foreach ($get_top_type as $type_top) {
             $type_top = $type_top->slug;
           }
@@ -74,7 +71,7 @@ $tops_in_cat        = new WP_Query(array(
 
           <div class="same-h grid-item col-12 col-md-4">
             <div class="min-tournoi card scaler">
-              <div class="cov-illu cover" style="background: url(<?php echo $illu; ?>) center center no-repeat; height: 200px;">
+              <div class="cov-illu cover" style="background: url(<?php echo $top_info['top_img']; ?>) center center no-repeat; height: 200px;">
 
                 <?php if ($type_top == "sponso") : ?>
                   <span class="badge badge-light-rose ml-0">Top sponso</span>
@@ -88,15 +85,15 @@ $tops_in_cat        = new WP_Query(array(
                 <?php endif; ?>
                 <div class="voile">
                   <?php if ($state == "done") : ?>
-                    <div class="spoun">
+                    <div class="spoun topsponso">
                       <h5>Participer</h5>
                     </div>
                   <?php elseif ($state == "begin") : ?>
-                    <div class="spoun">
+                    <div class="spoun topsponso">
                       <h5>Terminer</h5>
                     </div>
                   <?php else : ?>
-                    <div class="spoun">
+                    <div class="spoun topsponso">
                       <h5>Participer</h5>
                     </div>
                   <?php endif; ?>
@@ -133,27 +130,38 @@ $tops_in_cat        = new WP_Query(array(
 
               <div class="card-body mb-3-hover text-center">
                 <p class="card-text text-primary font-weight-bold">
-                  TOP <?= get_field('count_contenders_t', $id_top); ?> ⚡ <span class="namecontenders"><?= $top_title; ?></span>
+
+                  <?php
+                  foreach (get_the_terms($id_top, 'categorie') as $cat) {
+                    $cat_id     = $cat->term_id;
+                    $cat_name   = $cat->name;
+                  }
+                  ?>
+                  TOP <?= $top_info['top_number']; ?> <?php the_field('icone_cat', 'term_' . $cat_id); ?> <span class="namecontenders"><?= $top_info['top_title']; ?></span>
                 </p>
 
                 <h3 class="card-title t-rose">
-                  <?= $top_question; ?>
+                  <?= $top_info['top_question']; ?>
                 </h3>
 
                 <div class="card-footer a-gagner mt-1 p-1 d-flex flex-column align-items-left justify-content-between">
-                  <span class="text-muted mb-1 d-block">À gagner</span>
 
-                  <div style="background: url(<?= wp_get_attachment_image_url(get_field('cadeau_t_sponso', $id_top), 'large', false); ?>) no-repeat center center / contain; height: 150px;">
-                  </div>
+                  <span class="text-muted mb-1 d-block">
+                    À gagner
+                  </span>
 
-                  <h2 class="mt-2"><?= the_field('titre_de_la_sponso_t_sponso', $id_top); ?></h2>
+                  <div style="background: url(<?= wp_get_attachment_image_url(get_field('cadeau_t_sponso', $id_top), 'large', false); ?>) no-repeat center center / contain; height: 150px;"></div>
+
+                  <h2 class="mt-2">
+                    <?= the_field('titre_de_la_sponso_t_sponso', $id_top); ?>
+                  </h2>
 
                   <small class="text-primary" style="margin-top: -3px;">
                     <?= the_field('fin_de_la_sponso_t_sponso', $id_top); ?>
                   </small>
                 </div>
               </div>
-              <a href="<?php the_permalink($id_top); ?>" class="stretched-link"></a>
+              <a href="<?= $top_info['top_url']; ?>" class="stretched-link"></a>
             </div>
           </div>
 

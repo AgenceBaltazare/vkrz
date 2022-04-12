@@ -3,22 +3,39 @@
 namespace ACA\ACF;
 
 use AC;
+use AC\Plugin;
+use AC\Plugin\Version;
+use AC\PluginInformation;
+use AC\Registrable;
 
-final class AdvancedCustomFields extends AC\Plugin {
+final class AdvancedCustomFields extends Plugin implements Registrable {
 
-	public function __construct( $file ) {
-		parent::__construct( $file, 'aca_acf' );
+	public function __construct( $file, Version $version ) {
+		parent::__construct( $file, $version );
 	}
 
-	/**
-	 * Register hooks
-	 */
 	public function register() {
 		add_action( 'ac/column/settings', [ $this, 'register_editing_sections' ] );
 		add_action( 'ac/column_groups', [ $this, 'register_column_groups' ] );
 		add_action( 'ac/column_types', [ $this, 'add_columns' ] );
 		add_action( 'ac/table_scripts/editing', [ $this, 'table_scripts_editing' ] );
 		add_action( 'ac/admin_scripts/columns', [ $this, 'settings_scripts' ] );
+
+		$plugin_information = new PluginInformation( $this->get_basename() );
+		$is_network_active = $plugin_information->is_network_active();
+		$setup_factory = new AC\Plugin\SetupFactory( 'aca_acf_version', $this->get_version() );
+
+		$services[] = new AC\Service\Setup( $setup_factory->create( AC\Plugin\SetupFactory::SITE ) );
+
+		if ( $is_network_active ) {
+			$services[] = new AC\Service\Setup( $setup_factory->create( AC\Plugin\SetupFactory::NETWORK ) );
+		}
+
+		array_map( [ $this, 'register_service' ], $services );
+	}
+
+	private function register_service( Registrable $registrable ) {
+		$registrable->register();
 	}
 
 	/**
