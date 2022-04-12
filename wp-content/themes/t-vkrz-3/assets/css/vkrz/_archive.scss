@@ -82,6 +82,13 @@
   max-width: 100%;
   position: relative;
 
+  .ico-search {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    margin-top: -10px;
+  }
+
   button {
     padding: 0 !important;
     position: absolute;
@@ -92,11 +99,18 @@
     outline: none;
     border: none;
     background-color: transparent;
+
+    span {
+      right: 0 !important;
+      top: 50% !important;
+      margin-top: 0 !important;
+    }
   }
 
   input {
     width: 100%;
-    background-color: rgba(115, 103, 240, 0.2);
+    background: #6F1CB5;
+    background: linear-gradient(to bottom right, #6F1CB5, #5E16BF) !important;
     color: #fff;
     border: none !important;
     padding: 0 15px;
@@ -106,7 +120,7 @@
     border-radius: .358rem;
 
     &::placeholder {
-      color: #7367f0 !important;
+      color: #CEBBE4 !important;
       font-size: 1rem;
       line-height: 1;
       text-transform: uppercase;
@@ -134,8 +148,9 @@
     letter-spacing: 1px;
     display: flex;
     align-items: center;
-    background-color: rgba(115, 103, 240, 0.2);
-    color: #7367f0;
+    background: #6F1CB5;
+    background: linear-gradient(to bottom right, #6F1CB5, #5E16BF) !important;
+    color: #CEBBE4 !important;
     border: none !important;
     padding: 0 20px;
 

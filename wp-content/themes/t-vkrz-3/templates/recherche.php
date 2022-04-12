@@ -338,7 +338,7 @@ get_header();
       <section id="ecommerce-header" class="mb-2 mt-2">
         <div id="ecommerce-searchbar" class="ecommerce-searchbar">
           <div class="input-group input-group-merge">
-            <form id="search_form" method="POST">
+            <form id="search_form" method="POST" autocomplete="off">
               <span class="ico ico-search ico-search-clear">❌</span>
 
               <input type="text" class="form-control search-product" id="search_text" placeholder="Rechercher..." aria-label="Rechercher..." name="term" aria-describedby="shop-search" required />

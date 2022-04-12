@@ -137,17 +137,17 @@
   position: relative;
 
   .rechercher-input {
-    background-image: linear-gradient(315deg, #9921e8 0%, #5f72be 74%) !important;
+    background: linear-gradient(to bottom right, #6F1CB5, #5E16BF) !important;
 
     &:focus,
     &:valid,
     &:active {
-      background-image: linear-gradient(315deg, #9921e8 0%, #5f72be 74%) !important;
+      background: linear-gradient(to bottom right, #6F1CB5, #5E16BF) !important;
     }
 
     &::placeholder {
       font-size: 12px;
-      opacity: .9;
+      color: #CEBBE4 !important;
     }
 
     &::-webkit-search-cancel-button {
@@ -165,7 +165,7 @@
 
   .go-input {
     position: absolute;
-    right: 5%;
+    right: 4%;
     top: 0;
     background-color: transparent !important;
     padding: 0;
