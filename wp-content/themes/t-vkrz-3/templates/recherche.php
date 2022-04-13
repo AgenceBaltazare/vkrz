@@ -318,7 +318,9 @@ wp_reset_query();
 ///////////////////////////////////////////
 
 global $total_top_founded;
-$total_top_founded = $tops_unique_to_find->post_count;
+if (!empty($tops_unique_to_find)) {
+  $total_top_founded = $tops_unique_to_find->post_count;
+}
 get_header();
 ?>
 
@@ -341,7 +343,7 @@ get_header();
             <form id="search_form" method="POST" autocomplete="off">
               <span class="ico ico-search ico-search-clear">❌</span>
 
-              <input type="text" class="form-control search-product" id="search_text" placeholder="Rechercher..." aria-label="Rechercher..." name="term" aria-describedby="shop-search" required />
+              <input type="text" class="form-control search-product" id="search_text" placeholder="Rechercher..." aria-label="Rechercher..." name="term" aria-describedby="shop-search" required oninvalid="this.setCustomValidity('Son goku par exemple..')" />
 
               <button type="submit">
                 <span class="ico ico-search ico-search-result va va-magnifying-glass-tilted-left va-lg"></span>

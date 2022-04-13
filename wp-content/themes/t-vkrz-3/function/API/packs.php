@@ -1,6 +1,30 @@
 <?php
 require_once('fct.php');
 
+
+function get_single_ranking($data)
+{
+
+  $list_ranking      = "";
+  $id_ranking        = $data['id_ranking'];
+  $user_ranking      = get_user_ranking($id_ranking);
+  $total_rank        = array();
+
+  $i = 1;
+  foreach ($user_ranking as $c) :
+
+    $list_ranking .= get_the_title($c) . " ";
+
+    $i++;
+  endforeach;
+
+  array_push($total_rank, array(
+    "classement" => $list_ranking,
+  ));
+
+  return $list_ranking;
+}
+
 function add_contender_from_api()
 {
 
@@ -28,42 +52,19 @@ function add_contender_from_api()
   }
 }
 
-function get_single_ranking($data)
-{
-
-  $list_ranking      = "";
-  $id_ranking        = $data['id_ranking'];
-  $user_ranking      = get_user_ranking($id_ranking);
-  $total_rank        = array();
-
-  $i = 1;
-  foreach ($user_ranking as $c) :
-
-    $list_ranking .= get_the_title($c) . " ";
-
-    $i++;
-  endforeach;
-
-  array_push($total_rank, array(
-    "classement" => $list_ranking,
-  ));
-
-  return $list_ranking;
-}
-
 function get_info()
 {
   // TODAY'S DATE
   $today = date('d-m-Y');
   $todayFormatted = strtotime($today);
-  $tomorrow = date("d-m-Y", strtotime("+1 day", $todayFormatted));
+  $yesterday = date("d-m-Y", strtotime("-1 day", $todayFormatted));
 
   // COMPTE ENREGISTRE
   $args = array(
     'date_query' => array(
       array(
-        'after'     => "$today",
-        'before'    => "$tomorrow",
+        'after'     => "$yesterday",
+        'before'    => "$today",
         'inclusive' => true
       )
     )
@@ -76,8 +77,8 @@ function get_info()
     'post_type' => 'classement',
     'date_query' => array(
       array(
-        'after'     => "$today",
-        'before'    => "$tomorrow",
+        'after'     => "$yesterday",
+        'before'    => "$today",
         'inclusive' => true
       )
     )
@@ -90,8 +91,8 @@ function get_info()
     'post_type' => 'player',
     'date_query' => array(
       array(
-        'after'     => "$today",
-        'before'    => "$tomorrow",
+        'after'     => "$yesterday",
+        'before'    => "$today",
         'inclusive' => true
       )
     )
@@ -106,7 +107,7 @@ function get_info()
   endwhile;
 
   $results = array(
-    "KPI'S" => date("d-m-Y", strtotime($today)),
+    "KPI'S" => date("d-m-Y", strtotime($yesterday)),
     "Compte enregistre" => $comptes,
     "Classement publie" => $classements,
     "Player publie" => $players,

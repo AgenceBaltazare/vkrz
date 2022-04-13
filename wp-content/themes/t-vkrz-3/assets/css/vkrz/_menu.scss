@@ -137,7 +137,11 @@
   position: relative;
 
   .rechercher-input {
+    width: 100%;
+    border: none !important;
+    border-radius: .358rem;
     background: linear-gradient(to bottom right, #6F1CB5, #5E16BF) !important;
+    transition: .3s border-bottom;
 
     &:focus,
     &:valid,
@@ -165,6 +169,7 @@
 
   .go-input {
     position: absolute;
+    border: none !important;
     right: 4%;
     top: 0;
     background-color: transparent !important;
