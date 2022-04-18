@@ -21,7 +21,7 @@ if (is_single() && get_post_type() == "tournoi") {
             <div class="menu-logo d-flex align-items-center d-xl-none">
                 <div class="d-block d-sm-none">
                     <a href="<?php bloginfo('url'); ?>/">
-                        <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/logo-vkrz.png" alt="VAINKEURZ logo" class="logo img-fluid">
+                        <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/logo-vkrz-paques.png" alt="VAINKEURZ logo" class="logo img-fluid">
                     </a>
                 </div>
 
@@ -40,7 +40,7 @@ if (is_single() && get_post_type() == "tournoi") {
                 <div class="menu-logo d-flex align-items-center d-xl-none">
                     <div class="d-block d-sm-none">
                         <a href="<?php bloginfo('url'); ?>/">
-                            <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/logo-vkrz.png" alt="VAINKEURZ logo" class="logo img-fluid">
+                            <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/logo-vkrz-paques.png" alt="VAINKEURZ logo" class="logo img-fluid">
                         </a>
                     </div>
 
