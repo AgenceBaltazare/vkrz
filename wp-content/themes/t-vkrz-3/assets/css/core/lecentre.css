@@ -37,7 +37,7 @@ body {
 }
 
 .login h1 a {
-  background: url("../../images/vkrz/logo-vkrz-paques.png") no-repeat center center !important;
+  background: url("../../images/vkrz/logo-vkrz.png") no-repeat center center !important;
   background-size: contain !important;
   width: 100%;
 }
