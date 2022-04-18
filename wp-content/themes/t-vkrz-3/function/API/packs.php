@@ -25,6 +25,13 @@ function get_single_ranking($data)
   return $list_ranking;
 }
 
+function get_top_info($data)
+{
+  $id_top        = $data['id_top'];
+  $top_datas     = get_top_infos($id_top);
+  return $top_datas;
+}
+
 function add_contender_from_api()
 {
 
