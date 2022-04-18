@@ -15,6 +15,15 @@ $list_user_tops      = $user_tops['list_user_tops'];
         </h4>
       </div>
 
+      <div class="d-block d-sm-none my-2">
+        <form action="<?= the_permalink(get_page_by_path('recherche')); ?>" method="GET" class="d-flex rechercher-form" autocomplete="off">
+          <input type="search" name="term" id="term" class="form-control rechercher-input" placeholder="Rechercher..." required oninvalid="this.setCustomValidity('Son goku par exemple..')">
+          <button type="submit" name="go" class="form-control lead go-input">
+            <span class="ico ico-search va va-magnifying-glass-tilted-left va-lg"></span>
+          </button>
+        </form>
+      </div>
+
       <section class="list-tournois">
         <div class="big-cat">
           <div class="heading-cat">

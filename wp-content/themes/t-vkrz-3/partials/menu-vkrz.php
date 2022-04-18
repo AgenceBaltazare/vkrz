@@ -29,7 +29,7 @@
   <div class="main-menu-content">
     <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
       <li class="nav-item">
-        <div class="rs-menu mt-2">
+        <div class="rs-menu mt-1">
           <div class="w-100 btn-group justify-content-center share-t" role="group">
             <a data-rs-name="discord" href="https://discord.gg/E9H9e8NYp7" class="btn btn-outline-primary waves-effect sociallink" target="_blank">
               <i class="fab fa-discord"></i>
@@ -46,6 +46,18 @@
           </div>
         </div>
       </li>
+
+      <?php if (!is_page(get_page_by_path('recherche'))) : ?>
+        <li class="mx-auto" style="width: 80%;">
+          <form action="<?= the_permalink(get_page_by_path('rechercher')); ?>" method="GET" class="mt-2 d-flex rechercher-form" autocomplete="off">
+            <input type="search" name="term" id="term" class="form-control rechercher-input" placeholder="Rechercher..." required oninvalid="this.setCustomValidity('Son goku par exemple..')">
+            <button type="submit" name="go" class="form-control lead go-input">
+              <span class="ico ico-search va va-magnifying-glass-tilted-left va-lg"></span>
+            </button>
+          </form>
+        </li>
+      <?php endif; ?>
+
       <li class="navigation-header">
         <span data-i18n="">Catégories de Tops</span> <i data-feather="more-horizontal"></i>
       </li>
