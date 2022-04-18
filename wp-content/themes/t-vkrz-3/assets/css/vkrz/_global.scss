@@ -664,8 +664,10 @@ html .content {
     font-weight: bold;
 }
 
-.boxtosearch{
-    display: none;
+.single{
+    .boxtosearch{
+        display: none;
+    }
 }
 
 .expanded{
