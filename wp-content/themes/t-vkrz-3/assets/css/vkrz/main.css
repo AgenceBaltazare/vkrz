@@ -920,6 +920,15 @@ html .content {
   text-transform: none;
 }
 
+.btn-rose {
+  color: #fff !important;
+}
+
+.btn-tweet {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
 .page-template-monitor .list-vainkeur-monitor {
   line-height: 14px;
 }
