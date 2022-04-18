@@ -3,13 +3,12 @@
     Template Name: Recherche
 */
 ?>
-
 <?php
-
-if (isset($_POST['term']) && $_POST['term'] != "") {
-  $term_to_search = $_POST['term'];
+global $term_to_search;
+global $total_top_founded;
+if (isset($_GET['term']) && $_GET['term'] != "") {
+  $term_to_search = $_GET['term'];
 }
-
 $list_tops = array();
 $tops_to_find = new WP_Query(array(
   'post_type'                 => 'tournoi',
@@ -264,7 +263,15 @@ if (!empty($list_tops_unique)) {
     'ignore_sticky_posts'       => true,
     'update_post_meta_cache'    => false,
     'no_found_rows'             => true,
-    'post__in'                  => $list_tops_unique
+    'post__in'                  => $list_tops_unique,
+    'tax_query'                 => array(
+      array(
+        'taxonomy' => 'type',
+        'field'    => 'slug',
+        'terms'    => array('private', 'whitelabel', 'onboarding'),
+        'operator' => 'NOT IN'
+      ),
+    ),
   ));
 }
 
@@ -332,7 +339,15 @@ get_header();
       <div class="intro-mobile">
         <div class="tournament-heading text-center">
           <h3 class="mb-0 t-titre-tournoi">
-            <?php echo $total_top_founded; ?> résultats pour ta recherche : <?php echo $term_to_search; ?>
+            <?php
+            if ($total_top_founded == 0 || !$total_top_founded) {
+              echo "Aucun résultat trouvé pour " . $term_to_search;
+            } elseif ($total_top_founded == 1) {
+              echo "Un seul résultat trouvé pour " . $term_to_search;
+            } else {
+              echo $total_top_founded . " résultats trouvés pour " . $term_to_search;
+            }
+            ?>
           </h3>
         </div>
       </div>
@@ -340,11 +355,16 @@ get_header();
       <section id="ecommerce-header" class="mb-2 mt-2">
         <div id="ecommerce-searchbar" class="ecommerce-searchbar">
           <div class="input-group input-group-merge">
-            <form id="search_form" method="POST" autocomplete="off">
+            <form id="search_form" method="GET" autocomplete="off">
               <span class="ico ico-search ico-search-clear">❌</span>
-
-              <input type="text" class="form-control search-product" id="search_text" placeholder="Rechercher..." aria-label="Rechercher..." name="term" aria-describedby="shop-search" required oninvalid="this.setCustomValidity('Son goku par exemple..')" />
-
+              <?php
+              if ($term_to_search) {
+                $placeholder = $term_to_search;
+              } else {
+                $placeholder = "Rechercher...";
+              }
+              ?>
+              <input type="text" class="form-control search-product" id="search_text" placeholder="<?php echo $placeholder; ?>" aria-label="<?php echo $placeholder; ?>" name="term" aria-describedby="shop-search" required oninvalid="this.setCustomValidity('Son goku par exemple..')" />
               <button type="submit">
                 <span class="ico ico-search ico-search-result va va-magnifying-glass-tilted-left va-lg"></span>
               </button>
@@ -352,6 +372,12 @@ get_header();
           </div>
         </div>
       </section>
+
+      <?php if ($term_to_search == "pâques" || $term_to_search == "paques") : ?>
+        <div class="paquesresult">
+          <img src="<?php bloginfo('template_directory'); ?>/assets/images/events/easter-eggs.png" class="img-fluid" alt="">
+        </div>
+      <?php endif; ?>
 
       <?php if (!empty($list_tops_unique)) : ?>
         <section class="grid-to-filtre row match-height mt-2 tournois">
@@ -497,86 +523,109 @@ get_header();
           <?php $i++;
           endwhile; ?>
         </section>
+
+      <?php else : ?>
+
+        <?php if ($term_to_search != "pâques" && $term_to_search != "paques") : ?>
+          <div class="noresult">
+            <h2>
+              <span class="ico va va-woozy-face va-lg"></span> Aucun résultat pour ta recherche
+            </h2>
+          </div>
+        <?php endif; ?>
+
       <?php endif; ?>
 
       <?php if ($searching_for_a_vainkeur) : ?>
         <?php
-
         $user_id = $vainkeur_final_id;
         $user_infos = deal_vainkeur_entry($user_id);
         $avatar             = $user_infos['avatar'];
         $info_user_level    = get_user_level($user_id);
-
         ?>
-        <div class="table-responsive">
-          <table class="table table-vainkeurz">
-            <thead>
-              <tr>
-                <th>
-                  <span class="va va-llama va-lg"></span> <small class="text-muted">Vainkeur</small>
-                </th>
-                <th class="text-right">
-                  <small class="text-muted">KEURZ</small>
-                </th>
-                <th class="text-right">
-                  <small class="text-muted">Votes effectués</small>
-                </th>
-                <th class="text-right">
-                  <small class="text-muted">Top terminés</small>
-                </th>
-                <th class="text-right">
-                  <small class="text-muted">Guetter ses Tops</small>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <div class="avatar">
-                      <span class="avatar-picture" style="background-image: url(<?php echo $avatar; ?>);"></span>
-                      <?php if ($info_user_level) : ?>
-                        <span class="user-niveau">
-                          <?php echo $info_user_level['level_ico']; ?>
-                        </span>
-                      <?php endif; ?>
-                    </div>
-                    <div class="font-weight-bold championname">
-                      <span>
-                        <?php echo get_the_author_meta('nickname', $user_id); ?>
-                      </span>
-                      <?php if ($user_infos['user_role'] == "administrator") : ?>
-                        <span class="ico va va-vkrzteam va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
-                        </span>
-                      <?php endif; ?>
-                      <?php if ($user_infos['user_role'] == "administrator" || $user_infos['user_role'] == "author") : ?>
-                        <span class="ico va va-man-singer va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
-                        </span>
-                      <?php endif; ?>
+        <div class="classement mt-3">
+          <section id="profile-info">
+            <div id="table-bordered">
+              <div class="card">
+                <div class="table-responsive">
+                  <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <table class="table table-vainkeurz dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+                          <thead>
+                            <tr>
+                              <th>
+                                <span class="va va-llama va-lg"></span> <small class="text-muted">Vainkeur</small>
+                              </th>
+                              <th class="text-right">
+                                <small class="text-muted">KEURZ</small>
+                              </th>
+                              <th class="text-right">
+                                <small class="text-muted">Votes effectués</small>
+                              </th>
+                              <th class="text-right">
+                                <small class="text-muted">Top terminés</small>
+                              </th>
+                              <th class="text-right">
+                                <small class="text-muted">Guetter ses Tops</small>
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>
+                                <div class="d-flex align-items-center">
+                                  <div class="avatar">
+                                    <span class="avatar-picture" style="background-image: url(<?php echo $avatar; ?>);"></span>
+                                    <?php if ($info_user_level) : ?>
+                                      <span class="user-niveau">
+                                        <?php echo $info_user_level['level_ico']; ?>
+                                      </span>
+                                    <?php endif; ?>
+                                  </div>
+                                  <div class="font-weight-bold championname">
+                                    <span>
+                                      <?php echo get_the_author_meta('nickname', $user_id); ?>
+                                    </span>
+                                    <?php if ($user_infos['user_role'] == "administrator") : ?>
+                                      <span class="ico va va-vkrzteam va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
+                                      </span>
+                                    <?php endif; ?>
+                                    <?php if ($user_infos['user_role'] == "administrator" || $user_infos['user_role'] == "author") : ?>
+                                      <span class="ico va va-man-singer va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
+                                      </span>
+                                    <?php endif; ?>
+                                  </div>
+                                </div>
+                              </td>
+
+                              <td class="text-right">
+                                <?php echo $money; ?> <span class="ico va-gem va va-lg"></span>
+                              </td>
+
+                              <td class="text-right">
+                                <?php echo $total_vote; ?> <span class="ico va-high-voltage va va-lg"></span>
+                              </td>
+
+                              <td class="text-right">
+                                <?php echo $total_top; ?> <span class="ico va va-trophy va-lg"></span>
+                              </td>
+
+                              <td class="text-right">
+                                <a href="<?php echo esc_url(get_author_posts_url($user_id)); ?>" class="mr-1 btn btn-outline-primary waves-effect">
+                                  <span class="va va-eyes va-lg"></span>
+                                </a>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
                     </div>
                   </div>
-                </td>
-
-                <td class="text-right">
-                  <?php echo $money; ?> <span class="ico va-gem va va-lg"></span>
-                </td>
-
-                <td class="text-right">
-                  <?php echo $total_vote; ?> <span class="ico va-high-voltage va va-lg"></span>
-                </td>
-
-                <td class="text-right">
-                  <?php echo $total_top; ?> <span class="ico va va-trophy va-lg"></span>
-                </td>
-
-                <td class="text-right">
-                  <a href="<?php echo esc_url(get_author_posts_url($user_id)); ?>" class="mr-1 btn btn-outline-primary waves-effect">
-                    <span class="va va-eyes va-lg"></span>
-                  </a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                </div>
+              </div>
+            </div>
+          </section>
         </div>
       <?php endif; ?>
     </div>

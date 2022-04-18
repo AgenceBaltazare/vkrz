@@ -8,6 +8,16 @@
   margin: 20px 0 5px;
 }
 
+@-webkit-keyframes rotating
+
+/* Safari and Chrome */ {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 @keyframes rotating {
   from {
     transform: rotate(0deg);
@@ -16,12 +26,10 @@
     transform: rotate(360deg);
   }
 }
-
 .btn-rose {
   background: #f4167f !important;
   border-color: #f4167f !important;
 }
-
 .btn-rose:hover {
   background: #f4167f !important;
   border-color: #f4167f !important;
@@ -47,33 +55,29 @@
   text-align: center;
   padding: 70px;
 }
-
 .auth-wrapper .auth-inner {
   max-width: 550px;
   margin: 0 auto;
 }
-
 .auth-wrapper .auth-inner .card-title {
   width: 100%;
 }
-
 .auth-wrapper .auth-inner .form-submit,
 .auth-wrapper .auth-inner .login-submit {
   text-align: center;
 }
-
 .auth-wrapper .auth-inner .form-submit input,
 .auth-wrapper .auth-inner .login-submit input {
   margin: 0 auto !important;
 }
-
 .auth-wrapper .divider {
   margin: 20px auto !important;
 }
 
 .auth-register-form h3 {
   color: #7367f0;
-  text-align-last: left;
+  -moz-text-align-last: left;
+       text-align-last: left;
   text-transform: uppercase;
   font-size: 16px;
   font-weight: normal;
@@ -81,5 +85,4 @@
 
 #oa_social_link {
   display: none !important;
-}
-/*# sourceMappingURL=login.css.map */
+}/*# sourceMappingURL=login.css.map */
