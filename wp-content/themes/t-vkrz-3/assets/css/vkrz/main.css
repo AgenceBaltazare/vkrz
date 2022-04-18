@@ -929,6 +929,14 @@ html .content {
   font-weight: bold;
 }
 
+.boxtosearch {
+  display: none;
+}
+
+.expanded .boxtosearch {
+  display: block;
+}
+
 .page-template-monitor .list-vainkeur-monitor {
   line-height: 14px;
 }

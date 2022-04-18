@@ -5,7 +5,7 @@
       <li class="nav-item mr-auto">
         <a class="navbar-brand" href="<?php bloginfo('url'); ?>/">
           <h2 class="brand-text">
-            <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/logo-vkrz.png" alt="VAINKEURZ logo" class="img-fluid">
+            <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/logo-vkrz-paques.png" alt="VAINKEURZ logo" class="img-fluid">
           </h2>
           <div class="badge-beta">
             <span class="badge">
@@ -48,7 +48,7 @@
       </li>
 
       <?php if (!is_page(get_page_by_path('recherche'))) : ?>
-        <li class="mx-auto" style="width: 80%;">
+        <li class="mx-auto boxtosearch" style="width: 80%;">
           <form action="<?= the_permalink(get_page_by_path('rechercher')); ?>" method="GET" class="mt-2 d-flex rechercher-form" autocomplete="off">
             <input type="search" name="term" id="term" class="form-control rechercher-input" placeholder="Rechercher..." required oninvalid="this.setCustomValidity('Son goku par exemple..')">
             <button type="submit" name="go" class="form-control lead go-input">

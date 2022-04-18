@@ -663,3 +663,13 @@ html .content {
     text-transform: uppercase;
     font-weight: bold;
 }
+
+.boxtosearch{
+    display: none;
+}
+
+.expanded{
+    .boxtosearch{
+        display: block;
+    }   
+}
