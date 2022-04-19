@@ -59,18 +59,35 @@ function add_contender_from_api()
   }
 }
 
-function get_info()
+function get_stats($data)
 {
+  $date = $data['date'];
+
   // TODAY'S DATE
   $today = date('d-m-Y');
   $todayFormatted = strtotime($today);
-  $yesterday = date("d-m-Y", strtotime("-1 day", $todayFormatted));
+  global $whereTo, $quand;
+
+  switch ($date) {
+    case 'journalier':
+      $whereTo = date("d-m-Y", strtotime("-1 day", $todayFormatted));
+      $quand = 'Hier';
+      break;
+    case 'hebdo':
+      $whereTo = date("d-m-Y", strtotime("-1 week", $todayFormatted));
+      $quand = 'Une semaine avant';
+      break;
+    case 'mensu':
+      $whereTo = date("d-m-Y", strtotime("-1 month", $todayFormatted));
+      $quand = 'Un mois avant';
+      break;
+  }
 
   // COMPTE ENREGISTRE
   $args = array(
     'date_query' => array(
       array(
-        'after'     => "$yesterday",
+        'after'     => "$whereTo",
         'before'    => "$today",
         'inclusive' => true
       )
@@ -84,7 +101,7 @@ function get_info()
     'post_type' => 'classement',
     'date_query' => array(
       array(
-        'after'     => "$yesterday",
+        'after'     => "$whereTo",
         'before'    => "$today",
         'inclusive' => true
       )
@@ -98,7 +115,7 @@ function get_info()
     'post_type' => 'player',
     'date_query' => array(
       array(
-        'after'     => "$yesterday",
+        'after'     => "$whereTo",
         'before'    => "$today",
         'inclusive' => true
       )
@@ -114,7 +131,8 @@ function get_info()
   endwhile;
 
   $results = array(
-    "KPI'S" => date("d-m-Y", strtotime($yesterday)),
+    "Aujourd'hui" => date("d-m-Y", strtotime($today)),
+    "$quand" => date("d-m-Y", strtotime($whereTo)),
     "Compte enregistre" => $comptes,
     "Classement publie" => $classements,
     "Player publie" => $players,
