@@ -3,9 +3,13 @@
 
 add_action('rest_api_init', function () {
 
-  register_rest_route('vkrz/v1', '/info', array(
+  // GET STATS
+  register_rest_route('vkrz/v1', '/stats/(?P<date>\w+)', array(
     'methods' => 'GET',
-    'callback' => 'get_info'
+    'callback' => 'get_stats',
+    'args' => [
+      'date'
+    ]
   ));
 
   // List of contenders into a ranking
@@ -31,5 +35,4 @@ add_action('rest_api_init', function () {
       'id_top'
     ]
   ));
-
 });
