@@ -110,6 +110,12 @@ function get_stats($data)
   $query2 = new WP_Query($args2);
   $classements = $query2->found_posts;
 
+  // CLASSEMENT NB VOTES
+  $nb_classement_votes = 0;
+  while ($query2->have_posts()) : $query2->the_post();
+    $nb_classement_votes =  $nb_classement_votes + get_field('nb_votes_r');
+  endwhile;
+
   // PLAYER PUBLIE
   $args3 = array(
     'post_type' => 'player',
@@ -123,12 +129,6 @@ function get_stats($data)
   );
   $query3 = new WP_Query($args3);
   $players = $query3->found_posts;
-
-  // CLASSEMENT NB VOTES
-  $nb_classement_votes = 0;
-  while ($query2->have_posts()) : $query2->the_post();
-    $nb_classement_votes =  $nb_classement_votes + get_field('nb_votes_r');
-  endwhile;
 
   $results = array(
     "Aujourd'hui" => date("d-m-Y", strtotime($today)),
