@@ -21,7 +21,7 @@ if (is_single() && get_post_type() == "tournoi") {
             <div class="menu-logo d-flex align-items-center d-xl-none">
                 <div class="d-block d-sm-none">
                     <a href="<?php bloginfo('url'); ?>/">
-                        <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/logo-vkrz-paques.png" alt="VAINKEURZ logo" class="logo img-fluid">
+                        <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/logo-vkrz.png" alt="VAINKEURZ logo" class="logo img-fluid">
                     </a>
                 </div>
 
@@ -40,7 +40,7 @@ if (is_single() && get_post_type() == "tournoi") {
                 <div class="menu-logo d-flex align-items-center d-xl-none">
                     <div class="d-block d-sm-none">
                         <a href="<?php bloginfo('url'); ?>/">
-                            <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/logo-vkrz-paques.png" alt="VAINKEURZ logo" class="logo img-fluid">
+                            <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/logo-vkrz.png" alt="VAINKEURZ logo" class="logo img-fluid">
                         </a>
                     </div>
 
@@ -259,13 +259,6 @@ if (is_single() && get_post_type() == "tournoi") {
                 <div class="tournament-heading text-center">
                     <h3 class="mb-0 t-titre-tournoi"><span class="ico va va-wrapped-gift va-lg"></span> Tops sponso</h3>
                     <h4 class="mb-0">Plein de choses à gagner par ici</h4>
-                </div>
-
-            <?php elseif (is_page(get_page_by_path('paris-manga-2022'))) : ?>
-
-                <div class="tournament-heading text-center">
-                    <h3 class="mb-0 t-titre-tournoi"><span class="ico va va-wrapped-gift va-lg"></span> TOPS Paris Manga 2022</h3>
-                    <h4 class="mb-0">Plein de choses à gagner par ici 🤗</h4>
                 </div>
 
             <?php elseif (is_page(get_page_by_path('tous-les-sujets'))) : ?>
