@@ -53,7 +53,7 @@ $top_datas    = get_top_data($id_top_global);
                       </div>
                     </div>
                   </div>
-                  <a href="<?php the_permalink(get_page_by_path('get-connected')); ?>?redirect=<?php the_permalink($id_ranking); ?>/" class="w-100 btn btn-rose waves-effect p-1">
+                  <a href="<?php the_permalink(get_page_by_path('connexion')); ?>?redirect=<?php the_permalink($id_ranking); ?>/" class="w-100 btn btn-rose waves-effect p-1">
                     <p class="h4 text-white m-0">
                       S'INSCRIRE (ou se connecter)
                     </p>
@@ -104,6 +104,10 @@ $top_datas    = get_top_data($id_top_global);
                           </a>
                           <a href="<?php the_field('lien_du_tweet_t_sponso', $id_top_global); ?>" target="_blank" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light">
                             Post Twitter
+                          </a>
+                        <?php elseif (get_field('type_de_fin_t_sponso', $id_top_global) == "twitter_2") : ?>
+                          <a href="https://twitter.com/intent/tweet?hashtags=<?php the_field('hashtags_du_tweet_twitter_2', $id_top_global); ?>&original_referer=<?php echo $url_ranking; ?>&ref_src=&text=<?php the_field('message_du_tweet_twitter_2', $id_top_global); ?>&url=<?php echo $url_ranking; ?>&via=Vainkeurz" class="animate__jello animate__animated animate__delay-1s btn btn-max btn-tweet btn-rose waves-effect waves-float waves-light" target="_blank">
+                            <?php the_field('message_du_bouton_tweet_twitter2', $id_top_global); ?>
                           </a>
                         <?php endif; ?>
                       </div>
@@ -471,9 +475,9 @@ $top_datas    = get_top_data($id_top_global);
             <span class="ico va va-speech-balloon va-lg hide-xs"></span> <span class="hide-spot">Commenter</span>
           </a>
         </div>
-
         <?php if (get_post_status($id_top_global) != "draft") : ?>
-          <?php if (get_field('uuid_user_r', $id_ranking) == $uuiduser) : ?>
+          <?php if (get_field('uuid_user_r', $id_ranking) == $uuiduser || isset($_GET['message'])) :
+          ?>
             <div class="ico-nav-mobile">
               <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" href="#" class="confirm_delete">
                 <span class="ico hide-xs">🆕</span> <span class="hide-spot">Recommencer</span>

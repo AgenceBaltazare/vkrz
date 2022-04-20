@@ -1,7 +1,7 @@
 <?php
 /*
-        Template Name: Data - Top
-    */
+    Template Name: Data - Top
+*/
 global $uuiduser;
 if (isset($_GET['id_top']) && !empty($_GET['id_top'])) {
     $id_top = $_GET['id_top'];

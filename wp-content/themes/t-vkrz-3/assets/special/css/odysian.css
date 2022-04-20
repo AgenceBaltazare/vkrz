@@ -175,8 +175,8 @@ html .icons-navbar {
 }
 html .title-contender,
 html .name h5 {
-  background: #125079;
-  background: radial-gradient(circle, #125079 0%, #1873af 100%);
+  background: rgb(18, 80, 121);
+  background: radial-gradient(circle, rgb(18, 80, 121) 0%, rgb(24, 115, 175) 100%);
   color: #fff;
   text-transform: uppercase;
   font-size: 13px;

@@ -26,7 +26,7 @@ class Repeater extends Field {
 	public function get_row_count( $id ) {
 		$value = $this->get_raw_value( $id );
 
-		if ( ! $value || empty( $value ) ) {
+		if ( empty( $value ) ) {
 			return 0;
 		}
 

@@ -6,7 +6,7 @@ global $user_id;
 global $user_infos;
 get_header();
 ?>
-<div class="app-content content evolution">
+<div class="app-content content evolution result-paris-manga">
     <div class="content-wrapper">
         <div class="content-body">
             <section id="pricing-plan">

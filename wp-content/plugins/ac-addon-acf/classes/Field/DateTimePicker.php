@@ -17,7 +17,7 @@ class DateTimePicker extends Field {
 	}
 
 	public function search() {
-		return new Search\DateTimePicker( $this->get_meta_key(), $this->get_meta_type() );
+		return new ACP\Search\Comparison\Meta\DateTime\ISO( $this->get_meta_key(), $this->get_meta_type() );
 	}
 
 	public function filtering() {

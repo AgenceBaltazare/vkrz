@@ -1,14 +1,16 @@
-.filters-btn{
-  .btn{
+.filters-btn {
+  .btn {
     margin: 0 0 5px;
   }
-  .active_filtre{
+
+  .active_filtre {
     background: #7367f0 !important;
     border: 1px solid #7367f0;
     color: #fff !important;
   }
 }
-.max-item{
+
+.max-item {
   .min-tournoi .cov-illu {
     min-height: 240px;
     border-radius: 5px 5px 0 0;
@@ -24,24 +26,25 @@
   text-transform: uppercase;
 }
 
-.grid-to-filtre{
+.grid-to-filtre {
   padding: 0;
   margin: 0;
   margin-top: 0.85rem;
 }
 
-.spoun{
-  .ico{
+.spoun {
+  .ico {
     font-size: 20px;
   }
 }
 
-.result-toggler{
-  button{
-    i{
+.result-toggler {
+  button {
+    i {
       font-size: 20px;
     }
-    span{
+
+    span {
       color: #fff;
       font-size: 12px;
       margin-left: 10px;
@@ -49,41 +52,64 @@
   }
 }
 
-.grid-to-filtre{
+.grid-to-filtre {
   margin-left: -1rem;
   margin-right: -1rem;
 }
 
-.filtres-bloc{
+.filtres-bloc {
   display: none;
-  .ui-group{
+
+  .ui-group {
     margin-right: 20px;
   }
 }
-.ecommerce-searchbar{
+
+.ecommerce-searchbar {
   .input-group .input-group-text {
     background-color: transparent;
     border: none;
     color: #fff;
   }
 }
-.show{
+
+.show {
   display: block !important;
 }
 
-#search_form{
-  width: 400px;
+#search_form {
+  width: 500px;
   max-width: 100%;
   position: relative;
-  .ico-search{
+
+  .ico-search {
     position: absolute;
     right: 10px;
     top: 50%;
     margin-top: -10px;
   }
-  input{
+
+  button {
+    padding: 0 !important;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    margin-top: -10px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+
+    span {
+      right: 0 !important;
+      top: 50% !important;
+      margin-top: 0 !important;
+    }
+  }
+
+  input {
     width: 100%;
-    background-color: rgba(115, 103, 240, 0.2);
+    background: #6F1CB5;
+    background: linear-gradient(to bottom right, #6F1CB5, #5E16BF) !important;
     color: #fff;
     border: none !important;
     padding: 0 15px;
@@ -91,8 +117,9 @@
     line-height: 1;
     height: 45px;
     border-radius: .358rem;
-    &::placeholder{
-      color: #7367f0 !important;
+
+    &::placeholder {
+      color: #CEBBE4 !important;
       font-size: 1rem;
       line-height: 1;
       text-transform: uppercase;
@@ -103,31 +130,37 @@
     }
   }
 }
-#ecommerce-header{
+
+#ecommerce-header {
   display: flex;
   align-items: center;
   justify-content: flex-start;
 }
-.result-toggler{
+
+.result-toggler {
   margin-right: 30px;
-  a{
+
+  a {
     height: 45px;
     text-transform: uppercase;
     font-weight: bold;
     letter-spacing: 1px;
     display: flex;
     align-items: center;
-    background-color: rgba(115, 103, 240, 0.2);
-    color: #7367f0;
+    background: #6F1CB5;
+    background: linear-gradient(to bottom right, #6F1CB5, #5E16BF) !important;
+    color: #CEBBE4 !important;
     border: none !important;
     padding: 0 20px;
-    span{
+
+    span {
       display: block;
       margin-right: 10px;
     }
   }
 }
-.ico-search-clear{
+
+.ico-search-clear {
   display: none;
   cursor: pointer;
 }

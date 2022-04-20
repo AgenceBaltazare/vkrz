@@ -1,6 +1,8 @@
 <?php
 global $user_infos;
 global $cat_name;
+global $term_to_search;
+global $total_top_founded;
 if (is_single() && get_post_type() == "tournoi") {
   global $top_infos;
   global $id_top;
@@ -19,7 +21,7 @@ if (is_single() && get_post_type() == "tournoi") {
       <div class="menu-logo d-flex align-items-center d-xl-none">
         <div class="d-block d-sm-none">
           <a href="<?php bloginfo('url'); ?>/">
-            <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/logo-vkrz.png" alt="VAINKEURZ logo" class="logo img-fluid">
+            <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/logo-vkrz-paques.png" alt="VAINKEURZ logo" class="logo img-fluid">
           </a>
         </div>
 
@@ -38,7 +40,7 @@ if (is_single() && get_post_type() == "tournoi") {
         <div class="menu-logo d-flex align-items-center d-xl-none">
           <div class="d-block d-sm-none">
             <a href="<?php bloginfo('url'); ?>/">
-              <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/logo-vkrz.png" alt="VAINKEURZ logo" class="logo img-fluid">
+              <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/logo-vkrz-paques.png" alt="VAINKEURZ logo" class="logo img-fluid">
             </a>
           </div>
 
@@ -232,6 +234,23 @@ if (is_single() && get_post_type() == "tournoi") {
         <div class="tournament-heading text-center">
           <h3 class="mb-0 t-titre-tournoi"><?php the_field('icone_cat', 'term_' . $cat_id); ?> <?php echo $cat_name; ?></h3>
           <h4 class="mb-0"><?php echo $current_cat->description; ?></h4>
+        </div>
+
+      <?php elseif (is_page(get_page_by_path('recherche'))) : ?>
+
+        <div class="tournament-heading text-center">
+          <h3 class="mb-0 t-titre-tournoi"><span class="text-muted">Recherche</span> <span class="ico va va-magnifying-glass-tilted-left va-lg"></span> <span class="text-uppercase"><?php echo $term_to_search; ?></span></h3>
+          <h4 class="mb-0">
+            <?php
+            if ($total_top_founded == 0 || !$total_top_founded) {
+              echo "Aucun résultat trouvé";
+            } elseif ($total_top_founded == 1) {
+              echo "Un seul résultat trouvé";
+            } else {
+              echo $total_top_founded . " résultats trouvés";
+            }
+            ?>
+          </h4>
         </div>
 
       <?php elseif (is_page(get_page_by_path('tops-sponso'))) : ?>

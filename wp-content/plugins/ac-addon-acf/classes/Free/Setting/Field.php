@@ -22,11 +22,11 @@ abstract class Field extends Setting\Field {
 			$group = $this->get_acf_group_by_id( $group_id );
 
 			foreach ( $fields as $field ) {
-				if ( in_array( $field['type'], [ 'tab' ] ) ) {
+				if ( 'tab' === $field['type'] ) {
 					continue;
 				}
 
-				$options[ $field['key'] ] = $field['label'] ? $field['label'] : __( 'empty label', 'codepress-admin-columns' );
+				$options[ $field['key'] ] = $field['label'] ?: __( 'empty label', 'codepress-admin-columns' );
 			}
 
 			if ( ! empty( $options ) ) {

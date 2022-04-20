@@ -654,3 +654,24 @@ html .content {
 .seevideocreator{
     text-transform: none;
 }
+
+.btn-rose{
+    color: #fff !important;
+}
+
+.btn-tweet{
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.single{
+    .boxtosearch{
+        display: none;
+    }
+}
+
+.expanded{
+    .boxtosearch{
+        display: block;
+    }   
+}
