@@ -57,17 +57,43 @@
     max-width: 100%;
   }
 
-  .sign-in,
-  .sign-up {
+  .go-logIn {
+    margin: 1rem auto .6rem;
+    width: 100%;
+    padding: 1rem;
+    background-color: #36096d;
+    color: #FFF;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    border-radius: 6px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+    transition: .4s;
+    display: none;
+
+    &:hover {
+      color: #FFF !important;
+      transform: scale(0.96);
+    }
+
+    span {
+      margin-left: 3px;
+      width: 1.1em !important;
+      height: 1.1em !important;
+    }
+
+    @media (max-width: 768px) {
+      display: inline-block;
+    }
+  }
+
+  .sign-up,
+  .sign-in {
     padding: 1.5rem;
     border-radius: 12px;
     transform: scale(0.98);
     transition: all .6s;
-  }
-
-  .sign-in {
-    background: rgb(18, 11, 43);
-    background: linear-gradient(306deg, rgba(18, 11, 43, 1) 0%, rgba(41, 17, 70, 0.5) 100%);
   }
 
   .sign-up {
@@ -75,12 +101,17 @@
     background: linear-gradient(135deg, rgba(18, 11, 43, 1) 0%, rgba(41, 17, 70, 1) 150%);
   }
 
-  .sign-in:hover,
-  .sign-up:hover {
+  .sign-in {
+    background: rgb(18, 11, 43);
+    background: linear-gradient(306deg, rgba(18, 11, 43, 1) 0%, rgba(41, 17, 70, 0.5) 100%);
+  }
+
+  .sign-up:hover,
+  .sign-in:hover {
     transform: scale(1.02);
   }
 
-  .col-lg-6:nth-of-type(1):hover+.col-lg-6:nth-of-type(2) .sign-up {
+  .col-lg-6:nth-of-type(1):hover+.col-lg-6:nth-of-type(2) .sign-in {
     opacity: 0.3;
   }
 

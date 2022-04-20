@@ -236,7 +236,7 @@ if (is_single() && get_post_type() == "tournoi") {
           <h4 class="mb-0"><?php echo $current_cat->description; ?></h4>
         </div>
 
-      <?php elseif (is_page(get_page_by_path('recherche'))) : ?>
+      <?php elseif (is_page(get_page_by_path('rechercher'))) : ?>
 
         <div class="tournament-heading text-center">
           <h3 class="mb-0 t-titre-tournoi"><span class="text-muted">Recherche</span> <span class="ico va va-magnifying-glass-tilted-left va-lg"></span> <span class="text-uppercase"><?php echo $term_to_search; ?></span></h3>

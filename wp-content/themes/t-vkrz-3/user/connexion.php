@@ -19,10 +19,16 @@ if (is_user_logged_in()) {
   <div class="app-content content get-connected">
     <div class="content-wrapper">
       <div class="content-body">
+
+        <a href="#logIn" class="go-logIn">
+          Cliquer pour Se Connecter
+          <span class="ico va va-down-arrow va-1x"></span>
+        </a>
+
         <div class="auth-wrapper auth-v2">
           <div class="auth-inner row justify-content-between mt-1">
-            <div class="col-lg-6">
-              <div class="sign-in">
+            <div class="col-lg-6 px-0 px-md-1">
+              <div class="sign-up">
                 <div class="d-flex align-items-center justify-content-center">
                   <h2 class="card-title text-center font-weight-bold mb-1">
                     Créer ton compte <br>
@@ -51,10 +57,10 @@ if (is_user_logged_in()) {
               </div>
             </div>
 
-            <div class="col-lg-6 mt-3 mt-lg-0">
-              <div class="sign-up" onmouseover="document.querySelector('.sign-in').classList.add('shade')" onmouseout="document.querySelector('.sign-in').classList.remove('shade')">
+            <div class="col-lg-6 mt-3 mt-lg-0 px-0 px-md-1">
+              <div class="sign-in" onmouseover="document.querySelector('.sign-up').classList.add('shade')" onmouseout="document.querySelector('.sign-up').classList.remove('shade')">
                 <div class="d-flex align-items-center flex-column">
-                  <h2 class="card-title font-weight-bold mb-1 text-uppercase">
+                  <h2 class="card-title font-weight-bold mb-1 text-uppercase" id="logIn">
                     Se connecter <span class="ico va va-vulcan-salute va-1x"></span>
                   </h2>
                 </div>
