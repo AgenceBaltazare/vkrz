@@ -327,7 +327,11 @@ foreach ($contender_list as $contender) {
                                                 ?>
                                                     <div class="cov-illu" style="background: url(<?php echo $illu; ?>) center center no-repeat"></div>
                                                 <?php else : ?>
-                                                    <img src="<?php echo $illu; ?>" class="img-fluid" />
+                                                    <?php if (get_field('visuel_instagram_contender', $contender["id"])) : ?>
+                                                        <img src="<?php the_field('visuel_instagram_contender', $contender["id"]); ?>" alt="" class="img-fluid">
+                                                    <?php else : ?>
+                                                        <img src="<?php echo $illu; ?>" class="img-fluid" />
+                                                    <?php endif; ?>
                                                 <?php endif; ?>
                                             </div>
                                             <div class="name eh2">
@@ -372,7 +376,11 @@ foreach ($contender_list as $contender) {
                                                 ?>
                                                     <div class="cov-illu" style="background: url(<?php echo $illu; ?>) center center no-repeat"></div>
                                                 <?php else : ?>
-                                                    <img src="<?php echo $illu; ?>" class="img-fluid" />
+                                                    <?php if (get_field('visuel_instagram_contender', $contender["id"])) : ?>
+                                                        <img src="<?php the_field('visuel_instagram_contender', $contender["id"]); ?>" alt="" class="img-fluid">
+                                                    <?php else : ?>
+                                                        <img src="<?php echo $illu; ?>" class="img-fluid" />
+                                                    <?php endif; ?>
                                                 <?php endif; ?>
                                             </div>
                                             <div class="name eh2">

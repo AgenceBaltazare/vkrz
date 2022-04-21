@@ -4887,7 +4887,7 @@ msgid "Please check that you entered the correct email address."
 msgstr ""
 
 #: front-end/recover.php:310
-msgid "Check your email for the confirmation link."
+msgid "Vérifiez votre email pour le mail de confirmation."
 msgstr ""
 
 #: front-end/recover.php:324

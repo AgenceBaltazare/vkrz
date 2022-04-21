@@ -1206,7 +1206,7 @@
 <?php __("Please check that you entered the correct username.", "profile-builder"); ?>
 <?php __("The email address entered wasn't found in the database!", "profile-builder"); ?>
 <?php __("Please check that you entered the correct email address.", "profile-builder"); ?>
-<?php __("Check your email for the confirmation link.", "profile-builder"); ?>
+<?php __("Vérifiez votre email pour le mail de confirmation.", "profile-builder"); ?>
 <?php __("There was an error while trying to send the activation link to %1$s!", "profile-builder"); ?>
 <?php __("ERROR:", "profile-builder"); ?>
 <?php __("Invalid activation key!", "profile-builder"); ?>
