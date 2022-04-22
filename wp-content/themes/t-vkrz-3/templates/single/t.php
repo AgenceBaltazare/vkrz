@@ -61,8 +61,13 @@ $creator_data       = get_user_infos($creator_uuiduser);
                         'compare' => '=',
                       )
                     )
-                  )); ?>
-                  <?php while ($contenders_t->have_posts()) : $contenders_t->the_post(); ?>
+                  ));
+                  $userAgent = strtolower($_SERVER["HTTP_USER_AGENT"]);
+                  $isMobile = is_numeric(strpos($userAgent, "mobile"));
+                  $counter = $max = 0;
+                  $isMobile ? $max = 20 : $max = 50;
+                  ?>
+                  <?php while ($contenders_t->have_posts() && ($counter <= $max)) : $contenders_t->the_post(); ?>
                     <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="top" data-original-title="<?php echo get_the_title(get_the_id()); ?>" class="avatar pull-up">
                       <?php if (get_field('visuel_instagram_contender', get_the_id())) : ?>
                         <img src="<?php the_field('visuel_instagram_contender', get_the_id()); ?>" alt="<?php echo get_the_title(get_the_id()); ?>" height="32" width="32">
@@ -71,7 +76,8 @@ $creator_data       = get_user_infos($creator_uuiduser);
                         <img src="<?php echo $illu; ?>" alt="<?php echo get_the_title(get_the_id()); ?>" height="32" width="32">
                       <?php endif; ?>
                     </div>
-                  <?php endwhile; ?>
+                  <?php $counter++;
+                  endwhile; ?>
                 </div>
               </div>
               <div class="card-body">

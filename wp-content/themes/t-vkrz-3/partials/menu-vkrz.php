@@ -47,7 +47,7 @@
         </div>
       </li>
 
-      <?php if (!is_page(get_page_by_path('recherche'))) : ?>
+      <?php if (!is_page(get_page_by_path('rechercher'))) : ?>
         <li class="mx-auto boxtosearch" style="width: 80%;">
           <form action="<?= the_permalink(get_page_by_path('rechercher')); ?>" method="GET" class="mt-2 d-flex rechercher-form" autocomplete="off">
             <input type="search" name="term" id="term" class="form-control rechercher-input" placeholder="Rechercher..." required oninvalid="this.setCustomValidity('Son goku par exemple..')">

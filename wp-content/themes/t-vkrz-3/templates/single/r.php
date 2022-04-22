@@ -143,6 +143,18 @@ if ($get_top_type) {
 
                           <div class="separate mt-1 mb-2 d-block d-sm-none"></div>
 
+                          <?php if (get_post_status($id_top_global) != "draft") : ?>
+                            <?php if (get_field('uuid_user_r', $id_ranking) !== $uuiduser) : ?>
+                              <div class="card mt-2">
+                                <a href="<?php echo $top_infos['top_url']; ?>" class="w-100 btn btn-rose waves-effect p-1">
+                                  <p class="h4 text-white m-0">
+                                    Faire mon classement
+                                  </p>
+                                </a>
+                              </div>
+                            <?php endif; ?>
+                          <?php endif; ?>
+
                           <div class="card">
                             <div class="card-body">
                               <h2 class="stats-mondiales mb-0">
@@ -369,12 +381,6 @@ if ($get_top_type) {
                 <div class="ico-nav-mobile">
                   <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" href="#" class="confirm_delete">
                     <span class="ico hide-xs">🆕</span> <span class="hide-spot">Recommencer</span>
-                  </a>
-                </div>
-              <?php else : ?>
-                <div class="ico-nav-mobile">
-                  <a href="<?php echo $top_infos['top_url']; ?>">
-                    <span class="hide-spot">Faire mon Top</span>
                   </a>
                 </div>
               <?php endif; ?>
