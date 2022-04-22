@@ -47,7 +47,7 @@
         </div>
       </li>
 
-      <?php if (!is_page(get_page_by_path('recherche'))) : ?>
+      <?php if (!is_page(get_page_by_path('rechercher'))) : ?>
         <li class="mx-auto boxtosearch" style="width: 80%;">
           <form action="<?= the_permalink(get_page_by_path('rechercher')); ?>" method="GET" class="mt-2 d-flex rechercher-form" autocomplete="off">
             <input type="search" name="term" id="term" class="form-control rechercher-input" placeholder="Rechercher..." required oninvalid="this.setCustomValidity('Son goku par exemple..')">
@@ -238,6 +238,16 @@
           </span>
           <span class="menu-title text-truncate">
             A propos
+          </span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="d-flex align-items-center" href="<?php the_permalink(get_page_by_path('blog')); ?>">
+          <span class="ico">
+            <span class="va va-blog va-lg"></span>
+          </span>
+          <span class="menu-title text-truncate">
+            Blog
           </span>
         </a>
       </li>
