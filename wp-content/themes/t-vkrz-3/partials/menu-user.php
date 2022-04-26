@@ -260,13 +260,6 @@ if (is_single() && get_post_type() == "tournoi") {
           <h4 class="mb-0">Plein de choses à gagner par ici</h4>
         </div>
 
-      <?php elseif (is_page(get_page_by_path('paris-manga-2022'))) : ?>
-
-        <div class="tournament-heading text-center">
-          <h3 class="mb-0 t-titre-tournoi"><span class="ico va va-wrapped-gift va-lg"></span> TOPS Paris Manga 2022</h3>
-          <h4 class="mb-0">Plein de choses à gagner par ici 🤗</h4>
-        </div>
-
       <?php elseif (is_page(get_page_by_path('tous-les-sujets'))) : ?>
 
         <div class="tournament-heading text-center">
