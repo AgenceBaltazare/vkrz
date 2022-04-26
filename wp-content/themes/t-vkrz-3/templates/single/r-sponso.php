@@ -48,23 +48,16 @@ $top_datas    = get_top_data($id_top_global);
                           aujourd'hui tu peux te tourner vers un avenir meilleur en rejoignant le concept VAINKEURZ 🚀 !
                         </p>
                         <p>
-                          Si tu souhaites participer au Tirage au Sort, n'hésites pas et créer ton compte ! Si tu fais déjà parti des Vainkeurs, connecte-toi simplement 👇
+                          Si tu souhaites participer au <strong class="t-rose">Tirage au Sort</strong>, n'hésites pas et créer ton compte ! Si tu fais déjà parti des Vainkeurs, connecte-toi simplement 👇
                         </p>
                       </div>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-6">
-                      <a href="<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>?redirect=<?php the_permalink($id_ranking); ?>/" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light">
-                        Créer mon compte 🎉
-                      </a>
-                    </div>
-                    <div class="col-6">
-                      <a href="<?php the_permalink(get_page_by_path('se-connecter')); ?>?redirect=<?php the_permalink($id_ranking); ?>/" class="sharelinkbtn2 w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-outline-primary waves-effect waves-float waves-light">
-                        Me connecter
-                      </a>
-                    </div>
-                  </div>
+                  <a href="<?php the_permalink(get_page_by_path('connexion')); ?>?redirect=<?php the_permalink($id_ranking); ?>/" class="w-100 btn btn-rose waves-effect p-1">
+                    <p class="h4 text-white m-0">
+                      S'INSCRIRE (ou se connecter)
+                    </p>
+                  </a>
                 <?php else : ?>
                   <div class="row">
                     <div class="col-md-12 mt-1">
@@ -482,9 +475,9 @@ $top_datas    = get_top_data($id_top_global);
             <span class="ico va va-speech-balloon va-lg hide-xs"></span> <span class="hide-spot">Commenter</span>
           </a>
         </div>
-
         <?php if (get_post_status($id_top_global) != "draft") : ?>
-          <?php if (get_field('uuid_user_r', $id_ranking) == $uuiduser) : ?>
+          <?php if (get_field('uuid_user_r', $id_ranking) == $uuiduser || isset($_GET['message'])) :
+          ?>
             <div class="ico-nav-mobile">
               <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" href="#" class="confirm_delete">
                 <span class="ico hide-xs">🆕</span> <span class="hide-spot">Recommencer</span>

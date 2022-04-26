@@ -112,15 +112,15 @@
                           </div>
                         </div>
                         <div class="mb-1">
-                          <span class="ico4 va va-turkey va-1x"></span>
+                          <span class="ico4 va va-swan va-2x"></span>
                         </div>
                         <h2 class="font-weight-bolder">
-                          <?php echo count_users_by_level(4); ?>
+                          <?php echo count_users_by_level(5); ?>
                         </h2>
                         <p class="card-text legende list-vainkeur-monitor">
                           <?php
-                          $list_level_4 = get_users_by_level(4, 'total_vote', 'DESC');
-                          foreach ($list_level_4 as $vainkeur) :
+                          $list_level_5 = get_users_by_level(5, 'total_vote', 'DESC');
+                          foreach ($list_level_5 as $vainkeur) :
                           ?>
                             <a href="<?php echo get_author_posts_url($vainkeur['ID'], $vainkeur['pseudo']); ?>">
                               <?php echo $vainkeur['pseudo']; ?>
@@ -130,7 +130,6 @@
                       </div>
                     </div>
                   </div>
-
                   <?php
                   function niceNumber($n, $precision = 1)
                   {
@@ -156,47 +155,67 @@
                     }
                     return $n_format;
                   }
-
                   ?>
-
-                  <div class="col-sm-4 pr-0">
-                    <div class="card text-center">
-                      <div class="card-body">
-                        <div class="mb-1">
-                          <span class="ico4 va va-rooster va-1x"></span>
+                  <div class="col-sm-12">
+                    <div class="row">
+                      <div class="col-sm-6 pr-1 pr-md-0">
+                        <div class="card text-center">
+                          <div class="card-body">
+                            <div class="mb-1">
+                              <span class="ico4 va va-turkey va-1x"></span>
+                            </div>
+                            <h5 class="font-weight-bolder">
+                              <?= niceNumber(count_users_by_level(4)); ?>
+                            </h5>
+                          </div>
                         </div>
-                        <h5 class="font-weight-bolder">
-                          <?= niceNumber(count_users_by_level(3)); ?>
-                        </h5>
+                      </div>
+
+                      <div class="col-sm-6">
+                        <div class="card text-center">
+                          <div class="card-body">
+                            <div class="mb-1">
+                              <span class="ico4 va va-rooster va-1x"></span>
+                            </div>
+                            <h5 class="font-weight-bolder">
+                              <?= niceNumber(count_users_by_level(3)); ?>
+                            </h5>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
 
-                  <div class="col-sm-4 pr-0">
-                    <div class="card text-center">
-                      <div class="card-body">
-                        <div class="mb-1">
-                          <span class="ico4 va va-chick va-1x"></span>
+                  <div class="col-sm-12">
+                    <div class="row">
+                      <div class="col-sm-6 pr-1 pr-md-0">
+                        <div class="card text-center">
+                          <div class="card-body">
+                            <div class="mb-1">
+                              <span class="ico4 va va-chick va-1x"></span>
+                            </div>
+                            <h5 class="font-weight-bolder">
+                              <?= niceNumber(count_users_by_level(2)); ?>
+                            </h5>
+                          </div>
                         </div>
-                        <h5 class="font-weight-bolder">
-                          <?= niceNumber(count_users_by_level(2)); ?>
-                        </h5>
+                      </div>
+
+                      <div class="col-sm-6">
+                        <div class="card text-center">
+                          <div class="card-body">
+                            <div class="mb-1">
+                              <span class="ico4 va va-hatching-chick va-1x"></span>
+                            </div>
+                            <h5 class="font-weight-bolder">
+                              <?= niceNumber(count_users_by_level(1)); ?>
+                            </h5>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
 
-                  <div class="col-sm-4">
-                    <div class="card text-center">
-                      <div class="card-body">
-                        <div class="mb-1">
-                          <span class="ico4 va va-hatching-chick va-1x"></span>
-                        </div>
-                        <h5 class="font-weight-bolder">
-                          <?= niceNumber(count_users_by_level(1)); ?>
-                        </h5>
-                      </div>
-                    </div>
-                  </div>
                   <div class="col-sm-12">
                     <div class="card text-center">
                       <div class="card-body">

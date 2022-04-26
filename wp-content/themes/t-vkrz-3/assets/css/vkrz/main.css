@@ -4276,8 +4276,13 @@ textarea {
   background-image: url(../../images/emojis/laptop_1f4bb.png);
 }
 
+<<<<<<< HEAD
 .va-blog {
   background-image: url(../../images/emojis/blog.png);
+=======
+.va-down-arrow {
+  background-image: url(../../images/emojis/down-arrow.png);
+>>>>>>> 9246189a0b18a9ffd8c5efd3e84722828cf0c258
 }
 
 /***** Icons END *****/
