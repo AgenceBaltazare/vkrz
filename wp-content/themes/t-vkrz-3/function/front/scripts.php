@@ -24,11 +24,7 @@ function load_css_js()
     wp_enqueue_style('shop', get_template_directory_uri() . '/assets/css/pages/app-ecommerce.css', array(), null);
   }
 
-  /* 
-    I ADDED PAGES :
-      - (Get Connected 390710 )
-  */
-  if (is_page(array(27800, 27795, 27792, 27794, 390710))) {
+  if (is_page(array(27800, 27795, 27792, 27794, 443448))) {
     wp_enqueue_style('account', get_template_directory_uri() . '/assets/css/vkrz/login.css', array(), $template_version);
   }
   if (is_author() || is_page(27040)) {
