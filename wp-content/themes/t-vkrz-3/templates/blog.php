@@ -7,7 +7,7 @@
 
 <!-- BEGIN: Content-->
 <div class="app-content content ">
-  <div class="content-overlay"></div>
+  <div class="content-overlay position-fixed" style="z-index: -1 !important;"></div>
   <div class="header-navbar-shadow"></div>
   <div class="content-wrapper container-xxl p-0">
     <div class="content-header row">
@@ -57,6 +57,8 @@
                       <div class="d-flex">
                         <div class="avatar mr-25">
                           <?= get_avatar(get_the_author_meta('ID'), 28); ?>
+
+                          <a href="<?= get_author_posts_url(get_the_author_meta('ID')); ?>" class="stretched-link"></a>
                         </div>
                         <div class="author-info">
                           <small class="text-muted me-25">par</small>
@@ -89,7 +91,7 @@
                       <hr>
 
                       <div class="d-flex justify-content-between align-items-center">
-                        <a href="page-blog-detail.html#blogComment">
+                        <a href="<?php the_permalink(); ?>#comments">
                           <div class="d-flex align-items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-square font-medium-1 text-body me-50">
                               <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
@@ -275,7 +277,6 @@
           </div>
           <!--/ Categories -->
         </div>
-
       </div>
     </div>
   </div>
