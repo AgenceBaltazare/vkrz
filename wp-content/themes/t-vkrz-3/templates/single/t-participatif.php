@@ -41,13 +41,11 @@ $creator_data       = get_user_infos($creator_uuiduser);
     <div class="content-body tournoi-content">
 
       <?php
-
       // NOMBRE DE PARTICIPATIONS
       $number_of_attendees = get_field("minimum_participations_t", $id_top);
 
       // LE NOMBRE ACTUEL DES PARTICIPATIONS
       $actual_number_of_attendees = $top_infos['top_number'];
-
       ?>
 
       <?php if (!$id_ranking) : ?>
