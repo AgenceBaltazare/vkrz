@@ -9,27 +9,7 @@
 <div class="app-content content ">
   <div class="content-overlay position-fixed" style="z-index: -1 !important;"></div>
   <div class="header-navbar-shadow"></div>
-  <div class="content-wrapper container-xxl p-0">
-    <div class="content-header row">
-      <div class="content-header-left col-md-9 col-12 mb-2">
-        <div class="row breadcrumbs-top">
-          <div class="col-12">
-            <h2 class="content-header-title mb-0 float-left d-inline">Liste de blogs</h2>
-
-            <div class="breadcrumb-wrapper float-left">
-              <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="<?php bloginfo('url'); ?>/">Accueil</a>
-                </li>
-                <li class="breadcrumb-item"><a href="<?php the_permalink(get_page_by_path('blog')); ?>">Blog</a>
-                </li>
-                <li class="breadcrumb-item active">Liste
-                </li>
-              </ol>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="content-wrapper container-xxl p-0 mt-2">
     <div class="content-detached content-left">
       <div class="content-body">
         <!-- Blog List -->

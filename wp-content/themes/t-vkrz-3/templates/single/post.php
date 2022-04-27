@@ -1,28 +1,9 @@
 <?php get_header(); ?>
-<div class="app-content content cover" style="background: url(<?php echo $top_infos['top_cover']; ?>) center center no-repeat">
+
+<div class="app-content content">
   <div class="content-overlay position-fixed" style="z-index: -1 !important;"></div>
   <div class="header-navbar-shadow"></div>
-  <div class="content-wrapper container-xxl p-0">
-    <div class="content-header row">
-      <div class="content-header-left col-md-9 col-12 mb-2">
-        <div class="row breadcrumbs-top">
-          <div class="col-12">
-            <h2 class="content-header-title mb-0 float-left d-inline">Liste de blogs</h2>
-
-            <div class="breadcrumb-wrapper float-left">
-              <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="<?php bloginfo('url'); ?>/">Accueil</a>
-                </li>
-                <li class="breadcrumb-item"><a href="<?php the_permalink(get_page_by_path('blog')); ?>">Blog</a>
-                </li>
-                <li class="breadcrumb-item active"><?php the_title();  ?></li>
-              </ol>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
+  <div class="content-wrapper container-xxl p-0 mt-2">
     <div class="content-detached content-left">
       <div class="content-body">
         <!-- Blog Detail -->
@@ -64,6 +45,7 @@
                       </span>
                     </a>
                   </div>
+
                   <?php the_content(); ?>
 
                   <div class="d-flex align-items-start">
@@ -338,11 +320,9 @@
               </div>
             </div>
             <!--/ Blog Comment -->
-
           </div>
         </div>
         <!--/ Blog Detail -->
-
       </div>
     </div>
 
@@ -359,7 +339,8 @@
               $args = array(
                 'post_type' => 'post',
                 'posts_per_page' => 3,
-                'paged' => $paged
+                'paged' => $paged,
+                'post__not_in'  => array(get_the_ID())
               );
               $recent_posts = new Wp_Query($args);
               ?>
@@ -502,32 +483,6 @@
       </div>
     </div>
   </div>
-
-  <!-- TO BE INSPIRED -->
-  <!-- 
-        <div class="container">
-
-        <div class="row">
-
-          <div class="col-12">
-
-            <h1><?php // the_title(); 
-                ?></h1>
-
-            <?php
-            // global $post_comments_id;
-            // $post_comments_id = get_the_ID();   
-            ?>
-            <?php // echo get_template_part('comments'); 
-            ?>
-
-          </div>
-
-        </div>
-
-      </div> 
-      -->
-
 </div>
 
 <?php get_footer(); ?>

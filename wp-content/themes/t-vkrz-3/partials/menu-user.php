@@ -87,20 +87,6 @@ if (is_single() && get_post_type() == "tournoi") {
                         </a>
                       </li>
 
-                    <?php elseif (!is_author() && is_archive()) : ?>
-
-                      <?php
-                      if (is_archive()) {
-                        global $current_cat;
-                        global $cat_name;
-                        global $cat_id;
-                      }
-                      ?>
-                      <li class="breadcrumb-item">
-                        <a href="<?php echo get_category_link($cat_id); ?>">
-                          <?php the_field('icone_cat', 'term_' . $cat_id); ?> <span class="menu-title text-truncate"><?php echo $cat_name; ?></span>
-                        </a>
-                      </li>
                     <?php elseif (is_page(get_page_by_path('tops-sponso'))) : ?>
 
                       <li class="breadcrumb-item">
@@ -155,6 +141,73 @@ if (is_single() && get_post_type() == "tournoi") {
                             <?php echo get_the_title($id_top); ?>
                           </span>
                         </a>
+                      </li>
+
+                    <?php elseif (is_page(get_page_by_path('blog'))) : ?>
+
+                      <li class="breadcrumb-item">
+                        <a href="<?php the_permalink(get_page_by_path('blog')); ?>" title="Blog">
+                          <span class="ico"><span class="va va-blog va-lg"></span></span>
+
+                          <span class="menu-title text-truncate">Blog</span>
+                        </a>
+                      </li>
+
+                    <?php elseif (is_archive() && !is_tax()) : ?>
+
+                      <?php
+                      if (is_archive()) {
+                        global $current_cat;
+                        global $cat_name;
+                        global $cat_id;
+                      }
+                      ?>
+                      <li class="breadcrumb-item">
+                        <a href="<?php the_permalink(get_page_by_path('blog')); ?>" title="Blog">
+                          <span class="ico"><span class="va va-blog va-lg"></span></span>
+                        </a>
+                      </li>
+                      <li class="breadcrumb-item active">
+                        <span class="menu-title text-truncate"><?php echo $cat_name; ?></span>
+                      </li>
+
+                    <?php elseif (!is_author() && is_archive()) : ?>
+
+                      <?php
+                      if (is_archive()) {
+                        global $current_cat;
+                        global $cat_name;
+                        global $cat_id;
+                      }
+                      ?>
+                      <li class="breadcrumb-item">
+                        <a href="<?php echo get_category_link($cat_id); ?>">
+                          <?php the_field('icone_cat', 'term_' . $cat_id); ?> <span class="menu-title text-truncate"><?php echo $cat_name; ?></span>
+                        </a>
+                      </li>
+
+                    <?php elseif (is_single() && (get_post_type() === "post")) : ?>
+
+                      <li class="breadcrumb-item">
+                        <a href="<?php the_permalink(get_page_by_path('blog')); ?>" title="Blog">
+                          <span class="ico"><span class="va va-blog va-lg"></span></span>
+                        </a>
+                      </li>
+                      <?php
+                      foreach (get_the_terms(get_the_ID(), 'category') as $cat) {
+                        $cat_id     = $cat->term_id;
+                        $cat_name   = $cat->name;
+                      }
+                      ?>
+                      <li class="breadcrumb-item">
+                        <a href="<?= get_category_link($cat_id); ?>">
+                          <span class="menu-title text-truncate">
+                            <?= $cat_name; ?>
+                          </span>
+                        </a>
+                      </li>
+                      <li class="breadcrumb-item active">
+                        <span class="menu-title text-truncate"><?php the_title(); ?></span>
                       </li>
 
                     <?php endif; ?>
