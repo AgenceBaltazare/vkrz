@@ -14,10 +14,7 @@ switch (get_post_type()) {
       get_template_part("templates/single/t-marqueblanche");
     } elseif ($type_top == "sponso") {
       get_template_part("templates/single/t-sponso");
-    }
-
-    // PARTICIPATIF
-    elseif ($type_top == "participatif") {
+    } elseif ($type_top == "participatif") {
       get_template_part("templates/single/t-participatif");
     } elseif ($type_top == "private") {
       get_template_part("templates/single/t-private");
