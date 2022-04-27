@@ -47,7 +47,6 @@ $creator_data       = get_user_infos($creator_uuiduser);
 
       <?php if (!$id_ranking) : ?>
 
-        <!-- LE NOMBRE ACTUEL DE PARTICIPATIONS EST EGALE AU NOMBRE DEMANDÉ 🟢 -->
         <?php if ($nombre_participations_actuel === $nombre_participations) : ?>
 
           <div class="content-intro container intro-sponso">
@@ -237,7 +236,6 @@ $creator_data       = get_user_infos($creator_uuiduser);
             </div>
           </div>
 
-          <!-- LE NOMBRE ACTUEL DE PARTICIPATIONS EST INFERIEUR AU NOMBRE DEMANDE ⛔ -->
         <?php elseif ($nombre_participations_actuel < $nombre_participations) : ?>
 
           <div class="content-intro container intro-sponso participatif__container participatif__container-disabled">
@@ -320,20 +318,8 @@ $creator_data       = get_user_infos($creator_uuiduser);
                             Il manque encore <?= $nombre_participations - $nombre_participations_actuel ?> participants pour Commencer
                           </a>
 
-                          <!-- <small class="text-muted">
-                            <?php
-                            $min = ($top_infos['top_number'] - 5) * 2 + 6;
-                            $max = $min * 2;
-                            ?>
-                            <?php if ($top_infos['top_number'] < 3) : ?>
-                              Un seul vote suffira pour finir ce Top
-                            <?php else : ?>
-                              Prévoir entre <?php echo $min; ?> et <?php echo $max; ?> votes pour finir ton Top du 1er au dernier
-                            <?php endif; ?>
-                          </small> -->
-
                           <small class="text-muted">
-                            Share it with your friends to participate!
+                            Partagez le Top avec vos amis pour participer !
                           </small>
                         </div>
                       </div>
