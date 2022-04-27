@@ -3,21 +3,20 @@ $type_top     = "";
 switch (get_post_type()) {
   case "tournoi":
     $get_top_type = get_the_terms(get_the_ID(), 'type');
+    $list_types   = array();
     if ($get_top_type) {
       foreach ($get_top_type as $type_top) {
-        $type_top = $type_top->slug;
+        array_push($list_types, $type_top->slug);
       }
     }
-    if ($type_top == "onboarding") {
+    if (in_array("onboarding", $list_types)) {
       get_template_part("templates/single/t-welcome");
-    } elseif ($type_top == "whitelabel") {
+    } elseif (in_array("whitelabel", $list_types)) {
       get_template_part("templates/single/t-marqueblanche");
-    } elseif ($type_top == "sponso") {
+    } elseif (in_array("sponso", $list_types)) {
       get_template_part("templates/single/t-sponso");
-    } elseif ($type_top == "participatif") {
+    } elseif (in_array("participatif", $list_types)) {
       get_template_part("templates/single/t-participatif");
-    } elseif ($type_top == "private") {
-      get_template_part("templates/single/t-private");
     } else {
       get_template_part("templates/single/t");
     }
@@ -27,14 +26,15 @@ switch (get_post_type()) {
     global $id_top;
     $id_top       = get_field('id_tournoi_r', get_the_id());
     $get_top_type = get_the_terms($id_top, 'type');
+    $list_types   = array();
     if ($get_top_type) {
       foreach ($get_top_type as $type_top) {
-        $type_top = $type_top->slug;
+        array_push($list_types, $type_top->slug);
       }
     }
-    if ($type_top == "whitelabel") {
+    if (in_array("whitelabel", $list_types)) {
       get_template_part("templates/single/r-marqueblanche");
-    } elseif ($type_top == "sponso") {
+    } elseif (in_array("sponso", $list_types)) {
       get_template_part("templates/single/r-sponso");
     } else {
       get_template_part("templates/single/r");
