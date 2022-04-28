@@ -10,7 +10,7 @@
         <div class="blog-detail-wrapper">
           <div class="row">
             <!-- Blog -->
-            <div class="col-lg-9 col-10">
+            <div class="col-lg-9">
               <div class="card">
                 <h1 class="h1 p-2 m-0">
                   <?php the_title(); ?>
@@ -282,7 +282,7 @@
             <!--/ Blog -->
 
             <!-- Siderbar -->
-            <div class="col-lg-3 col-2">
+            <div class="col-lg-3">
               <div class="sidebar">
                 <div class="blog-sidebar my-2 my-lg-0">
                   <!-- Recent Posts -->
