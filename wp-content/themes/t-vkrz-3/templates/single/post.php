@@ -131,7 +131,7 @@
 
                       <?php if ($comment->comment_parent == "0") : ?>
                         <div class="col-12 comment-min">
-                          <div class="card" data-comment-id="<?php echo $comment->comment_ID; ?>">
+                          <div class="card" data-comment-id="<?php echo $comment->comment_ID; ?>" id="comment-<?php echo $comment->comment_ID; ?>">
                             <div class="card-body">
                               <div class="d-flex align-items-start">
                                 <div class="avatar me-75 mr-1">
@@ -186,8 +186,8 @@
                       if ($nb_sub_comments > 0) :
                         foreach (array_reverse($sub_comments) as $comment) : ?>
                           <div class="col-12 comment-min sub-comment-min">
-                            <div class="card" data-comment-id="<?php echo $comment->comment_ID; ?>">
-                              <div class="card-body">
+                            <div class="card" data-comment-id="<?php echo $comment->comment_ID; ?>" id="comment-<?php echo $comment->comment_ID; ?>">
+                              <div class=" card-body">
                                 <div class="d-flex align-items-start">
                                   <div class="avatar me-75 mr-1">
                                     <?php
