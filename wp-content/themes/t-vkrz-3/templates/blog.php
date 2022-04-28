@@ -76,11 +76,13 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-square font-medium-1 text-body me-50">
                               <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                             </svg>
-                            <span class="text-body fw-bold"><?= get_comments_number() ?> Commentaires</span>
+
+                            <span class="text-body fw-bold">
+                              <?= get_comments_number() >= 1 ?  get_comments_number() . ' Commentaires' : get_comments_number() . ' Commentaire' ?></span>
                           </div>
                         </a>
 
-                        <a href="<?php the_permalink(); ?>" class="fw-bold">Lire la suite</a>
+                        <a href="<?php the_permalink(); ?>" class="fw-bold px-2 py-50 bg-light rounded text-truncate text-uppercase">Lire</a>
                       </div>
                     </div>
                   </div>
@@ -88,7 +90,7 @@
 
               <?php endwhile; ?>
             <?php else : ?>
-              <?= wpautop('Sorry, No posts were found'); ?>
+              <?= wpautop("Désolé, aucun article n'a été trouvé. 😐"); ?>
             <?php endif; ?>
 
             <?php
@@ -129,7 +131,7 @@
                     <a href="<?php the_permalink(); ?>" class="me-2">
                       <img class="rounded" src="<?= get_the_post_thumbnail_url(); ?>" width="90" height="60" alt="Recent Post Pic">
                     </a>
-                    <div class="blog-info ml-25">
+                    <div class="blog-info ml-50">
                       <h6 class="blog-recent-post-title">
                         <a href="<?php the_permalink(); ?>" class="text-body-heading"><?= the_title(); ?></a>
                       </h6>

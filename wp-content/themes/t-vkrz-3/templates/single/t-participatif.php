@@ -41,19 +41,13 @@ $creator_data       = get_user_infos($creator_uuiduser);
     <div class="content-body tournoi-content">
 
       <?php
-
-      // NOMBRE DE PARTICIPATIONS
-      $number_of_attendees = get_field("minimum_participations_t", $id_top);
-
-      // LE NOMBRE ACTUEL DES PARTICIPATIONS
-      $actual_number_of_attendees = $top_infos['top_number'];
-
+      $nombre_participations = get_field("minimum_participations_t", $id_top);
+      $nombre_participations_actuel = $top_infos['top_number'];
       ?>
 
       <?php if (!$id_ranking) : ?>
 
-        <!-- LE NOMBRE ACTUEL DE PARTICIPATIONS EST EGALE AU NOMBRE DEMANDE 🟢 -->
-        <?php if ($actual_number_of_attendees === $number_of_attendees) : ?>
+        <?php if ($nombre_participations_actuel === $nombre_participations) : ?>
 
           <div class="content-intro container intro-sponso">
 
@@ -242,8 +236,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
             </div>
           </div>
 
-          <!-- LE NOMBRE ACTUEL DE PARTICIPATIONS EST INFERIEUR AU NOMBRE DEMANDE ⛔ -->
-        <?php elseif ($actual_number_of_attendees < $number_of_attendees) : ?>
+        <?php elseif ($nombre_participations_actuel < $nombre_participations) : ?>
 
           <div class="content-intro container intro-sponso participatif__container participatif__container-disabled">
 
@@ -322,23 +315,11 @@ $creator_data       = get_user_infos($creator_uuiduser);
                       <div class="choosecta">
                         <div class="cta-begin cta-complet">
                           <a href="#" id="begin_t" aria-readonly="true" data-typetop="complet" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 btn btn-max btn-primary waves-effect waves-float waves-light laucher_t participatif-cta">
-                            Il manque encore <?= $number_of_attendees - $actual_number_of_attendees ?> participants pour Commencer
+                            Il manque encore <?= $nombre_participations - $nombre_participations_actuel ?> participants pour Commencer
                           </a>
 
-                          <!-- <small class="text-muted">
-                            <?php
-                            $min = ($top_infos['top_number'] - 5) * 2 + 6;
-                            $max = $min * 2;
-                            ?>
-                            <?php if ($top_infos['top_number'] < 3) : ?>
-                              Un seul vote suffira pour finir ce Top
-                            <?php else : ?>
-                              Prévoir entre <?php echo $min; ?> et <?php echo $max; ?> votes pour finir ton Top du 1er au dernier
-                            <?php endif; ?>
-                          </small> -->
-
                           <small class="text-muted">
-                            Share it with your friends to participate!
+                            Partagez le Top avec vos amis pour participer !
                           </small>
                         </div>
                       </div>
@@ -390,7 +371,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
 
                     <div class="card-status noBlur">
                       <h1 class="animate__jello animate__animated animate__delay-1s">
-                        Ouverture des votes dans <br> <?= $number_of_attendees - $actual_number_of_attendees ?> participants 😉
+                        Ouverture des votes dans <br> <?= $nombre_participations - $nombre_participations_actuel ?> participants 😉
                       </h1>
                     </div>
                   </div>
