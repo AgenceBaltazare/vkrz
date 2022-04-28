@@ -7,12 +7,12 @@
     <div class="content-detached">
       <div class="content-body">
         <!-- Blog Detail -->
-        <div class="blog-detail-wrapper">
+        <div class="blog blog-detail-wrapper">
           <div class="row">
             <!-- Blog -->
             <div class="col-lg-9">
               <div class="card">
-                <h1 class="h1 p-2 m-0">
+                <h1 class="blog-title">
                   <?php the_title(); ?>
                 </h1>
                 <div class="card-body pt-50">
@@ -48,13 +48,16 @@
                   <?php the_content(); ?>
 
                   <hr class="my-2">
-                  <div class="d-flex align-items-center justify-content-between">
+                  <div class="blog-rs">
+                    <h6 class="section-label text-center m-0">Partager le poste</h6>
+
                     <div class="d-flex align-items-center">
+
                       <?php
                       $id_post        = get_the_ID();
                       $url_post       = get_the_permalink();
                       $title_post     = get_the_title();
-                      $text_post       = get_the_excerpt();
+                      $text_post      = get_the_excerpt();
                       ?>
                       <ul>
                         <!-- Facebook -->
@@ -294,10 +297,10 @@
                                                                                                   echo 'disabled';
                                                                                                 } ?> placeholder="Pseudo" value="<?php echo $autor_comment_pseudo; ?>" />
                               <input class="form-control" id="email" name="email" type="hidden" placeholder="Email" value="<?php echo $autor_comment_email; ?>" />
-                              <input class="form-control" id="my_redirect_to" name="my_redirect_to" type="hidden" value="<?php echo $actual_link . '&post=' . get_permalink(); ?>" />
+                              <!-- <input class="form-control" id="my_redirect_to" name="my_redirect_to" type="hidden" value="<?php echo $actual_link ?>" /> -->
                             </div>
                           </div>
-                          <div class="row mt-1">
+                          <div class=" row mt-1">
                             <div class="col-12">
                               <?php if (!$response_to_comment) : ?>
                                 <textarea id="comment" class="form-control mb-2" rows="4" placeholder="Ton commentaire" name="comment"></textarea>

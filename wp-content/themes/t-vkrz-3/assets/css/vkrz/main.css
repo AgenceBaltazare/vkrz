@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Dosis&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Birthstone+Bounce&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Cormorant&display=swap");
-
 .text-rose {
   color: #f4167f !important;
 }
@@ -16,7 +15,6 @@
   from {
     transform: rotate(0deg);
   }
-
   to {
     transform: rotate(360deg);
   }
@@ -56,7 +54,7 @@ body {
   background-color: transparent;
 }
 
-.dark-layout .main-menu-content .navigation-main .nav-item.open>a {
+.dark-layout .main-menu-content .navigation-main .nav-item.open > a {
   background-color: #31267347 !important;
 }
 
@@ -93,7 +91,7 @@ body {
   display: none;
 }
 
-.main-menu.menu-dark .navigation>li>a {
+.main-menu.menu-dark .navigation > li > a {
   margin: 0 15px 0 10px;
 }
 
@@ -255,7 +253,7 @@ div.dataTables_wrapper div.dataTables_length label {
   margin: calc(2rem) 0 0.8rem 2.2rem;
 }
 
-.main-menu.menu-dark .navigation li.nav-item a.sociallink:hover>* {
+.main-menu.menu-dark .navigation li.nav-item a.sociallink:hover > * {
   transition: all 0.25s ease;
   transform: none;
 }
@@ -350,11 +348,9 @@ a.sociallink:hover i {
   0% {
     background-position: 0% 50%;
   }
-
   50% {
     background-position: 100% 50%;
   }
-
   100% {
     background-position: 0% 50%;
   }
@@ -499,16 +495,13 @@ html .content {
 }
 
 @keyframes appear2 {
-
   20%,
   100% {
     width: 0;
   }
-
   0% {
     width: 0;
   }
-
   5% {
     width: auto;
   }
@@ -521,16 +514,13 @@ html .content {
 }
 
 @keyframes appear {
-
   20%,
   100% {
     width: auto;
   }
-
   0% {
     width: auto;
   }
-
   5% {
     width: 0;
   }
@@ -880,7 +870,6 @@ html .content {
   .next-bloc1 {
     text-align: left;
   }
-
   .next-bloc2 {
     text-align: right;
   }
@@ -1040,13 +1029,11 @@ html .content {
   min-height: 800px;
 }
 
-#commentform textarea,
-#commentform input {
+#commentform textarea, #commentform input {
   background-color: transparent !important;
 }
 
-#commentform textarea:focus,
-#commentform input:focus {
+#commentform textarea:focus, #commentform input:focus {
   background-color: transparent !important;
   border-color: #7367f0;
 }
@@ -1219,9 +1206,7 @@ html .content {
   transition: .3s border-bottom;
 }
 
-.rechercher-form .rechercher-input:focus,
-.rechercher-form .rechercher-input:valid,
-.rechercher-form .rechercher-input:active {
+.rechercher-form .rechercher-input:focus, .rechercher-form .rechercher-input:valid, .rechercher-form .rechercher-input:active {
   background: linear-gradient(to bottom right, #6F1CB5, #5E16BF) !important;
 }
 
@@ -1283,7 +1268,6 @@ html .content {
   .header-navbar .navbar-nav {
     width: 40%;
   }
-
   .mt-3px {
     margin-top: 3px;
   }
@@ -1775,11 +1759,9 @@ html .content {
   0% {
     opacity: 0.3;
   }
-
   50% {
     opacity: 0.5;
   }
-
   100% {
     opacity: 0.3;
   }
@@ -1990,15 +1972,12 @@ html .content {
     width: 40%;
     padding: 0 10px;
   }
-
   .page-template-elo-mondial .list-classement .contender-item.contender-item-n1 {
     width: 100%;
   }
-
   .page-template-elo-mondial .list-classement .contender-item.contender-item-n2 {
     width: 55%;
   }
-
   .page-template-elo-mondial .list-classement .contender-item.contender-item-n3 {
     width: 45%;
   }
@@ -2059,11 +2038,9 @@ html .content {
   0% {
     background-position: 0% 50%;
   }
-
   50% {
     background-position: 100% 50%;
   }
-
   100% {
     background-position: 0% 50%;
   }
@@ -2299,7 +2276,6 @@ textarea {
   .please-rejoin .alert-body {
     flex-direction: column;
   }
-
   .please-rejoin .alert-body a {
     width: 100%;
     margin: 15px 0 0 !important;
@@ -2386,10 +2362,67 @@ textarea {
     height: 60px !important;
     width: 60px !important;
   }
-
   .profile-title h2 {
     font-size: 1rem !important;
   }
+}
+
+.blog h1 {
+  font-size: 3rem;
+  padding: 1.5rem;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .blog h1 {
+    font-size: 2.65rem;
+  }
+}
+
+.blog .blog-rs {
+  width: 100%;
+}
+
+.blog .blog-rs ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 1rem .6rem;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .blog .blog-rs ul {
+    gap: .8rem;
+    justify-content: space-around;
+  }
+}
+
+.blog .blog-rs ul i {
+  display: grid;
+  place-items: center;
+  font-size: 1.6rem;
+  border-radius: 50%;
+  border: #7367F0 2px solid;
+  width: 50px;
+  height: 50px;
+  transition: .3s all;
+}
+
+@media (max-width: 768px) {
+  .blog .blog-rs ul i {
+    font-size: 1.1rem;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.blog .blog-rs ul i:hover {
+  border: #f4167f 2px solid;
+  color: #f4167f;
 }
 
 .ico-master {
@@ -2922,59 +2955,47 @@ textarea {
     font-size: 20px;
     line-height: 25px;
   }
-
   .info-win {
     font-size: 12px;
     line-height: 18px;
   }
-
   .info-win p {
     margin-bottom: 5px;
   }
-
   .reseaux-sponso {
     flex-direction: column;
   }
-
   .logo-vkrz-sponso {
     width: 100%;
   }
-
   .share-top-sponsor {
     align-items: center !important;
   }
-
   html .content.app-content .card-developer-meetup .card-title {
     font-size: 17px;
     line-height: 20px;
   }
-
   .infos-card-t {
     margin: 10px 0;
   }
-
   #form-coupon {
     flex-direction: column;
     width: 100%;
   }
-
   #form-coupon input[type="email"] {
     width: 100%;
     max-width: 100%;
     border-radius: 10px !important;
   }
-
   #form-coupon #btn-coupon {
     width: 100%;
     max-width: 100%;
     border-radius: 10px !important;
     margin-top: 0.6rem;
   }
-
   .please-rejoin {
     padding: 20px 0 10px;
   }
-
   .single-classement .content-wrapper {
     margin-bottom: 20px;
   }
@@ -3310,34 +3331,27 @@ textarea {
     flex-direction: column;
     align-items: center;
   }
-
   .t-marqueblanche .intro-marqueblanche {
     flex-direction: column;
   }
-
   .t-marqueblanche .t-marqueblanche .logo_marqueblanche {
     margin-top: -80px;
     max-width: 180px;
   }
-
   .t-marqueblanche .t-marqueblanche .t-objectif-marqueblanche {
     font-size: 19px;
   }
-
   .t-marqueblanche .footer-battle {
     flex-direction: column-reverse;
     margin-top: 50px;
   }
-
   .t-marqueblanche .footer-battle .social-media-marqueblanche {
     margin-top: 60px;
   }
-
   .t-marqueblanche .t-marqueblanche .logo_marqueblanche img {
     max-width: 100%;
     height: auto;
   }
-
   .t-marqueblanche .t-objectif-marqueblanche {
     display: flex;
     align-items: center;
@@ -3347,41 +3361,33 @@ textarea {
     background: url("../../images/marqueblanche/gdp/bulle-gdp.svg") no-repeat center;
     background-size: contain;
   }
-
   .t-marqueblanche .t-objectif-marqueblanche h3 {
     font-size: 22px;
     font-family: 'Dosis';
     width: 80%;
   }
-
   .t-marqueblanche .t-question-marqueblanche {
     font-size: 60px;
   }
-
   .t-marqueblanche .t-question-marqueblanche {
     font-size: 60px;
   }
-
   .t-marqueblanche .t-question-marqueblanche img {
     width: 70px;
     height: auto;
   }
-
   .t-marqueblanche .battle-marqueblanche {
     margin-left: 0;
   }
-
   .t-marqueblanche .title-contender-marqueblanche {
     width: 50%;
     margin: 10px 0 0;
     padding: 0 5px;
   }
-
   .t-marqueblanche .versus-marqueblanche {
     margin: 15px auto;
     position: relative;
   }
-
   .t-marqueblanche .versus-marqueblanche img {
     max-width: 80px !important;
     border-radius: 0;
@@ -3389,27 +3395,22 @@ textarea {
     position: relative;
     z-index: 33;
   }
-
   .t-marqueblanche .cover-coupon {
     padding: 0;
     margin-left: 0;
     margin: 30px 0px 60px;
     background: none;
   }
-
   .t-marqueblanche .coupon-content form,
   .t-marqueblanche .coupon-content button {
     width: 300px;
   }
-
   .t-marqueblanche .social-media-marqueblanche-resultat {
     margin-bottom: 40px;
   }
-
   .t-marqueblanche .intro-marqueblanche {
     align-items: center;
   }
-
   .t-marqueblanche .footer-resultat {
     display: flex;
     flex-direction: column;
@@ -3511,6 +3512,7 @@ textarea {
 .participatif__container-disabled__content {
   position: relative;
 }
+
 .participatif__container-disabled__content .card-status {
   position: absolute;
   top: 50%;
@@ -3523,6 +3525,7 @@ textarea {
   display: grid;
   place-items: center;
 }
+
 .participatif__container-disabled__content .card-status h1 {
   font-size: 2.9rem;
   margin-bottom: 9rem;
@@ -3533,6 +3536,7 @@ textarea {
   background: linear-gradient(to bottom right, #2E124C, #100A2A, 0.1);
   border-radius: 12px;
 }
+
 .participatif__container-disabled__content .participatif-cta {
   pointer-events: none;
   background-color: #BBBCB6 !important;
@@ -4452,7 +4456,6 @@ textarea {
     flex: 0 0 16.66667%;
     max-width: 16.66667%;
   }
-
   .mb-xs {
     margin-bottom: 10px;
   }
@@ -4469,11 +4472,9 @@ textarea {
     font-size: 1.5rem !important;
     line-height: 0.8;
   }
-
   .basic-pricing .card-text {
     font-size: 15px;
   }
-
   .plus {
     font-size: 20px;
     margin: 0 5px;
@@ -4485,34 +4486,27 @@ textarea {
     display: flex;
     flex-direction: column;
   }
-
   .vainkeur-table .championname {
     margin: 0;
   }
-
   .vainkeur-table .user-niveau {
     display: none;
   }
-
   .vainkeur-table .user-niveau-xs {
     display: inline-block;
   }
-
   .share-content-sponso,
   .share-top-sponsor {
     display: none !important;
   }
-
   .single-tournoi .content-intro {
     margin: 20px 0;
     padding: 0;
   }
-
   .single-tournoi .tournoi-content .contenders-containers .versus {
     margin: 5px auto;
     position: relative;
   }
-
   .single-tournoi .tournoi-content .contenders-containers .versus img {
     max-width: 50px !important;
     border-radius: 0;
@@ -4520,7 +4514,6 @@ textarea {
     position: relative;
     z-index: 33;
   }
-
   .single-tournoi .tournoi-content .contenders-containers .versus:before {
     content: "";
     height: 2px;
@@ -4531,80 +4524,63 @@ textarea {
     top: 50%;
     transform: rotate(-18deg);
   }
-
   .single-tournoi .link-contender .contender_zone {
     display: flex;
     align-items: center;
     flex-direction: row;
   }
-
   .single-tournoi .link-contender .contender_zone img,
   .single-tournoi .link-contender .contender_zone .cov-illu {
     width: 50%;
   }
-
   .single-tournoi .link-contender .contender_zone .title-contender {
     width: 50%;
     margin: 10px 0 0;
     padding: 0 5px;
   }
-
   .single-tournoi .link-contender #c_2 {
     flex-direction: row-reverse;
   }
-
   .intro-mobile {
     display: block;
     margin: 0 0 5px;
   }
-
   .display_current_user_rank {
     display: none;
   }
-
   .hide-xs {
     display: none;
   }
-
   .hide-lg {
     display: block;
   }
-
   .nav-tournament {
     left: 0;
     flex-direction: column;
   }
-
   .nav-tournament .btng {
     margin-bottom: 10px;
   }
-
   .user-avatar-section .content-avatar-name {
     flex-direction: column;
     text-align: center;
   }
-
   .user-avatar-section .content-avatar-name h1 {
     margin-top: 15px;
   }
-
   .user-avatar-section .content-avatar-name .ml-2,
   .user-avatar-section .content-avatar-name .mr-1 {
     margin: 0 !important;
   }
-
   .user-avatar-section .content-avatar-name .btn {
     margin-bottom: 10px !important;
   }
-
   html body .app-content {
     padding: calc(1rem - 0.8rem + 6.45rem + 1.3rem) calc(2rem - 0.8rem) 0 calc(2rem - 0.8rem) !important;
   }
-
   .bookmark-wrapper {
     display: none !important;
   }
-
   .min-tournoi .cov-illu .badge {
     position: absolute;
     left: 5px;
@@ -4612,7 +4588,6 @@ textarea {
     top: 5px;
     z-index: 9;
   }
-
   .min-tournoi .cov-illu .badge-light-rose {
     position: absolute;
     right: auto;
@@ -4620,104 +4595,83 @@ textarea {
     top: 30px;
     z-index: 3;
   }
-
   .logo {
     max-width: 60px !important;
     transition: all 0.3s ease-in-out;
   }
-
   .cat-min .card-header {
     text-align: center;
     flex-direction: column;
     padding: 20px 10px 12px 10px;
   }
-
   .cat-min .card-header .ico2 {
     display: block;
     margin: 0 auto 10px;
   }
-
   .heading-cat small {
     display: block;
     margin: 5px 0 0 0;
   }
-
   .main-menu .main-menu-content {
     height: 100%;
   }
-
   .vertical-layout .header-navbar .navbar-container ul.navbar-nav li.dropdown .dropdown-menu {
     top: 80px !important;
     margin-top: 0px !important;
   }
-
   .apropos .card-text h2 {
     text-align: center;
   }
-
   .header-navbar .navbar-container ul.navbar-nav li .media-list {
     max-height: 22rem;
   }
-
   .card-developer-meetup .card-cta .choosecta .cta-begin {
     display: flex;
     flex-direction: column;
     margin: 0 5px;
   }
-
   .card-developer-meetup .card-cta .choosecta .cta-begin a {
     font-size: 15px;
     padding: 20px 10px;
   }
-
   .infos-card-t-c {
     margin-top: 20px;
   }
-
   .profile-tabs .nav-pills {
     margin-bottom: 20px !important;
   }
-
   .profile-tabs .nav-pills .nav-link {
     padding: 5px 10px;
     font-size: 1rem;
     line-height: 1rem;
     border: 1px solid transparent;
   }
-
   #ecommerce-header {
     flex-direction: column;
   }
-
   #ecommerce-header .ecommerce-header-items {
     width: 100%;
     margin-bottom: 10px;
   }
-
   #ecommerce-header .ecommerce-header-items .result-toggler {
     display: flex;
     align-items: center;
     width: 100%;
     margin: 0;
   }
-
   #ecommerce-header .ecommerce-header-items .result-toggler a {
     width: 100%;
   }
-
   #ecommerce-header .ecommerce-searchbar {
     width: 100%;
   }
-
   #ecommerce-header .ecommerce-searchbar #search_form {
     width: 100%;
   }
-
   #ecommerce-header .ecommerce-searchbar #search_form input {
     padding: 0 15px;
     font-size: 1rem;
   }
-
   #ecommerce-header .ecommerce-searchbar #search_form input::placeholder {
     color: #7367f0 !important;
     font-size: 0.8rem;
@@ -4727,23 +4681,19 @@ textarea {
     font-weight: bold;
     letter-spacing: 1px;
   }
-
   .filtres-bloc .ui-group {
     width: 100%;
     margin: 0 !important;
   }
-
   .filtres-bloc .dropdown-sort {
     width: 100%;
   }
-
   .filtres-bloc .dropdown-sort button {
     width: 100%;
     display: block;
     margin: 0 0 10px !important;
     text-align: left;
   }
-
   .filtres-bloc .dropdown-sort button:after {
     height: 11px;
     position: absolute;
@@ -4751,142 +4701,112 @@ textarea {
     right: 10px;
     left: inherit;
   }
-
   .auth-wrapper {
     padding: 10px 0;
   }
-
   .big-cat .heading-cat h2 {
     font-weight: 900;
     letter-spacing: 1px;
     margin: 10px 0 5px;
     font-size: 18px;
   }
-
   .tournament-heading:after {
     display: none;
   }
-
   .display_battle {
     margin: 0 -1rem 0;
     padding: 0;
   }
-
   .t-titre-tournoi {
     font-size: 16px;
   }
-
   .intro-mobile h4 {
     font-size: 13px;
     color: #f4167f;
   }
-
   .profile-title {
     margin-left: 20px !important;
   }
-
   .cover-profil {
     min-height: 100px;
   }
-
   .nav-fill li a {
     font-size: 12px;
   }
-
   .profile-header-nav .profile-tabs {
     margin-left: 0;
   }
-
   .swal2-actions .swal2-confirm {
     margin-bottom: 10px;
   }
-
   .bigup h1 {
     font-size: 30px;
   }
-
   .dropdown-user {
     display: block;
     text-align: right;
     padding: 0;
   }
-
   .dropdown-user a {
     font-size: 14px;
   }
-
   .dropdown-notification,
   .dropdown-cart {
     width: 25%;
     text-align: center;
   }
-
   .dropdown-notification a,
   .dropdown-cart a {
     font-size: 12px;
   }
-
   .contenders-containers {
     align-items: flex-start !important;
   }
-
   .ico-nav-mobile {
     flex-direction: column;
   }
-
   .ico-nav-mobile a {
     flex-direction: column;
   }
-
   .icons-navbar {
     justify-content: space-between;
   }
-
   .hide-spot {
     text-transform: uppercase;
     margin: 0 0 0 0;
     font-size: 8px;
     display: block;
   }
-
   .mobile-navbar {
     margin-left: 0;
   }
-
   .hide-xs {
     display: none;
   }
-
   .single .crisp-client .cc-kv6t[data-full-view=true] .cc-1xry .cc-unoo {
     bottom: 60px !important;
     right: 5px !important;
   }
-
   .swal2-header,
   .swal2-content {
     padding: 0;
   }
-
   .single-tournoi .menuvkrzmobilehide {
     transition: all 0.2s ease-in;
     display: none;
   }
-
   .single-tournoi .tournoi-content {
     text-align: center;
     padding: 0 0 40px 0;
   }
-
   .mobile-navbar .icons-navbar {
     display: flex;
     padding: 10px 15px 9px;
     background: #7367f0;
   }
-
   .single footer.footer {
     padding: 0.8rem 2rem 90px;
   }
-
   .single .social-links {
     border-top: 1px solid #7367f0;
     padding: 10px 0 0 0;
@@ -4894,21 +4814,17 @@ textarea {
     width: 100%;
     display: block;
   }
-
   .header-navbar .value-user-stats {
     display: block;
     text-align: center;
   }
-
   .card-developer-meetup .meetup-img-wrapper {
     min-height: 220px;
   }
-
   .card-developer-meetup .meetup-header .card-text {
     font-size: 20px;
     line-height: 22px;
   }
-
   .card-precision p {
     margin-bottom: 0 !important;
   }
@@ -4934,5 +4850,4 @@ textarea {
     width: 3px;
   }
 }
-
 /*# sourceMappingURL=main.css.map */

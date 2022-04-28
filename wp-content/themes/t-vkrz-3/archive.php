@@ -93,12 +93,12 @@ $list_sujets      = array();
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-square font-medium-1 text-body me-50">
                       <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                     </svg>
-                    <span class="text-body fw-bold">
+                    <span class="text-body fw-bold ml-25">
                       <?= get_comments_number() >= 1 ?  get_comments_number() . ' Commentaires' : get_comments_number() . ' Commentaire' ?></span>
                   </div>
                 </a>
 
-                <a href="<?php the_permalink(); ?>" class="btn btn-gradient-primary text-white text-uppercase">Lire</a>
+                <a href="<?php the_permalink(); ?>" class="btn btn-max btn-primary">Lire</a>
               </div>
             </div>
           </div>

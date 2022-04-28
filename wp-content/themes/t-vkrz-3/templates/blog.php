@@ -26,7 +26,10 @@
                 <div class="col-md-6 col-12">
                   <div class="card">
                     <a href="<?php the_permalink(); ?>">
-                      <img class="card-img-top img-fluid" src="<?= get_the_post_thumbnail_url(); ?>" alt="Blog Post pic">
+
+                      <div class="cover" style="background: url(<?= get_the_post_thumbnail_url(); ?>) center center no-repeat; min-height: 320px; width: auto;">
+                      </div>
+
                     </a>
 
                     <div class="card-body">
@@ -77,12 +80,12 @@
                               <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                             </svg>
 
-                            <span class="text-body fw-bold">
+                            <span class="text-body fw-bold ml-25">
                               <?= get_comments_number() >= 1 ?  get_comments_number() . ' Commentaires' : get_comments_number() . ' Commentaire' ?></span>
                           </div>
                         </a>
 
-                        <a href="<?php the_permalink(); ?>" class="btn btn-gradient-primary text-white text-uppercase">Lire</a>
+                        <a href="<?php the_permalink(); ?>" class="btn btn-max btn-primary">Lire</a>
                       </div>
                     </div>
                   </div>
@@ -174,7 +177,7 @@
               $i = 0;
               foreach ($categories as $category) : ?>
                 <div class="d-flex justify-content-start align-items-center mb-75">
-                  <a href="<?php echo get_category_link($category->term_id); ?>" class="mr-25">
+                  <a href="<?php echo get_category_link($category->term_id); ?>" class="mr-50">
                     <div class="avatar <?= $styles[$i++]; ?> rounded">
                       <div class="avatar-content">
                         <?php the_field('icone_cat_article', 'term_' . $category->term_id); ?>
@@ -189,72 +192,6 @@
                   </a>
                 </div>
               <?php endforeach; ?>
-
-              <!--
-              <div class="d-flex justify-content-start align-items-center mb-75">
-                <a href="#" class="me-75">
-                  <div class="avatar bg-light-success rounded">
-                    <div class="avatar-content">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart avatar-icon font-medium-1">
-                        <circle cx="9" cy="21" r="1"></circle>
-                        <circle cx="20" cy="21" r="1"></circle>
-                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                      </svg>
-                    </div>
-                  </div>
-                </a>
-                <a href="#">
-                  <div class="blog-category-title text-body">Food</div>
-                </a>
-              </div>
-              <div class="d-flex justify-content-start align-items-center mb-75">
-                <a href="#" class="me-75">
-                  <div class="avatar bg-light-danger rounded">
-                    <div class="avatar-content">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-command avatar-icon font-medium-1">
-                        <path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"></path>
-                      </svg>
-                    </div>
-                  </div>
-                </a>
-                <a href="#">
-                  <div class="blog-category-title text-body">Gaming</div>
-                </a>
-              </div>
-              <div class="d-flex justify-content-start align-items-center mb-75">
-                <a href="#" class="me-75">
-                  <div class="avatar bg-light-info rounded">
-                    <div class="avatar-content">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-hash avatar-icon font-medium-1">
-                        <line x1="4" y1="9" x2="20" y2="9"></line>
-                        <line x1="4" y1="15" x2="20" y2="15"></line>
-                        <line x1="10" y1="3" x2="8" y2="21"></line>
-                        <line x1="16" y1="3" x2="14" y2="21"></line>
-                      </svg>
-                    </div>
-                  </div>
-                </a>
-                <a href="#">
-                  <div class="blog-category-title text-body">Quote</div>
-                </a>
-              </div>
-              <div class="d-flex justify-content-start align-items-center">
-                <a href="#" class="me-75">
-                  <div class="avatar bg-light-warning rounded">
-                    <div class="avatar-content">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-video avatar-icon font-medium-1">
-                        <polygon points="23 7 16 12 23 17 23 7"></polygon>
-                        <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
-                      </svg>
-                    </div>
-                  </div>
-                </a>
-                <a href="#">
-                  <div class="blog-category-title text-body">Video</div>
-                </a>
-              </div>
-              -->
-
             </div>
           </div>
           <!--/ Categories -->
