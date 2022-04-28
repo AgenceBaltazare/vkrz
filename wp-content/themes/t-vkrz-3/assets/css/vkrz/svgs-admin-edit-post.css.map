@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA;;;;;GAKG;AACH,AAAA,IAAI,CAAC,mBAAmB;AACxB,IAAI,CAAC,aAAa,CAAC,OAAO,CAAC,GAAG,CAAA,AAAA,GAAC,EAAK,MAAM,AAAX,EAAa;EAC3C,KAAK,EAAE,IAAI;CACX;;AAGD,AACC,IADG,CAAC,wBAAwB,CAC5B,iBAAiB,CAAC,sCAAsC,CAAC,GAAG,CAAA,AAAA,GAAC,EAAK,MAAM,AAAX,EAAa;EACzE,QAAQ,EAAE,QAAQ;CAClB;;AAHF,AAKC,IALG,CAAC,wBAAwB,CAK5B,kBAAkB,CAAC,iBAAiB,CAAC,4BAA4B,CAAC;EACjE,UAAU,EAAE,IAAI;CAChB",
+    "sources": [
+        "../../../../../plugins/svg-support/scss/svgs-admin-edit-post.scss"
+    ],
+    "names": [],
+    "file": "svgs-admin-edit-post.css"
+}

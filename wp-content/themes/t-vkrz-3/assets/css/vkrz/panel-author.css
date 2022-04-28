@@ -1,0 +1,24 @@
+#toplevel_page_acf-options-global {
+  display: none;
+}
+
+#wp-admin-bar-new-content, #wp-admin-bar-comments {
+  display: none;
+}
+
+.subsubsub .all, .subsubsub .draft, .subsubsub .publish {
+  display: none;
+}
+
+.tablenav {
+  display: none;
+}
+
+.search-box {
+  margin-bottom: 20px !important;
+}
+
+#commentstatusdiv, #authordiv, #rocket_post_exclude, #slugdiv, #wp-admin-bar-wpm-info {
+  display: none;
+}
+/*# sourceMappingURL=panel-author.css.map */
