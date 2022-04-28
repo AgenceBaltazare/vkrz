@@ -50,16 +50,54 @@
                   <hr class="my-2">
                   <div class="d-flex align-items-center justify-content-between">
                     <div class="d-flex align-items-center">
-                      <div class="d-flex align-items-center me-1">
-                        <a href="<?php the_permalink(); ?>#comments" class="mr-50">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-square font-medium-5 text-body align-middle">
-                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                          </svg>
-                        </a>
-                        <a href="<?php the_permalink(); ?>#comments">
-                          <div class="text-body align-middle"><?= get_comments_number() ?></div>
-                        </a>
-                      </div>
+                      <?php
+                      $id_post        = get_the_ID();
+                      $url_post       = get_the_permalink();
+                      $title_post     = get_the_title();
+                      $text_post       = get_the_excerpt();
+                      ?>
+                      <ul>
+                        <!-- Facebook -->
+                        <li>
+                          <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $url_post; ?>&quote=<?php echo $title_post; ?>" title="Share on Facebook" target="_blank">
+                            <span>
+                              <i class="fab fa-facebook-f"></i>
+                            </span>
+                          </a>
+                        </li>
+                        <!-- Twitter -->
+                        <li>
+                          <a href="https://twitter.com/intent/tweet?source=<?php echo $url_post; ?>&text=<?php echo $title_post; ?>:%20<?php echo $url_post; ?>" target="_blank" title="Tweet">
+                            <span>
+                              <i class="fab fa-twitter"></i>
+                            </span>
+                          </a>
+                        </li>
+                        <!-- Linkedin -->
+                        <li>
+                          <a href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo $url_post; ?>&title=<?php echo $title_post; ?>" target="_blank">
+                            <span>
+                              <i class="fab fa-linkedin-in"></i>
+                            </span>
+                          </a>
+                        </li>
+                        <!-- Whatsapp -->
+                        <li class="whatsapp">
+                          <a href="whatsapp://send?text=<?php echo $url_post; ?>" data-action="share/whatsapp/share">
+                            <span>
+                              <i class="fab fa-whatsapp"></i>
+                            </span>
+                          </a>
+                        </li>
+                        <!-- Email -->
+                        <li>
+                          <a href="mailto:?subject=<?php echo $title_post; ?>&body=<?php echo $ext_post; ?>:<?php echo $url_post; ?>" target="_blank">
+                            <span>
+                              <i class="fas fa-envelope"></i>
+                            </span>
+                          </a>
+                        </li>
+                      </ul>
                     </div>
                   </div>
                 </div>
@@ -71,7 +109,7 @@
                 $post_comments_id = get_the_ID();
 
                 $response_to_comment = false;
-                $actual_link         = get_the_permalink(get_page_by_path('discuz')) . '?id_top=' . $post_comments_id;
+                $actual_link         = get_the_permalink($post_comments_id) . '?post=' . $post_comments_id;
                 $comments            = get_comments('status=approve&type=comments&hierarchical=true&post_id=' . $post_comments_id);
                 $nb_comments         = count($comments);
                 if (isset($_GET['replytocom']) && $_GET['replytocom'] != "") {
@@ -85,7 +123,7 @@
 
                 if ($nb_comments > 0) : ?>
                   <h2 class="comments-title mb-50">
-                    <span class="t-rose"><?php echo $nb_comments; ?> <?php echo $comment_wording; ?></span> sur le Poste <?php echo get_the_title($post_comments_id); ?> <span class="text-muted"><?php the_field('question_t', $post_comments_id); ?></span>
+                    <span class="t-rose"><?php echo $nb_comments; ?> <?php echo $comment_wording; ?></span>
                   </h2>
 
                   <div class="comment-list row">

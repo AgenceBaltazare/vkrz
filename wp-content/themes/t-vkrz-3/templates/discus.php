@@ -2,13 +2,13 @@
 /*
     Template Name: Discussions
 */
-if (isset($_GET['id_top'])) {
-  $id_top  = $_GET['id_top'];
-
+if(isset($_GET['id_top'])) {
+  $id_top = $_GET['id_top'];
   if (isset($_GET['post'])) {
-    header("Location: " . $_GET['post']);
+    header("Location: " . $_GET['post'] . "#comments");
   }
-} else {
+} 
+else {
   header('Location: ' . get_bloginfo('url'));
 }
 get_header();
