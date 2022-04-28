@@ -82,7 +82,7 @@
                           </div>
                         </a>
 
-                        <a href="<?php the_permalink(); ?>" class="fw-bold px-2 py-50 bg-light rounded text-truncate text-uppercase">Lire</a>
+                        <a href="<?php the_permalink(); ?>" class="btn btn-gradient-primary text-white text-uppercase">Lire</a>
                       </div>
                     </div>
                   </div>
