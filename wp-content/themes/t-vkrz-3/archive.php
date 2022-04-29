@@ -55,7 +55,7 @@ $list_sujets      = array();
       <section class="grid-to-filtre row match-height mt-2">
         <?php $i = 1;
         while ($tops_in_cat->have_posts()) : $tops_in_cat->the_post(); ?>
-          <div data-filter-item data-filter-name="<?php echo $term_to_search; ?>" class="card same-h grid-item col-md-3 col-6 mr-2">
+          <div data-filter-item data-filter-name="<?php echo $term_to_search; ?>" class="card same-h grid-item col-md-3 col-6 mr-1">
             <a href="<?php the_permalink(); ?>">
               <img class="card-img-top img-fluid" src="<?= get_the_post_thumbnail_url(); ?>" alt="Blog Post pic">
             </a>
@@ -87,7 +87,7 @@ $list_sujets      = array();
               </p>
               <hr>
 
-              <div class="d-flex justify-content-between align-items-center mb-1">
+              <div class="d-flex flex-md-row flex-column justify-content-between align-items-center mb-1">
                 <a href="<?php the_permalink(); ?>#comments">
                   <div class="d-flex align-items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-square font-medium-1 text-body me-50">
@@ -98,7 +98,7 @@ $list_sujets      = array();
                   </div>
                 </a>
 
-                <a href="<?php the_permalink(); ?>" class="btn btn-max btn-primary">Lire</a>
+                <a href="<?php the_permalink(); ?>" class="btn btn-max btn-primary m-sm-0 mt-50">Lire</a>
               </div>
             </div>
           </div>
