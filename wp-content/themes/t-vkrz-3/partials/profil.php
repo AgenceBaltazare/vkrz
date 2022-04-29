@@ -46,9 +46,35 @@ $vainkeur_info = isset($vainkeur_info) ? $vainkeur_info : $user_infos;
       <?php endif; ?>
 
       <div class="ml-auto mb-2">
-        <a href="<?php echo get_author_posts_url($user_id); ?>" class="btn btn-outline-primary waves-effect">
-          Suivre <span class="ico text-center va va-smiling-face-with-heart-eyes va-lg"></span>
-        </a>
+
+        <?php
+        $searchTo = ucfirst($vainkeur_info['pseudo']);
+        $args = array(
+          'post_type'     => 'notification',
+          'post_status'   => 'publish',
+          'search_prod_title' => $searchTo,
+        );
+        add_filter('posts_where', 'title_filter', 10, 2);
+        $query = new WP_Query($args);
+        remove_filter('posts_where', 'title_filter', 10, 2);
+        ?>
+        <?php if ($query->have_posts()) : ?>
+          <a href="#" class="btn btn-outline-success waves-effect">
+            Followed ! 😉
+          </a>
+        <?php else : ?>
+          <form method="post">
+            <input type="hidden" name="notifs_from" value="<?= $user_infos['pseudo']; ?>">
+            <input type="hidden" name="notifs_to" value="<?= ucfirst($vainkeur_info['pseudo']); ?>">
+            <input type="hidden" name="notifs_message" value="<?= ucfirst($user_infos['pseudo']) . ' a commencé de te suivre!'; ?>">
+            <input type="hidden" name="notifs_image" value="<?= $user_infos['avatar']; ?>">
+
+            <button type="submit" name="notifs_create" class="btn btn-outline-primary waves-effect">
+              Suivre <span class="ico text-center va va-smiling-face-with-heart-eyes va-lg"></span>
+            </button>
+          </form>
+        <?php endif; ?>
+
       </div>
     </div>
   </div>

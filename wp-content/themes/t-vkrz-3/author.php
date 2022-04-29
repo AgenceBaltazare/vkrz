@@ -1,5 +1,31 @@
 <?php
 get_header();
+
+if (isset($_POST['notifs_create'])) {
+  $from  = $_POST['notifs_from'];
+  $to  = $_POST['notifs_to'];
+  $message  = $_POST['notifs_message'];
+  $image_url  = $_POST['notifs_image'];
+
+  if ($from) {
+    $new_notification = array(
+      'post_type'   => 'notification',
+      'post_title'  => "Notification: from $from To $to",
+      'post_status' => 'publish',
+    );
+    $id_new_notification  = wp_insert_post($new_notification);
+
+    update_field('from', $from, $id_new_notification);
+    update_field('to', $to, $id_new_notification);
+    update_field('message', $message, $id_new_notification);
+    update_field('image_url', $image_url, $id_new_notification);
+
+    if ($id_new_notification) {
+      // echo "<h1>Notification added successfully! ✨</h1>";
+    }
+  }
+}
+
 global $vainkeur_id;
 global $vainkeur_info;
 global $vainkeur_tops;

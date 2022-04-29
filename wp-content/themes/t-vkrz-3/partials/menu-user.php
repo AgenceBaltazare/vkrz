@@ -351,142 +351,127 @@ if (is_single() && get_post_type() == "tournoi") {
       </li>
 
       <!-- NOTIFICATIONS -->
+      <?php
+      $notifications = new WP_Query(
+        array(
+          'post_type' => 'notification',
+          'orderby' => 'date',
+          'posts_per_page' => '-1',
+          'meta_query'     => array(
+            array(
+              'key'     => 'to',
+              'value'   => $user_infos['pseudo'],
+              'compare' => '=',
+            )
+          )
+        )
+      );
+      $number_of_notifications = $notifications->found_posts;
+      ?>
+
       <li class="nav-item dropdown dropdown-notification mr-25"><a class="nav-link" href="javascript:void(0);" data-toggle="dropdown">
           <span class="ico text-center va va-bell va-lg"></span>
 
           <span class="d-block text-center">
-            <?php echo '10'; ?>
+            <?php echo $number_of_notifications; ?>
           </span>
           <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
             <li class="dropdown-menu-header">
               <div class="dropdown-header d-flex">
                 <h4 class="notification-title mb-0 mr-auto">Notifications</h4>
-                <div class="badge badge-pill badge-light-primary">6 New</div>
+                <div class="badge badge-pill badge-light-primary"><?= $number_of_notifications; ?> New</div>
               </div>
             </li>
-            <li class="scrollable-container media-list"><a class="d-flex" href="javascript:void(0)">
-                <div class="media d-flex align-items-start">
-                  <div class="media-left">
-                    <div class="avatar"><img src="https://pixinvent.com/demo/vuexy-html-bootstrap-admin-template/app-assets/images/portrait/small/avatar-s-15.jpg" alt="avatar" width="32" height="32"></div>
-                  </div>
-                  <div class="media-body">
-                    <p class="media-heading"><span class="font-weight-bolder">Congratulation Sam 🎉</span>winner!</p><small class="notification-text"> Won the monthly best seller badge.</small>
-                  </div>
-                </div>
-              </a><a class="d-flex" href="javascript:void(0)">
-                <div class="media d-flex align-items-start">
-                  <div class="media-left">
-                    <div class="avatar"><img src="https://pixinvent.com/demo/vuexy-html-bootstrap-admin-template/app-assets/images/portrait/small/avatar-s-3.jpg" alt="avatar" width="32" height="32"></div>
-                  </div>
-                  <div class="media-body">
-                    <p class="media-heading"><span class="font-weight-bolder">New message</span>&nbsp;received</p><small class="notification-text"> You have 10 unread messages</small>
-                  </div>
-                </div>
-              </a><a class="d-flex" href="javascript:void(0)">
-                <div class="media d-flex align-items-start">
-                  <div class="media-left">
-                    <div class="avatar bg-light-danger">
-                      <div class="avatar-content">MD</div>
-                    </div>
-                  </div>
-                  <div class="media-body">
-                    <p class="media-heading"><span class="font-weight-bolder">Revised Order 👋</span>&nbsp;checkout</p><small class="notification-text"> MD Inc. order updated</small>
-                  </div>
-                </div>
-              </a>
-              <a class="d-flex" href="javascript:void(0)">
-                <div class="media d-flex align-items-start">
-                  <div class="media-left">
-                    <div class="avatar bg-light-danger">
-                      <div class="avatar-content"><i class="avatar-icon" data-feather="x"></i></div>
-                    </div>
-                  </div>
-                  <div class="media-body">
-                    <p class="media-heading"><span class="font-weight-bolder">Server down</span>&nbsp;registered</p><small class="notification-text"> USA Server is down due to hight CPU usage</small>
-                  </div>
-                </div>
-              </a><a class="d-flex" href="javascript:void(0)">
-                <div class="media d-flex align-items-start">
-                  <div class="media-left">
-                    <div class="avatar bg-light-success">
-                      <div class="avatar-content"><i class="avatar-icon" data-feather="check"></i></div>
-                    </div>
-                  </div>
-                  <div class="media-body">
-                    <p class="media-heading"><span class="font-weight-bolder">Sales report</span>&nbsp;generated</p><small class="notification-text"> Last month sales report generated</small>
-                  </div>
-                </div>
-              </a><a class="d-flex" href="javascript:void(0)">
-                <div class="media d-flex align-items-start">
-                  <div class="media-left">
-                    <div class="avatar bg-light-warning">
-                      <div class="avatar-content"><i class="avatar-icon" data-feather="alert-triangle"></i></div>
-                    </div>
-                  </div>
-                  <div class="media-body">
-                    <p class="media-heading"><span class="font-weight-bolder">High memory</span>&nbsp;usage</p><small class="notification-text"> BLR Server using high memory</small>
-                  </div>
-                </div>
-              </a>
-            </li>
-            <li class="dropdown-menu-footer"><a class="btn btn-primary btn-block" href="javascript:void(0)">Read all notifications</a></li>
-          </ul>
-      </li>
-      <!--/ NOTIFICATIONS -->
+            <li class="scrollable-container media-list">
+              <?php if ($notifications->have_posts()) : ?>
+                <?php while ($notifications->have_posts()) : $notifications->the_post(); ?>
 
-      <li class="nav-item dropdown dropdown-user ml-25">
-        <a class="nav-link dropdown-toggle dropdown-user-link" id="dropdown-user" href="javascript:void(0);" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <span class="avatar">
-            <span class="avatar-picture" style="background-image: url(<?php echo $user_infos['avatar']; ?>);"></span>
-            <span class="user-niveau">
-              <?php echo $user_infos['level']; ?>
-            </span>
-          </span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-user">
-          <?php if (is_user_logged_in()) : ?>
-            <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>">
-              <div class="progress-wrapper">
-                <?php
-                $nb_need_money       = get_vote_to_next_level($user_infos['level_number'], $user_infos['money_vkrz']);
-                $money_to_next_level = $nb_need_money + $user_infos['money_vkrz'];
-                $percent_progression = round($user_infos['money_vkrz'] * 100 / $money_to_next_level);
-                ?>
-                <div id="example-caption-5">Encore <span class="decompte_vote"><?php echo $nb_need_money; ?></span> <span class="ico text-center va va-gem va-z-15"></span> pour <?php echo $user_infos['next_level']; ?></div>
-                <div class="progress progress-bar-primary w-100" style="height: 6px; margin-top: 5px;">
-                  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="<?php echo $percent_progression; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $percent_progression; ?>%"></div>
-                </div>
-              </div>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>">
-              Mon compte
-            </a>
-            <a class="dropdown-item" href="<?php the_permalink(305107); ?>">
-              Mes KEURZ <span class="ico va va-gem va-lg"></span>
-            </a>
-            <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('parametres')); ?>">
-              Paramètres
-            </a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('deconnexion')); ?>">
-              <span class="ico va va-waving-hand va-lg"></span> Déconnexion
-            </a>
+                  <a class="d-flex" href="javascript:void(0)">
+                    <div class="media d-flex align-items-start">
+                      <div class="media-left">
+                        <div class="avatar"><img src="<?php echo get_field('image_url', get_the_id()) ?>" alt="avatar" width="32" height="32"></div>
+                      </div>
+                      <div class="media-body">
+                        <p class="media-heading">
+                          <span class="font-weight-bolder">
+                            <?php echo get_field('message', get_the_id()) ?>
+                          </span>
+                        </p>
+
+                        <!-- <small class="notification-text"> Won the monthly best seller badge.</small> -->
+                      </div>
+                    </div>
+                  </a>
+
+                <?php endwhile; ?>
+            <li class="dropdown-menu-footer"><a class="btn btn-primary btn-block" href="javascript:void(0)">Read all notifications</a>
+            </li>
           <?php else : ?>
-            <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>">
-              Mon compte
-            </a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('se-connecter')); ?>">
-              <span class="ico va va-call-me-hand va-lg"></span> Me connecter
-            </a>
-            <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>">
-              <span class="ico va va-party-pooper va-lg">🎉</span> M'inscrire
-            </a>
+            <li class="dropdown-menu-footer">
+              <a class="btn btn-primary btn-block" aria-disabled="true" aria-readonly="true" href="javascript:void(0)">
+                Aucune notification! 😐
+              </a>
+            </li>
           <?php endif; ?>
-
-        </div>
       </li>
+
+    </ul>
+    </li>
+    <!--/ NOTIFICATIONS -->
+
+    <li class="nav-item dropdown dropdown-user ml-25">
+      <a class="nav-link dropdown-toggle dropdown-user-link" id="dropdown-user" href="javascript:void(0);" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="avatar">
+          <span class="avatar-picture" style="background-image: url(<?php echo $user_infos['avatar']; ?>);"></span>
+          <span class="user-niveau">
+            <?php echo $user_infos['level']; ?>
+          </span>
+        </span>
+      </a>
+      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-user">
+        <?php if (is_user_logged_in()) : ?>
+          <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>">
+            <div class="progress-wrapper">
+              <?php
+              $nb_need_money       = get_vote_to_next_level($user_infos['level_number'], $user_infos['money_vkrz']);
+              $money_to_next_level = $nb_need_money + $user_infos['money_vkrz'];
+              $percent_progression = round($user_infos['money_vkrz'] * 100 / $money_to_next_level);
+              ?>
+              <div id="example-caption-5">Encore <span class="decompte_vote"><?php echo $nb_need_money; ?></span> <span class="ico text-center va va-gem va-z-15"></span> pour <?php echo $user_infos['next_level']; ?></div>
+              <div class="progress progress-bar-primary w-100" style="height: 6px; margin-top: 5px;">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="<?php echo $percent_progression; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $percent_progression; ?>%"></div>
+              </div>
+            </div>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>">
+            Mon compte
+          </a>
+          <a class="dropdown-item" href="<?php the_permalink(305107); ?>">
+            Mes KEURZ <span class="ico va va-gem va-lg"></span>
+          </a>
+          <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('parametres')); ?>">
+            Paramètres
+          </a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('deconnexion')); ?>">
+            <span class="ico va va-waving-hand va-lg"></span> Déconnexion
+          </a>
+        <?php else : ?>
+          <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>">
+            Mon compte
+          </a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('se-connecter')); ?>">
+            <span class="ico va va-call-me-hand va-lg"></span> Me connecter
+          </a>
+          <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>">
+            <span class="ico va va-party-pooper va-lg">🎉</span> M'inscrire
+          </a>
+        <?php endif; ?>
+
+      </div>
+    </li>
     </ul>
 
   </div>

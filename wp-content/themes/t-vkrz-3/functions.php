@@ -56,3 +56,13 @@ function oa_social_login_set_redirect_url($url, $user_data)
 }
 add_filter('oa_social_login_filter_registration_redirect_url', 'oa_social_login_set_redirect_url', 10, 2);
 add_filter('oa_social_login_filter_login_redirect_url', 'oa_social_login_set_redirect_url', 10, 2);
+
+
+function title_filter($where, &$wp_query)
+{
+  global $wpdb;
+  if ($search_term = $wp_query->get('search_prod_title')) {
+    $where .= ' AND ' . $wpdb->posts . '.post_title LIKE \'%' . esc_sql(like_escape($search_term)) . '%\'';
+  }
+  return $where;
+}
