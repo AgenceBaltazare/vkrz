@@ -44,6 +44,12 @@ $vainkeur_info = isset($vainkeur_info) ? $vainkeur_info : $user_infos;
           </a>
         </div>
       <?php endif; ?>
+
+      <div class="ml-auto mb-2">
+        <a href="<?php echo get_author_posts_url($user_id); ?>" class="btn btn-outline-primary waves-effect">
+          Suivre <span class="ico text-center va va-smiling-face-with-heart-eyes va-lg"></span>
+        </a>
+      </div>
     </div>
   </div>
 
