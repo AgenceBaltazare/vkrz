@@ -87,3 +87,10 @@ function vkzr_get_similar_ranking()
 {
     get_similar_ranking($_POST['uuiduser'], $_POST['idtop']);
 }
+
+add_action('wp_ajax_vkzr_do_notification', 'vkzr_do_notification');
+add_action('wp_ajax_nopriv_vkzr_do_notification', 'vkzr_do_notification');
+function vkzr_do_notification()
+{
+    do_notification($_POST['uuiduser'], $_POST['notif_text']);
+}
