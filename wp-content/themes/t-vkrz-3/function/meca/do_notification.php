@@ -1,20 +1,14 @@
 <?php
-function do_notification($id_user, $uuiduser, $relation_uuid, $notif_text, $liens_vers)
+function do_notification($id_user, $uuiduser, $relation_id, $relation_uuid, $notif_text, $liens_vers)
 {
 
-
-  // if (strpos($notif_text, "guette")) {
-
-  // }
-
-  // Get user object
-  $account = get_user_by('login', 'adil');
-  // Get user display name
-  $account_id = $account->ID;
-
-  $id_update_account = wp_update_post($account_id);
-
-  update_field('liste_amis_user', $id_user, $id_update_account);
+  $amis = array();
+  $amis = get_field('liste_amis_user', 'user_' . $relation_id, false);
+  if (!is_array($amis)) {
+    $amis = array();
+  }
+  array_push($amis, $id_user);
+  update_field('liste_amis_user', $amis, 'user_' . $relation_id);
 
   $new_notification = array(
     'post_type'   => 'notification',

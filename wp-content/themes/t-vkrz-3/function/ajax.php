@@ -103,5 +103,5 @@ add_action('wp_ajax_vkzr_do_notification', 'vkzr_do_notification');
 add_action('wp_ajax_nopriv_vkzr_do_notification', 'vkzr_do_notification');
 function vkzr_do_notification()
 {
-  do_notification($_POST['id_user'], $_POST['uuiduser'], $_POST['relation_uuid'], $_POST['notif_text'], $_POST['liens_vers']);
+  do_notification($_POST['id_user'], $_POST['uuiduser'], $_POST['relation_id'], $_POST['relation_uuid'], $_POST['notif_text'], $_POST['liens_vers']);
 }

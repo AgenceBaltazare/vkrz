@@ -66,36 +66,6 @@ $vainkeur_info = isset($vainkeur_info) ? $vainkeur_info : $user_infos;
           )
         )
       );
-
-
-      // $account = get_user_by('login', 'adil');
-      // $account_id = $account->ID;
-
-      // echo $account_id . '<br>';
-
-      // update_field('liste_amis_user', 'guillaume (Guillaume vergano)', 1);
-
-
-      $account = get_user_by('login', 'adil');
-      $account_id = $account->ID;
-
-      // $amis = get_field('liste_amis_user', $account_id, false);
-
-      // if (!is_array($amis)) {
-      //   $amis = array();
-      // }
-      // $amis[] = $user_id;
-      // update_field('liste_amis_user', $amis, $account_id);
-
-      // // get current value
-      // $amis = get_field('liste_amis_user', 1, false);
-      // // add new id to the array
-      // $amis[] = $user_id;
-      // // update the field
-      // update_field('liste_amis_user', $user_id, 1);
-
-      // print_r($amis);
-
       ?>
       <?php if (strtolower($user_infos['pseudo']) != strtolower($vainkeur_info['pseudo'])) : ?>
         <div class="ml-auto mb-2">
@@ -104,7 +74,7 @@ $vainkeur_info = isset($vainkeur_info) ? $vainkeur_info : $user_infos;
               Suivi! 😉
             </button>
           <?php else : ?>
-            <button id="follow_btn" class="btn btn-outline-primary waves-effect" data-userid="<?= $user_id; ?>" data-uuid="<?php echo $uuiduser; ?>" data-related="<?= $vainkeur_info['uuid_user_vkrz']; ?>" data-text="<?= $user_infos['pseudo'] ?> vous guette !" data-url="<?= $user_infos['avatar']; ?>">
+            <button id="follow_btn" class="btn btn-outline-primary waves-effect" data-userid="<?= $user_id; ?>" data-uuid="<?php echo $uuiduser; ?>" data-relatedid="<?= $vainkeur_id; ?>" data-related="<?= $vainkeur_info['uuid_user_vkrz']; ?>" data-text="<?= $user_infos['pseudo'] ?> vous guette !" data-url="<?= $user_infos['avatar']; ?>">
               Suivre <span class="ico text-center va va-smiling-face-with-heart-eyes va-lg"></span>
             </button>
           <?php endif; ?>
