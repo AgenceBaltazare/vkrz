@@ -67,7 +67,7 @@ function load_css_js()
   if (is_page(get_page_by_path('monitor'))) {
     wp_enqueue_script('monitor', get_template_directory_uri() . '/function/ajax/monitor.js', array(), $template_version, true);
   }
-  if (is_author() || is_page(array(284946, 143788, 284948, 218587)) || is_page(get_page_by_path('tas')) || is_page(get_page_by_path('mon-compte')) || is_page(get_page_by_path('mon-compte/createur'))) {
+  if (is_author() || is_page(array(284946, 143788, 284948, 218587)) || is_page(get_page_by_path('tas')) || is_page(get_page_by_path('mon-compte')) || is_page(get_page_by_path('mon-compte/createur')) || is_page(get_page_by_path('mon-compte/notifications'))) {
     wp_enqueue_script('datatables', get_template_directory_uri() . '/assets/vendors/js/tables/datatable/datatables.min.js', array(), null, true);
     wp_enqueue_script('datatables-advanced', get_template_directory_uri() . '/assets/js/scripts/tables/table-datatables-advanced.js', array(), null, true);
     wp_enqueue_script('datatables.buttons', get_template_directory_uri() . '/assets/vendors/js/tables/datatable/datatables.buttons.min.js', array(), null, true);

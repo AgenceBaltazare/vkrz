@@ -79,7 +79,6 @@ function cpt_init()
   );
   register_post_type('classement', $args);
 
-  // NOTIFICATIONS 🚀
   $labels = array(
     'name' => 'Notification',
     'singular_name' => 'Notification',

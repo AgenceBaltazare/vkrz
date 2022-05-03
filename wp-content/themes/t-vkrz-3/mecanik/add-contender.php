@@ -127,10 +127,10 @@ if (false === ($data_t_created = get_transient('user_' . $user_id . '_get_creato
             // GET THE CONTENDER ONLINE 2️⃣
 
             /* 
-              TO PREPARE THE IMAGE URL HERE'S THE ORIGINAK LINK : http://localhost:7882/vkrz/wp-content/uploads/2022/03/banniere-2.png
+              TO PREPARE THE IMAGE URL HERE'S THE ORIGINAL LINK : http://localhost:7882/vkrz/wp-content/uploads/2022/03/banniere-2.png
             */
 
-            url: "https://bltzr.fr/vkrz/wp-json/vkrz/v1/addcontender",
+            url: "https://vainkeurz.com/wp-json/vkrz/v1/addcontender",
             method: "GET",
             data: {
               idphoto: form.find('#idphoto').val(),

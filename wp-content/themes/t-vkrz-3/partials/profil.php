@@ -45,13 +45,71 @@ $vainkeur_info = isset($vainkeur_info) ? $vainkeur_info : $user_infos;
         </div>
       <?php endif; ?>
 
-      <div class="ml-auto mb-2">
+      <?php
+      $check_already_sub = new WP_Query(
+        array(
+          'post_type' => 'notification',
+          'orderby' => 'date',
+          'posts_per_page' => '-1',
+          'meta_query'     => array(
+            'relation' => 'AND',
+            array(
+              'key'     => 'uuid_user_notif',
+              'value'   => $uuiduser,
+              'compare' => '=',
+            ),
+            array(
+              'key'     => 'relation_uuid_notif',
+              'value'   => $vainkeur_info['uuid_user_vkrz'],
+              'compare' => '=',
+            )
+          )
+        )
+      );
 
-          <button id="follow_btn" class="btn btn-outline-primary waves-effect" data-uuid="<?php echo $uuiduser; ?>" data-related="" data-text="Adil vous guette !" data-userid="<?php echo $user_id; ?>">
-            Suivre <span class="ico text-center va va-smiling-face-with-heart-eyes va-lg"></span>
-          </button>
 
-      </div>
+      // $account = get_user_by('login', 'adil');
+      // $account_id = $account->ID;
+
+      // echo $account_id . '<br>';
+
+      // update_field('liste_amis_user', 'guillaume (Guillaume vergano)', 1);
+
+
+      $account = get_user_by('login', 'adil');
+      $account_id = $account->ID;
+
+      // $amis = get_field('liste_amis_user', $account_id, false);
+
+      // if (!is_array($amis)) {
+      //   $amis = array();
+      // }
+      // $amis[] = $user_id;
+      // update_field('liste_amis_user', $amis, $account_id);
+
+      // // get current value
+      // $amis = get_field('liste_amis_user', 1, false);
+      // // add new id to the array
+      // $amis[] = $user_id;
+      // // update the field
+      // update_field('liste_amis_user', $user_id, 1);
+
+      // print_r($amis);
+
+      ?>
+      <?php if (strtolower($user_infos['pseudo']) != strtolower($vainkeur_info['pseudo'])) : ?>
+        <div class="ml-auto mb-2">
+          <?php if ($check_already_sub->have_posts()) : ?>
+            <button id="" disabled="true" class="btn btn-outline-success waves-effect">
+              Suivi! 😉
+            </button>
+          <?php else : ?>
+            <button id="follow_btn" class="btn btn-outline-primary waves-effect" data-userid="<?= $user_id; ?>" data-uuid="<?php echo $uuiduser; ?>" data-related="<?= $vainkeur_info['uuid_user_vkrz']; ?>" data-text="<?= $user_infos['pseudo'] ?> vous guette !" data-url="<?= $user_infos['avatar']; ?>">
+              Suivre <span class="ico text-center va va-smiling-face-with-heart-eyes va-lg"></span>
+            </button>
+          <?php endif; ?>
+        </div>
+      <?php endif; ?>
     </div>
   </div>
 
@@ -84,6 +142,14 @@ $vainkeur_info = isset($vainkeur_info) ? $vainkeur_info : $user_infos;
                                                         echo 'btn btn-primary';
                                                       } ?>" href="<?php the_permalink(get_page_by_path('mon-compte/createur')); ?>">
                     Créateur
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link font-weight-bold <?php if (is_page(444131)) {
+                                                        echo 'btn btn-primary';
+                                                      } ?>" href="<?php the_permalink(get_page_by_path('mon-compte/notifications')); ?>">
+                    Mes notifications
                   </a>
                 </li>
               <?php endif; ?>

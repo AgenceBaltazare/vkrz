@@ -58,11 +58,8 @@ add_filter('oa_social_login_filter_registration_redirect_url', 'oa_social_login_
 add_filter('oa_social_login_filter_login_redirect_url', 'oa_social_login_set_redirect_url', 10, 2);
 
 
-function title_filter($where, &$wp_query)
+function top_published_notification()
 {
-  global $wpdb;
-  if ($search_term = $wp_query->get('search_prod_title')) {
-    $where .= ' AND ' . $wpdb->posts . '.post_title LIKE \'%' . esc_sql(like_escape($search_term)) . '%\'';
-  }
-  return $where;
+  do_notification("1", "51df416e3aa28", "2b4d3b1838a11", "Adil viens de lancer un Top!", "http://0.gravatar.com/avatar/ceabac8e8f0110f37d03fac64308134e?s=80&d=mm&r=g");
 }
+add_action('publish_tournoi', 'top_published_notification', 10, 2);
