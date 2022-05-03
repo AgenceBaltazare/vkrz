@@ -225,7 +225,7 @@ if (false === ($data_t_created = get_transient('user_' . $user_id . '_get_creato
             method: "GET",
             data: {
               idphoto: form.find('#idphoto').val(),
-              url_visual: "<?= 'http://' . $_SERVER['HTTP_HOST'] . "/vkrz/wp-content/uploads/" . date("Y") . '/' . date('m') . '/' ?>" + document.getElementById("url_visual").files[0].name,
+              url_visual: "<?= 'https://' . $_SERVER['HTTP_HOST'] . "/wp-content/uploads/" . date("Y") . '/' . date('m') . '/' ?>" + document.getElementById("url_visual").files[0].name,
               pseudo: form.find('#pseudo').val(),
               id_top: form.find('#id_top').val()
             },
