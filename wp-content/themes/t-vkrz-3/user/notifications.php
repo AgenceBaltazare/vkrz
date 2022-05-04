@@ -61,10 +61,10 @@ $number_of_notifications_all = $notifications_all->found_posts;
                                     </span>
                                   </th>
                                   <th class="text-right">
-                                    <span class="text-muted">Statut</span>
+                                    <span class="text-muted pr-2">Statut</span>
                                   </th>
                                   <th class="text-right">
-                                    <span class="text-muted">Action</span>
+                                    <span class="text-muted pr-2">Action</span>
                                   </th>
                                 </tr>
                               </thead>

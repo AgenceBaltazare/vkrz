@@ -114,6 +114,15 @@ $vainkeur_info = isset($vainkeur_info) ? $vainkeur_info : $user_infos;
                     Créateur
                   </a>
                 </li>
+              <?php endif; ?>
+              <?php if (is_user_logged_in()) : ?>
+                <li class="nav-item">
+                  <a class="nav-link font-weight-bold <?php if (is_page(get_page_by_path('parametres'))) {
+                                                        echo 'btn btn-primary';
+                                                      } ?>" href="<?php the_permalink(get_page_by_path('parametres')); ?>">
+                    Editer mon profil
+                  </a>
+                </li>
 
                 <li class="nav-item">
                   <a class="nav-link font-weight-bold <?php if (is_page(444131)) {
@@ -122,13 +131,12 @@ $vainkeur_info = isset($vainkeur_info) ? $vainkeur_info : $user_infos;
                     Mes notifications
                   </a>
                 </li>
-              <?php endif; ?>
-              <?php if (is_user_logged_in()) : ?>
+
                 <li class="nav-item">
-                  <a class="nav-link font-weight-bold <?php if (is_page(get_page_by_path('parametres'))) {
+                  <a class="nav-link font-weight-bold <?php if (is_page(444177)) {
                                                         echo 'btn btn-primary';
-                                                      } ?>" href="<?php the_permalink(get_page_by_path('parametres')); ?>">
-                    Editer mon profil
+                                                      } ?>" href="<?php the_permalink(get_page_by_path('mon-compte/amis')); ?>">
+                    Amigos
                   </a>
                 </li>
               <?php endif; ?>
