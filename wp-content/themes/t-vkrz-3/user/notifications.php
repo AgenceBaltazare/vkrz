@@ -122,7 +122,7 @@ $number_of_notifications_all = $notifications_all->found_posts;
                                         $findMe  = "guette";
                                         $pos = strpos($string, $findMe);
                                         if ($pos === false) { ?>
-                                          <a class="mr-1" href="#">
+                                          <a class="mr-1" href="<?php echo get_field('lien_vers_notif', get_the_id()); ?>">
                                             <span class="ico va va-eyes va-lg">
                                             </span>
                                           </a>

@@ -60,6 +60,43 @@ add_filter('oa_social_login_filter_login_redirect_url', 'oa_social_login_set_red
 
 function top_published_notification()
 {
-  do_notification("1", "51df416e3aa28", "2b4d3b1838a11", "Adil viens de lancer un Top!", "http://0.gravatar.com/avatar/ceabac8e8f0110f37d03fac64308134e?s=80&d=mm&r=g");
+  /*
+  $id_user 
+  $uuiduser 
+  $relation_id 
+  $relation_uuid 
+  $notif_text 
+  $liens_vers
+  */
+
+  $id_user = get_user_logged_id();
+  $uuiduser = get_field('uuiduser_user', 'user_' . $id_user);
+
+  $actual_user_infos = get_user_infos($uuiduser);
+
+  $amis_ids = array();
+  $amis_ids = get_field('liste_amis_user', 'user_' . $id_user, false);
+  if (is_array($amis_ids)) {
+    $amis = array();
+    foreach ($amis_ids as $ami_id) :
+      $ami_uuid = get_field('uuiduser_user', 'user_' . $ami_id);
+      $ami_infos = get_user_infos($ami_uuid);
+
+      array_push($amis, $ami_infos);
+    endforeach;
+  }
+
+  $user = wp_get_current_user();
+  $user_name = $user->display_name;
+
+  $notif_text = $user_name . ' viens de lancer un Top!';
+  $liens_vers = 'https://www.google.com/';
+
+
+  foreach ($amis as $ami) {
+    do_notification($id_user, $uuiduser, $ami['user_id'], $ami['uuid_user_vkrz'], $notif_text, $liens_vers);
+  }
+
+  // do_notification("1", "51df416e3aa28", "2b4d3b1838a11", "Adil viens de lancer un Top!", "http://0.gravatar.com/avatar/ceabac8e8f0110f37d03fac64308134e?s=80&d=mm&r=g");
 }
 add_action('publish_tournoi', 'top_published_notification', 10, 2);
