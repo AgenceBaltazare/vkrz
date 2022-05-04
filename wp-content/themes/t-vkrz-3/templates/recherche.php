@@ -276,52 +276,24 @@ if (!empty($list_tops_unique)) {
 }
 
 ////////////////// VAINKEUR 5️⃣ ////////////
-function get_vainkeurz()
-{
-  $vainkeurs = new WP_Query(array(
-    "post_type"              => "vainkeur",
-    'fields'                 => 'ids',
-    "post_status"            => "publish",
-    "update_post_meta_cache" => false,
-    "no_found_rows"          => false,
-    "orderby"                => "meta_value_num",
-    "order"                  => "DESC",
-  ));
-
-  if ($vainkeurs->have_posts()) {
-    foreach ($vainkeurs->posts as $vainkeur_id) {
-      $return[] = array(
-        "vainkeur_id" => $vainkeur_id,
-        "author_id" => get_post_field("post_author", $vainkeur_id),
-        "uuid" => get_field("uuid_user_vkrz", $vainkeur_id),
-        "money" => get_field("money_vkrz", $vainkeur_id),
-        "total_vote" => get_field("nb_vote_vkrz", $vainkeur_id),
-        "total_top" => get_field("nb_top_vkrz", $vainkeur_id)
-      );
-    }
-  }
-
-  return $return;
-}
-$vainkeurz = get_vainkeurz();
 global $searching_for_a_vainkeur;
+$vainkeurz = get_vkrz_users_list();
 $searching_for_a_vainkeur = false;
 $searched_vainkeur =  strtolower($term_to_search);
-$vainkeur_final_id = 0;
+$vainkeur_trouve = array();
 
 foreach ($vainkeurz as $vainkeur) {
-  $vainkeur_name = strtolower(get_the_author_meta('nickname', $vainkeur["author_id"]));
+  $vainkeur_uuid = get_field('uuiduser_user', 'user_' . $vainkeur);
+  $vainkeur_infos = get_user_infos($vainkeur_uuid);
+  $vainkeur_name = strtolower($vainkeur_infos['pseudo']);
+
   if (strcmp($vainkeur_name, $searched_vainkeur) === 0) {
     $searching_for_a_vainkeur = true;
-    $vainkeur_final_id = $vainkeur["author_id"];
 
-    $total_vote         = $vainkeur["total_vote"];
-    $total_top          = $vainkeur["total_top"];
-    $money              = $vainkeur["money"];
+    $vainkeur_trouve = $vainkeur_infos;
   }
 }
 wp_reset_query();
-
 ///////////////////////////////////////////
 
 global $total_top_founded;
@@ -332,7 +304,6 @@ get_header();
 ?>
 
 <div class="app-content content ecommerce-application">
-  <!-- <div class="content-overlay"></div> -->
   <div class="content-wrapper">
     <div class="content-body">
 
@@ -518,24 +489,19 @@ get_header();
           endwhile; ?>
         </section>
 
-      <?php else : ?>
-
-        <div class="noresult">
-          <h2>
-            <span class="ico va va-woozy-face va-lg"></span> Aucun résultat pour ta recherche
-          </h2>
-        </div>
-
-      <?php endif; ?>
-
-      <?php if ($searching_for_a_vainkeur) : ?>
+      <?php elseif ($searching_for_a_vainkeur) : ?>
         <?php
-        $user_id = $vainkeur_final_id;
-        $user_infos = deal_vainkeur_entry($user_id);
-        $avatar             = $user_infos['avatar'];
-        $info_user_level    = get_user_level($user_id);
+        $vainkeur_pseudo     = $vainkeur_trouve['pseudo'];
+        $total_vote          = $vainkeur_trouve["nb_vote_vkrz"];
+        $total_top           = $vainkeur_trouve["nb_top_vkrz"];
+        $money               = $vainkeur_trouve["money_vkrz"];
+        $avatar              = $vainkeur_trouve['avatar'];
+        $profil_url          = $vainkeur_trouve['profil_url'];
+
+        $user_infos          = deal_vainkeur_entry($vainkeur_trouve['user_id']);
+        $info_user_level     = get_user_level($vainkeur_trouve['user_id']);
         ?>
-        <div class="classement mt-3">
+        <div class="classement mt-2">
           <section id="profile-info">
             <div id="table-bordered">
               <div class="card">
@@ -577,7 +543,7 @@ get_header();
                                   </div>
                                   <div class="font-weight-bold championname">
                                     <span>
-                                      <?php echo get_the_author_meta('nickname', $user_id); ?>
+                                      <?php echo $vainkeur_pseudo; ?>
                                     </span>
                                     <?php if ($user_infos['user_role'] == "administrator") : ?>
                                       <span class="ico va va-vkrzteam va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
@@ -604,7 +570,7 @@ get_header();
                               </td>
 
                               <td class="text-right">
-                                <a href="<?php echo esc_url(get_author_posts_url($user_id)); ?>" class="mr-1 btn btn-outline-primary waves-effect">
+                                <a href="<?php echo $profil_url; ?>" class="mr-1 btn btn-outline-primary waves-effect">
                                   <span class="va va-eyes va-lg"></span>
                                 </a>
                               </td>
@@ -619,6 +585,15 @@ get_header();
             </div>
           </section>
         </div>
+
+      <?php else : ?>
+
+        <div class="noresult">
+          <h2>
+            <span class="ico va va-woozy-face va-lg"></span> Aucun résultat pour ta recherche
+          </h2>
+        </div>
+
       <?php endif; ?>
     </div>
   </div>

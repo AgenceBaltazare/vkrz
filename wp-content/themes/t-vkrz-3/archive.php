@@ -104,7 +104,6 @@ if (!empty($tops_unique_to_find)) {
         </div>
       </div>
 
-
       <section id="ecommerce-header" class="mb-2 mt-2">
         <div id="ecommerce-searchbar" class="ecommerce-searchbar">
           <div class="input-group input-group-merge">

@@ -3,6 +3,7 @@ global $user_infos;
 global $cat_name;
 global $term_to_search;
 global $total_top_founded;
+global $searching_for_a_vainkeur;
 if (is_single() && get_post_type() == "tournoi") {
   global $top_infos;
   global $id_top;
@@ -242,7 +243,10 @@ if (is_single() && get_post_type() == "tournoi") {
           <h3 class="mb-0 t-titre-tournoi"><span class="text-muted">Recherche</span> <span class="ico va va-magnifying-glass-tilted-left va-lg"></span> <span class="text-uppercase"><?php echo $term_to_search; ?></span></h3>
           <h4 class="mb-0">
             <?php
-            if ($total_top_founded == 0 || !$total_top_founded) {
+
+            if ($searching_for_a_vainkeur) {
+              echo 'Vainkeur trouvé!';
+            } elseif ($total_top_founded == 0 || !$total_top_founded) {
               echo "Aucun résultat trouvé";
             } elseif ($total_top_founded == 1) {
               echo "Un seul résultat trouvé";
