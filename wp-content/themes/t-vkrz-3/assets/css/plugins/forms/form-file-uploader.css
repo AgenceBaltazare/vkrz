@@ -81,3 +81,24 @@
 
 .dark-layout .dropzone-area {
   background-color: #2e3750; }
+
+.inputfile {
+  /* opacity: 0;
+  overflow: hidden;
+  position: absolute; */
+  cursor:pointer;
+}
+
+/* label.form-control {
+  background-color: #20143a;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor:pointer;
+}
+label.form-control:not(focus) {
+  border-color: #404656;
+} */
+
+
