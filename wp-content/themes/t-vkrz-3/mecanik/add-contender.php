@@ -212,7 +212,7 @@ if (false === ($data_t_created = get_transient('user_' . $user_id . '_get_creato
       $('#ajout-contender').html('Envoi en cours...');
 
       $.ajax({
-        url: "<?= 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>",
+        url: "<?= 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>",
         method: "POST",
         processData: false,
         contentType: false,
@@ -222,7 +222,7 @@ if (false === ($data_t_created = get_transient('user_' . $user_id . '_get_creato
             // GET THE CONTENDER ONLINE 2️⃣
 
             /* 
-              TO PREPARE THE IMAGE URL HERE'S THE ORIGINAK LINK : http://localhost:7882/vkrz/wp-content/uploads/2022/03/banniere-2.png
+              TO PREPARE THE IMAGE URL HERE'S THE ORIGINAK LINK : https://localhost:7882/vkrz/wp-content/uploads/2022/03/banniere-2.png
             */
 
             url: "https://vainkeurz.com/wp-json/vkrz/v1/addcontender",
