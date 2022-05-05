@@ -2,6 +2,17 @@
 <?php /* CETTE PAGE EST ACTUELLEMENT EN COURS DE FINITION. DES CHANGEMENTS PEUVENT ÊTRE EFFECTUER ! ⛔ */ ?>
 
 <?php
+
+/**
+ * @param array $sizes    An associative array of image sizes.
+ * @param array $metadata An associative array of image metadata: width, height, file.
+ */
+function remove_image_sizes($sizes, $metadata)
+{
+  return [];
+}
+add_filter('intermediate_image_sizes_advanced', 'remove_image_sizes', 10, 2);
+
 // TO SAVE THE IMAGE IN MEDIA LIBRARY
 function register_team_show_case_setting()
 {
@@ -203,17 +214,6 @@ if (false === ($data_t_created = get_transient('user_' . $user_id . '_get_creato
 
     form.submit(function(e) {
 
-      e.preventDefault();
-
-      // SAVE THE IMAGE IN MEDIA LIBRARY, SO THAT IMAGE'S URL WORKS! 1️⃣
-      let file = $('#url_visual')[0].files[0]
-      let formData = new FormData();
-      formData.append('url_visual', file);
-
-      let imgType = document.getElementById("url_visual").files[0].name.split('.').pop();
-
-      $('#ajout-contender').html('Envoi en cours...');
-
       <?php
       function randWord($length = 4)
       {
@@ -221,6 +221,25 @@ if (false === ($data_t_created = get_transient('user_' . $user_id . '_get_creato
       }
       $randomWord = randWord();
       ?>
+
+      e.preventDefault();
+
+      // SAVE THE IMAGE IN MEDIA LIBRARY, SO THAT IMAGE'S URL WORKS! 1️⃣
+      // let fileO = $('#url_visual')[0].files[0]
+
+      let imgType = document.getElementById("url_visual").files[0].name.split('.').pop();
+
+      var element = document.getElementById('url_visual');
+      var file = element.files[0];
+      var blob = file.slice(0, file.size, `image/${imgType}`);
+      var newFile = new File([blob], `<?php echo $randomWord; ?>.${imgType}`, {
+        type: `image/${imgType}`
+      });
+
+      let formData = new FormData();
+      formData.append('url_visual', newFile);
+
+      $('#ajout-contender').html('Envoi en cours...');
 
       $.ajax({
         url: "<?= 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>",
