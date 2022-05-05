@@ -36,7 +36,6 @@ if (false === ($data_t_created = get_transient('user_' . $user_id . '_get_creato
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css" rel="stylesheet" />
 
-<link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory'); ?>/assets/css/plugins/forms/form-file-uploader.min.css">
 <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory'); ?>/assets/css/plugins/forms/form-file-uploader.css">
 
 <div class="app-content content recrutement-page">
@@ -135,7 +134,14 @@ if (false === ($data_t_created = get_transient('user_' . $user_id . '_get_creato
                         <div class="dz-message text-center pb-3">Déposez le fichier ici ou cliquez pour le télécharger.</div>
                       </div> -->
 
-                      <input type="file" class="inputfile form-control" name="url_visual" id="url_visual">
+                      <!-- <input type="file" class="inputfile form-control" name="url_visual" id="url_visual"> -->
+
+                      <div class="dropzone-area">
+                        <input type="file" class="inputfile" onchange='uploadFile(this)' name="url_visual" id="url_visual">
+                        <label for="file" class="pt-5">
+                          <span class="dz-message text-center pb-3" id="file-name">Déposez le fichier ici ou cliquez pour le télécharger.</span>
+                        </label>
+                      </div>
 
                       <div class="form-group input-group-lg mt-1">
                         <input type="text" class="form-control p-2" id="pseudo" name="pseudo" placeholder="Pseudo">
@@ -179,8 +185,12 @@ if (false === ($data_t_created = get_transient('user_' . $user_id . '_get_creato
   </div>
 </div>
 
-<script src="<?php bloginfo('template_directory'); ?>/assets/vendors/js/extensions/dropzone.min.js"></script>
-
+<!-- <script src="<?php bloginfo('template_directory'); ?>/assets/vendors/js/extensions/dropzone.min.js"></script> -->
+<script>
+  function uploadFile(target) {
+	  document.getElementById("file-name").innerHTML = target.files[0].name;
+  }
+</script>
 <script>
   $(document).ready(function($) {
 
