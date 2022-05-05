@@ -223,7 +223,7 @@ if (false === ($data_t_created = get_transient('user_' . $user_id . '_get_creato
       ?>
 
       $.ajax({
-        url: "<?= 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>",
+        url: "<?= 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>",
         method: "POST",
         processData: false,
         contentType: false,
