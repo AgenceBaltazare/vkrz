@@ -32,6 +32,7 @@ if (false === ($data_t_created = get_transient('user_' . $user_id . '_get_creato
 }
 ?>
 
+
 <!-- IMPORTING BOOTSTRAP-SELECT -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css" rel="stylesheet" />
@@ -115,8 +116,8 @@ if (false === ($data_t_created = get_transient('user_' . $user_id . '_get_creato
                           </span>
                         </div>
                       <?php
-                          endforeach;
-                          wp_reset_postdata();
+                      endforeach;
+                      wp_reset_postdata();
                       ?>
                     </div>
                   <?php endif; ?>
@@ -188,7 +189,7 @@ if (false === ($data_t_created = get_transient('user_' . $user_id . '_get_creato
 <!-- <script src="<?php bloginfo('template_directory'); ?>/assets/vendors/js/extensions/dropzone.min.js"></script> -->
 <script>
   function uploadFile(target) {
-	  document.getElementById("file-name").innerHTML = target.files[0].name;
+    document.getElementById("file-name").innerHTML = target.files[0].name;
   }
 </script>
 <script>
@@ -209,10 +210,20 @@ if (false === ($data_t_created = get_transient('user_' . $user_id . '_get_creato
       let formData = new FormData();
       formData.append('url_visual', file);
 
+      let imgType = document.getElementById("url_visual").files[0].name.split('.').pop();
+
       $('#ajout-contender').html('Envoi en cours...');
 
+      <?php
+      function randWord($length = 4)
+      {
+        return substr(str_shuffle("qwertyuiopasdfghjklzxcvbnm"), 0, $length);
+      }
+      $randomWord = randWord();
+      ?>
+
       $.ajax({
-        url: "<?= 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>",
+        url: "<?= 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>",
         method: "POST",
         processData: false,
         contentType: false,
@@ -229,7 +240,7 @@ if (false === ($data_t_created = get_transient('user_' . $user_id . '_get_creato
             method: "GET",
             data: {
               idphoto: form.find('#idphoto').val(),
-              url_visual: "<?= 'https://' . $_SERVER['HTTP_HOST'] . "/wp-content/uploads/" . date("Y") . '/' . date('m') . '/' ?>" + document.getElementById("url_visual").files[0].name,
+              url_visual: "<?= 'https://' . $_SERVER['HTTP_HOST'] . "/wp-content/uploads/" . date("Y") . '/' . date('m') . '/' . $randomWord . '.' ?>" + imgType,
               pseudo: form.find('#pseudo').val(),
               mail: form.find('#mail').val(),
               id_top: form.find('#id_top').val()
