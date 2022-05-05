@@ -96,7 +96,5 @@ function top_published_notification()
   foreach ($amis as $ami) {
     do_notification($id_user, $uuiduser, $ami['user_id'], $ami['uuid_user_vkrz'], $notif_text, $liens_vers);
   }
-
-  // do_notification("1", "51df416e3aa28", "2b4d3b1838a11", "Adil viens de lancer un Top!", "http://0.gravatar.com/avatar/ceabac8e8f0110f37d03fac64308134e?s=80&d=mm&r=g");
 }
 add_action('publish_tournoi', 'top_published_notification', 10, 2);
