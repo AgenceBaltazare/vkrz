@@ -231,7 +231,7 @@ if (false === ($data_t_created = get_transient('user_' . $user_id . '_get_creato
 
       $.ajax({
         // SAVE THE IMAGE IN THE MEDIA LIBRARY, SO WE CAN GET THE LINK 1️⃣
-        url: "<?= 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>",
+        url: "<?= 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>",
         method: "POST",
         processData: false,
         contentType: false,
@@ -243,7 +243,7 @@ if (false === ($data_t_created = get_transient('user_' . $user_id . '_get_creato
             method: "GET",
             data: {
               idphoto: form.find('#idphoto').val(),
-              url_visual: "<?= 'http://' . $_SERVER['HTTP_HOST'] . "/vkrz/wp-content/uploads/" . date("Y") . '/' . date('m') . '/' . $randomWord . '.' ?>" + imgType,
+              url_visual: "<?= 'https://' . $_SERVER['HTTP_HOST'] . "/wp-content/uploads/" . date("Y") . '/' . date('m') . '/' . $randomWord . '.' ?>" + imgType,
               pseudo: form.find('#pseudo').val(),
               email: form.find('#email').val(),
               id_top: form.find('#id_top').val()
