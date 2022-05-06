@@ -1,8 +1,8 @@
 <?php /* Template Name: Ajouter un contenders */ ?>
-<?php /* CETTE PAGE EST ACTUELLEMENT EN COURS DE FINITION. DES CHANGEMENTS PEUVENT ÊTRE EFFECTUER ! ⛔ */ ?>
 
 <?php
 
+// PREVENT WordPress FROM CHANGING THE IMAGE SIZE
 /**
  * @param array $sizes    An associative array of image sizes.
  * @param array $metadata An associative array of image metadata: width, height, file.
@@ -29,7 +29,13 @@ if (is_numeric($attach_id)) {
   update_option('option_image', $attach_id);
   update_post_meta($post_id, '_url_visual', $attach_id);
 }
-// URL OF IMAGE : echo wp_get_attachment_url(get_option('option_image'));
+
+// FUNCTION TO GET A RANDOM WORD FOR THE IMAGE TITLE TO AVOID CONFLICTS
+function randWord($length = 4)
+{
+  return substr(str_shuffle("qwertyuiopasdfghjklzxcvbnm"), 0, $length);
+}
+$randomWord = randWord();
 
 global $uuiduser;
 global $user_id;
@@ -43,23 +49,18 @@ if (false === ($data_t_created = get_transient('user_' . $user_id . '_get_creato
 }
 ?>
 
-
-<!-- IMPORTING BOOTSTRAP-SELECT -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css" rel="stylesheet" />
-
 <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory'); ?>/assets/css/plugins/forms/form-file-uploader.css">
 
-<div class="app-content content recrutement-page">
+<div class="app-content content ajout-contender-page">
   <div class="content-wrapper">
     <div class="content-body">
       <div class="content-monitor">
         <div class="container">
-          <div class="row mt-5">
-            <div class="col-md-8 offset-md-2">
+          <div class="row mt-2">
+            <div class="col-md-12">
 
-              <h1 class="text-uppercase text-center" id="h1-ajout-contender">
-                <?php the_title(); ?> 🤟
+              <h1 class="text-center" id="h1-ajout-contender">
+                <?php the_title(); ?> <span class="va va-sign-of-the-horns va-lg"></span>
               </h1>
 
               <div class="row mt-3">
@@ -133,7 +134,8 @@ if (false === ($data_t_created = get_transient('user_' . $user_id . '_get_creato
                     </div>
                   <?php endif; ?>
                 </div>
-                <div class="col-md-6">
+
+                <div class="col-md-6 my-auto">
                   <div class="typeform">
                     <form method="POST" id="form-ajout-contender" enctype="multipart/form-data">
 
@@ -141,31 +143,20 @@ if (false === ($data_t_created = get_transient('user_' . $user_id . '_get_creato
                         <input type="hidden" class="form-control p-2" id="idphoto" name="idphoto" placeholder="ID Photo" value="<?= uniqid() ?>">
                       </div>
 
-                      <!-- <div class="form-group input-group-lg dropzone dropzone-area" id="dpz-single-file">
-                        <input type="file" class="form-control p-2" id="url_visual" name="url_visual" placeholder="URL Visual">
-                        <div class="dz-message text-center pb-3">Déposez le fichier ici ou cliquez pour le télécharger.</div>
-                      </div> -->
-
-                      <!-- <input type="file" class="inputfile form-control" name="url_visual" id="url_visual"> -->
-
                       <div class="dropzone-area">
-                        <input type="file" class="inputfile" onchange='uploadFile(this)' name="url_visual" id="url_visual">
-                        <label for="file" class="pt-5">
-                          <span class="dz-message text-center pb-3" id="file-name">Déposez le fichier ici ou cliquez pour le télécharger.</span>
+                        <input type="file" class="inputfile" onchange='uploadFile(this)' name="url_visual" id="url_visual" required accept="image/*">
+                        <label for="file">
+                          <span class="dz-message text-center p-1" id="file-name">Déposez l'image ici ou cliquez pour la télécharger.</span>
                         </label>
                       </div>
 
                       <div class="form-group input-group-lg mt-1">
-                        <input type="text" class="form-control p-2" id="pseudo" name="pseudo" placeholder="Pseudo">
+                        <input type="text" class="form-control p-2" id="pseudo" name="pseudo" placeholder="Pseudo" required onchange="uploadFile(this)">
                       </div>
 
                       <div class="form-group input-group-lg">
-                        <input type="mail" class="form-control p-2" id="mail" name="mail" placeholder="Adresse mail">
+                        <input type="email" class="form-control p-2" id="email" name="email" placeholder="Adresse mail" required>
                       </div>
-
-                      <!-- <div class="form-group input-group-lg">
-                            <input type="number" class="form-control p-2" id="id_top" name="id_top" placeholder="ID Top">
-                          </div> -->
 
                       <div class="form-group input-group-lg">
                         <?php
@@ -180,10 +171,20 @@ if (false === ($data_t_created = get_transient('user_' . $user_id . '_get_creato
 
                     </form>
 
-                    <div class="notification mt-2" style="display: none;">
+                    <div class="overlay" style="display: none;"></div>
+
+                    <div class="notification rotate-in-center" style="display: none;">
+                      <button class="closeNotification">&times;</button>
+
                       <div class="notification-text">
-                        <span style="font-size: 1.5rem;">Votre visuel a été ajouté au Top avec succès ! 🚀</span>
+                        <span class="va va-grinning-face-with-smiling-eyes va-5x"></span> <br>
+                        <h3>Bravo!</h3>
+                        <p>Nous avons bien reçu ton visuel.</p>
                       </div>
+                    </div>
+
+                    <div class="notification-2" style="display: none;">
+                      Nous reviendrons vers toi dans moins de 24h pour te confirmer ta participation au Top.
                     </div>
                   </div>
                 </div>
@@ -197,52 +198,40 @@ if (false === ($data_t_created = get_transient('user_' . $user_id . '_get_creato
   </div>
 </div>
 
-<!-- <script src="<?php bloginfo('template_directory'); ?>/assets/vendors/js/extensions/dropzone.min.js"></script> -->
 <script>
   function uploadFile(target) {
     document.getElementById("file-name").innerHTML = target.files[0].name;
+    document.getElementById("pseudo").value = target.files[0].name.charAt(0).toUpperCase() + target.files[0].name.slice(1).split('.').slice(0, -1).join('.');
   }
-</script>
-<script>
+
   $(document).ready(function($) {
+    let form = $('#form-ajout-contender');
 
-    $(function() {
-      $('#selectpicker').selectpicker();
-    });
-
-    var form = $('#form-ajout-contender');
+    $('.closeNotification').click(function() {
+      $('.notification').hide();
+      $('.overlay').hide();
+    })
 
     form.submit(function(e) {
-
-      <?php
-      function randWord($length = 4)
-      {
-        return substr(str_shuffle("qwertyuiopasdfghjklzxcvbnm"), 0, $length);
-      }
-      $randomWord = randWord();
-      ?>
-
       e.preventDefault();
 
-      // SAVE THE IMAGE IN MEDIA LIBRARY, SO THAT IMAGE'S URL WORKS! 1️⃣
-      // let fileO = $('#url_visual')[0].files[0]
-
-      let imgType = document.getElementById("url_visual").files[0].name.split('.').pop();
-
-      var element = document.getElementById('url_visual');
-      var file = element.files[0];
-      var blob = file.slice(0, file.size, `image/${imgType}`);
-      var newFile = new File([blob], `<?php echo $randomWord; ?>.${imgType}`, {
+      // PROCESS TO RENAME THE IMAGE
+      let imgType = document.getElementById("url_visual").files[0].name.split('.').pop().toLowerCase();
+      let element = document.getElementById('url_visual');
+      let file = element.files[0];
+      let blob = file.slice(0, file.size, `image/${imgType}`);
+      let newImgFileName = new File([blob], `<?php echo $randomWord; ?>.${imgType}`, {
         type: `image/${imgType}`
       });
 
       let formData = new FormData();
-      formData.append('url_visual', newFile);
+      formData.append('url_visual', newImgFileName);
 
       $('#ajout-contender').html('Envoi en cours...');
 
       $.ajax({
-        url: "<?= 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>",
+        // SAVE THE IMAGE IN THE MEDIA LIBRARY, SO WE CAN GET THE LINK 1️⃣
+        url: "<?= 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>",
         method: "POST",
         processData: false,
         contentType: false,
@@ -250,29 +239,23 @@ if (false === ($data_t_created = get_transient('user_' . $user_id . '_get_creato
         success: function(data) {
           $.ajax({
             // GET THE CONTENDER ONLINE 2️⃣
-
-            /* 
-              TO PREPARE THE IMAGE URL HERE'S THE ORIGINAK LINK : https://localhost:7882/vkrz/wp-content/uploads/2022/03/banniere-2.png
-            */
-
             url: "https://vainkeurz.com/wp-json/vkrz/v1/addcontender",
             method: "GET",
             data: {
               idphoto: form.find('#idphoto').val(),
-              url_visual: "<?= 'https://' . $_SERVER['HTTP_HOST'] . "/wp-content/uploads/" . date("Y") . '/' . date('m') . '/' . $randomWord . '.' ?>" + imgType,
+              url_visual: "<?= 'http://' . $_SERVER['HTTP_HOST'] . "/vkrz/wp-content/uploads/" . date("Y") . '/' . date('m') . '/' . $randomWord . '.' ?>" + imgType,
               pseudo: form.find('#pseudo').val(),
-              mail: form.find('#mail').val(),
+              email: form.find('#email').val(),
               id_top: form.find('#id_top').val()
             },
           })
         }
       }).done(function(response) {
+        $('.overlay').show();
         form.hide();
         $(".notification").show();
-
-      }).always(function() {
-
-      });
+        $(".notification-2").show();
+      }).always(function() {});
     });
   });
 </script>
