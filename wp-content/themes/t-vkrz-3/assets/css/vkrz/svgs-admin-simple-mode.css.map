@@ -2,7 +2,7 @@
     "version": 3,
     "mappings": "AAAA;;GAEG;AACH,AAAA,cAAc,CAAC;EACd,OAAO,EAAE,IAAI;CACb",
     "sources": [
-        "svgs-admin-simple-mode.scss"
+        "../../../../../plugins/svg-support/scss/svgs-admin-simple-mode.scss"
     ],
     "names": [],
     "file": "svgs-admin-simple-mode.css"

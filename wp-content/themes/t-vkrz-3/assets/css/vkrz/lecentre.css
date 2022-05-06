@@ -6,20 +6,7 @@ html {
 body {
   background: linear-gradient(50deg, #210951, #471867, #210951, #210951);
   background-size: 400% 400%;
-  -webkit-animation: gradient 60s ease infinite;
-          animation: gradient 60s ease infinite;
-}
-
-@-webkit-keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+  animation: gradient 60s ease infinite;
 }
 
 @keyframes gradient {
@@ -45,8 +32,7 @@ body {
 }
 
 .login h1 a:focus {
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
 
 .login a {
@@ -64,8 +50,7 @@ body {
 .login form {
   border: 1px solid #210951;
   border-radius: 0;
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
 
 .login form input,
@@ -73,8 +58,7 @@ body {
 .login form textarea {
   border: 1px solid #f4167f;
   border-radius: 0;
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
 
 .login form input:focus,
@@ -82,8 +66,7 @@ body {
 .login form textarea:focus {
   border: 1px solid #f6479a;
   border-radius: 1px solid #f6479a;
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
 
 .login .button.button-large {
@@ -94,12 +77,10 @@ body {
 }
 
 .login .button-primary {
-  -webkit-transition: ease .5s;
   transition: ease .5s;
   margin-top: 50px;
   border: 1px solid #fff;
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
   background: #210951;
   padding: 15px;
   text-transform: uppercase;
@@ -111,11 +92,9 @@ body {
 }
 
 .login .button-primary:hover, .login .button-primary:active, .login .button-primary:focus {
-  -webkit-transition: ease .5s;
   transition: ease .5s;
   border: 1px solid #210951;
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
   background-color: #18063a;
   text-decoration: none;
   color: #fff;

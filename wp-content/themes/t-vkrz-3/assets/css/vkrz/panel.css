@@ -25,7 +25,6 @@ h1, h2, h3, p, li, .form-table th, .form-wrap label {
   color: #fff;
   background: #312673;
   cursor: pointer;
-  -webkit-transition: all 0.2s ease-in;
   transition: all 0.2s ease-in;
 }
 
@@ -64,8 +63,7 @@ h1, h2, h3, p, li, .form-table th, .form-wrap label {
 
 .wrap .page-title-action:focus {
   border-color: #f4167f;
-  -webkit-box-shadow: 0 0 0 1px #f4167f;
-          box-shadow: 0 0 0 1px #f4167f;
+  box-shadow: 0 0 0 1px #f4167f;
   outline: 2px solid transparent;
 }
 

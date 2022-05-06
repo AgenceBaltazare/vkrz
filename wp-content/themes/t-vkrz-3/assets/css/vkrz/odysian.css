@@ -146,10 +146,7 @@ html .content.app-content .card-developer-meetup .share-content-sponso {
 }
 
 html .content.app-content .card-developer-meetup .share-content-sponso .reseaux-sponso {
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
 }
 
 html .content.app-content .card-developer-meetup .share-content-sponso .reseaux-sponso .logo-vkrz-sponso {
@@ -161,10 +158,7 @@ html .content.app-content .card-developer-meetup .share-content-sponso .reseaux-
 }
 
 html .content.app-content .card-developer-meetup .share-content-sponso .reseaux-sponso .social-media-sponso .buttons-social-media {
-  -webkit-box-orient: horizontal !important;
-  -webkit-box-direction: normal !important;
-      -ms-flex-direction: row !important;
-          flex-direction: row !important;
+  flex-direction: row !important;
 }
 
 html .content.app-content .card-developer-meetup .share-content-sponso .reseaux-sponso .social-media-sponso .buttons-social-media a:last-child {
@@ -176,17 +170,14 @@ html .content.app-content .card-developer-meetup .btn-primary {
   background: #004162 !important;
   color: #fff !important;
   background-size: contain;
-  -webkit-transition: all 0.2s ease-in;
   transition: all 0.2s ease-in;
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
 
 html .content.app-content .card-developer-meetup .btn-primary:hover {
   background: url("../img/btn2.png") center center no-repeat;
   background-size: contain;
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
 
 @media (max-width: 768px) {
@@ -196,18 +187,15 @@ html .content.app-content .card-developer-meetup .btn-primary:hover {
     background: url("../img/btn1-m.png") center center no-repeat;
     color: #fff !important;
     background-size: 100%;
-    -webkit-transition: all 0.2s ease-in;
     transition: all 0.2s ease-in;
-    -webkit-box-shadow: none;
-            box-shadow: none;
+    box-shadow: none;
     font-size: 19px;
     padding: 13px 10px;
   }
   html .content.app-content .card-developer-meetup .btn-primary:hover {
     background: url("../img/btn2-m.png") center center no-repeat;
     background-size: contain;
-    -webkit-box-shadow: none;
-            box-shadow: none;
+    box-shadow: none;
   }
 }
 
@@ -307,10 +295,7 @@ html .name h5 span {
 
 .single-classement .share-content-sponso .reseaux-sponso,
 .page-template-elo-mondial .share-content-sponso .reseaux-sponso {
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
 }
 
 .single-classement .share-content-sponso .reseaux-sponso .logo-vkrz-sponso,
@@ -321,12 +306,8 @@ html .name h5 span {
 .single-classement .share-content-sponso .reseaux-sponso .social-media-sponso,
 .page-template-elo-mondial .share-content-sponso .reseaux-sponso .social-media-sponso {
   width: 100%;
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
   display: inline-flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
   vertical-align: middle;
 }
 
@@ -351,21 +332,6 @@ html .name h5 span {
 .single-classement #form-coupon input[type=email],
 .page-template-elo-mondial #form-coupon input[type=email] {
   border: 2px solid #77efe6;
-}
-
-.single-classement #form-coupon input[type=email]::-webkit-input-placeholder,
-.page-template-elo-mondial #form-coupon input[type=email]::-webkit-input-placeholder {
-  color: #fff;
-}
-
-.single-classement #form-coupon input[type=email]:-ms-input-placeholder,
-.page-template-elo-mondial #form-coupon input[type=email]:-ms-input-placeholder {
-  color: #fff;
-}
-
-.single-classement #form-coupon input[type=email]::-ms-input-placeholder,
-.page-template-elo-mondial #form-coupon input[type=email]::-ms-input-placeholder {
-  color: #fff;
 }
 
 .single-classement #form-coupon input[type=email]::placeholder,
