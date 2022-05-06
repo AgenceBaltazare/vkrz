@@ -2,6 +2,17 @@
 <?php /* CETTE PAGE EST ACTUELLEMENT EN COURS DE FINITION. DES CHANGEMENTS PEUVENT ÊTRE EFFECTUER ! ⛔ */ ?>
 
 <?php
+
+/**
+ * @param array $sizes    An associative array of image sizes.
+ * @param array $metadata An associative array of image metadata: width, height, file.
+ */
+function remove_image_sizes($sizes, $metadata)
+{
+  return [];
+}
+add_filter('intermediate_image_sizes_advanced', 'remove_image_sizes', 10, 2);
+
 // TO SAVE THE IMAGE IN MEDIA LIBRARY
 function register_team_show_case_setting()
 {
@@ -32,11 +43,12 @@ if (false === ($data_t_created = get_transient('user_' . $user_id . '_get_creato
 }
 ?>
 
+
 <!-- IMPORTING BOOTSTRAP-SELECT -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css" rel="stylesheet" />
 
-<link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory'); ?>/assets/css/plugins/forms/form-file-uploader.min.css">
+<link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory'); ?>/assets/css/plugins/forms/form-file-uploader.css">
 
 <div class="app-content content recrutement-page">
   <div class="content-wrapper">
@@ -114,54 +126,67 @@ if (false === ($data_t_created = get_transient('user_' . $user_id . '_get_creato
                             <?php the_field('fin_de_la_sponso_t_sponso'); ?>
                           </span>
                         </div>
-                    </div>
-                  <?php
+                      <?php
                       endforeach;
                       wp_reset_postdata();
-                  ?>
+                      ?>
+                    </div>
+                  <?php endif; ?>
                 </div>
-              <?php endif; ?>
-              <div class="col-md-6">
-                <div class="typeform">
-                  <form method="POST" class="dropzone" id="form-ajout-contender" enctype="multipart/form-data">
+                <div class="col-md-6">
+                  <div class="typeform">
+                    <form method="POST" id="form-ajout-contender" enctype="multipart/form-data">
 
-                    <div class="form-group">
-                      <input type="hidden" class="form-control p-2" id="idphoto" name="idphoto" placeholder="ID Photo" value="<?= uniqid() ?>">
-                    </div>
+                      <div class="form-group">
+                        <input type="hidden" class="form-control p-2" id="idphoto" name="idphoto" placeholder="ID Photo" value="<?= uniqid() ?>">
+                      </div>
 
-                    <div class="form-group input-group-lg dropzone dropzone-area" id="dpz-single-file">
-                      <input type="file" class="form-control p-2" id="url_visual" name="url_visual" placeholder="URL Visual">
-                      <div class="dz-message text-center pb-3">Déposez le fichier ici ou cliquez pour le télécharger.</div>
-                    </div>
+                      <!-- <div class="form-group input-group-lg dropzone dropzone-area" id="dpz-single-file">
+                        <input type="file" class="form-control p-2" id="url_visual" name="url_visual" placeholder="URL Visual">
+                        <div class="dz-message text-center pb-3">Déposez le fichier ici ou cliquez pour le télécharger.</div>
+                      </div> -->
 
-                    <div class="form-group input-group-lg">
-                      <input type="text" class="form-control p-2" id="pseudo" name="pseudo" placeholder="Pseudo">
-                    </div>
+                      <!-- <input type="file" class="inputfile form-control" name="url_visual" id="url_visual"> -->
 
-                    <!-- <div class="form-group input-group-lg">
-                          <input type="number" class="form-control p-2" id="id_top" name="id_top" placeholder="ID Top">
-                        </div> -->
+                      <div class="dropzone-area">
+                        <input type="file" class="inputfile" onchange='uploadFile(this)' name="url_visual" id="url_visual">
+                        <label for="file" class="pt-5">
+                          <span class="dz-message text-center pb-3" id="file-name">Déposez le fichier ici ou cliquez pour le télécharger.</span>
+                        </label>
+                      </div>
 
-                    <div class="form-group input-group-lg">
-                      <?php
-                      if (get_field('id_du_top_add_contender')) : ?>
-                        <input type="hidden" class="form-control p-2" id="id_top" name="id_top" value="<?php the_field('id_du_top_add_contender'); ?>">
-                      <?php endif; ?>
-                    </div>
+                      <div class="form-group input-group-lg mt-1">
+                        <input type="text" class="form-control p-2" id="pseudo" name="pseudo" placeholder="Pseudo">
+                      </div>
 
-                    <div class="text-center mt-2">
-                      <button type="submit" name="envoyer" id="ajout-contender" class="btn btn-primary btn-lg">Envoyer</button>
-                    </div>
+                      <div class="form-group input-group-lg">
+                        <input type="mail" class="form-control p-2" id="mail" name="mail" placeholder="Adresse mail">
+                      </div>
 
-                  </form>
+                      <!-- <div class="form-group input-group-lg">
+                            <input type="number" class="form-control p-2" id="id_top" name="id_top" placeholder="ID Top">
+                          </div> -->
 
-                  <div class="notification mt-2" style="display: none;">
-                    <div class="notification-text">
-                      <span style="font-size: 1.5rem;">Contender ajouté avec succès ! 🚀</span>
+                      <div class="form-group input-group-lg">
+                        <?php
+                        if (get_field('id_du_top_add_contender')) : ?>
+                          <input type="hidden" class="form-control p-2" id="id_top" name="id_top" value="<?php the_field('id_du_top_add_contender'); ?>">
+                        <?php endif; ?>
+                      </div>
+
+                      <div class="text-center mt-2">
+                        <button type="submit" name="envoyer" id="ajout-contender" class="btn btn-primary btn-lg">Envoyer</button>
+                      </div>
+
+                    </form>
+
+                    <div class="notification mt-2" style="display: none;">
+                      <div class="notification-text">
+                        <span style="font-size: 1.5rem;">Votre visuel a été ajouté au Top avec succès ! 🚀</span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
               </div>
 
             </div>
@@ -172,21 +197,12 @@ if (false === ($data_t_created = get_transient('user_' . $user_id . '_get_creato
   </div>
 </div>
 
-<script src="<?php bloginfo('template_directory'); ?>/assets/vendors/js/ui/jquery.sticky.js"></script>
-<script src="<?php bloginfo('template_directory'); ?>/assets/vendors/js/extensions/dropzone.min.js"></script>
-<script src="<?php bloginfo('template_directory'); ?>/assets/js/scripts/forms/form-file-uploader.min.js"></script>
-
+<!-- <script src="<?php bloginfo('template_directory'); ?>/assets/vendors/js/extensions/dropzone.min.js"></script> -->
 <script>
-  $(window).on('load', function() {
-    if (feather) {
-      feather.replace({
-        width: 14,
-        height: 14
-      });
-    }
-  })
+  function uploadFile(target) {
+    document.getElementById("file-name").innerHTML = target.files[0].name;
+  }
 </script>
-
 <script>
   $(document).ready(function($) {
 
@@ -198,12 +214,30 @@ if (false === ($data_t_created = get_transient('user_' . $user_id . '_get_creato
 
     form.submit(function(e) {
 
+      <?php
+      function randWord($length = 4)
+      {
+        return substr(str_shuffle("qwertyuiopasdfghjklzxcvbnm"), 0, $length);
+      }
+      $randomWord = randWord();
+      ?>
+
       e.preventDefault();
 
       // SAVE THE IMAGE IN MEDIA LIBRARY, SO THAT IMAGE'S URL WORKS! 1️⃣
-      let file = $('#url_visual')[0].files[0]
+      // let fileO = $('#url_visual')[0].files[0]
+
+      let imgType = document.getElementById("url_visual").files[0].name.split('.').pop();
+
+      var element = document.getElementById('url_visual');
+      var file = element.files[0];
+      var blob = file.slice(0, file.size, `image/${imgType}`);
+      var newFile = new File([blob], `<?php echo $randomWord; ?>.${imgType}`, {
+        type: `image/${imgType}`
+      });
+
       let formData = new FormData();
-      formData.append('url_visual', file);
+      formData.append('url_visual', newFile);
 
       $('#ajout-contender').html('Envoi en cours...');
 
@@ -218,15 +252,16 @@ if (false === ($data_t_created = get_transient('user_' . $user_id . '_get_creato
             // GET THE CONTENDER ONLINE 2️⃣
 
             /* 
-              TO PREPARE THE IMAGE URL HERE'S THE ORIGINAK LINK : http://localhost:7882/vkrz/wp-content/uploads/2022/03/banniere-2.png
+              TO PREPARE THE IMAGE URL HERE'S THE ORIGINAK LINK : https://localhost:7882/vkrz/wp-content/uploads/2022/03/banniere-2.png
             */
 
             url: "https://vainkeurz.com/wp-json/vkrz/v1/addcontender",
             method: "GET",
             data: {
               idphoto: form.find('#idphoto').val(),
-              url_visual: "<?= 'https://' . $_SERVER['HTTP_HOST'] . "/wp-content/uploads/" . date("Y") . '/' . date('m') . '/' ?>" + document.getElementById("url_visual").files[0].name,
+              url_visual: "<?= 'https://' . $_SERVER['HTTP_HOST'] . "/wp-content/uploads/" . date("Y") . '/' . date('m') . '/' . $randomWord . '.' ?>" + imgType,
               pseudo: form.find('#pseudo').val(),
+              mail: form.find('#mail').val(),
               id_top: form.find('#id_top').val()
             },
           })
