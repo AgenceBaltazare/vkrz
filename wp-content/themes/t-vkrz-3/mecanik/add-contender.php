@@ -74,6 +74,7 @@ if (false === ($data_t_created = get_transient('user_' . $user_id . '_get_creato
                         <div class="mb-1">
                           <?php
                           foreach ($posts as $post) :
+                            $top_url = get_permalink(the_field('id_du_top_add_contender'));
                             setup_postdata($post);
                           ?>
                             <div class="title-win">
@@ -135,7 +136,7 @@ if (false === ($data_t_created = get_transient('user_' . $user_id . '_get_creato
                   <?php endif; ?>
                 </div>
 
-                <div class="col-md-6 my-auto">
+                <div class="col-md-6 my-auto ajout-contender-right">
                   <div class="typeform">
                     <form method="POST" id="form-ajout-contender" enctype="multipart/form-data">
 
@@ -171,21 +172,26 @@ if (false === ($data_t_created = get_transient('user_' . $user_id . '_get_creato
 
                     </form>
 
-                    <div class="overlay" style="display: none;"></div>
 
-                    <div class="notification rotate-in-center" style="display: none;">
-                      <button class="closeNotification">&times;</button>
+                    <div class="overlay" style="display: none;">
 
-                      <div class="notification-text">
-                        <span class="va va-grinning-face-with-smiling-eyes va-5x"></span> <br>
-                        <h3>Bravo!</h3>
-                        <p>Nous avons bien reçu ton visuel.</p>
-                        <a href="#" class="btn btn-lg waves-effect waves-float waves-light">Bouton</a>
+                      <div class="notification rotate-in-center">
+                        <button class="closeNotification">&times;</button>
+
+                        <div class="notification-text">
+                          <span class="va va-grinning-face-with-smiling-eyes va-5x"></span> <br>
+                          <h3>Bravo!</h3>
+                          <p>Nous avons bien reçu ton visuel.<br> Nous allons checker s'il mérite sa place dans le Top et revenir vers toi rapidement :)</p>
+                          <a href="<?= $top_url; ?>" class="btn btn-lg waves-effect waves-float waves-light">Aller voter au Top</a>
+                        </div>
                       </div>
+
                     </div>
 
                     <div class="notification-2" style="display: none;">
-                      Nous reviendrons vers toi dans moins de 24h pour te confirmer ta participation au Top.
+                      <?php
+                      echo the_field('message_de_validation_add_contender');
+                      ?>
                     </div>
                   </div>
                 </div>
@@ -209,7 +215,6 @@ if (false === ($data_t_created = get_transient('user_' . $user_id . '_get_creato
     let form = $('#form-ajout-contender');
 
     $('.closeNotification').click(function() {
-      $('.notification').hide();
       $('.overlay').hide();
     })
 
@@ -254,7 +259,6 @@ if (false === ($data_t_created = get_transient('user_' . $user_id . '_get_creato
       }).done(function(response) {
         $('.overlay').show();
         form.hide();
-        $(".notification").show();
         $(".notification-2").show();
       }).always(function() {});
     });
