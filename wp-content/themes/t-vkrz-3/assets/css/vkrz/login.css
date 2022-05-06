@@ -8,11 +8,26 @@
   margin: 20px 0 5px;
 }
 
-@keyframes rotating {
+@-webkit-keyframes rotating
+
+/* Safari and Chrome */ {
   from {
+    -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
   to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotating {
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }
@@ -98,14 +113,17 @@
   font-weight: 400;
   letter-spacing: 0.5px;
   border-radius: 6px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  -webkit-box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+          box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  -webkit-transition: .4s;
   transition: .4s;
   display: none;
 }
 
 .get-connected .go-logIn:hover {
   color: #FFF !important;
-  transform: scale(0.96);
+  -webkit-transform: scale(0.96);
+          transform: scale(0.96);
 }
 
 .get-connected .go-logIn span {
@@ -124,7 +142,9 @@
 .get-connected .sign-in {
   padding: 1.5rem;
   border-radius: 12px;
-  transform: scale(0.98);
+  -webkit-transform: scale(0.98);
+          transform: scale(0.98);
+  -webkit-transition: all .6s;
   transition: all .6s;
 }
 
@@ -140,7 +160,8 @@
 
 .get-connected .sign-up:hover,
 .get-connected .sign-in:hover {
-  transform: scale(1.02);
+  -webkit-transform: scale(1.02);
+          transform: scale(1.02);
 }
 
 .get-connected .col-lg-6:nth-of-type(1):hover + .col-lg-6:nth-of-type(2) .sign-in {

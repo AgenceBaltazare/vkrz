@@ -180,6 +180,7 @@ if (false === ($data_t_created = get_transient('user_' . $user_id . '_get_creato
                         <span class="va va-grinning-face-with-smiling-eyes va-5x"></span> <br>
                         <h3>Bravo!</h3>
                         <p>Nous avons bien reçu ton visuel.</p>
+                        <a href="#" class="btn btn-lg waves-effect waves-float waves-light">Bouton</a>
                       </div>
                     </div>
 

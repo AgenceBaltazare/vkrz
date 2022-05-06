@@ -211,6 +211,15 @@
       }
     }
 
+    a {
+      background: #fff;
+      color: #3bb78f;
+      border-color: #fff;
+      &:hover {
+        box-shadow: 0 8px 25px -8px #fff;
+      }
+    }
+
     .closeNotification {
       margin-left: auto;
       background: none;
