@@ -20,7 +20,7 @@ function load_css_js()
   wp_enqueue_style('page-pricing', get_template_directory_uri() . '/assets/css/pages/page-pricing.css', array(), null);
   wp_enqueue_style('vertical-menu', get_template_directory_uri() . '/assets/css/theme/vertical-menu.css', array(), null);
   wp_enqueue_style('profil', get_template_directory_uri() . '/assets/css/pages/page-profile.css', array(), null);
-  if (is_archive() || is_page(get_page_by_path('shop'))) {
+  if (is_page(get_page_by_path('shop'))) {
     wp_enqueue_style('shop', get_template_directory_uri() . '/assets/css/pages/app-ecommerce.css', array(), null);
   }
 
@@ -48,7 +48,7 @@ function load_css_js()
   wp_enqueue_script('app', get_template_directory_uri() . '/assets/js/core/app.js', array(), null, true);
   wp_enqueue_script('app-menu', get_template_directory_uri() . '/assets/js/core/app-menu.js', array(), null, true);
   wp_enqueue_script('main', get_template_directory_uri() . '/assets/js/core/main.js', array(), $template_version, true);
-  if (is_archive() || is_page(get_page_by_path('shop'))) {
+  if (is_page(get_page_by_path('shop'))) {
     wp_enqueue_script('filters', get_template_directory_uri() . '/assets/js/scripts/filters.js', array(), null, true);
     wp_enqueue_script('shop', get_template_directory_uri() . '/assets/js/scripts/pages/app-ecommerce.js', array(), null, true);
     wp_enqueue_script('modal', get_template_directory_uri() . '/assets/js/scripts/components/components-modals.min.js', array(), null, true);

@@ -2508,6 +2508,146 @@ textarea {
   text-decoration: underline;
 }
 
+.ajout-contender-page h1 {
+  font-size: 52px;
+  background: -webkit-linear-gradient(315deg, #9921e8 1.84%, #5f72be 102.67%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bolder;
+  text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .ajout-contender-page h1 {
+    font-size: 2.6rem;
+  }
+}
+
+.ajout-contender-page .overlay {
+  position: fixed;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+}
+
+.ajout-contender-page .overlay {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.ajout-contender-page .notification {
+  display: grid;
+  place-items: center;
+  text-align: center;
+  margin: 0 auto;
+  min-height: 260px;
+  width: 400px;
+  padding: 1.5rem;
+  background: #36036D;
+  background: linear-gradient(to bottom right, #36036D, #7B35F2);
+  border-radius: 12px;
+  z-index: 1001;
+  position: fixed;
+  top: 45%;
+  left: 45%;
+}
+
+@media (max-width: 768px) {
+  .ajout-contender-page .notification {
+    top: unset;
+    left: unset;
+    width: 280px;
+    padding: 0.5rem;
+    min-height: 100px;
+  }
+}
+
+.ajout-contender-page .notification h3 {
+  font-size: 2.5rem;
+  margin: .8rem 0 .4rem;
+}
+
+@media (max-width: 768px) {
+  .ajout-contender-page .notification h3 {
+    font-size: 1.8rem;
+  }
+}
+
+.ajout-contender-page .notification p {
+  font-size: 1.2rem;
+  font-weight: 300;
+  opacity: .9;
+}
+
+@media (max-width: 768px) {
+  .ajout-contender-page .notification p {
+    font-size: .9rem;
+  }
+}
+
+.ajout-contender-page .notification a {
+  background: #F4167F;
+  color: #FFF;
+  border-color: #F4167F;
+  margin: .6rem 0;
+}
+
+.ajout-contender-page .notification a:hover {
+  box-shadow: 0 8px 25px -8px #F4167F;
+}
+
+@media (max-width: 768px) {
+  .ajout-contender-page .notification a {
+    font-size: 1.1rem;
+  }
+}
+
+.ajout-contender-page .notification .closeNotification {
+  margin-left: auto;
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 3rem;
+  color: #FFF;
+  line-height: 100%;
+  margin-top: -1rem;
+  padding: 0;
+}
+
+.ajout-contender-page .rotate-in-center {
+  animation: rotate-in-center 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@keyframes rotate-in-center {
+  0% {
+    transform: rotate(-360deg);
+    opacity: 0;
+  }
+  100% {
+    transform: rotate(0);
+    opacity: 1;
+  }
+}
+
+.ajout-contender-page .notification-2 {
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 2.4rem;
+  border: 2px dashed #7367f0;
+  color: #7367f0;
+  background-color: #2e3750;
+  border-radius: 4px;
+}
+
+.ajout-contender-page .notification-2 a {
+  text-decoration: underline !important;
+}
+
 .topnamebestof {
   margin-left: 20px;
 }
@@ -4331,8 +4471,17 @@ textarea {
   background-image: url(../../images/emojis/down-arrow.png);
 }
 
+<<<<<<< HEAD
 .va-bell {
   background-image: url(../../images/emojis/bell.png);
+=======
+.va-sign-of-the-horns {
+  background-image: url(../../images/emojis/sign-of-the-horns_1f918.png);
+}
+
+.va-grinning-face-with-smiling-eyes {
+  background-image: url(../../images/emojis/grinning-face-with-smiling-eyes.png);
+>>>>>>> 10742afe0a237f59a973e20fe7406977c5da788e
 }
 
 /***** Icons END *****/
