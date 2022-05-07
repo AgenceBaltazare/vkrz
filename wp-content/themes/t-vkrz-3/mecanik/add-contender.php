@@ -188,7 +188,7 @@ if (false === ($data_t_created = get_transient('user_' . $user_id . '_get_creato
 
                     </div>
 
-                    <div class="notification-2" style="display: none;">
+                    <div class="msg-validation" style="display: none;">
                       <?php
                       echo the_field('message_de_validation_add_contender');
                       ?>
@@ -259,7 +259,7 @@ if (false === ($data_t_created = get_transient('user_' . $user_id . '_get_creato
       }).done(function(response) {
         $('.overlay').show();
         form.hide();
-        $(".notification-2").show();
+        $(".msg-validation").show();
       }).always(function() {});
     });
   });
