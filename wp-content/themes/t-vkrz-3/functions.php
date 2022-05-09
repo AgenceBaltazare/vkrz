@@ -90,8 +90,29 @@ function top_published_notification()
   $user_name = $user->display_name;
 
   $notif_text = $user_name . ' viens de lancer un Top!';
-  $liens_vers = 'https://www.google.com/';
+  $liens_vers = '';
 
+  $last_tournoi = new WP_Query(array(
+    'ignore_sticky_posts'    => true,
+    'update_post_meta_cache' => false,
+    'no_found_rows'          => true,
+    'post_type'              => 'tournoi',
+    'orderby'                => 'date',
+    'order'                  => 'DESC',
+    'posts_per_page'         => 1,
+    'author_name'            => $user_name,
+    'tax_query' => array(
+      array(
+        'taxonomy' => 'type',
+        'field'    => 'slug',
+        'terms'    => array('private', 'whitelabel', 'onboarding'),
+        'operator' => 'NOT IN'
+      ),
+    ),
+  ));
+  while ($last_tournoi->have_posts()) : $last_tournoi->the_post();
+    $liens_vers = the_permalink();
+  endwhile;
 
   foreach ($amis as $ami) {
     do_notification($id_user, $uuiduser, $ami['user_id'], $ami['uuid_user_vkrz'], $notif_text, $liens_vers);

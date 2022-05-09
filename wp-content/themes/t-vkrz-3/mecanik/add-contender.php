@@ -245,14 +245,6 @@ if (false === ($data_t_created = get_transient('user_' . $user_id . '_get_creato
         success: function(data) {
           $.ajax({
             // GET THE CONTENDER ONLINE 2️⃣
-<<<<<<< HEAD
-
-            /* 
-              TO PREPARE THE IMAGE URL HERE'S THE ORIGINAL LINK : http://localhost:7882/vkrz/wp-content/uploads/2022/03/banniere-2.png
-            */
-
-=======
->>>>>>> 10742afe0a237f59a973e20fe7406977c5da788e
             url: "https://vainkeurz.com/wp-json/vkrz/v1/addcontender",
             method: "GET",
             data: {

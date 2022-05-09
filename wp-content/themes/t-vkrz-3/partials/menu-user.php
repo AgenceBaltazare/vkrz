@@ -394,16 +394,17 @@ if (is_single() && get_post_type() == "tournoi") {
             </li>
             <li class="scrollable-container media-list">
               <?php if ($notifications->have_posts()) : ?>
-                <?php while ($notifications->have_posts()) : $notifications->the_post(); ?>
+                <?php while ($notifications->have_posts()) : $notifications->the_post();
+                  $relation_uuid = get_user_infos(get_field('uuid_user_notif', get_the_id())); ?>
                   <a class="d-flex" href="javascript:void(0)">
                     <div class="media d-flex align-items-start">
                       <div class="media-left">
-                        <div class="avatar"><img src="<?php echo get_field('lien_vers_notif', get_the_id()) ?>" alt="avatar" width="32" height="32"></div>
+                        <div class="avatar"><img src="<?php echo $relation_uuid['avatar']; ?>" alt="avatar" width="32" height="32"></div>
                       </div>
                       <div class="media-body">
                         <p class="media-heading">
                           <span class="font-weight-bolder">
-                            <?php echo get_field('texte_notif', get_the_id()) ?>
+                            <?php echo get_field('texte_notif', get_the_id()); ?>
                           </span>
                         </p>
 

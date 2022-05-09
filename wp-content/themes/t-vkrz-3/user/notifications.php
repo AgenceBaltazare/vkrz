@@ -86,7 +86,7 @@ $number_of_notifications_all = $notifications_all->found_posts;
 
                                               <div class="">
                                                 <h6 class="cart-item-title lead mb-0">
-                                                  <?php echo get_field('texte_notif', get_the_id()) ?>
+                                                  <?php echo get_field('texte_notif', get_the_id()); ?>
                                                 </h6>
 
                                                 <small class="cart-item-by legende">

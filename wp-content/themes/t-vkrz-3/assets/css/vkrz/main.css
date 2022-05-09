@@ -4471,17 +4471,16 @@ textarea {
   background-image: url(../../images/emojis/down-arrow.png);
 }
 
-<<<<<<< HEAD
 .va-bell {
   background-image: url(../../images/emojis/bell.png);
-=======
+}
+
 .va-sign-of-the-horns {
   background-image: url(../../images/emojis/sign-of-the-horns_1f918.png);
 }
 
 .va-grinning-face-with-smiling-eyes {
   background-image: url(../../images/emojis/grinning-face-with-smiling-eyes.png);
->>>>>>> 10742afe0a237f59a973e20fe7406977c5da788e
 }
 
 /***** Icons END *****/

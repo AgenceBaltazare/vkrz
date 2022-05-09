@@ -32,22 +32,49 @@ $notifications_all = new WP_Query(
 );
 $number_of_notifications_all = $notifications_all->found_posts;
 
-/////////////////////
+$user = wp_get_current_user();
+$user_name = $user->display_name;
 
+$liens_vers = '';
+
+$last_tournoi = new WP_Query(array(
+  'ignore_sticky_posts'    => true,
+  'update_post_meta_cache' => false,
+  'no_found_rows'          => true,
+  'post_type'              => 'tournoi',
+  'orderby'                => 'date',
+  'order'                  => 'DESC',
+  'posts_per_page'         => 1,
+  'author_name'            => $user_name,
+  'tax_query' => array(
+    array(
+      'taxonomy' => 'type',
+      'field'    => 'slug',
+      'terms'    => array('private', 'whitelabel', 'onboarding'),
+      'operator' => 'NOT IN'
+    ),
+  ),
+));
+while ($last_tournoi->have_posts()) : $last_tournoi->the_post(); ?>
+
+  <?php $liens_vers = the_permalink(); ?>
+
+<?php endwhile;
+
+echo $liens_vers;
+
+/////////////////////
 $amis_ids = array();
 $amis_ids = get_field('liste_amis_user', 'user_' . $user_id, false);
 if (is_array($amis_ids)) {
   $amis = array();
-  foreach ($amis_ids as $ami_id) :
+  foreach (array_unique($amis_ids) as $ami_id) :
     $ami_uuid = get_field('uuiduser_user', 'user_' . $ami_id);
     $ami_infos = get_user_infos($ami_uuid);
 
     array_push($amis, $ami_infos);
   endforeach;
 }
-
-
-
 ?>
 <!-- BEGIN: Content-->
 <div class="app-content content ">
