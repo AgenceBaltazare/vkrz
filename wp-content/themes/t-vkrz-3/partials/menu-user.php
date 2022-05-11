@@ -147,7 +147,7 @@ if (is_single() && get_post_type() == "tournoi") {
 
                       <li class="breadcrumb-item">
                         <a href="<?php the_permalink(get_page_by_path('blog')); ?>" title="Blog">
-                          <span class="ico"><span class="va va-blog va-lg"></span></span>
+                          <span class="ico"><span class="va va-sun va-lg"></span></span>
 
                           <span class="menu-title text-truncate">Blog</span>
                         </a>
@@ -164,7 +164,7 @@ if (is_single() && get_post_type() == "tournoi") {
                       ?>
                       <li class="breadcrumb-item">
                         <a href="<?php the_permalink(get_page_by_path('blog')); ?>" title="Blog">
-                          <span class="ico"><span class="va va-blog va-lg"></span></span>
+                          <span class="ico"><span class="va va-sun va-lg"></span></span>
                         </a>
                       </li>
                       <li class="breadcrumb-item active">
@@ -190,7 +190,7 @@ if (is_single() && get_post_type() == "tournoi") {
 
                       <li class="breadcrumb-item">
                         <a href="<?php the_permalink(get_page_by_path('blog')); ?>" title="Blog">
-                          <span class="ico"><span class="va va-blog va-lg"></span></span>
+                          <span class="ico"><span class="va va-sun va-lg"></span></span>
                         </a>
                       </li>
                       <?php
