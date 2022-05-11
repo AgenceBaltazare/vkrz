@@ -94,7 +94,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                       }
                       ?>
                       TOP <?php echo $top_infos['top_number']; ?><a href="<?php echo get_category_link($cat_id); ?>" class="mx-25">
-                        <span class="ico m-auto">
+                        <span class="ico w-auto">
                           <?php the_field('icone_cat', 'term_' . $cat_id); ?>
                         </span>
                       </a><?php echo $top_infos['top_title']; ?>

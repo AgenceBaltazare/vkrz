@@ -56,3 +56,16 @@ function oa_social_login_set_redirect_url($url, $user_data)
 }
 add_filter('oa_social_login_filter_registration_redirect_url', 'oa_social_login_set_redirect_url', 10, 2);
 add_filter('oa_social_login_filter_login_redirect_url', 'oa_social_login_set_redirect_url', 10, 2);
+
+add_theme_support('post-thumbnails');
+add_filter(
+  'the_excerpt',
+  function ($excerpt) {
+    return substr($excerpt, 0, strpos($excerpt, '.') + 1);
+  }
+);
+function post_content($content)
+{
+  return preg_replace('/<p([^>]+)?>/', '<p$1 class="card-text my-2">', $content, 1);
+}
+add_filter('the_content', 'post_content');
