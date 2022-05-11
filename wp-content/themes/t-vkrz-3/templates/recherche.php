@@ -373,6 +373,12 @@ get_header();
         </div>
       </section>
 
+      <?php if ($term_to_search == "oeuf" || $term_to_search == "oeufs" || $term_to_search == "pâques" || $term_to_search == "paques") : ?>
+        <div class="paquesresult">
+          <img src="<?php bloginfo('template_directory'); ?>/assets/images/events/easter-eggs.png" class="img-fluid" alt="">
+        </div>
+      <?php endif; ?>
+
       <?php if (!empty($list_tops_unique)) : ?>
         <section class="grid-to-filtre row match-height mt-2 tournois">
 
@@ -520,11 +526,13 @@ get_header();
 
       <?php else : ?>
 
-        <div class="noresult">
-          <h2>
-            <span class="ico va va-woozy-face va-lg"></span> Aucun résultat pour ta recherche
-          </h2>
-        </div>
+        <?php if ($term_to_search != "oeuf" && $term_to_search != "oeufs" && $term_to_search != "pâques" && $term_to_search != "paques") : ?>
+          <div class="noresult">
+            <h2>
+              <span class="ico va va-woozy-face va-lg"></span> Aucun résultat pour ta recherche
+            </h2>
+          </div>
+        <?php endif; ?>
 
       <?php endif; ?>
 
