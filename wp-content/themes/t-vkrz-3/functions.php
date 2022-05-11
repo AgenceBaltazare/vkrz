@@ -109,4 +109,33 @@ function top_published_notification()
     }
   }
 }
-add_action('publish_tournoi', 'top_published_notification', 10, 2);
+// add_action('publish_tournoi', 'top_published_notification', 10, 2);
+
+function classement_published_notification()
+{
+  $user = wp_get_current_user();
+  $user_name = $user->display_name;
+  $user_id = $user->ID;
+
+  $uuiduser = get_field('uuiduser_user', 'user_' . $user_id);
+
+  $amis_ids = array();
+  $amis_ids = get_field('liste_amis_user', 'user_' . $user_id, false);
+  if (is_array($amis_ids)) {
+    $amis = array();
+    foreach (array_unique($amis_ids) as $ami_id) :
+      $ami_uuid = get_field('uuiduser_user', 'user_' . $ami_id);
+      $ami_infos = get_user_infos($ami_uuid);
+
+      array_push($amis, $ami_infos);
+    endforeach;
+  }
+
+  $notif_text = $user_name  . ' a fait un nouveau Classement!';
+  $liens_vers = '';
+
+  foreach ($amis as $ami) {
+    do_notification($user_id, $uuiduser, $ami['user_id'], $ami['uuid_user_vkrz'], $notif_text, $liens_vers);
+  }
+}
+// add_action('publish_classement', 'classement_published_notification', 10, 2);

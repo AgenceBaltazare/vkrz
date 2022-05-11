@@ -377,28 +377,6 @@ if (is_single() && get_post_type() == "tournoi") {
         )
       );
       $number_of_notifications = $notifications->found_posts;
-
-      /////////////////////////////////
-      $id_user = 1;
-      $uuiduser = get_field('uuiduser_user', 'user_' . $id_user);
-
-      $amis_ids = array();
-      $amis_ids = get_field('liste_amis_user', 'user_' . $id_user, false);
-      if (is_array($amis_ids)) {
-        $amis = array();
-        foreach (array_unique($amis_ids) as $ami_id) :
-          $ami_uuid = get_field('uuiduser_user', 'user_' . $ami_id);
-          $ami_infos = get_user_infos($ami_uuid);
-
-          array_push($amis, $ami_infos);
-        endforeach;
-      }
-
-      foreach ($amis as $ami) {
-        echo $ami['user_id'] . '<br>';
-      }
-      /////////////////////////////////
-
       ?>
 
       <li class="nav-item dropdown dropdown-notification mr-25"><a class="nav-link" href="javascript:void(0);" data-toggle="dropdown">

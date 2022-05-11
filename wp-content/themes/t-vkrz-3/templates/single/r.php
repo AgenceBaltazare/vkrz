@@ -19,8 +19,39 @@ if (is_user_logged_in() && env() != "local") {
     $user_tops = get_transient('user_' . $user_id . '_get_user_tops');
   }
 } else {
-  $user_tops  = get_user_tops();
-}
+  $user_tops  = get_user_tops(); ?>
+  <!-- NOTIFICATION PROCESS ✨ -->
+  <!-- <script>
+    $(document).ready(function($) {
+
+      let ajaxRunning = false;
+
+      if (!ajaxRunning) {
+        ajaxRunning = true;
+        $.ajax({
+            method: "POST",
+            url: vkrz_ajaxurl,
+            data: {
+              action: 'vkzr_do_notification',
+              id_user: "<?php echo $user_id; ?>",
+              uuiduser: "<?php echo $uuiduser; ?>",
+              relation_id: "<?php echo ''; ?>",
+              relation_uuid: "<?php echo ''; ?>",
+              notif_text: "<?php echo $user_infos['pseudo']  . ' a fait un nouveau Classement!'; ?>",
+              liens_vers: "<?php echo get_the_permalink($id_ranking); ?>",
+            }
+          })
+          .done(function(response) {
+            console.log(response);
+          })
+          .always(function() {
+            ajaxRunning = false;
+          });
+      }
+    })
+  </script> -->
+<?php }
+
 $user_ranking = get_user_ranking($id_ranking);
 $url_ranking  = get_the_permalink($id_ranking);
 $top_datas    = get_top_data($id_top_global);
@@ -148,7 +179,7 @@ if ($get_top_type) {
                               <div class="card mt-2">
                                 <a href="<?php echo $top_infos['top_url']; ?>" class="w-100 btn btn-rose waves-effect p-1">
                                   <p class="h4 text-white m-0">
-                                    Faire mon classement
+                                    Mon classement
                                   </p>
                                 </a>
                               </div>

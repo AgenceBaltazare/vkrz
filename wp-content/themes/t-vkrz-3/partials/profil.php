@@ -46,35 +46,36 @@ $vainkeur_info = isset($vainkeur_info) ? $vainkeur_info : $user_infos;
       <?php endif; ?>
 
       <?php
-      $check_already_sub = new WP_Query(
-        array(
-          'post_type' => 'notification',
-          'orderby' => 'date',
-          'posts_per_page' => '-1',
-          'meta_query'     => array(
-            'relation' => 'AND',
-            array(
-              'key'     => 'uuid_user_notif',
-              'value'   => $uuiduser,
-              'compare' => '=',
-            ),
-            array(
-              'key'     => 'relation_uuid_notif',
-              'value'   => $vainkeur_info['uuid_user_vkrz'],
-              'compare' => '=',
-            )
-          )
-        )
-      );
+      function check_already_follower()
+      {
+        global $vainkeur_id;
+        $id_user = get_user_logged_id();
+        $amis = array();
+        $amis = get_field('liste_amis_user', 'user_' . $vainkeur_id, false);
+        if (!is_array($amis)) {
+          $amis = array();
+        }
+        array_push($amis, $vainkeur_id);
+
+        if (!empty($amis)) {
+          foreach (array_unique($amis) as $ami_id) {
+            if ($ami_id == $id_user) {
+              return 1;
+            } else {
+              return 0;
+            }
+          }
+        }
+      }
       ?>
       <?php if (strtolower($user_infos['pseudo']) != strtolower($vainkeur_info['pseudo'])) : ?>
         <div class="ml-auto mb-2">
-          <?php if ($check_already_sub->have_posts()) : ?>
+          <?php if (check_already_follower()) : ?>
             <button id="" disabled="true" class="btn btn-outline-success waves-effect">
               Suivi! 😉
             </button>
           <?php else : ?>
-            <button id="follow_btn" class="btn btn-outline-primary waves-effect" data-userid="<?= $user_id; ?>" data-uuid="<?php echo $uuiduser; ?>" data-relatedid="<?= $vainkeur_id; ?>" data-related="<?= $vainkeur_info['uuid_user_vkrz']; ?>" data-text="<?= $user_infos['pseudo'] ?> vous guette !" data-url="<?= $user_infos['avatar']; ?>">
+            <button id="follow_btn" class="btn btn-outline-primary waves-effect" data-userid="<?= $user_id; ?>" data-uuid="<?php echo $uuiduser; ?>" data-relatedid="<?= $vainkeur_id; ?>" data-related="<?= $vainkeur_info['uuid_user_vkrz']; ?>" data-text="<?= $user_infos['pseudo'] ?> vous guette !" data-url="<?= 'http://' . $_SERVER['HTTP_HOST'] . "/vkrz/v/" . $user_infos['pseudo'] ?>">
               Suivre <span class="ico text-center va va-smiling-face-with-heart-eyes va-lg"></span>
             </button>
           <?php endif; ?>

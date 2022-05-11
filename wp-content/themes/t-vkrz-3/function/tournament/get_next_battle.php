@@ -382,6 +382,19 @@ function get_next_duel($id_ranking, $id_top, $current_id_vainkeur)
     }
     $contender_1 = $next_duel[$val1];
     $contender_2 = $next_duel[$val2];
+  } else {
+    // DO NOTIFICATION.. ✨
+    $user = wp_get_current_user();
+    $name_user = $user->display_name;
+    $id_user = $user->ID;
+
+    $uuiduser = get_field('uuiduser_user', 'user_' . $id_user, false);
+    $relation_id = '';
+    $relation_uuid = '';
+    $notif_text = $name_user  . ' a fait un nouveau Classement!';
+    $liens_vers = get_permalink($id_ranking);
+
+    do_notification($id_user, $uuiduser, $relation_id, $relation_uuid, $notif_text, $liens_vers);
   }
 
   $current_step = get_steps($id_ranking);
