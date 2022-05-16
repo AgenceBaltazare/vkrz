@@ -76,11 +76,12 @@ $(document).ready(function ($) {
   });
 
   $(document).on("click", "#read-notification", {}, function (e) {
-    alert('Adil');
     e.preventDefault();
-
+    
     var read_notification = $(this);
     var id_notification = read_notification.data("id_notification");
+
+    console.log(id_notification);
     
     if (!ajaxRunning ) {
       ajaxRunning = true;

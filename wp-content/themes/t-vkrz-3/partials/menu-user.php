@@ -424,7 +424,7 @@ if (is_single() && get_post_type() == "tournoi") {
                   </a>
 
                 <?php endwhile; ?>
-            <!-- <li class="dropdown-menu-footer"><a class="btn btn-primary btn-block" href="<?php the_permalink(get_page_by_path('mon-compte/notifications')); ?>">Read all notifications</a> -->
+                <!-- <li class="dropdown-menu-footer"><a class="btn btn-primary btn-block" href="<?php the_permalink(get_page_by_path('mon-compte/notifications')); ?>">Read all notifications</a> -->
             <li class="dropdown-menu-footer"><a class="btn btn-primary btn-block" href="#" id="soupo">Read all notifications</a>
             </li>
           <?php else : ?>
@@ -435,9 +435,39 @@ if (is_single() && get_post_type() == "tournoi") {
             </li>
           <?php endif; ?>
       </li>
-
     </ul>
-    </li>
+
+    <script>
+      let ajaxRunning = false;
+
+      document.querySelector('#read-notification').addEventListener('click', function(e) {
+        e.preventDefault();
+        var read_notification = $(this);
+        var id_notification = read_notification.data("id_notification");
+
+        console.log(id_notification);
+
+        if (!ajaxRunning) {
+          ajaxRunning = true;
+          $.ajax({
+              method: "POST",
+              url: vkrz_ajaxurl,
+              data: {
+                action: "vkzr_read_notification",
+                id_notification: id_notification
+              },
+            })
+            .done(function(response) {
+              console.log(response);
+              read_notification.html('');
+            })
+            .always(function() {
+              ajaxRunning = false;
+            });
+        }
+      })
+    </script>
+
     <!--/ NOTIFICATIONS -->
 
     <li class="nav-item dropdown dropdown-user ml-25">
