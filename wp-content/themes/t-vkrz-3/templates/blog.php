@@ -4,19 +4,24 @@
 */
 ?>
 <?php get_header(); ?>
-
-<!-- BEGIN: Content-->
 <div class="app-content content ">
   <div class="content-overlay position-fixed" style="z-index: -1 !important;"></div>
   <div class="header-navbar-shadow"></div>
   <div class="content-wrapper container-xxl p-0 mt-2">
     <div class="content-detached content-left">
       <div class="content-body">
-        <!-- Blog List -->
-        <div class="blog-list-wrapper">
-          <!-- Blog List Items -->
-          <div class="row">
 
+        <div class="intro-mobile">
+          <div class="tournament-heading text-center">
+            <h3 class="mb-0 t-titre-tournoi">
+              BLOG
+            </h3>
+            <h4 class="mb-0">De la littérature littéralement envoûtante <span class="va va-upside-down-face va-md"></span></h4>
+          </div>
+        </div>
+
+        <div class="blog-list-wrapper">
+          <div class="row">
             <?php
             $posts = new WP_Query(array('post_type' => 'post', 'post_status' => 'publish', 'posts_per_page' => -1)); ?>
 
@@ -26,17 +31,13 @@
                 <div class="col-md-6 col-12">
                   <div class="card">
                     <a href="<?php the_permalink(); ?>">
-
                       <div class="cover" style="background: url(<?= get_the_post_thumbnail_url(); ?>) center center no-repeat; min-height: 320px; width: auto;">
                       </div>
-
                     </a>
-
                     <div class="card-body">
                       <h4 class="card-title">
                         <a href="<?php the_permalink(); ?>" class="blog-title-truncate text-body-heading"><?= the_title(); ?></a>
                       </h4>
-
                       <div class="d-flex">
                         <div class="avatar mr-25">
                           <?= get_avatar(get_the_author_meta('ID'), 28); ?>
@@ -52,7 +53,6 @@
                           <small class="text-muted"><?= get_the_date(); ?></small>
                         </div>
                       </div>
-
                       <div class="my-1 py-25">
                         <?php
                         foreach (get_the_terms(get_the_ID(), 'category') as $cat) {
@@ -66,31 +66,25 @@
                           </span>
                         </a>
                       </div>
-
                       <p class="card-text blog-content-truncate">
-
                         <?= the_excerpt(); ?>
                       </p>
                       <hr>
-
                       <div class="d-flex justify-content-between align-items-center">
                         <a href="<?php the_permalink(); ?>#comments">
                           <div class="d-flex align-items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-square font-medium-1 text-body me-50">
                               <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                             </svg>
-
                             <span class="text-body fw-bold ml-25">
                               <?= get_comments_number() >= 1 ?  get_comments_number() . ' Commentaires' : get_comments_number() . ' Commentaire' ?></span>
                           </div>
                         </a>
-
                         <a href="<?php the_permalink(); ?>" class="btn btn-max btn-primary">Lire</a>
                       </div>
                     </div>
                   </div>
                 </div>
-
               <?php endwhile; ?>
             <?php else : ?>
               <?= wpautop("Désolé, aucun article n'a été trouvé. 😐"); ?>

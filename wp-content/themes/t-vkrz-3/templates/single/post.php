@@ -49,10 +49,7 @@
 
                   <hr class="my-2">
                   <div class="blog-rs">
-                    <h6 class="section-label text-center m-0">Partager le poste</h6>
-
                     <div class="d-flex align-items-center">
-
                       <?php
                       $id_post        = get_the_ID();
                       $url_post       = get_the_permalink();
@@ -60,6 +57,9 @@
                       $text_post      = get_the_excerpt();
                       ?>
                       <ul>
+                        <li>
+                          <h6 class="section-label text-center m-0">Partager</h6>
+                        </li>
                         <!-- Facebook -->
                         <li>
                           <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $url_post; ?>&quote=<?php echo $title_post; ?>" title="Share on Facebook" target="_blank">
@@ -89,14 +89,6 @@
                           <a href="whatsapp://send?text=<?php echo $url_post; ?>" data-action="share/whatsapp/share">
                             <span>
                               <i class="fab fa-whatsapp"></i>
-                            </span>
-                          </a>
-                        </li>
-                        <!-- Email -->
-                        <li>
-                          <a href="mailto:?subject=<?php echo $title_post; ?>&body=<?php echo $ext_post; ?>:<?php echo $url_post; ?>" target="_blank">
-                            <span>
-                              <i class="fas fa-envelope"></i>
                             </span>
                           </a>
                         </li>
@@ -328,7 +320,7 @@
                 <div class="blog-sidebar my-2 my-lg-0">
                   <!-- Recent Posts -->
                   <div class="blog-recent-posts">
-                    <h6 class="section-label">Actualités</h6>
+                    <h6 class="section-label">Autres posts</h6>
                     <div class="mt-50">
 
                       <?php

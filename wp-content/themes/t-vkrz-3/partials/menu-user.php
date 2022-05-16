@@ -317,6 +317,13 @@ if (is_single() && get_post_type() == "tournoi") {
           <h4 class="mb-0">Plein de choses à gagner par ici</h4>
         </div>
 
+      <?php elseif (is_page(get_page_by_path('blog'))) : ?>
+
+        <div class="tournament-heading text-center">
+          <h3 class="mb-0 t-titre-tournoi"><span class="ico va va-sun va-lg"></span> Blog</h3>
+          <h4 class="mb-0">De la littérature littéralement envoûtante <span class="va va-upside-down-face va-md"></span></h4>
+        </div>
+
       <?php elseif (is_page(get_page_by_path('tous-les-sujets'))) : ?>
 
         <div class="tournament-heading text-center">
