@@ -80,13 +80,23 @@ $number_of_notifications_all = $notifications_all->found_posts;
                                           <div class="media-heading">
                                             <div class="d-flex">
                                               <div class="avatar mr-50">
-                                                <img src="<?php echo $relation_uuid['avatar'];
-                                                          ?>" alt="Avatar" width="24" height="24">
+                                                <?php
+                                                $texte_notif = get_field('texte_notif', get_the_id());
+                                                $pos = strpos(strtolower($texte_notif), "anonyme");
+                                                if ($pos !== false) :
+                                                ?>
+                                                  <span class="avatar-picture" style="background-image: url(http://0.gravatar.com/avatar/?s=80&amp;d=https%3A%2F%2Fvainkeurz.com%2Fwp-content%2Fthemes%2Ft-vkrz-3%2Fassets%2Fimages%2Fvkrz%2Favatar-rose.png&amp;r=g); width: 24px; height: 24px;"></span>
+                                                <?php else : ?>
+                                                  <a href="<?php echo $relation_uuid['profil_url']; ?>">
+                                                    <img src="<?php echo $relation_uuid['avatar'];
+                                                              ?>" alt="Avatar" width="24" height="24">
+                                                  </a>
+                                                <?php endif; ?>
                                               </div>
 
                                               <div class="">
                                                 <h6 class="cart-item-title lead mb-0">
-                                                  <?php echo get_field('texte_notif', get_the_id()); ?>
+                                                  <?php echo $texte_notif; ?>
                                                 </h6>
 
                                                 <small class="cart-item-by legende">

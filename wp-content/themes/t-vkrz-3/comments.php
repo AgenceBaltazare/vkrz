@@ -1,4 +1,7 @@
-<?php global $top_comments_id; ?>
+<?php 
+global $top_comments_id;
+global $author_comment_id;
+ ?>
 <div id="comments" class="comments-area">
   <?php
   $response_to_comment = false;
@@ -32,6 +35,9 @@
                     if ($comment->comment_author_email) {
                       $comment_autor      = get_user_by('email', $comment->comment_author_email);
                       $comment_autor_id   = $comment_autor->ID;
+
+                      $author_comment_id = $comment_autor_id;
+
                       $avatar_url         = get_avatar_url($comment_autor_id, ['size' => '180', 'force_default' => false]);
                     } else {
                       $avatar_url         = get_bloginfo('template_directory') . '/assets/images/vkrz/avatar-rose.png';
@@ -203,7 +209,53 @@
                 <?php endif; ?>
               </div>
               <div class="col-12">
-                <input name="submit" class="btn btn-primary waves-effect waves-float waves-light" type="submit" id="submit-comment" value="Poster mon commentaire">
+                <?php 
+                $post_id = $top_comments_id;
+                $author_id = get_post_field('post_author', $post_id);
+
+                $user = wp_get_current_user();
+                $user_name = $user->display_name;
+                $user_id = $user->ID;
+
+                $id_user =  $user_id;
+                $uuiduser = get_field('uuiduser_user', 'user_' . $id_user);
+                $relation_id = $author_id;
+                $relation_uuid = get_field('uuiduser_user', 'user_' . $relation_id);
+
+                if($id_user == 0) {
+                  $notif_text = 'Anonyme a commenté sur ton Top!';
+                } else {
+                  $notif_text = $user_name . ' a commenté sur ton Top!';
+                }
+                $liens_vers = add_query_arg(NULL, NULL);
+                $liens_vers = str_ireplace("/vkrz/vkrz/", "/vkrz/", $liens_vers);
+
+                $pos = strpos(strtolower($liens_vers), "replytocom");
+                if($pos !== false) {
+                  $notif_text = $user_name . ' a répondu a ton commentaire!';
+                  $relation_id = $author_comment_id;
+                  $relation_uuid = get_field('uuiduser_user', 'user_' . $relation_id);
+
+                  if($id_user == 0) {
+                    $notif_text = 'Un anonyme a répondu a ton commentaire!';
+                  }
+                }
+                ?>
+
+                <input 
+                  name="submit" 
+                  class="btn btn-primary waves-effect waves-float waves-light" 
+                  type="submit" 
+                  id="submit-comment" 
+                  value="Poster mon commentaire"
+
+                  data-id_user="<?php echo $id_user; ?>"
+                  data-uuiduser="<?php echo $uuiduser; ?>"
+                  data-relation_id="<?php echo $relation_id; ?>"
+                  data-relation_uuid="<?php echo $relation_uuid; ?>"
+                  data-notif_text="<?php echo $notif_text; ?>"
+                  data-liens_vers="<?php echo $liens_vers; ?>"
+                >
                 <input type="hidden" name="comment_post_ID" value="<?php echo $top_comments_id; ?>" id="comment_post_ID">
                 <input type="hidden" name="comment_parent" id="comment_parent" value="<?php echo $top_reponse_id; ?>">
               </div>

@@ -396,10 +396,20 @@ if (is_single() && get_post_type() == "tournoi") {
               <?php if ($notifications->have_posts()) : ?>
                 <?php while ($notifications->have_posts()) : $notifications->the_post();
                   $relation_uuid = get_user_infos(get_field('uuid_user_notif', get_the_id())); ?>
-                  <a class="d-flex" href="javascript:void(0)">
+                  <a class="d-flex" data-id_notification="<?php echo get_the_ID(); ?>" id="read-notification" href="<?php echo get_field('lien_vers_notif', get_the_id()); ?>">
                     <div class="media d-flex align-items-start">
                       <div class="media-left">
-                        <div class="avatar"><img src="<?php echo $relation_uuid['avatar']; ?>" alt="avatar" width="32" height="32"></div>
+                        <div class="avatar">
+                          <?php
+                          $texte_notif = get_field('texte_notif', get_the_id());
+                          $pos = strpos(strtolower($texte_notif), "anonyme");
+                          if ($pos !== false) :
+                          ?>
+                            <span class="avatar-picture" style="background-image: url(http://0.gravatar.com/avatar/?s=80&amp;d=https%3A%2F%2Fvainkeurz.com%2Fwp-content%2Fthemes%2Ft-vkrz-3%2Fassets%2Fimages%2Fvkrz%2Favatar-rose.png&amp;r=g); width: 32px; height: 32px;"></span>
+                          <?php else : ?>
+                            <img src="<?php echo $relation_uuid['avatar']; ?>" alt="avatar" width="32" height="32">
+                          <?php endif; ?>
+                        </div>
                       </div>
                       <div class="media-body">
                         <p class="media-heading">
@@ -414,7 +424,8 @@ if (is_single() && get_post_type() == "tournoi") {
                   </a>
 
                 <?php endwhile; ?>
-            <li class="dropdown-menu-footer"><a class="btn btn-primary btn-block" href="javascript:void(0)">Read all notifications</a>
+            <!-- <li class="dropdown-menu-footer"><a class="btn btn-primary btn-block" href="<?php the_permalink(get_page_by_path('mon-compte/notifications')); ?>">Read all notifications</a> -->
+            <li class="dropdown-menu-footer"><a class="btn btn-primary btn-block" href="#" id="soupo">Read all notifications</a>
             </li>
           <?php else : ?>
             <li class="dropdown-menu-footer">

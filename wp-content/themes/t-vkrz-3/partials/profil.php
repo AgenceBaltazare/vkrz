@@ -55,20 +55,17 @@ $vainkeur_info = isset($vainkeur_info) ? $vainkeur_info : $user_infos;
         if (!is_array($amis)) {
           $amis = array();
         }
-        array_push($amis, $vainkeur_id);
 
         if (!empty($amis)) {
           foreach (array_unique($amis) as $ami_id) {
             if ($ami_id == $id_user) {
-              return 1;
-            } else {
-              return 0;
+              return true;
             }
           }
         }
       }
       ?>
-      <?php if (strtolower($user_infos['pseudo']) != strtolower($vainkeur_info['pseudo'])) : ?>
+      <?php if (strtolower($user_infos['pseudo']) != strtolower($vainkeur_info['pseudo']) && is_user_logged_in()) : ?>
         <div class="ml-auto mb-2">
           <?php if (check_already_follower()) : ?>
             <button id="" disabled="true" class="btn btn-outline-success waves-effect">
@@ -126,7 +123,7 @@ $vainkeur_info = isset($vainkeur_info) ? $vainkeur_info : $user_infos;
                 </li>
 
                 <li class="nav-item">
-                  <a class="nav-link font-weight-bold <?php if (is_page(444131)) {
+                  <a class="nav-link font-weight-bold <?php if (is_page(347387)) {
                                                         echo 'btn btn-primary';
                                                       } ?>" href="<?php the_permalink(get_page_by_path('mon-compte/notifications')); ?>">
                     Mes notifications
@@ -134,7 +131,7 @@ $vainkeur_info = isset($vainkeur_info) ? $vainkeur_info : $user_infos;
                 </li>
 
                 <li class="nav-item">
-                  <a class="nav-link font-weight-bold <?php if (is_page(444177)) {
+                  <a class="nav-link font-weight-bold <?php if (is_page(347406)) {
                                                         echo 'btn btn-primary';
                                                       } ?>" href="<?php the_permalink(get_page_by_path('mon-compte/amis')); ?>">
                     Amigos

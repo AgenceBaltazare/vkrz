@@ -22,4 +22,5 @@ require_once 'meca/check_user_level.php';
 require_once 'meca/newplayer.php';
 require_once 'meca/vainkeur_badge.php';
 require_once 'meca/do_notification.php';
+require_once 'meca/read_notification.php';
 //require_once "meca/events.php";
