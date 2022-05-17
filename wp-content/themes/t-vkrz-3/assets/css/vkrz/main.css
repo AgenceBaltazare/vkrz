@@ -2390,7 +2390,7 @@ textarea {
   padding: 0;
 }
 
-.blog-min h4.card-title {
+.blog-min h4.card-title a {
   color: #f4157f;
   font-weight: bold;
 }
