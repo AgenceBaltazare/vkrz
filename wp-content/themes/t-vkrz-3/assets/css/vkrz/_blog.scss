@@ -53,15 +53,26 @@
   }
 }
 
-.apropos{
-  h1{
-    padding: 0;
-    margin: 20px 0;
-  }
-  .intro {
-    margin: 0 0 20px;
-    font-size: 15px;
-    font-weight: bold;
-    color: #a29d9d;
+.blog{
+  .apropos{
+    h1{
+      padding: 0;
+      margin: 20px 0;
+    }
+    .intro {
+      margin: 0 0 20px;
+      font-size: 15px;
+      font-weight: bold;
+      color: #a29d9d;
+    }
+    .apropos .card-text h2 {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 20px;
+      margin: 30px 0 20px 0;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
   }
 }

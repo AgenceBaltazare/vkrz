@@ -954,11 +954,11 @@ html .content {
 }
 
 .has-ciel-color {
-  color: #9383e8 !important;
+  color: #8ed1fc !important;
 }
 
 .has-ciel-background-color {
-  background: #9383e8 !important;
+  background: #8ed1fc !important;
 }
 
 .has-jaune-color {
@@ -2367,15 +2367,24 @@ textarea {
   color: #f4167f;
 }
 
-.apropos h1 {
+.blog .apropos h1 {
   padding: 0;
   margin: 20px 0;
 }
-.apropos .intro {
+.blog .apropos .intro {
   margin: 0 0 20px;
   font-size: 15px;
   font-weight: bold;
   color: #a29d9d;
+}
+.blog .apropos .apropos .card-text h2 {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 20px;
+  margin: 30px 0 20px 0;
+  text-transform: uppercase;
+  font-weight: 600;
 }
 
 .ico-master {
