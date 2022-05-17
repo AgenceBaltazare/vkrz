@@ -45,8 +45,9 @@
                     </a>
                   </div>
                   -->
-
-                  <?php the_content(); ?>
+                  <div class="apropos">
+                    <?php the_content(); ?>
+                  </div>
 
                   <hr class="my-2">
                   <div class="blog-rs">
