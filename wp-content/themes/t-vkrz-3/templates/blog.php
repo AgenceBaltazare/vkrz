@@ -53,6 +53,7 @@
                           <small class="text-muted"><?= get_the_date(); ?></small>
                         </div>
                       </div>
+                      <!--
                       <div class="my-1 py-25">
                         <?php
                         foreach (get_the_terms(get_the_ID(), 'category') as $cat) {
@@ -66,6 +67,7 @@
                           </span>
                         </a>
                       </div>
+                      -->
                       <p class="card-text blog-content-truncate">
                         <?= the_excerpt(); ?>
                       </p>

@@ -30,7 +30,7 @@
                       <small class="text-muted"><?= get_the_date(); ?></small>
                     </div>
                   </div>
-
+                  <!--
                   <div class="my-1 py-25">
                     <?php
                     foreach (get_the_terms(get_the_ID(), 'category') as $cat) {
@@ -44,6 +44,7 @@
                       </span>
                     </a>
                   </div>
+                  -->
 
                   <?php the_content(); ?>
 
@@ -322,7 +323,6 @@
                   <div class="blog-recent-posts">
                     <h6 class="section-label">Autres posts</h6>
                     <div class="mt-50">
-
                       <?php
                       $paged = get_query_var('paged') ? get_query_var('paged') : 1;
                       $args = array(
@@ -364,6 +364,7 @@
                   <!--/ Recent Posts -->
 
                   <!-- Categories -->
+                  <!--
                   <div class="blog-categories mt-3">
                     <h6 class="section-label">Catégories</h6>
                     <div class="mt-50">
@@ -401,6 +402,7 @@
                       <?php endforeach; ?>
                     </div>
                   </div>
+                  -->
                   <!--/ Categories -->
                 </div>
               </div>
