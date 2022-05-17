@@ -152,7 +152,7 @@
           </div>
           <!--/ Recent Posts -->
 
-          <!-- Categories -->
+          <!-- Categories
           <div class="blog-categories mt-3">
             <h6 class="section-label">Catégories</h6>
             <div class="mt-1">
@@ -190,7 +190,7 @@
               <?php endforeach; ?>
             </div>
           </div>
-          <!--/ Categories -->
+          Categories -->
         </div>
       </div>
     </div>
