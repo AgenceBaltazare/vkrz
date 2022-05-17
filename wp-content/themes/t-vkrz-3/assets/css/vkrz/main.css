@@ -2386,6 +2386,9 @@ textarea {
   text-transform: uppercase;
   font-weight: 600;
 }
+.blog mark {
+  padding: 0;
+}
 
 .ico-master {
   font-size: 85px;
