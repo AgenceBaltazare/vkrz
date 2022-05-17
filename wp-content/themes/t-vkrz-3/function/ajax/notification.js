@@ -75,30 +75,29 @@ $(document).ready(function ($) {
     }
   });
 
-  $(document).on("click", "#read-notification", {}, function (e) {
-    e.preventDefault();
-    
-    var read_notification = $(this);
-    var id_notification = read_notification.data("id_notification");
-
-    console.log(id_notification);
-    
-    if (!ajaxRunning ) {
-      ajaxRunning = true;
-      $.ajax({
-        method: "POST",
-        url: vkrz_ajaxurl,
-        data: {
-          action: "vkzr_read_notification",
-          id_notification: id_notification
-        },
-      })
-        .done(function (response) {
-          console.log(response);
+  document.querySelectorAll('#read-notification').forEach(notification => {
+    notification.addEventListener('click', function(e) {      
+      var read_notification = $(this);
+      var id_notification = read_notification.data("id_notification");
+        
+      if (!ajaxRunning ) {
+        ajaxRunning = true;
+        $.ajax({
+          method: "POST",
+          url: vkrz_ajaxurl,
+          data: {
+            action: "vkzr_read_notification",
+            id_notification: id_notification
+          },
         })
-        .always(function () {
-          ajaxRunning = false;
-        });
-    }
-  });
+          .done(function (response) {
+            console.log(response);
+            read_notification.html('');
+          })
+          .always(function () {
+            ajaxRunning = false;
+          });
+      }
+    });
+  })
 });

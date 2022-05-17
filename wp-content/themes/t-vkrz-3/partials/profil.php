@@ -63,7 +63,7 @@ $vainkeur_info = isset($vainkeur_info) ? $vainkeur_info : $user_infos;
             }
           }
         }
-      }
+      }      
       ?>
       <?php if (strtolower($user_infos['pseudo']) != strtolower($vainkeur_info['pseudo']) && is_user_logged_in()) : ?>
         <div class="ml-auto mb-2">

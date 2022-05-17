@@ -132,12 +132,12 @@ $number_of_notifications_all = $notifications_all->found_posts;
                                         $findMe  = "guette";
                                         $pos = strpos($string, $findMe);
                                         if ($pos === false) { ?>
-                                          <a class="mr-1" href="<?php echo get_field('lien_vers_notif', get_the_id()); ?>">
+                                          <a class="mr-1" id="read-notification" data-id_notification="<?php echo get_the_ID(); ?>" href="<?php echo get_field('lien_vers_notif', get_the_id()); ?>">
                                             <span class="ico va va-eyes va-lg">
                                             </span>
                                           </a>
                                         <?php } else { ?>
-                                          <a class="mr-1" href="<?php echo $relation_uuid['profil_url']; ?>">
+                                          <a class="mr-1" id="read-notification" data-id_notification="<?php echo get_the_ID(); ?>" href="<?php echo $relation_uuid['profil_url']; ?>">
                                             <span class="ico va va-eyes va-lg">
                                             </span>
                                           </a>
