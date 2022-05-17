@@ -1,4 +1,4 @@
-<?php if(is_home()): ?>
+<?php if (is_home()) : ?>
 
     <title>
         🔥 VAINKEURZ 👉 Créer et partage tes Tops !
@@ -12,13 +12,13 @@
     <meta name="twitter:description" content="Meilleur site de la galaxie d'après la NASA pour faire ses Tops." />
     <meta name="twitter:image" content="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/share/share_vkrz_banner.jpg" />
 
-<?php elseif(is_single() && get_post_type() == "tournoi"): ?>
+<?php elseif (is_single() && get_post_type() == "tournoi") : ?>
 
     <?php
-        global $top_infos;
-        global $id_top;
-        global $id_ranking;
-        $top_infos = get_top_infos($id_top);
+    global $top_infos;
+    global $id_top;
+    global $id_ranking;
+    $top_infos = get_top_infos($id_top);
     ?>
     <title>
         TOP <?php echo $top_infos['top_number']; ?> : <?php echo $top_infos['top_title']; ?> 🔥 VAINKEURZ
@@ -33,7 +33,7 @@
     <meta name="twitter:description" content="<?php echo $top_infos['top_question']; ?>" />
     <meta name="twitter:image" content="<?php echo $top_infos['top_img']; ?>" />
 
-<?php elseif(is_single() && get_post_type() == "classement"): ?>
+<?php elseif (is_single() && get_post_type() == "classement") : ?>
 
     <?php
     global $top_infos;
@@ -45,14 +45,14 @@
     $top_infos     = get_top_infos($id_top, $id_ranking);
     ?>
     <title>
-        TOP <?php echo $top_infos['top_number']; ?> : <?php echo $top_infos['top_title']; ?> - <?php the_field( 'question_t', $id_top ); ?> 🔥 VAINKEURZ
+        TOP <?php echo $top_infos['top_number']; ?> : <?php echo $top_infos['top_title']; ?> - <?php the_field('question_t', $id_top); ?> 🔥 VAINKEURZ
     </title>
     <meta name="description" content="Découvre mon TOP <?php echo $top_infos['top_number']; ?> à propos de <?php echo $top_infos['top_title']; ?>" />
 
     <?php
     $user_top3  = get_user_ranking($id_ranking);
-    $l=1;
-    foreach($user_top3 as $top) {
+    $l = 1;
+    foreach ($user_top3 as $top) {
 
         if ($l == 1) {
             $picture_contender_1 = get_the_post_thumbnail_url($top, 'medium');
@@ -65,21 +65,21 @@
             $name_contender_3    = get_the_title($top);
         }
 
-        $l++; if($l==4) break;
+        $l++;
+        if ($l == 4) break;
     }
-    if($top_infos['top_number'] < 3){
+    if ($top_infos['top_number'] < 3) {
         $api_key = "3I6bGZa3zyHsiZL2toeoagtt";
         $base = "https://on-demand.bannerbear.com/signedurl/nYaKxNMeoDRVW9BXPl/image.jpg";
-        $modifications = '[{"name":"h1","text":"TOP '.$top_infos['top_number'].' '.$top_infos['top_title'].'"},{"name":"h2","text":"Voici mon Top 2 👉"},{"name":"h1-question","text":"'.$top_infos['top_question'].'"}, {"name":"contenders_1","image_url":"'.$picture_contender_1.'"},{"name":"contenders_2","image_url":"'.$picture_contender_2.'"},{"name":"1","text":"🥇 '.$name_contender_1.'"},{"name":"2","text":"🥈 '.$name_contender_2.'"}]';
-    }
-    else{
+        $modifications = '[{"name":"h1","text":"TOP ' . $top_infos['top_number'] . ' ' . $top_infos['top_title'] . '"},{"name":"h2","text":"Voici mon Top 2 👉"},{"name":"h1-question","text":"' . $top_infos['top_question'] . '"}, {"name":"contenders_1","image_url":"' . $picture_contender_1 . '"},{"name":"contenders_2","image_url":"' . $picture_contender_2 . '"},{"name":"1","text":"🥇 ' . $name_contender_1 . '"},{"name":"2","text":"🥈 ' . $name_contender_2 . '"}]';
+    } else {
         $api_key    = "3I6bGZa3zyHsiZL2toeoagtt";
         $base       = "https://on-demand.bannerbear.com/signedurl/LR7D41MVLLPVB8OGab/image.jpg";
-        $modifications = '[{"name":"background","image_url":"'.$top_infos['top_cover'].'"},{"name":"h1-2","text":"TOP '.$top_infos['top_number'].' '.$top_infos['top_title'].'"},{"name":"h1","text":"TOP '.$top_infos['top_number'].' '.$top_infos['top_title'].'"},{"name":"h2","text":"VOICI MON TOP 3 👉"},{"name":"contenders_1","image_url":"'.$picture_contender_1.'"},{"name":"contenders_2","image_url":"'.$picture_contender_2.'"},{"name":"contenders_3","image_url":"'.$picture_contender_3.'"},{"name":"1","text":"🥇 '.$name_contender_1.'"},{"name":"2","text":"🥈 '.$name_contender_2.'"},{"name":"3","text":"🥉 '.$name_contender_3.'"},{"name":"h1-question-2","text":"'.$top_infos['top_question'].'"},{"name":"h1-question","text":"'.$top_infos['top_question'].'"}]';
+        $modifications = '[{"name":"background","image_url":"' . $top_infos['top_cover'] . '"},{"name":"h1-2","text":"TOP ' . $top_infos['top_number'] . ' ' . $top_infos['top_title'] . '"},{"name":"h1","text":"TOP ' . $top_infos['top_number'] . ' ' . $top_infos['top_title'] . '"},{"name":"h2","text":"VOICI MON TOP 3 👉"},{"name":"contenders_1","image_url":"' . $picture_contender_1 . '"},{"name":"contenders_2","image_url":"' . $picture_contender_2 . '"},{"name":"contenders_3","image_url":"' . $picture_contender_3 . '"},{"name":"1","text":"🥇 ' . $name_contender_1 . '"},{"name":"2","text":"🥈 ' . $name_contender_2 . '"},{"name":"3","text":"🥉 ' . $name_contender_3 . '"},{"name":"h1-question-2","text":"' . $top_infos['top_question'] . '"},{"name":"h1-question","text":"' . $top_infos['top_question'] . '"}]';
     }
     $query = "?modifications=" . rtrim(strtr(base64_encode($modifications), '+/', '-_'), '=');
-    $signature = hash_hmac('sha256', $base.$query, $api_key);
-    $banner = $base . $query."&s=" . $signature;
+    $signature = hash_hmac('sha256', $base . $query, $api_key);
+    $banner = $base . $query . "&s=" . $signature;
     ?>
 
     <link rel="canonical" href="<?php echo get_the_permalink($id_ranking); ?>" />
@@ -91,21 +91,21 @@
     <meta name="twitter:description" content="Découvre mon Top et fais ton propre classement !" />
     <meta name="twitter:image" content="<?php echo $banner; ?>" />
 
-<?php elseif(is_page(get_page_by_path('elo'))): ?>
+<?php elseif (is_page(get_page_by_path('elo'))) : ?>
 
-    <?php 
+    <?php
     global $top_infos;
     $id_top     = $_GET['id_top'];
     $top_infos  = get_top_infos($id_top);
     ?>
     <title>
-        Top mondial 🌎  <?php echo $top_infos['top_title']; ?> - <?php echo $top_infos['top_question']; ?> 🔥 VAINKEURZ
+        Top mondial 🌎 <?php echo $top_infos['top_title']; ?> - <?php echo $top_infos['top_question']; ?> 🔥 VAINKEURZ
     </title>
     <meta name="description" content="Classement ELO du tournoi rassemblant les votes du monde entier." />
 
-<?php elseif(is_page(get_page_by_path('liste-des-tops'))): ?>
+<?php elseif (is_page(get_page_by_path('liste-des-tops'))) : ?>
 
-    <?php 
+    <?php
     global $top_infos;
     $id_top     = $_GET['id_top'];
     $top_infos  = get_top_infos($id_top);
@@ -115,7 +115,7 @@
     </title>
     <meta name="description" content="Découvre tous les Tops générés sur VAINKEURZ" />
 
-<?php elseif(is_archive() && !is_author()): ?>
+<?php elseif (is_archive() && !is_author()) : ?>
 
     <?php
     global $current_cat;
@@ -130,25 +130,24 @@
     </title>
     <meta name="description" content="<?php echo $current_cat->description; ?>" />
 
-<?php elseif(is_author() || is_page(218587)): ?>
+<?php elseif (is_author() || is_page(218587)) : ?>
 
     <?php
     global $vainkeur_id;
     global $vainkeur_info;
     global $vainkeur_tops;
-    if(!$vainkeur_id){
+    if (!$vainkeur_id) {
         $vainkeur            = get_user_by('slug', get_query_var('author_name'));
         $vainkeur_id         = $vainkeur->ID;
     }
-    if(is_user_logged_in() && env() != "local") {
-        if (false === ( $vainkeur_tops = get_transient( 'user_'.$vainkeur_id.'_get_user_tops' ) )) {
+    if (is_user_logged_in() && env() != "local") {
+        if (false === ($vainkeur_tops = get_transient('user_' . $vainkeur_id . '_get_user_tops'))) {
             $vainkeur_tops   = get_user_tops($vainkeur_id);
-            set_transient( 'user_'.$user_id.'_get_user_tops', $vainkeur_tops, DAY_IN_SECONDS );
+            set_transient('user_' . $user_id . '_get_user_tops', $vainkeur_tops, DAY_IN_SECONDS);
         } else {
-            $vainkeur_tops = get_transient( 'user_'.$vainkeur_id.'_get_user_tops' );
+            $vainkeur_tops = get_transient('user_' . $vainkeur_id . '_get_user_tops');
         }
-    } 
-    else {
+    } else {
         $vainkeur_tops   = get_user_tops($vainkeur_id);
     }
     $vainkeur_info       = deal_vainkeur_entry($vainkeur_id);
@@ -166,30 +165,49 @@
     <meta name="twitter:description" content="Tous les Tops de <?php echo $vainkeur_info['pseudo']; ?> et ses statistiques." />
     <meta name="twitter:image" content="<?php echo $vainkeur_info['avatar']; ?>" />
 
-<?php elseif(is_page()): ?>
+<?php elseif (is_page()) : ?>
 
     <title>
         <?php
-            if(get_field('titre_seo')){
-                the_field('titre_seo');
-            }
-            else{
-                the_title();
-            }
+        if (get_field('titre_seo')) {
+            the_field('titre_seo');
+        } else {
+            the_title();
+        }
         ?>
     </title>
     <meta name="description" content="
         <?php
-        if(get_field('description_seo')){
+        if (get_field('description_seo')) {
             the_field('description_seo');
-        }
-        else{
+        } else {
             the_excerpt();
         }
         ?>
-    "/>
+    " />
 
-<?php else: ?>
+<?php elseif (is_single() && (get_post_type() === "post")) : ?>
+
+    <title>
+        <?php
+        if (get_field('titre_seo')) {
+            the_field('titre_seo');
+        } else {
+            the_title();
+        }
+        ?>
+    </title>
+    <meta name="description" content="
+        <?php
+        if (get_field('description_seo')) {
+            the_field('description_seo');
+        } else {
+            the_excerpt();
+        }
+        ?>
+    " />
+
+<?php else : ?>
 
     <title>
         VAINKEURZ 🔥

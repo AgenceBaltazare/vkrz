@@ -149,7 +149,6 @@ if (is_single() && get_post_type() == "tournoi") {
                       <li class="breadcrumb-item">
                         <a href="<?php the_permalink(get_page_by_path('blog')); ?>" title="Blog">
                           <span class="ico"><span class="va va-sun va-lg"></span></span>
-
                           <span class="menu-title text-truncate">Blog</span>
                         </a>
                       </li>
@@ -192,19 +191,7 @@ if (is_single() && get_post_type() == "tournoi") {
                       <li class="breadcrumb-item">
                         <a href="<?php the_permalink(get_page_by_path('blog')); ?>" title="Blog">
                           <span class="ico"><span class="va va-sun va-lg"></span></span>
-                        </a>
-                      </li>
-                      <?php
-                      foreach (get_the_terms(get_the_ID(), 'category') as $cat) {
-                        $cat_id     = $cat->term_id;
-                        $cat_name   = $cat->name;
-                      }
-                      ?>
-                      <li class="breadcrumb-item">
-                        <a href="<?= get_category_link($cat_id); ?>">
-                          <span class="menu-title text-truncate">
-                            <?= $cat_name; ?>
-                          </span>
+                          <span class="menu-title text-truncate">Blog</span>
                         </a>
                       </li>
                       <li class="breadcrumb-item active">
@@ -339,6 +326,11 @@ if (is_single() && get_post_type() == "tournoi") {
           </h3>
         </div>
 
+      <?php elseif (is_single() && (get_post_type() === "post")) : ?>
+        <div class="tournament-heading text-center">
+          <h3 class="mb-0 t-titre-tournoi"><span class="ico va va-sun va-lg"></span> Blog</h3>
+          <h4 class="mb-0"><?php the_title(); ?></h4>
+        </div>
       <?php endif; ?>
     </div>
 
