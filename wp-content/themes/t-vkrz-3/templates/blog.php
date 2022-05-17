@@ -29,7 +29,7 @@
               <?php while ($posts->have_posts()) : $posts->the_post(); ?>
 
                 <div class="col-md-6 col-12">
-                  <div class="card">
+                  <div class="card blog-min">
                     <a href="<?php the_permalink(); ?>">
                       <div class="cover" style="background: url(<?= get_the_post_thumbnail_url(); ?>) center center no-repeat; min-height: 320px; width: auto;">
                       </div>
