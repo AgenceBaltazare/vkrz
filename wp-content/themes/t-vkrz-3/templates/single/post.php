@@ -12,24 +12,7 @@
             <!-- Blog -->
             <div class="col-lg-9">
               <div class="card">
-                <h1 class="blog-title">
-                  <?php the_title(); ?>
-                </h1>
                 <div class="card-body pt-50">
-
-                  <div class="d-flex">
-                    <div class="avatar mr-50">
-                      <?= get_avatar(get_the_author_meta('ID'), 28); ?>
-                    </div>
-                    <div class="author-info">
-                      <small class="text-muted me-25">par</small>
-                      <small>
-                        <a href="<?php echo get_author_posts_url(get_the_author_meta('ID')) ?>" class="text-body"><?php the_author(); ?></a>
-                      </small>
-                      <span class="text-muted ms-50 me-25">|</span>
-                      <small class="text-muted"><?= get_the_date(); ?></small>
-                    </div>
-                  </div>
                   <!--
                   <div class="my-1 py-25">
                     <?php
@@ -46,7 +29,30 @@
                   </div>
                   -->
                   <div class="apropos">
-                    <?php the_content(); ?>
+                    <div class="card-text">
+                      <h1 class="blog-title">
+                        <?php the_title(); ?>
+                      </h1>
+                      <?php the_content(); ?>
+                    </div>
+                  </div>
+
+                  <hr class="my-2">
+
+                  <div class="infoauthor">
+                    <div class="d-flex">
+                      <div class="avatar mr-50">
+                        <?= get_avatar(get_the_author_meta('ID'), 28); ?>
+                      </div>
+                      <div class="author-info">
+                        <small class="text-muted me-25">par</small>
+                        <small>
+                          <a href="<?php echo get_author_posts_url(get_the_author_meta('ID')) ?>" class="text-body"><?php the_author(); ?></a>
+                        </small>
+                        <small class="text-muted me-25">le</small>
+                        <small class="text-muted"><?= get_the_date(); ?></small>
+                      </div>
+                    </div>
                   </div>
 
                   <hr class="my-2">
