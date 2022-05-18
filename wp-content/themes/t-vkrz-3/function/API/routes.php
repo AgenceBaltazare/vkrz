@@ -35,4 +35,14 @@ add_action('rest_api_init', function () {
       'id_top'
     ]
   ));
+
+  // Info Top
+  register_rest_route('vkrz/v1', '/getuserinfo/(?P<uuiduser>\w+)', array(
+    'methods' => 'GET',
+    'callback' => 'get_user_infos_from_api',
+    'args' => [
+      'uuiduser'
+    ]
+  ));
+
 });
