@@ -48,7 +48,7 @@
                       <?php the_field('nb_total_tops', 'options'); ?>
                     </span>
                   </h1>
-                  <p class="card-text legende">Tops terminés</p>
+                  <p class="card-text legende">TopList générées</p>
                 </div>
               </div>
             </div>
@@ -64,7 +64,7 @@
                       Une <span class="t-violet">SWITCH LITE Bleu</span> à gagner !
                     </h3>
                     <p class="card-text mt-2">
-                      Le Vainkeur qui fera le <strong class="t-rose">10 millions Top</strong> l'emporte. <br>
+                      Le Vainkeur qui fera la <strong class="t-rose">10 millionième TopList</strong> l'emporte. <br>
                       L'identifiant du gagnant sera annoncé sur Twitter et sur cette même page. <span class="ico va va-cold-face va-lg"></span>
                     </p>
                   <?php else : ?>

@@ -75,7 +75,7 @@ if (false === ($data_t_created = get_transient('user_' . $vainkeur_id . '_get_cr
                               <?php echo number_format($data_t_created['creator_all_t'], 0, ",", " "); ?>
                             </h2>
                             <p class="card-text legende">
-                              <?php echo ($data_t_created['creator_all_t'] > 1) ? "Classements générés" : "Classement généré"; ?>
+                              <?php echo ($data_t_created['creator_all_t'] > 1) ? "TopLists générées" : "Classement généré"; ?>
                             </p>
                           </div>
                         </div>
@@ -165,7 +165,7 @@ if (false === ($data_t_created = get_transient('user_' . $vainkeur_id . '_get_cr
                                           <span class="ico va va-eyes va-lg">
                                           </span>
                                         </a>
-                                        <a class="mr-1" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $item['top_id']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir le Top mondial">
+                                        <a class="mr-1" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $item['top_id']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir la TopList mondiale">
                                           <span class="ico va va-globe va-lg">
                                           </span>
                                         </a>
