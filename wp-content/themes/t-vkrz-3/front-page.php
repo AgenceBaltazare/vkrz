@@ -268,9 +268,7 @@ $list_user_tops      = $user_tops['list_user_tops'];
                   <br><br>
                   Ici, c'est pas aussi simple qu'une Tier List <span class="ico va va-squinting-face-with-tongue va-z-20"></span> car pas d'égalité possible.
                   <br>
-                  Tu vas forcément devoir faire des choix que tu voulais clairement pas avoir à faire <span class="ico va va-face-screaming va-z-20">
-						<br>
-						 C'est le principe des TopList !</span>
+                  Tu vas forcément devoir faire des choix que tu voulais clairement pas avoir à faire <span class="ico va va-face-screaming va-z-20"></span> C'est le principe des TopList !
                   <br><br>
                   Ensuite, tu pourras comparer tes TopList<span class="ico va va-trophy va-z-20"></span> à ceux de tes amis - si tu en as bien sûr. Et puis si tu n'en pas, <span class="ico va va-hugging-face va-z-20"></span> rejoins notre Discord.
                 </p>
