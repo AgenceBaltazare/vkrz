@@ -424,7 +424,7 @@ foreach ($list_user_tops as $top) {
                                               <span class="va va-trophy va-lg"></span>
                                             </span>
                                           </a>
-                                          <a class="mr-1" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $r_user['id_top']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir le Top mondial">
+                                          <a class="mr-1" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $r_user['id_top']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir la TopList mondiale">
                                             <span class="ico">
                                               <span class="va va-globe va-lg"></span>
                                             </span>

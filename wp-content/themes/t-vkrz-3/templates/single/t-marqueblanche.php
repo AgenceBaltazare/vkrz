@@ -73,7 +73,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                                         <div class="choosecta">
                                             <div class="cta-begin cta-top3">
                                                 <a href="#" id="begin_top3" data-typetop="top3" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
-                                                    Faire mon classement
+                                                    Faire ma TopList
                                                 </a>
                                                 <small class="text-muted">
                                                     <?php

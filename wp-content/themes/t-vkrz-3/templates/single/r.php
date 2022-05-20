@@ -148,7 +148,7 @@ if ($get_top_type) {
                               <div class="card mt-2">
                                 <a href="<?php echo $top_infos['top_url']; ?>" class="w-100 btn btn-rose waves-effect p-1">
                                   <p class="h4 text-white m-0">
-                                    Faire mon classement
+                                    Faire ma TopList
                                   </p>
                                 </a>
                               </div>
@@ -163,7 +163,7 @@ if ($get_top_type) {
                               </h2>
                               <div class="mt-1">
                                 <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_top_global; ?>" class="w-100 btn btn-primary waves-effect">
-                                  <span class="ico">🌎</span> Voir le Top mondial
+                                  <span class="ico">🌎</span> Voir la TopList mondiale
                                 </a>
                               </div>
                               <h2 class="stats-mondiales mt-2 mb-0">

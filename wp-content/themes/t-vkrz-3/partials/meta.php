@@ -1,7 +1,7 @@
 <?php if (is_home()) : ?>
 
     <title>
-        🔥 VAINKEURZ 👉 Créer et partage tes Tops !
+        🔥 VAINKEURZ 👉 Crée et partage tes TopLists !
     </title>
     <meta name="description" content="Meilleur site de la galaxie d'après la NASA pour faire ses Tops." />
     <meta property="og:image" content="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/share/share_vkrz_banner.jpg" />

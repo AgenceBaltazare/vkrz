@@ -61,7 +61,7 @@ $top_datas = get_top_data($id_top);
                                         <div class="card">
                                             <div class="card-header">
                                                 <h4 class="card-title pt-1 pb-1">
-                                                    Liste des <?php echo $all_users_ranks_of_t->post_count; ?> <span class="va va-trophy va-lg"></span> générés pour ce Top !
+                                                    <?php echo $all_users_ranks_of_t->post_count; ?> <span class="va va-trophy va-lg"></span> TopLists générées pour ce Top !
                                                 </h4>
                                             </div>
                                             <div class="table-responsive">
@@ -295,13 +295,13 @@ $top_datas = get_top_data($id_top);
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">
-                                        <span class="ico">🌎</span> Voir le Top mondial
+                                        <span class="ico">🌎</span> Voir la TopList mondiale
                                     </h4>
                                     <h6 class="card-subtitle text-muted mb-1">
                                         Découvre le classement complet généré par les <?php echo $top_datas['nb_votes']; ?> votes !
                                     </h6>
                                     <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_top; ?>" class="btn btn-outline-primary waves-effect">
-                                        Voir le Top mondial
+                                        Voir la TopList mondiale
                                     </a>
                                 </div>
                             </div>

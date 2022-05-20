@@ -49,10 +49,10 @@ $vainkeurs = get_best_vainkeur("money", NULL, 20);
                                                                     <small class="text-muted">Votes effectués</small>
                                                                 </th>
                                                                 <th class="text-right">
-                                                                    <small class="text-muted">Top terminés</small>
+                                                                    <small class="text-muted">TopLists</small>
                                                                 </th>
                                                                 <th class="text-right">
-                                                                    <small class="text-muted">Guetter ses Tops</small>
+                                                                    <small class="text-muted">Guetter ses TopLists</small>
                                                                 </th>
                                                             </tr>
                                                         </thead>
