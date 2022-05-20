@@ -327,10 +327,19 @@ if (is_single() && get_post_type() == "tournoi") {
         </div>
 
       <?php elseif (is_single() && (get_post_type() === "post")) : ?>
+
         <div class="tournament-heading text-center">
           <h3 class="mb-0 t-titre-tournoi"><span class="ico va va-sun va-lg"></span> Blog</h3>
           <h4 class="mb-0"><?php the_title(); ?></h4>
         </div>
+
+      <?php elseif (get_page_template_slug() == 'special/special.php') : ?>
+
+        <div class="tournament-heading text-center">
+          <h3 class="mb-0 t-titre-tournoi"><span class="ico va va-wrapped-gift va-lg"></span> <?php the_field('intro_1_special'); ?></h3>
+          <h4 class="mb-0"><?php the_field('intro_2_special'); ?></h4>
+        </div>
+
       <?php endif; ?>
     </div>
 
