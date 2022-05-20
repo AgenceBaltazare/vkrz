@@ -71,7 +71,7 @@ if (false === ($data_t_created = get_transient('user_' . $user_id . '_get_creato
                           <?php echo number_format($data_t_created['creator_all_t'], 0, ",", " "); ?>
                         </h2>
                         <p class="card-text legende">
-                          <?php echo ($data_t_created['creator_all_t'] > 1) ? "TopLists générées" : "Classement généré"; ?>
+                          <?php echo ($data_t_created['creator_all_t'] > 1) ? "TopList générées" : "Classement généré"; ?>
                         </p>
                       </div>
                     </div>

@@ -61,7 +61,7 @@ $top_datas = get_top_data($id_top);
                                         <div class="card">
                                             <div class="card-header">
                                                 <h4 class="card-title pt-1 pb-1">
-                                                    <?php echo $all_users_ranks_of_t->post_count; ?> <span class="va va-trophy va-lg"></span> TopLists générées pour ce Top !
+                                                    <?php echo $all_users_ranks_of_t->post_count; ?> <span class="va va-trophy va-lg"></span> TopList générées pour ce Top !
                                                 </h4>
                                             </div>
                                             <div class="table-responsive">

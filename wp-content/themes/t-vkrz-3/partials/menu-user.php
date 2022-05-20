@@ -213,7 +213,7 @@ if (is_single() && get_post_type() == "tournoi") {
       <?php if (is_home()) : ?>
 
         <h3 class="mb-0 animate__animated animate__slideInLeft"><span class="va va-vulcan-salute va-1x"></span> Bienvenue</h3>
-        <h4 class="mb-0 kick animate__animated animate__slideInRight" data-kick="Commence par choisir un Top qui t'intéresse et enchaîne les votes <span class='va va-backhand-index-pointing-down va-1x'></span>">Tu vas pouvoir générer et revendiquer tes propres TopLists !</h4>
+        <h4 class="mb-0 kick animate__animated animate__slideInRight" data-kick="Commence par choisir un Top qui t'intéresse et enchaîne les votes <span class='va va-backhand-index-pointing-down va-1x'></span>">Tu vas pouvoir générer et revendiquer tes propres TopList !</h4>
 
       <?php elseif (is_single() && (get_post_type() == "tournoi")) : ?>
 
@@ -264,7 +264,7 @@ if (is_single() && get_post_type() == "tournoi") {
 
         <?php $id_top = $_GET['id_top']; ?>
         <div class="tournament-heading text-center">
-          <h3 class="mb-0 t-titre-tournoi">Toutes les TopLists <span class="ico text-center va va-trophy va-lg"></span> <?php echo get_the_title($id_top); ?></h3>
+          <h3 class="mb-0 t-titre-tournoi">Toutes les TopList <span class="ico text-center va va-trophy va-lg"></span> <?php echo get_the_title($id_top); ?></h3>
           <h4 class="mb-0">
             <?php the_field('question_t', $id_top); ?>
           </h4>

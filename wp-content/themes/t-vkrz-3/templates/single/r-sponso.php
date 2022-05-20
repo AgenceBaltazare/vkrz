@@ -274,7 +274,7 @@ $top_datas    = get_top_data($id_top_global);
                               </h2>
                               <div class="mt-1">
                                 <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_top_global; ?>" class="w-100 btn btn-outline-primary waves-effect">
-                                  <span class="ico ico-reverse">👀</span> Voir les autres TopLists
+                                  <span class="ico ico-reverse">👀</span> Voir les autres TopList
                                 </a>
                               </div>
                             </div>
