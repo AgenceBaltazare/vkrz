@@ -3,86 +3,69 @@
 namespace ACA\ACF;
 
 use AC;
-use AC\Plugin;
 use AC\Plugin\Version;
 use AC\PluginInformation;
 use AC\Registrable;
+use AC\Request;
+use AC\Service\Setup;
+use ACA\ACF\FieldGroup;
+use ACA\ACF\Plugin\SetupFactory;
+use ACA\ACF\RequestHandler\MapLegacyListScreen;
+use ACA\ACF\Search;
+use ACA\ACF\Service\AddColumns;
+use ACA\ACF\Service\ColumnSettings;
+use ACA\ACF\Service\InitColumn;
+use ACA\ACF\Service\Scripts;
+use ACA\ACF\Sorting;
+use ACP\RequestHandlerFactory;
+use ACP\RequestParser;
 
-final class AdvancedCustomFields extends Plugin implements Registrable {
+final class AdvancedCustomFields extends AC\Plugin {
 
 	public function __construct( $file, Version $version ) {
 		parent::__construct( $file, $version );
-	}
 
-	public function register() {
-		add_action( 'ac/column/settings', [ $this, 'register_editing_sections' ] );
-		add_action( 'ac/column_groups', [ $this, 'register_column_groups' ] );
-		add_action( 'ac/column_types', [ $this, 'add_columns' ] );
-		add_action( 'ac/table_scripts/editing', [ $this, 'table_scripts_editing' ] );
-		add_action( 'ac/admin_scripts/columns', [ $this, 'settings_scripts' ] );
+		$column_initiator = new ColumnInstantiator(
+			new ConfigFactory( new FieldFactory() ),
+			new Search\ComparisonFactory(),
+			new Sorting\ModelFactory(),
+			new Editing\ModelFactory(),
+			new Filtering\ModelFactory()
+		);
 
-		$plugin_information = new PluginInformation( $this->get_basename() );
-		$is_network_active = $plugin_information->is_network_active();
-		$setup_factory = new AC\Plugin\SetupFactory( 'aca_acf_version', $this->get_version() );
+		$setup_factory = new SetupFactory( 'aca_acf_version', $this->get_version() );
 
-		$services[] = new AC\Service\Setup( $setup_factory->create( AC\Plugin\SetupFactory::SITE ) );
+		$request_handler_factory = new RequestHandlerFactory( new Request() );
+		$request_handler_factory->add( 'aca-acf-map-legacy-list-screen', new MapLegacyListScreen( AC()->get_storage() ) );
 
-		if ( $is_network_active ) {
-			$services[] = new AC\Service\Setup( $setup_factory->create( AC\Plugin\SetupFactory::NETWORK ) );
+		$services = [
+			new ColumnGroup(),
+			new Service\LegacyColumnMapper(),
+			new Service\RemoveDeprecatedColumnFromTypeSelector(),
+			new AddColumns(
+				new FieldRepository( new FieldGroup\QueryFactory() ),
+				new FieldsFactory(),
+				new ColumnFactory( $column_initiator )
+			),
+			new Scripts( $this->get_location() ),
+			new InitColumn( $column_initiator ),
+			new ColumnSettings(),
+			new RequestParser( $request_handler_factory ),
+		];
+
+		$services[] = new Setup( $setup_factory->create( AC\Plugin\SetupFactory::SITE ) );
+
+		if ( $this->is_network_active() ) {
+			$services[] = new Setup( $setup_factory->create( AC\Plugin\SetupFactory::NETWORK ) );
 		}
 
-		array_map( [ $this, 'register_service' ], $services );
+		array_map( function ( Registrable $service ) {
+			$service->register();
+		}, $services );
 	}
 
-	private function register_service( Registrable $registrable ) {
-		$registrable->register();
-	}
-
-	/**
-	 * @param AC\Groups $groups
-	 */
-	public function register_column_groups( $groups ) {
-		$groups->register_group( 'acf', __( 'Advanced Custom Fields' ), 11 );
-	}
-
-	/**
-	 * Add custom columns
-	 *
-	 * @param AC\ListScreen $list_screen
-	 *
-	 * @since 1.0
-	 */
-	public function add_columns( $list_screen ) {
-		$content_types = [ 'Post', 'Media', 'User', 'Comment', 'Taxonomy' ];
-
-		foreach ( $content_types as $content_type ) {
-			$instance = 'ACP\Listscreen\\' . $content_type;
-
-			if ( $list_screen instanceof $instance ) {
-				$column = 'ACA\ACF\Column\\' . $content_type;
-
-				$list_screen->register_column_type( new $column );
-
-				break;
-			}
-		}
-	}
-
-	public function table_scripts_editing() {
-		$script = new AC\Asset\Script( 'ac-acf-table', $this->get_location()->with_suffix( 'assets/js/table.js' ), [ 'jquery' ] );
-		$script->enqueue();
-
-		$style = new AC\Asset\Style( 'ac-acf-table', $this->get_location()->with_suffix( 'assets/css/table.css' ) );
-		$style->enqueue();
-	}
-
-	public function settings_scripts() {
-		$script = new AC\Asset\Script( 'ac-acf-settings', $this->get_location()->with_suffix( 'assets/js/admin.js' ), [ 'jquery' ] );
-		$script->enqueue();
-	}
-
-	public function register_editing_sections( AC\Column $column ) {
-		( new ColumnEditingSettingSetter() )->register( $column );
+	private function is_network_active() {
+		return ( new PluginInformation( $this->get_basename() ) )->is_network_active();
 	}
 
 }

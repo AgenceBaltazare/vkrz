@@ -24,8 +24,8 @@ class PB_Mustache_Generate_Template{
 	function __construct( $mustache_vars, $template, $extra_values ){
 
 		// Include Mustache Templates
-		if( !class_exists( 'Mustache_Autoloader' ) )
-			require_once( WPPB_PLUGIN_DIR.'/assets/lib/Mustache/Autoloader.php' );
+		if( !class_exists( 'Mustache_Autoloader' ) && defined( 'WPPB_PAID_PLUGIN_DIR' ) )
+			require_once( WPPB_PAID_PLUGIN_DIR.'/assets/lib/Mustache/Autoloader.php' );
 
 		Mustache_Autoloader::register();
 
@@ -186,12 +186,12 @@ class PB_Mustache_Generate_Admin_Box{
 			}
 
 			if ( ( $this->page[0] == $post_type ) ){
-				wp_enqueue_style( 'codemirror-style', WPPB_PLUGIN_URL . 'assets/lib/codemirror/lib/codemirror.css', false, PROFILE_BUILDER_VERSION );
+				wp_enqueue_style( 'codemirror-style', WPPB_PAID_PLUGIN_URL . 'assets/lib/codemirror/lib/codemirror.css', false, PROFILE_BUILDER_VERSION );
                 if( !wp_script_is( 'codemirror', 'registered' ) && !wp_script_is( 'codemirror', 'enqueued' ) ) {
-                    wp_enqueue_script('codemirror', WPPB_PLUGIN_URL . 'assets/lib/codemirror/lib/codemirror.js', array(), PROFILE_BUILDER_VERSION);
-                    wp_enqueue_script('codemirror-mode-overlay-js', WPPB_PLUGIN_URL . 'assets/lib/codemirror/addon/mode/overlay.js', array(), '1.0');
-                    wp_enqueue_script('codemirror-mode-xml-js', WPPB_PLUGIN_URL . 'assets/lib/codemirror/mode/xml/xml.js', array(), '1.0');
-                    wp_enqueue_script('codemirror-fullscreen-js', WPPB_PLUGIN_URL . 'assets/lib/codemirror/addon/display/fullscreen.js', array(), '1.0');
+                    wp_enqueue_script('codemirror', WPPB_PAID_PLUGIN_URL . 'assets/lib/codemirror/lib/codemirror.js', array(), PROFILE_BUILDER_VERSION);
+                    wp_enqueue_script('codemirror-mode-overlay-js', WPPB_PAID_PLUGIN_URL . 'assets/lib/codemirror/addon/mode/overlay.js', array(), '1.0');
+                    wp_enqueue_script('codemirror-mode-xml-js', WPPB_PAID_PLUGIN_URL . 'assets/lib/codemirror/mode/xml/xml.js', array(), '1.0');
+                    wp_enqueue_script('codemirror-fullscreen-js', WPPB_PAID_PLUGIN_URL . 'assets/lib/codemirror/addon/display/fullscreen.js', array(), '1.0');
                 }
 
 				wp_enqueue_script('jquery-ui-accordion');
@@ -228,9 +228,9 @@ class PB_Mustache_Generate_Admin_Box{
 			}
 
 			if ( ( $this->page[0] == $post_type ) ){
-                wp_enqueue_style( 'class-mustache-css', WPPB_PLUGIN_URL . 'assets/lib/class-mustache-templates/class-mustache-templates.css', false, PROFILE_BUILDER_VERSION );
+                wp_enqueue_style( 'class-mustache-css', WPPB_PAID_PLUGIN_URL . 'assets/lib/class-mustache-templates/class-mustache-templates.css', false, PROFILE_BUILDER_VERSION );
                 if( wp_script_is( 'codemirror-mode-overlay-js', 'enqueued' ) ) {
-                    wp_enqueue_script('class-mustache-js', WPPB_PLUGIN_URL . 'assets/lib/class-mustache-templates/class-mustache-templates.js', array("jquery"), PROFILE_BUILDER_VERSION);
+                    wp_enqueue_script('class-mustache-js', WPPB_PAID_PLUGIN_URL . 'assets/lib/class-mustache-templates/class-mustache-templates.js', array("jquery"), PROFILE_BUILDER_VERSION);
                 }
 
                 $printed_codemirror_scripts = true;

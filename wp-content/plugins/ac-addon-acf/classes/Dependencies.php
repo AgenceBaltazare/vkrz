@@ -4,7 +4,7 @@ namespace ACA\ACF;
 
 /**
  * Show a notice when plugin dependencies are not met
- * @version 1.6.1
+ * @version 1.6
  */
 final class Dependencies {
 
@@ -32,8 +32,8 @@ final class Dependencies {
 	 * @param string $version
 	 */
 	public function __construct( $basename, $version ) {
-		$this->basename = (string) $basename;
-		$this->version = (string) $version;
+		$this->basename = $basename;
+		$this->version = $version;
 	}
 
 	/**
@@ -75,9 +75,9 @@ final class Dependencies {
 	/**
 	 * Add missing dependency
 	 *
-	 * @param string      $plugin
-	 * @param string|null $url
-	 * @param string|null $version
+	 * @param string $plugin
+	 * @param string $url
+	 * @param string $version
 	 */
 	public function add_missing_plugin( $plugin, $url = null, $version = null ) {
 		$this->add_missing(
@@ -87,9 +87,9 @@ final class Dependencies {
 	}
 
 	/**
-	 * @param string      $plugin
-	 * @param string|null $url
-	 * @param string|null $version
+	 * @param string $plugin
+	 * @param null   $url
+	 * @param null   $version
 	 *
 	 * @return string
 	 */
@@ -141,7 +141,7 @@ final class Dependencies {
 	/**
 	 * Check if Admin Columns Pro is installed
 	 *
-	 * @param string $version
+	 * @param $version
 	 *
 	 * @return bool
 	 */
@@ -203,7 +203,7 @@ final class Dependencies {
 	public function get_search_url( $keywords ) {
 		$url = add_query_arg( [
 			'tab' => 'search',
-			's'   => (string) $keywords,
+			's'   => $keywords,
 		], admin_url( 'plugin-install.php' ) );
 
 		return $url;
@@ -220,7 +220,6 @@ final class Dependencies {
 
 	/**
 	 * Show a warning when dependencies are not met
-	 * @return void
 	 */
 	public function display_notice() {
 		$intro = "This plugin can't load because";
@@ -254,7 +253,6 @@ final class Dependencies {
 
 	/**
 	 * Load additional CSS for the warning
-	 * @return void
 	 */
 	public function display_notice_css() {
 		?>

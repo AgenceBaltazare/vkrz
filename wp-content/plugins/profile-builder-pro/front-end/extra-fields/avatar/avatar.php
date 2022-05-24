@@ -21,13 +21,14 @@ function wppb_avatar_handler( $output, $form_location, $field, $user_id, $field_
             'ajaxUrl'          => admin_url( 'admin-ajax.php' ),
             'remove_link_text' => __( 'Remove', 'profile-builder' )
         );
-        wp_enqueue_script( 'wppb-upload-script', WPPB_PLUGIN_URL.'front-end/extra-fields/upload/upload.js', array('jquery'), PROFILE_BUILDER_VERSION, true );
+
+        wp_enqueue_script( 'wppb-upload-script', WPPB_PAID_PLUGIN_URL.'front-end/extra-fields/upload/upload.js', array('jquery'), PROFILE_BUILDER_VERSION, true );
         wp_localize_script( 'wppb-upload-script', 'wppb_upload_script_vars', $upload_script_vars );
 
 		$wppb_generalSettings = get_option( 'wppb_general_settings' );
 
 		if ( ( isset( $wppb_generalSettings['extraFieldsLayout'] ) && ( $wppb_generalSettings['extraFieldsLayout'] == 'default' ) ) )
-			wp_enqueue_style( 'profile-builder-upload-css', WPPB_PLUGIN_URL.'front-end/extra-fields/upload/upload.css', false, PROFILE_BUILDER_VERSION );
+			wp_enqueue_style( 'profile-builder-upload-css', WPPB_PAID_PLUGIN_URL.'front-end/extra-fields/upload/upload.css', false, PROFILE_BUILDER_VERSION );
 
         $item_title = apply_filters( 'wppb_'.$form_location.'_avatar_custom_field_'.$field['id'].'_item_title', wppb_icl_t( 'plugin profile-builder-pro', 'custom_field_'.$field['id'].'_title_translation', $field['field-title'], true ) );
 		$item_description = wppb_icl_t( 'plugin profile-builder-pro', 'custom_field_'.$field['id'].'_description_translation', $field['description'], true );
@@ -119,18 +120,13 @@ function wppb_save_avatar_value( $field, $user_id, $request_data, $form_location
                         }
                     }
                     else{
-                        if ( wppb_valid_simple_upload( $field, $_FILES[ $field_name ] ) == false ){ /* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */ /* no need here for wppb_valid_simple_upload() */
-                            update_user_meta( $user_id, $field[ 'meta-name' ], '' );
-                        }
-                        else {
-                            $attachment_id = wppb_avatar_save_simple_upload_file ( $field_name, $field );
-                            update_user_meta( $user_id, $field[ 'meta-name' ], $attachment_id );
-                            if ( $attachment_id !== '' ) {
-                                wp_update_post(array(
-                                    'ID' => absint(trim($attachment_id)),
-                                    'post_author' => $user_id
-                                ));
-                            }
+                        $attachment_id = $request_data[ $field[ 'meta-name' ] ];
+                        update_user_meta( $user_id, $field[ 'meta-name' ], absint( $attachment_id ) );
+                        if ( $attachment_id !== '' ) {
+                            wp_update_post(array(
+                                'ID' => absint(trim($attachment_id)),
+                                'post_author' => $user_id
+                            ));
                         }
                     }
                 }

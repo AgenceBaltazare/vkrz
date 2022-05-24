@@ -444,7 +444,7 @@ if ( ! function_exists( 'wppb_agregate_map_assets' ) ) {
 			<script>/* <![CDATA[ */
 			var oneMapListing = <?php echo json_encode( $conf ); ?>;
 			/* ]]> */</script>
-			<script src="<?php echo esc_url( WPPB_PLUGIN_URL . 'front-end/extra-fields/map/one-map-listing.js?v=' . PROFILE_BUILDER_VERSION ); ?>"></script>
+			<script src="<?php echo esc_url( WPPB_PAID_PLUGIN_URL . 'front-end/extra-fields/map/one-map-listing.js?v=' . PROFILE_BUILDER_VERSION ); ?>"></script>
 			<?php
 			return ob_get_clean();
 		}

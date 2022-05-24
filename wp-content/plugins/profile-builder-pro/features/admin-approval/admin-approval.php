@@ -331,7 +331,7 @@ function wppb_approve_user_from_email_url_listener(){
                 if($_GET['approval_confirmation'] === 'Yes') {
                     wppb_approve_unapprove_user_from_email_url_listener( $userID, $action );
                 } elseif ($_GET['approval_confirmation'] === 'No') {
-                    $message = apply_filters('wppb_approve_user_from_email_decline_message', __('User not approved!', 'profile-builder'), $userID);
+                    $message = apply_filters('wppb_approve_user_from_email_decline_message', __('User status not modified!', 'profile-builder'), $userID);
 
                     wp_die( esc_html( $message ), esc_html__( 'Admin Approval Declined', 'profile-builder' ) );
                 }

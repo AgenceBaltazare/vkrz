@@ -2,101 +2,49 @@
 
 namespace ACA\ACF;
 
-use AC;
-use ACP;
+use http\Exception\InvalidArgumentException;
 
-class Field
-	implements ACP\Editing\Editable, ACP\Filtering\Filterable, ACP\Sorting\Sortable, ACP\Search\Searchable {
+class Field {
 
 	/**
-	 * @var Column
+	 * @var array
 	 */
-	protected $column;
+	protected $settings;
 
-	/**
-	 * @param Column $column
-	 */
-	public function __construct( Column $column ) {
-		$this->column = $column;
+	public function __construct( array $settings ) {
+		$this->settings = $settings;
 
-		// ACF multiple data is stored serialized
-		$this->column->set_serialized( $this->get( 'multiple' ) );
+		$this->validate();
 	}
 
-	/**
-	 * @param int $id
-	 *
-	 * @return mixed
-	 */
-	public function get_ajax_value( $id ) {
-		return null;
+	public function validate() {
+		if ( ! isset( $this->settings['label'], $this->settings['type'], $this->settings['name'], $this->settings['key'] ) ) {
+			throw new InvalidArgumentException( 'Missing field argument.' );
+		}
 	}
 
-	/**
-	 * @param int $id
-	 *
-	 * @return string
-	 */
-	public function get_value( $id ) {
-		return $this->column->get_formatted_value( $this->get_raw_value( $id ), $id );
+	public function is_required() {
+		return isset( $this->settings['required'] ) && $this->settings['required'];
 	}
 
-	public function get_raw_value( $id ) {
-		return get_field( $this->column->get_meta_key(), $this->column->get_formatted_id( $id ), false );
+	public function get_settings() {
+		return $this->settings;
 	}
 
-	public function get_separator() {
-		return $this->column->get_separator();
+	public function get_label() {
+		return $this->settings['label'];
 	}
 
-	public function search() {
-		return false;
+	public function get_type() {
+		return $this->settings['type'];
 	}
 
-	public function editing() {
-		return false;
+	public function get_meta_key() {
+		return $this->settings['name'];
 	}
 
-	public function filtering() {
-		return new ACP\Filtering\Model\Disabled( $this->column );
-	}
-
-	public function sorting() {
-		return new ACP\Sorting\Model\Disabled();
-	}
-
-	public function export() {
-		return new ACP\Export\Model\RawValue( $this->column );
-	}
-
-	/**
-	 * @return AC\Settings\Column[]
-	 */
-	public function get_dependent_settings() {
-		return [];
-	}
-
-	/**
-	 * Get ACF field property
-	 *
-	 * @param string $property
-	 *
-	 * @return string|array|false
-	 */
-	public function get( $property ) {
-		return $this->column->get_acf_field_option( $property );
-	}
-
-	protected function is_serialized() {
-		return $this->column->is_serialized();
-	}
-
-	protected function get_meta_key() {
-		return $this->column->get_meta_key();
-	}
-
-	protected function get_meta_type() {
-		return $this->column->get_meta_type();
+	public function get_hash() {
+		return $this->settings['key'];
 	}
 
 }

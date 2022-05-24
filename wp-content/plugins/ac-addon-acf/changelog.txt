@@ -1,5 +1,28 @@
 == Changelog ==
 
+= 3.0.2 =
+Release Date: May 5nd, 2022
+
+* [Improved] Show a dash (-) instead of nothing between the separator when there is no value
+* [Fixed] Warning in PHP 7.3 and below when there are no available fields for the current overview page
+* [Fixed] Filtering feature re-added for the Page Link and Relationship field columns
+* [Fixed] Missing Relation field added
+* [Fixed] An error could occur on a list page when ACF groups were not correctly defined
+
+= 3.0.1 =
+Release Date: April 22nd, 2022
+
+* [Fixed] Fixed fatal error for recursive group fields
+
+= 3.0 =
+Release Date: April 20th, 2022
+
+* [Improved] Every field has its own column type instead of a single ACF column type
+* [Added] New field support: Clone
+* [Added] New field support: Group
+* [Breaking Changes] The old ACF columns are completely refactored. All old columns will be automatically updated to the new version.
+* [Breaking Changes] Read-only column sets with old ACF columns needs to be updated manually.
+
 = 2.8 =
 Release Date: March 22nd, 2022
 

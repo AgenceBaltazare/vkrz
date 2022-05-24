@@ -9,11 +9,11 @@
 function wppb_print_custom_redirects_script( $hook ){
 
 	if ( $hook == 'profile-builder_page_custom-redirects' ){
-		wp_enqueue_style( 'wppb-custom-redirects-ui', WPPB_PLUGIN_URL . 'add-ons/custom-redirects/assets/wppb_custom_redirects_ui.css', false, PROFILE_BUILDER_VERSION );
+		wp_enqueue_style( 'wppb-custom-redirects-ui', WPPB_PAID_PLUGIN_URL . 'add-ons/custom-redirects/assets/wppb_custom_redirects_ui.css', false, PROFILE_BUILDER_VERSION );
 	}
 
 	if( $hook == 'profile-builder_page_custom-redirects' ){
-		wp_enqueue_script( 'wppb-custom-redirects-ui', WPPB_PLUGIN_URL . 'add-ons/custom-redirects/assets/wppb_custom_redirects_ui.js', array(), PROFILE_BUILDER_VERSION, true );
+		wp_enqueue_script( 'wppb-custom-redirects-ui', WPPB_PAID_PLUGIN_URL . 'add-ons/custom-redirects/assets/wppb_custom_redirects_ui.js', array(), PROFILE_BUILDER_VERSION, true );
 	}
 
 }
@@ -51,6 +51,7 @@ function wppb_populate_custom_redirects_fields(){
 		'%'.__('After Registration','profile-builder').'%'.'after_registration',
 		'%'.__('After Edit Profile','profile-builder').'%'.'after_edit_profile',
 		'%'.__('After Successful Email Confirmation','profile-builder').'%'.'after_success_email_confirmation',
+		'%'.__('After Password Change Request','profile-builder').'%'.'after_password_change_request',
 		'%'.__('After Successful Password Reset','profile-builder').'%'.'after_success_password_reset',
 		'%'.__('Dashboard (redirect users from accessing the dashboard)','profile-builder').'%'.'dashboard_redirect',
 	));

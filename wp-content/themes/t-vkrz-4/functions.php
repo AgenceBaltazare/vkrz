@@ -1,0 +1,41 @@
+<?php
+$templatepath = get_template_directory();
+
+if (defined('DOING_AJAX') && DOING_AJAX && is_admin()) {
+  include($templatepath . '/function/ajax.php');
+} 
+elseif (is_admin()) {
+  include($templatepath . '/function/admin.php');
+} 
+elseif (!defined('XMLRPC_REQUEST') && !defined('DOING_CRON')) {
+  include($templatepath . '/function/front.php');
+}
+include($templatepath . '/function/all.php');
+include($templatepath . '/function/data.php');
+include($templatepath . '/function/api.php');
+
+@ini_set('upload_max_size', '64M');
+@ini_set('post_max_size', '64M');
+@ini_set('max_execution_time', '300');
+
+
+function oa_social_login_set_redirect_url($url, $user_data)
+{
+  if (isset($_GET['redirect']) && $_GET['redirect'] != "") {
+    $url = $_GET['redirect'];
+  } else {
+    $url = get_site_url(null, '/mon-compte/');
+  }
+  return $url;
+}
+add_filter('oa_social_login_filter_registration_redirect_url', 'oa_social_login_set_redirect_url', 10, 2);
+add_filter('oa_social_login_filter_login_redirect_url', 'oa_social_login_set_redirect_url', 10, 2);
+
+add_theme_support('post-thumbnails');
+
+add_filter(
+  'the_excerpt',
+  function ($excerpt) {
+    return substr($excerpt, 0, strpos($excerpt, '.') + 1);
+  }
+);
