@@ -5,7 +5,7 @@
 ?>
 <?php
 $vkzr_event = new WP_Query(array(
-    'post_type'			  => 'vkzr_event',
+    'post_type'			  => 'classement',
     'orderby'				=> 'date',
     'order'				  => 'DESC',
     'posts_per_page'		 => -1
