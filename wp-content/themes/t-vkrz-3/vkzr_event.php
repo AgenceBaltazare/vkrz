@@ -5,14 +5,16 @@
 ?>
 <?php
 $vkzr_event = new WP_Query(array(
-    'post_type'			  => 'classement',
+    'post_type'			  => 'vkzr_event',
     'orderby'				=> 'date',
     'order'				  => 'DESC',
     'posts_per_page'		 => -1
 ));
 while ($vkzr_event->have_posts()) : $vkzr_event->the_post(); ?>
 
-    <?php the_title(); ?>
+    <?php
+    wp_delete_post(get_the_ID(), true);
+    ?>
 
 <?php endwhile; wp_reset_query(); ?>
 
