@@ -104,27 +104,6 @@ if (!empty($tops_unique_to_find)) {
         </div>
       </div>
 
-      <section id="ecommerce-header" class="mb-2 mt-2">
-        <div id="ecommerce-searchbar" class="ecommerce-searchbar">
-          <div class="input-group input-group-merge">
-            <form id="search_form" method="GET" autocomplete="off">
-              <span class="ico ico-search ico-search-clear">❌</span>
-              <?php
-              if ($term_to_search) {
-                $placeholder = $term_to_search;
-              } else {
-                $placeholder = "Rechercher dans les " . $total_top_founded . " Tops...";
-              }
-              ?>
-              <input type="text" class="form-control search-product" id="search_text" placeholder="<?php echo $placeholder; ?>" aria-label="<?php echo $placeholder; ?>" name="term" aria-describedby="shop-search" required oninvalid="this.setCustomValidity('Son goku par exemple..')" />
-              <button type="submit">
-                <span class="ico ico-search ico-search-result va va-magnifying-glass-tilted-left va-lg"></span>
-              </button>
-            </form>
-          </div>
-        </div>
-      </section>
-
       <?php if (!empty($list_tops_unique)) : ?>
         <section class="grid-to-filtre row match-height mt-2 tournois">
 
@@ -175,7 +154,7 @@ if (!empty($tops_unique_to_find)) {
               }
             }
           ?>
-            <div data-filter-item data-filter-name="<?php echo $term_to_search; ?>" class="same-h grid-item col-md-3 col-6 <?php echo $sujet_slug; ?> <?php echo $state; ?> <?php echo $concept_slug; ?> <?php echo $tag_slug; ?>">
+            <div class="same-h grid-item col-md-3 col-6">
               <div class="min-tournoi card scaler">
                 <div class="cov-illu cover" style="background: url(<?php echo $illu; ?>) center center no-repeat">
                   <?php if ($type_top == "sponso") : ?>
