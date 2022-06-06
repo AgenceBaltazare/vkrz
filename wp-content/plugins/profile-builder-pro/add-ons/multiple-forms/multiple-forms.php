@@ -1,12 +1,11 @@
 <?php
 $wppb_module_settings = get_option( 'wppb_module_settings', 'not_found' );
 if ( $wppb_module_settings != 'not_found' ){
-	if ( isset( $wppb_module_settings['wppb_multipleEditProfileForms'] ) && ( $wppb_module_settings['wppb_multipleEditProfileForms'] == 'show' ) )
-		include_once( WPPB_PLUGIN_DIR.'/add-ons/multiple-forms/edit-profile-forms.php' );
+	if ( isset( $wppb_module_settings['wppb_multipleEditProfileForms'] ) && ( $wppb_module_settings['wppb_multipleEditProfileForms'] == 'show' ) && file_exists( WPPB_PAID_PLUGIN_DIR.'/add-ons/multiple-forms/edit-profile-forms.php' ) )
+		include_once( WPPB_PAID_PLUGIN_DIR.'/add-ons/multiple-forms/edit-profile-forms.php' );
 
-	if ( isset( $wppb_module_settings['wppb_multipleRegistrationForms'] ) && ( $wppb_module_settings['wppb_multipleRegistrationForms'] == 'show' ) )
-		include_once( WPPB_PLUGIN_DIR.'/add-ons/multiple-forms/register-forms.php' );
-
+	if ( isset( $wppb_module_settings['wppb_multipleRegistrationForms'] ) && ( $wppb_module_settings['wppb_multipleRegistrationForms'] == 'show' ) && file_exists( WPPB_PAID_PLUGIN_DIR.'/add-ons/multiple-forms/register-forms.php' ) )
+		include_once( WPPB_PAID_PLUGIN_DIR.'/add-ons/multiple-forms/register-forms.php' );
 
 	if ( ( isset( $wppb_module_settings['wppb_multipleEditProfileForms'] ) && ( $wppb_module_settings['wppb_multipleEditProfileForms'] == 'show' ) ) || ( isset( $wppb_module_settings['wppb_multipleRegistrationForms'] ) && ( $wppb_module_settings['wppb_multipleRegistrationForms'] == 'show' ) ) )
 		add_filter( 'wppb_change_form_fields', 'wppb_multiple_forms_change_fields', 10, 2 );

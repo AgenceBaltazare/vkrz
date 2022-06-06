@@ -9,8 +9,8 @@ function wppb_rpf_scripts_and_styles_admin( $hook ) {
     if ( 'profile-builder_page_manage-fields' != $hook ){
         return;
     }
-    wp_enqueue_script( 'wppb-repeater-field-script', WPPB_PLUGIN_URL . 'add-ons/repeater-field/assets/js/wppb-rpf-admin.js', array( 'jquery' ), PROFILE_BUILDER_VERSION, true );
-    wp_enqueue_style( 'wppb-repeater-field-ui', WPPB_PLUGIN_URL . 'add-ons/repeater-field/assets/css/wppb-rpf-admin.css', false, PROFILE_BUILDER_VERSION );
+    wp_enqueue_script( 'wppb-repeater-field-script', WPPB_PAID_PLUGIN_URL . 'add-ons/repeater-field/assets/js/wppb-rpf-admin.js', array( 'jquery' ), PROFILE_BUILDER_VERSION, true );
+    wp_enqueue_style( 'wppb-repeater-field-ui', WPPB_PAID_PLUGIN_URL . 'add-ons/repeater-field/assets/css/wppb-rpf-admin.css', false, PROFILE_BUILDER_VERSION );
 }
 add_action( 'admin_enqueue_scripts', 'wppb_rpf_scripts_and_styles_admin' );
 
@@ -455,10 +455,16 @@ add_filter( 'wck_add_meta_filter_values_wppb_manage_fields', 'wppb_rpf_add_missi
  * @param $element_id
  */
 function wppb_rpf_remove_repeater_field_option( $meta, $id, $element_id ){
+    
     $manage_fields = get_option( $meta );
-    $field = $manage_fields[$element_id];
-    if( !empty( $field['meta-name'] ) )
-        delete_option( $field['meta-name'] );
+
+    if( isset( $manage_fields[ $element_id ] ) ){
+        $field = $manage_fields[$element_id];
+
+        if( !empty( $field['meta-name'] ) )
+            delete_option( $field['meta-name'] );
+    }
+
 }
 add_action( 'wck_before_remove_meta', 'wppb_rpf_remove_repeater_field_option', 10, 3 );
 

@@ -17,8 +17,8 @@ function wppb_select2_display_handler($output, $form_location, $field, $user_id,
         wp_enqueue_script('wppb_sl2_lib_js', WPPB_PLUGIN_URL . 'assets/js/select2/select2.min.js', array('jquery'));
         wp_enqueue_style('wppb_sl2_lib_css', WPPB_PLUGIN_URL . 'assets/css/select2/select2.min.css');
 
-        wp_enqueue_script( 'wppb_sl2_js', WPPB_PLUGIN_URL.'front-end/extra-fields/select2/select2.js', array('jquery'), PROFILE_BUILDER_VERSION, true );
-        wp_enqueue_style( 'wppb_sl2_css', WPPB_PLUGIN_URL.'front-end/extra-fields/select2/select2.css', false, PROFILE_BUILDER_VERSION );
+        wp_enqueue_script( 'wppb_sl2_js', WPPB_PAID_PLUGIN_URL.'front-end/extra-fields/select2/select2.js', array('jquery'), PROFILE_BUILDER_VERSION, true );
+        wp_enqueue_style( 'wppb_sl2_css', WPPB_PAID_PLUGIN_URL.'front-end/extra-fields/select2/select2.css', false, PROFILE_BUILDER_VERSION );
 
 
         $field['labels'] = apply_filters('wppb_select2_labels', $field['labels'], $form_location, $field, $user_id, $field_check_errors, $request_data);
@@ -27,7 +27,7 @@ function wppb_select2_display_handler($output, $form_location, $field, $user_id,
 
         $item_title = apply_filters('wppb_' . $form_location . '_select2_custom_field_' . $field['id'] . '_item_title', wppb_icl_t('plugin profile-builder-pro', 'custom_field_' . $field['id'] . '_title_translation', $field['field-title'], true));
         $item_description = wppb_icl_t('plugin profile-builder-pro', 'custom_field_' . $field['id'] . '_description_translation', $field['description'], true);
-        $item_option_labels = wppb_icl_t('plugin profile-builder-pro', 'custom_field_' . $field['id'] . '_option_labels_translation', $field['labels'], true);
+        $item_option_labels = wppb_icl_t('plugin profile-builder-pro', 'custom_field_' . $field['id'] . '_labels_translation', $field['labels'], true);
 
         $select2_labels = apply_filters('wppb_select2_labels_array', explode(',', $item_option_labels));
         $select2_values = apply_filters('wppb_select2_options_array', explode(',', $field['options']));

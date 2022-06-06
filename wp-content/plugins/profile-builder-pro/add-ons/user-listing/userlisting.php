@@ -64,9 +64,9 @@ function wppb_userlisting_add_form_change_class_based_on_visible_field( $wck_upd
 function wppb_userlisting_scripts() {
     global $wppb_userlisting_shortcode;
     if( isset( $wppb_userlisting_shortcode ) && $wppb_userlisting_shortcode === true ){
-        wp_enqueue_script('wppb-userlisting-js', WPPB_PLUGIN_URL . '/add-ons/user-listing/userlisting.js', array('jquery', 'jquery-touch-punch'), PROFILE_BUILDER_VERSION, true);
+        wp_enqueue_script('wppb-userlisting-js', WPPB_PAID_PLUGIN_URL . 'add-ons/user-listing/userlisting.js', array('jquery', 'jquery-touch-punch'), PROFILE_BUILDER_VERSION, true);
         wp_localize_script( 'wppb-userlisting-js', 'wppb_userlisting_obj', array( 'pageSlug' => wppb_get_users_pagination_slug() ) );
-        wp_enqueue_style('wppb-ul-slider-css', WPPB_PLUGIN_URL . '/add-ons/user-listing/jquery-ui-slider.min.css', array(), PROFILE_BUILDER_VERSION );
+        wp_enqueue_style('wppb-ul-slider-css', WPPB_PAID_PLUGIN_URL . 'add-ons/user-listing/jquery-ui-slider.min.css', array(), PROFILE_BUILDER_VERSION );
         wp_enqueue_script('jquery-ui-slider');
     }
 }
@@ -300,7 +300,7 @@ function wppb_generate_mustache_array_for_single_user_list(){
  * @since v.2.0
  */
 function wppb_userlisting_add_mustache_in_backend(){
-	require_once( WPPB_PLUGIN_DIR.'assets/lib/class-mustache-templates/class-mustache-templates.php' );
+	require_once( WPPB_PAID_PLUGIN_DIR.'/assets/lib/class-mustache-templates/class-mustache-templates.php' );
 
 	// initiate box for multiple users listing
 	new PB_Mustache_Generate_Admin_Box( 'wppb-ul-templates', __( 'All-userlisting Template', 'profile-builder' ), 'wppb-ul-cpt', 'core', wppb_generate_mustache_array_for_user_list(), wppb_generate_allUserlisting_content() );
@@ -1445,6 +1445,23 @@ function wppb_userlisting_user_id( $value, $name, $children, $extra_info ){
 add_filter( 'mustache_variable_user_id', 'wppb_userlisting_user_id', 10, 4 );
 
 
+/**
+ * Function that formats the date as selected in WordPress Settings
+ * @param $date date we need to format
+ */
+function wppb_change_date_to_wp_format( $date ) {
+
+    if ( isset( $date )) {
+        $wp_date_format = get_option('date_format');
+        $date = date( $wp_date_format, strtotime( $date ));
+    }
+
+    return $date;
+}
+add_filter( 'mustache_variable_subscription_start_date', 'wppb_change_date_to_wp_format' );
+add_filter( 'mustache_variable_subscription_expiration_date', 'wppb_change_date_to_wp_format' );
+
+
 
 /**
  * Function that returns the user_nicename for the currently displayed user
@@ -1534,7 +1551,7 @@ function wppb_userlisting_show_user_meta_map( $value, $name, $children, $extra_i
                 if ($field['meta-name'] == str_replace('meta_', '', $name)) {
 
                     wp_enqueue_script('wppb-google-maps-api-script', 'https://maps.googleapis.com/maps/api/js?key=' . $field['map-api-key'], array('jquery'), PROFILE_BUILDER_VERSION, true);
-                    wp_enqueue_script('wppb-google-maps-script', WPPB_PLUGIN_URL . 'front-end/extra-fields/map/map.js', array('jquery'), PROFILE_BUILDER_VERSION, true);
+                    wp_enqueue_script('wppb-google-maps-script', WPPB_PAID_PLUGIN_URL . 'front-end/extra-fields/map/map.js', array('jquery'), PROFILE_BUILDER_VERSION, true);
 
                     $map_data_vars_array['map_marker_text_remove'] = __( "Remove Marker", 'profile-builder' );
                     wp_localize_script( 'wppb-google-maps-script', 'wppb_maps_data', $map_data_vars_array );
@@ -1888,8 +1905,8 @@ function wppb_ul_faceted_select_multiple($faceted_filter_options, $meta_values, 
         /* initialize the select2 */
         wp_enqueue_script( 'wppb_select2_js', WPPB_PLUGIN_URL .'assets/js/select2/select2.min.js', array( 'jquery' ), PROFILE_BUILDER_VERSION );
         wp_enqueue_style( 'wppb_select2_css', WPPB_PLUGIN_URL .'assets/css/select2/select2.min.css', array(), PROFILE_BUILDER_VERSION );
-        wp_enqueue_script( 'wppb-facet-select-multiple', WPPB_PLUGIN_URL.'add-ons/user-listing/facet-select-multiple.js', array('wppb_select2_js'), PROFILE_BUILDER_VERSION, true );
-        wp_enqueue_style( 'wppb-facet-select-multiple-style', WPPB_PLUGIN_URL.'add-ons/user-listing/facet-select-multiple.css', array(), PROFILE_BUILDER_VERSION );
+        wp_enqueue_script( 'wppb-facet-select-multiple', WPPB_PAID_PLUGIN_URL.'add-ons/user-listing/facet-select-multiple.js', array('wppb_select2_js'), PROFILE_BUILDER_VERSION, true );
+        wp_enqueue_style( 'wppb-facet-select-multiple-style', WPPB_PAID_PLUGIN_URL.'add-ons/user-listing/facet-select-multiple.css', array(), PROFILE_BUILDER_VERSION );
         wp_localize_script( 'wppb-facet-select-multiple', 'wppb_facet_select_multiple_obj', array( 'placeholder' => __( 'Choose or type in an option...', 'profile-builder' ) ) );
         
         $filter = '<select class="wppb-facet-select-multiple" data-filter-behaviour="'. esc_attr( $faceted_filter_options['facet-behaviour'] ) .'" data-current-page="'. esc_attr( wppb_get_query_var('wppb_page') ) .'" data-meta-name="'. esc_attr( $faceted_filter_options['facet-meta'] ) .'" multiple ';

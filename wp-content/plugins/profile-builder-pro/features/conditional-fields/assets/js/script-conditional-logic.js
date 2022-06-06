@@ -28,6 +28,11 @@ jQuery(document).ready(function($){
 
 	function wppb_conditional_logic(){
 		data = {};
+
+		formType = '';
+		formName = '';
+		formID   = '';
+
 		$('.wppb-form-field').each(function(){
 			if(($(this).find('input').length || $(this).find('select').length || $(this).find('textarea').length) && typeof $(this).attr('id') != "undefined"){
 

@@ -49,18 +49,15 @@ function validate_simple_upload(){
             if (error !== '') {
                 jQuery("#p_" + uploadInputName).text(error);
                 uploadButton.val('');
-            }
-            //Handle simple upload at the WooCommerce Checkout
-            if (uploadButton.closest('.wppb-woo-checkout-fields')){
+            } else {
                 var fieldName = uploadInputName.replace(/^(simple_upload_)/,'');
                 var formData = new FormData();
-                var test = uploadButton.closest('.wppb-upload');
                 if (uploadButton.closest('.wppb-upload').length > 0) {
                     formData.append('action', 'wppb_woo_simple_upload');
-                    formData.append(fieldName, jQuery('.wppb-upload input[type="file"]').prop('files')[0]);
+                    formData.append(fieldName, jQuery(e.target).prop('files')[0]);
                 } else {
                     formData.append('action', 'wppb_woo_simple_avatar');
-                    formData.append(fieldName, jQuery('.wppb-avatar input[type="file"]').prop('files')[0]);
+                    formData.append(fieldName, jQuery(e.target).prop('files')[0]);
                 }
                 formData.append('nonce', wppb_upload_script_vars.nonce);
                 formData.append('name', fieldName);
@@ -104,6 +101,7 @@ jQuery(document).ready(function(){
             wp.media.controller.Library.prototype.defaults.router = false;
             wp.media.controller.Library.prototype.defaults.searchable = true;
             wp.media.controller.Library.prototype.defaults.sortable = false;
+            wp.media.controller.Library.prototype.defaults.date = false;
 
             // If the media frame already exists, reopen it.
             if ( file_frame ) {

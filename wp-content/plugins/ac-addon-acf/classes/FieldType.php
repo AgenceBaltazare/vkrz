@@ -5,14 +5,16 @@ namespace ACA\ACF;
 interface FieldType {
 
 	const TYPE_BUTTON_GROUP = 'button_group';
+	const TYPE_BOOLEAN = 'true_false';
 	const TYPE_CHECKBOX = 'checkbox';
+	const TYPE_CLONE = 'clone';
 	const TYPE_COLOR_PICKER = 'color_picker';
 	const TYPE_DATE_PICKER = 'date_picker';
 	const TYPE_DATE_TIME_PICKER = 'date_time_picker';
 	const TYPE_EMAIL = 'email';
 	const TYPE_FILE = 'file';
 	const TYPE_FLEXIBLE_CONTENT = 'flexible_content';
-	const TYPE_GOOLGE_MAP = 'google_map';
+	const TYPE_GOOGLE_MAP = 'google_map';
 	const TYPE_GROUP = 'group';
 	const TYPE_GALLERY = 'gallery';
 	const TYPE_IMAGE = 'image';
@@ -31,7 +33,6 @@ interface FieldType {
 	const TYPE_TEXT = 'text';
 	const TYPE_TEXTAREA = 'textarea';
 	const TYPE_TIME_PICKER = 'time_picker';
-	const TYPE_BOOLEAN = 'true_false';
 	const TYPE_URL = 'url';
 	const TYPE_USER = 'user';
 	const TYPE_WYSIWYG = 'wysiwyg';

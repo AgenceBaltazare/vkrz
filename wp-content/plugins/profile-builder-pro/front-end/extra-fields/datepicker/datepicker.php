@@ -3,12 +3,12 @@
 function wppb_datepicker_handler( $output, $form_location, $field, $user_id, $field_check_errors, $request_data ){
 	if ( $field['field'] == 'Datepicker' ){
 
-        wp_enqueue_style( 'profile-builder-datepicker-ui-lightness', WPPB_PLUGIN_URL.'front-end/extra-fields/datepicker/ui-lightness/jquery-ui-1.8.14.custom.css', false, PROFILE_BUILDER_VERSION );
+        wp_enqueue_style( 'profile-builder-datepicker-ui-lightness', WPPB_PAID_PLUGIN_URL.'front-end/extra-fields/datepicker/ui-lightness/jquery-ui-1.8.14.custom.css', false, PROFILE_BUILDER_VERSION );
         wp_enqueue_script( 'jquery-ui-datepicker' );
-        wp_enqueue_script( 'wppb-datepicker-script', WPPB_PLUGIN_URL.'front-end/extra-fields/datepicker/script-datepicker.js', array( 'jquery', 'jquery-ui-datepicker' ), PROFILE_BUILDER_VERSION, true );
+        wp_enqueue_script( 'wppb-datepicker-script', WPPB_PAID_PLUGIN_URL.'front-end/extra-fields/datepicker/script-datepicker.js', array( 'jquery', 'jquery-ui-datepicker' ), PROFILE_BUILDER_VERSION, true );
 
         if( !is_admin() ) {
-            wp_enqueue_style( 'wppb-datepicker-style', WPPB_PLUGIN_URL . 'front-end/extra-fields/datepicker/datepicker-style.css', array(), PROFILE_BUILDER_VERSION );
+            wp_enqueue_style( 'wppb-datepicker-style', WPPB_PAID_PLUGIN_URL . 'front-end/extra-fields/datepicker/datepicker-style.css', array(), PROFILE_BUILDER_VERSION );
         }
 
 

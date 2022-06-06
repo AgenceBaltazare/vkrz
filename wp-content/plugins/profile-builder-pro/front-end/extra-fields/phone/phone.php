@@ -2,8 +2,8 @@
 /* handle field output */
 function wppb_phone_handler( $output, $form_location, $field, $user_id, $field_check_errors, $request_data ){
 	if ( $field['field'] == 'Phone' ){
-		wp_enqueue_script( 'wppb-jquery-inputmask', WPPB_PLUGIN_URL . 'front-end/extra-fields/phone/jquery.inputmask.bundle.min.js', array( 'jquery' ), PROFILE_BUILDER_VERSION, true );
-		wp_enqueue_script( 'wppb-phone-script', WPPB_PLUGIN_URL . 'front-end/extra-fields/phone/script-phone.js', array( 'wppb-jquery-inputmask' ), PROFILE_BUILDER_VERSION, true );
+		wp_enqueue_script( 'wppb-jquery-inputmask', WPPB_PAID_PLUGIN_URL . 'front-end/extra-fields/phone/jquery.inputmask.bundle.min.js', array( 'jquery' ), PROFILE_BUILDER_VERSION, true );
+		wp_enqueue_script( 'wppb-phone-script', WPPB_PAID_PLUGIN_URL . 'front-end/extra-fields/phone/script-phone.js', array( 'wppb-jquery-inputmask' ), PROFILE_BUILDER_VERSION, true );
 
 		$phone_data = json_encode( array( 'phone_data'	=>	wppb_make_phone_number_format( $field, $request_data ) ) );
 

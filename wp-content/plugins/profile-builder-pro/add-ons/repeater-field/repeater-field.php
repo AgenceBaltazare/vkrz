@@ -317,7 +317,7 @@ function wppb_rpf_scripts_front_end() {
     global $wppb_shortcode_on_front;
     if( !empty( $wppb_shortcode_on_front ) && $wppb_shortcode_on_front === true ) {
         if( wppb_rpf_repeaters_exist() ) {
-            wp_enqueue_script('wppb-rpf-front-end-js', WPPB_PLUGIN_URL . 'add-ons/repeater-field/assets/js/wppb-rpf-front-end.js', array('jquery'), PROFILE_BUILDER_VERSION, true);
+            wp_enqueue_script('wppb-rpf-front-end-js', WPPB_PAID_PLUGIN_URL . 'add-ons/repeater-field/assets/js/wppb-rpf-front-end.js', array('jquery'), PROFILE_BUILDER_VERSION, true);
         }
     }
 }
@@ -330,7 +330,7 @@ add_action( 'wp_footer', 'wppb_rpf_scripts_front_end' );
  */
 function wppb_rpf_styles_front_end(){
     if( wppb_rpf_repeaters_exist() ) {
-        wp_enqueue_style('wppb-rpf-front-end-css', WPPB_PLUGIN_URL . 'add-ons/repeater-field/assets/css/wppb-rpf-front-end.css', false, PROFILE_BUILDER_VERSION);
+        wp_enqueue_style('wppb-rpf-front-end-css', WPPB_PAID_PLUGIN_URL . 'add-ons/repeater-field/assets/css/wppb-rpf-front-end.css', false, PROFILE_BUILDER_VERSION);
     }
 }
 add_action( 'wp_enqueue_scripts', 'wppb_rpf_styles_front_end' );

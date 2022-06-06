@@ -186,15 +186,21 @@ if ( defined( 'ABSPATH' ) && ! class_exists( 'Change_WP_Admin_Login' ) ) {
 				'change-wp-admin-login-section'
 			);
 
-			if( isset( $_POST['rwl_redirect_field'] ) && $pagenow === 'options-permalink.php' ) {
-				update_option( 'rwl_redirect_field', sanitize_title_with_dashes( $_POST['rwl_redirect_field'] ) );
+
+			register_setting( 'permalink','rwl_page_input');
+			register_setting( 'permalink','rwl_redirect_field');
+
+			if (current_user_can('manage_options') && isset($_POST['_wpnonce']) && wp_verify_nonce($_POST['_wpnonce'], 'update-permalink')) {
+				if( isset($_POST['permalink_structure']) && isset( $_POST['rwl_redirect_field'] ) ){
+					$short_domain = sanitize_title_with_dashes(wp_unslash( $_POST['rwl_redirect_field'] ));
+					update_option( 'rwl_redirect_field', $short_domain );
 			}
 
-			if ( isset( $_POST['rwl_page'] ) && $pagenow === 'options-permalink.php' ) {
+			if( isset($_POST['permalink_structure']) && isset( $_POST['rwl_page'] ) ){
 				if (
-					( $rwl_page = sanitize_title_with_dashes( $_POST['rwl_page'] ) ) &&
-					strpos( $rwl_page, 'wp-login' ) === false &&
-					! in_array( $rwl_page, $this->forbidden_slugs() )
+				( $rwl_page = sanitize_title_with_dashes( $_POST['rwl_page'] ) ) &&
+				strpos( $rwl_page, 'wp-login' ) === false &&
+				! in_array( $rwl_page, $this->forbidden_slugs() )
 				) {
 					if ( is_multisite() && $rwl_page === get_site_option( 'rwl_page', 'login' ) ) {
 						delete_option( 'rwl_page' );
@@ -205,18 +211,20 @@ if ( defined( 'ABSPATH' ) && ! class_exists( 'Change_WP_Admin_Login' ) ) {
 			}
 
 			if ( get_option( 'rwl_redirect' ) ) {
-				delete_option( 'rwl_redirect' );
+					delete_option( 'rwl_redirect' );
 
-				if ( is_multisite() && is_super_admin() && is_plugin_active_for_network( $this->basename() ) ) {
+					if ( is_multisite() && is_super_admin() && is_plugin_active_for_network( $this->basename() ) ) {
 					$redirect = network_admin_url( 'settings.php#rwl-page-input' );
-				} else {
+					} else {
 					$redirect = admin_url( 'options-permalink.php#rwl-page-input' );
-				}
+					}
 
-				wp_safe_redirect( $redirect );
+					wp_safe_redirect( $redirect );
 
-				die;
+					die;
+					}
 			}
+
 		}
 
 		public function rwl_section_desc() {

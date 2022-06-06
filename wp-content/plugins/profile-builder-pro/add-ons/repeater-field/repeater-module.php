@@ -12,14 +12,14 @@ if( $wppb_module_settings != 'not_found' ) {
         $file_names = array( 'repeater-field.php', 'admin/repeater-functions.php', 'admin/repeater-manage-fields.php', 'admin/repeater-mustache-tag.php' );
         $file_missing = false;
         foreach( $file_names as $file_name) {
-            if ( ! file_exists( WPPB_PLUGIN_DIR . '/add-ons/repeater-field/' . $file_name )) {
+            if ( ! file_exists( WPPB_PAID_PLUGIN_DIR . '/add-ons/repeater-field/' . $file_name )) {
                 $file_missing = true;
             }
         }
 
         if ( ! $file_missing ){
             foreach( $file_names as $file_name ) {
-                include_once( WPPB_PLUGIN_DIR . '/add-ons/repeater-field/' . $file_name );
+                include_once( WPPB_PAID_PLUGIN_DIR . '/add-ons/repeater-field/' . $file_name );
             }
         }
     }

@@ -162,8 +162,8 @@ Class PB_Conditional_Fields {
 		if( !empty( $wppb_register_edit_profile_shortcode_on_front ) && $wppb_register_edit_profile_shortcode_on_front === true ){
 
             $wppb_toolbox_forms_settings = get_option('wppb_toolbox_forms_settings');
-            if (isset($wppb_toolbox_forms_settings['ajax-conditional-logic']) && $wppb_toolbox_forms_settings['ajax-conditional-logic'] === 'yes') {
-                wp_enqueue_script('wppb-conditional-logic', WPPB_PLUGIN_URL . 'features/conditional-fields/assets/js/script-conditional-logic.js', array('jquery'), PROFILE_BUILDER_VERSION, true);
+            if (isset($wppb_toolbox_forms_settings['ajax-conditional-logic']) && $wppb_toolbox_forms_settings['ajax-conditional-logic'] === 'yes' && defined('WPPB_PAID_PLUGIN_URL') ) {
+                wp_enqueue_script('wppb-conditional-logic', WPPB_PAID_PLUGIN_URL . 'features/conditional-fields/assets/js/script-conditional-logic.js', array('jquery'), PROFILE_BUILDER_VERSION, true);
                 wp_localize_script('wppb-conditional-logic', 'wppb_conditional_ajax', array('ajaxUrl' => admin_url('admin-ajax.php')));
                 wp_print_scripts('wppb-conditional-logic');
             }

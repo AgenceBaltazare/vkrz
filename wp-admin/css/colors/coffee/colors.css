@@ -1,3 +1,4 @@
+/*! This file is auto-generated */
 /*
  * Button mixin- creates a button effect with correct
  * highlights/shadows, based on a base color.
@@ -672,9 +673,17 @@ div#wp-responsive-toggle a:before {
 
 /* Welcome Panel */
 .welcome-panel {
-  background-color: #c7a589;
+  background-color: #f8f4f1;
+}
+
+.welcome-panel-header-image .about-six {
+  fill: #c7a589;
+}
+
+.welcome-panel-header-image .about-zero {
+  fill: #59524c;
 }
 
 [class*=welcome-panel-icon] {
   background-color: #59524c;
-}/*# sourceMappingURL=colors.css.map */
+}

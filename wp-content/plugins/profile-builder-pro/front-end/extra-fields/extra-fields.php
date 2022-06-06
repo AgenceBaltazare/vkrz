@@ -1,36 +1,38 @@
 <?php
 // include individual modules
 function wppb_include_extra_fields_files() {
-	include_once( WPPB_PLUGIN_DIR.'/front-end/extra-fields/heading/heading.php' );
-	include_once( WPPB_PLUGIN_DIR.'/front-end/extra-fields/input/input.php' );
-	include_once( WPPB_PLUGIN_DIR.'/front-end/extra-fields/input-hidden/input-hidden.php' );
-	include_once( WPPB_PLUGIN_DIR.'/front-end/extra-fields/input-email/input-email.php' );
-	include_once( WPPB_PLUGIN_DIR.'/front-end/extra-fields/input-url/input-url.php' );
-	include_once( WPPB_PLUGIN_DIR.'/front-end/extra-fields/checkbox/checkbox.php' );
-	include_once( WPPB_PLUGIN_DIR.'/front-end/extra-fields/checkbox-toa/checkbox-toa.php' );
-	include_once( WPPB_PLUGIN_DIR.'/front-end/extra-fields/radio/radio.php' );
-	include_once( WPPB_PLUGIN_DIR.'/front-end/extra-fields/select/select.php' );
-	include_once( WPPB_PLUGIN_DIR.'/front-end/extra-fields/select-multiple/select-multiple.php' );
-	include_once( WPPB_PLUGIN_DIR.'/front-end/extra-fields/select-country/select-country.php' );
-	include_once( WPPB_PLUGIN_DIR.'/front-end/extra-fields/select-timezone/select-timezone.php' );
-	include_once( WPPB_PLUGIN_DIR.'/front-end/extra-fields/select-currency/select-currency.php' );
-    include_once( WPPB_PLUGIN_DIR.'/front-end/extra-fields/select-cpt/select-cpt.php' );
-	include_once( WPPB_PLUGIN_DIR.'/front-end/extra-fields/datepicker/datepicker.php' );
-	include_once( WPPB_PLUGIN_DIR.'/front-end/extra-fields/colorpicker/colorpicker.php' );
-	include_once( WPPB_PLUGIN_DIR.'/front-end/extra-fields/textarea/textarea.php' );
-	include_once( WPPB_PLUGIN_DIR.'/front-end/extra-fields/timepicker/timepicker.php' );
-	include_once( WPPB_PLUGIN_DIR.'/front-end/extra-fields/upload/upload.php' );
-	include_once( WPPB_PLUGIN_DIR.'/front-end/extra-fields/avatar/avatar.php' );
-	include_once( WPPB_PLUGIN_DIR.'/front-end/extra-fields/wysiwyg/wysiwyg.php' );
-	include_once( WPPB_PLUGIN_DIR.'/front-end/extra-fields/validation/validation.php' );
-	include_once( WPPB_PLUGIN_DIR.'/front-end/extra-fields/map/map.php' );
-	include_once( WPPB_PLUGIN_DIR.'/front-end/extra-fields/phone/phone.php' );
-	include_once( WPPB_PLUGIN_DIR.'/front-end/extra-fields/html/html.php' );
-	include_once( WPPB_PLUGIN_DIR.'/front-end/extra-fields/number/number.php' );
-	include_once( WPPB_PLUGIN_DIR.'/front-end/extra-fields/select2/select2.php' );
-	include_once( WPPB_PLUGIN_DIR.'/front-end/extra-fields/select2/select2-multiple.php' );
-	include_once( WPPB_PLUGIN_DIR.'/front-end/extra-fields/language/language.php' );
-	include_once( WPPB_PLUGIN_DIR.'/front-end/extra-fields/honeypot/honeypot.php' );
+	if( defined( 'WPPB_PAID_PLUGIN_DIR' ) ){
+		include_once( WPPB_PAID_PLUGIN_DIR.'/front-end/extra-fields/heading/heading.php' );
+		include_once( WPPB_PAID_PLUGIN_DIR.'/front-end/extra-fields/input/input.php' );
+		include_once( WPPB_PAID_PLUGIN_DIR.'/front-end/extra-fields/input-hidden/input-hidden.php' );
+		include_once( WPPB_PAID_PLUGIN_DIR.'/front-end/extra-fields/input-email/input-email.php' );
+		include_once( WPPB_PAID_PLUGIN_DIR.'/front-end/extra-fields/input-url/input-url.php' );
+		include_once( WPPB_PAID_PLUGIN_DIR.'/front-end/extra-fields/checkbox/checkbox.php' );
+		include_once( WPPB_PAID_PLUGIN_DIR.'/front-end/extra-fields/checkbox-toa/checkbox-toa.php' );
+		include_once( WPPB_PAID_PLUGIN_DIR.'/front-end/extra-fields/radio/radio.php' );
+		include_once( WPPB_PAID_PLUGIN_DIR.'/front-end/extra-fields/select/select.php' );
+		include_once( WPPB_PAID_PLUGIN_DIR.'/front-end/extra-fields/select-multiple/select-multiple.php' );
+		include_once( WPPB_PAID_PLUGIN_DIR.'/front-end/extra-fields/select-country/select-country.php' );
+		include_once( WPPB_PAID_PLUGIN_DIR.'/front-end/extra-fields/select-timezone/select-timezone.php' );
+		include_once( WPPB_PAID_PLUGIN_DIR.'/front-end/extra-fields/select-currency/select-currency.php' );
+		include_once( WPPB_PAID_PLUGIN_DIR.'/front-end/extra-fields/select-cpt/select-cpt.php' );
+		include_once( WPPB_PAID_PLUGIN_DIR.'/front-end/extra-fields/datepicker/datepicker.php' );
+		include_once( WPPB_PAID_PLUGIN_DIR.'/front-end/extra-fields/colorpicker/colorpicker.php' );
+		include_once( WPPB_PAID_PLUGIN_DIR.'/front-end/extra-fields/textarea/textarea.php' );
+		include_once( WPPB_PAID_PLUGIN_DIR.'/front-end/extra-fields/timepicker/timepicker.php' );
+		include_once( WPPB_PAID_PLUGIN_DIR.'/front-end/extra-fields/upload/upload.php' );
+		include_once( WPPB_PAID_PLUGIN_DIR.'/front-end/extra-fields/avatar/avatar.php' );
+		include_once( WPPB_PAID_PLUGIN_DIR.'/front-end/extra-fields/wysiwyg/wysiwyg.php' );
+		include_once( WPPB_PAID_PLUGIN_DIR.'/front-end/extra-fields/validation/validation.php' );
+		include_once( WPPB_PAID_PLUGIN_DIR.'/front-end/extra-fields/map/map.php' );
+		include_once( WPPB_PAID_PLUGIN_DIR.'/front-end/extra-fields/phone/phone.php' );
+		include_once( WPPB_PAID_PLUGIN_DIR.'/front-end/extra-fields/html/html.php' );
+		include_once( WPPB_PAID_PLUGIN_DIR.'/front-end/extra-fields/number/number.php' );
+		include_once( WPPB_PAID_PLUGIN_DIR.'/front-end/extra-fields/select2/select2.php' );
+		include_once( WPPB_PAID_PLUGIN_DIR.'/front-end/extra-fields/select2/select2-multiple.php' );
+		include_once( WPPB_PAID_PLUGIN_DIR.'/front-end/extra-fields/language/language.php' );
+		include_once( WPPB_PAID_PLUGIN_DIR.'/front-end/extra-fields/honeypot/honeypot.php' );
+	}
 }
 wppb_include_extra_fields_files();
 

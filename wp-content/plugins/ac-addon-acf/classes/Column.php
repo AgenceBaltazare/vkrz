@@ -3,164 +3,165 @@
 namespace ACA\ACF;
 
 use AC;
-use ACP;
+use AC\MetaType;
+use ACA\ACF;
+use ACA\ACF\Export;
+use ACA\ACF\Value;
+use ACP\Export\Exportable;
+use InvalidArgumentException;
 
-/**
- * ACF Field for Advanced Custom Fields
- * @since 1.1
- * @abstract
- */
-abstract class Column extends AC\Column\Meta
-	implements ACP\Editing\Editable, ACP\Filtering\Filterable, ACP\Sorting\Sortable, ACP\Export\Exportable, ACP\Search\Searchable, AC\Column\AjaxValue {
+class Column extends AC\Column\Meta
+	implements Exportable, ACF\Filtering\FilteringFactoryAware, ACF\Search\SearchFactoryAware, ACF\Sorting\SortingFactoryAware, ACF\Editing\EditingFactoryAware {
+
+	use ACF\Filtering\FilteringTrait,
+		ACF\Search\SearchableTrait,
+		ACF\Sorting\SortableTrait,
+		ACF\Editing\EditableTrait;
 
 	/**
-	 * @var Free\FieldFactory|FieldFactory
+	 * @var string
 	 */
-	protected $field_factory;
+	protected $field_hash;
 
 	/**
-	 * @var Free\FieldFactory|FieldFactory
+	 * @var string
 	 */
-	protected $field_settings_factory;
+	protected $meta_key;
+
+	/**
+	 * @var Field
+	 */
+	protected $field;
+
+	/**
+	 * @var string
+	 */
+	private $field_type;
 
 	public function __construct() {
-		$this
-			->set_type( 'column-acf_field' )
-			->set_label( __( 'Advanced Custom Fields', 'codepress-admin-columns' ) )
-			->set_group( 'acf' );
-
-		$this->field_factory = API::is_free()
-			? new Free\FieldFactory()
-			: new FieldFactory();
-
-		$this->field_settings_factory = API::is_free()
-			? new Free\Setting\FieldFactory()
-			: new Setting\FieldFactory();
-
+		$this->set_label( 'ACF Column' )
+		     ->set_group( ColumnGroup::SLUG );
 	}
 
-	public function get_meta_key() {
-		return $this->get_field()->get( 'name' );
+	public function set_config( array $config ) {
+		$this->field_hash = $config[ Configurable::FIELD_HASH ];
+		$this->meta_key = $config[ Configurable::META_KEY ];
+		$this->field = $config[ Configurable::FIELD ];
+		$this->field_type = $config[ Configurable::FIELD_TYPE ];
+
+		$this->validate();
 	}
 
-	public function get_ajax_value( $id ) {
-		return $this->get_field()->get_ajax_value( $id );
+	private function validate() {
+		if ( ! is_string( $this->field_hash ) ) {
+			throw new InvalidArgumentException( 'Invalid field hash' );
+		}
+		if ( ! is_string( $this->meta_key ) ) {
+			throw new InvalidArgumentException( 'Invalid meta key' );
+		}
+		if ( ! $this->field instanceof Field ) {
+			throw new InvalidArgumentException( 'Invalid field' );
+		}
+		if ( ! is_string( $this->field_type ) ) {
+			throw new InvalidArgumentException( 'Invalid field type' );
+		}
 	}
 
 	public function get_value( $id ) {
-		$value = $this->get_field()->get_value( $id );
+		$factory = new Value\FormatterFactory();
 
-		if ( $value instanceof AC\Collection ) {
-			$value = $value->filter()->implode( $this->get_separator() );
-		}
+		$formatter = $factory->create(
+			$this,
+			$this->get_field()
+		);
 
-		if ( is_array( $value ) ) {
-			return $this->get_empty_char();
-		}
-
-		// Wrap in ACF Append Prepend
-		if ( $value ) {
-			$prepend = $this->get_field()->get( 'prepend' );
-			$append = $this->get_field()->get( 'append' );
-
-			// remove &nbsp; characters
-			$prepend = str_replace( chr( 194 ) . chr( 160 ), ' ', $prepend );
-			$append = str_replace( chr( 194 ) . chr( 160 ), ' ', $append );
-
-			$value = $prepend . $value . $append;
-		}
-
-		if ( ! $value && ! in_array( $value, [ 0, '0' ], true ) ) {
-			return $this->get_empty_char();
-		}
-
-		return $value;
+		return $formatter->format(
+			$this->get_raw_value( $id ),
+			$id
+		);
 	}
 
 	public function get_raw_value( $id ) {
-		return $this->get_field()->get_raw_value( $id );
+		return get_field( $this->meta_key, $this->get_formatted_id( $id ), false );
 	}
 
-	public function editing() {
-		return $this->get_field()->editing();
+	public function get_formatted_id( $id ) {
+		switch ( $this->get_meta_type() ) {
+			case MetaType::USER:
+				$prefix = 'user_';
+				break;
+			case MetaType::COMMENT:
+				$prefix = 'comment_';
+				break;
+			case MetaType::SITE:
+				$prefix = 'site_';
+				break;
+			case MetaType::TERM:
+				$prefix = $this->get_taxonomy() . '_';
+				break;
+			default:
+				$prefix = '';
+		}
+
+		return $prefix . $id;
 	}
 
-	public function filtering() {
-		return $this->get_field()->filtering();
-	}
+	protected function register_settings() {
+		$setting_factory = new ACF\Settings\SettingFactory();
 
-	public function search() {
-		return $this->get_field()->search();
-	}
+		$settings = $setting_factory->create(
+			$this->get_field(),
+			$this
+		);
 
-	public function sorting() {
-		return $this->get_field()->sorting();
+		array_map( [ $this, 'add_setting' ], $settings );
 	}
 
 	public function export() {
-		return $this->get_field()->export();
+		return ( new Export\ModelFactory )->create( $this->get_field_type(), $this );
 	}
 
-	/**
-	 * @return array|false ACF Field settings
-	 */
-	public function get_acf_field() {
-		return API::get_field( $this->get_field_hash() );
+	public function get_meta_key() {
+		return $this->meta_key;
 	}
 
-	/**
-	 * @param string $property
-	 *
-	 * @return string|array|false
-	 */
-	public function get_acf_field_option( $property ) {
-		$field = $this->get_acf_field();
+	public function get_field_hash() {
+		return $this->field_hash;
+	}
 
-		if ( ! $field || ! array_key_exists( $property, $field ) ) {
-			return false;
-		}
-
-		return $field[ $property ];
+	public function get_field_type() {
+		return $this->field_type;
 	}
 
 	/**
 	 * @return Field
 	 */
 	public function get_field() {
-		return $this->field_factory->create( $this->get_acf_field_option( 'type' ), $this );
+		return $this->field;
 	}
 
 	/**
-	 * Returns Field. By default it will return a Pro version Field, but when available this returns a Free version Field.
-	 *
-	 * @param string $field_type ACF field type
-	 *
-	 * @return Field
+	 * @return array
+	 * @deprecated NEWVERSION
 	 */
-	public function get_field_by_type( $field_type ) {
-		return $this->field_factory->create( $field_type, $this );
+	public function get_acf_field() {
+		_deprecated_function( __METHOD__, 'NEWVERSION' );
+
+		return $this->field->get_settings();
 	}
 
 	/**
-	 * Get Field hash
-	 * @return string ACF field Hash (key)
-	 * @since 1.1
+	 * @param string $name
+	 *
+	 * @return string
+	 * @deprecated NEWVERSION
 	 */
-	public function get_field_hash() {
-		if ( ! $this->get_setting( 'field' ) ) {
-			return false;
-		}
+	public function get_acf_field_option( $name ) {
+		_deprecated_function( __METHOD__, 'NEWVERSION' );
 
-		return $this->get_setting( 'field' )->get_value();
+		$settings = $this->field->get_settings();
+
+		return array_key_exists( $name, $settings ) ? $settings[ $name ] : '';
 	}
-
-	/**
-	 * Get formatted ID for ACF
-	 *
-	 * @param int $id
-	 *
-	 * @since 1.2.2
-	 */
-	public abstract function get_formatted_id( $id );
 
 }

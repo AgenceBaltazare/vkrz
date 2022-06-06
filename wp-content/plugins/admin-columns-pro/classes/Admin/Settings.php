@@ -260,7 +260,6 @@ class Settings implements Registrable {
 	 * @return string HTML
 	 */
 	private function get_checkboxes( ListScreen $list_screen ) {
-
 		$collection = new HideOnScreenCollection();
 
 		$collection->add( new HideOnScreen\Filters(), 30 )
@@ -268,33 +267,37 @@ class Settings implements Registrable {
 		           ->add( new HideOnScreen\BulkActions(), 100 )
 		           ->add( new HideOnScreen\ColumnResize(), 110 );
 
-		if ( $list_screen instanceof ListScreenPost ) {
-			$collection->add( new HideOnScreen\FilterPostDate(), 32 );
+		switch ( true ) {
+			case $list_screen instanceof ListScreenPost :
+				$collection->add( new HideOnScreen\FilterPostDate(), 32 );
 
-			// Exclude Media, but make sure to include all other post types
-			if ( 'attachment' !== $list_screen->get_post_type() ) {
-				$collection->add( new HideOnScreen\SubMenu\PostStatus(), 80 );
-			}
+				// Exclude Media, but make sure to include all other post types
+				if ( 'attachment' !== $list_screen->get_post_type() ) {
+					$collection->add( new HideOnScreen\SubMenu\PostStatus(), 80 );
+				}
 
-			if ( is_object_in_taxonomy( $list_screen->get_post_type(), 'category' ) ) {
-				$collection->add( new HideOnScreen\FilterCategory(), 34 );
-			}
+				if ( is_object_in_taxonomy( $list_screen->get_post_type(), 'category' ) ) {
+					$collection->add( new HideOnScreen\FilterCategory(), 34 );
+				}
 
-			if ( post_type_supports( $list_screen->get_post_type(), 'post-formats' ) ) {
-				$collection->add( new HideOnScreen\FilterPostFormat(), 36 );
-			}
+				if ( post_type_supports( $list_screen->get_post_type(), 'post-formats' ) ) {
+					$collection->add( new HideOnScreen\FilterPostFormat(), 36 );
+				}
 
-			if ( $list_screen instanceof Media ) {
-				$collection->add( new HideOnScreen\FilterMediaItem(), 31 );
-			}
-		}
+				if ( $list_screen instanceof Media ) {
+					$collection->add( new HideOnScreen\FilterMediaItem(), 31 );
+				}
 
-		if ( $list_screen instanceof User ) {
-			$collection->add( new HideOnScreen\SubMenu\Roles(), 80 );
-		}
+				break;
+			case $list_screen instanceof User:
+				$collection->add( new HideOnScreen\SubMenu\Roles(), 80 );
 
-		if ( $list_screen instanceof Comment ) {
-			$collection->add( new HideOnScreen\SubMenu\CommentStatus(), 80 );
+				break;
+			case $list_screen instanceof Comment:
+				$collection->add( new HideOnScreen\FilterCommentType(), 31 );
+				$collection->add( new HideOnScreen\SubMenu\CommentStatus(), 80 );
+
+				break;
 		}
 
 		do_action( 'acp/admin/settings/hide_on_screen', $collection, $list_screen );
@@ -328,16 +331,14 @@ class Settings implements Registrable {
 	}
 
 	private function render_checkbox( $name, $label, $is_checked, $dependent_on = [], $class = '' ) {
-		ob_start();
-		// the hidden field makes sure we also save the 'off' state. This allows us to set a 'default' value.
-		$attr_name = $name;
-		?>
-		<label class="<?= esc_attr( $class ); ?>" data-setting="<?= $name; ?>" data-dependent="<?= implode( ',', $dependent_on ); ?>">
-			<input name="<?= $attr_name; ?>" type="hidden" value="off">
-			<input name="<?= $attr_name; ?>" type="checkbox" <?php checked( $is_checked ); ?>> <?= esc_html( $label ); ?>
-		</label>
-		<?php
-		return ob_get_clean();
+		$view = new AC\Form\Element\Toggle( $name, $label, ! $is_checked, 'off', 'on' );
+		$view->set_container_attributes( [
+			'class'          => $class . ' -small',
+			'data-dependent' => implode( ',', $dependent_on ),
+			'data-setting'   => $name,
+		] );
+
+		return $view->render();
 	}
 
 	public function render_sidebar_help() {

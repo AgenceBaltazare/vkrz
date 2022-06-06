@@ -2,8 +2,8 @@
 
 /* include the admin UI for custom redirects */
 if( wppb_check_if_add_on_is_active( 'wppb_customRedirect' ) ){
-    if( file_exists( WPPB_PLUGIN_DIR .'/add-ons/custom-redirects/custom_redirects_admin.php' ) ) {
-        include_once( WPPB_PLUGIN_DIR .'/add-ons/custom-redirects/custom_redirects_admin.php' );
+    if( file_exists( WPPB_PAID_PLUGIN_DIR .'/add-ons/custom-redirects/custom_redirects_admin.php' ) ) {
+        include_once( WPPB_PAID_PLUGIN_DIR .'/add-ons/custom-redirects/custom_redirects_admin.php' );
     }
 }
 
@@ -203,7 +203,9 @@ function wppb_custom_redirect_url( $type, $redirect_url = NULL, $user = NULL, $u
 
 /* the function needed to block access to the admin-panel (if requested) */
 function wppb_restrict_dashboard_access() {
-	if( PROFILE_BUILDER == 'Profile Builder Pro' ) {
+	$versions = array( 'Profile Builder Pro', 'Profile Builder Elite', 'Profile Builder Unlimited', 'Profile Builder Dev' );
+
+	if( in_array( PROFILE_BUILDER, $versions ) ) {
 		if( is_admin() || in_array( $GLOBALS['pagenow'], array( 'wp-login.php', 'wp-register.php' ) ) ) {
 			$wppb_module_settings = get_option( 'wppb_module_settings' );
 
@@ -230,7 +232,9 @@ add_action( 'admin_init', 'wppb_restrict_dashboard_access' );
 
 /* the function needed to redirect from default WordPress forms and pages (if requested) */
 function wppb_redirect_default_wp_pages() {
-	if( PROFILE_BUILDER == 'Profile Builder Pro' ) {
+	$versions = array( 'Profile Builder Pro', 'Profile Builder Elite', 'Profile Builder Unlimited', 'Profile Builder Dev' );
+
+	if( in_array( PROFILE_BUILDER, $versions ) ) {
 		if( ! is_admin() ) {
 			$wppb_module_settings = get_option( 'wppb_module_settings' );
 
@@ -318,7 +322,9 @@ add_action( 'init', 'wppb_redirect_default_wp_pages' );
 
 /* the function needed to redirect from default WordPress Author Archive (if requested) */
 function wppb_redirect_default_wp_author_archive() {
-	if( PROFILE_BUILDER == 'Profile Builder Pro' ) {
+	$versions = array( 'Profile Builder Pro', 'Profile Builder Elite', 'Profile Builder Unlimited', 'Profile Builder Dev' );
+
+	if( in_array( PROFILE_BUILDER, $versions ) ) {
 		if( ! is_admin() ) {
 			$wppb_module_settings = get_option( 'wppb_module_settings' );
 
@@ -377,3 +383,17 @@ function wppb_cr_replace_tags( $redirect_url, $wppb_cr_username = NULL ) {
 
 	return $redirect_url;
 }
+
+
+/* function used to redirect users after requesting a password change (if such e redirect is set in Custom Redirects) */
+function wppb_redirect_after_password_change_request( $message, $user_email ){
+
+    $user_data = get_user_by( 'email', $user_email );
+    $redirect_url = wppb_get_redirect_url( 'normal', 'after_password_change_request', '', $user_data->user_login );
+
+    if ( !empty( $redirect_url ))
+        $message = '<script type="text/javascript"> window.location.href = "' . $redirect_url .'" </script>';
+
+    return $message;
+}
+add_filter( 'wppb_recover_password_sent_message1', 'wppb_redirect_after_password_change_request', 10, 2 );

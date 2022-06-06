@@ -4,7 +4,7 @@ class WPPB_Two_Factor_Authenticator {
 
     public function __construct( ) {
         if ( ! class_exists('WPPB_Base32') ) {
-            require_once( WPPB_PLUGIN_DIR.'features/two-factor-authentication/assets/lib/class-WPPBBase32.php' );
+            require_once( WPPB_PAID_PLUGIN_DIR.'/features/two-factor-authentication/assets/lib/class-WPPBBase32.php' );
         }
 
         add_action( 'admin_menu',                                       array( $this, 'add_settings_tab' ) );
