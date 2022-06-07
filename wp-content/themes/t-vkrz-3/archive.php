@@ -1,12 +1,5 @@
 <?php
 get_header();
-
-if (isset($_GET['term']) && $_GET['term'] != "") {
-  $term_to_search = $_GET['term'];
-} else {
-  $term_to_search = '';
-}
-
 global $user_tops;
 $list_user_tops     = $user_tops['list_user_tops'];
 $current_cat        = get_queried_object();

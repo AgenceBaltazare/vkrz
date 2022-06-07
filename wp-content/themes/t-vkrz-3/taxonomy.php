@@ -46,18 +46,6 @@ $list_sujets      = array();
         </div>
       </div>
 
-      <section id="ecommerce-header" class="mb-2 mt-2">
-        <div id="ecommerce-searchbar" class="ecommerce-searchbar">
-          <div class="input-group input-group-merge">
-            <form action="?" method="get" id="search_form">
-              <span class="ico ico-search ico-search-result va va-magnifying-glass-tilted-left va-lg"></span>
-              <span class="ico ico-search ico-search-clear">❌</span>
-              <input type="text" class="form-control search-product" placeholder="Rechercher dans les <?php echo $tops_in_cat->post_count; ?> Tops..." aria-label="Rechercher..." aria-describedby="shop-search" />
-            </form>
-          </div>
-        </div>
-      </section>
-
       <section class="grid-to-filtre row match-height mt-2">
 
         <?php $i = 1;
