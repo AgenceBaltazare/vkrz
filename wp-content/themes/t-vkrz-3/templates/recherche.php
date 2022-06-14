@@ -349,6 +349,7 @@ get_header();
   import {
     getFirestore,
     addDoc,
+    collection
   } from "https://cdnjs.cloudflare.com/ajax/libs/firebase/9.8.1/firebase-firestore.min.js";
   const database = getFirestore(app);
 
