@@ -331,8 +331,52 @@ if (!empty($tops_unique_to_find)) {
 get_header();
 ?>
 
+<script type="module">
+  import {
+    initializeApp
+  } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
+  const firebaseConfig = {
+    apiKey: "AIzaSyDX3AkehDOsSpznrUG_mXRJBY_jkBeLCds",
+    authDomain: "vainkeurz-48eb4.firebaseapp.com",
+    databaseURL: "https://vainkeurz-48eb4-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "vainkeurz-48eb4",
+    storageBucket: "vainkeurz-48eb4.appspot.com",
+    messagingSenderId: "915310626932",
+    appId: "1:915310626932:web:3a2118ed2a1551af3d2921",
+    measurementId: "G-BGB5H22QLZ",
+  };
+  const app = initializeApp(firebaseConfig);
+  import {
+    getFirestore,
+    addDoc,
+  } from "https://cdnjs.cloudflare.com/ajax/libs/firebase/9.8.1/firebase-firestore.min.js";
+  const database = getFirestore(app);
+
+  async function searchStats() {
+    try {
+      const newSearch = await addDoc(
+        collection(database, "recherches"), {
+          guest: "<?php echo is_user_logged_in() ? 'Non' : 'Oui' ?>",
+          userId: "<?php echo get_current_user_id() ?>",
+          userName: "<?php echo wp_get_current_user()->display_name; ?>",
+          uuid: "<?php echo get_field('uuiduser_user', 'user_' . get_current_user_id()); ?>",
+          searchedTerm: "<?php echo $term_to_search; ?>",
+          resultsNumber: "<?php echo $total_top_founded ? $total_top_founded : '0'; ?>",
+          createdAt: new Date(),
+        }
+      );
+      console.log(
+        "Document sent with ID: ",
+        newSearch.id
+      );
+    } catch (error) {
+      console.error("Error adding document: ", error);
+    }
+  }
+  searchStats();
+</script>
+
 <div class="app-content content ecommerce-application">
-  <!-- <div class="content-overlay"></div> -->
   <div class="content-wrapper">
     <div class="content-body">
 
