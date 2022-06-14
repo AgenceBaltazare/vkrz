@@ -46,7 +46,7 @@ $top_datas    = get_top_data($id_top_global);
                     <div class="col-md-12 info-concours">
                       <div class="info-win">
                         <p>
-                          aujourd'hui tu peux te tourner vers un avenir meilleur en rejoignant le concept VAINKEURZ 🚀 !
+                          Aujourd'hui tu peux te tourner vers un avenir meilleur en rejoignant le concept VAINKEURZ 🚀 !
                         </p>
                         <p>
                           Si tu souhaites participer au <strong class="t-rose">Tirage au Sort</strong>, n'hésites pas et créer ton compte ! Si tu fais déjà parti des Vainkeurs, connecte-toi simplement 👇
@@ -62,7 +62,7 @@ $top_datas    = get_top_data($id_top_global);
                 <?php elseif (get_field('uuid_user_r', $id_ranking) != $uuiduser && $id_top_global == 461704) : ?>
                   <div class="doitbro mt-1">
                     <h1>Toi aussi participe au concours</h1>
-                    <p>Pour tenter de gagner 1 des 3 bon d'achat d'une valeur de 50€, termine ta TopList et partage la sur Tweeter</p>
+                    <p>Pour tenter de gagner 1 des 3 bons d'achat d'une valeur de 50€, termine ta TopList et partage-la sur Twitter</p>
                     <a href="<?php echo $top_infos['top_url']; ?>" class="animate__jello animate__animated animate__delay-1s btn btn-max btn-tweet btn-rose waves-effect waves-float waves-light">Je Participe</a>
                   </div>
                 <?php else : ?>
