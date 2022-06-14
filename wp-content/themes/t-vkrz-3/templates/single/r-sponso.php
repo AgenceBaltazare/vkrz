@@ -24,6 +24,7 @@ $user_ranking = get_user_ranking($id_ranking);
 $url_ranking  = get_the_permalink($id_ranking);
 $top_datas    = get_top_data($id_top_global);
 ?>
+
 <div class="app-content content cover is-sponso" style="background: url(<?php echo $top_infos['top_cover']; ?>) center center no-repeat">
   <div class="content-overlay"></div>
   <div class="content-wrapper">
@@ -58,6 +59,12 @@ $top_datas    = get_top_data($id_top_global);
                       S'INSCRIRE (ou se connecter)
                     </p>
                   </a>
+                <?php elseif (get_field('uuid_user_r', $id_ranking) != $uuiduser && $id_top_global == 461704) : ?>
+                  <div class="doitbro mt-1">
+                    <h1>Toi aussi participe au concours</h1>
+                    <p>Pour tenter de gagner 1 des 3 bon d'achat d'une valeur de 50€, termine ta TopList et partage la sur Tweeter</p>
+                    <a href="<?php echo $top_infos['top_url']; ?>" class="animate__jello animate__animated animate__delay-1s btn btn-max btn-tweet btn-rose waves-effect waves-float waves-light">Je Participe</a>
+                  </div>
                 <?php else : ?>
                   <div class="row">
                     <div class="col-md-12 mt-1">
@@ -106,9 +113,25 @@ $top_datas    = get_top_data($id_top_global);
                             Post Twitter
                           </a>
                         <?php elseif (get_field('type_de_fin_t_sponso', $id_top_global) == "twitter_2") : ?>
-                          <a href="https://twitter.com/intent/tweet?hashtags=<?php the_field('hashtags_du_tweet_twitter_2', $id_top_global); ?>&original_referer=<?php echo $url_ranking; ?>&ref_src=&text=<?php the_field('message_du_tweet_twitter_2', $id_top_global); ?>&url=<?php echo $url_ranking; ?>&via=Vainkeurz" class="animate__jello animate__animated animate__delay-1s btn btn-max btn-tweet btn-rose waves-effect waves-float waves-light" target="_blank">
+
+                          <?php if($id_top_global == 461704) : ?>
+                            
+                            <a 
+                              href="https://twitter.com/intent/tweet?hashtags=DLcompareXvkrz&original_referer=<?php echo $url_ranking; ?>&ref_src=&text=<?php echo urlencode("Merci @dLcompare pour le #concours !")?>%0a%0a&url=<?php echo $url_ranking; ?>&via=Vainkeurz" 
+                              class="animate__jello animate__animated animate__delay-1s btn btn-max btn-tweet btn-rose waves-effect waves-float waves-light" 
+                              target="_blank"
+                              style="background-color: #1b95e0 !important; border-color: #1b95e0 !important;"
+                            >
+                              <img src="https://vainkeurz.com/wp-content/uploads/2022/06/twitter.png" width="20" height="16" alt="Tweet icon">
+                              <?php the_field('message_du_bouton_tweet_twitter2', $id_top_global); ?>
+                            </a>
+
+                          <?php else : ?>
+                            <a href="https://twitter.com/intent/tweet?hashtags=<?php the_field('hashtags_du_tweet_twitter_2', $id_top_global); ?>&original_referer=<?php echo $url_ranking; ?>&ref_src=&text=<?php the_field('message_du_tweet_twitter_2', $id_top_global); ?>&url=<?php echo $url_ranking; ?>&via=Vainkeurz" class="animate__jello animate__animated animate__delay-1s btn btn-max btn-tweet btn-rose waves-effect waves-float waves-light" target="_blank">
                             <?php the_field('message_du_bouton_tweet_twitter2', $id_top_global); ?>
                           </a>
+                         <?php endif; ?>
+
                         <?php endif; ?>
                       </div>
                     </div>
@@ -159,7 +182,7 @@ $top_datas    = get_top_data($id_top_global);
                                   <span><?php echo $i; ?><br></span>
                                 <?php endif; ?>
                                 <?php if (!$top_infos['top_d_titre']) : ?>
-                                  <?php echo get_the_title($c); ?>
+                                  <?php echo str_replace("\\", "", get_the_title($c)); ?>
                                 <?php endif; ?>
                               </h5>
                               <?php if (get_field('lien_vers_contender', $c)) : ?>
@@ -230,7 +253,7 @@ $top_datas    = get_top_data($id_top_global);
 
                           <div class="card-footer text-center p-20 m-0">
                             <span class="t-rose">
-                              📅 On te rappelle que la date du
+                              📅 On te rappelle que la date de
                               <?php
 
                               echo lcfirst(get_field('fin_de_la_sponso_t_sponso', $id_top));
