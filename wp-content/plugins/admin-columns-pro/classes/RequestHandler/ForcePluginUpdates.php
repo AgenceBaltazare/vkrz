@@ -35,7 +35,10 @@ class ForcePluginUpdates implements RequestHandler {
 			return;
 		}
 
-		$this->products_updater->update( $this->token_factory->create(), true );
+		$this->products_updater->update( $this->token_factory->create() );
+
+		wp_clean_plugins_cache();
+		wp_update_plugins();
 	}
 
 }

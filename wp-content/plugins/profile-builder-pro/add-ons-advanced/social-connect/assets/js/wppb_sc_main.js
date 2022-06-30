@@ -180,19 +180,30 @@ function wppbSCLogin_gdpr( data, platformSettings, platform, clickresponse, logi
                 clickresponse.wppb_sc_gdpr_checkbox = jQuery( '#wppb_sc_user_consent_gdpr' ).prop( 'checked' );
 
                 jQuery.post(platformSettings.ajaxUrl, clickresponse, function (response) {
+
+                    tb_remove();
+
+                    var platform_icon = platform;
+                    if (platform == 'google') {
+                        platform_icon = 'google-plus';
+                    }
+
+                    jQuery(login_selector.children())
+                        .removeClass('wppb-sc-icon-spinner')
+                        .addClass('wppb-sc-icon-' + platform_icon);
+
                     if (response == 'pb_login_form_no_register') {
-                        tb_remove();
-
-                        var platform_icon = platform;
-                        if (platform == 'google') {
-                            platform_icon = 'google-plus';
-                        }
-
-                        jQuery(login_selector.children())
-                            .removeClass('wppb-sc-icon-spinner')
-                            .addClass('wppb-sc-icon-' + platform_icon);
-
                         jQuery(login_selector).closest('.wppb-sc-buttons-container').append('<div class="wppb-error wppb-sc-message">' + platformSettings.pb_form_login_error + '</div>');
+                    } else if( response.message == 'email_confirmation_on' ) {
+                        jQuery( login_selector ).closest( '.wppb-sc-buttons-container' ).append( '<div class="wppb-success wppb-sc-message">' + platformSettings.email_confirmation_on + '</div>' );
+                        if( response.redirect != 'no_redirect' ) {
+                            message = platformSettings.redirect_message;
+                            message = message.replace( "%%", "<a href='" + response.redirect + "'>" + platformSettings.here_string + "</a>" );
+                            jQuery( login_selector ).closest( '.wppb-sc-buttons-container' ).append( '<div class="wppb-success wppb-sc-message">' + message + '</div>' );
+                            window.setTimeout( function() {
+                                window.location.href = response.redirect;
+                            }, 5000 );
+                        }
                     } else {
                         var anotherResponse = JSON.parse(response);
 

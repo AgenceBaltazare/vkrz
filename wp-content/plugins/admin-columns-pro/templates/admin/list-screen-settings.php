@@ -1,5 +1,6 @@
 <?php
 
+use AC\Form\Element\Toggle;
 use AC\Form\Element\Select;
 use ACP\Bookmark\Setting\PreferredSegment;
 use ACP\Sorting\Settings\ListScreen\PreferredSort;
@@ -87,11 +88,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 								<?php echo $this->tooltip_hs->get_instructions(); ?>
 							</div>
 							<div class="ac-setbox__row__fields">
+
 								<div class="ac-setbox__row__fields__inner">
-									<div class="radio-labels radio-labels">
-										<label class="ac-setting-input_filter"><input name="horizontal_scrolling" type="radio" value="on" <?php checked( $pref_hs, 'on' ); ?>><?= __( 'Yes' ); ?></label>
-										<label class="ac-setting-input_filter"><input name="horizontal_scrolling" type="radio" value="off" <?php checked( $pref_hs, 'off' ); ?>><?= __( 'No' ); ?></label>
-									</div>
+									<?php
+									$toggle = new Toggle( 'horizontal_scrolling', '', $pref_hs === 'on', 'on', 'off' );
+									echo $toggle->render();
+									?>
 								</div>
 							</div>
 						</div>

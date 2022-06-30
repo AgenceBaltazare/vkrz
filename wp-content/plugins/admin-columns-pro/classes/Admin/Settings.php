@@ -265,7 +265,8 @@ class Settings implements Registrable {
 		$collection->add( new HideOnScreen\Filters(), 30 )
 		           ->add( new HideOnScreen\Search(), 90 )
 		           ->add( new HideOnScreen\BulkActions(), 100 )
-		           ->add( new HideOnScreen\ColumnResize(), 110 );
+		           ->add( new HideOnScreen\ColumnResize(), 110 )
+				   ->add( new HideOnScreen\RowActions(), 120 );
 
 		switch ( true ) {
 			case $list_screen instanceof ListScreenPost :
@@ -343,7 +344,7 @@ class Settings implements Registrable {
 
 	public function render_sidebar_help() {
 		?>
-		<div id="layout-help" class="hidden">
+		<template id="layout-help" class="hidden">
 			<h3><?php _e( 'Sets', 'codepress-admin-columns' ); ?></h3>
 
 			<p>
@@ -358,7 +359,7 @@ class Settings implements Registrable {
 			<p>
 				<a href="<?= esc_url( ( new Url\Documentation( Url\Documentation::ARTICLE_COLUMN_SETS ) )->get_url() ); ?>" target="_blank"><?php _e( 'Online documentation', 'codepress-admin-columns' ); ?></a>
 			</p>
-		</div>
+		</template>
 		<?php
 	}
 

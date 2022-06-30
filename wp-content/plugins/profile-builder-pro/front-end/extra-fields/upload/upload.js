@@ -101,6 +101,7 @@ jQuery(document).ready(function(){
             wp.media.controller.Library.prototype.defaults.router = false;
             wp.media.controller.Library.prototype.defaults.searchable = true;
             wp.media.controller.Library.prototype.defaults.sortable = false;
+            wp.media.controller.Library.prototype.defaults.date = false;
 
             // If the media frame already exists, reopen it.
             if ( file_frame ) {

@@ -1,5 +1,11 @@
 == Changelog ==
 
+= 3.0.3 =
+Release Date: June 13th, 2022
+
+* [Fixed] Hotfix for cloned group fields (not supported yet)
+* [Fixed] Location rule fix to prevent wrong fields in the Taxonomy edit page
+
 = 3.0.2 =
 Release Date: May 5nd, 2022
 

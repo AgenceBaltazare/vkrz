@@ -28,21 +28,19 @@ class WP_maintenance {
 
         if( is_admin() ) {
             add_action( 'admin_menu', array( &$this, 'wpm_add_admin') );
-            add_filter( 'plugin_action_links', array( &$this, 'wpm_plugin_actions'), 10, 2 );
+            add_filter( 'plugin_action_links_wp-maintenance/wp-maintenance.php', array( &$this, 'wpm_plugin_action_links'), 10, 3 );
             add_action( 'admin_head', array( &$this, 'wpm_admin_head') );
-            add_action( 'init', array( &$this, 'wpm_date_picker') );
             add_action( 'admin_bar_menu', array( &$this, 'wpm_add_menu_admin_bar'), 999 );
-            add_action( 'admin_footer', array( &$this, 'wpm_print_footer_scripts') );        
+            add_action( 'admin_footer', array( &$this, 'wpm_print_footer_scripts') );
             add_action( 'admin_init', array( &$this, 'wpm_process_settings_import') );
-            add_action( 'admin_init', array( &$this, 'wpm_process_settings_export') );
-            add_action( 'after_setup_theme', array( &$this, 'wpm_theme_add_editor_styles') );
+            add_action( 'admin_init', array( &$this, 'wpm_process_settings_export') );     
+            //add_action( 'after_setup_theme', array( &$this, 'wpm_theme_add_editor_styles') );
         }
-        
-        
+
     }
 
     function wpm_theme_add_editor_styles() {
-        add_editor_style( plugins_url('../css/custom-editor-style.css', __FILE__ ) );
+        //add_editor_style( WPM_URL.'css/custom-editor-style.css' );
     }
     
     /**
@@ -54,116 +52,209 @@ class WP_maintenance {
     }
 
     public static function wpm_dashboard_install() {
-
-        $nameServer = '';
-        if( isset($_SERVER['SERVER_NAME']) ) {
-            $nameServer = $_SERVER['SERVER_NAME'];
-        }
         
-        $wpMaintenanceAdminOptions = array(
-            'color_bg' => "#f1f1f1",
-            'color_txt' => '#888888',
-            'color_bg_bottom' => '#333333',
-            'color_text_bottom' => '#FFFFFF',
+
+        if ( get_option('wp_maintenance_active', false) == false or get_option('wp_maintenance_active')=='' ) {
+            add_option('wp_maintenance_active', 0);
+        }
+
+        if ( get_option('wp_maintenance_settings_css', false) == false or get_option('wp_maintenance_settings_css')=='' ) {
+            add_option('wp_maintenance_settings_css', wpm_print_style());
+        }
+
+        $wpmAdminOptions = array(            
             'titre_maintenance' => __('This site is down for maintenance', 'wp-maintenance'),
             'text_maintenance' => __('Come back quickly!', 'wp-maintenance'),
-            'userlimit' => 'administrator',
-            'image' => WP_PLUGIN_URL.'/wp-maintenance/images/default2.png',
-            'image_width' => 450,
-            'image_height' => 450,
-            'font_title' => 'PT Sans',
-            'font_title_size' => 40,
-            'font_title_weigth' => 'normal',
-            'font_title_style' => '',
-            'font_text_style' => '',
-            'font_text' => 'Metrophobic',
-            'font_text_size' => 18,
-            'font_text_bottom' => 'PT Sans',
-            'font_text_weigth' => 'normal',
-            'font_bottom_size' => 12,
-            'font_bottom_weigth' => 'normal',
-            'font_bottom_style' => '',
-            'font_cpt' => 'PT Sans',
-            'color_cpt' => '#333333',
-            'enable_demo' => 0,
-            'color_field_text' => '#333333',
-            'color_text_button' => '#ffffff',
-            'color_field_background' => '#F1F1F1',
-            'color_field_border' => '#333333',
-            'color_button_onclick' => '#333333',
-            'color_button_hover' => '#cccccc',
-            'color_button' => '#1e73be',
             'newletter' => 0,
-            'active_cpt' => 0,
-            'newletter_font_text' => 'PT Sans',
-            'newletter_size' => 18,
-            'newletter_font_style' => '',
-            'newletter_font_weigth' => 'normal',
-            'type_newletter' => 'shortcode',
             'title_newletter' => '',
             'code_newletter' => '',
-            'code_analytics' => '',
-            'domain_analytics' => $nameServer,
-            'text_bt_maintenance' => '',
-            'add_wplogin' => 0,
-            'b_enable_image' => 0,
-            'b_opacity_image' => '0.2',
-            'disable' => 0,
-            'pageperso' => 0,
-            'date_cpt_size' => 6,
-            'color_bg_header' => '#ffffff',
-            'add_wplogin_title' => '',
-            'headercode' => '',
-            'message_cpt_fin' => '',
-            'b_repeat_image' => '',
-            'color_cpt_bg' => '',
-            'font_end_cpt' => 'PT Sans',
-            'cpt_end_size' => 3,
-            'enable_slider' => 0,
-            'slider_auto' => 'false',
-            'slider_nav' => 'false',
-            'container_active' => 0,
-            'container_color' => '#ffffff',
-            'container_opacity' => '0.5',
-            'container_width' => 80,
-            'dashboard_delete_db' => 1,
-            'error_503' => 1,
-            'enable_footer' => 0
-
+            'type_newletter' => 'shortcode',
+            'iframe_newletter' => ''
         );
-        $getMaintenanceSettings = get_option('wp_maintenance_settings');
-        if ( empty($getMaintenanceSettings) ) {
-            foreach ($wpMaintenanceAdminOptions as $key => $option) {
-                $wpMaintenanceAdminOptions[$key] = $option;
+        if ( get_option('wp_maintenance_settings', false) == false or get_option('wp_maintenance_settings')=='' ) {
+            foreach ($wpmAdminOptions as $keyAdminOptions => $optionAdminOptions) {
+                $wpmAdminOptions[$keyAdminOptions] = $optionAdminOptions;
             }
-            add_option('wp_maintenance_settings', $wpMaintenanceAdminOptions);
+            add_option('wp_maintenance_settings', $wpmAdminOptions);
         }
 
-        if(!get_option('wp_maintenance_active')) { add_option('wp_maintenance_active', 0); }
+        /* DEFINITION PARAMS COLORS */
+        $wpmSetsColorsOptions = array(
+            'color_bg' => "#f1f1f1",
+            'color_bg_header' => '#ffffff',
+            'color_title' => '#333333',
+            'font_title' => 'Anton',
+            'font_title_size' => '16',
+            'font_title_weigth' => '',
+            'font_title_style' => '',
+            'color_txt' => '#333333',
+            'font_text' => 'Anton',
+            'font_text_size' => '16',
+            'font_text_weigth' => '',
+            'font_text_style' => '',
+            'container_active' => 0,
+            'container_colorcontainer_opacity' => '0.5',
+            'container_width' => '80',
+            'color_cpt' => '#333333',
+            'color_cpt_bg' => '#ffffff',
+            'font_cpt' => 'Pacifico',
+            'date_cpt_size' => '6',
+            'font_end_cpt' => 'Pacifico',
+            'cpt_end_size' => '2',
+            'color_text_bottom' => '#ffffff',
+            'color_bg_bottom' => '#333333',
+            'font_text_bottom' => 'PT+Sans',
+            'font_bottom_size' => '12',
+            'font_bottom_weigth' => '',
+            'font_bottom_style' => '',
+            'newletter' => 0,
+            'newletter_font_text' => 'PT+Sans',
+            'newletter_size' => '14',
+            'newletter_font_weigth' => '',
+            'newletter_font_style' => '',
+            'color_field_text' => '#333333',
+            'color_field_border' => '#333333',
+            'color_field_background' => '#CCCCCC',
+            'color_text_button' => '#ffffff',
+            'color_button' => '#1e73be',
+            'color_button_hover' => '#ffffff',
+            'color_button_onclick' => '#ffffff'
+        );
 
-        if(!get_option('wp_maintenance_style') or get_option('wp_maintenance_style')=='') {
-            add_option('wp_maintenance_style', wpm_print_style());
+        if ( get_option('wp_maintenance_settings_colors', false) == false or get_option('wp_maintenance_settings_colors')=='' ) {
+            foreach ($wpmSetsColorsOptions as $keyColorsOptions => $optionColorsOptions) {
+                $wpmSetsColorsOptions[$keyColorsOptions] = $optionColorsOptions;
+            }
+            add_option('wp_maintenance_settings_colors', $wpmSetsColorsOptions);
         }
 
-        $wpParamSocialOption = array(
+        /* DEFINITION PARAMS PICTURE */
+        $wpmSetsPicturesOptions = array(
 
+            'image' => plugin_dir_url( __DIR__ ).'images/default2.png',
+            'image_width' => 450,
+            'image_height' => 450,            
+            'b_enable_image' => 0,
+            'b_image' => '',
+            'b_opacity_image' => '0.2',
+            'b_repeat_image' => 'repeat',
+            'b_fixed_image' => 1,
+            'b_pattern' => 0
+        );
+
+        if ( get_option('wp_maintenance_settings_picture', false) == false or get_option('wp_maintenance_settings_picture')=='' ) {
+            foreach ($wpmSetsPicturesOptions as $keyPicturesOptions => $optionPicturesOptions) {
+                $wpmSetsPicturesOptions[$keyPicturesOptions] = $optionPicturesOptions;
+            }
+            add_option('wp_maintenance_settings_picture', $wpmSetsPicturesOptions);
+        }
+
+        /* DEFINITION PARAMS COUNTDOWN */
+        $wpmSetsCountdownOptions = array(
+            'active_cpt' => 0,
+            'date_cpt_hh' => '',
+            'cptdate' => '',
+            'cpttime' => '',
+            'active_cpt_s' => '',
+            'disable' => '',
+            'message_cpt_fin' => ''
+        );
+        if ( get_option('wp_maintenance_settings_countdown', false) == false or get_option('wp_maintenance_settings_countdown')=='' ) {
+            foreach ($wpmSetsCountdownOptions as $keyCountdownOptions => $optionCountdownOptions) {
+                $wpmSetsCountdownOptions[$keyCountdownOptions] = $optionCountdownOptions;
+            }
+            add_option('wp_maintenance_settings_countdown', $wpmSetsCountdownOptions);
+        }
+
+        /* DEFINITION PARAMS CSS */
+        if ( get_option('wp_maintenance_settings_css', false) == false or get_option('wp_maintenance_settings_css')=='' ) {
+            add_option('wp_maintenance_settings_css', wpm_print_style() );
+        }
+
+        /* DEFINITION PARAMS SEO */
+        $wpmSetsSeoOptions = array(
+            'enable_seo' => 0,
+            'seo_title' => '',
+            'seo_description' => '',
+            'favicon' => ''
+        );
+        if ( get_option('wp_maintenance_settings_seo', false) == false or get_option('wp_maintenance_settings_seo')=='' ) {
+            foreach ($wpmSetsSeoOptions as $keySeoOptions => $optionSeoOptions) {
+                $wpmSetsSeoOptions[$keySeoOptions] = $optionSeoOptions;
+            }
+            add_option('wp_maintenance_settings_seo', $wpmSetsSeoOptions);
+        }
+
+        /* DEFINITION PARAMS SOCIAL NETWORKS */
+        $wpmSocialsNetworksOptions = array(
             'enable' => 0,
-            'texte' => 'Follow me on',
-            'style' => 'style1',
+            'texte' => __('Follow me on', 'wp-maintenance'),
             'size' => 64,
+            'style' => 'style1',
             'position' => 'bottom',
             'align' => 'center',
             'theme' => ''
         );
-
-        $getParamSocialOption = get_option('wp_maintenance_social_options');
-        if ( empty($getParamSocialOption) ) {
-            foreach ($wpParamSocialOption as $key => $option) {
-                $wpParamSocialOption[$key] = $option;
+        if ( get_option('wp_maintenance_settings_socialnetworks', false) == false or get_option('wp_maintenance_settings_socialnetworks')=='' ) {
+            foreach ($wpmSocialsNetworksOptions as $keyNetworksOptions => $optionNetworksOptions) {
+                $wpmSocialsNetworksOptions[$keyNetworksOptions] = $optionNetworksOptions;
             }
-            add_option('wp_maintenance_social_options', $wpParamSocialOption);
+            add_option('wp_maintenance_settings_socialnetworks', $wpmSocialsNetworksOptions);
         }
-        
+
+        /* DEFINITION PARAMS LIST SOCIAL NETWORKS */
+        $wpmListSocialsNetworksOptions = array(
+            'facebook' => '',
+            'twitter' => '',
+            'linkedin' => '', 
+            'flickr' => '', 
+            'youtube' => '', 
+            'pinterest' => '', 
+            'vimeo' => '', 
+            'instagram' => '', 
+            'about_me' => '', 
+            'soundcloud' => '', 
+            'skype' => '', 
+            'tumblr' => '', 
+            'blogger' => '', 
+            'paypal' => '', 
+            'email' => '',
+        );
+        if ( get_option('wp_maintenance_list_socialnetworks', false) == false or get_option('wp_maintenance_list_socialnetworks')=='' ) {
+            foreach ($wpmListSocialsNetworksOptions as $keyListNetworksOptions => $optionListNetworksOptions) {
+                $wpmListSocialsNetworksOptions[$keyListNetworksOptions] = $optionListNetworksOptions;
+            }
+            add_option('wp_maintenance_list_socialnetworks', $wpmListSocialsNetworksOptions);
+        }
+
+        /* DEFINITION PARAMS FOOTER */
+        $wpmSetsFootersOptions = array(
+            'enable_footer' => 0,
+            'text_bt_maintenance' => '',
+            'add_wplogin' => 0,
+            'add_wplogin_title' => ''
+        );
+        if ( get_option('wp_maintenance_settings_footer', false) == false or get_option('wp_maintenance_settings_footer')=='' ) {
+            foreach ($wpmSetsFootersOptions as $keyFootersOptions => $optionFootersOptions) {
+                $wpmSetsFootersOptions[$keyFootersOptions] = $optionFootersOptions;
+            }
+            add_option('wp_maintenance_settings_footer', $wpmSetsFootersOptions);
+        }
+
+        /* DEFINITION PARAMS SETTINGS */
+        $wpmSetsOptions = array(
+            'pageperso' => 0,
+            'dashboard_delete_db' => 0,
+            'error_503' => 1,
+            'id_pages' => '',
+            'headercode' => ''
+        );
+        if ( get_option('wp_maintenance_settings_options', false) == false or get_option('wp_maintenance_settings_options')=='' ) {
+            foreach ($wpmSetsOptions as $keySetsOptions => $optionSetsOptions) {
+                $wpmSetsOptions[$keySetsOptions] = $optionSetsOptions;
+            }
+            add_option('wp_maintenance_settings_options', $wpmSetsOptions);
+        }       
 
     }
 
@@ -178,19 +269,29 @@ class WP_maintenance {
 
             delete_option('wp_maintenance_settings');
             delete_option('wp_maintenance_version');
-            delete_option('wp_maintenance_style');
-            delete_option('wp_maintenance_limit');            
-            delete_option('wp_maintenance_social');
+            delete_option('wp_maintenance_settings_colors');
+            delete_option('wp_maintenance_settings_countdown');
+            delete_option('wp_maintenance_settings_seo');
+            delete_option('wp_maintenance_settings_socialnetworks');
+            delete_option('wp_maintenance_settings_footer');
+            delete_option('wp_maintenance_settings_options');
+            delete_option('wp_maintenance_limit'); 
             delete_option('wp_maintenance_social_options');
-            delete_option('wp_maintenance_social');
-            delete_option('wp_maintenance_slider_options');
-            delete_option('wp_maintenance_slider');
             delete_option('wp_maintenance_ipaddresses');
             
         }
 
     }
 
+
+    function wpm_plugin_action_links($actions, $file, $plugin_data) {
+        $new_actions = array();
+        $new_actions[] = sprintf( '<a href="'.WPM_ADMIN_URL.'">%s</a>', __('Settings', 'wp-maintenance') );
+        $new_actions = array_merge($new_actions, $actions);
+        $uninstall_url = WPM_ADMIN_URL.'&amp;action=uninstall&amp;_wpnonce='.wp_create_nonce('wpm_uninstall_'.get_current_user_id().'_wpnonce');
+        $new_actions[] = '<span class="delete"><a href="'.$uninstall_url.'" class="delete">'.__('Uninstall','=wp-maintenance').'</a></span>';
+        return $new_actions;
+    }
 
     // Add "Réglages" link on plugins page
     function wpm_plugin_actions( $links, $file ) {
@@ -214,10 +315,10 @@ class WP_maintenance {
         global $_wp_admin_css_colors;
         // Add Style for all admin
         echo '
-<style>#wpadminbar .wpmbackground-on > .ab-item{ color:#fff;background-color: #f44; }#wpadminbar .wpmbackground-on .ab-icon:before { content: "\f308";top: 2px;color:#fff !important; }#wpadminbar .wpmbackground-on:hover > .ab-item{ background-color: #a30 !important;color:#fff !important; }#wpadminbar .wpmbackground-off > .ab-item{ color:#fff; }#wpadminbar .wpmbackground-off .ab-icon:before { content: "\f308";top: 2px;color:#fff !important; }</style>        
+<style>#wpadminbar .wpmbackground-on > .ab-item{ color:#fff;background-color: #f44; }#wpadminbar .wpmbackground-on .ab-icon:before { content: "\f107";top: 2px;color:#fff !important; }#wpadminbar .wpmbackground-on:hover > .ab-item{ background-color: #a30 !important;color:#fff !important; }#wpadminbar .wpmbackground-off > .ab-item{ color:#fff; }#wpadminbar .wpmbackground-off .ab-icon:before { content: "\f107";top: 2px;color:#fff !important; }</style>        
         ';
         if (isset($_GET['page']) && strpos($_GET['page'], 'wp-maintenance') !==false) {
-            echo '<link rel="stylesheet" type="text/css" media="all" href="' .WPM_PLUGIN_URL.'css/wpm-admin.css">';
+            //echo '<link rel="stylesheet" type="text/css" media="all" href="' .WPM_URL.'css/wpm-admin.css'.'">';
 
         } else {
             echo '
@@ -332,17 +433,6 @@ class WP_maintenance {
         }
     }
 
-    /* DATEPICKER */
-    function wpm_date_picker() {
-
-        if (isset($_GET['page']) && strpos($_GET['page'], 'wp-maintenance') !==false) {
-            wp_enqueue_script( 'jquery' );
-            wp_enqueue_script('jquery-ui-datepicker');
-            wp_enqueue_style('jquery-style', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/smoothness/jquery-ui.css');
-        }
-
-    }
-
     function wpm_init_wysiwyg() {
         wp_enqueue_script('editor');
         add_thickbox();
@@ -351,18 +441,9 @@ class WP_maintenance {
         wp_enqueue_script('quicktags');
     }
 
-    public static function wpm_get_options() {
-
-        // Récupère les paramètres sauvegardés
-        if(get_option('wp_maintenance_settings')) { extract(get_option('wp_maintenance_settings')); }
-        $paramMMode = get_option('wp_maintenance_settings');
-
-        return $paramMMode;
-    }
-
     function wpm_add_admin() {
 
-        add_menu_page( 'WP Maintenance Settings', 'WP Maintenance', 'manage_options', 'wp-maintenance', array( $this, 'wpm_dashboard_page'), plugins_url( '/wp-maintenance/images/wpm-menu-icon.png' ) );
+        add_menu_page( 'WP Maintenance Settings', 'WP Maintenance', 'manage_options', 'wp-maintenance', array( $this, 'wpm_dashboard_page'),  WPM_URL.'images/wpm-menu-icon.png' );
         add_submenu_page( 'wp-maintenance', 'WP Maintenance > '.__('General', 'wp-maintenance'), __('General', 'wp-maintenance'), 'manage_options', 'wp-maintenance', array( $this, 'wpm_dashboard_page') );
         add_submenu_page( 'wp-maintenance', 'WP Maintenance > '.__('Colors & Fonts', 'wp-maintenance'), __('Colors & Fonts', 'wp-maintenance'), 'manage_options', 'wp-maintenance-colors', array( $this, 'wpm_colors_page') );
         add_submenu_page( 'wp-maintenance', 'WP Maintenance > '.__('Pictures', 'wp-maintenance'), __('Pictures', 'wp-maintenance'), 'manage_options', 'wp-maintenance-picture', array( $this, 'wpm_picture_page') );
@@ -381,25 +462,24 @@ class WP_maintenance {
             wp_enqueue_script('media-upload');
             wp_enqueue_script('thickbox');
 
-            wp_register_script('wpm-my-upload', WPM_PLUGIN_URL.'js/wpm-script.js', array('jquery','media-upload','thickbox'));
+            wp_register_script('wpm-my-upload', WPM_URL.'js/wpm-script.js', array('jquery','media-upload','thickbox'));
             wp_enqueue_script('wpm-my-upload');
 
-            wp_enqueue_style('jquery-defaut-style', WPM_PLUGIN_URL.'js/lib/themes/default.css');
-            wp_enqueue_style('jquery-date-style', WPM_PLUGIN_URL.'js/lib/themes/default.date.css' );
-            wp_enqueue_style('jquery-time-style', WPM_PLUGIN_URL.'js/lib/themes/default.time.css');
-            wp_enqueue_style('jquery-fontselect-style', WPM_PLUGIN_URL.'js/fontselect/fontselect.css' );
+            wp_enqueue_style('jquery-defaut-style', WPM_URL.'js/lib/themes/default.css');
+            wp_enqueue_style('jquery-date-style', WPM_URL.'js/lib/themes/default.date.css');
+            wp_enqueue_style('jquery-time-style', WPM_URL.'js/lib/themes/default.time.css');
+            wp_enqueue_style('jquery-fontselect-style', WPM_URL.'js/fontselect/fontselect.css');
 
             wp_enqueue_style( 'wp-color-picker' );
-            wp_enqueue_script( 'my-script-handle', WPM_PLUGIN_URL.'js/wpm-color-options.js', array( 'wp-color-picker' ), false, true );
+            wp_enqueue_script( 'my-script-handle', WPM_URL.'js/wpm-color-options.js', array( 'wp-color-picker' ), false, true );
 
             wp_enqueue_style('thickbox');
-            wp_enqueue_style('jquery-style', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/smoothness/jquery-ui.css');
             
             /* Image picker */
             wp_enqueue_style('imagepicker');
-            wp_enqueue_style('imagepicker', WPM_PLUGIN_URL.'css/image-picker.css');
+            wp_enqueue_style('imagepicker', WPM_URL.'css/image-picker.css');
             
-            wp_register_script('imagepickerjs', WPM_PLUGIN_URL.'js/image-picker.min.js', 'jquery', '1.0');
+            wp_register_script('imagepickerjs', WPM_URL.'js/image-picker.min.js', 'jquery', WPM_VERSION);
             wp_enqueue_script('imagepickerjs');
 
             $wpm_settings['codeEditor'] = wp_enqueue_code_editor(array('type' => 'text/css'));
@@ -408,8 +488,10 @@ class WP_maintenance {
             wp_enqueue_script('wp-theme-plugin-editor');
             wp_enqueue_style('wp-codemirror');
 
-            wp_register_script('wpm_sticky', WPM_PLUGIN_URL.'js/jquery.sticky.js', 'jquery', '1.0');
+            wp_register_script('wpm_sticky', WPM_URL.'js/jquery.sticky.js', 'jquery', WPM_VERSION);
             wp_enqueue_script('wpm_sticky');
+            
+            wp_enqueue_script( 'emosm-leafletprovidersjs', WPM_URL.'js/jquery.sortable.js', 'jquery', WPM_VERSION);
 
             // If you're not including an image upload then you can leave this function call out
             wp_enqueue_media();
@@ -420,8 +502,11 @@ class WP_maintenance {
               'title'  => __( 'Choose Image', 'wp-maintenance' ),
             ) );
 
-            wp_register_script('wpm-admin-fontselect', WPM_PLUGIN_URL.'js/fontselect/jquery.fontselect.min.js' );
+            wp_register_script('wpm-admin-fontselect', WPM_URL.'js/fontselect/jquery.fontselect.min.js' );
             wp_enqueue_script('wpm-admin-fontselect');
+
+            wp_enqueue_style('admincss');
+            wp_enqueue_style('admincss', WPM_URL.'css/wpm-admin.css');           
 
         }
         
@@ -509,13 +594,13 @@ class WP_maintenance {
     function wpm_print_footer_scripts() {
 
        if (isset($_GET['page']) && strpos($_GET['page'], 'wp-maintenance') !==false) {
-            wp_register_script('wpm-picker', WPM_PLUGIN_URL.'js/lib/picker.js' );
+            wp_register_script('wpm-picker', WPM_URL.'js/lib/picker.js' );
             wp_enqueue_script('wpm-picker');
-            wp_register_script('wpm-datepicker', WPM_PLUGIN_URL.'js/lib/picker.date.js' );
+            wp_register_script('wpm-datepicker', WPM_URL.'js/lib/picker.date.js' );
             wp_enqueue_script('wpm-datepicker');
-            wp_register_script('wpm-timepicker', WPM_PLUGIN_URL.'js/lib/picker.time.js' );
+            wp_register_script('wpm-timepicker', WPM_URL.'js/lib/picker.time.js' );
             wp_enqueue_script('wpm-timepicker');
-            wp_register_script('wpm-legacy', WPM_PLUGIN_URL.'js/lib/legacy.js' );
+            wp_register_script('wpm-legacy', WPM_URL.'js/lib/legacy.js' );
             wp_enqueue_script('wpm-legacy');
         }
     }
@@ -525,34 +610,37 @@ class WP_maintenance {
      */
     function wpm_process_settings_export() {
 
-        if( empty( $_POST['wpm_action'] ) || 'export_settings' != $_POST['wpm_action'] )
+        if(empty($_POST['wpm_action']) || 'export_settings'!=$_POST['wpm_action'])
             return;
 
-        if( ! wp_verify_nonce( $_POST['wpm_export_nonce'], 'wpm_export_nonce' ) )
+        if(!wp_verify_nonce($_POST['wpm_export_nonce'], 'wpm_export_nonce'))
             return;
 
-        if( ! current_user_can( 'manage_options' ) )
+        if(!current_user_can('manage_options'))
             return;
 
-        $settingsJson = array(
+        $settingsJson = array(           
+            'active' => get_option('wp_maintenance_active'),
             'settings' => get_option('wp_maintenance_settings'),
-            'social' => get_option('wp_maintenance_social'),
-            'social_options' => get_option('wp_maintenance_social_options'),
-            'slider' => get_option('wp_maintenance_slider'),            
-            'slider_options' => get_option('wp_maintenance_slider_options'),
+            'settings_colors' => get_option('wp_maintenance_settings_colors'),
+            'settings_countdown' => get_option('wp_maintenance_settings_countdown'),
+            'settings_seo' => get_option('wp_maintenance_settings_seo'),
+            'settings_socialnetworks' => get_option('wp_maintenance_settings_socialnetworks'),
+            'settings_footer' => get_option('wp_maintenance_settings_footer'),
+            'settings_options' => get_option('wp_maintenance_settings_options'),
             'limit' => get_option('wp_maintenance_limit'),
-            'ipaddresses' => get_option('wp_maintenance_ipaddresses'),
-            'style' => get_option('wp_maintenance_style')
-            );
+            'social_options' => get_option('wp_maintenance_social_options'),
+            'ipaddresses' => get_option('wp_maintenance_ipaddresses')
+        );
         
-        ignore_user_abort( true );
+        ignore_user_abort(true);
 
         nocache_headers();
-        header( 'Content-Type: application/json; charset=utf-8' );
-        header( 'Content-Disposition: attachment; filename=wp-maintenance-' . date( 'm-d-Y' ) . '.json' );
-        header( "Expires: 0" );
+        header('Content-Type: application/json; charset=utf-8');
+        header('Content-Disposition: attachment; filename=wp-maintenance-'.parse_url(get_site_url(), PHP_URL_HOST).'-'.date('m-d-Y').'.json');
+        header("Expires: 0");
 
-        echo json_encode( $settingsJson );
+        echo json_encode($settingsJson);
         exit;
     }
 
@@ -562,36 +650,40 @@ class WP_maintenance {
      */
     function wpm_process_settings_import() {
 
-        if( empty( $_POST['wpm_action'] ) || 'import_settings' != $_POST['wpm_action'] )
+        if(empty($_POST['wpm_action']) || 'import_settings'!=$_POST['wpm_action'])
             return;
 
-        if( ! wp_verify_nonce( $_POST['wpm_import_nonce'], 'wpm_import_nonce' ) )
+        if(!wp_verify_nonce( $_POST['wpm_import_nonce'], 'wpm_import_nonce'))
             return;
 
-        if( ! current_user_can( 'manage_options' ) )
+        if(!current_user_can('manage_options'))
             return;
 
-        $extensionExploded = explode('.', $_FILES['wpm_import_file']['name']);
+        $extensionExploded = explode('.', esc_url($_FILES['wpm_import_file']['name']));
         $extension = strtolower(end($extensionExploded));
 
-        if( $extension != 'json' ) {
-            wp_die( __( 'Please upload a valid .json file' ) );
+        if($extension!='json') {
+            wp_die(__('Please upload a valid .json file'));
         }
 
         $import_file = $_FILES['wpm_import_file']['tmp_name'];
 
-        if( empty( $import_file ) ) {
+        if(empty($import_file)) {
             wp_die( __( 'Please upload a file to import', 'wp-maintenance' ) );
         }
 
         // Retrieve the settings from the file and convert the json object to an array.
-        $settings = (array) json_decode( file_get_contents( $import_file ), true);
-
-        foreach($settings as $name=>$value) {
-            update_option('wp_maintenance_'.$name, $value);
+        $settings = (array) json_decode(file_get_contents($import_file), true);
+        if(isset($settings)) {
+            foreach($settings as $name=>$value) {
+                if($name=='active') {
+                    update_option('wp_maintenance_active', sanitize_text_field($value));
+                } else {
+                    $updateSetting = wpm_update_settings($value, 'wp_maintenance_'.$name);
+                }
+            }
+            echo '<div id="message" class="updated fade"><p><strong>'.__('New settings imported successfully!', 'wp-maintenance').'</strong></p></div>';
         }
-
-      echo '<div id="message" class="updated fade"><p><strong>' . __('New settings imported successfully!', 'wp-maintenance') . '</strong></p></div>';
 
     }
 
@@ -608,16 +700,29 @@ class WP_maintenance {
         $paramIpAddress = get_option('wp_maintenance_ipaddresses');
 
         /* Désactive le mode maintenance pour les IP définies */
-        if( isset($paramIpAddress) ) {
-            $lienIpAddress = explode("\r\n", $paramIpAddress);
-            $ip_autorized = array();
-            foreach($lienIpAddress as $ipAutorized) {
-                if( $ipAutorized!='' ) {
-                    array_push( $ip_autorized, $ipAutorized);
+        if(isset($paramIpAddress) && $paramIpAddress!='') {
+
+            if( WPM_VERSION <= '6.0.9') {
+
+                $ip_autorized = array();
+                $lienIpAddress = explode("\r\n", $paramIpAddress);
+                foreach($lienIpAddress as $ipAutorized) {
+                    if($ipAutorized!='') {
+                        array_push($ip_autorized, $ipAutorized);
+                    }
                 }
-            }          
-            if ( array_search(wpm_get_ip(), $ip_autorized) !== FALSE ) {
-                $statusActive = 0;
+                if(array_search(wpm_get_ip(), $ip_autorized)!== FALSE) {
+                    $statusActive = 0;
+                }
+
+            } else {
+
+                foreach($paramIpAddress as $ipAutorized) {
+                    //error_log(wpm_get_ip().' == '.$ipAutorized);
+                    if($ipAutorized!='' && wpm_get_ip() == $ipAutorized) {    
+                        $statusActive = 0;
+                    }
+                }
             }
             
         }
@@ -628,6 +733,7 @@ class WP_maintenance {
 
         if( isset($paramLimit) && !empty($paramLimit) ) {
             foreach($paramLimit as $limitrole) {
+
                 if( is_user_logged_in() ) {
                     $user_id = get_current_user_id(); 
                     $user_info = get_userdata($user_id);
@@ -669,21 +775,21 @@ class WP_maintenance {
         if(get_option('wp_maintenance_settings')) { extract(get_option('wp_maintenance_settings')); }
         $paramMMode = get_option('wp_maintenance_settings');
 
-        if(get_option('wp_maintenance_slider')) { extract(get_option('wp_maintenance_slider')); }
-        $paramSlider = get_option('wp_maintenance_slider');
-
-        if(get_option('wp_maintenance_slider_options')) { extract(get_option('wp_maintenance_slider_options')); }
-        $paramSliderOptions = get_option('wp_maintenance_slider_options');
-
         $paramSocialOption = get_option('wp_maintenance_social_options');
+
+        // Récupère les paramètres sauvegardés Options
+        if(get_option('wp_maintenance_settings_options')) { extract(get_option('wp_maintenance_settings_options')); }
+        $paramsOptions = get_option('wp_maintenance_settings_options');
+
+        // Récupère les paramètres sauvegardés compte à rebours
+        if(get_option('wp_maintenance_settings_countdown')) { extract(get_option('wp_maintenance_settings_countdown')); }
+        $paramsCountdown = get_option('wp_maintenance_settings_countdown');
 
         /* on doit retourner 12/31/2020 5:00 AM */
         $dateNow = strtotime(date("Y-m-d H:i:s")) + 3600 * get_option('gmt_offset');
-        if( get_option('wp_maintenance_version') <= '2.7.0') {
-            $dateFinCpt = strtotime( date($paramMMode['date_cpt_jj'].'-'.$paramMMode['date_cpt_mm'].'-'.$paramMMode['date_cpt_aa'].' '.$paramMMode['date_cpt_hh'].':'.$paramMMode['date_cpt_mn'].':'.$paramMMode['date_cpt_ss']) );
-        } else if( isset($paramMMode['cptdate']) && !empty($paramMMode['cptdate']) ) {
-            $dateFinCpt = strtotime( date( str_replace('/', '-', $paramMMode['cptdate']).' '.$paramMMode['cpttime'].':00') );
-            $dateCpt = date( 'm/d/Y h:i A', strtotime( $paramMMode['cptdate'].' '.$paramMMode['cpttime'] ) );
+        if( isset($paramsCountdown['cptdate']) && !empty($paramsCountdown['cptdate']) ) {
+            $dateFinCpt = strtotime( date( str_replace('/', '-', $paramsCountdown['cptdate']).' '.$paramsCountdown['cpttime'].':00') );
+            $dateCpt = date( 'm/d/Y h:i A', strtotime( $paramsCountdown['cptdate'].' '.$paramsCountdown['cpttime'] ) );
         } else {
             $dateCpt = '';
         }
@@ -699,13 +805,13 @@ class WP_maintenance {
             $urlTpl = '';
         }
 
-        if( isset($paramMMode['pageperso']) && $paramMMode['pageperso']==1 && $urlTpl !== '' ) {
+        if( isset($paramsOptions['pageperso']) && $paramsOptions['pageperso']==1 && $urlTpl !== '' ) {
             include_once( $urlTpl );
             die();
         }  
         
         /* Si on désactive le mode maintenance en fin de compte à rebours */
-        if( ( isset($paramMMode['disable']) && $paramMMode['disable']==1 ) && $this->wpm_check_active() == 1 ) {
+        if( ( isset($paramsCountdown['disable']) && $paramsCountdown['disable']==1 ) && $this->wpm_check_active() == 1 ) {
 
             if( $dateNow > $dateFinCpt ) {
                 $ChangeStatus = wpm_change_active();
@@ -715,8 +821,8 @@ class WP_maintenance {
 
         $statusPageActive = 1;
         /*Désactive le mode maintenance pour les PAGE ID définies */
-        if( isset($paramMMode['id_pages']) && !empty($paramMMode['id_pages']) ) {
-            $listPageId = explode(',', $paramMMode['id_pages']);
+        if( isset($paramsOptions['id_pages']) && !empty($paramsOptions['id_pages']) ) {
+            $listPageId = explode(',', $paramsOptions['id_pages']);
             foreach($listPageId as $keyPageId => $valPageId) {
                 if( isset($post->ID) && trim($valPageId) == $post->ID ) {
                     $statusPageActive = 0;
@@ -747,7 +853,7 @@ class WP_maintenance {
         nocache_headers();
         if ($statusPageActive == 1) {
 
-            if( isset($paramMMode['error_503']) && $paramMMode['error_503']== 1 ) {
+            if( isset($paramsOptions['error_503']) && $paramsOptions['error_503']== 1 ) {
                 header('HTTP/1.1 503 Service Temporarily Unavailable');
                 header('Status: 503 Service Temporarily Unavailable');
                 header('Retry-After: 86400'); // retry in a day
@@ -767,22 +873,13 @@ class WP_maintenance {
                 "{Text}" => wpm_text(),
                 "{Favicon}" => wpm_favicon(), 
                 "{CustomCSS}" => wpm_customcss(),
-                "{Analytics}" => wpm_analytics(),
                 "{TopSocialIcon}" => wpm_social_position("top"),
                 "{BottomSocialIcon}" => wpm_social_position("bottom"),
                 "{FooterText}" => wpm_footer_text(),
                 "{AddStyleWysija}" => sanitize_text_field(wpm_stylenewsletter()),
                 "{Newsletter}" => wpm_newsletter(),
-                "{SliderCSS}" => WPM_Slider::slider_css(),
-                "{ScriptSlider}" => WPM_Slider::slider_scripts(),
-                "{ScriptSlideshow}" => WPM_Slider::slider_functions(),
                 "{Counter}" => WPM_Countdown::display($dateCpt),
-                "{SlideshowAL}" => WPM_Slider::slidershow('abovelogo'),
-                "{SlideshowBL}" => WPM_Slider::slidershow('belowlogo'),
-                "{SlideshowBT}" => WPM_Slider::slidershow('belowtext'),
                 "{Url}" => WPM_PLUGIN_URL
-
-
             );
             
             echo strtr($template, $template_tags);

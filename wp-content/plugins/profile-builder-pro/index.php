@@ -3,7 +3,7 @@
 Plugin Name: Profile Builder Pro
 Plugin URI: https://www.cozmoslabs.com/wordpress-profile-builder/
 Description: Get the best out of Profile Builder and enjoy fully customizable login, registration, and edit profile forms, along with front-end user listing, multiple registration & edit profile forms, custom redirects, email customizer, and more.
-Version: 3.7.5
+Version: 3.7.6
 Author: Cozmoslabs
 Author URI: https://www.cozmoslabs.com/
 Text Domain: profile-builder
@@ -43,6 +43,7 @@ function wppb_pro_activate( $network_wide ) {
 }
 
 add_action('admin_notices', 'wppb_pro_admin_notice');
+add_action('network_admin_notices', 'wppb_pro_admin_notice');
 function wppb_pro_admin_notice(){
 
     // Notification that the current version cannot be activated because there is another active version conflicting

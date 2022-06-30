@@ -102,7 +102,10 @@ class LicenseActivate implements RequestAjaxHandler {
 
 		$this->activation_key_storage->save( $activation_key );
 		$this->activation_updater->update( $activation_key );
-		$this->plugins_updater->update( $activation_key, true );
+		$this->plugins_updater->update( $activation_key );
+
+		wp_clean_plugins_cache();
+		wp_update_plugins();
 
 		wp_send_json_success( [
 			'permissions' => $response->get( 'permissions' ),

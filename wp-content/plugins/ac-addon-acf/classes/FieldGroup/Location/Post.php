@@ -54,6 +54,7 @@ class Post implements FieldGroup\Query {
 		remove_filter( 'acf/location/rule_match/post_category', '__return_true', 16 );
 		remove_filter( 'acf/location/rule_match/post_status', '__return_true', 16 );
 		remove_filter( 'acf/location/rule_match/post_taxonomy', '__return_true', 16 );
+		remove_filter( 'acf/location/rule_match/post_template', '__return_true', 16 );
 
 		return $groups;
 	}

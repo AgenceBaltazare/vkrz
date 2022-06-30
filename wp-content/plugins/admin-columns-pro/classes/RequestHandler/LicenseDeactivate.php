@@ -106,7 +106,10 @@ class LicenseDeactivate implements RequestHandler {
 			return;
 		}
 
-		$this->products_updater->update( $token, true );
+		$this->products_updater->update( $token );
+
+		wp_clean_plugins_cache();
+		wp_update_plugins();
 
 		$this->success_notice( $response->get( 'message' ) );
 	}
