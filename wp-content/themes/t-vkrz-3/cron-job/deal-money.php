@@ -21,6 +21,7 @@ while ($vainkeur->have_posts()) : $vainkeur->the_post();
     $money_badges       = 0;
     $money_total        = 0;
     $list_rankings      = array();
+    $list_tops          = array();
 
     $classement = new WP_Query(array(
         'ignore_sticky_posts'    => true,
@@ -41,6 +42,7 @@ while ($vainkeur->have_posts()) : $vainkeur->the_post();
     while ($classement->have_posts()) : $classement->the_post();
 
         $id_ranking = get_the_ID();
+        $id_top     = get_field('id_tournoi_r', $id_ranking);
 
         if (get_field('done_r') == "done") {
             $nb_tops_complete = $nb_tops_complete + 1;
@@ -49,6 +51,7 @@ while ($vainkeur->have_posts()) : $vainkeur->the_post();
         $nb_votes = $nb_votes + get_field('nb_votes_r');
 
         array_push($list_rankings, $id_ranking);
+        array_push($list_tops, $id_top);
 
     endwhile;
 
@@ -60,6 +63,8 @@ while ($vainkeur->have_posts()) : $vainkeur->the_post();
     }
 
     update_field('liste_des_toplist_vkrz', $list_rankings, $id_vainkeur);
+    update_field('liste_des_top_vkrz', $list_tops, $id_vainkeur);
+
     update_field('nb_vote_vkrz', $nb_votes, $id_vainkeur);
     update_field('nb_top_vkrz', $nb_tops_complete, $id_vainkeur);
 
