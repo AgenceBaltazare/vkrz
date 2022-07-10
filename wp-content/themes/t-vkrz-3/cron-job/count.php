@@ -68,7 +68,6 @@ while ($vainkeur->have_posts()) : $vainkeur->the_post();
         $total_money_creator = $total_money_creator + get_field('money_creator_vkrz');
     }
 
-
 endwhile;
 
 $count_tops     = $classement->post_count;

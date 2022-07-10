@@ -23,6 +23,9 @@ function get_user_infos($uuiduser){
     $user_email         = "";
     $nb_top_vkrz        = 0;
     $nb_vote_vkrz       = 0;
+    $money_vkrz         = 0;
+    $current_money_vkrz = 0;
+    $money_createur_vkrz= 0;
     $info_user_level    = array(
         "level_ico"     => "",
         "level_number"  => "",

@@ -1,5 +1,4 @@
 <?php
-
 function deal_vainkeur_entry($user_id = false){
 
     global $uuiduser;
@@ -49,14 +48,17 @@ function deal_vainkeur_entry($user_id = false){
             'post_title'  => $uuiduser,
             'post_status' => 'publish',
         );
-        $id_vainkeur  = wp_insert_post($new_vainkeur_entry);
 
-        update_field('uuid_user_vkrz', $uuiduser, $id_vainkeur);
-        update_field('nb_vote_vkrz', 0, $id_vainkeur);
-        update_field('nb_top_vkrz', 0, $id_vainkeur);
+        if($uuiduser){
+            $id_vainkeur  = wp_insert_post($new_vainkeur_entry);
 
-        // Save vainkeur to firebase
-        wp_update_post(array('ID' => $id_vainkeur));
+            update_field('uuid_user_vkrz', $uuiduser, $id_vainkeur);
+            update_field('nb_vote_vkrz', 0, $id_vainkeur);
+            update_field('nb_top_vkrz', 0, $id_vainkeur);
+
+            // Save vainkeur to firebase
+            wp_update_post(array('ID' => $id_vainkeur));
+        }
     }
 
     if(!$id_vainkeur){

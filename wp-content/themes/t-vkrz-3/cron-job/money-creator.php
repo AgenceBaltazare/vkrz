@@ -25,7 +25,7 @@ foreach ($users as $user) {
         'ignore_sticky_posts'    => true,
         'update_post_meta_cache' => false,
         'no_found_rows'          => false,
-        'author'                 => $user_id 
+        'author'                 => $user_id
     ));
 
     if ($vainkeur_entry->have_posts()) {
