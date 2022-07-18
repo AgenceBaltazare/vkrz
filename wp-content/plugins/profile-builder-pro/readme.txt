@@ -7,7 +7,7 @@ custom registration, custom registration form, custom registration page, extra u
 front-end register, front-end registration, frontend edit profile, edit profileregistration, customize profile, user fields, builder, profile builder, custom fields, avatar
 Requires at least: 3.1
 Tested up to: 6.0
-Stable tag: 3.7.6
+Stable tag: 3.7.7
 
 
 Login, registration and edit profile shortcodes for the front-end. Also you can choose what fields should be displayed or add custom ones.
@@ -101,6 +101,11 @@ This plugin only adds/removes fields in the front-end. The default information-f
 
 
 == Changelog ==
+= 3.7.7 =
+* Fix: cases where forms were submitted before the file in an simple upload field was uploaded
+* Fix: don't show unnapproved users in the userlisting
+* Fix: add back social connect option to bypass email confirmation
+
 = 3.7.6 =
 * Fix: make sure GDPR consent is properly stored when registering through Social Connect and Email Confirmation is active
 * Misc: remove the Filter Media menu from the Upload field Media Gallery popup

@@ -62,6 +62,13 @@ function validate_simple_upload(){
                 formData.append('nonce', wppb_upload_script_vars.nonce);
                 formData.append('name', fieldName);
 
+                var alreadyDisabled = false;
+                if ( jQuery( 'p.form-submit .submit.button' ).prop( 'disabled' ) ) {
+                    alreadyDisabled = true;
+                } else {
+                    jQuery( "p.form-submit .submit.button" ).prop( 'disabled', true );
+                }
+
                 jQuery.ajax({
                     url: wppb_upload_script_vars.ajaxUrl,
                     type: 'POST',
@@ -70,6 +77,9 @@ function validate_simple_upload(){
                     data: formData,
                     success: function(response){
                         jQuery("input#"+fieldName).val(JSON.parse(response));
+                        if ( !alreadyDisabled ) {
+                            jQuery("p.form-submit .submit.button").prop('disabled', false);
+                        }
                     },
                 });
             }
