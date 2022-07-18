@@ -62,8 +62,8 @@ while ($vainkeur->have_posts()) : $vainkeur->the_post();
         $nb_tops_complete = 0;
     }
 
-    update_field('liste_des_toplist_vkrz', $list_rankings, $id_vainkeur);
-    update_field('liste_des_top_vkrz', $list_tops, $id_vainkeur);
+    update_field('liste_des_toplist_vkrz', json_encode($list_rankings), $id_vainkeur);
+    update_field('liste_des_top_vkrz', json_encode($list_tops), $id_vainkeur);
 
     update_field('nb_vote_vkrz', $nb_votes, $id_vainkeur);
     update_field('nb_top_vkrz', $nb_tops_complete, $id_vainkeur);
