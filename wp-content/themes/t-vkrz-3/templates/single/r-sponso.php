@@ -12,13 +12,13 @@ global $banner;
 $id_top_global = $id_top;
 if (is_user_logged_in() && env() != "local") {
   if (false === ($user_tops = get_transient('user_' . $user_id . '_get_user_tops'))) {
-    $user_tops = get_user_tops();
+    $user_tops = get_user_tops($id_vainkeur);
     set_transient('user_' . $user_id . '_get_user_tops', $user_tops, DAY_IN_SECONDS);
   } else {
     $user_tops = get_transient('user_' . $user_id . '_get_user_tops');
   }
 } else {
-  $user_tops  = get_user_tops();
+  $user_tops  = get_user_tops($id_vainkeur);
 }
 $user_ranking = get_user_ranking($id_ranking);
 $url_ranking  = get_the_permalink($id_ranking);
@@ -447,7 +447,7 @@ $top_datas    = get_top_data($id_top_global);
                               $current = get_term_by('term_id', $top_cat_id, 'categorie');
                               ?>
                               <a class="w-100 btn btn-primary waves-effect" href="<?php echo get_category_link($top_cat_id); ?>">
-                                Voir tous les Tops <span class="text-uppercase"><?php echo $cat_name; ?></span> <span class="ico"><?php the_field('icone_cat', 'term_' . $top_cat_id); ?></span>
+                                Voir tous les Tops de la catégorie <span class="text-uppercase"><?php echo $current->name; ?></span> <span class="ico"><?php the_field('icone_cat', 'term_' . $top_cat_id); ?></span>
                               </a>
                             </div>
                             <div class="separate mt-2 mb-2"></div>

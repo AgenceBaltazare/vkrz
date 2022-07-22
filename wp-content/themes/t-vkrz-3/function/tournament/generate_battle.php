@@ -24,17 +24,16 @@ function genererate_tournament_response($top_infos, $user_levels_infos = []){
     $uservotes_html = ob_get_clean();
 
     $response =  array(
-        'id_ranking'        => $id_ranking,
-        'current_step'      => $current_step,
-        'timeline_main'     => $timeline_main,
-        'stepbar_html'      => $stepbar_html,
-        'contenders_html'   => $contenders_html,
-        'uservotes_html'    => $uservotes_html,
-        'nb_user_votes'     => $nb_user_votes,
-        'user_ranking_html' => $user_ranking_html,
-        'is_next_duel'      => $is_next_duel,
-        'current_id_vainkeur' => $current_id_vainkeur,
-        'badge_data' => $badge_data
+        'id_ranking'            => $id_ranking,
+        'current_step'          => $current_step,
+        'timeline_main'         => $timeline_main,
+        'stepbar_html'          => $stepbar_html,
+        'contenders_html'       => $contenders_html,
+        'uservotes_html'        => $uservotes_html,
+        'nb_user_votes'         => $nb_user_votes,
+        'user_ranking_html'     => $user_ranking_html,
+        'is_next_duel'          => $is_next_duel,
+        'current_id_vainkeur'   => $current_id_vainkeur
     );
     $response = array_merge($response, $user_levels_infos);
 

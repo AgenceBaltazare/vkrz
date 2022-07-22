@@ -310,13 +310,13 @@ $top_datas = get_top_data($id_top);
                                 <div class="card">
                                     <div class="card-body">
                                         <h4 class="card-title">
-                                            <span class="ico va va-victory-hand va-lg"></span> Participe à ce Top
+                                            <span class="ico va va-victory-hand va-lg"></span> A toi de jouer
                                         </h4>
                                         <h6 class="card-subtitle text-muted mb-1">
-                                            Toi aussi fais ton Top afin de faire bouger les positions !
+                                            Toi aussi fais ta TopList afin de faire bouger les positions !
                                         </h6>
                                         <a href="<?php the_permalink($id_top); ?>" class="btn btn-outline-primary waves-effect">
-                                            Faire mon propre Top
+                                            Faire ma propre TopList
                                         </a>
                                     </div>
                                 </div>

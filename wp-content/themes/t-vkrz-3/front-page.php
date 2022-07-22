@@ -1,8 +1,8 @@
 <?php
 get_header();
 global $user_tops;
-$list_t_already_done = $user_tops['list_user_tops_done_ids'];
-$list_user_tops      = $user_tops['list_user_tops'];
+$list_user_tops_done  = $user_tops['list_user_tops_done_ids'];
+$list_user_tops_begin = $user_tops['list_user_tops_begin_ids'];
 ?>
 <div class="app-content content ">
   <div class="content-wrapper">
@@ -46,7 +46,7 @@ $list_user_tops      = $user_tops['list_user_tops'];
                 'update_post_meta_cache' => false,
                 'no_found_rows'          => true,
                 'post_type'              => 'tournoi',
-                'post__not_in'           => $list_t_already_done,
+                'post__not_in'           => $list_user_tops_done,
                 'orderby'                => 'date',
                 'order'                  => 'DESC',
                 'posts_per_page'         => 10,
@@ -130,7 +130,6 @@ $list_user_tops      = $user_tops['list_user_tops'];
                   $creator_info     = get_userdata($creator_id);
                   $creator_pseudo   = $creator_info->nickname;
                   $creator_avatar   = get_avatar_url($creator_id, ['size' => '80', 'force_default' => false]);
-                  $list_user_tops   = $user_tops['list_user_tops'];
                   $state            = "";
                   $illu             = get_the_post_thumbnail_url($id_top, 'medium');
                   if (is_home()) {
@@ -140,9 +139,10 @@ $list_user_tops      = $user_tops['list_user_tops'];
                   } else {
                     $class        = "col-12";
                   }
-                  $user_single_top_data = array_search($id_top, array_column($list_user_tops, 'id_top'));
-                  if ($user_single_top_data !== false) {
-                    $state = $list_user_tops[$user_single_top_data]['state'];
+                  if (in_array($id_top, $list_user_tops_done)) {
+                    $state = "done";
+                  } elseif (in_array($id_top, $list_user_tops_begin)) {
+                    $state = "begin";
                   } else {
                     $state = "todo";
                   }
@@ -339,7 +339,7 @@ $list_user_tops      = $user_tops['list_user_tops'];
           <?php
           $tournois_in_cat = new WP_Query(array(
             'post_type' => 'tournoi',
-            'post__not_in' => $list_t_already_done,
+            'post__not_in' => $list_user_tops_done,
             'orderby' => 'rand',
             'order' => 'ASC',
             'posts_per_page' => 10,

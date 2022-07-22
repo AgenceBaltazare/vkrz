@@ -102,7 +102,7 @@ if (false === ($data_t_created = get_transient('user_' . $user_id . '_get_creato
                               <thead>
                                 <tr>
                                   <th class="">
-                                    <span class="text-muted">Liste des <span class="t-rose"><?php echo $data_t_created['creator_nb_tops']; ?></span> Tops créés</span>
+                                    <span class="text-muted">Liste des Tops créés</span>
                                   </th>
                                   <th class="text-right">
                                     <span class="text-muted">Total des votes</span>
@@ -121,19 +121,35 @@ if (false === ($data_t_created = get_transient('user_' . $user_id . '_get_creato
                               <tbody>
                                 <?php
                                 foreach ($data_t_created['creator_tops'] as $item) : ?>
-                                  <?php if (!get_field('private_t', $item['top_id'])) : ?>
+                                  <?php if (!in_array($item['top_id'], get_exclude_top())) : ?>
                                     <tr>
                                       <td>
-                                        <div class="media-body">
-                                          <div class="media-heading">
-                                            <h6 class="cart-item-title mb-0">
-                                              <a class="text-body" href="<?php the_permalink($item['top_id']); ?>">
-                                                Top <?php echo $item['nb_top']; ?> - <?php echo $item['top_title']; ?>
-                                              </a>
-                                            </h6>
-                                            <small class="cart-item-by legende">
-                                              <?php the_field('question_t', $item['top_id']); ?>
-                                            </small>
+                                        <div class="d-flex align-items-center">
+                                          <div class="avatar">
+                                            <?php
+                                            $minia = get_the_post_thumbnail_url($item['top_id'], 'large')
+                                            ?>
+                                            <span class="avatar-picture avatar-top" style="background-image: url(<?php echo $minia; ?>);"></span>
+                                          </div>
+                                          <div class="font-weight-bold topnamebestof">
+                                            <div class="media-body">
+                                              <div class="media-heading">
+                                                <h6 class="cart-item-title mb-0">
+                                                  <a class="text-body" href="<?php the_permalink($item['top_id']); ?>">
+                                                    <?php
+                                                    foreach (get_the_terms($item['top_id'], 'categorie') as $cat) {
+                                                      $cat_id     = $cat->term_id;
+                                                      $cat_name   = $cat->name;
+                                                    }
+                                                    ?>
+                                                    TOP <?php the_field('count_contenders_t', $item['top_id']); ?> <?php the_field('icone_cat', 'term_' . $cat_id); ?> <?php echo get_the_title($item['top_id']); ?>
+                                                  </a>
+                                                </h6>
+                                                <small class="cart-item-by legende">
+                                                  <?php the_field('question_t', $item['top_id']); ?>
+                                                </small>
+                                              </div>
+                                            </div>
                                           </div>
                                         </div>
                                       </td>
@@ -148,7 +164,7 @@ if (false === ($data_t_created = get_transient('user_' . $user_id . '_get_creato
                                       </td>
                                       <td class="text-right">
                                         <div class="d-flex align-items-center justify-content-end col-actions">
-                                          <a class="mr-1" href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $item['top_id']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir tous les Tops">
+                                          <a class="mr-1" href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $item['top_id']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir toutes les TopList">
                                             <span class="ico va va-eyes va-lg">
                                             </span>
                                           </a>

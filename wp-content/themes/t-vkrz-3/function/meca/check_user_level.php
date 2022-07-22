@@ -84,7 +84,8 @@ function check_user_level($id_vainkeur){
         return array(
             'user_level'        => $level_number,
             'user_level_icon'   => $level,
-            'level_up'          => $level_up
+            'level_up'          => $level_up,
+            'next_level'        => $next_level
         );
         
     }

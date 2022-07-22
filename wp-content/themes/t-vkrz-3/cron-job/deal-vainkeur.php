@@ -1,6 +1,7 @@
 <?php
 include __DIR__ . '/../../../../wp-load.php';
 
+$i = 0;
 $vainkeur = new WP_Query(array(
     "post_type"              => "vainkeur",
     "posts_per_page"         => -1,
@@ -20,8 +21,9 @@ while ($vainkeur->have_posts()) : $vainkeur->the_post();
     $nb_tops_complete   = 0;
     $money_badges       = 0;
     $money_total        = 0;
-    $list_rankings      = array();
+    $list_toplist      = array();
     $list_tops          = array();
+    $list_tops_begin    = array();
 
     $classement = new WP_Query(array(
         'ignore_sticky_posts'    => true,
@@ -44,14 +46,20 @@ while ($vainkeur->have_posts()) : $vainkeur->the_post();
         $id_ranking = get_the_ID();
         $id_top     = get_field('id_tournoi_r', $id_ranking);
 
-        if (get_field('done_r') == "done") {
-            $nb_tops_complete = $nb_tops_complete + 1;
+        if($id_top){
+            if (!is_null(get_post($id_top))) {
+                if (get_field('done_r') == "done") {
+                    $nb_tops_complete = $nb_tops_complete + 1;
+                    array_push($list_toplist, $id_ranking);
+                    array_push($list_tops, $id_top);
+                } else {
+                    array_push($list_tops_begin, $id_top);
+                }
+                $nb_votes = $nb_votes + get_field('nb_votes_r');
+
+                array_push($list_toplist, $id_ranking);
+            }
         }
-
-        $nb_votes = $nb_votes + get_field('nb_votes_r');
-
-        array_push($list_rankings, $id_ranking);
-        array_push($list_tops, $id_top);
 
     endwhile;
 
@@ -62,8 +70,13 @@ while ($vainkeur->have_posts()) : $vainkeur->the_post();
         $nb_tops_complete = 0;
     }
 
-    update_field('liste_des_toplist_vkrz', json_encode($list_rankings), $id_vainkeur);
+    $list_toplist    = array_unique($list_toplist);
+    $list_tops       = array_unique($list_tops);
+    $list_tops_begin = array_unique($list_tops_begin);
+
+    update_field('liste_des_toplist_vkrz', json_encode($list_toplist), $id_vainkeur);
     update_field('liste_des_top_vkrz', json_encode($list_tops), $id_vainkeur);
+    update_field('liste_des_top_commences_vkrz', json_encode($list_tops_begin), $id_vainkeur);
 
     update_field('nb_vote_vkrz', $nb_votes, $id_vainkeur);
     update_field('nb_top_vkrz', $nb_tops_complete, $id_vainkeur);
@@ -80,8 +93,12 @@ while ($vainkeur->have_posts()) : $vainkeur->the_post();
     
     update_field('money_vkrz', $money_total, $id_vainkeur);
     
-    check_user_level($id_vainkeur);
+    //check_user_level($id_vainkeur);
 
     update_field('maj_vkrz', date('Y-m-d H:i:s'), $id_vainkeur);
+
+    echo $i . " : " . get_the_ID() . "</br>";
+    
+    $i++;
 
 endwhile;

@@ -12,7 +12,7 @@ global $user_tops;
 $user_id       = get_user_logged_id();
 $utm           = deal_utm();
 $id_top        = get_the_ID();
-$user_tops     = get_user_tops();
+$user_tops     = get_user_tops($id_vainkeur);
 $uuiduser      = deal_uuiduser();
 $user_infos    = deal_vainkeur_entry();
 $id_vainkeur   = $user_infos['id_vainkeur'];

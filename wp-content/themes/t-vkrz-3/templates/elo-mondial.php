@@ -11,6 +11,12 @@ if (isset($_GET['id_top']) && !empty($_GET['id_top'])) {
 } else {
     header('Location: ' . get_bloginfo('url'));
 }
+global $sponso;
+if (isset($_GET['sponso']) && $_GET['sponso'] != "") {
+    $sponso = $_GET['sponso'];
+} else {
+    $sponso = "";
+}
 get_header();
 global $top_infos;
 global $user_tops;
@@ -239,14 +245,14 @@ $contenders_ranking   = get_contenders_ranking($id_top);
                                     <div class="col-12">
                                         <div class="card">
                                             <div class="card-body">
-                                                <h4 class="card-title mt-1">
-                                                    <span class="ico va va-victory-hand va-lg"></span> Participe à ce Top
+                                                <h4 class="card-title">
+                                                    <span class="ico va va-victory-hand va-lg"></span> A toi de jouer
                                                 </h4>
-                                                <h6 class="card-subtitle text-muted mb-1 text-center pr-1 pl-1">
-                                                    Toi aussi fais ton Top afin de faire bouger les positions !
+                                                <h6 class="card-subtitle text-muted mb-1">
+                                                    Toi aussi fais ta TopList afin de faire bouger les positions !
                                                 </h6>
                                                 <a href="<?php the_permalink($id_top); ?>" class="btn btn-outline-primary waves-effect">
-                                                    Faire mon propre Top
+                                                    Faire ma propre TopList
                                                 </a>
                                             </div>
                                         </div>

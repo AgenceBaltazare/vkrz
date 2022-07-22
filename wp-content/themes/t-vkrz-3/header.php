@@ -6,6 +6,7 @@ global $user_infos;
 global $id_vainkeur;
 global $utm;
 global $type_top;
+global $sponso;
 if (is_single()) {
   global $id_top;
   $get_top_type = get_the_terms(get_the_ID(), 'type');
@@ -18,26 +19,25 @@ if (is_single()) {
 if (!is_single() || get_post_type() != "tournoi") {
   $user_id        = get_user_logged_id();
   $uuiduser       = deal_uuiduser();
+  $user_infos     = deal_vainkeur_entry();
+  $id_vainkeur    = $user_infos['id_vainkeur'];
 
   if (is_user_logged_in() && env() != "local") {
     if (false === ($user_tops = get_transient('user_' . $user_id . '_get_user_tops'))) {
-      $user_tops = get_user_tops();
+      $user_tops = get_user_tops($id_vainkeur);
       set_transient('user_' . $user_id . '_get_user_tops', $user_tops, DAY_IN_SECONDS);
     } else {
       $user_tops = get_transient('user_' . $user_id . '_get_user_tops');
     }
   } else {
-    $user_tops  = get_user_tops();
+    $user_tops  = get_user_tops($id_vainkeur);
   }
-  $user_infos  = deal_vainkeur_entry();
-  $id_vainkeur = $user_infos['id_vainkeur'];
 }
 $utm            = deal_utm();
 wp_reset_query();
 ?>
 <!DOCTYPE html>
 <html class="loading dark-layout" lang="fr" data-layout="dark-layout" data-textdirection="ltr">
-
 <head>
   <!--[if lt IE 9]>
     <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -122,7 +122,7 @@ wp_reset_query();
 <?php
 if (is_single() || is_page(get_page_by_path('monitor'))) {
   $list_body_class = "vertical-layout vertical-menu-modern navbar-floating footer-static menu-collapsed";
-} elseif (is_page(get_page_by_path('elo')) && $_GET['sponso'] == "active") {
+} elseif (is_page(get_page_by_path('elo')) && $sponso == "active") {
   $list_body_class = "vertical-layout vertical-menu-modern navbar-floating footer-static menu-collapsed";
 } else {
   $list_body_class = "vertical-layout vertical-menu-modern navbar-floating footer-static";

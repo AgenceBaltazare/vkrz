@@ -1,8 +1,6 @@
 <?php
-function get_next_duel($id_ranking, $id_top, $current_id_vainkeur)
-{
+function get_next_duel($id_ranking, $id_top, $current_id_vainkeur){
 
-  global $id_vainkeur;
   $next_duel          = [];
   $is_next_duel       = true;
   $contender_1        = 0;
@@ -32,10 +30,7 @@ function get_next_duel($id_ranking, $id_top, $current_id_vainkeur)
     $spaire = 6;
   }
 
-
   if (isset($typetop) && $typetop == "top3") {
-
-
     $halfinf = intval(floor($nb_contenders / 2));
     $halfsup = round(($nb_contenders / 2), 0, PHP_ROUND_HALF_UP);
     $timeline_main = get_field('timeline_main', $id_ranking);
@@ -45,7 +40,8 @@ function get_next_duel($id_ranking, $id_top, $current_id_vainkeur)
       if ($timeline_votes == $halfinf) {
         $timeline_main = 2;
         update_field('timeline_main', 2, $id_ranking);
-      } else {
+      } 
+      else {
 
         $key_c_1 = $nb_contenders - (1 + $timeline_votes);
         $key_c_2 = $nb_contenders - (1 + $halfinf + $timeline_votes);
@@ -101,38 +97,12 @@ function get_next_duel($id_ranking, $id_top, $current_id_vainkeur)
       if ($nb_list_inf == 1) {
 
         $is_next_duel = false;
-
         if (!get_field('done_r', $id_ranking)) {
-          date_default_timezone_set('Europe/Paris');
-          $is_suspected_cheating = suspected_cheating(get_the_date('Y-m-d H:i:s', $id_ranking), date('Y-m-d H:i:s'), get_field('nb_votes_r', $id_ranking));
-          update_field('done_r', 'done', $id_ranking);
-          update_field('done_date_r', date('Y-m-d H:i:s'), $id_ranking);
-          update_field('suspected_cheating_r', $is_suspected_cheating, $id_ranking);
-
-          if (!in_array($id_top, get_exclude_top())) {
-            increase_top_counter($current_id_vainkeur, $id_top);
-            increase_top_resume($id_ranking, 'finish');
-          }
-
-          // Badge : Top with at least 50 contenders
-          if (!get_vainkeur_badge($current_id_vainkeur, "BIG TOP")) {
-            if ($nb_contenders >= 50) {
-              $badge_data = update_vainkeur_badge($current_id_vainkeur, "BIG TOP");
-            }
-          }
-
-          // Badge : Top with at least 100 contenders
-          if (!get_vainkeur_badge($current_id_vainkeur, "BIG BIG TOP")) {
-            if ($nb_contenders >= 100) {
-              $badge_data = update_vainkeur_badge($current_id_vainkeur, "BIG BIG TOP");
-            }
-          }
+          finish_the_top($id_ranking, $current_id_vainkeur, $id_top, $nb_contenders);
         }
-
-        if (is_user_logged_in()) {
-          delete_transient('user_' . get_current_user_id() . '_get_user_tops');
-        }
-      } else {
+        
+      } 
+      else {
 
         $key_c_1 = $list_inf[$random - 2];
         $key_c_2 = $list_inf[$random - 1];
@@ -205,11 +175,10 @@ function get_next_duel($id_ranking, $id_top, $current_id_vainkeur)
       $c2_less_more = array_merge($list_inf_of_c2, $list_sup_of_c2);
 
       if (in_array($key_c1, $c2_less_more) || in_array($key_c2, $c1_less_more) || ($key_c1 == $key_c2)) {
-
         update_field('timeline_main', 4, $id_ranking);
         $timeline_main = 4;
-      } else {
-
+      } 
+      else {
         array_push($next_duel, $list_l_r[$nb_loosers]);
         array_push($next_duel, $list_w_r[count($list_w_r) - $spaire]);
       }
@@ -232,38 +201,10 @@ function get_next_duel($id_ranking, $id_top, $current_id_vainkeur)
         if (count($next_duel) != 2) {
 
           $is_next_duel = false;
-
           if (!get_field('done_r', $id_ranking)) {
-            date_default_timezone_set('Europe/Paris');
-            $is_suspected_cheating = suspected_cheating(get_the_date('Y-m-d H:i:s', $id_ranking), date('Y-m-d H:i:s'), get_field('nb_votes_r', $id_ranking));
-
-            update_field('done_r', 'done', $id_ranking);
-            update_field('done_date_r', date('Y-m-d H:i:s'), $id_ranking);
-            update_field('suspected_cheating_r', $is_suspected_cheating, $id_ranking);
-
-            if (!in_array($id_top, get_exclude_top())) {
-              increase_top_counter($current_id_vainkeur, $id_top);
-              increase_top_resume($id_ranking, 'finish');
-            }
-
-            // Badge : Top with at least 50 contenders
-            if (!get_vainkeur_badge($current_id_vainkeur, "BIG TOP")) {
-              if ($nb_contenders >= 50) {
-                $badge_data = update_vainkeur_badge($current_id_vainkeur, "BIG TOP");
-              }
-            }
-
-            // Badge : Top with at least 100 contenders
-            if (!get_vainkeur_badge($current_id_vainkeur, "BIG BIG TOP")) {
-              if ($nb_contenders >= 100) {
-                $badge_data = update_vainkeur_badge($current_id_vainkeur, "BIG BIG TOP");
-              }
-            }
+            finish_the_top($id_ranking, $current_id_vainkeur, $id_top, $nb_contenders);
           }
 
-          if (is_user_logged_in()) {
-            delete_transient('user_' . get_current_user_id() . '_get_user_tops');
-          }
         }
       }
     }
@@ -278,38 +219,10 @@ function get_next_duel($id_ranking, $id_top, $current_id_vainkeur)
       if (count($next_duel) != 2) {
 
         $is_next_duel = false;
-
         if (!get_field('done_r', $id_ranking)) {
-          date_default_timezone_set('Europe/Paris');
-          $is_suspected_cheating = suspected_cheating(get_the_date('Y-m-d H:i:s', $id_ranking), date('Y-m-d H:i:s'), get_field('nb_votes_r', $id_ranking));
-
-          update_field('done_r', 'done', $id_ranking);
-          update_field('done_date_r', date('Y-m-d H:i:s'), $id_ranking);
-          update_field('suspected_cheating_r', $is_suspected_cheating, $id_ranking);
-
-          if (!in_array($id_top, get_exclude_top())) {
-            increase_top_counter($current_id_vainkeur, $id_top);
-            increase_top_resume($id_ranking, 'finish');
-          }
-
-          // Badge : Top with at least 50 contenders
-          if (!get_vainkeur_badge($current_id_vainkeur, "BIG TOP")) {
-            if ($nb_contenders >= 50) {
-              $badge_data = update_vainkeur_badge($current_id_vainkeur, "BIG TOP");
-            }
-          }
-
-          // Badge : Top with at least 100 contenders
-          if (!get_vainkeur_badge($current_id_vainkeur, "BIG BIG TOP")) {
-            if ($nb_contenders >= 100) {
-              $badge_data = update_vainkeur_badge($current_id_vainkeur, "BIG BIG TOP");
-            }
-          }
+          finish_the_top($id_ranking, $current_id_vainkeur, $id_top, $nb_contenders);
         }
 
-        if (is_user_logged_in()) {
-          delete_transient('user_' . get_current_user_id() . '_get_user_tops');
-        }
       }
     }
 
@@ -336,42 +249,18 @@ function get_next_duel($id_ranking, $id_top, $current_id_vainkeur)
       if (count($next_duel) != 2) {
 
         $is_next_duel = false;
-
         if (!get_field('done_r', $id_ranking)) {
-          date_default_timezone_set('Europe/Paris');
-          $is_suspected_cheating = suspected_cheating(get_the_date('Y-m-d H:i:s', $id_ranking), date('Y-m-d H:i:s'), get_field('nb_votes_r', $id_ranking));
-
-          update_field('done_r', 'done', $id_ranking);
-          update_field('done_date_r', date('Y-m-d H:i:s'), $id_ranking);
-          update_field('suspected_cheating_r', $is_suspected_cheating, $id_ranking);
-          if (!in_array($id_top, get_exclude_top())) {
-            increase_top_counter($current_id_vainkeur, $id_top);
-            increase_top_resume($id_ranking, 'finish');
-          }
-
-          // Badge : Top with at least 50 contenders
-          if (!get_vainkeur_badge($current_id_vainkeur, "BIG TOP")) {
-            if ($nb_contenders >= 50) {
-              $badge_data = update_vainkeur_badge($current_id_vainkeur, "BIG TOP");
-            }
-          }
-
-          // Badge : Top with at least 100 contenders
-          if (!get_vainkeur_badge($current_id_vainkeur, "BIG BIG TOP")) {
-            if ($nb_contenders >= 100) {
-              $badge_data = update_vainkeur_badge($current_id_vainkeur, "BIG BIG TOP");
-            }
-          }
+          finish_the_top($id_ranking, $current_id_vainkeur, $id_top, $nb_contenders);
         }
-
-        if (is_user_logged_in()) {
-          delete_transient('user_' . get_current_user_id() . '_get_user_tops');
-        }
+        
       }
     }
   }
 
-  $nb_user_votes = all_user_votes_in_top($id_ranking);
+  $nb_user_votes = get_field('nb_votes_r', $id_ranking);
+  if (!$nb_user_votes || $nb_user_votes < 0) {
+    $nb_user_votes = 0;
+  }
 
   if ($is_next_duel) {
     $val1 = random_int(0, 1);

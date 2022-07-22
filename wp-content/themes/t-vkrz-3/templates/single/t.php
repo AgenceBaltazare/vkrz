@@ -1,5 +1,4 @@
 <?php
-global $user_id;
 global $uuiduser;
 global $id_vainkeur;
 global $id_ranking;
@@ -8,11 +7,8 @@ global $is_next_duel;
 global $top_infos;
 global $utm;
 global $user_infos;
-global $user_tops;
-$user_id       = get_user_logged_id();
 $utm           = deal_utm();
 $id_top        = get_the_ID();
-$user_tops     = get_user_tops();
 $uuiduser      = deal_uuiduser();
 $user_infos    = deal_vainkeur_entry();
 $id_vainkeur   = $user_infos['id_vainkeur'];

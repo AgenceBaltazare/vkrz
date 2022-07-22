@@ -3,7 +3,7 @@
 <?php
 get_header();
 global $user_tops;
-$list_user_tops     = $user_tops['list_user_tops'];
+$list_user_tops     = $user_tops['list_user_tops_done_ids'];
 $tops_in_cat        = new WP_Query(array(
   'post_type'                 => 'tournoi',
   'orderby'                   => 'date',

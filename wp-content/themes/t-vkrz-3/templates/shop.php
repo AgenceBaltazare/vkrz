@@ -9,14 +9,6 @@ global $vainkeur_id;
 global $vainkeur_info;
 global $user_infos;
 $vainkeur_info = isset($vainkeur_info) ? $vainkeur_info : $user_infos;
-if ($vainkeur_info['user_role'] == "administrator" || $vainkeur_info['user_role'] == "author") {
-    if (false === ($data_t_created = get_transient('user_' . $user_id . '_get_creator_t'))) {
-        $data_t_created = get_creator_t($user_id);
-        set_transient('user_' . $user_id . '_get_creator_t', $data_t_created, DAY_IN_SECONDS);
-    } else {
-        $data_t_created = get_transient('user_' . $user_id . '_get_creator_t');
-    }
-}
 $solde_disponible = $user_infos['current_money_vkrz'];
 ?>
 <div class="app-content content ecommerce-application">

@@ -93,14 +93,84 @@ function get_user_infos($uuiduser){
 
 }
 
-function get_user_tops($user_id = false){
+function get_user_toplist($id_vainkeur)
+{
 
-   
+    $user_toplist           = array();
+
+    $vainkeur_list_ranking  = json_decode(get_field('liste_des_toplist_vkrz', $id_vainkeur));
+
+    if ($vainkeur_list_ranking) {
+
+        foreach ($vainkeur_list_ranking as $id_ranking) {
+
+            $nb_votes         = get_field('nb_votes_r', $id_ranking);
+            $id_top           = get_field('id_tournoi_r', $id_ranking);
+            $typetop          = get_field('type_top_r', $id_ranking);
+            $uuid_user        = get_field('uuid_user_r', $id_ranking);
+            $cat_id           = "";
+
+            $nb_top = $typetop == "top3" ? 3 : count(get_field('ranking_r', $id_ranking));
+
+            if(get_field('done_r', $id_ranking) == "done"){
+                $state = "done";
+            }
+            else{
+                $state = "begin";
+            }
+
+            if (get_the_terms($id_top, 'categorie')) {
+                foreach (get_the_terms($id_top, 'categorie') as $cat) {
+                    $cat_id = $cat->term_id;
+                }
+            }
+
+            array_push($user_toplist, array(
+                "id_top"     => $id_top,
+                "cat_t"      => $cat_id,
+                "typetop"    => $typetop,
+                "nb_top"     => $nb_top,
+                "nb_votes"   => $nb_votes,
+                "uuid_user"  => $uuid_user,
+                "id_ranking" => $id_ranking,
+                "state"      => $state
+            ));
+
+        }
+    }
+
+    return $user_toplist;
+}
+
+function get_user_tops($id_vainkeur){
+
+    $user_tops_begin_ids    = array();
+    $user_tops_done_ids     = array();
+
+    $vainkeur_list_tops_finish  = json_decode(get_field('liste_des_top_vkrz', $id_vainkeur));
+    $vainkeur_list_tops_begin   = json_decode(get_field('liste_des_top_commences_vkrz', $id_vainkeur));
+
+    if ($vainkeur_list_tops_finish) {
+
+        foreach ($vainkeur_list_tops_finish as $id_top) {
+
+            array_push($user_tops_done_ids, $id_top);
+
+        }
+    }
+
+    if ($vainkeur_list_tops_begin) {
+
+        foreach ($vainkeur_list_tops_begin as $id_top) {
+
+            array_push($user_tops_begin_ids, $id_top);
+
+        }
+    }
 
     return array(
-        "list_user_tops"            => array('44'),
-        "list_user_tops_done_ids"   =>
-        array('44')
+        "list_user_tops_begin_ids"  => $user_tops_begin_ids,
+        "list_user_tops_done_ids"   => $user_tops_done_ids
     );
 }
 

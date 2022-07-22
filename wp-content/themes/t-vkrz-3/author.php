@@ -3,9 +3,9 @@ get_header();
 global $vainkeur_id;
 global $vainkeur_info;
 global $vainkeur_tops;
-$list_user_tops = $vainkeur_tops['list_user_tops'];
+$list_user_toplists = get_user_toplist($id_vainkeur);
 $list_t_done    = array();
-foreach ($list_user_tops as $top) {
+foreach ($list_user_toplists as $top) {
   if ($top['state'] == 'done') {
     array_push($list_t_done, $top);
   }
@@ -221,7 +221,7 @@ foreach ($list_user_tops as $top) {
                       $id_cat      = $cat->term_id;
                       $count_top_done_in_cat = 0;
 
-                      foreach ($list_user_tops as $top_done) {
+                      foreach ($list_user_toplists as $top_done) {
                         if ($id_cat == $top_done['cat_t'] && $top_done['state'] == 'done') {
                           $count_top_done_in_cat++;
                         }

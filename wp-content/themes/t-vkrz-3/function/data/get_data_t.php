@@ -4,13 +4,19 @@ function get_top_infos($id_top, $id_ranking = false)
 {
 
   global $id_ranking;
-  $top_type = false;
-
+  $top_type      = false;
+  $top_cover     = "";
   $top_url       = get_the_permalink($id_top);
   $top_title     = get_the_title($id_top);
   $top_question  = get_field('question_t', $id_top);
   $top_img       = get_the_post_thumbnail_url($id_top, 'large');
   $top_cover     = wp_get_attachment_image_src(get_field('cover_t', $id_top), 'large');
+  if($top_cover){
+    $top_cover = $top_cover[0];
+  }
+  else{
+    $top_cover = "";
+  }
 
   $top_cat_name  = "";
   $top_cat       = get_the_terms($id_top, 'categorie');
@@ -47,7 +53,7 @@ function get_top_infos($id_top, $id_ranking = false)
     'top_number'    => $top_number,
     'top_type'      => $top_type,
     'top_img'       => $top_img,
-    'top_cover'     => $top_cover[0],
+    'top_cover'     => $top_cover,
     'top_d_titre'   => $display_titre,
     'top_d_rounded' => $rounded,
     'top_d_cover'   => $c_in_cover,

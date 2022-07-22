@@ -1,7 +1,8 @@
 <?php
 get_header();
 global $user_tops;
-$list_user_tops     = $user_tops['list_user_tops'];
+$list_user_tops         = $user_tops['list_user_tops_done_ids'];
+$list_user_tops_begin   = $user_tops['list_user_tops_begin_ids'];
 $current_cat        = get_queried_object();
 $tops_in_cat        = new WP_Query(array(
   'post_type'                 => 'tournoi',
@@ -50,18 +51,18 @@ $list_sujets      = array();
 
         <?php $i = 1;
         while ($tops_in_cat->have_posts()) : $tops_in_cat->the_post();
-          $id_top             = get_the_ID();
-          $illu               = get_the_post_thumbnail_url($id_top, 'medium');
-          $id_top             = get_the_ID();
-          $top_datas          = get_top_data($id_top);
+          $id_top           = get_the_ID();
+          $illu             = get_the_post_thumbnail_url($id_top, 'medium');
+          $id_top           = get_the_ID();
+          $top_datas        = get_top_data($id_top);
           $creator_id       = get_post_field('post_author', $id_top);
           $creator_info     = get_userdata($creator_id);
           $creator_pseudo   = $creator_info->nickname;
           $creator_avatar   = get_avatar_url($creator_id, ['size' => '80', 'force_default' => false]);
-          $list_user_tops   = $user_tops['list_user_tops'];
-          $user_single_top_data = array_search($id_top, array_column($list_user_tops, 'id_top'));
-          if ($user_single_top_data !== false) {
-            $state = $list_user_tops[$user_single_top_data]['state'];
+          if (in_array($id_top, $list_user_tops)) {
+            $state = "done";
+          } elseif (in_array($id_top, $list_user_tops_begin)) {
+            $state = "begin";
           } else {
             $state = "todo";
           }

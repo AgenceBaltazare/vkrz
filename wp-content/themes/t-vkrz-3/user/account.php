@@ -7,16 +7,19 @@ global $uuiduser;
 global $user_tops;
 global $user_infos;
 global $id_vainkeur;
-$list_user_tops = $user_tops['list_user_tops'];
+$list_user_toplists = get_user_toplist($id_vainkeur);
 $list_t_begin   = array();
 $list_t_done    = array();
 $has_t_begin    = false;
-foreach ($list_user_tops as $top) {
-  if ($top['state'] == 'begin') {
-    array_push($list_t_begin, $top);
-  }
-  if ($top['state'] == 'done') {
-    array_push($list_t_done, $top);
+if ($list_user_toplists) {
+  foreach ($list_user_toplists as $top) {
+    if ($top['state'] == 'begin') {
+      array_push($list_t_begin, $top);
+      $has_t_begin    = true;
+    }
+    if ($top['state'] == 'done') {
+      array_push($list_t_done, $top);
+    }
   }
 }
 ?>
@@ -107,7 +110,7 @@ foreach ($list_user_tops as $top) {
                       $tops_in_cat = $cat->count;
                       $id_cat      = $cat->term_id;
                       $count_top_done_in_cat = 0;
-                      foreach ($list_user_tops as $top_done) {
+                      foreach ($list_user_toplists as $top_done) {
                         if ($id_cat == $top_done['cat_t'] && $top_done['state'] == 'done') {
                           $count_top_done_in_cat++;
                         }
@@ -454,16 +457,32 @@ foreach ($list_user_tops as $top) {
                                   foreach ($list_t_begin as $top) : ?>
                                     <tr id="top-<?php echo $top['id_ranking']; ?>">
                                       <td>
-                                        <div class="media-body">
-                                          <div class="media-heading">
-                                            <h6 class="cart-item-title mb-0">
-                                              <a class="text-body" href="<?php the_permalink($top['id_top']); ?>">
-                                                Top <?php echo $top['nb_top']; ?> - <?php echo get_the_title($top['id_top']); ?>
-                                              </a>
-                                            </h6>
-                                            <small class="cart-item-by legende">
-                                              <?php the_field('question_t', $top['id_top']); ?>
-                                            </small>
+                                        <div class="d-flex align-items-center">
+                                          <div class="avatar">
+                                            <?php
+                                            $minia = get_the_post_thumbnail_url($top['id_top'], 'large')
+                                            ?>
+                                            <span class="avatar-picture avatar-top" style="background-image: url(<?php echo $minia; ?>);"></span>
+                                          </div>
+                                          <div class="font-weight-bold topnamebestof">
+                                            <div class="media-body">
+                                              <div class="media-heading">
+                                                <h6 class="cart-item-title mb-0">
+                                                  <a class="text-body" href="<?php the_permalink($top['id_top']); ?>">
+                                                    <?php
+                                                    foreach (get_the_terms($top['id_top'], 'categorie') as $cat) {
+                                                      $cat_id     = $cat->term_id;
+                                                      $cat_name   = $cat->name;
+                                                    }
+                                                    ?>
+                                                    TOP <?php the_field('count_contenders_t', $top['id_top']); ?> <?php the_field('icone_cat', 'term_' . $cat_id); ?> <?php echo get_the_title($top['id_top']); ?>
+                                                  </a>
+                                                </h6>
+                                                <small class="cart-item-by legende">
+                                                  <?php the_field('question_t', $top['id_top']); ?>
+                                                </small>
+                                              </div>
+                                            </div>
                                           </div>
                                         </div>
                                       </td>
