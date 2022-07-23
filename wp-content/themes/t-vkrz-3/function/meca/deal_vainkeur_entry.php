@@ -1,8 +1,10 @@
 <?php
-function deal_vainkeur_entry($user_id = false){
+function deal_vainkeur_entry($user_id = false, $uuiduser = false){
 
-    global $uuiduser;
-    $uuid_user_vkrz = false;
+    if (!$uuiduser) {
+        global $uuiduser;
+        $uuid_user_vkrz = false;
+    }
 
     if (!$user_id) {
         global $user_id;

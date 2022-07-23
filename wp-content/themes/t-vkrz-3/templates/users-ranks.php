@@ -81,7 +81,7 @@ $top_datas = get_top_data($id_top);
                                                                 </th>
                                                                 <th class="text-right">
                                                                     <span class="text-muted">
-                                                                        Voir
+                                                                        Voir la TopList
                                                                     </span>
                                                                 </th>
                                                             </tr>
@@ -100,13 +100,13 @@ $top_datas = get_top_data($id_top);
                                                                                 <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_vainkeur'])); ?>">
                                                                                     <span class="avatar-picture" style="background-image: url(<?php echo $vainkeur_data_selected['avatar']; ?>);"></span>
                                                                                 </a>
+                                                                                <?php if ($vainkeur_data_selected) : ?>
+                                                                                    <span class="user-niveau">
+                                                                                        <?php echo $vainkeur_data_selected['level']; ?>
+                                                                                    </span>
+                                                                                <?php endif; ?>
                                                                             <?php else : ?>
-                                                                                <span class="avatar-picture" style="background-image: url(<?php echo $vainkeur_data_selected['avatar']; ?>);"></span>
-                                                                            <?php endif; ?>
-                                                                            <?php if ($vainkeur_data_selected) : ?>
-                                                                                <span class="user-niveau">
-                                                                                    <?php echo $vainkeur_data_selected['level']; ?>
-                                                                                </span>
+                                                                                <span class="avatar-picture" style="background-image: url(https://i1.wp.com/vainkeurz.com/wp-content/themes/t-vkrz-3/assets/images/vkrz/avatar-rose.png?ssl=1);"></span>
                                                                             <?php endif; ?>
                                                                         </span>
                                                                         <span class="font-weight-bold championname">
@@ -207,7 +207,7 @@ $top_datas = get_top_data($id_top);
                                                     <span class="ico va va-birthday-cake va-lg"></span> Créé <span class="t-violet"><?php echo $info_date; ?></span> par :
                                                 </h4>
                                                 <div class="employee-task d-flex justify-content-between align-items-center">
-                                                    <a href="<?php echo $creator_data['profil']; ?>" class="d-flex flex-row link-to-creator">
+                                                    <a href="<?php echo $creator_data['profil_url']; ?>" class="d-flex flex-row link-to-creator">
                                                         <div class="avatar me-75 mr-1">
                                                             <img src="<?php echo $creator_data['avatar']; ?>" class="circle" width="42" height="42" alt="Avatar">
                                                         </div>
@@ -312,7 +312,7 @@ $top_datas = get_top_data($id_top);
                                         <h4 class="card-title">
                                             <span class="ico va va-victory-hand va-lg"></span> A toi de jouer
                                         </h4>
-                                        <h6 class="card-subtitle text-muted mb-1">
+                                        <h6 class="card-subtitle text-muted mb-1 text-center">
                                             Toi aussi fais ta TopList afin de faire bouger les positions !
                                         </h6>
                                         <a href="<?php the_permalink($id_top); ?>" class="btn btn-outline-primary waves-effect">

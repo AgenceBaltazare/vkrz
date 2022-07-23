@@ -146,11 +146,7 @@ $contenders_ranking   = get_contenders_ranking($id_top);
                                                 <?php echo $top_datas['nb_completed_top']; ?>
                                             </h2>
                                             <p class="card-text legende">
-                                                <?php if ($top_datas['nb_completed_top'] <= 1) : ?>
-                                                    Top
-                                                <?php else : ?>
-                                                    Tops
-                                                <?php endif; ?>
+                                                TopList
                                             </p>
                                         </div>
                                     </div>
@@ -224,7 +220,7 @@ $contenders_ranking   = get_contenders_ranking($id_top);
                                                 $creator_uuiduser   = get_field('uuiduser_user', 'user_' . $creator_id);
                                                 $creator_data       = get_user_infos($creator_uuiduser);
                                                 ?>
-                                                par <?php echo $creator_data['pseudo']; ?>
+                                                par <a href="<?php echo $creator_data['profil_url']; ?>"><?php echo $creator_data['pseudo']; ?></a>
                                                 <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Niveau actuel">
                                                     <?php echo $creator_data['level']; ?>
                                                 </span>
@@ -241,14 +237,14 @@ $contenders_ranking   = get_contenders_ranking($id_top);
                                     </div>
                                 </div>
 
-                                <?php if (get_top_done_by_current_vainkeur($id_top, $id_vainkeur)) : ?>
+                                <?php if (!get_top_done_by_current_vainkeur($id_top, $id_vainkeur)) : ?>
                                     <div class="col-12">
                                         <div class="card">
                                             <div class="card-body">
                                                 <h4 class="card-title">
                                                     <span class="ico va va-victory-hand va-lg"></span> A toi de jouer
                                                 </h4>
-                                                <h6 class="card-subtitle text-muted mb-1">
+                                                <h6 class="card-subtitle text-muted mb-1 text-center">
                                                     Toi aussi fais ta TopList afin de faire bouger les positions !
                                                 </h6>
                                                 <a href="<?php the_permalink($id_top); ?>" class="btn btn-outline-primary waves-effect">

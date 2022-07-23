@@ -8,7 +8,7 @@
         <div class="container">
           <div class="row">
             <div class="col">
-              <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/monitor.png" alt="VAINKEURZ Monitor" class="img-fluid">
+              <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/monitor/monitor.png" alt="VAINKEURZ Monitor" class="img-fluid">
             </div>
           </div>
         </div>
@@ -56,16 +56,16 @@
               <div class="card text-center">
                 <div class="card-body d-flex align-items-center winbloc">
                   <?php
-                  if (get_field('nb_total_tops', 'options') < 10000000) : ?>
+                  if (get_field('nb_total_votes', 'options') < 10000000) : ?>
                     <div class="illuwin">
-                      <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/switch-towin.png" alt="" class="img-fluid">
+                      <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/monitor/switch-towin.png" alt="" class="img-fluid">
                     </div>
                     <h3 class="mt-3">
                       Une <span class="t-violet">SWITCH LITE Bleu</span> à gagner !
                     </h3>
                     <p class="card-text mt-2">
-                      Le Vainkeur qui fera la <strong class="t-rose">10 millionième TopList</strong> l'emporte. <br>
-                      L'identifiant du gagnant sera annoncé sur Twitter et sur cette même page. <span class="ico va va-cold-face va-lg"></span>
+                      Le Vainkeur qui fera la <strong class="t-rose">10 millionième vote</strong> l'emporte. <br>
+                      Le gagnant sera annoncé sur Twitter et sur cette même page. <span class="ico va va-cold-face va-lg"></span>
                     </p>
                   <?php else : ?>
                     <div class="illuwin">
@@ -75,7 +75,7 @@
                       La <span class="t-violet">SWITCH LITE Bleu</span> a été remportée !
                     </h3>
                     <p class="card-text mt-2">
-                      Félicitation au Vainkeur qui a fait le <strong class="t-rose">10 millions Top</strong>. <br>
+                      Félicitation au Vainkeur qui a fait le <strong class="t-rose">10 millionième vote</strong>. <br>
                       Go sur notre Twitter pour découvrir le gagnant, c'est peut-être toi <span class="ico va va-swinking-face-with-tongue va-lg"></span>
                     </p>
                   <?php endif; ?>
@@ -122,40 +122,14 @@
                           $list_level_5 = get_users_by_level(5, 'total_vote', 'DESC');
                           foreach ($list_level_5 as $vainkeur) :
                           ?>
-                            <a href="<?php echo get_author_posts_url($vainkeur['ID'], $vainkeur['pseudo']); ?>">
+                            <a href="<?php echo get_author_posts_url($vainkeur['id'], $vainkeur['pseudo']); ?>">
                               <?php echo $vainkeur['pseudo']; ?>
                             </a>
                           <?php endforeach; ?>
                         </p>
                       </div>
                     </div>
-                  </div>
-                  <?php
-                  function niceNumber($n, $precision = 1)
-                  {
-                    if ($n < 900) {
-                      // Default
-                      $n_format = number_format($n);
-                    } else if ($n < 900000) {
-
-                      // Thausand
-                      $n_format = number_format($n / 1000, $precision) . 'K';
-                    } else if ($n < 900000000) {
-
-                      // Million
-                      $n_format = number_format($n / 1000000, $precision) . 'M';
-                    } else if ($n < 900000000000) {
-
-                      // Billion
-                      $n_format = number_format($n / 1000000000, $precision) . 'B';
-                    } else {
-
-                      // Trillion
-                      $n_format = number_format($n / 1000000000000, $precision) . 'T';
-                    }
-                    return $n_format;
-                  }
-                  ?>
+                  </div>                  
                   <div class="col-sm-12">
                     <div class="row">
                       <div class="col-sm-6 pr-1 pr-md-0">

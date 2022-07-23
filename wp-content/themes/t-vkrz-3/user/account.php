@@ -378,7 +378,7 @@ if ($list_user_toplists) {
                                           if ($top['typetop'] == "top3") {
                                             $wording = "Voir le Top 3";
                                           } else {
-                                            $wording = "Voir le Top complet";
+                                            $wording = "Voir la TopList";
                                           }
                                           ?>
                                           <a class="mr-1" href="<?php the_permalink($top['id_ranking']); ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="<?php echo $wording; ?>">

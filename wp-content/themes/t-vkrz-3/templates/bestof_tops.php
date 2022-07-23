@@ -47,9 +47,6 @@ get_header();
                                                             <th class="text-right">
                                                                 <small class="text-muted">Conçu par</small>
                                                             </th>
-                                                            <th class="text-right">
-                                                                <small class="text-muted">Faire le Top</small>
-                                                            </th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -147,12 +144,6 @@ get_header();
                                                                                 <?php endif; ?>
                                                                             </a>
                                                                         </h4>
-                                                                    </td>
-
-                                                                    <td class="text-right">
-                                                                        <a href="<?php the_permalink($top_id); ?>" class="mr-1 btn btn-outline-primary waves-effect">
-                                                                            <span class="va va-trophy va va-lg"></span>
-                                                                        </a>
                                                                     </td>
                                                                 </tr>
                                                         <?php endif;

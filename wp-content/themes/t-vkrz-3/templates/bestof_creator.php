@@ -90,7 +90,7 @@ $best_creators = best_creators();
                                                                                 <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Niveau actuel">
                                                                                     <?php echo $creator['user_level_icon']; ?>
                                                                                 </span>
-                                                                                <?php if ($creator_data['user_role']  == "administrator") : ?>
+                                                                                <?php if ($creator['user_role']  == "administrator") : ?>
                                                                                     <span class="ico va va-vkrzteam va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
                                                                                     </span>
                                                                                 <?php endif; ?>
