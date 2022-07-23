@@ -143,16 +143,51 @@ if ($get_top_type) {
 
                           <div class="separate mt-1 mb-2 d-block d-sm-none"></div>
 
-                          <?php if (get_post_status($id_top_global) != "draft") : ?>
-                            <?php if (get_field('uuid_user_r', $id_ranking) !== $uuiduser) : ?>
-                              <div class="card mt-2">
-                                <a href="<?php echo $top_infos['top_url']; ?>" class="w-100 btn btn-rose waves-effect p-1">
-                                  <p class="h4 text-white m-0">
-                                    Faire ma TopList
-                                  </p>
-                                </a>
-                              </div>
-                            <?php endif; ?>
+                          <?php
+                          var_dump($id_top_global);
+                          var_dump($id_vainkeur);
+                          $uuid_user = get_field('uuid_user_vkrz', $id_vainkeur);
+                          var_dump($uuid_user);
+
+                          $check_rank = new WP_Query(array(
+                            'post_type'                 => 'classement',
+                            'posts_per_page'            => 1,
+                            'ignore_sticky_posts'       => true,
+                            'update_post_meta_cache'    => false,
+                            'no_found_rows'             => true,
+                            'meta_query'                => array(
+                              'relation' => 'AND',
+                              array(
+                                'key'       => 'done_r',
+                                'value'     => 'done',
+                                'compare'   => '=',
+                              ),
+                              array(
+                                'key'       => 'id_tournoi_r',
+                                'value'     => $id_top_global,
+                                'compare'   => '=',
+                              ),
+                              array(
+                                'key'       => 'uuid_user_r',
+                                'value'     => $uuid_user,
+                                'compare'   => '=',
+                              )
+                            )
+                          ));
+                          if ($check_rank->have_posts()) {
+                            $id_rank = wp_list_pluck($check_rank->posts, 'ID');
+                            $id_rank = $id_rank[0];
+                          }
+                          return $id_rank;
+                          ?>
+                          <?php if (!get_top_done_by_current_vainkeur($id_top_global, $id_vainkeur)) : ?>
+                            <div class="card mt-2">
+                              <a href="<?php echo $top_infos['top_url']; ?>" class="w-100 btn btn-rose waves-effect p-1">
+                                <p class="h4 text-white m-0">
+                                  Faire ma TopList
+                                </p>
+                              </a>
+                            </div>
                           <?php endif; ?>
 
                           <div class="card">

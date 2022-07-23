@@ -79,23 +79,41 @@ $best_creators = best_creators();
                                                                         <?php endif; ?>
                                                                     </td>
                                                                     <td>
-                                                                        <div class="d-flex align-items-center">
-                                                                            <div class="avatar">
-                                                                                <span class="avatar-picture" style="background-image: url(<?php echo $creator['user_avatar']; ?>);"></span>
-                                                                            </div>
-                                                                            <div class="font-weight-bold championname">
-                                                                                <span>
-                                                                                    <?php echo $creator['user_pseudo']; ?>
-                                                                                </span>
-                                                                                <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Niveau actuel">
-                                                                                    <?php echo $creator['user_level_icon']; ?>
-                                                                                </span>
-                                                                                <?php if ($creator['user_role']  == "administrator") : ?>
+                                                                        <?php
+                                                                        $creator_uuiduser       = get_field('uuiduser_user', 'user_' . $creator['user_id']);
+                                                                        $vainkeur_data_selected = get_user_infos($creator_uuiduser);
+                                                                        ?>
+                                                                        <span class="avatar">
+                                                                            <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_vainkeur'])); ?>">
+                                                                                <span class="avatar-picture" style="background-image: url(<?php echo $vainkeur_data_selected['avatar']; ?>);"></span>
+                                                                            </a>
+                                                                            <span class="user-niveau">
+                                                                                <?php echo $vainkeur_data_selected['level']; ?>
+                                                                            </span>
+                                                                        </span>
+                                                                        <span class="font-weight-bold championname">
+                                                                            <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_vainkeur'])); ?>">
+                                                                                <?php echo $vainkeur_data_selected['pseudo']; ?>
+                                                                                <?php if ($vainkeur_data_selected) : ?>
+                                                                                    <span class="user-niveau-xs">
+                                                                                        <?php echo $vainkeur_data_selected['level']; ?>
+                                                                                    </span>
+                                                                                <?php endif; ?>
+                                                                                <?php if ($vainkeur_data_selected['user_role'] == "administrator") : ?>
                                                                                     <span class="ico va va-vkrzteam va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
                                                                                     </span>
                                                                                 <?php endif; ?>
-                                                                            </div>
-                                                                        </div>
+                                                                                <?php if ($vainkeur_data_selected['user_role'] == "administrator" || $vainkeur_data_selected['user_role'] == "author") : ?>
+                                                                                    <span class="ico va va-man-singer va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
+                                                                                    </span>
+                                                                                <?php endif; ?>
+                                                                            </a>
+                                                                            <!--
+                                                                            UUID    : <?php the_field('uuid_user_r', $id_rank); ?>
+                                                                            ID rank : <?php echo $id_rank; ?>
+                                                                            Date    : <?php echo get_the_date('d/m/Y - H:i:s', $id_rank); ?>
+                                                                            -->
+                                                                        </span>
                                                                     </td>
 
                                                                     <td class="text-right">

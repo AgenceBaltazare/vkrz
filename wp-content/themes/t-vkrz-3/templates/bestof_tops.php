@@ -128,22 +128,41 @@ get_header();
 
                                                                     <td class="text-right">
                                                                         <?php
-                                                                        $creator_id         = get_post_field('post_author', $top_id);
-                                                                        $creator_uuiduser   = get_field('uuiduser_user', 'user_' . $creator_id);
-                                                                        $creator_data       = get_user_infos($creator_uuiduser);
+                                                                        $creator_id             = get_post_field('post_author', $top_id);
+                                                                        $creator_uuiduser       = get_field('uuiduser_user', 'user_' . $creator_id);
+                                                                        $vainkeur_data_selected = get_user_infos($creator_uuiduser);
                                                                         ?>
-                                                                        <h4 class="mb-0 link-creator creator-listing-bestof">
-                                                                            <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator_id; ?>" target="_blank" class="link-to-creator">
-                                                                                <?php echo $creator_data['pseudo']; ?>
-                                                                                <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Niveau actuel">
-                                                                                    <?php echo $creator_data['level']; ?>
-                                                                                </span>
-                                                                                <?php if ($creator_data['user_role']  == "administrator") : ?>
+                                                                        <span class="avatar">
+                                                                            <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_vainkeur'])); ?>">
+                                                                                <span class="avatar-picture" style="background-image: url(<?php echo $vainkeur_data_selected['avatar']; ?>);"></span>
+                                                                            </a>
+                                                                            <span class="user-niveau">
+                                                                                <?php echo $vainkeur_data_selected['level']; ?>
+                                                                            </span>
+                                                                        </span>
+                                                                        <span class="font-weight-bold championname">
+                                                                            <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_vainkeur'])); ?>">
+                                                                                <?php echo $vainkeur_data_selected['pseudo']; ?>
+                                                                                <?php if ($vainkeur_data_selected) : ?>
+                                                                                    <span class="user-niveau-xs">
+                                                                                        <?php echo $vainkeur_data_selected['level']; ?>
+                                                                                    </span>
+                                                                                <?php endif; ?>
+                                                                                <?php if ($vainkeur_data_selected['user_role'] == "administrator") : ?>
                                                                                     <span class="ico va va-vkrzteam va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
                                                                                     </span>
                                                                                 <?php endif; ?>
+                                                                                <?php if ($vainkeur_data_selected['user_role'] == "administrator" || $vainkeur_data_selected['user_role'] == "author") : ?>
+                                                                                    <span class="ico va va-man-singer va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
+                                                                                    </span>
+                                                                                <?php endif; ?>
                                                                             </a>
-                                                                        </h4>
+                                                                            <!--
+                                                                            UUID    : <?php the_field('uuid_user_r', $id_rank); ?>
+                                                                            ID rank : <?php echo $id_rank; ?>
+                                                                            Date    : <?php echo get_the_date('d/m/Y - H:i:s', $id_rank); ?>
+                                                                            -->
+                                                                        </span>
                                                                     </td>
                                                                 </tr>
                                                         <?php endif;
