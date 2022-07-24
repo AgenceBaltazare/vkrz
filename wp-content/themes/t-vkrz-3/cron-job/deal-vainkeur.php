@@ -96,7 +96,7 @@ while ($vainkeur->have_posts()) : $vainkeur->the_post();
 
     update_field('maj_vkrz', date('Y-m-d H:i:s'), $id_vainkeur);
 
-    echo $i . " : " . get_the_ID() . "</br>";
+    echo $i . " : " . get_the_ID() . "\n";
     
     $i++;
 
