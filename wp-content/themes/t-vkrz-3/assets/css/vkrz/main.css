@@ -984,6 +984,10 @@ html .content {
   background: #130e2b !important;
 }
 
+table.dataTable tbody tr {
+  background-color: transparent !important;
+}
+
 .page-template-monitor .list-vainkeur-monitor {
   line-height: 14px;
 }
