@@ -1,13 +1,8 @@
 <?php
+global $id_vainkeur_profil;
+var_dump($id_vainkeur_profil);
+global $id_membre;
 get_header();
-global $id_vainkeur;
-global $vainkeur_info;
-global $vainkeur_tops;
-$author             = get_user_by('slug', get_query_var('author_name'));
-$id_membre          = $author->ID;
-$uuid_vainkeur      = get_field('uuiduser_user', 'user_' . $id_membre);
-$id_vainkeur_profil = deal_vainkeur_entry(false, $uuid_vainkeur);
-$id_vainkeur_profil = $id_vainkeur_profil['id_vainkeur'];
 $list_user_toplists = get_user_toplist($id_vainkeur_profil);
 $list_t_done        = array();
 foreach ($list_user_toplists as $top) {
@@ -192,7 +187,7 @@ foreach ($list_user_toplists as $top) {
                   <div class="row">
                     <?php
                     $vainkeur_badges = get_the_terms($id_vainkeur_profil, 'badges');
-                    if($vainkeur_badges) :
+                    if ($vainkeur_badges) :
                       foreach ($vainkeur_badges as $badge) : ?>
                         <div class="col-4 col-sm-6 col-lg-4">
                           <div class="text-center">
@@ -203,7 +198,8 @@ foreach ($list_user_toplists as $top) {
                             </div>
                           </div>
                         </div>
-                    <?php endforeach; endif; ?>
+                    <?php endforeach;
+                    endif; ?>
                   </div>
                 </div>
               </div>
@@ -354,24 +350,25 @@ foreach ($list_user_toplists as $top) {
                               </thead>
                               <tbody>
                                 <?php
-                                foreach ($list_t_done as $r_user) : ?>
-                                  <?php
+                                foreach ($list_t_done as $r_user) :
+                                  $list_type    = array();
                                   $get_top_type = get_the_terms($r_user['id_top'], 'type');
                                   if ($get_top_type) {
                                     foreach ($get_top_type as $type_top) {
-                                      $type_top = $type_top->slug;
+                                      array_push($list_type, $type_top->slug);
                                     }
                                   }
-                                  ?>
-                                  <?php if ($type_top == "classik" || $type_top == "sponso") : ?>
+                                  if (!in_array('private', $list_type) && !in_array('onboarding', $list_type)) : ?>
                                     <tr id="top-<?php echo $r_user['id_ranking']; ?>">
                                       <td>
                                         <div class="d-flex align-items-center">
                                           <div class="avatar">
-                                            <?php
-                                            $minia = get_the_post_thumbnail_url($r_user['id_top'], 'large')
-                                            ?>
-                                            <span class="avatar-picture avatar-top" style="background-image: url(<?php echo $minia; ?>);"></span>
+                                            <a class="text-body" href="<?php the_permalink($r_user['id_top']); ?>">
+                                              <?php
+                                              $minia = get_the_post_thumbnail_url($r_user['id_top'], 'large')
+                                              ?>
+                                              <span class="avatar-picture avatar-top" style="background-image: url(<?php echo $minia; ?>);"></span>
+                                            </a>
                                           </div>
                                           <div class="font-weight-bold topnamebestof">
                                             <div class="media-body">
@@ -457,5 +454,4 @@ foreach ($list_user_toplists as $top) {
     </div>
   </div>
 </div>
-
 <?php get_footer(); ?>

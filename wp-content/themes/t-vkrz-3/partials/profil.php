@@ -4,6 +4,7 @@ global $user_id;
 global $vainkeur_id;
 global $vainkeur_info;
 global $user_infos;
+global $id_membre;
 $vainkeur_info = isset($vainkeur_info) ? $vainkeur_info : $user_infos;
 ?>
 <div class="card profile-header mb-2">
@@ -107,7 +108,7 @@ $vainkeur_info = isset($vainkeur_info) ? $vainkeur_info : $user_infos;
                 <li class="nav-item">
                   <a class="nav-link font-weight-bold <?php if (is_page(218587)) {
                                                         echo 'btn btn-primary';
-                                                      } ?>" href="<?php the_permalink(218587); ?>?creator_id=<?php echo $vainkeur_id; ?>">
+                                                      } ?>" href="<?php the_permalink(218587); ?>?creator_id=<?php echo $id_membre; ?>">
                     Créateur
                   </a>
                 </li>

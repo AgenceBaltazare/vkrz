@@ -25,10 +25,10 @@ $(document).ready(function ($) {
                 method: "POST",
                 url: vkrz_ajaxurl,
                 data: {
-                    action: 'vkzr_begin_t',
-                    id_top: id_top,
-                    uuiduser: uuiduser,
-                    typetop: typetop,
+                    action      : 'vkzr_begin_t',
+                    id_top      : id_top,
+                    uuiduser    : uuiduser,
+                    typetop     : typetop
                 }
             })
             .done(function (response) {

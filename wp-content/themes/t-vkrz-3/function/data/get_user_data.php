@@ -104,13 +104,16 @@ function get_user_toplist($id_vainkeur)
 
         foreach ($vainkeur_list_ranking as $id_ranking) {
 
+            $ranking          = array();
             $nb_votes         = get_field('nb_votes_r', $id_ranking);
             $id_top           = get_field('id_tournoi_r', $id_ranking);
             $typetop          = get_field('type_top_r', $id_ranking);
             $uuid_user        = get_field('uuid_user_r', $id_ranking);
+            $ranking          = get_field('ranking_r', $id_ranking);
             $cat_id           = "";
+            $nb_top           = "";
 
-            $nb_top = $typetop == "top3" ? 3 : count(get_field('ranking_r', $id_ranking));
+            $nb_top = $typetop == "top3" ? 3 : count($ranking);
 
             if(get_field('done_r', $id_ranking) == "done"){
                 $state = "done";

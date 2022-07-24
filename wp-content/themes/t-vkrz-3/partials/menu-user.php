@@ -11,7 +11,7 @@ if (is_single() && get_post_type() == "tournoi") {
 } elseif (is_single() && get_post_type() == "classement") {
   global $top_infos;
   $id_top = get_field('id_tournoi_r');
-} elseif (is_author()) {
+} elseif (is_author() || is_page(218587)) {
   global $vainkeur_info;
 }
 ?>
@@ -326,6 +326,14 @@ if (is_single() && get_post_type() == "tournoi") {
           </h3>
         </div>
 
+      <?php elseif (is_page(218587)) : ?>
+
+        <div class="tournament-heading text-center">
+          <h3 class="mb-0 t-titre-tournoi">
+            Profil créateur de <?php echo $vainkeur_info['pseudo']; ?> <?php echo $vainkeur_info['level']; ?>
+          </h3>
+        </div>
+
       <?php elseif (is_single() && (get_post_type() === "post")) : ?>
 
         <div class="tournament-heading text-center">
@@ -346,24 +354,51 @@ if (is_single() && get_post_type() == "tournoi") {
     <ul class="nav navbar-nav align-items-center justify-content-around">
       <li class="nav-item dropdown dropdown-cart mt-3px">
         <a class="nav-link d-flex flex-column align-items-center" href="javascript:void(0);" data-toggle="dropdown">
-          <span class="ico text-center va-gem va va-lg"></span>
-          <span class="value-user-stats user-total-vote-value">
-            <?php if ($user_infos['current_money_vkrz']) : ?>
-              <?php echo $user_infos['current_money_vkrz']; ?>
+          <div class="d-flex flex-column">
+            <?php if ($user_infos['money_creator_vkrz'] > 0) : ?>
+              <div>
+                <span class="ico text-center va-gem va va-lg"></span>
+                <span class="value-user-stats user-total-vote-value">
+                  <?php if ($user_infos['money_vkrz']) : ?>
+                    <?php echo $user_infos['money_vkrz']; ?>
+                  <?php else : ?>
+                    0
+                  <?php endif; ?>
+                </span>
+              </div>
+              <div>
+                <span class="ico text-center va-gem-rose va va-lg"></span>
+                <span class="value-user-stats">
+                  <?php if ($user_infos['money_creator_vkrz']) : ?>
+                    <?php echo $user_infos['money_creator_vkrz']; ?>
+                  <?php else : ?>
+                    0
+                  <?php endif; ?>
+                </span>
+              </div>
             <?php else : ?>
-              0
+              <span class="ico text-center va-gem va va-lg"></span>
+              <span class="value-user-stats">
+                <?php if ($user_infos['money_vkrz']) : ?>
+                  <?php echo $user_infos['money_vkrz']; ?>
+                <?php else : ?>
+                  0
+                <?php endif; ?>
+              </span>
             <?php endif; ?>
-          </span>
+          </div>
         </a>
         <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
           <li class="dropdown-menu-header">
             <div class="dropdown-header d-flex">
               <h4 class="notification-title mb-0 mr-auto">
-                <span class="va-gem va va-lg"></span> <?php echo $user_infos['current_money_vkrz']; ?>
+                <span class="va-llama va va-lg"></span> <?php echo $user_infos['money_vkrz']; ?> <span class="va-gem va va-lg"></span>
               </h4>
-              <div class="badge badge-pill badge-light-primary">
-                Solde de KEURZ disponible
-              </div>
+              <?php if ($user_infos['money_creator_vkrz'] > 0) : ?>
+                <h4 class="notification-title mb-0 ml-auto">
+                  <span class="va-man-singer va va-lg"></span> <?php echo $user_infos['money_creator_vkrz']; ?> <span class="va-gem-rose va va-lg"></span>
+                </h4>
+              <?php endif; ?>
             </div>
           </li>
           <li class="dropdown-menu-footer">

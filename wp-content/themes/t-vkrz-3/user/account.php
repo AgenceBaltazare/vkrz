@@ -406,9 +406,6 @@ if ($list_user_toplists) {
                                             <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-id_ranking="<?php echo $top['id_ranking']; ?>" class="confirm_delete dropdown-item" href="#">
                                               <span class="ico-action va va-new-button va-z-20"></span> Recommencer
                                             </a>
-                                            <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Le Top sera supprimé définitivement 😱" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-id_ranking="<?php echo $top['id_ranking']; ?>" class="confirmDeleteReal dropdown-item" href="#">
-                                              <span class="ico-action va va-throw-bin-button va-z-20"></span> Supprimer
-                                            </a>
                                             <a href="#" class="dropdown-item" data-toggle="modal" data-target="#commentModal-<?php echo $top['id_top']; ?>">
                                               <span class="ico-action va va-free-button va-z-20"></span> Commenter
                                             </a>

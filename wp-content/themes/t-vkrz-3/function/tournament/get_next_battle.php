@@ -20,6 +20,28 @@ function get_next_duel($id_ranking, $id_top, $current_id_vainkeur){
   $timeline_votes     = get_field('nb_votes_r', $id_ranking);
   $list_contenders    = get_field('ranking_r', $id_ranking);
 
+  if ($timeline_votes == 1) {
+    // Ajout du Top dans la liste des TopList Vainkeur
+    $user_list_toplist      = array();
+    if (get_field('liste_des_toplist_vkrz', $current_id_vainkeur)) {
+      $user_list_toplist    = json_decode(get_field('liste_des_toplist_vkrz', $current_id_vainkeur));
+    }
+    if (!in_array(intval($id_ranking), $user_list_toplist)) {
+      array_push($user_list_toplist, intval($id_ranking));
+      update_field('liste_des_toplist_vkrz', json_encode($user_list_toplist), $current_id_vainkeur);
+    }
+
+    // Ajout du Top dans la liste des Tops commencé du Vainkeur
+    $user_list_top_begin    = array();
+    if (get_field('liste_des_top_commences_vkrz', $current_id_vainkeur)) {
+      $user_list_top_begin    = json_decode(get_field('liste_des_top_commences_vkrz', $current_id_vainkeur));
+    }
+    if(!in_array(intval($id_top), $user_list_top_begin)){
+      array_push($user_list_top_begin, intval($id_top));
+      update_field('liste_des_top_commences_vkrz', json_encode($user_list_top_begin), $current_id_vainkeur);
+    }
+  }
+
   // Count contenders
   $nb_contenders = count($list_contenders);
   if ($nb_contenders % 2 == 0) {

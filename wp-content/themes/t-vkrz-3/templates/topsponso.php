@@ -56,9 +56,21 @@ $tops_in_cat        = new WP_Query(array(
           $creator_id         = get_post_field('post_author', $id_top);
           $creator_uuiduser   = get_field('uuiduser_user', 'user_' . $creator_id);
           $creator_data       = get_user_infos($creator_uuiduser);
-          $user_sinle_top_data = array_search($id_top, array_column($list_user_tops, 'id_top'));
-          if ($user_sinle_top_data !== false) {
-            $state = $list_user_tops[$user_sinle_top_data]['state'];
+          $list_user_tops_begin   = $user_tops['list_user_tops_begin_ids'];
+          $type_top         = "";
+          $state            = "";
+          $illu             = get_the_post_thumbnail_url($id_top, 'medium');
+          if (is_home()) {
+            $class        = "swiper-slide";
+          } elseif (is_single()) {
+            $class        = "col-md-12 col-6";
+          } else {
+            $class        = "col-12";
+          }
+          if (in_array($id_top, $list_user_tops)) {
+            $state = "done";
+          } elseif (in_array($id_top, $list_user_tops_begin)) {
+            $state = "begin";
           } else {
             $state = "todo";
           }

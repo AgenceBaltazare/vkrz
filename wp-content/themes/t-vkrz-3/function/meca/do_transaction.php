@@ -17,15 +17,13 @@ function do_transaction($id_produit, $user_uuid, $price, $user_email, $idvainkeu
         update_field('email_acheteur_transaction', $user_email, $id_new_transaction);
         update_field('etat_transaction', 'pending', $id_new_transaction);
 
-        $current_money = get_current_money($idvainkeur);
-
         update_vainkeur_badge($idvainkeur, 'Shopper');
 
         if($id_new_transaction){
             vkrz_push_transaction($id_new_transaction);
         }
 
-        return die(json_encode($current_money));
+        return die(json_encode($id_new_transaction));
 
     }
 }

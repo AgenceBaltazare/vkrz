@@ -125,7 +125,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                     <div class="choosecta">
                       <?php if ($top_infos['top_number'] > 15) : ?>
                         <div class="cta-begin cta-top3">
-                          <a href="#" id="begin_top3" data-typetop="top3" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
+                          <a href="#" id="begin_top3" data-typetop="top3" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
                             Participer
                           </a>
                           <small class="text-muted">
@@ -139,7 +139,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                         </div>
                       <?php else : ?>
                         <div class="cta-begin cta-complet">
-                          <a href="#" id="begin_t" data-typetop="complet" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
+                          <a href="#" id="begin_t" data-typetop="complet" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
                             Participer
                           </a>
                           <small class="text-muted">

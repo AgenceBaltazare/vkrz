@@ -1,10 +1,11 @@
 <?php
 function check_user_level($id_vainkeur){
-
-    $user_id        = get_user_logged_id();
+    
     $level_up       = false;
 
-    if($user_id){
+    if($id_vainkeur){
+
+        $user_id = get_post_field('post_author', $id_vainkeur);
 
         $niv_1 = 50;
         $niv_2 = 500;
@@ -71,21 +72,18 @@ function check_user_level($id_vainkeur){
             update_field('level_user', $level_number, 'user_' . $user_id);
             vkrz_push_level_up($user_id, $level_number);
 
-            /*
             vkzr_create_event(
                 "Félicitation",
                 "Tu passes au niveau " . $level,
                 null,
                 "success"
             );
-            */
         }
 
         return array(
             'user_level'        => $level_number,
             'user_level_icon'   => $level,
-            'level_up'          => $level_up,
-            'next_level'        => $next_level
+            'level_up'          => $level_up
         );
         
     }

@@ -2,7 +2,7 @@
 <?php
 get_header();
 global $user_tops;
-$list_user_tops     = $user_tops['list_user_tops'];
+$list_user_tops     = $user_tops['list_user_tops_done_ids'];
 $top_selected       = get_field('liste_des_tops_selectionnes_special', false, false);
 ?>
 <div class="app-content content ecommerce-application">

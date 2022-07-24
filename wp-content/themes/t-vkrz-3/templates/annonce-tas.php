@@ -6,7 +6,7 @@ global $user_id;
 global $uuiduser;
 global $user_tops;
 get_header();
-$list_user_tops = $user_tops['list_user_tops'];
+$list_user_tops = $user_tops['list_user_tops_done_ids'];
 $tops_sponso = new WP_Query(array(
     'post_type'                 => 'tournoi',
     'orderby'                   => 'date',

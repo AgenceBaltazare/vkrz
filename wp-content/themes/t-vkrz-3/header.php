@@ -7,6 +7,8 @@ global $id_vainkeur;
 global $utm;
 global $type_top;
 global $sponso;
+global $list_user_tops;
+global $list_user_tops_begin;
 if (is_single()) {
   global $id_top;
   $get_top_type = get_the_terms(get_the_ID(), 'type');

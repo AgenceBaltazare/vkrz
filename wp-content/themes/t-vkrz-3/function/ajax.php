@@ -30,12 +30,6 @@ function vkzr_check_level() {
 add_action( 'wp_ajax_vkzr_process_delete_ranking', 'vkzr_process_delete_ranking' );
 add_action( 'wp_ajax_nopriv_vkzr_process_delete_ranking', 'vkzr_process_delete_ranking' );
 function vkzr_process_delete_ranking() {
-    delete_ranking($_POST['id_ranking'], $_POST['id_vainkeur']);
-}
-
-add_action( 'wp_ajax_vkzr_process_delete_real_ranking', 'vkzr_process_delete_real_ranking' );
-add_action( 'wp_ajax_nopriv_vkzr_process_delete_real_ranking', 'vkzr_process_delete_real_ranking' );
-function vkzr_process_delete_real_ranking() {
     delete_real_ranking($_POST['id_ranking'], $_POST['id_vainkeur']);
 }
 

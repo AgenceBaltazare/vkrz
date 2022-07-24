@@ -42,60 +42,44 @@ if ($vainkeur_badges) {
                 <section id="nav-filled">
                     <div class="row">
                         <div class="col-sm-3">
-                            <div class="card">
-                                <div class="card-body text-center">
-                                    <div class="mb-1">
-                                        <span class="ico4 va va-gem va va-z-85"></span>
-                                    </div>
-                                    <h2 class="font-weight-bolder">
-                                        <?php if ($user_infos['current_money_vkrz']) : ?>
-                                            <?php echo number_format($user_infos['current_money_vkrz'], 0, ",", " "); ?>
-                                        <?php else : ?>
-                                            -
-                                        <?php endif; ?>
-                                    </h2>
-                                    <p class="card-text legende">KEURZ</p>
-                                    <div class="row mt-2">
-                                        <div class="col-12">
-                                            <a href="<?php the_permalink(get_page_by_path('shop')); ?>/" class="btn btn-primary btn-block waves-effect waves-float waves-light">
-                                                Accéder au Shop
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="row">
                                 <div class="col-6 col-sm-12">
-                                    <div class="card text-center">
-                                        <div class="card-body">
+                                    <div class="card">
+                                        <div class="card-body text-center">
                                             <div class="mb-1">
-                                                <span class="ico4 va va-llama va va-z-30"></span>
+                                                <span class="ico4 va va-gem va va-z-85"></span>
                                             </div>
                                             <h2 class="font-weight-bolder">
-                                                <?php echo number_format($user_infos['money_vkrz'], 0, ",", " "); ?> <span class="va-gem va va-1x"></span>
+                                                <?php if ($user_infos['money_vkrz']) : ?>
+                                                    <?php echo number_format($user_infos['money_vkrz'], 0, ",", " "); ?>
+                                                <?php else : ?>
+                                                    -
+                                                <?php endif; ?>
                                             </h2>
                                             <p class="card-text legende">
-                                                Collecté en tant que Vainkeur
-                                                <br>
-                                                <small class="text-primary">Mis à jour en temps réel</small>
+                                                Collection en tant que vainkeur
                                             </p>
+                                            <small class="text-primary">Mis à jour en temps réel</small>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-6 col-sm-12">
                                     <div class="card text-center">
-                                        <div class="card-body">
+                                        <div class="card-body text-center">
                                             <div class="mb-1">
-                                                <span class="ico4 va va-man-singer va va-z-30"></span>
+                                                <span class="ico4 va va-gem-rose va va-z-85"></span>
                                             </div>
                                             <h2 class="font-weight-bolder">
-                                                <?php echo number_format($user_infos['money_creator_vkrz'], 0, ",", " "); ?> <span class="va-gem va va-1x"></span>
+                                                <?php if ($user_infos['money_creator_vkrz']) : ?>
+                                                    <?php echo number_format($user_infos['money_creator_vkrz'], 0, ",", " "); ?>
+                                                <?php else : ?>
+                                                    -
+                                                <?php endif; ?>
                                             </h2>
                                             <p class="card-text legende">
-                                                Collecté en tant que créateur de Top
-                                                <br>
-                                                <small class="text-primary">Mis à jour tous les 24h</small>
+                                                Collection en tant que créateur
                                             </p>
+                                            <small class="text-primary">Mis à jour tous les 24h</small>
                                         </div>
                                     </div>
                                 </div>

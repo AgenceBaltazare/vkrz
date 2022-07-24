@@ -51,12 +51,12 @@ while ($vainkeur->have_posts()) : $vainkeur->the_post();
             if (!is_null(get_post($id_top))) {
                 if (get_field('done_r') == "done") {
                     $nb_tops_complete = $nb_tops_complete + 1;
-                    array_push($list_tops, $id_top);
+                    array_push($list_tops, intval($id_top));
                 } else {
-                    array_push($list_tops_begin, $id_top);
+                    array_push($list_tops_begin, intval($id_top));
                 }
                 $nb_votes = $nb_votes + get_field('nb_votes_r');
-                array_push($list_toplist, $id_ranking);
+                array_push($list_toplist, intval($id_ranking));
             }
         }
 
@@ -91,8 +91,8 @@ while ($vainkeur->have_posts()) : $vainkeur->the_post();
     $money_total = $nb_tops_complete * 5 + $nb_votes + $money_badges;
     
     update_field('money_vkrz', $money_total, $id_vainkeur);
-    
-    //check_user_level($id_vainkeur);
+
+    check_user_level($id_vainkeur);
 
     update_field('maj_vkrz', date('Y-m-d H:i:s'), $id_vainkeur);
 

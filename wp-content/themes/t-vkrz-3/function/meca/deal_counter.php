@@ -30,11 +30,24 @@ function increase_vote_counter($id_vainkeur){
         $vkrz_vote_counter = get_field('nb_total_votes', 'options');
         update_field('nb_total_votes', $vkrz_vote_counter+1, 'options');
 
+        if ($vkrz_vote_counter + 1 === 10000000) {
+            $uuid_winner = get_field('uuid_user_vkrz', $id_vainkeur);
+            update_field('50k_top_uuid', $uuid_winner, 'options');
+            update_field('50k_tops_id_vainkeur', $id_vainkeur, 'options');
+            update_field('50k_tops_date', date('d/m/Y H:i:s'), 'options');
+
+            $event = array(
+                'event_name' => '🚨 Le 10 000 000ème vote vient d\'être fait 🥳 🥳 🥳',
+                'event_illu' => 'https://vainkeurz.com/wp-content/uploads/2021/08/giphy.gif'
+            );
+            vkrz_push_event($event);
+        }
+
     }
 
 }
 
-function increase_top_counter($id_vainkeur, $id_top){
+function increase_top_counter($id_vainkeur){
     
     if($id_vainkeur){
 
@@ -73,19 +86,6 @@ function increase_top_counter($id_vainkeur, $id_top){
         $vkrz_top_counter = get_field('nb_total_tops', 'options');
         update_field('nb_total_tops', $vkrz_top_counter+1, 'options');
 
-        if ($vkrz_top_counter + 1 === 100000) {
-            $uuid_winner = get_field('uuid_user_vkrz', $id_vainkeur);
-            update_field('50k_top_uuid', $uuid_winner, 'options');
-            update_field('50k_tops_id_vainkeur', $id_vainkeur, 'options');
-            update_field('50k_tops_date', date('d/m/Y H:i:s'), 'options');
-
-            $event = array(
-                'event_name' => '🚨 Le 100 000ème Top vient d\'être terminé 🥳 🥳 🥳  Bravo à tous les Vainkeurs 🤩',
-                'event_illu' => 'https://vainkeurz.com/wp-content/uploads/2021/08/giphy.gif'
-            );
-            vkrz_push_event($event);
-        }
-
     }
 
 }
@@ -94,22 +94,33 @@ function decrease_user_counter($id_vainkeur, $id_ranking){
     
     if($id_vainkeur){
 
+        $nb_to_decrease              = 0;
         // Decrease user total votes
         $user_vote_counter           = get_field('nb_vote_vkrz', $id_vainkeur);
         $nb_to_decrease              = get_field('nb_votes_r', $id_ranking);
         $user_vote_counter_new_value = $user_vote_counter - $nb_to_decrease;
+        if($user_vote_counter_new_value <= 0){
+            $user_vote_counter_new_value = 0;
+        }
         update_field('nb_vote_vkrz', $user_vote_counter_new_value, $id_vainkeur);
 
         // Decrease user total tops
         if(get_field('done_r', $id_ranking) == "done"){
             $user_top_counter           = get_field('nb_top_vkrz', $id_vainkeur);
             $user_top_counter_new_value = $user_top_counter - 1;
+            $nb_to_decrease             = $nb_to_decrease + 5;
+            if ($user_top_counter_new_value <= 0) {
+                $user_top_counter_new_value = 0;
+            }
             update_field('nb_top_vkrz', $user_top_counter_new_value, $id_vainkeur);
         }
 
         // Decrease user total money
         $user_money        = get_field('money_vkrz', $id_vainkeur);
-        update_field('money_vkrz', $user_money - ($nb_to_decrease + 5), $id_vainkeur);
+        if ($user_money <= 0) {
+            $user_money = 0;
+        }
+        update_field('money_vkrz', $user_money - $nb_to_decrease, $id_vainkeur);
 
     }
 

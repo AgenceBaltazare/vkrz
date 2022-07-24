@@ -55,7 +55,7 @@ function get_user_infos_from_api($data)
     $user_email      = $user_info->user_email;
     $user_role       = $user_info->roles[0];
     $avatar_url      = get_avatar_url($user_id, ['size' => '80', 'force_default' => false]);
-    $info_user_level = get_user_level($user_id);
+    $info_user_level = get_user_level($id_vainkeur);
   }
 
   return array(

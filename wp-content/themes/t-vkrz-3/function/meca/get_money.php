@@ -1,8 +1,12 @@
 <?php
-function get_current_money($id_vainkeur){
+function get_current_money($id_vainkeur, $typemoney = false){
 
-    $all_transaction        = 0;
-    $global_money           = 0;
+    $all_transaction_vainkeur   = 0;
+    $all_transaction_createur   = 0;
+    $global_money               = array();
+    if(!$typemoney){
+        $typemoney = "vainkeur";
+    }
     $money_vkrz             = get_field('money_vkrz', $id_vainkeur);
     $money_createur_vkrz    = get_field('money_creator_vkrz', $id_vainkeur);
 
@@ -22,11 +26,24 @@ function get_current_money($id_vainkeur){
     ));
     while ($transaction->have_posts()) : $transaction->the_post();
 
-        $all_transaction = $all_transaction + get_field('montant_transaction');
+        $id_produit = get_field('id_produit_transaction');
+
+        if(get_field('reserve_aux_createurs_produit', $id_produit)){
+            $all_transaction_vainkeur = $all_transaction_vainkeur + get_field('montant_transaction');
+        }
+        else{
+            $all_transaction_createur = $all_transaction_createur + get_field('montant_transaction');
+        }
     
     endwhile;
 
-    $global_money = ($money_vkrz + $money_createur_vkrz) - $all_transaction;
+    $current_money_vainkeur = $money_vkrz - $all_transaction_vainkeur;
+    $current_money_createur = $money_createur_vkrz - $all_transaction_createur;
+
+    $global_money = array(
+        'money_vainkeur' => $current_money_vainkeur,
+        'money_createur' => $current_money_createur
+    );
 
     return $global_money;
 }

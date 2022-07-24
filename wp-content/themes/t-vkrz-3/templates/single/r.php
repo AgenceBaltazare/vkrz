@@ -21,6 +21,7 @@ if (is_user_logged_in() && env() != "local") {
 } else {
   $user_tops  = get_user_tops($id_vainkeur);
 }
+$list_t_already_done = $user_tops['list_user_tops_done_ids'];
 $user_ranking = get_user_ranking($id_ranking);
 $url_ranking  = get_the_permalink($id_ranking);
 $top_datas    = get_top_data($id_top_global);
@@ -143,44 +144,7 @@ if ($get_top_type) {
 
                           <div class="separate mt-1 mb-2 d-block d-sm-none"></div>
 
-                          <?php
-                          var_dump($id_top_global);
-                          var_dump($id_vainkeur);
-                          $uuid_user = get_field('uuid_user_vkrz', $id_vainkeur);
-                          var_dump($uuid_user);
-
-                          $check_rank = new WP_Query(array(
-                            'post_type'                 => 'classement',
-                            'posts_per_page'            => 1,
-                            'ignore_sticky_posts'       => true,
-                            'update_post_meta_cache'    => false,
-                            'no_found_rows'             => true,
-                            'meta_query'                => array(
-                              'relation' => 'AND',
-                              array(
-                                'key'       => 'done_r',
-                                'value'     => 'done',
-                                'compare'   => '=',
-                              ),
-                              array(
-                                'key'       => 'id_tournoi_r',
-                                'value'     => $id_top_global,
-                                'compare'   => '=',
-                              ),
-                              array(
-                                'key'       => 'uuid_user_r',
-                                'value'     => $uuid_user,
-                                'compare'   => '=',
-                              )
-                            )
-                          ));
-                          if ($check_rank->have_posts()) {
-                            $id_rank = wp_list_pluck($check_rank->posts, 'ID');
-                            $id_rank = $id_rank[0];
-                          }
-                          return $id_rank;
-                          ?>
-                          <?php if (!get_top_done_by_current_vainkeur($id_top_global, $id_vainkeur)) : ?>
+                          <?php if (!in_array($id_top_global, $list_t_already_done)) : ?>
                             <div class="card mt-2">
                               <a href="<?php echo $top_infos['top_url']; ?>" class="w-100 btn btn-rose waves-effect p-1">
                                 <p class="h4 text-white m-0">
@@ -230,40 +194,56 @@ if ($get_top_type) {
                           </div>
                         <?php endif; ?>
 
-                        <?php if (get_field('liste_des_createurs_top', $id_top)) : ?>
+                        <div class="separate mt-2 mb-2"></div>
 
-                          <div class="separate mt-2 mb-2"></div>
-
-                          <div class="card text-left">
-                            <div class="card-body">
-                              <h4 class="card-title">
-                                <span class="ico va va-star-struck va-lg"></span> Ce TOP a été fait par :
-                              </h4>
-                              <?php if (have_rows('liste_des_createurs_top', $id_top)) : ?>
-                                <?php while (have_rows('liste_des_createurs_top', $id_top)) : the_row(); ?>
-                                  <div class="employee-task d-flex justify-content-between align-items-center mb-1 mt-1">
-                                    <a href="<?php the_sub_field('lien_vers_la_video_top'); ?>" class="d-flex flex-row link-to-creator" target="_blank">
-                                      <div class="avatar me-75 mr-1">
-                                        <?php
-                                        if (get_sub_field('avatar_createur_top')) {
-                                          $avatar_creator = wp_get_attachment_image_src(get_sub_field('avatar_createur_top'), 'medium');
-                                        }
-                                        ?>
-                                        <div class="avatar-creator" style="background-image: url(<?php echo $avatar_creator[0]; ?>);"></div>
-                                      </div>
-                                      <div class="my-auto">
-                                        <h3 class="mb-0">
-                                          <?php the_sub_field('nom_du_createur'); ?>
-                                        </h3>
-                                        <span class="seevideocreator">Voir sa vidéo sur <?php the_sub_field('plateforme_top'); ?></span>
-                                      </div>
-                                    </a>
-                                  </div>
-                                <?php endwhile; ?>
-                              <?php endif; ?>
+                        <div class="card text-left">
+                          <?php
+                          $creator_id         = get_post_field('post_author', $id_top);
+                          $creator_uuiduser   = get_field('uuiduser_user', 'user_' . $creator_id);
+                          $creator_data       = get_user_infos($creator_uuiduser);
+                          ?>
+                          <div class="card-body">
+                            <h4 class="card-title">
+                              <?php
+                              date_default_timezone_set('Europe/Paris');
+                              $origin     = new DateTime(get_the_date('Y-m-d', $id_top));
+                              $target     = new DateTime(date('Y-m-d'));
+                              $interval   = $origin->diff($target);
+                              if ($interval->days == 0) {
+                                $info_date = "aujourd'hui";
+                              } elseif ($interval->days == 1) {
+                                $info_date = "hier";
+                              } else {
+                                $info_date = "depuis " . $interval->days . " jours";
+                              }
+                              ?>
+                              <span class="ico va va-birthday-cake va-lg"></span> Créé <span class="t-violet"><?php echo $info_date; ?></span> par :
+                            </h4>
+                            <div class="employee-task d-flex justify-content-between align-items-center">
+                              <a href="<?php echo $creator_data['profil_url']; ?>" class="d-flex flex-row link-to-creator">
+                                <div class="avatar me-75 mr-1">
+                                  <img src="<?php echo $creator_data['avatar']; ?>" class="circle" width="42" height="42" alt="Avatar">
+                                </div>
+                                <div class="my-auto">
+                                  <h3 class="mb-0">
+                                    <?php echo $creator_data['pseudo']; ?> <br>
+                                    <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Niveau actuel">
+                                      <?php echo $creator_data['level']; ?>
+                                    </span>
+                                    <?php if ($creator_data['user_role']  == "administrator") : ?>
+                                      <span class="ico va va-vkrzteam va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
+                                      </span>
+                                    <?php endif; ?>
+                                    <?php if ($creator_data['user_role']  == "administrator" || $creator_data['user_role'] == "author") : ?>
+                                      <span class="ico va va-man-singer va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
+                                      </span>
+                                    <?php endif; ?>
+                                  </h3>
+                                </div>
+                              </a>
                             </div>
                           </div>
-                        <?php endif; ?>
+                        </div>
 
                         <?php
                         $list_t_already_done = $user_tops['list_user_tops_done_ids'];
@@ -410,15 +390,26 @@ if ($get_top_type) {
                 <span class="ico va va-speech-balloon va-lg hide-xs"></span> <span class="hide-spot">Commenter</span>
               </a>
             </div>
-
-            <?php if (get_post_status($id_top_global) != "draft") : ?>
-              <?php if (get_field('uuid_user_r', $id_ranking) == $uuiduser) : ?>
-                <div class="ico-nav-mobile">
-                  <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" href="#" class="confirm_delete">
-                    <span class="ico hide-xs">🆕</span> <span class="hide-spot">Recommencer</span>
-                  </a>
-                </div>
-              <?php endif; ?>
+            <?php
+            $already_done = get_top_done_by_current_vainkeur($id_top_global, $id_vainkeur);
+            if (get_field('uuid_user_r', $id_ranking) == $uuiduser || isset($_GET['message']) && ($already_done == $id_ranking)) : ?>
+              <div class="ico-nav-mobile">
+                <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" href="#" class="confirm_delete">
+                  <span class="ico hide-xs">🆕</span> <span class="hide-spot">Recommencer</span>
+                </a>
+              </div>
+            <?php elseif ($already_done != "" && $already_done != $id_ranking) : ?>
+              <div class="ico-nav-mobile">
+                <a href="<?php the_permalink($already_done); ?>">
+                  <span class="hide-spot">Voir ma TopList</span>
+                </a>
+              </div>
+            <?php else : ?>
+              <div class="ico-nav-mobile">
+                <a href="<?php echo $top_infos['top_url']; ?>">
+                  <span class="hide-spot">Faire mon Top</span>
+                </a>
+              </div>
             <?php endif; ?>
           </div>
     </nav>

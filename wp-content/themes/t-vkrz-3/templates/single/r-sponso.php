@@ -23,6 +23,7 @@ if (is_user_logged_in() && env() != "local") {
 $user_ranking = get_user_ranking($id_ranking);
 $url_ranking  = get_the_permalink($id_ranking);
 $top_datas    = get_top_data($id_top_global);
+$already_done = get_top_done_by_current_vainkeur($id_top_global, $id_vainkeur);
 ?>
 
 <div class="app-content content cover is-sponso" style="background: url(<?php echo $top_infos['top_cover']; ?>) center center no-repeat">
@@ -32,112 +33,115 @@ $top_datas    = get_top_data($id_top_global);
       <div class="classement">
         <div class="row">
           <div class="col-md-8">
-            <div class="participation-content-sponso mb-4">
-              <?php if (!already_play($uuiduser, $id_top)) : ?>
-                <?php if (get_field('inscription_requise_t_sponso', $id_top_global) && !is_user_logged_in()) : ?>
-                  <div class="row">
-                    <div class="col-md-12 mt-1">
-                      <h1>
-                        Hier c'était hier mais..
-                      </h1>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-12 info-concours">
-                      <div class="info-win">
-                        <p>
-                          Aujourd'hui tu peux te tourner vers un avenir meilleur en rejoignant le concept VAINKEURZ 🚀 !
-                        </p>
-                        <p>
-                          Si tu souhaites participer au <strong class="t-rose">Tirage au Sort</strong>, n'hésites pas et créer ton compte ! Si tu fais déjà parti des Vainkeurs, connecte-toi simplement 👇
-                        </p>
+
+            <?php if (get_field('uuid_user_r', $id_ranking) == $uuiduser) : ?>
+              <div class="participation-content-sponso mb-4">
+                <?php if (!already_play($uuiduser, $id_top)) : ?>
+                  <?php if (get_field('inscription_requise_t_sponso', $id_top_global) && !is_user_logged_in()) : ?>
+                    <div class="row">
+                      <div class="col-md-12 mt-1">
+                        <h1>
+                          Hier c'était hier mais..
+                        </h1>
                       </div>
                     </div>
-                  </div>
-                  <a href="<?php the_permalink(get_page_by_path('connexion')); ?>?redirect=<?php the_permalink($id_ranking); ?>/" class="w-100 btn btn-rose waves-effect p-1">
-                    <p class="h4 text-white m-0">
-                      S'INSCRIRE (ou se connecter)
-                    </p>
-                  </a>
-                <?php elseif (get_field('uuid_user_r', $id_ranking) != $uuiduser && $id_top_global == 461704) : ?>
-                  <div class="doitbro mt-1">
-                    <h1>Toi aussi participe au concours</h1>
-                    <p>Pour tenter de gagner 1 des 3 bons d'achat d'une valeur de 50€, termine ta TopList et partage-la sur Twitter</p>
-                    <a href="<?php echo $top_infos['top_url']; ?>" class="animate__jello animate__animated animate__delay-1s btn btn-max btn-tweet btn-rose waves-effect waves-float waves-light">Je Participe</a>
-                  </div>
-                <?php else : ?>
-                  <div class="row">
-                    <div class="col-md-12 mt-1">
-                      <?php if (isset($_GET['message'])) : ?>
-                        <div class="label label-coco">
-                          <p>Félicitation pour votre connexion, tu peux maintenant participer :)</p>
+                    <div class="row">
+                      <div class="col-md-12 info-concours">
+                        <div class="info-win">
+                          <p>
+                            Aujourd'hui tu peux te tourner vers un avenir meilleur en rejoignant le concept VAINKEURZ 🚀 !
+                          </p>
+                          <p>
+                            Si tu souhaites participer au <strong class="t-rose">Tirage au Sort</strong>, n'hésites pas et créer ton compte ! Si tu fais déjà parti des Vainkeurs, connecte-toi simplement 👇
+                          </p>
                         </div>
-                      <?php endif; ?>
-                      <h1>
-                        <?php the_field('titre_de_la_fin_t_sponso', $id_top_global); ?>
-                      </h1>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-12 info-concours">
-                      <div class="info-win">
-                        <?php the_field('message_de_fin_t_sponso', $id_top_global); ?>
                       </div>
                     </div>
-                    <div class="col-md-12">
-                      <div class="d-flex align-items-center buttons-share-top">
-                        <?php if (get_field('type_de_fin_t_sponso', $id_top_global) == "mail_1") : ?>
-                          <form action="" method="post" name="form2" id="form-coupon">
-                            <?php if (is_user_logged_in()) : ?>
-                              <input type="email" value="<?php echo $user_infos['user_email']; ?>" name="email-player-input" id="email-player-input" required>
-                            <?php else : ?>
-                              <input type="email" placeholder="Mon adresse mail" name="email-player-input" id="email-player-input" required>
-                            <?php endif; ?>
-                            <input type="hidden" value="<?php echo $id_ranking; ?>" name="ranking" id="ranking">
-                            <input type="hidden" value="<?php echo $uuiduser; ?>" name="uuiduser" id="uuiduser">
-                            <input type="hidden" value="<?php echo $id_top_global; ?>" name="top" id="top">
-                            <input type="hidden" value="<?php echo $id_vainkeur; ?>" name="id_vainkeur" id="id_vainkeur">
-                            <button class="btn" id="btn-coupon">
-                              <?php the_field('intitule_cta_mail_t_sponso', $id_top_global); ?>
-                            </button>
-                          </form>
-                          <div class="bravo">
-                            <?php the_field('message_de_confirmation_t_sponso', $id_top_global); ?>
+                    <a href="<?php the_permalink(get_page_by_path('connexion')); ?>?redirect=<?php the_permalink($id_ranking); ?>/" class="w-100 btn btn-rose waves-effect p-1">
+                      <p class="h4 text-white m-0">
+                        S'INSCRIRE (ou se connecter)
+                      </p>
+                    </a>
+                  <?php elseif (get_field('uuid_user_r', $id_ranking) != $uuiduser && $id_top_global == 461704) : ?>
+                    <div class="doitbro mt-1">
+                      <h1>Toi aussi participe au concours</h1>
+                      <p>Pour tenter de gagner 1 des 3 bons d'achat d'une valeur de 50€, termine ta TopList et partage-la sur Twitter</p>
+                      <a href="<?php echo $top_infos['top_url']; ?>" class="animate__jello animate__animated animate__delay-1s btn btn-max btn-tweet btn-rose waves-effect waves-float waves-light">Je Participe</a>
+                    </div>
+                  <?php else : ?>
+                    <div class="row">
+                      <div class="col-md-12 mt-1">
+                        <?php if (isset($_GET['message'])) : ?>
+                          <div class="label label-coco">
+                            <p>Félicitation pour votre connexion, tu peux maintenant participer :)</p>
                           </div>
-                        <?php elseif (get_field('type_de_fin_t_sponso', $id_top_global) == "twitter_1") : ?>
-                          <a href="javascript: void(0)" class="sharelinkbtn2 w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-outline-primary waves-effect waves-float waves-light">
-                            <input type="text" value="<?php echo get_the_permalink($id_ranking); ?>" class="input_to_share2">
-                            Copier le lien du Top
-                          </a>
-                          <a href="<?php the_field('lien_du_tweet_t_sponso', $id_top_global); ?>" target="_blank" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light">
-                            Post Twitter
-                          </a>
-                        <?php elseif (get_field('type_de_fin_t_sponso', $id_top_global) == "twitter_2") : ?>
-
-                          <?php if ($id_top_global == 461704) : ?>
-
-                            <a href="https://twitter.com/intent/tweet?hashtags=#DLCOMPxVKRZ&original_referer=<?php echo $url_ranking; ?>&ref_src=&text=<?php echo urlencode("Merci @dLcompare pour le #concours !") ?>%0a%0a&url=<?php echo $url_ranking; ?>&via=Vainkeurz" class="animate__jello animate__animated animate__delay-1s btn btn-max btn-tweet btn-rose waves-effect waves-float waves-light" target="_blank" style="background-color: #1b95e0 !important; border-color: #1b95e0 !important;">
-                              <img src="https://vainkeurz.com/wp-content/uploads/2022/06/twitter.png" width="20" height="16" alt="Tweet icon">
-                              <?php the_field('message_du_bouton_tweet_twitter2', $id_top_global); ?>
-                            </a>
-
-                          <?php else : ?>
-                            <a href="https://twitter.com/intent/tweet?hashtags=<?php the_field('hashtags_du_tweet_twitter_2', $id_top_global); ?>&original_referer=<?php echo $url_ranking; ?>&ref_src=&text=<?php the_field('message_du_tweet_twitter_2', $id_top_global); ?>&url=<?php echo $url_ranking; ?>&via=Vainkeurz" class="animate__jello animate__animated animate__delay-1s btn btn-max btn-tweet btn-rose waves-effect waves-float waves-light" target="_blank">
-                              <?php the_field('message_du_bouton_tweet_twitter2', $id_top_global); ?>
-                            </a>
-                          <?php endif; ?>
-
                         <?php endif; ?>
+                        <h1>
+                          <?php the_field('titre_de_la_fin_t_sponso', $id_top_global); ?>
+                        </h1>
                       </div>
                     </div>
+                    <div class="row">
+                      <div class="col-md-12 info-concours">
+                        <div class="info-win">
+                          <?php the_field('message_de_fin_t_sponso', $id_top_global); ?>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="d-flex align-items-center buttons-share-top">
+                          <?php if (get_field('type_de_fin_t_sponso', $id_top_global) == "mail_1") : ?>
+                            <form action="" method="post" name="form2" id="form-coupon">
+                              <?php if (is_user_logged_in()) : ?>
+                                <input type="email" value="<?php echo $user_infos['user_email']; ?>" name="email-player-input" id="email-player-input" required>
+                              <?php else : ?>
+                                <input type="email" placeholder="Mon adresse mail" name="email-player-input" id="email-player-input" required>
+                              <?php endif; ?>
+                              <input type="hidden" value="<?php echo $id_ranking; ?>" name="ranking" id="ranking">
+                              <input type="hidden" value="<?php echo $uuiduser; ?>" name="uuiduser" id="uuiduser">
+                              <input type="hidden" value="<?php echo $id_top_global; ?>" name="top" id="top">
+                              <input type="hidden" value="<?php echo $id_vainkeur; ?>" name="id_vainkeur" id="id_vainkeur">
+                              <button class="btn" id="btn-coupon">
+                                <?php the_field('intitule_cta_mail_t_sponso', $id_top_global); ?>
+                              </button>
+                            </form>
+                            <div class="bravo">
+                              <?php the_field('message_de_confirmation_t_sponso', $id_top_global); ?>
+                            </div>
+                          <?php elseif (get_field('type_de_fin_t_sponso', $id_top_global) == "twitter_1") : ?>
+                            <a href="javascript: void(0)" class="sharelinkbtn2 w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-outline-primary waves-effect waves-float waves-light">
+                              <input type="text" value="<?php echo get_the_permalink($id_ranking); ?>" class="input_to_share2">
+                              Copier le lien du Top
+                            </a>
+                            <a href="<?php the_field('lien_du_tweet_t_sponso', $id_top_global); ?>" target="_blank" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light">
+                              Post Twitter
+                            </a>
+                          <?php elseif (get_field('type_de_fin_t_sponso', $id_top_global) == "twitter_2") : ?>
+
+                            <?php if ($id_top_global == 461704) : ?>
+
+                              <a href="https://twitter.com/intent/tweet?hashtags=#DLCOMPxVKRZ&original_referer=<?php echo $url_ranking; ?>&ref_src=&text=<?php echo urlencode("Merci @dLcompare pour le #concours !") ?>%0a%0a&url=<?php echo $url_ranking; ?>&via=Vainkeurz" class="animate__jello animate__animated animate__delay-1s btn btn-max btn-tweet btn-rose waves-effect waves-float waves-light" target="_blank" style="background-color: #1b95e0 !important; border-color: #1b95e0 !important;">
+                                <img src="https://vainkeurz.com/wp-content/uploads/2022/06/twitter.png" width="20" height="16" alt="Tweet icon">
+                                <?php the_field('message_du_bouton_tweet_twitter2', $id_top_global); ?>
+                              </a>
+
+                            <?php else : ?>
+                              <a href="https://twitter.com/intent/tweet?hashtags=<?php the_field('hashtags_du_tweet_twitter_2', $id_top_global); ?>&original_referer=<?php echo $url_ranking; ?>&ref_src=&text=<?php the_field('message_du_tweet_twitter_2', $id_top_global); ?>&url=<?php echo $url_ranking; ?>&via=Vainkeurz" class="animate__jello animate__animated animate__delay-1s btn btn-max btn-tweet btn-rose waves-effect waves-float waves-light" target="_blank">
+                                <?php the_field('message_du_bouton_tweet_twitter2', $id_top_global); ?>
+                              </a>
+                            <?php endif; ?>
+
+                          <?php endif; ?>
+                        </div>
+                      </div>
+                    </div>
+                  <?php endif; ?>
+                <?php else : ?>
+                  <div class="bravo d-block">
+                    <?php the_field('message_de_confirmation_t_sponso', $id_top_global); ?>
                   </div>
                 <?php endif; ?>
-              <?php else : ?>
-                <div class="bravo d-block">
-                  <?php the_field('message_de_confirmation_t_sponso', $id_top_global); ?>
-                </div>
-              <?php endif; ?>
-            </div>
+              </div>
+            <?php endif; ?>
 
             <div class="list-classement mt-2">
               <div class="row align-items-end justify-content-center">
@@ -204,10 +208,20 @@ $top_datas    = get_top_data($id_top_global);
 
                       <div class="animate__fadeInUp animate__animated animate__delay-2s">
 
+                        <?php if (!$already_done) : ?>
+                          <div class="card mt-2">
+                            <a href="<?php echo $top_infos['top_url']; ?>" class="w-100 btn btn-rose waves-effect p-1">
+                              <p class="h4 text-white m-0">
+                                Je participe au Top sponso <span class="va va-wrapped-gift va-lg"></span>
+                              </p>
+                            </a>
+                          </div>
+                        <?php endif; ?>
+
                         <div class="card">
                           <div class="other-topsponso">
-                            <a href="<?php the_permalink(get_page_by_path('tops-sponso')); ?>/" class="w-100 btn btn-rose waves-effect">
-                              Voir tous les autres TOPS sponso avec des <span class="va va-wrapped-gift va-lg"></span> à gagner !
+                            <a href="<?php the_permalink(get_page_by_path('tops-sponso')); ?>/" class="btn btn-primary btn-block waves-effect waves-float waves-light w-100">
+                              Voir tous les autres TOPS avec des lots à gagner !
                             </a>
                           </div>
                         </div>
@@ -295,41 +309,6 @@ $top_datas    = get_top_data($id_top_global);
                                   <span class="ico ico-reverse">👀</span> Voir les autres TopList
                                 </a>
                               </div>
-                            </div>
-                          </div>
-                        <?php endif; ?>
-
-                        <?php if (get_field('liste_des_createurs_top', $id_top)) : ?>
-
-                          <div class="separate mt-2 mb-2"></div>
-
-                          <div class="card text-left">
-                            <div class="card-body">
-                              <h4 class="card-title">
-                                <span class="ico va va-star-struck va-lg"></span> Ce TOP a été fait par :
-                              </h4>
-                              <?php if (have_rows('liste_des_createurs_top', $id_top)) : ?>
-                                <?php while (have_rows('liste_des_createurs_top', $id_top)) : the_row(); ?>
-                                  <div class="employee-task d-flex justify-content-between align-items-center mb-1 mt-1">
-                                    <a href="<?php the_sub_field('lien_vers_la_video_top'); ?>" class="d-flex flex-row link-to-creator" target="_blank">
-                                      <div class="avatar me-75 mr-1">
-                                        <?php
-                                        if (get_sub_field('avatar_createur_top')) {
-                                          $avatar_creator = wp_get_attachment_image_src(get_sub_field('avatar_createur_top'), 'medium');
-                                        }
-                                        ?>
-                                        <div class="avatar-creator" style="background-image: url(<?php echo $avatar_creator[0]; ?>);"></div>
-                                      </div>
-                                      <div class="my-auto">
-                                        <h3 class="mb-0">
-                                          <?php the_sub_field('nom_du_createur'); ?>
-                                        </h3>
-                                        <span class="seevideocreator">Voir sa vidéo sur <?php the_sub_field('plateforme_top'); ?></span>
-                                      </div>
-                                    </a>
-                                  </div>
-                                <?php endwhile; ?>
-                              <?php endif; ?>
                             </div>
                           </div>
                         <?php endif; ?>
@@ -493,23 +472,26 @@ $top_datas    = get_top_data($id_top_global);
             <span class="ico va va-speech-balloon va-lg hide-xs"></span> <span class="hide-spot">Commenter</span>
           </a>
         </div>
-        <?php if (get_post_status($id_top_global) != "draft") : ?>
-          <?php if (get_field('uuid_user_r', $id_ranking) == $uuiduser || isset($_GET['message'])) :
-          ?>
-            <div class="ico-nav-mobile">
-              <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" href="#" class="confirm_delete">
-                <span class="ico hide-xs">🆕</span> <span class="hide-spot">Recommencer</span>
-              </a>
-            </div>
-          <?php else : ?>
-            <div class="ico-nav-mobile">
-              <a href="<?php echo $top_infos['top_url']; ?>">
-                <span class="hide-spot">Faire mon Top</span>
-              </a>
-            </div>
-          <?php endif; ?>
+        <?php
+        if (get_field('uuid_user_r', $id_ranking) == $uuiduser || isset($_GET['message']) && ($already_done == $id_ranking)) : ?>
+          <div class="ico-nav-mobile">
+            <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" href="#" class="confirm_delete">
+              <span class="ico hide-xs">🆕</span> <span class="hide-spot">Recommencer</span>
+            </a>
+          </div>
+        <?php elseif ($already_done != "" && $already_done != $id_ranking) : ?>
+          <div class="ico-nav-mobile">
+            <a href="<?php the_permalink($already_done); ?>">
+              <span class="hide-spot">Voir ma TopList</span>
+            </a>
+          </div>
+        <?php else : ?>
+          <div class="ico-nav-mobile">
+            <a href="<?php echo $top_infos['top_url']; ?>">
+              <span class="hide-spot">Faire mon Top</span>
+            </a>
+          </div>
         <?php endif; ?>
-
       </div>
     </nav>
     <div class="share-content">

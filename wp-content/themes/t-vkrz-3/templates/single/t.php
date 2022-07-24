@@ -7,11 +7,11 @@ global $is_next_duel;
 global $top_infos;
 global $utm;
 global $user_infos;
-$utm           = deal_utm();
-$id_top        = get_the_ID();
-$uuiduser      = deal_uuiduser();
-$user_infos    = deal_vainkeur_entry();
-$id_vainkeur   = $user_infos['id_vainkeur'];
+$utm            = deal_utm();
+$id_top         = get_the_ID();
+$uuiduser       = deal_uuiduser();
+$user_infos     = deal_vainkeur_entry();
+$id_vainkeur    = $user_infos['id_vainkeur'];
 if ($id_vainkeur) {
   $current_id_vainkeur = $id_vainkeur;
 }
@@ -113,7 +113,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                 <?php if ($top_infos['top_number'] <= 20) : ?>
                   <div class="choosecta">
                     <div class="cta-begin cta-complet">
-                      <a href="#" id="begin_t" data-typetop="complet" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
+                      <a href="#" id="begin_t" data-typetop="complet" data-top="<?php echo $id_top; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
                         Top Complet
                       </a>
                       <small class="text-muted">
@@ -130,7 +130,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                     </div>
                     <?php if ($top_infos['top_number'] > 10) : ?>
                       <div class="cta-begin cta-top3">
-                        <a href="#" id="begin_top3" data-typetop="top3" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
+                        <a href="#" id="begin_top3" data-typetop="top3" data-top="<?php echo $id_top; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
                           Top 3
                         </a>
                         <small class="text-muted">
@@ -147,7 +147,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                 <?php else : ?>
                   <div class="choosecta flex-row-reverse">
                     <div class="cta-begin cta-complet">
-                      <a href="#" id="begin_t" data-typetop="complet" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
+                      <a href="#" id="begin_t" data-typetop="complet" data-top="<?php echo $id_top; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
                         Top Complet
                       </a>
                       <small class="text-muted">
@@ -164,7 +164,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                     </div>
                     <?php if ($top_infos['top_number'] > 10) : ?>
                       <div class="cta-begin cta-top3">
-                        <a href="#" id="begin_top3" data-typetop="top3" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
+                        <a href="#" id="begin_top3" data-typetop="top3" data-top="<?php echo $id_top; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
                           Top 3
                         </a>
                         <small class="text-muted">
@@ -226,13 +226,11 @@ $creator_data       = get_user_infos($creator_uuiduser);
                               <?php echo $creator_data['level']; ?>
                             </span>
                             <?php if ($creator_data['user_role']  == "administrator") : ?>
-                              <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
-                                🦙
+                              <span class="ico va va-vkrzteam va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
                               </span>
                             <?php endif; ?>
                             <?php if ($creator_data['user_role']  == "administrator" || $creator_data['user_role'] == "author") : ?>
-                              <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
-                                👨‍🎤
+                              <span class="ico va va-man-singer va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
                               </span>
                             <?php endif; ?>
                           </a>
@@ -317,13 +315,11 @@ $creator_data       = get_user_infos($creator_uuiduser);
           <span class="ico va va-speech-balloon va-lg hide-xs"></span> <span class="hide-spot">Commenter</span>
         </a>
       </div>
-      <?php if (get_post_status($id_top) != "draft") : ?>
-        <div class="ico-nav-mobile">
-          <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" href="#" class="confirm_delete">
-            <span class="ico hide-xs">🆕</span> <span class="hide-spot">Recommencer</span>
-          </a>
-        </div>
-      <?php endif; ?>
+      <div class="ico-nav-mobile">
+        <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" href="#" class="confirm_delete">
+          <span class="ico hide-xs">🆕</span> <span class="hide-spot">Recommencer</span>
+        </a>
+      </div>
     </div>
   </nav>
   <div class="share-top-content">
