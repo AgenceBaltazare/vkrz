@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitb8984a550de6a30bfde8ff9f516083e0
+class ComposerStaticInit6f489849bb133fe398e96c31b9d19375
 {
     public static $prefixLengthsPsr4 = array (
         'W' => 
@@ -263,7 +263,6 @@ class ComposerStaticInitb8984a550de6a30bfde8ff9f516083e0
         'WP_Rocket\\Engine\\CDN\\Subscriber' => __DIR__ . '/../..' . '/inc/Engine/CDN/Subscriber.php',
         'WP_Rocket\\Engine\\Cache\\AdminSubscriber' => __DIR__ . '/../..' . '/inc/Engine/Cache/AdminSubscriber.php',
         'WP_Rocket\\Engine\\Cache\\AdvancedCache' => __DIR__ . '/../..' . '/inc/Engine/Cache/AdvancedCache.php',
-        'WP_Rocket\\Engine\\Cache\\Config\\Subscriber' => __DIR__ . '/../..' . '/inc/Engine/Cache/Config/Subscriber.php',
         'WP_Rocket\\Engine\\Cache\\Purge' => __DIR__ . '/../..' . '/inc/Engine/Cache/Purge.php',
         'WP_Rocket\\Engine\\Cache\\PurgeActionsSubscriber' => __DIR__ . '/../..' . '/inc/Engine/Cache/PurgeActionsSubscriber.php',
         'WP_Rocket\\Engine\\Cache\\PurgeExpired\\PurgeExpiredCache' => __DIR__ . '/../..' . '/inc/Engine/Cache/PurgeExpired/PurgeExpiredCache.php',
@@ -480,9 +479,9 @@ class ComposerStaticInitb8984a550de6a30bfde8ff9f516083e0
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitb8984a550de6a30bfde8ff9f516083e0::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitb8984a550de6a30bfde8ff9f516083e0::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInitb8984a550de6a30bfde8ff9f516083e0::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit6f489849bb133fe398e96c31b9d19375::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit6f489849bb133fe398e96c31b9d19375::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit6f489849bb133fe398e96c31b9d19375::$classMap;
 
         }, null, ClassLoader::class);
     }

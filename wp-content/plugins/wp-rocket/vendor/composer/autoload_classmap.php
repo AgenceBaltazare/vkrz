@@ -227,7 +227,6 @@ return array(
     'WP_Rocket\\Engine\\CDN\\Subscriber' => $baseDir . '/inc/Engine/CDN/Subscriber.php',
     'WP_Rocket\\Engine\\Cache\\AdminSubscriber' => $baseDir . '/inc/Engine/Cache/AdminSubscriber.php',
     'WP_Rocket\\Engine\\Cache\\AdvancedCache' => $baseDir . '/inc/Engine/Cache/AdvancedCache.php',
-    'WP_Rocket\\Engine\\Cache\\Config\\Subscriber' => $baseDir . '/inc/Engine/Cache/Config/Subscriber.php',
     'WP_Rocket\\Engine\\Cache\\Purge' => $baseDir . '/inc/Engine/Cache/Purge.php',
     'WP_Rocket\\Engine\\Cache\\PurgeActionsSubscriber' => $baseDir . '/inc/Engine/Cache/PurgeActionsSubscriber.php',
     'WP_Rocket\\Engine\\Cache\\PurgeExpired\\PurgeExpiredCache' => $baseDir . '/inc/Engine/Cache/PurgeExpired/PurgeExpiredCache.php',
