@@ -72,12 +72,14 @@ function check_user_level($id_vainkeur){
             update_field('level_user', $level_number, 'user_' . $user_id);
             vkrz_push_level_up($user_id, $level_number);
 
+            /*
             vkzr_create_event(
                 "Félicitation",
                 "Tu passes au niveau " . $level,
                 null,
                 "success"
             );
+            */
         }
 
         return array(
