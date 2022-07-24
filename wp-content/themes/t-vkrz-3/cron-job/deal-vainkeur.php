@@ -4,7 +4,7 @@ include __DIR__ . '/../../../../wp-load.php';
 $i = 0;
 $vainkeur = new WP_Query(array(
     "post_type"              => "vainkeur",
-    "posts_per_page"         => 200,
+    "posts_per_page"         => -1,
     "fields"                 => "ids",
     "post_status"            => array("publish"),
     "orderby"                => "date",
@@ -98,7 +98,7 @@ while ($vainkeur->have_posts()) : $vainkeur->the_post();
     // Save vainkeur to firebase
     wp_update_post(array('ID' => $id_vainkeur));
 
-    echo $i . " : " . get_the_ID() . "</br>";
+    echo $i . " : " . get_the_ID() . "\n";
     
     $i++;
 
