@@ -98,7 +98,7 @@ while ($vainkeur->have_posts()) : $vainkeur->the_post();
     // Save vainkeur to firebase
     wp_update_post(array('ID' => $id_vainkeur));
 
-    echo $i . " : " . get_the_ID() . "\n";
+    echo $i . " : " . $id_vainkeur . "\n";
     
     $i++;
 
