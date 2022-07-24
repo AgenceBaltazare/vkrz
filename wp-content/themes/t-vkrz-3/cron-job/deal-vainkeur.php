@@ -11,7 +11,8 @@ $vainkeur = new WP_Query(array(
     "order"                  => "ASC",
     "ignore_sticky_posts"    => true,
     "update_post_meta_cache" => false,
-    "no_found_rows"          => false
+    "no_found_rows"          => false,
+    'post__in'               => array(209404)
 ));
 while ($vainkeur->have_posts()) : $vainkeur->the_post();
 
