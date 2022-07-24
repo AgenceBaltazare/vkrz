@@ -153,10 +153,9 @@
         $id_membre          = $author->ID;
     }
     $uuid_vainkeur      = get_field('uuiduser_user', 'user_' . $id_membre);
-    $vainkeur_info      = deal_vainkeur_entry(false, $uuid_vainkeur);
+    $vainkeur_info      = get_user_infos($uuid_vainkeur);
     $id_vainkeur_profil = $vainkeur_info['id_vainkeur'];
     ?>
-
     <title>
         Profil de <?php echo $vainkeur_info['pseudo']; ?> sur VAINKEURZ
     </title>

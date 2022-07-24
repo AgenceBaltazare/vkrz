@@ -97,7 +97,6 @@ function deal_vainkeur_entry($user_id = false, $uuiduser = false){
     
     $avatar_url      = get_avatar_url($user_id, ['size' => '80', 'force_default' => false]);
 
-
     setcookie("vainkeurz_id", $id_vainkeur, time() + 31556926, "/");
 
     return array(

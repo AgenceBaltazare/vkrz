@@ -1,6 +1,5 @@
 <?php
 global $id_vainkeur_profil;
-var_dump($id_vainkeur_profil);
 global $id_membre;
 get_header();
 $list_user_toplists = get_user_toplist($id_vainkeur_profil);

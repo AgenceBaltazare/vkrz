@@ -13,6 +13,35 @@ function get_user_logged_id(){
     return $user_id;
 }
 
+function get_vainkeur_id($uuiduser)
+{
+
+    $id_vainkeur    = false;
+
+    $vainkeur_entry = new WP_Query(array(
+        'post_type'              => 'vainkeur',
+        'posts_per_page'         => '1',
+        'fields'                 => 'ids',
+        'post_status'            => 'publish',
+        'ignore_sticky_posts'    => true,
+        'update_post_meta_cache' => false,
+        'no_found_rows'          => false,
+        'meta_query'             => array(
+            array(
+                'key' => 'uuid_user_vkrz',
+                'value' => $uuiduser,
+                'compare' => '='
+            )
+        ),
+    ));
+
+    if ($vainkeur_entry->have_posts()) {
+        $id_vainkeur    = $vainkeur_entry->posts[0];
+    }
+
+    return $id_vainkeur;
+}
+
 function get_user_infos($uuiduser){
 
     $id_vainkeur        = false;
