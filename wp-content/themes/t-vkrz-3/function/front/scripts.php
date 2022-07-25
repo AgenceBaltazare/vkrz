@@ -83,12 +83,12 @@ function load_css_js()
   wp_enqueue_script('get_menuuser_notifications', get_template_directory_uri() . '/function/firebase/get_menuuser_notifications.js', array(), $template_version, true);
 
   // NOTIFICATIONS PAGE…
-  if (is_page(347883)) {
+  if (is_page(get_page_by_path('mon-compte/notifications'))) {
     wp_enqueue_script('get_notifications_page', get_template_directory_uri() . '/function/firebase/get_notifications_page.js', array(), $template_version, true);
   }
 
   // FRIENDS PAGE…
-  if (is_page(347406)) {
+  if (is_page(get_page_by_path('mon-compte/amis'))) {
     wp_enqueue_script('get_friends_page', get_template_directory_uri() . '/function/firebase/get_friends_page.js', array(), $template_version, true);
   }
 }
