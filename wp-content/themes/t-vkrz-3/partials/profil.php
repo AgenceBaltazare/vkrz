@@ -7,11 +7,9 @@ global $user_infos;
 global $id_membre;
 $vainkeur_info = isset($vainkeur_info) ? $vainkeur_info : $user_infos;
 ?>
-
 <script>
   const idVainkeurProfil = "<?php echo $id_membre ?>";
 </script>
-
 <div class="card profile-header mb-2">
 
   <div class="card-img-top cover-profil"></div>
@@ -92,9 +90,7 @@ $vainkeur_info = isset($vainkeur_info) ? $vainkeur_info : $user_infos;
                                                       } ?>" href="<?php the_permalink(get_page_by_path('parametres')); ?>">
                     Editer mon profil
                   </a>
-                </li>
-
-
+                </l
                 <li class="nav-item">
                   <a class="nav-link font-weight-bold <?php if (is_page(347883)) {
                                                         echo 'btn btn-primary';
@@ -137,7 +133,6 @@ $vainkeur_info = isset($vainkeur_info) ? $vainkeur_info : $user_infos;
               <?php endif; ?>
             <?php endif; ?>
           </ul>
-
           <?php if (strtolower($user_infos['pseudo']) != strtolower($vainkeur_info['pseudo']) && is_user_logged_in()) : ?>
             <button type="button" id="followBtn" class="btn btn-warning waves-effect waves-float waves-light" style="display: none;" data-userid="<?= $user_id; ?>" data-uuid="<?php echo $uuiduser; ?>" data-relatedid="<?= $id_membre; ?>" data-relateduuid="<?= get_field('uuiduser_user', 'user_' . $id_membre);  ?>" data-text="<?= $user_infos['pseudo'] ?> vous guette !" data-url="<?= get_author_posts_url($user_id); ?>">
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-star me-25">

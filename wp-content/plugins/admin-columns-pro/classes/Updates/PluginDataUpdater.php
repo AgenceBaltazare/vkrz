@@ -30,7 +30,7 @@ class PluginDataUpdater {
 		$this->storage = $storage;
 	}
 
-	public function update( ActivationToken $token = null, $force_update_check = false ) {
+	public function update( ActivationToken $token = null ) {
 		$response = $this->api->dispatch(
 			new API\Request\ProductsUpdate( $this->site_url, $token )
 		);
@@ -40,11 +40,6 @@ class PluginDataUpdater {
 		}
 
 		$this->storage->save( (array) $response->get_body() );
-
-		if ( $force_update_check ) {
-			wp_clean_plugins_cache();
-			wp_update_plugins();
-		}
 	}
 
 }

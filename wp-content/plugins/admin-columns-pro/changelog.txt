@@ -1,5 +1,25 @@
 == Changelog ==
 
+= 5.7.3 =
+Release Date: July 4th, 2022
+
+* [Added] Support for Beaver Builder template views
+* [Added] New hook to toggle persistent sorting as a preference `acp/sorting/remember_last_sorting_preference`
+* [Fixed] Smart Filtering for some Taxonomy columns did not work correctly
+* [Fixed] Suppress PHP 8.1 warnings
+
+= 5.7.2 =
+Release Date: June 14th, 2022
+
+* [Added] It is now possible to toggle the Row Actions (Below title) on the setting page per list table
+* [Added] New hook that runs before the value is saved in (bulk/inline) edit `acp/editing/before_save`
+* [Improved] Changed the radio buttons to a Toggle element for column settings that have a on/off state
+* [Fixed] Updater on License page is fixed
+* [Fixed] Smart Filtering for some columns on the Taxonomy overview paged did not work
+* [Updated] Admin Columns Core changes ( 4.5.2 )
+* [Added] It is now possible to select the Website display for User related columns
+* [Added] New hook to disable the column value sanitation on the table `ac/column/value/sanitize`
+
 = 5.7.1 =
 Release Date: May 16th, 2022
 

@@ -44,6 +44,10 @@ final class HideElements implements Registrable {
 			$hidden_elements[] = new HideElement\BulkActions();
 		}
 
+		if ( ( new HideOnScreen\RowActions() )->is_hidden( $list_screen ) ) {
+			$hidden_elements[] = new HideElement\RowActions( $list_screen );
+		}
+
 		if ( ( new HideOnScreen\SubMenu( '' ) )->is_hidden( $list_screen ) ) {
 			$hidden_elements[] = new HideElement\SubMenu();
 		}

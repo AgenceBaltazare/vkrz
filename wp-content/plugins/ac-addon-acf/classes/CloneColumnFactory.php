@@ -23,6 +23,11 @@ class CloneColumnFactory {
 	public function create( array $settings ) {
 		$clone_setting = acf_get_field( $settings['__key'] );
 
+		// TODO hotfix to prevent errors for clones group fields
+		if( $clone_setting['type'] === 'group' ){
+			return null;
+		}
+
 		// Seamless without prefix
 		if ( $clone_setting['name'] === $settings['name'] ) {
 			return $this->create_seamless_clone( $clone_setting, $settings['label'] );

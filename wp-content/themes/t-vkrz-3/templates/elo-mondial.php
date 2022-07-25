@@ -22,7 +22,6 @@ global $top_infos;
 global $user_tops;
 $list_t_already_done  = $user_tops['list_user_tops_done_ids'];
 $top_datas            = get_top_data($id_top);
-$user_single_top_data = array_search($id_top, $list_t_already_done);
 $contenders_ranking   = get_contenders_ranking($id_top);
 ?>
 <div class="page-template-elo-mondial app-content content cover" style="background: url(<?php echo $top_infos['top_cover']; ?>) center center no-repeat">
@@ -236,8 +235,7 @@ $contenders_ranking   = get_contenders_ranking($id_top);
                                         </div>
                                     </div>
                                 </div>
-
-                                <?php if (!get_top_done_by_current_vainkeur($id_top, $id_vainkeur)) : ?>
+                                <?php if (!get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $list_t_already_done)) : ?>
                                     <div class="col-12">
                                         <div class="card">
                                             <div class="card-body">

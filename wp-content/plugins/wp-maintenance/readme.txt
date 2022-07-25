@@ -3,8 +3,8 @@ Contributors: Florent73
 Donate link: https://paypal.me/restezconnectes/20/
 Tags: Maintenance, Construction, Launch, Coming soon
 Requires at least: 3.0
-Tested up to: 5.8
-Stable tag: 6.0.5
+Tested up to: 6.0
+Stable tag: 6.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -17,9 +17,8 @@ The WP Maintenance plugin allows you to put your website on the waiting time for
 - Choice texts colors and fonts
 - Upload logo picture
 - Upload background picture or pattern
-- Slider
 - Countdown
-- Google Analytics ready
+- Custom Code Header for Analytics ready
 - Social Networks ready
 - Customize CSS
 - Insert for shorcode (Newletter or Contact form)
@@ -70,6 +69,26 @@ Yes. Thank you for submitting your changes to update the plugin.
 You can translate WP Maintenance on [__translate.wordpress.org__](https://translate.wordpress.org/projects/wp-plugins/wp-maintenance).
 
 == Changelog ==
+
+= 6.1.0 =
+* Bug User Role autorized fixed
+* Change Ip Addresses settings
+
+= 6.0.9 =
+* Bug IP autorized fixed
+
+= 6.0.8 =
+* Several security patches brought
+* WARNING : somes parameters will be reinitilized, please check all
+
+= 6.0.7 =
+* Remove Slider option
+* Several security patches brought
+
+= 6.0.6 =
+* Cross-Site Scripting (XSS) vulnerability fixed
+* Bug fixed Social Icons
+* Bugs minors resolved
 
 = 6.0.5 =
 * Changing theme

@@ -36,7 +36,6 @@ $creator_data       = get_user_infos($creator_uuiduser);
   <div class="content-overlay"></div>
   <div class="content-wrapper">
     <div class="content-body tournoi-content">
-
       <?php if (!$id_ranking) : ?>
 
         <div class="content-intro">

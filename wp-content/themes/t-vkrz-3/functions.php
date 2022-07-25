@@ -17,7 +17,6 @@ include($templatepath . '/function/tournament.php');
 include($templatepath . '/function/data.php');
 include($templatepath . '/function/webhook.php');
 include($templatepath . '/function/api.php');
-
 include($templatepath . '/function/js-attribute.php');
 
 @ini_set('upload_max_size', '64M');

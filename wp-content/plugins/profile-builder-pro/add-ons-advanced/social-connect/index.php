@@ -532,6 +532,9 @@ class WPPB_IN_Social_Connect {
 	function wppb_sc_handle_login_click() {
 		global $wpdb;
 
+		if( empty( $_POST['platform'] ) || !in_array( sanitize_text_field( $_POST['platform'] ), array( 'google', 'facebook', 'twitter', 'linkedin' ) ) )
+			wp_die();
+
 		/* we need a response array from the platform that contains the user data */
 		if( ! empty( $_POST['platform_response'] ) ) {
 			/*  we filter the data here to turn the array from the indices that come from the platform to the ones we need in this function
@@ -782,6 +785,13 @@ class WPPB_IN_Social_Connect {
 			'_wppb_' . $platform . '_connect_id' 	=> sanitize_text_field( $platform_data['id'] )
 		);
 
+        if( $gdpr ) {
+            $global_request['user_consent_gdpr'] = 'agree';
+            $userdata['user_consent_gdpr'] = 'agree';
+            //$global_request['gdpr_agreement_time'] = time();
+            //$userdata['gdpr_agreement_time'] = time();
+        }
+
 		if( ! empty( $wppb_sc_form_ID ) ) {
 			$wppb_sc_user_role = get_post_meta( intval( $wppb_sc_form_ID ), 'wppb_rf_page_settings', true );
 
@@ -812,15 +822,8 @@ class WPPB_IN_Social_Connect {
 
 				$send_credentials_via_email = 'sending';
 				wppb_notify_user_registration_email( get_bloginfo( 'name' ), ( isset( $userdata['user_login'] ) ? sanitize_user( trim( $userdata['user_login'] ) ) : sanitize_email( trim( $userdata['user_email'] ) ) ), sanitize_email( trim( $userdata['user_email'] ) ), $send_credentials_via_email, trim( $userdata['user_pass'] ), ( isset( $wppb_general_settings['adminApproval'] ) ? $wppb_general_settings['adminApproval'] : 'no' ) );
-			}
+            }
 		}
-
-        if( $gdpr ) {
-            $userdata['user_consent_gdpr'] = 'agree';
-            update_user_meta( $user_id, 'user_consent_gdpr', 'agree' );
-            //save the time when the user agreed
-            update_user_meta( $user_id, 'gdpr_agreement_time', time() );
-        }
 
 		return $user;
 	}

@@ -3,15 +3,30 @@
 defined( 'ABSPATH' )
 	or die( 'No direct load ! ' );
 
+function wpm_update_settings($tabSettings, $nameOption = '', $type = 1) {
 
-function wpm_get_header( $message = 0) {
-       
-    $getHeader = '<h2 style="font-size: 23px;font-weight: 400;padding: 9px 15px 4px 0px;line-height: 29px;">'.__('WP Maintenance - Settings', 'wp-maintenance').' <sup>v.'.WPM_VERSION.'</sup>
-</h2>';
-    if( $message == 1 ) {
-        $getHeader .= '<div id="message" class="updated fade"><p><strong>'.__('Options saved.', 'wp-maintenance').'</strong></p></div>';
+    if( empty($nameOption) || $nameOption =='' ) { return false; }
+
+    if( isset($tabSettings) && is_array($tabSettings) ) {
+        $newTabSettings = array();
+        foreach($tabSettings as $nameSettings => $valueSettings ) {
+            if( $type == 3 ) {
+                if( $nameSettings == 'email') {
+                    $newTabSettings[$nameSettings] = sanitize_email($valueSettings);
+                } else {
+                    $newTabSettings[$nameSettings] = strip_tags( stripslashes( esc_url_raw($valueSettings) ) );
+                }
+            } else {
+                $newTabSettings[$nameSettings] = sanitize_textarea_field($valueSettings);
+            }
+        }
+        update_option($nameOption, $newTabSettings );
+
+        return true;
+    } else {
+        return false;
     }
-    return $getHeader;
+    
 }
 
 function wpm_get_nav2() {
@@ -97,78 +112,6 @@ function wpm_get_nav2() {
     return $getDashicons;
 }
 
-function wpm_update_settings($tabPost) {
-    
-    // Récupère les paramètres sauvegardés Temporairement
-    if(get_option('wp_maintenance_settings')) { extract(get_option('wp_maintenance_settings')); }
-    $paramTemp = get_option('wp_maintenance_settings');
-    
-    // Je recupère le tableau temporaire des données
-    if( isset($paramTemp) && !empty($paramTemp) ) {
-        foreach($paramTemp as $variable=>$value) {
-            //var_dump($variable.' =====> '.$value.'<br />');
-            
-            // pour chaque clé du tableau de regarde si elle existe déjà
-            if ( array_key_exists($variable, $paramTemp) ) {
-                // Si la clé est la même que venant du post je la change
-                if( isset($tabPost[$variable]) ) { 
-                    array_fill_keys($paramTemp, $tabPost[$variable]);
-                }
-            }
-        }
-    }
-   
-    if( isset($paramTemp) && is_array($paramTemp) ) {
-         // Si le tableau temporaire existe je le fusionne avec les données $_POST["wp_maintenance_settings"]
-        $paramData = array_merge($paramTemp, $tabPost);
-    } else {
-        // Sinon je garde le $_POST["wp_maintenance_settings"] en cours
-        $paramData = $tabPost;
-    }
-    if(update_option('wp_maintenance_settings', $paramData)) {
-        return true;
-    }
-}
-
-function wpm_sidebar() {
-    
-    $wpmSidebar = '<div id="wpm-column2">';
-    
-    /* ABOUT */
-    $wpmSidebar .= '<div style="border: 1px solid #ddd;background-color:#fff;padding:10px;text-align:center;margin-bottom:5px;">'.__('ABOUT', 'wp-maintenance').'</div>';
-    
-     $wpmSidebar .= '<div style="text-align:justify;background-color:#fff;padding:10px;margin-bottom: 10px;">'.__('This plugin has been developed for you for free by <a href="https://restezconnectes.fr" target="_blank">Florent Maillefaud</a>. It is royalty free, you can take it, modify it, distribute it as you see fit.', 'wp-maintenance').'<br /><br />';
-    $wpmSidebar .= ''.__('Visit', 'wp-maintenance').' <a href="https://madeby.restezconnectes.fr" target="_blank">WP Maintenance</a>, '.__('try the demo of the plugin, talk about this plugin to your surroundings!', 'wp-maintenance').'<br /><br />';
-    /* FAIRE UN DON SUR PAYPAL */
-    $wpmSidebar .= ''.__('Support this extension and my other developments (French Paypal):', 'wp-maintenance').'<br /><br />
-        <div style="width:220px;margin-left:auto;margin-right:auto;padding:5px;">
-            <a href="https://paypal.me/RestezConnectes/20" target="_blank" class="wpmclassname">
-                <img src="'.WPM_PLUGIN_URL.'images/donate.png" valign="bottom" width="64" /> Donate now!
-            </a>
-        </div>
-    </div>';
-    /* FIN FAIRE UN DON */
-    
-    /* END ABOUT */
-    
-    /* DISCOVER*/
-    $wpmSidebar .= '<div style="border: 1px solid #ddd;background-color:#fff;padding:10px;text-align:center;margin-bottom:5px;">'.__('DISCOVER', 'wp-maintenance').'</div>';
-    
-    $imagePub = array(
-        'extension-send-pdf-for-cf7.png' => 'https://wordpress.org/plugins/send-pdf-for-contact-form-7/'
-    );
-    
-    foreach( $imagePub as $img=>$link ) {
-        $wpmSidebar .= '<a href="'.$link.'" target="_blank"><img src="'.WPM_PLUGIN_URL.'images/'.$img.'" /></a>';
-    }
-    /* END DISCOVER */
-    
-    $wpmSidebar .= '</div>'; // Div general
-    $wpmSidebar .= '<div class="clear"></div>';
-    
-    return $wpmSidebar;
-}
-
 function wpm_footer() {
     
     $wpmFooter = '
@@ -196,15 +139,15 @@ function wpm_get_ip() {
 
 	// IP si internet partagé
 	if (isset($_SERVER['HTTP_CLIENT_IP'])) {
-		return $_SERVER['HTTP_CLIENT_IP'];
+		return esc_html($_SERVER['HTTP_CLIENT_IP']);
 	}
 	// IP derrière un proxy
 	elseif (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-		return $_SERVER['HTTP_X_FORWARDED_FOR'];
+		return esc_html($_SERVER['HTTP_X_FORWARDED_FOR']);
 	}
 	// Sinon : IP normale
 	else {
-		return (isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '');
+		return (isset($_SERVER['REMOTE_ADDR']) ? esc_html($_SERVER['REMOTE_ADDR']) : '');
 	}
 
 }
@@ -218,14 +161,12 @@ function wpm_change_active($value = 0) {
     }
 }
 
-function wpm_array_value_count ($array) {
+function wpm_array_value_count($array) {
+    
     $count = 0;
-   
-    foreach ($array as $key => $value)
-    {
-            if($value) { $count++; }
+    foreach ($array as $key => $value) {
+            if( isset($value) && $value!='') { $count++; }
     }
-   
     return $count;
 } 
 
@@ -346,11 +287,11 @@ function wpm_format_font($font) {
 function wpm_compress($buffer) {
 
     // Récupère les paramètres sauvegardés
-	if(get_option('wp_maintenance_settings')) { extract(get_option('wp_maintenance_settings')); }
-    $o = get_option('wp_maintenance_settings');
+	if(get_option('wp_maintenance_settings_colors')) { extract(get_option('wp_maintenance_settings_colors')); }
+    $o = get_option('wp_maintenance_settings_colors');
     
     $variables_css = array(
-        "#_COLORTXT" => esc_html($o['color_field_text']),
+        "#_COLORTXT" => esc_html($o['color_txt']),
 		"#_COLORBG" => esc_html($o['color_field_background']),
 		"#_COLORBORDER" => esc_html($o['color_field_border']),
 		"#_COLORBUTTON" => esc_html($o['color_button']),
@@ -423,6 +364,17 @@ header {background: #_COLORHEAD;}
 .wpm_newletter {text-align:center;}
 #countdown {clear:both;margin-left:auto;margin-right:auto;text-align: center;}
 
+.footer-basic p a {
+color:#_COLOR_TXT_BT;
+text-decoration:none;
+}
+.footer-basic .copyright {
+margin-top:15px;
+text-align:center;
+font-size:13px;
+color:#aaa;
+margin-bottom:0;
+}
     ';   
 }
 

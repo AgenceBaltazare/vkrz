@@ -16,7 +16,7 @@ class Taxonomy implements FieldGroup\Query {
 		$groups = acf_get_field_groups( [ 'ac_dummy' => true ] ); // We need to pass an argument, otherwise the filters won't work
 
 		remove_filter( 'acf/location/rule_match/user_type', '__return_true', 16 );
-		remove_filter( 'acf/location/rule_match/page_type', '__return_ true', 16 );
+		remove_filter( 'acf/location/rule_match/page_type', '__return_true', 16 );
 
 		remove_filter( 'acf/location/rule_match/taxonomy', '__return_true', 16 );
 

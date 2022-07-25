@@ -315,7 +315,6 @@ foreach ($list_user_toplists as $top) {
                       </div>
                     </div>
                   </div>
-
                   <div class="col-sm-3 col-4">
                     <div class="card text-center">
                       <div class="card-body">

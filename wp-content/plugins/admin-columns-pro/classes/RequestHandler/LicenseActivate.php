@@ -115,7 +115,10 @@ class LicenseActivate implements RequestHandler {
 
 		$this->activation_key_storage->save( $activation_key );
 		$this->activation_updater->update( $activation_key );
-		$this->products_updater->update( $activation_key, true );
+		$this->products_updater->update( $activation_key );
+
+		wp_clean_plugins_cache();
+		wp_update_plugins();
 
 		( new Notice( $response->get( 'message' ) ) )->register();
 	}

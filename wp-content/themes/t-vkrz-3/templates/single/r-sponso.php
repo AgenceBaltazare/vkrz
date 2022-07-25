@@ -9,6 +9,7 @@ global $utm;
 global $user_infos;
 global $id_vainkeur;
 global $banner;
+global $cat_name;
 $id_top_global = $id_top;
 if (is_user_logged_in() && env() != "local") {
   if (false === ($user_tops = get_transient('user_' . $user_id . '_get_user_tops'))) {
@@ -20,12 +21,18 @@ if (is_user_logged_in() && env() != "local") {
 } else {
   $user_tops  = get_user_tops($id_vainkeur);
 }
+$list_t_already_done = $user_tops['list_user_tops_done_ids'];
 $user_ranking = get_user_ranking($id_ranking);
 $url_ranking  = get_the_permalink($id_ranking);
 $top_datas    = get_top_data($id_top_global);
-$already_done = get_top_done_by_current_vainkeur($id_top_global, $id_vainkeur);
+$get_top_type = get_the_terms($id_top_global, 'type');
+$types_top     = array();
+if ($get_top_type) {
+  foreach ($get_top_type as $type_top) {
+    array_push($types_top, $type_top->slug);
+  }
+}
 ?>
-
 <div class="app-content content cover is-sponso" style="background: url(<?php echo $top_infos['top_cover']; ?>) center center no-repeat">
   <div class="content-overlay"></div>
   <div class="content-wrapper">
@@ -473,16 +480,10 @@ $already_done = get_top_done_by_current_vainkeur($id_top_global, $id_vainkeur);
           </a>
         </div>
         <?php
-        if (get_field('uuid_user_r', $id_ranking) == $uuiduser || isset($_GET['message']) && ($already_done == $id_ranking)) : ?>
+        if ($already_done) : ?>
           <div class="ico-nav-mobile">
             <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" href="#" class="confirm_delete">
               <span class="ico hide-xs">🆕</span> <span class="hide-spot">Recommencer</span>
-            </a>
-          </div>
-        <?php elseif ($already_done != "" && $already_done != $id_ranking) : ?>
-          <div class="ico-nav-mobile">
-            <a href="<?php the_permalink($already_done); ?>">
-              <span class="hide-spot">Voir ma TopList</span>
             </a>
           </div>
         <?php else : ?>

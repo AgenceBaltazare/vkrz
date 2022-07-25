@@ -980,19 +980,27 @@ function wppb_userlisting_users_loop( $value, $name, $children, $extra_values ){
             else
                 $sorting_order = $userlisting_args[0]['default-sorting-order'];
 
-            /* if we have admin approval on we don't want to show those users in the userlisting so we need to exclude them */
+            // if we have admin approval on we don't want to show users that have the unapproved or pending status in
+            // the userlisting so we need to exclude them
             if( wppb_get_admin_approval_option_value() === 'yes' ){
                 $excluded_ids = array();
-                $user_statusTaxID = get_term_by( 'name', 'unapproved', 'user_status' );
-                if( $user_statusTaxID != false ){
-                    $term_taxonomy_id = $user_statusTaxID->term_taxonomy_id;
+                $user_status_unapproved = get_term_by( 'name', 'unapproved', 'user_status' );
+                if( $user_status_unapproved != false ){
+                    $term_taxonomy_id = $user_status_unapproved->term_taxonomy_id;
                     $results = $wpdb->get_results( $wpdb->prepare( "SELECT wppb_t1.ID FROM $wpdb->users AS wppb_t1 LEFT OUTER JOIN $wpdb->term_relationships AS wppb_t0 ON wppb_t1.ID = wppb_t0.object_id WHERE wppb_t0.term_taxonomy_id = %d", $term_taxonomy_id ) );
 
                     foreach ( $results as $result )
                         array_push( $excluded_ids, $result->ID );
-
-                    $excluded_ids = implode( ',', $excluded_ids );
                 }
+                $user_status_pending = get_term_by( 'name', 'pending', 'user_status' );
+                if( $user_status_pending != false ){
+                    $term_taxonomy_id = $user_status_pending->term_taxonomy_id;
+                    $results = $wpdb->get_results( $wpdb->prepare( "SELECT wppb_t1.ID FROM $wpdb->users AS wppb_t1 LEFT OUTER JOIN $wpdb->term_relationships AS wppb_t0 ON wppb_t1.ID = wppb_t0.object_id WHERE wppb_t0.term_taxonomy_id = %d", $term_taxonomy_id ) );
+
+                    foreach ( $results as $result )
+                        array_push( $excluded_ids, $result->ID );
+                }
+                $excluded_ids = implode( ',', $excluded_ids );
             }
             if( !empty($excluded_ids) )
                 $extra_values['exclude'] .= ','. $excluded_ids;
@@ -2796,15 +2804,27 @@ function wppb_set404(){
             }
         }
 
-        //if admin approval is activated, then give 404 if the user was manually requested
+        //if admin approval is activated, then give 404 if an unapproved or pending user was manually requested
         $wppb_generalSettings = get_option('wppb_general_settings', 'not_found');
         if( $wppb_generalSettings != 'not_found' )
             if( wppb_get_admin_approval_option_value() === 'yes' ){
 
-                // Get term by name ''unapproved'' in user_status taxonomy.
-                $user_statusTaxID = get_term_by('name', 'unapproved', 'user_status');
-                if( $user_statusTaxID != false ){
-                    $term_taxonomy_id = $user_statusTaxID->term_taxonomy_id;
+                // Get term by the name 'unapproved' in user_status taxonomy.
+                $user_status_unapproved = get_term_by('name', 'unapproved', 'user_status');
+                if( $user_status_unapproved != false ){
+                    $term_taxonomy_id = $user_status_unapproved->term_taxonomy_id;
+
+                    $results = $wpdb->get_results( $wpdb->prepare ( "SELECT wppb_t3.ID FROM $wpdb->users AS wppb_t3 LEFT OUTER JOIN $wpdb->term_relationships AS wppb_t4 ON wppb_t3.ID = wppb_t4.object_id WHERE wppb_t4.term_taxonomy_id = %d ORDER BY wppb_t3.ID", $term_taxonomy_id ) );
+                    if( !empty( $results ) ){
+                        foreach ($results as $result){
+                            array_push($arrayID, $result->ID);
+                        }
+                    }
+                }
+                // Get term by the name 'pending' in user_status taxonomy.
+                $user_status_pending = get_term_by('name', 'pending', 'user_status');
+                if( $user_status_pending != false ){
+                    $term_taxonomy_id = $user_status_pending->term_taxonomy_id;
 
                     $results = $wpdb->get_results( $wpdb->prepare ( "SELECT wppb_t3.ID FROM $wpdb->users AS wppb_t3 LEFT OUTER JOIN $wpdb->term_relationships AS wppb_t4 ON wppb_t3.ID = wppb_t4.object_id WHERE wppb_t4.term_taxonomy_id = %d ORDER BY wppb_t3.ID", $term_taxonomy_id ) );
                     if( !empty( $results ) ){

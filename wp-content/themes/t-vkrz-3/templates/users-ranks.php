@@ -11,6 +11,8 @@ get_header();
 global $id_vainkeur;
 global $top_infos;
 $top_datas = get_top_data($id_top);
+global $user_tops;
+$list_t_already_done  = $user_tops['list_user_tops_done_ids'];
 ?>
 <div class="app-content content">
     <div class="content-overlay"></div>
@@ -305,8 +307,7 @@ $top_datas = get_top_data($id_top);
                                     </a>
                                 </div>
                             </div>
-
-                            <?php if (!get_top_done_by_current_vainkeur($id_top, $id_vainkeur)) : ?>
+                            <?php if (!get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $list_t_already_done)) : ?>
                                 <div class="card">
                                     <div class="card-body">
                                         <h4 class="card-title">
@@ -321,7 +322,6 @@ $top_datas = get_top_data($id_top);
                                     </div>
                                 </div>
                             <?php endif; ?>
-
                         </div>
                     </div>
                 </div>
