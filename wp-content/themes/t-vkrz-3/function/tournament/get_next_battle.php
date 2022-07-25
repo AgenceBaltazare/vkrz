@@ -1,5 +1,6 @@
 <?php
-function get_next_duel($id_ranking, $id_top, $current_id_vainkeur){
+function get_next_duel($id_ranking, $id_top, $current_id_vainkeur)
+{
 
   $next_duel          = [];
   $is_next_duel       = true;
@@ -36,7 +37,7 @@ function get_next_duel($id_ranking, $id_top, $current_id_vainkeur){
     if (get_field('liste_des_top_commences_vkrz', $current_id_vainkeur)) {
       $user_list_top_begin    = json_decode(get_field('liste_des_top_commences_vkrz', $current_id_vainkeur));
     }
-    if(!in_array(intval($id_top), $user_list_top_begin)){
+    if (!in_array(intval($id_top), $user_list_top_begin)) {
       array_push($user_list_top_begin, intval($id_top));
       update_field('liste_des_top_commences_vkrz', json_encode($user_list_top_begin), $current_id_vainkeur);
     }
@@ -62,8 +63,7 @@ function get_next_duel($id_ranking, $id_top, $current_id_vainkeur){
       if ($timeline_votes == $halfinf) {
         $timeline_main = 2;
         update_field('timeline_main', 2, $id_ranking);
-      } 
-      else {
+      } else {
 
         $key_c_1 = $nb_contenders - (1 + $timeline_votes);
         $key_c_2 = $nb_contenders - (1 + $halfinf + $timeline_votes);
@@ -122,9 +122,7 @@ function get_next_duel($id_ranking, $id_top, $current_id_vainkeur){
         if (!get_field('done_r', $id_ranking)) {
           finish_the_top($id_ranking, $current_id_vainkeur, $id_top, $nb_contenders);
         }
-        
-      } 
-      else {
+      } else {
 
         $key_c_1 = $list_inf[$random - 2];
         $key_c_2 = $list_inf[$random - 1];
@@ -199,8 +197,7 @@ function get_next_duel($id_ranking, $id_top, $current_id_vainkeur){
       if (in_array($key_c1, $c2_less_more) || in_array($key_c2, $c1_less_more) || ($key_c1 == $key_c2)) {
         update_field('timeline_main', 4, $id_ranking);
         $timeline_main = 4;
-      } 
-      else {
+      } else {
         array_push($next_duel, $list_l_r[$nb_loosers]);
         array_push($next_duel, $list_w_r[count($list_w_r) - $spaire]);
       }
@@ -226,7 +223,6 @@ function get_next_duel($id_ranking, $id_top, $current_id_vainkeur){
           if (!get_field('done_r', $id_ranking)) {
             finish_the_top($id_ranking, $current_id_vainkeur, $id_top, $nb_contenders);
           }
-
         }
       }
     }
@@ -244,7 +240,6 @@ function get_next_duel($id_ranking, $id_top, $current_id_vainkeur){
         if (!get_field('done_r', $id_ranking)) {
           finish_the_top($id_ranking, $current_id_vainkeur, $id_top, $nb_contenders);
         }
-
       }
     }
 
@@ -274,7 +269,6 @@ function get_next_duel($id_ranking, $id_top, $current_id_vainkeur){
         if (!get_field('done_r', $id_ranking)) {
           finish_the_top($id_ranking, $current_id_vainkeur, $id_top, $nb_contenders);
         }
-        
       }
     }
   }

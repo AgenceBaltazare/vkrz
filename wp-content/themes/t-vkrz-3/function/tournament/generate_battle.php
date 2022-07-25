@@ -42,7 +42,7 @@ function genererate_tournament_response($top_infos, $user_levels_infos = []){
         'toplist'               => $array_ranking,
         'date_done'             => $date_done,
         'triche'                => $triche,
-        "classement_url"        => get_permalink($id_ranking)
+        "classement_url"        => get_permalink($id_ranking),
         'current_id_vainkeur'   => $current_id_vainkeur
     );
     $response = array_merge($response, $user_levels_infos);
