@@ -11,9 +11,10 @@ function vkrz_tracking_vars()
     $user_id = get_current_user_id();
 
     vkrz_output_tracking_vars_in_head("vkrz_tracking_vars_user", [
-        'uuiduser_layer' => $uuiduser,
-        'id_user_layer' => $user_id,
-        'utm' => $utm
+        'uuiduser_layer'    => $uuiduser,
+        'id_user_layer'     => $user_id,
+        'utm'               => $utm,
+        'pseudo_user_layer' => get_userdata($user_id)->display_name
     ]);
 
     global $post;

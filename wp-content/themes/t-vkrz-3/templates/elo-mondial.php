@@ -235,7 +235,6 @@ $contenders_ranking   = get_contenders_ranking($id_top);
                                         </div>
                                     </div>
                                 </div>
-
                                 <?php if (!get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $list_t_already_done)) : ?>
                                     <div class="col-12">
                                         <div class="card">

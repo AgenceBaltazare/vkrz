@@ -151,7 +151,7 @@ if ($list_user_toplists) {
             <div id="levelbloc" class="col-lg-9 col-12 order-1 order-lg-2">
               <section class="app-user-view">
                 <div class="row match-height">
-                  <div class="col-sm-4">
+                  <div class="col-sm-3">
                     <div class="card text-center">
                       <div class="card-body">
                         <div class="pricing-badge text-right">
@@ -187,7 +187,7 @@ if ($list_user_toplists) {
                       </div>
                     </div>
                   </div>
-                  <div class="col-sm-4 col-6">
+                  <div class="col-sm-3 col-4">
                     <div class="card text-center">
                       <div class="card-body">
                         <div>
@@ -206,7 +206,7 @@ if ($list_user_toplists) {
                       </div>
                     </div>
                   </div>
-                  <div class="col-sm-4 col-6">
+                  <div class="col-sm-3 col-4">
                     <div class="card text-center">
                       <div class="card-body">
                         <div class="">
@@ -222,6 +222,21 @@ if ($list_user_toplists) {
                         <?php else : ?>
                           <p class="card-text legende">Top terminé</p>
                         <?php endif; ?>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-3 col-4">
+                    <div class="card text-center">
+                      <div class="card-body">
+                        <div class="">
+                          <span class="icomax">
+                            <span class="va-sm va va-star-struck"></span>
+                          </span>
+                        </div>
+                        <h2 class="font-weight-bolder followers-account-nbr">
+                          0
+                        </h2>
+                        <p class="card-text legende followers-account-nbr-text">Follower</p>
                       </div>
                     </div>
                   </div>

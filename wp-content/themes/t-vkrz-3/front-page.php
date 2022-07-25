@@ -70,7 +70,6 @@ $list_user_tops_begin = $user_tops['list_user_tops_begin_ids'];
           </div>
         </div>
       </section>
-
       <section id="vkrz-intro">
         <div class="row match-height mt-2">
           <div class="col-md-5">

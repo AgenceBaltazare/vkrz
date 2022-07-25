@@ -23,6 +23,10 @@ function genererate_tournament_response($top_infos, $user_levels_infos = []){
     get_template_part( 'templates/parts/content', 'user-votes' );
     $uservotes_html = ob_get_clean();
 
+    $array_ranking  = get_field('ranking_r', $id_ranking);
+    $date_done      = get_field('done_date_r', $id_ranking);
+    $triche         = get_field('suspected_cheating_r', $id_ranking);
+
     $response =  array(
         'id_ranking'            => $id_ranking,
         'current_step'          => $current_step,
@@ -33,6 +37,12 @@ function genererate_tournament_response($top_infos, $user_levels_infos = []){
         'nb_user_votes'         => $nb_user_votes,
         'user_ranking_html'     => $user_ranking_html,
         'is_next_duel'          => $is_next_duel,
+        'current_id_vainkeur'   => $current_id_vainkeur,
+        'badge_data'            => $badge_data,
+        'toplist'               => $array_ranking,
+        'date_done'             => $date_done,
+        'triche'                => $triche,
+        "classement_url"        => get_permalink($id_ranking)
         'current_id_vainkeur'   => $current_id_vainkeur
     );
     $response = array_merge($response, $user_levels_infos);

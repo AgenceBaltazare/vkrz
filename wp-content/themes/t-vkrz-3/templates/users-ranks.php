@@ -307,7 +307,6 @@ $list_t_already_done  = $user_tops['list_user_tops_done_ids'];
                                     </a>
                                 </div>
                             </div>
-
                             <?php if (!get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $list_t_already_done)) : ?>
                                 <div class="card">
                                     <div class="card-body">
@@ -323,7 +322,6 @@ $list_t_already_done  = $user_tops['list_user_tops_done_ids'];
                                     </div>
                                 </div>
                             <?php endif; ?>
-
                         </div>
                     </div>
                 </div>

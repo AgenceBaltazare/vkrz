@@ -132,7 +132,18 @@ if (is_single() || is_page(get_page_by_path('monitor'))) {
 } else {
   $list_body_class = "vertical-layout vertical-menu-modern navbar-floating footer-static";
 }
+
+// FOR NOTIFICATIONS… ✋
+$anonyme_avatar_url = get_bloginfo('template_directory') . '/assets/images/vkrz/avatar-rose.png';
 ?>
+
+<script>
+  const currentUserId         = "<?php echo wp_get_current_user()->ID; ?>",
+        currentUserProfileUrl = "<?php echo get_author_posts_url($user_id); ?>",
+        anonymeAvatarUrl      = "<?php echo $anonyme_avatar_url; ?>",
+        vainkeurPseudo        = "<?php echo $user_infos['pseudo']; ?>",
+        currentUuid           = "<?php echo $uuiduser; ?>"
+</script>
 
 <body <?php body_class($list_body_class); ?> data-open="click" data-menu="vertical-menu-modern" data-col="">
 
