@@ -35,7 +35,7 @@ if (!is_single() || get_post_type() != "tournoi") {
     $user_tops  = get_user_tops($id_vainkeur);
   }
 }
-if(isset($_GET['id_top']) && $_GET['id_top'] != ""){
+if (isset($_GET['id_top']) && $_GET['id_top'] != "") {
   $id_top = $_GET['id_top'];
 }
 $utm            = deal_utm();
@@ -43,6 +43,7 @@ wp_reset_query();
 ?>
 <!DOCTYPE html>
 <html class="loading dark-layout" lang="fr" data-layout="dark-layout" data-textdirection="ltr">
+
 <head>
   <!--[if lt IE 9]>
     <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -138,12 +139,23 @@ $anonyme_avatar_url = get_bloginfo('template_directory') . '/assets/images/vkrz/
 ?>
 
 <script>
-  const currentUserId         = "<?php echo wp_get_current_user()->ID; ?>",
-        currentUserProfileUrl = "<?php echo get_author_posts_url($user_id); ?>",
-        anonymeAvatarUrl      = "<?php echo $anonyme_avatar_url; ?>",
-        vainkeurPseudo        = "<?php echo $user_infos['pseudo']; ?>",
-        currentUuid           = "<?php echo $uuiduser; ?>"
+  const currentUserId = "<?php echo wp_get_current_user()->ID; ?>",
+    currentUserProfileUrl = "<?php echo get_author_posts_url($user_id); ?>",
+    anonymeAvatarUrl = "<?php echo $anonyme_avatar_url; ?>",
+    vainkeurPseudo = "<?php echo $user_infos['pseudo']; ?>",
+    currentUuid = "<?php echo $uuiduser; ?>"
 </script>
+
+<?php if (env() != "local") : ?>
+  <script>
+    const link_to_firebase_config = "https://vainkeurz.com/wp-content/themes/t-vkrz-3/function/firebase/config.js";
+  </script>
+<?php else : ?>
+  <script>
+    console.log(window.location.hostname);
+    const link_to_firebase_config = "http://localhost:8888/vkrz/wp-content/themes/t-vkrz-3/function/firebase/config.js";
+  </script>
+<?php endif; ?>
 
 <body <?php body_class($list_body_class); ?> data-open="click" data-menu="vertical-menu-modern" data-col="">
 

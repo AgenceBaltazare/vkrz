@@ -5,7 +5,7 @@ import {
   query,
   where,
   database,
-} from "http://localhost:8888/vkrz/wp-content/themes/t-vkrz-3/function/firebase/config.js";
+} from link_to_firebase_config;
 
 $(document).ready(function ($) {
   let ajaxRunning = false;

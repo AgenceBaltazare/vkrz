@@ -109,7 +109,7 @@ $(function () {
       processing: true,
       dom:
         '<"d-flex justify-content-between align-items-center mx-0 row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>t<"d-flex justify-content-between mx-0 row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
-      ajax: 'http://localhost:8888/vkrz/wp-content/themes/t-vkrz-3/assets/data/user-list.json',
+      ajax: 'https://vainkeurz.com/wp-content/themes/t-vkrz-3/assets/data/user-list.json',
       language: {
         paginate: {
           // remove previous & next text from pagination

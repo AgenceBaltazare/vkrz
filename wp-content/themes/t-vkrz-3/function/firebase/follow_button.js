@@ -7,7 +7,7 @@ import {
   query,
   where,
   database,
-} from "http://localhost:8888/vkrz/wp-content/themes/t-vkrz-3/function/firebase/config.js";
+} from "./config.js";
 
 if (document.querySelector("#followBtn")) {
   /* CHECK IF HE'S FOLLOWED BY CURRENT VAINKEUR! */

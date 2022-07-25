@@ -7,7 +7,7 @@ import {
   where,
   database,
   orderBy,
-} from "http://localhost:8888/vkrz/wp-content/themes/t-vkrz-3/function/firebase/config.js";
+} from "./config.js";
 
 const q = query(
   collection(database, "notifications"),
