@@ -48,6 +48,9 @@ class FirebaseUtils {
             $nice_username = self::replace_accents(str_replace(' ', '_', $firebase_user['displayName']));
         }
 
+        // Replace special characters
+        $nice_username = str_replace('+', '_', $nice_username);
+
         return $nice_username;
     }
 

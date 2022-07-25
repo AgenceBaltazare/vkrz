@@ -7,6 +7,7 @@
 
 class Firebase_Admin {
   private static $initiated = false;
+  private static $notified = false;
   private static $options;
   private static $options_database;
   private static $options_auth;
@@ -30,7 +31,7 @@ class Firebase_Admin {
     add_action('admin_menu', array("Firebase_Admin", "add_firebase_admin_menu"));
     add_action("admin_init", array("Firebase_Admin", "register_settings"));
     add_action('admin_enqueue_scripts', array('Firebase_Admin', 'load_firebase_admin_js'));
-    add_action('admin_notices', array('Firebase_Admin', 'firebase_admin_notice__error'));
+    add_action('firebase_pro_init', array('Firebase_Admin', 'validate_product'));
   }
 
   public static function add_firebase_admin_menu() {
@@ -45,17 +46,43 @@ class Firebase_Admin {
     add_menu_page(__($page_title, "integrate-firebase-PRO"), __($menu_title, "integrate-firebase-PRO"), $capability, $menu_slug, array("Firebase_Admin", $function), $icon_url, $position);
   }
 
-  public static function firebase_admin_notice__error() {
-    global $pagenow;
-    if ('index.php' === $pagenow || (isset($_GET['page']) && $_GET['page'] === 'firebase-setting')) {
-?>
-      <div class="notice notice-error is-dismissible">
-        <p><strong><?php _e('Integrate Firebase PRO', 'integrate-firebase-PRO'); ?><strong></p>
-        <p><?php _e('If you are using any Firebase Extensions, please also update them to latest version.', 'integrate-firebase-PRO'); ?></p>
-      </div>
-    <?php
+  public static function validate_product() {
+    if (!empty(self::$options_settings['product_key']) && !self::$notified) {
+      // Validate product
+      $data = new stdClass();
+      $data->productKey = self::$options_settings['product_key'];
+      $url = "https://techcater.com/api-products/v1/products/IFP_YEARLY/validate";
 
+      // if (strpos(get_site_url(), 'techcater-plugins.local') !== false) {
+      //   error_log('--------Validate DEV SITE------------');
+      //   $url = "https://dev.techcater.com/api-products/v1/products/IFP_YEARLY/validate";
+      // }
+
+      $response = wp_remote_post($url, array(
+        'method' => 'POST',
+        'timeout' => 45,
+        'headers' => array(
+          'Content-Type' => 'application/json; charset=utf-8',
+        ),
+        'body' => json_encode($data),
+      ));
+
+
+      if (is_wp_error($response)) {
+        // ignore checking
+      } else if (isset($response['body'])) {
+        $result = json_decode($response['body']);
+        if (is_object($result) && $result->status == 0) {
+          // Show missing error message
+          new IFP_Message($result->message, 'error');
+        }
+      }
+    } else {
+      // Show missing error message
+      new IFP_Message('Your product key is missing. Please go to Firebase > Settings tab and add it.', 'error');
     }
+
+    self::$notified = true;
   }
 
   public static function load_firebase_admin_js() {
@@ -752,7 +779,7 @@ class Firebase_Admin {
 
   public static function wp_sync_database_type_callback() {
     $selected = isset(self::$options_wordpress['wp_sync_database_type']) ? self::$options_wordpress['wp_sync_database_type'] : 'firestore';
-    ?>
+?>
     <select name='firebase_wordpress[wp_sync_database_type]'>
       <option value='firestore' <?php selected($selected, 'firestore'); ?>>Firestore</option>
       <option value='realtime' <?php selected($selected, 'realtime'); ?>>Realtime</option>

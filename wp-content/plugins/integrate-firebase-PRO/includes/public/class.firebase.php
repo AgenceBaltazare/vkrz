@@ -77,6 +77,7 @@ class Firebase {
     }
 
     wp_enqueue_script('firebase', FIREBASE_WP__PLUGIN_URL . 'js/firebase.js', array('jquery'), FIREBASE_WP_VERSION, true);
+    // uncomment for development
     // wp_enqueue_script('firebase-pro', FIREBASE_WP__PLUGIN_URL . 'js/firebase-pro.js', array('firebase'), FIREBASE_WP_VERSION, true);
 
     $site_url = get_site_url();
@@ -103,6 +104,7 @@ class Firebase {
         'messagingSenderId' => isset(self::$options['messaging_sender_id']) ? self::$options['messaging_sender_id'] : '',
         'projectId' => isset(self::$options['project_id']) ? self::$options['project_id'] : '',
         'services' => $FIREBASE_SERVICES,
+        // comment for development
         'proScript' => $firebase_pro_script,
         'language' => $current_wp_langague
       )

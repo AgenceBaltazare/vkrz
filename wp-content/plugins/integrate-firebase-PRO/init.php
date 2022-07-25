@@ -15,7 +15,7 @@
  * Author URI:   http://dalenguyen.me
  * Contributors: Dale Nguyen (@dalenguyen)
  *
- * Version:      3.13.0
+ * Version:      3.14.0
  *
  * Text Domain:  integrate-firebase-PRO
  * Domain Path: /languages/
@@ -44,7 +44,7 @@ if (!function_exists('add_action')) {
   exit;
 }
 
-define('FIREBASE_WP_VERSION', '3.13.0');
+define('FIREBASE_WP_VERSION', '3.14.0');
 define('FIREBASE_WP__MINIMUM_WP_VERSION', '4.0.0');
 define('FIREBASE_WP__PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FIREBASE_WP__PLUGIN_URL', plugin_dir_url(__FILE__));
@@ -88,6 +88,7 @@ function init_firebase_pro_plugin() {
 
   // Admin configuration
   if (is_admin() || (defined('WP_CLI') && WP_CLI)) {
+    require_once FIREBASE_WP__PLUGIN_DIR . 'includes/service/class.message-service.php';
     require_once FIREBASE_WP__PLUGIN_DIR . 'includes/admin/class.firebase-admin.php';
     if (class_exists('Firebase_Admin')) {
       Firebase_Admin::init();

@@ -11,6 +11,13 @@ All notable changes to this project will be documented in this file.
 > - :memo: [Documentation]
 > - :nail_care: [Polish]
 
+## [ 3.14.0 ] - 2022-07-19
+
+#### - :nail_care: [Polish]
+
+- Add support for email with + character
+- Add product validation
+
 ## [ 3.13.0 ] - 2022-06-1
 
 #### - :nail_care: [Polish]
