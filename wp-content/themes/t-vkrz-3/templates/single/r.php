@@ -33,6 +33,8 @@ if ($get_top_type) {
   }
 }
 $already_done = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $list_t_already_done);
+var_dump($already_done);
+var_dump($list_t_already_done);
 ?>
 <div class="app-content content cover" style="background: url(<?php echo $top_infos['top_cover']; ?>) center center no-repeat">
   <div class="content-overlay"></div>
