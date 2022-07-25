@@ -260,7 +260,7 @@ foreach ($list_user_toplists as $top) {
             <div class="col-lg-9 col-12 order-1 order-lg-2">
               <section class="app-user-view">
                 <div class="row match-height">
-                  <div class="col-sm-4">
+                  <div class="col-sm-3">
                     <div class="card text-center">
                       <div class="card-body">
                         <div class="pricing-badge text-right">
@@ -279,7 +279,7 @@ foreach ($list_user_toplists as $top) {
                       </div>
                     </div>
                   </div>
-                  <div class="col-sm-4 col-6">
+                  <div class="col-sm-3 col-4">
                     <div class="card text-center">
                       <div class="card-body">
                         <div class="mb-1">
@@ -296,7 +296,7 @@ foreach ($list_user_toplists as $top) {
                       </div>
                     </div>
                   </div>
-                  <div class="col-sm-4 col-6">
+                  <div class="col-sm-3 col-4">
                     <div class="card text-center">
                       <div class="card-body">
                         <div class="mb-1">
@@ -311,6 +311,22 @@ foreach ($list_user_toplists as $top) {
                           <?php else : ?>
                             Top terminé
                           <?php endif; ?>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3 col-4">
+                    <div class="card text-center">
+                      <div class="card-body">
+                        <div class="mb-1">
+                          <span class="ico4 va-sm va va-star-struck va-z-30"></span>
+                        </div>
+                        <h2 class="font-weight-bolder followers-nbr">
+                          0
+                        </h2>
+                        <p class="card-text legende followers-nbr-text">
+                          Follower
                         </p>
                       </div>
                     </div>

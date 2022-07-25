@@ -24,7 +24,7 @@ function load_css_js()
   if (is_page(array(27800, 27795, 27792, 27794, 443448))) {
     wp_enqueue_style('account', get_template_directory_uri() . '/assets/css/vkrz/login.css', array(), $template_version);
   }
-  
+
   wp_enqueue_style('main', get_template_directory_uri() . '/assets/css/vkrz/main.css', array(), $template_version);
 
   // Scripts
@@ -69,6 +69,27 @@ function load_css_js()
   }
   if (get_post_type() == "classement") {
     wp_enqueue_script('similar', get_template_directory_uri() . '/function/ajax/similar.js', array(), $template_version, true);
+  }
+
+  // COMMENTS…
+  if (is_page('Discuz')) {
+    wp_enqueue_script('set_comment_notification', get_template_directory_uri() . '/function/firebase/set_comment_notification.js', array(), $template_version, true);
+  }
+
+  // FOLLOW BUTTON…
+  wp_enqueue_script('follow_button', get_template_directory_uri() . '/function/firebase/follow_button.js', array(), $template_version, true);
+
+  // MENU USER NOTIFICATIONS…
+  wp_enqueue_script('get_menuuser_notifications', get_template_directory_uri() . '/function/firebase/get_menuuser_notifications.js', array(), $template_version, true);
+
+  // NOTIFICATIONS PAGE…
+  if (is_page(347883)) {
+    wp_enqueue_script('get_notifications_page', get_template_directory_uri() . '/function/firebase/get_notifications_page.js', array(), $template_version, true);
+  }
+
+  // FRIENDS PAGE…
+  if (is_page(347406)) {
+    wp_enqueue_script('get_friends_page', get_template_directory_uri() . '/function/firebase/get_friends_page.js', array(), $template_version, true);
   }
 }
 add_action('wp_enqueue_scripts', 'load_css_js');

@@ -1,4 +1,9 @@
-<?php global $top_comments_id; ?>
+<?php
+global $top_comments_id;
+global $author_reply;
+global $author_reply_id;
+?>
+
 <div id="comments" class="comments-area">
   <?php
   $response_to_comment = false;
@@ -37,7 +42,9 @@
                       $avatar_url         = get_bloginfo('template_directory') . '/assets/images/vkrz/avatar-rose.png';
                     }
                     ?>
-                    <img src="<?php echo $avatar_url; ?>" width="60" height="60" alt="Avatar">
+                    <a href="<?php echo get_author_posts_url($comment_autor_id); ?>">
+                      <img src="<?php echo $avatar_url; ?>" width="60" height="60" alt="Avatar">
+                    </a>
                   </div>
                   <div class="author-info">
                     <h6 class="fw-bolder mb-25">
@@ -92,7 +99,9 @@
                         $avatar_url         = get_bloginfo('template_directory') . '/assets/images/vkrz/avatar-rose.png';
                       }
                       ?>
-                      <img src="<?php echo $avatar_url; ?>" width="60" height="60" alt="Avatar">
+                      <a href="<?php echo get_author_posts_url($comment_autor_id); ?>">
+                        <img src="<?php echo $avatar_url; ?>" width="60" height="60" alt="Avatar">
+                      </a>
                     </div>
                     <div class="author-info">
                       <h6 class="fw-bolder mb-25">
@@ -179,6 +188,9 @@
           }
           if ($response_to_comment) {
             $top_reponse_id       = $_GET['replytocom'];
+
+            $author_reply = get_comment_author_email($top_reponse_id);
+            $author_reply_id = get_user_by('email', $author_reply)->ID;
           }
           ?>
           <form id="commentform" action="<?php echo get_option('siteurl'); ?>/wp-comments-post.php" method="post" class="form">
@@ -197,9 +209,9 @@
             <div class="row mt-1">
               <div class="col-12">
                 <?php if (!$response_to_comment) : ?>
-                  <textarea id="comment" class="form-control mb-2" rows="4" placeholder="Ton commentaire" name="comment"></textarea>
+                  <textarea id="comment" class="form-control mb-2" rows="4" placeholder="Ton commentaire" name="comment" required></textarea>
                 <?php else : ?>
-                  <textarea id="comment" class="form-control mb-2" rows="4" placeholder="Ta réponse" name="comment"></textarea>
+                  <textarea id="comment" class="form-control mb-2" rows="4" placeholder="Ta réponse" name="comment" required></textarea>
                 <?php endif; ?>
               </div>
               <div class="col-12">
@@ -207,6 +219,12 @@
                 <input type="hidden" name="comment_post_ID" value="<?php echo $top_comments_id; ?>" id="comment_post_ID">
                 <input type="hidden" name="comment_parent" id="comment_parent" value="<?php echo $top_reponse_id; ?>">
               </div>
+
+              <!-- REPLY DATA… -->
+              <div id="replyData" style="display: none !important;" data-userId="<?php echo get_current_user_id() ?>" data-uuid="<?php echo get_field('uuiduser_user', 'user_' . get_current_user_id()); ?>" data-relatedId="<?php echo $author_reply_id ?>" data-relatedUuid="<?php echo get_field('uuiduser_user', 'user_' . $author_reply_id); ?>" data-notifText="<?php echo $user_infos['pseudo'] ?>" data-notifLink="<?php echo $actual_link; ?>&replytocom=<?php echo $top_reponse_id; ?>#respond"></div>
+
+              <!-- COMMENT DATA… -->
+              <div id="commentData" style="display: none !important;" data-userId="<?php echo get_current_user_id() ?>" data-uuid="<?php echo get_field('uuiduser_user', 'user_' . get_current_user_id()); ?>" data-relatedId="<?php echo get_post_field('post_author', $top_comments_id); ?>" data-relatedUuid="<?php echo get_field('uuiduser_user', 'user_' . get_post_field('post_author', $top_comments_id)); ?>" data-notifText="<?php echo $user_infos['pseudo'] ?>" data-notifLink="<?php echo $actual_link; ?>"></div>
             </div>
           </form>
         </div>
