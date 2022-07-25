@@ -146,17 +146,6 @@ $anonyme_avatar_url = get_bloginfo('template_directory') . '/assets/images/vkrz/
     currentUuid = "<?php echo $uuiduser; ?>"
 </script>
 
-<?php if (env() != "local") : ?>
-  <script>
-    const link_to_firebase_config = "https://vainkeurz.com/wp-content/themes/t-vkrz-3/function/firebase/config.js";
-  </script>
-<?php else : ?>
-  <script>
-    console.log(window.location.hostname);
-    const link_to_firebase_config = "http://localhost:8888/vkrz/wp-content/themes/t-vkrz-3/function/firebase/config.js";
-  </script>
-<?php endif; ?>
-
 <body <?php body_class($list_body_class); ?> data-open="click" data-menu="vertical-menu-modern" data-col="">
 
   <?php if ($user_infos['user_role'] != "administrator" && env() != "local") : ?>

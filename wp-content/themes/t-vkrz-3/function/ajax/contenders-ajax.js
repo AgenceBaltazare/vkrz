@@ -5,7 +5,7 @@ import {
   query,
   where,
   database,
-} from link_to_firebase_config;
+} from '../firebase/config.js';
 
 $(document).ready(function ($) {
   let ajaxRunning = false;
