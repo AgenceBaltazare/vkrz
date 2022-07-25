@@ -32,10 +32,7 @@ if ($get_top_type) {
     array_push($types_top, $type_top->slug);
   }
 }
-$already_done = false;
-if (in_array($id_top_global, $list_t_already_done)) {
-  $already_done = true;
-}
+$already_done = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $list_t_already_done);
 ?>
 <div class="app-content content cover" style="background: url(<?php echo $top_infos['top_cover']; ?>) center center no-repeat">
   <div class="content-overlay"></div>

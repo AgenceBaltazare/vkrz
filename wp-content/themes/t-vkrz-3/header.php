@@ -35,6 +35,9 @@ if (!is_single() || get_post_type() != "tournoi") {
     $user_tops  = get_user_tops($id_vainkeur);
   }
 }
+if(isset($_GET['id_top']) && $_GET['id_top'] != ""){
+  $id_top = $_GET['id_top'];
+}
 $utm            = deal_utm();
 wp_reset_query();
 ?>
