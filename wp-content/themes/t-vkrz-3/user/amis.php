@@ -14,8 +14,6 @@ if (false === ($data_t_created = get_transient('user_' . $vainkeur_id . '_get_cr
 } else {
   $data_t_created = get_transient('user_' . $vainkeur_id . '_get_creator_t');
 }
-
-echo '<h1> ' . get_current_user_id() . ' </h1>';
 ?>
 
 <!-- BEGIN: Content-->
