@@ -50,22 +50,24 @@ let row = "";
 
 if (querySnapshot._snapshot.docs.size !== 0) {
   let notificationsUsersUuids = [];
-  querySnapshot.forEach(notification => {
-    notificationsUsersUuids.push(notification.data().uuid)
+  querySnapshot.forEach((notification) => {
+    notificationsUsersUuids.push(notification.data().uuid);
   });
 
   const asyncFunc = async () => {
     const map = new Map();
-    await Promise.all(notificationsUsersUuids.map(async uuid => {
+    await Promise.all(
+      notificationsUsersUuids.map(async (uuid) => {
         await fetch(`https://vainkeurz.com/wp-json/vkrz/v1/getuserinfo/${uuid}`)
-            .then((res) => res.json())
-            .then(response => map.set(uuid, response));
-    }));
+          .then((res) => res.json())
+          .then((response) => map.set(uuid, response));
+      })
+    );
 
-    querySnapshot.forEach(notification => {
+    querySnapshot.forEach((notification) => {
       let secondes =
-      new Date().getTime() - notification.data().createdAt.seconds * 1000;
-      
+        new Date().getTime() - notification.data().createdAt.seconds * 1000;
+
       row += `
         <tr role="row" class="odd" id="row" data-id="${notification.id}">
           <td>
@@ -115,6 +117,38 @@ if (querySnapshot._snapshot.docs.size !== 0) {
     });
     tbody.innerHTML = row;
 
+    $(".table-notifications").DataTable({
+      autoWidth: false,
+      lengthMenu: [25],
+      pagingType: "full_numbers",
+      columns: [
+        { orderable: false },
+        { orderable: true },
+        { orderable: true },
+      ],
+      language: {
+        search: "_INPUT_",
+        searchPlaceholder: "Rechercher...",
+        processing: "Traitement en cours...",
+        info: "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
+        infoEmpty:
+          "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
+        infoFiltered:
+          "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+        infoPostFix: "",
+        loadingRecords: "Chargement en cours...",
+        zeroRecords: "Aucun &eacute;l&eacute;ment &agrave; afficher 😩",
+        emptyTable: "Aucun résultat trouvé 😩",
+        paginate: {
+          first: "Premier",
+          previous: "Pr&eacute;c&eacute;dent",
+          next: "Suivant",
+          last: "Dernier",
+        },
+      },
+      order: [],
+    });
+
     // PROCESS TO UPDATE STATUT… 🎺
     const rows = document.querySelectorAll("#row");
     rows.forEach((row) => {
@@ -130,8 +164,9 @@ if (querySnapshot._snapshot.docs.size !== 0) {
         updateDocFunc();
       });
     });
-  }
-  asyncFunc()
+  };
+  asyncFunc();
 } else {
-  tbody.innerHTML = "<tr><td>NO NOTIFICATIONS… 😪</td><td></td><td></td><td></td><td></td></tr>";
+  tbody.innerHTML =
+    "<tr><td>NO NOTIFICATIONS… 😪</td><td></td><td></td><td></td><td></td></tr>";
 }

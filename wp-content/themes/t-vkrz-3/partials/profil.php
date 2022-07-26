@@ -91,8 +91,9 @@ $vainkeur_info = isset($vainkeur_info) ? $vainkeur_info : $user_infos;
                     Editer mon profil
                   </a>
                 </li>
+
                 <li class="nav-item">
-                  <a class="nav-link font-weight-bold <?php if (is_page(get_page_by_path('mon-compte/notifications'))) {
+                  <a class="nav-link font-weight-bold <?php if (is_page(347883)) {
                                                         echo 'btn btn-primary';
                                                       } ?>" href="<?php the_permalink(get_page_by_path('mon-compte/notifications')); ?>">
                     Mes notifications
@@ -100,7 +101,7 @@ $vainkeur_info = isset($vainkeur_info) ? $vainkeur_info : $user_infos;
                 </li>
 
                 <li class="nav-item">
-                  <a class="nav-link font-weight-bold <?php if (is_page(get_page_by_path('mon-compte/amis'))) {
+                  <a class="nav-link font-weight-bold <?php if (is_page(347406)) {
                                                         echo 'btn btn-primary';
                                                       } ?>" href="<?php the_permalink(get_page_by_path('mon-compte/amis')); ?>">
                     Amigos
