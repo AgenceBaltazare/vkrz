@@ -33,9 +33,6 @@ if ($get_top_type) {
   }
 }
 $already_done = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $list_t_already_done);
-echo "idtop: ". $id_top."<br>";
-echo "already_done: " . $already_done . "<br>";
-echo "list_t_already_done: " . $list_t_already_done . "<br>";
 ?>
 <div class="app-content content cover" style="background: url(<?php echo $top_infos['top_cover']; ?>) center center no-repeat">
   <div class="content-overlay"></div>
