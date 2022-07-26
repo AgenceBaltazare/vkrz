@@ -77,10 +77,10 @@ function load_css_js()
   }
 
   // FOLLOW BUTTON…
-  wp_enqueue_script('follow_button', get_template_directory_uri() . '/function/firebase/follow_button.js', array(), $template_version, true);
+  // wp_enqueue_script('follow_button', get_template_directory_uri() . '/function/firebase/follow_button.js', array(), $template_version, true);
 
   // MENU USER NOTIFICATIONS…
-  wp_enqueue_script('get_menuuser_notifications', get_template_directory_uri() . '/function/firebase/get_menuuser_notifications.js', array(), $template_version, true);
+  // wp_enqueue_script('get_menuuser_notifications', get_template_directory_uri() . '/function/firebase/get_menuuser_notifications.js', array(), $template_version, true);
 
   // NOTIFICATIONS PAGE…
   if (is_page(get_page_by_path('mon-compte/notifications'))) {
