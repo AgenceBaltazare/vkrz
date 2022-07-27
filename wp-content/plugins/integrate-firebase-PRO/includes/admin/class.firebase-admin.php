@@ -92,7 +92,6 @@ class Firebase_Admin {
     // wp_enqueue_style( 'firebase-admin', plugin_dir_url( dirname(__FILE__) ) . 'css/firebase-admin.css' );
 
     // Datatables Assets
-    wp_enqueue_style('firebase-datatables', '//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css', array(), FIREBASE_WP_VERSION, false);
     wp_enqueue_style('firebase-datatables-buttons', '//cdn.datatables.net/buttons/2.2.1/css/buttons.dataTables.min.css', array(), FIREBASE_WP_VERSION, false);
 
     wp_enqueue_script('firebase-datatables', '//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js', array('jquery'), FIREBASE_WP_VERSION, true);

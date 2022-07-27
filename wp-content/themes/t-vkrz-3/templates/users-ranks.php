@@ -11,9 +11,14 @@ get_header();
 global $id_vainkeur;
 global $top_infos;
 $top_datas = get_top_data($id_top);
+
+$actual_uuiduser = get_field('uuiduser_user', 'user_' . get_current_user_id());
 ?>
 
-<script type="module">
+
+<!-- 
+    // ALL IS GOOD…
+    <script type="module">
     import {
         initializeApp
     } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
@@ -43,45 +48,90 @@ $top_datas = get_top_data($id_top);
     } from "https://cdnjs.cloudflare.com/ajax/libs/firebase/9.8.1/firebase-firestore.min.js";
     const database = getFirestore(app);
 
-    const q = query(collection(database, "wpClassement"), where("custom_fields.id_tournoi_r", "==", "<?php echo $id_top; ?>"), where('custom_fields.done_r', "==", "done"), where('author', "!=", false));
-    let div = ''
-    const querySnapshot = await getDocs(q);
+    // FUNCTION TO COMPARE MY RANKING TO OTHER'S RANKING…
+    const sameRankingFunc = function(obj1, obj2) {
+        const obj1Keys = Object.keys(obj1);
+        const obj2Keys = Object.keys(obj2);
 
-    const docRef = doc(database, "wpClassement", "468698");
-    const docSnap = await getDoc(docRef);
-
-    if (docSnap.exists()) {
-    console.log("Document data:", docSnap.data());
-    } else {
-    // doc.data() will be undefined in this case
-    console.log("No such document!");
-    }
-
-    querySnapshot.forEach((data) => {
-        console.log(data.data().author.display_name);
-        //////////// WHERE THE MAGIC HAPPENS… 🧑‍💻 //////////////
-        let contenders = [],
-            contendersPlaces = [],
-            contendersIDs = [],
-            contendersDiv = '';
-
-        // SORT CONTENDERS BEFORE SHOW THEM…
-        for (let contender of data.data().custom_fields.ranking_r) {
-            contenders.push(contender);
-            contendersPlaces.push(contender.place);
-
-            contendersIDs.push(contender.id_wp);
+        if (obj1Keys.length !== obj2Keys.length) {
+            return false;
         }
-        contenders.sort(function(a, b) {
+
+        for (let objKey of obj1Keys) {
+            if (obj1[objKey] !== obj2[objKey]) {
+                if (typeof obj1[objKey] == "object" && typeof obj2[objKey] == "object") {
+                    if (!sameRankingFunc(obj1[objKey], obj2[objKey])) {
+                        return false;
+                    }
+                } else {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    };
+
+    // FUNCTION TO SORT CONTENDERS…
+    const sortContenders = function(contenders) {
+        let contendersArr = [],
+            contendersArrPlaces = [],
+            contendersArrIDs = [];
+
+        for (let contender of contenders) {
+            delete contender.c_name;
+            delete contender.elo;
+            delete contender.id;
+            delete contender.less_to;
+            delete contender.more_to;
+            delete contender.ratio;
+            delete contender.image;
+
+            contendersArr.push(contender);
+            contendersArrPlaces.push(contender.place);
+
+            contendersArrIDs.push(contender.id_wp);
+        }
+        contendersArr.sort(function(a, b) {
             return b.place - a.place;
         });
-        contendersPlaces.sort(function(a, b) {
+        contendersArrPlaces.sort(function(a, b) {
             return b - a;
         }).reverse();
-        for (let j = 0; j < contenders.length; j++) {
-            contenders[j].place = contendersPlaces[j];
+        for (let j = 0; j < contendersArr.length; j++) {
+            contendersArr[j].place = contendersArrPlaces[j];
         }
+        contenders = contendersArr;
 
+        return contenders;
+    }
+
+    // GET ACTUAL USER RANKING…
+    const currentUuid = "<?php echo $actual_uuiduser; ?>";
+    const actualUserRankingQuery = query(collection(database, "wpClassement"), where("custom_fields.id_tournoi_r", "==", "<?php echo $id_top; ?>"), where('custom_fields.done_r', "==", "done"), where("custom_fields.uuid_user_r", "==", currentUuid));
+    const actualUserRankingQuerySnapshot = await getDocs(actualUserRankingQuery);
+
+    // SORT MY RANKING…
+    let myContenders = [];
+    actualUserRankingQuerySnapshot.forEach(ranking => myContenders = sortContenders(ranking.data().custom_fields.ranking_r))
+    console.log('myContenders', myContenders);
+
+    // USERS RANKS…
+    const usersRanksQuery = query(collection(database, "wpClassement"), where("custom_fields.id_tournoi_r", "==", "<?php echo $id_top; ?>"), where('custom_fields.done_r', "==", "done"), where('author', "!=", false));
+    const usersRanksQuerySnapshot = await getDocs(usersRanksQuery);
+    let html = ''
+
+    let contenders = [];
+    usersRanksQuerySnapshot.forEach((ranking) => {
+        let contendersDiv = '',
+            contendersIDs = [];
+
+        contenders = sortContenders(ranking.data().custom_fields.ranking_r);
+
+        if (sameRankingFunc(contenders, myContenders))
+            console.log(sameRankingFunc(contenders, myContenders), ranking.data().author.display_name);
+
+        contenders.forEach(contender => contendersIDs.push(contender.id_wp));
         const fetchDataAndShow = async () => {
             // FETCH ALL CONTENDERS…
             const map = new Map();
@@ -93,9 +143,9 @@ $top_datas = get_top_data($id_top);
             contenders.forEach((contender, index) => {
                 if (index < 3) {
                     contendersDiv += `
-                    <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="${map.get(contender.id_wp).Title}" class="avatartop3 avatar pull-up">
-                        <img src="${map.get(contender.id_wp).Thumbnail}" alt="${map.get(contender.id_wp).Title}">
-                    </div>
+                        <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="${map.get(contender.id_wp).Title}" class="avatartop3 avatar pull-up">
+                            <img src="${map.get(contender.id_wp).Thumbnail}" alt="${map.get(contender.id_wp).Title}">
+                        </div>
                 `
                 }
             })
@@ -106,10 +156,10 @@ $top_datas = get_top_data($id_top);
             });
 
             // FETCH USER DATA…
-            await fetch(`https://vainkeurz.com/wp-json/vkrz/v1/getuserinfo/${data.data().custom_fields.uuid_user_r}`)
+            await fetch(`https://vainkeurz.com/wp-json/vkrz/v1/getuserinfo/${ranking.data().custom_fields.uuid_user_r}`)
                 .then((res) => res.json())
                 .then(response => {
-                    div += `
+                    html += `
                         <tr style="background-color: transparent !important;"">
                             <td class="vainkeur-table">
                                 <span class="avatar">
@@ -137,23 +187,120 @@ $top_datas = get_top_data($id_top);
                             </td>
 
                             <td class="text-right">
-                                <a href="${data.data().classement_url}" class="mr-1 btn btn-outline-primary waves-effect">
+                                <a href="${ranking.data().permalink}" class="mr-1 btn btn-outline-primary waves-effect">
                                     <span class="ico ico-reverse va va-eyes va-lg"></span>
                                 </a>
                             </td>
                         </tr>
                     `
 
-                    document.querySelector('tbody').innerHTML = div;
+                    document.querySelector('tbody').innerHTML = html;
                 });
-
         };
         fetchDataAndShow()
-    })
+    });
+
+    // DOM…
+    const domQuery = query(collection(database, "wpClassement"), where("custom_fields.id_tournoi_r", "==", "<?php echo $id_top; ?>"), where('custom_fields.done_r', "==", "done"));
+    const domQuerySnapshot = await getDocs(domQuery);
+
     document.querySelectorAll('.nombres-classements').forEach(item => {
-        item.textContent = querySnapshot._snapshot.docs.size;
+        item.textContent = domQuerySnapshot._snapshot.docs.size;
     })
-    document.querySelector('.nombres-classements-p').textContent = querySnapshot._snapshot.docs.size <= 1 ? 'Top' : 'Tops';
+    document.querySelector('.nombres-classements-p').textContent = domQuerySnapshot._snapshot.docs.size <= 1 ? 'Top' : 'Tops';
+</script>
+-->
+
+<script type="module">
+    import {
+        initializeApp
+    } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
+    const firebaseConfig = {
+        apiKey: "AIzaSyDX3AkehDOsSpznrUG_mXRJBY_jkBeLCds",
+        authDomain: "vainkeurz-48eb4.firebaseapp.com",
+        databaseURL: "https://vainkeurz-48eb4-default-rtdb.europe-west1.firebasedatabase.app",
+        projectId: "vainkeurz-48eb4",
+        storageBucket: "vainkeurz-48eb4.appspot.com",
+        messagingSenderId: "915310626932",
+        appId: "1:915310626932:web:3a2118ed2a1551af3d2921",
+        measurementId: "G-BGB5H22QLZ"
+    };
+    const app = initializeApp(firebaseConfig);
+    import {
+        getFirestore,
+        collection,
+        doc,
+        setDoc,
+        getDocs,
+        addDoc,
+        updateDoc,
+        deleteDoc,
+        query,
+        where
+    } from "https://cdnjs.cloudflare.com/ajax/libs/firebase/9.8.1/firebase-firestore.min.js";
+    const database = getFirestore(app);
+
+    // FUNCTION TO SORT CONTENDERS…
+    const sortContenders = function(contenders) {
+        let contendersArr = [],
+            contendersArrPlaces = [],
+            contendersArrIDs = [];
+
+        for (let contender of contenders) {
+            contendersArr.push(contender);
+            contendersArrPlaces.push(contender.place);
+
+            contendersArrIDs.push(contender.id_wp);
+        }
+        contendersArr.sort(function(a, b) {
+            return b.place - a.place;
+        });
+        contendersArrPlaces.sort(function(a, b) {
+            return b - a;
+        }).reverse();
+        for (let j = 0; j < contendersArr.length; j++) {
+            contendersArr[j].place = contendersArrPlaces[j];
+        }
+        contenders = contendersArr;
+
+        return contenders;
+    }
+
+    // GET ACTUAL USER RANKING…
+    const actualUserRankingQuery = query(collection(database, "classements"), where('user_id', "==", <?= get_current_user_id(); ?>));
+    const actualUserRankingQuerySnapshot = await getDocs(actualUserRankingQuery);
+
+    // SORT MY RANKING…
+    let myContenders = [];
+    actualUserRankingQuerySnapshot.forEach(ranking => myContenders = sortContenders(ranking.data().array_ranking))
+    console.log('myContenders', myContenders);
+
+    const classementQuery = query(collection(database, "classements"), where("top_id", "==", 342099), where("user_id", '!=', <?= get_current_user_id(); ?>));
+    const classementQuerySnapshot = await getDocs(classementQuery);
+
+
+    let otherContendersArr = [];
+    classementQuerySnapshot.forEach(classement => {
+        let otherContenders = [];
+        otherContenders = sortContenders(classement.data().array_ranking)
+        otherContendersArr.push(otherContenders)
+    })
+    // console.log('otherContenders', otherContenders);
+
+    otherContendersArr.forEach((otherContenders, index) => {
+        console.log('otherContenders', index + 1, otherContenders);
+        let obj1 = myContenders
+        let obj2 = otherContenders
+        var count = [0, 0];
+        for (var key in obj1) {
+            count[1]++; // total count
+            if (obj2.hasOwnProperty(key) && obj2[key].id_wp === obj1[key].id_wp && obj2[key].place === obj1[key].place) {
+                count[0]++; // match count
+            }
+        }
+        var percentage = count[0] / count[1] * 100 + "%";
+        console.log('Percentage of match :', percentage);
+    })
 </script>
 
 <div class="app-content content">

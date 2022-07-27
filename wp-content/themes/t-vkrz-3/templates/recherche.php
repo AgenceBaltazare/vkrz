@@ -391,9 +391,21 @@ get_header();
             $creator_pseudo   = $creator_info->nickname;
             $creator_avatar   = get_avatar_url($creator_id, ['size' => '80', 'force_default' => false]);
             $list_user_tops   = $user_tops['list_user_tops_done_ids'];
-            $user_single_top_data = array_search($id_top, array_column($list_user_tops, 'id_top'));
-            if ($user_single_top_data !== false) {
-              $state = $list_user_tops[$user_single_top_data]['state'];
+            $list_user_tops_begin   = $user_tops['list_user_tops_begin_ids'];
+            $type_top         = "";
+            $state            = "";
+            $illu             = get_the_post_thumbnail_url($id_top, 'medium');
+            if (is_home()) {
+              $class        = "swiper-slide";
+            } elseif (is_single()) {
+              $class        = "col-md-12 col-6";
+            } else {
+              $class        = "col-12";
+            }
+            if (in_array($id_top, $list_user_tops)) {
+              $state = "done";
+            } elseif (in_array($id_top, $list_user_tops_begin)) {
+              $state = "begin";
             } else {
               $state = "todo";
             }
