@@ -92,11 +92,57 @@ const asyncFunc = async () => {
     })
   );
 
-  let followOrUnfollow = "";
+  let followOrUnfollowDiv = "",
+    relationDiv = "";
   list.forEach((item, index) => {
+    // RELATION TYPE…
+    if (item.extra.friend) {
+      relationDiv = `
+        <td class="text-right" data-relation="duo">
+          <div 
+            data-toggle="tooltip" 
+            data-popup="tooltip-custom" 
+            data-placement="bottom" 
+            data-original-title="Duo" 
+            class="avatar pull-up"
+          >
+          <span class="va-duo va va-lg" alt="Duo"></span>
+          </div>
+        </td>
+      `;
+    } else if (item.extra.following) {
+      relationDiv = `
+        <td class="text-right" data-relation="following">
+          <div 
+            data-toggle="tooltip" 
+            data-popup="tooltip-custom" 
+            data-placement="bottom" 
+            data-original-title="Following" 
+            class="avatar pull-up"
+          >
+          <span class="va-waving-hand va va-lg" alt="Following"></span>
+          </div>
+        </td>
+      `;
+    } else {
+      relationDiv = `
+      <td class="text-right" data-relation="guetteur">
+        <div 
+          data-toggle="tooltip" 
+          data-popup="tooltip-custom" 
+          data-placement="bottom" 
+          data-original-title="Guetteur" 
+          class="avatar pull-up"
+        >
+        <span class="va-eyes va va-lg" alt="Guetteur"></span>
+        </div>
+      </td>
+      `;
+    }
+
     // FOLLOW OR UNFOLLOW BUTTON… 🤹
     if (item.extra.friend || item.extra.following) {
-      followOrUnfollow = `
+      followOrUnfollowDiv = `
         <a href="" 
           data-documentId="${item["extra"]["id"]}" 
           data-relatedid="${map.get(item["uuid"]).user_id}"
@@ -109,7 +155,7 @@ const asyncFunc = async () => {
         </a>
       `;
     } else {
-      followOrUnfollow = `
+      followOrUnfollowDiv = `
         <a 
           href="" 
           data-userid=${currentUserId}
@@ -166,6 +212,8 @@ const asyncFunc = async () => {
           </div>
         </td>
 
+        ${relationDiv}
+
         <td class="text-right">
           ${
             map.get(item["uuid"]).nb_top_vkrz
@@ -189,7 +237,7 @@ const asyncFunc = async () => {
                 <span class="ico-action va va-eyes va-z-20"></span> Guetter ses TopList
               </a>
 
-              ${followOrUnfollow}
+              ${followOrUnfollowDiv}
             </div>
 
           </div>
@@ -199,12 +247,19 @@ const asyncFunc = async () => {
   });
   tbody.innerHTML = html;
 
+  $(document).ready(function () {
+    $("body").tooltip({
+      selector: "[data-toggle=tooltip]",
+    });
+  });
+
   $(".table-amigos").DataTable({
     autoWidth: false,
     lengthMenu: [25],
     pagingType: "full_numbers",
     columns: [
       { orderable: false },
+      { orderable: true },
       { orderable: true },
       { orderable: false },
     ],
@@ -215,8 +270,7 @@ const asyncFunc = async () => {
       info: "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
       infoEmpty:
         "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
-      infoFiltered:
-        "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+      infoFiltered: "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
       infoPostFix: "",
       loadingRecords: "Chargement en cours...",
       zeroRecords: "Aucun &eacute;l&eacute;ment &agrave; afficher 😩",
@@ -235,6 +289,32 @@ const asyncFunc = async () => {
   unfollowBtns.forEach((btn) => {
     btn.addEventListener("click", (e) => {
       e.preventDefault();
+
+      const trRelationDiv = btn
+        .closest("tr")
+        .querySelector("td:nth-of-type(2)");
+
+      switch (trRelationDiv.dataset.relation) {
+        case "duo":
+          trRelationDiv.innerHTML = `
+            <td class="text-right" data-relation="guetteur">
+              <div 
+                data-toggle="tooltip" 
+                data-popup="tooltip-custom" 
+                data-placement="bottom" 
+                data-original-title="Guetteur" 
+                class="avatar pull-up"
+              >
+              <span class="va-eyes va va-lg" alt="Guetteur"></span>
+              </div>
+            </td>
+          `;
+          break;
+        case "following":
+          btn.closest("tr").remove()
+          break;
+      }
+
       e.target.closest("a").remove();
 
       if (+amigosNumber.textContent - 1 >= 0) {
@@ -244,11 +324,14 @@ const asyncFunc = async () => {
 
       deleteDoc(doc(database, "notifications", btn.dataset.documentid));
 
-      document.querySelector(`.amigo-legende-${e.target.dataset.relatedid}`).textContent = "";
-
       if (unfollowBtns.length === 1 && btn.dataset.amigo != "true") {
+        $(".table-amigos").DataTable().rows().remove();
         tbody.innerHTML =
           "<tr><td>Aucune relation pour le moment... 😪</td><td></td><td></td><td></td><td></td></tr>";
+      } else {
+        document.querySelector(
+          `.amigo-legende-${e.target.dataset.relatedid}`
+        ).textContent = "";
       }
     });
   });
@@ -257,12 +340,32 @@ const asyncFunc = async () => {
   followBtns.forEach((btn) => {
     btn.addEventListener("click", (e) => {
       e.preventDefault();
+
+      const trRelationDiv = btn
+        .closest("tr")
+        .querySelector("td:nth-of-type(2)");
+      trRelationDiv.innerHTML = `
+        <td class="text-right" data-relation="duo">
+          <div 
+            data-toggle="tooltip" 
+            data-popup="tooltip-custom" 
+            data-placement="bottom" 
+            data-original-title="Duo" 
+            class="avatar pull-up"
+          >
+          <span class="va-duo va va-lg" alt="Duo"></span>
+          </div>
+        </td>
+      `;
+
       e.target.closest("a").remove();
 
       amigosNumber.textContent = +amigosNumber.textContent + 1;
       followingNumber.textContent = +followingNumber.textContent + 1;
 
-      document.querySelector(`.amigo-legende-${e.target.dataset.relatedid}`).textContent = "Amigo 🤙";
+      document.querySelector(
+        `.amigo-legende-${e.target.dataset.relatedid}`
+      ).textContent = "En mode duo";
 
       async function setNotification() {
         try {

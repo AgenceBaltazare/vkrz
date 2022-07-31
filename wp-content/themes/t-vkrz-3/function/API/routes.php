@@ -45,4 +45,12 @@ add_action('rest_api_init', function () {
     ]
   ));
 
+  // Info Contender
+  register_rest_route('vkrz/v1', '/getcontenderinfo/(?P<id_contender>\w+)', array(
+    'methods' => 'GET',
+    'callback' => 'get_contender',
+    'args' => [
+      'id_contender'
+    ]
+  ));
 });
