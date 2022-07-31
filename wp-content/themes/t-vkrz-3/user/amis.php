@@ -86,13 +86,15 @@ get_header();
                                 <tr>
                                   <th>
                                     <span class="text-muted">
-                                      Liste des Amis
+                                      Liste des guetteurs
                                     </span>
+                                  </th>
+                                  <th class="text-right">
+                                    <small class="text-muted">Relation</small>
                                   </th>
                                   <th class="text-right">
                                     <small class="text-muted">TopList</small>
                                   </th>
-
                                   <th class="text-right">
                                     <small class="text-muted">Action</small>
                                   </th>

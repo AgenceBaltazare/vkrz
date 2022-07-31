@@ -161,7 +161,7 @@ const asyncFunc = async () => {
 
               <small class="cart-item-by legende amigo-legende-${
                 map.get(item["uuid"]).user_id
-              }">${item.extra.friend ? "En mode duo 👯‍♀️" : ""}</small>
+              }">${item.extra.friend ? "En mode duo" : ""}</small>
           </h6>
           </div>
         </td>
@@ -204,11 +204,9 @@ const asyncFunc = async () => {
     lengthMenu: [25],
     pagingType: "full_numbers",
     columns: [
+      { orderable: false },
       { orderable: true },
-      { orderable: true },
-      { orderable: true },
-      { orderable: true },
-      { orderable: true },
+      { orderable: false },
     ],
     language: {
       search: "_INPUT_",
