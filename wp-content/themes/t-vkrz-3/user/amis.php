@@ -7,13 +7,6 @@ global $uuiduser;
 global $user_id;
 global $user_infos;
 get_header();
-
-if (false === ($data_t_created = get_transient('user_' . $vainkeur_id . '_get_creator_t'))) {
-  $data_t_created = get_creator_t($vainkeur_id);
-  set_transient('user_' . $vainkeur_id . '_get_creator_t', $data_t_created, DAY_IN_SECONDS);
-} else {
-  $data_t_created = get_transient('user_' . $vainkeur_id . '_get_creator_t');
-}
 ?>
 
 <!-- BEGIN: Content-->
@@ -37,12 +30,16 @@ if (false === ($data_t_created = get_transient('user_' . $vainkeur_id . '_get_cr
                         <div class="card">
                           <div class="card-body text-center">
                             <div class="mb-1">
-                              <span class="ico4 va va-star-struck va va-z-85"></span>
+                              <span class="ico4 va va-duo va va-z-30"></span>
                             </div>
                             <h2 class="font-weight-bolder amigos-nbr">
-                                0
+                              0
                             </h2>
-                            <p class="card-text legende">Amigos</p>
+                            <p class="card-text legende">
+                              <span data-toggle="tooltip" data-placement="top" title="Si tu guettes un vainkeur et que tu es guetter en retour alors vous formez un sacré beau duo" data-original-title="Si tu guettes un vainkeur et que tu es guetter en retour alors vous formez un sacré beau duo">
+                                Duo <span class="badge badge-pill badge-light-primary">?</span>
+                              </span>
+                            </p>
                           </div>
                         </div>
                         <div class="row">
@@ -53,10 +50,12 @@ if (false === ($data_t_created = get_transient('user_' . $vainkeur_id . '_get_cr
                                   <span class="ico4 va va-waving-hand va va-z-30"></span>
                                 </div>
                                 <h2 class="font-weight-bolder following-nbr">
-                                    0
+                                  0
                                 </h2>
                                 <p class="card-text legende">
-                                  Following
+                                  <span data-toggle="tooltip" data-placement="top" title="Les vainkeurs qui te guette sont appelés ... guetteurs" data-original-title="Les vainkeurs qui te guette sont appelés ... guetteurs">
+                                    Guetteurs <span class="badge badge-pill badge-light-primary">?</span>
+                                  </span>
                                 </p>
                               </div>
                             </div>
@@ -68,7 +67,7 @@ if (false === ($data_t_created = get_transient('user_' . $vainkeur_id . '_get_cr
                                   <span class="ico4 va va-eyes va va-z-30"></span>
                                 </div>
                                 <h2 class="font-weight-bolder followers-nbr-amigos">
-                                    0
+                                  0
                                 </h2>
                                 <p class="card-text legende">
                                   Followers
@@ -87,20 +86,15 @@ if (false === ($data_t_created = get_transient('user_' . $vainkeur_id . '_get_cr
                                 <tr>
                                   <th>
                                     <span class="text-muted">
-                                      Liste des Amis
+                                      Liste des guetteurs
                                     </span>
                                   </th>
-
                                   <th class="text-right">
-                                    <small class="text-muted pr-1">KEURZ</small>
+                                    <small class="text-muted">Relation</small>
                                   </th>
                                   <th class="text-right">
-                                    <small class="text-muted">Votes effectués</small>
+                                    <small class="text-muted">TopList</small>
                                   </th>
-                                  <th class="text-right">
-                                    <small class="text-muted">Top terminés</small>
-                                  </th>
-
                                   <th class="text-right">
                                     <small class="text-muted">Action</small>
                                   </th>
@@ -108,11 +102,11 @@ if (false === ($data_t_created = get_transient('user_' . $vainkeur_id . '_get_cr
                               </thead>
                               <tbody>
 
+                                <!-- data load from firebase -->
                                 <tr>
                                   <th></th>
-                                  <th></th>
                                   <th style="transform: translateX(45%);">
-                                    <span class="similarpercent" data-uuiduser="<?php echo get_field('uuid_user_r', $id_ranking); ?>" data-idtop="<?php echo $id_top_global; ?>">
+                                    <span class="similarpercent">
                                       <div class="loader loader--style1" title="0">
                                         <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
                                           <path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946
@@ -126,7 +120,6 @@ if (false === ($data_t_created = get_transient('user_' . $vainkeur_id . '_get_cr
                                       </div>
                                     </span>
                                   </th>
-                                  <th></th>
                                   <th></th>
                                 </tr>
 

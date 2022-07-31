@@ -116,7 +116,7 @@ const asyncFunc = async () => {
           data-uuid=${currentUuid}
           data-relatedid=${map.get(item["uuid"]).user_id}
           data-relateduuid="${map.get(item["uuid"]).uuid_user_vkrz}"
-          data-text="${vainkeurPseudo} vous guette !"
+          data-text="${vainkeurPseudo} te guette !"
           data-url="${currentUserProfileUrl}"
           class="followBtns dropdown-item"
         >
@@ -161,21 +161,9 @@ const asyncFunc = async () => {
 
               <small class="cart-item-by legende amigo-legende-${
                 map.get(item["uuid"]).user_id
-              }">${item.extra.friend ? "Amigo 🤙" : ""}</small>
+              }">${item.extra.friend ? "En mode duo" : ""}</small>
           </h6>
           </div>
-        </td>
-
-        <td class="text-right">
-          ${
-            map.get(item["uuid"]).money_vkrz
-          } <span class="ico va-gem va va-lg"></span>
-        </td>
-
-        <td class="text-right">
-          ${
-            map.get(item["uuid"]).nb_vote_vkrz
-          } <span class="ico va-high-voltage va va-lg"></span>
         </td>
 
         <td class="text-right">
@@ -216,11 +204,9 @@ const asyncFunc = async () => {
     lengthMenu: [25],
     pagingType: "full_numbers",
     columns: [
+      { orderable: false },
       { orderable: true },
-      { orderable: true },
-      { orderable: true },
-      { orderable: true },
-      { orderable: true },
+      { orderable: false },
     ],
     language: {
       search: "_INPUT_",
@@ -262,7 +248,7 @@ const asyncFunc = async () => {
 
       if (unfollowBtns.length === 1 && btn.dataset.amigo != "true") {
         tbody.innerHTML =
-          "<tr><td>NO AMIGOS… 😪</td><td></td><td></td><td></td><td></td></tr>";
+          "<tr><td>Aucune relation pour le moment... 😪</td><td></td><td></td><td></td><td></td></tr>";
       }
     });
   });
@@ -282,7 +268,7 @@ const asyncFunc = async () => {
         try {
           let q = query(
             collection(database, "notifications"),
-            where("notifText", "==", `${vainkeurPseudo} vous guette !`),
+            where("notifText", "==", `${vainkeurPseudo} te guette !`),
             where("relatedId", "==", idVainkeurProfil)
           );
           let querySnapshot = await getDocs(q);
@@ -315,7 +301,7 @@ const asyncFunc = async () => {
 
 if (list.length === 0) {
   tbody.innerHTML =
-    "<tr><td>NO AMIGOS… 😪</td><td></td><td></td><td></td><td></td></tr>";
+    "<tr><td>Aucune relation pour le moment... 😪</td><td></td><td></td><td></td><td></td></tr>";
 } else {
   asyncFunc();
 }

@@ -55,7 +55,11 @@ function load_css_js()
   if (is_page(get_page_by_path('monitor'))) {
     wp_enqueue_script('monitor', get_template_directory_uri() . '/function/ajax/monitor.js', array(), $template_version, true);
   }
+<<<<<<< HEAD
   if (is_author() || is_page(array(284946, 143788, 284948, 218587)) || is_page(get_page_by_path('tas')) || is_page(get_page_by_path('mon-compte')) || is_page(get_page_by_path('mon-compte/createur')) || is_page('Notifications') || is_page('Amis') ) {
+=======
+  if (is_author() || is_page('Notifications') || is_page('Guetteur') || is_page(array(284946, 143788, 284948, 218587)) || is_page(get_page_by_path('tas')) || is_page(get_page_by_path('mon-compte')) || is_page(get_page_by_path('mon-compte/createur'))) {
+>>>>>>> 18f093a8d124b1f68da677ce6e1cbc3bef25f638
     wp_enqueue_script('datatables', get_template_directory_uri() . '/assets/js/core/datatable/datatables.min.js', array(), null, true);
     wp_enqueue_script('datatables-advanced', get_template_directory_uri() . '/assets/js/core/datatable/table-datatables-advanced.js', array(), null, true);
     wp_enqueue_script('datatables.buttons', get_template_directory_uri() . '/assets/js/core/datatable/datatables.buttons.min.js', array(), null, true);
@@ -88,8 +92,13 @@ function load_css_js()
   }
 
   // FRIENDS PAGE…
+<<<<<<< HEAD
   if (is_page('Amis')) {
     // wp_enqueue_script('get_friends_page', get_template_directory_uri() . '/function/firebase/get_friends_page.js', array(), $template_version, true);
+=======
+  if (is_page('Guetteur')) {
+    wp_enqueue_script('get_friends_page', get_template_directory_uri() . '/function/firebase/get_friends_page.js', array(), $template_version, true);
+>>>>>>> 18f093a8d124b1f68da677ce6e1cbc3bef25f638
   }
 }
 add_action('wp_enqueue_scripts', 'load_css_js');

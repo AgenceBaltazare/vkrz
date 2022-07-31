@@ -44,7 +44,7 @@ function get_user_infos_from_api($data)
     $nb_top_vkrz    = get_field('nb_top_vkrz', $id_vainkeur);
     $money_vkrz     = get_field('money_vkrz', $id_vainkeur);
     $money_createur_vkrz = get_field('money_creator_vkrz', $id_vainkeur);
-    $current_money_vkrz = get_current_money($id_vainkeur);
+    $current_money_vkrz  = get_field('money_disponible_vkrz', $id_vainkeur);
   }
 
   if ($id_vainkeur) {

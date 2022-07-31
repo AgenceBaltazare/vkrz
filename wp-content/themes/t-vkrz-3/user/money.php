@@ -21,11 +21,6 @@ $money_votes = $user_infos['nb_vote_vkrz'];
 $money_tops  = $user_infos['nb_top_vkrz'] * 5;
 $money_badges = 0;
 $vainkeur_badges = get_the_terms($vainkeur_info['id_vainkeur'], 'badges');
-if ($vainkeur_badges) {
-    foreach ($vainkeur_badges as $badge) {
-        $money_badges = $money_badges + get_field('recompense_badge', 'badges_' . $badge->term_id);
-    }
-}
 ?>
 <div class="app-content content ">
     <div class="content-wrapper">
@@ -67,7 +62,7 @@ if ($vainkeur_badges) {
                                     <div class="card text-center">
                                         <div class="card-body text-center">
                                             <div class="mb-1">
-                                                <span class="ico4 va va-gem-rose va va-z-85"></span>
+                                                <span class="ico4 va va-gem va va-z-85"></span>
                                             </div>
                                             <h2 class="font-weight-bolder">
                                                 <?php if ($user_infos['money_creator_vkrz']) : ?>
@@ -149,6 +144,20 @@ if ($vainkeur_badges) {
                                                                         <?php echo $money_tops; ?> <span class="va-gem va va-1x"></span>
                                                                     </th>
                                                                 </tr>
+                                                                <?php if (have_rows('liste_des_recompenses_vkrz', $vainkeur_info['id_vainkeur'])) : ?>
+                                                                    <?php while (have_rows('liste_des_recompenses_vkrz', $vainkeur_info['id_vainkeur'])) : the_row(); ?>
+                                                                        <tr>
+                                                                            <th>
+                                                                                <?php the_sub_field('nom_de_la_recompense_vkrz'); ?>
+                                                                            </th>
+                                                                            <th class="text-right">
+                                                                            </th>
+                                                                            <th class="text-right">
+                                                                                <?php the_sub_field('prix_recompense_vkrz'); ?> <span class="va-gem va va-1x"></span>
+                                                                            </th>
+                                                                        </tr>
+                                                                    <?php endwhile; ?>
+                                                                <?php endif; ?>
                                                                 <?php
                                                                 if ($vainkeur_badges) :
                                                                     foreach ($vainkeur_badges as $badge) : ?>

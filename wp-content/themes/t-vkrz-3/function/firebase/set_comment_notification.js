@@ -23,7 +23,7 @@ commentBtn.addEventListener('click', function() {
       notifType = 'Comment Reply Notification';
 
       if (userId == "0") {
-        notifText = "Un anonyme a répondu a ton commentaire!"
+        notifText = "Quelqu'un a répondu a ton commentaire!"
       }
     } else {
       // COMMENT…
@@ -36,7 +36,7 @@ commentBtn.addEventListener('click', function() {
       notifType = 'Comment Reply Notification';
 
       if (userId == "0") {
-        notifText = "Un anonyme a commenté sur ton Top!"
+        notifText = "Un anonyme a laisser un commentaire sur un de tes Top!"
       }
     }
 

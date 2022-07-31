@@ -80,12 +80,12 @@ function get_user_infos($uuiduser){
 
     if($vainkeur_entry->have_posts()){
 
-        $id_vainkeur    = $vainkeur_entry->posts[0];
-        $nb_vote_vkrz   = get_field('nb_vote_vkrz', $id_vainkeur);
-        $nb_top_vkrz    = get_field('nb_top_vkrz', $id_vainkeur);
-        $money_vkrz     = get_field('money_vkrz', $id_vainkeur);
-        $money_createur_vkrz = get_field('money_creator_vkrz', $id_vainkeur);
-        $current_money_vkrz = get_current_money($id_vainkeur);
+        $id_vainkeur            = $vainkeur_entry->posts[0];
+        $nb_vote_vkrz           = get_field('nb_vote_vkrz', $id_vainkeur);
+        $nb_top_vkrz            = get_field('nb_top_vkrz', $id_vainkeur);
+        $money_vkrz             = get_field('money_vkrz', $id_vainkeur);
+        $money_createur_vkrz    = get_field('money_creator_vkrz', $id_vainkeur);
+        $current_money_vkrz     = get_field('money_disponible_vkrz', $id_vainkeur);
 
     }
 
