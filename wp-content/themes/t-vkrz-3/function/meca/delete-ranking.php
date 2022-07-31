@@ -21,7 +21,7 @@ function delete_real_ranking($id_ranking, $id_vainkeur){
 
         // Mise à jour de la liste des Tops terminés du Vainkeur
         $user_list_top = array();
-        if (get_field('liste_des_toplist_vkrz', $id_vainkeur)) {
+        if (get_field('liste_des_top_vkrz', $id_vainkeur)) {
             $user_list_top = json_decode(get_field('liste_des_top_vkrz', $id_vainkeur));
         }
         $user_list_top = array_diff($user_list_top, array($id_top));
@@ -29,7 +29,7 @@ function delete_real_ranking($id_ranking, $id_vainkeur){
 
         // Suppression du Top dans la liste des Tops commencé du Vainkeur
         $user_list_top_begin = array();
-        if (get_field('liste_des_toplist_vkrz', $id_vainkeur)) {
+        if (get_field('liste_des_top_commences_vkrz', $id_vainkeur)) {
             $user_list_top_begin = json_decode(get_field('liste_des_top_commences_vkrz', $id_vainkeur));
         }
         $user_list_top_begin = array_diff($user_list_top_begin, array($id_top));
