@@ -30,7 +30,7 @@ get_header();
                         <div class="card">
                           <div class="card-body text-center">
                             <div class="mb-1">
-                              <span class="ico4 va va-duo va va-z-30"></span>
+                              <span class="ico4 va va-duo va va-z-40"></span>
                             </div>
                             <h2 class="font-weight-bolder amigos-nbr">
                               0

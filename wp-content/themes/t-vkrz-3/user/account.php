@@ -349,9 +349,11 @@ if ($list_user_toplists) {
                                                 <h6 class="cart-item-title mb-0">
                                                   <a class="text-body" href="<?php the_permalink($top['id_top']); ?>">
                                                     <?php
-                                                    foreach (get_the_terms($top['id_top'], 'categorie') as $cat) {
-                                                      $cat_id     = $cat->term_id;
-                                                      $cat_name   = $cat->name;
+                                                    if(get_the_terms($top['id_top'], 'categorie')){
+                                                      foreach (get_the_terms($top['id_top'], 'categorie') as $cat) {
+                                                        $cat_id     = $cat->term_id;
+                                                        $cat_name   = $cat->name;
+                                                      }
                                                     }
                                                     ?>
                                                     TOP <?php the_field('count_contenders_t', $top['id_top']); ?> <?php the_field('icone_cat', 'term_' . $cat_id); ?> <?php echo get_the_title($top['id_top']); ?>
@@ -482,9 +484,11 @@ if ($list_user_toplists) {
                                                 <h6 class="cart-item-title mb-0">
                                                   <a class="text-body" href="<?php the_permalink($top['id_top']); ?>">
                                                     <?php
-                                                    foreach (get_the_terms($top['id_top'], 'categorie') as $cat) {
-                                                      $cat_id     = $cat->term_id;
-                                                      $cat_name   = $cat->name;
+                                                    if(get_the_terms($top['id_top'], 'categorie')){
+                                                      foreach (get_the_terms($top['id_top'], 'categorie') as $cat) {
+                                                        $cat_id     = $cat->term_id;
+                                                        $cat_name   = $cat->name;
+                                                      }
                                                     }
                                                     ?>
                                                     TOP <?php the_field('count_contenders_t', $top['id_top']); ?> <?php the_field('icone_cat', 'term_' . $cat_id); ?> <?php echo get_the_title($top['id_top']); ?>

@@ -4649,7 +4649,7 @@ msgstr "Votre compte %1s doit d'abord être approuvé par un administrateur avan
 
 #: profile-builder-2.0/front-end/class-formbuilder.php:347
 msgid "Your profile has been successfully updated!"
-msgstr "Votre profil a bien été mis à jour !"
+msgstr "Ton profil a bien été mis à jour !"
 
 #: profile-builder-2.0/front-end/class-formbuilder.php:358
 msgid "There was an error in the submitted form"

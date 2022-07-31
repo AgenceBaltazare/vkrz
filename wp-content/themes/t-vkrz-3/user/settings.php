@@ -30,7 +30,7 @@ get_header();
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" id="profileIcon-tab" data-toggle="tab" href="#tab2" aria-controls="profile" role="tab" aria-selected="false">
-                                                    Réseaux
+                                                    Rézeaux
                                                 </a>
                                             </li>
                                             <li class="nav-item">

@@ -142,7 +142,9 @@ function get_user_toplist($id_vainkeur)
             $cat_id           = "";
             $nb_top           = "";
 
-            $nb_top = $typetop == "top3" ? 3 : count($ranking);
+            if($ranking){
+                $nb_top = $typetop == "top3" ? 3 : count($ranking);
+            }
 
             if(get_field('done_r', $id_ranking) == "done"){
                 $state = "done";

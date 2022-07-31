@@ -25,9 +25,16 @@ foreach ($list_user_toplists as $top) {
           <div class="row">
             <div class="col-lg-3 col-12 order-2 order-lg-1">
 
-              <div class="card card-transaction">
-                <div class="card-body">
-                  <!--
+              <?php
+              if (get_userdata($id_membre)->description) : ?>
+                <div class="card card-transaction">
+                  <div class="card-header">
+                    <h4 class="card-title">
+                      <span class="ico va va-medal-1 va-lg"></span> Bio
+                    </h4>
+                  </div>
+                  <div class="card-body">
+                    <!--
                   <div class="info-bio">
                     <h5 class="mb-75 t-rose">Inscription</h5>
                     <p class="card-text">
@@ -36,23 +43,27 @@ foreach ($list_user_toplists as $top) {
                     </p>
                   </div>
                   -->
-                  <?php
-                  if (get_userdata($id_membre)->description) : ?>
                     <div class="info-bio mt-2">
-                      <h5 class="mb-75 t-rose">Bio</h5>
                       <p class="card-text">
                         <?php echo get_userdata($id_membre)->description; ?>
                       </p>
                     </div>
-                  <?php endif; ?>
-
-                  <?php if (get_userdata($id_membre)->twitch_user || get_userdata($id_membre)->youtube_user || get_userdata($id_membre)->Instagram_user || get_userdata($id_membre)->tiktok_user) : ?>
-                    <div class="info-bio mt-2">
-                      <h5 class="mb-75 t-rose">Réseaux</h5>
+                  </div>
+                </div>
+              <?php endif; ?>
+              <?php if (get_userdata($id_membre)->twitch_user || get_userdata($id_membre)->youtube_user || get_userdata($id_membre)->Instagram_user || get_userdata($id_membre)->tiktok_user) : ?>
+                <div class="card card-transaction">
+                  <div class="card-header">
+                    <h4 class="card-title">
+                      <span class="ico va va-medal-1 va-lg"></span> Rézeaux
+                    </h4>
+                  </div>
+                  <div class="card-body">
+                    <div class="info-bio">
                       <div class="row">
                         <?php if (get_userdata($id_membre)->twitch_user) : ?>
-                          <div class="col-md-6">
-                            <div class="transaction-item mb-2">
+                          <div class="col-md-3 col-sm-4 col-2">
+                            <div class="transaction-item">
                               <a href="https://www.twitch.tv/<?php echo get_userdata($id_membre)->twitch_user; ?>" target="_blank">
                                 <div class="d-flex align-items-center">
                                   <div class="avatar bg-light-primary rounded">
@@ -60,19 +71,14 @@ foreach ($list_user_toplists as $top) {
                                       <i class="fab fa-twitch"></i>
                                     </div>
                                   </div>
-                                  <div class="transaction-info">
-                                    <h6 class="transaction-title mb-0">
-                                      Twitch
-                                    </h6>
-                                  </div>
                                 </div>
                               </a>
                             </div>
                           </div>
                         <?php endif; ?>
                         <?php if (get_userdata($id_membre)->youtube_user) : ?>
-                          <div class="col-md-6">
-                            <div class="transaction-item mb-2">
+                          <div class="col-md-3 col-sm-4 col-2">
+                            <div class="transaction-item">
                               <a href="https://www.youtube.com/user/<?php echo get_userdata($id_membre)->youtube_user; ?>" target="_blank">
                                 <div class="d-flex align-items-center">
                                   <div class="avatar bg-light-primary rounded">
@@ -80,19 +86,14 @@ foreach ($list_user_toplists as $top) {
                                       <i class="fab fa-youtube"></i>
                                     </div>
                                   </div>
-                                  <div class="transaction-info">
-                                    <h6 class="transaction-title mb-0">
-                                      Youtube
-                                    </h6>
-                                  </div>
                                 </div>
                               </a>
                             </div>
                           </div>
                         <?php endif; ?>
                         <?php if (get_userdata($id_membre)->Instagram_user) : ?>
-                          <div class="col-md-6">
-                            <div class="transaction-item mb-2">
+                          <div class="col-md-3 col-sm-4 col-2">
+                            <div class="transaction-item">
                               <a href="https://www.instagram.com/<?php echo get_userdata($id_membre)->Instagram_user; ?>" target="_blank">
                                 <div class="d-flex align-items-center">
                                   <div class="avatar bg-light-primary rounded">
@@ -100,19 +101,14 @@ foreach ($list_user_toplists as $top) {
                                       <i class="fab fa-instagram"></i>
                                     </div>
                                   </div>
-                                  <div class="transaction-info">
-                                    <h6 class="transaction-title mb-0">
-                                      Instagram
-                                    </h6>
-                                  </div>
                                 </div>
                               </a>
                             </div>
                           </div>
                         <?php endif; ?>
                         <?php if (get_userdata($id_membre)->twitter_user) : ?>
-                          <div class="col-md-6">
-                            <div class="transaction-item mb-2">
+                          <div class="col-md-3 col-sm-4 col-2">
+                            <div class="transaction-item">
                               <a href="https://twitter.com/<?php echo get_userdata($id_membre)->twitter_user; ?>" target="_blank">
                                 <div class="d-flex align-items-center">
                                   <div class="avatar bg-light-primary rounded">
@@ -120,19 +116,14 @@ foreach ($list_user_toplists as $top) {
                                       <i class="fab fa-twitter"></i>
                                     </div>
                                   </div>
-                                  <div class="transaction-info">
-                                    <h6 class="transaction-title mb-0">
-                                      Twitter
-                                    </h6>
-                                  </div>
                                 </div>
                               </a>
                             </div>
                           </div>
                         <?php endif; ?>
                         <?php if (get_userdata($id_membre)->snapchat_user) : ?>
-                          <div class="col-md-6">
-                            <div class="transaction-item mb-2">
+                          <div class="col-md-3 col-sm-4 col-2">
+                            <div class="transaction-item">
                               <a href="https://www.snapchat.com/add/<?php echo get_userdata($id_membre)->snapchat_user; ?>" target="_blank">
                                 <div class="d-flex align-items-center">
                                   <div class="avatar bg-light-primary rounded">
@@ -140,30 +131,20 @@ foreach ($list_user_toplists as $top) {
                                       <i class="fab fa-snapchat-ghost"></i>
                                     </div>
                                   </div>
-                                  <div class="transaction-info">
-                                    <h6 class="transaction-title mb-0">
-                                      Snapchat
-                                    </h6>
-                                  </div>
                                 </div>
                               </a>
                             </div>
                           </div>
                         <?php endif; ?>
                         <?php if (get_userdata($id_membre)->tiktok_user) : ?>
-                          <div class="col-md-6">
-                            <div class="transaction-item mb-2">
+                          <div class="col-md-3 col-sm-4 col-2">
+                            <div class="transaction-item">
                               <a href="https://www.tiktok.com/@<?php echo get_userdata($id_membre)->tiktok_user; ?>?" target="_blank">
                                 <div class="d-flex align-items-center">
                                   <div class="avatar bg-light-primary rounded">
                                     <div class="avatar-content picto-rs">
                                       <i class="fab fa-tiktok"></i>
                                     </div>
-                                  </div>
-                                  <div class="transaction-info">
-                                    <h6 class="transaction-title mb-0">
-                                      TikTok
-                                    </h6>
                                   </div>
                                 </div>
                               </a>
@@ -172,36 +153,36 @@ foreach ($list_user_toplists as $top) {
                         <?php endif; ?>
                       </div>
                     </div>
-                  <?php endif; ?>
-                </div>
-              </div>
-
-              <div class="card">
-                <div class="card-header">
-                  <h4 class="card-title">
-                    <span class="ico va va-medal-1 va-lg"></span> Trophées
-                  </h4>
-                </div>
-                <div class="card-body">
-                  <div class="row">
-                    <?php
-                    $vainkeur_badges = get_the_terms($id_vainkeur_profil, 'badges');
-                    if ($vainkeur_badges) :
-                      foreach ($vainkeur_badges as $badge) : ?>
-                        <div class="col-4 col-sm-6 col-lg-4">
-                          <div class="text-center">
-                            <div class="user-level" data-toggle="tooltip" data-placement="top" title="" data-original-title="<?php echo $badge->name; ?> : <?php echo $badge->description; ?>">
-                              <span class="icomedium">
-                                <?php the_field('symbole_badge', 'badges_' . $badge->term_id); ?>
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                    <?php endforeach;
-                    endif; ?>
                   </div>
                 </div>
-              </div>
+              <?php endif; ?>
+
+              <?php
+              $vainkeur_badges = get_the_terms($id_vainkeur_profil, 'badges');
+              if ($vainkeur_badges) : ?>
+                <div class="card">
+                  <div class="card-header">
+                    <h4 class="card-title">
+                      <span class="ico va va-medal-1 va-lg"></span> Trophées
+                    </h4>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                        <?php foreach ($vainkeur_badges as $badge) : ?>
+                          <div class="col-4 col-sm-6 col-lg-4">
+                            <div class="text-center">
+                              <div class="user-level" data-toggle="tooltip" data-placement="top" title="" data-original-title="<?php echo $badge->name; ?> : <?php echo $badge->description; ?>">
+                                <span class="icomedium">
+                                  <?php the_field('symbole_badge', 'badges_' . $badge->term_id); ?>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                      <?php endforeach; ?>
+                    </div>
+                  </div>
+                </div>
+              <?php endif; ?>
 
               <div class="card">
                 <div class="card-header">
@@ -222,7 +203,6 @@ foreach ($list_user_toplists as $top) {
                       $tops_in_cat = $cat->count;
                       $id_cat      = $cat->term_id;
                       $count_top_done_in_cat = 0;
-
                       foreach ($list_user_toplists as $top_done) {
                         if ($id_cat == $top_done['cat_t'] && $top_done['state'] == 'done') {
                           $count_top_done_in_cat++;
@@ -390,9 +370,11 @@ foreach ($list_user_toplists as $top) {
                                                 <h6 class="cart-item-title mb-0">
                                                   <a class="text-body" href="<?php the_permalink($r_user['id_top']); ?>">
                                                     <?php
-                                                    foreach (get_the_terms($r_user['id_top'], 'categorie') as $cat) {
-                                                      $cat_id     = $cat->term_id;
-                                                      $cat_name   = $cat->name;
+                                                    if (get_the_terms($r_user['id_top'], 'categorie')) {
+                                                      foreach (get_the_terms($r_user['id_top'], 'categorie') as $cat) {
+                                                        $cat_id     = $cat->term_id;
+                                                        $cat_name   = $cat->name;
+                                                      }
                                                     }
                                                     ?>
                                                     TOP <?php the_field('count_contenders_t', $r_user['id_top']); ?> <?php the_field('icone_cat', 'term_' . $cat_id); ?> <?php echo get_the_title($r_user['id_top']); ?>
