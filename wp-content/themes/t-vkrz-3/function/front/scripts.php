@@ -55,7 +55,7 @@ function load_css_js()
   if (is_page(get_page_by_path('monitor'))) {
     wp_enqueue_script('monitor', get_template_directory_uri() . '/function/ajax/monitor.js', array(), $template_version, true);
   }
-  if (is_author() || is_page(array(284946, 143788, 284948, 218587)) || is_page(get_page_by_path('tas')) || is_page(get_page_by_path('mon-compte')) || is_page(get_page_by_path('mon-compte/createur'))) {
+  if (is_author() || is_page(array(284946, 143788, 284948, 218587)) || is_page(get_page_by_path('tas')) || is_page(get_page_by_path('mon-compte')) || is_page(get_page_by_path('mon-compte/createur')) || is_page('Notifications') || is_page('Amis') ) {
     wp_enqueue_script('datatables', get_template_directory_uri() . '/assets/js/core/datatable/datatables.min.js', array(), null, true);
     wp_enqueue_script('datatables-advanced', get_template_directory_uri() . '/assets/js/core/datatable/table-datatables-advanced.js', array(), null, true);
     wp_enqueue_script('datatables.buttons', get_template_directory_uri() . '/assets/js/core/datatable/datatables.buttons.min.js', array(), null, true);
@@ -73,7 +73,7 @@ function load_css_js()
 
   // COMMENTS…
   if (is_page('Discuz')) {
-    wp_enqueue_script('set_comment_notification', get_template_directory_uri() . '/function/firebase/set_comment_notification.js', array(), $template_version, true);
+    // wp_enqueue_script('set_comment_notification', get_template_directory_uri() . '/function/firebase/set_comment_notification.js', array(), $template_version, true);
   }
 
   // FOLLOW BUTTON…
@@ -84,12 +84,12 @@ function load_css_js()
 
   // NOTIFICATIONS PAGE…
   if (is_page('Notifications')) {
-    wp_enqueue_script('get_notifications_page', get_template_directory_uri() . '/function/firebase/get_notifications_page.js', array(), $template_version, true);
+    // wp_enqueue_script('get_notifications_page', get_template_directory_uri() . '/function/firebase/get_notifications_page.js', array(), $template_version, true);
   }
 
   // FRIENDS PAGE…
   if (is_page('Amis')) {
-    wp_enqueue_script('get_friends_page', get_template_directory_uri() . '/function/firebase/get_friends_page.js', array(), $template_version, true);
+    // wp_enqueue_script('get_friends_page', get_template_directory_uri() . '/function/firebase/get_friends_page.js', array(), $template_version, true);
   }
 }
 add_action('wp_enqueue_scripts', 'load_css_js');

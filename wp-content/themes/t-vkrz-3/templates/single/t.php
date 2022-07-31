@@ -28,6 +28,8 @@ $top_datas          = get_top_data($id_top);
 $creator_id         = get_post_field('post_author', $id_top);
 $creator_uuiduser   = get_field('uuiduser_user', 'user_' . $creator_id);
 $creator_data       = get_user_infos($creator_uuiduser);
+
+echo '<h1 style="text-align: center;">' . $id_top . '</h1>';
 ?>
 <script>
   const link_to_ranking = "<?= get_the_permalink($id_ranking) ?>";
