@@ -94,7 +94,7 @@ if (document.querySelector("#followBtn")) {
         followBtn.classList.remove("unfollowBtn");
 
         svg.setAttribute("fill", "transparent");
-        span.textContent = "Suivre";
+        span.textContent = "Guetter ce Vainkeur";
       }
     });
   } else {
@@ -174,7 +174,7 @@ if (document.querySelector("#followBtn")) {
         followBtn.removeAttribute("data-documentId");
 
         svg.setAttribute("fill", "transparent");
-        span.textContent = "Suivre";
+        span.textContent = "Guetter ce Vainkeur";
       }
     });
   }

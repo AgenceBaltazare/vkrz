@@ -47,13 +47,13 @@ get_header();
                             <div class="card text-center">
                               <div class="card-body">
                                 <div class="mb-1">
-                                  <span class="ico4 va va-waving-hand va va-z-30"></span>
+                                  <span class="ico4 va va-eyes va va-z-30"></span>
                                 </div>
-                                <h2 class="font-weight-bolder following-nbr">
+                                <h2 class="font-weight-bolder followers-nbr-amigos">
                                   0
                                 </h2>
                                 <p class="card-text legende">
-                                  <span data-toggle="tooltip" data-placement="top" title="Les vainkeurs qui te guette sont appelés ... guetteurs" data-original-title="Les vainkeurs qui te guette sont appelés ... guetteurs">
+                                <span data-toggle="tooltip" data-placement="top" title="Les vainkeurs qui te guette sont appelés ... guetteurs" data-original-title="Les vainkeurs qui te guette sont appelés ... guetteurs">
                                     Guetteurs <span class="badge badge-pill badge-light-primary">?</span>
                                   </span>
                                 </p>
@@ -64,13 +64,14 @@ get_header();
                             <div class="card text-center">
                               <div class="card-body">
                                 <div class="mb-1">
-                                  <span class="ico4 va va-eyes va va-z-30"></span>
+                                  <span class="ico4 va va-waving-hand va va-z-30"></span>
                                 </div>
-                                <h2 class="font-weight-bolder followers-nbr-amigos">
+                                <h2 class="font-weight-bolder following-nbr">
                                   0
                                 </h2>
                                 <p class="card-text legende">
-                                  Followers
+                                    Following
+                                  </span>
                                 </p>
                               </div>
                             </div>
@@ -120,6 +121,7 @@ get_header();
                                       </div>
                                     </span>
                                   </th>
+                                  <th></th>
                                   <th></th>
                                 </tr>
 
