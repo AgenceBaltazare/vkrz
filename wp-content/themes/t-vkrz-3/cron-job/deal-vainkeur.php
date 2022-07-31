@@ -21,7 +21,7 @@ while ($vainkeur->have_posts()) : $vainkeur->the_post();
 
     $id_vainkeur        = get_the_ID();
     $uuid               = get_field('uuid_user_vkrz', $id_vainkeur);
-    $vainkeur_toplist   = get_field('liste_des_toplist_vkrz', $id_vainkeur);
+    $vainkeur_toplist   = json_decode(get_field('liste_des_toplist_vkrz', $id_vainkeur));
     $nb_votes           = 0;
     $nb_tops_complete   = 0;
     $money_creator      = 0;
@@ -36,21 +36,12 @@ while ($vainkeur->have_posts()) : $vainkeur->the_post();
 
     foreach ($vainkeur_toplist as $id_ranking){
 
-        $id_top     = intval(get_field('id_tournoi_r', $id_ranking));
+        $id_top = intval(get_field('id_tournoi_r', $id_ranking));
 
         if ($id_top) {
-            if (!is_null(get_post($id_top))) {
-                if (get_field('done_r') == "done") {
-                    $nb_tops_complete = $nb_tops_complete + 1;
-                    array_push($list_tops, intval($id_top));
-                } else {
-                    array_push($list_tops_begin, intval($id_top));
-                }
-                $nb_votes = $nb_votes + get_field('nb_votes_r');
-                array_push($list_toplist, intval($id_ranking));
-            }
+            $nb_tops_complete = $nb_tops_complete + 1;
+            $nb_votes         = $nb_votes + get_field('nb_votes_r', $id_ranking);
         }
-
 
     }
 
@@ -60,14 +51,6 @@ while ($vainkeur->have_posts()) : $vainkeur->the_post();
     if ($nb_tops_complete <= 0) {
         $nb_tops_complete = 0;
     }
-
-    $list_toplist    = array_unique($list_toplist);
-    $list_tops       = array_unique($list_tops);
-    $list_tops_begin = array_unique($list_tops_begin);
-
-    update_field('liste_des_toplist_vkrz', json_encode($list_toplist), $id_vainkeur);
-    update_field('liste_des_top_vkrz', json_encode($list_tops), $id_vainkeur);
-    update_field('liste_des_top_commences_vkrz', json_encode($list_tops_begin), $id_vainkeur);
 
     update_field('nb_vote_vkrz', $nb_votes, $id_vainkeur);
     update_field('nb_top_vkrz', $nb_tops_complete, $id_vainkeur);

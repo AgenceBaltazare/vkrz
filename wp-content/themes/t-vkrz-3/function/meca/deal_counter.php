@@ -150,37 +150,60 @@ function increase_top_resume($id_ranking, $infomaj){
             $nb_tops++;
             update_field('nb_tops_resume', $nb_tops, $id_resume);
 
-            $type_top_3         = get_field('nb_top_3_resume', $id_resume);
-            $type_top_complet   = get_field('nb_top_complet_resume', $id_resume);
             if (get_field('type_top_r', $id_ranking) == "top3") {
+                $type_top_3         = get_field('nb_top_3_resume', $id_resume);    
                 $type_top_3++;
+                update_field('nb_top_3_resume', $type_top_3, $id_resume);
             } elseif (get_field('type_top_r', $id_ranking) == "complet") {
+                $type_top_complet   = get_field('nb_top_complet_resume', $id_resume);
                 $type_top_complet++;
+                update_field('nb_top_complet_resume', $type_top_complet, $id_resume);
             }
-            update_field('nb_top_3_resume', $type_top_3, $id_resume);
-            update_field('nb_top_complet_resume', $type_top_complet, $id_resume);
+            
         }
 
         if ($infomaj == "finish") {
-            $nb_tops_complete   = get_field("nb_done_resume", $id_resume);
             if (get_field('done_r', $id_ranking) == "done") {
+                $nb_tops_complete   = get_field("nb_done_resume", $id_resume);
                 $nb_tops_complete++;
+                update_field('nb_done_resume', $nb_tops_complete, $id_resume);
             }
-            update_field('nb_done_resume', $nb_tops_complete, $id_resume);
             
-            $nb_tops_triche     = get_field('nb_triche_resume', $id_resume);
             if (get_field('suspected_cheating_r', $id_ranking)) {
+                $nb_tops_triche     = get_field('nb_triche_resume', $id_resume);
                 $nb_tops_triche++;
+                update_field('nb_triche_resume', $nb_tops_triche, $id_resume);
             }
-            update_field('nb_triche_resume', $nb_tops_triche, $id_resume);
         }
 
         if ($infomaj == "again") {
-            $nb_tops_again      = get_field('nb_again_resume', $id_resume);
-            if (get_post_status($id_ranking) == 'draft') {
-                $nb_tops_again++;
-            }
+            $nb_tops_again = get_field('nb_again_resume', $id_resume);
+            $nb_tops_again++;
             update_field('nb_again_resume', $nb_tops_again, $id_resume);
+
+            // Diminution du compteur de Top 
+            $nb_tops = get_field('nb_tops_resume', $id_resume);
+            $nb_tops = $nb_tops - 1;
+            update_field('nb_tops_resume', $nb_tops, $id_resume);
+
+            if (get_field('type_top_r', $id_ranking) == "top3") {
+                $type_top_3 = get_field('nb_top_3_resume', $id_resume);
+                $type_top_3 = $type_top_3 - 1;
+                update_field('nb_top_3_resume', $type_top_3, $id_resume);
+            }
+            elseif (get_field('type_top_r', $id_ranking) == "complet") {
+                $type_top_complet = get_field('nb_top_complet_resume', $id_resume);
+                $type_top_complet = $type_top_complet - 1;
+                update_field('nb_top_complet_resume', $type_top_complet, $id_resume);
+            }
+
+            // Mise à jour de la liste des TopList du résumé
+            $resume_list_toplist = array();
+            if (get_field('all_toplist_resume', $id_resume)) {
+                $resume_list_toplist = json_decode(get_field('all_toplist_resume', $id_resume));
+            }
+            $resume_list_toplist = array_diff($resume_list_toplist, array($id_ranking));
+            update_field('all_toplist_resume', json_encode($resume_list_toplist), $id_resume);
         }
     }
 }

@@ -238,10 +238,10 @@ $list_toplist   = json_decode(get_field('all_toplist_resume', $id_resume));
                                                     <span class="ico4 va-trophy va va-md"></span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">
-                                                    <?php echo $all_users_ranks_of_t->post_count; ?>
+                                                    <?php echo $top_datas['nb_tops']; ?>
                                                 </h2>
                                                 <p class="card-text legende">
-                                                    <?php if ($all_users_ranks_of_t->post_count <= 1) : ?>
+                                                    <?php if ($top_datas['nb_tops'] <= 1) : ?>
                                                         Top
                                                     <?php else : ?>
                                                         Tops
