@@ -13,6 +13,8 @@ global $top_infos;
 $top_datas = get_top_data($id_top);
 global $user_tops;
 $list_t_already_done  = $user_tops['list_user_tops_done_ids'];
+$id_resume      = get_resume_id($id_top);
+$list_toplist   = json_decode(get_field('all_toplist_resume', $id_resume));
 ?>
 <div class="app-content content">
     <div class="content-overlay"></div>
@@ -33,37 +35,14 @@ $list_t_already_done  = $user_tops['list_user_tops_done_ids'];
             <div class="classement">
                 <div class="row">
                     <div class="col-md-8">
-                        <?php
-                        $all_users_ranks_of_t = new WP_Query(array(
-                            'post_type'                     => 'classement',
-                            'posts_per_page'                => '-1',
-                            'post_status'                   => 'publish',
-                            'ignore_sticky_posts'           => true,
-                            'update_post_meta_cache'        => false,
-                            'no_found_rows'                 => true,
-                            'meta_query' => array(
-                                'relation' => 'AND',
-                                array(
-                                    'key'       => 'done_r',
-                                    'value'     => 'done',
-                                    'compare'   => '=',
-                                ),
-                                array(
-                                    'key'       => 'id_tournoi_r',
-                                    'value'     => $id_top,
-                                    'compare'   => '=',
-                                )
-                            )
-                        ));
-                        ?>
                         <section id="profile-info">
-                            <?php if ($all_users_ranks_of_t->have_posts()) : ?>
+                            <?php if ($list_toplist) : ?>
                                 <div class="row" id="table-bordered">
                                     <div class="col-12">
                                         <div class="card">
                                             <div class="card-header">
                                                 <h4 class="card-title pt-1 pb-1">
-                                                    <?php echo $all_users_ranks_of_t->post_count; ?> <span class="va va-trophy va-lg"></span> TopList générées pour ce Top !
+                                                    <?php echo count($list_toplist); ?> <span class="va va-trophy va-lg"></span> TopList générées pour ce Top !
                                                 </h4>
                                             </div>
                                             <div class="table-responsive">
@@ -89,12 +68,11 @@ $list_t_already_done  = $user_tops['list_user_tops_done_ids'];
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <?php while ($all_users_ranks_of_t->have_posts()) : $all_users_ranks_of_t->the_post(); ?>
+                                                            <?php foreach ($list_toplist as $id_ranking) : ?>
                                                                 <tr>
                                                                     <td class="vainkeur-table">
                                                                         <?php
-                                                                        $id_rank                 = get_the_ID();
-                                                                        $uuid_user_r             = get_field('uuid_user_r', $id_rank);
+                                                                        $uuid_user_r             = get_field('uuid_user_r', $id_ranking);
                                                                         $vainkeur_data_selected  = find_vkrz_user($uuid_user_r);
                                                                         ?>
                                                                         <span class="avatar">
@@ -133,15 +111,15 @@ $list_t_already_done  = $user_tops['list_user_tops_done_ids'];
                                                                                 <i>Anonyme</i>
                                                                             <?php endif; ?>
                                                                             <!--
-                                                                            UUID    : <?php the_field('uuid_user_r', $id_rank); ?>
-                                                                            ID rank : <?php echo $id_rank; ?>
-                                                                            Date    : <?php echo get_the_date('d/m/Y - H:i:s', $id_rank); ?>
+                                                                            UUID    : <?php the_field('uuid_user_r', $id_ranking); ?>
+                                                                            ID rank : <?php echo $id_ranking; ?>
+                                                                            Date    : <?php echo get_the_date('d/m/Y - H:i:s', $id_ranking); ?>
                                                                             -->
                                                                         </span>
                                                                     </td>
                                                                     <td>
                                                                         <?php
-                                                                        $user_top3 = get_user_ranking($id_rank, 3);
+                                                                        $user_top3 = get_user_ranking($id_ranking, 3);
                                                                         $l = 1;
                                                                         foreach ($user_top3 as $top) : ?>
 
@@ -160,13 +138,13 @@ $list_t_already_done  = $user_tops['list_user_tops_done_ids'];
                                                                     </td>
 
                                                                     <td class="text-right">
-                                                                        <a href="<?php the_permalink($id_rank); ?>" class="mr-1 btn btn-outline-primary waves-effect">
+                                                                        <a href="<?php the_permalink($id_ranking); ?>" class="mr-1 btn btn-outline-primary waves-effect">
                                                                             <span class="ico ico-reverse va va-eyes va-lg"></span>
                                                                         </a>
                                                                     </td>
 
                                                                 </tr>
-                                                            <?php endwhile; ?>
+                                                            <?php endforeach; ?>
                                                         </tbody>
                                                     </table>
                                                 </div>
