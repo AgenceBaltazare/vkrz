@@ -13,7 +13,7 @@ if (document.querySelector("#followBtn")) {
   /* CHECK IF HE'S FOLLOWED BY CURRENT VAINKEUR! */
   let q = query(
     collection(database, "notifications"),
-    where("notifText", "==", `${vainkeurPseudo} vous guette !`),
+    where("notifText", "==", `${vainkeurPseudo} te guette !`),
     where("relatedId", "==", idVainkeurProfil)
   );
   let querySnapshot = await getDocs(q);
@@ -47,7 +47,7 @@ if (document.querySelector("#followBtn")) {
           try {
             q = query(
               collection(database, "notifications"),
-              where("notifText", "==", `${vainkeurPseudo} vous guette !`),
+              where("notifText", "==", `${vainkeurPseudo} te guette !`),
               where("relatedId", "==", idVainkeurProfil)
             );
             querySnapshot = await getDocs(q);
@@ -190,7 +190,7 @@ if(document.querySelector('.followers-nbr')) {
   let querySnapshot = await getDocs(q);
 
   document.querySelector('.followers-nbr').textContent = querySnapshot._snapshot.docs.size;
-  document.querySelector(".followers-nbr-text").textContent = querySnapshot._snapshot.docs.size <= 1 ? "Follower" : "Followers";
+  document.querySelector(".followers-nbr-text").textContent = querySnapshot._snapshot.docs.size <= 1 ? "Guetteur" : "Guetteurs";
 }
 
 // ACCOUNT PAGE…
@@ -203,5 +203,5 @@ if(document.querySelector('.followers-account-nbr')) {
   let querySnapshot = await getDocs(q);
 
   document.querySelector('.followers-account-nbr').textContent = querySnapshot._snapshot.docs.size;
-  document.querySelector(".followers-account-nbr-text").textContent = querySnapshot._snapshot.docs.size <= 1 ? "Follower" : "Followers";
+  document.querySelector(".followers-account-nbr-text").textContent = querySnapshot._snapshot.docs.size <= 1 ? "Guetteur" : "Guetteurs";
 }

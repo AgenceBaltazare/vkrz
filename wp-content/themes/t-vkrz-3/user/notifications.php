@@ -7,15 +7,7 @@ global $uuiduser;
 global $user_id;
 global $user_infos;
 get_header();
-
-if (false === ($data_t_created = get_transient('user_' . $vainkeur_id . '_get_creator_t'))) {
-  $data_t_created = get_creator_t($vainkeur_id);
-  set_transient('user_' . $vainkeur_id . '_get_creator_t', $data_t_created, DAY_IN_SECONDS);
-} else {
-  $data_t_created = get_transient('user_' . $vainkeur_id . '_get_creator_t');
-}
 ?>
-
 <!-- BEGIN: Content-->
 <div class="app-content content ">
   <div class="content-wrapper">
@@ -54,10 +46,11 @@ if (false === ($data_t_created = get_transient('user_' . $vainkeur_id . '_get_cr
                               </thead>
                               <tbody>
 
+                                <!-- data load from firebase -->
                                 <tr>
                                   <th></th>
                                   <th style="transform: translateX(-10%);">
-                                    <span class="similarpercent" data-uuiduser="<?php echo get_field('uuid_user_r', $id_ranking); ?>" data-idtop="<?php echo $id_top_global; ?>">
+                                    <span class="similarpercent">
                                       <div class="loader loader--style1" title="0">
                                         <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
                                           <path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946

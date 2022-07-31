@@ -168,5 +168,5 @@ if (querySnapshot._snapshot.docs.size !== 0) {
   asyncFunc();
 } else {
   tbody.innerHTML =
-    "<tr><td>NO NOTIFICATIONS… 😪</td><td></td><td></td><td></td><td></td></tr>";
+    "<tr><td>Pas de notifications pour le moment 😪</td><td></td><td></td><td></td><td></td></tr>";
 }

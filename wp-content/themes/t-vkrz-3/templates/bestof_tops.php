@@ -42,7 +42,7 @@ get_header();
                                                                 <small class="text-muted">Votes effectués</small>
                                                             </th>
                                                             <th class="text-right">
-                                                                <small class="text-muted">Top terminés</small>
+                                                                <small class="text-muted">TopList</small>
                                                             </th>
                                                             <th class="text-right">
                                                                 <small class="text-muted">Conçu par</small>

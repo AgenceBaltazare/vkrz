@@ -354,51 +354,35 @@ if (is_single() && get_post_type() == "tournoi") {
     <ul class="nav navbar-nav align-items-center justify-content-around">
       <li class="nav-item dropdown dropdown-cart mt-3px">
         <a class="nav-link d-flex flex-column align-items-center" href="javascript:void(0);" data-toggle="dropdown">
-          <div class="d-flex flex-column align-items-center">
-            <?php if ($user_infos['money_creator_vkrz'] > 0) : ?>
-              <div>
-                <span class="ico text-center va-gem va va-lg"></span>
-                <span class="value-user-stats user-total-vote-value">
-                  <?php if ($user_infos['money_vkrz']) : ?>
-                    <?php echo $user_infos['money_vkrz']; ?>
-                  <?php else : ?>
-                    0
-                  <?php endif; ?>
-                </span>
-              </div>
-              <div>
-                <span class="ico text-center va-gem-rose va va-lg"></span>
-                <span class="value-user-stats">
-                  <?php if ($user_infos['money_creator_vkrz']) : ?>
-                    <?php echo $user_infos['money_creator_vkrz']; ?>
-                  <?php else : ?>
-                    0
-                  <?php endif; ?>
-                </span>
-              </div>
-            <?php else : ?>
-              <span class="ico text-center va-gem va va-lg"></span>
-              <span class="value-user-stats">
+          <div class="d-flex flex-column">
+            <div>
+              <span class="ico text-center va-mush va va-lg"></span>
+              <span class="value-user-stats user-total-vote-value">
                 <?php if ($user_infos['money_vkrz']) : ?>
                   <?php echo $user_infos['money_vkrz']; ?>
                 <?php else : ?>
                   0
                 <?php endif; ?>
               </span>
-            <?php endif; ?>
+            </div>
+            <div>
+              <span class="ico text-center va-gem va va-lg"></span>
+              <span class="value-user-stats money-disponible">
+                <?php if ($user_infos['current_money_vkrz']) : ?>
+                  <?php echo $user_infos['current_money_vkrz']; ?>
+                <?php else : ?>
+                  0
+                <?php endif; ?>
+              </span>
+            </div>
           </div>
         </a>
         <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
           <li class="dropdown-menu-header">
             <div class="dropdown-header d-flex">
               <h4 class="notification-title mb-0 mr-auto">
-                <span class="va-llama va va-lg"></span> <?php echo $user_infos['money_vkrz']; ?> <span class="va-gem va va-lg"></span>
+                <?php echo $user_infos['current_money_vkrz']; ?> <span class="va-gem va va-lg"></span>
               </h4>
-              <?php if ($user_infos['money_creator_vkrz'] > 0) : ?>
-                <h4 class="notification-title mb-0 ml-auto">
-                  <span class="va-man-singer va va-lg"></span> <?php echo $user_infos['money_creator_vkrz']; ?> <span class="va-gem-rose va va-lg"></span>
-                </h4>
-              <?php endif; ?>
             </div>
           </li>
           <li class="dropdown-menu-footer">
@@ -451,89 +435,83 @@ if (is_single() && get_post_type() == "tournoi") {
       </li>
 
       <?php if (is_user_logged_in()) : ?>
-        <!-- NOTIFICATIONS -->
         <li class="nav-item dropdown dropdown-notification mr-25">
           <a class="nav-link" href="javascript:void(0);" data-toggle="dropdown">
             <span class="ico text-center va va-bell va-lg"></span>
             <span class="d-block text-center notifications-nombre">
-              0
+              -
             </span>
           </a>
-
           <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
             <li class="dropdown-menu-header">
               <div class="dropdown-header d-flex">
                 <h4 class="notification-title mb-0 mr-auto">Notifications</h4>
                 <div class="badge badge-pill badge-light-primary">
-                  <span class="notifications-nombre">0</span>
+                  <span class="notifications-nombre">-</span>
                   <span class="notifications-span">Nouvelle</span>
                 </div>
               </div>
             </li>
             <li class="scrollable-container media-list notifications-container">
-
-            <li class="dropdown-menu-footer"><a class="btn btn-primary btn-block" href="<?php the_permalink(get_page_by_path('mon-compte/notifications')); ?>">Voir toutes les notifications</a>
+              <a class="btn btn-primary btn-block" href="<?php the_permalink(get_page_by_path('mon-compte/notifications')); ?>">Voir toutes les notifications</a>
             </li>
+          </ul>
         </li>
-    </ul>
-    <!--/ NOTIFICATIONS -->
-  <?php endif; ?>
-
-
-  <li class="nav-item dropdown dropdown-user ml-25">
-    <a class="nav-link dropdown-toggle dropdown-user-link" id="dropdown-user" href="javascript:void(0);" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <span class="avatar">
-        <span class="avatar-picture" style="background-image: url(<?php echo $user_infos['avatar']; ?>);"></span>
-        <span class="user-niveau">
-          <?php echo $user_infos['level']; ?>
-        </span>
-      </span>
-    </a>
-    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-user">
-      <?php if (is_user_logged_in()) : ?>
-        <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>">
-          <div class="progress-wrapper">
-            <?php
-            $nb_need_money       = get_vote_to_next_level($user_infos['level_number'], $user_infos['money_vkrz']);
-            $money_to_next_level = $nb_need_money + $user_infos['money_vkrz'];
-            $percent_progression = round($user_infos['money_vkrz'] * 100 / $money_to_next_level);
-            ?>
-            <div id="example-caption-5">Encore <span class="decompte_vote"><?php echo $nb_need_money; ?></span> <span class="ico text-center va va-gem va-z-15"></span> pour <?php echo $user_infos['next_level']; ?></div>
-            <div class="progress progress-bar-primary w-100" style="height: 6px; margin-top: 5px;">
-              <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="<?php echo $percent_progression; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $percent_progression; ?>%"></div>
-            </div>
-          </div>
-        </a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>">
-          Mon compte
-        </a>
-        <a class="dropdown-item" href="<?php the_permalink(305107); ?>">
-          Mes KEURZ <span class="ico va va-gem va-lg"></span>
-        </a>
-        <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('parametres')); ?>">
-          Paramètres
-        </a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('deconnexion')); ?>">
-          <span class="ico va va-waving-hand va-lg"></span> Déconnexion
-        </a>
-      <?php else : ?>
-        <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>">
-          Mon compte
-        </a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('se-connecter')); ?>">
-          <span class="ico va va-call-me-hand va-lg"></span> Me connecter
-        </a>
-        <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>">
-          <span class="ico va va-party-pooper va-lg">🎉</span> M'inscrire
-        </a>
       <?php endif; ?>
 
-    </div>
-  </li>
-  </ul>
+      <li class="nav-item dropdown dropdown-user ml-25">
+        <a class="nav-link dropdown-toggle dropdown-user-link" id="dropdown-user" href="javascript:void(0);" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="avatar">
+            <span class="avatar-picture" style="background-image: url(<?php echo $user_infos['avatar']; ?>);"></span>
+            <span class="user-niveau">
+              <?php echo $user_infos['level']; ?>
+            </span>
+          </span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-user">
+          <?php if (is_user_logged_in()) : ?>
+            <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>">
+              <div class="progress-wrapper">
+                <?php
+                $nb_need_money       = get_vote_to_next_level($user_infos['level_number'], $user_infos['money_vkrz']);
+                $money_to_next_level = $nb_need_money + $user_infos['money_vkrz'];
+                $percent_progression = round($user_infos['money_vkrz'] * 100 / $money_to_next_level);
+                ?>
+                <div id="example-caption-5">Encore <span class="decompte_vote"><?php echo $nb_need_money; ?></span> <span class="ico text-center va va-mush va-z-15"></span> pour <?php echo $user_infos['next_level']; ?></div>
+                <div class="progress progress-bar-primary w-100" style="height: 6px; margin-top: 5px;">
+                  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="<?php echo $percent_progression; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $percent_progression; ?>%"></div>
+                </div>
+              </div>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>">
+              Mon compte
+            </a>
+            <a class="dropdown-item" href="<?php the_permalink(305107); ?>">
+              Mes KEURZ <span class="ico va va-gem va-lg"></span>
+            </a>
+            <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('parametres')); ?>">
+              Paramètres
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('deconnexion')); ?>">
+              <span class="ico va va-waving-hand va-lg"></span> Déconnexion
+            </a>
+          <?php else : ?>
+            <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>">
+              Mon compte
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('se-connecter')); ?>">
+              <span class="ico va va-call-me-hand va-lg"></span> Me connecter
+            </a>
+            <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>">
+              <span class="ico va va-party-pooper va-lg">🎉</span> M'inscrire
+            </a>
+          <?php endif; ?>
+        </div>
+      </li>
+    </ul>
   </div>
 </nav>
 <!-- END: Header-->

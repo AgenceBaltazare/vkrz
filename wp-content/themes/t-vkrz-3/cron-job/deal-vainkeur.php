@@ -1,4 +1,7 @@
 <?php
+
+use ACA\ACF\Column\Repeater;
+
 include __DIR__ . '/../../../../wp-load.php';
 
 $i = 0;
@@ -12,42 +15,30 @@ $vainkeur = new WP_Query(array(
     "ignore_sticky_posts"    => true,
     "update_post_meta_cache" => false,
     "no_found_rows"          => false,
-    'post__in'               => array(347274)
+    'post__in'               => array(209404)
 ));
 while ($vainkeur->have_posts()) : $vainkeur->the_post();
 
     $id_vainkeur        = get_the_ID();
     $uuid               = get_field('uuid_user_vkrz', $id_vainkeur);
+    $vainkeur_toplist   = get_field('liste_des_toplist_vkrz', $id_vainkeur);
     $nb_votes           = 0;
     $nb_tops_complete   = 0;
+    $money_creator      = 0;
     $money_badges       = 0;
+    $money_recompense   = 0;
+    $money_depense      = 0;
+    $money_dispo        = 0;
     $money_total        = 0;
     $list_toplist       = array();
     $list_tops          = array();
     $list_tops_begin    = array();
 
-    $classement = new WP_Query(array(
-        'ignore_sticky_posts'    => true,
-        'update_post_meta_cache' => false,
-        'no_found_rows'          => true,
-        "fields"                 => "ids",
-        'post_type'              => 'classement',
-        'post_status'            => array('publish'),
-        'posts_per_page'         => 5000,
-        'meta_query' => array(
-            array(
-                'key' => 'uuid_user_r',
-                'value' => $uuid,
-                'compare' => '=',
-            )
-        )
-    ));
-    while ($classement->have_posts()) : $classement->the_post();
+    foreach ($vainkeur_toplist as $id_ranking){
 
-        $id_ranking = get_the_ID();
         $id_top     = intval(get_field('id_tournoi_r', $id_ranking));
 
-        if($id_top){
+        if ($id_top) {
             if (!is_null(get_post($id_top))) {
                 if (get_field('done_r') == "done") {
                     $nb_tops_complete = $nb_tops_complete + 1;
@@ -60,7 +51,8 @@ while ($vainkeur->have_posts()) : $vainkeur->the_post();
             }
         }
 
-    endwhile;
+
+    }
 
     if($nb_votes <= 0){
         $nb_votes = 0;   
@@ -88,9 +80,41 @@ while ($vainkeur->have_posts()) : $vainkeur->the_post();
         endforeach;
     }
 
-    $money_total = $nb_tops_complete * 5 + $nb_votes + $money_badges;
-    
+    if (have_rows('liste_des_recompenses_vkrz', $id_vainkeur)){
+        while (have_rows('liste_des_recompenses_vkrz', $id_vainkeur)) : the_row();
+            $recompense_money  = get_sub_field('prix_recompense_vkrz');
+            $money_recompense  = $money_recompense + $recompense_money;                                           
+        endwhile;
+    }
+
+    $money_creator  = get_field('money_creator_vkrz', $id_vainkeur);
+    $money_total    = $nb_tops_complete * 5 + $nb_votes + $money_badges + $money_recompense;
     update_field('money_vkrz', $money_total, $id_vainkeur);
+
+    $transaction = new WP_Query(array(
+        'ignore_sticky_posts'	    => true,
+        'update_post_meta_cache'    => false,
+        'no_found_rows'		        => true,
+        'post_type'			        => 'transaction',
+        'orderby'				    => 'date',
+        'order'				        => 'DESC',
+        'posts_per_page'		    => -1,
+        'meta_query'                => array(
+            array(
+                'key'     => 'id_vainkeur_transaction',
+                'value'   => $id_vainkeur,
+                'compare' => '=',
+            )
+        )
+    ));
+    while ($transaction->have_posts()) : $transaction->the_post();
+
+        $money_depense = $money_depense + get_field('montant_transaction');
+    
+    endwhile; wp_reset_query();
+
+    $money_dispo = $money_total - $money_depense + $money_creator;
+    update_field('money_disponible_vkrz', $money_dispo, $id_vainkeur);
 
     check_user_level($id_vainkeur);
 

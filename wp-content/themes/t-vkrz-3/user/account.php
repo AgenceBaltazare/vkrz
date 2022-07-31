@@ -177,7 +177,7 @@ if ($list_user_toplists) {
                             <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="<?php echo $percent_progression; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $percent_progression; ?>%"></div>
                           </div>
                           <?php if (is_user_logged_in()) : ?>
-                            <div id="example-caption-5">Encore <span class="decompte_vote"><?php echo $nb_need_money; ?></span> <span class="ico text-center va va-gem va-z-15"></span> pour <?php echo $user_infos['next_level']; ?></div>
+                            <div id="example-caption-5">Encore <span class="decompte_vote"><?php echo $nb_need_money; ?></span> <span class="ico text-center va va-mush va-z-15"></span> pour <?php echo $user_infos['next_level']; ?></div>
                           <?php else : ?>
                             <a href="<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>" class="t-white">
                               <div id="example-caption-5">Créé ton compte pour passer <?php echo $user_infos['next_level']; ?></div>
@@ -236,7 +236,7 @@ if ($list_user_toplists) {
                         <h2 class="font-weight-bolder followers-account-nbr">
                           0
                         </h2>
-                        <p class="card-text legende followers-account-nbr-text">Follower</p>
+                        <p class="card-text legende followers-account-nbr-text">Guetteur</p>
                       </div>
                     </div>
                   </div>

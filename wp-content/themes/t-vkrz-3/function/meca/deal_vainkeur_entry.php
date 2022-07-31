@@ -26,7 +26,7 @@ function deal_vainkeur_entry($user_id = false, $uuiduser = false){
         $nb_top_vkrz    = get_field('nb_top_vkrz', $id_vainkeur);
         $money_vkrz     = get_field('money_vkrz', $id_vainkeur);
         $money_createur_vkrz = get_field('money_creator_vkrz', $id_vainkeur);
-        $current_money_vkrz  = get_current_money($id_vainkeur);
+        $current_money_vkrz  = get_field('money_disponible_vkrz', $id_vainkeur);
     }
     else{
         $vainkeur_entry = new WP_Query(array(
@@ -54,7 +54,7 @@ function deal_vainkeur_entry($user_id = false, $uuiduser = false){
             $nb_top_vkrz    = get_field('nb_top_vkrz', $id_vainkeur);
             $money_vkrz     = get_field('money_vkrz', $id_vainkeur);
             $money_createur_vkrz = get_field('money_creator_vkrz', $id_vainkeur);
-            $current_money_vkrz  = get_current_money($id_vainkeur);
+            $current_money_vkrz  = get_field('money_creator_vkrz', $id_vainkeur);
         }
         elseif (isset($_COOKIE["vainkeur_ready_to_be_create"]) && $_COOKIE["vainkeur_ready_to_be_create"] != "") {
             $new_vainkeur_entry = array(

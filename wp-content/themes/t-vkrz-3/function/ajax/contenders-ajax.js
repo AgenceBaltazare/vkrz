@@ -251,7 +251,7 @@ $(document).ready(function ($) {
                   let notifText = "";
 
                   if (querySnapshot3._snapshot.docs.size === 0) {
-                    notifText = `Ton ami ${vkrz_tracking_vars_user.pseudo_user_layer} a fait un nouveau classement!`
+                    notifText = `${vkrz_tracking_vars_user.pseudo_user_layer} a terminé une nouvelle TopList!`
                   } else {
                     /* DID THE TOP… 😻 */
 
@@ -302,7 +302,7 @@ $(document).ready(function ($) {
                       };
 
                       // DEFINE WHICH CASE, SAME RANKING OR NOT…
-                      if(sameRankingFunc(contenders, myContenders)) notifText = `MATCH CLASSEMENT! 🤯 toi et ${vkrz_tracking_vars_user.pseudo_user_layer}`; else notifText = `Ton ami ${vkrz_tracking_vars_user.pseudo_user_layer} a fait un classement d'un Top que t'as déjà fait!`
+                      if (sameRankingFunc(contenders, myContenders)) notifText = `MATCH TOPLIST! 🤯 toi et ${vkrz_tracking_vars_user.pseudo_user_layer}`; else notifText = `${vkrz_tracking_vars_user.pseudo_user_layer} a terminé un Top que t'as déjà fait!`
                     })
                   }
 
@@ -359,7 +359,7 @@ $(document).ready(function ($) {
                         uuid: vkrz_tracking_vars_user.uuiduser_layer,
                         relatedId: follower["userId"],
                         relatedUuid: follower["uuid"],
-                        notifText: `${vkrz_tracking_vars_user.pseudo_user_layer} vient de terminer un classement`,
+                        notifText: `${vkrz_tracking_vars_user.pseudo_user_layer} vient de terminer une TopList`,
                         notifLink: link_to_ranking,
                         notifType: "Ranking Notification",
                         statut: "nouveau",

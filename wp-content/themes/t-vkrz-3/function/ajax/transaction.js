@@ -27,18 +27,30 @@ $(document).ready(function ($) {
                 }
             })
             .done(function (response) {
-
-                Swal.fire({
-                    title: 'Commande validey 👌',
-                    icon: 'success',
-                    showConfirmButton: false,
-                    timer: 1500,
-                    buttonsStyling: false
-                });
-
+                
                 let data = JSON.parse(response);
-                var currentmoney = parseInt(data);
-                $('.user-total-vote-value').html(currentmoney);
+                console.log(data);
+
+                if (data['id_transaction']){
+                    Swal.fire({
+                        title: 'Commande validey 👌',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 1500,
+                        buttonsStyling: false
+                    });
+
+                    var currentmoney = parseInt(data['current_money']);
+                    $('.money-disponible').html(currentmoney);
+                }
+
+                if (data['new_badge']) {
+                    toastr['success']('Tu obtiens le trophée Shopper 🛍', 'Nouveau trophée', {
+                        closeButton: true,
+                        tapToDismiss: false,
+                        progressBar: true
+                    });
+                }
                 
             })
             .always(function () {

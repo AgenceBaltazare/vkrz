@@ -6,11 +6,8 @@ get_header();
 global $uuiduser;
 global $user_id;
 global $id_vainkeur;
-global $vainkeur_info;
 global $user_infos;
-$vainkeur_info  = isset($vainkeur_info) ? $vainkeur_info : $user_infos;
-$solde_vainkeur = $user_infos['money_vkrz'];
-$solde_createur = $user_infos['money_creator_vkrz'];
+$solde_disponible   = $user_infos['current_money_vkrz'];
 ?>
 <div class="app-content content ecommerce-application">
     <div class="content-overlay"></div>
@@ -18,52 +15,6 @@ $solde_createur = $user_infos['money_creator_vkrz'];
     <div class="content-wrapper">
         <div class="content-body">
             <section id="wishlist" class="grid-view wishlist-items mt-2 row">
-                <div class="col-md-3">
-                    <div class="row">
-                        <div class="col-6 col-sm-12">
-                            <div class="card">
-                                <div class="card-body text-center">
-                                    <div class="mb-1">
-                                        <span class="ico4 va va-gem va va-z-85"></span>
-                                    </div>
-                                    <h2 class="font-weight-bolder">
-                                        <?php
-                                        $current_money_vainkeur = get_current_money($id_vainkeur, 'vainkeur');
-                                        if ($current_money_vainkeur['money_vainkeur']) : ?>
-                                            <?php echo number_format($current_money_vainkeur['money_vainkeur'], 0, ",", " "); ?>
-                                        <?php else : ?>
-                                            0
-                                        <?php endif; ?>
-                                    </h2>
-                                    <p class="card-text legende">
-                                        solde vainkeur disponible
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-6 col-sm-12">
-                            <div class="card text-center">
-                                <div class="card-body text-center">
-                                    <div class="mb-1">
-                                        <span class="ico4 va va-gem-rose va va-z-85"></span>
-                                    </div>
-                                    <h2 class="font-weight-bolder">
-                                        <?php
-                                        $current_money_createur = get_current_money($id_vainkeur, 'createur');
-                                        if ($current_money_createur['money_createur']) : ?>
-                                            <?php echo number_format($current_money_createur['money_createur'], 0, ",", " "); ?>
-                                        <?php else : ?>
-                                            0
-                                        <?php endif; ?>
-                                    </h2>
-                                    <p class="card-text legende">
-                                        solde createur disponible
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <?php
                 $shop = new WP_Query(array(
                     'ignore_sticky_posts'    => true,
@@ -76,15 +27,6 @@ $solde_createur = $user_infos['money_creator_vkrz'];
                 ));
                 $p = 1;
                 while ($shop->have_posts()) : $shop->the_post(); ?>
-                    <?php
-                    if (get_field('reserve_aux_createurs_produit')) {
-                        $solde_disponible = $solde_createur;
-                        $gem              = "va-gem-rose";
-                    } else {
-                        $solde_disponible = $solde_vainkeur;
-                        $gem              = "va-gem";
-                    }
-                    ?>
                     <div class="col-md-3 col-sm-4 col-6">
                         <div class="card ecommerce-card">
                             <div class="item-img text-center">
@@ -98,7 +40,7 @@ $solde_createur = $user_infos['money_creator_vkrz'];
                                 <div class="item-wrapper">
                                     <div class="item-cost">
                                         <h6 class="item-price">
-                                            <span class="m-l-5 <?php echo $gem; ?> va va-lg"></span> <?php echo number_format(get_field('montant_produit'), 0, ",", " "); ?>
+                                            <span class="m-l-5 va-gem va va-lg"></span> <?php echo number_format(get_field('montant_produit'), 0, ",", " "); ?>
                                         </h6>
                                     </div>
                                 </div>
@@ -114,7 +56,7 @@ $solde_createur = $user_infos['money_creator_vkrz'];
                             <div class="item-options text-center px-1 pb-1 pt-0">
                                 <?php if (get_field('reserve_aux_createurs_produit')) : ?>
 
-                                    <?php if ($vainkeur_info['user_role'] == "administrator" || $vainkeur_info['user_role'] == "author") : ?>
+                                    <?php if ($user_infos['user_role'] == "administrator" || $user_infos['user_role'] == "author") : ?>
                                         <button type="button" class="btn btn-primary w-100 waves-effect" data-toggle="modal" data-target="#cart-<?php echo $p; ?>">
                                             <span class="add-to-cart">Commander</span>
                                         </button>
@@ -143,7 +85,7 @@ $solde_createur = $user_infos['money_creator_vkrz'];
                                 <div class="modal-content">
                                     <div class="modal-header justify-content-between d-flex align-items-center">
                                         <h5 class="modal-title" id="myModalLabel160"><?php the_title(); ?></h5>
-                                        <h5><?php echo number_format(get_field('montant_produit'), 0, ",", " "); ?> <span class="m-l-5 <?php echo $gem; ?> va va-lg"></span></h5>
+                                        <h5><?php echo number_format(get_field('montant_produit'), 0, ",", " "); ?> <span class="m-l-5 va-gem va va-lg"></span></h5>
                                     </div>
                                     <div class="modal-body">
                                         <?php if ($solde_disponible >= get_field('montant_produit')) : ?>
@@ -155,7 +97,7 @@ $solde_createur = $user_infos['money_creator_vkrz'];
                                             <p class="">
                                                 Solde insuffisant malheureusement <span class="m-l-5 va-anxious-face-with-sweat va va-lg"></span>
                                                 <br>
-                                                Il te manque <?php echo get_field('montant_produit') - $solde_disponible; ?> <span class="m-l-5 <?php echo $gem; ?> va va-lg"></span>
+                                                Il te manque <?php echo get_field('montant_produit') - $solde_disponible; ?> <span class="m-l-5 va-gem va va-lg"></span>
                                             </p>
                                         <?php endif; ?>
 
