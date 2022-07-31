@@ -1,7 +1,5 @@
 <?php
 
-use ACA\ACF\Column\Repeater;
-
 include __DIR__ . '/../../../../wp-load.php';
 
 $i = 0;
@@ -15,15 +13,13 @@ $vainkeur = new WP_Query(array(
     "ignore_sticky_posts"    => true,
     "update_post_meta_cache" => false,
     "no_found_rows"          => false,
-<<<<<<< HEAD
-<<<<<<< HEAD
-    'post__in'               => array(347974)
-=======
-    'post__in'               => array(347274)
->>>>>>> f1bc52d32ab58da0333edeb6c7265f795ab27205
-=======
-    'post__in'               => array(209404)
->>>>>>> 18f093a8d124b1f68da677ce6e1cbc3bef25f638
+    "post__in"               => array(208734),
+    "meta_query" => array(
+        array(
+            'key'     => 'maj_vkrz',
+            'compare' => 'NOT EXISTS',
+        )
+    )
 ));
 while ($vainkeur->have_posts()) : $vainkeur->the_post();
 
@@ -49,6 +45,36 @@ while ($vainkeur->have_posts()) : $vainkeur->the_post();
         if ($id_top) {
             $nb_tops_complete = $nb_tops_complete + 1;
             $nb_votes         = $nb_votes + get_field('nb_votes_r', $id_ranking);
+        }
+
+        if(is_null(get_post($id_top))){
+
+            wp_delete_post($id_ranking, true);
+
+            // Mise à jour de la liste des TopList du Vainkeur
+            $user_list_toplist = array();
+            if (get_field('liste_des_toplist_vkrz', $id_vainkeur)) {
+                $user_list_toplist = json_decode(get_field('liste_des_toplist_vkrz', $id_vainkeur));
+            }
+            $user_list_toplist = array_diff($user_list_toplist, array($id_ranking));
+            update_field('liste_des_toplist_vkrz', json_encode($user_list_toplist), $id_vainkeur);
+
+            // Mise à jour de la liste des Tops terminés du Vainkeur
+            $user_list_top = array();
+            if (get_field('liste_des_toplist_vkrz', $id_vainkeur)) {
+                $user_list_top = json_decode(get_field('liste_des_top_vkrz', $id_vainkeur));
+            }
+            $user_list_top = array_diff($user_list_top, array($id_top));
+            update_field('liste_des_top_vkrz', json_encode($user_list_top), $id_vainkeur);
+
+            // Suppression du Top dans la liste des Tops commencé du Vainkeur
+            $user_list_top_begin = array();
+            if (get_field('liste_des_toplist_vkrz', $id_vainkeur)) {
+                $user_list_top_begin = json_decode(get_field('liste_des_top_commences_vkrz', $id_vainkeur));
+            }
+            $user_list_top_begin = array_diff($user_list_top_begin, array($id_top));
+            update_field('liste_des_top_commences_vkrz', json_encode($user_list_top_begin), $id_vainkeur);
+
         }
 
     }
