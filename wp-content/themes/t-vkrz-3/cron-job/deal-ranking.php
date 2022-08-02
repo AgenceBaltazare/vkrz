@@ -10,7 +10,7 @@ $classement = new WP_Query(
         "fields"                 => "ids",
         'post_type'              => 'classement',
         'post_status'            => array('publish'),
-        'posts_per_page'         => -1,
+        'posts_per_page'         => 20000,
         'order'                  => 'DESC',
         'orderby'                => 'date'
     )
@@ -19,6 +19,7 @@ while ($classement->have_posts()) : $classement->the_post();
 
     if (get_field('done_r') != "done") {
 
+        $id_ranking     = get_the_ID();
         //wp_delete_post(get_the_ID(), true);
         echo $i . " : " . $id_ranking . " deleted \n";
         $i++;
