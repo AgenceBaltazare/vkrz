@@ -53,7 +53,7 @@ if (
                 +document.querySelector(".followers-nbr").textContent + 1;
               if (+document.querySelector(".followers-nbr").textContent > 1) {
                 document.querySelector(".followers-nbr-text").textContent =
-                  "Followers";
+                  "Guetteurs";
               }
             }
 
@@ -104,7 +104,7 @@ if (
                 +document.querySelector(".followers-nbr").textContent - 1;
               if (+document.querySelector(".followers-nbr").textContent <= 1) {
                 document.querySelector(".followers-nbr-text").textContent =
-                  "Follower";
+                  "Guetteur";
               }
             }
 
@@ -146,7 +146,7 @@ if (
                 +document.querySelector(".followers-nbr").textContent + 1;
               if (+document.querySelector(".followers-nbr").textContent > 1) {
                 document.querySelector(".followers-nbr-text").textContent =
-                  "Followers";
+                  "Guetteurs";
               }
             }
 
@@ -192,7 +192,7 @@ if (
                 +document.querySelector(".followers-nbr").textContent - 1;
               if (+document.querySelector(".followers-nbr").textContent <= 1) {
                 document.querySelector(".followers-nbr-text").textContent =
-                  "Follower";
+                  "Guetteur";
               }
             }
 
