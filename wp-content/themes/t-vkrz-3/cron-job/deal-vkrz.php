@@ -12,20 +12,26 @@ $classement = new WP_Query(array(
     'posts_per_page'         => -1,
     'order'                  => 'DESC',
     'orderby'                => 'date',
-    'post__in'               => array(209404)
-));
+    'meta_query' =>
+        array(
+            array(
+                'key' => 'uuid_user_r',
+                'value' => '1dad689f4581a',
+                'compare' => '=',
+            )
+        )
+    )
+);
 while ($classement->have_posts()) : $classement->the_post();
 
     $id_ranking     = get_the_ID();
     $id_top         = intval(get_field('id_tournoi_r', $id_ranking));
-    $id_vainkeur    = intval(get_field('id_vainkeur_r', $id_ranking));
+    $id_vainkeur    = 209404;
 
     if (get_field('done_r') == "done") {
 
         if ($id_top) {
             if (!is_null(get_post($id_top))) {
-
-                $id_vainkeur = get_field('id_vainkeur_r', $id_ranking);
 
                 // Ajout de la TopList dans la liste des TopList du Vainkeur
                 $user_list_toplist = array();
@@ -48,7 +54,7 @@ while ($classement->have_posts()) : $classement->the_post();
                 }
 
                 // Save to firebase
-                wp_update_post(array('ID' => $id_vainkeur));
+                //wp_update_post(array('ID' => $id_vainkeur));
 
                 echo $i . " : " . $id_ranking . "add \n";
 

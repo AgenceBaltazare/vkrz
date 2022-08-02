@@ -13,7 +13,6 @@ $vainkeur = new WP_Query(array(
     "ignore_sticky_posts"    => true,
     "update_post_meta_cache" => false,
     "no_found_rows"          => false,
-    "post__in"               => array(209404),
     "meta_query" => array(
         "relation" => "OR",
         array(
