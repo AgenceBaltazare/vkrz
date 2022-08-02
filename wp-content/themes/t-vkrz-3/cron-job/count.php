@@ -39,11 +39,10 @@ $total_money = 0;
 $total_disponible = 0;
 $total_money_creator = 0;
 
-
-$pr_triche      = $nb_tops_triche * 100 / $count_tops;
-$pr_complete    = $nb_tops_complete * 100 / $count_tops;
-$pr_top3        = $type_top_3 * 100 / $count_tops;
-$pr_complet     = $type_top_complet * 100 / $count_tops;
+$pr_triche      = $nb_tops_triche * 100 / $nb_tops_complete;
+$pr_complete    = $nb_tops_complete * 100 / $nb_tops_complete;
+$pr_top3        = $type_top_3 * 100 / $nb_tops_complete;
+$pr_complet     = $type_top_complet * 100 / $nb_tops_complete;
 
 echo "Votes : ". $nb_votes."\n";
 echo "Tops : " . $nb_tops_complete."\n";
