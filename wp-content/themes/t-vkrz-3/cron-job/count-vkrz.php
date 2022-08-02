@@ -20,7 +20,7 @@ $vainkeur = new WP_Query(array(
 while ($vainkeur->have_posts()) : $vainkeur->the_post();
 
     $total_money        = $total_money + get_field('money_vkrz');
-    $total_disponible   = $total_disponible + get_field('money_vkrz');
+    $total_disponible   = $total_disponible + get_field('money_disponible_vkrz');
 
     if (get_field('money_creator_vkrz')) {
         $total_money_creator = $total_money_creator + get_field('money_creator_vkrz');
