@@ -52,8 +52,8 @@ while ($vainkeur->have_posts()) : $vainkeur->the_post();
         }
 
         update_field('liste_des_top_commences_vkrz', json_encode(array()), $id_vainkeur);
-        
-        if (is_null(get_post($id_top)) || is_null(get_post($id_top))) {
+
+        if (is_null(get_post($id_top)) || is_null(get_post($id_ranking))) {
 
             wp_delete_post($id_ranking, true);
 
