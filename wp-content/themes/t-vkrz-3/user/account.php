@@ -234,7 +234,7 @@ if ($list_user_toplists) {
                           </span>
                         </div>
                         <h2 class="font-weight-bolder followers-account-nbr">
-                          0
+                          -
                         </h2>
                         <p class="card-text legende followers-account-nbr-text">Guetteur</p>
                       </div>

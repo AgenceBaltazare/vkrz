@@ -78,23 +78,24 @@ function get_user_infos_from_api($data)
   );
 }
 
-function get_contender($data) {
+function get_contender($data)
+{
   $id_contender = $data['id_contender'];
 
   $the_query = new WP_Query(array(
     'p'         => $id_contender,
     'post_type' => 'contender'
   ));
-  
-  if ( $the_query->have_posts() ) {
-      while ( $the_query->have_posts() ) : $the_query->the_post();
-        return array(
-          'Title'     => get_the_title(),
-          'Thumbnail' => get_the_post_thumbnail_url()
-        );
-      endwhile;
+
+  if ($the_query->have_posts()) {
+    while ($the_query->have_posts()) : $the_query->the_post();
+      return array(
+        'Title'     => get_the_title(),
+        'Thumbnail' => get_the_post_thumbnail_url()
+      );
+    endwhile;
   } else {
-      echo 'No posts found.';
+    echo 'No posts found.';
   }
   wp_reset_postdata();
 }
