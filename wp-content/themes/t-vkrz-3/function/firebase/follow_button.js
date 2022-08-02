@@ -9,7 +9,10 @@ import {
   database,
 } from "./config.js";
 
-if (document.querySelector("#followBtn")) {
+if (
+  document.querySelector("#followBtn") ||
+  document.querySelector(".checking-follower")
+) {
   /* CHECK IF HE'S FOLLOWED BY CURRENT VAINKEUR! */
   let q = query(
     collection(database, "notifications"),
@@ -22,6 +25,7 @@ if (document.querySelector("#followBtn")) {
   const svg = followBtn.querySelector("svg"),
     span = followBtn.querySelector("span");
   followBtn.style.display = "block";
+  followBtn.style.float = "right";
 
   if (querySnapshot._snapshot.docs.size === 0) {
     /* NOT A FOLLOWER… */
@@ -37,9 +41,13 @@ if (document.querySelector("#followBtn")) {
         svg.setAttribute("fill", "#FFF");
         span.textContent = "Suivi";
 
-        document.querySelector('.followers-nbr').textContent = +document.querySelector('.followers-nbr').textContent + 1;
-        if(+document.querySelector('.followers-nbr').textContent > 1) {
-          document.querySelector('.followers-nbr-text').textContent = "Followers";
+        if (document.querySelector(".followers-nbr")) {
+          document.querySelector(".followers-nbr").textContent =
+            +document.querySelector(".followers-nbr").textContent + 1;
+          if (+document.querySelector(".followers-nbr").textContent > 1) {
+            document.querySelector(".followers-nbr-text").textContent =
+              "Followers";
+          }
         }
 
         // INSERT DATA TO Firebase… 🤹
@@ -84,9 +92,13 @@ if (document.querySelector("#followBtn")) {
           )
         );
 
-        document.querySelector('.followers-nbr').textContent = +document.querySelector('.followers-nbr').textContent - 1;
-        if(+document.querySelector('.followers-nbr').textContent <= 1) {
-          document.querySelector('.followers-nbr-text').textContent = "Follower";
+        if (document.querySelector(".followers-nbr")) {
+          document.querySelector(".followers-nbr").textContent =
+            +document.querySelector(".followers-nbr").textContent - 1;
+          if (+document.querySelector(".followers-nbr").textContent <= 1) {
+            document.querySelector(".followers-nbr-text").textContent =
+              "Follower";
+          }
         }
 
         followBtn.classList.add("btn-warning");
@@ -124,9 +136,13 @@ if (document.querySelector("#followBtn")) {
         svg.setAttribute("fill", "#FFF");
         span.textContent = "Suivi";
 
-        document.querySelector('.followers-nbr').textContent = +document.querySelector('.followers-nbr').textContent + 1;
-        if(+document.querySelector('.followers-nbr').textContent > 1) {
-          document.querySelector('.followers-nbr-text').textContent = "Followers";
+        if (document.querySelector(".followers-nbr")) {
+          document.querySelector(".followers-nbr").textContent =
+            +document.querySelector(".followers-nbr").textContent + 1;
+          if (+document.querySelector(".followers-nbr").textContent > 1) {
+            document.querySelector(".followers-nbr-text").textContent =
+              "Followers";
+          }
         }
 
         // INSERT DATA TO Firebase… 🤹
@@ -166,9 +182,13 @@ if (document.querySelector("#followBtn")) {
         followBtn.classList.remove("btn-success");
         followBtn.classList.remove("unfollowBtn");
 
-        document.querySelector('.followers-nbr').textContent = +document.querySelector('.followers-nbr').textContent - 1;
-        if(+document.querySelector('.followers-nbr').textContent <= 1) {
-          document.querySelector('.followers-nbr-text').textContent = "Follower";
+        if(document.querySelector('.followers-nbr-text')) {
+          document.querySelector(".followers-nbr").textContent =
+          +document.querySelector(".followers-nbr").textContent - 1;
+          if (+document.querySelector(".followers-nbr").textContent <= 1) {
+            document.querySelector(".followers-nbr-text").textContent =
+            "Follower";
+          }
         }
 
         followBtn.removeAttribute("data-documentId");
@@ -181,27 +201,31 @@ if (document.querySelector("#followBtn")) {
 }
 
 // PUBLIC PROFILE PAGE…
-if(document.querySelector('.followers-nbr')) {
+if (document.querySelector(".followers-nbr")) {
   let q = query(
     collection(database, "notifications"),
     where("notifType", "==", "follow"),
-    where("relatedId", "==", idVainkeurProfil),
+    where("relatedId", "==", idVainkeurProfil)
   );
   let querySnapshot = await getDocs(q);
 
-  document.querySelector('.followers-nbr').textContent = querySnapshot._snapshot.docs.size;
-  document.querySelector(".followers-nbr-text").textContent = querySnapshot._snapshot.docs.size <= 1 ? "Guetteur" : "Guetteurs";
+  document.querySelector(".followers-nbr").textContent =
+    querySnapshot._snapshot.docs.size;
+  document.querySelector(".followers-nbr-text").textContent =
+    querySnapshot._snapshot.docs.size <= 1 ? "Guetteur" : "Guetteurs";
 }
 
 // ACCOUNT PAGE…
-if(document.querySelector('.followers-account-nbr')) {
+if (document.querySelector(".followers-account-nbr")) {
   let q = query(
     collection(database, "notifications"),
     where("notifType", "==", "follow"),
-    where("relatedId", "==", currentUserId),
+    where("relatedId", "==", currentUserId)
   );
   let querySnapshot = await getDocs(q);
 
-  document.querySelector('.followers-account-nbr').textContent = querySnapshot._snapshot.docs.size;
-  document.querySelector(".followers-account-nbr-text").textContent = querySnapshot._snapshot.docs.size <= 1 ? "Guetteur" : "Guetteurs";
+  document.querySelector(".followers-account-nbr").textContent =
+    querySnapshot._snapshot.docs.size;
+  document.querySelector(".followers-account-nbr-text").textContent =
+    querySnapshot._snapshot.docs.size <= 1 ? "Guetteur" : "Guetteurs";
 }

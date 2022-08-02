@@ -359,9 +359,12 @@ get_header();
                               <th class="text-right">
                                 <small class="text-muted">Voir</small>
                               </th>
-                              <th class="text-right">
-                                <small class="text-muted">Guetter</small>
-                              </th>
+
+                              <?php if (strtolower($user_infos['pseudo']) != strtolower($term_to_search) && is_user_logged_in()) : ?>
+                                <th class="text-right">
+                                  <small class="text-muted">Guetter</small>
+                                </th>
+                              <?php endif; ?>
                             </tr>
                           </thead>
                           <tbody>
@@ -410,16 +413,26 @@ get_header();
                                 </td>
 
                                 <td class="text-right">
-                                  <a href="<?php echo esc_url(get_author_posts_url($user_id)); ?>" class="mr-1">
+                                  <a href="<?php echo esc_url(get_author_posts_url($user_id)); ?>">
                                     <span class="va va-eyes va-lg"></span>
                                   </a>
                                 </td>
 
-                                <td class="text-right">
-                                  <a href="<?php echo esc_url(get_author_posts_url($user_id)); ?>" class="mr-1">
-                                    <span class="va va-eyes va-lg"></span>
-                                  </a>
-                                </td>
+                                <?php if (get_current_user_id() != $user_id && is_user_logged_in()) : ?>
+                                  <td class="text-right checking-follower">
+                                    <script>
+                                      const idVainkeurProfil = "<?php echo $user_id; ?>"
+                                    </script>
+
+                                    <button type="button" id="followBtn" class="btn btn-warning waves-effect waves-float waves-light" style="display: none;" data-userid="<?= get_current_user_id(); ?>" data-uuid="<?= get_field('uuiduser_user', 'user_' . get_current_user_id()); ?>" data-relatedid="<?= $user_id; ?>" data-relateduuid="<?= $uuiduser_search ?>" data-text="<?= get_the_author_meta('nickname', get_current_user_id()); ?> te guette !" data-url="<?= get_author_posts_url($user_id); ?>">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-star me-25">
+                                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                      </svg>
+                                      <span>Guetter ce Vainkeur</span>
+                                    </button>
+
+                                  </td>
+                                <?php endif; ?>
                               </tr>
                             <?php endforeach; ?>
                           </tbody>
