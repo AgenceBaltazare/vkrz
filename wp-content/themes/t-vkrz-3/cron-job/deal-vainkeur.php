@@ -5,15 +5,25 @@ include __DIR__ . '/../../../../wp-load.php';
 $i = 0;
 $vainkeur = new WP_Query(array(
     "post_type"              => "vainkeur",
-    "posts_per_page"         => 1,
+    "posts_per_page"         => -1,
     "fields"                 => "ids",
-    "post_status"            => array("publish"),
     "orderby"                => "date",
     "order"                  => "ASC",
     "ignore_sticky_posts"    => true,
     "update_post_meta_cache" => false,
     "no_found_rows"          => false,
-    "post__in"               => array(209404)
+    "meta_query" => array(
+        "relation" => "OR",
+        array(
+            'key'     => 'maj_vkrz',
+            'compare' => 'NOT EXISTS',
+        ),
+        array(
+            'key'     => 'maj_vkrz',
+            'value'   => '',
+            'compare' => '=',
+        )
+    )
 ));
 while ($vainkeur->have_posts()) : $vainkeur->the_post();
 
@@ -123,7 +133,7 @@ while ($vainkeur->have_posts()) : $vainkeur->the_post();
     // Save to firebase
     wp_update_post(array('ID' => $id_vainkeur));
 
-    echo $i . " : " . $id_vainkeur . "\n";
+    echo $i . " : " . $id_vainkeur . " - Money dispo : " . $money_dispo . "\n";
 
     $i++;
 
