@@ -61,7 +61,7 @@ while ($classement->have_posts()) : $classement->the_post();
             }
             else{
 
-                wp_delete_post(get_the_ID(), true);
+                //wp_delete_post(get_the_ID(), true);
                 echo $i . " : " . $id_ranking . "deleted \n";
 
             }
