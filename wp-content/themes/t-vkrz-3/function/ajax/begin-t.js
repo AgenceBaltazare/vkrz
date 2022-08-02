@@ -10,6 +10,7 @@ $(document).ready(function ($) {
         var id_top          = laucher.data('top');
         var uuiduser        = laucher.data('uuiduser');
         var typetop         = laucher.data('typetop');
+        var id_vainkeur     = laucher.data('id_vainkeur');
 
         if(typetop == "top3"){
             $('.cta-complet').hide();
@@ -28,7 +29,8 @@ $(document).ready(function ($) {
                     action      : 'vkzr_begin_t',
                     id_top      : id_top,
                     uuiduser    : uuiduser,
-                    typetop     : typetop
+                    typetop     : typetop,
+                    id_vainkeur : id_vainkeur
                 }
             })
             .done(function (response) {

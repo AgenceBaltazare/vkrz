@@ -1,5 +1,5 @@
 <?php
-function begin_t($id_top, $uuiduser, $typetop){
+function begin_t($id_top, $uuiduser, $typetop, $id_vainkeur){
 
     global $utm;
 
@@ -69,6 +69,7 @@ function begin_t($id_top, $uuiduser, $typetop){
     update_field('type_top_r', $typetop, $id_ranking);
     update_field('uuid_user_r', $uuiduser, $id_ranking);
     update_field('id_tournoi_r', $id_top, $id_ranking);
+    update_field('id_vainkeur_r', $id_vainkeur, $id_ranking);
     update_field('ranking_r', $list_contenders, $id_ranking);
     update_field('nb_votes_r', 0, $id_ranking);
     update_field('timeline_main', 1, $id_ranking);
