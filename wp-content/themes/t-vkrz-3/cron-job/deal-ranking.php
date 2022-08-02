@@ -2,17 +2,29 @@
 include __DIR__ . '/../../../../wp-load.php';
 
 $i = 0;
-$classement = new WP_Query(
-    array(
-        'ignore_sticky_posts'    => true,
-        'update_post_meta_cache' => false,
-        'no_found_rows'          => true,
-        "fields"                 => "ids",
-        'post_type'              => 'classement',
-        'post_status'            => array('publish'),
-        'posts_per_page'         => 10000,
-        'order'                  => 'DESC',
-        'orderby'                => 'date'
+$classement = new WP_Query( array(
+    'ignore_sticky_posts'    => true,
+    'update_post_meta_cache' => false,
+    'no_found_rows'          => true,
+    "fields"                 => "ids",
+    'post_type'              => 'classement',
+    'post_status'            => array('publish'),
+    'posts_per_page'         => 10000,
+    'order'                  => 'DESC',
+    'orderby'                => 'date',
+    'meta_query' =>
+        array(
+            'relation' => 'OR',
+            array(
+                'key' => 'done_r',
+                'value' => '',
+                'compare' => '=',
+            ),
+            array(
+                'key' => 'done_r',
+                'compare' => 'NOT EXISTS',
+            )
+        )
     )
 );
 while ($classement->have_posts()) : $classement->the_post();
