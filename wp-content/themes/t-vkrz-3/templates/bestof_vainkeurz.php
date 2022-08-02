@@ -78,7 +78,8 @@ $vainkeurs = get_best_vainkeur("money", NULL, 20);
                                                                             $total_vote         = $vainkeur["total_vote"];
                                                                             $total_top          = $vainkeur["total_top"];
                                                                             $money              = $vainkeur["money"];
-                                                                            $user_infos         = deal_vainkeur_entry($user_id);
+                                                                            $uuiduser           = get_field('uuiduser_user', 'user_' . $user_id);
+                                                                            $user_infos         = get_user_infos($uuiduser);
                                                                             $avatar             = $user_infos['avatar'];
                                                                             $info_user_level    = get_user_level($user_id);
                                                                             ?>
