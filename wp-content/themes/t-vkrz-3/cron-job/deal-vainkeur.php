@@ -13,18 +13,7 @@ $vainkeur = new WP_Query(array(
     "ignore_sticky_posts"    => true,
     "update_post_meta_cache" => false,
     "no_found_rows"          => false,
-    "meta_query" => array(
-        "relation" => "OR",
-        array(
-            'key'     => 'maj_vkrz',
-            'compare' => 'NOT EXISTS',
-        ),
-        array(
-            'key'     => 'maj_vkrz',
-            'value'   => '',
-            'compare' => '=',
-        )
-    )
+    "post__in"               => array(209404)
 ));
 while ($vainkeur->have_posts()) : $vainkeur->the_post();
 
