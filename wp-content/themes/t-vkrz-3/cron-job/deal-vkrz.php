@@ -26,7 +26,7 @@ while ($classement->have_posts()) : $classement->the_post();
 
     $id_ranking     = get_the_ID();
     $id_top         = intval(get_field('id_tournoi_r', $id_ranking));
-    $id_vainkeur    = intval(get_field('id_tournoi_r', $id_ranking));
+    $id_vainkeur    = intval(get_field('id_vainkeur_r', $id_ranking));
 
     if (get_field('done_r') == "done") {
 
