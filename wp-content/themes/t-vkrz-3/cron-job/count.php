@@ -9,37 +9,28 @@ $nb_tops_triche     = 0;
 $type_top_3         = 0;
 $type_top_complet   = 0;
 
-$classement = new WP_Query(array(
+$resume = new WP_Query(array(
     'ignore_sticky_posts'    => true,
     'update_post_meta_cache' => false,
     'no_found_rows'          => true,
-    'post_type'              => 'classement',
-    'post_status'            => array('publish', 'draft', 'trash'),
+    'post_type'              => 'resume',
     'posts_per_page'         => -1,
 ));
-while ($classement->have_posts()) : $classement->the_post();
+while ($resume->have_posts()) : $resume->the_post();
     
-    if(get_field('done_r') == "done"){
-        $nb_tops_complete = $nb_tops_complete + 1;
-    }
-    else{
-        $nb_tops_notdone = $nb_tops_notdone + 1;
-    }
+    $nb_tops_complete = $nb_tops_complete + intval(get_field('nb_done_resume'));
 
-    $nb_votes = $nb_votes + get_field('nb_votes_r');
+    $nb_votes = $nb_votes + get_field('nb_votes_resume');
 
-    if(get_field('suspected_cheating_r')){
+    if(get_field('nb_triche_resume')){
         $nb_tops_triche++;
     }
 
-    if (get_field('type_top_r') == "top3") {
+    if (get_field('nb_top_3_resume')) {
         $type_top_3++;
-    } elseif (get_field('type_top_r') == "complet") {
-        $type_top_complet++;
     }
-
-    if(get_post_status() == 'draft'){
-        $nb_tops_again++;
+    if (get_field('nb_top_complet_resume')) {
+        $type_top_complet++;
     }
 
 endwhile;
@@ -70,17 +61,14 @@ while ($vainkeur->have_posts()) : $vainkeur->the_post();
 
 endwhile;
 
-$count_tops     = $classement->post_count;
 $pr_triche      = $nb_tops_triche * 100 / $count_tops;
 $pr_complete    = $nb_tops_complete * 100 / $count_tops;
 $pr_top3        = $type_top_3 * 100 / $count_tops;
 $pr_complet     = $type_top_complet * 100 / $count_tops;
 
 echo "Votes : ". $nb_votes."\n";
-echo "Tops : " . $classement->post_count . " (" . round($pr_complete) . "%)\n";
-echo "Tops finis: " . $nb_tops_complete."\n";
-echo "Tops non fini: " . $nb_tops_notdone . "\n";
-echo "Tops recommencés: " . $nb_tops_again . "\n";
+echo "Tops : " . $nb_tops_complete."\n";
+echo "Tops recommencés : " . $nb_tops_again . "\n";
 echo "Triche : " . $nb_tops_triche . " (" . round($pr_triche) . "%)\n";
 echo "Top 3 : " . $type_top_3 . " (" . round($pr_top3) . "%)\n";
 echo "Complet : " . $type_top_complet . " (". round($pr_complet)."%)\n";

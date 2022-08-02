@@ -4,7 +4,8 @@ function vkrz_push_level_up($user_id, $level_number){
 
     if($user_id){
 
-        $new_user_infos = deal_vainkeur_entry($user_id);
+        $uuiduser       = get_field('uuiduser_user', 'user_' . $user_id);
+        $new_user_infos = get_user_infos($uuiduser);
         $user_url       = get_author_posts_url($user_id);
 
         switch ($level_number) {

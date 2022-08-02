@@ -8,6 +8,10 @@ function deal_vainkeur_entry($user_id = false, $uuiduser = false){
         $uuid_user_vkrz = false;
     }
 
+    if (!$user_id) {
+        global $user_id;
+    }
+
     $nb_vote_vkrz           = 0;
     $nb_top_vkrz            = 0;
     $money_vkrz             = 0;
