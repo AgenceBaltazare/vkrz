@@ -53,25 +53,6 @@ while ($vainkeur->have_posts()) : $vainkeur->the_post();
 
         update_field('liste_des_top_commences_vkrz', json_encode(array()), $id_vainkeur);
 
-        if (is_null(get_post($id_top)) || is_null(get_post($id_ranking))) {
-
-            wp_delete_post($id_ranking, true);
-
-            // Mise à jour de la liste des TopList du Vainkeur
-            if (get_field('liste_des_toplist_vkrz', $id_vainkeur)) {
-                $user_list_toplist = json_decode(get_field('liste_des_toplist_vkrz', $id_vainkeur));
-                $user_list_toplist = array_diff($user_list_toplist, array($id_ranking));
-                update_field('liste_des_toplist_vkrz', json_encode($user_list_toplist), $id_vainkeur);
-            }
-
-            // Mise à jour de la liste des Tops terminés du Vainkeur
-            if (get_field('liste_des_top_vkrz', $id_vainkeur)) {
-                $user_list_top = json_decode(get_field('liste_des_top_vkrz', $id_vainkeur));
-                $user_list_top = array_diff($user_list_top, array($id_top));
-                update_field('liste_des_top_vkrz', json_encode($user_list_top), $id_vainkeur);
-            }
-
-        }
     }
 
     if ($nb_votes <= 0) {
