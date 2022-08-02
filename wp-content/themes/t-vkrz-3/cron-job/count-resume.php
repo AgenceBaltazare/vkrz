@@ -18,20 +18,15 @@ $resume = new WP_Query(array(
 ));
 while ($resume->have_posts()) : $resume->the_post();
     
-    $nb_tops_complete = $nb_tops_complete + intval(get_field('nb_done_resume'));
+    $nb_tops_complete           = $nb_tops_complete + intval(get_field('nb_done_resume'));
 
-    $nb_votes = $nb_votes + get_field('nb_votes_resume');
+    $nb_votes                   = $nb_votes + get_field('nb_votes_resume');
 
-    if(get_field('nb_triche_resume')){
-        $nb_tops_triche++;
-    }
+    $nb_tops_triche             = $nb_tops_triche + get_field('nb_triche_resume');
 
-    if (get_field('nb_top_3_resume')) {
-        $type_top_3++;
-    }
-    if (get_field('nb_top_complet_resume')) {
-        $type_top_complet++;
-    }
+    $type_top_3                 = $type_top_3 + get_field('nb_top_3_resume');
+
+    $type_top_complet           = $type_top_complet + get_field('nb_top_complet_resume');
 
 endwhile;
 
@@ -39,11 +34,10 @@ $total_money = 0;
 $total_disponible = 0;
 $total_money_creator = 0;
 
-
-$pr_triche      = $nb_tops_triche * 100 / $count_tops;
-$pr_complete    = $nb_tops_complete * 100 / $count_tops;
-$pr_top3        = $type_top_3 * 100 / $count_tops;
-$pr_complet     = $type_top_complet * 100 / $count_tops;
+$pr_triche      = $nb_tops_triche * 100 / $nb_tops_complete;
+$pr_complete    = $nb_tops_complete * 100 / $nb_tops_complete;
+$pr_top3        = $type_top_3 * 100 / $nb_tops_complete;
+$pr_complet     = $type_top_complet * 100 / $nb_tops_complete;
 
 echo "Votes : ". $nb_votes."\n";
 echo "Tops : " . $nb_tops_complete."\n";
