@@ -418,10 +418,13 @@ get_header();
                                   </a>
                                 </td>
 
+                                <script>
+                                  let idVainkeurProfil
+                                </script>
                                 <?php if (get_current_user_id() != $user_id && is_user_logged_in()) : ?>
                                   <td class="text-right checking-follower">
                                     <script>
-                                      const idVainkeurProfil = "<?php echo $user_id; ?>"
+                                      idVainkeurProfil = "<?php echo $user_id; ?>"
                                     </script>
 
                                     <button type="button" id="followBtn" class="btn btn-warning waves-effect waves-float waves-light" style="display: none;" data-userid="<?= get_current_user_id(); ?>" data-uuid="<?= get_field('uuiduser_user', 'user_' . get_current_user_id()); ?>" data-relatedid="<?= $user_id; ?>" data-relateduuid="<?= $uuiduser_search ?>" data-text="<?= get_the_author_meta('nickname', get_current_user_id()); ?> te guette !" data-url="<?= get_author_posts_url(get_current_user_id()); ?>">
