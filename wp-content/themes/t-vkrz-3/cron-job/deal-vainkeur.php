@@ -51,7 +51,9 @@ while ($vainkeur->have_posts()) : $vainkeur->the_post();
             $nb_votes         = $nb_votes + get_field('nb_votes_r', $id_ranking);
         }
 
-        if (is_null(get_post($id_top))) {
+        update_field('liste_des_top_commences_vkrz', json_encode(array()), $id_vainkeur);
+        
+        if (is_null(get_post($id_top)) || is_null(get_post($id_top))) {
 
             wp_delete_post($id_ranking, true);
 
@@ -68,6 +70,7 @@ while ($vainkeur->have_posts()) : $vainkeur->the_post();
                 $user_list_top = array_diff($user_list_top, array($id_top));
                 update_field('liste_des_top_vkrz', json_encode($user_list_top), $id_vainkeur);
             }
+
         }
     }
 
