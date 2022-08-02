@@ -16,12 +16,12 @@ $classement = new WP_Query( array(
         array(
             'relation' => 'OR',
             array(
-                'key' => 'done_r',
+                'key' => 'id_vainkeur_r',
                 'value' => '',
                 'compare' => '=',
             ),
             array(
-                'key' => 'done_r',
+                'key' => 'id_vainkeur_r',
                 'compare' => 'NOT EXISTS',
             )
         )
