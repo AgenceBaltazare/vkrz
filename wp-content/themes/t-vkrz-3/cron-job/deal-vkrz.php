@@ -56,13 +56,13 @@ while ($classement->have_posts()) : $classement->the_post();
                 // Save to firebase
                 //wp_update_post(array('ID' => $id_vainkeur));
 
-                echo $i . " : " . $id_ranking . "add \n";
+                echo $i . " : " . $id_ranking . " add \n";
 
             }
             else{
 
                 //wp_delete_post(get_the_ID(), true);
-                echo $i . " : " . $id_ranking . "deleted \n";
+                echo $i . " : " . $id_ranking . " deleted \n";
 
             }
         }
