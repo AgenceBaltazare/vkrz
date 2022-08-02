@@ -5,7 +5,7 @@ import {
   query,
   where,
   database,
-} from '../firebase/config.js';
+} from "../firebase/config.js";
 
 $(document).ready(function ($) {
   let ajaxRunning = false;
@@ -136,64 +136,42 @@ $(document).ready(function ($) {
 
             $(location).attr("href", link_to_ranking);
 
-            // Optimize contenders object… 🍏
-            for (let contender of data.toplist) {
-              delete contender.c_name;
-              delete contender.elo;
-              delete contender.id;
-              delete contender.less_to;
-              delete contender.more_to;
-              delete contender.ratio;
-              delete contender.image;
-            }
+            // FUNCTION TO SORT CONTENDERS…
+            const sortContenders = function (contenders) {
+              let contendersArr = [],
+                contendersArrPlaces = [],
+                contendersArrIDs = [];
 
-            // INSERT RANKING TO Firebase… ✨
-            async function saveRankingToFirebase() {
-              try {
-                const nouveauClassement = await addDoc(
-                  collection(database, "classements"),
-                  {
-                    categorie: vkrz_tracking_vars_top.top_categorie_layer,
-                    top_title: vkrz_tracking_vars_top.top_title_layer,
-                    top_id: vkrz_tracking_vars_top.top_id_top_layer,
-                    top_type: vkrz_tracking_vars_top.top_type_layer,
-                    user_id: vkrz_tracking_vars_user.id_user_layer,
-                    user_uuid: vkrz_tracking_vars_user.uuiduser_layer,
-                    user_level: vkrz_tracking_vars_top.top_user_level_layer,
-                    utm: vkrz_tracking_vars_top.utm_layer,
-                    done_date_r: data.date_done,
-                    is_suspected_cheating: data.triche,
-                    array_ranking: data.toplist,
-                    classement_url: data.classement_url,
-                  }
-                );
-                console.log("Document written with ID: ", nouveauClassement.id);
-              } catch (error) {
-                console.error("Error adding document: ", error);
+              for (let contender of contenders) {
+                delete contender.c_name;
+                delete contender.elo;
+                delete contender.id;
+                delete contender.less_to;
+                delete contender.more_to;
+                delete contender.ratio;
+                delete contender.image;
+
+                contendersArr.push(contender);
+                contendersArrPlaces.push(contender.place);
+
+                contendersArrIDs.push(contender.id_wp);
               }
-            }
-            saveRankingToFirebase();
-
-            // SORT MY CONTENDERS…
-            let myContenders = [],
-            myContendersPlaces = [],
-            myContendersIDs = [];
-
-            for (let contender of data.toplist) {
-              myContenders.push(contender);
-              myContendersPlaces.push(contender.place);
-
-              myContendersIDs.push(contender.id_wp);
-            }
-            myContenders.sort(function(a, b) {
+              contendersArr.sort(function (a, b) {
                 return b.place - a.place;
-            });
-            myContendersPlaces.sort(function(a, b) {
-                return b - a;
-            }).reverse();
-            for (let j = 0; j < myContenders.length; j++) {
-                myContenders[j].place = myContendersPlaces[j];
-            }
+              });
+              contendersArrPlaces
+                .sort(function (a, b) {
+                  return b - a;
+                })
+                .reverse();
+              for (let j = 0; j < contendersArr.length; j++) {
+                contendersArr[j].place = contendersArrPlaces[j];
+              }
+              contenders = contendersArr;
+
+              return contenders;
+            };
+            let myContenders = sortContenders(data.toplist);
 
             // CHECK IF THERE IS SOME FOLLOWERS (CAN BE ALSO A FRIENDS), AND SEND TO THEM… 💥
             async function checkFollowerBeforeSend() {
@@ -239,57 +217,49 @@ $(document).ready(function ($) {
                 async function checkFriendTop() {
                   // CHECK IF THE FRIEND ALREADY PASSED THE TOP OR NOT… 🤙
                   const q3 = query(
-                    collection(database, "classements"),
-                    where("user_id", "==", Number(friend["userId"])),
+                    collection(database, "wpClassement"),
+                    where("author.id", "==", friend["userId"]),
                     where(
-                      "top_id",
+                      "custom_fields.id_tournoi_r",
                       "==",
-                      Number(vkrz_tracking_vars_top.top_id_top_layer)
-                    )
+                      vkrz_tracking_vars_top.top_id_top_layer.toString()
+                    ),
+                    where("custom_fields.done_r", "==", "done"),
                   );
-                  const querySnapshot3 = await getDocs(q3);
+                  const querySnapshot3 = await getDocs(
+                    q3
+                  );
                   let notifText = "";
 
                   if (querySnapshot3._snapshot.docs.size === 0) {
-                    notifText = `${vkrz_tracking_vars_user.pseudo_user_layer} a terminé une nouvelle TopList!`
+                    notifText = `${vkrz_tracking_vars_user.pseudo_user_layer} a terminé une nouvelle TopList!`;
                   } else {
                     /* DID THE TOP… 😻 */
 
                     // GET FRIEND RANKING, AND SORT IT…
                     querySnapshot3.forEach((data) => {
-                      let contenders = [],
-                          contendersPlaces = [],
-                          contendersIDs = [];
-
-                      for (let contender of data.data().array_ranking) {
-                        contenders.push(contender);
-                        contendersPlaces.push(contender.place);
-
-                        contendersIDs.push(contender.id_wp);
-                      }
-                      contenders.sort(function(a, b) {
-                          return b.place - a.place;
-                      });
-                      contendersPlaces.sort(function(a, b) {
-                          return b - a;
-                      }).reverse();
-                      for (let j = 0; j < contenders.length; j++) {
-                          contenders[j].place = contendersPlaces[j];
-                      }
+                      let contenders = sortContenders(
+                        data.data().custom_fields.ranking_r
+                      );
 
                       // COMPARE IT WITH MY RANKING…
                       const sameRankingFunc = function (obj1, obj2) {
                         const obj1Keys = Object.keys(obj1);
                         const obj2Keys = Object.keys(obj2);
-                      
+
                         if (obj1Keys.length !== obj2Keys.length) {
                           return false;
                         }
-                      
+
                         for (let objKey of obj1Keys) {
                           if (obj1[objKey] !== obj2[objKey]) {
-                            if (typeof obj1[objKey] == "object" && typeof obj2[objKey] == "object") {
-                              if (!sameRankingFunc(obj1[objKey], obj2[objKey])) {
+                            if (
+                              typeof obj1[objKey] == "object" &&
+                              typeof obj2[objKey] == "object"
+                            ) {
+                              if (
+                                !sameRankingFunc(obj1[objKey], obj2[objKey])
+                              ) {
                                 return false;
                               }
                             } else {
@@ -297,13 +267,16 @@ $(document).ready(function ($) {
                             }
                           }
                         }
-                      
+
                         return true;
                       };
 
                       // DEFINE WHICH CASE, SAME RANKING OR NOT…
-                      if (sameRankingFunc(contenders, myContenders)) notifText = `MATCH TOPLIST! 🤯 toi et ${vkrz_tracking_vars_user.pseudo_user_layer}`; else notifText = `${vkrz_tracking_vars_user.pseudo_user_layer} a terminé un Top que t'as déjà fait!`
-                    })
+                      if (sameRankingFunc(contenders, myContenders))
+                        notifText = `MATCH TOPLIST! 🤯 toi et ${vkrz_tracking_vars_user.pseudo_user_layer}`;
+                      else
+                        notifText = `${vkrz_tracking_vars_user.pseudo_user_layer} a terminé un Top que t'as déjà fait!`;
+                    });
                   }
 
                   async function sendToFriend() {
