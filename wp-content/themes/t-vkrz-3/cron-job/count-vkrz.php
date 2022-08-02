@@ -15,7 +15,7 @@ $vainkeur = new WP_Query(array(
     "ignore_sticky_posts"    => true,
     "update_post_meta_cache" => false,
     "no_found_rows"          => false,
-    "offset"                 => 30000
+    "offset"                 => 40000
 ));
 while ($vainkeur->have_posts()) : $vainkeur->the_post();
 
