@@ -7,7 +7,7 @@ $total_money_creator = 0;
 
 $vainkeur = new WP_Query(array(
     "post_type"              => "vainkeur",
-    "posts_per_page"         => -1,
+    "posts_per_page"         => 20000,
     "fields"                 => "ids",
     "post_status"            => "publish",
     "orderby"                => "date",
