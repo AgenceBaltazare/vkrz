@@ -20,7 +20,7 @@ while ($classement->have_posts()) : $classement->the_post();
     if (get_field('done_r') != "done") {
 
         $id_ranking     = get_the_ID();
-        //wp_delete_post(get_the_ID(), true);
+        wp_delete_post(get_the_ID(), true);
         echo $i . " : " . $id_ranking . " deleted \n";
         $i++;
     }
