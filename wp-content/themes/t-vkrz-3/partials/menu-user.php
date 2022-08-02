@@ -283,15 +283,18 @@ if (is_single() && get_post_type() == "tournoi") {
           <h3 class="mb-0 t-titre-tournoi"><span class="text-muted">Recherche</span> <span class="ico va va-magnifying-glass-tilted-left va-lg"></span> <span class="text-uppercase"><?php echo $term_to_search; ?></span></h3>
           <h4 class="mb-0">
             <?php
-
             if ($searching_for_a_vainkeur) {
-              echo 'Vainkeur trouvé!';
-            } elseif ($total_top_founded == 0 || !$total_top_founded) {
-              echo "Aucun résultat trouvé";
+              echo 'Vainkeur trouvé';
+            }
+            if($searching_for_a_vainkeur){
+              echo ' - ';
+            }
+            if ($total_top_founded == 0 || !$total_top_founded) {
+              echo "Aucun Top trouvé";
             } elseif ($total_top_founded == 1) {
-              echo "Un seul résultat trouvé";
+              echo "Un seul Top trouvé";
             } else {
-              echo $total_top_founded . " résultats trouvés";
+              echo $total_top_founded . " Tops trouvés";
             }
             ?>
           </h4>

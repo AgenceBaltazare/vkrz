@@ -65,17 +65,17 @@ function tax_init() {
         'badges',
         array('vainkeur'),
         array(
-            'label' => 'Badges',
+            'label' => 'Trophées 🎖',
             'labels' => array(
-                'name'              => _x( 'Badges', 'taxonomy general name' ),
-                'singular_name'     => _x( 'Badge', 'taxonomy singular name' ),
-                'search_items'      => __( 'Chercher un badge' ),
-                'all_items'         => __( 'Tous les badges' ),
-                'edit_item'         => __( 'Modifier le badge' ),
-                'update_item'       => __( 'Sauvegarder le badge' ),
-                'add_new_item'      => __( 'Ajouter un badge' ),
-                'new_item_name'     => __( 'Nouveau nom de badge' ),
-                'menu_name'         => __( 'Badges' )
+                'name'              => 'Trophées 🎖',
+                'singular_name'     => 'Trophée 🎖',
+                'search_items'      => 'Chercher un Trophée',
+                'all_items'         => 'Tous les Trophées',
+                'edit_item'         => 'Modifier le Trophée',
+                'update_item'       => 'Sauvegarder le Trophée',
+                'add_new_item'      => 'Ajouter un Trophée',
+                'new_item_name'     => 'Nouveau nom de Trophée',
+                'menu_name'         => 'Trophées'
             ),
             'hierarchical'      => false,
             'show_ui'           => true,

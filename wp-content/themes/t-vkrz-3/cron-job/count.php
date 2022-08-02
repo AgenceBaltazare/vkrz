@@ -45,6 +45,7 @@ while ($classement->have_posts()) : $classement->the_post();
 endwhile;
 
 $total_money = 0;
+$total_disponible = 0;
 $total_money_creator = 0;
 
 $vainkeur = new WP_Query(array(
@@ -61,10 +62,9 @@ $vainkeur = new WP_Query(array(
 while ($vainkeur->have_posts()) : $vainkeur->the_post();
 
     $total_money = $total_money + get_field('money_vkrz');
+    $total_disponible = $total_disponible + get_field('money_vkrz');
 
-    $user_id = get_the_author_meta('ID');
-    if ($user_id) {
-
+    if (get_field('money_creator_vkrz')) {
         $total_money_creator = $total_money_creator + get_field('money_creator_vkrz');
     }
 
@@ -86,4 +86,5 @@ echo "Top 3 : " . $type_top_3 . " (" . round($pr_top3) . "%)\n";
 echo "Complet : " . $type_top_complet . " (". round($pr_complet)."%)\n";
 echo "Money vainkeur : " . $total_money . "\n";
 echo "Money creator : " . $total_money_creator . "\n";
+echo "Money disponible : " . $total_disponible . "\n";
 

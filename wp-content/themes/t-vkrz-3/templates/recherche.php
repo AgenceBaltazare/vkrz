@@ -276,50 +276,14 @@ if (!empty($list_tops_unique)) {
 }
 
 ////////////////// VAINKEUR 5️⃣ ////////////
-function get_vainkeurz()
-{
-  $vainkeurs = new WP_Query(array(
-    "post_type"              => "vainkeur",
-    'fields'                 => 'ids',
-    "post_status"            => "publish",
-    "update_post_meta_cache" => false,
-    "no_found_rows"          => false,
-    "orderby"                => "meta_value_num",
-    "order"                  => "DESC",
-  ));
+$user_query = new WP_User_Query(
+  array(
+    'search' => $term_to_search
+  )
+);
+// Get the results
+$searching_for_a_vainkeur = $user_query->get_results();
 
-  if ($vainkeurs->have_posts()) {
-    foreach ($vainkeurs->posts as $vainkeur_id) {
-      $return[] = array(
-        "vainkeur_id" => $vainkeur_id,
-        "author_id" => get_post_field("post_author", $vainkeur_id),
-        "uuid" => get_field("uuid_user_vkrz", $vainkeur_id),
-        "money" => get_field("money_vkrz", $vainkeur_id),
-        "total_vote" => get_field("nb_vote_vkrz", $vainkeur_id),
-        "total_top" => get_field("nb_top_vkrz", $vainkeur_id)
-      );
-    }
-  }
-
-  return $return;
-}
-$vainkeurz = get_vainkeurz();
-global $searching_for_a_vainkeur;
-$searching_for_a_vainkeur = false;
-$searched_vainkeur =  strtolower($term_to_search);
-$vainkeur_final_id = 0;
-
-foreach ($vainkeurz as $vainkeur) {
-  $vainkeur_name = strtolower(get_the_author_meta('nickname', $vainkeur["author_id"]));
-  if (strcmp($vainkeur_name, $searched_vainkeur) === 0) {
-    $searching_for_a_vainkeur = true;
-    $vainkeur_final_id = $vainkeur["author_id"];
-
-    $total_vote         = $vainkeur["total_vote"];
-    $total_top          = $vainkeur["total_top"];
-    $money              = $vainkeur["money"];
-  }
-}
 wp_reset_query();
 
 ///////////////////////////////////////////
@@ -371,9 +335,102 @@ get_header();
         </div>
       </section>
 
-      <?php if ($term_to_search == "oeuf" || $term_to_search == "oeufs" || $term_to_search == "pâques" || $term_to_search == "paques") : ?>
-        <div class="paquesresult">
-          <img src="<?php bloginfo('template_directory'); ?>/assets/images/events/easter-eggs.png" class="img-fluid" alt="">
+      <?php if ($searching_for_a_vainkeur) : ?>
+        <div class="classement mt-3">
+          <section id="profile-info">
+            <div id="table-bordered">
+              <div class="card">
+                <div class="table-responsive">
+                  <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <table class="table table-vainkeurz dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+                          <thead>
+                            <tr>
+                              <th>
+                                <span class="va va-llama va-lg"></span> <small class="text-muted">Vainkeur</small>
+                              </th>
+                              <th class="text-right">
+                                <small class="text-muted">Votes</small>
+                              </th>
+                              <th class="text-right">
+                                <small class="text-muted">TopList</small>
+                              </th>
+                              <th class="text-right">
+                                <small class="text-muted">Voir</small>
+                              </th>
+                              <th class="text-right">
+                                <small class="text-muted">Guetter</small>
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <?php
+                            foreach ($searching_for_a_vainkeur as $user) : ?>
+                              <?php
+                              $user_id            = $user->ID;
+                              $uuiduser_search    = get_field('uuiduser_user', 'user_' . $user_id);
+                              $user_infos         = get_user_infos($uuiduser_search);
+                              $avatar             = $user_infos['avatar'];
+                              $info_user_level    = get_user_level($user_id);
+                              ?>
+                              <tr>
+                                <td>
+                                  <div class="d-flex align-items-center">
+                                    <div class="avatar">
+                                      <span class="avatar-picture" style="background-image: url(<?php echo $avatar; ?>);"></span>
+                                      <?php if ($info_user_level) : ?>
+                                        <span class="user-niveau">
+                                          <?php echo $info_user_level['level_ico']; ?>
+                                        </span>
+                                      <?php endif; ?>
+                                    </div>
+                                    <div class="font-weight-bold championname">
+                                      <span>
+                                        <?php echo get_the_author_meta('nickname', $user_id); ?>
+                                      </span>
+                                      <?php if ($user_infos['user_role'] == "administrator") : ?>
+                                        <span class="ico va va-vkrzteam va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
+                                        </span>
+                                      <?php endif; ?>
+                                      <?php if ($user_infos['user_role'] == "administrator" || $user_infos['user_role'] == "author") : ?>
+                                        <span class="ico va va-man-singer va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
+                                        </span>
+                                      <?php endif; ?>
+                                    </div>
+                                  </div>
+                                </td>
+
+                                <td class="text-right">
+                                  <?php echo $user_infos['nb_vote_vkrz']; ?> <span class="ico va-high-voltage va va-lg"></span>
+                                </td>
+
+                                <td class="text-right">
+                                  <?php echo $user_infos['nb_top_vkrz']; ?> <span class="ico va va-trophy va-lg"></span>
+                                </td>
+
+                                <td class="text-right">
+                                  <a href="<?php echo esc_url(get_author_posts_url($user_id)); ?>" class="mr-1">
+                                    <span class="va va-eyes va-lg"></span>
+                                  </a>
+                                </td>
+
+                                <td class="text-right">
+                                  <a href="<?php echo esc_url(get_author_posts_url($user_id)); ?>" class="mr-1">
+                                    <span class="va va-eyes va-lg"></span>
+                                  </a>
+                                </td>
+                              </tr>
+                            <?php endforeach; ?>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
         </div>
       <?php endif; ?>
 
@@ -534,108 +591,13 @@ get_header();
           endwhile; ?>
         </section>
 
-      <?php else : ?>
-
-        <?php if ($term_to_search != "oeuf" && $term_to_search != "oeufs" && $term_to_search != "pâques" && $term_to_search != "paques") : ?>
-          <div class="noresult">
-            <h2>
-              <span class="ico va va-woozy-face va-lg"></span> Aucun résultat pour ta recherche
-            </h2>
-          </div>
-        <?php endif; ?>
-
       <?php endif; ?>
 
-      <?php if ($searching_for_a_vainkeur) : ?>
-        <?php
-        $user_id            = $vainkeur_final_id;
-        $user_infos         = deal_vainkeur_entry($user_id);
-        $avatar             = $user_infos['avatar'];
-        $info_user_level    = get_user_level($user_id);
-        ?>
-        <div class="classement mt-3">
-          <section id="profile-info">
-            <div id="table-bordered">
-              <div class="card">
-                <div class="table-responsive">
-                  <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                    <div class="row">
-                      <div class="col-sm-12">
-                        <table class="table table-vainkeurz dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
-                          <thead>
-                            <tr>
-                              <th>
-                                <span class="va va-llama va-lg"></span> <small class="text-muted">Vainkeur</small>
-                              </th>
-                              <th class="text-right">
-                                <small class="text-muted">KEURZ</small>
-                              </th>
-                              <th class="text-right">
-                                <small class="text-muted">Votes effectués</small>
-                              </th>
-                              <th class="text-right">
-                                <small class="text-muted">TopList</small>
-                              </th>
-                              <th class="text-right">
-                                <small class="text-muted">Guetter ses Tops</small>
-                              </th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>
-                                <div class="d-flex align-items-center">
-                                  <div class="avatar">
-                                    <span class="avatar-picture" style="background-image: url(<?php echo $avatar; ?>);"></span>
-                                    <?php if ($info_user_level) : ?>
-                                      <span class="user-niveau">
-                                        <?php echo $info_user_level['level_ico']; ?>
-                                      </span>
-                                    <?php endif; ?>
-                                  </div>
-                                  <div class="font-weight-bold championname">
-                                    <span>
-                                      <?php echo get_the_author_meta('nickname', $user_id); ?>
-                                    </span>
-                                    <?php if ($user_infos['user_role'] == "administrator") : ?>
-                                      <span class="ico va va-vkrzteam va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
-                                      </span>
-                                    <?php endif; ?>
-                                    <?php if ($user_infos['user_role'] == "administrator" || $user_infos['user_role'] == "author") : ?>
-                                      <span class="ico va va-man-singer va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
-                                      </span>
-                                    <?php endif; ?>
-                                  </div>
-                                </div>
-                              </td>
-
-                              <td class="text-right">
-                                <?php echo $money; ?> <span class="ico va-gem va va-lg"></span>
-                              </td>
-
-                              <td class="text-right">
-                                <?php echo $total_vote; ?> <span class="ico va-high-voltage va va-lg"></span>
-                              </td>
-
-                              <td class="text-right">
-                                <?php echo $total_top; ?> <span class="ico va va-trophy va-lg"></span>
-                              </td>
-
-                              <td class="text-right">
-                                <a href="<?php echo esc_url(get_author_posts_url($user_id)); ?>" class="mr-1 btn btn-outline-primary waves-effect">
-                                  <span class="va va-eyes va-lg"></span>
-                                </a>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+      <?php if (!$searching_for_a_vainkeur && empty($list_tops_unique)) : ?>
+        <div class="noresult">
+          <h2>
+            <span class="ico va va-woozy-face va-lg"></span> Aucun résultat pour ta recherche
+          </h2>
         </div>
       <?php endif; ?>
     </div>
