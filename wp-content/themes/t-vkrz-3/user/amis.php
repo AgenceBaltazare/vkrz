@@ -28,7 +28,7 @@ get_header();
                     <div class="row">
                       <div class="col-sm-3">
                         <div class="card">
-                          <div class="card-body text-center">
+                          <div class="card-body text-center ">
                             <div class="mb-1">
                               <span class="ico4 va va-duo va va-z-40"></span>
                             </div>
@@ -53,7 +53,7 @@ get_header();
                                   0
                                 </h2>
                                 <p class="card-text legende">
-                                <span data-toggle="tooltip" data-placement="top" title="Les vainkeurs qui te guette sont appelés ... guetteurs" data-original-title="Les vainkeurs qui te guette sont appelés ... guetteurs">
+                                  <span data-toggle="tooltip" data-placement="top" title="Les vainkeurs qui te guette sont appelés ... guetteurs" data-original-title="Les vainkeurs qui te guette sont appelés ... guetteurs">
                                     Guetteurs <span class="badge badge-pill badge-light-primary">?</span>
                                   </span>
                                 </p>
@@ -70,7 +70,7 @@ get_header();
                                   0
                                 </h2>
                                 <p class="card-text legende">
-                                    Following
+                                  Following
                                   </span>
                                 </p>
                               </div>
@@ -80,11 +80,15 @@ get_header();
                       </div>
 
                       <div class="col-sm-9 col-12">
+                        <span class="va-left-arrow va va-lg reset-table cursor-pointer d-none m-1"></span>
+
                         <div class="card">
                           <div class="table-responsive">
+
                             <table class="table table-amigos">
                               <thead>
                                 <tr>
+                                  <th style="display: none; width: 0;"><small class="text-muted">FILTER HIDDEN COLUMN</small></th>
                                   <th>
                                     <span class="text-muted">
                                       Liste des guetteurs
