@@ -228,7 +228,7 @@ $already_done = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $list_t_
                                 <div class="my-auto">
                                   <h3 class="mb-0">
                                     <?php echo $creator_data['pseudo']; ?> <br>
-                                    <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Niveau actuel">
+                                    <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="niveau">
                                       <?php echo $creator_data['level']; ?>
                                     </span>
                                     <?php if ($creator_data['user_role']  == "administrator") : ?>
@@ -545,7 +545,7 @@ $already_done = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $list_t_
                       <div class="my-auto">
                         <h4 class="mb-0">
                           <?php echo $creator_data['pseudo']; ?> <br>
-                          <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Niveau actuel">
+                          <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="niveau">
                             <?php echo $creator_data['level']; ?>
                           </span>
                           <?php if ($creator_data['user_role']  == "administrator") : ?>

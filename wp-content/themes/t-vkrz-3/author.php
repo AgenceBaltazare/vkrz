@@ -35,15 +35,15 @@ foreach ($list_user_toplists as $top) {
                   </div>
                   <div class="card-body">
                     <!--
-                  <div class="info-bio">
-                    <h5 class="mb-75 t-rose">Inscription</h5>
-                    <p class="card-text">
-                      <?php echo $id_vainkeur_profil; ?>ème vainkeur à avoir rejoint le concept
-                      #<?php echo $vainkeur_info['uuid_user_vkrz']; ?>
-                    </p>
-                  </div>
-                  -->
-                    <div class="info-bio mt-2">
+                      <div class="info-bio">
+                        <h5 class="mb-75 t-rose">Inscription</h5>
+                        <p class="card-text">
+                          <?php echo $id_vainkeur_profil; ?>ème vainkeur à avoir rejoint le concept
+                          #<?php echo $vainkeur_info['uuid_user_vkrz']; ?>
+                        </p>
+                      </div>
+                    -->
+                    <div class="info-bio">
                       <p class="card-text">
                         <?php echo get_userdata($id_membre)->description; ?>
                       </p>
@@ -255,7 +255,7 @@ foreach ($list_user_toplists as $top) {
                             <?php echo $vainkeur_info['level']; ?>
                           </span>
                         </div>
-                        <p class="card-text legende">Niveau actuel</p>
+                        <p class="card-text legende mt-2">Niveau</p>
                       </div>
                     </div>
                   </div>

@@ -31,7 +31,7 @@ $level_user = $user_infos['level_number'];
                                     <div class="card-body">
                                         <?php if($level_user == 0): ?>
                                             <div class="pricing-badge text-right">
-                                                <div class="badge badge-pill badge-light-primary">Niveau actuel</div>
+                                                <div class="badge badge-pill badge-light-primary">niveau</div>
                                             </div>
                                         <?php endif; ?>
                                         <div class="eh">
@@ -59,7 +59,7 @@ $level_user = $user_infos['level_number'];
                                     <div class="card-body">
                                         <?php if($level_user == 1): ?>
                                             <div class="pricing-badge text-right">
-                                                <div class="badge badge-pill badge-light-primary">Niveau actuel</div>
+                                                <div class="badge badge-pill badge-light-primary">niveau</div>
                                             </div>
                                         <?php endif; ?>
                                         <div class="eh">
@@ -85,7 +85,7 @@ $level_user = $user_infos['level_number'];
                                     <div class="card-body">
                                         <?php if($level_user == 2): ?>
                                             <div class="pricing-badge text-right">
-                                                <div class="badge badge-pill badge-light-primary">Niveau actuel</div>
+                                                <div class="badge badge-pill badge-light-primary">niveau</div>
                                             </div>
                                         <?php endif; ?>
                                         <div class="eh">
@@ -111,7 +111,7 @@ $level_user = $user_infos['level_number'];
                                     <div class="card-body">
                                         <?php if($level_user == 3): ?>
                                             <div class="pricing-badge text-right">
-                                                <div class="badge badge-pill badge-light-primary">Niveau actuel</div>
+                                                <div class="badge badge-pill badge-light-primary">niveau</div>
                                             </div>
                                         <?php endif; ?>
                                         <div class="eh">
@@ -137,7 +137,7 @@ $level_user = $user_infos['level_number'];
                                     <div class="card-body">
                                         <?php if($level_user == 4): ?>
                                             <div class="pricing-badge text-right">
-                                                <div class="badge badge-pill badge-light-primary">Niveau actuel</div>
+                                                <div class="badge badge-pill badge-light-primary">niveau</div>
                                             </div>
                                         <?php endif; ?>
                                         <div class="eh">
@@ -163,7 +163,7 @@ $level_user = $user_infos['level_number'];
                                     <div class="card-body">
                                         <?php if($level_user == 5): ?>
                                             <div class="pricing-badge text-right">
-                                                <div class="badge badge-pill badge-light-primary">Niveau actuel</div>
+                                                <div class="badge badge-pill badge-light-primary">niveau</div>
                                             </div>
                                         <?php endif; ?>
                                         <div class="eh">
@@ -189,7 +189,7 @@ $level_user = $user_infos['level_number'];
                                     <div class="card-body">
                                         <?php if($level_user == 6): ?>
                                             <div class="pricing-badge text-right">
-                                                <div class="badge badge-pill badge-light-primary">Niveau actuel</div>
+                                                <div class="badge badge-pill badge-light-primary">niveau</div>
                                             </div>
                                         <?php endif; ?>
                                         <div class="eh">
@@ -215,7 +215,7 @@ $level_user = $user_infos['level_number'];
                                     <div class="card-body">
                                         <?php if($level_user == 7): ?>
                                             <div class="pricing-badge text-right">
-                                                <div class="badge badge-pill badge-light-primary">Niveau actuel</div>
+                                                <div class="badge badge-pill badge-light-primary">niveau</div>
                                             </div>
                                         <?php endif; ?>
                                         <div class="eh">
@@ -241,7 +241,7 @@ $level_user = $user_infos['level_number'];
                                     <div class="card-body">
                                         <?php if($level_user == 8): ?>
                                             <div class="pricing-badge text-right">
-                                                <div class="badge badge-pill badge-light-primary">Niveau actuel</div>
+                                                <div class="badge badge-pill badge-light-primary">niveau</div>
                                             </div>
                                         <?php endif; ?>
                                         <div class="eh">

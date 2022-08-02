@@ -894,7 +894,7 @@ msgstr "Voir les détails"
 
 #: views/part-bulk-optimization-table-row-folder-type.php:33
 msgid "Current level:"
-msgstr "Niveau actuel :"
+msgstr "niveau :"
 
 #: views/part-bulk-optimization-overquota-alert.php:19
 msgid "See our plans on the Imagify’s website"

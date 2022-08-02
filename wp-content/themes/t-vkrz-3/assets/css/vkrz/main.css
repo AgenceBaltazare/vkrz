@@ -2313,6 +2313,12 @@ textarea {
     font-size: 1rem !important;
   }
 }
+.info-bio .card-text {
+  font-size: 12px;
+  letter-spacing: 1px;
+  line-height: 16px;
+}
+
 .blog h1 {
   font-size: 3rem;
   padding: 1.5rem;

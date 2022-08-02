@@ -25,7 +25,7 @@ $vainkeur_info = isset($vainkeur_info) ? $vainkeur_info : $user_infos;
           <?php echo $vainkeur_info['pseudo'] ? $vainkeur_info['pseudo'] : "Futur Vainkeur"; ?>
         </h2>
         <p class="text-white">
-          <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Niveau actuel">
+          <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Niveau">
             <?php echo $vainkeur_info['level']; ?>
           </span>
           <?php if ($vainkeur_info['user_role']  == "administrator") : ?>

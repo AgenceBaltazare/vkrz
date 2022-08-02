@@ -194,7 +194,7 @@ $list_toplist   = json_decode(get_field('all_toplist_resume', $id_resume));
                                                         <div class="my-auto">
                                                             <h3 class="mb-0">
                                                                 <?php echo $creator_data['pseudo']; ?> <br>
-                                                                <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Niveau actuel">
+                                                                <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Niveau">
                                                                     <?php echo $creator_data['level']; ?>
                                                                 </span>
                                                                 <?php if ($creator_data['user_role']  == "administrator") : ?>

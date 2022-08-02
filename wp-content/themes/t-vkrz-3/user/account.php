@@ -166,7 +166,7 @@ if ($list_user_toplists) {
                             <?php echo $user_infos['level']; ?>
                           </span>
                         </div>
-                        <p class="card-text legende">Niveau actuel</p>
+                        <p class="card-text legende">niveau</p>
                         <div class="progress-wrapper mt-1">
                           <?php
                           $nb_need_money       = get_vote_to_next_level($user_infos['level_number'], $user_infos['money_vkrz']);

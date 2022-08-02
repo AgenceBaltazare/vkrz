@@ -221,7 +221,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                         <h4 class="mb-0 link-creator">
                           <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator_id; ?>" target="_blank" class="link-to-creator">
                             <?php echo $creator_data['pseudo']; ?>
-                            <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Niveau actuel">
+                            <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="niveau">
                               <?php echo $creator_data['level']; ?>
                             </span>
                             <?php if ($creator_data['user_role']  == "administrator") : ?>
@@ -405,7 +405,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                   <div class="my-auto">
                     <h4 class="mb-0">
                       <?php echo $creator_data['pseudo']; ?> <br>
-                      <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Niveau actuel">
+                      <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="niveau">
                         <?php echo $creator_data['level']; ?>
                       </span>
                       <?php if ($creator_data['user_role']  == "administrator") : ?>
