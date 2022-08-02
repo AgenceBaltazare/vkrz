@@ -16,7 +16,7 @@ $classement = new WP_Query(array(
         array(
             array(
                 'key' => 'uuid_user_r',
-                'value' => 'fbfd88adb4b09',
+                'value' => '1dad689f4581a',
                 'compare' => '=',
             )
         )
