@@ -15,8 +15,6 @@ global $user_tops;
 $list_t_already_done  = $user_tops['list_user_tops_done_ids'];
 $id_resume      = get_resume_id($id_top);
 $list_toplist   = json_decode(get_field('all_toplist_resume', $id_resume));
-
-$actual_uuiduser = get_field('uuiduser_user', 'user_' . get_current_user_id());
 ?>
 
 <script type="module">
