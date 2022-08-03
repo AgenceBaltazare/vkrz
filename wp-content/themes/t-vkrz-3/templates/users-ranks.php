@@ -65,6 +65,12 @@ $list_toplist   = json_decode(get_field('all_toplist_resume', $id_resume));
                                                                         Voir la TopList
                                                                     </span>
                                                                 </th>
+
+                                                                <th class="text-right">
+                                                                    <span class="text-muted">
+                                                                        Guetter
+                                                                    </span>
+                                                                </th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -138,9 +144,33 @@ $list_toplist   = json_decode(get_field('all_toplist_resume', $id_resume));
                                                                     </td>
 
                                                                     <td class="text-right">
-                                                                        <a href="<?php the_permalink($id_ranking); ?>" class="mr-1 btn btn-outline-primary waves-effect">
+                                                                        <a href="<?php the_permalink($id_ranking); ?>" class="mr-1 btn">
                                                                             <span class="ico ico-reverse va va-eyes va-lg"></span>
                                                                         </a>
+                                                                    </td>
+
+                                                                    <td class="text-right checking-follower">
+                                                                        <?php if ($vainkeur_data_selected && get_current_user_id() != $vainkeur_data_selected['id_vainkeur'] && is_user_logged_in()) : ?>
+
+                                                                            <button 
+                                                                                type="button" 
+                                                                                id="followBtn" 
+                                                                                class="btn btn-warning waves-effect waves-float waves-light" 
+                                                                                style="display: none;" 
+                                                                                data-userid="<?= get_current_user_id(); ?>" 
+                                                                                data-uuid="<?= get_field('uuiduser_user', 'user_' . get_current_user_id()); ?>" 
+                                                                                data-relatedid="<?= $vainkeur_data_selected['id_vainkeur']; ?>" 
+                                                                                data-relateduuid="<?= get_field('uuiduser_user', 'user_' . $vainkeur_data_selected['id_vainkeur']); ?>" 
+                                                                                data-text="<?= get_the_author_meta('nickname', get_current_user_id()); ?> te guette !" 
+                                                                                data-url="<?= get_author_posts_url(get_current_user_id()); ?>"
+                                                                            >
+                                                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-star me-25">
+                                                                                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                                                                </svg>
+                                                                                <span>Guetter</span>
+                                                                            </button>
+
+                                                                        <?php endif; ?>
                                                                     </td>
 
                                                                 </tr>
@@ -156,7 +186,7 @@ $list_toplist   = json_decode(get_field('all_toplist_resume', $id_resume));
                         </section>
                     </div>
 
-                    <div class="col-md-3 offset-md-1">
+                    <div class="col-md-4">
 
                         <div class="related">
 
