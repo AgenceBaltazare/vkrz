@@ -36,7 +36,7 @@ if ($get_top_type) {
 }
 ?>
 <div class="<?php echo $class; ?>">
-  <div class="min-tournoi card scaler">
+  <div class="min-tournoi card scaler ehcard">
     <div class="cov-illu cover" style="background: url(<?php echo $illu; ?>) center center no-repeat">
       <?php if ($type_top == "sponso") : ?>
         <span class="badge badge-light-rose ml-0">Top sponso</span>

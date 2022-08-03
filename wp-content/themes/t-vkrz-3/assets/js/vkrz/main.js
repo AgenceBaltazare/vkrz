@@ -10,6 +10,7 @@ $.fn.equalHeights = function () {
 
 $(document).ready(function () {
     $(".eh").equalHeights();
+    $(".ehcard").equalHeights();
     $(".eh2").equalHeights();
     $(".eh3").equalHeights();
     $(".ico-master").equalHeights();
