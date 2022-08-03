@@ -8,14 +8,15 @@ function get_user_ranking_id($id_top, $uuiduser = false, $id_vainkeur = false) {
     $id_ranking         = false;
     $have_already_top   = false;
 
-    if(get_field('liste_des_top_commences_vkrz', $id_vainkeur) || get_field('liste_des_top_vkrz', $id_vainkeur)){
-
-        if(in_array($id_top, json_decode(get_field('liste_des_top_commences_vkrz', $id_vainkeur))) || in_array($id_top, json_decode(get_field('liste_des_top_commences_vkrz', $id_vainkeur)))){
-
+    if (get_field('liste_des_top_vkrz', $id_vainkeur)) {
+        if (in_array($id_top, json_decode(get_field('liste_des_top_vkrz', $id_vainkeur)))) {
             $have_already_top = true;
-
         }
-
+    }
+    if (get_field('liste_des_top_commences_vkrz', $id_vainkeur)) {
+        if (in_array($id_top, json_decode(get_field('liste_des_top_commences_vkrz', $id_vainkeur)))) {
+            $have_already_top = true;
+        }
     }
 
     if(isset($uuiduser) && $uuiduser != "" && $have_already_top == true) {
@@ -52,4 +53,3 @@ function get_user_ranking_id($id_top, $uuiduser = false, $id_vainkeur = false) {
     }
     return $id_ranking;
 }
-?>
