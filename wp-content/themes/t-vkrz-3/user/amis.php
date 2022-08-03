@@ -71,7 +71,6 @@ get_header();
                                 </h2>
                                 <p class="card-text legende">
                                   Following
-                                  </span>
                                 </p>
                               </div>
                             </div>
