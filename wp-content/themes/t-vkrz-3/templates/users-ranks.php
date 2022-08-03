@@ -58,30 +58,6 @@ $actual_uuiduser = get_field('uuiduser_user', 'user_' . get_current_user_id());
     })
     document.querySelector('.nombres-classements-p').textContent = domQuerySnapshot._snapshot.docs.size <= 1 ? 'Top' : 'Tops';
 
-    // FUNCTION TO COMPARE MY RANKING TO OTHER'S RANKING…
-    const sameRankingFunc = function(obj1, obj2) {
-        const obj1Keys = Object.keys(obj1);
-        const obj2Keys = Object.keys(obj2);
-
-        if (obj1Keys.length !== obj2Keys.length) {
-            return false;
-        }
-
-        for (let objKey of obj1Keys) {
-            if (obj1[objKey] !== obj2[objKey]) {
-                if (typeof obj1[objKey] == "object" && typeof obj2[objKey] == "object") {
-                    if (!sameRankingFunc(obj1[objKey], obj2[objKey])) {
-                        return false;
-                    }
-                } else {
-                    return false;
-                }
-            }
-        }
-
-        return true;
-    };
-
     // FUNCTION TO SORT CONTENDERS…
     const sortContenders = function(contenders) {
         let contendersArr = [],
@@ -188,7 +164,7 @@ $actual_uuiduser = get_field('uuiduser_user', 'user_' . get_current_user_id());
             // FETCH ALL CONTENDERS…
             const map = new Map();
             await Promise.all(contendersIDs.map(async id => {
-                await fetch(`http://localhost:8888/vkrz/wp-json/vkrz/v1/getcontenderinfo/${id}`)
+                await fetch(`https://vainkeurz.com/wp-json/vkrz/v1/getcontenderinfo/${id}`)
                     .then((res) => res.json())
                     .then(response => map.set(id, response));
             }));
@@ -225,8 +201,8 @@ $actual_uuiduser = get_field('uuiduser_user', 'user_' . get_current_user_id());
                                 Unfollow
                             </a>
                         `
-                    } else if(ranking.data().custom_fields.uuid_user_r == currentUuid) {
-                        
+                    } else if (ranking.data().custom_fields.uuid_user_r == currentUuid) {
+                        followingOrNotDiv = ``
                     } else {
                         followingOrNotDiv = `
                             <a 
@@ -427,7 +403,6 @@ $actual_uuiduser = get_field('uuiduser_user', 'user_' . get_current_user_id());
                         });
                     }
                 });
-
         };
 
         fetchDataAndShow();
