@@ -1,24 +1,26 @@
 <?php
-function begin_t($id_top, $uuiduser, $typetop){
+function begin_t($id_top, $uuiduser, $typetop, $id_vainkeur)
+{
 
+    $utm = "";
+    
     global $utm;
 
-    if(!$utm){
+    if (!$utm && isset($_COOKIE['vainkeurz_user_utm']) && $_COOKIE['vainkeurz_user_utm'] != "") {
         $utm = $_COOKIE['vainkeurz_user_utm'];
     }
 
     // set cookies to create vainkeur CPT
     setcookie("vainkeur_ready_to_be_create", $uuiduser, time() + 31556926, "/");
 
-    if($typetop == "top3"){
-        $title_rank = 'Podium '.get_the_title($id_top);
-    }
-    else{
-        $title_rank = 'Top '.get_field('count_contenders_t', $id_top).' - '.get_the_title($id_top);
+    if ($typetop == "top3") {
+        $title_rank = 'Podium ' . get_the_title($id_top);
+    } else {
+        $title_rank = 'Top ' . get_field('count_contenders_t', $id_top) . ' - ' . get_the_title($id_top);
     }
 
     $get_top_type = get_the_terms($id_top, 'type');
-    foreach($get_top_type as $type_top){
+    foreach ($get_top_type as $type_top) {
         $type_top = $type_top->slug;
     }
 
@@ -50,7 +52,8 @@ function begin_t($id_top, $uuiduser, $typetop){
             )
         )
     );
-    $i=0; while ($contenders->have_posts()) : $contenders->the_post();
+    $i = 0;
+    while ($contenders->have_posts()) : $contenders->the_post();
 
         array_push($list_contenders, array(
             "id"                => $i,
@@ -63,12 +66,14 @@ function begin_t($id_top, $uuiduser, $typetop){
             "ratio"             => 0,
         ));
 
-    $i++; endwhile;
+        $i++;
+    endwhile;
 
     wp_set_post_terms($id_ranking, $type_top, 'type');
     update_field('type_top_r', $typetop, $id_ranking);
     update_field('uuid_user_r', $uuiduser, $id_ranking);
     update_field('id_tournoi_r', $id_top, $id_ranking);
+    update_field('id_vainkeur_r', $id_vainkeur, $id_ranking);
     update_field('ranking_r', $list_contenders, $id_ranking);
     update_field('nb_votes_r', 0, $id_ranking);
     update_field('timeline_main', 1, $id_ranking);
@@ -79,7 +84,7 @@ function begin_t($id_top, $uuiduser, $typetop){
 
     if (is_user_logged_in()) {
         global $user_id;
-        if ($user_id && !get_field('uuiduser_user', 'user_'.$user_id) && $uuiduser) {
+        if ($user_id && !get_field('uuiduser_user', 'user_' . $user_id) && $uuiduser) {
             update_field('uuiduser_user', $uuiduser, 'user_' . $user_id);
         }
     }
@@ -87,5 +92,4 @@ function begin_t($id_top, $uuiduser, $typetop){
     increase_top_resume($id_ranking, 'new');
 
     return $id_ranking;
-
 }

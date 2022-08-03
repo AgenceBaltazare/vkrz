@@ -142,6 +142,7 @@
 
     <?php
     global $vainkeur_info;
+    global $vainkeur_info_profil;
     global $id_vainkeur_profil;
     global $vainkeur_tops;
     global $id_membre;
@@ -152,22 +153,22 @@
         $author             = get_user_by('slug', get_query_var('author_name'));
         $id_membre          = $author->ID;
     }
-    $uuid_vainkeur      = get_field('uuiduser_user', 'user_' . $id_membre);
-    $vainkeur_info      = get_user_infos($uuid_vainkeur);
-    $id_vainkeur_profil = $vainkeur_info['id_vainkeur'];
+    $uuid_vainkeur          = get_field('uuiduser_user', 'user_' . $id_membre);
+    $vainkeur_info_profil   = get_user_infos($uuid_vainkeur);
+    $id_vainkeur_profil     = $vainkeur_info_profil['id_vainkeur'];
     ?>
     <title>
         Profil de <?php echo $vainkeur_info['pseudo']; ?> sur VAINKEURZ
     </title>
     <link rel="canonical" href="<?php echo get_author_posts_url($id_membre); ?>" />
-    <meta name="description" content="Tous les Tops de <?php echo $vainkeur_info['pseudo']; ?> et ses statistiques." />
-    <meta property="og:image" content="<?php echo $vainkeur_info['avatar']; ?> ?>" />
-    <meta property="og:title" content="Profil VAINKEURZ de <?php echo $vainkeur_info['pseudo']; ?>" />
-    <meta property="og:description" content="Tous les Tops de <?php echo $vainkeur_info['pseudo']; ?> et ses statistiques." />
+    <meta name="description" content="Tous les Tops de <?php echo $vainkeur_info_profil['pseudo']; ?> et ses statistiques." />
+    <meta property="og:image" content="<?php echo $vainkeur_info_profil['avatar']; ?> ?>" />
+    <meta property="og:title" content="Profil VAINKEURZ de <?php echo $vainkeur_info_profil['pseudo']; ?>" />
+    <meta property="og:description" content="Tous les Tops de <?php echo $vainkeur_info_profil['pseudo']; ?> et ses statistiques." />
     <meta property="og:url" content="<?php echo get_author_posts_url($id_membre); ?>" />
-    <meta name="twitter:title" content="Profil VAINKEURZ de <?php echo $vainkeur_info['pseudo']; ?>" />
-    <meta name="twitter:description" content="Tous les Tops de <?php echo $vainkeur_info['pseudo']; ?> et ses statistiques." />
-    <meta name="twitter:image" content="<?php echo $vainkeur_info['avatar']; ?>" />
+    <meta name="twitter:title" content="Profil VAINKEURZ de <?php echo $vainkeur_info_profil['pseudo']; ?>" />
+    <meta name="twitter:description" content="Tous les Tops de <?php echo $vainkeur_info_profil['pseudo']; ?> et ses statistiques." />
+    <meta name="twitter:image" content="<?php echo $vainkeur_info_profil['avatar']; ?>" />
 
 <?php elseif (is_page()) : ?>
 

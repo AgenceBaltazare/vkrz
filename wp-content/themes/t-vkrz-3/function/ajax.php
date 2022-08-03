@@ -54,7 +54,7 @@ function vkzr_process_commentaire_note() {
 add_action( 'wp_ajax_vkzr_begin_t', 'vkzr_begin_t' );
 add_action( 'wp_ajax_nopriv_vkzr_begin_t', 'vkzr_begin_t' );
 function vkzr_begin_t() {
-    begin_t($_POST['id_top'], $_POST['uuiduser'], $_POST['typetop']);
+    begin_t($_POST['id_top'], $_POST['uuiduser'], $_POST['typetop'], $_POST['id_vainkeur']);
 }
 
 add_action('wp_ajax_vkzr_form_newplayer', 'vkzr_form_newplayer');

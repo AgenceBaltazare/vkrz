@@ -32,23 +32,6 @@ function finish_the_top($id_ranking, $current_id_vainkeur, $id_top, $nb_contende
         }
     }
 
-    // Ajout de la TopList dans la liste des TopList du Vainkeur
-    $user_list_toplist = array();
-    if (get_field('liste_des_toplist_vkrz', $current_id_vainkeur)) {
-        $user_list_toplist    = json_decode(get_field('liste_des_toplist_vkrz', $current_id_vainkeur));
-    }
-    if (!in_array(intval($id_ranking), $user_list_toplist)) {
-        array_push($user_list_toplist, intval($id_ranking));
-        update_field('liste_des_toplist_vkrz', json_encode($user_list_toplist), $current_id_vainkeur);
-    }
-    // Suppression de la TopList dans la liste des TopList commencées du Vainkeur
-    $user_list_toplist_begin = array();
-    if (get_field('liste_des_toplist_commence_vkrz', $current_id_vainkeur)) {
-        $user_list_toplist_begin = json_decode(get_field('liste_des_toplist_commence_vkrz', $current_id_vainkeur));
-    }
-    $user_list_toplist_begin = array_diff($user_list_toplist_begin, array($id_top));
-    update_field('liste_des_toplist_commence_vkrz', json_encode($user_list_toplist_begin), $current_id_vainkeur);
-
     // Mise à jour de la liste des Tops terminés du Vainkeur
     $user_list_top = array();
     if(get_field('liste_des_top_vkrz', $current_id_vainkeur)){

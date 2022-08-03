@@ -1,6 +1,8 @@
 <?php
 global $id_vainkeur_profil;
 global $id_membre;
+global $vainkeur_info;
+global $vainkeur_info_profil;
 get_header();
 $list_user_toplists = get_user_toplist($id_vainkeur_profil);
 $list_t_done        = array();
@@ -266,9 +268,9 @@ foreach ($list_user_toplists as $top) {
                           <span class="ico4 va-high-voltage va va-z-30"></span>
                         </div>
                         <h2 class="font-weight-bolder">
-                          <?php echo $vainkeur_info['nb_vote_vkrz']; ?>
+                          <?php echo $vainkeur_info_profil['nb_vote_vkrz']; ?>
                         </h2>
-                        <?php if ($vainkeur_info['nb_vote_vkrz'] > 1) : ?>
+                        <?php if ($vainkeur_info_profil['nb_vote_vkrz'] > 1) : ?>
                           <p class="card-text legende">Votes</p>
                         <?php else : ?>
                           <p class="card-text legende">Vote</p>
@@ -283,10 +285,10 @@ foreach ($list_user_toplists as $top) {
                           <span class="ico4 va va-trophy va-z-30"></span>
                         </div>
                         <h2 class="font-weight-bolder">
-                          <?php echo count($list_t_done); ?>
+                          <?php echo $vainkeur_info_profil['nb_top_vkrz']; ?>
                         </h2>
                         <p class="card-text legende">
-                          <?php if (count($list_t_done) > 1) : ?>
+                          <?php if ($vainkeur_info_profil['nb_top_vkrz'] > 1) : ?>
                             Tops terminés
                           <?php else : ?>
                             Top terminé
@@ -302,10 +304,10 @@ foreach ($list_user_toplists as $top) {
                           <span class="ico4 va-sm va va-star-struck va-z-30"></span>
                         </div>
                         <h2 class="font-weight-bolder followers-nbr">
-                          0
+                          -
                         </h2>
                         <p class="card-text legende followers-nbr-text">
-                          Follower
+                          Guetteur
                         </p>
                       </div>
                     </div>
@@ -324,10 +326,10 @@ foreach ($list_user_toplists as $top) {
                                 <tr>
                                   <th class="">
                                     <span class="text-muted">
-                                      <?php if (count($list_t_done) > 1) : ?>
-                                        <span class="t-rose"><?php echo count($list_t_done); ?></span> Tops terminés
+                                      <?php if ($vainkeur_info_profil['nb_top_vkrz'] > 1) : ?>
+                                        <span class="t-rose"><?php echo $vainkeur_info_profil['nb_top_vkrz']; ?></span> Tops terminés
                                       <?php else : ?>
-                                        <span class="t-rose"><?php echo count($list_t_done); ?></span> Top terminé
+                                        <span class="t-rose"><?php echo $vainkeur_info_profil['nb_top_vkrz']; ?></span> Top terminé
                                       <?php endif; ?>
                                     </span>
                                   </th>
