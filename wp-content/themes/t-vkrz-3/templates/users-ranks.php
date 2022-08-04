@@ -42,12 +42,13 @@ $list_toplist   = json_decode(get_field('all_toplist_resume', $id_resume));
                                         <div class="card">
                                             <div class="card-header">
                                                 <h4 class="card-title pt-1 pb-1">
+                                                    <span class="step">0</span> Of
                                                     <?php echo count($list_toplist); ?> <span class="va va-trophy va-lg"></span> TopList générées pour ce Top !
                                                 </h4>
                                             </div>
                                             <div class="table-responsive">
                                                 <div class="dataTables_wrapper dt-bootstrap4 no-footer">
-                                                    <table class="invoice-list-table table table-tdone dataTable no-footer">
+                                                    <table class="invoice-list-table table table-tdonee dataTable no-footer">
                                                         <thead>
                                                             <tr>
                                                                 <th>
@@ -280,6 +281,21 @@ $list_toplist   = json_decode(get_field('all_toplist_resume', $id_resume));
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+
+                            <!-- CALCULATE RESSEMBALNCE… -->
+                            <div class="card text-center calc-resemblance cursor-pointer" data-idtop="<?php echo $id_top; ?>">
+                                <div class="card-body">
+                                    <div class="mb-50">
+                                        <span class="ico4 va va-duo va va-z-50"></span>
+                                    </div>
+                                    <h2 class="font-weight-bolder mb-1">
+                                        Resemblance
+                                    </h2>
+                                    <h6 class="card-subtitle text-muted">
+                                        Click to calculate the resemblance of your ranking to other's TopList, who knows, maybe you can find a match ranking a get a Friend!
+                                    </h6>
                                 </div>
                             </div>
 
