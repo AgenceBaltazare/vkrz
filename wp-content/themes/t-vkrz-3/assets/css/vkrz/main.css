@@ -4554,6 +4554,9 @@ textarea {
   .header-navbar .navbar-container ul.navbar-nav li > a.nav-link {
     padding: 0 0.3rem;
   }
+  #vkrz-intro .btn {
+    width: 100%;
+  }
 }
 
 @media (min-width: 500px) and (max-width: 600px) {
