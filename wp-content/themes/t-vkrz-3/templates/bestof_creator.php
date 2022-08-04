@@ -84,7 +84,7 @@ $best_creators = best_creators();
                                                                         $vainkeur_data_selected = get_user_infos($creator_uuiduser);
                                                                         ?>
                                                                         <span class="avatar">
-                                                                            <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_vainkeur'])); ?>">
+                                                                            <a href="<?php echo esc_url(get_author_posts_url($creator['user_id'])); ?>">
                                                                                 <span class="avatar-picture" style="background-image: url(<?php echo $vainkeur_data_selected['avatar']; ?>);"></span>
                                                                             </a>
                                                                             <span class="user-niveau">
@@ -92,7 +92,7 @@ $best_creators = best_creators();
                                                                             </span>
                                                                         </span>
                                                                         <span class="font-weight-bold championname">
-                                                                            <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_vainkeur'])); ?>">
+                                                                            <a href="<?php echo esc_url(get_author_posts_url($creator['user_id'])); ?>">
                                                                                 <?php echo $vainkeur_data_selected['pseudo']; ?>
                                                                                 <?php if ($vainkeur_data_selected) : ?>
                                                                                     <span class="user-niveau-xs">
@@ -124,7 +124,7 @@ $best_creators = best_creators();
                                                                     </td>
 
                                                                     <td class="text-right">
-                                                                        <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator['user_id']; ?>" class="mr-1 btn btn-outline-primary waves-effect">
+                                                                        <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator['user_id']; ?>" class="">
                                                                             <span class="va va-eyes va-lg"></span>
                                                                         </a>
                                                                     </td>

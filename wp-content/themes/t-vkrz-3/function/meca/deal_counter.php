@@ -135,6 +135,7 @@ function increase_vote_resume($id_top){
         
         update_field('nb_votes_resume', $nb_votes, $id_resume);
     }
+    
 }
 
 function increase_top_resume($id_ranking, $infomaj){

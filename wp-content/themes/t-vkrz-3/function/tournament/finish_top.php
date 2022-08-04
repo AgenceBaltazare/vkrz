@@ -52,4 +52,12 @@ function finish_the_top($id_ranking, $current_id_vainkeur, $id_top, $nb_contende
     if (is_user_logged_in()) {
         delete_transient('user_' . get_current_user_id() . '_get_user_tops');
     }
+
+    $id_resume  = get_resume_id($id_top);
+
+    // Save to firebase
+    wp_update_post(array('ID' => $id_ranking));
+    wp_update_post(array('ID' => $current_id_vainkeur));
+    wp_update_post(array('ID' => $id_resume));
+
 }
