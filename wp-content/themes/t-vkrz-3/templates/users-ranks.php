@@ -156,7 +156,7 @@ $list_toplist   = json_decode(get_field('all_toplist_resume', $id_resume));
                         </section>
                     </div>
 
-                    <div class="col-md-3 offset-md-1">
+                    <div class="col-md-4">
 
                         <div class="related">
 
