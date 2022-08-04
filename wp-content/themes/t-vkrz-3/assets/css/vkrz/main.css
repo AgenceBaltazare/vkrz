@@ -1612,6 +1612,12 @@ html .content {
   z-index: 999;
 }
 
+@media (max-width: 500px) {
+  .dark-layout .swiper-container:not(.swiper-parallax) .swiper-slide {
+    width: 100% !important;
+  }
+}
+
 .min-tournoi {
   -webkit-transition: all .2s ease-in-out;
   transition: all .2s ease-in-out;
@@ -1763,6 +1769,12 @@ html .content {
   padding: 10px;
   position: relative;
   min-height: 100px;
+}
+
+@media (max-width: 500px) {
+  .min-tournoi .card-body {
+    min-height: 70px;
+  }
 }
 
 .min-tournoi .card-body p {
