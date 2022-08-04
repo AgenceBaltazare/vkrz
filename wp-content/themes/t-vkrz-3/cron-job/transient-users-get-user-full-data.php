@@ -15,11 +15,8 @@ $users_list = $user_query->get_results();
 foreach($users_list as $user){
     
     $user_id = $user->ID;
-    $uuiduser    = get_field('uuiduser_user', 'user_' . $user_id);
-    $id_vainkeur    = get_vainkeur_id($uuiduser);
-
-    delete_transient( 'user_'.$user_id.'_get_user_tops' );
-
+    $id_vainkeur    = get_field('id_vainkeur_user', 'user_' . $user_id);
+    
     $user_tops      = get_user_tops($id_vainkeur);
     set_transient( 'user_'.$user_id.'_get_user_tops', $user_tops, DAY_IN_SECONDS );
 
