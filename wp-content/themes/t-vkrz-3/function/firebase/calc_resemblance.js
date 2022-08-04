@@ -18,7 +18,7 @@ calcResemblanceDiv.addEventListener("click", async function () {
   const table = document.querySelector("table");
   table.setAttribute("id", "table-ressemblance");
   table.querySelector("thead tr th:nth-of-type(3) span").textContent = `Voir`;
-  table.querySelector("thead tr th:last-of-type").remove()
+  table.querySelector("thead tr th:last-of-type").remove();
   function insertAfter(referenceNode, newNode) {
     referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
   }
@@ -120,12 +120,31 @@ calcResemblanceDiv.addEventListener("click", async function () {
   const actualUserRankingQuerySnapshot = await getDocs(actualUserRankingQuery);
 
   // SORT MY RANKING…
-  let myContenders = [];
+  let myContenders  = [],
+      contendersIDs = [];
   actualUserRankingQuerySnapshot.forEach(
-    (ranking) =>
-      (myContenders = sortContenders(ranking.data().custom_fields.ranking_r))
+    (ranking) => {
+      myContenders = sortContenders(ranking.data().custom_fields.ranking_r)
+    }
   );
   console.log("My contenders: ", myContenders);
+
+  // FETCH ALL CONTENDERS…
+  myContenders.forEach(contender => contendersIDs.push(contender.id_wp))
+  
+  const map = new Map();
+  const fetchContenders = async () => {
+    await Promise.all(
+      contendersIDs.map(async (id) => {
+        await fetch(
+          `https://vainkeurz.com/wp-json/vkrz/v1/getcontenderinfo/${id}`
+        )
+          .then((response) => response.json())
+          .then((data) => map.set(id, data));
+      })
+    );
+  }
+  await fetchContenders()
 
   // USERS RANKS…
   const usersRanksQuery = query(
@@ -150,37 +169,23 @@ calcResemblanceDiv.addEventListener("click", async function () {
   let i = 0;
   usersRanksQuerySnapshot.forEach((ranking) => {
     let contendersDiv = "",
-      contendersIDs = [],
+      // contendersIDs = [],
       contenders = [];
     contenders = sortContenders(ranking.data().custom_fields.ranking_r);
 
     let calcRessemblanceVar = calcRessemblance(myContenders, contenders); // CALC RESSEMBLANCE…
 
-    contenders.forEach((contender) => contendersIDs.push(contender.id_wp));
+    // contenders.forEach((contender) => contendersIDs.push(contender.id_wp));
 
     const fetchDataAndShow = async () => {
-      // FETCH ALL CONTENDERS…
-      const map = new Map();
-      await Promise.all(
-        contendersIDs.map(async (id) => {
-          await fetch(
-            `https://vainkeurz.com/wp-json/vkrz/v1/getcontenderinfo/${id}`
-          )
-            .then((res) => res.json())
-            .then((response) => map.set(id, response));
-        })
-      );
+      // await fetchContenders()
       contenders.forEach((contender, index) => {
         if (index < 3) {
           contendersDiv += `
-                      <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="${
-                        map.get(contender.id_wp).Title
-                      }" class="avatartop3 avatar pull-up">
-                          <img src="${
-                            map.get(contender.id_wp).Thumbnail
-                          }" alt="${map.get(contender.id_wp).Title}">
-                      </div>
-                  `;
+            <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="${map.get(contender.id_wp).Title}" class="avatartop3 avatar pull-up">
+                <img src="${map.get(contender.id_wp).Thumbnail}" alt="${map.get(contender.id_wp).Title}">
+            </div>
+          `;
         }
       });
       $(document).ready(function () {
@@ -203,33 +208,33 @@ calcResemblanceDiv.addEventListener("click", async function () {
           );
           if (followingOrNot) {
             followingOrNotDiv = `
-                          <a 
-                              href="" 
-                              data-userid=${response.user_id}
-                              class="unfollowBtns dropdown-item"
-                              >
-                              <span class="ico-action va va-new-button va-z-20"></span> 
-                              Unfollow
-                          </a>
-                      `;
+              <a 
+                href="" 
+                data-userid=${response.user_id}
+                class="unfollowBtns dropdown-item"
+              >
+                  <span class="ico-action va va-new-button va-z-20"></span> 
+                  Unfollow
+              </a>
+            `;
           } else if (ranking.data().custom_fields.uuid_user_r == currentUuid) {
             followingOrNotDiv = ``;
           } else {
             followingOrNotDiv = `
-                          <a 
-                              href="" 
-                              class="followBtns dropdown-item"
-                              data-userid=${currentUserId}
-                              data-uuid=${currentUuid}
-                              data-relatedid=${response.user_id}
-                              data-relateduuid="${response.uuid_user_vkrz}"
-                              data-text="${vainkeurPseudo} te guette !"
-                              data-url="${currentUserProfileUrl}"
-                              >
-                              <span class="ico-action va va-new-button va-z-20"></span> 
-                              Follow
-                          </a>
-                      `;
+              <a 
+                href="" 
+                class="followBtns dropdown-item"
+                data-userid=${currentUserId}
+                data-uuid=${currentUuid}
+                data-relatedid=${response.user_id}
+                data-relateduuid="${response.uuid_user_vkrz}"
+                data-text="${vainkeurPseudo} te guette !"
+                data-url="${currentUserProfileUrl}"
+              >
+                <span class="ico-action va va-new-button va-z-20"></span> 
+                Follow
+              </a>
+            `;
           }
 
           // RESSEMBLANCE NUMBER…
@@ -256,76 +261,68 @@ calcResemblanceDiv.addEventListener("click", async function () {
           }
 
           html += `
-                      <tr style="background-color: transparent !important;"">
-                          <td class="vainkeur-table">
-                              <span class="avatar">
-                                  <a href="${
-                                    !response.pseudo ? "#" : response.profil_url
-                                  }">
-                                      <span class="avatar-picture" style="background-image: url(${
-                                        !response.pseudo ? "" : response.avatar
-                                      });"></span>
-                                  </a>
-                                  <span class="user-niveau">
-                                      ${response.level}
-                                  </span>
+              <tr style="background-color: transparent !important;"">
+                  <td class="vainkeur-table">
+                      <span class="avatar">
+                          <a href="${response.profil_url}">
+                              <span class="avatar-picture" style="background-image: url(${
+                                response.avatar
+                              });"></span>
+                          </a>
+                          <span class="user-niveau">
+                              ${response.level}
+                          </span>
+                      </span>
+                      <span class="font-weight-bold championname">
+                          <a href="${response.profil_url}">
+                              ${response.pseudo}
+                              <span class="user-niveau-xs">
+                                  ${response.level}
                               </span>
-                              <span class="font-weight-bold championname">
-                                  <a href="${
-                                    !response.pseudo ? "#" : response.profil_url
-                                  }">
-                                      ${
-                                        !response.pseudo
-                                          ? "<i>ANONYME</i>"
-                                          : response.pseudo
-                                      }
-                                      <span class="user-niveau-xs">
-                                          ${response.level}
-                                      </span>
-                                      ${
-                                        !response.user_role_administrator
-                                          ? ""
-                                          : response.user_role_administrator
-                                      } 
-                                      ${
-                                        !response.user_role_author
-                                          ? ""
-                                          : response.user_role_author
-                                      }
-                                  </a>
-                              </span>
-                          </td>
+                              ${
+                                !response.user_role_administrator
+                                  ? ""
+                                  : response.user_role_administrator
+                              } 
+                              ${
+                                !response.user_role_author
+                                  ? ""
+                                  : response.user_role_author
+                              }
+                          </a>
+                      </span>
+                  </td>
 
-                          <td>
-                              ${contendersDiv}
-                          </td>
+                  <td>
+                      ${contendersDiv}
+                  </td>
 
-                          <td class="text-center">
-                              ${calcRessemblanceVar}
-                          </td>
+                  <td class="text-center">
+                      ${calcRessemblanceVar}
+                  </td>
 
-                          <td class="text-right">
-                              <div class="dropdown">
-                                  <a class="btn btn-sm btn-icon px-0" data-toggle="dropdown">
-                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical font-medium-2">
-                                          <circle cx="12" cy="12" r="1"></circle>
-                                          <circle cx="12" cy="5" r="1"></circle>
-                                          <circle cx="12" cy="19" r="1"></circle>
-                                      </svg>
-                                  </a>
+                  <td class="text-right">
+                      <div class="dropdown">
+                          <a class="btn btn-sm btn-icon px-0" data-toggle="dropdown">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical font-medium-2">
+                                  <circle cx="12" cy="12" r="1"></circle>
+                                  <circle cx="12" cy="5" r="1"></circle>
+                                  <circle cx="12" cy="19" r="1"></circle>
+                              </svg>
+                          </a>
 
-                                  <div class="dropdown-menu dropdown-menu-right">
-                                      <a href="${
-                                        ranking.data().permalink
-                                      }" class="dropdown-item">
-                                          <span class="ico-action va va-eyes va-z-20"></span> Voir sa TopList
-                                      </a>
+                          <div class="dropdown-menu dropdown-menu-right">
+                              <a href="${
+                                ranking.data().permalink
+                              }" class="dropdown-item">
+                                  <span class="ico-action va va-eyes va-z-20"></span> Voir sa TopList
+                              </a>
 
-                                      ${followingOrNotDiv}
-                                  </div>      
-                              </div>
-                          </td>
-                      </tr>
+                              ${followingOrNotDiv}
+                          </div>      
+                      </div>
+                  </td>
+              </tr>
                   `;
 
           document.querySelector("tbody").innerHTML = html;
