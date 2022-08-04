@@ -108,11 +108,6 @@ $best_creators = best_creators();
                                                                                     </span>
                                                                                 <?php endif; ?>
                                                                             </a>
-                                                                            <!--
-                                                                            UUID    : <?php the_field('uuid_user_r', $id_rank); ?>
-                                                                            ID rank : <?php echo $id_rank; ?>
-                                                                            Date    : <?php echo get_the_date('d/m/Y - H:i:s', $id_rank); ?>
-                                                                            -->
                                                                         </span>
                                                                     </td>
 

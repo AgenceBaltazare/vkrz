@@ -12,7 +12,7 @@ $id_top         = get_the_ID();
 $uuiduser       = deal_uuiduser();
 $user_infos     = deal_vainkeur_entry();
 $id_vainkeur    = $user_infos['id_vainkeur'];
-$id_ranking    = get_user_ranking_id($id_top, $uuiduser, $id_vainkeur);
+$id_ranking     = get_user_ranking_id($id_top, $uuiduser, $id_vainkeur);
 if ($id_ranking) {
   extract(get_next_duel($id_ranking, $id_top, $id_vainkeur));
   if (!$is_next_duel) {

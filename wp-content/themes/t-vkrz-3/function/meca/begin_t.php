@@ -24,6 +24,17 @@ function begin_t($id_top, $uuiduser, $typetop, $id_vainkeur)
         $type_top = $type_top->slug;
     }
 
+    // Ajout du Top dans la liste des Tops commencé du Vainkeur
+    $user_list_top_begin    = array();
+    if (get_field('liste_des_top_commences_vkrz', $id_vainkeur)) {
+        $user_list_top_begin    = json_decode(get_field('liste_des_top_commences_vkrz', $id_vainkeur));
+    }
+    if (!in_array(intval($id_top), $user_list_top_begin)) {
+        array_push($user_list_top_begin, intval($id_top));
+        update_field('liste_des_top_commences_vkrz', json_encode($user_list_top_begin), $id_vainkeur);
+    }
+
+    // Création d'un CPT classement
     $new_ranking = array(
         'post_type'   => 'classement',
         'post_title'  => $title_rank,
