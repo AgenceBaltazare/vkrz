@@ -23,12 +23,11 @@ $i=1; foreach ($users_list as $user) {
     $user_id        = $user->ID;
     $uuiduser       = get_field('uuiduser_user', 'user_' . $user_id);
 
-    if(!get_field('id_vainkeur_user', 'user_' . $user_id)){
-        $id_vainkeur    = get_vainkeur_id($uuiduser);
-        update_field('id_vainkeur_user', $id_vainkeur, 'user_' . $user_id);
-    }
+    $id_vainkeur    = get_vainkeur_id($uuiduser);
+    update_field('id_vainkeur_user', $id_vainkeur, 'user_' . $user_id);
 
     echo $i . " : " . $user_id . " -> " . $id_vainkeur . "\n";
 
     $i++;
+    
 }
