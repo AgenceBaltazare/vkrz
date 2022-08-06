@@ -158,7 +158,7 @@
     $id_vainkeur_profil     = $vainkeur_info_profil['id_vainkeur'];
     ?>
     <title>
-        Profil de <?php echo $vainkeur_info['pseudo']; ?> sur VAINKEURZ
+        Profil de <?php echo $vainkeur_info_profil['pseudo']; ?> sur VAINKEURZ
     </title>
     <link rel="canonical" href="<?php echo get_author_posts_url($id_membre); ?>" />
     <meta name="description" content="Tous les Tops de <?php echo $vainkeur_info_profil['pseudo']; ?> et ses statistiques." />
