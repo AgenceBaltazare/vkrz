@@ -2,10 +2,12 @@
 global $uuiduser;
 global $user_id;
 global $vainkeur_id;
+global $vainkeur_info_profil;
 global $vainkeur_info;
 global $user_infos;
 global $id_membre;
-$vainkeur_info = isset($vainkeur_info) ? $vainkeur_info : $user_infos;
+
+$vainkeur_info = isset($vainkeur_info_profil) ? $vainkeur_info_profil : $user_infos;
 ?>
 <script>
   const idVainkeurProfil = "<?php echo $id_membre ?>";

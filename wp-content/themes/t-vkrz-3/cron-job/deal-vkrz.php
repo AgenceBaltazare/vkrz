@@ -12,11 +12,11 @@ $classement = new WP_Query(array(
     'posts_per_page'         => -1,
     'order'                  => 'DESC',
     'orderby'                => 'date',
-    'meta_query' =>
+    'meta_query'             =>
         array(
             array(
-                'key' => 'uuid_user_r',
-                'value' => '1735afc3fd9f5',
+                'key'     => 'uuid_user_r',
+                'value'   => 'b4b1b00a48b8e',
                 'compare' => '=',
             )
         )

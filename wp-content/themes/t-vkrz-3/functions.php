@@ -57,11 +57,49 @@ function post_content($content)
 }
 add_filter('the_content', 'post_content');
 
-function delete_vainkeurz_cookie() {
+function deal_vainkeurz_id_cookie($user_login, $user)
+{
+  // GET THE UUID…
+  $uuiduser = get_field('uuiduser_user', 'user_' . $user->ID);
+
+  // LOOK IN DATABASE FOR THE EXACT VAINKEURZ ID…
+  $vainkeur_entry = new WP_Query(array(
+    'post_type'              => 'vainkeur',
+    'posts_per_page'         => '1',
+    'fields'                 => 'ids',
+    'post_status'            => 'publish',
+    'ignore_sticky_posts'    => true,
+    'update_post_meta_cache' => false,
+    'no_found_rows'          => false,
+    'meta_query'             => array(
+      array(
+        'key' => 'uuid_user_vkrz',
+        'value' => $uuiduser,
+        'compare' => '='
+      )
+    )
+  ));
+  if ($vainkeur_entry->have_posts()) {
+    $id_vainkeur = $vainkeur_entry->posts[0];
+
+    // CLEAN VAINKEURZ_ID COOKIE FIRST…
+    if (isset($_COOKIE["vainkeurz_id"]) && $_COOKIE["vainkeurz_id"] != "") {
+      unset($_COOKIE["vainkeurz_id"]);
+      setcookie("vainkeurz_id", "", time() - 3600, "/");
+    }
+
+    // FILL THE VAINKEURZ_ID COOKIE WITH THE EXACT ID…
+    setcookie("vainkeurz_id", $id_vainkeur, time() + 31556926, "/");
+  }
+}
+add_action('wp_login', 'deal_vainkeurz_id_cookie', 10, 2);
+
+function delete_vainkeurz_cookie()
+{
   if (isset($_COOKIE["vainkeurz_id"]) && $_COOKIE["vainkeurz_id"] != "" && isset($_COOKIE["vainkeurz_uuid"]) && $_COOKIE["vainkeurz_uuid"] != "") {
     unset($_COOKIE["vainkeurz_id"]);
     setcookie("vainkeurz_id", "", time() - 3600, "/");
-  
+
     unset($_COOKIE["vainkeurz_uuid"]);
     setcookie("vainkeurz_uuid", "", time() - 3600, "/");
   }
