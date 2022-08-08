@@ -38,7 +38,6 @@ function genererate_tournament_response($top_infos, $user_levels_infos = []){
         'user_ranking_html'     => $user_ranking_html,
         'is_next_duel'          => $is_next_duel,
         'current_id_vainkeur'   => $current_id_vainkeur,
-        'badge_data'            => $badge_data,
         'toplist'               => $array_ranking,
         'date_done'             => $date_done,
         'triche'                => $triche,

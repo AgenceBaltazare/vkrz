@@ -2,15 +2,9 @@
 add_action('user_register', 'new_vainkeur', 20, 1);
 function new_vainkeur($user_id){
 
-    $new_user_infos = get_user_infos($_COOKIE["vainkeurz_user_id"]);
-    $user_url       = get_author_posts_url($user_id);
-
     if (isset($_COOKIE["vainkeurz_user_id"]) && !empty($_COOKIE["vainkeurz_user_id"])) {
 
-        update_field('uuiduser_user', $_COOKIE["vainkeurz_user_id"], 'user_' . $user_id);
-
         if ($user_id) {
-            // Update author for all "classement" where uuid_user_r == vainkeurz_user_id
             $classements = new WP_Query(array(
                     'post_type'              => 'classement',
                     'posts_per_page'         => -1,
@@ -46,19 +40,19 @@ function new_vainkeur($user_id){
 
             // Update author for all "vainkeur" where uuid_user_r == vainkeurz_user_id
             $vainkeur_entry = new WP_Query(array(
-                    'post_type'              => 'vainkeur',
-                    'posts_per_page'         => 1,
-                    'fields'                 => 'ids',
-                    'post_status'            => 'publish',
-                    'ignore_sticky_posts'    => true,
-                    'update_post_meta_cache' => false,
-                    'no_found_rows'          => false,
-                    'meta_query'             => array(array(
-                        'key' => 'uuid_user_vkrz',
-                        'value' => $_COOKIE["vainkeurz_user_id"],
-                        'compare' => '='
-                    )),
-                ));
+                'post_type'              => 'vainkeur',
+                'posts_per_page'         => 1,
+                'fields'                 => 'ids',
+                'post_status'            => 'publish',
+                'ignore_sticky_posts'    => true,
+                'update_post_meta_cache' => false,
+                'no_found_rows'          => false,
+                'meta_query'             => array(array(
+                    'key'       => 'uuid_user_vkrz',
+                    'value'     => $_COOKIE["vainkeurz_user_id"],
+                    'compare'   => '='
+                )),
+            ));
 
             if ($vainkeur_entry->have_posts()) {
                 foreach ($vainkeur_entry->posts as $vainkeur_entry_result) {
@@ -69,6 +63,10 @@ function new_vainkeur($user_id){
                     wp_update_post( $arg );
                 }
             }
+
+            update_field('uuiduser_user', $_COOKIE["vainkeurz_user_id"], 'user_' . $user_id);
+            update_field('id_vainkeur_user', $vainkeur_entry_result, 'user_' . $user_id);
+            
         }
     }
 

@@ -3,9 +3,7 @@
     Template Name: Account
 */
 get_header();
-global $uuiduser;
-global $user_tops;
-global $user_infos;
+global $infos_vainkeur;
 global $id_vainkeur;
 $list_user_toplists = get_user_toplist($id_vainkeur);
 $list_t_begin   = array();
@@ -163,24 +161,24 @@ if ($list_user_toplists) {
                         </div>
                         <div class="user-level">
                           <span class="icomax2">
-                            <?php echo $user_infos['level']; ?>
+                            <?php echo $infos_vainkeur['level']; ?>
                           </span>
                         </div>
                         <p class="card-text legende">niveau</p>
                         <div class="progress-wrapper mt-1">
                           <?php
-                          $nb_need_money       = get_vote_to_next_level($user_infos['level_number'], $user_infos['money_vkrz']);
-                          $money_to_next_level = $nb_need_money + $user_infos['money_vkrz'];
-                          $percent_progression = round($user_infos['money_vkrz'] * 100 / $money_to_next_level);
+                          $nb_need_money       = get_vote_to_next_level($infos_vainkeur['level_number'], $infos_vainkeur['money_vkrz']);
+                          $money_to_next_level = $nb_need_money + $infos_vainkeur['money_vkrz'];
+                          $percent_progression = round($infos_vainkeur['money_vkrz'] * 100 / $money_to_next_level);
                           ?>
                           <div class="progress progress-bar-primary w-100 mb-1" style="height: 6px; margin-top: 5px;">
                             <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="<?php echo $percent_progression; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $percent_progression; ?>%"></div>
                           </div>
                           <?php if (is_user_logged_in()) : ?>
-                            <div id="example-caption-5">Encore <span class="decompte_vote"><?php echo $nb_need_money; ?></span> <span class="ico text-center va va-mush va-z-15"></span> pour <?php echo $user_infos['next_level']; ?></div>
+                            <div id="example-caption-5">Encore <span class="decompte_vote"><?php echo $nb_need_money; ?></span> <span class="ico text-center va va-mush va-z-15"></span> pour <?php echo $infos_vainkeur['next_level']; ?></div>
                           <?php else : ?>
                             <a href="<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>" class="t-white">
-                              <div id="example-caption-5">Créé ton compte pour passer <?php echo $user_infos['next_level']; ?></div>
+                              <div id="example-caption-5">Créé ton compte pour passer <?php echo $infos_vainkeur['next_level']; ?></div>
                             </a>
                           <?php endif; ?>
                         </div>
@@ -196,9 +194,9 @@ if ($list_user_toplists) {
                           </span>
                         </div>
                         <h2 class="font-weight-bolder">
-                          <?php echo $user_infos['nb_vote_vkrz']; ?>
+                          <?php echo $infos_vainkeur['nb_vote_vkrz']; ?>
                         </h2>
-                        <?php if ($vainkeur_info['nb_vote_vkrz'] > 1) : ?>
+                        <?php if ($infos_vainkeur['nb_vote_vkrz'] > 1) : ?>
                           <p class="card-text legende">Votes</p>
                         <?php else : ?>
                           <p class="card-text legende">Vote</p>
@@ -215,9 +213,9 @@ if ($list_user_toplists) {
                           </span>
                         </div>
                         <h2 class="font-weight-bolder">
-                          <?php echo $user_infos['nb_top_vkrz']; ?>
+                          <?php echo $infos_vainkeur['nb_top_vkrz']; ?>
                         </h2>
-                        <?php if ($user_infos['nb_top_vkrz'] > 1) : ?>
+                        <?php if ($infos_vainkeur['nb_top_vkrz'] > 1) : ?>
                           <p class="card-text legende">Tops terminés</p>
                         <?php else : ?>
                           <p class="card-text legende">Top terminé</p>
@@ -309,10 +307,10 @@ if ($list_user_toplists) {
                                 <tr>
                                   <th class="">
                                     <span class="text-muted">
-                                      <?php if ($user_infos['nb_top_vkrz'] > 1) : ?>
-                                        <span class="t-rose"><?php echo $user_infos['nb_top_vkrz']; ?></span> Tops terminés
+                                      <?php if ($infos_vainkeur['nb_top_vkrz'] > 1) : ?>
+                                        <span class="t-rose"><?php echo $infos_vainkeur['nb_top_vkrz']; ?></span> Tops terminés
                                       <?php else : ?>
-                                        <span class="t-rose"><?php echo $user_infos['nb_top_vkrz']; ?></span> Top terminé
+                                        <span class="t-rose"><?php echo $infos_vainkeur['nb_top_vkrz']; ?></span> Top terminé
                                       <?php endif; ?>
                                     </span>
                                   </th>

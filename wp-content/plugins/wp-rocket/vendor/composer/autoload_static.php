@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit6f489849bb133fe398e96c31b9d19375
+class ComposerStaticInit5e8b70a7af1362bbf2ace42daac94034
 {
     public static $prefixLengthsPsr4 = array (
         'W' => 
@@ -467,6 +467,9 @@ class ComposerStaticInit6f489849bb133fe398e96c31b9d19375
         'WP_Rocket\\ThirdParty\\Themes\\Bridge' => __DIR__ . '/../..' . '/inc/ThirdParty/Themes/Bridge.php',
         'WP_Rocket\\ThirdParty\\Themes\\Divi' => __DIR__ . '/../..' . '/inc/ThirdParty/Themes/Divi.php',
         'WP_Rocket\\ThirdParty\\Themes\\Flatsome' => __DIR__ . '/../..' . '/inc/ThirdParty/Themes/Flatsome.php',
+        'WP_Rocket\\ThirdParty\\Themes\\Jevelin' => __DIR__ . '/../..' . '/inc/ThirdParty/Themes/Jevelin.php',
+        'WP_Rocket\\ThirdParty\\Themes\\Polygon' => __DIR__ . '/../..' . '/inc/ThirdParty/Themes/Polygon.php',
+        'WP_Rocket\\ThirdParty\\Themes\\Xstore' => __DIR__ . '/../..' . '/inc/ThirdParty/Themes/Xstore.php',
         'WP_Rocket\\Traits\\Config_Updater' => __DIR__ . '/../..' . '/inc/classes/traits/trait-config-updater.php',
         'WP_Rocket\\Traits\\Memoize' => __DIR__ . '/../..' . '/inc/classes/traits/trait-memoize.php',
         'WP_Rocket\\deprecated\\DeprecatedClassTrait' => __DIR__ . '/../..' . '/inc/deprecated/DeprecatedClassTrait.php',
@@ -479,9 +482,9 @@ class ComposerStaticInit6f489849bb133fe398e96c31b9d19375
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit6f489849bb133fe398e96c31b9d19375::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit6f489849bb133fe398e96c31b9d19375::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit6f489849bb133fe398e96c31b9d19375::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit5e8b70a7af1362bbf2ace42daac94034::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit5e8b70a7af1362bbf2ace42daac94034::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit5e8b70a7af1362bbf2ace42daac94034::$classMap;
 
         }, null, ClassLoader::class);
     }

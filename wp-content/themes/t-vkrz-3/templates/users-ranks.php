@@ -76,14 +76,14 @@ $list_toplist   = json_decode(get_field('all_toplist_resume', $id_resume));
                                                         </thead>
                                                         <tbody>
                                                             <?php foreach ($list_toplist as $id_ranking) :
-                                                                $uuid_user_r             = get_field('uuid_user_r', $id_ranking);
-                                                                $vainkeur_data_selected  = find_vkrz_user($uuid_user_r);
+                                                                $uuiduser                = get_field('uuid_user_r', $id_ranking);
+                                                                $vainkeur_data_selected  = get_user_infos($uuiduser);
                                                                 if ($vainkeur_data_selected) : ?>
                                                                     <tr>
                                                                         <td class="vainkeur-table">
                                                                             <span class="avatar">
                                                                                 <?php if ($vainkeur_data_selected) : ?>
-                                                                                    <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_vainkeur'])); ?>">
+                                                                                    <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_user'])); ?>">
                                                                                         <span class="avatar-picture" style="background-image: url(<?php echo $vainkeur_data_selected['avatar']; ?>);"></span>
                                                                                     </a>
                                                                                     <?php if ($vainkeur_data_selected) : ?>
@@ -96,7 +96,7 @@ $list_toplist   = json_decode(get_field('all_toplist_resume', $id_resume));
                                                                                 <?php endif; ?>
                                                                             </span>
                                                                             <span class="font-weight-bold championname">
-                                                                                <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_vainkeur'])); ?>">
+                                                                                <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_user'])); ?>">
                                                                                     <?php echo $vainkeur_data_selected['pseudo']; ?>
                                                                                     <?php if ($vainkeur_data_selected) : ?>
                                                                                         <span class="user-niveau-xs">

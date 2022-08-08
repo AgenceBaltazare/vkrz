@@ -2,12 +2,21 @@
 /*
     Template Name: TAS
 */
-global $user_id;
-global $uuiduser;
-global $user_tops;
+global $id_vainkeur;
+global $uuid_vainkeur;
 get_header();
+if (is_user_logged_in() && env() != "local") {
+    if (false === ($user_tops = get_transient('user_' . $user_id . '_get_user_tops'))) {
+        $user_tops = get_user_tops($id_vainkeur);
+        set_transient('user_' . $user_id . '_get_user_tops', $user_tops, DAY_IN_SECONDS);
+    } else {
+        $user_tops = get_transient('user_' . $user_id . '_get_user_tops');
+    }
+} else {
+    $user_tops  = get_user_tops($id_vainkeur);
+}
 $list_user_tops = $user_tops['list_user_tops_done_ids'];
-$tops_sponso = new WP_Query(array(
+$tops_sponso    = new WP_Query(array(
     'post_type'                 => 'tournoi',
     'orderby'                   => 'date',
     'order'                     => 'DESC',
@@ -89,7 +98,7 @@ $tops_sponso_old = new WP_Query(array(
                                                         Liste de tous les <span class="t-rose">tirages au sort</span> passés & futur.
                                                     </h4>
                                                     <div class="cta text-right d-flex flex-column">
-                                                        <a href="<?php the_permalink(get_page_by_path('tops-sponso')); ?>/" class="btn btn-primary waves-effect">
+                                                        <a href="<?php the_permalink(get_page_by_path('tops-sponso')); ?>" class="btn btn-primary waves-effect">
                                                             Voir tous les Tops sponso en cours <span class="va va-wrapped-gift va-md"></span>
                                                         </a>
                                                     </div>
@@ -122,44 +131,22 @@ $tops_sponso_old = new WP_Query(array(
                                                                 $illu               = get_the_post_thumbnail_url($id_top, 'medium');
                                                                 $top_datas          = get_top_data($id_top);
                                                                 $players = new WP_Query(array(
-                                                                    'ignore_sticky_posts'        => true,
-                                                                    'update_post_meta_cache'    => false,
-                                                                    'no_found_rows'                => true,
-                                                                    'post_type'                    => 'player',
-                                                                    'orderby'                    => 'date',
-                                                                    'order'                        => 'DESC',
-                                                                    'posts_per_page'            => -1,
-                                                                    'meta_query'             => array(
-                                                                        array(
-                                                                            'key'       => 'id_t_p',
-                                                                            'value'     => $id_top,
-                                                                            'compare'   => '='
-                                                                        )
-                                                                    ),
-                                                                ));
-                                                                $player_test = new WP_Query(array(
                                                                     'ignore_sticky_posts'       => true,
                                                                     'update_post_meta_cache'    => false,
                                                                     'no_found_rows'             => true,
                                                                     'post_type'                 => 'player',
                                                                     'orderby'                   => 'date',
                                                                     'order'                     => 'DESC',
-                                                                    'posts_per_page'            => 1,
+                                                                    'posts_per_page'            => -1,
                                                                     'meta_query'                => array(
-                                                                        'relation' => 'AND',
                                                                         array(
                                                                             'key'       => 'id_t_p',
                                                                             'value'     => $id_top,
                                                                             'compare'   => '='
-                                                                        ),
-                                                                        array(
-                                                                            'key'       => 'uuid_vainkeur_p',
-                                                                            'value'     => $uuiduser,
-                                                                            'compare'   => '='
                                                                         )
                                                                     ),
                                                                 ));
-                                                                if ($player_test->have_posts()) {
+                                                                if (in_array($id_top, $user_tops['list_user_tops_done_ids'])) {
                                                                     $state = "participation";
                                                                 } else {
                                                                     $user_sinle_top_data = array_search($id_top, array_column($list_user_tops, 'id_top'));
@@ -169,7 +156,6 @@ $tops_sponso_old = new WP_Query(array(
                                                                         $state = "todo";
                                                                     }
                                                                 }
-                                                                $player_test->reset_postdata();
                                                                 $players->reset_postdata();
                                                                 wp_reset_query();
                                                             ?>
@@ -248,13 +234,13 @@ $tops_sponso_old = new WP_Query(array(
                                                                                     </span>
                                                                                 <?php else : ?>
                                                                                     <?php
-                                                                                    $gagnant_id         = get_post_field('post_author', get_field('gagnant_idplayer_t_sponso', $id_top));
-                                                                                    $gagnant_id_uuid    = get_field('uuiduser_user', 'user_' . $gagnant_id);
-                                                                                    $vainkeur_data_selected  = find_vkrz_user($gagnant_id_uuid);
+                                                                                    $gagnant_id              = get_field('gagnant_idplayer_t_sponso', $id_top);
+                                                                                    $gagnant_uuid            = get_field('uuid_vainkeur_p', $gagnant_id);
+                                                                                    $vainkeur_data_selected  = get_user_infos($gagnant_uuid);
                                                                                     ?>
                                                                                     <span class="avatar">
                                                                                         <?php if ($vainkeur_data_selected) : ?>
-                                                                                            <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_vainkeur'])); ?>">
+                                                                                            <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_user'])); ?>">
                                                                                                 <span class="avatar-picture" style="background-image: url(<?php echo $vainkeur_data_selected['avatar']; ?>);"></span>
                                                                                             </a>
                                                                                         <?php else : ?>
@@ -268,7 +254,7 @@ $tops_sponso_old = new WP_Query(array(
                                                                                     </span>
                                                                                     <span class="font-weight-bold championname">
                                                                                         <?php if ($vainkeur_data_selected) : ?>
-                                                                                            <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_vainkeur'])); ?>">
+                                                                                            <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_user'])); ?>">
                                                                                                 <?php echo $vainkeur_data_selected['pseudo']; ?>
                                                                                                 <?php if ($vainkeur_data_selected) : ?>
                                                                                                     <span class="user-niveau-xs">
@@ -318,29 +304,7 @@ $tops_sponso_old = new WP_Query(array(
                                                                         )
                                                                     ),
                                                                 ));
-                                                                $player_test = new WP_Query(array(
-                                                                    'ignore_sticky_posts'       => true,
-                                                                    'update_post_meta_cache'    => false,
-                                                                    'no_found_rows'             => true,
-                                                                    'post_type'                 => 'player',
-                                                                    'orderby'                   => 'date',
-                                                                    'order'                     => 'DESC',
-                                                                    'posts_per_page'            => 1,
-                                                                    'meta_query'                => array(
-                                                                        'relation' => 'AND',
-                                                                        array(
-                                                                            'key'       => 'id_t_p',
-                                                                            'value'     => $id_top,
-                                                                            'compare'   => '='
-                                                                        ),
-                                                                        array(
-                                                                            'key'       => 'uuid_vainkeur_p',
-                                                                            'value'     => $uuiduser,
-                                                                            'compare'   => '='
-                                                                        )
-                                                                    ),
-                                                                ));
-                                                                if ($player_test->have_posts()) {
+                                                                if (in_array($id_top, $user_tops['list_user_tops_done_ids'])) {
                                                                     $state = "participation";
                                                                 } else {
                                                                     $user_sinle_top_data = array_search($id_top, array_column($list_user_tops, 'id_top'));
@@ -350,7 +314,6 @@ $tops_sponso_old = new WP_Query(array(
                                                                         $state = "todo";
                                                                     }
                                                                 }
-                                                                $player_test->reset_postdata();
                                                                 $players->reset_postdata();
                                                                 wp_reset_query();
                                                             ?>
@@ -422,13 +385,13 @@ $tops_sponso_old = new WP_Query(array(
                                                                                     </span>
                                                                                 <?php else : ?>
                                                                                     <?php
-                                                                                    $gagnant_id         = get_post_field('post_author', get_field('gagnant_idplayer_t_sponso', $id_top));
-                                                                                    $gagnant_id_uuid    = get_field('uuiduser_user', 'user_' . $gagnant_id);
-                                                                                    $vainkeur_data_selected  = find_vkrz_user($gagnant_id_uuid);
+                                                                                    $gagnant_id              = get_field('gagnant_idplayer_t_sponso', $id_top);
+                                                                                    $gagnant_uuid            = get_field('uuid_vainkeur_p', $gagnant_id);
+                                                                                    $vainkeur_data_selected  = get_user_infos($gagnant_uuid);
                                                                                     ?>
                                                                                     <span class="avatar">
                                                                                         <?php if ($vainkeur_data_selected) : ?>
-                                                                                            <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_vainkeur'])); ?>">
+                                                                                            <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_user'])); ?>">
                                                                                                 <span class="avatar-picture" style="background-image: url(<?php echo $vainkeur_data_selected['avatar']; ?>);"></span>
                                                                                             </a>
                                                                                         <?php else : ?>
@@ -442,7 +405,7 @@ $tops_sponso_old = new WP_Query(array(
                                                                                     </span>
                                                                                     <span class="font-weight-bold championname">
                                                                                         <?php if ($vainkeur_data_selected) : ?>
-                                                                                            <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_vainkeur'])); ?>">
+                                                                                            <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_user'])); ?>">
                                                                                                 <?php echo $vainkeur_data_selected['pseudo']; ?>
                                                                                                 <?php if ($vainkeur_data_selected) : ?>
                                                                                                     <span class="user-niveau-xs">

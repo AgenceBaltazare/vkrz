@@ -1,8 +1,8 @@
 <?php
-function get_user_ranking_id($id_top, $uuiduser = false, $id_vainkeur = false) {
+function get_user_ranking_id($id_top, $uuid_vainkeur = false, $id_vainkeur = false) {
 
-    if(!$uuiduser){
-        $uuiduser = $_COOKIE['vainkeurz_user_id'];
+    if(!$uuid_vainkeur){
+        $uuid_vainkeur = $_COOKIE['vainkeurz_uuid_cookie'];
     }
 
     $id_ranking         = false;
@@ -19,7 +19,7 @@ function get_user_ranking_id($id_top, $uuiduser = false, $id_vainkeur = false) {
         }
     }
 
-    if(isset($uuiduser) && $uuiduser != "" && $have_already_top == true) {
+    if(isset($uuid_vainkeur) && $uuid_vainkeur != "" && $have_already_top == true) {
 
         $user_ranking = new WP_Query(array(
             'post_type'              => 'classement',
@@ -39,7 +39,7 @@ function get_user_ranking_id($id_top, $uuiduser = false, $id_vainkeur = false) {
                     ),
                     array(
                         'key' => 'uuid_user_r',
-                        'value' => $uuiduser,
+                        'value' => $uuid_vainkeur,
                         'compare' => '=',
                     )
                 )

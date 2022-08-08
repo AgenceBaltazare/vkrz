@@ -2039,7 +2039,7 @@ textarea {
 .wppb-user-forms input[type=email],
 .wppb-user-forms input[type=password],
 .wppb-user-forms textarea {
-  background: transparent !important;
+  background-color: transparent !important;
   border: 2px solid rgba(255, 255, 255, 0.2) !important;
   padding: 20px 15px !important;
   font-size: 15px !important;
@@ -2073,6 +2073,22 @@ textarea {
   transition: background-color 5000s ease-in-out 0s !important;
   background: transparent !important;
   outline: 0;
+}
+
+/* Change Autocomplete styles in Chrome*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  background-color: #21123e !important;
+  -webkit-box-shadow: 0 0 0px 1000px #21123e inset;
+  -webkit-transition: background-color 5000s ease-in-out 0s;
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 .profile-tabs {
@@ -4447,6 +4463,14 @@ textarea {
 
 .va-grinning-face-with-smiling-eyes {
   background-image: url(../../images/emojis/grinning-face-with-smiling-eyes.png);
+}
+
+.va-lolipop {
+  background-image: url(../../images/emojis/lollipop_1f36d.png);
+}
+
+.va-kissing {
+  background-image: url(../../images/emojis/kissing-face_1f617.png);
 }
 
 /***** Icons END *****/

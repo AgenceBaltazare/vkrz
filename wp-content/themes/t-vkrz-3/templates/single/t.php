@@ -1,27 +1,23 @@
 <?php
-global $uuiduser;
+global $uuid_vainkeur;
+global $user_id;
+global $user_tops;
+global $infos_vainkeur;
 global $id_vainkeur;
-global $id_ranking;
-global $id_top;
-global $is_next_duel;
-global $top_infos;
 global $utm;
-global $user_infos;
-$utm            = deal_utm();
+global $id_top;
 $id_top         = get_the_ID();
-$uuiduser       = deal_uuiduser();
-$user_infos     = deal_vainkeur_entry();
-$id_vainkeur    = $user_infos['id_vainkeur'];
-$id_ranking     = get_user_ranking_id($id_top, $uuiduser, $id_vainkeur);
+get_header();
+$id_ranking     = get_user_ranking_id($id_top, $uuid_vainkeur, $id_vainkeur);
 if ($id_ranking) {
   extract(get_next_duel($id_ranking, $id_top, $id_vainkeur));
   if (!$is_next_duel) {
     wp_redirect(get_the_permalink($id_ranking));
   }
 }
-get_header();
 $url_ranking        = get_the_permalink($id_ranking);
 $top_datas          = get_top_data($id_top);
+$top_infos          = get_top_infos($id_top);
 $creator_id         = get_post_field('post_author', $id_top);
 $creator_uuiduser   = get_field('uuiduser_user', 'user_' . $creator_id);
 $creator_data       = get_user_infos($creator_uuiduser);
@@ -109,7 +105,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                 <?php if ($top_infos['top_number'] <= 20) : ?>
                   <div class="choosecta">
                     <div class="cta-begin cta-complet">
-                      <a href="#" id="begin_t" data-typetop="complet" data-top="<?php echo $id_top; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
+                      <a href="#" id="begin_t" data-typetop="complet" data-top="<?php echo $id_top; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-uuiduser="<?php echo $uuid_vainkeur; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
                         Top Complet
                       </a>
                       <small class="text-muted">
@@ -126,7 +122,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                     </div>
                     <?php if ($top_infos['top_number'] > 10) : ?>
                       <div class="cta-begin cta-top3">
-                        <a href="#" id="begin_top3" data-typetop="top3" data-top="<?php echo $id_top; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
+                        <a href="#" id="begin_top3" data-typetop="top3" data-top="<?php echo $id_top; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-uuiduser="<?php echo $uuid_vainkeur; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
                           Top 3
                         </a>
                         <small class="text-muted">
@@ -395,7 +391,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                 <span class="ico">🎂</span> Créé <span class="t-violet"><?php echo $info_date; ?></span> par :
               </h4>
               <div class="employee-task d-flex justify-content-between align-items-center">
-                <a href="<?php echo $creator_data['profil_url']; ?>" class="d-flex flex-row link-to-creator">
+                <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator_id; ?>" class="d-flex flex-row link-to-creator">
                   <div class="avatar me-75 mr-1">
                     <img src="<?php echo $creator_data['avatar']; ?>" class="circle" width="42" height="42" alt="Avatar">
                   </div>

@@ -1,5 +1,4 @@
 <?php
-
 add_action('publish_contender', 'update_count_contenders');
 add_action('draft_contender', 'update_count_contenders');
 add_action('trash_contender', 'update_count_contenders');
@@ -8,7 +7,7 @@ add_action('publish_tournoi', 'publish_top_by_creator');
 function update_count_contenders($post_id){
     // If create new contender, the query return post without current new contender and get_field doesn't work
     $current_post = 0;
-    $top_id = get_field('id_tournoi_c', $post_id);
+    $top_id       = get_field('id_tournoi_c', $post_id);
 
     if (!get_field('id_tournoi_c', $post_id)) {
         $current_post = 1;

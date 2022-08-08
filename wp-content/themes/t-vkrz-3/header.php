@@ -1,49 +1,26 @@
 <?php
-global $uuiduser;
+global $uuid_vainkeur;
 global $user_id;
 global $user_tops;
-global $user_infos;
+global $infos_vainkeur;
 global $id_vainkeur;
 global $utm;
-global $type_top;
-global $sponso;
-global $list_user_tops;
-global $list_user_tops_begin;
-if (is_single()) {
-  global $id_top;
-  $get_top_type = get_the_terms(get_the_ID(), 'type');
-  if ($get_top_type) {
-    foreach ($get_top_type as $type_top) {
-      $type_top = $type_top->slug;
-    }
-  }
+global $id_top;
+$user_id        = get_user_logged_id();
+$vainkeur       = get_vainkeur();
+$uuid_vainkeur  = $vainkeur['uuid_vainkeur'];
+$id_vainkeur    = $vainkeur['id_vainkeur'];
+if(is_user_logged_in()){
+  $infos_vainkeur = get_user_infos($uuid_vainkeur, "complete");
 }
-if (!is_single() || get_post_type() != "tournoi") {
-  $user_id        = get_user_logged_id();
-  $uuiduser       = deal_uuiduser();
-  $user_infos     = deal_vainkeur_entry();
-  $id_vainkeur    = $user_infos['id_vainkeur'];
-
-  if (is_user_logged_in() && env() != "local") {
-    if (false === ($user_tops = get_transient('user_' . $user_id . '_get_user_tops'))) {
-      $user_tops = get_user_tops($id_vainkeur);
-      set_transient('user_' . $user_id . '_get_user_tops', $user_tops, DAY_IN_SECONDS);
-    } else {
-      $user_tops = get_transient('user_' . $user_id . '_get_user_tops');
-    }
-  } else {
-    $user_tops  = get_user_tops($id_vainkeur);
-  }
+else{
+  $infos_vainkeur = get_user_infos($uuid_vainkeur, "short");
 }
-if (isset($_GET['id_top']) && $_GET['id_top'] != "") {
-  $id_top = $_GET['id_top'];
-}
-$utm            = deal_utm();
+$utm = deal_utm();
 wp_reset_query();
 ?>
 <!DOCTYPE html>
 <html class="loading dark-layout" lang="fr" data-layout="dark-layout" data-textdirection="ltr">
-
 <head>
   <!--[if lt IE 9]>
     <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -75,7 +52,7 @@ wp_reset_query();
 
   <?php get_template_part('partials/meta'); ?>
 
-  <?php if ($user_infos['user_role'] != "administrator" && env() != "local") : ?>
+  <?php if ($infos_vainkeur['user_role'] != "administrator" && env() != "local") : ?>
     <!-- Google Tag Manager -->
     <script>
       (function(w, d, s, l, i) {
@@ -111,9 +88,9 @@ wp_reset_query();
     })();
   </script>
   <script>
-    $crisp.push(["set", "user:email", ["<?php echo $user_infos['user_email']; ?>"]]);
-    $crisp.push(["set", "user:nickname", ["<?php echo $user_infos['pseudo']; ?>"]]);
-    $crisp.push(["set", "user:avatar", ["<?php echo $user_infos['avatar']; ?>"]]);
+    $crisp.push(["set", "user:email", ["<?php echo $infos_vainkeur['user_email']; ?>"]]);
+    $crisp.push(["set", "user:nickname", ["<?php echo $infos_vainkeur['pseudo']; ?>"]]);
+    $crisp.push(["set", "user:avatar", ["<?php echo $infos_vainkeur['avatar']; ?>"]]);
   </script>
 
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-rqn26AG5Pj86AF4SO72RK5fyefcQ/x32DNQfChxWvbXIyXFePlEktwD18fEz+kQU" crossorigin="anonymous">
@@ -135,28 +112,31 @@ if (is_single() || is_page(get_page_by_path('monitor'))) {
 }
 
 // FOR NOTIFICATIONS… ✋
-$anonyme_avatar_url = get_bloginfo('template_directory') . '/assets/images/vkrz/avatar-rose.png';
+if($infos_vainkeur['avatar']){
+  $anonyme_avatar_url = $infos_vainkeur['avatar'];
+}
+else{
+  $anonyme_avatar_url = get_bloginfo('template_directory') . '/assets/images/vkrz/avatar-rose.png';
+}
 ?>
 
 <script>
-  const currentUserId = "<?php echo wp_get_current_user()->ID; ?>",
+  const currentUserId = "<?php echo $user_id; ?>",
     currentUserProfileUrl = "<?php echo get_author_posts_url($user_id); ?>",
     anonymeAvatarUrl = "<?php echo $anonyme_avatar_url; ?>",
-    vainkeurPseudo = "<?php echo $user_infos['pseudo']; ?>",
-    currentUuid = "<?php echo $uuiduser; ?>"
+    vainkeurPseudo = "<?php echo $infos_vainkeur['pseudo']; ?>",
+    currentUuid = "<?php echo $uuid_vainkeur; ?>"
 </script>
 
 <body <?php body_class($list_body_class); ?> data-open="click" data-menu="vertical-menu-modern" data-col="">
 
-  <?php if ($user_infos['user_role'] != "administrator" && env() != "local") : ?>
+  <?php if ($infos_vainkeur['user_role'] != "administrator" && env() != "local") : ?>
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KH379F5" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
-  <?php endif; ?>
-
-  <?php if (!is_single() || $type_top != "whitelabel") : ?>
-    <?php
-    get_template_part('partials/menu-user');
-    get_template_part('partials/menu-vkrz');
-    ?>
-  <?php endif; ?>
+  <?php endif;
+  
+  get_template_part('partials/menu-user');
+  get_template_part('partials/menu-vkrz');
+  
+  ?>

@@ -1,6 +1,7 @@
 <?php
 global $user_tops;
 global $id_top;
+$class            = "";
 $id_top           = get_the_ID();
 $top_datas        = get_top_data($id_top);
 $creator_id       = get_post_field('post_author', $id_top);
@@ -16,8 +17,6 @@ if (is_home()) {
   $class        = "swiper-slide";
 } elseif (is_single()) {
   $class        = "col-md-12 col-6";
-} else {
-  $class        = "col-12";
 }
 if (in_array($id_top, $list_user_tops)) {
   $state = "done";
