@@ -8,7 +8,7 @@ $creator_id       = get_post_field('post_author', $id_top);
 $creator_info     = get_userdata($creator_id);
 $creator_pseudo   = $creator_info->nickname;
 $creator_avatar   = get_avatar_url($creator_id, ['size' => '80', 'force_default' => false]);
-$list_user_tops   = $user_tops['list_user_tops_done_ids'];
+$list_user_tops         = $user_tops['list_user_tops_done_ids'];
 $list_user_tops_begin   = $user_tops['list_user_tops_begin_ids'];
 $type_top         = "";
 $state            = "";
@@ -20,11 +20,9 @@ if (is_home()) {
 }
 if (in_array($id_top, $list_user_tops)) {
   $state = "done";
-} 
-elseif (in_array($id_top, $list_user_tops_begin)) {
+} elseif (in_array($id_top, $list_user_tops_begin)) {
   $state = "begin";
-}
-else {
+} else {
   $state = "todo";
 }
 $get_top_type = get_the_terms($id_top, 'type');
@@ -50,7 +48,7 @@ if ($get_top_type) {
       <div class="voile">
         <?php if ($state == "done") : ?>
           <div class="spoun">
-            <h5>Voir mon 🏆</h5>
+            <h5>Voir ma Toplist</h5>
           </div>
         <?php elseif ($state == "begin") : ?>
           <div class="spoun">
@@ -58,7 +56,7 @@ if ($get_top_type) {
           </div>
         <?php else : ?>
           <div class="spoun">
-            <h5>Faire mon 🏆</h5>
+            <h5>Faire ma Toplist</h5>
           </div>
         <?php endif; ?>
       </div>

@@ -3,11 +3,12 @@
     Template Name: Shop
 */
 get_header();
-global $uuiduser;
+global $uuid_vainkeur;
 global $user_id;
+global $user_tops;
+global $infos_vainkeur;
 global $id_vainkeur;
-global $user_infos;
-$solde_disponible   = $user_infos['current_money_vkrz'];
+$solde_disponible   = $infos_vainkeur['current_money_vkrz'];
 ?>
 <div class="app-content content ecommerce-application">
     <div class="content-overlay"></div>
@@ -56,7 +57,7 @@ $solde_disponible   = $user_infos['current_money_vkrz'];
                             <div class="item-options text-center px-1 pb-1 pt-0">
                                 <?php if (get_field('reserve_aux_createurs_produit')) : ?>
 
-                                    <?php if ($user_infos['user_role'] == "administrator" || $user_infos['user_role'] == "author") : ?>
+                                    <?php if ($infos_vainkeur['user_role'] == "administrator" || $infos_vainkeur['user_role'] == "author") : ?>
                                         <button type="button" class="btn btn-primary w-100 waves-effect" data-toggle="modal" data-target="#cart-<?php echo $p; ?>">
                                             <span class="add-to-cart">Commander</span>
                                         </button>
@@ -90,7 +91,7 @@ $solde_disponible   = $user_infos['current_money_vkrz'];
                                     <div class="modal-body">
                                         <?php if ($solde_disponible >= get_field('montant_produit')) : ?>
                                             <p>
-                                                On revient vite vers toi par email (<span class="t-rose"><?php echo $user_infos['user_email']; ?></span>) pour finaliser la commande.
+                                                On revient vite vers toi par email (<span class="t-rose"><?php echo $infos_vainkeur['user_email']; ?></span>) pour finaliser la commande.
                                                 Promi, juré <span class="m-l-5 va-water va va-lg"></span>
                                             </p>
                                         <?php else : ?>
@@ -105,7 +106,7 @@ $solde_disponible   = $user_infos['current_money_vkrz'];
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-outline-danger waves-effect" data-dismiss="modal">Annuler</button>
                                         <?php if ($solde_disponible >= get_field('montant_produit')) : ?>
-                                            <button type="button" class="ordershop btn btn-primary waves-effect waves-float waves-light" data-dismiss="modal" data-user_email="<?php echo $user_infos['user_email']; ?>" data-idproduit="<?php the_ID(); ?>" data-uuid="<?php echo $user_infos['uuid_user_vkrz']; ?>" data-price="<?php the_field('montant_produit'); ?>" data-idvainkeur="<?php echo $user_infos['id_vainkeur']; ?>">
+                                            <button type="button" class="ordershop btn btn-primary waves-effect waves-float waves-light" data-dismiss="modal" data-user_email="<?php echo $infos_vainkeur['user_email']; ?>" data-idproduit="<?php the_ID(); ?>" data-uuid="<?php echo $infos_vainkeur['uuid_vainkeur']; ?>" data-price="<?php the_field('montant_produit'); ?>" data-idvainkeur="<?php echo $infos_vainkeur['id_vainkeur']; ?>">
                                                 Valider la commande
                                             </button>
                                         <?php endif; ?>

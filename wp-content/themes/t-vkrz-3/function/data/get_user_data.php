@@ -169,9 +169,10 @@ function get_user_infos($uuid_vainkeur, $size = "short"){
             'level_number'      => $info_user_level['level_number'],
             'next_level'        => $info_user_level['next_level'],
             'uuid_vainkeur'     => $uuid_vainkeur,
-            'id_vainkeur'       => $id_vainkeur
+            'id_vainkeur'       => $id_vainkeur,
+            'profil_url'        => esc_url(get_author_posts_url($user_id)),
+            'creator_url'       => get_the_permalink(218587) . '?creator_id=' . $user_id
         );
-
     }
 
     if($size == "complete"){

@@ -175,7 +175,7 @@ class Firebase_Rest_Api_User {
     }
 
     if (
-      empty($referer) || strpos($referer, $site_url) === false
+      empty($referer) || parse_url($site_url)['host'] !== parse_url($referer)['host']
     ) {
       $error->add(400, __("Invalid Referer Origin", 'integrate-firebase-PRO'), array('status' => false));
       return $error;

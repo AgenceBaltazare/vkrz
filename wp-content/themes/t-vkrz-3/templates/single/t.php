@@ -6,8 +6,16 @@ global $infos_vainkeur;
 global $id_vainkeur;
 global $utm;
 global $id_top;
+$user_id        = get_user_logged_id();
+$vainkeur       = get_vainkeur();
+$uuid_vainkeur  = $vainkeur['uuid_vainkeur'];
+$id_vainkeur    = $vainkeur['id_vainkeur'];
+if (is_user_logged_in()) {
+  $infos_vainkeur = get_user_infos($uuid_vainkeur, "complete");
+} else {
+  $infos_vainkeur = get_user_infos($uuid_vainkeur, "short");
+}
 $id_top         = get_the_ID();
-get_header();
 $id_ranking     = get_user_ranking_id($id_top, $uuid_vainkeur, $id_vainkeur);
 if ($id_ranking) {
   extract(get_next_duel($id_ranking, $id_top, $id_vainkeur));
@@ -15,12 +23,13 @@ if ($id_ranking) {
     wp_redirect(get_the_permalink($id_ranking));
   }
 }
-$url_ranking        = get_the_permalink($id_ranking);
+$url_top            = get_the_permalink($id_top);
 $top_datas          = get_top_data($id_top);
 $top_infos          = get_top_infos($id_top);
 $creator_id         = get_post_field('post_author', $id_top);
 $creator_uuiduser   = get_field('uuiduser_user', 'user_' . $creator_id);
 $creator_data       = get_user_infos($creator_uuiduser);
+get_header();
 ?>
 <script>
   const link_to_ranking = "<?= get_the_permalink($id_ranking) ?>";
@@ -29,6 +38,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
   <div class="content-overlay"></div>
   <div class="content-wrapper">
     <div class="content-body tournoi-content">
+      <?php var_dump(get_next_duel($id_ranking, $id_top, $id_vainkeur)); ?>
       <?php if (!$id_ranking) : ?>
 
         <div class="content-intro">
@@ -329,17 +339,17 @@ $creator_data       = get_user_infos($creator_uuiduser);
         </a>
       </li>
       <li>
-        <a href="https://twitter.com/intent/tweet?text=Go faire le TOP <?php echo $top_infos['top_number']; ?> <?php echo $top_infos['top_title']; ?>&via=vainkeurz&hashtags=VKRZ&url=<?php echo $url_ranking; ?>" target="_blank" title="Tweet">
+        <a href="https://twitter.com/intent/tweet?text=Go faire le TOP <?php echo $top_infos['top_number']; ?> <?php echo $top_infos['top_title']; ?>&via=vainkeurz&hashtags=VKRZ&url=<?php echo $url_top; ?>" target="_blank" title="Tweet">
           <i class="social-media fab fa-twitter"></i> Dans un Tweet
         </a>
       </li>
       <li>
-        <a href="whatsapp://send?text=<?php echo $url_ranking; ?>" data-action="share/whatsapp/share">
+        <a href="whatsapp://send?text=<?php echo $url_top; ?>" data-action="share/whatsapp/share">
           <i class="social-media mb-12 fab fa-whatsapp"></i> Sur WhatsApp
         </a>
       </li>
       <li>
-        <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $url_ranking; ?>" title="Partager sur Facebook" target="_blank">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $url_top; ?>" title="Partager sur Facebook" target="_blank">
           <i class="social-media fab fa-facebook-f"></i> Sur Facebook
         </a>
       </li>
@@ -388,7 +398,7 @@ $creator_data       = get_user_infos($creator_uuiduser);
                   $info_date = "depuis " . $interval->days . " jours";
                 }
                 ?>
-                <span class="ico">🎂</span> Créé <span class="t-violet"><?php echo $info_date; ?></span> par :
+                <span class="va va-birthday-cake va-md"></span> Créé <span class="t-violet"><?php echo $info_date; ?></span> par :
               </h4>
               <div class="employee-task d-flex justify-content-between align-items-center">
                 <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator_id; ?>" class="d-flex flex-row link-to-creator">

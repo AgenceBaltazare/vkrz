@@ -87,7 +87,7 @@ $list_user_tops_begin = $user_tops['list_user_tops_begin_ids'];
             <div class="card">
               <div class="card-body">
                 <h4 class="card-title">
-                  <span class="ico va va-face-with-monocle va-z-20"></span> VAINKEURZ, c'est quoi ?
+                  <span class="ico va va-monocle va-z-20"></span> VAINKEURZ, c'est quoi ?
                 </h4>
                 <p class="card-text mb-2">
                   C'est clairement le moyen le plus douloureux de classer tout ce que tu préfères <span class="ico va va-woozy-face va-z-20"></span>

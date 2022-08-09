@@ -36,7 +36,7 @@ get_header();
                               0
                             </h2>
                             <p class="card-text legende">
-                              <span data-toggle="tooltip" data-placement="top" title="Si tu guettes un vainkeur et que tu es guetter en retour alors vous formez un sacré beau duo" data-original-title="Si tu guettes un vainkeur et que tu es guetter en retour alors vous formez un sacré beau duo">
+                              <span data-toggle="tooltip" data-placement="top" title="Si tu guettes un vainkeur et que tu es guetté en retour alors vous formez un sacré beau duo" data-original-title="Si tu guettes un vainkeur et que tu es guetté en retour alors vous formez un sacré beau duo">
                                 Duo <span class="badge badge-pill badge-light-primary">?</span>
                               </span>
                             </p>
@@ -47,7 +47,7 @@ get_header();
                             <div class="card text-center">
                               <div class="card-body">
                                 <div class="mb-1">
-                                  <span class="ico4 va va-eyes va va-z-30"></span>
+                                  <span class="ico4 va va-guetteur va va-z-30"></span>
                                 </div>
                                 <h2 class="font-weight-bolder followers-nbr-amigos">
                                   0
@@ -64,13 +64,15 @@ get_header();
                             <div class="card text-center">
                               <div class="card-body">
                                 <div class="mb-1">
-                                  <span class="ico4 va va-waving-hand va va-z-30"></span>
+                                  <span class="ico4 va va-monocle va va-z-30"></span>
                                 </div>
                                 <h2 class="font-weight-bolder following-nbr">
                                   0
                                 </h2>
                                 <p class="card-text legende">
-                                  Following
+                                  <span data-toggle="tooltip" data-placement="top" title="Liste des vainkeurs que tu guettes" data-original-title="Liste des vainkeurs que tu guettes">
+                                    Guettés <span class="badge badge-pill badge-light-primary">?</span>
+                                  </span>
                                 </p>
                               </div>
                             </div>

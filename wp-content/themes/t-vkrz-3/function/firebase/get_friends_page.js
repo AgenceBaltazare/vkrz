@@ -107,10 +107,10 @@ const guetteurFunc = async () => {
             data-toggle="tooltip" 
             data-popup="tooltip-custom" 
             data-placement="bottom" 
-            data-original-title="Duo" 
+            data-original-title="En mode duo" 
             class="avatar pull-up"
           >
-          <span class="va-duo va va-lg" alt="Duo"></span>
+          <span class="va-duo va va-z-30" alt="Duo"></span>
           </div>
         </td>
         <td class="d-none">duo</td>
@@ -122,10 +122,10 @@ const guetteurFunc = async () => {
             data-toggle="tooltip" 
             data-popup="tooltip-custom" 
             data-placement="bottom" 
-            data-original-title="Following" 
+            data-original-title="Guetté" 
             class="avatar pull-up"
           >
-          <span class="va-waving-hand va va-lg" alt="Following"></span>
+          <span class="va-monocle va va-z-25" alt="Guetté"></span>
           </div>
         </td>
         <td class="d-none">following</td>
@@ -140,7 +140,7 @@ const guetteurFunc = async () => {
             data-original-title="Guetteur" 
             class="avatar pull-up"
           >
-          <span class="va-eyes va va-lg" alt="Guetteur"></span>
+          <span class="va-guetteur va va-z-30" alt="Guetteur"></span>
           </div>
         </td>
         <td class="d-none">guetteur</td>
@@ -157,8 +157,8 @@ const guetteurFunc = async () => {
           data-amigo=${item.extra.friend ? true : false}
           data-following=${item.extra.following ? true : false}
         >
-          <span class="ico-action va va-throw-bin-button va-z-20"></span> 
-          Unfollow
+          <span class="ico-action va va-cross va-z-20"></span> 
+          Ne plus guetter
         </a>
       `;
       } else {
@@ -173,8 +173,8 @@ const guetteurFunc = async () => {
           data-url="${currentUserProfileUrl}"
           class="followBtns dropdown-item"
         >
-          <span class="ico-action va va-new-button va-z-20"></span> 
-          Follow Back
+          <span class="ico-action va va-monocle va-z-20"></span> 
+          Guetter aussi
         </a>
     `;
       }
@@ -235,7 +235,7 @@ const guetteurFunc = async () => {
             <div class="dropdown-menu dropdown-menu-right">
               <a href="${map.get(item["uuid"]).profil_url
         }" class="dropdown-item">
-                <span class="ico-action va va-eyes va-z-20"></span> Guetter ses TopList
+                <span class="ico-action va va-eyes va-z-20"></span> Voir ses TopList
               </a>
 
               ${followOrUnfollowDiv}

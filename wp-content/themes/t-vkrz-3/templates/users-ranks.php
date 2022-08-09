@@ -203,7 +203,7 @@ $list_toplist   = json_decode(get_field('all_toplist_resume', $id_resume));
                                                     <span class="ico va va-birthday-cake va-lg"></span> Créé <span class="t-violet"><?php echo $info_date; ?></span> par :
                                                 </h4>
                                                 <div class="employee-task d-flex justify-content-between align-items-center">
-                                                    <a href="<?php echo $creator_data['profil_url']; ?>" class="d-flex flex-row link-to-creator">
+                                                    <a href="<?php echo $creator_data['creator_url']; ?>" class="d-flex flex-row link-to-creator">
                                                         <div class="avatar me-75 mr-1">
                                                             <img src="<?php echo $creator_data['avatar']; ?>" class="circle" width="42" height="42" alt="Avatar">
                                                         </div>

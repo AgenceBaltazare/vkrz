@@ -7,48 +7,20 @@ if (isset($_GET['id_top']) && !empty($_GET['id_top'])) {
     $id_top = $_GET['id_top'];
 }
 get_header();
-global $top_infos;
-$list_t_already_done    = $user_tops['list_user_tops_done_ids'];
 $top_datas              = get_top_data($id_top);
-$user_single_top_data   = array_search($id_top, $list_t_already_done);
+$top_infos              = get_top_infos($id_top);
 $contenders_ranking     = get_contenders_ranking($id_top);
 $sponso_datas           = get_players_of_top($id_top);
+$id_resume              = get_resume_id($id_top);
+$list_toplist           = json_decode(get_field('all_toplist_resume', $id_resume));
 $contender_list         = $contenders_ranking;
 $nb_contender           = count($contender_list);
 $ranking_points         = array();
 $ranking_position       = array();
 
-foreach ($contender_list as $contender) {
-    for ($nbc = 0; $nbc <= $nb_contender; $nbc++) {
-        ${"contender_" . $contender['id'] . "_place_" . $pt} = 0;
-    }
-}
+foreach ($list_toplist as $ranking) :
 
-$player_rank = new WP_Query(array(
-    'ignore_sticky_posts'       => true,
-    'update_post_meta_cache'    => false,
-    'no_found_rows'             => true,
-    'post_type'                 => 'classement',
-    'orderby'                   => 'date',
-    'order'                     => 'DESC',
-    'posts_per_page'            => -1,
-    'meta_query' => array(
-        'relation' => 'AND',
-        array(
-            'key' => 'done_r',
-            'value' => 'done',
-            'compare' => '=',
-        ),
-        array(
-            'key'       => 'id_tournoi_r',
-            'value'     => $id_top,
-            'compare'   => '=',
-        )
-    )
-));
-while ($player_rank->have_posts()) : $player_rank->the_post();
-
-    $user_ranking = get_user_ranking(get_the_id());
+    $user_ranking = get_user_ranking($ranking);
     $pt = 0;
 
     foreach ($user_ranking as $c) {
@@ -64,7 +36,7 @@ while ($player_rank->have_posts()) : $player_rank->the_post();
         $pt++;
     }
 
-endwhile;
+endforeach;
 
 foreach ($contender_list as $contender) {
 
@@ -84,7 +56,7 @@ foreach ($contender_list as $contender) {
             <div class="intro-mobile">
                 <div class="tournament-heading text-center">
                     <h3 class="mb-0 t-titre-tournoi">
-                        Top <?php echo $top_infos['top_number']; ?> <span class="ico text-center">🏆</span> <?php echo $top_infos['top_title']; ?>
+                        Top <?php echo $top_infos['top_number']; ?> <span class="ico text-center"><span class="va va-trophy va-md"></span></span> <?php echo $top_infos['top_title']; ?>
                     </h3>
                     <h4 class="mb-0">
                         <?php echo $top_infos['top_question']; ?>
@@ -103,8 +75,8 @@ foreach ($contender_list as $contender) {
                                 <div class="col-sm-3 col-6">
                                     <div class="card text-center">
                                         <div class="card-body">
-                                            <div class="ico-stats">
-                                                <span class="ico4">🎂</span>
+                                            <div class="ico-stats mb-1">
+                                                <span class="va va-birthday-cake va-2x"></span>
                                             </div>
                                             <h2 class="font-weight-bolder">
                                                 <?php
@@ -131,10 +103,8 @@ foreach ($contender_list as $contender) {
                                 <div class="col-sm-3 col-6">
                                     <div class="card text-center">
                                         <div class="card-body">
-                                            <div class="ico-stats">
-                                                <span class="ico4">
-                                                    <span class="ico4">⚡️</span>
-                                                </span>
+                                            <div class="ico-stats mb-1">
+                                                <span class="va va-high-voltage va-2x"></span>
                                             </div>
                                             <h2 class="font-weight-bolder">
                                                 <?php echo $top_datas['nb_votes']; ?>
@@ -159,8 +129,8 @@ foreach ($contender_list as $contender) {
                                                     </a>
                                                 </div>
                                             </div>
-                                            <div class="ico-stats">
-                                                <span class="ico4">🏆</span>
+                                            <div class="ico-stats mb-1">
+                                                <span class="va va-trophy va-2x"></span>
                                             </div>
                                             <h2 class="font-weight-bolder">
                                                 <?php echo $top_datas['nb_completed_top']; ?>
@@ -185,8 +155,8 @@ foreach ($contender_list as $contender) {
                                                     </a>
                                                 </div>
                                             </div>
-                                            <div class="ico-stats">
-                                                <span class="ico4">💬</span>
+                                            <div class="ico-stats mb-1">
+                                                <span class="va va-speech-balloon va-2x"></span>
                                             </div>
                                             <h2 class="font-weight-bolder">
                                                 <?php echo $top_datas['nb_comments']; ?>
@@ -442,7 +412,7 @@ foreach ($contender_list as $contender) {
                                                     <td class="text-center">
                                                         <?php
                                                         $nb_position        = ${"contender_" . $contender['id'] . "_place_" . $nbc};
-                                                        $percent_position   = $nb_position * 100 / $player_rank->post_count;
+                                                        $percent_position   = $nb_position * 100 / count($list_toplist);
                                                         echo round($percent_position, 1) . "%";
                                                         ?>
                                                         <br>

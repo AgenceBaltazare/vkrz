@@ -21,7 +21,7 @@ global $author_reply_id;
 
   if ($nb_comments > 0) : ?>
     <h2 class="comments-title">
-      <span class="t-rose"><?php echo $nb_comments; ?> <?php echo $comment_wording; ?></span> sur le Top <?php the_field('count_contenders_t', $top_comments_id); ?> <span class="ico">⚡️</span> <?php echo get_the_title($top_comments_id); ?> <span class="text-muted"><?php the_field('question_t', $top_comments_id); ?></span>
+      <span class="t-rose"><?php echo $nb_comments; ?> <?php echo $comment_wording; ?></span> sur le Top <?php the_field('count_contenders_t', $top_comments_id); ?> <span class="va va-high-voltage va-md"></span> <?php echo get_the_title($top_comments_id); ?> <span class="text-muted"><?php the_field('question_t', $top_comments_id); ?></span>
     </h2>
 
     <div class="comment-list row">
@@ -153,7 +153,7 @@ global $author_reply_id;
     ?>
   <?php else : ?>
     <h2 class="comments-title">
-      Top <?php the_field('count_contenders_t', $top_comments_id); ?> <span class="ico">⚡️</span> <?php echo get_the_title($top_comments_id); ?> <span class="text-muted"><?php the_field('question_t', $top_comments_id); ?></span>
+      Top <?php the_field('count_contenders_t', $top_comments_id); ?> <span class="va va-high-voltage va-md"></span> <?php echo get_the_title($top_comments_id); ?> <span class="text-muted"><?php the_field('question_t', $top_comments_id); ?></span>
     </h2>
   <?php endif; ?>
 

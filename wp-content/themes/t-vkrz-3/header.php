@@ -6,18 +6,18 @@ global $infos_vainkeur;
 global $id_vainkeur;
 global $utm;
 global $id_top;
-$user_id        = get_user_logged_id();
-$vainkeur       = get_vainkeur();
-$uuid_vainkeur  = $vainkeur['uuid_vainkeur'];
-$id_vainkeur    = $vainkeur['id_vainkeur'];
-if(is_user_logged_in()){
-  $infos_vainkeur = get_user_infos($uuid_vainkeur, "complete");
-}
-else{
-  $infos_vainkeur = get_user_infos($uuid_vainkeur, "short");
+if(get_post_type() != "tournoi"){
+  $user_id        = get_user_logged_id();
+  $vainkeur       = get_vainkeur();
+  $uuid_vainkeur  = $vainkeur['uuid_vainkeur'];
+  $id_vainkeur    = $vainkeur['id_vainkeur'];
+  if (is_user_logged_in()) {
+    $infos_vainkeur = get_user_infos($uuid_vainkeur, "complete");
+  } else {
+    $infos_vainkeur = get_user_infos($uuid_vainkeur, "short");
+  } 
 }
 $utm = deal_utm();
-wp_reset_query();
 ?>
 <!DOCTYPE html>
 <html class="loading dark-layout" lang="fr" data-layout="dark-layout" data-textdirection="ltr">

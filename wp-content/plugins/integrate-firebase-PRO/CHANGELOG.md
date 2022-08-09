@@ -11,6 +11,20 @@ All notable changes to this project will be documented in this file.
 > - :memo: [Documentation]
 > - :nail_care: [Polish]
 
+## [ 3.15.0 ] - 2022-08-06
+
+#### - :nail_care: [Polish]
+
+- improve multisite authentication process
+- support draft status
+- support dynamic firestore subcollection form
+
+## [ 3.14.1 ] - 2022-07-19
+
+#### - :bug: [Bug Fix]
+
+- fix user update params
+
 ## [ 3.14.0 ] - 2022-07-19
 
 #### - :nail_care: [Polish]

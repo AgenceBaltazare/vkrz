@@ -3,7 +3,6 @@ function delete_real_ranking($id_ranking, $id_vainkeur){
 
     if(isset($id_ranking) && $id_ranking != ""){
 
-        $nb_to_decrease     = get_field('nb_votes_r', $id_ranking);
         $id_top             = get_field('id_tournoi_r', $id_ranking);
         
         decrease_user_counter($id_vainkeur, $id_ranking);
