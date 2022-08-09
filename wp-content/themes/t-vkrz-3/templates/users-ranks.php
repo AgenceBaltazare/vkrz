@@ -7,24 +7,28 @@ if (isset($_GET['id_top'])) {
 } else {
     header('Location: ' . get_bloginfo('url'));
 }
+get_header();
 global $id_vainkeur;
 global $count_toplist;
 $top_datas = get_top_data($id_top);
-if (is_user_logged_in() && env() != "local" && $id_vainkeur) {
-    if (false === ($user_tops = get_transient('user_' . $user_id . '_get_user_tops'))) {
-        $user_tops = get_user_tops($id_vainkeur);
-        set_transient('user_' . $user_id . '_get_user_tops', $user_tops, DAY_IN_SECONDS);
+if ($id_vainkeur) {
+    if (is_user_logged_in() && env() != "local") {
+        if (false === ($user_tops = get_transient('user_' . $user_id . '_get_user_tops'))) {
+            $user_tops = get_user_tops($id_vainkeur);
+            set_transient('user_' . $user_id . '_get_user_tops', $user_tops, DAY_IN_SECONDS);
+        } else {
+            $user_tops = get_transient('user_' . $user_id . '_get_user_tops');
+        }
     } else {
-        $user_tops = get_transient('user_' . $user_id . '_get_user_tops');
+        $user_tops  = get_user_tops($id_vainkeur);
     }
+    $list_user_tops         = $user_tops['list_user_tops_done_ids'];
 } else {
-    $user_tops  = get_user_tops($id_vainkeur);
+    $list_user_tops       = array();
 }
-$list_t_already_done  = $user_tops['liste_des_toplist_vkrz'];
 $id_resume            = get_resume_id($id_top);
 $list_toplist         = json_decode(get_field('all_toplist_resume', $id_resume));
 $count_toplist        = count($list_toplist);
-get_header();
 ?>
 <div class="app-content content">
     <div class="content-overlay"></div>
@@ -278,13 +282,13 @@ get_header();
                                     </a>
                                 </div>
                             </div>
-                            <?php if (!get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $list_t_already_done)) : ?>
+                            <?php if (!get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $list_user_tops)) : ?>
                                 <div class="card">
                                     <div class="card-body">
                                         <h4 class="card-title">
                                             <span class="ico va va-victory-hand va-lg"></span> A toi de jouer
                                         </h4>
-                                        <h6 class="card-subtitle text-muted mb-1 text-center">
+                                        <h6 class="card-subtitle text-muted mb-1">
                                             Toi aussi fais ta TopList afin de faire bouger les positions !
                                         </h6>
                                         <a href="<?php the_permalink($id_top); ?>" class="btn btn-outline-primary waves-effect">

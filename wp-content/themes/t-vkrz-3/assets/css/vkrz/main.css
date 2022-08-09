@@ -4520,6 +4520,10 @@ select:-webkit-autofill:focus {
   background-image: url(../../images/emojis/up-down-arrow_2195-fe0f.png);
 }
 
+.va-repeat {
+  background-image: url(../../images/emojis/recycling-symbol_267b-fe0f.png);
+}
+
 .va-guetteur-close {
   background-image: url(../../images/emojis/guetteur-close.png);
 }

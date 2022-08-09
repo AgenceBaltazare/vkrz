@@ -400,13 +400,13 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
               if ($already_done) : ?>
                 <div class="ico-nav-mobile">
                   <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" href="#" class="confirm_delete">
-                    <span class="ico hide-xs">🆕</span> <span class="hide-spot">Recommencer</span>
+                    <span class="ico va va-repeat va-lg hide-xs"></span> <span class="hide-spot">Recommencer</span>
                   </a>
                 </div>
               <?php else : ?>
                 <div class="ico-nav-mobile">
                   <a href="<?php echo $top_infos['top_url']; ?>">
-                    <span class="ico hide-xs">🆕</span> <span class="hide-spot">Faire mon TopList</span>
+                    <span class="ico va va-trophy va-lg hide-xs"></span> <span class="hide-spot">Faire ma TopList</span>
                   </a>
                 </div>
               <?php endif; ?>
