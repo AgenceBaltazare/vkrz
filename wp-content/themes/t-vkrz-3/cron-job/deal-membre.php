@@ -5,7 +5,20 @@ $u=1;
 $user_query = new WP_User_Query(
     array(
         'number' => -1
-        
+        'meta_query' => array(
+            'relation' => 'OR',
+            array(
+                'key'     => 'country',
+                'value'   => 'Israel',
+                'compare' => '='
+            ),
+            array(
+                'key'     => 'age',
+                'value'   => array(20, 30),
+                'type'    => 'numeric',
+                'compare' => 'BETWEEN'
+            )
+        )
     )
 );
 $users = $user_query->get_results();
