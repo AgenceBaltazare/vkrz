@@ -42,7 +42,7 @@ get_header();
   <div class="content-overlay"></div>
   <div class="content-wrapper">
     <div class="content-body tournoi-content">
-      
+
       <?php if (!$id_ranking) : ?>
 
         <div class="content-intro">
@@ -153,7 +153,7 @@ get_header();
                 <?php else : ?>
                   <div class="choosecta flex-row-reverse">
                     <div class="cta-begin cta-complet">
-                      <a href="#" id="begin_t" data-typetop="complet" data-top="<?php echo $id_top; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
+                      <a href="#" id="begin_t" data-typetop="complet" data-top="<?php echo $id_top; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-uuiduser="<?php echo $uuid_vainkeur; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
                         Top Complet
                       </a>
                       <small class="text-muted">
@@ -170,7 +170,7 @@ get_header();
                     </div>
                     <?php if ($top_infos['top_number'] > 10) : ?>
                       <div class="cta-begin cta-top3">
-                        <a href="#" id="begin_top3" data-typetop="top3" data-top="<?php echo $id_top; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
+                        <a href="#" id="begin_top3" data-typetop="top3" data-top="<?php echo $id_top; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-uuiduser="<?php echo $uuid_vainkeur; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
                           Top 3
                         </a>
                         <small class="text-muted">
@@ -323,7 +323,7 @@ get_header();
       </div>
       <div class="ico-nav-mobile">
         <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" href="#" class="confirm_delete">
-          <span class="ico hide-xs">🆕</span> <span class="hide-spot">Recommencer</span>
+          <span class="ico va va-repeat va-lg hide-xs"></span> <span class="hide-spot">Recommencer</span>
         </a>
       </div>
     </div>
