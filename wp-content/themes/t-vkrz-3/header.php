@@ -11,11 +11,16 @@ if(get_post_type() != "tournoi"){
   $vainkeur       = get_vainkeur();
   $uuid_vainkeur  = $vainkeur['uuid_vainkeur'];
   $id_vainkeur    = $vainkeur['id_vainkeur'];
-  if (is_user_logged_in()) {
-    $infos_vainkeur = get_user_infos($uuid_vainkeur, "complete");
-  } else {
-    $infos_vainkeur = get_user_infos($uuid_vainkeur, "short");
-  } 
+  if($uuid_vainkeur){
+    if (is_user_logged_in()) {
+      $infos_vainkeur = get_user_infos($uuid_vainkeur, "complete");
+    } else {
+      $infos_vainkeur = get_user_infos($uuid_vainkeur, "short");
+    } 
+  }
+  else{
+    $infos_vainkeur = get_fantom();
+  }
 }
 $utm = deal_utm();
 ?>

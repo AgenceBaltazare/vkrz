@@ -11,7 +11,7 @@ function begin_t($id_top, $uuiduser, $typetop, $id_vainkeur)
     }
 
     // set cookies to create vainkeur CPT
-    setcookie("vainkeur_ready_to_be_create", $uuiduser, time() + 31556926, "/");
+    setcookie("vainkeur_ready_to_be_create_cookie", $uuiduser, time() + 31556926, "/");
 
     if ($typetop == "top3") {
         $title_rank = 'Podium ' . get_the_title($id_top);

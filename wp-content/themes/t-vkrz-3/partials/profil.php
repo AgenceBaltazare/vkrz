@@ -68,12 +68,14 @@ if (is_author() || is_page(218587)) {
                   Récap
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link font-weight-bold <?php if (is_page(305107)) : echo 'btn btn-primary';
-                                                    endif; ?>" href="<?php the_permalink(305107); ?>">
-                  KEURZ
-                </a>
-              </li>
+              <?php if(is_user_logged_in()): ?>
+                <li class="nav-item">
+                  <a class="nav-link font-weight-bold <?php if (is_page(305107)) : echo 'btn btn-primary';
+                                                      endif; ?>" href="<?php the_permalink(305107); ?>">
+                    KEURZ
+                  </a>
+                </li>
+              <?php endif; ?>
               <?php if ($infos_vainkeur['user_role'] == "administrator" || $infos_vainkeur['user_role'] == "author") : ?>
                 <li class="nav-item">
                   <a class="nav-link font-weight-bold <?php if (is_page(172849)) : echo 'btn btn-primary';

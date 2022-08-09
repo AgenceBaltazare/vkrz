@@ -1,17 +1,41 @@
 <?php
-get_header();
-if (is_user_logged_in() && env() != "local") {
-  if (false === ($user_tops = get_transient('user_' . $user_id . '_get_user_tops'))) {
-    $user_tops = get_user_tops($id_vainkeur);
-    set_transient('user_' . $user_id . '_get_user_tops', $user_tops, DAY_IN_SECONDS);
+global $user_tops;
+global $list_user_tops;
+global $list_user_tops_begin;
+$user_id        = get_user_logged_id();
+$vainkeur       = get_vainkeur();
+$uuid_vainkeur  = $vainkeur['uuid_vainkeur'];
+$id_vainkeur    = $vainkeur['id_vainkeur'];
+if ($uuid_vainkeur) {
+  if (is_user_logged_in()) {
+    $infos_vainkeur = get_user_infos($uuid_vainkeur, "complete");
   } else {
-    $user_tops = get_transient('user_' . $user_id . '_get_user_tops');
+    $infos_vainkeur = get_user_infos($uuid_vainkeur, "short");
   }
 } else {
-  $user_tops  = get_user_tops($id_vainkeur);
+  $infos_vainkeur = get_fantom();
 }
-$list_user_tops         = $user_tops['list_user_tops_done_ids'];
-$list_user_tops_begin   = $user_tops['list_user_tops_begin_ids'];
+get_header();
+if($id_vainkeur){
+  if (is_user_logged_in() && env() != "local") {
+    if (false === ($user_tops = get_transient('user_' . $user_id . '_get_user_tops'))) {
+      $user_tops = get_user_tops($id_vainkeur);
+      set_transient('user_' . $user_id . '_get_user_tops', $user_tops, DAY_IN_SECONDS);
+    } else {
+      $user_tops = get_transient('user_' . $user_id . '_get_user_tops');
+    }
+  } 
+  else {
+    $user_tops  = get_user_tops($id_vainkeur);
+  }
+  $list_user_tops         = $user_tops['list_user_tops_done_ids'];
+  $list_user_tops_begin   = $user_tops['list_user_tops_begin_ids'];
+}
+else{
+  $user_tops            = array();
+  $list_user_tops       = array();
+  $list_user_tops_begin = array();
+}
 $current_cat            = get_queried_object();
 $tops_in_cat            = new WP_Query(array(
   'post_type'                 => 'tournoi',

@@ -19,7 +19,7 @@ function generate_vainkeurz_cookies($user_login, WP_User $user){
     setcookie("user_was_logged_cookie", date("Y-m-d H:i:s"), time() + 31556926, "/");
 
 }
-add_action('wp_login', 'wpdocs_send_welcome_email', 10, 2);
+add_action('wp_login', 'generate_vainkeurz_cookies', 10, 2);
 
 
 function delete_vainkeurz_cookies()

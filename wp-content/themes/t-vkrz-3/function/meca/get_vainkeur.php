@@ -1,7 +1,8 @@
 <?php
 function get_vainkeur(){
 
-    $uuiuser = false;
+    $id_vainkeur = false;
+    $uuiuser     = false;
     
     if(is_user_logged_in()){
 

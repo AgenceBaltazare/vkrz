@@ -1,5 +1,7 @@
 <?php
 global $user_tops;
+global $list_user_tops;
+global $list_user_tops_begin;
 global $id_top;
 $class            = "";
 $id_top           = get_the_ID();
@@ -8,8 +10,6 @@ $creator_id       = get_post_field('post_author', $id_top);
 $creator_info     = get_userdata($creator_id);
 $creator_pseudo   = $creator_info->nickname;
 $creator_avatar   = get_avatar_url($creator_id, ['size' => '80', 'force_default' => false]);
-$list_user_tops         = $user_tops['list_user_tops_done_ids'];
-$list_user_tops_begin   = $user_tops['list_user_tops_begin_ids'];
 $type_top         = "";
 $state            = "";
 $illu             = get_the_post_thumbnail_url($id_top, 'medium');

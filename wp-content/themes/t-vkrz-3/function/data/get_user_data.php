@@ -128,6 +128,31 @@ function get_user_tops($id_vainkeur){
     );
 }
 
+function get_fantom(){
+
+    $result = array(
+        'id_user'           => false,
+        'pseudo'            => 'Lama2Lombre',
+        'avatar'            => 'https://vainkeurz.com/wp-content/themes/t-vkrz-3/assets/images/vkrz/avatar-rose.png',
+        'user_email'        => '',
+        'user_role'         => 'subscriber',
+        'level'             => '<span class="va va-z-20 va-egg"></span>',
+        'level_number'      => 0,
+        'next_level'        => '<span class="va va-z-20 va-hatching-chick"></span>',
+        'uuid_vainkeur'     => false,
+        'id_vainkeur'       => false,
+        'profil_url'        => '',
+        'creator_url'       => '',
+        'nb_vote_vkrz'          => 0,
+        'nb_top_vkrz'           => 0,
+        'money_vkrz'            => 0,
+        'money_creator_vkrz'    => 0,
+        'current_money_vkrz'    => 0
+    );
+
+    return $result;
+}
+
 function get_user_infos($uuid_vainkeur, $size = "short"){
 
     $result = array();

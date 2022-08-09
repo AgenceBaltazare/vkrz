@@ -1,19 +1,27 @@
 <?php
-get_header();
+global $user_tops;
+global $list_user_tops;
+global $list_user_tops_begin;
 global $id_vainkeur;
-if (is_user_logged_in() && env() != "local") {
-  if (false === ($user_tops = get_transient('user_' . $user_id . '_get_user_tops'))) {
-    $user_tops = get_user_tops($id_vainkeur);
-    set_transient('user_' . $user_id . '_get_user_tops', $user_tops, DAY_IN_SECONDS);
+get_header();
+if ($id_vainkeur) {
+  if (is_user_logged_in() && env() != "local") {
+    if (false === ($user_tops = get_transient('user_' . $user_id . '_get_user_tops'))) {
+      $user_tops = get_user_tops($id_vainkeur);
+      set_transient('user_' . $user_id . '_get_user_tops', $user_tops, DAY_IN_SECONDS);
+    } else {
+      $user_tops = get_transient('user_' . $user_id . '_get_user_tops');
+    }
   } else {
-    $user_tops = get_transient('user_' . $user_id . '_get_user_tops');
+    $user_tops  = get_user_tops($id_vainkeur);
   }
-} 
-else {
-  $user_tops  = get_user_tops($id_vainkeur);
+  $list_user_tops         = $user_tops['list_user_tops_done_ids'];
+  $list_user_tops_begin   = $user_tops['list_user_tops_begin_ids'];
+} else {
+  $user_tops            = array();
+  $list_user_tops       = array();
+  $list_user_tops_begin = array();
 }
-$list_user_tops_done  = $user_tops['list_user_tops_done_ids'];
-$list_user_tops_begin = $user_tops['list_user_tops_begin_ids'];
 ?>
 <div class="app-content content ">
   <div class="content-wrapper">
@@ -57,7 +65,7 @@ $list_user_tops_begin = $user_tops['list_user_tops_begin_ids'];
                 'update_post_meta_cache' => false,
                 'no_found_rows'          => true,
                 'post_type'              => 'tournoi',
-                'post__not_in'           => $list_user_tops_done,
+                'post__not_in'           => $list_user_tops,
                 'orderby'                => 'date',
                 'order'                  => 'DESC',
                 'posts_per_page'         => 10,
@@ -99,7 +107,7 @@ $list_user_tops_begin = $user_tops['list_user_tops_begin_ids'];
                   Ensuite, tu pourras comparer tes TopList<span class="ico va va-trophy va-z-20"></span> à ceux de tes amis - si tu en as bien sûr. Et puis si tu n'en pas, <span class="ico va va-hugging-face va-z-20"></span> rejoins notre Discord.
                 </p>
                 <a href="<?php the_permalink(104853); ?>" class="btn btn-primary waves-effect">
-                  Découvrir l'histoire de VAINKEURZ
+                  Découvre l'histoire incroyable de VAINKEURZ
                 </a>
                 <div class="mt-10p">
                   <a href="https://discord.gg/w882sUnrhE" class="sociallink btn btn-outline-primary waves-effect mr-10p mt-10p" target="_blank">
@@ -165,7 +173,7 @@ $list_user_tops_begin = $user_tops['list_user_tops_begin_ids'];
           <?php
           $tournois_in_cat = new WP_Query(array(
             'post_type' => 'tournoi',
-            'post__not_in' => $list_user_tops_done,
+            'post__not_in' => $list_user_tops,
             'orderby' => 'rand',
             'order' => 'ASC',
             'posts_per_page' => 10,

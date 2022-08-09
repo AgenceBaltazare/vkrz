@@ -38,7 +38,7 @@ get_header();
   <div class="content-overlay"></div>
   <div class="content-wrapper">
     <div class="content-body tournoi-content">
-      <?php var_dump(get_next_duel($id_ranking, $id_top, $id_vainkeur)); ?>
+      
       <?php if (!$id_ranking) : ?>
 
         <div class="content-intro">

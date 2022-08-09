@@ -10,7 +10,7 @@ if (isset($_GET['id_top'])) {
 global $id_vainkeur;
 global $count_toplist;
 $top_datas = get_top_data($id_top);
-if (is_user_logged_in() && env() != "local") {
+if (is_user_logged_in() && env() != "local" && $id_vainkeur) {
     if (false === ($user_tops = get_transient('user_' . $user_id . '_get_user_tops'))) {
         $user_tops = get_user_tops($id_vainkeur);
         set_transient('user_' . $user_id . '_get_user_tops', $user_tops, DAY_IN_SECONDS);

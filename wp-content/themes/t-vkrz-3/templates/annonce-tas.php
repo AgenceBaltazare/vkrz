@@ -5,7 +5,7 @@
 global $id_vainkeur;
 global $uuid_vainkeur;
 get_header();
-if (is_user_logged_in() && env() != "local") {
+if (is_user_logged_in() && env() != "local" && $id_vainkeur) {
     if (false === ($user_tops = get_transient('user_' . $user_id . '_get_user_tops'))) {
         $user_tops = get_user_tops($id_vainkeur);
         set_transient('user_' . $user_id . '_get_user_tops', $user_tops, DAY_IN_SECONDS);
@@ -243,10 +243,6 @@ $tops_sponso_old = new WP_Query(array(
                                                                                             <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_user'])); ?>">
                                                                                                 <span class="avatar-picture" style="background-image: url(<?php echo $vainkeur_data_selected['avatar']; ?>);"></span>
                                                                                             </a>
-                                                                                        <?php else : ?>
-                                                                                            <span class="avatar-picture" style="background-image: url(<?php echo $vainkeur_data_selected['avatar']; ?>);"></span>
-                                                                                        <?php endif; ?>
-                                                                                        <?php if ($vainkeur_data_selected) : ?>
                                                                                             <span class="user-niveau">
                                                                                                 <?php echo $vainkeur_data_selected['level']; ?>
                                                                                             </span>
@@ -271,7 +267,7 @@ $tops_sponso_old = new WP_Query(array(
                                                                                                 <?php endif; ?>
                                                                                             </a>
                                                                                         <?php else : ?>
-                                                                                            <i>Anonyme</i>
+                                                                                            <i>Lama2Lombre</i>
                                                                                         <?php endif; ?>
                                                                                     </span>
                                                                                 <?php endif; ?>
@@ -389,20 +385,16 @@ $tops_sponso_old = new WP_Query(array(
                                                                                     $gagnant_uuid            = get_field('uuid_vainkeur_p', $gagnant_id);
                                                                                     $vainkeur_data_selected  = get_user_infos($gagnant_uuid);
                                                                                     ?>
-                                                                                    <span class="avatar">
-                                                                                        <?php if ($vainkeur_data_selected) : ?>
+                                                                                    <?php if ($vainkeur_data_selected) : ?>
+                                                                                        <span class="avatar">
                                                                                             <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_user'])); ?>">
                                                                                                 <span class="avatar-picture" style="background-image: url(<?php echo $vainkeur_data_selected['avatar']; ?>);"></span>
                                                                                             </a>
-                                                                                        <?php else : ?>
-                                                                                            <span class="avatar-picture" style="background-image: url(<?php echo $vainkeur_data_selected['avatar']; ?>);"></span>
-                                                                                        <?php endif; ?>
-                                                                                        <?php if ($vainkeur_data_selected) : ?>
                                                                                             <span class="user-niveau">
                                                                                                 <?php echo $vainkeur_data_selected['level']; ?>
                                                                                             </span>
-                                                                                        <?php endif; ?>
-                                                                                    </span>
+                                                                                        </span>
+                                                                                    <?php endif; ?>
                                                                                     <span class="font-weight-bold championname">
                                                                                         <?php if ($vainkeur_data_selected) : ?>
                                                                                             <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_user'])); ?>">
@@ -422,7 +414,7 @@ $tops_sponso_old = new WP_Query(array(
                                                                                                 <?php endif; ?>
                                                                                             </a>
                                                                                         <?php else : ?>
-                                                                                            <i>Anonyme</i>
+                                                                                            <i>Lama2Lombre</i>
                                                                                         <?php endif; ?>
                                                                                     </span>
                                                                                 <?php endif; ?>

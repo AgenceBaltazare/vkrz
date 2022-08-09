@@ -155,7 +155,7 @@
                                     if ($comment->comment_author_email) {
                                       echo $comment_autor->nickname;
                                     } else {
-                                      echo 'Anonyme';
+                                      echo 'Lama2Lombre';
                                     }
                                     ?>
                                   </h6>
@@ -210,7 +210,7 @@
                                       if ($comment->comment_author_email) {
                                         echo $comment_autor->nickname;
                                       } else {
-                                        echo 'Anonyme';
+                                        echo 'Lama2Lombre';
                                       }
                                       ?>
                                     </h6>

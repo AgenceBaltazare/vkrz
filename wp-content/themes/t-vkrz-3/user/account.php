@@ -55,6 +55,7 @@ if ($list_user_toplists) {
 
               <div class="hide-xs">
 
+                <?php $vainkeur_badges = get_the_terms($id_vainkeur, 'badges'); ?>
                 <div class="card">
                   <div class="card-header">
                     <h4 class="card-title">
@@ -63,19 +64,25 @@ if ($list_user_toplists) {
                   </div>
                   <div class="card-body">
                     <div class="row">
-                      <?php
-                      $vainkeur_badges = get_the_terms($id_vainkeur, 'badges');
-                      foreach ($vainkeur_badges as $badge) : ?>
-                        <div class="col-4 col-sm-6 col-lg-4">
-                          <div class="text-center">
-                            <div class="user-level" data-toggle="tooltip" data-placement="top" title="" data-original-title="<?php echo $badge->name; ?> : <?php echo $badge->description; ?>">
-                              <span class="icomedium">
-                                <?php the_field('symbole_badge', 'badges_' . $badge->term_id); ?>
-                              </span>
+                      <?php if ($vainkeur_badges) : ?>
+                        <?php foreach ($vainkeur_badges as $badge) : ?>
+                          <div class="col-4 col-sm-6 col-lg-4">
+                            <div class="text-center">
+                              <div class="user-level" data-toggle="tooltip" data-placement="top" title="" data-original-title="<?php echo $badge->name; ?> : <?php echo $badge->description; ?>">
+                                <span class="icomedium">
+                                  <?php the_field('symbole_badge', 'badges_' . $badge->term_id); ?>
+                                </span>
+                              </div>
                             </div>
                           </div>
+                        <?php endforeach; ?>
+                      <?php else : ?>
+                        <div class="col">
+                          <p class="text-muted">
+                            Aucun trophée pour le moment 😭
+                          </p>
                         </div>
-                      <?php endforeach; ?>
+                      <?php endif; ?>
                     </div>
                     <div class="row mt-2">
                       <div class="col-12">

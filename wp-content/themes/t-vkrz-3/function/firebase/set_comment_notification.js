@@ -36,7 +36,7 @@ commentBtn.addEventListener('click', function() {
       notifType = 'Comment Reply Notification';
 
       if (userId == "0") {
-        notifText = "Un anonyme a laisser un commentaire sur un de tes Top!"
+        notifText = "Un Lama2Lombre a laisser un commentaire sur un de tes Top!"
       }
     }
 
