@@ -14,9 +14,9 @@ $vainkeur = new WP_Query(array(
     "no_found_rows"          => false,
     "meta_query" => array(
         array(
-            'key' => 'uuid_user_r',
-            'value' => 'fda01f022c23f',
-            'compare' => '=',
+            'key'       => 'uuid_user_vkrz',
+            'value'     => 'fda01f022c23f',
+            'compare'   => '=',
         )
     )
 ));
