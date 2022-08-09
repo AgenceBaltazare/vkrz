@@ -20,7 +20,7 @@ if (is_user_logged_in() && env() != "local" && $id_vainkeur) {
 } else {
     $user_tops  = get_user_tops($id_vainkeur);
 }
-$list_t_already_done  = $user_tops['list_user_tops_done_ids'];
+$list_t_already_done  = $user_tops['liste_des_toplist_vkrz'];
 $id_resume            = get_resume_id($id_top);
 $list_toplist         = json_decode(get_field('all_toplist_resume', $id_resume));
 $count_toplist        = count($list_toplist);
@@ -85,7 +85,7 @@ get_header();
                                                             <?php foreach ($list_toplist as $id_ranking) :
                                                                 $uuiduser                = get_field('uuid_user_r', $id_ranking);
                                                                 $vainkeur_data_selected  = get_user_infos($uuiduser);
-                                                                if ($vainkeur_data_selected) : ?>
+                                                                if ($vainkeur_data_selected && get_current_user_id() != $vainkeur_data_selected['id_user']) : ?>
                                                                     <tr id="rows" class="<?php echo "uuid" . $uuiduser; ?> uncalculated" data-idranking="<?= $id_ranking; ?>">
                                                                         <td class="vainkeur-table">
                                                                             <span class="avatar">
