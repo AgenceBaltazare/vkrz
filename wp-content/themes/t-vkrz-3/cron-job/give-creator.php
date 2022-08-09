@@ -1,6 +1,7 @@
 <?php
 include __DIR__ . '/../../../../wp-load.php';
 
+$u=1;
 $user_query = new WP_User_Query(
     array(
         'number' => -1
@@ -30,7 +31,7 @@ foreach ($users as $user) {
         )
     ));
     if ($classements->have_posts()) {
-        foreach ($classements->posts as $classement) {
+        $r=1; foreach ($classements->posts as $classement) {
             $arg = array(
                 'ID'            => $classement,
                 'post_author'   => $user_id,
@@ -39,8 +40,11 @@ foreach ($users as $user) {
             // Save to firebase & WP
             //wp_update_post($arg);
 
-            echo "TopList " . $classement . " attribué à " . $user_id . "(" . $uuid_user_r . ")" . "\n";
+            echo "U: " . $u . " - R: " . $r. " --> TopList " . $classement . " attribué à " . $user_id . "(" . $uuid_user_r . ")" . "\n";
 
+            $r++;
         }
     }
+
+    $u++;
 }
