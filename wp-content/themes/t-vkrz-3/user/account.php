@@ -318,7 +318,7 @@ if ($list_user_toplists) {
                                     <span class="text-muted">Podium</span>
                                   </th>
                                   <th class="">
-                                    <span class="text-muted">Votes</span> 
+                                    <span class="text-muted">Votes</span> <span class="va va-updown va-z-10"></span>
                                   </th>
                                   <th>
                                     <span class="text-muted">Voir</span>
@@ -347,7 +347,7 @@ if ($list_user_toplists) {
                                                 <h6 class="cart-item-title mb-0">
                                                   <a class="text-body" href="<?php the_permalink($top['id_top']); ?>">
                                                     <?php
-                                                    if(get_the_terms($top['id_top'], 'categorie')){
+                                                    if (get_the_terms($top['id_top'], 'categorie')) {
                                                       foreach (get_the_terms($top['id_top'], 'categorie') as $cat) {
                                                         $cat_id     = $cat->term_id;
                                                         $cat_name   = $cat->name;
@@ -482,7 +482,7 @@ if ($list_user_toplists) {
                                                 <h6 class="cart-item-title mb-0">
                                                   <a class="text-body" href="<?php the_permalink($top['id_top']); ?>">
                                                     <?php
-                                                    if(get_the_terms($top['id_top'], 'categorie')){
+                                                    if (get_the_terms($top['id_top'], 'categorie')) {
                                                       foreach (get_the_terms($top['id_top'], 'categorie') as $cat) {
                                                         $cat_id     = $cat->term_id;
                                                         $cat_name   = $cat->name;

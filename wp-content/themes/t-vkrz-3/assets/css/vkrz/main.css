@@ -1003,6 +1003,10 @@ html .content {
   border: 1px solid #f4167f !important;
 }
 
+.shorted {
+  cursor: row-resize;
+}
+
 .page-template-monitor .list-vainkeur-monitor {
   line-height: 14px;
 }
@@ -4443,6 +4447,10 @@ select:-webkit-autofill:focus {
 
 .va-detective {
   background-image: url(../../images/emojis/detective_1f575-fe0f.png);
+}
+
+.va-updown {
+  background-image: url(../../images/emojis/up-down-arrow_2195-fe0f.png);
 }
 
 .va-four-leaf-clover {

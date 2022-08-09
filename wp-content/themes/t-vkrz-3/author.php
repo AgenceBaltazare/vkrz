@@ -22,6 +22,16 @@ foreach ($list_user_toplists as $top) {
           </div>
         </div>
 
+        <!--
+          <div class="info-bio">
+            <h5 class="mb-75 t-rose">Inscription</h5>
+            <p class="card-text">
+              <?php echo $id_vainkeur_to_watch; ?>ème vainkeur à avoir rejoint le concept
+              #<?php echo $infos_vainkeur_to_watch['uuid_vainkeur']; ?>
+            </p>
+          </div>
+        -->
+
         <section id="profile-info">
           <div class="row">
             <div class="col-lg-3 col-12 order-2 order-lg-1">
@@ -35,15 +45,6 @@ foreach ($list_user_toplists as $top) {
                     </h4>
                   </div>
                   <div class="card-body">
-                    <!--
-                      <div class="info-bio">
-                        <h5 class="mb-75 t-rose">Inscription</h5>
-                        <p class="card-text">
-                          <?php echo $id_vainkeur_to_watch; ?>ème vainkeur à avoir rejoint le concept
-                          #<?php echo $vainkeur_info['uuid_user_vkrz']; ?>
-                        </p>
-                      </div>
-                    -->
                     <div class="info-bio">
                       <p class="card-text">
                         <?php echo get_userdata($id_membre)->description; ?>
@@ -61,7 +62,7 @@ foreach ($list_user_toplists as $top) {
                   </div>
                   <div class="card-body">
                     <div class="info-bio">
-                      <div class="row align-items-baseline">
+                      <div class="flex-row d-flex align-items-baseline">
                         <?php if (get_userdata($id_membre)->twitch_user) : ?>
                           <div class="transaction-item">
                             <a href="https://www.twitch.tv/<?php echo get_userdata($id_membre)->twitch_user; ?>" target="_blank">
@@ -326,8 +327,8 @@ foreach ($list_user_toplists as $top) {
                                   <th>
                                     <span class="text-muted">Podium</span>
                                   </th>
-                                  <th class="text-right">
-                                    <span class="text-muted">Votes</span>
+                                  <th class="text-right shorted">
+                                    <span class="text-muted">Votes</span> <span class="va va-updown va-z-15"></span>
                                   </th>
                                   <th>
                                     <span class="text-muted">Voir</span>
