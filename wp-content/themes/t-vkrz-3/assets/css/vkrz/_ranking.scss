@@ -205,3 +205,29 @@
 .label-coco{
   color: $rose;
 }
+
+.users-ranks {
+  .calc-resemblance {
+    position: relative;
+    border-radius: 0 !important;
+    opacity: 0.5;
+    cursor: progress;
+    pointer-events: none;
+
+    .bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      display: block;
+      width: 100%;
+      background-color: #E51C83;
+      height: 4px;
+    }
+  }
+
+  .loaded {
+    opacity: 1;
+    cursor: pointer;
+    pointer-events: all;
+  }
+}

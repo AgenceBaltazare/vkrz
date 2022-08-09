@@ -9,7 +9,6 @@ body {
   -webkit-animation: gradient 60s ease infinite;
           animation: gradient 60s ease infinite;
 }
-
 @-webkit-keyframes gradient {
   0% {
     background-position: 0% 50%;
@@ -21,7 +20,6 @@ body {
     background-position: 0% 50%;
   }
 }
-
 @keyframes gradient {
   0% {
     background-position: 0% 50%;
@@ -43,12 +41,9 @@ body {
   background-size: contain !important;
   width: 100%;
 }
-
 .login h1 a:focus {
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
-
 .login a {
   padding-top: 25px;
   padding-bottom: 25px;
@@ -56,50 +51,39 @@ body {
   font-size: 14px;
   font-weight: 500;
 }
-
 .login a:hover {
   color: #fff !important;
 }
-
 .login form {
   border: 1px solid #210951;
   border-radius: 0;
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
-
 .login form input,
 .login form select,
 .login form textarea {
   border: 1px solid #f4167f;
   border-radius: 0;
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
-
 .login form input:focus,
 .login form select:focus,
 .login form textarea:focus {
   border: 1px solid #f6479a;
   border-radius: 1px solid #f6479a;
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
-
 .login .button.button-large {
   padding: 0 0 40px;
   width: 100%;
   height: 30px;
   line-height: 40px;
 }
-
 .login .button-primary {
-  -webkit-transition: ease .5s;
-  transition: ease .5s;
+  transition: ease 0.5s;
   margin-top: 50px;
   border: 1px solid #fff;
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
   background: #210951;
   padding: 15px;
   text-transform: uppercase;
@@ -109,19 +93,14 @@ body {
   color: #fff;
   font-weight: 500;
 }
-
 .login .button-primary:hover, .login .button-primary:active, .login .button-primary:focus {
-  -webkit-transition: ease .5s;
-  transition: ease .5s;
+  transition: ease 0.5s;
   border: 1px solid #210951;
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
   background-color: #18063a;
   text-decoration: none;
   color: #fff;
 }
-
 .login .message {
   border-left: 4px solid #210951;
-}
-/*# sourceMappingURL=lecentre.css.map */
+}/*# sourceMappingURL=lecentre.css.map */

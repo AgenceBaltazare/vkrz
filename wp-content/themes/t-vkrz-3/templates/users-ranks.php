@@ -42,7 +42,7 @@ get_header();
                 </div>
             </div>
 
-            <div class="classement">
+            <div class="classement users-ranks">
                 <div class="row">
                     <div class="col-md-8">
                         <section id="profile-info">
@@ -66,8 +66,11 @@ get_header();
                                                                     </span>
                                                                 </th>
                                                                 <th class="text-right">
+                                                                    <span class="text-muted">Ressemblance ↕</span>
+                                                                </th>
+                                                                <th class="text-center">
                                                                     <span class="text-muted">
-                                                                        Voir la TopList
+                                                                        Voir
                                                                     </span>
                                                                 </th>
 
@@ -83,7 +86,7 @@ get_header();
                                                                 $uuiduser                = get_field('uuid_user_r', $id_ranking);
                                                                 $vainkeur_data_selected  = get_user_infos($uuiduser);
                                                                 if ($vainkeur_data_selected) : ?>
-                                                                    <tr>
+                                                                    <tr id="rows" class="<?php echo "uuid" . $uuiduser; ?> uncalculated" data-idranking="<?= $id_ranking; ?>">
                                                                         <td class="vainkeur-table">
                                                                             <span class="avatar">
                                                                                 <?php if ($vainkeur_data_selected) : ?>
@@ -142,6 +145,9 @@ get_header();
                                                                                 if ($l == 4) break;
                                                                             endforeach; ?>
                                                                         </td>
+                                                                        <td class="text-right">
+                                                                            click to calculate!
+                                                                        </td>
 
                                                                         <td class="text-right">
                                                                             <a href="<?php the_permalink($id_ranking); ?>" class="mr-1 btn">
@@ -150,9 +156,9 @@ get_header();
                                                                         </td>
 
                                                                         <td class="text-right checking-follower">
-                                                                            <?php if ($vainkeur_data_selected && get_current_user_id() != $vainkeur_data_selected['id_vainkeur'] && is_user_logged_in()) : ?>
+                                                                            <?php if ($vainkeur_data_selected && get_current_user_id() != $vainkeur_data_selected['id_user'] && is_user_logged_in()) : ?>
 
-                                                                                <button type="button" id="followBtn" class="btn waves-effect btn-follow" style="display: none;" data-userid="<?= get_current_user_id(); ?>" data-uuid="<?= get_field('uuiduser_user', 'user_' . get_current_user_id()); ?>" data-relatedid="<?= $vainkeur_data_selected['id_vainkeur']; ?>" data-relateduuid="<?= get_field('uuiduser_user', 'user_' . $vainkeur_data_selected['id_vainkeur']); ?>" data-text="<?= get_the_author_meta('nickname', get_current_user_id()); ?> te guette !" data-url="<?= get_author_posts_url(get_current_user_id()); ?>">
+                                                                                <button type="button" id="followBtn" class="btn waves-effect btn-follow d-none" data-userid="<?= get_current_user_id(); ?>" data-uuid="<?= get_field('uuiduser_user', 'user_' . get_current_user_id()); ?>" data-relatedid="<?= $vainkeur_data_selected['id_user']; ?>" data-relateduuid="<?= get_field('uuiduser_user', 'user_' . $vainkeur_data_selected['id_user']); ?>" data-text="<?= get_the_author_meta('nickname', get_current_user_id()); ?> te guette !" data-url="<?= get_author_posts_url(get_current_user_id()); ?>">
                                                                                     <span class="mr-10p wording">Guetter</span>
                                                                                     <span class="va va-guetteur va va-z-20"></span>
                                                                                 </button>
@@ -181,53 +187,22 @@ get_header();
                             <div class="infoelo">
                                 <div class="row">
                                     <div class="col-12">
-                                        <div class="card text-left">
-                                            <?php
-                                            $creator_id         = get_post_field('post_author', $id_top);
-                                            $creator_uuiduser   = get_field('uuiduser_user', 'user_' . $creator_id);
-                                            $creator_data       = get_user_infos($creator_uuiduser);
-                                            ?>
+
+                                        <!-- CALCULATE RESEMBALNCE… -->
+                                        <div class="card text-center calc-resemblance" data-idtop="<?php echo $id_top; ?>">
                                             <div class="card-body">
-                                                <h4 class="card-title">
-                                                    <?php
-                                                    date_default_timezone_set('Europe/Paris');
-                                                    $origin     = new DateTime(get_the_date('Y-m-d', $id_top));
-                                                    $target     = new DateTime(date('Y-m-d'));
-                                                    $interval   = $origin->diff($target);
-                                                    if ($interval->days == 0) {
-                                                        $info_date = "aujourd'hui";
-                                                    } elseif ($interval->days == 1) {
-                                                        $info_date = "hier";
-                                                    } else {
-                                                        $info_date = "depuis " . $interval->days . " jours";
-                                                    }
-                                                    ?>
-                                                    <span class="ico va va-birthday-cake va-lg"></span> Créé <span class="t-violet"><?php echo $info_date; ?></span> par :
-                                                </h4>
-                                                <div class="employee-task d-flex justify-content-between align-items-center">
-                                                    <a href="<?php echo $creator_data['creator_url']; ?>" class="d-flex flex-row link-to-creator">
-                                                        <div class="avatar me-75 mr-1">
-                                                            <img src="<?php echo $creator_data['avatar']; ?>" class="circle" width="42" height="42" alt="Avatar">
-                                                        </div>
-                                                        <div class="my-auto">
-                                                            <h3 class="mb-0">
-                                                                <?php echo $creator_data['pseudo']; ?> <br>
-                                                                <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Niveau">
-                                                                    <?php echo $creator_data['level']; ?>
-                                                                </span>
-                                                                <?php if ($creator_data['user_role']  == "administrator") : ?>
-                                                                    <span class="ico va va-vkrzteam va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
-                                                                    </span>
-                                                                <?php endif; ?>
-                                                                <?php if ($creator_data['user_role']  == "administrator" || $creator_data['user_role'] == "author") : ?>
-                                                                    <span class="ico va va-man-singer va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
-                                                                    </span>
-                                                                <?php endif; ?>
-                                                            </h3>
-                                                        </div>
-                                                    </a>
+                                                <div class="mb-50">
+                                                    <span class="ico4 va va-duo va va-z-50"></span>
                                                 </div>
+                                                <h2 class="font-weight-bolder mb-1 calc-resemblance-h1">
+                                                    Generate Resemblance
+                                                </h2>
+                                                <h6 class="card-subtitle text-muted">
+                                                    Click to calculate the resemblance of your ranking to other's TopList, who knows, maybe you can find a match ranking and get a Friend!
+                                                </h6>
                                             </div>
+
+                                            <div class="bar"></div>
                                         </div>
                                     </div>
                                     <div class="col-6">
@@ -268,21 +243,6 @@ get_header();
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-
-                            <!-- CALCULATE RESSEMBALNCE… -->
-                            <div class="card text-center calc-resemblance cursor-pointer" data-idtop="<?php echo $id_top; ?>">
-                                <div class="card-body">
-                                    <div class="mb-50">
-                                        <span class="ico4 va va-duo va va-z-50"></span>
-                                    </div>
-                                    <h2 class="font-weight-bolder mb-1">
-                                        Resemblance
-                                    </h2>
-                                    <h6 class="card-subtitle text-muted">
-                                        Click to calculate the resemblance of your ranking to other's TopList, who knows, maybe you can find a match ranking a get a Friend!
-                                    </h6>
                                 </div>
                             </div>
 
