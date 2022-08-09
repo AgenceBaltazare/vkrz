@@ -1,7 +1,7 @@
 <?php
 include __DIR__ . '/../../../../wp-load.php';
 
-$i = 0;
+$i = 1;
 $classement = new WP_Query(
     array(
         'ignore_sticky_posts'    => true,
