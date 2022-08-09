@@ -292,7 +292,7 @@ $count_toplist        = count($list_toplist);
                                             Toi aussi fais ta TopList afin de faire bouger les positions !
                                         </h6>
                                         <a href="<?php the_permalink($id_top); ?>" class="btn btn-outline-primary waves-effect">
-                                            Faire ma propre TopList
+                                            Faire ma TopList
                                         </a>
                                     </div>
                                 </div>
