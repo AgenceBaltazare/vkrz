@@ -127,12 +127,24 @@ if (is_author() || is_page(218587)) {
               <?php endif; ?>
             <?php endif; ?>
           </ul>
-          <?php if (strtolower($infos_vainkeur['pseudo']) != strtolower($infos_vainkeur['pseudo']) && is_user_logged_in()) : ?>
-            <button type="button" id="followBtn" class="btn waves-effect btn-follow" style="display: none;" data-userid="<?= $user_id; ?>" data-uuid="<?php echo $uuiduser; ?>" data-relatedid="<?= $id_membre; ?>" data-relateduuid="<?= get_field('uuiduser_user', 'user_' . $id_membre);  ?>" data-text="<?= $user_infos['pseudo'] ?> te guette !" data-url="<?= get_author_posts_url($user_id); ?>">
+
+          <?php if ($infos_vainkeur['id_user'] != $user_id && is_user_logged_in()) : ?>
+            <button 
+              type="button" 
+              id="followBtn" 
+              class="btn waves-effect d-none btn-follow" 
+              data-userid="<?= $user_id; ?>" 
+              data-uuid="<?= get_field('uuiduser_user', 'user_' . $user_id); ?>" 
+              data-relatedid="<?= $infos_vainkeur['id_user']; ?>" 
+              data-relateduuid="<?= get_field('uuiduser_user', 'user_' . $infos_vainkeur['id_user']);  ?>" 
+              data-text="<?= wp_get_current_user()->user_login ?> te guette !" 
+              data-url="<?= get_author_posts_url($user_id); ?>" 
+            >
               <span class="mr-10p wording">Guetter ce Vainkeur</span>
               <span class="va va-guetteur va va-z-20"></span>
             </button>
           <?php endif; ?>
+
         </div>
       </div>
     </nav>
