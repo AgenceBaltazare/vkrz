@@ -39,7 +39,7 @@ foreach ($users as $user) {
             // Save to firebase & WP
             //wp_update_post($arg);
 
-            echo "TopList " . $classement . " attribué à " . $user_id . '(' . $uuid_user_r . ')'; 
+            echo "TopList " . $classement . " attribué à " . $user_id . "(" . $uuid_user_r . ")" . "\n";
 
         }
     }
