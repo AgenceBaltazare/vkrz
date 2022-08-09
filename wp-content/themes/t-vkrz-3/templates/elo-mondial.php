@@ -3,6 +3,7 @@
     Template Name: Classement
 */
 global $uuiduser;
+global $id_vainkeur;
 if (isset($_GET['id_top']) && !empty($_GET['id_top'])) {
     $id_top  = $_GET['id_top'];
     if (get_post_status($id_top) == "draft") {
@@ -18,8 +19,24 @@ if (isset($_GET['sponso']) && $_GET['sponso'] != "") {
 }
 get_header();
 global $top_infos;
-global $user_tops;
-$list_t_already_done  = $user_tops['list_user_tops_done_ids'];
+if ($id_vainkeur) {
+    if (is_user_logged_in() && env() != "local") {
+        if (false === ($user_tops = get_transient('user_' . $user_id . '_get_user_tops'))) {
+            $user_tops = get_user_tops($id_vainkeur);
+            set_transient('user_' . $user_id . '_get_user_tops', $user_tops, DAY_IN_SECONDS);
+        } else {
+            $user_tops = get_transient('user_' . $user_id . '_get_user_tops');
+        }
+    } else {
+        $user_tops  = get_user_tops($id_vainkeur);
+    }
+    $list_user_tops         = $user_tops['list_user_tops_done_ids'];
+    $list_user_tops_begin   = $user_tops['list_user_tops_begin_ids'];
+} else {
+    $user_tops            = array();
+    $list_user_tops       = array();
+    $list_user_tops_begin = array();
+}
 $top_datas            = get_top_data($id_top);
 $contenders_ranking   = get_contenders_ranking($id_top);
 ?>
@@ -234,7 +251,7 @@ $contenders_ranking   = get_contenders_ranking($id_top);
                                         </div>
                                     </div>
                                 </div>
-                                <?php if (!get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $list_t_already_done)) : ?>
+                                <?php if (!get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $list_user_tops)) : ?>
                                     <div class="col-12">
                                         <div class="card">
                                             <div class="card-body">
@@ -245,7 +262,7 @@ $contenders_ranking   = get_contenders_ranking($id_top);
                                                     Toi aussi fais ta TopList afin de faire bouger les positions !
                                                 </h6>
                                                 <a href="<?php the_permalink($id_top); ?>" class="btn btn-outline-primary waves-effect">
-                                                    Faire ma propre TopList
+                                                    Faire ma TopList
                                                 </a>
                                             </div>
                                         </div>

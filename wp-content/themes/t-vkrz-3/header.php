@@ -7,19 +7,18 @@ global $id_vainkeur;
 global $utm;
 global $id_top;
 global $sponso;
-if(get_post_type() != "tournoi"){
+if (get_post_type() != "tournoi") {
   $user_id        = get_user_logged_id();
   $vainkeur       = get_vainkeur();
   $uuid_vainkeur  = $vainkeur['uuid_vainkeur'];
   $id_vainkeur    = $vainkeur['id_vainkeur'];
-  if($uuid_vainkeur){
+  if ($uuid_vainkeur) {
     if (is_user_logged_in()) {
       $infos_vainkeur = get_user_infos($uuid_vainkeur, "complete");
     } else {
       $infos_vainkeur = get_user_infos($uuid_vainkeur, "short");
-    } 
-  }
-  else{
+    }
+  } else {
     $infos_vainkeur = get_fantom();
   }
 }
@@ -27,6 +26,7 @@ $utm = deal_utm();
 ?>
 <!DOCTYPE html>
 <html class="loading dark-layout" lang="fr" data-layout="dark-layout" data-textdirection="ltr">
+
 <head>
   <!--[if lt IE 9]>
     <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -77,27 +77,28 @@ $utm = deal_utm();
       })(window, document, 'script', 'dataLayer', 'GTM-KH379F5');
     </script>
     <!-- End Google Tag Manager -->
-  <?php endif; ?>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-  </script>
 
-  <script type="text/javascript">
-    window.$crisp = [];
-    window.CRISP_WEBSITE_ID = "ec6a3187-bf39-4eb5-a90d-dda00a2995c8";
-    (function() {
-      d = document;
-      s = d.createElement("script");
-      s.src = "https://client.crisp.chat/l.js";
-      s.async = 1;
-      d.getElementsByTagName("head")[0].appendChild(s);
-    })();
-  </script>
-  <script>
-    $crisp.push(["set", "user:email", ["<?php echo $infos_vainkeur['user_email']; ?>"]]);
-    $crisp.push(["set", "user:nickname", ["<?php echo $infos_vainkeur['pseudo']; ?>"]]);
-    $crisp.push(["set", "user:avatar", ["<?php echo $infos_vainkeur['avatar']; ?>"]]);
-  </script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+    </script>
+
+    <script type="text/javascript">
+      window.$crisp = [];
+      window.CRISP_WEBSITE_ID = "ec6a3187-bf39-4eb5-a90d-dda00a2995c8";
+      (function() {
+        d = document;
+        s = d.createElement("script");
+        s.src = "https://client.crisp.chat/l.js";
+        s.async = 1;
+        d.getElementsByTagName("head")[0].appendChild(s);
+      })();
+    </script>
+    <script>
+      $crisp.push(["set", "user:email", ["<?php echo $infos_vainkeur['user_email']; ?>"]]);
+      $crisp.push(["set", "user:nickname", ["<?php echo $infos_vainkeur['pseudo']; ?>"]]);
+      $crisp.push(["set", "user:avatar", ["<?php echo $infos_vainkeur['avatar']; ?>"]]);
+    </script>
+  <?php endif; ?>
 
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-rqn26AG5Pj86AF4SO72RK5fyefcQ/x32DNQfChxWvbXIyXFePlEktwD18fEz+kQU" crossorigin="anonymous">
 
@@ -118,10 +119,9 @@ if (is_single() || is_page(get_page_by_path('monitor'))) {
 }
 
 // FOR NOTIFICATIONS… ✋
-if($infos_vainkeur['avatar']){
+if ($infos_vainkeur['avatar']) {
   $anonyme_avatar_url = $infos_vainkeur['avatar'];
-}
-else{
+} else {
   $anonyme_avatar_url = get_bloginfo('template_directory') . '/assets/images/vkrz/avatar-rose.png';
 }
 ?>
@@ -141,8 +141,8 @@ else{
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KH379F5" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
   <?php endif;
-  
+
   get_template_part('partials/menu-user');
   get_template_part('partials/menu-vkrz');
-  
+
   ?>
