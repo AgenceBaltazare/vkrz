@@ -208,7 +208,8 @@ function increase_top_resume($id_ranking, $infomaj)
                 $resume_list_toplist = json_decode(get_field('all_toplist_resume', $id_resume));
             }
             $resume_list_toplist = array_diff($resume_list_toplist, array($id_ranking));
-            update_field('all_toplist_resume', json_encode($resume_list_toplist), $id_resume);
+            $resume_list_toplist = '[' . implode(',', $resume_list_toplist) . "]";
+            update_field('all_toplist_resume', $resume_list_toplist, $id_resume);
         }
     }
 }

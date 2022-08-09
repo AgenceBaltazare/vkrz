@@ -58,7 +58,8 @@ function finish_the_top($id_ranking, $current_id_vainkeur, $id_top, $nb_contende
         $user_list_top_begin = json_decode(get_field('liste_des_top_commences_vkrz', $current_id_vainkeur));
     }
     $user_list_top_begin = array_diff($user_list_top_begin, array($id_top));
-    update_field('liste_des_top_commences_vkrz', json_encode($user_list_top_begin), $current_id_vainkeur);
+    $user_list_top_begin = '[' . implode(',', $user_list_top_begin) . "]";
+    update_field('liste_des_top_commences_vkrz', $user_list_top_begin, $current_id_vainkeur);
 
     if (is_user_logged_in()) {
         delete_transient('user_' . get_current_user_id() . '_get_user_tops');

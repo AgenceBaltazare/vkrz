@@ -12,21 +12,24 @@ function delete_real_ranking($id_ranking, $id_vainkeur){
         if(get_field('liste_des_toplist_vkrz', $id_vainkeur)){
             $user_list_toplist = json_decode(get_field('liste_des_toplist_vkrz', $id_vainkeur));
             $user_list_toplist = array_diff($user_list_toplist, array($id_ranking));
-            update_field('liste_des_toplist_vkrz', json_encode($user_list_toplist), $id_vainkeur);
+            $user_list_toplist = '[' . implode(',', $user_list_toplist) . "]";
+            update_field('liste_des_toplist_vkrz', $user_list_toplist, $id_vainkeur);
         }
 
         // Mise à jour de la liste des Tops terminés du Vainkeur
         if (get_field('liste_des_top_vkrz', $id_vainkeur)) {
             $user_list_top = json_decode(get_field('liste_des_top_vkrz', $id_vainkeur));
             $user_list_top = array_diff($user_list_top, array($id_top));
-            update_field('liste_des_top_vkrz', json_encode($user_list_top), $id_vainkeur);
+            $user_list_top = '['. implode(',', $user_list_top). "]";
+            update_field('liste_des_top_vkrz', $user_list_top, $id_vainkeur);
         }
 
         // Suppression du Top dans la liste des Tops commencé du Vainkeur
         if (get_field('liste_des_top_commences_vkrz', $id_vainkeur)) {
             $user_list_top_begin = json_decode(get_field('liste_des_top_commences_vkrz', $id_vainkeur));
             $user_list_top_begin = array_diff($user_list_top_begin, array($id_top));
-            update_field('liste_des_top_commences_vkrz', json_encode($user_list_top_begin), $id_vainkeur);
+            $user_list_top_begin = '[' . implode(',', $user_list_top_begin) . "]";
+            update_field('liste_des_top_commences_vkrz', $user_list_top_begin, $id_vainkeur);
         }
 
     }
