@@ -14,7 +14,7 @@ $user_query = new WP_User_Query(
             ),
             array(
                 'key'     => 'maj_user',
-                'compare' => 'NOT EXIST'
+                'compare' => 'NOT EXISTS'
             )
         )
     )
