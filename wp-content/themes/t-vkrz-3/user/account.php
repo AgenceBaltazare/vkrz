@@ -318,7 +318,7 @@ if ($list_user_toplists) {
                                     <span class="text-muted">Podium</span>
                                   </th>
                                   <th class="">
-                                    <span class="text-muted">Votes</span>
+                                    <span class="text-muted">Votes</span> 
                                   </th>
                                   <th>
                                     <span class="text-muted">Voir</span>
