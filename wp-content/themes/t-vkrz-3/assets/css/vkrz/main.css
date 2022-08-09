@@ -989,8 +989,8 @@ html .content {
   font-weight: bold;
   text-transform: uppercase;
   font-size: 12px;
-  background: #6819b9;
-  border: 1px solid #6819b9;
+  background-color: #f4167f;
+  border: 1px solid #f4167f;
   transition: all 0.2s ease-in;
 }
 .btn-follow:hover {
@@ -999,8 +999,8 @@ html .content {
 }
 
 .unfollowBtn {
-  background-color: #f4167f !important;
-  border: 1px solid #f4167f !important;
+  background: #6819b9 !important;
+  border: 1px solid #6819b9 !important;
 }
 
 .shorted {
