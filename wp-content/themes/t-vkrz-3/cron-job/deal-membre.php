@@ -5,6 +5,7 @@ $u=1;
 $user_query = new WP_User_Query(
     array(
         'number' => -1
+        
     )
 );
 $users = $user_query->get_results();
@@ -38,13 +39,15 @@ foreach ($users as $user) {
             );
 
             // Save to firebase & WP
-            //wp_update_post($arg);
+            wp_update_post($arg);
 
             echo "U: " . $u . " - R: " . $r. " --> TopList " . $classement . " attribué à " . $user_id . "(" . $uuid_user_r . ")" . "\n";
 
             $r++;
         }
     }
+
+    update_field('maj_user', date('Y-m-d H:i:s'), 'user_' . $user_id);
 
     $u++;
 }
