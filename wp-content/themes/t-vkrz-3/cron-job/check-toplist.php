@@ -21,7 +21,7 @@ if ($classements->have_posts()) {
     $i=1; foreach ($classements->posts as $classement) {
 
         //wp_delete_post($classement, true);
-        echo "TopList " . $classement . "\n";
+        echo $i . " -> TopList " . $classement . "\n";
 
         $i++;
     }
