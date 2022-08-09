@@ -52,7 +52,7 @@ get_header();
                                         <div class="card">
                                             <div class="table-responsive">
                                                 <div class="dataTables_wrapper dt-bootstrap4 no-footer">
-                                                    <table class="invoice-list-table table table-tdonee table-listuserranks dataTable no-footer">
+                                                    <table class="invoice-list-table table table-listuserranks dataTable no-footer">
                                                         <thead>
                                                             <tr>
                                                                 <th>
@@ -160,7 +160,7 @@ get_header();
 
                                                                                 <button type="button" id="followBtn" class="btn waves-effect btn-follow d-none" data-userid="<?= get_current_user_id(); ?>" data-uuid="<?= get_field('uuiduser_user', 'user_' . get_current_user_id()); ?>" data-relatedid="<?= $vainkeur_data_selected['id_user']; ?>" data-relateduuid="<?= get_field('uuiduser_user', 'user_' . $vainkeur_data_selected['id_user']); ?>" data-text="<?= get_the_author_meta('nickname', get_current_user_id()); ?> te guette !" data-url="<?= get_author_posts_url(get_current_user_id()); ?>">
                                                                                     <span class="mr-10p wording">Guetter</span>
-                                                                                    <span class="va va-guetteur va va-z-20"></span>
+                                                                                    <span class="va va-guetteur va va-z-20 emoji"></span>
                                                                                 </button>
 
                                                                             <?php endif; ?>

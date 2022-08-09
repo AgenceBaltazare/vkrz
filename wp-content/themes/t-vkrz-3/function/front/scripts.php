@@ -28,6 +28,10 @@ function load_css_js()
   wp_enqueue_style('main', get_template_directory_uri() . '/assets/css/vkrz/main.css', array(), $template_version);
 
   // Scripts
+  
+  // FOLLOW BUTTON…
+  wp_enqueue_script('follow_button', get_template_directory_uri() . '/function/firebase/follow_button.js', array(), $template_version, true);
+
   wp_enqueue_script('popper', get_template_directory_uri() . '/assets/js/core/popper.min.js', array(), null, true);
   wp_enqueue_script('bootstrap', get_template_directory_uri() . '/assets/js/core/bootstrap.min.js', array(), null, true);
   wp_enqueue_script('unison', get_template_directory_uri() . '/assets/js/core/unison-js.min.js', array(), null, true);
@@ -72,15 +76,14 @@ function load_css_js()
   }
   if (get_post_type() == "classement") {
     wp_enqueue_script('similar', get_template_directory_uri() . '/function/ajax/similar.js', array(), $template_version, true);
+
+    wp_enqueue_script('r_calc_resemblance', get_template_directory_uri() . '/function/firebase/r_calc_resemblance.js', array(), $template_version, true);
   }
 
   // COMMENTS…
   if (is_page('Discuz')) {
     wp_enqueue_script('set_comment_notification', get_template_directory_uri() . '/function/firebase/set_comment_notification.js', array(), $template_version, true);
   }
-
-  // FOLLOW BUTTON…
-  wp_enqueue_script('follow_button', get_template_directory_uri() . '/function/firebase/follow_button.js', array(), $template_version, true);
 
   // MENU USER NOTIFICATIONS…
   if(is_user_logged_in()){

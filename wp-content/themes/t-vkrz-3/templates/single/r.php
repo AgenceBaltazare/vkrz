@@ -140,20 +140,67 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
 
                     <div class="col-md-3 offset-md-1">
 
-                      <div class="animate__fadeInUp animate__animated animate__delay-2s">
+                      <div class="animate__fadeInUp animate__animated animate__delay-Xs">
 
                         <?php if (!in_array('private', $types_top)) : ?>
 
                           <div class="separate mt-1 mb-2 d-block d-sm-none"></div>
 
-                          <?php if (!$already_done) : ?>
-                            <div class="card mt-2">
-                              <a href="<?php echo $top_infos['top_url']; ?>" class="w-100 btn btn-rose waves-effect p-1">
-                                <p class="h4 text-white m-0">
-                                  Faire ma TopList
-                                </p>
-                              </a>
+                          <?php
+                          $ranking_author_id         = get_post_field('post_author', $id_ranking);
+                          $ranking_author_uuiduser   = get_field('uuiduser_user', 'user_' . $ranking_author_id);
+                          $ranking_author_data       = get_user_infos($ranking_author_uuiduser);
+                          if ($ranking_author_data && $ranking_author_id != get_user_logged_id()) : ?>
+                            <div class="card text-left">
+                              <div class="card-body">
+                                <h4 class="card-title">
+                                  <span class="ico va va-trophy va-lg"></span> TopList par :
+                                </h4>
+                                <div class="employee-task d-flex justify-content-between align-items-center">
+                                  <a href="<?php echo esc_url(get_author_posts_url($ranking_author_data['id_user'])); ?>" class="d-flex flex-row link-to-creator">
+                                    <div class="avatar me-75 mr-50">
+                                      <img src="<?php echo $ranking_author_data['avatar']; ?>" class="circle" width="48" height="48" alt="Avatar">
+                                    </div>
+                                    <div class="my-auto">
+                                      <h3 class="mb-0">
+                                        <?php echo $ranking_author_data['pseudo']; ?> <br>
+                                        <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="niveau">
+                                          <?php echo $ranking_author_data['level']; ?>
+                                        </span>
+                                        <?php if ($ranking_author_data['user_role']  == "administrator") : ?>
+                                          <span class="ico va va-vkrzteam va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
+                                          </span>
+                                        <?php endif; ?>
+                                        <?php if ($ranking_author_data['user_role']  == "administrator" || $ranking_author_data['user_role'] == "author") : ?>
+                                          <span class="ico va va-man-singer va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
+                                          </span>
+                                        <?php endif; ?>
+                                      </h3>
+                                    </div>
+                                  </a>
+
+                                  <button type="button" id="followBtn" class="btn waves-effect d-none btn-follow" data-userid="<?= $user_id; ?>" data-uuid="<?= get_field('uuiduser_user', 'user_' . $user_id); ?>" data-relatedid="<?= $ranking_author_data['id_user']; ?>" data-relateduuid="<?= get_field('uuiduser_user', 'user_' . $ranking_author_data['id_user']);  ?>" data-text="<?= wp_get_current_user()->user_login ?> te guette !" data-url="<?= get_author_posts_url($user_id); ?>" title="Guetter" alt="Guetter">
+                                    <span class="va va-guetteur-close va va-z-20 emoji"></span>
+                                  </button>
+                                </div>
+
+                                <div class="vs-resemblance" data-idranking="<?= $id_ranking; ?>" data-idtop="<?= $id_top; ?>" data-topurl="<?= $top_infos['top_url']; ?>">
+                                  <div class="loader loader--style1 w-100 mx-auto mt-1 text-center" title="0">
+                                    <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
+                                      <path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946
+                                        s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634
+                                        c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z" />
+                                      <path fill="#000" d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0
+                                        C22.32,8.481,24.301,9.057,26.013,10.047z">
+                                        <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 20 20" to="360 20 20" dur="0.5s" repeatCount="indefinite" />
+                                      </path>
+                                    </svg>
+                                  </div>
+                                </div>
+                              </div>
                             </div>
+
+                            <div class="separate mt-2 mb-2"></div>
                           <?php endif; ?>
 
                           <div class="card">
@@ -174,10 +221,10 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
                                     <div class="loader loader--style1" title="0">
                                       <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
                                         <path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946
-    s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634
-    c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z" />
+                                        s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634
+                                        c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z" />
                                         <path fill="#000" d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0
-    C22.32,8.481,24.301,9.057,26.013,10.047z">
+                                        C22.32,8.481,24.301,9.057,26.013,10.047z">
                                           <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 20 20" to="360 20 20" dur="0.5s" repeatCount="indefinite" />
                                         </path>
                                       </svg>
@@ -195,57 +242,6 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
                             </div>
                           </div>
                         <?php endif; ?>
-
-                        <div class="separate mt-2 mb-2"></div>
-
-                        <div class="card text-left">
-                          <?php
-                          $creator_id         = get_post_field('post_author', $id_top);
-                          $creator_uuiduser   = get_field('uuiduser_user', 'user_' . $creator_id);
-                          $creator_data       = get_user_infos($creator_uuiduser);
-                          ?>
-                          <div class="card-body">
-                            <h4 class="card-title">
-                              <?php
-                              date_default_timezone_set('Europe/Paris');
-                              $origin     = new DateTime(get_the_date('Y-m-d', $id_top));
-                              $target     = new DateTime(date('Y-m-d'));
-                              $interval   = $origin->diff($target);
-                              if ($interval->days == 0) {
-                                $info_date = "aujourd'hui";
-                              } elseif ($interval->days == 1) {
-                                $info_date = "hier";
-                              } else {
-                                $info_date = "depuis " . $interval->days . " jours";
-                              }
-                              ?>
-                              <span class="ico va va-birthday-cake va-lg"></span> Créé <span class="t-violet"><?php echo $info_date; ?></span> par :
-                            </h4>
-                            <div class="employee-task d-flex justify-content-between align-items-center">
-                              <a href="<?php echo esc_url(get_author_posts_url($creator_data['id_user'])); ?>" class="d-flex flex-row link-to-creator">
-                                <div class="avatar me-75 mr-1">
-                                  <img src="<?php echo $creator_data['avatar']; ?>" class="circle" width="42" height="42" alt="Avatar">
-                                </div>
-                                <div class="my-auto">
-                                  <h3 class="mb-0">
-                                    <?php echo $creator_data['pseudo']; ?> <br>
-                                    <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="niveau">
-                                      <?php echo $creator_data['level']; ?>
-                                    </span>
-                                    <?php if ($creator_data['user_role']  == "administrator") : ?>
-                                      <span class="ico va va-vkrzteam va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
-                                      </span>
-                                    <?php endif; ?>
-                                    <?php if ($creator_data['user_role']  == "administrator" || $creator_data['user_role'] == "author") : ?>
-                                      <span class="ico va va-man-singer va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
-                                      </span>
-                                    <?php endif; ?>
-                                  </h3>
-                                </div>
-                              </a>
-                            </div>
-                          </div>
-                        </div>
 
                         <?php
                         $list_t_already_done = $user_tops['list_user_tops_done_ids'];
