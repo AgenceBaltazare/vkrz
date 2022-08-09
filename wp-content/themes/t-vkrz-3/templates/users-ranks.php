@@ -89,7 +89,7 @@ $count_toplist        = count($list_toplist);
                                                             <?php foreach ($list_toplist as $id_ranking) :
                                                                 $uuiduser                = get_field('uuid_user_r', $id_ranking);
                                                                 $vainkeur_data_selected  = get_user_infos($uuiduser);
-                                                                if ($vainkeur_data_selected && get_current_user_id() != $vainkeur_data_selected['id_user']) : ?>
+                                                                if ($vainkeur_data_selected) : ?>
                                                                     <tr id="rows" class="<?php echo "uuid" . $uuiduser; ?> uncalculated" data-idranking="<?= $id_ranking; ?>">
                                                                         <td class="vainkeur-table">
                                                                             <span class="avatar">
@@ -164,7 +164,7 @@ $count_toplist        = count($list_toplist);
 
                                                                                 <button type="button" id="followBtn" class="btn waves-effect btn-follow d-none" data-userid="<?= get_current_user_id(); ?>" data-uuid="<?= get_field('uuiduser_user', 'user_' . get_current_user_id()); ?>" data-relatedid="<?= $vainkeur_data_selected['id_user']; ?>" data-relateduuid="<?= get_field('uuiduser_user', 'user_' . $vainkeur_data_selected['id_user']); ?>" data-text="<?= get_the_author_meta('nickname', get_current_user_id()); ?> te guette !" data-url="<?= get_author_posts_url(get_current_user_id()); ?>">
                                                                                     <span class="mr-10p wording">Guetter</span>
-                                                                                    <span class="va va-guetteur va va-z-20 emoji"></span>
+                                                                                    <span class="va va-guetteur-close va va-z-20 emoji"></span>
                                                                                 </button>
 
                                                                             <?php endif; ?>
