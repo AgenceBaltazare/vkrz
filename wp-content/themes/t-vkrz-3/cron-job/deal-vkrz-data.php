@@ -23,6 +23,16 @@ $vainkeur = new WP_Query(array(
 while ($vainkeur->have_posts()) : $vainkeur->the_post();
 
     $id_vainkeur        = get_the_ID();
+
+    $arg = array(
+        'ID'            => $id_vainkeur,
+        'post_author'   => 1076,
+    );
+
+    // Save to firebase & WP
+    wp_update_post($arg);
+
+    
     $uuid               = get_field('uuid_user_vkrz', $id_vainkeur);
     $vainkeur_toplist   = json_decode(get_field('liste_des_toplist_vkrz', $id_vainkeur));
     $nb_votes           = 0;
