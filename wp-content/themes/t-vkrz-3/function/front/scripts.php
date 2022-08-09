@@ -86,7 +86,9 @@ function load_css_js()
   }
 
   // MENU USER NOTIFICATIONS…
-  wp_enqueue_script('get_menuuser_notifications', get_template_directory_uri() . '/function/firebase/get_menuuser_notifications.js', array(), $template_version, true);
+  if(is_user_logged_in()){
+    wp_enqueue_script('get_menuuser_notifications', get_template_directory_uri() . '/function/firebase/get_menuuser_notifications.js', array(), $template_version, true);
+  }
 
   // NOTIFICATIONS PAGE…
   if (is_page('Notifications')) {
