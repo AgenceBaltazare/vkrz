@@ -5,13 +5,13 @@ function vkrz_tracking_vars()
 {
     $current_post_type = get_post_type();
     global $user_id;
-    global $uuiduser;
+    global $uuid_vainkeur;
     global $utm;
 
     $user_id = get_current_user_id();
 
     vkrz_output_tracking_vars_in_head("vkrz_tracking_vars_user", [
-        'uuiduser_layer'    => $uuiduser,
+        'uuiduser_layer'    => $uuid_vainkeur,
         'id_user_layer'     => $user_id,
         'utm'               => $utm,
         'pseudo_user_layer' => get_userdata($user_id)->display_name
@@ -99,7 +99,7 @@ function vkrz_tracking_vars()
     if (is_single() && in_array($current_post_type, ["classement", "tournoi"])) {
         global $id_top;
         global $top_infos;
-        global $user_infos;
+        global $infos_vainkeur;
 
         if($current_post_type == "tournoi"){
             $id_top     = get_the_ID();
@@ -114,7 +114,7 @@ function vkrz_tracking_vars()
             'top_title_layer' => $top_title,
             'top_categorie_layer' => !empty($top_infos['top_cat']) ? $top_infos['top_cat'][0]->name : "",
             'top_id_top_layer' => $id_top,
-            'top_user_level_layer' => $user_infos['level_number'],
+            'top_user_level_layer' => $infos_vainkeur['level_number'],
             'top_type_layer' => $top_infos['top_type'],
             'utm_layer' => $utm,
         ]);

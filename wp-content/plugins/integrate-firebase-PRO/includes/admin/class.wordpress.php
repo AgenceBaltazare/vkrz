@@ -33,7 +33,7 @@ class FirebaseCustomWordPress {
       add_action('delete_category', array('FirebaseCustomWordPress', 'listen_to_delete_category_event'), 10, 1);
 
       // profile
-      add_action('profile_update', array('FirebaseCustomWordPress', 'listen_to_profile_update_event'), 10, 3);
+      add_action('profile_update', array('FirebaseCustomWordPress', 'listen_to_profile_update_event'), 10, 2);
       // add_action('updated_user_meta', array('FirebaseCustomWordPress', 'listen_to_profile_update_event'), 10, 3);
     }
 
@@ -66,7 +66,7 @@ class FirebaseCustomWordPress {
       return;
     }
 
-    if ($post->post_status == 'publish' || $post->post_status == 'private') {
+    if ($post->post_status == 'publish' || $post->post_status == 'private' || $post->post_status == 'draft') {
       $post->permalink = get_the_permalink($post_id);
       $post->post_author_name = get_the_author_meta('display_name', $post->post_author);
       $post->post_thumbnail = get_the_post_thumbnail_url($post_id, 'post-thumbnail');
@@ -178,7 +178,7 @@ class FirebaseCustomWordPress {
     return self::$firebase_service->delete_taxonomy_data_to_firebase('wpCategories', $category_id);
   }
 
-  public static function listen_to_profile_update_event($user_id, $old_user_data, $user_data) {
+  public static function listen_to_profile_update_event($user_id, $old_user_data) {
     $firebase_user = [];
     $firebase_uid = get_user_meta($user_id, 'firebase_uid', true);
 

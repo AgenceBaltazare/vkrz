@@ -141,6 +141,11 @@
   height: 20px !important;
 }
 
+.va-z-25 {
+  width: 25px !important;
+  height: 25px !important;
+}
+
 .va-z-30 {
   width: 30px !important;
   height: 30px !important;
@@ -376,7 +381,7 @@
   background-image: url(../../images/emojis/link_1f517.png);
 }
 
-.va-face-with-monocle {
+.va-monocle {
   background-image: url(../../images/emojis/face-with-monocle_1f9d0.png);
 }
 
@@ -480,6 +485,10 @@
   background-image: url(../../images/emojis/winking-face-with-tongue_1f61c-1.png);
 }
 
+.va-guetteur {
+  background-image: url(../../images/emojis/face-with-peeking-eye_1fae3.png);
+}
+
 .va-mush {
   background-image: url(../../images/emojis/mushroom_1f344.png);
 }
@@ -560,7 +569,7 @@
   background-image: url(../../images/emojis/magnifying-glass-tilted-left_1f50d.png);
 }
 
-.va-cross-mark {
+.va-cross {
   background-image: url(../../images/emojis/cross-mark_274c.png);
 }
 
@@ -606,6 +615,13 @@
 
 .va-birthday-cake {
   background-image: url(../../images/emojis/birthday-cake_1f382.png);
+}
+
+.va-detective {
+  background-image: url(../../images/emojis/detective_1f575-fe0f.png);
+}
+.va-updown {
+  background-image: url(../../images/emojis/up-down-arrow_2195-fe0f.png);
 }
 
 .va-four-leaf-clover {
@@ -660,5 +676,12 @@
   background-image: url(../../images/emojis/grinning-face-with-smiling-eyes.png);
 }
 
+.va-lolipop{
+  background-image: url(../../images/emojis/lollipop_1f36d.png);
+}
+
+.va-kissing{
+  background-image: url(../../images/emojis/kissing-face_1f617.png);
+}
 
 /***** Icons END *****/

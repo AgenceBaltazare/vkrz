@@ -3,13 +3,10 @@ function delete_real_ranking($id_ranking, $id_vainkeur){
 
     if(isset($id_ranking) && $id_ranking != ""){
 
-        $nb_to_decrease     = get_field('nb_votes_r', $id_ranking);
         $id_top             = get_field('id_tournoi_r', $id_ranking);
         
         decrease_user_counter($id_vainkeur, $id_ranking);
         increase_top_resume($id_ranking, 'again');
-
-        wp_delete_post($id_ranking, true);
 
         // Mise à jour de la liste des TopList du Vainkeur
         $user_list_toplist = array();
@@ -40,6 +37,19 @@ function delete_real_ranking($id_ranking, $id_vainkeur){
     if (is_user_logged_in()) {
         delete_transient('user_' . get_current_user_id() . '_get_user_tops');
     }
+
+    $id_resume          = get_resume_id($id_top);
+    $id_ranking_to_supp = (string) $id_ranking;
+
+    // Delete ranking from WP
+    wp_delete_post($id_ranking_to_supp, true);
+
+    // Delete ranking from firestore
+    apply_filters('firebase_delete_data_from_database', 'firestore', 'wpClassement', $id_ranking_to_supp);
+    
+    // Save to firebase
+    wp_update_post(array('ID' => $id_vainkeur));
+    wp_update_post(array('ID' => $id_resume));
 
     return die(json_encode(array(
         'id_ranking'        => $id_ranking,

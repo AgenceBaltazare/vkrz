@@ -43,9 +43,6 @@ $vainkeurs = get_best_vainkeur("money", NULL, 20);
                                                                     <span class="va va-llama va-lg"></span> <small class="text-muted">Vainkeur</small>
                                                                 </th>
                                                                 <th class="text-right">
-                                                                    <small class="text-muted">KEURZ</small>
-                                                                </th>
-                                                                <th class="text-right">
                                                                     <small class="text-muted">Votes effectués</small>
                                                                 </th>
                                                                 <th class="text-right">
@@ -61,11 +58,16 @@ $vainkeurs = get_best_vainkeur("money", NULL, 20);
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <script>
-                                                                let idVainkeurProfil
-                                                            </script>
                                                             <?php $r = 1;
-                                                            foreach ($vainkeurs as $vainkeur) : ?>
+                                                            foreach ($vainkeurs as $vainkeur) :
+                                                                $user_id            = $vainkeur["author_id"];
+                                                                $total_vote         = $vainkeur["total_vote"];
+                                                                $total_top          = $vainkeur["total_top"];
+                                                                $uuiduser           = get_field('uuiduser_user', 'user_' . $user_id);
+                                                                $user_infos         = get_user_infos($uuiduser);
+                                                                $avatar             = $user_infos['avatar'];
+                                                                $info_user_level    = get_user_level($user_id);
+                                                            ?>
                                                                 <tr>
                                                                     <td>
                                                                         <?php if ($r == 1) : ?>
@@ -79,29 +81,22 @@ $vainkeurs = get_best_vainkeur("money", NULL, 20);
                                                                         <?php endif; ?>
                                                                     </td>
                                                                     <td>
-                                                                        <div class="d-flex align-items-center">
-                                                                            <?php
-                                                                            $user_id            = $vainkeur["author_id"];
-                                                                            $total_vote         = $vainkeur["total_vote"];
-                                                                            $total_top          = $vainkeur["total_top"];
-                                                                            $money              = $vainkeur["money"];
-                                                                            $uuiduser           = get_field('uuiduser_user', 'user_' . $user_id);
-                                                                            $user_infos         = get_user_infos($uuiduser);
-                                                                            $avatar             = $user_infos['avatar'];
-                                                                            $info_user_level    = get_user_level($user_id);
-                                                                            ?>
-                                                                            <div class="avatar">
-                                                                                <span class="avatar-picture" style="background-image: url(<?php echo $avatar; ?>);"></span>
-                                                                                <?php if ($info_user_level) : ?>
-                                                                                    <span class="user-niveau">
-                                                                                        <?php echo $info_user_level['level_ico']; ?>
+                                                                        <span class="avatar">
+                                                                            <a href="<?php echo esc_url(get_author_posts_url($user_id)); ?>">
+                                                                                <span class="avatar-picture" style="background-image: url(<?php echo $user_infos['avatar']; ?>);"></span>
+                                                                            </a>
+                                                                            <span class="user-niveau">
+                                                                                <?php echo $user_infos['level']; ?>
+                                                                            </span>
+                                                                        </span>
+                                                                        <span class="font-weight-bold championname">
+                                                                            <a href="<?php echo esc_url(get_author_posts_url($user_id)); ?>">
+                                                                                <?php echo $user_infos['pseudo']; ?>
+                                                                                <?php if ($user_infos) : ?>
+                                                                                    <span class="user-niveau-xs">
+                                                                                        <?php echo $user_infos['level']; ?>
                                                                                     </span>
                                                                                 <?php endif; ?>
-                                                                            </div>
-                                                                            <div class="font-weight-bold championname">
-                                                                                <span>
-                                                                                    <?php echo get_the_author_meta('nickname', $user_id); ?>
-                                                                                </span>
                                                                                 <?php if ($user_infos['user_role'] == "administrator") : ?>
                                                                                     <span class="ico va va-vkrzteam va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
                                                                                     </span>
@@ -110,12 +105,8 @@ $vainkeurs = get_best_vainkeur("money", NULL, 20);
                                                                                     <span class="ico va va-man-singer va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
                                                                                     </span>
                                                                                 <?php endif; ?>
-                                                                            </div>
-                                                                        </div>
-                                                                    </td>
-
-                                                                    <td class="text-right">
-                                                                        <?php echo $money; ?> <span class="ico va-gem va va-lg"></span>
+                                                                            </a>
+                                                                        </span>
                                                                     </td>
 
                                                                     <td class="text-right">
@@ -132,18 +123,16 @@ $vainkeurs = get_best_vainkeur("money", NULL, 20);
                                                                         </a>
                                                                     </td>
 
-                                                                    <?php if (is_user_logged_in()) : ?>
-                                                                        <td class="text-right checking-follower">
+                                                                    <td class="text-right checking-follower">
+                                                                        <?php if (get_current_user_id() != $user_id && is_user_logged_in()) : ?>
 
-                                                                            <button type="button" id="followBtn" class="btn btn-warning waves-effect waves-float waves-light" style="display: none;" data-userid="<?= get_current_user_id(); ?>" data-uuid="<?= get_field('uuiduser_user', 'user_' . get_current_user_id()); ?>" data-relatedid="<?= $user_id; ?>" data-relateduuid="<?= $uuiduser_search ?>" data-text="<?= get_the_author_meta('nickname', get_current_user_id()); ?> te guette !" data-url="<?= get_author_posts_url(get_current_user_id()); ?>">
-                                                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-star me-25">
-                                                                                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                                                                                </svg>
-                                                                                <span>Guetter</span>
+                                                                            <button type="button" id="followBtn" class="btn waves-effect btn-follow" style="display: none;" data-userid="<?= get_current_user_id(); ?>" data-uuid="<?= get_field('uuiduser_user', 'user_' . get_current_user_id()); ?>" data-relatedid="<?= $user_id; ?>" data-relateduuid="<?= get_field('uuiduser_user', 'user_' . $user_id); ?>" data-text="<?= get_the_author_meta('nickname', get_current_user_id()); ?> te guette !" data-url="<?= get_author_posts_url(get_current_user_id()); ?>">
+                                                                                <span class="mr-10p wording">Guetter</span>
+                                                                                <span class="va va-guetteur va va-z-20"></span>
                                                                             </button>
 
-                                                                        </td>
-                                                                    <?php endif; ?>
+                                                                        <?php endif; ?>
+                                                                    </td>
                                                                 </tr>
                                                             <?php $r++;
                                                             endforeach; ?>

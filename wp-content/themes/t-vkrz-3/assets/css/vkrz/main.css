@@ -1102,6 +1102,29 @@ html .content {
   background: #130e2b !important;
 }
 
+.btn-follow {
+  color: #ffffff;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 12px;
+  background: #6819b9;
+  border: 1px solid #6819b9;
+  transition: all 0.2s ease-in;
+}
+.btn-follow:hover {
+  background-color: transparent;
+  color: #ffffff !important;
+}
+
+.unfollowBtn {
+  background-color: #f4167f !important;
+  border: 1px solid #f4167f !important;
+}
+
+.shorted {
+  cursor: row-resize;
+}
+
 .page-template-monitor .list-vainkeur-monitor {
   line-height: 14px;
 }
@@ -2404,7 +2427,7 @@ textarea {
 .wppb-user-forms input[type="email"],
 .wppb-user-forms input[type="password"],
 .wppb-user-forms textarea {
-  background: transparent !important;
+  background-color: transparent !important;
   border: 2px solid rgba(255, 255, 255, 0.2) !important;
   padding: 20px 15px !important;
   font-size: 15px !important;
@@ -2458,6 +2481,22 @@ textarea {
   transition: background-color 5000s ease-in-out 0s !important;
   background: transparent !important;
   outline: 0;
+}
+
+/* Change Autocomplete styles in Chrome*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  background-color: #21123e !important;
+  -webkit-box-shadow: 0 0 0px 1000px #21123e inset;
+  -webkit-transition: background-color 5000s ease-in-out 0s;
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 .profile-tabs {
@@ -2682,7 +2721,7 @@ textarea {
 }
 
 .dataTables_filter input {
-  border: 1px solid #7367f0 !important;
+  border: 2px solid rgba(114, 103, 240, 0.2941176471) !important;
   color: #fff;
 }
 
@@ -4708,6 +4747,11 @@ textarea {
   height: 20px !important;
 }
 
+.va-z-25 {
+  width: 25px !important;
+  height: 25px !important;
+}
+
 .va-z-30 {
   width: 30px !important;
   height: 30px !important;
@@ -4942,7 +4986,7 @@ textarea {
   background-image: url(../../images/emojis/link_1f517.png);
 }
 
-.va-face-with-monocle {
+.va-monocle {
   background-image: url(../../images/emojis/face-with-monocle_1f9d0.png);
 }
 
@@ -5046,6 +5090,10 @@ textarea {
   background-image: url(../../images/emojis/winking-face-with-tongue_1f61c-1.png);
 }
 
+.va-guetteur {
+  background-image: url(../../images/emojis/face-with-peeking-eye_1fae3.png);
+}
+
 .va-mush {
   background-image: url(../../images/emojis/mushroom_1f344.png);
 }
@@ -5126,7 +5174,7 @@ textarea {
   background-image: url(../../images/emojis/magnifying-glass-tilted-left_1f50d.png);
 }
 
-.va-cross-mark {
+.va-cross {
   background-image: url(../../images/emojis/cross-mark_274c.png);
 }
 
@@ -5172,6 +5220,14 @@ textarea {
 
 .va-birthday-cake {
   background-image: url(../../images/emojis/birthday-cake_1f382.png);
+}
+
+.va-detective {
+  background-image: url(../../images/emojis/detective_1f575-fe0f.png);
+}
+
+.va-updown {
+  background-image: url(../../images/emojis/up-down-arrow_2195-fe0f.png);
 }
 
 .va-four-leaf-clover {
@@ -5224,6 +5280,14 @@ textarea {
 
 .va-grinning-face-with-smiling-eyes {
   background-image: url(../../images/emojis/grinning-face-with-smiling-eyes.png);
+}
+
+.va-lolipop {
+  background-image: url(../../images/emojis/lollipop_1f36d.png);
+}
+
+.va-kissing {
+  background-image: url(../../images/emojis/kissing-face_1f617.png);
 }
 
 /***** Icons END *****/

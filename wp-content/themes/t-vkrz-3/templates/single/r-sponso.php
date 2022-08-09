@@ -284,7 +284,7 @@ if ($get_top_type) {
                             <div class="card-body">
                               <h2 class="stats-mondiales mb-0">
                                 <b>Stats mondiales :</b>
-                                <?php echo $top_datas['nb_completed_top']; ?> 🏆 <?php echo $top_datas['nb_votes']; ?> ⚡️
+                                <?php echo $top_datas['nb_completed_top']; ?> <span class="va va-trophy va-md"></span> <?php echo $top_datas['nb_votes']; ?> <span class="va va-high-voltage va-md"></span>
                               </h2>
                               <div class="mt-1">
                                 <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_top_global; ?>&sponso=active" class="w-100 btn btn-primary waves-effect">
@@ -502,17 +502,17 @@ if ($get_top_type) {
       <ul>
         <?php if (get_field('uuid_user_r', $id_ranking) == $uuiduser) : ?>
           <li class="share-natif-classement">
-            <span class="ico-social">🏆</span> Partager mon classement
+            Partager mon classement
           </li>
         <?php endif; ?>
         <li class="share-natif-top">
-          <span class="ico-social">⚡️</span> Partager le lien du Top
+          Partager le lien du Top
         </li>
       </ul>
     </div>
     <div class="share-classement-content">
       <h3>
-        <span class="ico-social">⚡️</span> Partager mon classement
+        Partager mon classement
       </h3>
       <div class="close-share">
         <i class="fal fa-times"></i>
@@ -548,7 +548,7 @@ if ($get_top_type) {
     </div>
     <div class="share-top-content">
       <h3>
-        <span class="ico-social">⚡️</span> Partager le lien du Top
+        Partager le lien du Top
       </h3>
       <div class="close-share">
         <i class="fal fa-times"></i>
@@ -625,10 +625,10 @@ if ($get_top_type) {
                     $info_date = "depuis " . $interval->days . " jours";
                   }
                   ?>
-                  <span class="ico">🎂</span> Créé <span class="t-violet"><?php echo $info_date; ?></span> par :
+                  <span class="va va-birthday-cake va-md"></span> Créé <span class="t-violet"><?php echo $info_date; ?></span> par :
                 </h4>
                 <div class="employee-task d-flex justify-content-between align-items-center">
-                  <a href="<?php echo $creator_data['profil_url']; ?>" class="d-flex flex-row link-to-creator">
+                  <a href="<?php echo $creator_data['creator_url']; ?>" class="d-flex flex-row link-to-creator">
                     <div class="avatar me-75 mr-1">
                       <img src="<?php echo $creator_data['avatar']; ?>" class="circle" width="42" height="42" alt="Avatar">
                     </div>

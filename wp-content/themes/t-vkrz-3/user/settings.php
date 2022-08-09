@@ -56,11 +56,6 @@ get_header();
                                                     <div class="classic-form">
                                                         <?php echo do_shortcode('[wppb-edit-profile form_name="parametres"]'); ?>
                                                     </div>
-                                                    <div class="separateur separateur-1 "></div>
-                                                    <div class="login-form">
-                                                        <h3>Facilite ta connexion :</h3>
-                                                        <?php do_action('oa_social_link'); ?>
-                                                    </div>
                                                 </div>
 
                                             </div>

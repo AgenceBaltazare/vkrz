@@ -53,10 +53,10 @@ class Firebase_Admin {
       $data->productKey = self::$options_settings['product_key'];
       $url = "https://techcater.com/api-products/v1/products/IFP_YEARLY/validate";
 
-      // if (strpos(get_site_url(), 'techcater-plugins.local') !== false) {
-      //   error_log('--------Validate DEV SITE------------');
-      //   $url = "https://dev.techcater.com/api-products/v1/products/IFP_YEARLY/validate";
-      // }
+      if (strpos(get_site_url(), 'techcater-plugins.local') !== false) {
+        error_log('--------Validate DEV SITE------------');
+        $url = "https://dev.techcater.com/api-products/v1/products/IFP_YEARLY/validate";
+      }
 
       $response = wp_remote_post($url, array(
         'method' => 'POST',

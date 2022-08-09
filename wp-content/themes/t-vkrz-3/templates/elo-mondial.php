@@ -219,7 +219,7 @@ $contenders_ranking   = get_contenders_ranking($id_top);
                                                 $creator_uuiduser   = get_field('uuiduser_user', 'user_' . $creator_id);
                                                 $creator_data       = get_user_infos($creator_uuiduser);
                                                 ?>
-                                                par <a href="<?php echo $creator_data['profil_url']; ?>"><?php echo $creator_data['pseudo']; ?></a>
+                                                par <a href="<?php echo $creator_data['creator_url']; ?>"><?php echo $creator_data['pseudo']; ?></a>
                                                 <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="Niveau">
                                                     <?php echo $creator_data['level']; ?>
                                                 </span>

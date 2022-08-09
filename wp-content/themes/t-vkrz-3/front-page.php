@@ -1,6 +1,17 @@
 <?php
 get_header();
-global $user_tops;
+global $id_vainkeur;
+if (is_user_logged_in() && env() != "local") {
+  if (false === ($user_tops = get_transient('user_' . $user_id . '_get_user_tops'))) {
+    $user_tops = get_user_tops($id_vainkeur);
+    set_transient('user_' . $user_id . '_get_user_tops', $user_tops, DAY_IN_SECONDS);
+  } else {
+    $user_tops = get_transient('user_' . $user_id . '_get_user_tops');
+  }
+} 
+else {
+  $user_tops  = get_user_tops($id_vainkeur);
+}
 $list_user_tops_done  = $user_tops['list_user_tops_done_ids'];
 $list_user_tops_begin = $user_tops['list_user_tops_begin_ids'];
 ?>
@@ -76,7 +87,7 @@ $list_user_tops_begin = $user_tops['list_user_tops_begin_ids'];
             <div class="card">
               <div class="card-body">
                 <h4 class="card-title">
-                  <span class="ico va va-face-with-monocle va-z-20"></span> VAINKEURZ, c'est quoi ?
+                  <span class="ico va va-monocle va-z-20"></span> VAINKEURZ, c'est quoi ?
                 </h4>
                 <p class="card-text mb-2">
                   C'est clairement le moyen le plus douloureux de classer tout ce que tu préfères <span class="ico va va-woozy-face va-z-20"></span>

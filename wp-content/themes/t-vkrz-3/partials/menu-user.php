@@ -1,5 +1,5 @@
 <?php
-global $user_infos;
+global $infos_vainkeur;
 global $cat_name;
 global $term_to_search;
 global $total_top_founded;
@@ -12,7 +12,7 @@ if (is_single() && get_post_type() == "tournoi") {
   global $top_infos;
   $id_top = get_field('id_tournoi_r');
 } elseif (is_author() || is_page(218587)) {
-  global $vainkeur_info;
+  global $infos_vainkeur_to_watch;
 }
 ?>
 <nav class="header-navbar navbar navbar-expand-lg align-items-center floating-nav navbar-dark navbar-shadow menu-user">
@@ -153,7 +153,7 @@ if (is_single() && get_post_type() == "tournoi") {
                         </a>
                       </li>
 
-                    <?php elseif (is_archive() && !is_tax()) : ?>
+                    <?php elseif (is_archive() && !is_tax() && !is_author() && !is_page(218587)) : ?>
 
                       <?php
                       if (is_archive()) {
@@ -262,9 +262,9 @@ if (is_single() && get_post_type() == "tournoi") {
 
       <?php elseif (is_page(get_page_by_path('liste-des-tops'))) : ?>
 
-        <?php $id_top = $_GET['id_top']; ?>
+        <?php $id_top = $_GET['id_top']; global $count_toplist; ?>
         <div class="tournament-heading text-center">
-          <h3 class="mb-0 t-titre-tournoi">Toutes les TopList <span class="ico text-center va va-trophy va-lg"></span> <?php echo get_the_title($id_top); ?></h3>
+          <h3 class="mb-0 t-titre-tournoi"><?php echo $count_toplist; ?> TopList <span class="ico text-center va va-trophy va-lg"></span> <?php echo get_the_title($id_top); ?></h3>
           <h4 class="mb-0">
             <?php the_field('question_t', $id_top); ?>
           </h4>
@@ -286,7 +286,7 @@ if (is_single() && get_post_type() == "tournoi") {
             if ($searching_for_a_vainkeur) {
               echo 'Vainkeur trouvé';
             }
-            if($searching_for_a_vainkeur){
+            if ($searching_for_a_vainkeur) {
               echo ' - ';
             }
             if ($total_top_founded == 0 || !$total_top_founded) {
@@ -307,6 +307,15 @@ if (is_single() && get_post_type() == "tournoi") {
           <h4 class="mb-0">Plein de choses à gagner par ici</h4>
         </div>
 
+      <?php elseif (is_page(array(27040, 172849, 468675, 305107, 468673))) : ?>
+
+        <div class="tournament-heading text-center">
+          <h3 class="mb-0 t-titre-tournoi">
+            <span class="text-uppercase"><?php echo $infos_vainkeur['pseudo']; ?></span> <?php echo $infos_vainkeur['level']; ?>
+          </h3>
+          <h4 class="mb-0"><?php the_title(); ?></h4>
+        </div>
+
       <?php elseif (is_page(get_page_by_path('blog'))) : ?>
 
         <div class="tournament-heading text-center">
@@ -325,7 +334,7 @@ if (is_single() && get_post_type() == "tournoi") {
 
         <div class="tournament-heading text-center">
           <h3 class="mb-0 t-titre-tournoi">
-            Profil de <?php echo $vainkeur_info['pseudo']; ?> <?php echo $vainkeur_info['level']; ?>
+            Profil de <?php echo $infos_vainkeur_to_watch['pseudo']; ?> <?php echo $infos_vainkeur_to_watch['level']; ?>
           </h3>
         </div>
 
@@ -333,7 +342,7 @@ if (is_single() && get_post_type() == "tournoi") {
 
         <div class="tournament-heading text-center">
           <h3 class="mb-0 t-titre-tournoi">
-            Profil créateur de <?php echo $vainkeur_info['pseudo']; ?> <?php echo $vainkeur_info['level']; ?>
+            Profil créateur de <?php echo $infos_vainkeur_to_watch['pseudo']; ?> <?php echo $infos_vainkeur_to_watch['level']; ?>
           </h3>
         </div>
 
@@ -361,8 +370,8 @@ if (is_single() && get_post_type() == "tournoi") {
             <div>
               <span class="ico text-center va-mush va va-lg"></span>
               <span class="value-user-stats user-total-vote-value">
-                <?php if ($user_infos['money_vkrz']) : ?>
-                  <?php echo $user_infos['money_vkrz']; ?>
+                <?php if ($infos_vainkeur['money_vkrz']) : ?>
+                  <?php echo $infos_vainkeur['money_vkrz']; ?>
                 <?php else : ?>
                   0
                 <?php endif; ?>
@@ -371,8 +380,8 @@ if (is_single() && get_post_type() == "tournoi") {
             <div>
               <span class="ico text-center va-gem va va-lg"></span>
               <span class="value-user-stats money-disponible">
-                <?php if ($user_infos['current_money_vkrz']) : ?>
-                  <?php echo $user_infos['current_money_vkrz']; ?>
+                <?php if ($infos_vainkeur['current_money_vkrz']) : ?>
+                  <?php echo $infos_vainkeur['current_money_vkrz']; ?>
                 <?php else : ?>
                   0
                 <?php endif; ?>
@@ -384,7 +393,7 @@ if (is_single() && get_post_type() == "tournoi") {
           <li class="dropdown-menu-header">
             <div class="dropdown-header d-flex">
               <h4 class="notification-title mb-0 mr-auto">
-                <?php echo $user_infos['current_money_vkrz']; ?> <span class="va-gem va va-lg"></span>
+                <?php echo $infos_vainkeur['current_money_vkrz']; ?> <span class="va-gem va va-lg"></span>
               </h4>
             </div>
           </li>
@@ -432,7 +441,7 @@ if (is_single() && get_post_type() == "tournoi") {
         <a class="nav-link d-flex flex-column align-items-center" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>">
           <span class="ico text-center va va-trophy va-lg"></span>
           <span class="value-user-stats">
-            <?php echo $user_infos['nb_top_vkrz']; ?>
+            <?php echo $infos_vainkeur['nb_top_vkrz']; ?>
           </span>
         </a>
       </li>
@@ -465,9 +474,9 @@ if (is_single() && get_post_type() == "tournoi") {
       <li class="nav-item dropdown dropdown-user ml-25">
         <a class="nav-link dropdown-toggle dropdown-user-link" id="dropdown-user" href="javascript:void(0);" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <span class="avatar">
-            <span class="avatar-picture" style="background-image: url(<?php echo $user_infos['avatar']; ?>);"></span>
+            <span class="avatar-picture" style="background-image: url(<?php echo $infos_vainkeur['avatar']; ?>);"></span>
             <span class="user-niveau">
-              <?php echo $user_infos['level']; ?>
+              <?php echo $infos_vainkeur['level']; ?>
             </span>
           </span>
         </a>
@@ -476,11 +485,11 @@ if (is_single() && get_post_type() == "tournoi") {
             <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('mon-compte')); ?>">
               <div class="progress-wrapper">
                 <?php
-                $nb_need_money       = get_vote_to_next_level($user_infos['level_number'], $user_infos['money_vkrz']);
-                $money_to_next_level = $nb_need_money + $user_infos['money_vkrz'];
-                $percent_progression = round($user_infos['money_vkrz'] * 100 / $money_to_next_level);
+                $nb_need_money       = get_vote_to_next_level($infos_vainkeur['level_number'], $infos_vainkeur['money_vkrz']);
+                $money_to_next_level = $nb_need_money + $infos_vainkeur['money_vkrz'];
+                $percent_progression = round($infos_vainkeur['money_vkrz'] * 100 / $money_to_next_level);
                 ?>
-                <div id="example-caption-5">Encore <span class="decompte_vote"><?php echo $nb_need_money; ?></span> <span class="ico text-center va va-mush va-z-15"></span> pour <?php echo $user_infos['next_level']; ?></div>
+                <div id="example-caption-5">Encore <span class="decompte_vote"><?php echo $nb_need_money; ?></span> <span class="ico text-center va va-mush va-z-15"></span> pour <?php echo $infos_vainkeur['next_level']; ?></div>
                 <div class="progress progress-bar-primary w-100" style="height: 6px; margin-top: 5px;">
                   <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="<?php echo $percent_progression; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $percent_progression; ?>%"></div>
                 </div>

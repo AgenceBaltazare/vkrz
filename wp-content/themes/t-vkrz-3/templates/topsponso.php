@@ -1,10 +1,21 @@
-<?php /* Template Name: Tops sponso */ ?>
-
 <?php
+/*
+  Template Name: Tops sponso
+*/
 get_header();
-global $user_tops;
-$list_user_tops     = $user_tops['list_user_tops_done_ids'];
-$tops_in_cat        = new WP_Query(array(
+if (is_user_logged_in() && env() != "local") {
+  if (false === ($user_tops = get_transient('user_' . $user_id . '_get_user_tops'))) {
+    $user_tops = get_user_tops($id_vainkeur);
+    set_transient('user_' . $user_id . '_get_user_tops', $user_tops, DAY_IN_SECONDS);
+  } else {
+    $user_tops = get_transient('user_' . $user_id . '_get_user_tops');
+  }
+} else {
+  $user_tops  = get_user_tops($id_vainkeur);
+}
+$list_user_tops       = $user_tops['list_user_tops_done_ids'];
+$list_user_tops_begin = $user_tops['list_user_tops_begin_ids'];
+$tops_in_cat          = new WP_Query(array(
   'post_type'                 => 'tournoi',
   'orderby'                   => 'date',
   'order'                     => 'ASC',
@@ -46,17 +57,10 @@ $tops_in_cat        = new WP_Query(array(
       </div>
 
       <section class="grid-to-filtre row match-height mt-2">
-
         <?php $i = 1;
-        while ($tops_in_cat->have_posts()) : $tops_in_cat->the_post(); ?>
-
-          <?php
+        while ($tops_in_cat->have_posts()) : $tops_in_cat->the_post(); 
           $id_top             = get_the_ID();
           $top_datas          = get_top_data($id_top);
-          $creator_id         = get_post_field('post_author', $id_top);
-          $creator_uuiduser   = get_field('uuiduser_user', 'user_' . $creator_id);
-          $creator_data       = get_user_infos($creator_uuiduser);
-          $list_user_tops_begin   = $user_tops['list_user_tops_begin_ids'];
           $type_top         = "";
           $state            = "";
           $illu             = get_the_post_thumbnail_url($id_top, 'medium');

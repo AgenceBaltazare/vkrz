@@ -1,9 +1,5 @@
 <?php
-function get_user_ranking_id($id_top, $uuiduser = false, $id_vainkeur = false) {
-
-    if(!$uuiduser){
-        $uuiduser = $_COOKIE['vainkeurz_user_id'];
-    }
+function get_user_ranking_id($id_top, $uuid_vainkeur, $id_vainkeur) {
 
     $id_ranking         = false;
     $have_already_top   = false;
@@ -19,7 +15,7 @@ function get_user_ranking_id($id_top, $uuiduser = false, $id_vainkeur = false) {
         }
     }
 
-    if(isset($uuiduser) && $uuiduser != "" && $have_already_top == true) {
+    if($have_already_top == true) {
 
         $user_ranking = new WP_Query(array(
             'post_type'              => 'classement',
@@ -33,22 +29,20 @@ function get_user_ranking_id($id_top, $uuiduser = false, $id_vainkeur = false) {
                 array(
                     'relation' => 'AND',
                     array(
-                        'key' => 'id_tournoi_r',
-                        'value' => $id_top,
-                        'compare' => '=',
+                        'key'       => 'id_tournoi_r',
+                        'value'     => $id_top,
+                        'compare'   => '=',
                     ),
                     array(
-                        'key' => 'uuid_user_r',
-                        'value' => $uuiduser,
-                        'compare' => '=',
+                        'key'       => 'uuid_user_r',
+                        'value'     => $uuid_vainkeur,
+                        'compare'   => '=',
                     )
                 )
             )
         );
         if ($user_ranking->have_posts()) {
-            while ($user_ranking->have_posts()) : $user_ranking->the_post();
-                $id_ranking = get_the_ID();
-            endwhile;
+            $id_ranking = $user_ranking->posts[0];
         }
     }
     return $id_ranking;

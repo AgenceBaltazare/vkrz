@@ -133,7 +133,7 @@ get_header();
                                                                         $vainkeur_data_selected = get_user_infos($creator_uuiduser);
                                                                         ?>
                                                                         <span class="avatar">
-                                                                            <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_vainkeur'])); ?>">
+                                                                            <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_user'])); ?>">
                                                                                 <span class="avatar-picture" style="background-image: url(<?php echo $vainkeur_data_selected['avatar']; ?>);"></span>
                                                                             </a>
                                                                             <span class="user-niveau">
@@ -141,7 +141,7 @@ get_header();
                                                                             </span>
                                                                         </span>
                                                                         <span class="font-weight-bold championname">
-                                                                            <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_vainkeur'])); ?>">
+                                                                            <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_user'])); ?>">
                                                                                 <?php echo $vainkeur_data_selected['pseudo']; ?>
                                                                                 <?php if ($vainkeur_data_selected) : ?>
                                                                                     <span class="user-niveau-xs">
@@ -157,11 +157,6 @@ get_header();
                                                                                     </span>
                                                                                 <?php endif; ?>
                                                                             </a>
-                                                                            <!--
-                                                                            UUID    : <?php the_field('uuid_user_r', $id_rank); ?>
-                                                                            ID rank : <?php echo $id_rank; ?>
-                                                                            Date    : <?php echo get_the_date('d/m/Y - H:i:s', $id_rank); ?>
-                                                                            -->
                                                                         </span>
                                                                     </td>
                                                                 </tr>

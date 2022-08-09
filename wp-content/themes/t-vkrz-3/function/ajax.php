@@ -33,12 +33,6 @@ function vkzr_process_delete_ranking() {
     delete_real_ranking($_POST['id_ranking'], $_POST['id_vainkeur']);
 }
 
-add_action( 'wp_ajax_vkzr_process_note', 'vkzr_process_note' );
-add_action( 'wp_ajax_nopriv_vkzr_process_note', 'vkzr_process_note' );
-function vkzr_process_note() {
-    do_note($_POST['id_top'], $_POST['uuiduser'], $_POST['star']);
-}
-
 add_action('wp_ajax_vkzr_do_transaction', 'vkzr_do_transaction');
 add_action('wp_ajax_nopriv_vkzr_vkzr_do_transaction', 'vkzr_do_transaction');
 function vkzr_do_transaction(){

@@ -6,6 +6,7 @@
 <?php
 global $term_to_search;
 global $total_top_founded;
+global $infos_vainkeur;
 if (isset($_GET['term']) && $_GET['term'] != "") {
   $term_to_search = $_GET['term'];
 }
@@ -360,7 +361,7 @@ get_header();
                                 <small class="text-muted">Voir</small>
                               </th>
 
-                              <?php if (strtolower($user_infos['pseudo']) != strtolower($term_to_search) && is_user_logged_in()) : ?>
+                              <?php if (strtolower($infos_vainkeur['pseudo']) != strtolower($term_to_search) && is_user_logged_in()) : ?>
                                 <th class="text-right">
                                   <small class="text-muted">Guetter</small>
                                 </th>
@@ -373,7 +374,7 @@ get_header();
                               <?php
                               $user_id            = $user->ID;
                               $uuiduser_search    = get_field('uuiduser_user', 'user_' . $user_id);
-                              $user_infos         = get_user_infos($uuiduser_search);
+                              $user_infos         = get_user_infos($uuiduser_search, "complete");
                               $avatar             = $user_infos['avatar'];
                               $info_user_level    = get_user_level($user_id);
                               ?>
@@ -382,11 +383,9 @@ get_header();
                                   <div class="d-flex align-items-center">
                                     <div class="avatar">
                                       <span class="avatar-picture" style="background-image: url(<?php echo $avatar; ?>);"></span>
-                                      <?php if ($info_user_level) : ?>
-                                        <span class="user-niveau">
-                                          <?php echo $info_user_level['level_ico']; ?>
-                                        </span>
-                                      <?php endif; ?>
+                                      <span class="user-niveau">
+                                        <?php echo $user_infos['level']; ?>
+                                      </span>
                                     </div>
                                     <div class="font-weight-bold championname">
                                       <span>
@@ -427,11 +426,9 @@ get_header();
                                       idVainkeurProfil = "<?php echo $user_id; ?>"
                                     </script>
 
-                                    <button type="button" id="followBtn" class="btn btn-warning waves-effect waves-float waves-light" style="display: none;" data-userid="<?= get_current_user_id(); ?>" data-uuid="<?= get_field('uuiduser_user', 'user_' . get_current_user_id()); ?>" data-relatedid="<?= $user_id; ?>" data-relateduuid="<?= $uuiduser_search ?>" data-text="<?= get_the_author_meta('nickname', get_current_user_id()); ?> te guette !" data-url="<?= get_author_posts_url(get_current_user_id()); ?>">
-                                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-star me-25">
-                                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                                      </svg>
-                                      <span>Guetter ce Vainkeur</span>
+                                    <button type="button" id="followBtn" class="btn waves-effect btn-follow" style="display: none;" data-userid="<?= get_current_user_id(); ?>" data-uuid="<?= get_field('uuiduser_user', 'user_' . get_current_user_id()); ?>" data-relatedid="<?= $user_id; ?>" data-relateduuid="<?= $uuiduser_search ?>" data-text="<?= get_the_author_meta('nickname', get_current_user_id()); ?> te guette !" data-url="<?= get_author_posts_url(get_current_user_id()); ?>">
+                                      <span class="mr-10p wording">Guetter</span>
+                                      <span class="va va-guetteur va va-z-20"></span>
                                     </button>
 
                                   </td>
@@ -450,159 +447,28 @@ get_header();
         </div>
       <?php endif; ?>
 
-      <?php if (!empty($list_tops_unique)) : ?>
+      <?php if (!empty($list_tops_unique)) :
+        if (is_user_logged_in() && env() != "local") {
+          if (false === ($user_tops = get_transient('user_' . $user_id . '_get_user_tops'))) {
+            $user_tops = get_user_tops($id_vainkeur);
+            set_transient('user_' . $user_id . '_get_user_tops', $user_tops, DAY_IN_SECONDS);
+          } else {
+            $user_tops = get_transient('user_' . $user_id . '_get_user_tops');
+          }
+        } else {
+          $user_tops  = get_user_tops($id_vainkeur);
+        }
+        $list_user_tops       = $user_tops['list_user_tops_done_ids'];
+        $list_user_tops_begin = $user_tops['list_user_tops_begin_ids'];
+      ?>
         <section class="grid-to-filtre row match-height mt-2 tournois">
-
           <?php $i = 1;
-          while ($tops_unique_to_find->have_posts()) : $tops_unique_to_find->the_post();
-            $id_top             = get_the_ID();
-            $illu               = get_the_post_thumbnail_url($id_top, 'medium');
-            $id_top             = get_the_ID();
-            $top_datas          = get_top_data($id_top);
-            $creator_id       = get_post_field('post_author', $id_top);
-            $creator_info     = get_userdata($creator_id);
-            $creator_pseudo   = $creator_info->nickname;
-            $creator_avatar   = get_avatar_url($creator_id, ['size' => '80', 'force_default' => false]);
-            $list_user_tops   = $user_tops['list_user_tops_done_ids'];
-            $list_user_tops_begin   = $user_tops['list_user_tops_begin_ids'];
-            $type_top         = "";
-            $state            = "";
-            $illu             = get_the_post_thumbnail_url($id_top, 'medium');
-            if (is_home()) {
-              $class        = "swiper-slide";
-            } elseif (is_single()) {
-              $class        = "col-md-12 col-6";
-            } else {
-              $class        = "col-12";
-            }
-            if (in_array($id_top, $list_user_tops)) {
-              $state = "done";
-            } elseif (in_array($id_top, $list_user_tops_begin)) {
-              $state = "begin";
-            } else {
-              $state = "todo";
-            }
-            $tag_slug         = "";
-            $concept_slug     = "";
-            $sujet_slug       = "";
-            $term_to_search   = "";
+          while ($tops_unique_to_find->have_posts()) : $tops_unique_to_find->the_post(); ?>
 
-            if (get_the_terms($id_top, 'sous-cat')) {
-              foreach (get_the_terms($id_top, 'sous-cat') as $sujet) {
-                $sujet_slug     .= $sujet->slug . " ";
-              }
-            }
-            if (get_the_terms($id_top, 'tag')) {
-              foreach (get_the_terms($id_top, 'tag') as $tag) {
-                $tag_slug     .= $tag->slug . " ";
-              }
-            }
-            if (get_the_terms($id_top, 'concept')) {
-              foreach (get_the_terms($id_top, 'concept') as $concept) {
-                $concept_slug   .= $concept->slug . " ";
-              }
-            }
-            $top_question   = get_field('question_t', $id_top);
-            $top_title      = get_the_title($id_top);
-            $term_to_search = $sujet_slug . " " . $concept_slug . " " . $top_question . " " . $top_title;
-            $get_top_type = get_the_terms($id_top, 'type');
-            if ($get_top_type) {
-              foreach ($get_top_type as $type_top) {
-                $type_top = $type_top->slug;
-              }
-            }
-          ?>
-            <div data-filter-item data-filter-name="<?php echo $term_to_search; ?>" class="same-h grid-item col-md-3 col-6 <?php echo $sujet_slug; ?> <?php echo $state; ?> <?php echo $concept_slug; ?> <?php echo $tag_slug; ?>">
-              <div class="min-tournoi card scaler">
-                <div class="cov-illu cover" style="background: url(<?php echo $illu; ?>) center center no-repeat">
-                  <?php if ($type_top == "sponso") : ?>
-                    <span class="badge badge-light-rose ml-0">Top sponso</span>
-                  <?php endif; ?>
-                  <?php if ($state == "done") : ?>
-                    <div class="badge badge-success">Terminé</div>
-                  <?php elseif ($state == "begin") : ?>
-                    <div class="badge badge-warning">En cours</div>
-                  <?php else : ?>
-                    <div class="badge badge-primary">A faire</div>
-                  <?php endif; ?>
-                  <div class="voile">
-                    <?php if ($state == "done") : ?>
-                      <div class="spoun">
-                        <h5>Voir mon 🏆</h5>
-                      </div>
-                    <?php elseif ($state == "begin") : ?>
-                      <div class="spoun">
-                        <h5>Terminer</h5>
-                      </div>
-                    <?php else : ?>
-                      <div class="spoun">
-                        <h5>Faire mon 🏆</h5>
-                      </div>
-                    <?php endif; ?>
-                  </div>
-                  <div class="info-top row align-items-center justify-content-center">
-                    <div class="info-top-col">
-                      <div class="infos-card-t info-card-t-v d-flex align-items-center">
-                        <div class="d-flex align-items-center mr-10px">
-                          <span class="ico va-high-voltage va va-md"></span>
-                        </div>
-                        <div class="content-body mt-01">
-                          <h4 class="mb-0">
-                            <?php echo $top_datas['nb_votes']; ?>
-                          </h4>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="info-top-col">
-                      <div class="infos-card-t d-flex align-items-center">
-                        <div class="d-flex align-items-center mr-10px">
-                          <span class="ico va va-trophy va-md"></span>
-                        </div>
-                        <div class="content-body mt-01">
-                          <h4 class="mb-0">
-                            <?php echo $top_datas['nb_completed_top']; ?>
-                          </h4>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="info-top-col hide-xs">
-                      <div class="infos-card-t d-flex align-items-center infos-card-t-c">
-                        <div class="avatar-infomore">
-                          <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator_id; ?>" target="_blank">
-                            <div class="avatar me-50">
-                              <img src="<?php echo $creator_avatar; ?>" alt="<?php echo $creator_pseudo; ?>" width="38" height="38">
-                            </div>
-                          </a>
-                        </div>
-                        <div class="content-body mt-01">
-                          <h4 class="mb-0 link-creator d-flex flex-column text-left">
-                            <span class="text-muted">Créé par</span>
-                            <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator_id; ?>" target="_blank" class="link-to-creator">
-                              <?php echo $creator_pseudo; ?>
-                            </a>
-                          </h4>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-body mb-3-hover">
-                  <p class="card-text text-primary">
-                    <?php
-                    foreach (get_the_terms($id_top, 'categorie') as $cat) {
-                      $cat_id     = $cat->term_id;
-                      $cat_name   = $cat->name;
-                    }
-                    ?>
-                    TOP <?php echo get_field('count_contenders_t', $id_top); ?> <?php the_field('icone_cat', 'term_' . $cat_id); ?> <?php echo get_the_title($id_top); ?>
-                  </p>
-                  <h4 class="card-title">
-                    <?php echo $top_question; ?>
-                  </h4>
-                </div>
-                <a href="<?php the_permalink($id_top); ?>" class="stretched-link"></a>
-              </div>
+            <div class="col-md-3 col-sm-4 col-6">
+              <?php get_template_part('partials/min-t'); ?>
             </div>
+
           <?php $i++;
           endwhile; ?>
         </section>

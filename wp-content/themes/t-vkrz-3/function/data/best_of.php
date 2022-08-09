@@ -30,7 +30,6 @@ function best_creators(){
     if ($rankings->have_posts()) {
         foreach ($rankings->posts as $ranking_id) {
             $top_id = get_field("id_top_resume", $ranking_id);
-
             if (array_key_exists($top_id, $rankings_by_top)) {
                 $rankings_by_top[$top_id]["total_vote"] = $rankings_by_top[$top_id]["total_vote"] + get_field("nb_votes_resume", $ranking_id);
                 $rankings_by_top[$top_id]["total_completed_top"] = $rankings_by_top[$top_id]["total_completed_top"] + get_field("nb_done_resume", $ranking_id);

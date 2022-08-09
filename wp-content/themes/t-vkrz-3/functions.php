@@ -57,13 +57,3 @@ function post_content($content)
 }
 add_filter('the_content', 'post_content');
 
-function delete_vainkeurz_cookie() {
-  if (isset($_COOKIE["vainkeurz_id"]) && $_COOKIE["vainkeurz_id"] != "" && isset($_COOKIE["vainkeurz_uuid"]) && $_COOKIE["vainkeurz_uuid"] != "") {
-    unset($_COOKIE["vainkeurz_id"]);
-    setcookie("vainkeurz_id", "", time() - 3600, "/");
-  
-    unset($_COOKIE["vainkeurz_uuid"]);
-    setcookie("vainkeurz_uuid", "", time() - 3600, "/");
-  }
-}
-add_action('wp_logout', 'delete_vainkeurz_cookie');
