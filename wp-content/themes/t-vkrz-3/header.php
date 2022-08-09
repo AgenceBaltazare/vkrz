@@ -78,10 +78,6 @@ $utm = deal_utm();
     </script>
     <!-- End Google Tag Manager -->
 
-    <script>
-      window.dataLayer = window.dataLayer || [];
-    </script>
-
     <script type="text/javascript">
       window.$crisp = [];
       window.CRISP_WEBSITE_ID = "ec6a3187-bf39-4eb5-a90d-dda00a2995c8";
@@ -99,6 +95,10 @@ $utm = deal_utm();
       $crisp.push(["set", "user:avatar", ["<?php echo $infos_vainkeur['avatar']; ?>"]]);
     </script>
   <?php endif; ?>
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+  </script>
 
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-rqn26AG5Pj86AF4SO72RK5fyefcQ/x32DNQfChxWvbXIyXFePlEktwD18fEz+kQU" crossorigin="anonymous">
 
