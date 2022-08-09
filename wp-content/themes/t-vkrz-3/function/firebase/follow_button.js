@@ -13,7 +13,7 @@ if (
   document.querySelector("#followBtn") ||
   document.querySelector(".checking-follower")
 ) {
-  let svg, span;
+  let span;
   const followBtns = document.querySelectorAll("#followBtn");
 
   followBtns.forEach((followBtn) => {
@@ -26,9 +26,8 @@ if (
       );
       let querySnapshot = await getDocs(q);
 
-      svg = followBtn.querySelector("svg");
       span = followBtn.querySelector(".wording");
-      followBtn.style.display = "block";
+      followBtn.classList.remove("d-none");
       followBtn.style.float = "right";
 
       if (querySnapshot._snapshot.docs.size === 0) {
@@ -37,13 +36,11 @@ if (
         // SET NOTIFICATION… 🧑‍💻
         followBtn.addEventListener("click", function () {
           if (!followBtn.classList.contains("unfollowBtn")) {
-            svg = followBtn.querySelector("svg");
             span = followBtn.querySelector(".wording");
 
             // STYLES… 🍏
             followBtn.classList.add("unfollowBtn");
 
-            svg.setAttribute("fill", "#FFF");
             span.textContent = "Guetté";
 
             if (document.querySelector(".followers-nbr")) {
@@ -106,11 +103,7 @@ if (
               }
             }
 
-            followBtn.classList.add("btn-warning");
-            followBtn.classList.remove("btn-success");
             followBtn.classList.remove("unfollowBtn");
-
-            followBtn.querySelector("svg").setAttribute("fill", "transparent");
             followBtn.querySelector("span").textContent = "Guetter";
           }
         });
@@ -118,12 +111,9 @@ if (
         /* FOLLOWED ALREADY… */
 
         // STYLES… 🍏
-        followBtn.classList.remove("btn-warning");
-        followBtn.classList.add("btn-success");
         followBtn.classList.add("unfollowBtn");
 
-        svg.setAttribute("fill", "#FFF");
-        span.textContent = "Suivi";
+        span.textContent = "Guetté";
         followBtn.setAttribute(
           "data-documentId",
           querySnapshot._snapshot.docChanges[0].doc.key.path.segments[6]
@@ -132,12 +122,9 @@ if (
         followBtn.addEventListener("click", function () {
           if (!followBtn.classList.contains("unfollowBtn")) {
             // STYLES… 🍏
-            followBtn.classList.remove("btn-warning");
-            followBtn.classList.add("btn-success");
             followBtn.classList.add("unfollowBtn");
 
-            followBtn.querySelector("svg").setAttribute("fill", "#FFF");
-            followBtn.querySelector("span").textContent = "Suivi";
+            followBtn.querySelector("span").textContent = "Guetté";
 
             if (document.querySelector(".followers-nbr")) {
               document.querySelector(".followers-nbr").textContent =
@@ -181,8 +168,6 @@ if (
               )
             );
 
-            followBtn.classList.add("btn-warning");
-            followBtn.classList.remove("btn-success");
             followBtn.classList.remove("unfollowBtn");
 
             if (document.querySelector(".followers-nbr-text")) {
@@ -196,7 +181,6 @@ if (
 
             followBtn.removeAttribute("data-documentId");
 
-            followBtn.querySelector("svg").setAttribute("fill", "transparent");
             followBtn.querySelector("span").textContent = "Guetter";
           }
         });
