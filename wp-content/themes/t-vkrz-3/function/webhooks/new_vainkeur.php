@@ -19,11 +19,6 @@ function new_vainkeur($user_id){
                             'key' => 'uuid_user_r',
                             'value' => $_COOKIE["vainkeurz_user_id"],
                             'compare' => '='
-                        ),
-                        array(
-                            'key' => 'id_tournoi_r',
-                            'value' => get_exclude_top(),
-                            'compare' => 'NOT IN'
                         )
                     )
                 ));

@@ -12,10 +12,9 @@ if (isset($_GET['id_top']) && !empty($_GET['id_top'])) {
     header('Location: ' . get_bloginfo('url'));
 }
 global $sponso;
+$sponso = "";
 if (isset($_GET['sponso']) && $_GET['sponso'] != "") {
     $sponso = $_GET['sponso'];
-} else {
-    $sponso = "";
 }
 get_header();
 global $top_infos;

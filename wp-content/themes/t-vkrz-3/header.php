@@ -6,6 +6,7 @@ global $infos_vainkeur;
 global $id_vainkeur;
 global $utm;
 global $id_top;
+global $sponso;
 if(get_post_type() != "tournoi"){
   $user_id        = get_user_logged_id();
   $vainkeur       = get_vainkeur();
