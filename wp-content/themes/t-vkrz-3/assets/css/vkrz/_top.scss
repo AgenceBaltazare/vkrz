@@ -138,6 +138,12 @@
     z-index: 999;
 }
 
+.dark-layout .swiper-container:not(.swiper-parallax) .swiper-slide {
+    @media (max-width: 500px) {
+        width:100% !important;
+    }
+}
+
 .min-tournoi {
     -webkit-transition: all .2s ease-in-out;
     -moz-transition: all .2s ease-in-out;
@@ -281,6 +287,10 @@
     .card-body {
         padding: 10px;
         position: relative;
+        min-height: 100px;
+        @media (max-width: 500px) {
+            min-height:70px;
+        }
 
         p {
             margin-bottom: 5px;

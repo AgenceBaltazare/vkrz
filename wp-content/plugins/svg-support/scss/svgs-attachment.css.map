@@ -1,1 +1,9 @@
-{"version":3,"sources":["svgs-attachment.scss","svgs-attachment.css"],"names":[],"mappings":"AAYC;;EACC,eAAA;EACA,YAAA;ACVF","file":"svgs-attachment.css"}
+{
+    "version": 3,
+    "mappings": "AAKA,AAOC,WAPU,CAOV,GAAG;AANJ,mBAAmB,CAMlB,GAAG,CAAC;EACH,SAAS,EAAE,IAAI;EACf,MAAM,EAAE,IAAI;CACZ",
+    "sources": [
+        "svgs-attachment.scss"
+    ],
+    "names": [],
+    "file": "svgs-attachment.css"
+}

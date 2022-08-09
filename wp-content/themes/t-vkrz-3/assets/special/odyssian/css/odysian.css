@@ -5,7 +5,7 @@
 }
 
 .breadcrumb:not([class*=breadcrumb-]) .breadcrumb-item + .breadcrumb-item:before {
-  content: ">";
+  content: '>';
   background: transparent !important;
   color: #68441e;
 }
@@ -17,9 +17,11 @@
 html .card-developer-meetup .meetup-img-wrapper .badge {
   background: #105079;
 }
+
 html .badge-light-rose {
   background: #5ebfd5 !important;
 }
+
 html .t-titre-tournoi,
 html .breadcrumb .breadcrumb-item,
 html .breadcrumbs-top a,
@@ -27,45 +29,56 @@ html .dark-layout .breadcrumb .breadcrumb-item + .breadcrumb-item::before,
 html .header-navbar .navbar-container .nav .nav-item .nav-link {
   color: #68441e !important;
 }
+
 html .intro-mobile {
   background: url("../img/beige.jpg") center center !important;
   border: 2px solid #68441e;
 }
+
 html .header-navbar {
   background: url("../img/menu.png") center center repeat-x !important;
   border: 3px solid #68441e;
   background-size: cover !important;
 }
+
 html .tournament-heading:after {
   border-top: 2px solid #77efe6;
 }
+
 html .choosecta .laucher_t:active {
   font-size: 8px;
 }
+
 html .content.app-content {
-  font-family: "Zen Antique Soft", serif;
+  font-family: 'Zen Antique Soft', serif;
 }
+
 html .content.app-content .btn-outline-primary {
   border: 1px solid #105079 !important;
   background-color: transparent;
   color: #105079;
   text-transform: uppercase;
 }
+
 html .content.app-content .btn-outline-primary:hover {
   background-color: #105079;
   color: #fff;
 }
+
 html .content.app-content .share-text {
   color: #68441e !important;
 }
+
 html .content.app-content .t-rose {
   color: #105079 !important;
   font-weight: bold;
 }
+
 html .content.app-content .c-jaune {
   color: #FCE894;
   text-shadow: 0 0 2px #000;
 }
+
 html .content.app-content .content-overlay {
   position: absolute;
   opacity: 0.5;
@@ -78,77 +91,104 @@ html .content.app-content .content-overlay {
   background-color: #6e6361;
   z-index: 0;
 }
+
 html .content.app-content .card-developer-meetup {
   background: url("../img/beige.jpg") center center !important;
   background-size: contain !important;
   color: #68441e;
 }
+
 html .content.app-content .card-developer-meetup .card-title {
   font-size: 22px;
   line-height: 28px;
   color: #68441e;
 }
+
 html .content.app-content .card-developer-meetup .rules-content {
   padding: 0;
 }
+
 html .content.app-content .card-developer-meetup .rules-content .title-win {
   background: url(../img/bleu.png) center top !important;
   background-size: cover !important;
   border-radius: 0;
   padding: 20px 10px;
 }
+
 html .content.app-content .card-developer-meetup .rules-content .title-win h4 {
   text-shadow: 0 0 2px #FCE894, 0 0 3px #000;
   letter-spacing: -1px;
   font-size: 18px;
 }
+
 html .content.app-content .card-developer-meetup .rules-content .text-rules {
   padding: 0px 15px;
 }
+
 html .content.app-content .card-developer-meetup .rules-content .text-rules img {
   width: 100%;
   height: auto;
   border: 2px solid #000;
   margin-bottom: 10px;
 }
+
 html .content.app-content .card-developer-meetup .rules-content .text-rules strong {
   color: #105079;
 }
+
 html .content.app-content .card-developer-meetup .rules-content .text-rules strong a {
   color: #105079 !important;
   border-bottom: 2px solid;
 }
+
 html .content.app-content .card-developer-meetup .share-content-sponso {
   padding: 15px 20px 3px 20px !important;
 }
+
 html .content.app-content .card-developer-meetup .share-content-sponso .reseaux-sponso {
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
+
 html .content.app-content .card-developer-meetup .share-content-sponso .reseaux-sponso .logo-vkrz-sponso {
   width: 100% !important;
 }
+
 html .content.app-content .card-developer-meetup .share-content-sponso .reseaux-sponso .social-media-sponso {
   width: 100% !important;
 }
+
 html .content.app-content .card-developer-meetup .share-content-sponso .reseaux-sponso .social-media-sponso .buttons-social-media {
-  flex-direction: row !important;
+  -webkit-box-orient: horizontal !important;
+  -webkit-box-direction: normal !important;
+      -ms-flex-direction: row !important;
+          flex-direction: row !important;
 }
+
 html .content.app-content .card-developer-meetup .share-content-sponso .reseaux-sponso .social-media-sponso .buttons-social-media a:last-child {
   margin-bottom: 10px;
 }
+
 html .content.app-content .card-developer-meetup .btn-primary {
   border: none !important;
   background: #004162 !important;
   color: #fff !important;
   background-size: contain;
+  -webkit-transition: all 0.2s ease-in;
   transition: all 0.2s ease-in;
-  box-shadow: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
+
 html .content.app-content .card-developer-meetup .btn-primary:hover {
   background: url("../img/btn2.png") center center no-repeat;
   background-size: contain;
-  box-shadow: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
+
 @media (max-width: 768px) {
   html .content.app-content .card-developer-meetup .btn-primary {
     border: none !important;
@@ -156,27 +196,33 @@ html .content.app-content .card-developer-meetup .btn-primary:hover {
     background: url("../img/btn1-m.png") center center no-repeat;
     color: #fff !important;
     background-size: 100%;
+    -webkit-transition: all 0.2s ease-in;
     transition: all 0.2s ease-in;
-    box-shadow: none;
+    -webkit-box-shadow: none;
+            box-shadow: none;
     font-size: 19px;
     padding: 13px 10px;
   }
   html .content.app-content .card-developer-meetup .btn-primary:hover {
     background: url("../img/btn2-m.png") center center no-repeat;
     background-size: contain;
-    box-shadow: none;
+    -webkit-box-shadow: none;
+            box-shadow: none;
   }
 }
+
 html .content.app-content .card-developer-meetup .content-body h4 {
   color: #68441e;
 }
+
 html .icons-navbar {
   background: #105079;
 }
+
 html .title-contender,
 html .name h5 {
-  background: rgb(18, 80, 121);
-  background: radial-gradient(circle, rgb(18, 80, 121) 0%, rgb(24, 115, 175) 100%);
+  background: #125079;
+  background: radial-gradient(circle, #125079 0%, #1873af 100%);
   color: #fff;
   text-transform: uppercase;
   font-size: 13px;
@@ -184,6 +230,7 @@ html .name h5 {
   padding: 5px;
   border: 2px solid #b59100;
 }
+
 html .title-contender span,
 html .name h5 span {
   color: #b59100;
@@ -197,9 +244,11 @@ html .name h5 span {
     background-color: #77efe6;
   }
 }
+
 .stepbar {
   background: #77efe6;
 }
+
 .stepbar .stepbar-content span {
   color: #77efe6;
 }
@@ -207,9 +256,11 @@ html .name h5 span {
 .participation-content-sponso {
   background: transparent;
 }
+
 .participation-content-sponso .info-win strong {
   color: #77efe6;
 }
+
 .participation-content-sponso .info-win strong a {
   color: #77efe6 !important;
   border-bottom: 2px solid;
@@ -222,9 +273,11 @@ html .name h5 span {
 .share-content-sponso {
   padding: 15px 20px 3px 20px !important;
 }
+
 .share-content-sponso .text-left img {
   border: 2px solid #000;
 }
+
 .share-content-sponso .logo-vkrz-sponso {
   width: 100% !important;
 }
@@ -234,35 +287,49 @@ html .name h5 span {
   opacity: 0.85 !important;
   background-color: #6e6361;
 }
+
 .single-classement .card,
 .page-template-elo-mondial .card {
   background: url("../img/beige.jpg") center center !important;
   background-size: contain !important;
   color: #68441e;
 }
+
 .single-classement .card .card-body h2,
 .page-template-elo-mondial .card .card-body h2 {
   color: #68441e;
 }
+
 .single-classement .share-content-sponso,
 .page-template-elo-mondial .share-content-sponso {
   padding: 15px 20px 3px 20px !important;
 }
+
 .single-classement .share-content-sponso .reseaux-sponso,
 .page-template-elo-mondial .share-content-sponso .reseaux-sponso {
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
+
 .single-classement .share-content-sponso .reseaux-sponso .logo-vkrz-sponso,
 .page-template-elo-mondial .share-content-sponso .reseaux-sponso .logo-vkrz-sponso {
   width: 100% !important;
 }
+
 .single-classement .share-content-sponso .reseaux-sponso .social-media-sponso,
 .page-template-elo-mondial .share-content-sponso .reseaux-sponso .social-media-sponso {
   width: 100%;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
   display: inline-flex;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   vertical-align: middle;
 }
+
 .single-classement .share-content-sponso .reseaux-sponso .social-media-sponso a,
 .page-template-elo-mondial .share-content-sponso .reseaux-sponso .social-media-sponso a {
   display: block;
@@ -270,47 +337,64 @@ html .name h5 span {
   margin-bottom: 10px;
   margin: 0 3px;
 }
+
 .single-classement .share-content-sponso .reseaux-sponso .social-media-sponso .btn,
 .page-template-elo-mondial .share-content-sponso .reseaux-sponso .social-media-sponso .btn {
   padding: 0.786rem 0.5rem;
 }
+
 .single-classement .bravo,
 .page-template-elo-mondial .bravo {
   border: 5px solid #77efe6;
 }
+
 .single-classement #form-coupon input[type=email],
 .page-template-elo-mondial #form-coupon input[type=email] {
   border: 2px solid #77efe6;
 }
-.single-classement #form-coupon input[type=email]::-moz-placeholder, .page-template-elo-mondial #form-coupon input[type=email]::-moz-placeholder {
+
+.single-classement #form-coupon input[type=email]::-webkit-input-placeholder,
+.page-template-elo-mondial #form-coupon input[type=email]::-webkit-input-placeholder {
   color: #fff;
 }
-.single-classement #form-coupon input[type=email]:-ms-input-placeholder, .page-template-elo-mondial #form-coupon input[type=email]:-ms-input-placeholder {
+
+.single-classement #form-coupon input[type=email]:-ms-input-placeholder,
+.page-template-elo-mondial #form-coupon input[type=email]:-ms-input-placeholder {
   color: #fff;
 }
+
+.single-classement #form-coupon input[type=email]::-ms-input-placeholder,
+.page-template-elo-mondial #form-coupon input[type=email]::-ms-input-placeholder {
+  color: #fff;
+}
+
 .single-classement #form-coupon input[type=email]::placeholder,
 .page-template-elo-mondial #form-coupon input[type=email]::placeholder {
   color: #fff;
 }
+
 .single-classement #form-coupon #btn-coupon,
 .page-template-elo-mondial #form-coupon #btn-coupon {
   background: #77efe6;
   color: #105079;
 }
+
 .single-classement .stats-mondiales b,
 .page-template-elo-mondial .stats-mondiales b {
   color: #68441e;
   font-weight: normal;
 }
+
 .single-classement .card .btn-primary,
 .page-template-elo-mondial .card .btn-primary {
   border-color: #68441e !important;
   background-color: #68441e !important;
   color: #fff !important;
 }
+
 .single-classement .participation-content-sponso h1,
 .page-template-elo-mondial .participation-content-sponso h1 {
-  font-family: "Zen Antique Soft", serif;
+  font-family: 'Zen Antique Soft', serif;
   font-weight: 900;
   font-style: normal !important;
   font-size: 38.89px;
@@ -319,9 +403,10 @@ html .name h5 span {
   color: #ffffff;
   text-shadow: 2px 2px 0px #68441e;
 }
+
 @media (max-width: 768px) {
   .single-classement .participation-content-sponso h1,
-.page-template-elo-mondial .participation-content-sponso h1 {
+  .page-template-elo-mondial .participation-content-sponso h1 {
     font-size: 22px;
     line-height: 28px;
   }
@@ -329,7 +414,7 @@ html .name h5 span {
 
 .tournament-heading h3,
 .tournament-heading h4 {
-  font-family: "Zen Antique Soft", serif;
+  font-family: 'Zen Antique Soft', serif;
 }
 
 .social-media-sponso .buttons-social-media a {
@@ -340,4 +425,5 @@ html .name h5 span {
   line-height: 50px;
   margin: 0 0 0 5px;
   font-size: 11px;
-}/*# sourceMappingURL=odysian.css.map */
+}
+/*# sourceMappingURL=odysian.css.map */

@@ -168,3 +168,42 @@
     z-index: 999999999;
     bottom: 0;
 }
+
+@media (max-width: 500px) {
+    .navbar-floating .navbar-container {
+        padding: 0.7rem 0.5rem;
+        .dropdown-cart a {
+            font-size: 10px;
+        }
+        .value-user-stats {
+            font-size: 0.8rem;
+        }
+    }
+    .header-navbar .navbar-nav {
+        width: 65%;
+    }
+    .avatar .avatar-picture {
+        height: 30px;
+        width: 30px;
+    }
+    .user-niveau {
+        .va-z-20 {
+            width: 15px !important;
+            height: 15px !important;
+        }
+    }
+    .header-navbar .navbar-container ul.navbar-nav li>a.nav-link {
+        padding: 0 0.3rem;
+    }
+    #vkrz-intro {
+        .btn {
+            width: 100%;
+        }
+    }
+}
+
+@media (min-width: 500px) and (max-width:600px) {
+    .header-navbar .navbar-nav {
+        width: 50%;
+    }
+}
