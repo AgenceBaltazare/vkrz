@@ -26,7 +26,9 @@ if (
       );
       let querySnapshot = await getDocs(q);
 
-      span = followBtn.querySelector(".wording");
+      if (followBtn.querySelector(".wording")) {
+        span = followBtn.querySelector(".wording");
+      }
       followBtn.classList.remove("d-none");
       followBtn.style.float = "right";
 
@@ -41,7 +43,12 @@ if (
             // STYLES… 🍏
             followBtn.classList.add("unfollowBtn");
 
-            span.textContent = "Guetté";
+            if (followBtn.querySelector(".wording")) {
+              span.textContent = "Guetté";
+            }
+
+            followBtn.querySelector('.emoji').classList.add('va-guetteur')
+            followBtn.querySelector('.emoji').classList.remove('va-guetteur-close')
 
             if (document.querySelector(".followers-nbr")) {
               document.querySelector(".followers-nbr").textContent =
@@ -87,11 +94,7 @@ if (
             setNotification();
           } else {
             deleteDoc(
-              doc(
-                database,
-                "notifications",
-                followBtn.dataset.documentid
-              )
+              doc(database, "notifications", followBtn.dataset.documentid)
             );
 
             if (document.querySelector(".followers-nbr")) {
@@ -103,8 +106,13 @@ if (
               }
             }
 
+            followBtn.querySelector('.emoji').classList.remove('va-guetteur')
+            followBtn.querySelector('.emoji').classList.add('va-guetteur-close')
+
             followBtn.classList.remove("unfollowBtn");
-            followBtn.querySelector("span").textContent = "Guetter";
+            if (followBtn.querySelector(".wording")) {
+              followBtn.querySelector("span").textContent = "Guetter";
+            }
           }
         });
       } else {
@@ -113,7 +121,12 @@ if (
         // STYLES… 🍏
         followBtn.classList.add("unfollowBtn");
 
-        span.textContent = "Guetté";
+        followBtn.querySelector('.emoji').classList.add('va-guetteur')
+        followBtn.querySelector('.emoji').classList.remove('va-guetteur-close')
+
+        if (followBtn.querySelector(".wording")) {
+          span.textContent = "Guetté";
+        }
         followBtn.setAttribute(
           "data-documentId",
           querySnapshot._snapshot.docChanges[0].doc.key.path.segments[6]
@@ -124,7 +137,12 @@ if (
             // STYLES… 🍏
             followBtn.classList.add("unfollowBtn");
 
-            followBtn.querySelector("span").textContent = "Guetté";
+            if (followBtn.querySelector(".wording")) {
+              followBtn.querySelector("span").textContent = "Guetté";
+            }
+
+            followBtn.querySelector('.emoji').classList.add('va-guetteur')
+            followBtn.querySelector('.emoji').classList.remove('va-guetteur-close')
 
             if (document.querySelector(".followers-nbr")) {
               document.querySelector(".followers-nbr").textContent =
@@ -161,11 +179,7 @@ if (
             setNotification();
           } else {
             deleteDoc(
-              doc(
-                database,
-                "notifications",
-                followBtn.dataset.documentid
-              )
+              doc(database, "notifications", followBtn.dataset.documentid)
             );
 
             followBtn.classList.remove("unfollowBtn");
@@ -181,7 +195,12 @@ if (
 
             followBtn.removeAttribute("data-documentId");
 
-            followBtn.querySelector("span").textContent = "Guetter";
+            followBtn.querySelector('.emoji').classList.add('va-guetteur-close')
+            followBtn.querySelector('.emoji').classList.remove('va-guetteur')
+
+            if (followBtn.querySelector(".wording")) {
+              followBtn.querySelector("span").textContent = "Guetter";
+            }
           }
         });
       }

@@ -147,7 +147,7 @@ $best_creators = best_creators();
                                                                                 data-url="<?= get_author_posts_url(get_current_user_id()); ?>"
                                                                             >
                                                                                 <span class="mr-10p wording">Guetter</span>
-                                                                                <span class="va va-guetteur va va-z-20"></span>
+                                                                                <span class="va va-guetteur va va-z-20 emoji"></span>
                                                                             </button>
 
                                                                         <?php endif; ?>
