@@ -11,18 +11,28 @@ global $id_vainkeur;
 global $banner;
 global $cat_name;
 global $user_tops;
+global $list_user_tops;
+global $list_user_tops_begin;
 $id_top_global = $id_top;
-if (is_user_logged_in() && env() != "local" && $id_vainkeur) {
-  if (false === ($user_tops = get_transient('user_' . $user_id . '_get_user_tops'))) {
-    $user_tops = get_user_tops($id_vainkeur);
-    set_transient('user_' . $user_id . '_get_user_tops', $user_tops, DAY_IN_SECONDS);
+if ($id_vainkeur) {
+  if (is_user_logged_in() && env() != "local") {
+    if (false === ($user_tops = get_transient('user_' . $user_id . '_get_user_tops'))) {
+      $user_tops = get_user_tops($id_vainkeur);
+      set_transient('user_' . $user_id . '_get_user_tops', $user_tops, DAY_IN_SECONDS);
+    } else {
+      $user_tops = get_transient('user_' . $user_id . '_get_user_tops');
+    }
   } else {
-    $user_tops = get_transient('user_' . $user_id . '_get_user_tops');
+    $user_tops  = get_user_tops($id_vainkeur);
   }
+  $list_user_tops         = $user_tops['list_user_tops_done_ids'];
+  $list_user_tops_begin   = $user_tops['list_user_tops_begin_ids'];
 } else {
-  $user_tops  = get_user_tops($id_vainkeur);
+  $user_tops            = array();
+  $list_user_tops       = array();
+  $list_user_tops_begin = array();
 }
-$list_t_already_done = $user_tops['list_user_tops_done_ids'];
+$list_user_tops = $user_tops['list_user_tops_done_ids'];
 $user_ranking        = get_user_ranking($id_ranking);
 $url_ranking         = get_the_permalink($id_ranking);
 $top_datas           = get_top_data($id_top_global);
@@ -33,7 +43,7 @@ if ($get_top_type) {
     array_push($types_top, $type_top->slug);
   }
 }
-$already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $list_t_already_done);
+$already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $list_user_tops);
 ?>
 <div class="app-content content cover" style="background: url(<?php echo $top_infos['top_cover']; ?>) center center no-repeat">
   <div class="content-overlay"></div>
@@ -244,13 +254,10 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
                         <?php endif; ?>
 
                         <?php
-                        $list_t_already_done = $user_tops['list_user_tops_done_ids'];
-
                         $top_cat = $top_infos['top_cat'];
                         foreach ($top_cat as $cat) {
                           $top_cat_id = $cat->term_id;
                         }
-
                         $list_souscat  = array();
                         $top_souscat   = get_the_terms($id_top_global, 'concept');
                         if (!empty($top_souscat)) {
@@ -264,7 +271,7 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
                           'update_post_meta_cache' => false,
                           'no_found_rows'          => true,
                           'post_type'              => 'tournoi',
-                          'post__not_in'           => $list_t_already_done,
+                          'post__not_in'           => $list_user_tops,
                           'orderby'                => 'rand',
                           'order'                  => 'ASC',
                           'posts_per_page'         => 4,
@@ -298,7 +305,7 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
                             'update_post_meta_cache' => false,
                             'no_found_rows'          => true,
                             'post_type'              => 'tournoi',
-                            'post__not_in'           => $list_t_already_done,
+                            'post__not_in'           => $list_user_tops,
                             'orderby'                => 'rand',
                             'order'                  => 'ASC',
                             'posts_per_page'         => $count_next,
@@ -531,6 +538,9 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
                     } else {
                       $info_date = "depuis " . $interval->days . " jours";
                     }
+                    $creator_id         = get_post_field('post_author', $id_top_global);
+                    $creator_uuiduser   = get_field('uuiduser_user', 'user_' . $creator_id);
+                    $creator_data       = get_user_infos($creator_uuiduser);
                     ?>
                     <span class="va va-birthday-cake va-md"></span> Créé <span class="t-violet"><?php echo $info_date; ?></span> par :
                   </h4>

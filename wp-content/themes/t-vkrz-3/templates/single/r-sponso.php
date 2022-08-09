@@ -1,37 +1,49 @@
 <?php
 get_header();
-global $uuiduser;
+global $uuid_vainkeur;
 global $user_id;
 global $id_top;
 global $id_ranking;
 global $top_infos;
 global $utm;
-global $user_infos;
+global $infos_vainkeur;
 global $id_vainkeur;
 global $banner;
 global $cat_name;
+global $user_tops;
+global $list_user_tops;
+global $list_user_tops_begin;
 $id_top_global = $id_top;
-if (is_user_logged_in() && env() != "local" && $id_vainkeur) {
-  if (false === ($user_tops = get_transient('user_' . $user_id . '_get_user_tops'))) {
-    $user_tops = get_user_tops($id_vainkeur);
-    set_transient('user_' . $user_id . '_get_user_tops', $user_tops, DAY_IN_SECONDS);
+if ($id_vainkeur) {
+  if (is_user_logged_in() && env() != "local") {
+    if (false === ($user_tops = get_transient('user_' . $user_id . '_get_user_tops'))) {
+      $user_tops = get_user_tops($id_vainkeur);
+      set_transient('user_' . $user_id . '_get_user_tops', $user_tops, DAY_IN_SECONDS);
+    } else {
+      $user_tops = get_transient('user_' . $user_id . '_get_user_tops');
+    }
   } else {
-    $user_tops = get_transient('user_' . $user_id . '_get_user_tops');
+    $user_tops  = get_user_tops($id_vainkeur);
   }
+  $list_user_tops         = $user_tops['list_user_tops_done_ids'];
+  $list_user_tops_begin   = $user_tops['list_user_tops_begin_ids'];
 } else {
-  $user_tops  = get_user_tops($id_vainkeur);
+  $user_tops            = array();
+  $list_user_tops       = array();
+  $list_user_tops_begin = array();
 }
-$list_t_already_done = $user_tops['list_user_tops_done_ids'];
-$user_ranking = get_user_ranking($id_ranking);
-$url_ranking  = get_the_permalink($id_ranking);
-$top_datas    = get_top_data($id_top_global);
-$get_top_type = get_the_terms($id_top_global, 'type');
-$types_top     = array();
+$list_user_tops = $user_tops['list_user_tops_done_ids'];
+$user_ranking        = get_user_ranking($id_ranking);
+$url_ranking         = get_the_permalink($id_ranking);
+$top_datas           = get_top_data($id_top_global);
+$get_top_type        = get_the_terms($id_top_global, 'type');
+$types_top           = array();
 if ($get_top_type) {
   foreach ($get_top_type as $type_top) {
     array_push($types_top, $type_top->slug);
   }
 }
+$already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $list_user_tops);
 ?>
 <div class="app-content content cover is-sponso" style="background: url(<?php echo $top_infos['top_cover']; ?>) center center no-repeat">
   <div class="content-overlay"></div>
@@ -41,9 +53,9 @@ if ($get_top_type) {
         <div class="row">
           <div class="col-md-8">
 
-            <?php if (get_field('uuid_user_r', $id_ranking) == $uuiduser) : ?>
+            <?php if (get_field('uuid_user_r', $id_ranking) == $uuid_vainkeur) : ?>
               <div class="participation-content-sponso mb-4">
-                <?php if (!already_play($uuiduser, $id_top)) : ?>
+                <?php if (!already_play($uuid_vainkeur, $id_top)) : ?>
                   <?php if (get_field('inscription_requise_t_sponso', $id_top_global) && !is_user_logged_in()) : ?>
                     <div class="row">
                       <div class="col-md-12 mt-1">
@@ -500,7 +512,7 @@ if ($get_top_type) {
         <i class="fal fa-times"></i>
       </div>
       <ul>
-        <?php if (get_field('uuid_user_r', $id_ranking) == $uuiduser) : ?>
+        <?php if (get_field('uuid_user_r', $id_ranking) == $uuid_vainkeur) : ?>
           <li class="share-natif-classement">
             Partager mon classement
           </li>
@@ -624,6 +636,9 @@ if ($get_top_type) {
                   } else {
                     $info_date = "depuis " . $interval->days . " jours";
                   }
+                  $creator_id         = get_post_field('post_author', $id_top_global);
+                  $creator_uuiduser   = get_field('uuiduser_user', 'user_' . $creator_id);
+                  $creator_data       = get_user_infos($creator_uuiduser);
                   ?>
                   <span class="va va-birthday-cake va-md"></span> Créé <span class="t-violet"><?php echo $info_date; ?></span> par :
                 </h4>
