@@ -20,7 +20,7 @@ $classements = new WP_Query(array(
 if ($classements->have_posts()) {
     $i=1; foreach ($classements->posts as $classement) {
 
-        //wp_delete_post($classement, true);
+        wp_delete_post($classement, true);
         echo $i . " -> TopList " . $classement . "\n";
 
         $i++;
