@@ -4,19 +4,17 @@ include __DIR__ . '/../../../../wp-load.php';
 $u=1;
 $user_query = new WP_User_Query(
     array(
-        'number' => -1
+        'number' => -1,
         'meta_query' => array(
             'relation' => 'OR',
             array(
-                'key'     => 'country',
-                'value'   => 'Israel',
+                'key'     => 'maj_user',
+                'value'   => '',
                 'compare' => '='
             ),
             array(
-                'key'     => 'age',
-                'value'   => array(20, 30),
-                'type'    => 'numeric',
-                'compare' => 'BETWEEN'
+                'key'     => 'maj_user',
+                'compare' => 'NOT EXIST'
             )
         )
     )
