@@ -125,7 +125,7 @@ const guetteurFunc = async () => {
             data-original-title="Guetté" 
             class="avatar pull-up"
           >
-          <span class="va-monocle va va-z-25" alt="Guetté"></span>
+          <span class="va-guetteur va va-z-25" alt="Guetté"></span>
           </div>
         </td>
         <td class="d-none">following</td>
@@ -140,7 +140,7 @@ const guetteurFunc = async () => {
             data-original-title="Guetteur" 
             class="avatar pull-up"
           >
-          <span class="va-guetteur va va-z-30" alt="Guetteur"></span>
+          <span class="va-monocle va va-z-30" alt="Guetteur"></span>
           </div>
         </td>
         <td class="d-none">guetteur</td>
@@ -173,7 +173,7 @@ const guetteurFunc = async () => {
           data-url="${currentUserProfileUrl}"
           class="followBtns dropdown-item"
         >
-          <span class="ico-action va va-monocle va-z-20"></span> 
+          <span class="ico-action va va-star-struck va-z-20"></span> 
           Guetter aussi
         </a>
     `;

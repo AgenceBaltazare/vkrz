@@ -7,14 +7,24 @@ if (isset($_GET['id_top'])) {
 } else {
     header('Location: ' . get_bloginfo('url'));
 }
-get_header();
 global $id_vainkeur;
-global $top_infos;
+global $count_toplist;
 $top_datas = get_top_data($id_top);
-global $user_tops;
+if (is_user_logged_in() && env() != "local") {
+    if (false === ($user_tops = get_transient('user_' . $user_id . '_get_user_tops'))) {
+        $user_tops = get_user_tops($id_vainkeur);
+        set_transient('user_' . $user_id . '_get_user_tops', $user_tops, DAY_IN_SECONDS);
+    } else {
+        $user_tops = get_transient('user_' . $user_id . '_get_user_tops');
+    }
+} else {
+    $user_tops  = get_user_tops($id_vainkeur);
+}
 $list_t_already_done  = $user_tops['list_user_tops_done_ids'];
-$id_resume      = get_resume_id($id_top);
-$list_toplist   = json_decode(get_field('all_toplist_resume', $id_resume));
+$id_resume            = get_resume_id($id_top);
+$list_toplist         = json_decode(get_field('all_toplist_resume', $id_resume));
+$count_toplist        = count($list_toplist);
+get_header();
 ?>
 <div class="app-content content">
     <div class="content-overlay"></div>
@@ -40,20 +50,14 @@ $list_toplist   = json_decode(get_field('all_toplist_resume', $id_resume));
                                 <div class="row" id="table-bordered">
                                     <div class="col-12">
                                         <div class="card">
-                                            <div class="card-header">
-                                                <h4 class="card-title pt-1 pb-1">
-                                                    <span class="step">0</span> Of
-                                                    <?php echo count($list_toplist); ?> <span class="va va-trophy va-lg"></span> TopList générées pour ce Top !
-                                                </h4>
-                                            </div>
                                             <div class="table-responsive">
                                                 <div class="dataTables_wrapper dt-bootstrap4 no-footer">
-                                                    <table class="invoice-list-table table table-tdonee dataTable no-footer">
+                                                    <table class="invoice-list-table table table-tdonee table-listuserranks dataTable no-footer">
                                                         <thead>
                                                             <tr>
                                                                 <th>
                                                                     <span class="text-muted">
-                                                                        Vainkeurs
+                                                                        <span class="t-rose"><?php echo $count_toplist; ?></span> TopList
                                                                     </span>
                                                                 </th>
                                                                 <th>
@@ -148,11 +152,9 @@ $list_toplist   = json_decode(get_field('all_toplist_resume', $id_resume));
                                                                         <td class="text-right checking-follower">
                                                                             <?php if ($vainkeur_data_selected && get_current_user_id() != $vainkeur_data_selected['id_vainkeur'] && is_user_logged_in()) : ?>
 
-                                                                                <button type="button" id="followBtn" class="btn btn-warning waves-effect waves-float waves-light" style="display: none;" data-userid="<?= get_current_user_id(); ?>" data-uuid="<?= get_field('uuiduser_user', 'user_' . get_current_user_id()); ?>" data-relatedid="<?= $vainkeur_data_selected['id_vainkeur']; ?>" data-relateduuid="<?= get_field('uuiduser_user', 'user_' . $vainkeur_data_selected['id_vainkeur']); ?>" data-text="<?= get_the_author_meta('nickname', get_current_user_id()); ?> te guette !" data-url="<?= get_author_posts_url(get_current_user_id()); ?>">
-                                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-star me-25">
-                                                                                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                                                                                    </svg>
-                                                                                    <span>Guetter</span>
+                                                                                <button type="button" id="followBtn" class="btn waves-effect btn-follow" style="display: none;" data-userid="<?= get_current_user_id(); ?>" data-uuid="<?= get_field('uuiduser_user', 'user_' . get_current_user_id()); ?>" data-relatedid="<?= $vainkeur_data_selected['id_vainkeur']; ?>" data-relateduuid="<?= get_field('uuiduser_user', 'user_' . $vainkeur_data_selected['id_vainkeur']); ?>" data-text="<?= get_the_author_meta('nickname', get_current_user_id()); ?> te guette !" data-url="<?= get_author_posts_url(get_current_user_id()); ?>">
+                                                                                    <span class="mr-10p wording">Guetter</span>
+                                                                                    <span class="va va-guetteur va va-z-20"></span>
                                                                                 </button>
 
                                                                             <?php endif; ?>

@@ -27,7 +27,7 @@ if (
       let querySnapshot = await getDocs(q);
 
       svg = followBtn.querySelector("svg");
-      span = followBtn.querySelector("span");
+      span = followBtn.querySelector(".wording");
       followBtn.style.display = "block";
       followBtn.style.float = "right";
 
@@ -38,15 +38,13 @@ if (
         followBtn.addEventListener("click", function () {
           if (!followBtn.classList.contains("unfollowBtn")) {
             svg = followBtn.querySelector("svg");
-            span = followBtn.querySelector("span");
+            span = followBtn.querySelector(".wording");
 
             // STYLES… 🍏
-            followBtn.classList.remove("btn-warning");
-            followBtn.classList.add("btn-success");
             followBtn.classList.add("unfollowBtn");
 
             svg.setAttribute("fill", "#FFF");
-            span.textContent = "Suivi";
+            span.textContent = "Guetté";
 
             if (document.querySelector(".followers-nbr")) {
               document.querySelector(".followers-nbr").textContent =

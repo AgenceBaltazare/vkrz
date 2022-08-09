@@ -47,7 +47,7 @@ get_header();
                             <div class="card text-center">
                               <div class="card-body">
                                 <div class="mb-1">
-                                  <span class="ico4 va va-guetteur va va-z-30"></span>
+                                  <span class="ico4 va va-monocle va va-z-30"></span>
                                 </div>
                                 <h2 class="font-weight-bolder followers-nbr-amigos">
                                   0
@@ -64,7 +64,7 @@ get_header();
                             <div class="card text-center">
                               <div class="card-body">
                                 <div class="mb-1">
-                                  <span class="ico4 va va-monocle va va-z-30"></span>
+                                  <span class="ico4 va va-guetteur va va-z-30"></span>
                                 </div>
                                 <h2 class="font-weight-bolder following-nbr">
                                   0

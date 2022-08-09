@@ -262,9 +262,9 @@ if (is_single() && get_post_type() == "tournoi") {
 
       <?php elseif (is_page(get_page_by_path('liste-des-tops'))) : ?>
 
-        <?php $id_top = $_GET['id_top']; ?>
+        <?php $id_top = $_GET['id_top']; global $count_toplist; ?>
         <div class="tournament-heading text-center">
-          <h3 class="mb-0 t-titre-tournoi">Toutes les TopList <span class="ico text-center va va-trophy va-lg"></span> <?php echo get_the_title($id_top); ?></h3>
+          <h3 class="mb-0 t-titre-tournoi"><?php echo $count_toplist; ?> TopList <span class="ico text-center va va-trophy va-lg"></span> <?php echo get_the_title($id_top); ?></h3>
           <h4 class="mb-0">
             <?php the_field('question_t', $id_top); ?>
           </h4>

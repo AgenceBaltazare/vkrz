@@ -984,6 +984,25 @@ html .content {
   background: #130e2b !important;
 }
 
+.btn-follow {
+  color: #ffffff;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 12px;
+  background: #6819b9;
+  border: 1px solid #6819b9;
+  transition: all 0.2s ease-in;
+}
+.btn-follow:hover {
+  background-color: transparent;
+  color: #ffffff !important;
+}
+
+.unfollowBtn {
+  background-color: #f4167f !important;
+  border: 1px solid #f4167f !important;
+}
+
 .page-template-monitor .list-vainkeur-monitor {
   line-height: 14px;
 }
@@ -2286,7 +2305,7 @@ select:-webkit-autofill:focus {
 }
 
 .dataTables_filter input {
-  border: 1px solid #7367f0 !important;
+  border: 2px solid rgba(114, 103, 240, 0.2941176471) !important;
   color: #fff;
 }
 .dataTables_filter input::-moz-placeholder {
@@ -4290,6 +4309,10 @@ select:-webkit-autofill:focus {
   background-image: url(../../images/emojis/winking-face-with-tongue_1f61c-1.png);
 }
 
+.va-guetteur {
+  background-image: url(../../images/emojis/face-with-peeking-eye_1fae3.png);
+}
+
 .va-mush {
   background-image: url(../../images/emojis/mushroom_1f344.png);
 }
@@ -4418,7 +4441,7 @@ select:-webkit-autofill:focus {
   background-image: url(../../images/emojis/birthday-cake_1f382.png);
 }
 
-.va-guetteur {
+.va-detective {
   background-image: url(../../images/emojis/detective_1f575-fe0f.png);
 }
 
