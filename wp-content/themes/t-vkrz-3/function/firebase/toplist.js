@@ -212,10 +212,31 @@ if (document.querySelector(".vs-resemblance")) {
 const toplistCommentsCard = document.querySelector(".toplist_comments"),
   sendCommentBtn = toplistCommentsCard.querySelector("#send_comment_btn"),
   idRanking = toplistCommentsCard.dataset.idranking,
-  urlRanking = toplistCommentsCard.dataset.urlranking;
+  urlRanking = toplistCommentsCard.dataset.urlranking,
+  authorid = toplistCommentsCard.dataset.authorid,
+  authorpseudo = toplistCommentsCard.dataset.authorpseudo,
+  authoruuid = toplistCommentsCard.dataset.authoruuid;
 const commentsContainer = toplistCommentsCard.querySelector(
   ".comments-container"
 );
+
+// CHECK IF THERE IS ALREADY A COMMENTS FOR THE TopList…
+let commentsUsersData = [];
+const topListCommentsQuery = query(
+  collection(database, "topListComments"),
+  where("idRanking", "==", idRanking),
+  orderBy("createdAt", "asc")
+);
+const topListCommentsQuerySnapshot = await getDocs(topListCommentsQuery);
+
+topListCommentsQuerySnapshot.forEach((comment) => {
+  if (authorid != comment.data().userId) {
+    commentsUsersData.push([comment.data().uuid, comment.data().userId]);
+  }
+});
+commentsUsersData.push([authoruuid, authorid]);
+
+console.log(commentsUsersData);
 
 const commentTemplate = async function (commentId, uuid, content, secondes) {
   // FUNCTION TO CALCULATE TIME…
@@ -302,9 +323,9 @@ const commentTemplate = async function (commentId, uuid, content, secondes) {
                 ${content}
             </p>
 
-            <a href="" class="replyBtn">
-            Répondre
-          </a>
+            <a href="" class="replyCommentBtn" data-replyTo="@${data.pseudo}">
+              Répondre
+            </a>
           </div>
     </div>
 
@@ -312,13 +333,91 @@ const commentTemplate = async function (commentId, uuid, content, secondes) {
   `;
 };
 
-// CHECK IF THERE IS ALREADY A COMMENTS FOR THE TopList…
-const topListCommentsQuery = query(
-  collection(database, "topListComments"),
-  where("idRanking", "==", idRanking),
-  orderBy("createdAt", "asc")
-);
-const topListCommentsQuerySnapshot = await getDocs(topListCommentsQuery);
+async function sendComment(comment, idRanking, urlRanking, currentUuid) {
+  try {
+    const newComment = await addDoc(collection(database, "topListComments"), {
+      comment: comment,
+      idRanking: idRanking,
+      urlRanking: urlRanking,
+      uuid: currentUuid,
+      userId: currentUserId,
+      createdAt: new Date(),
+    });
+    console.log("Comment sent with ID: ", newComment.id);
+
+    // ADD TO DOM…
+    let commentTemplateDiv = await commentTemplate(
+      newComment.id,
+      currentUuid,
+      comment,
+      "0"
+    );
+    commentsContainer.insertAdjacentHTML("beforeend", commentTemplateDiv);
+
+    // RESET DELETE BUTTONS…
+    const deleteCommentsBtns =
+      toplistCommentsCard.querySelectorAll(".deleteCommentBtn");
+    deleteCommentsBtns.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.target.closest(".comment-template").remove();
+
+        deleteDoc(doc(database, "topListComments", btn.dataset.commentid));
+      });
+    });
+
+    // RESET REPLY BUTTONS…
+    const replyCommentsBtns =
+      toplistCommentsCard.querySelectorAll(".replyCommentBtn");
+    replyCommentsBtns.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        toplistCommentsCard.querySelector(
+          "#comment"
+        ).value = `${btn.dataset.replyto}`;
+        toplistCommentsCard.querySelector("#comment").focus();
+      });
+    });
+
+    // SEND NOTIFICATION…
+    // AVOID SEND NOTIFICATION TO AUTHOR…
+    // GET ALL THE VAINKEURZ WHO HAVE COMMENTED THE TopList…
+    commentsUsersData.reverse().forEach((userData, index) => {
+      if (userData[1] != currentUserId) {
+        let notifText;
+        if (index === 0) {
+          notifText = `${vainkeurPseudo} a commenté sur ta TopList!`;
+        } else {
+          notifText = `${vainkeurPseudo} a commenté sur une TopList sur laquelle t'as commenté!`;
+        }
+
+        async function sendNotif() {
+          try {
+            const notification = await addDoc(
+              collection(database, "notifications"),
+              {
+                userId: currentUserId,
+                uuid: currentUuid,
+                relatedId: userData[1],
+                relatedUuid: userData[0],
+                notifText: notifText,
+                notifLink: urlRanking,
+                notifType: "TopList Comment Reply Notification",
+                statut: "nouveau",
+                createdAt: new Date(),
+              }
+            );
+          } catch (error) {
+            console.error("Error adding comment notification: ", error);
+          }
+        }
+        sendNotif();
+      }
+    });
+  } catch (error) {
+    console.error("Error adding comment: ", error);
+  }
+}
 
 if (topListCommentsQuerySnapshot._snapshot.docs.size !== 0) {
   // THERE IS SOME COMMENTS…
@@ -346,6 +445,18 @@ if (topListCommentsQuerySnapshot._snapshot.docs.size !== 0) {
       deleteDoc(doc(database, "topListComments", btn.dataset.commentid));
     });
   });
+
+  const replyCommentsBtns =
+    toplistCommentsCard.querySelectorAll(".replyCommentBtn");
+  replyCommentsBtns.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      toplistCommentsCard.querySelector(
+        "#comment"
+      ).value = `${btn.dataset.replyto}`;
+      toplistCommentsCard.querySelector("#comment").focus();
+    });
+  });
 } else {
   // NO COMMENTS…
   commentsContainer.innerHTML = `<span>No comments…</span>`;
@@ -361,39 +472,12 @@ sendCommentBtn.addEventListener("click", function () {
   toplistCommentsCard.querySelector("#comment").value = "";
 
   // SEND COMMENT TO FIRESTORE…
-  async function sentComment() {
-    try {
-      const newComment = await addDoc(collection(database, "topListComments"), {
-        comment: comment,
-        idRanking: idRanking,
-        urlRanking: urlRanking,
-        uuid: currentUuid,
-        createdAt: new Date(),
-      });
-      console.log("Comment sent with ID: ", newComment.id);
-
-      // ADD TO DOM…
-      let commentTemplateDiv = await commentTemplate(
-        newComment.id,
-        currentUuid,
-        comment,
-        "0"
-      );
-      commentsContainer.insertAdjacentHTML("beforeend", commentTemplateDiv);
-
-      const deleteCommentsBtns =
-        toplistCommentsCard.querySelectorAll(".deleteCommentBtn");
-      deleteCommentsBtns.forEach((btn) => {
-        btn.addEventListener("click", (e) => {
-          e.preventDefault();
-          e.target.closest(".comment-template").remove();
-
-          deleteDoc(doc(database, "topListComments", btn.dataset.commentid));
-        });
-      });
-    } catch (error) {
-      console.error("Error adding document: ", error);
-    }
-  }
-  sentComment();
+  sendComment(comment, idRanking, urlRanking, currentUuid);
 });
+
+/* 
+  NOTIFICATIONS :
+
+  Le mec du TopList
+  Tout ce qui ont commenter a cette TopList
+*/

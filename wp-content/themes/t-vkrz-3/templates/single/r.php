@@ -253,7 +253,17 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
                             </div>
                           </div>
 
-                          <div class="card toplist_comments" data-idranking="<?= $id_ranking; ?>" data-urlranking="<?= get_permalink($id_ranking); ?>">
+                          <?php 
+                            $ranking_author_data = get_user_infos($uuid_who_did_toplist);
+                            // print_r($ranking_author_data);
+                          ?>
+                          <div class="card toplist_comments" 
+                            data-authorid="<?php echo $ranking_author_data["id_user"] ?>" 
+                            data-authorpseudo="<?php echo $ranking_author_data["pseudo"] ?>" 
+                            data-authoruuid="<?php echo get_field('uuiduser_user', 'user_' . $ranking_author_data["id_user"]); ?>" 
+                            data-idranking="<?= $id_ranking; ?>" 
+                            data-urlranking="<?= get_permalink($id_ranking); ?>"
+                          >
                             <div class="card-body">
                               <h4 class="card-title">
                                 TopList comments :
