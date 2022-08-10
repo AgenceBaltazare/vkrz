@@ -62,46 +62,59 @@ calcResemblanceDiv.addEventListener(
     };
 
     // CALC RESEMBLANCE…
-    const calcResemblance = function (myContenders, otherContenders) {
+    const calcResemblance = function (myContenders, othersContenders, top3) {
       let numberContenders = myContenders.length,
-        positionEcart,
-        similaire,
-        pourcentSimilaire = [],
-        ressemblances = [],
-        totalRessemblances = 0;
+          positionEcart,
+          similaire,
+          pourcentSimilaire = [],
+          ressemblances = [],
+          ecartRessemblance;
 
-      for (let i = 0; i < numberContenders; i++) {
-        let otherContenderPlace = otherContenders.find(
-          (contender) => contender.id_wp === myContenders[i].id_wp
-        ).place;
+        if(top3 === true) {
+          myContenders = myContenders.slice(0, 3);
+          othersContenders = othersContenders.slice(0, 3);
 
-        positionEcart = Math.abs(myContenders[i].place - otherContenderPlace);
+          numberContenders = 3
 
-        similaire = 1 / numberContenders / (positionEcart + 1);
-        if (
-          similaire <=
-          1 / numberContenders / (Math.floor(numberContenders / 2) + 1)
-        ) {
-          similaire = 0;
-          pourcentSimilaire.push(similaire);
-        } else {
-          pourcentSimilaire.push(similaire);
+          myContenders.forEach((contender, index) => contender.place = index)
+          othersContenders.forEach((contender, index) => contender.place = index)
+        } 
+
+        for (let i = 0; i < numberContenders; i++) {
+          let otherContenderPlace;
+          if(othersContenders.find((contender) => contender.id_wp === myContenders[i].id_wp)) {
+            otherContenderPlace = othersContenders.find((contender) => contender.id_wp === myContenders[i].id_wp).place;
+            positionEcart = Math.abs(myContenders[i].place - otherContenderPlace);
+            similaire = 1 / numberContenders / (positionEcart + 1);
+          } else {
+            otherContenderPlace = 0;
+            positionEcart = Math.abs(myContenders[i].place - otherContenderPlace);
+            similaire = 0;
+          }
+
+          if(top3 === true) {
+            ecartRessemblance = 1 / numberContenders / (numberContenders / 2 + 1)
+          } else {
+            ecartRessemblance = 1 / numberContenders / (Math.floor(numberContenders / 2) + 1)
+          }
+
+          if (
+            similaire <= ecartRessemblance
+          ) {
+            similaire = 0;
+            pourcentSimilaire.push(similaire);
+          } else {
+            pourcentSimilaire.push(similaire);
+          }
         }
-      }
 
-      if (
-        Math.round(pourcentSimilaire.reduce((a, b) => a + b, 0) * 100) == 100
-      ) {
-        totalRessemblances++;
-      }
+        ressemblances.push(
+          Math.round(pourcentSimilaire.reduce((a, b) => a + b, 0) * 100)
+        );
+        let result =
+          Math.round(pourcentSimilaire.reduce((a, b) => a + b, 0) * 100) + "%";
 
-      ressemblances.push(
-        Math.round(pourcentSimilaire.reduce((a, b) => a + b, 0) * 100)
-      );
-      let result =
-        Math.round(pourcentSimilaire.reduce((a, b) => a + b, 0) * 100) + "%";
-
-      return result;
+        return result;
     };
 
     // GET ACTUAL USER RANKING…
@@ -116,10 +129,15 @@ calcResemblanceDiv.addEventListener(
     );
 
     // SORT MY RANKING…
+    // TO DEFINE…
+    let myTypeTopRanking, otherTypeTopRanking;
+
     let myContenders = [];
     actualUserRankingQuerySnapshot.forEach(
-      (ranking) =>
-        (myContenders = sortContenders(ranking.data().custom_fields.ranking_r))
+      (ranking) => {
+        myContenders = sortContenders(ranking.data().custom_fields.ranking_r);
+        myTypeTopRanking = ranking.data().custom_fields.type_top_r;
+      }
     );
     console.log("My ranking: ", myContenders);
 
@@ -141,14 +159,23 @@ calcResemblanceDiv.addEventListener(
         contenders = [];
       contenders = sortContenders(ranking.data().custom_fields.ranking_r);
 
+      otherTypeTopRanking = ranking.data().custom_fields.type_top_r;
+
       let row = document.querySelector(`.uuid${uuid}`);
+
+
+      let top3 = false;
+      if(myTypeTopRanking == "top3" || otherTypeTopRanking == "top3") {
+        top3 = true;
+      }
+
       if (myContenders.length === contenders.length && row) {
         if(row.getAttribute('class').split(' ')[0] == `uuid${currentUuid}`) {
           row.style.opacity = "0.3"
           row.style.fontStyle = "italic"
         }
 
-        let calcResemblanceVar = calcResemblance(myContenders, contenders);
+        let calcResemblanceVar = calcResemblance(myContenders, contenders, top3);
 
         // RESEMBLANCE NUMBER…
         let resemblanceOnlyNumber = calcResemblanceVar.substring(

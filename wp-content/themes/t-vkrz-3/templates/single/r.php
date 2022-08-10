@@ -148,7 +148,7 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
                       </div>
                     </div>
 
-                    <div class="col-md-3 offset-md-1">
+                    <div class="col-md-4">
 
                       <div class="animate__fadeInUp animate__animated animate__delay-Xs">
 
@@ -251,6 +251,27 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
                               </div>
                             </div>
                           </div>
+
+                          <div 
+                            class="card toplist_comments" 
+                            data-idranking="<?= $id_ranking; ?>" 
+                            data-urlranking="<?= get_permalink($id_ranking); ?>"
+                          >
+                            <div class="card-body">
+                              <h4 class="card-title">
+                                TopList comments :
+                              </h4>
+
+                              <li class="comments-container scrollable-container media-list" style="list-style: none;">
+
+                              </li>
+
+                              <div class="card-footer border-0">
+                                <textarea name="comment" id="comment" style="width: 100%; background-color: transparent;"></textarea> <br>
+                                <button id="send_comment_btn">Send Comment</button>
+                              </div> <!-- END CARD FOOTER; -->
+                            </div> <!-- END CARD BODY; -->
+                          </div> <!-- END CARD; -->
                         <?php endif; ?>
 
                         <?php

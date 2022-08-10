@@ -465,8 +465,8 @@ if (is_single() && get_post_type() == "tournoi") {
               </div>
             </li>
             <li class="scrollable-container media-list notifications-container">
-              <a class="btn btn-primary btn-block" href="<?php the_permalink(get_page_by_path('mon-compte/notifications')); ?>">Voir toutes les notifications</a>
             </li>
+            <a class="btn btn-primary btn-block" href="<?php the_permalink(get_page_by_path('mon-compte/notifications')); ?>">Voir toutes les notifications</a>
           </ul>
         </li>
       <?php endif; ?>
