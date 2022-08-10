@@ -34,6 +34,7 @@ if ($id_vainkeur) {
 }
 $list_user_tops = $user_tops['list_user_tops_done_ids'];
 $user_ranking        = get_user_ranking($id_ranking);
+$uuid_who_did_toplist = get_field('uuid_user_r', $id_ranking);
 $url_ranking         = get_the_permalink($id_ranking);
 $top_datas           = get_top_data($id_top_global);
 $get_top_type        = get_the_terms($id_top_global, 'type');
@@ -157,17 +158,16 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
                           <div class="separate mt-1 mb-2 d-block d-sm-none"></div>
 
                           <?php
-                          $ranking_author_id         = get_post_field('post_author', $id_ranking);
-                          $ranking_author_uuiduser   = get_field('uuiduser_user', 'user_' . $ranking_author_id);
-                          $ranking_author_data       = get_user_infos($ranking_author_uuiduser);
-                          if ($ranking_author_data && $ranking_author_id != get_user_logged_id()) : ?>
+                          if ($uuid_who_did_toplist != $uuid_vainkeur) : 
+                            $ranking_author_data = get_user_infos($uuid_who_did_toplist);
+                            ?>
                             <div class="card text-left">
                               <div class="card-body">
                                 <h4 class="card-title">
                                   <span class="ico va va-trophy va-lg"></span> TopList par :
                                 </h4>
                                 <div class="employee-task d-flex justify-content-between align-items-center">
-                                  <a href="<?php echo esc_url(get_author_posts_url($ranking_author_data['id_user'])); ?>" class="d-flex flex-row link-to-creator">
+                                  <a href="<?php echo $ranking_author_data['profil_url']; ?>" class="d-flex flex-row link-to-creator">
                                     <div class="avatar me-75 mr-50">
                                       <img src="<?php echo $ranking_author_data['avatar']; ?>" class="circle" width="48" height="48" alt="Avatar">
                                     </div>
@@ -188,10 +188,11 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
                                       </h3>
                                     </div>
                                   </a>
-
-                                  <button type="button" id="followBtn" class="btn waves-effect d-none btn-follow" data-userid="<?= $user_id; ?>" data-uuid="<?= get_field('uuiduser_user', 'user_' . $user_id); ?>" data-relatedid="<?= $ranking_author_data['id_user']; ?>" data-relateduuid="<?= get_field('uuiduser_user', 'user_' . $ranking_author_data['id_user']);  ?>" data-text="<?= wp_get_current_user()->user_login ?> te guette !" data-url="<?= get_author_posts_url($user_id); ?>" title="Guetter" alt="Guetter">
-                                    <span class="va va-guetteur-close va va-z-20 emoji"></span>
-                                  </button>
+                                  <?php if ($ranking_author_data['user_role']  != "anonyme") : ?>
+                                    <button type="button" id="followBtn" class="btn waves-effect d-none btn-follow" data-userid="<?= $user_id; ?>" data-uuid="<?= get_field('uuiduser_user', 'user_' . $user_id); ?>" data-relatedid="<?= $ranking_author_data['id_user']; ?>" data-relateduuid="<?= get_field('uuiduser_user', 'user_' . $ranking_author_data['id_user']);  ?>" data-text="<?= wp_get_current_user()->user_login ?> te guette !" data-url="<?= get_author_posts_url($user_id); ?>" title="Guetter" alt="Guetter">
+                                      <span class="va va-guetteur-close va va-z-20 emoji"></span>
+                                    </button>
+                                  <?php endif; ?>
                                 </div>
 
                                 <div class="vs-resemblance" data-idranking="<?= $id_ranking; ?>" data-idtop="<?= $id_top; ?>" data-topurl="<?= $top_infos['top_url']; ?>">
@@ -252,11 +253,7 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
                             </div>
                           </div>
 
-                          <div 
-                            class="card toplist_comments" 
-                            data-idranking="<?= $id_ranking; ?>" 
-                            data-urlranking="<?= get_permalink($id_ranking); ?>"
-                          >
+                          <div class="card toplist_comments" data-idranking="<?= $id_ranking; ?>" data-urlranking="<?= get_permalink($id_ranking); ?>">
                             <div class="card-body">
                               <h4 class="card-title">
                                 TopList comments :
