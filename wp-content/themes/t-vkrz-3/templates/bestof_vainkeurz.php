@@ -48,7 +48,7 @@ $vainkeurs = get_best_vainkeur("money", NULL, 20);
                                                                 <th class="text-right shorted">
                                                                     <span class="text-muted">TopList <span class="va va-updown va-z-15"></span></span>
                                                                 </th>
-                                                                <th class="text-right">
+                                                                <th class="text-center">
                                                                     <span class="text-muted">Voir</span>
                                                                 </th>
 
@@ -117,9 +117,9 @@ $vainkeurs = get_best_vainkeur("money", NULL, 20);
                                                                         <?php echo $total_top; ?> <span class="ico va va-trophy va-lg"></span>
                                                                     </td>
 
-                                                                    <td class="text-right">
-                                                                        <a href="<?php echo esc_url(get_author_posts_url($user_id)); ?>">
-                                                                            <span class="va va-eyes va-lg"></span>
+                                                                    <td class="text-center">
+                                                                        <a href="<?php echo esc_url(get_author_posts_url($user_id)); ?>" class="btn btn-flat-secondary waves-effect" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir les TopList de <?php echo $user_infos['pseudo']; ?>">
+                                                                            <span class="ico ico-reverse va va-eyes va-lg"></span>
                                                                         </a>
                                                                     </td>
 

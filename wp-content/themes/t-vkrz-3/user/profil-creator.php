@@ -168,19 +168,18 @@ if (false === ($data_t_created = get_transient('user_' . $vainkeur_id . '_get_cr
                                         <?php echo $item['top_completed'] ? round($item['top_completed'] / $item['top_ranks'] * 100) . '%' : '0%'; ?>
                                       </td>
                                       <td class="text-right">
-                                        <div class="d-flex align-items-center justify-content-end col-actions">
-                                          <a class="mr-1" href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $item['top_id']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir toutes les TopList">
-                                            <span class="ico va va-eyes va-lg">
-                                            </span>
-                                          </a>
-                                          <a class="mr-1" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $item['top_id']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir la TopList mondiale">
-                                            <span class="ico va va-globe va-lg">
-                                            </span>
-                                          </a>
-                                        </div>
+                                        <a class="btn btn-flat-secondary waves-effect" href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $item['top_id']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir toutes les TopList">
+                                          <span class="ico va va-eyes va-lg">
+                                          </span>
+                                        </a>
+                                        <a class="btn btn-flat-secondary waves-effect" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $item['top_id']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir la TopList mondiale">
+                                          <span class="ico va va-globe va-lg">
+                                          </span>
+                                        </a>
                                       </td>
                                     </tr>
-                                <?php endif; endforeach; ?>
+                                <?php endif;
+                                endforeach; ?>
                               </tbody>
                             </table>
                           </div>

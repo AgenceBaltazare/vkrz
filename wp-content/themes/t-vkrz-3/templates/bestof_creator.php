@@ -127,8 +127,8 @@ $best_creators = best_creators();
                                                                     </td>
 
                                                                     <td class="text-right">
-                                                                        <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator['user_id']; ?>" class="">
-                                                                            <span class="va va-eyes va-lg"></span>
+                                                                        <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator['user_id']; ?>" class="btn btn-flat-secondary waves-effect" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir les Tops créés par <?php echo $vainkeur_data_selected['pseudo']; ?>">
+                                                                            <span class="ico ico-reverse va va-eyes va-lg"></span>
                                                                         </a>
                                                                     </td>
 

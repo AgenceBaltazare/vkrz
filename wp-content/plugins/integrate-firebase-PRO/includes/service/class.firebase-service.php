@@ -249,25 +249,21 @@ if (!class_exists('FirebaseService', false)) :
     }
 
     public function delete_wordpress_data_from_firebase($post_id, $post_type) {
-      if (
-        isset($this->options_wordpress['wp_sync_post_types'])
-        || isset($this->options_wordpress['wp_sync_custom_post_types'])
-      ) {
-        $collection_name = null;
+      $collection_name = null;
 
-        if (
-          in_array($post_type, $this->options_wordpress['wp_sync_post_types'])
-          || strpos($this->options_wordpress['wp_sync_custom_post_types'], $post_type) !== false
-        ) {
-          $collection_name = $this->collection_name_generetor($post_type);
-        }
-        if ($collection_name) {
-          $database_type = $this->options_wordpress['wp_sync_database_type'];
-          $doc_id = (string) $post_id;
-          apply_filters('firebase_delete_data_from_database', $database_type, $collection_name, $doc_id);
-        } else {
-          // error_log('Integrate Firebase PRO does not support post type: ' . $post_type);
-        }
+      if (
+        (isset($this->options_wordpress['wp_sync_post_types']) && in_array($post_type, $this->options_wordpress['wp_sync_post_types']))
+        || (isset($this->options_wordpress['wp_sync_custom_post_types']) && strpos($this->options_wordpress['wp_sync_custom_post_types'], $post_type) !== false)
+      ) {
+        $collection_name = $this->collection_name_generetor($post_type);
+      }
+
+      if ($collection_name) {
+        $database_type = $this->options_wordpress['wp_sync_database_type'];
+        $doc_id = (string) $post_id;
+        apply_filters('firebase_delete_data_from_database', $database_type, $collection_name, $doc_id);
+      } else {
+        // error_log('Integrate Firebase PRO does not support post type: ' . $post_type);
       }
     }
 

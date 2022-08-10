@@ -38,7 +38,6 @@ $(".table-tbegin").DataTable({
         { orderable: false },
         { orderable: false },
         { orderable: false },
-        { orderable: false },
     ],
     language: {
     search: "_INPUT_",

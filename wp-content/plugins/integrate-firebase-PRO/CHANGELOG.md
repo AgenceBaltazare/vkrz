@@ -11,6 +11,12 @@ All notable changes to this project will be documented in this file.
 > - :memo: [Documentation]
 > - :nail_care: [Polish]
 
+## [ 3.15.1 ] - 2022-08-10
+
+#### - :bug: [Bug Fix]
+
+- fix sync delete pages to firebase
+
 ## [ 3.15.0 ] - 2022-08-06
 
 #### - :nail_care: [Polish]
@@ -18,6 +24,7 @@ All notable changes to this project will be documented in this file.
 - improve multisite authentication process
 - support draft status
 - support dynamic firestore subcollection form
+- support custom external files for firebase storage
 
 ## [ 3.14.1 ] - 2022-07-19
 

@@ -746,3 +746,27 @@ html .content {
 .shorted{
     cursor: row-resize;
 }
+
+table.dataTable tbody tr {
+    background-color: transparent !important;
+}
+table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dataTable thead .sorting:after{
+    background: none !important;
+}
+
+.page-link {
+    padding: 7px;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding: 0 !important;
+    margin-left: 0 !important;
+    color: #333 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active {
+    border: 0 !important;
+}
+.page-item.active .page-link {
+    border-radius: 0 !important;
+}

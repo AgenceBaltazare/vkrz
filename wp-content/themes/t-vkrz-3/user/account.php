@@ -325,9 +325,9 @@ if ($list_user_toplists) {
                                     <span class="text-muted">Podium</span>
                                   </th>
                                   <th class="text-right shorted">
-                                    <span class="text-muted">Votes</span> <span class="va va-updown va-z-15"></span>
+                                    <span class="text-muted">Votes <span class="va va-updown va-z-15"></span></span>
                                   </th>
-                                  <th>
+                                  <th class="text-center">
                                     <span class="text-muted">Voir</span>
                                   </th>
                                   <th>
@@ -403,15 +403,11 @@ if ($list_user_toplists) {
                                             $wording = "Voir la TopList";
                                           }
                                           ?>
-                                          <a class="mr-1" href="<?php the_permalink($top['id_ranking']); ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="<?php echo $wording; ?>">
-                                            <span class="ico va va-trophy va-lg">
-
-                                            </span>
+                                          <a class="btn btn-flat-secondary waves-effect" href="<?php the_permalink($top['id_ranking']); ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="<?php echo $wording; ?>">
+                                            <span class="ico va va-trophy va-lg"></span>
                                           </a>
-                                          <a class="mr-1" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $top['id_top']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir la TopList mondiale">
-                                            <span class="ico va va-globe va-lg">
-
-                                            </span>
+                                          <a class="btn btn-flat-secondary waves-effect" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $top['id_top']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir la TopList mondiale">
+                                            <span class="ico va va-globe va-lg"></span>
                                           </a>
                                         </div>
                                       </td>
@@ -461,13 +457,10 @@ if ($list_user_toplists) {
                                       <?php endif; ?>
                                     </th>
                                     <th class="text-center">
-                                      <span class="va-high-voltage va va-lg"></span>
+                                      <span class="text-muted">Votes</span>
                                     </th>
-                                    <th>
-                                      <span class="va va-eyes va-lg"></span>
-                                    </th>
-                                    <th>
-
+                                    <th class="text-right">
+                                      <span class="text-muted">Action</span>
                                     </th>
                                   </tr>
                                 </thead>
@@ -510,22 +503,13 @@ if ($list_user_toplists) {
                                       <td class="text-center">
                                         <?php echo $top['nb_votes']; ?> <span class="ico3 va-high-voltage va va-lg"></span>
                                       </td>
-                                      <td>
-                                        <a class="mr-1" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $top['id_top']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir la TopList mondiale">
-                                          <span class="ico va va-globe va-lg">
-
-                                          </span>
+                                      <td class="text-right">
+                                        <a href="<?php the_permalink($top['id_top']); ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Continuer le Top" class="btn btn-flat-secondary waves-effect">
+                                          <span class="ico-action va va-play-button va-z-20"></span>
                                         </a>
-                                      </td>
-                                      <td class="text-center">
-                                        <div class="d-flex align-items-center col-actions">
-                                          <a href="<?php the_permalink($top['id_top']); ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Continuer le Top">
-                                            <span class="ico-action va va-play-button va-z-20"></span>
-                                          </a>
-                                          <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-id_ranking="<?php echo $top['id_ranking']; ?>" class="confirm_delete" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Recommencer le Top">
-                                            <span class="ico-action va va-new-button va-z-20"></span>
-                                          </a>
-                                        </div>
+                                        <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-id_ranking="<?php echo $top['id_ranking']; ?>" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Recommencer le Top" class="btn btn-flat-secondary waves-effect confirm_delete">
+                                          <span class="ico-action va va-new-button va-z-20"></span>
+                                        </a>
                                       </td>
                                     </tr>
                                   <?php endforeach; ?>

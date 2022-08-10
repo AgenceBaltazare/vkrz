@@ -328,10 +328,10 @@ foreach ($list_user_toplists as $top) {
                                     <span class="text-muted">Podium</span>
                                   </th>
                                   <th class="text-right shorted">
-                                    <span class="text-muted">Votes</span> <span class="va va-updown va-z-15"></span>
+                                    <span class="text-muted">Votes <span class="va va-updown va-z-15"></span></span>
                                   </th>
-                                  <th>
-                                    <span class="text-muted">Voir</span>
+                                  <th class="text-right">
+                                    <span class="text-muted">Action</span>
                                   </th>
                                 </tr>
                               </thead>
@@ -403,26 +403,24 @@ foreach ($list_user_toplists as $top) {
                                       <td class="text-right">
                                         <?php echo $r_user['nb_votes']; ?> <span class="ico3 va-high-voltage va va-lg"></span>
                                       </td>
-                                      <td>
-                                        <div class="d-flex align-items-center col-actions">
-                                          <?php
-                                          if ($r_user['typetop'] == "top3") {
-                                            $wording = "Voir le Top 3";
-                                          } else {
-                                            $wording = "Voir la TopList";
-                                          }
-                                          ?>
-                                          <a class="mr-1" href="<?php the_permalink($r_user['id_ranking']); ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="<?php echo $wording; ?>">
-                                            <span class="ico">
-                                              <span class="va va-trophy va-lg"></span>
-                                            </span>
-                                          </a>
-                                          <a class="mr-1" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $r_user['id_top']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir la TopList mondiale">
-                                            <span class="ico">
-                                              <span class="va va-globe va-lg"></span>
-                                            </span>
-                                          </a>
-                                        </div>
+                                      <td class="text-right">
+                                        <?php
+                                        if ($r_user['typetop'] == "top3") {
+                                          $wording = "Voir le Top 3";
+                                        } else {
+                                          $wording = "Voir la TopList";
+                                        }
+                                        ?>
+                                        <a class="btn btn-flat-secondary waves-effect" href="<?php the_permalink($r_user['id_ranking']); ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="<?php echo $wording; ?>">
+                                          <span class="ico">
+                                            <span class="va va-trophy va-lg"></span>
+                                          </span>
+                                        </a>
+                                        <a class="btn btn-flat-secondary waves-effect" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $r_user['id_top']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir la TopList mondiale">
+                                          <span class="ico">
+                                            <span class="va va-globe va-lg"></span>
+                                          </span>
+                                        </a>
                                       </td>
                                     </tr>
                                   <?php endif; ?>
