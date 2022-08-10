@@ -89,7 +89,7 @@ $count_toplist        = count($list_toplist);
                                                             <?php foreach ($list_toplist as $id_ranking) :
                                                                 $uuiduser                = get_field('uuid_user_r', $id_ranking);
                                                                 $vainkeur_data_selected  = get_user_infos($uuiduser);
-                                                                if ($vainkeur_data_selected) : ?>
+                                                                if ($vainkeur_data_selected['user_role'] != "anonyme") : ?>
                                                                     <tr id="rows" class="<?php echo "uuid" . $uuiduser; ?> uncalculated" data-idranking="<?= $id_ranking; ?>">
                                                                         <td class="vainkeur-table">
                                                                             <span class="avatar">
