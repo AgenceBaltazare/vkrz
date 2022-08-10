@@ -2,13 +2,13 @@
 function get_vainkeur(){
 
     $id_vainkeur = false;
-    $uuiuser     = false;
+    $uuiduser    = false;
     
     if(is_user_logged_in()){
 
         global $user_id;
         $user_id        = get_user_logged_id();
-        $uuiuser        = get_field('uuiduser_user', 'user_'.$user_id);
+        $uuiduser       = get_field('uuiduser_user', 'user_'.$user_id);
         $id_vainkeur    = get_field('id_vainkeur_user', 'user_' . $user_id);
         
     } 
@@ -17,14 +17,13 @@ function get_vainkeur(){
         if (isset($_COOKIE["vainkeurz_uuid_cookie"]) && $_COOKIE["vainkeurz_uuid_cookie"] != "") {
 
             $uuiduser    = $_COOKIE["vainkeurz_uuid_cookie"];
+
         }
         else{
 
             $uuiduser    = uniqidReal();
 
-            if (!isset($_COOKIE['vainkeurz_uuid_cookie']) || empty($_COOKIE["vainkeurz_uuid_cookie"])) {
-                setcookie("vainkeurz_uuid_cookie", $uuiduser, time() + 31556926, "/");
-            }
+            setcookie("vainkeurz_uuid_cookie", $uuiduser, time() + 31556926, "/");
 
         }
 
@@ -76,12 +75,15 @@ function get_vainkeur(){
                     wp_update_post(array('ID' => $id_vainkeur));
                 }
             }
+
+            setcookie("vainkeurz_id_cookie", $id_vainkeur, time() + 31556926, "/");
+
         }
 
     }
 
     $result         = array(
-        'uuid_vainkeur'     => $uuiuser,
+        'uuid_vainkeur'     => $uuiduser,
         'id_vainkeur'       => $id_vainkeur,
     );
 

@@ -7,19 +7,16 @@ global $id_vainkeur;
 global $utm;
 global $id_top;
 global $sponso;
+delete_old_cookies();
 if (get_post_type() != "tournoi") {
   $user_id        = get_user_logged_id();
   $vainkeur       = get_vainkeur();
   $uuid_vainkeur  = $vainkeur['uuid_vainkeur'];
   $id_vainkeur    = $vainkeur['id_vainkeur'];
-  if ($uuid_vainkeur) {
-    if (is_user_logged_in()) {
-      $infos_vainkeur = get_user_infos($uuid_vainkeur, "complete");
-    } else {
-      $infos_vainkeur = get_user_infos($uuid_vainkeur, "short");
-    }
+  if (is_user_logged_in()) {
+    $infos_vainkeur = get_user_infos($uuid_vainkeur, "complete");
   } else {
-    $infos_vainkeur = get_fantom();
+    $infos_vainkeur = get_fantom($id_vainkeur);
   }
 }
 $utm = deal_utm();

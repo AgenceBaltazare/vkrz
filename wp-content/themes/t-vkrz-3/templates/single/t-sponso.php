@@ -10,14 +10,10 @@ $user_id        = get_user_logged_id();
 $vainkeur       = get_vainkeur();
 $uuid_vainkeur  = $vainkeur['uuid_vainkeur'];
 $id_vainkeur    = $vainkeur['id_vainkeur'];
-if ($uuid_vainkeur) {
-  if (is_user_logged_in()) {
-    $infos_vainkeur = get_user_infos($uuid_vainkeur, "complete");
-  } else {
-    $infos_vainkeur = get_user_infos($uuid_vainkeur, "short");
-  }
+if (is_user_logged_in()) {
+  $infos_vainkeur = get_user_infos($uuid_vainkeur, "complete");
 } else {
-  $infos_vainkeur = get_fantom();
+  $infos_vainkeur = get_fantom($id_vainkeur);
 }
 $id_top         = get_the_ID();
 $id_ranking     = get_user_ranking_id($id_top, $uuid_vainkeur, $id_vainkeur);
@@ -128,7 +124,7 @@ get_header();
                     <div class="choosecta">
                       <?php if ($top_infos['top_number'] > 15) : ?>
                         <div class="cta-begin cta-top3">
-                          <a href="#" id="begin_top3" data-typetop="top3" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
+                          <a href="#" id="begin_top3" data-typetop="top3" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuid_vainkeur; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
                             Participer
                           </a>
                           <small class="text-muted">
@@ -142,7 +138,7 @@ get_header();
                         </div>
                       <?php else : ?>
                         <div class="cta-begin cta-complet">
-                          <a href="#" id="begin_t" data-typetop="complet" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuiduser; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
+                          <a href="#" id="begin_t" data-typetop="complet" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuid_vainkeur; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
                             Participer
                           </a>
                           <small class="text-muted">

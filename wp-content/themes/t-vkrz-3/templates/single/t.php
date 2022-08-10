@@ -10,14 +10,10 @@ $user_id        = get_user_logged_id();
 $vainkeur       = get_vainkeur();
 $uuid_vainkeur  = $vainkeur['uuid_vainkeur'];
 $id_vainkeur    = $vainkeur['id_vainkeur'];
-if ($uuid_vainkeur) {
-  if (is_user_logged_in()) {
-    $infos_vainkeur = get_user_infos($uuid_vainkeur, "complete");
-  } else {
-    $infos_vainkeur = get_user_infos($uuid_vainkeur, "short");
-  }
+if (is_user_logged_in()) {
+  $infos_vainkeur = get_user_infos($uuid_vainkeur, "complete");
 } else {
-  $infos_vainkeur = get_fantom();
+  $infos_vainkeur = get_fantom($id_vainkeur);
 }
 $id_top         = get_the_ID();
 $id_ranking     = get_user_ranking_id($id_top, $uuid_vainkeur, $id_vainkeur);
