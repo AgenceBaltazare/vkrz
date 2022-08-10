@@ -75,7 +75,11 @@ if (document.querySelector(".vs-resemblance")) {
       };
 
       // FUCNTION TO CALC RESEMBLANCE…
-      const calcResemblanceFunc = function (myContenders, othersContenders, top3) {
+      const calcResemblanceFunc = function (
+        myContenders,
+        othersContenders,
+        top3
+      ) {
         let numberContenders = myContenders.length,
           positionEcart,
           similaire,
@@ -83,41 +87,54 @@ if (document.querySelector(".vs-resemblance")) {
           ressemblances = [],
           ecartRessemblance;
 
-        if(top3 === true) {
+        if (top3 === true) {
           myContenders = myContenders.slice(0, 3);
           othersContenders = othersContenders.slice(0, 3);
 
-          numberContenders = 3
+          numberContenders = 3;
 
-          myContenders.forEach((contender, index) => contender.place = index)
-          othersContenders.forEach((contender, index) => contender.place = index)
-        } 
+          myContenders.forEach((contender, index) => (contender.place = index));
+          othersContenders.forEach(
+            (contender, index) => (contender.place = index)
+          );
+        }
 
         for (let i = 0; i < numberContenders; i++) {
           let otherContenderPlace;
-          if(othersContenders.find((contender) => contender.id_wp === myContenders[i].id_wp)) {
-            otherContenderPlace = othersContenders.find((contender) => contender.id_wp === myContenders[i].id_wp).place;
-            positionEcart = Math.abs(myContenders[i].place - otherContenderPlace);
+          if (
+            othersContenders.find(
+              (contender) => contender.id_wp === myContenders[i].id_wp
+            )
+          ) {
+            otherContenderPlace = othersContenders.find(
+              (contender) => contender.id_wp === myContenders[i].id_wp
+            ).place;
+            positionEcart = Math.abs(
+              myContenders[i].place - otherContenderPlace
+            );
             similaire = 1 / numberContenders / (positionEcart + 1);
           } else {
             otherContenderPlace = 0;
-            positionEcart = Math.abs(myContenders[i].place - otherContenderPlace);
+            positionEcart = Math.abs(
+              myContenders[i].place - otherContenderPlace
+            );
             similaire = 0;
           }
 
-          if(top3 == true) {
-            ecartRessemblance = 1 / numberContenders / (numberContenders / 2 + 1)
+          if (top3 == true) {
+            ecartRessemblance =
+              1 / numberContenders / (numberContenders / 2 + 1);
+            pourcentSimilaire.push(similaire);
           } else {
-            ecartRessemblance = 1 / numberContenders / (Math.floor(numberContenders / 2) + 1)
-          }
+            ecartRessemblance =
+              1 / numberContenders / (Math.floor(numberContenders / 2) + 1);
 
-          if (
-            similaire <= ecartRessemblance
-          ) {
-            similaire = 0;
-            pourcentSimilaire.push(similaire);
-          } else {
-            pourcentSimilaire.push(similaire);
+            if (similaire <= ecartRessemblance) {
+              similaire = 0;
+              pourcentSimilaire.push(similaire);
+            } else {
+              pourcentSimilaire.push(similaire);
+            }
           }
         }
 
@@ -154,18 +171,18 @@ if (document.querySelector(".vs-resemblance")) {
           rankingQuerySnapshot.data().custom_fields.type_top_r;
 
         // CHECK IF WE HAVE THE SAME TYPE TOP RANKING BEFORE COMPARE…
-          let top3 = false;
-          if(myTypeTopRanking == "top3" || otherTypeTopRanking == "top3") {
-            top3 = true;
-          }
-          // COMPARE IT WITH MY RANKING…
-          let calcResemblance = calcResemblanceFunc(
-            myRankingArr,
-            othersRankingArr,
-            top3
-          );
+        let top3 = false;
+        if (myTypeTopRanking == "top3" || otherTypeTopRanking == "top3") {
+          top3 = true;
+        }
+        // COMPARE IT WITH MY RANKING…
+        let calcResemblance = calcResemblanceFunc(
+          myRankingArr,
+          othersRankingArr,
+          top3
+        );
 
-          document.querySelector(".vs-resemblance").innerHTML = `
+        document.querySelector(".vs-resemblance").innerHTML = `
             <h2 class="mt-2 text-center mb-0">
               <b style="color: #7266EF;">${calcResemblance}</b> de ressemblance avec ta TopList !
             </h2>

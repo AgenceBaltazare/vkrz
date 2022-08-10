@@ -64,57 +64,70 @@ calcResemblanceDiv.addEventListener(
     // CALC RESEMBLANCE…
     const calcResemblance = function (myContenders, othersContenders, top3) {
       let numberContenders = myContenders.length,
-          positionEcart,
-          similaire,
-          pourcentSimilaire = [],
-          ressemblances = [],
-          ecartRessemblance;
+        positionEcart,
+        similaire,
+        pourcentSimilaire = [],
+        ressemblances = [],
+        ecartRessemblance;
 
-        if(top3 === true) {
-          myContenders = myContenders.slice(0, 3);
-          othersContenders = othersContenders.slice(0, 3);
+      if (top3 === true) {
+        myContenders = myContenders.slice(0, 3);
+        othersContenders = othersContenders.slice(0, 3);
 
-          numberContenders = 3
+        numberContenders = 3;
 
-          myContenders.forEach((contender, index) => contender.place = index)
-          othersContenders.forEach((contender, index) => contender.place = index)
-        } 
+        myContenders.forEach((contender, index) => (contender.place = index));
+        othersContenders.forEach(
+          (contender, index) => (contender.place = index)
+        );
+      }
 
-        for (let i = 0; i < numberContenders; i++) {
-          let otherContenderPlace;
-          if(othersContenders.find((contender) => contender.id_wp === myContenders[i].id_wp)) {
-            otherContenderPlace = othersContenders.find((contender) => contender.id_wp === myContenders[i].id_wp).place;
-            positionEcart = Math.abs(myContenders[i].place - otherContenderPlace);
-            similaire = 1 / numberContenders / (positionEcart + 1);
-          } else {
-            otherContenderPlace = 0;
-            positionEcart = Math.abs(myContenders[i].place - otherContenderPlace);
-            similaire = 0;
-          }
+      for (let i = 0; i < numberContenders; i++) {
+        let otherContenderPlace;
+        if (
+          othersContenders.find(
+            (contender) => contender.id_wp === myContenders[i].id_wp
+          )
+        ) {
+          otherContenderPlace = othersContenders.find(
+            (contender) => contender.id_wp === myContenders[i].id_wp
+          ).place;
+          positionEcart = Math.abs(
+            myContenders[i].place - otherContenderPlace
+          );
+          similaire = 1 / numberContenders / (positionEcart + 1);
+        } else {
+          otherContenderPlace = 0;
+          positionEcart = Math.abs(
+            myContenders[i].place - otherContenderPlace
+          );
+          similaire = 0;
+        }
 
-          if(top3 === true) {
-            ecartRessemblance = 1 / numberContenders / (numberContenders / 2 + 1)
-          } else {
-            ecartRessemblance = 1 / numberContenders / (Math.floor(numberContenders / 2) + 1)
-          }
+        if (top3 == true) {
+          ecartRessemblance =
+            1 / numberContenders / (numberContenders / 2 + 1);
+          pourcentSimilaire.push(similaire);
+        } else {
+          ecartRessemblance =
+            1 / numberContenders / (Math.floor(numberContenders / 2) + 1);
 
-          if (
-            similaire <= ecartRessemblance
-          ) {
+          if (similaire <= ecartRessemblance) {
             similaire = 0;
             pourcentSimilaire.push(similaire);
           } else {
             pourcentSimilaire.push(similaire);
           }
         }
+      }
 
-        ressemblances.push(
-          Math.round(pourcentSimilaire.reduce((a, b) => a + b, 0) * 100)
-        );
-        let result =
-          Math.round(pourcentSimilaire.reduce((a, b) => a + b, 0) * 100) + "%";
+      ressemblances.push(
+        Math.round(pourcentSimilaire.reduce((a, b) => a + b, 0) * 100)
+      );
+      let result =
+        Math.round(pourcentSimilaire.reduce((a, b) => a + b, 0) * 100) + "%";
 
-        return result;
+      return result;
     };
 
     // GET ACTUAL USER RANKING…
