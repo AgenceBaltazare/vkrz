@@ -70,14 +70,49 @@ function check_user_level($id_vainkeur){
         if($level_number != $user_level){
             $level_up = true;
             update_field('level_user', $level_number, 'user_' . $user_id);
-            // vkrz_push_level_up($user_id, $level_number);
+            vkrz_push_level_up($user_id, $level_number);
+        }
+
+        switch ($level_number) {
+            case $level_number <= 0:
+                $level_emoji = "🥚";
+                break;
+            case $level_number == 1:
+                $level_emoji = "🐣";
+                break;
+            case $level_number == 2:
+                $level_emoji = "🐥";
+                break;
+            case $level_number == 3:
+                $level_emoji = "🐓";
+                break;
+            case $level_number == 4:
+                $level_emoji = "🦃";
+                break;
+            case $level_number == 5:
+                $level_emoji = "🦢";
+                break;
+            case $level_number == 6:
+                $level_emoji = "🦩";
+                break;
+            case $level_number == 7:
+                $level_emoji = "🦚";
+                break;
+            case $level_number == 8:
+                $level_emoji = "🐉";
+                break;
         }
 
         return array(
             'user_level'        => $level_number,
             'user_level_icon'   => $level,
-            'level_up'          => $level_up
+            'level_up'          => $level_up,
+            'level_emoji'       => $level_emoji
         );
+
+        if($level_up){
+            
+        }
         
     }
 

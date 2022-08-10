@@ -28,6 +28,7 @@ if ($id_vainkeur) {
 }
 $id_resume            = get_resume_id($id_top);
 $list_toplist         = json_decode(get_field('all_toplist_resume', $id_resume));
+$list_toplist         = array_reverse($list_toplist);
 $count_toplist        = count($list_toplist);
 ?>
 <div class="app-content content">
@@ -69,8 +70,8 @@ $count_toplist        = count($list_toplist);
                                                                         Podium
                                                                     </span>
                                                                 </th>
-                                                                <th class="text-right">
-                                                                    <span class="text-muted">Ressemblance ↕</span>
+                                                                <th class="text-center shorted">
+                                                                    <span class="text-muted">% de ressemblance <span class="va va-updown va-z-15"></span></span>
                                                                 </th>
                                                                 <th class="text-center">
                                                                     <span class="text-muted">
@@ -86,7 +87,7 @@ $count_toplist        = count($list_toplist);
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <?php foreach ($list_toplist as $id_ranking) :
+                                                            <?php foreach (array_slice($list_toplist, 0, 500) as $id_ranking) :
                                                                 $uuiduser                = get_field('uuid_user_r', $id_ranking);
                                                                 $vainkeur_data_selected  = get_user_infos($uuiduser);
                                                                 if ($vainkeur_data_selected['user_role'] != "anonyme") : ?>
@@ -149,8 +150,10 @@ $count_toplist        = count($list_toplist);
                                                                                 if ($l == 4) break;
                                                                             endforeach; ?>
                                                                         </td>
-                                                                        <td class="text-right">
-                                                                            click to calculate!
+                                                                        <td class="text-center">
+                                                                            <button class="btn btn-flat-secondary waves-effect lauch-calressemblance">
+                                                                                Lancer le calcul
+                                                                            </button>
                                                                         </td>
 
                                                                         <td class="text-right">
@@ -191,7 +194,6 @@ $count_toplist        = count($list_toplist);
                             <div class="infoelo">
                                 <div class="row">
                                     <div class="col-12">
-
                                         <!-- CALCULATE RESEMBALNCE… -->
                                         <div class="card text-center calc-resemblance" data-idtop="<?php echo $id_top; ?>">
                                             <div class="card-body">
@@ -199,13 +201,12 @@ $count_toplist        = count($list_toplist);
                                                     <span class="ico4 va va-duo va va-z-50"></span>
                                                 </div>
                                                 <h2 class="font-weight-bolder mb-1 calc-resemblance-h1">
-                                                    Generate Resemblance
+                                                    Calculer les ressemblances
                                                 </h2>
                                                 <h6 class="card-subtitle text-muted">
-                                                    Click to calculate the resemblance of your ranking to other's TopList, who knows, maybe you can find a match ranking and get a Friend!
+                                                    Notre algo maison va alors parcourir toutes les Toplist pour les comparer à la tienne et afficher le % de ressemblance.
                                                 </h6>
                                             </div>
-
                                             <div class="bar"></div>
                                         </div>
                                     </div>
@@ -235,10 +236,10 @@ $count_toplist        = count($list_toplist);
                                                     <span class="ico4 va-trophy va va-md"></span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">
-                                                    <?php echo $top_datas['nb_tops']; ?>
+                                                    <?php echo $count_toplist; ?>
                                                 </h2>
                                                 <p class="card-text legende">
-                                                    <?php if ($top_datas['nb_tops'] <= 1) : ?>
+                                                    <?php if ($count_toplist <= 1) : ?>
                                                         Top
                                                     <?php else : ?>
                                                         Tops

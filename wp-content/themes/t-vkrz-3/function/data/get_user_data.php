@@ -93,6 +93,8 @@ function get_user_toplist($id_vainkeur)
         }
     }
 
+    $user_toplist = array_reverse($user_toplist);
+
     return $user_toplist;
 }
 
@@ -121,6 +123,9 @@ function get_user_tops($id_vainkeur){
 
         }
     }
+
+    $user_tops_begin_ids = array_reverse($user_tops_begin_ids);
+    $user_tops_done_ids  = array_reverse($user_tops_done_ids);
 
     return array(
         "list_user_tops_begin_ids"  => $user_tops_begin_ids,

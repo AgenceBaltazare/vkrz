@@ -40,20 +40,20 @@ $vainkeurs = get_best_vainkeur("money", NULL, 20);
                                                                     <span class="va va-chequered-flag va-lg"></span>
                                                                 </th>
                                                                 <th>
-                                                                    <span class="va va-llama va-lg"></span> <small class="text-muted">Vainkeur</small>
+                                                                    <span class="va va-llama va-lg"></span> <span class="text-muted">Vainkeur</span>
+                                                                </th>
+                                                                <th class="text-right shorted">
+                                                                    <span class="text-muted">Votes effectués <span class="va va-updown va-z-15"></span></span>
+                                                                </th>
+                                                                <th class="text-right shorted">
+                                                                    <span class="text-muted">TopList <span class="va va-updown va-z-15"></span></span>
                                                                 </th>
                                                                 <th class="text-right">
-                                                                    <small class="text-muted">Votes effectués</small>
-                                                                </th>
-                                                                <th class="text-right">
-                                                                    <small class="text-muted">TopList</small>
-                                                                </th>
-                                                                <th class="text-right">
-                                                                    <small class="text-muted">Voir</small>
+                                                                    <span class="text-muted">Voir</span>
                                                                 </th>
 
                                                                 <th class="text-right">
-                                                                    <small class="text-muted">Guetter</small>
+                                                                    <span class="text-muted">Guetter</span>
                                                                 </th>
                                                             </tr>
                                                         </thead>
@@ -125,17 +125,7 @@ $vainkeurs = get_best_vainkeur("money", NULL, 20);
 
                                                                     <td class="text-right checking-follower">
                                                                         <?php if (get_current_user_id() != $user_id && is_user_logged_in()) : ?>
-                                                                            <button 
-                                                                                type="button" 
-                                                                                id="followBtn" 
-                                                                                class="btn waves-effect btn-follow d-none" 
-                                                                                data-userid="<?= get_current_user_id(); ?>" 
-                                                                                data-uuid="<?= get_field('uuiduser_user', 'user_' . get_current_user_id()); ?>" 
-                                                                                data-relatedid="<?= $user_id; ?>" 
-                                                                                data-relateduuid="<?= get_field('uuiduser_user', 'user_' . $user_id); ?>" 
-                                                                                data-text="<?= get_the_author_meta('nickname', get_current_user_id()); ?> te guette !" 
-                                                                                data-url="<?= get_author_posts_url(get_current_user_id()); ?>"
-                                                                            >
+                                                                            <button type="button" id="followBtn" class="btn waves-effect btn-follow d-none" data-userid="<?= get_current_user_id(); ?>" data-uuid="<?= get_field('uuiduser_user', 'user_' . get_current_user_id()); ?>" data-relatedid="<?= $user_id; ?>" data-relateduuid="<?= get_field('uuiduser_user', 'user_' . $user_id); ?>" data-text="<?= get_the_author_meta('nickname', get_current_user_id()); ?> te guette !" data-url="<?= get_author_posts_url(get_current_user_id()); ?>">
                                                                                 <span class="mr-10p wording">Guetter</span>
                                                                                 <span class="va va-guetteur-close va va-z-20 emoji"></span>
                                                                             </button>

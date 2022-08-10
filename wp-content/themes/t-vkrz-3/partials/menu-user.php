@@ -262,7 +262,8 @@ if (is_single() && get_post_type() == "tournoi") {
 
       <?php elseif (is_page(get_page_by_path('liste-des-tops'))) : ?>
 
-        <?php $id_top = $_GET['id_top']; global $count_toplist; ?>
+        <?php $id_top = $_GET['id_top'];
+        global $count_toplist; ?>
         <div class="tournament-heading text-center">
           <h3 class="mb-0 t-titre-tournoi"><?php echo $count_toplist; ?> TopList <span class="ico text-center va va-trophy va-lg"></span> <?php echo get_the_title($id_top); ?></h3>
           <h4 class="mb-0">
@@ -466,7 +467,11 @@ if (is_single() && get_post_type() == "tournoi") {
             </li>
             <li class="scrollable-container media-list notifications-container">
             </li>
-            <a class="btn btn-primary btn-block" href="<?php the_permalink(get_page_by_path('mon-compte/notifications')); ?>">Voir toutes les notifications</a>
+            <li class="dropdown-menu-footer">
+              <a class="btn btn-primary w-100 waves-effect waves-float waves-light" href="<?php the_permalink(get_page_by_path('mon-compte/notifications')); ?>">
+                Voir toutes les notifications
+              </a>
+            </li>
           </ul>
         </li>
       <?php endif; ?>

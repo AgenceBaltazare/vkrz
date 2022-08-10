@@ -1,5 +1,10 @@
 import { collection, database, query, where, getDocs } from "./config.js";
 
+
+$(".lauch-calressemblance").on('click', function (event) {
+  $(".calc-resemblance").trigger("click");
+});
+
 // INIT…
 const calcResemblanceDiv = document.querySelector(".calc-resemblance");
 const idTop = calcResemblanceDiv.dataset.idtop;
@@ -219,7 +224,7 @@ calcResemblanceDiv.addEventListener(
       if (index === usersRanksQuerySnapshot._snapshot.docs.size) {
         // DOM…
         document.querySelector("tbody").style.opacity = "1";
-        h1.textContent = "Resemblance is Done!";
+        document.querySelector(".calc-resemblance").hidden = true;
         clearInterval(progressBarInterval);
         progressBar.style.width = `100%`;
 
