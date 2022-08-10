@@ -57,9 +57,8 @@ $best_creators = best_creators();
                                                             <th class="text-right">
                                                                 <span class="text-muted">Voir ses Tops</span>
                                                             </th>
-
                                                             <th class="text-right">
-                                                                <small class="text-muted">Guetter</small>
+                                                                <span class="text-muted">Guetter</span>
                                                             </th>
                                                         </tr>
                                                     </thead>
@@ -136,16 +135,7 @@ $best_creators = best_creators();
                                                                     <td class="text-right checking-follower">
                                                                         <?php if (get_current_user_id() != $creator['user_id'] && is_user_logged_in()) : ?>
 
-                                                                            <button type="button" 
-                                                                                id="followBtn" 
-                                                                                class="btn waves-effect btn-follow d-none" 
-                                                                                data-userid="<?= get_current_user_id(); ?>" 
-                                                                                data-uuid="<?= get_field('uuiduser_user', 'user_' . get_current_user_id()); ?>" 
-                                                                                data-relatedid="<?= $creator['user_id']; ?>" 
-                                                                                data-relateduuid="<?= get_field('uuiduser_user', 'user_' . $creator['user_id']); ?>" 
-                                                                                data-text="<?= get_the_author_meta('nickname', get_current_user_id()); ?> te guette !" 
-                                                                                data-url="<?= get_author_posts_url(get_current_user_id()); ?>"
-                                                                            >
+                                                                            <button type="button" id="followBtn" class="btn waves-effect btn-follow d-none" data-userid="<?= get_current_user_id(); ?>" data-uuid="<?= get_field('uuiduser_user', 'user_' . get_current_user_id()); ?>" data-relatedid="<?= $creator['user_id']; ?>" data-relateduuid="<?= get_field('uuiduser_user', 'user_' . $creator['user_id']); ?>" data-text="<?= get_the_author_meta('nickname', get_current_user_id()); ?> te guette !" data-url="<?= get_author_posts_url(get_current_user_id()); ?>">
                                                                                 <span class="mr-10p wording">Guetter</span>
                                                                                 <span class="va va-guetteur-close va va-z-20 emoji"></span>
                                                                             </button>

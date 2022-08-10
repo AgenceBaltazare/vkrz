@@ -29,23 +29,23 @@ get_header();
                                                 </h4>
                                             </div>
                                             <div class="table-responsive">
-                                                <table class="table bestops">
+                                                <table class="table table-bestops">
                                                     <thead>
                                                         <tr>
                                                             <th>
                                                                 <span class="va va-chequered-flag va-lg"></span>
                                                             </th>
-                                                            <th>
-                                                                <small class="text-muted">TOP</small>
+                                                            <th class="text-left">
+                                                                <span class="text-muted">Top</span>
+                                                            </th>
+                                                            <th class="text-right shorted">
+                                                                <span class="text-muted">Votes effectués <span class="va va-updown va-z-15"></span></span>
+                                                            </th>
+                                                            <th class="text-right shorted">
+                                                                <span class="text-muted">TopList <span class="va va-updown va-z-15"></span></span>
                                                             </th>
                                                             <th class="text-right">
-                                                                <small class="text-muted">Votes effectués</small>
-                                                            </th>
-                                                            <th class="text-right">
-                                                                <small class="text-muted">TopList</small>
-                                                            </th>
-                                                            <th class="text-right">
-                                                                <small class="text-muted">Conçu par</small>
+                                                                <span class="text-muted">Conçu par</span>
                                                             </th>
                                                         </tr>
                                                     </thead>
@@ -109,9 +109,9 @@ get_header();
                                                                                                 Top <?php the_field('count_contenders_t', $top_id); ?> <span class="ico">⚡</span> <?php echo get_the_title($top_id); ?>
                                                                                             </a>
                                                                                         </h6>
-                                                                                        <small class="cart-item-by legende">
+                                                                                        <span class="cart-item-by legende">
                                                                                             <?php the_field('question_t', $top_id); ?>
-                                                                                        </small>
+                                                                                        </span>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>

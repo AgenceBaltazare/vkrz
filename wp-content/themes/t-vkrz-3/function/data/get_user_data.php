@@ -93,6 +93,8 @@ function get_user_toplist($id_vainkeur)
         }
     }
 
+    $user_toplist = array_reverse($user_toplist);
+
     return $user_toplist;
 }
 
@@ -121,6 +123,9 @@ function get_user_tops($id_vainkeur){
 
         }
     }
+
+    $user_tops_begin_ids = array_reverse($user_tops_begin_ids);
+    $user_tops_done_ids  = array_reverse($user_tops_done_ids);
 
     return array(
         "list_user_tops_begin_ids"  => $user_tops_begin_ids,
@@ -193,52 +198,75 @@ function get_user_infos($uuid_vainkeur, $size = "short"){
 
     $user_found = $user_search->get_results();
 
-    foreach($user_found as $user){
+    if($user_found){
+        foreach ($user_found as $user) {
 
-        $user_id         = $user->ID;
-        $user_info       = get_userdata($user_id);
-        $user_pseudo     = $user_info->nickname;
-        $user_email      = $user_info->user_email;
-        $user_role       = $user_info->roles[0];
+            $user_id         = $user->ID;
+            $user_info       = get_userdata($user_id);
+            $user_pseudo     = $user_info->nickname;
+            $user_email      = $user_info->user_email;
+            $user_role       = $user_info->roles[0];
 
-        $avatar_url      = get_avatar_url($user_id, ['size' => '80', 'force_default' => false]);
+            $avatar_url      = get_avatar_url($user_id, ['size' => '80', 'force_default' => false]);
 
-        $info_user_level = get_user_level($user_id);
+            $info_user_level = get_user_level($user_id);
 
-        $id_vainkeur     = get_field('id_vainkeur_user', 'user_' . $user_id);
+            $id_vainkeur     = get_field('id_vainkeur_user', 'user_' . $user_id);
 
-        $result = array(
-            'id_user'           => $user_id,
-            'pseudo'            => $user_pseudo,
-            'avatar'            => $avatar_url,
-            'user_email'        => $user_email,
-            'user_role'         => $user_role,
-            'level'             => $info_user_level['level_ico'],
-            'level_number'      => $info_user_level['level_number'],
-            'next_level'        => $info_user_level['next_level'],
-            'uuid_vainkeur'     => $uuid_vainkeur,
-            'id_vainkeur'       => $id_vainkeur,
-            'profil_url'        => esc_url(get_author_posts_url($user_id)),
-            'creator_url'       => get_the_permalink(218587) . '?creator_id=' . $user_id
-        );
+            $result = array(
+                'id_user'           => $user_id,
+                'pseudo'            => $user_pseudo,
+                'avatar'            => $avatar_url,
+                'user_email'        => $user_email,
+                'user_role'         => $user_role,
+                'level'             => $info_user_level['level_ico'],
+                'level_number'      => $info_user_level['level_number'],
+                'next_level'        => $info_user_level['next_level'],
+                'uuid_vainkeur'     => $uuid_vainkeur,
+                'id_vainkeur'       => $id_vainkeur,
+                'profil_url'        => esc_url(get_author_posts_url($user_id)),
+                'creator_url'       => get_the_permalink(218587) . '?creator_id=' . $user_id
+            );
+        }
+
+        if ($size == "complete") {
+            $nb_vote_vkrz           = get_field('nb_vote_vkrz', $id_vainkeur);
+            $nb_top_vkrz            = get_field('nb_top_vkrz', $id_vainkeur);
+            $money_vkrz             = get_field('money_vkrz', $id_vainkeur);
+            $money_createur_vkrz    = get_field('money_creator_vkrz', $id_vainkeur);
+            $current_money_vkrz     = get_field('money_disponible_vkrz', $id_vainkeur);
+
+            $result_more = array(
+                'nb_vote_vkrz'          => $nb_vote_vkrz,
+                'nb_top_vkrz'           => $nb_top_vkrz,
+                'money_vkrz'            => $money_vkrz,
+                'money_creator_vkrz'    => $money_createur_vkrz,
+                'current_money_vkrz'    => $current_money_vkrz
+            );
+
+            $result = array_merge($result, $result_more);
+        }
     }
-
-    if($size == "complete"){
-        $nb_vote_vkrz           = get_field('nb_vote_vkrz', $id_vainkeur);
-        $nb_top_vkrz            = get_field('nb_top_vkrz', $id_vainkeur);
-        $money_vkrz             = get_field('money_vkrz', $id_vainkeur);
-        $money_createur_vkrz    = get_field('money_creator_vkrz', $id_vainkeur);
-        $current_money_vkrz     = get_field('money_disponible_vkrz', $id_vainkeur);
-
-        $result_more = array(
-            'nb_vote_vkrz'          => $nb_vote_vkrz,
-            'nb_top_vkrz'           => $nb_top_vkrz,
-            'money_vkrz'            => $money_vkrz,
-            'money_creator_vkrz'    => $money_createur_vkrz,
-            'current_money_vkrz'    => $current_money_vkrz
+    else{
+        $result = array(
+            'id_user'           => false,
+            'pseudo'            => 'Lama2Lombre',
+            'avatar'            => 'https://vainkeurz.com/wp-content/themes/t-vkrz-3/assets/images/vkrz/avatar-rose.png',
+            'user_email'        => '',
+            'user_role'         => 'anonyme',
+            'level'             => '<span class="va va-z-20 va-egg"></span>',
+            'level_number'      => 0,
+            'next_level'        => '<span class="va va-z-20 va-hatching-chick"></span>',
+            'uuid_vainkeur'     => false,
+            'id_vainkeur'       => false,
+            'profil_url'        => '#',
+            'creator_url'       => '',
+            'nb_vote_vkrz'          => 0,
+            'nb_top_vkrz'           => 0,
+            'money_vkrz'            => 0,
+            'money_creator_vkrz'    => 0,
+            'current_money_vkrz'    => 0
         );
-
-        $result = array_merge($result, $result_more);
     }
 
     return $result;

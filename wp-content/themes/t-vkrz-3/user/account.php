@@ -324,8 +324,8 @@ if ($list_user_toplists) {
                                   <th>
                                     <span class="text-muted">Podium</span>
                                   </th>
-                                  <th class="">
-                                    <span class="text-muted">Votes</span> <span class="va va-updown va-z-10"></span>
+                                  <th class="text-right shorted">
+                                    <span class="text-muted">Votes</span> <span class="va va-updown va-z-15"></span>
                                   </th>
                                   <th>
                                     <span class="text-muted">Voir</span>
@@ -524,9 +524,6 @@ if ($list_user_toplists) {
                                           </a>
                                           <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-id_ranking="<?php echo $top['id_ranking']; ?>" class="confirm_delete" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Recommencer le Top">
                                             <span class="ico-action va va-new-button va-z-20"></span>
-                                          </a>
-                                          <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Le Top sera supprimé définitivement 😱" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-id_ranking="<?php echo $top['id_ranking']; ?>" class="confirmDeleteReal" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Abandonner le Top">
-                                            <span class="ico-action va va-throw-bin-button va-z-20"></span>
                                           </a>
                                         </div>
                                       </td>
