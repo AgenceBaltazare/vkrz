@@ -15,6 +15,7 @@ $(document).ready(function () {
     $(".eh3").equalHeights();
     $(".ico-master").equalHeights();
     $(".same-h").equalHeights();
+    $(".same-h2").equalHeights();
 
     $(".kick").on("click", function () {
         var newTXT = $(this).data("kick");

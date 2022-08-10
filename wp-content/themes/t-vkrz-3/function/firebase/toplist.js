@@ -13,9 +13,10 @@ import {
 
 if (document.querySelector(".vs-resemblance")) {
   const cardResemblance = document.querySelector(".vs-resemblance");
-  const idRanking = cardResemblance.dataset.idranking;
-  const idTop = cardResemblance.dataset.idtop;
-  const rankingUrl = cardResemblance.dataset.rankingUrl;
+  const idRanking       = cardResemblance.dataset.idranking;
+  const idTop           = cardResemblance.dataset.idtop;
+  const rankingUrl      = cardResemblance.dataset.rankingUrl;
+  const topUrl          = cardResemblance.dataset.topurl;
 
   // CHECK IF IT IS MY RANKING OR NOT…
   const rankingQuery = query(
@@ -195,7 +196,7 @@ if (document.querySelector(".vs-resemblance")) {
       // I DIDN'T RANKING…
       console.log("I did not the ranking…");
       cardResemblance.innerHTML = `
-      <a href="${rankingUrl}" class="w-100 btn btn-rose waves-effect p-1 mt-2">
+      <a href="${topUrl}" class="w-100 btn btn-rose waves-effect p-1 mt-2">
         <p class="h4 text-white m-0">
           Faire ma TopList
         </p>
@@ -308,13 +309,15 @@ const commentTemplate = async function (commentId, uuid, content, secondes) {
           </div>
 
           <div class="media-body">
-            <div class="d-flex align-items-center">
-              <small style="font-size: .95em; font-weight: 600;">${
-                data.pseudo
-              }</small>
-              <small style="font-size: .75em; margin-left: .5rem; line-height:0;">Il y a ${secondsToStr(
-                secondes
-              )}</small>
+            <div class="d-flex align-items-center justify-content-between">
+              <div>
+                <small style="font-size: .95em; font-weight: 600;">${
+                  data.pseudo
+                }</small>
+                <small class="text-muted" style="font-size: .75em; margin-left: .5rem; line-height:0;">Il y a ${secondsToStr(
+                    secondes
+                )}</small>
+              </div>
 
               ${deleteOrNot}
             </div>
@@ -459,7 +462,7 @@ if (topListCommentsQuerySnapshot._snapshot.docs.size !== 0) {
   });
 } else {
   // NO COMMENTS…
-  commentsContainer.innerHTML = `<span>No comments…</span>`;
+  commentsContainer.innerHTML = `<span class="text-muted">Aucun jugement pour le moment - Soit le 1er</span>`;
 }
 
 sendCommentBtn.addEventListener("click", function () {

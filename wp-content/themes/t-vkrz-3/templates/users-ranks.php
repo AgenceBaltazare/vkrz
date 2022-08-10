@@ -75,10 +75,9 @@ $count_toplist        = count($list_toplist);
                                                                 </th>
                                                                 <th class="text-center">
                                                                     <span class="text-muted">
-                                                                        Voir
+                                                                        Action
                                                                     </span>
                                                                 </th>
-
                                                                 <th class="text-right">
                                                                     <span class="text-muted">
                                                                         Guetter
@@ -157,8 +156,11 @@ $count_toplist        = count($list_toplist);
                                                                         </td>
 
                                                                         <td class="text-right">
-                                                                            <a href="<?php the_permalink($id_ranking); ?>" class="mr-1 btn">
+                                                                            <a href="<?php the_permalink($id_ranking); ?>" class="btn btn-flat-secondary waves-effect" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir la TopList">
                                                                                 <span class="ico ico-reverse va va-eyes va-lg"></span>
+                                                                            </a>
+                                                                            <a href="<?php the_permalink($id_ranking); ?>" class="btn btn-flat-secondary waves-effect" data-toggle="tooltip" data-placement="top" title="" data-original-title="Juger la TopList">
+                                                                                <span class="ico va va-hache va-lg"></span>
                                                                             </a>
                                                                         </td>
 

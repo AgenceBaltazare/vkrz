@@ -32,7 +32,6 @@ if ($id_vainkeur) {
   $list_user_tops       = array();
   $list_user_tops_begin = array();
 }
-$list_user_tops = $user_tops['list_user_tops_done_ids'];
 $user_ranking        = get_user_ranking($id_ranking);
 $uuid_who_did_toplist = get_field('uuid_user_r', $id_ranking);
 $url_ranking         = get_the_permalink($id_ranking);
@@ -80,6 +79,116 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
       <div class="classement">
         <div class="row">
           <div class="col-md-8">
+
+            <?php if (get_field('uuid_user_r', $id_ranking) == $uuid_vainkeur && in_array("sponso", $types_top)) : ?>
+              <div class="participation-content-sponso mb-4">
+                <?php if (!already_play($uuid_vainkeur, $id_top)) : ?>
+                  <?php if (get_field('inscription_requise_t_sponso', $id_top_global) && !is_user_logged_in()) : ?>
+                    <div class="row">
+                      <div class="col-md-12 mt-1">
+                        <h1>
+                          Hier c'était hier mais..
+                        </h1>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12 info-concours">
+                        <div class="info-win">
+                          <p>
+                            Aujourd'hui tu peux te tourner vers un avenir meilleur en rejoignant le concept VAINKEURZ 🚀 !
+                          </p>
+                          <p>
+                            Si tu souhaites participer au <strong class="t-rose">Tirage au Sort</strong>, n'hésites pas et créer ton compte ! Si tu fais déjà parti des Vainkeurs, connecte-toi simplement 👇
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <a href="<?php the_permalink(get_page_by_path('connexion')); ?>?redirect=<?php the_permalink($id_ranking); ?>/" class="w-100 btn btn-rose waves-effect p-1">
+                      <p class="h4 text-white m-0">
+                        S'INSCRIRE (ou se connecter)
+                      </p>
+                    </a>
+                  <?php elseif (get_field('uuid_user_r', $id_ranking) != $uuiduser && $id_top_global == 461704) : ?>
+                    <div class="doitbro mt-1">
+                      <h1>Toi aussi participe au concours</h1>
+                      <p>Pour tenter de gagner 1 des 3 bons d'achat d'une valeur de 50€, termine ta TopList et partage-la sur Twitter</p>
+                      <a href="<?php echo $top_infos['top_url']; ?>" class="animate__jello animate__animated animate__delay-1s btn btn-max btn-tweet btn-rose waves-effect waves-float waves-light">Je Participe</a>
+                    </div>
+                  <?php else : ?>
+                    <div class="row">
+                      <div class="col-md-12 mt-1">
+                        <?php if (isset($_GET['message'])) : ?>
+                          <div class="label label-coco">
+                            <p>Félicitation pour votre connexion, tu peux maintenant participer :)</p>
+                          </div>
+                        <?php endif; ?>
+                        <h1>
+                          <?php the_field('titre_de_la_fin_t_sponso', $id_top_global); ?>
+                        </h1>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12 info-concours">
+                        <div class="info-win">
+                          <?php the_field('message_de_fin_t_sponso', $id_top_global); ?>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="d-flex align-items-center buttons-share-top">
+                          <?php if (get_field('type_de_fin_t_sponso', $id_top_global) == "mail_1") : ?>
+                            <form action="" method="post" name="form2" id="form-coupon">
+                              <?php if (is_user_logged_in()) : ?>
+                                <input type="email" value="<?php echo $user_infos['user_email']; ?>" name="email-player-input" id="email-player-input" required>
+                              <?php else : ?>
+                                <input type="email" placeholder="Mon adresse mail" name="email-player-input" id="email-player-input" required>
+                              <?php endif; ?>
+                              <input type="hidden" value="<?php echo $id_ranking; ?>" name="ranking" id="ranking">
+                              <input type="hidden" value="<?php echo $uuiduser; ?>" name="uuiduser" id="uuiduser">
+                              <input type="hidden" value="<?php echo $id_top_global; ?>" name="top" id="top">
+                              <input type="hidden" value="<?php echo $id_vainkeur; ?>" name="id_vainkeur" id="id_vainkeur">
+                              <button class="btn" id="btn-coupon">
+                                <?php the_field('intitule_cta_mail_t_sponso', $id_top_global); ?>
+                              </button>
+                            </form>
+                            <div class="bravo">
+                              <?php the_field('message_de_confirmation_t_sponso', $id_top_global); ?>
+                            </div>
+                          <?php elseif (get_field('type_de_fin_t_sponso', $id_top_global) == "twitter_1") : ?>
+                            <a href="javascript: void(0)" class="sharelinkbtn2 w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-outline-primary waves-effect waves-float waves-light">
+                              <input type="text" value="<?php echo get_the_permalink($id_ranking); ?>" class="input_to_share2">
+                              Copier le lien du Top
+                            </a>
+                            <a href="<?php the_field('lien_du_tweet_t_sponso', $id_top_global); ?>" target="_blank" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light">
+                              Post Twitter
+                            </a>
+                          <?php elseif (get_field('type_de_fin_t_sponso', $id_top_global) == "twitter_2") : ?>
+
+                            <?php if ($id_top_global == 461704) : ?>
+
+                              <a href="https://twitter.com/intent/tweet?hashtags=#DLCOMPxVKRZ&original_referer=<?php echo $url_ranking; ?>&ref_src=&text=<?php echo urlencode("Merci @dLcompare pour le #concours !") ?>%0a%0a&url=<?php echo $url_ranking; ?>&via=Vainkeurz" class="animate__jello animate__animated animate__delay-1s btn btn-max btn-tweet btn-rose waves-effect waves-float waves-light" target="_blank" style="background-color: #1b95e0 !important; border-color: #1b95e0 !important;">
+                                <img src="https://vainkeurz.com/wp-content/uploads/2022/06/twitter.png" width="20" height="16" alt="Tweet icon">
+                                <?php the_field('message_du_bouton_tweet_twitter2', $id_top_global); ?>
+                              </a>
+
+                            <?php else : ?>
+                              <a href="https://twitter.com/intent/tweet?hashtags=<?php the_field('hashtags_du_tweet_twitter_2', $id_top_global); ?>&original_referer=<?php echo $url_ranking; ?>&ref_src=&text=<?php the_field('message_du_tweet_twitter_2', $id_top_global); ?>&url=<?php echo $url_ranking; ?>&via=Vainkeurz" class="animate__jello animate__animated animate__delay-1s btn btn-max btn-tweet btn-rose waves-effect waves-float waves-light" target="_blank">
+                                <?php the_field('message_du_bouton_tweet_twitter2', $id_top_global); ?>
+                              </a>
+                            <?php endif; ?>
+
+                          <?php endif; ?>
+                        </div>
+                      </div>
+                    </div>
+                  <?php endif; ?>
+                <?php else : ?>
+                  <div class="bravo d-block">
+                    <?php the_field('message_de_confirmation_t_sponso', $id_top_global); ?>
+                  </div>
+                <?php endif; ?>
+              </div>
+            <?php endif; ?>
+
             <div class="list-classement mt-2">
               <div class="row align-items-end justify-content-center">
                 <?php
@@ -158,9 +267,9 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
                           <div class="separate mt-1 mb-2 d-block d-sm-none"></div>
 
                           <?php
-                          if ($uuid_who_did_toplist != $uuid_vainkeur) : 
+                          if ($uuid_who_did_toplist != $uuid_vainkeur) :
                             $ranking_author_data = get_user_infos($uuid_who_did_toplist);
-                            ?>
+                          ?>
                             <div class="card text-left">
                               <div class="card-body">
                                 <h4 class="card-title">
@@ -195,6 +304,8 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
                                   <?php endif; ?>
                                 </div>
 
+                                <div class="separate mt-2"></div>
+
                                 <div class="vs-resemblance" data-idranking="<?= $id_ranking; ?>" data-idtop="<?= $id_top; ?>" data-topurl="<?= $top_infos['top_url']; ?>">
                                   <div class="loader loader--style1 w-100 mx-auto mt-1 text-center" title="0">
                                     <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
@@ -212,6 +323,48 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
                             </div>
 
                             <div class="separate mt-2 mb-2"></div>
+                          <?php endif; ?>
+
+                          <?php if (in_array("sponso", $types_top)) : ?>
+                            <div class="card">
+                              <div class="share-content-sponso">
+                                <div class="text-left">
+                                  <p>
+                                    <?php the_field('top_propose_par_t_sponso', $id_top_global); ?>
+                                  </p>
+                                </div>
+                                <div class="d-flex align-items-center flex-column">
+                                  <div class="logo-vkrz-sponso">
+                                    <?php
+                                    if (get_field('illustration_de_la_sponso_t_sponso', $id_top_global)) : ?>
+                                      <a href="<?php the_field('lien_de_la_sponso_t_sponso', $id_top_global); ?>" target="_blank">
+                                        <?php echo wp_get_attachment_image(get_field('illustration_de_la_sponso_t_sponso', $id_top_global), 'large', '', array('class' => 'img-fluid')); ?>
+                                      </a>
+                                    <?php elseif (get_field('logo_de_la_sponso_t_sponso', $id_top_global)) : ?>
+                                      <a href="<?php the_field('lien_de_la_sponso_t_sponso', $id_top_global); ?>" target="_blank">
+                                        <?php echo wp_get_attachment_image(get_field('logo_de_la_sponso_t_sponso', $id_top_global), 'large', '', array('class' => 'img-fluid')); ?>
+                                      </a>
+                                    <?php endif; ?>
+                                  </div>
+                                  <div class="mt-2 social-media-sponso btn-group">
+                                    <?php if (have_rows('liste_des_liens_t_sponso', $id_top_global)) : ?>
+                                      <?php while (have_rows('liste_des_liens_t_sponso', $id_top_global)) : the_row(); ?>
+                                        <a href="<?php the_sub_field('lien_vers_t_sponso'); ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-icon btn-outline-primary waves-effect waves-float waves-light" target="_blank">
+                                          <?php the_sub_field('intitule_t_sponso'); ?>
+                                        </a>
+                                      <?php endwhile; ?>
+                                    <?php endif; ?>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="card-footer text-center p-20 m-0">
+                                <span class="t-rose">
+                                  On te rappelle que la date de fin est <br>
+                                  <b><?php echo lcfirst(get_field('fin_de_la_sponso_t_sponso', $id_top)); ?></b>
+                                </span>
+                              </div>
+                            </div>
                           <?php endif; ?>
 
                           <div class="card">
@@ -253,32 +406,27 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
                             </div>
                           </div>
 
-                          <?php 
-                            $ranking_author_data = get_user_infos($uuid_who_did_toplist);
-                            // print_r($ranking_author_data);
-                          ?>
-                          <div class="card toplist_comments" 
-                            data-authorid="<?php echo $ranking_author_data["id_user"] ?>" 
-                            data-authorpseudo="<?php echo $ranking_author_data["pseudo"] ?>" 
-                            data-authoruuid="<?php echo get_field('uuiduser_user', 'user_' . $ranking_author_data["id_user"]); ?>" 
-                            data-idranking="<?= $id_ranking; ?>" 
-                            data-urlranking="<?= get_permalink($id_ranking); ?>"
-                          >
+                          <?php $ranking_author_data = get_user_infos($uuid_who_did_toplist); ?>
+                          <div id="jugement" class="card toplist_comments" data-authorid="<?php echo $ranking_author_data["id_user"] ?>" data-authorpseudo="<?php echo $ranking_author_data["pseudo"] ?>" data-authoruuid="<?php echo get_field('uuiduser_user', 'user_' . $ranking_author_data["id_user"]); ?>" data-idranking="<?= $id_ranking; ?>" data-urlranking="<?= get_permalink($id_ranking); ?>">
                             <div class="card-body">
                               <h4 class="card-title">
-                                TopList comments :
+                                <span class="va va-hache va-lg"></span> Laisser un jugement
                               </h4>
-
-                              <li class="comments-container scrollable-container media-list" style="list-style: none;">
+                              <li class="comments-container scrollable-container media-list list-">
 
                               </li>
-
                               <div class="card-footer border-0">
-                                <textarea name="comment" id="comment" style="width: 100%; background-color: transparent;"></textarea> <br>
-                                <button id="send_comment_btn">Send Comment</button>
-                              </div> <!-- END CARD FOOTER; -->
-                            </div> <!-- END CARD BODY; -->
-                          </div> <!-- END CARD; -->
+                                <div class="row align-items-center">
+                                  <div class="col-8">
+                                    <textarea name="comment" id="comment"></textarea>
+                                  </div>
+                                  <div class="col-4">
+                                    <button id="send_comment_btn" class="btn btn-primary waves-effect waves-float waves-light">Juger</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         <?php endif; ?>
 
                         <?php

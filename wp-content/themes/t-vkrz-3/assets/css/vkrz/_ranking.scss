@@ -231,3 +231,20 @@
     pointer-events: all;
   }
 }
+
+.toplist_comments{
+  .comments-container{
+    list-style-type: none;
+  }
+  textarea{
+    border: 2px solid #ededed;
+    border-radius: 5px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    font-size: 12px;
+  }
+
+  .replyCommentBtn{
+    font-size: 10px;
+  }
+}

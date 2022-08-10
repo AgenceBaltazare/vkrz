@@ -32,7 +32,6 @@ if ($id_vainkeur) {
   $list_user_tops       = array();
   $list_user_tops_begin = array();
 }
-$list_user_tops = $user_tops['list_user_tops_done_ids'];
 $user_ranking        = get_user_ranking($id_ranking);
 $url_ranking         = get_the_permalink($id_ranking);
 $top_datas           = get_top_data($id_top_global);

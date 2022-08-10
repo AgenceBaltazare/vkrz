@@ -109,7 +109,7 @@ $tops_in_cat          = new WP_Query(array(
                 <div class="voile">
                   <?php if ($state == "done") : ?>
                     <div class="spoun topsponso">
-                      <h5>Participer</h5>
+                      <h5>Voir ma TopList</h5>
                     </div>
                   <?php elseif ($state == "begin") : ?>
                     <div class="spoun topsponso">

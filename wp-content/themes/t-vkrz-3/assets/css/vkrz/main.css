@@ -2003,6 +2003,20 @@ html .content {
   pointer-events: all;
 }
 
+.toplist_comments .comments-container {
+  list-style-type: none;
+}
+.toplist_comments textarea {
+  border: 2px solid #ededed;
+  border-radius: 5px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  font-size: 12px;
+}
+.toplist_comments .replyCommentBtn {
+  font-size: 10px;
+}
+
 .cover-profil {
   background-color: #0c0a27;
   min-height: 200px;
@@ -4522,6 +4536,10 @@ select:-webkit-autofill:focus {
 
 .va-repeat {
   background-image: url(../../images/emojis/recycling-symbol_267b-fe0f.png);
+}
+
+.va-hache {
+  background-image: url(../../images/emojis/axe_1fa93.png);
 }
 
 .va-guetteur-close {
