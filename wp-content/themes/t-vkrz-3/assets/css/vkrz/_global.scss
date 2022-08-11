@@ -754,6 +754,7 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
     background: none !important;
 }
 
+
 .page-link {
     padding: 7px;
 }
@@ -769,4 +770,18 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
 }
 .page-item.active .page-link {
     border-radius: 0 !important;
+}
+.table-listuserranks, .page{
+    table.dataTable thead .sorting_desc {
+        background: none !important;
+    }
+}
+
+.dataTables_filter input {
+    border: 2px solid rgba(114, 103, 240, 0.2941176471) !important;
+    color: #fff !important;
+    font-size: 11px;
+    &::placeholder {
+        color: rgba(255, 255, 255, 0.8);
+    }
 }

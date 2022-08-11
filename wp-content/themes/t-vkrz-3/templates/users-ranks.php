@@ -55,132 +55,130 @@ $count_toplist        = count($list_toplist);
                                 <div class="row" id="table-bordered">
                                     <div class="col-12">
                                         <div class="card">
-                                            <div class="table-responsive">
-                                                <div class="dataTables_wrapper dt-bootstrap4 no-footer">
-                                                    <table class="invoice-list-table table table-listuserranks dataTable no-footer">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>
-                                                                    <span class="text-muted">
-                                                                        <span class="t-rose"><?php echo $count_toplist; ?></span> TopList
-                                                                    </span>
-                                                                </th>
-                                                                <th>
-                                                                    <span class="text-muted">
-                                                                        Podium
-                                                                    </span>
-                                                                </th>
-                                                                <th class="text-center shorted">
-                                                                    <span class="text-muted">% de ressemblance <span class="va va-updown va-z-15"></span></span>
-                                                                </th>
-                                                                <th class="text-center">
-                                                                    <span class="text-muted">
-                                                                        Action
-                                                                    </span>
-                                                                </th>
-                                                                <th class="text-right">
-                                                                    <span class="text-muted">
-                                                                        Guetter
-                                                                    </span>
-                                                                </th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <?php foreach (array_slice($list_toplist, 0, 500) as $id_ranking) :
-                                                                $uuiduser                = get_field('uuid_user_r', $id_ranking);
-                                                                $vainkeur_data_selected  = get_user_infos($uuiduser);
-                                                                if ($vainkeur_data_selected['user_role'] != "anonyme") : ?>
-                                                                    <tr id="rows" class="<?php echo "uuid" . $uuiduser; ?> uncalculated" data-idranking="<?= $id_ranking; ?>">
-                                                                        <td class="vainkeur-table">
-                                                                            <span class="avatar">
-                                                                                <?php if ($vainkeur_data_selected) : ?>
-                                                                                    <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_user'])); ?>">
-                                                                                        <span class="avatar-picture" style="background-image: url(<?php echo $vainkeur_data_selected['avatar']; ?>);"></span>
-                                                                                    </a>
-                                                                                    <?php if ($vainkeur_data_selected) : ?>
-                                                                                        <span class="user-niveau">
-                                                                                            <?php echo $vainkeur_data_selected['level']; ?>
-                                                                                        </span>
-                                                                                    <?php endif; ?>
-                                                                                <?php else : ?>
-                                                                                    <span class="avatar-picture" style="background-image: url(https://i1.wp.com/vainkeurz.com/wp-content/themes/t-vkrz-3/assets/images/vkrz/avatar-rose.png?ssl=1);"></span>
-                                                                                <?php endif; ?>
-                                                                            </span>
-                                                                            <span class="font-weight-bold championname">
+                                            <div class="card-datatable table-responsive">
+                                                <table class="table-listuserranks">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>
+                                                                <span class="text-muted">
+                                                                    <span class="t-rose"><?php echo $count_toplist; ?></span> TopList
+                                                                </span>
+                                                            </th>
+                                                            <th>
+                                                                <span class="text-muted">
+                                                                    Podium
+                                                                </span>
+                                                            </th>
+                                                            <th class="text-center shorted">
+                                                                <span class="text-muted">% de ressemblance <span class="va va-updown va-z-15"></span></span>
+                                                            </th>
+                                                            <th class="text-center">
+                                                                <span class="text-muted">
+                                                                    Action
+                                                                </span>
+                                                            </th>
+                                                            <th class="text-right">
+                                                                <span class="text-muted">
+                                                                    Guetter
+                                                                </span>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php foreach (array_slice($list_toplist, 0, 500) as $id_ranking) :
+                                                            $uuiduser                = get_field('uuid_user_r', $id_ranking);
+                                                            $vainkeur_data_selected  = get_user_infos($uuiduser);
+                                                            if ($vainkeur_data_selected['user_role'] != "anonyme") : ?>
+                                                                <tr id="rows" class="<?php echo "uuid" . $uuiduser; ?> uncalculated" data-idranking="<?= $id_ranking; ?>">
+                                                                    <td class="vainkeur-table">
+                                                                        <span class="avatar">
+                                                                            <?php if ($vainkeur_data_selected) : ?>
                                                                                 <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_user'])); ?>">
-                                                                                    <?php echo $vainkeur_data_selected['pseudo']; ?>
-                                                                                    <?php if ($vainkeur_data_selected) : ?>
-                                                                                        <span class="user-niveau-xs">
-                                                                                            <?php echo $vainkeur_data_selected['level']; ?>
-                                                                                        </span>
-                                                                                    <?php endif; ?>
-                                                                                    <?php if ($vainkeur_data_selected['user_role'] == "administrator") : ?>
-                                                                                        <span class="ico va va-vkrzteam va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
-                                                                                        </span>
-                                                                                    <?php endif; ?>
-                                                                                    <?php if ($vainkeur_data_selected['user_role'] == "administrator" || $vainkeur_data_selected['user_role'] == "author") : ?>
-                                                                                        <span class="ico va va-man-singer va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
-                                                                                        </span>
-                                                                                    <?php endif; ?>
+                                                                                    <span class="avatar-picture" style="background-image: url(<?php echo $vainkeur_data_selected['avatar']; ?>);"></span>
                                                                                 </a>
-                                                                                <!--
-                                                                                UUID    : <?php the_field('uuid_user_r', $id_ranking); ?>
-                                                                                ID rank : <?php echo $id_ranking; ?>
-                                                                                Date    : <?php echo get_the_date('d/m/Y - H:i:s', $id_ranking); ?>
-                                                                                -->
-                                                                            </span>
-                                                                        </td>
-                                                                        <td>
-                                                                            <?php
-                                                                            $user_top3 = get_user_ranking($id_ranking, 3);
-                                                                            $l = 1;
-                                                                            foreach ($user_top3 as $top) : ?>
-
-                                                                                <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="<?php echo get_the_title($top); ?>" class="avatartop3 avatar pull-up">
-                                                                                    <?php if (get_field('visuel_instagram_contender', $top)) : ?>
-                                                                                        <img src="<?php the_field('visuel_instagram_contender', $top); ?>" alt="<?php echo get_the_title($top); ?>">
-                                                                                    <?php else : ?>
-                                                                                        <?php $illu = get_the_post_thumbnail_url($top, 'thumbnail'); ?>
-                                                                                        <img src="<?php echo $illu; ?>" alt="<?php echo get_the_title($top); ?>">
-                                                                                    <?php endif; ?>
-                                                                                </div>
-
-                                                                            <?php $l++;
-                                                                                if ($l == 4) break;
-                                                                            endforeach; ?>
-                                                                        </td>
-                                                                        <td class="text-center">
-                                                                            <button class="btn btn-flat-secondary waves-effect lauch-calressemblance">
-                                                                                Lancer le calcul
-                                                                            </button>
-                                                                        </td>
-
-                                                                        <td class="text-right">
-                                                                            <a href="<?php the_permalink($id_ranking); ?>" class="btn btn-flat-secondary waves-effect" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir la TopList">
-                                                                                <span class="ico ico-reverse va va-eyes va-lg"></span>
-                                                                            </a>
-                                                                            <a href="<?php the_permalink($id_ranking); ?>" class="btn btn-flat-secondary waves-effect" data-toggle="tooltip" data-placement="top" title="" data-original-title="Juger la TopList">
-                                                                                <span class="ico va va-hache va-lg"></span>
-                                                                            </a>
-                                                                        </td>
-
-                                                                        <td class="text-right checking-follower">
-                                                                            <?php if ($vainkeur_data_selected && get_current_user_id() != $vainkeur_data_selected['id_user'] && is_user_logged_in()) : ?>
-
-                                                                                <button type="button" id="followBtn" class="btn waves-effect btn-follow d-none" data-userid="<?= get_current_user_id(); ?>" data-uuid="<?= get_field('uuiduser_user', 'user_' . get_current_user_id()); ?>" data-relatedid="<?= $vainkeur_data_selected['id_user']; ?>" data-relateduuid="<?= get_field('uuiduser_user', 'user_' . $vainkeur_data_selected['id_user']); ?>" data-text="<?= get_the_author_meta('nickname', get_current_user_id()); ?> te guette !" data-url="<?= get_author_posts_url(get_current_user_id()); ?>">
-                                                                                    <span class="mr-10p wording">Guetter</span>
-                                                                                    <span class="va va-guetteur-close va va-z-20 emoji"></span>
-                                                                                </button>
-
+                                                                                <?php if ($vainkeur_data_selected) : ?>
+                                                                                    <span class="user-niveau">
+                                                                                        <?php echo $vainkeur_data_selected['level']; ?>
+                                                                                    </span>
+                                                                                <?php endif; ?>
+                                                                            <?php else : ?>
+                                                                                <span class="avatar-picture" style="background-image: url(https://i1.wp.com/vainkeurz.com/wp-content/themes/t-vkrz-3/assets/images/vkrz/avatar-rose.png?ssl=1);"></span>
                                                                             <?php endif; ?>
-                                                                        </td>
+                                                                        </span>
+                                                                        <span class="font-weight-bold championname">
+                                                                            <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_user'])); ?>">
+                                                                                <?php echo $vainkeur_data_selected['pseudo']; ?>
+                                                                                <?php if ($vainkeur_data_selected) : ?>
+                                                                                    <span class="user-niveau-xs">
+                                                                                        <?php echo $vainkeur_data_selected['level']; ?>
+                                                                                    </span>
+                                                                                <?php endif; ?>
+                                                                                <?php if ($vainkeur_data_selected['user_role'] == "administrator") : ?>
+                                                                                    <span class="ico va va-vkrzteam va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
+                                                                                    </span>
+                                                                                <?php endif; ?>
+                                                                                <?php if ($vainkeur_data_selected['user_role'] == "administrator" || $vainkeur_data_selected['user_role'] == "author") : ?>
+                                                                                    <span class="ico va va-man-singer va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
+                                                                                    </span>
+                                                                                <?php endif; ?>
+                                                                            </a>
+                                                                            <!--
+                                                                            UUID    : <?php the_field('uuid_user_r', $id_ranking); ?>
+                                                                            ID rank : <?php echo $id_ranking; ?>
+                                                                            Date    : <?php echo get_the_date('d/m/Y - H:i:s', $id_ranking); ?>
+                                                                            -->
+                                                                        </span>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php
+                                                                        $user_top3 = get_user_ranking($id_ranking, 3);
+                                                                        $l = 1;
+                                                                        foreach ($user_top3 as $top) : ?>
 
-                                                                    </tr>
-                                                                <?php endif; ?>
-                                                            <?php endforeach; ?>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
+                                                                            <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="<?php echo get_the_title($top); ?>" class="avatartop3 avatar pull-up">
+                                                                                <?php if (get_field('visuel_instagram_contender', $top)) : ?>
+                                                                                    <img src="<?php the_field('visuel_instagram_contender', $top); ?>" alt="<?php echo get_the_title($top); ?>">
+                                                                                <?php else : ?>
+                                                                                    <?php $illu = get_the_post_thumbnail_url($top, 'thumbnail'); ?>
+                                                                                    <img src="<?php echo $illu; ?>" alt="<?php echo get_the_title($top); ?>">
+                                                                                <?php endif; ?>
+                                                                            </div>
+
+                                                                        <?php $l++;
+                                                                            if ($l == 4) break;
+                                                                        endforeach; ?>
+                                                                    </td>
+                                                                    <td class="text-center">
+                                                                        <button class="btn btn-flat-secondary waves-effect lauch-calressemblance">
+                                                                            Lancer le calcul
+                                                                        </button>
+                                                                    </td>
+
+                                                                    <td class="text-right">
+                                                                        <a href="<?php the_permalink($id_ranking); ?>" class="btn btn-flat-secondary waves-effect" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir la TopList">
+                                                                            <span class="ico ico-reverse va va-eyes va-lg"></span>
+                                                                        </a>
+                                                                        <a href="<?php the_permalink($id_ranking); ?>" class="btn btn-flat-secondary waves-effect" data-toggle="tooltip" data-placement="top" title="" data-original-title="Juger la TopList">
+                                                                            <span class="ico va va-hache va-lg"></span>
+                                                                        </a>
+                                                                    </td>
+
+                                                                    <td class="text-right checking-follower">
+                                                                        <?php if ($vainkeur_data_selected && get_current_user_id() != $vainkeur_data_selected['id_user'] && is_user_logged_in()) : ?>
+
+                                                                            <button type="button" id="followBtn" class="btn waves-effect btn-follow d-none" data-userid="<?= get_current_user_id(); ?>" data-uuid="<?= get_field('uuiduser_user', 'user_' . get_current_user_id()); ?>" data-relatedid="<?= $vainkeur_data_selected['id_user']; ?>" data-relateduuid="<?= get_field('uuiduser_user', 'user_' . $vainkeur_data_selected['id_user']); ?>" data-text="<?= get_the_author_meta('nickname', get_current_user_id()); ?> te guette !" data-url="<?= get_author_posts_url(get_current_user_id()); ?>">
+                                                                                <span class="mr-10p wording">Guetter</span>
+                                                                                <span class="va va-guetteur-close va va-z-20 emoji"></span>
+                                                                            </button>
+
+                                                                        <?php endif; ?>
+                                                                    </td>
+
+                                                                </tr>
+                                                            <?php endif; ?>
+                                                        <?php endforeach; ?>
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </div>
                                     </div>
