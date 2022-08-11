@@ -234,9 +234,11 @@
 
 .toplist_comments{
   background-image: linear-gradient(330deg, rgba(255,0,0,0),  #910A60 320%);
+  overflow: hidden;
 
   .comments-container{
     list-style-type: none;
+    height: 50px;
 
     .comment-template {
       padding-bottom: 1rem !important;
@@ -254,7 +256,7 @@
       background-color: rgba(255, 255, 255, 0.05) !important;
       font-size: 14px;
       resize: none;
-      padding: .6rem 8rem .6rem .6rem;
+      padding: .6rem 5rem .6rem .6rem;
       color: #fff !important; 
       -webkit-text-fill-color: #fff !important; 
 

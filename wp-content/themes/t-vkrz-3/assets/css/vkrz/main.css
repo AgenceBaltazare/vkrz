@@ -2052,9 +2052,11 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
 
 .toplist_comments {
   background-image: linear-gradient(330deg, rgba(255, 0, 0, 0), #910A60 320%);
+  overflow: hidden;
 }
 .toplist_comments .comments-container {
   list-style-type: none;
+  height: 50px;
 }
 .toplist_comments .comments-container .comment-template {
   padding-bottom: 1rem !important;
@@ -2070,7 +2072,7 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   background-color: rgba(255, 255, 255, 0.05) !important;
   font-size: 14px;
   resize: none;
-  padding: 0.6rem 8rem 0.6rem 0.6rem;
+  padding: 0.6rem 5rem 0.6rem 0.6rem;
   color: #fff !important;
   -webkit-text-fill-color: #fff !important;
 }

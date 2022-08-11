@@ -217,7 +217,9 @@ const toplistCommentsCard = document.querySelector(".toplist_comments"),
   authorid                = toplistCommentsCard.dataset.authorid,
   authorpseudo            = toplistCommentsCard.dataset.authorpseudo,
   authoruuid              = toplistCommentsCard.dataset.authoruuid,
-  commentsContainer       = toplistCommentsCard.querySelector(".comments-container");
+  commentsContainer       = toplistCommentsCard.querySelector(".comments-container"),
+  commentArea             = toplistCommentsCard.querySelector("#comment");
+
 
 // CHECK IF THERE IS ALREADY A COMMENTS FOR THE TopList…
 let commentsUsersData = [];
@@ -234,6 +236,9 @@ topListCommentsQuerySnapshot.forEach((comment) => {
   }
 });
 commentsUsersData.push([authoruuid, authorid]);
+
+let set = new Set(commentsUsersData.map(userData => JSON.stringify(userData)));
+commentsUsersData = Array.from(set).map(elem => JSON.parse(elem));
 
 const commentTemplate = async function (commentId, uuid, content, secondes) {
   // FUNCTION TO CALCULATE TIME…
@@ -298,18 +303,20 @@ const commentTemplate = async function (commentId, uuid, content, secondes) {
     <div class="comment-template media d-flex align-items-start mb-2 p-0">
           <div class="media-left mr-50">
             <div class="avatar">
-              <span class="avatar-picture" style="background-image: url(${
-                data.avatar
-              }); width: 20px; height: 20px;"></span>
+            <a href="${data.profil_url}" class="text-white">
+              <span class="avatar-picture" style="background-image: url(${data.avatar}); width: 20px; height: 20px;"></span>
+            </a>
             </div>
           </div>
 
           <div class="media-body">
             <div class="d-flex align-items-center justify-content-between">
               <div>
-                <small style="font-size: .95em; font-weight: 600;">${
-                  data.pseudo
-                }</small>
+                <a href="${data.profil_url}" class="text-white">
+                  <small style="font-size: .95em; font-weight: 600;">${
+                    data.pseudo
+                  }</small>
+                </a>
                 <small class="text-muted" style="font-size: .75em; margin-left: .5rem; line-height:0;">Il y a ${secondsToStr(
                     secondes
                 )}</small>
@@ -353,6 +360,12 @@ async function sendComment(comment, idRanking, urlRanking, currentUuid) {
     );
     commentsContainer.insertAdjacentHTML("beforeend", commentTemplateDiv);
 
+    if (topListCommentsQuerySnapshot._snapshot.docs.size === 0) 
+      commentsContainer.style.height = `${+commentsContainer.style.height.substring(
+        0, commentsContainer.style.height.indexOf("px")) + 100}px`;
+
+    commentsContainer.scrollTop = commentsContainer.scrollHeight;
+
     // RESET DELETE BUTTONS…
     const deleteCommentsBtns =
       toplistCommentsCard.querySelectorAll(".deleteCommentBtn");
@@ -371,10 +384,8 @@ async function sendComment(comment, idRanking, urlRanking, currentUuid) {
     replyCommentsBtns.forEach((btn) => {
       btn.addEventListener("click", (e) => {
         e.preventDefault();
-        toplistCommentsCard.querySelector(
-          "#comment"
-        ).value = `${btn.dataset.replyto}`;
-        toplistCommentsCard.querySelector("#comment").focus();
+        commentArea.value = `${btn.dataset.replyto}`;
+        commentArea.focus();
       });
     });
 
@@ -418,8 +429,28 @@ async function sendComment(comment, idRanking, urlRanking, currentUuid) {
   }
 }
 
+const validComment = function() {
+  let comment = commentArea.value;
+
+  if(comment) {
+    // INIT COMMENTAREA…
+    if (topListCommentsQuerySnapshot._snapshot.docs.size === 0) {
+      commentsContainer.innerHTML = "";
+    }
+    commentArea.value = "";
+    commentArea.focus();
+
+    // SEND COMMENT TO FIRESTORE…
+    sendComment(comment, idRanking, urlRanking, currentUuid);
+  } else {
+    commentArea.setAttribute('placeholder', "my TopList is better than yours… 😈");
+  }
+}
+
 if (topListCommentsQuerySnapshot._snapshot.docs.size !== 0) {
   // THERE IS SOME COMMENTS…
+  commentsContainer.style.height = "220px";
+
   let commentsArr = [];
   topListCommentsQuerySnapshot.forEach((comment) =>
     commentsArr.push({ id: comment.id, ...comment.data() })
@@ -450,10 +481,8 @@ if (topListCommentsQuerySnapshot._snapshot.docs.size !== 0) {
   replyCommentsBtns.forEach((btn) => {
     btn.addEventListener("click", (e) => {
       e.preventDefault();
-      toplistCommentsCard.querySelector(
-        "#comment"
-      ).value = `${btn.dataset.replyto}`;
-      toplistCommentsCard.querySelector("#comment").focus();
+      commentArea.value = `${btn.dataset.replyto}`;
+      commentArea.focus();
     });
   });
 } else {
@@ -461,15 +490,9 @@ if (topListCommentsQuerySnapshot._snapshot.docs.size !== 0) {
   commentsContainer.innerHTML = `<span style="color: #A9A9AC;">Aucun jugement pour le moment - Soit le 1er</span>`;
 }
 
-sendCommentBtn.addEventListener("click", function () {
-  let comment = toplistCommentsCard.querySelector("#comment").value;
-
-  // INIT COMMENTAREA…
-  if (topListCommentsQuerySnapshot._snapshot.docs.size === 0) {
-    commentsContainer.innerHTML = "";
+sendCommentBtn.addEventListener("click", validComment);
+commentArea.addEventListener("keypress", (e) => {
+  if (13 == e.keyCode) { 
+    e.preventDefault(); validComment();  
   }
-  toplistCommentsCard.querySelector("#comment").value = "";
-
-  // SEND COMMENT TO FIRESTORE…
-  sendComment(comment, idRanking, urlRanking, currentUuid);
 });
