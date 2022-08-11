@@ -412,7 +412,6 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
                             $ranking_author_data        = get_user_infos($ranking_author_uuiduser);
                           ?>
                           <div 
-                            id="jugement" 
                             class="card toplist_comments" 
                             data-authorid="<?= $ranking_author_data["id_user"] ?>" data-authorpseudo="<?= $ranking_author_data["pseudo"] ?>" 
                             data-authoruuid="<?= $ranking_author_uuiduser; ?>" data-idranking="<?= $id_ranking; ?>"
