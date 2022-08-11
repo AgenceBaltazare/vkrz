@@ -184,16 +184,16 @@ if (document.querySelector(".vs-resemblance")) {
         );
 
         document.querySelector(".vs-resemblance").innerHTML = `
-            <h2 class="mt-2 text-center mb-0">
-              <b style="color: #7266EF;">${calcResemblance}</b> de ressemblance avec ta TopList !
-            </h2>
-          `;
+          <h2 class="mt-2 text-center mb-0">
+            <b style="color: #7266EF;">${calcResemblance}</b> de ressemblance avec ta TopList !
+          </h2>
+        `;
       } else {
         // NOT FOUND IN FIRESTORE…
         console.log("No such document in Firestore!");
       }
     } else {
-      // I DIDN'T RANKING…
+      // I DIDN'T THE RANKING…
       console.log("I did not the ranking…");
       cardResemblance.innerHTML = `
       <a href="${topUrl}" class="w-100 btn btn-rose waves-effect p-1 mt-2">
@@ -211,15 +211,13 @@ if (document.querySelector(".vs-resemblance")) {
 
 // TOPLIST COMMENTS…
 const toplistCommentsCard = document.querySelector(".toplist_comments"),
-  sendCommentBtn = toplistCommentsCard.querySelector("#send_comment_btn"),
-  idRanking = toplistCommentsCard.dataset.idranking,
-  urlRanking = toplistCommentsCard.dataset.urlranking,
-  authorid = toplistCommentsCard.dataset.authorid,
-  authorpseudo = toplistCommentsCard.dataset.authorpseudo,
-  authoruuid = toplistCommentsCard.dataset.authoruuid;
-const commentsContainer = toplistCommentsCard.querySelector(
-  ".comments-container"
-);
+  sendCommentBtn          = toplistCommentsCard.querySelector("#send_comment_btn"),
+  idRanking               = toplistCommentsCard.dataset.idranking,
+  urlRanking              = toplistCommentsCard.dataset.urlranking,
+  authorid                = toplistCommentsCard.dataset.authorid,
+  authorpseudo            = toplistCommentsCard.dataset.authorpseudo,
+  authoruuid              = toplistCommentsCard.dataset.authoruuid,
+  commentsContainer       = toplistCommentsCard.querySelector(".comments-container");
 
 // CHECK IF THERE IS ALREADY A COMMENTS FOR THE TopList…
 let commentsUsersData = [];
@@ -236,8 +234,6 @@ topListCommentsQuerySnapshot.forEach((comment) => {
   }
 });
 commentsUsersData.push([authoruuid, authorid]);
-
-console.log(commentsUsersData);
 
 const commentTemplate = async function (commentId, uuid, content, secondes) {
   // FUNCTION TO CALCULATE TIME…
@@ -293,7 +289,7 @@ const commentTemplate = async function (commentId, uuid, content, secondes) {
       class="deleteCommentBtn ml-3"
       data-commentId="${commentId}"
     >
-    X
+      X
     </a>
     `;
   }
@@ -330,9 +326,9 @@ const commentTemplate = async function (commentId, uuid, content, secondes) {
               Répondre
             </a>
           </div>
-    </div>
 
-    <hr>
+          <hr>
+    </div>
   `;
 };
 
@@ -383,8 +379,6 @@ async function sendComment(comment, idRanking, urlRanking, currentUuid) {
     });
 
     // SEND NOTIFICATION…
-    // AVOID SEND NOTIFICATION TO AUTHOR…
-    // GET ALL THE VAINKEURZ WHO HAVE COMMENTED THE TopList…
     commentsUsersData.reverse().forEach((userData, index) => {
       if (userData[1] != currentUserId) {
         let notifText;
@@ -410,6 +404,8 @@ async function sendComment(comment, idRanking, urlRanking, currentUuid) {
                 createdAt: new Date(),
               }
             );
+
+            console.log("Notification sent with ID: ", notification.id);
           } catch (error) {
             console.error("Error adding comment notification: ", error);
           }
@@ -462,13 +458,13 @@ if (topListCommentsQuerySnapshot._snapshot.docs.size !== 0) {
   });
 } else {
   // NO COMMENTS…
-  commentsContainer.innerHTML = `<span class="text-muted">Aucun jugement pour le moment - Soit le 1er</span>`;
+  commentsContainer.innerHTML = `<span style="color: #A9A9AC;">Aucun jugement pour le moment - Soit le 1er</span>`;
 }
 
 sendCommentBtn.addEventListener("click", function () {
   let comment = toplistCommentsCard.querySelector("#comment").value;
 
-  // INIT COMMENTAREA PLACE…
+  // INIT COMMENTAREA…
   if (topListCommentsQuerySnapshot._snapshot.docs.size === 0) {
     commentsContainer.innerHTML = "";
   }
@@ -477,10 +473,3 @@ sendCommentBtn.addEventListener("click", function () {
   // SEND COMMENT TO FIRESTORE…
   sendComment(comment, idRanking, urlRanking, currentUuid);
 });
-
-/* 
-  NOTIFICATIONS :
-
-  Le mec du TopList
-  Tout ce qui ont commenter a cette TopList
-*/

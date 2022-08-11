@@ -2031,15 +2031,52 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   pointer-events: all;
 }
 
+.toplist_comments {
+  background-image: linear-gradient(330deg, rgba(255, 0, 0, 0), #910A60 320%);
+}
 .toplist_comments .comments-container {
   list-style-type: none;
 }
-.toplist_comments textarea {
-  border: 2px solid #ededed;
-  border-radius: 5px;
+.toplist_comments .comments-container .comment-template {
+  padding-bottom: 1rem !important;
+  border-bottom: rgba(169, 169, 172, 0.3019607843) 1px solid;
+}
+.toplist_comments .commentarea-container {
+  position: relative;
+}
+.toplist_comments .commentarea-container textarea {
+  border: 2px solid #A9A9AC;
+  border-radius: 12px;
   width: 100%;
   background-color: rgba(255, 255, 255, 0.05) !important;
-  font-size: 12px;
+  font-size: 14px;
+  resize: none;
+  padding: 0.6rem 8rem 0.6rem 0.6rem;
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+}
+.toplist_comments .commentarea-container textarea::-moz-placeholder {
+  -webkit-text-fill-color: #A9A9AC !important;
+}
+.toplist_comments .commentarea-container textarea:-ms-input-placeholder {
+  -webkit-text-fill-color: #A9A9AC !important;
+}
+.toplist_comments .commentarea-container textarea::placeholder {
+  -webkit-text-fill-color: #A9A9AC !important;
+}
+.toplist_comments .commentarea-container textarea:focus {
+  outline: none;
+}
+.toplist_comments .commentarea-container button {
+  position: absolute;
+  right: 0;
+  top: 16%;
+  margin-right: 0.3rem;
+}
+.toplist_comments .commentarea-container #send_comment_btn {
+  background: none !important;
+  border: none;
+  outline: none;
 }
 .toplist_comments .replyCommentBtn {
   font-size: 10px;
@@ -4632,6 +4669,10 @@ select:-webkit-autofill:focus {
 
 .va-kissing {
   background-image: url(../../images/emojis/kissing-face_1f617.png);
+}
+
+.va-icon-arrow-up {
+  background-image: url(../../images/emojis/icon-arrow-up.png);
 }
 
 /***** Icons END *****/

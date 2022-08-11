@@ -14,8 +14,6 @@ calcResemblanceDiv.addEventListener(
   "click",
   async function () {
     // DOM…
-    $(".table-listuserranks").DataTable().destroy();
-
     document.querySelector("tbody").style.opacity = "0.5";
     const h1 = calcResemblanceDiv.querySelector(".calc-resemblance-h1");
     const progressBar = calcResemblanceDiv.querySelector(".bar");
@@ -146,10 +144,8 @@ calcResemblanceDiv.addEventListener(
       actualUserRankingQuery
     );
 
+    let myTypeTopRanking, otherTypeTopRanking; // TO DEFINE…
     // SORT MY RANKING…
-    // TO DEFINE…
-    let myTypeTopRanking, otherTypeTopRanking;
-
     let myContenders = [];
     actualUserRankingQuerySnapshot.forEach(
       (ranking) => {
@@ -180,7 +176,6 @@ calcResemblanceDiv.addEventListener(
       otherTypeTopRanking = ranking.data().custom_fields.type_top_r;
 
       let row = document.querySelector(`.uuid${uuid}`);
-
 
       let top3 = false;
       if(myTypeTopRanking == "top3" || otherTypeTopRanking == "top3") {
