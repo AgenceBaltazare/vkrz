@@ -233,15 +233,51 @@
 }
 
 .toplist_comments{
+  background-image: linear-gradient(330deg, rgba(255,0,0,0),  #910A60 320%);
+
   .comments-container{
     list-style-type: none;
+
+    .comment-template {
+      padding-bottom: 1rem !important;
+      border-bottom: #a9a9ac4d 1px solid;
+    }
   }
-  textarea{
-    border: 2px solid #ededed;
-    border-radius: 5px;
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.05) !important;
-    font-size: 12px;
+
+  .commentarea-container {
+    position: relative;
+
+    textarea{
+      border: 2px solid #A9A9AC;
+      border-radius: 12px;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.05) !important;
+      font-size: 14px;
+      resize: none;
+      padding: .6rem 8rem .6rem .6rem;
+      color: #fff !important; 
+      -webkit-text-fill-color: #fff !important; 
+
+      &::placeholder {
+       -webkit-text-fill-color: #A9A9AC !important; 
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+    button {
+      position: absolute;
+      right: 0;
+      top: 16%;
+      margin-right: .3rem;
+    }
+
+    #send_comment_btn {
+      background: none !important;
+      border: none;
+      outline: none;
+    }
   }
 
   .replyCommentBtn{

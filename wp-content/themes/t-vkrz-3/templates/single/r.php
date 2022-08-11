@@ -260,7 +260,7 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
 
                     <div class="col-md-4">
 
-                      <div class="animate__fadeInUp animate__animated animate__delay-Xs">
+                      <div class="animate__fadeInUp animate__animated animate__delay-2s">
 
                         <?php if (!in_array('private', $types_top)) : ?>
 
@@ -406,8 +406,18 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
                             </div>
                           </div>
 
-                          <?php $ranking_author_data = get_user_infos($uuid_who_did_toplist); ?>
-                          <div id="jugement" class="card toplist_comments" data-authorid="<?php echo $ranking_author_data["id_user"] ?>" data-authorpseudo="<?php echo $ranking_author_data["pseudo"] ?>" data-authoruuid="<?php echo get_field('uuiduser_user', 'user_' . $ranking_author_data["id_user"]); ?>" data-idranking="<?= $id_ranking; ?>" data-urlranking="<?= get_permalink($id_ranking); ?>">
+                          <?php 
+                            $ranking_author_id          = get_post_field('post_author', $id_ranking);
+                            $ranking_author_uuiduser    = get_field('uuiduser_user', 'user_' . $ranking_author_id);
+                            $ranking_author_data        = get_user_infos($ranking_author_uuiduser);
+                          ?>
+                          <div 
+                            id="jugement" 
+                            class="card toplist_comments" 
+                            data-authorid="<?= $ranking_author_data["id_user"] ?>" data-authorpseudo="<?= $ranking_author_data["pseudo"] ?>" 
+                            data-authoruuid="<?= $ranking_author_uuiduser; ?>" data-idranking="<?= $id_ranking; ?>"
+                            data-urlranking="<?= get_permalink($id_ranking); ?>"
+                          >
                             <div class="card-body">
                               <h4 class="card-title">
                                 <span class="va va-hache va-lg"></span> Laisser un jugement
@@ -416,12 +426,12 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
 
                               </li>
                               <div class="card-footer border-0">
-                                <div class="row align-items-center">
-                                  <div class="col-8">
-                                    <textarea name="comment" id="comment"></textarea>
-                                  </div>
-                                  <div class="col-4">
-                                    <button id="send_comment_btn" class="btn btn-primary waves-effect waves-float waves-light">Juger</button>
+                                <div class="row align-items-center commentarea-container">
+                                    <textarea name="comment" id="comment" placeholder="Juger…"></textarea>
+
+                                    <button id="send_comment_btn">
+                                      <span class="va va-icon-arrow-up va-z-40"></span>
+                                    </button>
                                   </div>
                                 </div>
                               </div>
