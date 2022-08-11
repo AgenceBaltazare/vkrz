@@ -422,7 +422,7 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
                               <h4 class="card-title">
                                 <span class="va va-hache va-lg"></span> Laisser un jugement
                               </h4>
-                              <li class="comments-container scrollable-container media-list list-">
+                              <li class="comments-container scrollable-container media-list">
 
                               </li>
                               <div class="card-footer border-0">
