@@ -20,10 +20,10 @@ function get_contenders_ranking($top_id){
             $contender_id = $contender->ID;
 
             $contenders_ranking[] = array(
-                "id" => $contender_id,
-                "illustration" => get_the_post_thumbnail_url($contender_id, 'full'),
-                "title" => get_the_title($contender_id),
-                "points" => get_field("ELO_c", $contender_id)
+                "id"            => $contender_id,
+                "illustration"  => get_the_post_thumbnail_url($contender_id, 'full'),
+                "title"         => get_the_title($contender_id),
+                "points"        => get_field("ELO_c", $contender_id)
             );
         }
     }
