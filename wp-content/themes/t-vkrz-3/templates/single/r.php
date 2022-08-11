@@ -557,7 +557,7 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
     <section class="nav-single">
       <nav class="navbar fixed-bottom mobile-navbar">
         <div class="row">
-          <div class="col-md-9">
+          <div class="col-md-8">
             <div class="icons-navbar">
               <?php if (!in_array('private', $types_top)) : ?>
                 <div class="ico-nav-mobile box-info-show">
