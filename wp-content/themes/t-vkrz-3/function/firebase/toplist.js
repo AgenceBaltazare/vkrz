@@ -464,12 +464,16 @@ if (topListCommentsQuerySnapshot._snapshot.docs.size !== 0) {
 sendCommentBtn.addEventListener("click", function () {
   let comment = toplistCommentsCard.querySelector("#comment").value;
 
-  // INIT COMMENTAREA…
-  if (topListCommentsQuerySnapshot._snapshot.docs.size === 0) {
-    commentsContainer.innerHTML = "";
-  }
-  toplistCommentsCard.querySelector("#comment").value = "";
+  if(comment) {
+    // INIT COMMENTAREA…
+    if (topListCommentsQuerySnapshot._snapshot.docs.size === 0) {
+      commentsContainer.innerHTML = "";
+    }
+    toplistCommentsCard.querySelector("#comment").value = "";
 
-  // SEND COMMENT TO FIRESTORE…
-  sendComment(comment, idRanking, urlRanking, currentUuid);
+    // SEND COMMENT TO FIRESTORE…
+    sendComment(comment, idRanking, urlRanking, currentUuid);
+  } else {
+    toplistCommentsCard.querySelector("#comment").setAttribute('placeholder', "my TopList is better than yours… 😈");
+  }
 });
