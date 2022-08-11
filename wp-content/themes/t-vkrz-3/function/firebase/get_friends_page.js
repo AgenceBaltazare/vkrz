@@ -110,7 +110,7 @@ const guetteurFunc = async () => {
             data-original-title="En mode duo" 
             class="avatar pull-up"
           >
-          <span class="va-duo va va-z-30" alt="Duo"></span>
+          <span class="love-people va va-z-30" alt="Duo"></span>
           </div>
         </td>
         <td class="d-none">duo</td>

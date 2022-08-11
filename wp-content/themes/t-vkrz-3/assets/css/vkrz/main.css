@@ -1035,6 +1035,25 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   border-radius: 0 !important;
 }
 
+.table-listuserranks table.dataTable thead .sorting_desc, .page table.dataTable thead .sorting_desc {
+  background: none !important;
+}
+
+.dataTables_filter input {
+  border: 2px solid rgba(114, 103, 240, 0.2941176471) !important;
+  color: #fff !important;
+  font-size: 11px;
+}
+.dataTables_filter input::-moz-placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+.dataTables_filter input:-ms-input-placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+.dataTables_filter input::placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+
 .page-template-monitor .list-vainkeur-monitor {
   line-height: 14px;
 }
@@ -4605,6 +4624,14 @@ select:-webkit-autofill:focus {
 
 .va-hache {
   background-image: url(../../images/emojis/axe_1fa93.png);
+}
+
+.va-heart-hands {
+  background-image: url(../../images/emojis/heart-hands_1faf6.png);
+}
+
+.va-love-people {
+  background-image: url(../../images/emojis/kiss_1f48f.png);
 }
 
 .va-guetteur-close {
