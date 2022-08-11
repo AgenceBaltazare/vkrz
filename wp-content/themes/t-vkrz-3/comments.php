@@ -2,6 +2,8 @@
 global $top_comments_id;
 global $author_reply;
 global $author_reply_id;
+global $infos_vainkeur;
+
 ?>
 
 <div id="comments" class="comments-area">
@@ -221,10 +223,19 @@ global $author_reply_id;
               </div>
 
               <!-- REPLY DATA… -->
-              <div id="replyData" style="display: none !important;" data-userId="<?php echo get_current_user_id() ?>" data-uuid="<?php echo get_field('uuiduser_user', 'user_' . get_current_user_id()); ?>" data-relatedId="<?php echo $author_reply_id ?>" data-relatedUuid="<?php echo get_field('uuiduser_user', 'user_' . $author_reply_id); ?>" data-notifText="<?php echo $user_infos['pseudo'] ?>" data-notifLink="<?php echo $actual_link; ?>&replytocom=<?php echo $top_reponse_id; ?>#respond"></div>
+              <div 
+                id="replyData" 
+                style="display: none !important;" 
+                data-userId="<?php echo get_current_user_id() ?>" 
+                data-uuid="<?php echo get_field('uuiduser_user', 'user_' . get_current_user_id()); ?>" 
+                data-relatedId="<?php echo $author_reply_id ?>" 
+                data-relatedUuid="<?php echo get_field('uuiduser_user', 'user_' . $author_reply_id); ?>" 
+                data-notifText="<?php echo $infos_vainkeur['pseudo'] ?>" 
+                data-notifLink="<?php echo $actual_link; ?>&replytocom=<?php echo $top_reponse_id; ?>#respond"
+              ></div>
 
               <!-- COMMENT DATA… -->
-              <div id="commentData" style="display: none !important;" data-userId="<?php echo get_current_user_id() ?>" data-uuid="<?php echo get_field('uuiduser_user', 'user_' . get_current_user_id()); ?>" data-relatedId="<?php echo get_post_field('post_author', $top_comments_id); ?>" data-relatedUuid="<?php echo get_field('uuiduser_user', 'user_' . get_post_field('post_author', $top_comments_id)); ?>" data-notifText="<?php echo $user_infos['pseudo'] ?>" data-notifLink="<?php echo $actual_link; ?>"></div>
+              <div id="commentData" style="display: none !important;" data-userId="<?php echo get_current_user_id() ?>" data-uuid="<?php echo get_field('uuiduser_user', 'user_' . get_current_user_id()); ?>" data-relatedId="<?php echo get_post_field('post_author', $top_comments_id); ?>" data-relatedUuid="<?php echo get_field('uuiduser_user', 'user_' . get_post_field('post_author', $top_comments_id)); ?>" data-notifText="<?php echo $infos_vainkeur['pseudo'] ?>" data-notifLink="<?php echo $actual_link; ?>"></div>
             </div>
           </form>
         </div>
