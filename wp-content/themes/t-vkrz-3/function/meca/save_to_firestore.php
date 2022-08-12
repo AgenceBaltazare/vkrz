@@ -6,11 +6,15 @@ function save_to_firestore($id_top, $current_id_vainkeur, $id_ranking){
     wp_update_post(array('ID' => $current_id_vainkeur));
     wp_update_post(array('ID' => $id_resume));
 
+    update_field('maj_vkrz', 'iiiii', 469420);
+
 }
 
 function save_elo_to_firestore($contender1, $contender2){
 
     wp_update_post(array('ID' => $contender1));
     wp_update_post(array('ID' => $contender2));
+
+    update_field('maj_vkrz', 'elo', 469396);
     
 }
