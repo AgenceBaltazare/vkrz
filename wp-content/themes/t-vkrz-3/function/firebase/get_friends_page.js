@@ -182,36 +182,26 @@ const guetteurFunc = async () => {
       html += `
       <tr>
         <td>
-          <div class="d-flex align-items-center">
-          <span class="avatar">
-              <a href="${map.get(item["uuid"]).profil_url}">
-                  <span class="avatar-picture" style="background-image: url(${map.get(item["uuid"]).avatar
-        });"></span>
+          <div class="vainkeur-card">
+              <a href="${map.get(item["uuid"]).profil_url}" class="btn btn-flat-primary waves-effect">
+                  <span class="avatar">
+                      <span class="avatar-picture" style="background-image: url(${map.get(item["uuid"]).avatar});"></span>
+                  </span>
+                  <span class="championname">
+                      <h4>${map.get(item["uuid"]).pseudo}</h4>
+                      <span class="medailles">
+                          ${map.get(item["uuid"]).level}
+                          ${!map.get(item["uuid"]).user_role_administrator
+                            ? '<span class="va va-vkrzteam va-z-15" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ"></span>'
+                            : map.get(item["uuid"]).user_role_administrator
+                          } 
+                          ${!map.get(item["uuid"]).user_role_author
+                            ? '<span class="va va-man-singer va-z-15" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops"></span>'
+                            : map.get(item["uuid"]).user_role_author
+                          }
+                      </span>
+                  </span>
               </a>
-              <span class="user-niveau">
-                  ${map.get(item["uuid"]).level}
-              </span>
-          </span>
-
-          <h6 class="font-weight-bold championname">
-            <a href="${map.get(item["uuid"]).profil_url}">
-                ${map.get(item["uuid"]).pseudo}
-                <span class="user-niveau-xs">
-                    ${map.get(item["uuid"]).level}
-                </span>
-                ${!map.get(item["uuid"]).user_role_administrator
-          ? ""
-          : map.get(item["uuid"]).user_role_administrator
-        } 
-                ${!map.get(item["uuid"]).user_role_author
-          ? ""
-          : map.get(item["uuid"]).user_role_author
-        }
-            </a>
-
-              <small class="cart-item-by legende amigo-legende-${map.get(item["uuid"]).user_id
-        }">${item.extra.friend ? "En mode duo" : ""}</small>
-          </h6>
           </div>
         </td>
 

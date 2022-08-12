@@ -205,7 +205,7 @@ $tops_sponso_old = new WP_Query(array(
                                                                                     <div class="media-heading">
                                                                                         <h6 class="cart-item-title mb-0">
                                                                                             <a class="text-body" href="<?php the_permalink($id_top); ?>">
-                                                                                                Top <?php the_field('count_contenders_t', $id_top); ?> <span class="ico">⚡</span> <?php echo get_the_title($id_top); ?>
+                                                                                                Top <?php the_field('count_contenders_t', $id_top); ?> <span class="va va-trophy va-lg"></span> <?php echo get_the_title($id_top); ?>
                                                                                             </a>
                                                                                         </h6>
                                                                                         <small class="cart-item-by legende">
@@ -352,7 +352,7 @@ $tops_sponso_old = new WP_Query(array(
                                                                                     <div class="media-heading">
                                                                                         <h6 class="cart-item-title mb-0">
                                                                                             <a class="text-body" href="<?php the_permalink($id_top); ?>">
-                                                                                                Top <?php the_field('count_contenders_t', $id_top); ?> <span class="ico">⚡</span> <?php echo get_the_title($id_top); ?>
+                                                                                                Top <?php the_field('count_contenders_t', $id_top); ?> <span class="va va-trophy va-lg"></span> <?php echo get_the_title($id_top); ?>
                                                                                             </a>
                                                                                         </h6>
                                                                                         <small class="cart-item-by legende">

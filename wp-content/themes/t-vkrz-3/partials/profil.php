@@ -68,7 +68,7 @@ if (is_author() || is_page(218587)) {
                   Récap
                 </a>
               </li>
-              <?php if(is_user_logged_in()): ?>
+              <?php if (is_user_logged_in()) : ?>
                 <li class="nav-item">
                   <a class="nav-link font-weight-bold <?php if (is_page(305107)) : echo 'btn btn-primary';
                                                       endif; ?>" href="<?php the_permalink(305107); ?>">
@@ -131,18 +131,8 @@ if (is_author() || is_page(218587)) {
           </ul>
 
           <?php if ($infos_vainkeur['id_user'] != $user_id && is_user_logged_in()) : ?>
-            <button 
-              type="button" 
-              id="followBtn" 
-              class="btn waves-effect d-none btn-follow" 
-              data-userid="<?= $user_id; ?>" 
-              data-uuid="<?= get_field('uuiduser_user', 'user_' . $user_id); ?>" 
-              data-relatedid="<?= $infos_vainkeur['id_user']; ?>" 
-              data-relateduuid="<?= get_field('uuiduser_user', 'user_' . $infos_vainkeur['id_user']);  ?>" 
-              data-text="<?= wp_get_current_user()->user_login ?> te guette !" 
-              data-url="<?= get_author_posts_url($user_id); ?>" 
-            >
-              <span class="mr-10p wording">Guetter ce Vainkeur</span>
+            <button type="button" id="followBtn" class="btn waves-effect d-none btn-follow" data-userid="<?= $user_id; ?>" data-uuid="<?= get_field('uuiduser_user', 'user_' . $user_id); ?>" data-relatedid="<?= $infos_vainkeur['id_user']; ?>" data-relateduuid="<?= get_field('uuiduser_user', 'user_' . $infos_vainkeur['id_user']);  ?>" data-text="<?= wp_get_current_user()->user_login ?> te guette !" data-url="<?= get_author_posts_url($user_id); ?>">
+              <span class="wording">Guetter ce Vainkeur</span>
               <span class="va va-guetteur-close va va-z-20 emoji"></span>
             </button>
           <?php endif; ?>

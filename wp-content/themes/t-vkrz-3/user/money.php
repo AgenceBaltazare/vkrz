@@ -2,14 +2,12 @@
 /*
     Template Name: Money
 */
-get_header();
-global $uuiduser;
+global $uuid_vainkeur;
 global $user_id;
-global $vainkeur_id;
-global $vainkeur_info;
-global $user_infos;
-$vainkeur_info = isset($vainkeur_info) ? $vainkeur_info : $user_infos;
-if ($vainkeur_info['user_role'] == "administrator" || $vainkeur_info['user_role'] == "author") {
+global $infos_vainkeur;
+global $id_vainkeur;
+get_header();
+if ($infos_vainkeur['user_role'] == "administrator" || $infos_vainkeur['user_role'] == "author") {
     if (false === ($data_t_created = get_transient('user_' . $user_id . '_get_creator_t'))) {
         $data_t_created = get_creator_t($user_id);
         set_transient('user_' . $user_id . '_get_creator_t', $data_t_created, DAY_IN_SECONDS);
@@ -17,10 +15,10 @@ if ($vainkeur_info['user_role'] == "administrator" || $vainkeur_info['user_role'
         $data_t_created = get_transient('user_' . $user_id . '_get_creator_t');
     }
 }
-$money_votes = $user_infos['nb_vote_vkrz'];
-$money_tops  = $user_infos['nb_top_vkrz'] * 5;
+$money_votes = $infos_vainkeur['nb_vote_vkrz'];
+$money_tops  = $infos_vainkeur['nb_top_vkrz'] * 5;
 $money_badges = 0;
-$vainkeur_badges = get_the_terms($vainkeur_info['id_vainkeur'], 'badges');
+$vainkeur_badges = get_the_terms($infos_vainkeur['id_vainkeur'], 'badges');
 ?>
 <div class="app-content content ">
     <div class="content-wrapper">
@@ -45,8 +43,8 @@ $vainkeur_badges = get_the_terms($vainkeur_info['id_vainkeur'], 'badges');
                                                 <span class="ico4 va va-gem va va-z-85"></span>
                                             </div>
                                             <h2 class="font-weight-bolder">
-                                                <?php if ($user_infos['money_vkrz']) : ?>
-                                                    <?php echo number_format($user_infos['money_vkrz'], 0, ",", " "); ?>
+                                                <?php if ($infos_vainkeur['money_vkrz']) : ?>
+                                                    <?php echo number_format($infos_vainkeur['money_vkrz'], 0, ",", " "); ?>
                                                 <?php else : ?>
                                                     -
                                                 <?php endif; ?>
@@ -65,8 +63,8 @@ $vainkeur_badges = get_the_terms($vainkeur_info['id_vainkeur'], 'badges');
                                                 <span class="ico4 va va-gem va va-z-85"></span>
                                             </div>
                                             <h2 class="font-weight-bolder">
-                                                <?php if ($user_infos['money_creator_vkrz']) : ?>
-                                                    <?php echo number_format($user_infos['money_creator_vkrz'], 0, ",", " "); ?>
+                                                <?php if ($infos_vainkeur['money_creator_vkrz']) : ?>
+                                                    <?php echo number_format($infos_vainkeur['money_creator_vkrz'], 0, ",", " "); ?>
                                                 <?php else : ?>
                                                     -
                                                 <?php endif; ?>
@@ -88,7 +86,7 @@ $vainkeur_badges = get_the_terms($vainkeur_info['id_vainkeur'], 'badges');
                                             Collecte en tant que <span class="m-l-5 va-llama va va-1x"></span>
                                         </a>
                                     </li>
-                                    <?php if ($vainkeur_info['user_role'] == "administrator" || $vainkeur_info['user_role'] == "author") : ?>
+                                    <?php if ($infos_vainkeur['user_role'] == "administrator" || $infos_vainkeur['user_role'] == "author") : ?>
                                         <li class="nav-item">
                                             <a class="nav-link" id="homeIcon-tab" data-toggle="tab" href="#tab1" aria-controls="home" role="tab" aria-selected="false">
                                                 Collecte en tant que <span class="m-l-5 va-man-singer va va-1x"></span>
@@ -127,7 +125,7 @@ $vainkeur_badges = get_the_terms($vainkeur_info['id_vainkeur'], 'badges');
                                                                         Votes réalisés
                                                                     </th>
                                                                     <th class="text-right">
-                                                                        <span class="text-muted">1 x</span> <?php echo $user_infos['nb_vote_vkrz']; ?>
+                                                                        <span class="text-muted">1 x</span> <?php echo $infos_vainkeur['nb_vote_vkrz']; ?>
                                                                     </th>
                                                                     <th class="text-right">
                                                                         <?php echo $money_votes; ?> <span class="va-gem va va-1x"></span>
@@ -138,14 +136,14 @@ $vainkeur_badges = get_the_terms($vainkeur_info['id_vainkeur'], 'badges');
                                                                         Tops finalisés
                                                                     </th>
                                                                     <th class="text-right">
-                                                                        <span class="text-muted">5 x</span> <?php echo $user_infos['nb_top_vkrz']; ?>
+                                                                        <span class="text-muted">5 x</span> <?php echo $infos_vainkeur['nb_top_vkrz']; ?>
                                                                     </th>
                                                                     <th class="text-right">
                                                                         <?php echo $money_tops; ?> <span class="va-gem va va-1x"></span>
                                                                     </th>
                                                                 </tr>
-                                                                <?php if (have_rows('liste_des_recompenses_vkrz', $vainkeur_info['id_vainkeur'])) : ?>
-                                                                    <?php while (have_rows('liste_des_recompenses_vkrz', $vainkeur_info['id_vainkeur'])) : the_row(); ?>
+                                                                <?php if (have_rows('liste_des_recompenses_vkrz', $infos_vainkeur['id_vainkeur'])) : ?>
+                                                                    <?php while (have_rows('liste_des_recompenses_vkrz', $infos_vainkeur['id_vainkeur'])) : the_row(); ?>
                                                                         <tr>
                                                                             <th>
                                                                                 <?php the_sub_field('nom_de_la_recompense_vkrz'); ?>
@@ -176,13 +174,15 @@ $vainkeur_badges = get_the_terms($vainkeur_info['id_vainkeur'], 'badges');
                                                                 endif; ?>
                                                                 <tr>
                                                                     <th>
-                                                                        Total collecté
+                                                                        <span class="text-info">
+                                                                            Total collecté
+                                                                        </span>
                                                                     </th>
                                                                     <th class="text-right">
 
                                                                     </th>
-                                                                    <th class="text-right">
-                                                                        <?php echo $user_infos['money_vkrz']; ?> <span class="va-gem va va-1x"></span>
+                                                                    <th class="text-right text-info">
+                                                                        <?php echo $infos_vainkeur['money_vkrz']; ?> <span class="va-gem va va-1x"></span>
                                                                     </th>
                                                                 </tr>
                                                             </tbody>
@@ -192,7 +192,7 @@ $vainkeur_badges = get_the_terms($vainkeur_info['id_vainkeur'], 'badges');
                                             </div>
                                         </div>
                                     </div>
-                                    <?php if ($vainkeur_info['user_role'] == "administrator" || $vainkeur_info['user_role'] == "author") : ?>
+                                    <?php if ($infos_vainkeur['user_role'] == "administrator" || $infos_vainkeur['user_role'] == "author") : ?>
                                         <div class="tab-pane" id="tab1" aria-labelledby="profileIcon-tab" role="tabpanel">
                                             <div class="row">
                                                 <div class="col-12">
@@ -248,13 +248,15 @@ $vainkeur_badges = get_the_terms($vainkeur_info['id_vainkeur'], 'badges');
                                                                     </tr>
                                                                     <tr>
                                                                         <th>
-                                                                            Total collecté
+                                                                            <span class="text-info">
+                                                                                Total collecté
+                                                                            </span>
                                                                         </th>
                                                                         <th class="text-right">
 
                                                                         </th>
-                                                                        <th class="text-right">
-                                                                            <?php echo $user_infos['money_creator_vkrz']; ?> <span class="va-gem va va-1x"></span>
+                                                                        <th class="text-right text-info">
+                                                                            <?php echo $infos_vainkeur['money_creator_vkrz']; ?> <span class="va-gem va va-1x"></span>
                                                                         </th>
                                                                     </tr>
                                                                 </tbody>
@@ -298,7 +300,7 @@ $vainkeur_badges = get_the_terms($vainkeur_info['id_vainkeur'], 'badges');
                                                                     'meta_query'                 => array(
                                                                         array(
                                                                             'key'       => 'id_vainkeur_transaction',
-                                                                            'value'     => $vainkeur_info['id_vainkeur'],
+                                                                            'value'     => $infos_vainkeur['id_vainkeur'],
                                                                             'compare'   => '='
                                                                         )
                                                                     ),

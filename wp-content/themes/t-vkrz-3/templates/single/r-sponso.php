@@ -299,7 +299,12 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
                               </h2>
                               <div class="mt-1">
                                 <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_top_global; ?>&sponso=active" class="w-100 btn btn-primary waves-effect">
-                                  <span class="ico">🌎</span> Voir la TopList mondiale
+                                  <span class="va va-globle va-lg"></span> TopList mondiale
+                                </a>
+                              </div>
+                              <div class="mt-1">
+                                <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_top_global; ?>" class="w-100 btn btn-outline-primary waves-effect">
+                                  <span class="va va-eyes va-lg"></span> Liste des TopList & ressemblance
                                 </a>
                               </div>
                               <h2 class="stats-mondiales mt-2 mb-0">
@@ -322,11 +327,7 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
                                 </div>
                                 <small class="similarcount d-block"></small>
                               </h2>
-                              <div class="mt-1">
-                                <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_top_global; ?>" class="w-100 btn btn-outline-primary waves-effect">
-                                  <span class="ico ico-reverse">👀</span> Voir les autres TopList
-                                </a>
-                              </div>
+
                             </div>
                           </div>
                         <?php endif; ?>

@@ -348,38 +348,11 @@ foreach ($list_user_toplists as $top) {
                                   if (!in_array('private', $list_type) && !in_array('onboarding', $list_type)) : ?>
                                     <tr id="top-<?php echo $r_user['id_ranking']; ?>">
                                       <td>
-                                        <div class="d-flex align-items-center">
-                                          <div class="avatar">
-                                            <a class="text-body" href="<?php the_permalink($r_user['id_top']); ?>">
-                                              <?php
-                                              $minia = get_the_post_thumbnail_url($r_user['id_top'], 'large')
-                                              ?>
-                                              <span class="avatar-picture avatar-top" style="background-image: url(<?php echo $minia; ?>);"></span>
-                                            </a>
-                                          </div>
-                                          <div class="font-weight-bold topnamebestof">
-                                            <div class="media-body">
-                                              <div class="media-heading">
-                                                <h6 class="cart-item-title mb-0">
-                                                  <a class="text-body" href="<?php the_permalink($r_user['id_top']); ?>">
-                                                    <?php
-                                                    if (get_the_terms($r_user['id_top'], 'categorie')) {
-                                                      foreach (get_the_terms($r_user['id_top'], 'categorie') as $cat) {
-                                                        $cat_id     = $cat->term_id;
-                                                        $cat_name   = $cat->name;
-                                                      }
-                                                    }
-                                                    ?>
-                                                    TOP <?php the_field('count_contenders_t', $r_user['id_top']); ?> <?php the_field('icone_cat', 'term_' . $cat_id); ?> <?php echo get_the_title($r_user['id_top']); ?>
-                                                  </a>
-                                                </h6>
-                                                <small class="cart-item-by legende">
-                                                  <?php the_field('question_t', $r_user['id_top']); ?>
-                                                </small>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
+                                        <?php
+                                        global $id_top;
+                                        $id_top = $r_user['id_top'];
+                                        get_template_part('partials/top-card');
+                                        ?>
                                       </td>
                                       <td>
                                         <?php

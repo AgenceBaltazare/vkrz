@@ -225,49 +225,6 @@ calcResemblanceDiv.addEventListener(
 
         document.querySelectorAll(".uncalculated").forEach((el) => el.remove());
 
-        // INIT TABLE…
-        $(".table-listuserranks").DataTable({
-          autoWidth: false,
-          lengthMenu: [25],
-          pagingType: "full_numbers",
-          order: [[2, "desc"]],
-          columns: [
-            {
-              orderable: false,
-            },
-            {
-              orderable: false,
-            },
-            {
-              orderable: true,
-            },
-            {
-              orderable: false,
-            },
-            {
-              orderable: false,
-            },
-          ],
-          sPaginationType: "bootstrap",
-          language: {
-            search: "_INPUT_",
-            searchPlaceholder: "Rechercher...",
-            processing: "Traitement en cours...",
-            info: "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
-            infoEmpty: "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
-            infoFiltered: "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
-            infoPostFix: "",
-            loadingRecords: "Chargement en cours...",
-            zeroRecords: "Aucun &eacute;l&eacute;ment &agrave; afficher 😩",
-            emptyTable: "Aucun résultat trouvé 😩",
-            paginate: {
-              first: "Premier",
-              previous: "Pr&eacute;c&eacute;dent",
-              next: "Suivant",
-              last: "Dernier",
-            },
-          },
-        });
       }
     });
   },

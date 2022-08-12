@@ -10,6 +10,7 @@ if (isset($_GET['id_top'])) {
 get_header();
 global $id_vainkeur;
 global $count_toplist;
+global $vainkeur_data_selected;
 $top_datas = get_top_data($id_top);
 if ($id_vainkeur) {
     if (is_user_logged_in() && env() != "local") {
@@ -61,7 +62,7 @@ $count_toplist        = count($list_toplist);
                                                         <tr>
                                                             <th>
                                                                 <span class="text-muted">
-                                                                    <span class="t-rose"><?php echo $count_toplist; ?></span> TopList
+                                                                    Vainkeur
                                                                 </span>
                                                             </th>
                                                             <th>
@@ -70,7 +71,7 @@ $count_toplist        = count($list_toplist);
                                                                 </span>
                                                             </th>
                                                             <th class="text-center shorted">
-                                                                <span class="text-muted">% de ressemblance <span class="va va-updown va-z-15"></span></span>
+                                                                <span class="text-muted">Ressemblance <span class="va va-updown va-z-15"></span></span>
                                                             </th>
                                                             <th class="text-center">
                                                                 <span class="text-muted">
@@ -90,44 +91,8 @@ $count_toplist        = count($list_toplist);
                                                             $vainkeur_data_selected  = get_user_infos($uuiduser);
                                                             if ($vainkeur_data_selected['user_role'] != "anonyme") : ?>
                                                                 <tr id="rows" class="<?php echo "uuid" . $uuiduser; ?> uncalculated" data-idranking="<?= $id_ranking; ?>">
-                                                                    <td class="vainkeur-table">
-                                                                        <span class="avatar">
-                                                                            <?php if ($vainkeur_data_selected) : ?>
-                                                                                <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_user'])); ?>">
-                                                                                    <span class="avatar-picture" style="background-image: url(<?php echo $vainkeur_data_selected['avatar']; ?>);"></span>
-                                                                                </a>
-                                                                                <?php if ($vainkeur_data_selected) : ?>
-                                                                                    <span class="user-niveau">
-                                                                                        <?php echo $vainkeur_data_selected['level']; ?>
-                                                                                    </span>
-                                                                                <?php endif; ?>
-                                                                            <?php else : ?>
-                                                                                <span class="avatar-picture" style="background-image: url(https://i1.wp.com/vainkeurz.com/wp-content/themes/t-vkrz-3/assets/images/vkrz/avatar-rose.png?ssl=1);"></span>
-                                                                            <?php endif; ?>
-                                                                        </span>
-                                                                        <span class="font-weight-bold championname">
-                                                                            <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_user'])); ?>">
-                                                                                <?php echo $vainkeur_data_selected['pseudo']; ?>
-                                                                                <?php if ($vainkeur_data_selected) : ?>
-                                                                                    <span class="user-niveau-xs">
-                                                                                        <?php echo $vainkeur_data_selected['level']; ?>
-                                                                                    </span>
-                                                                                <?php endif; ?>
-                                                                                <?php if ($vainkeur_data_selected['user_role'] == "administrator") : ?>
-                                                                                    <span class="ico va va-vkrzteam va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
-                                                                                    </span>
-                                                                                <?php endif; ?>
-                                                                                <?php if ($vainkeur_data_selected['user_role'] == "administrator" || $vainkeur_data_selected['user_role'] == "author") : ?>
-                                                                                    <span class="ico va va-man-singer va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
-                                                                                    </span>
-                                                                                <?php endif; ?>
-                                                                            </a>
-                                                                            <!--
-                                                                            UUID    : <?php the_field('uuid_user_r', $id_ranking); ?>
-                                                                            ID rank : <?php echo $id_ranking; ?>
-                                                                            Date    : <?php echo get_the_date('d/m/Y - H:i:s', $id_ranking); ?>
-                                                                            -->
-                                                                        </span>
+                                                                    <td>
+                                                                        <?php get_template_part('partials/vainkeur-card'); ?>
                                                                     </td>
                                                                     <td>
                                                                         <?php
@@ -164,13 +129,26 @@ $count_toplist        = count($list_toplist);
                                                                     </td>
 
                                                                     <td class="text-right checking-follower">
-                                                                        <?php if ($vainkeur_data_selected && get_current_user_id() != $vainkeur_data_selected['id_user'] && is_user_logged_in()) : ?>
 
-                                                                            <button type="button" id="followBtn" class="btn waves-effect btn-follow d-none" data-userid="<?= get_current_user_id(); ?>" data-uuid="<?= get_field('uuiduser_user', 'user_' . get_current_user_id()); ?>" data-relatedid="<?= $vainkeur_data_selected['id_user']; ?>" data-relateduuid="<?= get_field('uuiduser_user', 'user_' . $vainkeur_data_selected['id_user']); ?>" data-text="<?= get_the_author_meta('nickname', get_current_user_id()); ?> te guette !" data-url="<?= get_author_posts_url(get_current_user_id()); ?>">
-                                                                                <span class="mr-10p wording">Guetter</span>
-                                                                                <span class="va va-guetteur-close va va-z-20 emoji"></span>
-                                                                            </button>
+                                                                        <?php if(is_user_logged_in()): ?>
+                                                                            
+                                                                            <?php if ($vainkeur_data_selected && get_current_user_id() != $vainkeur_data_selected['id_user'] && is_user_logged_in()) : ?>
 
+                                                                                <button type="button" id="followBtn" class="btn waves-effect btn-follow d-none" data-userid="<?= get_current_user_id(); ?>" data-uuid="<?= get_field('uuiduser_user', 'user_' . get_current_user_id()); ?>" data-relatedid="<?= $vainkeur_data_selected['id_user']; ?>" data-relateduuid="<?= get_field('uuiduser_user', 'user_' . $vainkeur_data_selected['id_user']); ?>" data-text="<?= get_the_author_meta('nickname', get_current_user_id()); ?> te guette !" data-url="<?= get_author_posts_url(get_current_user_id()); ?>">
+                                                                                    <span class="wording">Guetter</span>
+                                                                                    <span class="va va-guetteur-close va va-z-20 emoji"></span>
+                                                                                </button>
+
+                                                                            <?php endif; ?>
+
+                                                                        <?php else : ?>
+
+                                                                            <a href="<?php the_permalink(get_page_by_path('se-connecter')); ?>" class="btn btn-flat-secondary waves-effect" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tu dois être connecté pour guetter <?php echo $vainkeur_data_selected['pseudo']; ?>">
+                                                                                <span class="text-muted">
+                                                                                    Guetter <span class="va va-guetteur-close va va-z-20 emoji"></span>
+                                                                                </span>
+                                                                            </a>
+                                                                
                                                                         <?php endif; ?>
                                                                     </td>
 
@@ -236,10 +214,10 @@ $count_toplist        = count($list_toplist);
                                                     <span class="ico4 va-trophy va va-md"></span>
                                                 </div>
                                                 <h2 class="font-weight-bolder">
-                                                    <?php echo $count_toplist; ?>
+                                                    <?php echo $top_datas['nb_completed_top']; ?>
                                                 </h2>
                                                 <p class="card-text legende">
-                                                    <?php if ($count_toplist <= 1) : ?>
+                                                    <?php if ($top_datas['nb_completed_top'] <= 1) : ?>
                                                         Top
                                                     <?php else : ?>
                                                         Tops

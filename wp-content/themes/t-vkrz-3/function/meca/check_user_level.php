@@ -109,10 +109,6 @@ function check_user_level($id_vainkeur){
             'level_up'          => $level_up,
             'level_emoji'       => $level_emoji
         );
-
-        if($level_up){
-            
-        }
         
     }
 

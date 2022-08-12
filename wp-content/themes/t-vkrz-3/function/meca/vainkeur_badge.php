@@ -20,7 +20,10 @@ function update_vainkeur_badge($id_vainkeur, $badge_name) {
         check_user_level($id_vainkeur);
     }
 
-    
+    if (isset($_COOKIE["vainkeurz_id_cookie"]) && $_COOKIE["vainkeurz_id_cookie"] != "") {
+        unset($_COOKIE["vainkeurz_id_cookie"]);
+        setcookie("vainkeurz_id_cookie", "", time() - 3600, "/");
+    }
 }
 
 function get_vainkeur_badge($vainkeur_id, $badge_name) {

@@ -673,17 +673,6 @@ html .content {
   margin-top: 1rem;
 }
 
-.championname {
-  display: inline-block;
-  text-transform: uppercase;
-  margin-left: 20px;
-  font-size: 18px;
-}
-.championname i {
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 15px;
-}
-
 .votechamp {
   font-size: 12px;
   color: rgba(255, 255, 255, 0.75);
@@ -997,6 +986,9 @@ html .content {
   background-color: transparent;
   color: #ffffff !important;
 }
+.btn-follow .wording {
+  font-size: 11px;
+}
 
 .unfollowBtn {
   background: #6819b9 !important;
@@ -1052,6 +1044,56 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
 }
 .dataTables_filter input::placeholder {
   color: rgba(255, 255, 255, 0.8);
+}
+
+.vainkeur-card a {
+  display: inline-flex;
+  align-items: center;
+  width: auto;
+  text-align: right;
+  justify-content: end;
+}
+.vainkeur-card a .championname {
+  margin-left: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+}
+.vainkeur-card a .championname h4 {
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 12px;
+  margin: 0 0 1px 0;
+}
+.vainkeur-card a .championname h4 i {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 15px;
+}
+.vainkeur-card a .championname .medailles {
+  text-align: left;
+}
+.vainkeur-card a:hover h4 {
+  color: #fff !important;
+}
+
+.top-card {
+  display: block;
+  transition: all 0.2s ease-in;
+  left: 0;
+}
+.top-card:hover {
+  position: relative;
+  left: 5px;
+}
+.top-card:hover h6 {
+  color: #7367f0;
+}
+.top-card .legende {
+  font-size: 12px;
+}
+
+.users-ranks .dataTables_paginate {
+  display: none;
 }
 
 .page-template-monitor .list-vainkeur-monitor {
@@ -1617,7 +1659,8 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   margin-bottom: 5px;
 }
 .min-tournoi .card-body h4 {
-  font-size: 15px;
+  font-size: 13px;
+  color: #f4167f;
 }
 
 .cat-link {
@@ -2050,13 +2093,8 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   pointer-events: all;
 }
 
-.toplist_comments {
-  background-image: linear-gradient(330deg, rgba(255, 0, 0, 0), #910A60 320%);
-  overflow: hidden;
-}
 .toplist_comments .comments-container {
   list-style-type: none;
-  height: 50px;
 }
 .toplist_comments .comments-container .comment-template {
   padding-bottom: 1rem !important;
@@ -2072,7 +2110,7 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   background-color: rgba(255, 255, 255, 0.05) !important;
   font-size: 14px;
   resize: none;
-  padding: 0.6rem 5rem 0.6rem 0.6rem;
+  padding: 0.6rem 8rem 0.6rem 0.6rem;
   color: #fff !important;
   -webkit-text-fill-color: #fff !important;
 }
@@ -2836,7 +2874,7 @@ select:-webkit-autofill:focus {
 }
 
 .topnamebestof {
-  margin-left: 20px;
+  margin-left: 10px;
 }
 .topnamebestof h4 {
   margin: 0;
@@ -4556,8 +4594,16 @@ select:-webkit-autofill:focus {
   background-image: url(../../images/emojis/crossed-swords_2694-fe0f.png);
 }
 
-.va-glowing-star {
+.va-avis {
   background-image: url(../../images/emojis/glowing-star_1f31f.png);
+}
+
+.va-hundred {
+  background-image: url(../../images/emojis/hundred-points_1f4af.png);
+}
+
+.va-slot {
+  background-image: url(../../images/emojis/slot-machine_1f3b0.png);
 }
 
 .va-magnifying-glass-tilted-left {

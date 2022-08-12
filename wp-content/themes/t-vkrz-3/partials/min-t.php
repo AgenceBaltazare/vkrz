@@ -107,7 +107,7 @@ if ($get_top_type) {
       </div>
     </div>
     <div class="card-body eh mb-3-hover">
-      <p class="card-text text-primary">
+      <p class="card-text text-white">
         <?php
         foreach (get_the_terms($id_top, 'categorie') as $cat) {
           $cat_id     = $cat->term_id;

@@ -3,9 +3,7 @@ global $top_comments_id;
 global $author_reply;
 global $author_reply_id;
 global $infos_vainkeur;
-
 ?>
-
 <div id="comments" class="comments-area">
   <?php
   $response_to_comment = false;
@@ -175,15 +173,14 @@ global $infos_vainkeur;
       <div class="card mt-1">
         <div class="card-body">
           <?php
-          global $user_infos;
           $autor_comment_email    = "";
           $autor_comment_pseudo   = "";
           $autor_comment_avatar   = "";
           $top_reponse_id         = "";
           if (is_user_logged_in()) {
-            $autor_comment_email  = $user_infos['user_email'];
-            $autor_comment_pseudo = $user_infos['pseudo'];
-            $autor_comment_avatar = $user_infos['avatar'];
+            $autor_comment_email  = $infos_vainkeur['user_email'];
+            $autor_comment_pseudo = $infos_vainkeur['pseudo'];
+            $autor_comment_avatar = $infos_vainkeur['avatar'];
           }
           if (!$autor_comment_avatar) {
             $autor_comment_avatar = get_bloginfo('template_directory') . '/assets/images/vkrz/avatar-rose.png';

@@ -341,36 +341,11 @@ if ($list_user_toplists) {
                                   <?php if (!get_field('private_t', $top['id_top'])) : ?>
                                     <tr id="top-<?php echo $top['id_ranking']; ?>">
                                       <td>
-                                        <div class="d-flex align-items-center">
-                                          <div class="avatar">
-                                            <?php
-                                            $minia = get_the_post_thumbnail_url($top['id_top'], 'large')
-                                            ?>
-                                            <span class="avatar-picture avatar-top" style="background-image: url(<?php echo $minia; ?>);"></span>
-                                          </div>
-                                          <div class="font-weight-bold topnamebestof">
-                                            <div class="media-body">
-                                              <div class="media-heading">
-                                                <h6 class="cart-item-title mb-0">
-                                                  <a class="text-body" href="<?php the_permalink($top['id_top']); ?>">
-                                                    <?php
-                                                    if (get_the_terms($top['id_top'], 'categorie')) {
-                                                      foreach (get_the_terms($top['id_top'], 'categorie') as $cat) {
-                                                        $cat_id     = $cat->term_id;
-                                                        $cat_name   = $cat->name;
-                                                      }
-                                                    }
-                                                    ?>
-                                                    TOP <?php the_field('count_contenders_t', $top['id_top']); ?> <?php the_field('icone_cat', 'term_' . $cat_id); ?> <?php echo get_the_title($top['id_top']); ?>
-                                                  </a>
-                                                </h6>
-                                                <small class="cart-item-by legende">
-                                                  <?php the_field('question_t', $top['id_top']); ?>
-                                                </small>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
+                                        <?php
+                                        global $id_top;
+                                        $id_top = $top['id_top'];
+                                        get_template_part('partials/top-card');
+                                        ?>
                                       </td>
                                       <td>
                                         <?php
@@ -422,10 +397,13 @@ if ($list_user_toplists) {
                                           </a>
                                           <div class="dropdown-menu dropdown-menu-right">
                                             <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-id_ranking="<?php echo $top['id_ranking']; ?>" class="confirm_delete dropdown-item" href="#">
-                                              <span class="ico-action va va-new-button va-z-20"></span> Recommencer
+                                              <span class="ico-action va va-repeat va-z-20"></span> Recommencer
+                                            </a>
+                                            <a href="<?php the_permalink($top['id_ranking']); ?>" class="dropdown-item" data-toggle="modal" data-target="#commentModal-<?php echo $top['id_top']; ?>">
+                                              <span class="ico-action va va-avis va-z-20"></span> Donne ton avis
                                             </a>
                                             <a href="#" class="dropdown-item" data-toggle="modal" data-target="#commentModal-<?php echo $top['id_top']; ?>">
-                                              <span class="ico-action va va-free-button va-z-20"></span> Commenter
+                                              <span class="ico-action va va-speech-balloon va-z-20"></span> Commenter le Top
                                             </a>
                                           </div>
                                         </div>
@@ -469,36 +447,11 @@ if ($list_user_toplists) {
                                   foreach ($list_t_begin as $top) : ?>
                                     <tr id="top-<?php echo $top['id_ranking']; ?>">
                                       <td>
-                                        <div class="d-flex align-items-center">
-                                          <div class="avatar">
-                                            <?php
-                                            $minia = get_the_post_thumbnail_url($top['id_top'], 'large')
-                                            ?>
-                                            <span class="avatar-picture avatar-top" style="background-image: url(<?php echo $minia; ?>);"></span>
-                                          </div>
-                                          <div class="font-weight-bold topnamebestof">
-                                            <div class="media-body">
-                                              <div class="media-heading">
-                                                <h6 class="cart-item-title mb-0">
-                                                  <a class="text-body" href="<?php the_permalink($top['id_top']); ?>">
-                                                    <?php
-                                                    if (get_the_terms($top['id_top'], 'categorie')) {
-                                                      foreach (get_the_terms($top['id_top'], 'categorie') as $cat) {
-                                                        $cat_id     = $cat->term_id;
-                                                        $cat_name   = $cat->name;
-                                                      }
-                                                    }
-                                                    ?>
-                                                    TOP <?php the_field('count_contenders_t', $top['id_top']); ?> <?php the_field('icone_cat', 'term_' . $cat_id); ?> <?php echo get_the_title($top['id_top']); ?>
-                                                  </a>
-                                                </h6>
-                                                <small class="cart-item-by legende">
-                                                  <?php the_field('question_t', $top['id_top']); ?>
-                                                </small>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
+                                        <?php
+                                        global $id_top;
+                                        $id_top = $top['id_top'];
+                                        get_template_part('partials/top-card');
+                                        ?>
                                       </td>
                                       <td class="text-center">
                                         <?php echo $top['nb_votes']; ?> <span class="ico3 va-high-voltage va va-lg"></span>
@@ -508,7 +461,7 @@ if ($list_user_toplists) {
                                           <span class="ico-action va va-play-button va-z-20"></span>
                                         </a>
                                         <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-id_ranking="<?php echo $top['id_ranking']; ?>" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Recommencer le Top" class="btn btn-flat-secondary waves-effect confirm_delete">
-                                          <span class="ico-action va va-new-button va-z-20"></span>
+                                          <span class="ico-action va va-repeat va-z-20"></span>
                                         </a>
                                       </td>
                                     </tr>
