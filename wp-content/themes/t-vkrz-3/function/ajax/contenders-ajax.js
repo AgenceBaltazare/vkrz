@@ -130,6 +130,9 @@ $(document).ready(function ($) {
             utm: vkrz_tracking_vars_top.utm_layer,
             event_score: 1,
           });
+        
+          // Save ELO score
+          maj_elo_firebase(id_winner, id_looser);
 
           if (!data.is_next_duel) {
             

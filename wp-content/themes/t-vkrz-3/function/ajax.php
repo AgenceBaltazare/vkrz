@@ -80,7 +80,14 @@ add_action('wp_ajax_vkzr_save_to_firestore', 'vkzr_save_to_firestore');
 add_action('wp_ajax_nopriv_vkzr_save_to_firestore', 'vkzr_save_to_firestore');
 function vkzr_save_to_firestore()
 {
-    save_to_firestore($_POST['id_top'], $_POST['current_id_vainkeur'], $_POST['id_ranking']);
+    save_to_firestore($_POST['id_1'], $_POST['id_2'], $_POST['id_3'], $_POST['id_4'] );
+}
+
+add_action('wp_ajax_vkzr_save_elo_to_firestore', 'vkzr_save_elo_to_firestore');
+add_action('wp_ajax_nopriv_vkzr_save_elo_to_firestore', 'vkzr_save_elo_to_firestore');
+function vkzr_save_elo_to_firestore()
+{
+    save_elo_to_firestore($_POST['contender1'], $_POST[ 'contender1']);
 }
 
 add_action('wp_ajax_vkzr_new_jugement', 'vkzr_new_jugement');
