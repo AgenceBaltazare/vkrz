@@ -38,10 +38,10 @@ $(document).ready(function ($) {
       }
       
       // Variables
-      var id_top = $(this).find(".contender_zone").data("id-top");
-      var id_ranking = $(this).find(".contender_zone").data("id-ranking");
-      var id_winner = $(this).find(".contender_zone").data("id-winner");
-      var id_looser = $(this).find(".contender_zone").data("id-looser");
+      const id_top = $(this).find(".contender_zone").data("id-top");
+      const id_ranking = $(this).find(".contender_zone").data("id-ranking");
+      const id_winner = $(this).find(".contender_zone").data("id-winner");
+      const id_looser = $(this).find(".contender_zone").data("id-looser");
 
       $.ajax({
         method: "POST",
