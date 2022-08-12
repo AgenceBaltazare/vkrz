@@ -234,7 +234,7 @@
       <li class="nav-item">
         <a class="d-flex align-items-center" href="<?php the_permalink(104853); ?>">
           <span class="ico">
-            <span class="va va-llama va-lg"></span>
+            <span class="va va-lama va-lg"></span>
           </span>
           <span class="menu-title text-truncate">
             A propos

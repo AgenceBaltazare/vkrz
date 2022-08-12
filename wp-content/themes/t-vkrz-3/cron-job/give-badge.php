@@ -85,7 +85,7 @@ $roles = (array) $user->roles;
                     <?php else : ?>
                         <div class="col">
                             <h2 class="text-center">
-                                Tu dois faire partie de la TEAM <span class="va-llama va va-lg"></span> pour te ballaber ici !
+                                Tu dois faire partie de la TEAM <span class="va-lama va va-lg"></span> pour te ballaber ici !
                             </h2>
                         </div>
                     <?php endif; ?>

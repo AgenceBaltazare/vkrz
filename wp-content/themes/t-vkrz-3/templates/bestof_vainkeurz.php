@@ -35,7 +35,7 @@ $vainkeurs = get_best_vainkeur("money", NULL, 20);
                                                 <span class="va va-chequered-flag va-lg"></span>
                                             </th>
                                             <th>
-                                                <span class="va va-llama va-lg"></span> <span class="text-muted">Vainkeur</span>
+                                                <span class="va va-lama va-lg"></span> <span class="text-muted">Vainkeur</span>
                                             </th>
                                             <th class="text-right shorted">
                                                 <span class="text-muted">XP <span class="va va-updown va-z-10"></span></span>

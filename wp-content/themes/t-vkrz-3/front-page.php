@@ -49,6 +49,59 @@ if ($id_vainkeur) {
             <div class="row">
               <div class="col">
                 <h2 class="text-primary text-uppercase">
+                  <span class="va va-barber va-lg"></span> Tops en vedette
+                  <small class="text-muted">Sélectionnés par notre ékip <span class="va va-lama va-z-15"></span><span class="va va-keurz va-z-15"></span></small>
+                </h2>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="component-swiper-responsive-breakpoints">
+          <div class="swiper-responsive-breakpoints swiper-container swiper-0">
+            <div class="swiper-wrapper">
+              <?php
+              $tops_vedette      = new WP_Query(array(
+                'ignore_sticky_posts'    => true,
+                'update_post_meta_cache' => false,
+                'no_found_rows'          => true,
+                'post_type'              => 'tournoi',
+                'orderby'                => 'date',
+                'order'                  => 'DESC',
+                'posts_per_page'         => 10,
+                'meta_query' => array(
+                  array(
+                    'key'       => 'vedette_t',
+                    'value'     => '1',
+                    'compare'   => '=',
+                  )
+                ),
+                'tax_query' => array(
+                  array(
+                    'taxonomy' => 'type',
+                    'field'    => 'slug',
+                    'terms'    => array('private', 'whitelabel', 'onboarding'),
+                    'operator' => 'NOT IN'
+                  ),
+                ),
+              ));
+              while ($tops_vedette->have_posts()) : $tops_vedette->the_post(); ?>
+
+                <?php get_template_part('partials/min-t'); ?>
+
+              <?php endwhile; ?>
+            </div>
+            <div class="swiper-button-next swiper-button-next-0"></div>
+            <div class="swiper-button-prev swiper-button-prev-0"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="list-tournois">
+        <div class="big-cat">
+          <div class="heading-cat">
+            <div class="row">
+              <div class="col">
+                <h2 class="text-primary text-uppercase">
                   <span class="va va-stopwatch va-lg"></span> Tops les plus récents
                   <small class="text-muted">Toutes catégories confondues</small>
                 </h2>
@@ -69,6 +122,18 @@ if ($id_vainkeur) {
                 'orderby'                => 'date',
                 'order'                  => 'DESC',
                 'posts_per_page'         => 10,
+                'meta_query' => array(
+                  'relation' => 'OR',
+                  array(
+                    'key'       => 'vedette_t',
+                    'value'     => '1',
+                    'compare'   => '!=',
+                  ),
+                  array(
+                    'key'       => 'vedette_t',
+                    'compare'   => 'NOT EXISTS',
+                  )
+                ),
                 'tax_query' => array(
                   array(
                     'taxonomy' => 'type',
@@ -89,6 +154,7 @@ if ($id_vainkeur) {
           </div>
         </div>
       </section>
+
       <section id="vkrz-intro">
         <div class="row match-height mt-2">
           <div class="col-md-5">

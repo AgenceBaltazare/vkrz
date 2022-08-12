@@ -349,7 +349,7 @@ get_header();
                           <thead>
                             <tr>
                               <th>
-                                <span class="va va-llama va-lg"></span> <small class="text-muted">Vainkeur</small>
+                                <span class="va va-lama va-lg"></span> <small class="text-muted">Vainkeur</small>
                               </th>
                               <th class="text-right">
                                 <small class="text-muted">Votes</small>

@@ -83,7 +83,7 @@ $vainkeur_badges = get_the_terms($infos_vainkeur['id_vainkeur'], 'badges');
                                 <ul class="nav nav-tabs" role="tablist">
                                     <li class="nav-item">
                                         <a class="nav-link active" id="profileIcon-tab" data-toggle="tab" href="#tab2" aria-controls="profile" role="tab" aria-selected="false">
-                                            Collecte en tant que <span class="m-l-5 va-llama va va-1x"></span>
+                                            Collecte en tant que <span class="m-l-5 va-lama va va-1x"></span>
                                         </a>
                                     </li>
                                     <?php if ($infos_vainkeur['user_role'] == "administrator" || $infos_vainkeur['user_role'] == "author") : ?>

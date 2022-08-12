@@ -62,7 +62,7 @@ get_header();
                                     <div class="card-body">
                                         <div>
                                             <div class="ico-master ico-badge">
-                                                <span class="va va-llama va-1x"></span>
+                                                <span class="va va-lama va-1x"></span>
                                             </div>
                                         </div>
                                         <h3>
