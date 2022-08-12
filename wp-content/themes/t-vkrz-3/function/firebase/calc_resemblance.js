@@ -224,7 +224,6 @@ calcResemblanceDiv.addEventListener(
         progressBar.style.width = `100%`;
 
         document.querySelectorAll(".uncalculated").forEach((el) => el.remove());
-
       }
     });
   },

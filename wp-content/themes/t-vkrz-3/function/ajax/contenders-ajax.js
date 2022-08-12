@@ -125,7 +125,19 @@ $(document).ready(function ($) {
           });
 
           if (!data.is_next_duel) {
+            
             $(".waiter").show();
+
+            $.ajax({
+              method: "POST",
+              url: vkrz_ajaxurl,
+              data: {
+                action: "vkzr_save_to_firestore",
+                id_top: $(this).find(".contender_zone").data("id-top"),
+                id_ranking: $(this).find(".contender_zone").data("id-ranking"),
+                current_id_vainkeur: id_vainkeur
+              },
+            });
 
             window.dataLayer.push({
               event: "track_event",

@@ -75,3 +75,10 @@ function vkzr_get_similar_ranking()
 {
     get_similar_ranking($_POST['uuiduser'], $_POST['idtop']);
 }
+
+add_action('wp_ajax_vkzr_save_to_firestore', 'vkzr_save_to_firestore');
+add_action('wp_ajax_nopriv_vkzr_save_to_firestore', 'vkzr_save_to_firestore');
+function vkzr_save_to_firestore()
+{
+    save_to_firestore($_POST['id_top'], $_POST['current_id_vainkeur'], $_POST['id_ranking']);
+}

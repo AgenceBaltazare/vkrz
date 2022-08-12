@@ -394,7 +394,7 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
                             data-authoruuid="<?= $ranking_author_uuiduser; ?>" data-idranking="<?= $id_ranking; ?>"
                             data-urlranking="<?= get_permalink($id_ranking); ?>"
                           >
-                          <div id="jugement" class="card toplist_comments" data-authorid="<?= $ranking_author_data["id_user"] ?>" data-authorpseudo="<?= $ranking_author_data["pseudo"] ?>" data-authoruuid="<?= $ranking_author_uuiduser; ?>" data-idranking="<?= $id_ranking; ?>" data-urlranking="<?= get_permalink($id_ranking); ?>">
+                          <div id="jugement" class="toplist_comments" data-authorid="<?= $ranking_author_data["id_user"] ?>" data-authorpseudo="<?= $ranking_author_data["pseudo"] ?>" data-authoruuid="<?= $ranking_author_uuiduser; ?>" data-idranking="<?= $id_ranking; ?>" data-urlranking="<?= get_permalink($id_ranking); ?>">
                             <div class="card-body">
                               <h4 class="card-title">
                                 <span class="va va-hache va-lg"></span> Laisser un jugement

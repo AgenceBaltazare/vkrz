@@ -34,6 +34,7 @@ $(".table-creator").DataTable({
 $(".table-listuserranks").DataTable({
     autoWidth: false,
     lengthMenu: [1000],
+    order: [[2, "desc"]],
     columns: [
         { orderable: false },
         { orderable: false },
@@ -60,7 +61,6 @@ $(".table-listuserranks").DataTable({
         last: "Dernier",
     },
     },
-    order: [],
 });
 $(".table-tbegin").DataTable({
     autoWidth: false,

@@ -20,3 +20,4 @@ require_once 'meca/newplayer.php';
 require_once 'meca/vainkeur_badge.php';
 require_once 'meca/nicenumber.php';
 require_once 'meca/deal_cookies.php';
+require_once 'meca/save_to_firestore.php';

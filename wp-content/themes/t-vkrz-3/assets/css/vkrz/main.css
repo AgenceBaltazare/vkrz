@@ -989,6 +989,11 @@ html .content {
 .btn-follow .wording {
   font-size: 11px;
 }
+@media (max-width: 1600px) {
+  .btn-follow .wording {
+    display: none;
+  }
+}
 
 .unfollowBtn {
   background: #6819b9 !important;
