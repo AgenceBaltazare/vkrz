@@ -233,6 +233,7 @@
 }
 
 .toplist_comments{
+  overflow: hidden !important;
 
   .comments-container{
     list-style-type: none;

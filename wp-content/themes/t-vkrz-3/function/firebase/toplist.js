@@ -33,8 +33,8 @@ if (document.querySelector(".vs-resemblance")) {
     const myRankingQuery = query(
       collection(database, "wpClassement"),
       where("custom_fields.id_tournoi_r", "==", idTop),
-      where("author.id", "==", currentUserId),
-      where("custom_fields.done_r", "==", "done")
+      where("custom_fields.done_r", "==", "done"),
+      where("author.id", "==", currentUserId)
     );
     const myRankingQuerySnapshot = await getDocs(myRankingQuery);
 
@@ -217,18 +217,9 @@ const toplistCommentsCard = document.querySelector(".toplist_comments"),
   authorid                = toplistCommentsCard.dataset.authorid,
   authorpseudo            = toplistCommentsCard.dataset.authorpseudo,
   authoruuid              = toplistCommentsCard.dataset.authoruuid,
-  id_vainkeur_actual      = toplistCommentsCard.dataset.id_vainkeur_actual,
+  id_vainkeur             = toplistCommentsCard.dataset.id_vainkeur_actual,
   commentsContainer       = toplistCommentsCard.querySelector(".comments-container"),
   commentArea             = toplistCommentsCard.querySelector("#comment");
-
-console.log(id_vainkeur_actual);
-
-if(window.location.hash) {
-  setTimeout(() => {
-    window.scrollBy(0, ((toplistCommentsCard.getBoundingClientRect().top + window.pageYOffset) - 180));
-    commentArea.focus();
-  }, 1500)
-} 
 
 // CHECK IF THERE IS ALREADY A COMMENTS FOR THE TopList…
 let commentsUsersData = [];
@@ -248,6 +239,8 @@ commentsUsersData.push([authoruuid, authorid]);
 
 let set = new Set(commentsUsersData.map(userData => JSON.stringify(userData)));
 commentsUsersData = Array.from(set).map(elem => JSON.parse(elem));
+
+let topListCommentsLength = topListCommentsQuerySnapshot._snapshot.docs.size;
 
 const commentTemplate = async function (commentId, uuid, content, secondes) {
   // FUNCTION TO CALCULATE TIME…
@@ -369,10 +362,11 @@ async function sendComment(comment, idRanking, urlRanking, currentUuid) {
     );
     commentsContainer.insertAdjacentHTML("beforeend", commentTemplateDiv);
 
-    if (topListCommentsQuerySnapshot._snapshot.docs.size === 0) 
-      commentsContainer.style.height = `${+commentsContainer.style.height.substring(
+    if (topListCommentsLength == 0) {
+        commentsContainer.style.height = `${+commentsContainer.style.height.substring(
         0, commentsContainer.style.height.indexOf("px")) + 100}px`;
-
+        topListCommentsLength = 1;
+    }
     commentsContainer.scrollTop = commentsContainer.scrollHeight;
 
     // RESET DELETE BUTTONS…
@@ -387,7 +381,6 @@ async function sendComment(comment, idRanking, urlRanking, currentUuid) {
 
         // Décremente
         post_new_jugement(idRanking, id_vainkeur, "delete");
-
       });
     });
 
@@ -447,7 +440,7 @@ const validComment = function() {
 
   if(comment) {
     // INIT COMMENTAREA…
-    if (topListCommentsQuerySnapshot._snapshot.docs.size === 0) {
+    if (topListCommentsLength === 0) {
       commentsContainer.innerHTML = "";
     }
     commentArea.value = "";
@@ -458,15 +451,15 @@ const validComment = function() {
     
     // Incremente + check badge
     post_new_jugement(idRanking, id_vainkeur, "add");
-
   } else {
     commentArea.setAttribute('placeholder', "Avec un petit mot ça marchera mieux 🤪");
   }
 }
 
-if (topListCommentsQuerySnapshot._snapshot.docs.size !== 0) {
+if (topListCommentsLength !== 0) {
   // THERE IS SOME COMMENTS…
-  
+  commentsContainer.style.maxHeight = "150px";
+
   let commentsArr = [];
   topListCommentsQuerySnapshot.forEach((comment) =>
     commentsArr.push({ id: comment.id, ...comment.data() })
