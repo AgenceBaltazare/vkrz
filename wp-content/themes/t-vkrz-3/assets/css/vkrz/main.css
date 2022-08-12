@@ -2098,6 +2098,9 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   pointer-events: all;
 }
 
+.toplist_comments {
+  overflow: hidden !important;
+}
 .toplist_comments .comments-container {
   list-style-type: none;
 }
