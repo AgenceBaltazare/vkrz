@@ -80,7 +80,7 @@ add_action('wp_ajax_vkzr_save_to_firestore', 'vkzr_save_to_firestore');
 add_action('wp_ajax_nopriv_vkzr_save_to_firestore', 'vkzr_save_to_firestore');
 function vkzr_save_to_firestore()
 {
-    save_to_firestore($_POST['id_1'], $_POST['id_2'], $_POST['id_3'], $_POST['id_4'] );
+    save_to_firestore($_POST['id_top'], $_POST['id_vainkeur'], $_POST['id_ranking']);
 }
 
 add_action('wp_ajax_vkzr_save_elo_to_firestore', 'vkzr_save_elo_to_firestore');

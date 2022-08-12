@@ -138,7 +138,11 @@ $(document).ready(function ($) {
             
             $(".waiter").show();
             
-            maj_firebase(id_top, id_ranking, id_vainkeur);
+            console.log(id_top);
+            console.log(id_vainkeur);
+            console.log(id_ranking);
+
+            maj_firebase(id_top, id_vainkeur, id_ranking);
 
             window.dataLayer.push({
               event: "track_event",
