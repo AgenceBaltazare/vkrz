@@ -22,16 +22,6 @@ foreach ($list_user_toplists as $top) {
           </div>
         </div>
 
-        <!--
-          <div class="info-bio">
-            <h5 class="mb-75 t-rose">Inscription</h5>
-            <p class="card-text">
-              <?php echo $id_vainkeur_to_watch; ?>ème vainkeur à avoir rejoint le concept
-              #<?php echo $infos_vainkeur_to_watch['uuid_vainkeur']; ?>
-            </p>
-          </div>
-        -->
-
         <section id="profile-info">
           <div class="row">
             <div class="col-lg-3 col-12 order-2 order-lg-1">
@@ -292,7 +282,7 @@ foreach ($list_user_toplists as $top) {
                     <div class="card text-center">
                       <div class="card-body">
                         <div class="mb-1">
-                          <span class="ico4 va-sm va va-star-struck va-z-30"></span>
+                          <span class="ico4 va-sm va va-guetteur va-z-30"></span>
                         </div>
                         <h2 class="font-weight-bolder followers-nbr">
                           -

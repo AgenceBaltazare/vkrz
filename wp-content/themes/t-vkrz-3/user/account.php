@@ -237,7 +237,7 @@ if ($list_user_toplists) {
                       <div class="card-body">
                         <div class="">
                           <span class="icomax">
-                            <span class="va-sm va va-star-struck"></span>
+                            <span class="va-sm va va-guetteur"></span>
                           </span>
                         </div>
                         <h2 class="font-weight-bolder followers-account-nbr">
