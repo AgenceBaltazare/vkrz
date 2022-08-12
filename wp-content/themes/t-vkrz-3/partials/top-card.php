@@ -1,7 +1,10 @@
 <?php
 global $id_top;
-foreach (get_the_terms($id_top, 'categorie') as $cat) {
-    $cat_id     = $cat->term_id;
+$list_cat = get_the_terms($id_top, 'categorie');
+if($list_cat){
+    foreach ($list_cat as $cat) {
+        $cat_id     = $cat->term_id;
+    }
 }
 ?>
 <a href="<?php the_permalink($id_top); ?>" class="top-card">
