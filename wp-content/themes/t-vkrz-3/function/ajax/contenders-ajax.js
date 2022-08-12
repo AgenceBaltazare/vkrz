@@ -144,10 +144,6 @@ $(document).ready(function ($) {
             
             $(".waiter").show();
             
-            console.log(id_top);
-            console.log(id_vainkeur);
-            console.log(id_ranking);
-
             maj_firebase_finish_top(id_top, id_vainkeur, id_ranking);
 
             window.dataLayer.push({

@@ -220,7 +220,7 @@ if (is_single() && get_post_type() == "tournoi") {
         <?php if ($id_ranking) : ?>
           <div class="tournament-heading text-center">
             <h3 class="mb-0 t-titre-tournoi">Top <?php echo $top_infos['top_number']; ?> <span class="ico va va-high-voltage va va-lg"></span> <?php echo $top_infos['top_title']; ?></h3>
-            <h4 class="mb-0 t-rose t-max">
+            <h4 class="mb-0 t-violet t-max">
               <?php echo $top_infos['top_question']; ?>
             </h4>
           </div>
@@ -507,7 +507,7 @@ if (is_single() && get_post_type() == "tournoi") {
             <a class="dropdown-item" href="<?php the_permalink(305107); ?>">
               Mes KEURZ <span class="ico va va-gem va-lg"></span>
             </a>
-            <a class="dropdown-item" href="<?php the_permalink(get_page_by_path('parametres')); ?>">
+            <a class="dropdown-item" href="<?php the_permalink(27794); ?>">
               Paramètres
             </a>
             <div class="dropdown-divider"></div>

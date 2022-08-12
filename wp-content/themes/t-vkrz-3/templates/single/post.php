@@ -1,33 +1,18 @@
-<?php get_header(); ?>
-
+<?php
+global $infos_vainkeur;
+get_header(); 
+?>
 <div class="app-content content">
   <div class="content-overlay position-fixed" style="z-index: -1 !important;"></div>
   <div class="header-navbar-shadow"></div>
   <div class="content-wrapper container-xxl p-0 mt-2">
     <div class="content-detached">
       <div class="content-body">
-        <!-- Blog Detail -->
         <div class="blog blog-detail-wrapper">
           <div class="row">
-            <!-- Blog -->
             <div class="col-lg-9">
               <div class="card">
                 <div class="card-body pt-50">
-                  <!--
-                  <div class="my-1 py-25">
-                    <?php
-                    foreach (get_the_terms(get_the_ID(), 'category') as $cat) {
-                      $cat_id     = $cat->term_id;
-                      $cat_name   = $cat->name;
-                    }
-                    ?>
-                    <a href="<?= get_category_link($cat_id); ?>">
-                      <span class="badge rounded-pill badge-light-info me-50">
-                        <?= $cat_name; ?>
-                      </span>
-                    </a>
-                  </div>
-                  -->
                   <div class="apropos">
                     <div class="card-text">
                       <h1 class="blog-title">
@@ -270,15 +255,14 @@
                     <div class="card mt-1">
                       <div class="card-body">
                         <?php
-                        global $user_infos;
                         $autor_comment_email    = "";
                         $autor_comment_pseudo   = "";
                         $autor_comment_avatar   = "";
                         $top_reponse_id         = "";
                         if (is_user_logged_in()) {
-                          $autor_comment_email  = $user_infos['user_email'];
-                          $autor_comment_pseudo = $user_infos['pseudo'];
-                          $autor_comment_avatar = $user_infos['avatar'];
+                          $autor_comment_email  = $infos_vainkeur['user_email'];
+                          $autor_comment_pseudo = $infos_vainkeur['pseudo'];
+                          $autor_comment_avatar = $infos_vainkeur['avatar'];
                         }
                         if (!$autor_comment_avatar) {
                           $autor_comment_avatar = get_bloginfo('template_directory') . '/assets/images/vkrz/avatar-rose.png';
@@ -297,7 +281,6 @@
                                                                                                   echo 'disabled';
                                                                                                 } ?> placeholder="Pseudo" value="<?php echo $autor_comment_pseudo; ?>" />
                               <input class="form-control" id="email" name="email" type="hidden" placeholder="Email" value="<?php echo $autor_comment_email; ?>" />
-                              <!-- <input class="form-control" id="my_redirect_to" name="my_redirect_to" type="hidden" value="<?php echo $actual_link ?>" /> -->
                             </div>
                           </div>
                           <div class=" row mt-1">
@@ -320,13 +303,10 @@
                 </div>
               </div>
             </div>
-            <!--/ Blog -->
-
-            <!-- Siderbar -->
+            
             <div class="col-lg-3">
               <div class="sidebar">
                 <div class="blog-sidebar my-2 my-lg-0">
-                  <!-- Recent Posts -->
                   <div class="blog-recent-posts">
                     <h6 class="section-label">Autres posts</h6>
                     <div class="mt-50">
@@ -368,59 +348,13 @@
 
                     </div>
                   </div>
-                  <!--/ Recent Posts -->
-
-                  <!-- Categories -->
-                  <!--
-                  <div class="blog-categories mt-3">
-                    <h6 class="section-label">Catégories</h6>
-                    <div class="mt-50">
-
-                      <?php
-                      $categories = get_terms(array(
-                        'taxonomy'      => 'category',
-                        'orderby'       => 'count',
-                        'order'         => 'DESC',
-                        'hide_empty'    => true,
-                      ));
-
-                      $styles = [
-                        'bg-light-primary',
-                        'bg-light-success',
-                        'bg-light-danger'
-                      ];
-                      $i = 0;
-                      foreach ($categories as $category) : ?>
-                        <div class="d-flex justify-content-start align-items-center mb-50">
-                          <a href="<?php echo get_category_link($category->term_id); ?>" class="mr-50">
-                            <div class="avatar <?= $styles[$i++]; ?> rounded">
-                              <div class="avatar-content">
-                                <?php the_field('icone_cat_article', 'term_' . $category->term_id); ?>
-                              </div>
-                            </div>
-                          </a>
-
-                          <a href="<?php echo get_category_link($category->term_id); ?>">
-                            <div class="blog-category-title text-body">
-                              <?php echo $category->name; ?>
-                            </div>
-                          </a>
-                        </div>
-                      <?php endforeach; ?>
-                    </div>
-                  </div>
-                  -->
-                  <!--/ Categories -->
                 </div>
               </div>
             </div>
-            <!--/ Siderbar -->
           </div>
         </div>
-        <!--/ Blog Detail -->
       </div>
     </div>
   </div>
 </div>
-
 <?php get_footer(); ?>

@@ -2157,6 +2157,16 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
 .cover-profil {
   background-color: #0c0a27;
   min-height: 200px;
+  background-size: cover !important;
+  position: relative;
+}
+.cover-profil .edit-cover-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.cover-profil .edit-cover-btn:hover {
+  color: #fff !important;
 }
 
 .avatar-picture-max {

@@ -13,6 +13,9 @@ function update_vainkeur_badge($id_vainkeur, $badge_name) {
         $recompense_badge  = get_field('recompense_badge', 'badges_' . $badge->term_id);
         $user_money        = get_field('money_vkrz', $id_vainkeur);
         update_field('money_vkrz', $user_money + $recompense_badge, $id_vainkeur);
+
+        $user_money_dispo  = get_field('money_disponible_vkrz', $id_vainkeur);
+        update_field('money_disponible_vkrz', $user_money_dispo + $recompense_badge, $id_vainkeur);
         
     }
 
@@ -20,10 +23,6 @@ function update_vainkeur_badge($id_vainkeur, $badge_name) {
         check_user_level($id_vainkeur);
     }
 
-    if (isset($_COOKIE["vainkeurz_id_cookie"]) && $_COOKIE["vainkeurz_id_cookie"] != "") {
-        unset($_COOKIE["vainkeurz_id_cookie"]);
-        setcookie("vainkeurz_id_cookie", "", time() - 3600, "/");
-    }
 }
 
 function get_vainkeur_badge($vainkeur_id, $badge_name) {

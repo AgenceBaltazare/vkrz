@@ -1,6 +1,17 @@
 .cover-profil {
   background-color: $c1;
   min-height: 200px;
+  background-size: cover !important;
+  position: relative;
+  
+  .edit-cover-btn{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    &:hover{
+      color: #fff !important;
+    }
+  }
 }
 
 .avatar-picture-max {

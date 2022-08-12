@@ -8,13 +8,28 @@ global $id_membre;
 if (is_author() || is_page(218587)) {
   $infos_vainkeur = $infos_vainkeur_to_watch;
 }
+$cover_profil_id = 0;
 ?>
 <script>
   const idVainkeurProfil = "<?php echo $id_membre ?>";
 </script>
 <div class="card profile-header mb-2">
 
-  <div class="card-img-top cover-profil"></div>
+  <?php
+  $cover_profil_url   = "";
+  if (get_userdata($id_membre)->cover_profil) {
+    $cover_profil_id  = get_userdata($id_membre)->cover_profil;
+    $cover_profil_url = wp_get_attachment_url($cover_profil_id);
+  }
+  ?>
+  
+  <div class="card-img-top cover-profil" style="background-image: url(<?php echo $cover_profil_url; ?>">
+    <?php if(!is_author() && !is_page(218587)): ?>
+      <a href="<?php the_permalink(27794); ?>" class="badge bg-primary edit-cover-btn">
+        Changer de cover
+      </a>
+    <?php endif; ?>
+  </div>
 
   <div class="position-relative">
 
