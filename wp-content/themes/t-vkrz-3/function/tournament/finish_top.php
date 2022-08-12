@@ -19,16 +19,16 @@ function finish_the_top($id_ranking, $current_id_vainkeur, $id_top, $nb_contende
 
     increase_top_resume($id_ranking, 'finish');
 
-    // Badge : Top with at least 50 contenders
-    if (!get_vainkeur_badge($current_id_vainkeur, "BIG TOP")) {
-        if ($nb_contenders >= 50) {
+    // Badge : Top with at least 50 contenders    
+    if ($nb_contenders >= 50) {
+        if (!get_vainkeur_badge($current_id_vainkeur, "BIG TOP")) {
             update_vainkeur_badge($current_id_vainkeur, "BIG TOP");
         }
     }
 
     // Badge : Top with at least 100 contenders
-    if (!get_vainkeur_badge($current_id_vainkeur, "BIG BIG TOP")) {
-        if ($nb_contenders >= 100) {
+    if ($nb_contenders >= 100) {
+        if (!get_vainkeur_badge($current_id_vainkeur, "BIG BIG TOP")) {
             update_vainkeur_badge($current_id_vainkeur, "BIG BIG TOP");
         }
     }

@@ -7,26 +7,6 @@ import {
   database,
 } from "../firebase/config.js";
 
-
-function maj_firebase(id_top, id_ranking, id_vainkeur) {
-
-  $.ajax({
-    method: "POST",
-    url: vkrz_ajaxurl,
-    data: {
-      action: "vkzr_save_to_firestore",
-      id_top: id_top,
-      id_ranking: id_ranking,
-      current_id_vainkeur: id_vainkeur,
-    },
-  })
-  .done(function (response) {
-    let data = JSON.parse(response);
-    console.log(data);
-  });
-  
-}
-
 $(document).ready(function ($) {
   let ajaxRunning = false;
 

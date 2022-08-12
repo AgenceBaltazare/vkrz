@@ -82,3 +82,10 @@ function vkzr_save_to_firestore()
 {
     save_to_firestore($_POST['id_top'], $_POST['current_id_vainkeur'], $_POST['id_ranking']);
 }
+
+add_action('wp_ajax_vkzr_new_jugement', 'vkzr_new_jugement');
+add_action('wp_ajax_nopriv_vkzr_new_jugement', 'vkzr_new_jugement');
+function vkzr_new_jugement()
+{
+    do_jugement($_POST['id_ranking'], $_POST['id_vainkeur'], $_POST['todo']);
+}

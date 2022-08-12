@@ -1,3 +1,35 @@
+
+function maj_firebase(id_top, id_ranking, id_vainkeur) {
+
+    $.ajax({
+        method: "POST",
+        url: vkrz_ajaxurl,
+        data: {
+            action: "vkzr_save_to_firestore",
+            id_top: id_top,
+            id_ranking: id_ranking,
+            current_id_vainkeur: id_vainkeur,
+        },
+    });
+
+}
+
+
+function post_new_jugement(id_ranking, id_vainkeur, todo) {
+
+    $.ajax({
+        method: "POST",
+        url: vkrz_ajaxurl,
+        data: {
+            action: "vkzr_new_jugement",
+            id_ranking: id_ranking,
+            id_vainkeur: id_vainkeur,
+            todo: todo
+        },
+    });
+
+}
+
 $.fn.equalHeights = function () {
     var max_height = 0;
     $(this).each(function () {
