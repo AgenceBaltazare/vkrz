@@ -4,7 +4,9 @@ global $user_id;
 global $vainkeur_id;
 global $infos_vainkeur_to_watch;
 global $infos_vainkeur;
+global $user_id;
 global $id_membre;
+$id_membre = $user_id;
 if (is_author() || is_page(218587)) {
   $infos_vainkeur = $infos_vainkeur_to_watch;
 }
@@ -17,9 +19,11 @@ $cover_profil_id = 0;
 
   <?php
   $cover_profil_url   = "";
-  if (get_userdata($id_membre)->cover_profil) {
-    $cover_profil_id  = get_userdata($id_membre)->cover_profil;
-    $cover_profil_url = wp_get_attachment_url($cover_profil_id);
+  if($id_membre){
+    if (get_userdata($id_membre)->cover_profil) {
+      $cover_profil_id  = get_userdata($id_membre)->cover_profil;
+      $cover_profil_url = wp_get_attachment_url($cover_profil_id);
+    }
   }
   ?>
   

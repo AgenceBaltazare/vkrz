@@ -2,12 +2,11 @@
 /*
     Template Name: Account
 */
-get_header();
 global $infos_vainkeur;
 global $id_vainkeur;
 global $id_membre;
 global $user_id;
-$id_membre = $user_id;
+get_header();
 $list_user_toplists = get_user_toplist($id_vainkeur);
 $list_t_begin   = array();
 $list_t_done    = array();

@@ -2159,6 +2159,7 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   min-height: 200px;
   background-size: cover !important;
   position: relative;
+  background-position: center;
 }
 .cover-profil .edit-cover-btn {
   position: absolute;
