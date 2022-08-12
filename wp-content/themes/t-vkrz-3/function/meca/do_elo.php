@@ -9,6 +9,7 @@ function do_elo_ranking($id_winner, $id_looser){
 
 	update_field( 'ELO_c', round($newRankings['a']), $id_winner );
 	update_field( 'ELO_c', round($newRankings['b']), $id_looser );
+
 }
 
 
