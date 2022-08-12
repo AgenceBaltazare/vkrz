@@ -36,19 +36,26 @@ $(document).ready(function ($) {
         $("#c_2").addClass("animate__headShake");
         $("#c_1").addClass("animate__fadeOutDown");
       }
+      
+      // Variables
+      var id_top = $(this).find(".contender_zone").data("id-top");
+      var id_ranking = $(this).find(".contender_zone").data("id-ranking");
+      var id_winner = $(this).find(".contender_zone").data("id-winner");
+      var id_looser = $(this).find(".contender_zone").data("id-looser");
+
       $.ajax({
         method: "POST",
         url: vkrz_ajaxurl,
         data: {
           action: "vkzr_process_vote",
-          id_top: $(this).find(".contender_zone").data("id-top"),
-          id_ranking: $(this).find(".contender_zone").data("id-ranking"),
-          id_winner: $(this).find(".contender_zone").data("id-winner"),
-          id_looser: $(this).find(".contender_zone").data("id-looser"),
+          id_top: id_top,
+          id_ranking: id_ranking,
+          id_winner: id_winner,
+          id_looser: id_looser,
           current_id_vainkeur: id_vainkeur,
         },
       })
-        .done(function (response) {
+      .done(function (response) {
           let data = JSON.parse(response);
 
           if (data.level_up !== undefined && data.level_up) {
@@ -127,17 +134,8 @@ $(document).ready(function ($) {
           if (!data.is_next_duel) {
             
             $(".waiter").show();
-
-            $.ajax({
-              method: "POST",
-              url: vkrz_ajaxurl,
-              data: {
-                action: "vkzr_save_to_firestore",
-                id_top: $(this).find(".contender_zone").data("id-top"),
-                id_ranking: $(this).find(".contender_zone").data("id-ranking"),
-                current_id_vainkeur: id_vainkeur
-              },
-            });
+            
+            maj_firebase(id_top, id_ranking, id_vainkeur);
 
             window.dataLayer.push({
               event: "track_event",
@@ -371,10 +369,10 @@ $(document).ready(function ($) {
             }
             checkFollowerBeforeSend();
           }
-        })
-        .always(function () {
-          ajaxRunning = false;
-        });
+      })
+      .always(function () {
+        ajaxRunning = false;
+      });
     }
   });
 });

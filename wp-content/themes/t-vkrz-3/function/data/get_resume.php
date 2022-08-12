@@ -14,6 +14,8 @@ function get_resume_id($id_top)
             );
             $id_resume  = wp_insert_post($new_resume);
             update_field('id_top_resume', $id_top, $id_resume);
+
+            update_field('id_du_resume_t', $id_resume, $id_top);
         }
     }
 

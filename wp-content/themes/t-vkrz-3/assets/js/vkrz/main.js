@@ -1,3 +1,35 @@
+
+function maj_firebase(id_top, id_ranking, id_vainkeur) {
+
+    $.ajax({
+        method: "POST",
+        url: vkrz_ajaxurl,
+        data: {
+            action: "vkzr_save_to_firestore",
+            id_top: id_top,
+            id_ranking: id_ranking,
+            current_id_vainkeur: id_vainkeur,
+        },
+    });
+
+}
+
+
+function post_new_jugement(id_ranking, id_vainkeur, todo) {
+
+    $.ajax({
+        method: "POST",
+        url: vkrz_ajaxurl,
+        data: {
+            action: "vkzr_new_jugement",
+            id_ranking: id_ranking,
+            id_vainkeur: id_vainkeur,
+            todo: todo
+        },
+    });
+
+}
+
 $.fn.equalHeights = function () {
     var max_height = 0;
     $(this).each(function () {
@@ -7,21 +39,6 @@ $.fn.equalHeights = function () {
         $(this).height(max_height);
     });
 };
-
-$(document).ready(function () {
-    $(".eh").equalHeights();
-    $(".ehcard").equalHeights();
-    $(".eh2").equalHeights();
-    $(".eh3").equalHeights();
-    $(".ico-master").equalHeights();
-    $(".same-h").equalHeights();
-    $(".same-h2").equalHeights();
-
-    $(".kick").on("click", function () {
-        var newTXT = $(this).data("kick");
-        $(this).html(newTXT);
-    });
-});
 
 $(window).on("load", function () {
     if (feather) {
@@ -90,6 +107,20 @@ $(window).scroll(function () {
 });
 
 jQuery(document).ready(function ($) {
+
+    $(".eh").equalHeights();
+    $(".ehcard").equalHeights();
+    $(".eh2").equalHeights();
+    $(".eh3").equalHeights();
+    $(".ico-master").equalHeights();
+    $(".same-h").equalHeights();
+    $(".same-h2").equalHeights();
+
+    $(".kick").on("click", function () {
+        var newTXT = $(this).data("kick");
+        $(this).html(newTXT);
+    });
+    
     window.dataLayer.push({
         event: "track_event",
         event_name: "page_view",
@@ -123,10 +154,7 @@ jQuery(document).ready(function ($) {
             page_title: vkrz_tracking_vars_current_page.page_title,
         });
     });
-});
 
-
-$(document).ready(function () {
     $(".close-share").click(function () {
         $(".share-content").removeClass("active-box");
         $(".share-top-content").removeClass("active-box");
