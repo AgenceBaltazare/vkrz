@@ -61,6 +61,9 @@ function begin_t($id_top, $uuiduser, $typetop, $id_vainkeur)
         array_push($user_list_top_begin, intval($id_top));
         update_field('liste_des_top_commences_vkrz', json_encode($user_list_top_begin), $id_vainkeur);
     }
+    if (is_user_logged_in()) {
+        delete_transient('user_' . get_current_user_id() . '_get_user_tops');
+    }
 
     // Création d'un CPT classement
     $new_ranking = array(

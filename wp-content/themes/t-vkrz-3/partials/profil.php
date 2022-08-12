@@ -99,12 +99,14 @@ if (is_author() || is_page(218587)) {
                   </a>
                 </li>
               <?php endif; ?>
-              <li class="nav-item">
-                <a class="nav-link font-weight-bold <?php if (is_page('parametres')) : echo 'btn btn-primary';
-                                                    endif; ?>" href="<?php the_permalink(get_page_by_path('/mon-compte/parametres')); ?>">
-                  Editer
-                </a>
-              </li>
+              <?php if (is_user_logged_in()) : ?>
+                <li class="nav-item">
+                  <a class="nav-link font-weight-bold <?php if (is_page('parametres')) : echo 'btn btn-primary';
+                                                      endif; ?>" href="<?php the_permalink(get_page_by_path('/mon-compte/parametres')); ?>">
+                    Editer
+                  </a>
+                </li>
+              <?php endif; ?>
               <?php if ($infos_vainkeur['user_role']  == "administrator" || $infos_vainkeur['user_role'] == "author" && is_user_logged_in()) : ?>
                 <li class="nav-item">
                   <a class="nav-link font-weight-bold" href="<?php bloginfo('url'); ?>/wp-admin/edit.php?post_type=tournoi" target="_blank">

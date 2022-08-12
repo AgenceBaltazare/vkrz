@@ -83,23 +83,9 @@ get_header();
                 <div class="meetup-header d-flex align-items-center justify-content-center">
                   <div class="my-auto">
                     <h4 class="card-title mb-25">
-
-                      <?php
-                      if ($id_top) {
-                        foreach (get_the_terms($id_top, 'categorie') as $cat) {
-                          $cat_id     = $cat->term_id;
-                          $cat_name   = $cat->name;
-                        }
-                      }
-                      ?>
-                      TOP <?php echo $top_infos['top_number']; ?><a href="<?php echo get_category_link($cat_id); ?>" class="mx-25">
-                        <span class="ico w-auto">
-                          <?php the_field('icone_cat', 'term_' . $cat_id); ?>
-                        </span>
-                      </a><?php echo $top_infos['top_title']; ?>
-
+                      TOP <?php echo $top_infos['top_number']; ?> <?php echo $top_infos['top_cat_icon']; ?> <?php echo $top_infos['top_title']; ?>
                     </h4>
-                    <p class="card-text mb-0 t-rose animate__animated animate__flash">
+                    <p class="card-text mb-0 t-violet animate__animated animate__flash">
                       <?php echo $top_infos['top_question']; ?>
                     </p>
                   </div>

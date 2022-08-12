@@ -4574,7 +4574,7 @@ msgstr "Profile Builder Login Widget"
 #: profile-builder-2.0/front-end/class-formbuilder.php:415
 #: profile-builder-2.0/front-end/login.php:250
 msgid "Register"
-msgstr "S'inscrire"
+msgstr "Devenir vainkeur"
 
 #: profile-builder-2.0/features/login-widget/login-widget.php:63
 msgid "Title:"
@@ -4631,12 +4631,12 @@ msgstr "ici"
 
 #: profile-builder-2.0/features/functions.php:995
 msgid "You will soon be redirected automatically. If you see this page for more than %1$d seconds, please click %2$s.%3$s"
-msgstr "Vous serez bientôt redirigé automatiquement. Si vous voyez cette page pendant plus de %1$d secondes, merci de cliquer sur %2$s.%3$s"
+msgstr ""
 
 #: profile-builder-2.0/front-end/class-formbuilder.php:315
 #: profile-builder-2.0/front-end/class-formbuilder.php:322
 msgid "The account %1s has been successfully created!"
-msgstr "Votre compte %1s a bien été créé !"
+msgstr "Félicitations %1s tu rejoins les vainkeurs"
 
 #: profile-builder-2.0/front-end/class-formbuilder.php:318
 #: profile-builder-2.0/front-end/class-formbuilder.php:328

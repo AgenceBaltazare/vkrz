@@ -23,6 +23,7 @@ function get_top_infos($id_top, $id_ranking = false)
   if ($top_cat) {
     foreach ($top_cat as $cat) {
       $top_cat_name = $cat->name . " ";
+      $top_cat_icon = get_field('icone_cat', 'term_' . $cat->term_id);
     }
   }
 
@@ -46,6 +47,7 @@ function get_top_infos($id_top, $id_ranking = false)
     'top_url'       => $top_url,
     'top_cat'       => $top_cat,
     'top_cat_name'  => $top_cat_name,
+    'top_cat_icon'  => $top_cat_icon,
     'top_title'     => $top_title,
     'top_question'  => $top_question,
     'top_number'    => $top_number,

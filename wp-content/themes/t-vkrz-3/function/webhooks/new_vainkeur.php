@@ -4,6 +4,8 @@ function new_vainkeur($user_id){
 
     if (isset($_COOKIE["vainkeurz_uuid_cookie"]) && !empty($_COOKIE["vainkeurz_uuid_cookie"])) {
 
+        $uuid_vainkeur = $_COOKIE["vainkeurz_uuid_cookie"];
+
         if ($user_id) {
             $classements = new WP_Query(array(
                     'post_type'              => 'classement',
@@ -17,7 +19,7 @@ function new_vainkeur($user_id){
                     'meta_query'             => array(
                         array(
                             'key' => 'uuid_user_r',
-                            'value' => $_COOKIE["vainkeurz_uuid_cookie"],
+                            'value' => $uuid_vainkeur,
                             'compare' => '='
                         )
                     )
@@ -44,24 +46,47 @@ function new_vainkeur($user_id){
                 'no_found_rows'          => false,
                 'meta_query'             => array(array(
                     'key'       => 'uuid_user_vkrz',
-                    'value'     => $_COOKIE["vainkeurz_uuid_cookie"],
+                    'value'     => $uuid_vainkeur,
                     'compare'   => '='
                 )),
             ));
 
             if ($vainkeur_entry->have_posts()) {
-                foreach ($vainkeur_entry->posts as $vainkeur_entry_result) {
+                foreach ($vainkeur_entry->posts as $id_vainkeur) {
                     $arg = array(
-                        'ID'            => $vainkeur_entry_result,
+                        'ID'            => $id_vainkeur,
                         'post_author'   => $user_id,
                     );
                     wp_update_post( $arg );
                 }
             }
+            else{
 
-            update_field('uuiduser_user', $_COOKIE["vainkeurz_uuid_cookie"], 'user_' . $user_id);
-            update_field('id_vainkeur_user', $vainkeur_entry_result, 'user_' . $user_id);
-            update_field('id_vainkeur_user', $vainkeur_entry_result, 'user_' . $user_id);
+                $new_vainkeur_entry = array(
+                    'post_type'   => 'vainkeur',
+                    'post_title'  => $uuid_vainkeur,
+                    'post_status' => 'publish',
+                    'post_author' => $user_id
+                );
+
+                if ($uuid_vainkeur) {
+
+                    $id_vainkeur  = wp_insert_post($new_vainkeur_entry);
+
+                    update_field('uuid_user_vkrz', $uuid_vainkeur, $id_vainkeur);
+                    update_field('nb_vote_vkrz', 0, $id_vainkeur);
+                    update_field('nb_top_vkrz', 0, $id_vainkeur);
+
+                    // Save vainkeur to firebase
+                    wp_update_post(array('ID' => $id_vainkeur));
+
+                    setcookie("vainkeurz_id_cookie", $id_vainkeur, time() + 31556926, "/");
+                }
+
+            }
+
+            update_field('uuiduser_user', $uuid_vainkeur, 'user_' . $user_id);
+            update_field('id_vainkeur_user', $id_vainkeur, 'user_' . $user_id);
             
         }
     }
