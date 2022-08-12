@@ -12,5 +12,5 @@ function save_elo_to_firestore($contender1, $contender2){
 
     wp_update_post(array('ID' => $contender1));
     wp_update_post(array('ID' => $contender2));
-
+    
 }
