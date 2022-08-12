@@ -798,6 +798,7 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
             display: flex;
             flex-direction: column;
             justify-content: left;
+            text-align: left;
             h4{
                 display: inline-block;
                 text-transform: uppercase;
@@ -810,6 +811,10 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
             }
             .medailles{
                 text-align: left;
+            }
+            .va-level-icon{
+                width: 15px !important;
+                height: 15px !important;
             }
         }
         &:hover{

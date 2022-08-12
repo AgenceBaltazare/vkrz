@@ -41,6 +41,8 @@ $(document).ready(function ($) {
                             timer: 5000
                         })
 
+                        maj_firebase_delete_toplist(id_ranking, id_vainkeur);
+
                         dataLayer.push({
                             'event': 'track_event',
                             'event_name': 'restart_top',

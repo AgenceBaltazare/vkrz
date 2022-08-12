@@ -99,11 +99,17 @@ $(document).ready(function ($) {
               current_user_t_votes + 1
             );
 
-            // +1 au compteur de votes global
+            // +1 au compteur de XP
             var current_user_total_votes = parseInt(
               $(".user-total-vote-value").html()
             );
             $(".user-total-vote-value").html(current_user_total_votes + 1);
+
+            // +1 au compteur des KEURZ
+            var current_user_total_keurz = parseInt(
+              $(".money-disponible").html()
+            );
+            $(".money-disponible").html(current_user_total_keurz + 1);
 
             // -1 au décompte du prochain niveau
             var current_decompte_vote = parseInt($(".decompte_vote").html());
@@ -142,7 +148,7 @@ $(document).ready(function ($) {
             console.log(id_vainkeur);
             console.log(id_ranking);
 
-            maj_firebase(id_top, id_vainkeur, id_ranking);
+            maj_firebase_finish_top(id_top, id_vainkeur, id_ranking);
 
             window.dataLayer.push({
               event: "track_event",

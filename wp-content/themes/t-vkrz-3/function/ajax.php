@@ -76,11 +76,18 @@ function vkzr_get_similar_ranking()
     get_similar_ranking($_POST['uuiduser'], $_POST['idtop']);
 }
 
-add_action('wp_ajax_vkzr_save_to_firestore', 'vkzr_save_to_firestore');
-add_action('wp_ajax_nopriv_vkzr_save_to_firestore', 'vkzr_save_to_firestore');
-function vkzr_save_to_firestore()
+add_action('wp_ajax_vkzr_save_to_firestore_finish_top', 'vkzr_save_to_firestore_finish_top');
+add_action('wp_ajax_nopriv_vkzr_save_to_firestore_finish_top', 'vkzr_save_to_firestore_finish_top');
+function vkzr_save_to_firestore_finish_top()
 {
     save_to_firestore($_POST['id_top'], $_POST['id_vainkeur'], $_POST['id_ranking']);
+}
+
+add_action('wp_ajax_vkzr_maj_firebase_delete_toplist', 'vkzr_maj_firebase_delete_toplist');
+add_action('wp_ajax_nopriv_vkzr_maj_firebase_delete_toplist', 'vkzr_maj_firebase_delete_toplist');
+function vkzr_maj_firebase_delete_toplist()
+{
+    save_elo_to_firestore_delete($_POST['id_ranking'], $_POST['id_vainkeur']);
 }
 
 add_action('wp_ajax_vkzr_save_elo_to_firestore', 'vkzr_save_elo_to_firestore');

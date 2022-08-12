@@ -1,11 +1,11 @@
 
-function maj_firebase(id_top, id_ranking, id_vainkeur) {
+function maj_firebase_finish_top(id_top, id_ranking, id_vainkeur) {
 
     $.ajax({
         method: "POST",
         url: vkrz_ajaxurl,
         data: {
-            action: "vkzr_save_to_firestore",
+            action: "vkzr_save_to_firestore_finish_top",
             id_top: id_top,
             id_ranking: id_ranking,
             current_id_vainkeur: id_vainkeur,
@@ -28,6 +28,19 @@ function maj_elo_firebase(id_winner, id_looser) {
 
 }
 
+function maj_firebase_delete_toplist(id_ranking, id_vainkeur) {
+
+    $.ajax({
+        method: "POST",
+        url: vkrz_ajaxurl,
+        data: {
+            action: "vkzr_maj_firebase_delete_toplist",
+            id_ranking: id_ranking,
+            id_vainkeur: id_vainkeur
+        },
+    });
+
+}
 
 function post_new_jugement(id_ranking, id_vainkeur, todo) {
 

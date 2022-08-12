@@ -12,6 +12,9 @@ function increase_vote_counter($id_vainkeur)
         $user_money        = get_field('money_vkrz', $id_vainkeur);
         update_field('money_vkrz', $user_money + 1, $id_vainkeur);
 
+        $user_money_dispo  = get_field('money_disponible_vkrz', $id_vainkeur);
+        update_field('money_disponible_vkrz', $user_money_dispo + 1, $id_vainkeur);
+
         // Badge : x votes
         if (!get_vainkeur_badge($id_vainkeur, '1 000 votes') || !get_vainkeur_badge($id_vainkeur, '10 000 votes') || !get_vainkeur_badge($id_vainkeur, '100 000 votes')) {
             switch ($user_vote_counter + 1) {
@@ -54,6 +57,9 @@ function increase_top_counter($id_vainkeur)
         // Increase user total money
         $user_money        = get_field('money_vkrz', $id_vainkeur);
         update_field('money_vkrz', $user_money + 5, $id_vainkeur);
+
+        $user_money_dispo  = get_field('money_disponible_vkrz', $id_vainkeur);
+        update_field('money_disponible_vkrz', $user_money_dispo + 5, $id_vainkeur);
 
         // Increase user total tops
         $user_top_counter = get_field('nb_top_vkrz', $id_vainkeur);
@@ -118,6 +124,12 @@ function decrease_user_counter($id_vainkeur, $id_ranking)
             $user_money = 0;
         }
         update_field('money_vkrz', $user_money - $nb_to_decrease, $id_vainkeur);
+
+        $user_money_dispo = get_field('money_disponible_vkrz', $id_vainkeur);
+        if ($user_money_dispo <= 0) {
+            $user_money_dispo = 0;
+        }
+        update_field('money_disponible_vkrz', $user_money_dispo - $nb_to_decrease, $id_vainkeur);
     }
 }
 

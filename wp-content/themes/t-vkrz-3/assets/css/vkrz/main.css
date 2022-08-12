@@ -1063,6 +1063,7 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   display: flex;
   flex-direction: column;
   justify-content: left;
+  text-align: left;
 }
 .vainkeur-card a .championname h4 {
   display: inline-block;
@@ -1076,6 +1077,10 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
 }
 .vainkeur-card a .championname .medailles {
   text-align: left;
+}
+.vainkeur-card a .championname .va-level-icon {
+  width: 15px !important;
+  height: 15px !important;
 }
 .vainkeur-card a:hover h4 {
   color: #fff !important;

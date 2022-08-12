@@ -108,19 +108,19 @@ $tops_sponso_old = new WP_Query(array(
                                                         <thead>
                                                             <tr>
                                                                 <th class="text-center">
-                                                                    <small class="text-muted">Tirage</small>
+                                                                    <span class="text-muted">Tirage</span>
                                                                 </th>
                                                                 <th>
-                                                                    <small class="text-muted">TOP</small>
+                                                                    <span class="text-muted">TOP</span>
                                                                 </th>
                                                                 <th class="text-center">
-                                                                    <small class="text-muted">Participants</small>
+                                                                    <span class="text-muted">Participants</span>
                                                                 </th>
                                                                 <th class="text-left">
-                                                                    <small class="text-muted">Récompense</small>
+                                                                    <span class="text-muted">Récompense</span>
                                                                 </th>
                                                                 <th class="text-center">
-                                                                    <small class="text-muted">Gagnant</small>
+                                                                    <span class="text-muted">Gagnant</span>
                                                                 </th>
                                                             </tr>
                                                         </thead>
@@ -163,7 +163,7 @@ $tops_sponso_old = new WP_Query(array(
                                                                     <td class="text-center t-rose">
                                                                         <?php
                                                                         $date_tas = get_field('date_fin_de_la_sponso_t_sponso', $id_top);
-                                                                        echo $date_tas . " à midi";
+                                                                        echo $date_tas;
                                                                         ?>
                                                                         <br>
                                                                         <a href="<?php the_permalink($id_top); ?>">
@@ -182,39 +182,7 @@ $tops_sponso_old = new WP_Query(array(
                                                                     </td>
 
                                                                     <td>
-                                                                        <div class="d-flex align-items-center">
-                                                                            <div class="avatar">
-                                                                                <a href="<?php the_permalink($id_top); ?>">
-                                                                                    <?php
-                                                                                    $minia = get_the_post_thumbnail_url($id_top, 'large')
-                                                                                    ?>
-                                                                                    <span class="avatar-picture avatar-top" style="background-image: url(<?php echo $minia; ?>);"></span>
-                                                                                    <?php
-                                                                                    foreach (get_the_terms($id_top, 'categorie') as $cat) {
-                                                                                        $cat_id     = $cat->term_id;
-                                                                                        $cat_name   = $cat->name;
-                                                                                    }
-                                                                                    ?>
-                                                                                    <span class="user-niveau">
-                                                                                        <?php the_field('icone_cat', 'term_' . $cat_id); ?>
-                                                                                    </span>
-                                                                                </a>
-                                                                            </div>
-                                                                            <div class="font-weight-bold topnamebestof">
-                                                                                <div class="media-body">
-                                                                                    <div class="media-heading">
-                                                                                        <h6 class="cart-item-title mb-0">
-                                                                                            <a class="text-body" href="<?php the_permalink($id_top); ?>">
-                                                                                                Top <?php the_field('count_contenders_t', $id_top); ?> <span class="va va-trophy va-lg"></span> <?php echo get_the_title($id_top); ?>
-                                                                                            </a>
-                                                                                        </h6>
-                                                                                        <small class="cart-item-by legende">
-                                                                                            <?php the_field('question_t', $id_top); ?>
-                                                                                        </small>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
+                                                                        <?php get_template_part('partials/top-card'); ?>
                                                                     </td>
 
                                                                     <td class="text-center">
@@ -237,39 +205,9 @@ $tops_sponso_old = new WP_Query(array(
                                                                                     $gagnant_id              = get_field('gagnant_idplayer_t_sponso', $id_top);
                                                                                     $gagnant_uuid            = get_field('uuid_vainkeur_p', $gagnant_id);
                                                                                     $vainkeur_data_selected  = get_user_infos($gagnant_uuid);
+                                                                                    global $vainkeur_data_selected;
+                                                                                    get_template_part('partials/vainkeur-card');
                                                                                     ?>
-                                                                                    <span class="avatar">
-                                                                                        <?php if ($vainkeur_data_selected) : ?>
-                                                                                            <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_user'])); ?>">
-                                                                                                <span class="avatar-picture" style="background-image: url(<?php echo $vainkeur_data_selected['avatar']; ?>);"></span>
-                                                                                            </a>
-                                                                                            <span class="user-niveau">
-                                                                                                <?php echo $vainkeur_data_selected['level']; ?>
-                                                                                            </span>
-                                                                                        <?php endif; ?>
-                                                                                    </span>
-                                                                                    <span class="font-weight-bold championname">
-                                                                                        <?php if ($vainkeur_data_selected) : ?>
-                                                                                            <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_user'])); ?>">
-                                                                                                <?php echo $vainkeur_data_selected['pseudo']; ?>
-                                                                                                <?php if ($vainkeur_data_selected) : ?>
-                                                                                                    <span class="user-niveau-xs">
-                                                                                                        <?php echo $vainkeur_data_selected['level']; ?>
-                                                                                                    </span>
-                                                                                                <?php endif; ?>
-                                                                                                <?php if ($vainkeur_data_selected['user_role'] == "administrator") : ?>
-                                                                                                    <span class="ico va va-vkrzteam va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
-                                                                                                    </span>
-                                                                                                <?php endif; ?>
-                                                                                                <?php if ($vainkeur_data_selected['user_role'] == "administrator" || $vainkeur_data_selected['user_role'] == "author") : ?>
-                                                                                                    <span class="ico va va-man-singer va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
-                                                                                                    </span>
-                                                                                                <?php endif; ?>
-                                                                                            </a>
-                                                                                        <?php else : ?>
-                                                                                            <i>Lama2Lombre</i>
-                                                                                        <?php endif; ?>
-                                                                                    </span>
                                                                                 <?php endif; ?>
                                                                             </div>
                                                                         <?php else : ?>
@@ -329,39 +267,7 @@ $tops_sponso_old = new WP_Query(array(
                                                                         </a>
                                                                     </td>
                                                                     <td>
-                                                                        <div class="d-flex align-items-center">
-                                                                            <div class="avatar">
-                                                                                <a href="<?php the_permalink($id_top); ?>">
-                                                                                    <?php
-                                                                                    $minia = get_the_post_thumbnail_url($id_top, 'large')
-                                                                                    ?>
-                                                                                    <span class="avatar-picture avatar-top" style="background-image: url(<?php echo $minia; ?>);"></span>
-                                                                                    <?php
-                                                                                    foreach (get_the_terms($id_top, 'categorie') as $cat) {
-                                                                                        $cat_id     = $cat->term_id;
-                                                                                        $cat_name   = $cat->name;
-                                                                                    }
-                                                                                    ?>
-                                                                                    <span class="user-niveau">
-                                                                                        <?php the_field('icone_cat', 'term_' . $cat_id); ?>
-                                                                                    </span>
-                                                                                </a>
-                                                                            </div>
-                                                                            <div class="font-weight-bold topnamebestof">
-                                                                                <div class="media-body">
-                                                                                    <div class="media-heading">
-                                                                                        <h6 class="cart-item-title mb-0">
-                                                                                            <a class="text-body" href="<?php the_permalink($id_top); ?>">
-                                                                                                Top <?php the_field('count_contenders_t', $id_top); ?> <span class="va va-trophy va-lg"></span> <?php echo get_the_title($id_top); ?>
-                                                                                            </a>
-                                                                                        </h6>
-                                                                                        <small class="cart-item-by legende">
-                                                                                            <?php the_field('question_t', $id_top); ?>
-                                                                                        </small>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
+                                                                        <?php get_template_part('partials/top-card'); ?>
                                                                     </td>
 
                                                                     <td class="text-center">
@@ -384,39 +290,9 @@ $tops_sponso_old = new WP_Query(array(
                                                                                     $gagnant_id              = get_field('gagnant_idplayer_t_sponso', $id_top);
                                                                                     $gagnant_uuid            = get_field('uuid_vainkeur_p', $gagnant_id);
                                                                                     $vainkeur_data_selected  = get_user_infos($gagnant_uuid);
+                                                                                    global $vainkeur_data_selected;
+                                                                                    get_template_part('partials/vainkeur-card');
                                                                                     ?>
-                                                                                    <?php if ($vainkeur_data_selected) : ?>
-                                                                                        <span class="avatar">
-                                                                                            <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_user'])); ?>">
-                                                                                                <span class="avatar-picture" style="background-image: url(<?php echo $vainkeur_data_selected['avatar']; ?>);"></span>
-                                                                                            </a>
-                                                                                            <span class="user-niveau">
-                                                                                                <?php echo $vainkeur_data_selected['level']; ?>
-                                                                                            </span>
-                                                                                        </span>
-                                                                                    <?php endif; ?>
-                                                                                    <span class="font-weight-bold championname">
-                                                                                        <?php if ($vainkeur_data_selected) : ?>
-                                                                                            <a href="<?php echo esc_url(get_author_posts_url($vainkeur_data_selected['id_user'])); ?>">
-                                                                                                <?php echo $vainkeur_data_selected['pseudo']; ?>
-                                                                                                <?php if ($vainkeur_data_selected) : ?>
-                                                                                                    <span class="user-niveau-xs">
-                                                                                                        <?php echo $vainkeur_data_selected['level']; ?>
-                                                                                                    </span>
-                                                                                                <?php endif; ?>
-                                                                                                <?php if ($vainkeur_data_selected['user_role'] == "administrator") : ?>
-                                                                                                    <span class="ico va va-vkrzteam va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
-                                                                                                    </span>
-                                                                                                <?php endif; ?>
-                                                                                                <?php if ($vainkeur_data_selected['user_role'] == "administrator" || $vainkeur_data_selected['user_role'] == "author") : ?>
-                                                                                                    <span class="ico va va-man-singer va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
-                                                                                                    </span>
-                                                                                                <?php endif; ?>
-                                                                                            </a>
-                                                                                        <?php else : ?>
-                                                                                            <i>Lama2Lombre</i>
-                                                                                        <?php endif; ?>
-                                                                                    </span>
                                                                                 <?php endif; ?>
                                                                             </div>
                                                                         <?php else : ?>

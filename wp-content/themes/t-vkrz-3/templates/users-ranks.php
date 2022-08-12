@@ -121,7 +121,7 @@ $count_toplist        = count($list_toplist);
                                                                 <a href="<?php the_permalink($id_ranking); ?>" class="btn btn-flat-secondary waves-effect" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir la TopList">
                                                                     <span class="ico ico-reverse va va-eyes va-lg"></span>
                                                                 </a>
-                                                                <a href="<?php the_permalink($id_ranking); ?>" class="btn btn-flat-secondary waves-effect" data-toggle="tooltip" data-placement="top" title="" data-original-title="Juger la TopList">
+                                                                <a href="<?php the_permalink($id_ranking); ?>" class="btn btn-flat-secondary waves-effect" data-toggle="tooltip" data-placement="top" title="" data-original-title="Juger sa TopList">
                                                                     <span class="ico va va-hache va-lg"></span>
                                                                 </a>
                                                             </td>
@@ -242,7 +242,7 @@ $count_toplist        = count($list_toplist);
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">
-                                        <span class="ico">🌎</span> Voir la TopList mondiale
+                                        <span class="va va-globe va-lg"></span> TopList mondiale
                                     </h4>
                                     <h6 class="card-subtitle text-muted mb-1">
                                         Découvre le classement complet généré par les <?php echo $top_datas['nb_votes']; ?> votes !

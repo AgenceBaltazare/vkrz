@@ -268,38 +268,21 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
 
                           <?php
                           if ($uuid_who_did_toplist != $uuid_vainkeur) :
-                            $ranking_author_data = get_user_infos($uuid_who_did_toplist);
+                            global $vainkeur_data_selected;
+                            $vainkeur_data_selected = get_user_infos($uuid_who_did_toplist);
                           ?>
                             <div class="card text-left">
                               <div class="card-body">
                                 <h4 class="card-title">
-                                  <span class="ico va va-trophy va-lg"></span> TopList par :
+                                  <span class="ico va va-trophy va-lg"></span> Une TopList signée par :
                                 </h4>
                                 <div class="employee-task d-flex justify-content-between align-items-center">
-                                  <a href="<?php echo $ranking_author_data['profil_url']; ?>" class="d-flex flex-row link-to-creator">
-                                    <div class="avatar me-75 mr-50">
-                                      <img src="<?php echo $ranking_author_data['avatar']; ?>" class="circle" width="48" height="48" alt="Avatar">
-                                    </div>
-                                    <div class="my-auto">
-                                      <h3 class="mb-0">
-                                        <?php echo $ranking_author_data['pseudo']; ?> <br>
-                                        <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="niveau">
-                                          <?php echo $ranking_author_data['level']; ?>
-                                        </span>
-                                        <?php if ($ranking_author_data['user_role']  == "administrator") : ?>
-                                          <span class="ico va va-vkrzteam va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
-                                          </span>
-                                        <?php endif; ?>
-                                        <?php if ($ranking_author_data['user_role']  == "administrator" || $ranking_author_data['user_role'] == "author") : ?>
-                                          <span class="ico va va-man-singer va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
-                                          </span>
-                                        <?php endif; ?>
-                                      </h3>
-                                    </div>
-                                  </a>
-                                  <?php if ($ranking_author_data['user_role']  != "anonyme") : ?>
-                                    <button type="button" id="followBtn" class="btn waves-effect d-none btn-follow" data-userid="<?= $user_id; ?>" data-uuid="<?= get_field('uuiduser_user', 'user_' . $user_id); ?>" data-relatedid="<?= $ranking_author_data['id_user']; ?>" data-relateduuid="<?= get_field('uuiduser_user', 'user_' . $ranking_author_data['id_user']);  ?>" data-text="<?= wp_get_current_user()->user_login ?> te guette !" data-url="<?= get_author_posts_url($user_id); ?>" title="Guetter" alt="Guetter">
-                                      <span class="va va-guetteur-close va va-z-20 emoji"></span>
+
+                                  <?php get_template_part('partials/vainkeur-card'); ?>
+
+                                  <?php if ($vainkeur_data_selected['user_role']  != "anonyme") : ?>
+                                    <button type="button" id="followBtn" class="btn waves-effect d-none btn-follow" data-userid="<?= $user_id; ?>" data-uuid="<?= get_field('uuiduser_user', 'user_' . $user_id); ?>" data-relatedid="<?= $vainkeur_data_selected['id_user']; ?>" data-relateduuid="<?= get_field('uuiduser_user', 'user_' . $vainkeur_data_selected['id_user']);  ?>" data-text="<?= wp_get_current_user()->user_login ?> te guette !" data-url="<?= get_author_posts_url($user_id); ?>" title="Guetter" alt="Guetter">
+                                      <span class="wording">Guetter</span> <span class="va va-guetteur-close va va-z-20 emoji"></span>
                                     </button>
                                   <?php endif; ?>
                                 </div>
@@ -383,28 +366,60 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
                               </div>
                             </div>
                           </div>
-                          <?php
-                          $ranking_author_id          = get_post_field('post_author', $id_ranking);
-                          $ranking_author_uuiduser    = get_field('uuiduser_user', 'user_' . $ranking_author_id);
-                          $ranking_author_data        = get_user_infos($ranking_author_uuiduser);
-                          ?>
-                          <div id="jugement" class="card toplist_comments" data-id_vainkeur_actual="<?= $id_vainkeur; ?>" data-authorid="<?= $ranking_author_data["id_user"] ?>" data-authorpseudo="<?= $ranking_author_data["pseudo"] ?>" data-authoruuid="<?= $ranking_author_uuiduser; ?>" data-idranking="<?= $id_ranking; ?>" data-urlranking="<?= get_permalink($id_ranking); ?>">
-                            <div class="card-body">
-                              <h4 class="card-title">
-                                <span class="va va-hache va-lg"></span> Laisser un jugement
-                              </h4>
-                              <li class="comments-container scrollable-container media-list">
+                          <?php if ($vainkeur_data_selected['id_user']) : ?>
+                            <div id="jugement" class="card toplist_comments" data-id_vainkeur_actual="<?= $id_vainkeur; ?>" data-authorid="<?= $vainkeur_data_selected["id_user"] ?>" data-authorpseudo="<?= $vainkeur_data_selected["pseudo"] ?>" data-authoruuid="<?= $vainkeur_data_selected["uuid_vainkeur"] ?>" data-idranking="<?= $id_ranking; ?>" data-urlranking="<?= get_permalink($id_ranking); ?>">
+                              <div class="card-body">
+                                <h4 class="card-title">
+                                  <span class="va va-hache va-lg"></span> Laisser un jugement
+                                </h4>
+                                <li class="comments-container scrollable-container media-list">
 
-                              </li>
-                              <div class="card-footer border-0">
-                                <div class="d-flex align-items-center commentarea-container">
-                                  <textarea name="comment" id="comment" placeholder="Juger…"></textarea>
+                                </li>
+                                <div class="card-footer border-0">
+                                  <div class="d-flex align-items-center commentarea-container">
+                                    <textarea name="comment" id="comment" placeholder="Juger…"></textarea>
 
-                                  <button id="send_comment_btn">
-                                    <span class="va va-icon-arrow-up va-z-40"></span>
-                                  </button>
+                                    <button id="send_comment_btn">
+                                      <span class="va va-icon-arrow-up va-z-40"></span>
+                                    </button>
+                                  </div>
                                 </div>
                               </div>
+                            </div>
+                          <?php endif; ?>
+                        <?php endif; ?>
+
+                        <?php if (get_field('liste_des_createurs_top', $id_top)) : ?>
+
+                          <div class="separate mt-2 mb-2"></div>
+
+                          <div class="card text-left">
+                            <div class="card-body">
+                              <h4 class="card-title">
+                                <span class="ico va va-star-struck va-lg"></span> Ce TOP a été fait par :
+                              </h4>
+                              <?php if (have_rows('liste_des_createurs_top', $id_top)) : ?>
+                                <?php while (have_rows('liste_des_createurs_top', $id_top)) : the_row(); ?>
+                                  <div class="employee-task d-flex justify-content-between align-items-center mb-1 mt-1">
+                                    <a href="<?php the_sub_field('lien_vers_la_video_top'); ?>" class="d-flex flex-row link-to-creator" target="_blank">
+                                      <div class="avatar me-75 mr-1">
+                                        <?php
+                                        if (get_sub_field('avatar_createur_top')) {
+                                          $avatar_creator = wp_get_attachment_image_src(get_sub_field('avatar_createur_top'), 'medium');
+                                        }
+                                        ?>
+                                        <div class="avatar-creator" style="background-image: url(<?php echo $avatar_creator[0]; ?>);"></div>
+                                      </div>
+                                      <div class="my-auto">
+                                        <h3 class="mb-0">
+                                          <?php the_sub_field('nom_du_createur'); ?>
+                                        </h3>
+                                        <span class="seevideocreator">Voir sa vidéo sur <?php the_sub_field('plateforme_top'); ?></span>
+                                      </div>
+                                    </a>
+                                  </div>
+                                <?php endwhile; ?>
+                              <?php endif; ?>
                             </div>
                           </div>
                         <?php endif; ?>
