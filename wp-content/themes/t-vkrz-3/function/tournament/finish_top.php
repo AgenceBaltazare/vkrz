@@ -71,4 +71,5 @@ function finish_the_top($id_ranking, $current_id_vainkeur, $id_top, $nb_contende
     wp_update_post(array('ID' => $id_ranking));
     wp_update_post(array('ID' => $current_id_vainkeur));
     wp_update_post(array('ID' => $id_resume));
+
 }

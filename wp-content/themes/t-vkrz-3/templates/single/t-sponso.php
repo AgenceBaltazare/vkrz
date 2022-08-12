@@ -5,6 +5,7 @@ global $user_tops;
 global $infos_vainkeur;
 global $id_vainkeur;
 global $utm;
+global $id_ranking;
 global $id_top;
 $user_id        = get_user_logged_id();
 $vainkeur       = get_vainkeur();

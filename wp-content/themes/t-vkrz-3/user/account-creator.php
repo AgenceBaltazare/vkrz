@@ -20,12 +20,9 @@ if (false === ($data_t_created = get_transient('user_' . $user_id . '_get_creato
       <div id="user-profile">
         <div class="row">
           <div class="col-12">
-
             <?php get_template_part('partials/profil'); ?>
-
           </div>
         </div>
-
         <section id="profile-info">
           <div class="row">
             <div class="col-12">
@@ -80,10 +77,10 @@ if (false === ($data_t_created = get_transient('user_' . $user_id . '_get_creato
                     <div class="card text-center">
                       <div class="card-body">
                         <div class="mb-1">
-                          <span class="ico4 va va-glowing-star va-z-30"></span>
+                          <span class="ico4 va va-hundred va-z-30"></span>
                         </div>
                         <h2 class="font-weight-bolder">
-                          <?php echo $data_t_created['total_completed_top'] ? round($data_t_created['total_completed_top'] / $data_t_created['creator_all_t'] * 100) . '%' : '0%'; ?>
+                          <?php echo $data_t_created['finition_globale']; ?> %
                         </h2>
                         <p class="card-text legende">Taux moyen de finition</p>
                       </div>
@@ -104,14 +101,14 @@ if (false === ($data_t_created = get_transient('user_' . $user_id . '_get_creato
                                   <th class="">
                                     <span class="text-muted">Liste des Tops créés</span>
                                   </th>
-                                  <th class="text-right">
-                                    <span class="text-muted">Total des votes</span>
+                                  <th class="text-right shorted">
+                                    <span class="text-muted">Total des votes <span class="va va-updown va-z-15"></span></span>
                                   </th>
-                                  <th class="text-right">
-                                    <span class="text-muted">Tops générés</span>
+                                  <th class="text-right shorted">
+                                    <span class="text-muted">Tops générés <span class="va va-updown va-z-15"></span></span>
                                   </th>
-                                  <th class="text-right">
-                                    <span class="text-muted">% de finition</span>
+                                  <th class="text-right shorted">
+                                    <span class="text-muted">% de finition <span class="va va-updown va-z-15"></span></span>
                                   </th>
                                   <th class="text-right">
                                     <span class="text-muted">Action</span>
@@ -124,34 +121,11 @@ if (false === ($data_t_created = get_transient('user_' . $user_id . '_get_creato
                                   <?php if (!in_array($item['top_id'], get_exclude_top())) : ?>
                                     <tr>
                                       <td>
-                                        <div class="d-flex align-items-center">
-                                          <div class="avatar">
-                                            <?php
-                                            $minia = get_the_post_thumbnail_url($item['top_id'], 'large')
-                                            ?>
-                                            <span class="avatar-picture avatar-top" style="background-image: url(<?php echo $minia; ?>);"></span>
-                                          </div>
-                                          <div class="font-weight-bold topnamebestof">
-                                            <div class="media-body">
-                                              <div class="media-heading">
-                                                <h6 class="cart-item-title mb-0">
-                                                  <a class="text-body" href="<?php the_permalink($item['top_id']); ?>">
-                                                    <?php
-                                                    foreach (get_the_terms($item['top_id'], 'categorie') as $cat) {
-                                                      $cat_id     = $cat->term_id;
-                                                      $cat_name   = $cat->name;
-                                                    }
-                                                    ?>
-                                                    TOP <?php the_field('count_contenders_t', $item['top_id']); ?> <?php the_field('icone_cat', 'term_' . $cat_id); ?> <?php echo get_the_title($item['top_id']); ?>
-                                                  </a>
-                                                </h6>
-                                                <small class="cart-item-by legende">
-                                                  <?php the_field('question_t', $item['top_id']); ?>
-                                                </small>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
+                                        <?php
+                                        global $id_top;
+                                        $id_top = $item['top_id'];
+                                        get_template_part('partials/top-card');
+                                        ?>
                                       </td>
                                       <td class="text-right">
                                         <?php echo $item['top_votes']; ?> <span class="ico3 va-high-voltage va va-lg"></span>
@@ -160,7 +134,7 @@ if (false === ($data_t_created = get_transient('user_' . $user_id . '_get_creato
                                         <?php echo $item['top_ranks']; ?> <span class="ico3 va va-trophy va-lg"></span>
                                       </td>
                                       <td class="text-right">
-                                        <?php echo $item['top_completed'] ? round($item['top_completed'] / $item['top_ranks'] * 100) . '%' : '0%'; ?>
+                                        <?php echo $item['top_finition']; ?> %
                                       </td>
                                       <td class="text-right">
                                         <a class="btn btn-flat-secondary waves-effect" href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $item['top_id']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir toutes les TopList">

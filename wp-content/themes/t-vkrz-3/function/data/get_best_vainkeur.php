@@ -34,20 +34,21 @@ function get_best_vainkeur($type = "top", $period = NULL, $limit = 1) {
             "author__not_in"         => array(0, 1), // To exclude vainkeur not registered (with no author)
         ));
 
-         if ($vainkeurs->have_posts()) {
+        if ($vainkeurs->have_posts()) {
             foreach ($vainkeurs->posts as $vainkeur_id) {
                 $return[] = array(
                     "vainkeur_id" => $vainkeur_id,
                     "author_id" => get_post_field("post_author", $vainkeur_id),
                     "uuid" => get_field("uuid_user_vkrz", $vainkeur_id),
-                    "money" => get_field("money_vkrz", $vainkeur_id),
+                    "xp" => get_field("money_vkrz", $vainkeur_id),
                     "total_vote" => get_field("nb_vote_vkrz", $vainkeur_id),
                     "total_top" => get_field("nb_top_vkrz", $vainkeur_id)
                 );
             }
-         }
-    } else {
-         $tops = new WP_Query(array(
+        }
+    } 
+    else {
+        $tops = new WP_Query(array(
             "post_type"              => "classement",
             "posts_per_page"         => -1,
             "fields"                 => "ids",
@@ -85,12 +86,12 @@ function get_best_vainkeur($type = "top", $period = NULL, $limit = 1) {
                     $vainkeur_id = $vainkeur->posts[0];
 
                     $return[] = array(
-                        "vainkeur_id" => $vainkeur_id,
-                        "author_id" => $author_id,
-                        "uuid" => get_field("uuid_user_r", $top_id),
-                        "money" => get_field("money_vkrz", $vainkeur_id),
-                        "total_vote" => intval(get_field("nb_votes_r", $top_id)),
-                        "total_top" => get_field("done_r", $top_id) == "done" ? 1 : 0
+                        "vainkeur_id"   => $vainkeur_id,
+                        "author_id"     => $author_id,
+                        "uuid"          => get_field("uuid_user_r", $top_id),
+                        "money"         => get_field("money_vkrz", $vainkeur_id),
+                        "total_vote"    => intval(get_field("nb_votes_r", $top_id)),
+                        "total_top"     => get_field("done_r", $top_id) == "done" ? 1 : 0
                     );
                 }
             }

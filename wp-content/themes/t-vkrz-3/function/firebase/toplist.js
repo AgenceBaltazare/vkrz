@@ -443,13 +443,13 @@ const validComment = function() {
     // SEND COMMENT TO FIRESTORE…
     sendComment(comment, idRanking, urlRanking, currentUuid);
   } else {
-    commentArea.setAttribute('placeholder', "my TopList is better than yours… 😈");
+    commentArea.setAttribute('placeholder', "Avec un petit mot ça marchera mieux 🤪");
   }
 }
 
 if (topListCommentsQuerySnapshot._snapshot.docs.size !== 0) {
   // THERE IS SOME COMMENTS…
-  commentsContainer.style.height = "220px";
+  
 
   let commentsArr = [];
   topListCommentsQuerySnapshot.forEach((comment) =>

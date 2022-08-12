@@ -31,26 +31,29 @@ if (shareClassementNatif) {
     });
 }
 
-shareTopNatif.addEventListener("click", (event) => {
-    if (navigator.share && window.matchMedia("(max-width: 1024px)").matches) {
-        $(".share-natif-top").click(function () {
-            $(".share-top-content").removeClass("active-box");
-        });
-        navigator
-            .share({
-                title: "ShareNatif API",
-                url: "",
-            })
-            .then(() => {
-                console.log("Merci pour le partage !");
-            })
-            .catch(console.error);
-    } else {
-        $(".share-natif-top").click(function () {
-            $(".share-top-content").addClass("active-box");
-        });
-        $(".close-share").click(function () {
-            $(".share-top-content").removeClass("active-box");
-        });
-    }
-});
+if (shareTopNatif){
+    shareTopNatif.addEventListener("click", (event) => {
+        if (navigator.share && window.matchMedia("(max-width: 1024px)").matches) {
+            $(".share-natif-top").click(function () {
+                $(".share-top-content").removeClass("active-box");
+            });
+            navigator
+                .share({
+                    title: "ShareNatif API",
+                    url: "",
+                })
+                .then(() => {
+                    console.log("Merci pour le partage !");
+                })
+                .catch(console.error);
+        } else {
+            $(".share-natif-top").click(function () {
+                $(".share-top-content").addClass("active-box");
+            });
+            $(".close-share").click(function () {
+                $(".share-top-content").removeClass("active-box");
+            });
+        }
+    });
+}
+

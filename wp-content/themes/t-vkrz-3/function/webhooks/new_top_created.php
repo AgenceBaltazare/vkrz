@@ -2,7 +2,7 @@
 function publish_top_by_creator($post_id){
 
     global $post;
-  
+
     if($post->post_type != 'tournoi'){
         return;
     }

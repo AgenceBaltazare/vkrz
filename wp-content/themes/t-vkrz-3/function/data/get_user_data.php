@@ -42,6 +42,29 @@ function get_vainkeur_id($uuiduser)
     return $id_vainkeur;
 }
 
+function get_vainkeur_id_by_author()
+{
+
+    $user_id        = get_user_logged_id();
+
+    $vainkeur_entry = new WP_Query(array(
+        'post_type'              => 'vainkeur',
+        'posts_per_page'         => '1',
+        'fields'                 => 'ids',
+        'post_status'            => 'publish',
+        'ignore_sticky_posts'    => true,
+        'update_post_meta_cache' => false,
+        'no_found_rows'          => false,
+        'author'                 => $user_id
+    ));
+
+    if ($vainkeur_entry->have_posts()) {
+        $id_vainkeur    = $vainkeur_entry->posts[0];
+    }
+
+    return $id_vainkeur;
+}
+
 function get_user_toplist($id_vainkeur)
 {
 
@@ -289,47 +312,47 @@ function get_user_level($user_id = false){
     switch($level_number){
 
         case 0 || false:
-            $level          = '<span class="va va-z-20 va-egg"></span>';
+            $level          = '<span class="va va-z-15 va-egg"></span>';
             $level_number   = 0;
-            $next_level     = '<span class="va va-z-20 va-hatching-chick"></span>';
+            $next_level     = '<span class="va va-z-15 va-hatching-chick"></span>';
             break;
         case 1 :
-            $level          = '<span class="va va-z-20 va-hatching-chick"></span>';
+            $level          = '<span class="va va-z-15 va-hatching-chick"></span>';
             $level_number   = 1;
-            $next_level     = '<span class="va va-z-20 va-chick"></span>';
+            $next_level     = '<span class="va va-z-15 va-chick"></span>';
             break;
         case 2 :
-            $level          = '<span class="va va-z-20 va-chick"></span>';
+            $level          = '<span class="va va-z-15 va-chick"></span>';
             $level_number   = 2;
-            $next_level     = '<span class="va va-z-20 va-rooster"></span>';
+            $next_level     = '<span class="va va-z-15 va-rooster"></span>';
             break;
         case 3 :
-            $level          = '<span class="va va-z-20 va-rooster"></span>';
+            $level          = '<span class="va va-z-15 va-rooster"></span>';
             $level_number   = 3;
-            $next_level     = '<span class="va va-z-20 va-turkey"></span>';
+            $next_level     = '<span class="va va-z-15 va-turkey"></span>';
             break;
         case 4 :
-            $level          = '<span class="va va-z-20 va-turkey"></span>';
+            $level          = '<span class="va va-z-15 va-turkey"></span>';
             $level_number   = 4;
-            $next_level     = '<span class="va va-z-20 va-swan"></span>';
+            $next_level     = '<span class="va va-z-15 va-swan"></span>';
             break;
         case 5 :
-            $level          = '<span class="va va-z-20 va-swan"></span>';
+            $level          = '<span class="va va-z-15 va-swan"></span>';
             $level_number   = 5;
-            $next_level     = '<span class="va va-z-20 va-flamingo"></span>';
+            $next_level     = '<span class="va va-z-15 va-flamingo"></span>';
             break;
         case 6 :
-            $level          = '<span class="va va-z-20 va-flamingo"></span>';
+            $level          = '<span class="va va-z-15 va-flamingo"></span>';
             $level_number   = 6;
-            $next_level     = '<span class="va va-z-20 va-peacock"></span>';
+            $next_level     = '<span class="va va-z-15 va-peacock"></span>';
             break;
         case 7 :
-            $level          = '<span class="va va-z-20 va-peacock"></span>';
+            $level          = '<span class="va va-z-15 va-peacock"></span>';
             $level_number   = 7;
-            $next_level     = '<span class="va va-z-20 va-dragon"></span>';
+            $next_level     = '<span class="va va-z-15 va-dragon"></span>';
             break;
         case 8 :
-            $level          = '<span class="va va-z-20 va-dragon"></span>';
+            $level          = '<span class="va va-z-15 va-dragon"></span>';
             $level_number   = 8;
             $next_level     = false;
             break;
@@ -447,10 +470,16 @@ function get_creator_t($creator_id){
         $nb_votes_t    = $top_data['nb_votes'];
         $nb_ranks_t    = $top_data['nb_tops'];
         $nb_completed_top = $top_data['nb_completed_top'];
+        $top_finition  = 0;
 
         $nb_votes_all_t = $nb_votes_all_t + $nb_votes_t;
         $nb_ranks_all_t = $nb_ranks_all_t + $nb_ranks_t;
         $total_nb_completed_top = $total_nb_completed_top + $nb_completed_top;
+
+        $top_finition = round($nb_completed_top * 100 / $nb_ranks_t);
+        if($top_finition >= 100){
+            $top_finition = 100;
+        }
 
         array_push($list_creator_tops, array(
             "top_id"        => $id_top,
@@ -459,11 +488,17 @@ function get_creator_t($creator_id){
             "top_votes"     => $nb_votes_t,
             "top_ranks"     => $nb_ranks_t,
             "top_completed" => $nb_completed_top,
+            "top_finition"  => $top_finition
         ));
     endwhile;
 
     $avatar_url      = get_avatar_url($creator_id, ['size' => '80', 'force_default' => false]);
     $info_user_level = get_user_level($creator_id);
+
+    $finition_globale = round($total_nb_completed_top * 100 / $nb_ranks_all_t);
+    if ($finition_globale >= 100) {
+        $finition_globale = 100;
+    }
     
     return array(
         "creator_id"        => $creator_id,
@@ -480,6 +515,7 @@ function get_creator_t($creator_id){
         "creator_all_v"     => $nb_votes_all_t,
         "creator_all_t"     => $nb_ranks_all_t,
         "total_completed_top" => $total_nb_completed_top,
+        "finition_globale"  => $finition_globale
     );
 
 }
