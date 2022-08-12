@@ -87,7 +87,7 @@ add_action('wp_ajax_vkzr_save_elo_to_firestore', 'vkzr_save_elo_to_firestore');
 add_action('wp_ajax_nopriv_vkzr_save_elo_to_firestore', 'vkzr_save_elo_to_firestore');
 function vkzr_save_elo_to_firestore()
 {
-    save_elo_to_firestore($_POST['contender1'], $_POST[ 'contender1']);
+    save_elo_to_firestore($_POST['contender1'], $_POST[ 'contender2']);
 }
 
 add_action('wp_ajax_vkzr_new_jugement', 'vkzr_new_jugement');
