@@ -14,15 +14,15 @@ function maj_firebase(id_top, id_ranking, id_vainkeur) {
 
 }
 
-function maj_elo_firebase(contender_1, contender_2) {
+function maj_elo_firebase(id_winner, id_looser) {
 
     $.ajax({
         method: "POST",
         url: vkrz_ajaxurl,
         data: {
             action: "vkzr_save_elo_to_firestore",
-            contender_1: contender_1,
-            contender_2: contender_2
+            contender_1: id_winner,
+            contender_2: id_looser
         },
     });
 
