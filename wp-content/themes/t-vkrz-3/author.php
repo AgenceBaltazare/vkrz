@@ -385,14 +385,13 @@ foreach ($list_user_toplists as $top) {
                                         }
                                         ?>
                                         <a class="btn btn-flat-secondary waves-effect" href="<?php the_permalink($r_user['id_ranking']); ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="<?php echo $wording; ?>">
-                                          <span class="ico">
-                                            <span class="va va-trophy va-lg"></span>
-                                          </span>
+                                          <span class="va va-trophy va-lg"></span>
                                         </a>
                                         <a class="btn btn-flat-secondary waves-effect" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $r_user['id_top']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir la TopList mondiale">
-                                          <span class="ico">
-                                            <span class="va va-globe va-lg"></span>
-                                          </span>
+                                          <span class="va va-globe va-lg"></span>
+                                        </a>
+                                        <a href="<?php the_permalink($r_user['id_ranking']); ?>" class="btn btn-flat-secondary waves-effect" data-toggle="tooltip" data-placement="top" title="" data-original-title="Juger cette TopList">
+                                          <span class="va va-hache va-lg"></span>
                                         </a>
                                       </td>
                                     </tr>

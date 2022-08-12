@@ -328,9 +328,6 @@ if ($list_user_toplists) {
                                     <span class="text-muted">Votes <span class="va va-updown va-z-15"></span></span>
                                   </th>
                                   <th class="text-center">
-                                    <span class="text-muted">Voir</span>
-                                  </th>
-                                  <th>
                                     <span class="text-muted">Action</span>
                                   </th>
                                 </tr>
@@ -379,33 +376,14 @@ if ($list_user_toplists) {
                                           }
                                           ?>
                                           <a class="btn btn-flat-secondary waves-effect" href="<?php the_permalink($top['id_ranking']); ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="<?php echo $wording; ?>">
-                                            <span class="ico va va-trophy va-lg"></span>
+                                            <span class="va va-trophy va-lg"></span>
                                           </a>
                                           <a class="btn btn-flat-secondary waves-effect" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $top['id_top']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir la TopList mondiale">
-                                            <span class="ico va va-globe va-lg"></span>
+                                            <span class="va va-globe va-lg"></span>
                                           </a>
-                                        </div>
-                                      </td>
-                                      <td class="text-center">
-                                        <div class="dropdown">
-                                          <a class="btn btn-sm btn-icon px-0" data-toggle="dropdown">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical font-medium-2">
-                                              <circle cx="12" cy="12" r="1"></circle>
-                                              <circle cx="12" cy="5" r="1"></circle>
-                                              <circle cx="12" cy="19" r="1"></circle>
-                                            </svg>
+                                          <a href="<?php the_permalink($top['id_ranking']); ?>" class="btn btn-flat-secondary waves-effect" data-toggle="tooltip" data-placement="top" title="" data-original-title="Juger cette TopList">
+                                            <span class="va va-hache va-lg"></span>
                                           </a>
-                                          <div class="dropdown-menu dropdown-menu-right">
-                                            <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-id_ranking="<?php echo $top['id_ranking']; ?>" class="confirm_delete dropdown-item" href="#">
-                                              <span class="ico-action va va-repeat va-z-20"></span> Recommencer
-                                            </a>
-                                            <a href="<?php the_permalink($top['id_ranking']); ?>" class="dropdown-item" data-toggle="modal" data-target="#commentModal-<?php echo $top['id_top']; ?>">
-                                              <span class="ico-action va va-avis va-z-20"></span> Donne ton avis
-                                            </a>
-                                            <a href="#" class="dropdown-item" data-toggle="modal" data-target="#commentModal-<?php echo $top['id_top']; ?>">
-                                              <span class="ico-action va va-speech-balloon va-z-20"></span> Commenter le Top
-                                            </a>
-                                          </div>
                                         </div>
                                       </td>
                                     </tr>
@@ -457,11 +435,8 @@ if ($list_user_toplists) {
                                         <?php echo $top['nb_votes']; ?> <span class="ico3 va-high-voltage va va-lg"></span>
                                       </td>
                                       <td class="text-right">
-                                        <a href="<?php the_permalink($top['id_top']); ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Continuer le Top" class="btn btn-flat-secondary waves-effect">
-                                          <span class="ico-action va va-play-button va-z-20"></span>
-                                        </a>
-                                        <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-id_ranking="<?php echo $top['id_ranking']; ?>" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Recommencer le Top" class="btn btn-flat-secondary waves-effect confirm_delete">
-                                          <span class="ico-action va va-repeat va-z-20"></span>
+                                        <a href="<?php the_permalink($top['id_top']); ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Continuer la TopList" class="btn btn-flat-secondary waves-effect">
+                                          <span class="va va-play-button va-lg"></span>
                                         </a>
                                       </td>
                                     </tr>

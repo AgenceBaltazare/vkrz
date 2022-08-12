@@ -267,9 +267,9 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
                           <div class="separate mt-1 mb-2 d-block d-sm-none"></div>
 
                           <?php
+                          global $vainkeur_data_selected;
+                          $vainkeur_data_selected = get_user_infos($uuid_who_did_toplist);
                           if ($uuid_who_did_toplist != $uuid_vainkeur) :
-                            global $vainkeur_data_selected;
-                            $vainkeur_data_selected = get_user_infos($uuid_who_did_toplist);
                           ?>
                             <div class="card text-left">
                               <div class="card-body">

@@ -17,11 +17,16 @@ function count_users_by_level($level = NULL){
     ));
     $users = $user_query->get_total();
 
-    return $users;
+    if($level == 5 ){
+        return $users - 1;
+    }
+    else{
+        return $users;
+    }
 }
 
 function get_users_by_level($level = NULL, $order_by = "login", $order = "ASC"){
-    
+
     if (is_null($level) && !is_int($level)) {
         return NULL;
     }
@@ -37,27 +42,33 @@ function get_users_by_level($level = NULL, $order_by = "login", $order = "ASC"){
         ),
     ));
 
-    $users = array();
+    $users      = array();
+    $list_users = array();
+
     if ($user_query->get_total() > 0) {
         foreach($user_query->get_results() as $user){
 
             $user_id    = $user->ID;
             $total_vote = 0;
-            $total_top  =  0;
+            $total_top  = 0;
 
-            $id_vainkeur = get_field('id_vainkeur_user', 'user_' . $user_id);
+            if(!in_array($user_id, $list_users)){
+                $id_vainkeur    = get_field('id_vainkeur_user', 'user_' . $user_id);
+                $total_vote     = get_field("nb_vote_vkrz", $id_vainkeur);
+                $total_top      = get_field("nb_top_vkrz", $id_vainkeur);
 
-            $total_vote = get_field("nb_vote_vkrz", $id_vainkeur);
-            $total_top = get_field("nb_top_vkrz", $id_vainkeur);
+                $users[] = array(
+                    "id"         => $user->ID,
+                    "registered" => $user->user_registered,
+                    "pseudo"     => $user->user_nicename,
+                    "id_vainkeur" => $id_vainkeur,
+                    "total_vote" => $total_vote,
+                    "total_top"  => $total_top,
+                );
+            }
 
-            $users[] = array(
-                "id"         => $user->ID,
-                "registered" => $user->user_registered,
-                "pseudo"     => $user->user_nicename,
-                "id_vainkeur"=> $id_vainkeur,
-                "total_vote" => $total_vote,
-                "total_top"  => $total_top,
-            );
+            array_push($list_users, $user_id);
+
         }
     }
 
