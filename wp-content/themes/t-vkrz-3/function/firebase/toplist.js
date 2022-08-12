@@ -217,22 +217,10 @@ const toplistCommentsCard = document.querySelector(".toplist_comments"),
   authorid                = toplistCommentsCard.dataset.authorid,
   authorpseudo            = toplistCommentsCard.dataset.authorpseudo,
   authoruuid              = toplistCommentsCard.dataset.authoruuid,
-  id_vainkeur_actual      = toplistCommentsCard.dataset.id_vainkeur_actual,
+  id_vainkeur             = toplistCommentsCard.dataset.id_vainkeur_actual,
   commentsContainer       = toplistCommentsCard.querySelector(".comments-container"),
   commentArea             = toplistCommentsCard.querySelector("#comment");
 
-<<<<<<< HEAD
-=======
-console.log(id_vainkeur_actual);
-
-if(window.location.hash) {
-  setTimeout(() => {
-    window.scrollBy(0, ((toplistCommentsCard.getBoundingClientRect().top + window.pageYOffset) - 180));
-    commentArea.focus();
-  }, 1500)
-} 
-
->>>>>>> d468566035d38c6f7a3904cb7914906e4fe9563b
 // CHECK IF THERE IS ALREADY A COMMENTS FOR THE TopList…
 let commentsUsersData = [];
 const topListCommentsQuery = query(
@@ -393,7 +381,6 @@ async function sendComment(comment, idRanking, urlRanking, currentUuid) {
 
         // Décremente
         post_new_jugement(idRanking, id_vainkeur, "delete");
-
       });
     });
 
@@ -464,7 +451,6 @@ const validComment = function() {
     
     // Incremente + check badge
     post_new_jugement(idRanking, id_vainkeur, "add");
-
   } else {
     commentArea.setAttribute('placeholder', "Avec un petit mot ça marchera mieux 🤪");
   }
@@ -472,12 +458,8 @@ const validComment = function() {
 
 if (topListCommentsLength !== 0) {
   // THERE IS SOME COMMENTS…
-<<<<<<< HEAD
   commentsContainer.style.maxHeight = "150px";
 
-=======
-  
->>>>>>> d468566035d38c6f7a3904cb7914906e4fe9563b
   let commentsArr = [];
   topListCommentsQuerySnapshot.forEach((comment) =>
     commentsArr.push({ id: comment.id, ...comment.data() })
