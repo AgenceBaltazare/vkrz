@@ -2343,6 +2343,10 @@ select:-webkit-autofill:focus {
   text-align: center;
 }
 
+.wppb-upload .wppb-attachment-link img {
+  border-radius: 0 !important;
+}
+
 .wppb-remove-upload {
   cursor: pointer !important;
   display: block;
