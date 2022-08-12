@@ -220,6 +220,12 @@ const toplistCommentsCard = document.querySelector(".toplist_comments"),
   commentsContainer       = toplistCommentsCard.querySelector(".comments-container"),
   commentArea             = toplistCommentsCard.querySelector("#comment");
 
+if(window.location.hash) {
+  setTimeout(() => {
+    window.scrollBy(0, ((toplistCommentsCard.getBoundingClientRect().top + window.pageYOffset) - 180));
+    commentArea.focus();
+  }, 1500)
+} 
 
 // CHECK IF THERE IS ALREADY A COMMENTS FOR THE TopList…
 let commentsUsersData = [];
