@@ -2322,24 +2322,24 @@ select:-webkit-autofill:focus {
   display: none !important;
 }
 
-.wppb-avatar {
+.wppb-avatar, .wppb-upload {
   display: flex !important;
   align-items: center;
 }
-.wppb-avatar label {
+.wppb-avatar label, .wppb-upload label {
   color: #fff;
   font-size: 16px;
   margin-right: 20px;
   margin-left: 5px;
   width: 100% !important;
 }
-.wppb-avatar input {
+.wppb-avatar input, .wppb-upload input {
   width: 100% !important;
 }
-.wppb-avatar .wppb-attachment-link img {
+.wppb-avatar .wppb-attachment-link img, .wppb-upload .wppb-attachment-link img {
   border-radius: 50%;
 }
-.wppb-avatar .upload-field-details {
+.wppb-avatar .upload-field-details, .wppb-upload .upload-field-details {
   text-align: center;
 }
 
