@@ -8,21 +8,6 @@ $.fn.equalHeights = function () {
     });
 };
 
-$(document).ready(function () {
-    $(".eh").equalHeights();
-    $(".ehcard").equalHeights();
-    $(".eh2").equalHeights();
-    $(".eh3").equalHeights();
-    $(".ico-master").equalHeights();
-    $(".same-h").equalHeights();
-    $(".same-h2").equalHeights();
-
-    $(".kick").on("click", function () {
-        var newTXT = $(this).data("kick");
-        $(this).html(newTXT);
-    });
-});
-
 $(window).on("load", function () {
     if (feather) {
         feather.replace({
@@ -90,6 +75,20 @@ $(window).scroll(function () {
 });
 
 jQuery(document).ready(function ($) {
+
+    $(".eh").equalHeights();
+    $(".ehcard").equalHeights();
+    $(".eh2").equalHeights();
+    $(".eh3").equalHeights();
+    $(".ico-master").equalHeights();
+    $(".same-h").equalHeights();
+    $(".same-h2").equalHeights();
+
+    $(".kick").on("click", function () {
+        var newTXT = $(this).data("kick");
+        $(this).html(newTXT);
+    });
+    
     window.dataLayer.push({
         event: "track_event",
         event_name: "page_view",
@@ -123,10 +122,7 @@ jQuery(document).ready(function ($) {
             page_title: vkrz_tracking_vars_current_page.page_title,
         });
     });
-});
 
-
-$(document).ready(function () {
     $(".close-share").click(function () {
         $(".share-content").removeClass("active-box");
         $(".share-top-content").removeClass("active-box");
