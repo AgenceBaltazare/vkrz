@@ -1106,6 +1106,19 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   display: none;
 }
 
+.nb-top-in-cat {
+  font-size: 12px;
+}
+
+.cat-min .card-header {
+  padding: 1rem;
+}
+
+.separate-top {
+  border-top: 1px solid rgba(255, 255, 255, 0.129);
+  padding-top: 20px;
+}
+
 .page-template-monitor .list-vainkeur-monitor {
   line-height: 14px;
 }
@@ -4564,6 +4577,10 @@ select:-webkit-autofill:focus {
 
 .va-lama {
   background-image: url(../../images/emojis/llama_1f999.png);
+}
+
+.va-spiral-eyes {
+  background-image: url(../../images/emojis/face-with-spiral-eyes_1f635-200d-1f4ab.png);
 }
 
 .va-celebrate {
