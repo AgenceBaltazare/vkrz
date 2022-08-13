@@ -90,6 +90,7 @@ $utm = deal_utm();
       $crisp.push(["set", "user:email", ["<?php echo $infos_vainkeur['user_email']; ?>"]]);
       $crisp.push(["set", "user:nickname", ["<?php echo $infos_vainkeur['pseudo']; ?>"]]);
       $crisp.push(["set", "user:avatar", ["<?php echo $infos_vainkeur['avatar']; ?>"]]);
+      $crisp.push(["safe", true]);
     </script>
   <?php endif; ?>
 

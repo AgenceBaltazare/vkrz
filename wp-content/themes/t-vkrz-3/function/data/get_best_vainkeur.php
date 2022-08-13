@@ -74,7 +74,7 @@ function get_best_vainkeur($type = "top", $period = NULL, $limit = 1) {
                 $key = array_search($author_id, array_column($return, 'author_id'));
 
                 $nb_vote_period = $nb_vote_period + intval(get_field("nb_votes_r", $top_id));
-                $nb_top_period  = $nb_top_period++;
+                $nb_top_period++;
 
                 if ($key !== false || $key === 0) {
                     $return[$key]["total_vote"] = $return[$key]["total_vote"] + intval(get_field("nb_votes_r", $top_id));
