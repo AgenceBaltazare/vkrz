@@ -192,7 +192,67 @@ if ($id_vainkeur) {
               </div>
             </div>
           </div>
-          <div class="col-md-7">
+          <div class="col-md-3">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">
+                  <span class="ico va va-dodo va-z-20"></span> Qui est le dodo ?
+                </h4>
+                <p class="card-text text-muted mb-2">
+                  Respect au vainkeur le plus <span class="va va-fire va-z-15"></span> de la dernière semaine !
+                </p>
+                <?php $dodo_infos = get_dodo(); ?>
+                <div class="dodo-box">
+                  <div class="d-flex align-items-center flex-column">
+                    <div class="dodo-user">
+                      <div class="vainkeur-card">
+                        <a href="<?php echo esc_url(get_author_posts_url($dodo_infos['id_user'])); ?>" class="btn btn-outline-primary btn-flat-primary waves-effect">
+                          <span class="avatar">
+                            <span class="avatar-picture" style="background-image: url(<?php echo $dodo_infos['avatar']; ?>);"></span>
+                          </span>
+                          <span class="championname">
+                            <h4><?php echo $dodo_infos['pseudo']; ?></h4>
+                            <span class="medailles">
+                              <?php echo $dodo_infos['level']; ?>
+                              <?php if ($dodo_infos['user_role'] == "administrator") : ?>
+                                <span class="va va-vkrzteam va-z-15" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ"></span>
+                              <?php endif; ?>
+                              <?php if ($dodo_infos['user_role'] == "administrator" || $dodo_infos['user_role'] == "author") : ?>
+                                <span class="va va-man-singer va-z-15" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops"></span>
+                              <?php endif; ?>
+                            </span>
+                          </span>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="dodo-score text-center mt-1 mb-2">
+                      avec <span class="t-rose"><?php echo $dodo_infos[0]['vote_period']; ?></span> votes <span class="va va-high-voltage va-z-15"></span>
+                      & <span class="t-rose"><?php echo $dodo_infos[0]['top_period']; ?></span> TopList <span class="va va-trophy va-z-15"></span>
+                    </div>
+                    <div class="separate-top">
+                      <a href="<?php the_permalink(get_page_by_path('best-of/best-vainkeurs')); ?>" class="btn btn-flat-dark waves-effect">
+                        Découvre le classement ALL Time des vainkeurs les plus <span class="va va-fire va-z-15"></span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">
+                  <span class="ico va va-spiral-eyes va-z-20"></span> En panne d'inspi
+                </h4>
+                <p class="card-text text-muted mb-2">
+                  On te propose 3 Top au hasard !
+                </p>
+                <a href="<?php the_permalink(470569); ?>" class="btn btn-outline-primary btn-flat-primary waves-effect">
+                  Let's go
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
             <div class="row">
               <?php
               $cat_t = get_terms(array(
@@ -202,19 +262,19 @@ if ($id_vainkeur) {
                 'hide_empty'    => true,
               ));
               foreach ($cat_t as $cat) : ?>
-                <div class="col-6">
+                <div class="col-12">
                   <div class="card scaler cat-min">
                     <div class="card-header">
                       <div>
-                        <h2 class="font-weight-bolder mb-0">
+                        <h4 class="font-weight-bolder mb-0">
                           <span class="ico2 ">
                             <span>
                               <?php the_field('icone_cat', 'term_' . $cat->term_id); ?>
                             </span>
                           </span> <?php echo $cat->name; ?>
-                        </h2>
+                        </h4>
                       </div>
-                      <div class="p-50 m-0 text-primary">
+                      <div class="p-50 m-0 text-primary nb-top-in-cat">
                         <?php echo $cat->count; ?> Tops
                       </div>
                     </div>

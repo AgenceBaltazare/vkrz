@@ -6,9 +6,11 @@ global $infos_vainkeur_to_watch;
 global $infos_vainkeur;
 global $user_id;
 global $id_membre;
-$id_membre = $user_id;
 if (is_author() || is_page(218587)) {
   $infos_vainkeur = $infos_vainkeur_to_watch;
+}
+else{
+  $id_membre = $user_id;
 }
 $cover_profil_id = 0;
 ?>
