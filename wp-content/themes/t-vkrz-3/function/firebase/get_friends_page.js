@@ -110,7 +110,7 @@ const guetteurFunc = async () => {
             data-original-title="En mode duo" 
             class="avatar pull-up"
           >
-          <span class="love-people va va-z-30" alt="Duo"></span>
+          <span class="va-love-people va va-z-30" alt="Duo"></span>
           </div>
         </td>
         <td class="d-none">duo</td>
@@ -152,7 +152,7 @@ const guetteurFunc = async () => {
         followOrUnfollowDiv = `
         <a href="" 
           data-documentId="${item["extra"]["id"]}" 
-          data-relatedid="${map.get(item["uuid"]).user_id}"
+          data-relatedid="${map.get(item.uuid).id_user}"
           class="unfollowBtns dropdown-item"
           data-amigo=${item.extra.friend ? true : false}
           data-following=${item.extra.following ? true : false}
@@ -167,8 +167,8 @@ const guetteurFunc = async () => {
           href="" 
           data-userid=${currentUserId}
           data-uuid=${currentUuid}
-          data-relatedid=${map.get(item["uuid"]).user_id}
-          data-relateduuid="${map.get(item["uuid"]).uuid_user_vkrz}"
+          data-relatedid=${map.get(item.uuid).id_user}
+          data-relateduuid="${map.get(item.uuid).uuid_vainkeur}"
           data-text="${vainkeurPseudo} te guette !"
           data-url="${currentUserProfileUrl}"
           class="followBtns dropdown-item"
