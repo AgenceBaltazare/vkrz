@@ -23,22 +23,22 @@ function get_vainkeur(){
     } 
     else {
 
-        if (isset($_COOKIE["vainkeurz_uuid_cookie"]) && $_COOKIE["vainkeurz_uuid_cookie"] != "") {
+        if (isset($_COOKIE["wordpress_vainkeurz_uuid_cookie"]) && $_COOKIE["wordpress_vainkeurz_uuid_cookie"] != "") {
 
-            $uuiduser    = $_COOKIE["vainkeurz_uuid_cookie"];
+            $uuiduser    = $_COOKIE["wordpress_vainkeurz_uuid_cookie"];
 
         }
         else{
 
             $uuiduser    = uniqidReal();
 
-            setcookie("vainkeurz_uuid_cookie", $uuiduser, $arr_cookie_options);
+            setcookie("wordpress_vainkeurz_uuid_cookie", $uuiduser, $arr_cookie_options);
 
         }
 
-        if (isset($_COOKIE["vainkeurz_id_cookie"]) && $_COOKIE["vainkeurz_id_cookie"] != "") {
+        if (isset($_COOKIE["wordpress_vainkeurz_id_cookie"]) && $_COOKIE["wordpress_vainkeurz_id_cookie"] != "") {
             
-            $id_vainkeur    = $_COOKIE["vainkeurz_id_cookie"];
+            $id_vainkeur    = $_COOKIE["wordpress_vainkeurz_id_cookie"];
 
         } 
         else {
@@ -65,7 +65,7 @@ function get_vainkeur(){
                 $id_vainkeur    = $vainkeur_entry->posts[0];
                 
             } 
-            elseif (isset($_COOKIE["vainkeur_ready_to_be_create_cookie"]) && $_COOKIE["vainkeur_ready_to_be_create_cookie"] != "") {
+            elseif (isset($_COOKIE["wordpress_vainkeur_ready_to_be_create_cookie"]) && $_COOKIE["wordpress_vainkeur_ready_to_be_create_cookie"] != "") {
 
                 $new_vainkeur_entry = array(
                     'post_type'   => 'vainkeur',
@@ -85,7 +85,7 @@ function get_vainkeur(){
                 }
             }
 
-            setcookie("vainkeurz_id_cookie", $id_vainkeur, $arr_cookie_options);
+            setcookie("wordpress_vainkeurz_id_cookie", $id_vainkeur, $arr_cookie_options);
 
         }
 

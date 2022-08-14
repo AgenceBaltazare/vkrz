@@ -2,9 +2,9 @@
 add_action('user_register', 'new_vainkeur', 20, 1);
 function new_vainkeur($user_id){
 
-    if (isset($_COOKIE["vainkeurz_uuid_cookie"]) && !empty($_COOKIE["vainkeurz_uuid_cookie"])) {
+    if (isset($_COOKIE["wordpress_vainkeurz_uuid_cookie"]) && !empty($_COOKIE["wordpress_vainkeurz_uuid_cookie"])) {
 
-        $uuid_vainkeur = $_COOKIE["vainkeurz_uuid_cookie"];
+        $uuid_vainkeur = $_COOKIE["wordpress_vainkeurz_uuid_cookie"];
 
         if ($user_id) {
             $classements = new WP_Query(array(
@@ -35,7 +35,7 @@ function new_vainkeur($user_id){
                 }
             }
 
-            // Update author for all "vainkeur" where uuid_user_r == vainkeurz_uuid_cookie
+            // Update author for all "vainkeur" where uuid_user_r == wordpress_vainkeurz_uuid_cookie
             $vainkeur_entry = new WP_Query(array(
                 'post_type'              => 'vainkeur',
                 'posts_per_page'         => 1,
@@ -88,7 +88,7 @@ function new_vainkeur($user_id){
                         'httponly' => true,
                         'samesite' => 'Lax'
                     );
-                    setcookie("vainkeurz_id_cookie", $id_vainkeur, $arr_cookie_options);
+                    setcookie("wordpress_vainkeurz_id_cookie", $id_vainkeur, $arr_cookie_options);
                 }
 
             }
