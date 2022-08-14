@@ -183,7 +183,7 @@ function get_all_toplist_by_id_top($data)
   $list_toplist         = json_decode(get_field('all_toplist_resume', $id_resume));
   $list_toplist         = array_reverse($list_toplist);
   
-  foreach ($list_toplist as $id_ranking) :
+  foreach (array_slice($list_toplist, 0, 500) as $id_ranking) :
     $uuiduser                = get_field('uuid_user_r', $id_ranking);
     $vainkeur_infos          = get_user_infos($uuiduser);
 
