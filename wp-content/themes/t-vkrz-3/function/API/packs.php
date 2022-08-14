@@ -179,34 +179,46 @@ function get_all_toplist_by_id_top($data)
 
   $results              = array();
   $id_top               = $data['id_top'];
+  $page                 = $data['page'];
   $id_resume            = get_resume_id($id_top);
   $list_toplist         = json_decode(get_field('all_toplist_resume', $id_resume));
   $list_toplist         = array_reverse($list_toplist);
-  
-  foreach (array_slice($list_toplist, 0, 500) as $id_ranking) :
+  $total_items          = count($list_toplist);
+  $nb_items             = 100;
+
+  $val_min              = $nb_items * $page - $nb_items;
+  $val_max              = $nb_items * $page;
+
+  foreach (array_slice($list_toplist, $val_min, $val_max) as $id_ranking) :
     $uuiduser                = get_field('uuid_user_r', $id_ranking);
     $vainkeur_infos          = get_user_infos($uuiduser);
 
     if ($vainkeur_infos['user_role'] != "anonyme") :
       $user_top3    = get_user_ranking($id_ranking, 3);
-
-      foreach($user_top3 as $contender){
+      $list_podium  = array();
+      
+      foreach ($user_top3 as $contender) {
         $list_podium []= array(
           'id_contender'      => $contender,
           'nom_contender'     => get_the_title($contender),
           'visuel_contender'  => get_the_post_thumbnail_url($contender, 'thumbnail'),
         );
       }
-      $results    []= array(
-        $vainkeur_infos['pseudo'],
-        $list_podium[0]['nom_contender'],
-        get_the_permalink($id_ranking),
+      $results[] = array(
+        'vainkeur'      => $vainkeur_infos,
+        'podium'        => $list_podium,
+        'toplist_url'   => get_the_permalink($id_ranking),
       );
     endif;
   endforeach;
+    
 
   return array(
-    'data' => $results
+    'info' => array(
+      'total_items' => $total_items,
+      'nb_pages'    => ceil($total_items / $nb_items)
+    ),
+    'toplist' => $results
   );
 }
 
