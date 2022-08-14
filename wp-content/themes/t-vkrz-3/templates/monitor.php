@@ -115,11 +115,11 @@
                           <span class="ico4 va va-swan va-2x"></span>
                         </div>
                         <h2 class="font-weight-bolder">
-                          <?php echo count_users_by_level(6); ?>
+                          <?php echo count_users_by_level(5); ?>
                         </h2>
                         <p class="card-text legende list-vainkeur-monitor">
                           <?php
-                          $list_level_5 = get_users_by_level(6, 'total_vote', 'DESC');
+                          $list_level_5 = get_users_by_level(5, 'total_vote', 'DESC');
                           foreach ($list_level_5 as $vainkeur) :
                           ?>
                             <a href="<?php echo get_author_posts_url($vainkeur['id'], $vainkeur['pseudo']); ?>">
