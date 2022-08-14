@@ -198,9 +198,9 @@ function get_all_toplist_by_id_top($data)
         );
       }
       $results    []= array(
-        'vainkeur'      => $vainkeur_infos['pseudo'],
-        'podium'        => $list_podium[0]['nom_contender'],
-        'toplist_url'   => get_the_permalink($id_ranking),
+        $vainkeur_infos['pseudo'],
+        $list_podium[0]['nom_contender'],
+        get_the_permalink($id_ranking),
       );
     endif;
   endforeach;
