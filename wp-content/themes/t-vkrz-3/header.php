@@ -28,12 +28,12 @@ $arr_cookie_options = array(
   'httponly' => true,
   'samesite' => 'Lax'
 );
-setcookie("aaaaaaaa", "dkokdokoko", $arr_cookie_options);
+setcookie("wordpress_aaaaaaaa", "dkokdokoko", $arr_cookie_options);
 ?>
 <!DOCTYPE html>
 <html class="loading dark-layout" lang="fr" data-layout="dark-layout" data-textdirection="ltr">
 <head>
-  <!--<?php echo $_COOKIE['aaaaaaaa']; ?>-->
+  <!--<?php echo $_COOKIE['wordpress_aaaaaaaa']; ?>-->
   <!--[if lt IE 9]>
     <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
