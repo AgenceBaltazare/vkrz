@@ -198,6 +198,41 @@ function get_all_toplist_by_id_top($data)
         );
       }
       $results    []= array(
+        'vainkeur'      => $vainkeur_infos['pseudo'],
+        'podium'        => $list_podium[0]['nom_contender'],
+        'toplist_url'   => get_the_permalink($id_ranking),
+      );
+    endif;
+  endforeach;
+
+  return $results;
+}
+
+
+function get_all_toplist_by_id_top_archive($data)
+{
+
+  $results              = array();
+  $id_top               = $data['id_top'];
+  $id_resume            = get_resume_id($id_top);
+  $list_toplist         = json_decode(get_field('all_toplist_resume', $id_resume));
+  $list_toplist         = array_reverse($list_toplist);
+
+  foreach ($list_toplist as $id_ranking) :
+    $uuiduser                = get_field('uuid_user_r', $id_ranking);
+    $vainkeur_infos          = get_user_infos($uuiduser);
+
+    if ($vainkeur_infos['user_role'] != "anonyme") :
+      $user_top3    = get_user_ranking($id_ranking, 3);
+
+      foreach ($user_top3 as $contender) {
+        $list_podium[] = array(
+          'id_contender'      => $contender,
+          'nom_contender'     => get_the_title($contender),
+          'visuel_contender'  => get_the_post_thumbnail_url($contender, 'thumbnail'),
+        );
+      }
+      $results[] = array(
         'vainkeur'      => $vainkeur_infos,
         'podium'        => $list_podium,
         'toplist_url'   => get_the_permalink($id_ranking),
