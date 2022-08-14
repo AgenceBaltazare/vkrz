@@ -31,7 +31,8 @@ get_header();
                             <table class="table table-notifications">
                               <thead>
                                 <tr>
-                                  <th class="">
+                                  <th style="display: none; width: 0;"><small class="text-muted">FILTER HIDDEN COLUMN</small></th>
+                                  <th>
                                     <span class="text-muted">
                                       <span class="text-muted">Liste des <span class="t-rose nombre-notifications"></span> Notifications</span>
                                     </span>

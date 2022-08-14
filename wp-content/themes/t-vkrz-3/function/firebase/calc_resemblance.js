@@ -1,6 +1,6 @@
 import { collection, database, query, where, getDocs } from "./config.js";
 
-
+/* 
 $(".lauch-calressemblance").on('click', function (event) {
   $(".calc-resemblance").trigger("click");
 });
@@ -229,3 +229,79 @@ calcResemblanceDiv.addEventListener(
   },
   { once: true }
 );
+ */
+
+async function getUserData(link) {
+  try {
+    let response = await fetch(link);
+    return await response.json();
+  } catch (error) {
+    console.log(error);
+  }
+}
+let data = await getUserData(
+  "https://vainkeurz.com/wp-json/vkrz/v1/getalltoplistbyidtop/279103/1"
+);
+data = Object.entries(data);
+
+let nbPage = data[0][1].nb_pages;
+console.log(nbPage);
+
+let row = "";
+let results;
+let arrTopList = [];
+
+let $c = 1;
+
+for (let i = 2; i <= nbPage; i++) {
+async function asyncFunc() {
+  console.log(nbPage);
+    results = await getUserData(
+      `https://vainkeurz.com/wp-json/vkrz/v1/getalltoplistbyidtop/279103/${i}`
+    );
+    arrTopList = Object.entries(results.toplist);
+
+    arrTopList.forEach((toplist) => {
+        let vainkeurPseudoTest = toplist[1].vainkeur.pseudo;
+        let vainkeurAvatarTest = toplist[1].vainkeur.avatar;
+        row += `
+          <tr id="rows">
+              <td>
+                ${$c} | ${vainkeurPseudoTest}
+              </td>
+
+              <td>
+              <img src="${vainkeurAvatarTest}" style="width: 40px;height:auto;">
+            </td>
+          </tr>
+        `;
+        $c++;
+        
+      // document.querySelector("tbody").innerHTML = row;
+    });
+
+    console.log(i === nbPage, i);
+
+    if(i === nbPage) {
+      document.querySelector("tbody").innerHTML = row;
+    }
+}
+asyncFunc()
+}
+
+// let index = 2;
+
+// async function delay(ms) {
+//   // return await for better async stack trace support in case of errors.
+//   return await new Promise(resolve => setTimeout(resolve, ms));
+// }
+
+// let run = async () => {
+//   await delay(2000);
+//   asyncFunc(index++);
+// }
+// setInterval(run, 1000);
+
+// document.querySelector('.load__more').addEventListener("click", () => {
+//   asyncFunc(index++);
+// })
