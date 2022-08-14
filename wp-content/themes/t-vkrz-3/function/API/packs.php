@@ -205,7 +205,9 @@ function get_all_toplist_by_id_top($data)
     endif;
   endforeach;
 
-  return $results;
+  return array(
+    'data' => $results
+  );
 }
 
 
