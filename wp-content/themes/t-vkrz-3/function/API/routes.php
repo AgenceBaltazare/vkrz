@@ -53,4 +53,14 @@ add_action('rest_api_init', function () {
       'id_contender'
     ]
   ));
+
+  // Liste des TopList d'un Top
+  register_rest_route('vkrz/v1', '/getalltoplistbyidtop/(?P<id_top>\w+)', array(
+    'methods' => 'GET',
+    'callback' => 'get_all_toplist_by_id_top',
+    'args' => [
+      'id_top'
+    ]
+  ));
+
 });
