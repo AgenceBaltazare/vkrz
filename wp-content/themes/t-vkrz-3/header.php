@@ -28,12 +28,12 @@ $arr_cookie_options = array(
   'httponly' => true,
   'samesite' => 'Lax'
 );
-setcookie("cookie_test", "joiedevivre", $arr_cookie_options);
+setcookie("worpdress_cookie_test", "joiedevivre", $arr_cookie_options);
 ?>
 <!DOCTYPE html>
 <html class="loading dark-layout" lang="fr" data-layout="dark-layout" data-textdirection="ltr">
 <head>
-  <!--<?php echo $_COOKIE['cookie_test']; ?>-->
+  <!--<?php echo $_COOKIE['worpdress_cookie_test']; ?>-->
   <!--[if lt IE 9]>
     <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
