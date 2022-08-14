@@ -7,7 +7,7 @@ global $id_vainkeur;
 global $utm;
 global $id_top;
 global $sponso;
-delete_old_cookies();
+$reponse = delete_old_cookies();
 if (get_post_type() != "tournoi") {
   $user_id        = get_user_logged_id();
   $vainkeur       = get_vainkeur();

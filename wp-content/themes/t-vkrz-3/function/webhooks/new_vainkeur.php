@@ -80,7 +80,15 @@ function new_vainkeur($user_id){
                     // Save vainkeur to firebase
                     wp_update_post(array('ID' => $id_vainkeur));
 
-                    setcookie("vainkeurz_id_cookie", $id_vainkeur, time() + 31556926, "/");
+                    $arr_cookie_options = array(
+                        'expires' => time() + 60 * 60 * 24 * 365,
+                        'path' => '/',
+                        'domain' => '',
+                        'secure' => true,
+                        'httponly' => true,
+                        'samesite' => 'Lax'
+                    );
+                    setcookie("vainkeurz_id_cookie", $id_vainkeur, $arr_cookie_options);
                 }
 
             }

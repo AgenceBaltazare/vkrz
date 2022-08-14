@@ -3,7 +3,16 @@ function get_vainkeur(){
 
     $id_vainkeur = false;
     $uuiduser    = false;
-    
+
+    $arr_cookie_options = array(
+        'expires' => time() + 60 * 60 * 24 * 365,
+        'path' => '/',
+        'domain' => '',
+        'secure' => true,
+        'httponly' => true,
+        'samesite' => 'Lax'
+    );
+
     if(is_user_logged_in()){
 
         global $user_id;
@@ -23,7 +32,7 @@ function get_vainkeur(){
 
             $uuiduser    = uniqidReal();
 
-            setcookie("vainkeurz_uuid_cookie", $uuiduser, time() + 31556926, "/");
+            setcookie("vainkeurz_uuid_cookie", $uuiduser, $arr_cookie_options);
 
         }
 
@@ -76,7 +85,7 @@ function get_vainkeur(){
                 }
             }
 
-            setcookie("vainkeurz_id_cookie", $id_vainkeur, time() + 31556926, "/");
+            setcookie("vainkeurz_id_cookie", $id_vainkeur, $arr_cookie_options);
 
         }
 

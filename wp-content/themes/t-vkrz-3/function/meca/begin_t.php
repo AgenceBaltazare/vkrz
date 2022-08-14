@@ -11,7 +11,15 @@ function begin_t($id_top, $uuiduser, $typetop, $id_vainkeur)
     }
 
     // set cookies to create vainkeur CPT
-    setcookie("vainkeur_ready_to_be_create_cookie", $uuiduser, time() + 31556926, "/");
+    $arr_cookie_options = array(
+        'expires' => time() + 60 * 60 * 24 * 365,
+        'path' => '/',
+        'domain' => '',
+        'secure' => true,
+        'httponly' => true,
+        'samesite' => 'Lax'
+    );
+    setcookie("vainkeur_ready_to_be_create_cookie", $uuiduser, $arr_cookie_options);
 
     if(is_user_logged_in()){
         $id_vainkeur = get_vainkeur_id_by_author();
@@ -35,7 +43,7 @@ function begin_t($id_top, $uuiduser, $typetop, $id_vainkeur)
             // Save vainkeur to firebase
             wp_update_post(array('ID' => $id_vainkeur));
 
-            setcookie("vainkeurz_id_cookie", $id_vainkeur, time() + 31556926, "/");
+            setcookie("vainkeurz_id_cookie", $id_vainkeur, $arr_cookie_options);
 
         }
 
