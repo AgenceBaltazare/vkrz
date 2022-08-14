@@ -23,15 +23,15 @@ include($templatepath . '/function/js-attribute.php');
 @ini_set('post_max_size', '64M');
 @ini_set('max_execution_time', '300');
 
-function wpse_58613_comment_redirect($location)
+function comment_redirect($location)
 {
   if (isset($_POST['my_redirect_to'])) // Don't use "redirect_to", internal WP var
     $location = $_POST['my_redirect_to'];
 
   return $location;
 }
+add_filter('comment_post_redirect', 'comment_redirect');
 
-add_filter('comment_post_redirect', 'wpse_58613_comment_redirect');
 function oa_social_login_set_redirect_url($url, $user_data)
 {
   if (isset($_GET['redirect']) && $_GET['redirect'] != "") {
@@ -51,9 +51,9 @@ add_filter(
     return substr($excerpt, 0, strpos($excerpt, '.') + 1);
   }
 );
+
 function post_content($content)
 {
   return preg_replace('/<p([^>]+)?>/', '<p$1 class="card-text my-2">', $content, 1);
 }
 add_filter('the_content', 'post_content');
-

@@ -28,7 +28,7 @@ $arr_cookie_options = array(
   'httponly' => true,
   'samesite' => 'Lax'
 );
-setcookie("worpdress_cookie_test", "joiedevivre", $arr_cookie_options);
+setcookie("worpdress_cookie_test", "zdzd", $arr_cookie_options);
 ?>
 <!DOCTYPE html>
 <html class="loading dark-layout" lang="fr" data-layout="dark-layout" data-textdirection="ltr">
