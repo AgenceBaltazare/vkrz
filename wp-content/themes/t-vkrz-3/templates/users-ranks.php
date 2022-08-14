@@ -24,8 +24,11 @@ if ($id_vainkeur) {
         $user_tops  = get_user_tops($id_vainkeur);
     }
     $list_user_tops         = $user_tops['list_user_tops_done_ids'];
+    $list_user_tops_begin   = $user_tops['list_user_tops_begin_ids'];
 } else {
+    $user_tops            = array();
     $list_user_tops       = array();
+    $list_user_tops_begin = array();
 }
 $id_resume            = get_resume_id($id_top);
 $list_toplist         = json_decode(get_field('all_toplist_resume', $id_resume));
