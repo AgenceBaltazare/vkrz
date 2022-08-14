@@ -18,7 +18,7 @@ function generate_vainkeurz_cookies($user_login, WP_User $user){
     $arr_cookie_options = array(
         'expires' => time() + 60 * 60 * 24 * 365,
         'path' => '/',
-        'domain' => '.vainkeurz.com',
+        'domain' => '',
         'secure' => true,
         'httponly' => false,
         'samesite' => 'Lax'
