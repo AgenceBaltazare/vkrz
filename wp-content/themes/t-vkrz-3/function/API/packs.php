@@ -180,16 +180,30 @@ function get_all_toplist_by_id_top($data)
   $results              = array();
   $id_top               = $data['id_top'];
   $page                 = $data['page'];
-  $id_resume            = get_resume_id($id_top);
-  $list_toplist         = json_decode(get_field('all_toplist_resume', $id_resume));
-  $list_toplist         = array_reverse($list_toplist);
-  $total_items          = count($list_toplist);
   $nb_items             = 100;
-
   $val_min              = $nb_items * $page - $nb_items;
   $val_max              = $nb_items * $page;
 
-  foreach (array_slice($list_toplist, $val_min, $val_max) as $id_ranking) :
+  $rankings = new WP_Query(array(
+    'ignore_sticky_posts'	    => true,
+    'update_post_meta_cache'  => false,
+    'post_type'			          => 'classement',
+    'orderby'				          => 'date',
+    'order'				            => 'DESC',
+    'posts_per_page'		      => $nb_items,
+    'paged'                   => $page,
+    "author__not_in"          => array(0, 1),
+    'meta_query' => array(
+        array(
+            'key'     => 'id_tournoi_r',
+            'value'   => $id_top,
+            'compare' => '=',
+        )
+    )
+  ));
+  while ($rankings->have_posts()) : $rankings->the_post();
+
+    $id_ranking              = get_the_ID();
     $uuiduser                = get_field('uuid_user_r', $id_ranking);
     $vainkeur_infos          = get_user_infos($uuiduser);
 
@@ -197,7 +211,7 @@ function get_all_toplist_by_id_top($data)
     $list_podium  = array();
 
     foreach ($user_top3 as $contender) {
-      $list_podium []= array(
+      $list_podium[] = array(
         'id_contender'      => $contender,
         'nom_contender'     => get_the_title($contender),
         'visuel_contender'  => get_the_post_thumbnail_url($contender, 'thumbnail'),
@@ -208,8 +222,11 @@ function get_all_toplist_by_id_top($data)
       'podium'        => $list_podium,
       'toplist_url'   => get_the_permalink($id_ranking),
     );
-  endforeach;
-    
+  
+  endwhile;
+
+  $max_pages    = $rankings->post_count;
+  $total_items  = $rankings->found_posts;
 
   return array(
     'info' => array(
@@ -217,6 +234,7 @@ function get_all_toplist_by_id_top($data)
       'nb_pages'    => ceil($total_items / $nb_items),
       'min'         => $val_min,
       'max'         => $val_max,
+      'max_pages'   => $max_pages
     ),
     'toplist' => $results
   );
