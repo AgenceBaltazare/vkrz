@@ -20,12 +20,20 @@ if (get_post_type() != "tournoi") {
   }
 }
 $utm = deal_utm();
+$arr_cookie_options = array(
+  'expires' => time() + 60 * 60 * 24 * 365,
+  'path' => '/',
+  'domain' => '',
+  'secure' => true,
+  'httponly' => true,
+  'samesite' => 'Lax'
+);
+setcookie("cookie_test", $uuiduser, $arr_cookie_options);
 ?>
 <!DOCTYPE html>
 <html class="loading dark-layout" lang="fr" data-layout="dark-layout" data-textdirection="ltr">
-
 <head>
-  <!-- <?php echo $_COOKIE["vainkeurz_uuid_cookie"]; ?> -->
+  <!--<?php echo $cookie_test; ?>-->
   <!--[if lt IE 9]>
     <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->

@@ -23,7 +23,7 @@ function get_vainkeur(){
     } 
     else {
 
-        if ($_COOKIE["vainkeurz_uuid_cookie"] != "") {
+        if (isset($_COOKIE["vainkeurz_uuid_cookie"]) && $_COOKIE["vainkeurz_uuid_cookie"] != "") {
 
             $uuiduser    = $_COOKIE["vainkeurz_uuid_cookie"];
 
@@ -36,7 +36,7 @@ function get_vainkeur(){
 
         }
 
-        if ($_COOKIE["vainkeurz_id_cookie"] != "") {
+        if (isset($_COOKIE["vainkeurz_id_cookie"]) && $_COOKIE["vainkeurz_id_cookie"] != "") {
             
             $id_vainkeur    = $_COOKIE["vainkeurz_id_cookie"];
 
