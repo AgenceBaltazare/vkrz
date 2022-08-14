@@ -764,7 +764,7 @@ html .content {
 }
 
 .t-violet {
-  color: #7367f0;
+  color: #7367f0 !important;
 }
 
 .championname a {
