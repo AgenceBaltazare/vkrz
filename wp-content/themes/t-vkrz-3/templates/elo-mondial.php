@@ -2,7 +2,7 @@
 /*
     Template Name: Classement
 */
-global $uuiduser;
+global $uuid_vainkeur;
 global $id_vainkeur;
 if (isset($_GET['id_top']) && !empty($_GET['id_top'])) {
     $id_top  = $_GET['id_top'];

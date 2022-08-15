@@ -20,9 +20,6 @@ function get_best_vainkeur($type = "top", $period = NULL, $limit = 1) {
     }
     $return = array();
 
-    $nb_vote_period = 0;
-    $nb_top_period  = 0;
-
     if (is_null($period)) {
         $vainkeurs = new WP_Query(array(
             "post_type"              => "vainkeur",
@@ -74,9 +71,6 @@ function get_best_vainkeur($type = "top", $period = NULL, $limit = 1) {
 
                 $key = array_search($author_id, array_column($return, 'author_id'));
 
-                $nb_vote_period = $nb_vote_period + intval(get_field("nb_votes_r", $top_id));
-                $nb_top_period++;
-
                 if ($key !== false || $key === 0) {
                     $return[$key]["total_vote"] = $return[$key]["total_vote"] + intval(get_field("nb_votes_r", $top_id));
                     get_field("done_r", $top_id) == "done" ? $return[$key]["total_top"]++ : $return[$key]["total_top"];
@@ -98,8 +92,6 @@ function get_best_vainkeur($type = "top", $period = NULL, $limit = 1) {
                         $return[] = array(
                             "vainkeur_id"   => $vainkeur_id,
                             "author_id"     => $author_id,
-                            "vote_period"   => $nb_vote_period,
-                            "top_period"    => $nb_top_period,
                             "uuid"          => get_field("uuid_user_r", $top_id),
                             "money"         => get_field("money_vkrz", $vainkeur_id),
                             "total_vote"    => intval(get_field("nb_votes_r", $top_id)),

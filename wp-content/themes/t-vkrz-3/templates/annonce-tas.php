@@ -186,7 +186,14 @@ $tops_sponso_old = new WP_Query(array(
                                                                     </td>
 
                                                                     <td class="text-center">
-                                                                        <?php echo $players->post_count; ?>
+                                                                        <?php 
+                                                                        if(get_field('type_de_fin_t_sponso', $id_top) == "mail_1"){
+                                                                            echo $players->post_count;
+                                                                        }
+                                                                        else{
+                                                                            echo "🤷";
+                                                                        }
+                                                                        ?>
                                                                     </td>
 
                                                                     <td class="text-left">

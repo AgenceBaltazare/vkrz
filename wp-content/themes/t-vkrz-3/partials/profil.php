@@ -1,5 +1,4 @@
 <?php
-global $uuiduser;
 global $user_id;
 global $vainkeur_id;
 global $infos_vainkeur_to_watch;
