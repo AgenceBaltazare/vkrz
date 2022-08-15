@@ -55,113 +55,62 @@ $count_toplist        = count($list_toplist);
                 <div class="row">
                     <div class="col-md-8">
                         <section id="profile-info">
-                            <?php if ($list_toplist) : ?>
-                                <div class="card invoice-list-wrapper">
-                                    <div class="card-datatable table-responsive">
-                                        <table class="invoice-list-table table table-listuserranks">
-                                            <thead>
-                                                <tr>
-                                                    <th>
-                                                        <span class="text-muted">
-                                                            Vainkeur
-                                                        </span>
-                                                    </th>
-                                                    <th>
-                                                        <span class="text-muted">
-                                                            Podium
-                                                        </span>
-                                                    </th>
-                                                    <th class="text-center shorted">
-                                                        <span class="text-muted">Ressemblance <span class="va va-updown va-z-15"></span></span>
-                                                    </th>
-                                                    <th class="text-center">
-                                                        <span class="text-muted">
-                                                            Action
-                                                        </span>
-                                                    </th>
-                                                    <th class="text-right">
-                                                        <span class="text-muted">
-                                                            Guetter
-                                                        </span>
-                                                    </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php foreach (array_slice($list_toplist, 0, 500) as $id_ranking) :
-                                                    $uuiduser                = get_field('uuid_user_r', $id_ranking);
-                                                    $vainkeur_data_selected  = get_user_infos($uuiduser);
-                                                    if ($vainkeur_data_selected['user_role'] != "anonyme") : ?>
-                                                        <tr id="rows" class="<?php echo "uuid" . $uuiduser; ?> uncalculated" data-idranking="<?= $id_ranking; ?>">
-                                                            <td>
-                                                                <?php get_template_part('partials/vainkeur-card'); ?>
-                                                            </td>
-                                                            <td>
-                                                                <?php
-                                                                $user_top3 = get_user_ranking($id_ranking, 3);
-                                                                $l = 1;
-                                                                foreach ($user_top3 as $top) : ?>
-
-                                                                    <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="<?php echo get_the_title($top); ?>" class="avatartop3 avatar pull-up">
-                                                                        <?php if (get_field('visuel_instagram_contender', $top)) : ?>
-                                                                            <img src="<?php the_field('visuel_instagram_contender', $top); ?>" alt="<?php echo get_the_title($top); ?>">
-                                                                        <?php else : ?>
-                                                                            <?php $illu = get_the_post_thumbnail_url($top, 'thumbnail'); ?>
-                                                                            <img src="<?php echo $illu; ?>" alt="<?php echo get_the_title($top); ?>">
-                                                                        <?php endif; ?>
-                                                                    </div>
-
-                                                                <?php $l++;
-                                                                    if ($l == 4) break;
-                                                                endforeach; ?>
-                                                            </td>
-                                                            <td class="text-center">
-                                                                <button class="btn btn-flat-secondary waves-effect lauch-calressemblance">
-                                                                    Lancer le calcul
-                                                                </button>
-                                                            </td>
-
-                                                            <td class="text-right">
-                                                                <a href="<?php the_permalink($id_ranking); ?>" class="btn btn-flat-secondary waves-effect" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir la TopList">
-                                                                    <span class="ico ico-reverse va va-eyes va-lg"></span>
-                                                                </a>
-                                                                <a href="<?php the_permalink($id_ranking); ?>" class="btn btn-flat-secondary waves-effect" data-toggle="tooltip" data-placement="top" title="" data-original-title="Juger sa TopList">
-                                                                    <span class="ico va va-hache va-lg"></span>
-                                                                </a>
-                                                            </td>
-
-                                                            <td class="text-right checking-follower">
-
-                                                                <?php if (is_user_logged_in()) : ?>
-
-                                                                    <?php if ($vainkeur_data_selected && get_current_user_id() != $vainkeur_data_selected['id_user'] && is_user_logged_in()) : ?>
-
-                                                                        <button type="button" id="followBtn" class="btn waves-effect btn-follow d-none" data-userid="<?= get_current_user_id(); ?>" data-uuid="<?= get_field('uuiduser_user', 'user_' . get_current_user_id()); ?>" data-relatedid="<?= $vainkeur_data_selected['id_user']; ?>" data-relateduuid="<?= get_field('uuiduser_user', 'user_' . $vainkeur_data_selected['id_user']); ?>" data-text="<?= get_the_author_meta('nickname', get_current_user_id()); ?> te guette !" data-url="<?= get_author_posts_url(get_current_user_id()); ?>">
-                                                                            <span class="wording">Guetter</span>
-                                                                            <span class="va va-guetteur-close va va-z-20 emoji"></span>
-                                                                        </button>
-
-                                                                    <?php endif; ?>
-
-                                                                <?php else : ?>
-
-                                                                    <a href="<?php the_permalink(get_page_by_path('se-connecter')); ?>" class="btn btn-flat-secondary waves-effect" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tu dois être connecté pour guetter <?php echo $vainkeur_data_selected['pseudo']; ?>">
-                                                                        <span class="text-muted">
-                                                                            <span class="wording">Guetter</span> <span class="va va-guetteur-close va va-z-20 emoji"></span>
-                                                                        </span>
-                                                                    </a>
-
-                                                                <?php endif; ?>
-                                                                
-                                                            </td>
-
-                                                        </tr>
-                                                    <?php endif; ?>
-                                                <?php endforeach; ?>
-                                            </tbody>
-                                        </table>
+                            <!-- CALCULATE RESEMBALNCE… -->
+                            <div class="card text-center calc-resemblance" data-idtop="<?php echo $id_top; ?>">
+                                <div class="card-body">
+                                    <div class="mb-50">
+                                        <span class="ico4 va va-duo va va-z-50"></span>
                                     </div>
+                                    <h2 class="font-weight-bolder mb-1 calc-resemblance-h1">
+                                        Loading TopLists…
+                                    </h2>
+                                    <h6 class="card-subtitle text-muted">
+                                        Notre algo maison va alors parcourir toutes les Toplist pour les comparer à la tienne et afficher le % de ressemblance.
+                                    </h6>
                                 </div>
-                            <?php endif; ?>
+                                <div class="bar"></div>
+                            </div>
+
+                            <div class="card invoice-list-wrapper table-card-container d-none">
+                                <div class="card-datatable table-responsive">
+                                    <table class="invoice-list-table table table-listuserranks">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    <span class="text-muted">
+                                                        Vainkeur
+                                                    </span>
+                                                </th>
+
+                                                <th>
+                                                    <span class="text-muted">
+                                                        Podium
+                                                    </span>
+                                                </th>
+
+                                                <th class="text-center shorted">
+                                                    <span class="text-muted">Ressemblance <span class="va va-updown va-z-15"></span></span>
+                                                </th>
+
+                                                <th class="text-center">
+                                                    <span class="text-muted">
+                                                        Action
+                                                    </span>
+                                                </th>
+
+
+                                                <th class="text-right">
+                                                    <span class="text-muted">
+                                                        Guetter
+                                                    </span>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </section>
                     </div>
                     <div class="col-md-4">
@@ -170,23 +119,6 @@ $count_toplist        = count($list_toplist);
 
                             <div class="infoelo">
                                 <div class="row">
-                                    <div class="col-12">
-                                        <!-- CALCULATE RESEMBALNCE… -->
-                                        <div class="card text-center calc-resemblance" data-idtop="<?php echo $id_top; ?>">
-                                            <div class="card-body">
-                                                <div class="mb-50">
-                                                    <span class="ico4 va va-duo va va-z-50"></span>
-                                                </div>
-                                                <h2 class="font-weight-bolder mb-1 calc-resemblance-h1">
-                                                    Calculer les ressemblances
-                                                </h2>
-                                                <h6 class="card-subtitle text-muted">
-                                                    Notre algo maison va alors parcourir toutes les Toplist pour les comparer à la tienne et afficher le % de ressemblance.
-                                                </h6>
-                                            </div>
-                                            <div class="bar"></div>
-                                        </div>
-                                    </div>
                                     <div class="col-6">
                                         <div class="card text-center">
                                             <div class="card-body">
