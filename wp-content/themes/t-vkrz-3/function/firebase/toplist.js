@@ -400,9 +400,9 @@ async function sendComment(comment, idRanking, urlRanking, currentUuid) {
       if (userData[1] != currentUserId) {
         let notifText;
         if (index === 0) {
-          notifText = `${vainkeurPseudo} a commenté sur ta TopList!`;
+          notifText = `${vainkeurPseudo} a jugé une de tes TopList!`;
         } else {
-          notifText = `${vainkeurPseudo} a commenté sur une TopList sur laquelle t'as commenté!`;
+          notifText = `${vainkeurPseudo} a aussi laissé un jugement sur cette TopList !`;
         }
 
         async function sendNotif() {

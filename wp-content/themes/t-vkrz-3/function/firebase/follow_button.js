@@ -22,7 +22,7 @@ function checkGuetterButton() {
         /* CHECK IF HE'S FOLLOWED BY CURRENT VAINKEUR! */
         let q = query(
           collection(database, "notifications"),
-          where("notifText", "==", `${vainkeurPseudo} te guette !`),
+          where("notifText", "==", `${vainkeurPseudo} te guette ! `),
           where("relatedId", "==", followBtn.dataset.relatedid)
         );
         let querySnapshot = await getDocs(q);

@@ -62,10 +62,10 @@ $count_toplist        = count($list_toplist);
                                         <span class="ico4 va va-duo va va-z-50"></span>
                                     </div>
                                     <h2 class="font-weight-bolder mb-1 calc-resemblance-h1">
-                                        Loading TopLists…
+                                        Récupération des <?php echo $count_toplist; ?> TopList…
                                     </h2>
                                     <h6 class="card-subtitle text-muted">
-                                        Notre algo maison va alors parcourir toutes les Toplist pour les comparer à la tienne et afficher le % de ressemblance.
+                                        Notre algo maison va comparer toutes les TopList pour afficher le % de ressemblance avec la tienne.
                                     </h6>
                                 </div>
                                 <div class="bar"></div>
