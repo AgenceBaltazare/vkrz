@@ -1,11 +1,11 @@
 <?php
 require_once('fct.php');
 
-function get_user_infos_from_api($data)
-{
+function get_user_infos_from_api($data){
 
   $uuid_vainkeur = $data['uuiduser'];
   return get_user_infos($uuid_vainkeur, "complete");
+  
 }
 
 function get_contender($data)
@@ -182,7 +182,6 @@ function get_numberpage($data)
   $nb_items             = 100;
 
   $rankings = new WP_Query(array(
-<<<<<<< HEAD
     'ignore_sticky_posts'	    => true,
     'update_post_meta_cache'  => false,
     'post_type'			          => 'classement',
@@ -198,23 +197,6 @@ function get_numberpage($data)
           'key'     => 'done_r',
           'value'   => 'done',
           'compare' => '=',
-=======
-    'ignore_sticky_posts'      => true,
-    'update_post_meta_cache'  => false,
-    'post_type'                => 'classement',
-    "author__not_in"          => array(0, 1),
-    'meta_query' => array(
-      'relation' => 'AND',
-      array(
-        'key'     => 'id_tournoi_r',
-        'value'   => $id_top,
-        'compare' => '=',
-      ),
-      array(
-        'key'     => 'done_r',
-        'value'   => 'done',
-        'compare' => '=',
->>>>>>> 93d36553e31ebd935ed068f08c1985ab4378e674
       )
     )
   ));
@@ -236,16 +218,15 @@ function get_all_toplist_by_id_top($data)
   $nb_items             = 100;
 
   $rankings = new WP_Query(array(
-    'ignore_sticky_posts'      => true,
+    'ignore_sticky_posts'	    => true,
     'update_post_meta_cache'  => false,
-    'post_type'                => 'classement',
-    'orderby'                  => 'date',
-    'order'                    => 'DESC',
-    'posts_per_page'          => $nb_items,
+    'post_type'			          => 'classement',
+    'orderby'				          => 'date',
+    'order'				            => 'DESC',
+    'posts_per_page'		      => $nb_items,
     'paged'                   => $page,
     "author__not_in"          => array(0, 1),
     'meta_query' => array(
-<<<<<<< HEAD
         'relation' => 'AND',
         array(
             'key'     => 'id_tournoi_r',
@@ -256,18 +237,6 @@ function get_all_toplist_by_id_top($data)
           'key'     => 'done_r',
           'value'   => 'done',
           'compare' => '=',
-=======
-      'relation' => 'AND',
-      array(
-        'key'     => 'id_tournoi_r',
-        'value'   => $id_top,
-        'compare' => '=',
-      ),
-      array(
-        'key'     => 'done_r',
-        'value'   => 'done',
-        'compare' => '=',
->>>>>>> 93d36553e31ebd935ed068f08c1985ab4378e674
       )
     )
   ));
@@ -292,13 +261,8 @@ function get_all_toplist_by_id_top($data)
       'podium'        => $list_podium,
       'toplist_url'   => get_the_permalink($id_ranking),
     );
-
-<<<<<<< HEAD
-  return $results;
-}
-=======
+  
   endwhile;
 
   return $results;
 }
->>>>>>> 93d36553e31ebd935ed068f08c1985ab4378e674
