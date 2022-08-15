@@ -1,6 +1,5 @@
 <?php
 
-
 add_action('rest_api_init', function () {
 
   // GET STATS
@@ -72,5 +71,5 @@ add_action('rest_api_init', function () {
       'page'
     ]
   ));
-
+  
 });

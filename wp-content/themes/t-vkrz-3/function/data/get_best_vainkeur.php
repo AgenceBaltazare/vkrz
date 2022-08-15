@@ -20,6 +20,9 @@ function get_best_vainkeur($type = "top", $period = NULL, $limit = 1) {
     }
     $return = array();
 
+    $nb_vote_period = 0;
+    $nb_top_period  = 0;
+
     if (is_null($period)) {
         $vainkeurs = new WP_Query(array(
             "post_type"              => "vainkeur",
@@ -37,12 +40,12 @@ function get_best_vainkeur($type = "top", $period = NULL, $limit = 1) {
         if ($vainkeurs->have_posts()) {
             foreach ($vainkeurs->posts as $vainkeur_id) {
                 $return[] = array(
-                    "vainkeur_id" => $vainkeur_id,
-                    "author_id" => get_post_field("post_author", $vainkeur_id),
-                    "uuid" => get_field("uuid_user_vkrz", $vainkeur_id),
-                    "xp" => get_field("money_vkrz", $vainkeur_id),
-                    "total_vote" => get_field("nb_vote_vkrz", $vainkeur_id),
-                    "total_top" => get_field("nb_top_vkrz", $vainkeur_id)
+                    "vainkeur_id"   => $vainkeur_id,
+                    "author_id"     => get_post_field("post_author", $vainkeur_id),
+                    "uuid"          => get_field("uuid_user_vkrz", $vainkeur_id),
+                    "xp"            => get_field("money_vkrz", $vainkeur_id),
+                    "total_vote"    => get_field("nb_vote_vkrz", $vainkeur_id),
+                    "total_top"     => get_field("nb_top_vkrz", $vainkeur_id)
                 );
             }
         }
@@ -55,7 +58,7 @@ function get_best_vainkeur($type = "top", $period = NULL, $limit = 1) {
             "post_status"            => "publish",
             "update_post_meta_cache" => false,
             "no_found_rows"          => false,
-            "author__not_in"         => array(0, 1, 58), // To exclude vainkeur not registered (with no author)
+            "author__not_in"         => array(0, 1, 18, 58), // To exclude vainkeur not registered (with no author)
             "date_query"             => array(
                 array(
                     "after" => $period." days ago"
@@ -65,10 +68,8 @@ function get_best_vainkeur($type = "top", $period = NULL, $limit = 1) {
 
         if ($tops->have_posts()) {
 
-            $nb_vote_period = 0;
-            $nb_top_period  = 0;
-
             foreach ($tops->posts as $top_id) {
+
                 $author_id = get_post_field("post_author", $top_id);
 
                 $key = array_search($author_id, array_column($return, 'author_id'));
@@ -90,18 +91,21 @@ function get_best_vainkeur($type = "top", $period = NULL, $limit = 1) {
                         "no_found_rows"          => false,
                         "author"                 => $author_id,
                     ));
-                    $vainkeur_id = $vainkeur->posts[0];
 
-                    $return[] = array(
-                        "vainkeur_id"   => $vainkeur_id,
-                        "author_id"     => $author_id,
-                        "vote_period"   => $nb_vote_period,
-                        "top_period"    => $nb_top_period,
-                        "uuid"          => get_field("uuid_user_r", $top_id),
-                        "money"         => get_field("money_vkrz", $vainkeur_id),
-                        "total_vote"    => intval(get_field("nb_votes_r", $top_id)),
-                        "total_top"     => get_field("done_r", $top_id) == "done" ? 1 : 0
-                    );
+                    if($vainkeur->have_posts()){
+                        $vainkeur_id = $vainkeur->posts[0];
+
+                        $return[] = array(
+                            "vainkeur_id"   => $vainkeur_id,
+                            "author_id"     => $author_id,
+                            "vote_period"   => $nb_vote_period,
+                            "top_period"    => $nb_top_period,
+                            "uuid"          => get_field("uuid_user_r", $top_id),
+                            "money"         => get_field("money_vkrz", $vainkeur_id),
+                            "total_vote"    => intval(get_field("nb_votes_r", $top_id)),
+                            "total_top"     => get_field("done_r", $top_id) == "done" ? 1 : 0
+                        );
+                    }
                 }
             }
         }
