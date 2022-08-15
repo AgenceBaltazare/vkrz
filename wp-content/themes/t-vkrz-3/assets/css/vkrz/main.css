@@ -1102,10 +1102,6 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   font-size: 12px;
 }
 
-.users-ranks .dataTables_paginate {
-  display: none;
-}
-
 .nb-top-in-cat {
   font-size: 12px;
 }
@@ -2097,7 +2093,6 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
 .users-ranks .calc-resemblance {
   position: relative;
   border-radius: 0 !important;
-  opacity: 0.5;
   cursor: progress;
   pointer-events: none;
 }

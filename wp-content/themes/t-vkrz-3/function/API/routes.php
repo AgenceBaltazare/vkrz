@@ -54,6 +54,15 @@ add_action('rest_api_init', function () {
     ]
   ));
 
+  // Get number page for a Top
+  register_rest_route('vkrz/v1', '/getalltoplistnumberpage/(?P<id_top>\w+)', array(
+    'methods' => 'GET',
+    'callback' => 'get_numberpage',
+    'args' => [
+      'id_top'
+    ]
+  ));
+
   // Liste des TopList d'un Top
   register_rest_route('vkrz/v1', '/getalltoplistbyidtop/(?P<id_top>\w+)/(?P<page>\w+)', array(
     'methods' => 'GET',

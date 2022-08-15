@@ -1,4 +1,3 @@
-
 function maj_firebase_finish_top(id_top, id_vainkeur, id_ranking) {
 
     $.ajax({

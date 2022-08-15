@@ -55,35 +55,62 @@ $count_toplist        = count($list_toplist);
                 <div class="row">
                     <div class="col-md-8">
                         <section id="profile-info">
-                            <?php if ($list_toplist) : ?>
-                                <div class="card invoice-list-wrapper">
-                                    <div class="card-datatable table-responsive">
-                                        <table class="invoice-list-table table table-listuserranks">
-                                            <thead>
-                                                <tr>
-                                                    <th>
-                                                        <span class="text-muted">
-                                                            Pseudo
-                                                        </span>
-                                                    </th>
-
-                                                    <th>
-                                                        <span class="text-muted">
-                                                            Image
-                                                        </span>
-                                                    </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-
-                                            </tbody>
-                                        </table>
+                            <!-- CALCULATE RESEMBALNCE… -->
+                            <div class="card text-center calc-resemblance" data-idtop="<?php echo $id_top; ?>">
+                                <div class="card-body">
+                                    <div class="mb-50">
+                                        <span class="ico4 va va-duo va va-z-50"></span>
                                     </div>
+                                    <h2 class="font-weight-bolder mb-1 calc-resemblance-h1">
+                                        Loading TopLists…
+                                    </h2>
+                                    <h6 class="card-subtitle text-muted">
+                                        Notre algo maison va alors parcourir toutes les Toplist pour les comparer à la tienne et afficher le % de ressemblance.
+                                    </h6>
                                 </div>
-                            <?php endif; ?>
+                                <div class="bar"></div>
+                            </div>
 
-                            <button class="load__more">Load More</button>
+                            <div class="card invoice-list-wrapper table-card-container d-none">
+                                <div class="card-datatable table-responsive">
+                                    <table class="invoice-list-table table table-listuserranks">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    <span class="text-muted">
+                                                        Vainkeur
+                                                    </span>
+                                                </th>
 
+                                                <th>
+                                                    <span class="text-muted">
+                                                        Podium
+                                                    </span>
+                                                </th>
+
+                                                <th class="text-center shorted">
+                                                    <span class="text-muted">Ressemblance <span class="va va-updown va-z-15"></span></span>
+                                                </th>
+
+                                                <th class="text-center">
+                                                    <span class="text-muted">
+                                                        Action
+                                                    </span>
+                                                </th>
+
+
+                                                <th class="text-right">
+                                                    <span class="text-muted">
+                                                        Guetter
+                                                    </span>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </section>
                     </div>
                     <div class="col-md-4">
@@ -92,23 +119,6 @@ $count_toplist        = count($list_toplist);
 
                             <div class="infoelo">
                                 <div class="row">
-                                    <div class="col-12">
-                                        <!-- CALCULATE RESEMBALNCE… -->
-                                        <div class="card text-center calc-resemblance" data-idtop="<?php echo $id_top; ?>">
-                                            <div class="card-body">
-                                                <div class="mb-50">
-                                                    <span class="ico4 va va-duo va va-z-50"></span>
-                                                </div>
-                                                <h2 class="font-weight-bolder mb-1 calc-resemblance-h1">
-                                                    Calculer les ressemblances
-                                                </h2>
-                                                <h6 class="card-subtitle text-muted">
-                                                    Notre algo maison va alors parcourir toutes les Toplist pour les comparer à la tienne et afficher le % de ressemblance.
-                                                </h6>
-                                            </div>
-                                            <div class="bar"></div>
-                                        </div>
-                                    </div>
                                     <div class="col-6">
                                         <div class="card text-center">
                                             <div class="card-body">
