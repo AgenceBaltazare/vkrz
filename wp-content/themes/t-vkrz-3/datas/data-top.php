@@ -2,7 +2,6 @@
 /*
     Template Name: Data - Top
 */
-global $uuiduser;
 if (isset($_GET['id_top']) && !empty($_GET['id_top'])) {
     $id_top = $_GET['id_top'];
 }
@@ -21,7 +20,7 @@ $ranking_position       = array();
 foreach ($list_toplist as $ranking) :
 
     $user_ranking = get_user_ranking($ranking);
-    $pt = 0;
+    $pt           = 0;
 
     foreach ($user_ranking as $c) {
 

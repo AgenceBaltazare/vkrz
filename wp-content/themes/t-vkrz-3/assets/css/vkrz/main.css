@@ -4634,6 +4634,14 @@ select:-webkit-autofill:focus {
   background-image: url(../../images/emojis/crossed-swords_2694-fe0f.png);
 }
 
+.va-clapping {
+  background-image: url(../../images/emojis/clapping-hands_1f44f.png);
+}
+
+.va-seven {
+  background-image: url(../../images/emojis/keycap-digit-seven_37-fe0f-20e3.png);
+}
+
 .va-avis {
   background-image: url(../../images/emojis/glowing-star_1f31f.png);
 }

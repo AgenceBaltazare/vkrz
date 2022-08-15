@@ -1,6 +1,6 @@
 <?php
 function get_dodo(){
-    $dodo       = get_best_vainkeur("money_vkrz", "30", "1");
+    $dodo       = get_best_vainkeur("money_vkrz", "7", "1");
     $dodo_uuid  = $dodo[0]['uuid'];
     $dodo_infos = get_user_infos($dodo_uuid);
 

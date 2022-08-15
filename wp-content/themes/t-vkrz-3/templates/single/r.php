@@ -108,7 +108,7 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
                         S'INSCRIRE (ou se connecter)
                       </p>
                     </a>
-                  <?php elseif (get_field('uuid_user_r', $id_ranking) != $uuiduser && $id_top_global == 461704) : ?>
+                  <?php elseif (get_field('uuid_user_r', $id_ranking) != $uuid_vainkeur && $id_top_global == 461704) : ?>
                     <div class="doitbro mt-1">
                       <h1>Toi aussi participe au concours</h1>
                       <p>Pour tenter de gagner 1 des 3 bons d'achat d'une valeur de 50€, termine ta TopList et partage-la sur Twitter</p>
@@ -138,12 +138,12 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
                           <?php if (get_field('type_de_fin_t_sponso', $id_top_global) == "mail_1") : ?>
                             <form action="" method="post" name="form2" id="form-coupon">
                               <?php if (is_user_logged_in()) : ?>
-                                <input type="email" value="<?php echo $user_infos['user_email']; ?>" name="email-player-input" id="email-player-input" required>
+                                <input type="email" value="<?php echo $infos_vainkeur['user_email']; ?>" name="email-player-input" id="email-player-input" required>
                               <?php else : ?>
                                 <input type="email" placeholder="Mon adresse mail" name="email-player-input" id="email-player-input" required>
                               <?php endif; ?>
                               <input type="hidden" value="<?php echo $id_ranking; ?>" name="ranking" id="ranking">
-                              <input type="hidden" value="<?php echo $uuiduser; ?>" name="uuiduser" id="uuiduser">
+                              <input type="hidden" value="<?php echo $uuid_vainkeur; ?>" name="uuiduser" id="uuiduser">
                               <input type="hidden" value="<?php echo $id_top_global; ?>" name="top" id="top">
                               <input type="hidden" value="<?php echo $id_vainkeur; ?>" name="id_vainkeur" id="id_vainkeur">
                               <button class="btn" id="btn-coupon">
@@ -280,10 +280,29 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
 
                                   <?php get_template_part('partials/vainkeur-card'); ?>
 
-                                  <?php if ($vainkeur_data_selected['user_role']  != "anonyme") : ?>
-                                    <button type="button" id="followBtn" class="btn waves-effect d-none btn-follow" data-userid="<?= $user_id; ?>" data-uuid="<?= get_field('uuiduser_user', 'user_' . $user_id); ?>" data-relatedid="<?= $vainkeur_data_selected['id_user']; ?>" data-relateduuid="<?= get_field('uuiduser_user', 'user_' . $vainkeur_data_selected['id_user']);  ?>" data-text="<?= wp_get_current_user()->user_login ?> te guette !" data-url="<?= get_author_posts_url($user_id); ?>" title="Guetter" alt="Guetter">
-                                      <span class="wording">Guetter</span> <span class="va va-guetteur-close va va-z-20 emoji"></span>
-                                    </button>
+                                  <?php if ($vainkeur_data_selected['user_role'] != "anonyme") : ?>
+
+                                    <?php if (is_user_logged_in()) : ?>
+
+                                      <?php if ($vainkeur_data_selected && get_current_user_id() != $vainkeur_data_selected['id_user'] && is_user_logged_in()) : ?>
+
+                                        <button type="button" id="followBtn" class="btn waves-effect btn-follow d-none" data-userid="<?= get_current_user_id(); ?>" data-uuid="<?= get_field('uuiduser_user', 'user_' . get_current_user_id()); ?>" data-relatedid="<?= $vainkeur_data_selected['id_user']; ?>" data-relateduuid="<?= get_field('uuiduser_user', 'user_' . $vainkeur_data_selected['id_user']); ?>" data-text="<?= get_the_author_meta('nickname', get_current_user_id()); ?> te guette !" data-url="<?= get_author_posts_url(get_current_user_id()); ?>">
+                                          <span class="wording">Guetter</span>
+                                          <span class="va va-guetteur-close va va-z-20 emoji"></span>
+                                        </button>
+
+                                      <?php endif; ?>
+
+                                    <?php else : ?>
+
+                                      <a href="<?php the_permalink(get_page_by_path('se-connecter')); ?>" class="btn btn-flat-secondary waves-effect" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tu dois être connecté pour guetter <?php echo $vainkeur_data_selected['pseudo']; ?>">
+                                        <span class="text-muted">
+                                          <span class="wording">Guetter</span> <span class="va va-guetteur-close va va-z-20 emoji"></span>
+                                        </span>
+                                      </a>
+
+                                    <?php endif; ?>
+
                                   <?php endif; ?>
                                 </div>
 
