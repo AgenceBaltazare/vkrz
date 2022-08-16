@@ -177,7 +177,6 @@ function get_stats($data)
 function get_numberpage($data)
 {
 
-  $results              = array();
   $id_top               = $data['id_top'];
   $nb_items             = 100;
 
@@ -263,6 +262,103 @@ function get_all_toplist_by_id_top($data)
     );
   
   endwhile;
+
+  return $results;
+}
+
+function get_numberpage_vainkeur($data)
+{
+
+  $id_vainkeur          = $data['id_vainkeur'];
+  $nb_items             = 100;
+  $vainkeur_toplist     = get_user_toplist($id_vainkeur);
+  $total_items          = count($vainkeur_toplist);
+
+  return array(
+    'total_items' => $total_items,
+    'nb_pages'    => ceil($total_items / $nb_items),
+  );
+}
+
+function get_all_toplist_by_id_vainkeur($data)
+{
+
+  $results              = array();
+  $id_vainkeur          = $data['id_vainkeur'];
+  $page                 = $data['page'];
+  $vainkeur_toplist     = get_user_toplist($id_vainkeur);
+
+  $nb_items             = 50;
+  $val_min              = $nb_items * $page - $nb_items;
+  $val_max              = $nb_items * $page;
+
+  if($vainkeur_toplist){
+    
+    foreach(array_slice($vainkeur_toplist, $val_min, $val_max) as $toplist){
+
+      $id_top         = $toplist['id_top'];
+      $id_ranking     = $toplist['id_ranking'];
+      $typetop        = $toplist['typetop'];
+      $state          = $toplist['state'];
+      
+      $thumbnail    = get_the_post_thumbnail_url($id_top, 'thumbnail');
+      $top_link     = get_the_permalink($id_top);
+      $toplist_link = get_the_permalink($id_ranking);
+      $elo_link     = get_the_permalink(get_page_by_path('elo')) . "?id_top=" . $id_top;
+      $top_question = get_field('question_t', $id_top);
+
+      $nb_votes     = intval(get_field('nb_votes_r', $id_ranking));
+
+      if ($id_ranking) {
+        $top_type       = get_field('type_top_r', $id_ranking);
+        if ($top_type == "top3") {
+          $top_number = 3;
+        } else {
+          $top_number = get_field('count_contenders_t', $id_top);
+        }
+      } else {
+        $top_number = get_field('count_contenders_t', $id_top);
+      }
+
+      $list_cat   = get_the_terms($id_top, 'categorie');
+      $cat_id     = false;
+      if ($list_cat) {
+        foreach ($list_cat as $cat) {
+          $cat_id = $cat->term_id;
+        }
+      }
+      if ($cat_id) {
+        $cat_icon = get_field('icone_cat', 'term_' . $cat_id);
+      } else {
+        $cat_icon = "<span class='va va-crossed-swords va-lg'></span>";
+      }
+      $top_title    = "TOP " . $top_number . " " . $cat_icon . " " . get_the_title($id_top);
+
+      $user_top3    = get_user_ranking($id_ranking, 3);
+      $list_podium  = array();
+      foreach ($user_top3 as $contender) {
+        $list_podium[] = array(
+          'id_contender'      => $contender,
+          'nom_contender'     => get_the_title($contender),
+          'visuel_contender'  => get_the_post_thumbnail_url($contender, 'thumbnail'),
+        );
+      };
+
+      $results[] = array(
+        "id_top"            => $id_top,
+        "top_title"         => $top_title,
+        "typetop"           => $typetop,
+        "thumbnail"         => $thumbnail,
+        "top_link"          => $top_link,
+        "toplist_link"      => $toplist_link,
+        "top_question"      => $top_question,
+        "nb_votes"          => $nb_votes,
+        "elo_link"          => $elo_link,
+        "state"             => $state
+      );
+    
+    }
+  }
 
   return $results;
 }

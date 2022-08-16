@@ -62,6 +62,15 @@ add_action('rest_api_init', function () {
     ]
   ));
 
+  // Get number page for a vainkeur
+  register_rest_route('vkrz/v1', '/get_numberpage_vainkeur/(?P<id_vainkeur>\w+)', array(
+    'methods' => 'GET',
+    'callback' => 'get_numberpage_vainkeur',
+    'args' => [
+      'id_vainkeur'
+    ]
+  ));
+
   // Liste des TopList d'un Top
   register_rest_route('vkrz/v1', '/getalltoplistbyidtop/(?P<id_top>\w+)/(?P<page>\w+)', array(
     'methods' => 'GET',
@@ -71,5 +80,15 @@ add_action('rest_api_init', function () {
       'page'
     ]
   ));
-  
+
+  // Liste des TopList d'un Top
+  register_rest_route('vkrz/v1', '/getalltoplistbyidvainkeur/(?P<id_vainkeur>\w+)/(?P<page>\w+)', array(
+    'methods' => 'GET',
+    'callback' => 'get_all_toplist_by_id_vainkeur',
+    'args' => [
+      'id_vainkeur',
+      'page'
+    ]
+  ));
+
 });
