@@ -302,24 +302,15 @@ foreach ($list_user_toplists as $top) {
                       <div class="col-12">
                         <div class="card invoice-list-wrapper">
                           <div class="card-datatable table-responsive">
-
-                            <button 
-                              type="button" 
-                              class="btn btn-primary waves-effect waves-float waves-light load_more_toplists" 
-                              spellcheck="false"
-                            >
-                              Load all
-                            </button>
-
                             <table class="invoice-list-table table table-4 fetch-table" data-idVainkeur="<?= $id_vainkeur_to_watch; ?>">
                               <thead>
                                 <tr>
                                   <th class="">
                                     <span class="text-muted nb_top_vkrz">
-                                      <?php if ($infos_vainkeur_to_watch['nb_top_vkrz'] > 1) : ?>
-                                        <span class="t-rose"><?php echo $infos_vainkeur_to_watch['nb_top_vkrz']; ?></span> Tops terminés
+                                      <?php if ($infos_vainkeur_to_watch['nb_top_vkrz'] >= 25) : ?>
+                                        Liste des <span class="t-rose">25</span> dernières TopList
                                       <?php else : ?>
-                                        <span class="t-rose"><?php echo $infos_vainkeur_to_watch['nb_top_vkrz']; ?></span> Top terminé
+                                        <span class="t-rose"><?php echo $infos_vainkeur_to_watch['nb_top_vkrz']; ?></span> TopList
                                       <?php endif; ?>
                                     </span>
                                   </th>
@@ -399,6 +390,14 @@ foreach ($list_user_toplists as $top) {
                               </tbody>
                             </table>
                           </div>
+                        </div>
+                        <div class="loadmore-container text-center mt-1">
+                          <button type="button" class="btn btn-outline-primary waves-effect waves-float waves-light load_more_toplists" spellcheck="false">
+                            Afficher les <?php echo $infos_vainkeur_to_watch['nb_top_vkrz']; ?> TopList <br>
+                            <span class="text-muted">
+                              Cela peut prendre quelques instants 🙃
+                            </span>
+                          </button>
                         </div>
                       </div>
                     </div>
