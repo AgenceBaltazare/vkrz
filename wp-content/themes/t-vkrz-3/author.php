@@ -302,11 +302,20 @@ foreach ($list_user_toplists as $top) {
                       <div class="col-12">
                         <div class="card invoice-list-wrapper">
                           <div class="card-datatable table-responsive">
-                            <table class="invoice-list-table table table-4">
+
+                            <button 
+                              type="button" 
+                              class="btn btn-primary waves-effect waves-float waves-light load_more_toplists" 
+                              spellcheck="false"
+                            >
+                              Load all
+                            </button>
+
+                            <table class="invoice-list-table table table-4 fetch-table" data-idVainkeur="<?= $id_vainkeur_to_watch; ?>">
                               <thead>
                                 <tr>
                                   <th class="">
-                                    <span class="text-muted">
+                                    <span class="text-muted nb_top_vkrz">
                                       <?php if ($infos_vainkeur_to_watch['nb_top_vkrz'] > 1) : ?>
                                         <span class="t-rose"><?php echo $infos_vainkeur_to_watch['nb_top_vkrz']; ?></span> Tops terminés
                                       <?php else : ?>
@@ -327,7 +336,7 @@ foreach ($list_user_toplists as $top) {
                               </thead>
                               <tbody>
                                 <?php
-                                foreach (array_slice($list_t_done, 0, 350) as $r_user) :
+                                foreach (array_slice($list_t_done, 0, 50) as $r_user) :
                                   $list_type    = array();
                                   $get_top_type = get_the_terms($r_user['id_top'], 'type');
                                   if ($get_top_type) {

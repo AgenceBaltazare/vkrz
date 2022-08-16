@@ -305,7 +305,7 @@ const guetteurFunc = async () => {
           try {
             let q = query(
               collection(database, "notifications"),
-              where("notifText", "==", `${vainkeurPseudo} te guette !`),
+              where("userId", "==", currentUserId),
               where("relatedId", "==", idVainkeurProfil)
             );
             let querySnapshot = await getDocs(q);
