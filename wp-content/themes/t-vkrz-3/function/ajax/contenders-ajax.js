@@ -36,7 +36,7 @@ $(document).ready(function ($) {
         $("#c_2").addClass("animate__headShake");
         $("#c_1").addClass("animate__fadeOutDown");
       }
-      
+
       // Variables
       const id_top = $(this).find(".contender_zone").data("id-top");
       const id_ranking = $(this).find(".contender_zone").data("id-ranking");
@@ -55,17 +55,21 @@ $(document).ready(function ($) {
           current_id_vainkeur: id_vainkeur,
         },
       })
-      .done(function (response) {
+        .done(function (response) {
           let data = JSON.parse(response);
 
           if (data.level_up !== undefined && data.level_up) {
             $(".dropdown-user-link .user-niveau").html(data.user_level_icon);
 
-            toastr['success']('Tu passes au niveau ' + data.level_emoji, 'Félicitations', {
-              closeButton: true,
-              tapToDismiss: false,
-              progressBar: true
-            });
+            toastr["success"](
+              "Tu passes au niveau " + data.level_emoji,
+              "Félicitations",
+              {
+                closeButton: true,
+                tapToDismiss: false,
+                progressBar: true,
+              }
+            );
 
             window.dataLayer.push({
               event: "track_event",
@@ -136,14 +140,13 @@ $(document).ready(function ($) {
             utm: vkrz_tracking_vars_top.utm_layer,
             event_score: 1,
           });
-        
+
           // Save ELO score
           maj_elo_firebase(id_winner, id_looser);
 
           if (!data.is_next_duel) {
-            
             $(".waiter").show();
-            
+
             maj_firebase_finish_top(id_top, id_vainkeur, id_ranking);
 
             window.dataLayer.push({
@@ -160,48 +163,46 @@ $(document).ready(function ($) {
               event_score: 20,
             });
 
-            $(location).attr("href", link_to_ranking);
+            // CHECK IF THERE IS SOME FOLLOWERS (CAN BE ALSO A FRIENDS), SEND NOTIFICATIONS TO THEM AND GO THE RANKING PAGE…
+            (async function () {
+              // FUNCTION TO SORT CONTENDERS…
+              const sortContenders = function (contenders) {
+                let contendersArr = [],
+                  contendersArrPlaces = [],
+                  contendersArrIDs = [];
 
-            // FUNCTION TO SORT CONTENDERS…
-            const sortContenders = function (contenders) {
-              let contendersArr = [],
-                contendersArrPlaces = [],
-                contendersArrIDs = [];
+                for (let contender of contenders) {
+                  delete contender.c_name;
+                  delete contender.elo;
+                  delete contender.id;
+                  delete contender.less_to;
+                  delete contender.more_to;
+                  delete contender.ratio;
+                  delete contender.image;
 
-              for (let contender of contenders) {
-                delete contender.c_name;
-                delete contender.elo;
-                delete contender.id;
-                delete contender.less_to;
-                delete contender.more_to;
-                delete contender.ratio;
-                delete contender.image;
+                  contendersArr.push(contender);
+                  contendersArrPlaces.push(contender.place);
 
-                contendersArr.push(contender);
-                contendersArrPlaces.push(contender.place);
+                  contendersArrIDs.push(contender.id_wp);
+                }
+                contendersArr.sort(function (a, b) {
+                  return b.place - a.place;
+                });
+                contendersArrPlaces
+                  .sort(function (a, b) {
+                    return b - a;
+                  })
+                  .reverse();
+                for (let j = 0; j < contendersArr.length; j++) {
+                  contendersArr[j].place = contendersArrPlaces[j];
+                }
+                contenders = contendersArr;
 
-                contendersArrIDs.push(contender.id_wp);
-              }
-              contendersArr.sort(function (a, b) {
-                return b.place - a.place;
-              });
-              contendersArrPlaces
-                .sort(function (a, b) {
-                  return b - a;
-                })
-                .reverse();
-              for (let j = 0; j < contendersArr.length; j++) {
-                contendersArr[j].place = contendersArrPlaces[j];
-              }
-              contenders = contendersArr;
+                return contenders;
+              };
+              let myContenders = sortContenders(data.toplist);
 
-              return contenders;
-            };
-            let myContenders = sortContenders(data.toplist);
-
-            // CHECK IF THERE IS SOME FOLLOWERS (CAN BE ALSO A FRIENDS), AND SEND TO THEM… 💥
-            async function checkFollowerBeforeSend() {
-              const q1 = query(
+              const followersQuery = query(
                 collection(database, "notifications"),
                 where("notifType", "==", "follow"),
                 where(
@@ -210,12 +211,12 @@ $(document).ready(function ($) {
                   vkrz_tracking_vars_user.id_user_layer.toString()
                 )
               );
-              const querySnapshot1 = await getDocs(q1);
+              const followersQuerySnapshot = await getDocs(followersQuery);
 
-              // THERE IS NO FOLLOWERS, SO YOU STOP HERE… 😿
-              if (querySnapshot1._snapshot.docs.size === 0) return;
+              if (followersQuerySnapshot._snapshot.docs.size === 0) return; // THERE IS NO FOLLOWERS, SO YOU STOP HERE… 
 
-              const q2 = query(
+              // FRIENDS PROCESS FIRST…
+              const followingQuery = query(
                 collection(database, "notifications"),
                 where("notifType", "==", "follow"),
                 where(
@@ -224,25 +225,23 @@ $(document).ready(function ($) {
                   vkrz_tracking_vars_user.id_user_layer.toString()
                 )
               );
-              const querySnapshot2 = await getDocs(q2);
+              const followingQuerySnapshot = await getDocs(followingQuery);
 
-              /* GET FRIENDS & FOLLOWERS… 👀 */
-
-              // FRIENDS PROCESS…
               let friends = [],
                 followers = [];
-              querySnapshot1.forEach((data1) => {
-                followers.push(data1.data());
-                querySnapshot2.forEach((data2) => {
-                  if (data1.data().userId == data2.data().relatedId) {
-                    friends.push(data1.data());
+              followersQuerySnapshot.forEach((follower) => {
+                followers.push(follower.data());
+                followingQuerySnapshot.forEach((following) => {
+                  if (follower.data().userId == following.data().relatedId) {
+                    friends.push(follower.data());
                   }
                 });
               });
+
               friends.forEach((friend) => {
-                async function checkFriendTop() {
+                (async function () {
                   // CHECK IF THE FRIEND ALREADY PASSED THE TOP OR NOT… 🤙
-                  const q3 = query(
+                  const didRankingQuery = query(
                     collection(database, "wpClassement"),
                     where("author.id", "==", friend["userId"]),
                     where(
@@ -250,23 +249,18 @@ $(document).ready(function ($) {
                       "==",
                       vkrz_tracking_vars_top.top_id_top_layer.toString()
                     ),
-                    where("custom_fields.done_r", "==", "done"),
+                    where("custom_fields.done_r", "==", "done")
                   );
-                  const querySnapshot3 = await getDocs(
-                    q3
-                  );
+                  const didRankingQuerySnapshot = await getDocs(didRankingQuery);
                   let notifText = "";
 
-                  if (querySnapshot3._snapshot.docs.size === 0) {
+                  if (didRankingQuerySnapshot._snapshot.docs.size === 0) {
                     notifText = `${vkrz_tracking_vars_user.pseudo_user_layer} a terminé une nouvelle TopList!`;
                   } else {
-                    /* DID THE TOP… 😻 */
-
-                    // GET FRIEND RANKING, AND SORT IT…
-                    querySnapshot3.forEach((data) => {
-                      let contenders = sortContenders(
-                        data.data().custom_fields.ranking_r
-                      );
+                    // GET FRIEND RANKING, SORT IT AND COMPARE IT…
+                    let contenders;
+                    didRankingQuerySnapshot.forEach((ranking) => {
+                      contenders = sortContenders(ranking.data().custom_fields.ranking_r);
 
                       // COMPARE IT WITH MY RANKING…
                       const sameRankingFunc = function (obj1, obj2) {
@@ -305,7 +299,7 @@ $(document).ready(function ($) {
                     });
                   }
 
-                  async function sendToFriend() {
+                  (async function () {
                     try {
                       const newRankingFollow = await addDoc(
                         collection(database, "notifications"),
@@ -316,22 +310,20 @@ $(document).ready(function ($) {
                           relatedUuid: friend["uuid"],
                           notifText: notifText,
                           notifLink: link_to_ranking,
-                          notifType: "Ranking Notification",
+                          notifType: "Ranking To Friend Notification",
                           statut: "nouveau",
                           createdAt: new Date(),
                         }
                       );
                       console.log(
-                        "Notification sent with ID: ",
+                        "Notification sent to friend with ID: ",
                         newRankingFollow.id
                       );
                     } catch (error) {
                       console.error("Error adding document: ", error);
                     }
-                  }
-                  sendToFriend();
-                }
-                checkFriendTop();
+                  })();
+                })();
               });
 
               // GET ONLY FOLLOWERS…
@@ -349,7 +341,7 @@ $(document).ready(function ($) {
 
               // SEND TO FOLLOWERS NOTIFICATION…
               followers.forEach((follower) => {
-                async function sendToFollower() {
+                (async function () {
                   try {
                     const newRankingFollow = await addDoc(
                       collection(database, "notifications"),
@@ -360,28 +352,28 @@ $(document).ready(function ($) {
                         relatedUuid: follower["uuid"],
                         notifText: `${vkrz_tracking_vars_user.pseudo_user_layer} vient de terminer une TopList`,
                         notifLink: link_to_ranking,
-                        notifType: "Ranking Notification",
+                        notifType: "Ranking To Follower Notification",
                         statut: "nouveau",
                         createdAt: new Date(),
                       }
                     );
                     console.log(
-                      "Notification sent with ID: ",
+                      "Notification sent to follower with ID: ",
                       newRankingFollow.id
                     );
                   } catch (error) {
                     console.error("Error adding document: ", error);
                   }
-                }
-                sendToFollower();
+                })();
               });
-            }
-            checkFollowerBeforeSend();
+
+              $(location).attr("href", link_to_ranking); // GO TO RANKING PAGE NOW…
+            })();
           }
-      })
-      .always(function () {
-        ajaxRunning = false;
-      });
+        })
+        .always(function () {
+          ajaxRunning = false;
+        });
     }
   });
 });

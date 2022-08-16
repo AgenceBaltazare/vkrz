@@ -10,7 +10,7 @@ import {
   database,
 } from "./config.js";
 
-const guetteurFunc = async () => {
+(async function renderGuetteur() {
   let tbody = document.querySelector("tbody"),
     html = "";
 
@@ -292,7 +292,7 @@ const guetteurFunc = async () => {
         $(".table-amigos").DataTable().clear();
         $(".table-amigos").DataTable().destroy();
 
-        guetteurFunc();
+        renderGuetteur();
       });
     });
 
@@ -332,7 +332,7 @@ const guetteurFunc = async () => {
               $(".table-amigos").DataTable().clear();
               $(".table-amigos").DataTable().destroy();
 
-              guetteurFunc();
+              renderGuetteur();
             }
           } catch (error) {
             console.error("Error adding document: ", error);
@@ -375,5 +375,4 @@ const guetteurFunc = async () => {
         $(".table-amigos").DataTable().columns().search("").draw();
       });
   }
-};
-guetteurFunc();
+})();

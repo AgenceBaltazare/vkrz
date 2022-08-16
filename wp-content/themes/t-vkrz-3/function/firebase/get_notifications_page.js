@@ -9,66 +9,70 @@ import {
   orderBy,
 } from "./config.js";
 
-const q = query(
-  collection(database, "notifications"),
-  where("relatedId", "==", currentUserId),
-  orderBy("createdAt", "desc")
-);
-const querySnapshot = await getDocs(q);
+const table = document.querySelector(".table-notifications"),
+      tbody = table.querySelector("tbody");
 
-const secondsToStr = function (secondes) {
-  function numberEnding(number) {
-    return number > 1 ? "s" : "";
-  }
+(async function renderNotifs() {
+  const notifsQuery = query(
+    collection(database, "notifications"),
+    where("relatedId", "==", currentUserId),
+    orderBy("createdAt", "desc")
+  );
+  const notifsQuerySnapshot = await getDocs(notifsQuery);
 
-  let temp = Math.floor(secondes / 1000);
-  let years = Math.floor(temp / 31536000);
-  if (years) {
-    return years + " ans" + numberEnding(years);
-  }
-  let days = Math.floor((temp %= 31536000) / 86400);
-  if (days) {
-    return days + " jour" + numberEnding(days);
-  }
-  let hours = Math.floor((temp %= 86400) / 3600);
-  if (hours) {
-    return hours + " heure" + numberEnding(hours);
-  }
-  let minutes = Math.floor((temp %= 3600) / 60);
-  if (minutes) {
-    return minutes + " minute" + numberEnding(minutes);
-  }
-  let seconds = temp % 60;
-  if (seconds) {
-    return seconds + " seconde" + numberEnding(seconds);
-  }
-  return "less than a second"; //'just now' //or other string you like;
-};
+  const secondsToStr = function (secondes) {
+    function numberEnding(number) {
+      return number > 1 ? "s" : "";
+    }
 
-const tbody = document.querySelector("tbody");
-let row = "";
+    let temp = Math.floor(secondes / 1000);
+    let years = Math.floor(temp / 31536000);
+    if (years) {
+      return years + " ans" + numberEnding(years);
+    }
+    let days = Math.floor((temp %= 31536000) / 86400);
+    if (days) {
+      return days + " jour" + numberEnding(days);
+    }
+    let hours = Math.floor((temp %= 86400) / 3600);
+    if (hours) {
+      return hours + " heure" + numberEnding(hours);
+    }
+    let minutes = Math.floor((temp %= 3600) / 60);
+    if (minutes) {
+      return minutes + " minute" + numberEnding(minutes);
+    }
+    let seconds = temp % 60;
+    if (seconds) {
+      return seconds + " seconde" + numberEnding(seconds);
+    }
+    return "less than a second"; //'just now' //or other string you like;
+  };
 
-if (querySnapshot._snapshot.docs.size !== 0) {
-  let notificationsUsersUuids = [];
-  querySnapshot.forEach((notification) => {
-    notificationsUsersUuids.push(notification.data().uuid);
-  });
+  let html = "";
+  if (notifsQuerySnapshot._snapshot.docs.size !== 0) {
+    let notificationsUsersUuids = [],
+      notificationsIDs = [];
+    notifsQuerySnapshot.forEach((notification) => {
+      notificationsUsersUuids.push(notification.data().uuid);
+      notificationsIDs.push(notification.id);
+    });
 
-  const asyncFunc = async () => {
+    // GET USERS DATA FIRST…
     const map = new Map();
     await Promise.all(
       notificationsUsersUuids.map(async (uuid) => {
         await fetch(`https://vainkeurz.com/wp-json/vkrz/v1/getuserinfo/${uuid}`)
-          .then((res) => res.json())
-          .then((response) => map.set(uuid, response));
+          .then((response) => response.json())
+          .then((data) => map.set(uuid, data));
       })
     );
 
-    querySnapshot.forEach((notification) => {
+    notifsQuerySnapshot.forEach((notification) => {
       let secondes =
         new Date().getTime() - notification.data().createdAt.seconds * 1000;
 
-      row += `
+      html += `
         <tr role="row" class="odd" id="row" data-id="${notification.id}">
           <td>
             <div class="media-body">
@@ -115,38 +119,78 @@ if (querySnapshot._snapshot.docs.size !== 0) {
         </tr>
       `;
     });
-    tbody.innerHTML = row;
+    tbody.innerHTML = html;
 
-    $(".table-notifications").DataTable({
-      autoWidth: false,
-      lengthMenu: [25],
-      pagingType: "full_numbers",
-      columns: [
-        { orderable: false },
-        { orderable: true },
-        { orderable: true },
-      ],
-      language: {
-        search: "_INPUT_",
-        searchPlaceholder: "Rechercher...",
-        processing: "Traitement en cours...",
-        info: "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
-        infoEmpty:
-          "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
-        infoFiltered:
-          "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
-        infoPostFix: "",
-        loadingRecords: "Chargement en cours...",
-        zeroRecords: "Aucun &eacute;l&eacute;ment &agrave; afficher 😩",
-        emptyTable: "Aucun résultat trouvé 😩",
-        paginate: {
-          first: "Premier",
-          previous: "Pr&eacute;c&eacute;dent",
-          next: "Suivant",
-          last: "Dernier",
+    if (!$.fn.DataTable.isDataTable(".table-notifications")) {
+      $(".table-notifications").DataTable({
+        autoWidth: false,
+        lengthMenu: [25],
+        pagingType: "full_numbers",
+        columns: [
+          { orderable: false },
+          { orderable: true },
+          { orderable: true },
+        ],
+        language: {
+          search: "_INPUT_",
+          searchPlaceholder: "Rechercher...",
+          processing: "Traitement en cours...",
+          info: "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
+          infoEmpty:
+            "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
+          infoFiltered:
+            "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+          infoPostFix: "",
+          loadingRecords: "Chargement en cours...",
+          zeroRecords: "Aucun &eacute;l&eacute;ment &agrave; afficher 😩",
+          emptyTable: "Aucun résultat trouvé 😩",
+          paginate: {
+            first: "Premier",
+            previous: "Pr&eacute;c&eacute;dent",
+            next: "Suivant",
+            last: "Dernier",
+          },
         },
-      },
-      order: [],
+        order: [],
+      });
+    }
+
+    // VIEW ONLY STATUT nouveau…
+    document
+      .querySelector(".notifs_statut_nouveau")
+      .addEventListener("click", function () {
+        $(".table-notifications")
+          .DataTable()
+          .column(1)
+          .search("Nouveau")
+          .draw();
+      });
+
+    // VIEW ALL NOTIFICATIONS…
+    document
+      .querySelector(".notifs_statut_all")
+      .addEventListener("click", function () {
+        $(".table-notifications").DataTable().columns().search("").draw();
+      });
+
+    // READ ALL OF NOTIFICATIONS AT ONCE…
+    document.querySelector(".notifs_read_all").addEventListener("click", () => {
+      notificationsIDs.forEach((id) => {
+        async function updateDocFunc() {
+          const updateClick = doc(database, "notifications", id);
+          let dataJSON = `{"statut": "vu"}`;
+          let json = JSON.parse(dataJSON);
+          await updateDoc(updateClick, json);
+        }
+        updateDocFunc();
+      });
+
+      html = "";
+
+      $(".table-notifications").DataTable().clear();
+      $(".table-notifications").DataTable().destroy();
+
+      renderNotifs();
     });
 
     // PROCESS TO UPDATE STATUT… 🎺
@@ -164,9 +208,15 @@ if (querySnapshot._snapshot.docs.size !== 0) {
         updateDocFunc();
       });
     });
-  };
-  asyncFunc();
-} else {
-  tbody.innerHTML =
-    "<tr><td>Pas de notification pour le moment 😪</td><td></td><td></td><td></td><td></td></tr>";
-}
+  } else {
+    tbody.innerHTML = ` 
+      <tr>
+        <td>Pas de notification pour le moment 😪</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    `;
+  }
+})();
