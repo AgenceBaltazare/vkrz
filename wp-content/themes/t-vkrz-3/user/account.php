@@ -311,7 +311,16 @@ if ($list_user_toplists) {
                       <div class="col-12">
                         <div class="card invoice-list-wrapper">
                           <div class="card-datatable table-responsive">
-                            <table class="invoice-list-table table table-tdone">
+
+                          <button 
+                              type="button" 
+                              class="btn btn-primary waves-effect waves-float waves-light load_more_toplists" 
+                              spellcheck="false"
+                            >
+                              Load all
+                            </button>
+
+                            <table class="invoice-list-table table table-tdone fetch-table" data-idVainkeur="<?= $id_vainkeur; ?>">
                               <thead>
                                 <tr>
                                   <th class="">

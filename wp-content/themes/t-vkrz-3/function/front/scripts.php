@@ -104,5 +104,10 @@ function load_css_js()
   if (is_page('Liste des Tops !')) {
     wp_enqueue_script('calc_resemblance', get_template_directory_uri() . '/function/firebase/calc_resemblance.js', array(), $template_version, true);
   }
+
+  // FETCH TOPLISTS is_author() OR is_page(get_page_by_path('mon-compte'))…
+  if (is_author() ||is_page(get_page_by_path('mon-compte'))  ) {
+    wp_enqueue_script('fetch_toplist_by_vainkeur', get_template_directory_uri() . '/function/firebase/fetch_toplist_by_vainkeur.js', array(), $template_version, true);
+  }
 }
 add_action('wp_enqueue_scripts', 'load_css_js');
