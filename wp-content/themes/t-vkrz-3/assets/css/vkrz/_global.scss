@@ -861,3 +861,17 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
         font-size: 12px;
     }
 }
+
+.list-php{
+    .pagination{
+        display: none !important;
+    }
+}
+
+.list-js{
+    display: none;
+}
+
+.loader-list{
+    display: none;
+}

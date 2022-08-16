@@ -23,6 +23,14 @@ let nombrePages            = data.nb_pages,
     typeTopWording         = "";
 
 loadAllTopListsBtn.addEventListener("click", () => {
+
+  $(loadAllTopListsBtn).hide();
+  $('.list-php').hide();
+  $('.loader-list').show();
+  var aTag = $("#ancore");
+  $('html,body').animate({ scrollTop: aTag.offset().top }, 'slow');
+
+
   // INIT LOADER…
   tbody.innerHTML = `
     <!-- data load from firebase -->
@@ -126,6 +134,9 @@ loadAllTopListsBtn.addEventListener("click", () => {
 
       if(i === nombrePages) {
         tbody.innerHTML = row;
+
+        $('.loader-list').hide();
+        $(".list-js").show();
 
         // INIT DATATABLES…
         $(".fetch-table").DataTable({

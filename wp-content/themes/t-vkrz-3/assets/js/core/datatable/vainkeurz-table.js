@@ -61,10 +61,9 @@ $(".table-tbegin").DataTable({
     order: [],
 });
 
-/* $(".table-tdone").DataTable({
+$(".table-toplist-done").DataTable({
     autoWidth: true,
     lengthMenu: [25],
-    pagingType: "full_numbers",
     columns: [
         { orderable: false },
         { orderable: false },
@@ -91,7 +90,7 @@ $(".table-tbegin").DataTable({
     },
     },
     order: [],
-}); */
+});
 
 $(".table-vainkeurz").DataTable({
     autoWidth: true,
