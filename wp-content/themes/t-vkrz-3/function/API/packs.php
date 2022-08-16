@@ -354,6 +354,7 @@ function get_all_toplist_by_id_vainkeur($data)
         "top_question"      => $top_question,
         "nb_votes"          => $nb_votes,
         "elo_link"          => $elo_link,
+        "podium"            => $list_podium,
         "state"             => $state
       );
     
