@@ -1,0 +1,37 @@
+{
+  "projectType": "application",
+  "root": "integrate-firebase-PRO",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "webpack --env production=true --env pluginName=integrate-firebase-PRO"
+          }
+        ],
+        "parallel": false
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "webpack --watch --env pluginName=integrate-firebase-PRO"
+          }
+        ],
+        "parallel": false
+      }
+    },
+    "package": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": ["sh scripts/pro.sh"],
+        "cwd": ".",
+        "parallel": false
+      }
+    }
+  },
+  "tags": ["type:app"]
+}
