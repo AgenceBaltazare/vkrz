@@ -270,7 +270,7 @@ function get_numberpage_vainkeur($data)
 {
 
   $id_vainkeur          = $data['id_vainkeur'];
-  $nb_items             = 100;
+  $nb_items             = 25;
   $vainkeur_toplist     = get_user_toplist($id_vainkeur);
   $total_items          = count($vainkeur_toplist);
 
@@ -288,7 +288,7 @@ function get_all_toplist_by_id_vainkeur($data)
   $page                 = $data['page'];
   $vainkeur_toplist     = get_user_toplist($id_vainkeur);
 
-  $nb_items             = 50;
+  $nb_items             = 25;
   $val_min              = $nb_items * $page - $nb_items;
   $val_max              = $nb_items * $page;
 

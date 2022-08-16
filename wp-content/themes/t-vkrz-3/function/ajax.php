@@ -39,12 +39,6 @@ function vkzr_do_transaction(){
     do_transaction($_POST['id_produit'], $_POST['user_uuid'], $_POST['price'], $_POST['user_email'], $_POST['idvainkeur']);
 }
 
-add_action( 'wp_ajax_vkzr_process_commentaire_note', 'vkzr_process_commentaire_note' );
-add_action( 'wp_ajax_nopriv_vkzr_process_commentaire_note', 'vkzr_process_commentaire_note' );
-function vkzr_process_commentaire_note() {
-    do_commentaire_note($_POST['id_top'], $_POST['uuiduser'], $_POST['commentaire_note']);
-}
-
 add_action( 'wp_ajax_vkzr_begin_t', 'vkzr_begin_t' );
 add_action( 'wp_ajax_nopriv_vkzr_begin_t', 'vkzr_begin_t' );
 function vkzr_begin_t() {

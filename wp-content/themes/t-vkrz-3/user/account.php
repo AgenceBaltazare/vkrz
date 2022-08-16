@@ -345,7 +345,7 @@ if ($list_user_toplists) {
                               </thead>
                               <tbody>
                                 <?php
-                                foreach (array_slice($list_t_done, 0, 350) as $top) : ?>
+                                foreach (array_slice($list_t_done, 0, 25) as $top) : ?>
                                   <?php if (!get_field('private_t', $top['id_top'])) : ?>
                                     <tr id="top-<?php echo $top['id_ranking']; ?>">
                                       <td>

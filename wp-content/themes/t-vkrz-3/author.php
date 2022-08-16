@@ -336,7 +336,7 @@ foreach ($list_user_toplists as $top) {
                               </thead>
                               <tbody>
                                 <?php
-                                foreach (array_slice($list_t_done, 0, 50) as $r_user) :
+                                foreach (array_slice($list_t_done, 0, 25) as $r_user) :
                                   $list_type    = array();
                                   $get_top_type = get_the_terms($r_user['id_top'], 'type');
                                   if ($get_top_type) {
