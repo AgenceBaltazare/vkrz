@@ -90,6 +90,8 @@ function checkGuetterButton() {
                     );
                     console.log("Notification sent with ID: ", newFollow.id);
                     followBtn.setAttribute("data-documentId", newFollow.id);
+                  } else {
+                    console.log("FOUND IN FIRESTORE…");
                   }
                 } catch (error) {
                   console.error("Error adding document: ", error);
