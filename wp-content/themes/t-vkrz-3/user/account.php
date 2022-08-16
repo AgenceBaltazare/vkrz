@@ -155,7 +155,7 @@ if ($list_user_toplists) {
               </div>
             </div>
 
-            <div id="levelbloc" class="col-lg-9 col-12 order-1 order-lg-2">
+            <div id="ancore" class="col-lg-9 col-12 order-1 order-lg-2">
               <section class="app-user-view">
                 <div class="row match-height">
                   <div class="col-sm-3">
@@ -282,7 +282,7 @@ if ($list_user_toplists) {
                   </div>
                 </div>
               </section>
-              <section id="basic-tabs-components">
+              <section id=" basic-tabs-components">
                 <ul class="nav nav-tabs" role="tablist">
                   <li class="nav-item">
                     <a class="nav-link active" id="profileIcon-tab" data-toggle="tab" href="#tab2" aria-controls="profile" role="tab" aria-selected="false">
