@@ -211,7 +211,7 @@ if (document.querySelector(".vs-resemblance")) {
 
 // TOPLIST COMMENTS…
 const toplistCommentsCard = document.querySelector(".toplist_comments"),
-  sendCommentBtn          = toplistCommentsCard.querySelector("#send_comment_btn"),
+  sendCommentBtn          = document.querySelector("#send_comment_btn"),
   idRanking               = toplistCommentsCard.dataset.idranking,
   urlRanking              = toplistCommentsCard.dataset.urlranking,
   authorid                = toplistCommentsCard.dataset.authorid,
