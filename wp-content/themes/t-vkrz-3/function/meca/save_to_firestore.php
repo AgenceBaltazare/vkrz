@@ -12,7 +12,7 @@ function save_elo_to_firestore($contender_1, $contender_2){
 
     wp_update_post(array('ID' => $contender_1));
     wp_update_post(array('ID' => $contender_2));
-
+    
 }
 
 function save_elo_to_firestore_delete($id_ranking, $id_vainkeur){

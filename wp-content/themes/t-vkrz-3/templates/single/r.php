@@ -628,7 +628,7 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
         </div>
         <ul>
           <li>
-            <a href="javascript: void(0)" class="sharelinkbtn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copier le lien de ton Classement">
+            <a href="javascript: void(0)" class="sharelinkbtn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copier le lien de ta TopList">
               <input type="text" value="<?php echo $url_ranking; ?>" class="input_to_share">
               <i class="social-media fas fa-paperclip"></i> Copier le lien de la TopList
             </a>

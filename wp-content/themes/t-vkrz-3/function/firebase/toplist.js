@@ -503,11 +503,9 @@ if (topListCommentsLength !== 0) {
   commentsContainer.innerHTML = `<span style="color: #A9A9AC;">Aucun jugement pour le moment - Soit le 1er</span>`;
 }
 
-if (sendCommentBtn){
-  sendCommentBtn.addEventListener("click", validComment);
-  commentArea.addEventListener("keypress", (e) => {
-    if (13 == e.keyCode) {
-      e.preventDefault(); validComment();
-    }
-  });
-}
+sendCommentBtn.addEventListener("click", validComment);
+commentArea.addEventListener("keypress", (e) => {
+  if (13 == e.keyCode) { 
+    e.preventDefault(); validComment();  
+  }
+});
