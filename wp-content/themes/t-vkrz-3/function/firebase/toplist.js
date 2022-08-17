@@ -13,10 +13,10 @@ import {
 
 if (document.querySelector(".vs-resemblance")) {
   const cardResemblance = document.querySelector(".vs-resemblance");
-  const idRanking       = cardResemblance.dataset.idranking;
-  const idTop           = cardResemblance.dataset.idtop;
-  const rankingUrl      = cardResemblance.dataset.rankingUrl;
-  const topUrl          = cardResemblance.dataset.topurl;
+  const idRanking = cardResemblance.dataset.idranking;
+  const idTop = cardResemblance.dataset.idtop;
+  const rankingUrl = cardResemblance.dataset.rankingUrl;
+  const topUrl = cardResemblance.dataset.topurl;
 
   // CHECK IF IT IS MY RANKING OR NOT…
   const rankingQuery = query(
@@ -209,87 +209,92 @@ if (document.querySelector(".vs-resemblance")) {
   }
 }
 
-// TOPLIST COMMENTS…
-const toplistCommentsCard = document.querySelector(".toplist_comments"),
-  sendCommentBtn          = toplistCommentsCard.querySelector("#send_comment_btn"),
-  idRanking               = toplistCommentsCard.dataset.idranking,
-  urlRanking              = toplistCommentsCard.dataset.urlranking,
-  authorid                = toplistCommentsCard.dataset.authorid,
-  authorpseudo            = toplistCommentsCard.dataset.authorpseudo,
-  authoruuid              = toplistCommentsCard.dataset.authoruuid,
-  id_vainkeur             = toplistCommentsCard.dataset.id_vainkeur_actual,
-  commentsContainer       = toplistCommentsCard.querySelector(".comments-container"),
-  commentArea             = toplistCommentsCard.querySelector("#comment");
+if (document.querySelector(".toplist_comments")) {
+  // TOPLIST COMMENTS…
+  const toplistCommentsCard = document.querySelector(".toplist_comments"),
+    sendCommentBtn = toplistCommentsCard.querySelector("#send_comment_btn"),
+    idRanking = toplistCommentsCard.dataset.idranking,
+    urlRanking = toplistCommentsCard.dataset.urlranking,
+    authorid = toplistCommentsCard.dataset.authorid,
+    authorpseudo = toplistCommentsCard.dataset.authorpseudo,
+    authoruuid = toplistCommentsCard.dataset.authoruuid,
+    id_vainkeur = toplistCommentsCard.dataset.id_vainkeur_actual,
+    commentsContainer = toplistCommentsCard.querySelector(
+      ".comments-container"
+    ),
+    commentArea = toplistCommentsCard.querySelector("#comment");
 
-// CHECK IF THERE IS ALREADY A COMMENTS FOR THE TopList…
-let commentsUsersData = [];
-const topListCommentsQuery = query(
-  collection(database, "topListComments"),
-  where("idRanking", "==", idRanking),
-  orderBy("createdAt", "asc")
-);
-const topListCommentsQuerySnapshot = await getDocs(topListCommentsQuery);
+  // CHECK IF THERE IS ALREADY A COMMENTS FOR THE TopList…
+  let commentsUsersData = [];
+  const topListCommentsQuery = query(
+    collection(database, "topListComments"),
+    where("idRanking", "==", idRanking),
+    orderBy("createdAt", "asc")
+  );
+  const topListCommentsQuerySnapshot = await getDocs(topListCommentsQuery);
 
-topListCommentsQuerySnapshot.forEach((comment) => {
-  if (authorid != comment.data().userId) {
-    commentsUsersData.push([comment.data().uuid, comment.data().userId]);
-  }
-});
-commentsUsersData.push([authoruuid, authorid]);
-
-let set = new Set(commentsUsersData.map(userData => JSON.stringify(userData)));
-commentsUsersData = Array.from(set).map(elem => JSON.parse(elem));
-
-let topListCommentsLength = topListCommentsQuerySnapshot._snapshot.docs.size;
-
-const commentTemplate = async function (commentId, uuid, content, secondes) {
-  // FUNCTION TO CALCULATE TIME…
-  const secondsToStr = function (secondes) {
-    function numberEnding(number) {
-      return number > 1 ? "s" : "";
+  topListCommentsQuerySnapshot.forEach((comment) => {
+    if (authorid != comment.data().userId) {
+      commentsUsersData.push([comment.data().uuid, comment.data().userId]);
     }
+  });
+  commentsUsersData.push([authoruuid, authorid]);
 
-    let temp = Math.floor(secondes / 1000);
-    let years = Math.floor(temp / 31536000);
-    if (years) {
-      return years + " ans" + numberEnding(years);
-    }
-    let days = Math.floor((temp %= 31536000) / 86400);
-    if (days) {
-      return days + " jour" + numberEnding(days);
-    }
-    let hours = Math.floor((temp %= 86400) / 3600);
-    if (hours) {
-      return hours + " heure" + numberEnding(hours);
-    }
-    let minutes = Math.floor((temp %= 3600) / 60);
-    if (minutes) {
-      return minutes + " minute" + numberEnding(minutes);
-    }
-    let seconds = temp % 60;
-    if (seconds) {
-      return seconds + " seconde" + numberEnding(seconds);
-    }
-    return "moins d'une seconde"; //'just now' //or other string you like;
-  };
+  let set = new Set(
+    commentsUsersData.map((userData) => JSON.stringify(userData))
+  );
+  commentsUsersData = Array.from(set).map((elem) => JSON.parse(elem));
 
-  // FUNCTION TO GET USER DATA BY UUID…
-  async function getUserData() {
-    try {
-      let response = await fetch(
-        `https://vainkeurz.com/wp-json/vkrz/v1/getuserinfo/${uuid}`
-      );
-      return await response.json();
-    } catch (error) {
-      console.log(error);
-    }
-  }
-  const data = await getUserData();
+  let topListCommentsLength = topListCommentsQuerySnapshot._snapshot.docs.size;
 
-  // RETURN THE COMMENT TEMPLATE DIV…
-  let deleteOrNot = "";
-  if (uuid == currentUuid) {
-    deleteOrNot = `
+  const commentTemplate = async function (commentId, uuid, content, secondes) {
+    // FUNCTION TO CALCULATE TIME…
+    const secondsToStr = function (secondes) {
+      function numberEnding(number) {
+        return number > 1 ? "s" : "";
+      }
+
+      let temp = Math.floor(secondes / 1000);
+      let years = Math.floor(temp / 31536000);
+      if (years) {
+        return years + " ans" + numberEnding(years);
+      }
+      let days = Math.floor((temp %= 31536000) / 86400);
+      if (days) {
+        return days + " jour" + numberEnding(days);
+      }
+      let hours = Math.floor((temp %= 86400) / 3600);
+      if (hours) {
+        return hours + " heure" + numberEnding(hours);
+      }
+      let minutes = Math.floor((temp %= 3600) / 60);
+      if (minutes) {
+        return minutes + " minute" + numberEnding(minutes);
+      }
+      let seconds = temp % 60;
+      if (seconds) {
+        return seconds + " seconde" + numberEnding(seconds);
+      }
+      return "moins d'une seconde"; //'just now' //or other string you like;
+    };
+
+    // FUNCTION TO GET USER DATA BY UUID…
+    async function getUserData() {
+      try {
+        let response = await fetch(
+          `https://vainkeurz.com/wp-json/vkrz/v1/getuserinfo/${uuid}`
+        );
+        return await response.json();
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    const data = await getUserData();
+
+    // RETURN THE COMMENT TEMPLATE DIV…
+    let deleteOrNot = "";
+    if (uuid == currentUuid) {
+      deleteOrNot = `
     <a 
       href="" 
       style=""
@@ -299,14 +304,16 @@ const commentTemplate = async function (commentId, uuid, content, secondes) {
       X
     </a>
     `;
-  }
+    }
 
-  return `
+    return `
     <div class="comment-template media d-flex align-items-start mb-2 p-0">
           <div class="media-left mr-50">
             <div class="avatar">
             <a href="${data.profil_url}" class="text-white">
-              <span class="avatar-picture" style="background-image: url(${data.avatar}); width: 20px; height: 20px;"></span>
+              <span class="avatar-picture" style="background-image: url(${
+                data.avatar
+              }); width: 20px; height: 20px;"></span>
             </a>
             </div>
           </div>
@@ -320,7 +327,7 @@ const commentTemplate = async function (commentId, uuid, content, secondes) {
                   }</small>
                 </a>
                 <small class="text-muted" style="font-size: .75em; margin-left: .5rem; line-height:0;">Il y a ${secondsToStr(
-                    secondes
+                  secondes
                 )}</small>
               </div>
 
@@ -339,37 +346,153 @@ const commentTemplate = async function (commentId, uuid, content, secondes) {
           <hr>
     </div>
   `;
-};
+  };
 
-async function sendComment(comment, idRanking, urlRanking, currentUuid) {
-  try {
-    const newComment = await addDoc(collection(database, "topListComments"), {
-      comment: comment,
-      idRanking: idRanking,
-      urlRanking: urlRanking,
-      uuid: currentUuid,
-      userId: currentUserId,
-      createdAt: new Date(),
-    });
-    console.log("Comment sent with ID: ", newComment.id);
+  async function sendComment(comment, idRanking, urlRanking, currentUuid) {
+    try {
+      const newComment = await addDoc(collection(database, "topListComments"), {
+        comment: comment,
+        idRanking: idRanking,
+        urlRanking: urlRanking,
+        uuid: currentUuid,
+        userId: currentUserId,
+        createdAt: new Date(),
+      });
+      console.log("Comment sent with ID: ", newComment.id);
 
-    // ADD TO DOM…
-    let commentTemplateDiv = await commentTemplate(
-      newComment.id,
-      currentUuid,
-      comment,
-      "0"
-    );
-    commentsContainer.insertAdjacentHTML("beforeend", commentTemplateDiv);
+      // ADD TO DOM…
+      let commentTemplateDiv = await commentTemplate(
+        newComment.id,
+        currentUuid,
+        comment,
+        "0"
+      );
+      commentsContainer.insertAdjacentHTML("beforeend", commentTemplateDiv);
 
-    if (topListCommentsLength == 0) {
-        commentsContainer.style.height = `${+commentsContainer.style.height.substring(
-        0, commentsContainer.style.height.indexOf("px")) + 100}px`;
+      if (topListCommentsLength == 0) {
+        commentsContainer.style.height = `${
+          +commentsContainer.style.height.substring(
+            0,
+            commentsContainer.style.height.indexOf("px")
+          ) + 100
+        }px`;
         topListCommentsLength = 1;
-    }
-    commentsContainer.scrollTop = commentsContainer.scrollHeight;
+      }
+      commentsContainer.scrollTop = commentsContainer.scrollHeight;
 
-    // RESET DELETE BUTTONS…
+      // RESET DELETE BUTTONS…
+      const deleteCommentsBtns =
+        toplistCommentsCard.querySelectorAll(".deleteCommentBtn");
+      deleteCommentsBtns.forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.target.closest(".comment-template").remove();
+
+          deleteDoc(doc(database, "topListComments", btn.dataset.commentid));
+
+          // Décremente
+          post_new_jugement(idRanking, id_vainkeur, "delete");
+        });
+      });
+
+      // RESET REPLY BUTTONS…
+      const replyCommentsBtns =
+        toplistCommentsCard.querySelectorAll(".replyCommentBtn");
+      replyCommentsBtns.forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          commentArea.value = `${btn.dataset.replyto}`;
+          commentArea.focus();
+        });
+      });
+
+      // SEND NOTIFICATION…
+      commentsUsersData.reverse().forEach((userData, index) => {
+        if (userData[1] != currentUserId) {
+          let notifText;
+          if (index === 0) {
+            notifText = `${vainkeurPseudo} a jugé une de tes TopList!`;
+          } else {
+            notifText = `${vainkeurPseudo} a aussi laissé un jugement sur cette TopList !`;
+          }
+
+          async function sendNotif() {
+            try {
+              const notification = await addDoc(
+                collection(database, "notifications"),
+                {
+                  userId: currentUserId,
+                  uuid: currentUuid,
+                  relatedId: userData[1],
+                  relatedUuid: userData[0],
+                  notifText: notifText,
+                  notifLink: urlRanking,
+                  notifType: "TopList Comment Reply Notification",
+                  statut: "nouveau",
+                  createdAt: new Date(),
+                }
+              );
+
+              console.log("Notification sent with ID: ", notification.id);
+            } catch (error) {
+              console.error("Error adding comment notification: ", error);
+            }
+          }
+          sendNotif();
+        }
+      });
+    } catch (error) {
+      console.error("Error adding comment: ", error);
+    }
+  }
+
+  const validComment = function () {
+    let comment = commentArea.value;
+
+    if (comment) {
+      // INIT COMMENTAREA…
+      if (topListCommentsLength === 0) {
+        commentsContainer.innerHTML = "";
+      }
+      commentArea.value = "";
+      commentArea.focus();
+
+      // SEND COMMENT TO FIRESTORE…
+      sendComment(comment, idRanking, urlRanking, currentUuid);
+
+      // Incremente + check badge
+      post_new_jugement(idRanking, id_vainkeur, "add");
+    } else {
+      commentArea.setAttribute(
+        "placeholder",
+        "Avec un petit mot ça marchera mieux 🤪"
+      );
+    }
+  };
+
+  if (topListCommentsLength !== 0) {
+    // THERE IS SOME COMMENTS…
+    commentsContainer.style.maxHeight = "150px";
+
+    let commentsArr = [];
+    topListCommentsQuerySnapshot.forEach((comment) =>
+      commentsArr.push({ id: comment.id, ...comment.data() })
+    );
+
+    for (let comment of commentsArr) {
+      let secondes = new Date().getTime() - comment.createdAt.seconds * 1000;
+
+      commentsContainer.insertAdjacentHTML(
+        "beforeend",
+        await commentTemplate(
+          comment.id,
+          comment.uuid,
+          comment.comment,
+          secondes
+        )
+      );
+    }
+
     const deleteCommentsBtns =
       toplistCommentsCard.querySelectorAll(".deleteCommentBtn");
     deleteCommentsBtns.forEach((btn) => {
@@ -384,128 +507,25 @@ async function sendComment(comment, idRanking, urlRanking, currentUuid) {
       });
     });
 
-    // RESET REPLY BUTTONS…
     const replyCommentsBtns =
       toplistCommentsCard.querySelectorAll(".replyCommentBtn");
-      replyCommentsBtns.forEach((btn) => {
+    replyCommentsBtns.forEach((btn) => {
       btn.addEventListener("click", (e) => {
         e.preventDefault();
         commentArea.value = `${btn.dataset.replyto}`;
         commentArea.focus();
       });
     });
-
-    // SEND NOTIFICATION…
-    commentsUsersData.reverse().forEach((userData, index) => {
-      if (userData[1] != currentUserId) {
-        let notifText;
-        if (index === 0) {
-          notifText = `${vainkeurPseudo} a jugé une de tes TopList!`;
-        } else {
-          notifText = `${vainkeurPseudo} a aussi laissé un jugement sur cette TopList !`;
-        }
-
-        async function sendNotif() {
-          try {
-            const notification = await addDoc(
-              collection(database, "notifications"),
-              {
-                userId: currentUserId,
-                uuid: currentUuid,
-                relatedId: userData[1],
-                relatedUuid: userData[0],
-                notifText: notifText,
-                notifLink: urlRanking,
-                notifType: "TopList Comment Reply Notification",
-                statut: "nouveau",
-                createdAt: new Date(),
-              }
-            );
-
-            console.log("Notification sent with ID: ", notification.id);
-          } catch (error) {
-            console.error("Error adding comment notification: ", error);
-          }
-        }
-        sendNotif();
-      }
-    });
-  } catch (error) {
-    console.error("Error adding comment: ", error);
-  }
-}
-
-const validComment = function() {
-  let comment = commentArea.value;
-
-  if(comment) {
-    // INIT COMMENTAREA…
-    if (topListCommentsLength === 0) {
-      commentsContainer.innerHTML = "";
-    }
-    commentArea.value = "";
-    commentArea.focus();
-
-    // SEND COMMENT TO FIRESTORE…
-    sendComment(comment, idRanking, urlRanking, currentUuid);
-    
-    // Incremente + check badge
-    post_new_jugement(idRanking, id_vainkeur, "add");
   } else {
-    commentArea.setAttribute('placeholder', "Avec un petit mot ça marchera mieux 🤪");
-  }
-}
-
-if (topListCommentsLength !== 0) {
-  // THERE IS SOME COMMENTS…
-  commentsContainer.style.maxHeight = "150px";
-
-  let commentsArr = [];
-  topListCommentsQuerySnapshot.forEach((comment) =>
-    commentsArr.push({ id: comment.id, ...comment.data() })
-  );
-
-  for (let comment of commentsArr) {
-    let secondes = new Date().getTime() - comment.createdAt.seconds * 1000;
-
-    commentsContainer.insertAdjacentHTML(
-      "beforeend",
-      await commentTemplate(comment.id, comment.uuid, comment.comment, secondes)
-    );
+    // NO COMMENTS…
+    commentsContainer.innerHTML = `<span style="color: #A9A9AC;">Aucun jugement pour le moment - Soit le 1er</span>`;
   }
 
-  const deleteCommentsBtns =
-    toplistCommentsCard.querySelectorAll(".deleteCommentBtn");
-    deleteCommentsBtns.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
+  sendCommentBtn.addEventListener("click", validComment);
+  commentArea.addEventListener("keypress", (e) => {
+    if (13 == e.keyCode) {
       e.preventDefault();
-      e.target.closest(".comment-template").remove();
-
-      deleteDoc(doc(database, "topListComments", btn.dataset.commentid));
-
-      // Décremente
-      post_new_jugement(idRanking, id_vainkeur, "delete");
-
-    });
+      validComment();
+    }
   });
-
-  const replyCommentsBtns =
-    toplistCommentsCard.querySelectorAll(".replyCommentBtn");
-    replyCommentsBtns.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      e.preventDefault();
-      commentArea.value = `${btn.dataset.replyto}`;
-      commentArea.focus();
-    });
-  });
-} else {
-  // NO COMMENTS…
-  commentsContainer.innerHTML = `<span style="color: #A9A9AC;">Aucun jugement pour le moment - Soit le 1er</span>`;
 }
-
-sendCommentBtn.addEventListener("click", validComment);
-commentArea.addEventListener("keypress", (e) => {
-  if (13 == e.keyCode) { 
-    e.preventDefault(); validComment();  
-  }
-});
