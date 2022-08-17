@@ -262,149 +262,148 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
 
                       <div class="animate__fadeInUp animate__animated animate__delay-2s">
 
-                        <?php if (!in_array('private', $types_top)) : ?>
+                        <div class="separate mt-1 mb-2 d-block d-sm-none"></div>
 
-                          <div class="separate mt-1 mb-2 d-block d-sm-none"></div>
+                        <?php
+                        global $vainkeur_data_selected;
+                        $vainkeur_data_selected = get_user_infos($uuid_who_did_toplist);
+                        if ($uuid_who_did_toplist != $uuid_vainkeur) :
+                        ?>
+                          <div class="card text-left">
+                            <div class="card-body">
+                              <h4 class="card-title">
+                                <span class="ico va va-trophy va-lg"></span> Une TopList signée par :
+                              </h4>
+                              <div class="employee-task d-flex justify-content-between align-items-center">
 
-                          <?php
-                          global $vainkeur_data_selected;
-                          $vainkeur_data_selected = get_user_infos($uuid_who_did_toplist);
-                          if ($uuid_who_did_toplist != $uuid_vainkeur) :
-                          ?>
-                            <div class="card text-left">
-                              <div class="card-body">
-                                <h4 class="card-title">
-                                  <span class="ico va va-trophy va-lg"></span> Une TopList signée par :
-                                </h4>
-                                <div class="employee-task d-flex justify-content-between align-items-center">
+                                <?php get_template_part('partials/vainkeur-card'); ?>
 
-                                  <?php get_template_part('partials/vainkeur-card'); ?>
+                                <?php if ($vainkeur_data_selected['user_role'] != "anonyme") : ?>
 
-                                  <?php if ($vainkeur_data_selected['user_role'] != "anonyme") : ?>
+                                  <?php if (is_user_logged_in()) : ?>
 
-                                    <?php if (is_user_logged_in()) : ?>
+                                    <?php if ($vainkeur_data_selected && get_current_user_id() != $vainkeur_data_selected['id_user'] && is_user_logged_in()) : ?>
 
-                                      <?php if ($vainkeur_data_selected && get_current_user_id() != $vainkeur_data_selected['id_user'] && is_user_logged_in()) : ?>
-
-                                        <button type="button" id="followBtn" class="btn waves-effect btn-follow d-none" data-userid="<?= get_current_user_id(); ?>" data-uuid="<?= get_field('uuiduser_user', 'user_' . get_current_user_id()); ?>" data-relatedid="<?= $vainkeur_data_selected['id_user']; ?>" data-relateduuid="<?= get_field('uuiduser_user', 'user_' . $vainkeur_data_selected['id_user']); ?>" data-text="<?= get_the_author_meta('nickname', get_current_user_id()); ?> te guette !" data-url="<?= get_author_posts_url(get_current_user_id()); ?>">
-                                          <span class="wording">Guetter</span>
-                                          <span class="va va-guetteur-close va va-z-20 emoji"></span>
-                                        </button>
-
-                                      <?php endif; ?>
-
-                                    <?php else : ?>
-
-                                      <a href="<?php the_permalink(get_page_by_path('se-connecter')); ?>" class="btn btn-flat-secondary waves-effect" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tu dois être connecté pour guetter <?php echo $vainkeur_data_selected['pseudo']; ?>">
-                                        <span class="text-muted">
-                                          <span class="wording">Guetter</span> <span class="va va-guetteur-close va va-z-20 emoji"></span>
-                                        </span>
-                                      </a>
+                                      <button type="button" id="followBtn" class="btn waves-effect btn-follow d-none" data-userid="<?= get_current_user_id(); ?>" data-uuid="<?= get_field('uuiduser_user', 'user_' . get_current_user_id()); ?>" data-relatedid="<?= $vainkeur_data_selected['id_user']; ?>" data-relateduuid="<?= get_field('uuiduser_user', 'user_' . $vainkeur_data_selected['id_user']); ?>" data-text="<?= get_the_author_meta('nickname', get_current_user_id()); ?> te guette !" data-url="<?= get_author_posts_url(get_current_user_id()); ?>">
+                                        <span class="wording">Guetter</span>
+                                        <span class="va va-guetteur-close va va-z-20 emoji"></span>
+                                      </button>
 
                                     <?php endif; ?>
+
+                                  <?php else : ?>
+
+                                    <a href="<?php the_permalink(get_page_by_path('se-connecter')); ?>" class="btn btn-flat-secondary waves-effect" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tu dois être connecté pour guetter <?php echo $vainkeur_data_selected['pseudo']; ?>">
+                                      <span class="text-muted">
+                                        <span class="wording">Guetter</span> <span class="va va-guetteur-close va va-z-20 emoji"></span>
+                                      </span>
+                                    </a>
 
                                   <?php endif; ?>
-                                </div>
 
-                                <div class="separate mt-2"></div>
-
-                                <div class="vs-resemblance" data-idranking="<?= $id_ranking; ?>" data-idtop="<?= $id_top; ?>" data-topurl="<?= $top_infos['top_url']; ?>">
-                                  <div class="loader loader--style1 w-100 mx-auto mt-1 text-center" title="0">
-                                    <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
-                                      <path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946
-                                        s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634
-                                        c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z" />
-                                      <path fill="#000" d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0
-                                        C22.32,8.481,24.301,9.057,26.013,10.047z">
-                                        <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 20 20" to="360 20 20" dur="0.5s" repeatCount="indefinite" />
-                                      </path>
-                                    </svg>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="separate mt-2 mb-2"></div>
-                          <?php endif; ?>
-
-                          <?php if (in_array("sponso", $types_top)) : ?>
-                            <div class="card">
-                              <div class="share-content-sponso">
-                                <div class="text-left">
-                                  <p>
-                                    <?php the_field('top_propose_par_t_sponso', $id_top_global); ?>
-                                  </p>
-                                </div>
-                                <div class="d-flex align-items-center flex-column">
-                                  <div class="logo-vkrz-sponso">
-                                    <?php
-                                    if (get_field('illustration_de_la_sponso_t_sponso', $id_top_global)) : ?>
-                                      <a href="<?php the_field('lien_de_la_sponso_t_sponso', $id_top_global); ?>" target="_blank">
-                                        <?php echo wp_get_attachment_image(get_field('illustration_de_la_sponso_t_sponso', $id_top_global), 'large', '', array('class' => 'img-fluid')); ?>
-                                      </a>
-                                    <?php elseif (get_field('logo_de_la_sponso_t_sponso', $id_top_global)) : ?>
-                                      <a href="<?php the_field('lien_de_la_sponso_t_sponso', $id_top_global); ?>" target="_blank">
-                                        <?php echo wp_get_attachment_image(get_field('logo_de_la_sponso_t_sponso', $id_top_global), 'large', '', array('class' => 'img-fluid')); ?>
-                                      </a>
-                                    <?php endif; ?>
-                                  </div>
-                                  <div class="mt-2 social-media-sponso btn-group">
-                                    <?php if (have_rows('liste_des_liens_t_sponso', $id_top_global)) : ?>
-                                      <?php while (have_rows('liste_des_liens_t_sponso', $id_top_global)) : the_row(); ?>
-                                        <a href="<?php the_sub_field('lien_vers_t_sponso'); ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-icon btn-outline-primary waves-effect waves-float waves-light" target="_blank">
-                                          <?php the_sub_field('intitule_t_sponso'); ?>
-                                        </a>
-                                      <?php endwhile; ?>
-                                    <?php endif; ?>
-                                  </div>
-                                </div>
+                                <?php endif; ?>
                               </div>
 
-                              <div class="card-footer text-center p-20 m-0">
-                                <span class="t-rose">
-                                  On te rappelle que la date de fin est <br>
-                                  <b><?php echo lcfirst(get_field('fin_de_la_sponso_t_sponso', $id_top)); ?></b>
-                                </span>
-                              </div>
-                            </div>
-                          <?php endif; ?>
+                              <div class="separate mt-2"></div>
 
-                          <div class="card">
-                            <div class="card-body">
-                              <h2 class="stats-mondiales mb-0">
-                                <b>Stats mondiales :</b>
-                                <?php echo $top_datas['nb_completed_top']; ?> <span class="va va-trophy va-md"></span> <span class="space"></span> <?php echo $top_datas['nb_votes']; ?> <span class="va va-high-voltage va-md"></span>
-                              </h2>
-                              <div class="mt-1">
-                                <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_top_global; ?>" class="btn btn-primary waves-effect mb-1">
-                                  Voir les <?php echo $top_datas['nb_completed_top']; ?> TopList et ressemblance <span class="va va-duo va-lg"></span>
-                                </a>
-                                <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_top_global; ?>" class="btn btn-outline-primary waves-effect mb-1">
-                                  <span class="va va-globe va-lg"></span> TopList mondiale
-                                </a>
+                              <div class="vs-resemblance" data-idranking="<?= $id_ranking; ?>" data-idtop="<?= $id_top; ?>" data-topurl="<?= $top_infos['top_url']; ?>">
+                                <div class="loader loader--style1 w-100 mx-auto mt-1 text-center" title="0">
+                                  <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
+                                    <path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946
+                                      s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634
+                                      c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z" />
+                                    <path fill="#000" d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0
+                                      C22.32,8.481,24.301,9.057,26.013,10.047z">
+                                      <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 20 20" to="360 20 20" dur="0.5s" repeatCount="indefinite" />
+                                    </path>
+                                  </svg>
+                                </div>
                               </div>
                             </div>
                           </div>
-                          <?php if ($vainkeur_data_selected['id_user']) : ?>
-                            <div id="jugement" class="card toplist_comments" data-id_vainkeur_actual="<?= $id_vainkeur; ?>" data-authorid="<?= $vainkeur_data_selected["id_user"] ?>" data-authorpseudo="<?= $vainkeur_data_selected["pseudo"] ?>" data-authoruuid="<?= $vainkeur_data_selected["uuid_vainkeur"] ?>" data-idranking="<?= $id_ranking; ?>" data-urlranking="<?= get_permalink($id_ranking); ?>">
-                              <div class="card-body">
-                                <h4 class="card-title">
-                                  <span class="va va-hache va-lg"></span> Laisser un jugement
-                                </h4>
-                                <li class="comments-container scrollable-container media-list">
 
-                                </li>
-                                <div class="card-footer border-0">
-                                  <div class="d-flex align-items-center commentarea-container">
-                                    <textarea name="comment" id="comment" placeholder="Juger…"></textarea>
+                          <div class="separate mt-2 mb-2"></div>
+                        <?php endif; ?>
 
-                                    <button id="send_comment_btn">
-                                      <span class="va va-icon-arrow-up va-z-40"></span>
-                                    </button>
-                                  </div>
+                        <?php if (in_array("sponso", $types_top)) : ?>
+                          <div class="card">
+                            <div class="share-content-sponso">
+                              <div class="text-left">
+                                <p>
+                                  <?php the_field('top_propose_par_t_sponso', $id_top_global); ?>
+                                </p>
+                              </div>
+                              <div class="d-flex align-items-center flex-column">
+                                <div class="logo-vkrz-sponso">
+                                  <?php
+                                  if (get_field('illustration_de_la_sponso_t_sponso', $id_top_global)) : ?>
+                                    <a href="<?php the_field('lien_de_la_sponso_t_sponso', $id_top_global); ?>" target="_blank">
+                                      <?php echo wp_get_attachment_image(get_field('illustration_de_la_sponso_t_sponso', $id_top_global), 'large', '', array('class' => 'img-fluid')); ?>
+                                    </a>
+                                  <?php elseif (get_field('logo_de_la_sponso_t_sponso', $id_top_global)) : ?>
+                                    <a href="<?php the_field('lien_de_la_sponso_t_sponso', $id_top_global); ?>" target="_blank">
+                                      <?php echo wp_get_attachment_image(get_field('logo_de_la_sponso_t_sponso', $id_top_global), 'large', '', array('class' => 'img-fluid')); ?>
+                                    </a>
+                                  <?php endif; ?>
+                                </div>
+                                <div class="mt-2 social-media-sponso btn-group">
+                                  <?php if (have_rows('liste_des_liens_t_sponso', $id_top_global)) : ?>
+                                    <?php while (have_rows('liste_des_liens_t_sponso', $id_top_global)) : the_row(); ?>
+                                      <a href="<?php the_sub_field('lien_vers_t_sponso'); ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-icon btn-outline-primary waves-effect waves-float waves-light" target="_blank">
+                                        <?php the_sub_field('intitule_t_sponso'); ?>
+                                      </a>
+                                    <?php endwhile; ?>
+                                  <?php endif; ?>
                                 </div>
                               </div>
                             </div>
+
+                            <div class="card-footer text-center p-20 m-0">
+                              <span class="t-rose">
+                                On te rappelle que la date de fin est <br>
+                                <b><?php echo lcfirst(get_field('fin_de_la_sponso_t_sponso', $id_top)); ?></b>
+                              </span>
+                            </div>
+                          </div>
+                        <?php endif; ?>
+
+                        <div class="card">
+                          <div class="card-body">
+                            <h2 class="stats-mondiales mb-0">
+                              <b>Stats mondiales :</b>
+                              <?php echo $top_datas['nb_completed_top']; ?> <span class="va va-trophy va-md"></span> <span class="space"></span> <?php echo $top_datas['nb_votes']; ?> <span class="va va-high-voltage va-md"></span>
+                            </h2>
+                            <div class="mt-1">
+                              <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_top_global; ?>" class="btn btn-primary waves-effect mb-1">
+                                Voir les <?php echo $top_datas['nb_completed_top']; ?> TopList et ressemblance <span class="va va-duo va-lg"></span>
+                              </a>
+                              <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_top_global; ?>" class="btn btn-outline-primary waves-effect mb-1">
+                                <span class="va va-globe va-lg"></span> TopList mondiale
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <?php if ($vainkeur_data_selected['id_user']) : ?>
+                          <div id="jugement" class="card toplist_comments" data-id_vainkeur_actual="<?= $id_vainkeur; ?>" data-authorid="<?= $vainkeur_data_selected["id_user"] ?>" data-authorpseudo="<?= $vainkeur_data_selected["pseudo"] ?>" data-authoruuid="<?= $vainkeur_data_selected["uuid_vainkeur"] ?>" data-idranking="<?= $id_ranking; ?>" data-urlranking="<?= get_permalink($id_ranking); ?>">
+                            <div class="card-body">
+                              <h4 class="card-title">
+                                <span class="va va-hache va-lg"></span> Laisser un jugement
+                              </h4>
+                              <li class="comments-container scrollable-container media-list">
+
+                              </li>
+                              <div class="card-footer border-0">
+                                <div class="d-flex align-items-center commentarea-container">
+                                  <textarea name="comment" id="comment" placeholder="Juger…"></textarea>
+
+                                  <button id="send_comment_btn">
+                                    <span class="va va-icon-arrow-up va-z-40"></span>
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         <?php endif; ?>
 
                         <?php if (get_field('liste_des_createurs_top', $id_top)) : ?>
@@ -441,7 +440,7 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
                             </div>
                           </div>
                         <?php endif; ?>
-
+                        
                         <?php
                         $top_cat = $top_infos['top_cat'];
                         foreach ($top_cat as $cat) {
@@ -514,52 +513,51 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
                             ),
                           ));
                         }
-                        ?>
+                      if ($tops_in_close_cat->have_posts() || $tops_in_large_cat->have_posts()) : ?>
 
-                        <?php if ($tops_in_close_cat->have_posts() || $tops_in_large_cat->have_posts()) : ?>
+                        <div class="separate mt-2 mb-2"></div>
 
-                          <div class="separate mt-2 mb-2"></div>
+                        <section class="list-tournois">
+                          <div class="mt-1 pslim">
+                            <h4 class="card-title">
+                              <span class="ico">🥰</span> Tops similaires
+                            </h4>
+                            <h6 class="card-subtitle text-muted mb-1">
+                              Voici quelques Tops qui devraient te plaire <span class="ico">👇</span>
+                            </h6>
+                          </div>
+                          <div class="similar-list mt-2">
+                            <div class="row">
+                              <?php
+                              while ($tops_in_close_cat->have_posts()) : $tops_in_close_cat->the_post(); ?>
 
-                          <section class="list-tournois">
-                            <div class="mt-1 pslim">
-                              <h4 class="card-title">
-                                <span class="ico">🥰</span> Tops similaires
-                              </h4>
-                              <h6 class="card-subtitle text-muted mb-1">
-                                Voici quelques Tops qui devraient te plaire <span class="ico">👇</span>
-                              </h6>
-                            </div>
-                            <div class="similar-list mt-2">
-                              <div class="row">
+                                <?php get_template_part('partials/min-t'); ?>
+
+                              <?php endwhile; ?>
+                              <?php if ($count_similar < 4) : ?>
                                 <?php
-                                while ($tops_in_close_cat->have_posts()) : $tops_in_close_cat->the_post(); ?>
+                                while ($tops_in_large_cat->have_posts()) : $tops_in_large_cat->the_post(); ?>
 
                                   <?php get_template_part('partials/min-t'); ?>
 
                                 <?php endwhile; ?>
-                                <?php if ($count_similar < 4) : ?>
-                                  <?php
-                                  while ($tops_in_large_cat->have_posts()) : $tops_in_large_cat->the_post(); ?>
-
-                                    <?php get_template_part('partials/min-t'); ?>
-
-                                  <?php endwhile; ?>
-                                <?php endif; ?>
-                              </div>
+                              <?php endif; ?>
                             </div>
-                            <div class="gocat">
-                              <?php
-                              $current = get_term_by('term_id', $top_cat_id, 'categorie');
-                              ?>
-                              <a class="w-100 btn btn-primary waves-effect" href="<?php echo get_category_link($top_cat_id); ?>">
-                                Voir tous les Tops <span class="text-uppercase"><?php echo $cat_name; ?></span> <span class="ico"><?php the_field('icone_cat', 'term_' . $top_cat_id); ?></span>
-                              </a>
-                            </div>
-                            <div class="separate mt-2 mb-2"></div>
-                          </section>
-                        <?php endif; ?>
-                      </div>
+                          </div>
+                          <div class="gocat">
+                            <?php
+                            $current = get_term_by('term_id', $top_cat_id, 'categorie');
+                            ?>
+                            <a class="w-100 btn btn-primary waves-effect" href="<?php echo get_category_link($top_cat_id); ?>">
+                              Voir tous les Tops <span class="text-uppercase"><?php echo $cat_name; ?></span> <span class="ico"><?php the_field('icone_cat', 'term_' . $top_cat_id); ?></span>
+                            </a>
+                          </div>
+                          <div class="separate mt-2 mb-2"></div>
+                        </section>
+                      <?php endif; ?>
                     </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
