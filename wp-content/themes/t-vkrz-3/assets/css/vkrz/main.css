@@ -1129,6 +1129,15 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
 
 .loader-list {
   display: none;
+  text-align: center;
+  padding: 20px 0 40px;
+}
+.loader-list h5 {
+  color: #7367f0;
+  font-size: 12px;
+}
+.loader-list img {
+  border: 5px solid #312673;
 }
 
 .page-template-monitor .list-vainkeur-monitor {

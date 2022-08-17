@@ -305,8 +305,9 @@ if ($list_user_toplists) {
                   <div class="tab-pane active" id="tab2" aria-labelledby="profileIcon-tab" role="tabpanel">
                     <div class="row">
                       <div class="col-12">
-                        <div class="text-center loader-list">
-                          <img src="https://icon-library.com/images/spinner-icon-gif/spinner-icon-gif-25.jpg" class="img-fluid" alt="">
+                        <div class="loader-list">
+                          <h5>Récupération des <?php echo $infos_vainkeur['nb_top_vkrz']; ?> TopList en cours...</h5>
+                          <img src="<?php bloginfo('template_directory'); ?>/assets/images/gif/wait-<?php echo rand(1, 7); ?>.gif" class="img-fluid" alt="">
                         </div>
                         <div class="card invoice-list-wrapper list-php">
                           <div class="card-datatable table-responsive">

@@ -874,4 +874,13 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
 
 .loader-list{
     display: none;
+    text-align: center;
+    padding: 20px 0 40px;
+    h5{
+        color: $c5;
+        font-size: 12px;
+    }
+    img{
+        border: 5px solid $c3;
+    }
 }
