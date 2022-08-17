@@ -128,7 +128,7 @@ if ($infos_vainkeur['avatar']) {
     currentUserProfileUrl = "<?php echo get_author_posts_url($user_id); ?>",
     anonymeAvatarUrl = "<?php echo $anonyme_avatar_url; ?>",
     vainkeurPseudo = "<?php echo $infos_vainkeur['pseudo']; ?>",
-    currentUuid = "<?php echo $uuid_vainkeur; ?>"
+    currentUuid = "<?php echo $uuid_vainkeur; ?>";
 </script>
 
 <body <?php body_class($list_body_class); ?> data-open="click" data-menu="vertical-menu-modern" data-col="">

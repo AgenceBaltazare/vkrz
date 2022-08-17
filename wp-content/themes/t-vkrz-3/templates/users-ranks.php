@@ -56,7 +56,10 @@ $count_toplist        = count($list_toplist);
                     <div class="col-md-8">
                         <section id="profile-info">
                             <!-- CALCULATE RESEMBALNCE… -->
-                            <div class="card text-center calc-resemblance" data-idtop="<?php echo $id_top; ?>">
+                            <div class="card text-center calc-resemblance" 
+                            data-idtop="<?php echo $id_top; ?>"
+                            data-topurl="<?php echo get_permalink($id_top) ?>"
+                            >
                                 <div class="card-body">
                                     <div class="mb-50">
                                         <span class="ico4 va va-duo va va-z-50"></span>
@@ -65,7 +68,11 @@ $count_toplist        = count($list_toplist);
                                         Récupération des <?php echo $count_toplist; ?> TopList…
                                     </h2>
                                     <h6 class="card-subtitle text-muted">
-                                        Notre algo maison va comparer toutes les TopList pour afficher le % de ressemblance avec la tienne.
+                                        <?php if(get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $list_user_tops)) : ?>
+                                            Notre algo maison va comparer toutes les TopList pour afficher le % de ressemblance avec la tienne.
+                                        <?php else : ?>
+                                            You can always pass your Top so we can calculate your ranking to other users rankings.
+                                        <?php endif; ?>
                                     </h6>
                                 </div>
                                 <div class="bar"></div>

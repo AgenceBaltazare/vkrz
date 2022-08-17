@@ -166,12 +166,12 @@ $(document).ready(function ($) {
             // CHECK IF THERE IS SOME FOLLOWERS (CAN BE ALSO A FRIENDS), SEND NOTIFICATIONS TO THEM AND GO THE RANKING PAGE…
             (async function () {
               // FUNCTION TO SORT CONTENDERS…
-              const sortContenders = function (contenders) {
+              const sortContenders = function (ranking) {
                 let contendersArr = [],
                   contendersArrPlaces = [],
                   contendersArrIDs = [];
 
-                for (let contender of contenders) {
+                for (let contender of ranking) {
                   delete contender.c_name;
                   delete contender.elo;
                   delete contender.id;
@@ -196,9 +196,9 @@ $(document).ready(function ($) {
                 for (let j = 0; j < contendersArr.length; j++) {
                   contendersArr[j].place = contendersArrPlaces[j];
                 }
-                contenders = contendersArr;
+                ranking = contendersArr;
 
-                return contenders;
+                return ranking;
               };
               let myContenders = sortContenders(data.toplist);
 
@@ -214,96 +214,138 @@ $(document).ready(function ($) {
                 );
                 const followersQuerySnapshot = await getDocs(followersQuery);
 
-                if (followersQuerySnapshot._snapshot.docs.size === 0) return; // THERE IS NO FOLLOWERS, SO YOU STOP HERE…
+                // THERE IS NO FOLLOWERS, SO YOU STOP HERE…
+                if (followersQuerySnapshot._snapshot.docs.size != 0){
+                  // FRIENDS PROCESS FIRST…
+                  const followingQuery = query(
+                    collection(database, "notifications"),
+                    where("notifType", "==", "follow"),
+                    where(
+                      "userId",
+                      "==",
+                      vkrz_tracking_vars_user.id_user_layer.toString()
+                    )
+                  );
+                  const followingQuerySnapshot = await getDocs(followingQuery);
 
-                // FRIENDS PROCESS FIRST…
-                const followingQuery = query(
-                  collection(database, "notifications"),
-                  where("notifType", "==", "follow"),
-                  where(
-                    "userId",
-                    "==",
-                    vkrz_tracking_vars_user.id_user_layer.toString()
-                  )
-                );
-                const followingQuerySnapshot = await getDocs(followingQuery);
-
-                let friends = [],
-                  followers = [];
-                followersQuerySnapshot.forEach((follower) => {
-                  followers.push(follower.data());
-                  followingQuerySnapshot.forEach((following) => {
-                    if (follower.data().userId == following.data().relatedId) {
-                      friends.push(follower.data());
-                    }
+                  let friends = [],
+                    followers = [];
+                  followersQuerySnapshot.forEach((follower) => {
+                    followers.push(follower.data());
+                    followingQuerySnapshot.forEach((following) => {
+                      if (follower.data().userId == following.data().relatedId) {
+                        friends.push(follower.data());
+                      }
+                    });
                   });
-                });
 
-                friends.forEach((friend) => {
-                  (async function () {
-                    // CHECK IF THE FRIEND ALREADY PASSED THE TOP OR NOT… 🤙
-                    const didRankingQuery = query(
-                      collection(database, "wpClassement"),
-                      where("author.id", "==", friend["userId"]),
-                      where(
-                        "custom_fields.id_tournoi_r",
-                        "==",
-                        vkrz_tracking_vars_top.top_id_top_layer.toString()
-                      ),
-                      where("custom_fields.done_r", "==", "done")
-                    );
-                    const didRankingQuerySnapshot = await getDocs(
-                      didRankingQuery
-                    );
-                    let notifText = "";
+                  friends.forEach((friend) => {
+                    (async function () {
+                      // CHECK IF THE FRIEND ALREADY PASSED THE TOP OR NOT… 🤙
+                      const didRankingQuery = query(
+                        collection(database, "wpClassement"),
+                        where("author.id", "==", friend["userId"]),
+                        where(
+                          "custom_fields.id_tournoi_r",
+                          "==",
+                          vkrz_tracking_vars_top.top_id_top_layer.toString()
+                        ),
+                        where("custom_fields.done_r", "==", "done")
+                      );
+                      const didRankingQuerySnapshot = await getDocs(
+                        didRankingQuery
+                      );
+                      let notifText = "";
 
-                    if (didRankingQuerySnapshot._snapshot.docs.size === 0) {
-                      notifText = `${vkrz_tracking_vars_user.pseudo_user_layer} a terminé une nouvelle TopList!`;
-                    } else {
-                      // GET FRIEND RANKING, SORT IT AND COMPARE IT…
-                      let contenders;
-                      didRankingQuerySnapshot.forEach((ranking) => {
-                        contenders = sortContenders(
-                          ranking.data().custom_fields.ranking_r
-                        );
+                      if (didRankingQuerySnapshot._snapshot.docs.size === 0) {
+                        notifText = `${vkrz_tracking_vars_user.pseudo_user_layer} a terminé une nouvelle TopList!`;
+                      } else {
+                        // GET FRIEND RANKING, SORT IT AND COMPARE IT…
+                        let contenders;
+                        didRankingQuerySnapshot.forEach((ranking) => {
+                          contenders = sortContenders(
+                            ranking.data().custom_fields.ranking_r
+                          );
 
-                        // COMPARE IT WITH MY RANKING…
-                        const sameRankingFunc = function (obj1, obj2) {
-                          const obj1Keys = Object.keys(obj1);
-                          const obj2Keys = Object.keys(obj2);
+                          // COMPARE IT WITH MY RANKING…
+                          const sameRankingFunc = function (obj1, obj2) {
+                            const obj1Keys = Object.keys(obj1);
+                            const obj2Keys = Object.keys(obj2);
 
-                          if (obj1Keys.length !== obj2Keys.length) {
-                            return false;
-                          }
+                            if (obj1Keys.length !== obj2Keys.length) {
+                              return false;
+                            }
 
-                          for (let objKey of obj1Keys) {
-                            if (obj1[objKey] !== obj2[objKey]) {
-                              if (
-                                typeof obj1[objKey] == "object" &&
-                                typeof obj2[objKey] == "object"
-                              ) {
+                            for (let objKey of obj1Keys) {
+                              if (obj1[objKey] !== obj2[objKey]) {
                                 if (
-                                  !sameRankingFunc(obj1[objKey], obj2[objKey])
+                                  typeof obj1[objKey] == "object" &&
+                                  typeof obj2[objKey] == "object"
                                 ) {
+                                  if (
+                                    !sameRankingFunc(obj1[objKey], obj2[objKey])
+                                  ) {
+                                    return false;
+                                  }
+                                } else {
                                   return false;
                                 }
-                              } else {
-                                return false;
                               }
                             }
-                          }
 
-                          return true;
-                        };
+                            return true;
+                          };
 
-                        // DEFINE WHICH CASE, SAME RANKING OR NOT…
-                        if (sameRankingFunc(contenders, myContenders))
-                          notifText = `MATCH TOPLIST! 🤯 toi et ${vkrz_tracking_vars_user.pseudo_user_layer}`;
-                        else
-                          notifText = `${vkrz_tracking_vars_user.pseudo_user_layer} a terminé un Top que t'as déjà fait!`;
-                      });
-                    }
+                          // DEFINE WHICH CASE, SAME RANKING OR NOT…
+                          if (sameRankingFunc(contenders, myContenders))
+                            notifText = `MATCH TOPLIST! 🤯 toi et ${vkrz_tracking_vars_user.pseudo_user_layer}`;
+                          else
+                            notifText = `${vkrz_tracking_vars_user.pseudo_user_layer} a terminé un Top que t'as déjà fait!`;
+                        });
+                      }
 
+                      (async function () {
+                        try {
+                          const newRankingFollow = await addDoc(
+                            collection(database, "notifications"),
+                            {
+                              userId: vkrz_tracking_vars_user.id_user_layer,
+                              uuid: vkrz_tracking_vars_user.uuiduser_layer,
+                              relatedId: friend["userId"],
+                              relatedUuid: friend["uuid"],
+                              notifText: notifText,
+                              notifLink: link_to_ranking,
+                              notifType: "Ranking To Friend Notification",
+                              statut: "nouveau",
+                              createdAt: new Date(),
+                            }
+                          );
+                          console.log(
+                            "Notification sent to friend with ID: ",
+                            newRankingFollow.id
+                          );
+                        } catch (error) {
+                          console.error("Error adding document: ", error);
+                        }
+                      })();
+                    })();
+                  });
+
+                  // GET ONLY FOLLOWERS…
+                  const isSameFollower = (a, b) => a.userId === b.userId;
+                  const onlyInLeft = (left, right, compareFunc) =>
+                    left.filter(
+                      (leftValue) =>
+                        !right.some((rightValue) =>
+                          compareFunc(leftValue, rightValue)
+                        )
+                    );
+                  let onlyInA = onlyInLeft(followers, friends, isSameFollower),
+                    onlyInB = onlyInLeft(friends, followers, isSameFollower);
+                  followers = [...onlyInA, ...onlyInB];
+
+                  // SEND TO FOLLOWERS NOTIFICATION…
+                  followers.forEach((follower) => {
                     (async function () {
                       try {
                         const newRankingFollow = await addDoc(
@@ -311,66 +353,25 @@ $(document).ready(function ($) {
                           {
                             userId: vkrz_tracking_vars_user.id_user_layer,
                             uuid: vkrz_tracking_vars_user.uuiduser_layer,
-                            relatedId: friend["userId"],
-                            relatedUuid: friend["uuid"],
-                            notifText: notifText,
+                            relatedId: follower["userId"],
+                            relatedUuid: follower["uuid"],
+                            notifText: `${vkrz_tracking_vars_user.pseudo_user_layer} vient de terminer une TopList`,
                             notifLink: link_to_ranking,
-                            notifType: "Ranking To Friend Notification",
+                            notifType: "Ranking To Follower Notification",
                             statut: "nouveau",
                             createdAt: new Date(),
                           }
                         );
                         console.log(
-                          "Notification sent to friend with ID: ",
+                          "Notification sent to follower with ID: ",
                           newRankingFollow.id
                         );
                       } catch (error) {
                         console.error("Error adding document: ", error);
                       }
                     })();
-                  })();
-                });
-
-                // GET ONLY FOLLOWERS…
-                const isSameFollower = (a, b) => a.userId === b.userId;
-                const onlyInLeft = (left, right, compareFunc) =>
-                  left.filter(
-                    (leftValue) =>
-                      !right.some((rightValue) =>
-                        compareFunc(leftValue, rightValue)
-                      )
-                  );
-                let onlyInA = onlyInLeft(followers, friends, isSameFollower),
-                  onlyInB = onlyInLeft(friends, followers, isSameFollower);
-                followers = [...onlyInA, ...onlyInB];
-
-                // SEND TO FOLLOWERS NOTIFICATION…
-                followers.forEach((follower) => {
-                  (async function () {
-                    try {
-                      const newRankingFollow = await addDoc(
-                        collection(database, "notifications"),
-                        {
-                          userId: vkrz_tracking_vars_user.id_user_layer,
-                          uuid: vkrz_tracking_vars_user.uuiduser_layer,
-                          relatedId: follower["userId"],
-                          relatedUuid: follower["uuid"],
-                          notifText: `${vkrz_tracking_vars_user.pseudo_user_layer} vient de terminer une TopList`,
-                          notifLink: link_to_ranking,
-                          notifType: "Ranking To Follower Notification",
-                          statut: "nouveau",
-                          createdAt: new Date(),
-                        }
-                      );
-                      console.log(
-                        "Notification sent to follower with ID: ",
-                        newRankingFollow.id
-                      );
-                    } catch (error) {
-                      console.error("Error adding document: ", error);
-                    }
-                  })();
-                });
+                  });
+                }
 
                 $(location).attr("href", link_to_ranking);
               } else {
