@@ -405,9 +405,6 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
                                 </div>
                               </div>
                             </div>
-                          <?php else : ?>
-                            <div id="send_comment_btn"></div>
-                          <?php endif; ?>
                         <?php endif; ?>
 
                         <?php if (get_field('liste_des_createurs_top', $id_top)) : ?>
