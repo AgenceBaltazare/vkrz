@@ -968,18 +968,25 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
 }
 
 .come-back {
-    background: linear-gradient(to bottom right, #280048, #260058) !important;
+    background: $c3 !important;
     width: 100%;
     position: fixed;
     bottom: 0;
     z-index: 9999;
     color: #FFF;
     padding: .5rem .8rem;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
+
+    b{
+        color: $rose;
+    }
 
     a {
-        color: $rose;
-        font-weight: bold;
+        color: #fff;
+        &:hover{
+            color: $c5;
+            text-decoration: none;
+        }
     }
 
     button {

@@ -66,8 +66,8 @@
         $l++;
         if ($l == 4) break;
     }
-    if(get_field('bannerbear_t', $top)){
-        $bannerbear_id = get_field('bannerbear_t', $top);
+    if(get_field('bannerbear_t', $id_top)){
+        $bannerbear_id = get_field('bannerbear_t', $id_top);
     }
     else{
         if($top_infos['top_number'] < 3){

@@ -4,7 +4,7 @@ global $id_top;
 <div class="come-back d-none">
     <div class="d-flex">
         <div class="text-center w-100">
-            <b>Nouvelles fonctionnalités 🎉</b> - <a href="https://vainkeurz.com/nouvelle-version" target="_blank">Ici pour les découvrir</a> et vos retours sont les bienvenus dans le chat ou sur <a href="https://discord.gg/E9H9e8NYp7" target="_blank">Discord</a>
+            <b>🎉 Nouvelles fonctionnalités 🎉</b> <a href="https://vainkeurz.com/nouvelle-version">Cliquez ici pour les découvrir 👀</a>. Tes retours sont les bienvenues sur le chat ou <a href="https://discord.gg/E9H9e8NYp7" target="_blank">Discord</a> 🙏
         </div>
         <button type="button" class="come-back-closeBtn" data-bs-dismiss="alert" aria-label="Close">
             <i class="fas fa-times"></i>

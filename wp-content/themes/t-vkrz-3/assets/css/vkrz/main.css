@@ -1213,18 +1213,24 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
 }
 
 .come-back {
-  background: linear-gradient(to bottom right, #280048, #260058) !important;
+  background: #312673 !important;
   width: 100%;
   position: fixed;
   bottom: 0;
   z-index: 9999;
   color: #FFF;
   padding: 0.5rem 0.8rem;
-  font-size: 1.1rem;
+  font-size: 0.9rem;
+}
+.come-back b {
+  color: #f4167f;
 }
 .come-back a {
-  color: #f4167f;
-  font-weight: bold;
+  color: #fff;
+}
+.come-back a:hover {
+  color: #7367f0;
+  text-decoration: none;
 }
 .come-back button {
   background: none;
