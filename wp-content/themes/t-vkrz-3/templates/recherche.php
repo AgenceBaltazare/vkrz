@@ -329,7 +329,7 @@ get_header();
               ?>
               <input type="text" class="form-control search-product" id="search_text" placeholder="<?php echo $placeholder; ?>" aria-label="<?php echo $placeholder; ?>" name="term" aria-describedby="shop-search" required oninvalid="this.setCustomValidity('Son goku par exemple..')" />
               <button type="submit">
-                <span class="ico ico-search ico-search-result va va-magnifying-glass-tilted-left va-lg"></span>
+                <span class="ico ico-search ico-search-result va va-loupe va-lg"></span>
               </button>
             </form>
           </div>

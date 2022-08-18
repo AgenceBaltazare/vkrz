@@ -258,10 +258,10 @@ html .content {
 }
 
 .legende {
-  display: block;
-  line-height: 100%;
-  color: rgba(106, 104, 109, 1);
-  margin-top: 3px;
+    display: block;
+    line-height: 100%;
+    color: rgba(106, 104, 109, 1);
+    margin-top: 3px;
 }
 
 .main-menu {
@@ -287,8 +287,12 @@ html .content {
 }
 
 .main-menu .main-menu-content {
-    height: calc(100% - 220px) !important;
-    position: relative;
+    height: calc(100%);
+}
+.expanded{
+    .main-menu-content {
+        height: calc(100% - 220px) !important;
+    }
 }
 
 .avatar {
@@ -651,17 +655,38 @@ html .content {
     text-transform: uppercase;
     font-weight: bold;
 }
+.item-search{
+    display: none;
+}
 
-.single{
+.navigation-header {
+    margin: calc(2rem + 0.286rem) 0 0.8rem 2.2rem !important;
+}
+
+.single, .page-template-monitor{
     .boxtosearch{
         display: none;
     }
+    .item-search{
+        display: block;
+    }
+    .navigation-header {
+        margin: calc(0.4rem) 0 0.4rem 2.2rem !important;
+    }
+    .expanded{
+        .navigation-header {
+            margin: calc(2rem + 0.286rem) 0 0.8rem 2.2rem !important;
+        }
+    }
+    
 }
-
 .expanded{
     .boxtosearch{
         display: block;
-    }   
+    }  
+    .item-search{
+        display: none;
+    } 
 }
 
 .has-rose-color {
@@ -915,12 +940,20 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
     position: relative;
 
     .bar-percent {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: $rose;
+    height: 4px;
+    transition: all 0.2s ease-in;
+    span {
         position: absolute;
         left: 0px;
         top: -20px;
         color: $rose;
         font-size: 11px;
         height: 15px;
+    }
     }
     
     .bar {

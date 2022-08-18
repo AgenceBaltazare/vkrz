@@ -17,6 +17,7 @@
       <div class="content-monitor">
         <div class="container">
           <div class="row match-height">
+
             <div class="col-md-4">
               <div class="card text-center">
                 <div class="card-body d-flex align-items-center justify-content-center flex-column">
@@ -52,65 +53,79 @@
                 </div>
               </div>
             </div>
+
             <div class="col-md-4">
               <div class="card text-center">
-                <div class="card-body d-flex align-items-center winbloc">
-                  <?php
-                  if (get_field('nb_total_votes', 'options') < 10000000) : ?>
-                    <div class="illuwin">
-                      <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/monitor/switch-towin.png" alt="" class="img-fluid">
-                    </div>
-                    <h3 class="mt-3">
-                      Une <span class="t-violet">SWITCH LITE Bleu</span> à gagner !
-                    </h3>
-                    <p class="card-text mt-2">
-                      Le Vainkeur qui fera la <strong class="t-rose">10 millionième vote</strong> l'emporte. <br>
-                      Le gagnant sera annoncé sur Twitter et sur cette même page. <span class="ico va va-cold-face va-lg"></span>
-                    </p>
-                  <?php else : ?>
-                    <div class="illuwin">
-                      <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/switch-win.png" alt="" class="img-fluid">
-                    </div>
-                    <h3 class="mt-2">
-                      La <span class="t-violet">SWITCH LITE Bleu</span> a été remportée !
-                    </h3>
-                    <p class="card-text mt-2">
-                      Félicitation au Vainkeur qui a fait le <strong class="t-rose">10 millionième vote</strong>. <br>
-                      Go sur notre Twitter pour découvrir le gagnant, c'est peut-être toi <span class="ico va va-swinking-face-with-tongue va-lg"></span>
-                    </p>
-                  <?php endif; ?>
-                  <div class="mt-2">
-                    <div class="w-100 btn-group justify-content-center share-t" role="group">
-                      <a data-rs-name="discord" href="https://discord.gg/E9H9e8NYp7" class="btn btn-outline-primary waves-effect sociallink" target="_blank">
-                        <i class="fab fa-discord"></i>
-                      </a>
-                      <a data-rs-name="instagram" href="https://www.instagram.com/wearevainkeurz/" class="btn btn-outline-primary waves-effect sociallink" target="_blank">
-                        <i class="fab fa-instagram"></i>
-                      </a>
-                      <a data-rs-name="twitter" href="https://twitter.com/Vainkeurz" target="_blank" class="btn btn-outline-primary waves-effect sociallink">
-                        <i class="fab fa-twitter"></i>
-                      </a>
-                      <a data-rs-name="facebook" href="https://www.facebook.com/vainkeurz" target="_blank" class="btn btn-outline-primary waves-effect sociallink">
-                        <i class="fab fa-facebook-f"></i>
-                      </a>
+                <h4 class="card-title text-center mt-3">
+                  <span class="va va-dodo va-z-40"></span>
+                </h4>
+                <div class="card-body">
+                  <p class="card-text text-muted mb-2 text-center">
+                    <span class="va va-clapping va-z-20"></span> au vainkeur le plus <span class="va va-fire va-z-15"></span> des <span class="va va-seven va-z-15"></span> derniers jours
+                  </p>
+                  <?php $dodo_infos = get_dodo(); ?>
+                  <div class="dodo-box">
+                    <div class="d-flex align-items-center flex-column">
+                      <div class="dodo-user">
+                        <div class="vainkeur-card">
+                          <a href="<?php echo esc_url(get_author_posts_url($dodo_infos['id_user'])); ?>" class="btn btn-outline-primary btn-flat-primary waves-effect">
+                            <span class="avatar">
+                              <span class="avatar-picture" style="background-image: url(<?php echo $dodo_infos['avatar']; ?>);"></span>
+                            </span>
+                            <span class="championname">
+                              <h4><?php echo $dodo_infos['pseudo']; ?></h4>
+                              <span class="medailles">
+                                <?php echo $dodo_infos['level']; ?>
+                                <?php if ($dodo_infos['user_role'] == "administrator") : ?>
+                                  <span class="va va-vkrzteam va-z-15" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ"></span>
+                                <?php endif; ?>
+                                <?php if ($dodo_infos['user_role'] == "administrator" || $dodo_infos['user_role'] == "author") : ?>
+                                  <span class="va va-man-singer va-z-15" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops"></span>
+                                <?php endif; ?>
+                              </span>
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="dodo-score text-center mt-1 mb-2">
+                        avec <span class="t-rose"><?php echo $dodo_infos[0]['total_vote']; ?></span> votes <span class="va va-high-voltage va-z-15"></span>
+                        & <span class="t-rose"><?php echo $dodo_infos[0]['total_top']; ?></span> TopList <span class="va va-trophy va-z-15"></span>
+                      </div>
+                      <div class="separate-top">
+                        <a href="<?php the_permalink(get_page_by_path('best-of/best-vainkeurs')); ?>" class="btn btn-flat-dark waves-effect">
+                          <small>Découvre le classement ALL Time des vainkeurs les plus <span class="va va-fire va-z-15"></span></small>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
+              <div class="card text-center share-bloc">
+                <div class="card-body d-flex align-items-center winbloc">
+                  <div class="w-100 btn-group justify-content-center share-t" role="group">
+                    <a data-rs-name="discord" href="https://discord.gg/E9H9e8NYp7" class="btn btn-outline-primary waves-effect sociallink" target="_blank">
+                      <i class="fab fa-discord"></i>
+                    </a>
+                    <a data-rs-name="instagram" href="https://www.instagram.com/wearevainkeurz/" class="btn btn-outline-primary waves-effect sociallink" target="_blank">
+                      <i class="fab fa-instagram"></i>
+                    </a>
+                    <a data-rs-name="twitter" href="https://twitter.com/Vainkeurz" target="_blank" class="btn btn-outline-primary waves-effect sociallink">
+                      <i class="fab fa-twitter"></i>
+                    </a>
+                    <a data-rs-name="facebook" href="https://www.facebook.com/vainkeurz" target="_blank" class="btn btn-outline-primary waves-effect sociallink">
+                      <i class="fab fa-facebook-f"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
+
             <div class="col-md-4">
               <section class="app-user-view">
                 <div class="row match-height">
                   <div class="col-sm-12">
                     <div class="card text-center">
                       <div class="card-body">
-                        <div class="pricing-badge text-right">
-                          <div class="badge badge-pill badge-light-primary">
-                            <a href="<?php the_permalink(get_page_by_path('best-of/best-vainkeurs')); ?>" data-toggle="tooltip" data-popup="tooltip-custom" data-placement="top" data-original-title="Voir le Top 20 des vainkeurs">
-                              <span class="va va-fire va-1x"></span>
-                            </a>
-                          </div>
-                        </div>
                         <div class="mb-1">
                           <span class="ico4 va va-swan va-2x"></span>
                         </div>
@@ -129,7 +144,7 @@
                         </p>
                       </div>
                     </div>
-                  </div>                  
+                  </div>
                   <div class="col-sm-12">
                     <div class="row">
                       <div class="col-sm-6 pr-1 pr-md-0">

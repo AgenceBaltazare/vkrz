@@ -245,10 +245,6 @@ div.dataTables_wrapper div.dataTables_length label {
   display: none;
 }
 
-.main-menu.menu-dark .navigation .navigation-header {
-  margin: 2rem 0 0.8rem 2.2rem;
-}
-
 .main-menu.menu-dark .navigation li.nav-item a.sociallink:hover > * {
   transition: all 0.25s ease;
   transform: none;
@@ -593,8 +589,11 @@ html .content {
 }
 
 .main-menu .main-menu-content {
+  height: 100%;
+}
+
+.expanded .main-menu-content {
   height: calc(100% - 220px) !important;
-  position: relative;
 }
 
 .avatar img {
@@ -917,12 +916,32 @@ html .content {
   font-weight: bold;
 }
 
-.single .boxtosearch {
+.item-search {
   display: none;
+}
+
+.navigation-header {
+  margin: 2.286rem 0 0.8rem 2.2rem !important;
+}
+
+.single .boxtosearch, .page-template-monitor .boxtosearch {
+  display: none;
+}
+.single .item-search, .page-template-monitor .item-search {
+  display: block;
+}
+.single .navigation-header, .page-template-monitor .navigation-header {
+  margin: 0.4rem 0 0.4rem 2.2rem !important;
+}
+.single .expanded .navigation-header, .page-template-monitor .expanded .navigation-header {
+  margin: 2.286rem 0 0.8rem 2.2rem !important;
 }
 
 .expanded .boxtosearch {
   display: block;
+}
+.expanded .item-search {
+  display: none;
 }
 
 .has-rose-color {
@@ -1169,6 +1188,14 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   position: relative;
 }
 .bar-container .bar-percent {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f4167f;
+  height: 4px;
+  transition: all 0.2s ease-in;
+}
+.bar-container .bar-percent span {
   position: absolute;
   left: 0px;
   top: -20px;
@@ -1787,6 +1814,16 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   display: inline-block;
   min-width: 40px;
   text-align: center;
+}
+
+.share-bloc .share-t a {
+  display: inline-block;
+  min-width: 40px;
+  text-align: center;
+  min-height: 70px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }
 
 .share-label {
@@ -4728,7 +4765,7 @@ select:-webkit-autofill:focus {
   background-image: url(../../images/emojis/barber-pole_1f488.png);
 }
 
-.va-magnifying-glass-tilted-left {
+.va-loupe {
   background-image: url(../../images/emojis/magnifying-glass-tilted-left_1f50d.png);
 }
 
