@@ -389,11 +389,11 @@ get_header();
                                 </td>
 
                                 <td class="text-right">
-                                  <?php echo $user_infos['nb_vote_vkrz']; ?> <span class="ico va-high-voltage va va-lg"></span>
+                                  <?php echo $vainkeur_data_selected['nb_vote_vkrz']; ?> <span class="ico va-high-voltage va va-lg"></span>
                                 </td>
 
                                 <td class="text-right">
-                                  <?php echo $user_infos['nb_top_vkrz']; ?> <span class="ico va va-trophy va-lg"></span>
+                                  <?php echo $vainkeur_data_selected['nb_top_vkrz']; ?> <span class="ico va va-trophy va-lg"></span>
                                 </td>
 
                                 <td class="text-right">
