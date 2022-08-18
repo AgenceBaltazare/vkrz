@@ -933,6 +933,12 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
         align-items: center;
         justify-content: center;
     }
+
+    .participate-gif-top {
+        position: absolute;
+        right: 2%;
+        top: 2%;
+    }    
 }
 
 // Stepbar
@@ -940,20 +946,13 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
     position: relative;
 
     .bar-percent {
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: $rose;
-    height: 4px;
-    transition: all 0.2s ease-in;
-    span {
         position: absolute;
         left: 0px;
         top: -20px;
         color: $rose;
         font-size: 11px;
         height: 15px;
-    }
+        transition: all 0.3s ease-in;
     }
     
     .bar {
@@ -964,5 +963,37 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
         width: 0%;
         background-color: $rose;
         height: 4px;
+        transition: all 0.3s ease-in;
+    }
+}
+
+.come-back {
+    background: linear-gradient(to bottom right, #280048, #260058) !important;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    z-index: 9999;
+    color: #FFF;
+    padding: .5rem .8rem;
+    font-size: 1.1rem;
+
+    a {
+        color: $rose;
+        font-weight: bold;
+    }
+
+    button {
+        background: none;
+        outline: none;
+        border: none;
+
+        i {
+            color: #FFF;
+            transition: all .3s;
+
+            &:hover {
+                color: $rose;
+            }
+        }
     }
 }
