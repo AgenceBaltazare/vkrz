@@ -1286,6 +1286,15 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   text-decoration: none !important;
 }
 
+.single-format-standard .apropos {
+  padding-bottom: 40px;
+}
+
+.mark, mark {
+  padding: 0 !important;
+  background-color: transparent !important;
+}
+
 .page-template-monitor .list-vainkeur-monitor {
   line-height: 14px;
 }

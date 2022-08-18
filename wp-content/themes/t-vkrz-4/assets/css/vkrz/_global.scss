@@ -1050,3 +1050,14 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
         }
     }
 }
+
+.single-format-standard{
+    .apropos{
+        padding-bottom: 40px;
+    }
+}
+
+.mark, mark {
+    padding: 0 !important;
+    background-color: transparent !important;
+}
