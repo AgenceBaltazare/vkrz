@@ -377,37 +377,15 @@ get_header();
                           </thead>
                           <tbody>
                             <?php
-                            foreach ($searching_for_a_vainkeur as $user) : ?>
-                              <?php
-                              $user_id            = $user->ID;
-                              $uuiduser_search    = get_field('uuiduser_user', 'user_' . $user_id);
-                              $user_infos         = get_user_infos($uuiduser_search, "complete");
-                              $avatar             = $user_infos['avatar'];
-                              $info_user_level    = get_user_level($user_id);
+                            foreach ($searching_for_a_vainkeur as $user) : 
+                              $user_id                  = $user->ID;
+                              $uuiduser_search          = get_field('uuiduser_user', 'user_' . $user_id);
+                              $vainkeur_data_selected   = get_user_infos($uuiduser_search, "complete");
+                              global $vainkeur_data_selected;
                               ?>
                               <tr>
                                 <td>
-                                  <div class="d-flex align-items-center">
-                                    <div class="avatar">
-                                      <span class="avatar-picture" style="background-image: url(<?php echo $avatar; ?>);"></span>
-                                      <span class="user-niveau">
-                                        <?php echo $user_infos['level']; ?>
-                                      </span>
-                                    </div>
-                                    <div class="font-weight-bold championname">
-                                      <span>
-                                        <?php echo get_the_author_meta('nickname', $user_id); ?>
-                                      </span>
-                                      <?php if ($user_infos['user_role'] == "administrator") : ?>
-                                        <span class="ico va va-vkrzteam va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
-                                        </span>
-                                      <?php endif; ?>
-                                      <?php if ($user_infos['user_role'] == "administrator" || $user_infos['user_role'] == "author") : ?>
-                                        <span class="ico va va-man-singer va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
-                                        </span>
-                                      <?php endif; ?>
-                                    </div>
-                                  </div>
+                                  <?php get_template_part('partials/vainkeur-card'); ?>
                                 </td>
 
                                 <td class="text-right">
