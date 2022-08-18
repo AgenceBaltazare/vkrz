@@ -13,16 +13,24 @@ const table             = document.querySelector('.fetch-table'),
       tbody             = table.querySelector('tbody'),
       nombreTopsDOM     = table.querySelector('.nb_top_vkrz'),
       idVainkeur        = table.dataset.idvainkeur,
-      loadAllTopListsBtn   = document.querySelector('.load_more_toplists');
+      loadAllTopListsBtn   = document.querySelector('.load_more_toplists'),
+      progressBar       = document.querySelector(".bar"),
+      h1                = progressBar.querySelector(".calc-resemblance-h1");
 
 const data = await getDataAPI(`https://vainkeurz.com/wp-json/vkrz/v1/get_numberpage_vainkeur/${idVainkeur}`);
 
 let nombrePages            = data.nb_pages,
     nombreTops             = data.total_items,
     row                    = "",
-    typeTopWording         = "";
+    typeTopWording         = "",
+    progressBarWidthNumber = 0;
 
 loadAllTopListsBtn.addEventListener("click", () => {
+
+  // START RENDERING…
+  progressBar.style.display = `block`;
+  h1.textContent = `1 %`;
+  progressBar.style.width = `1%`;
 
   $(loadAllTopListsBtn).hide();
   $('.list-php').hide();
@@ -132,6 +140,13 @@ loadAllTopListsBtn.addEventListener("click", () => {
         `;
       });
 
+      // INCREMENTE PROGRESS BAR…
+      if (progressBarWidthNumber <= 84) {
+        progressBarWidthNumber += 9;
+        h1.textContent = `${progressBarWidthNumber} %`;
+        progressBar.style.width = `${progressBarWidthNumber}%`;
+      }
+
       if(i === nombrePages) {
         tbody.innerHTML = row;
 
@@ -177,6 +192,8 @@ loadAllTopListsBtn.addEventListener("click", () => {
               selector: '[data-toggle=tooltip]'
           });
         });
+
+        progressBar.style.width = `100%`;
       }
     }
   })();

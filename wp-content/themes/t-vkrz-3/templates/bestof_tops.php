@@ -41,6 +41,9 @@ get_header();
                                             <span class="text-muted">TopList <span class="va va-updown va-z-15"></span></span>
                                         </th>
                                         <th class="text-right">
+                                            <span class="text-muted">TopList mondiale</span>
+                                        </th>
+                                        <th class="text-right">
                                             <span class="text-muted">Conçu par</span>
                                         </th>
                                     </tr>
@@ -89,7 +92,15 @@ get_header();
                                                 </td>
 
                                                 <td class="text-right">
-                                                    <?php the_field('nb_tops_resume'); ?> <span class="ico va-trophy va va-lg"></span>
+                                                    <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_top; ?>" class="btn btn-flat-secondary waves-effect text-white" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir toutes les TopList">
+                                                        <?php the_field('nb_tops_resume'); ?> <span class="ico va-trophy va va-lg"></span>
+                                                    </a>
+                                                </td>
+
+                                                <td class="text-right">
+                                                    <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_top; ?>" class="btn btn-flat-secondary waves-effect" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir la TopList mondiale">
+                                                        <span class="ico va-globe va va-lg"></span>
+                                                    </a>
                                                 </td>
 
                                                 <td class="text-right">

@@ -875,6 +875,10 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
 .loader-list{
     display: none;
     text-align: center;
+}
+
+.loader-ressemblance{
+    text-align: center;
     padding: 20px 0 40px;
     h5{
         color: $c5;
@@ -882,5 +886,45 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
     }
     img{
         border: 5px solid $c3;
+    }
+}
+
+.card-voile{
+    position: relative;
+    border-radius: 10px;
+    .voile-gif{
+        background-size: cover !important;
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        opacity: 0.1;
+        border-radius: 10px;
+    }
+    .card-body{
+        min-height: 400px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+// Stepbar
+.bar {
+    display: none;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: $rose;
+    height: 4px;
+    span {
+        position: absolute;
+        right: 0px;
+        top: -20px;
+        color: $rose;
+        font-size: 11px;
+        height: 15px;
     }
 }

@@ -1130,14 +1130,57 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
 .loader-list {
   display: none;
   text-align: center;
+}
+
+.loader-ressemblance {
+  text-align: center;
   padding: 20px 0 40px;
 }
-.loader-list h5 {
+.loader-ressemblance h5 {
   color: #7367f0;
   font-size: 12px;
 }
-.loader-list img {
+.loader-ressemblance img {
   border: 5px solid #312673;
+}
+
+.card-voile {
+  position: relative;
+  border-radius: 10px;
+}
+.card-voile .voile-gif {
+  background-size: cover !important;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  opacity: 0.1;
+  border-radius: 10px;
+}
+.card-voile .card-body {
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bar {
+  display: none;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f4167f;
+  height: 4px;
+}
+.bar span {
+  position: absolute;
+  right: 0px;
+  top: -20px;
+  color: #f4167f;
+  font-size: 11px;
+  height: 15px;
 }
 
 .page-template-monitor .list-vainkeur-monitor {
@@ -2120,15 +2163,6 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   border-radius: 0 !important;
   cursor: progress;
   pointer-events: none;
-}
-.users-ranks .calc-resemblance .bar {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  display: block;
-  width: 100%;
-  background-color: #E51C83;
-  height: 4px;
 }
 .users-ranks .loaded {
   opacity: 1;
@@ -4661,6 +4695,10 @@ select:-webkit-autofill:focus {
 
 .va-clapping {
   background-image: url(../../images/emojis/clapping-hands_1f44f.png);
+}
+
+.va-unknow {
+  background-image: url(../../images/emojis/person-shrugging_1f937.png);
 }
 
 .va-seven {

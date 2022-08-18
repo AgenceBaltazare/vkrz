@@ -30,6 +30,7 @@ let nombrePages = getNombrePages.nb_pages,
 
 (async function render() {
   // START RENDERING…
+  progressBar.style.display = `block`;
   h1.textContent = `1 %`;
   progressBar.style.width = `1%`;
 
@@ -140,11 +141,8 @@ let nombrePages = getNombrePages.nb_pages,
 
             <td class="text-center">
               <a href="${urlTop}" 
-              class="btn btn-flat-secondary waves-effect" 
-              >
-                <span class="text-muted">
-                    Je fais ma TopList pour calculer la ressemblance
-                </span>
+              class="btn btn-flat-secondary waves-effect" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tu dois faire ta TopList pour calculer la ressemblance #logik">
+                <span class="va va-unknow va-lg"></span>
               </a>
             </td>
 

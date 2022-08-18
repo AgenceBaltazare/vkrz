@@ -119,6 +119,7 @@ $(".table-bestops").DataTable({
         { orderable: true },
         { orderable: true },
         { orderable: false },
+        { orderable: false },
     ],
     order: [],
 });

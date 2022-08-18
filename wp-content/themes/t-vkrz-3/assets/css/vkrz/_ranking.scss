@@ -212,16 +212,6 @@
     border-radius: 0 !important;
     cursor: progress;
     pointer-events: none;
-
-    .bar {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      display: block;
-      width: 100%;
-      background-color: #E51C83;
-      height: 4px;
-    }
   }
 
   .loaded {
@@ -258,7 +248,7 @@
       -webkit-text-fill-color: #fff !important; 
 
       &::placeholder {
-       -webkit-text-fill-color: #A9A9AC !important; 
+        -webkit-text-fill-color: #A9A9AC !important; 
       }
 
       &:focus {
