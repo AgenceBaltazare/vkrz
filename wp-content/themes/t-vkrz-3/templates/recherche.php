@@ -296,6 +296,16 @@ if (!empty($tops_unique_to_find)) {
 get_header();
 ?>
 <div class="app-content content ecommerce-application">
+  <div class="recherche-firestore"
+    data-lama2lombre="<?php echo is_user_logged_in() ? 'Non' : 'Oui' ?>"
+    data-userId="<?php echo get_current_user_id() ?>"
+    data-userName="<?php echo wp_get_current_user()->display_name; ?>"
+    data-uuid="<?php echo get_field('uuiduser_user', 'user_' . get_current_user_id()); ?>"
+    data-searchedTerm="<?php echo $term_to_search; ?>"
+    data-resultsNumber="<?php echo $total_top_founded ? $total_top_founded : '0'; ?>"
+  >
+  </div>
+
   <div class="content-wrapper">
     <div class="content-body">
 

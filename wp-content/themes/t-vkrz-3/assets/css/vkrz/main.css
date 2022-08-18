@@ -1212,6 +1212,33 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   transition: all 0.3s ease-in;
 }
 
+.come-back {
+  background: linear-gradient(to bottom right, #280048, #260058) !important;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  z-index: 9999;
+  color: #FFF;
+  padding: 0.5rem 0.8rem;
+  font-size: 1.1rem;
+}
+.come-back a {
+  color: #f4167f;
+  font-weight: bold;
+}
+.come-back button {
+  background: none;
+  outline: none;
+  border: none;
+}
+.come-back button i {
+  color: #FFF;
+  transition: all 0.3s;
+}
+.come-back button i:hover {
+  color: #f4167f;
+}
+
 .page-template-monitor .list-vainkeur-monitor {
   line-height: 14px;
 }

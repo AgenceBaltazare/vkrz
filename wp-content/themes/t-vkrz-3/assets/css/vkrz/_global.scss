@@ -966,3 +966,34 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
         transition: all 0.3s ease-in;
     }
 }
+
+.come-back {
+    background: linear-gradient(to bottom right, #280048, #260058) !important;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    z-index: 9999;
+    color: #FFF;
+    padding: .5rem .8rem;
+    font-size: 1.1rem;
+
+    a {
+        color: $rose;
+        font-weight: bold;
+    }
+
+    button {
+        background: none;
+        outline: none;
+        border: none;
+
+        i {
+            color: #FFF;
+            transition: all .3s;
+
+            &:hover {
+                color: $rose;
+            }
+        }
+    }
+}
