@@ -109,5 +109,10 @@ function load_css_js()
   if (is_author() ||is_page(get_page_by_path('mon-compte'))  ) {
     wp_enqueue_script('fetch_toplist_by_vainkeur', get_template_directory_uri() . '/function/firebase/fetch_toplist_by_vainkeur.js', array(), $template_version, true);
   }
+
+  // RECHERCHE PAGE…
+  if (is_page('Rechercher')) {
+    wp_enqueue_script('recherches', get_template_directory_uri() . '/function/firebase/recherches.js', array(), $template_version, true);
+  }
 }
 add_action('wp_enqueue_scripts', 'load_css_js');

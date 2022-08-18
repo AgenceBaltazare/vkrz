@@ -285,10 +285,7 @@ if (is_single() && get_post_type() == "tournoi") {
           <h4 class="mb-0">
             <?php
             if ($searching_for_a_vainkeur) {
-              echo 'Vainkeur trouvé';
-            }
-            if ($searching_for_a_vainkeur) {
-              echo ' - ';
+              echo 'Vainkeur trouvé  - ';
             }
             if ($total_top_founded == 0 || !$total_top_founded) {
               echo "Aucun Top trouvé";
