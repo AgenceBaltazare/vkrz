@@ -59,13 +59,13 @@ $count_toplist        = count($list_toplist);
                             <!-- CALCULATE RESEMBALNCE… -->
                             <div class="card text-center calc-resemblance card-voile" data-idtop="<?php echo $id_top; ?>" data-topurl="<?php echo get_permalink($id_top) ?>">
                                 <div class="voile-gif" style="background-image: url(<?php bloginfo('template_directory'); ?>/assets/images/gif/wait-<?php echo rand(1, 7); ?>.gif)"></div>
-                                <a href="https://elmobachiadil.com" target="_blank" class="participate-gif-top">
+                                <!-- <a href="https://elmobachiadil.com" target="_blank" class="participate-gif-top">
                                     <span data-toggle="tooltip" data-placement="top" title="Participate to the best Waiting GIF Top" data-original-title="Participate to the best Waiting GIF Top">
                                         <span class="badge badge-pill badge-light-primary">
                                             <span class="ico text-center va va-trophy va-lg"></span>
                                         </span>
                                     </span>
-                                </a>
+                                </a> -->
                                 <div class="card-body">
                                     <div class="content-card">
                                         <div class="loader-block">
