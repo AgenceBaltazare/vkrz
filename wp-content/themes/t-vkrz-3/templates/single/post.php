@@ -1,6 +1,6 @@
 <?php
 global $infos_vainkeur;
-get_header(); 
+get_header();
 ?>
 <div class="app-content content">
   <div class="content-overlay position-fixed" style="z-index: -1 !important;"></div>
@@ -22,9 +22,10 @@ get_header();
                     </div>
                   </div>
 
-                  <hr class="my-2">
 
-                  <div class="infoauthor">
+                  <!-- 
+                    <hr class="my-2">
+                    <div class="infoauthor">
                     <div class="d-flex">
                       <div class="avatar mr-50">
                         <?= get_avatar(get_the_author_meta('ID'), 28); ?>
@@ -39,7 +40,7 @@ get_header();
                       </div>
                     </div>
                   </div>
-
+ -->
                   <hr class="my-2">
                   <div class="blog-rs">
                     <div class="d-flex align-items-center">
@@ -303,7 +304,7 @@ get_header();
                 </div>
               </div>
             </div>
-            
+
             <div class="col-lg-3">
               <div class="sidebar">
                 <div class="blog-sidebar my-2 my-lg-0">
