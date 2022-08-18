@@ -279,7 +279,8 @@ if (!empty($list_tops_unique)) {
 ////////////////// VAINKEUR 5️⃣ ////////////
 $user_query = new WP_User_Query(
   array(
-    'search' => $term_to_search
+    'search'          => '*' . esc_attr($term_to_search) . '*',
+    'search_columns'  => array('user_login')
   )
 );
 // Get the results
@@ -323,6 +324,19 @@ get_header();
               } else {
                 echo $total_top_founded . " Tops trouvés";
               }
+            if ($searching_for_a_vainkeur) {
+              echo 'Vainkeur trouvé';
+            }
+            if ($searching_for_a_vainkeur) {
+              echo ' - ';
+            }
+            if ($total_top_founded == 0 || !$total_top_founded) {
+              echo "Aucun Top trouvé";
+            } elseif ($total_top_founded == 1) {
+              echo "Un seul Top trouvé";
+            } else {
+              echo $total_top_founded . " Tops trouvés";
+            }
             ?>
           </h3>
         </div>
@@ -362,66 +376,44 @@ get_header();
                           <thead>
                             <tr>
                               <th>
-                                <span class="va va-lama va-lg"></span> <small class="text-muted">Vainkeur</small>
+                                <span class="va va-lama va-lg"></span> <span class="text-muted">Vainkeur</span>
                               </th>
                               <th class="text-right">
-                                <small class="text-muted">Votes</small>
+                                <span class="text-muted">Votes</span>
                               </th>
                               <th class="text-right">
-                                <small class="text-muted">TopList</small>
+                                <span class="text-muted">TopList</span>
                               </th>
                               <th class="text-right">
-                                <small class="text-muted">Voir</small>
+                                <span class="text-muted">Voir</span>
                               </th>
 
                               <?php if (strtolower($infos_vainkeur['pseudo']) != strtolower($term_to_search) && is_user_logged_in()) : ?>
                                 <th class="text-right">
-                                  <small class="text-muted">Guetter</small>
+                                  <span class="text-muted">Guetter</span>
                                 </th>
                               <?php endif; ?>
                             </tr>
                           </thead>
                           <tbody>
                             <?php
-                            foreach ($searching_for_a_vainkeur as $user) : ?>
-                              <?php
-                              $user_id            = $user->ID;
-                              $uuiduser_search    = get_field('uuiduser_user', 'user_' . $user_id);
-                              $user_infos         = get_user_infos($uuiduser_search, "complete");
-                              $avatar             = $user_infos['avatar'];
-                              $info_user_level    = get_user_level($user_id);
+                            foreach ($searching_for_a_vainkeur as $user) : 
+                              $user_id                  = $user->ID;
+                              $uuiduser_search          = get_field('uuiduser_user', 'user_' . $user_id);
+                              $vainkeur_data_selected   = get_user_infos($uuiduser_search, "complete");
+                              global $vainkeur_data_selected;
                               ?>
                               <tr>
                                 <td>
-                                  <div class="d-flex align-items-center">
-                                    <div class="avatar">
-                                      <span class="avatar-picture" style="background-image: url(<?php echo $avatar; ?>);"></span>
-                                      <span class="user-niveau">
-                                        <?php echo $user_infos['level']; ?>
-                                      </span>
-                                    </div>
-                                    <div class="font-weight-bold championname">
-                                      <span>
-                                        <?php echo get_the_author_meta('nickname', $user_id); ?>
-                                      </span>
-                                      <?php if ($user_infos['user_role'] == "administrator") : ?>
-                                        <span class="ico va va-vkrzteam va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
-                                        </span>
-                                      <?php endif; ?>
-                                      <?php if ($user_infos['user_role'] == "administrator" || $user_infos['user_role'] == "author") : ?>
-                                        <span class="ico va va-man-singer va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
-                                        </span>
-                                      <?php endif; ?>
-                                    </div>
-                                  </div>
+                                  <?php get_template_part('partials/vainkeur-card'); ?>
                                 </td>
 
                                 <td class="text-right">
-                                  <?php echo $user_infos['nb_vote_vkrz']; ?> <span class="ico va-high-voltage va va-lg"></span>
+                                  <?php echo $vainkeur_data_selected['nb_vote_vkrz']; ?> <span class="ico va-high-voltage va va-lg"></span>
                                 </td>
 
                                 <td class="text-right">
-                                  <?php echo $user_infos['nb_top_vkrz']; ?> <span class="ico va va-trophy va-lg"></span>
+                                  <?php echo $vainkeur_data_selected['nb_top_vkrz']; ?> <span class="ico va va-trophy va-lg"></span>
                                 </td>
 
                                 <td class="text-right">
@@ -432,23 +424,13 @@ get_header();
 
                                 <?php if (get_current_user_id() != $user_id && is_user_logged_in()) : ?>
                                   <td class="text-right checking-follower">
-                                    <button 
-                                      type="button" 
-                                      id="followBtn" 
-                                      class="btn waves-effect btn-follow d-none" 
-                                      data-userid="<?= get_current_user_id(); ?>" 
-                                      data-uuid="<?= get_field('uuiduser_user', 'user_' . get_current_user_id()); ?>" 
-                                      data-relatedid="<?= $user_id; ?>" 
-                                      data-relateduuid="<?= $uuiduser_search ?>" 
-                                      data-text="<?= get_the_author_meta('nickname', get_current_user_id()); ?> te guette !" 
-                                      data-url="<?= get_author_posts_url(get_current_user_id()); ?>"
-                                    >
+                                    <button type="button" id="followBtn" class="btn waves-effect btn-follow d-none" data-userid="<?= get_current_user_id(); ?>" data-uuid="<?= get_field('uuiduser_user', 'user_' . get_current_user_id()); ?>" data-relatedid="<?= $user_id; ?>" data-relateduuid="<?= $uuiduser_search ?>" data-text="<?= get_the_author_meta('nickname', get_current_user_id()); ?> te guette !" data-url="<?= get_author_posts_url(get_current_user_id()); ?>">
                                       <span class="wording">Guetter</span>
                                       <span class="va va-guetteur-close va va-z-20 emoji"></span>
                                     </button>
                                   </td>
                                 <?php endif; ?>
-                                
+
                               </tr>
                             <?php endforeach; ?>
                           </tbody>
@@ -482,7 +464,7 @@ get_header();
           $list_user_tops       = array();
           $list_user_tops_begin = array();
         }
-        ?>
+      ?>
         <section class="grid-to-filtre row match-height mt-2 tournois">
           <?php $i = 1;
           while ($tops_unique_to_find->have_posts()) : $tops_unique_to_find->the_post(); ?>

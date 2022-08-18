@@ -134,9 +134,7 @@ if ($list_user_toplists) {
                       <div class="col-12 mt-1 mb-1">
                         <p class="mb-50">
                           <span class="ico2">
-                            <span class="<?php if ($cat->term_id == 2) {
-                                            echo 'rotating';
-                                          } ?>">
+                            <span class="<?php if ($cat->term_id == 2) { echo 'rotating'; } ?>">
                               <?php the_field('icone_cat', 'term_' . $cat->term_id); ?>
                             </span>
                           </span>

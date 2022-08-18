@@ -34,15 +34,17 @@ global $infos_vainkeur;
                 <div class="d-flex align-items-start">
                   <div class="avatar me-75 mr-1">
                     <?php
+                    $url_author = "#";
                     if ($comment->comment_author_email) {
                       $comment_autor      = get_user_by('email', $comment->comment_author_email);
                       $comment_autor_id   = $comment_autor->ID;
                       $avatar_url         = get_avatar_url($comment_autor_id, ['size' => '180', 'force_default' => false]);
+                      $url_author         = get_author_posts_url($comment_autor_id);
                     } else {
                       $avatar_url         = get_bloginfo('template_directory') . '/assets/images/vkrz/avatar-rose.png';
                     }
                     ?>
-                    <a href="<?php echo get_author_posts_url($comment_autor_id); ?>">
+                    <a href="<?php echo $url_author; ?>">
                       <img src="<?php echo $avatar_url; ?>" width="60" height="60" alt="Avatar">
                     </a>
                   </div>
@@ -91,15 +93,17 @@ global $infos_vainkeur;
                   <div class="d-flex align-items-start">
                     <div class="avatar me-75 mr-1">
                       <?php
+                      $url_author = "#";
                       if ($comment->comment_author_email) {
                         $comment_autor      = get_user_by('email', $comment->comment_author_email);
                         $comment_autor_id   = $comment_autor->ID;
                         $avatar_url         = get_avatar_url($comment_autor_id, ['size' => '180', 'force_default' => false]);
+                        $url_author         = get_author_posts_url($comment_autor_id);
                       } else {
                         $avatar_url         = get_bloginfo('template_directory') . '/assets/images/vkrz/avatar-rose.png';
                       }
                       ?>
-                      <a href="<?php echo get_author_posts_url($comment_autor_id); ?>">
+                      <a href="<?php echo $url_author; ?>">
                         <img src="<?php echo $avatar_url; ?>" width="60" height="60" alt="Avatar">
                       </a>
                     </div>
@@ -220,16 +224,7 @@ global $infos_vainkeur;
               </div>
 
               <!-- REPLY DATA… -->
-              <div 
-                id="replyData" 
-                style="display: none !important;" 
-                data-userId="<?php echo get_current_user_id() ?>" 
-                data-uuid="<?php echo get_field('uuiduser_user', 'user_' . get_current_user_id()); ?>" 
-                data-relatedId="<?php echo $author_reply_id ?>" 
-                data-relatedUuid="<?php echo get_field('uuiduser_user', 'user_' . $author_reply_id); ?>" 
-                data-notifText="<?php echo $infos_vainkeur['pseudo'] ?>" 
-                data-notifLink="<?php echo $actual_link; ?>&replytocom=<?php echo $top_reponse_id; ?>#respond"
-              ></div>
+              <div id="replyData" style="display: none !important;" data-userId="<?php echo get_current_user_id() ?>" data-uuid="<?php echo get_field('uuiduser_user', 'user_' . get_current_user_id()); ?>" data-relatedId="<?php echo $author_reply_id ?>" data-relatedUuid="<?php echo get_field('uuiduser_user', 'user_' . $author_reply_id); ?>" data-notifText="<?php echo $infos_vainkeur['pseudo'] ?>" data-notifLink="<?php echo $actual_link; ?>&replytocom=<?php echo $top_reponse_id; ?>#respond"></div>
 
               <!-- COMMENT DATA… -->
               <div id="commentData" style="display: none !important;" data-userId="<?php echo get_current_user_id() ?>" data-uuid="<?php echo get_field('uuiduser_user', 'user_' . get_current_user_id()); ?>" data-relatedId="<?php echo get_post_field('post_author', $top_comments_id); ?>" data-relatedUuid="<?php echo get_field('uuiduser_user', 'user_' . get_post_field('post_author', $top_comments_id)); ?>" data-notifText="<?php echo $infos_vainkeur['pseudo'] ?>" data-notifLink="<?php echo $actual_link; ?>"></div>
