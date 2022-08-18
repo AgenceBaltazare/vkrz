@@ -6,7 +6,7 @@ const table = document.querySelector("table"),
   calcResemblanceDiv = document.querySelector(".calc-resemblance"),
   idTop = calcResemblanceDiv.dataset.idtop,
   urlTop = calcResemblanceDiv.dataset.topurl,
-  h1 = calcResemblanceDiv.querySelector(".calc-resemblance-h1"),
+  barPercent = calcResemblanceDiv.querySelector(".bar-percent"),
   progressBar = calcResemblanceDiv.querySelector(".bar");
 
 async function getDataAPI(url) {
@@ -26,12 +26,13 @@ let nombrePages = getNombrePages.nb_pages,
   row = "",
   contendersTD = "",
   guetterTD   =  "",
-  progressBarWidthNumber = 0;
+  progressBarWidthNumber = 0,
+  iteration = 0;
 
 (async function render() {
   // START RENDERING…
   progressBar.style.display = `block`;
-  h1.textContent = `1 %`;
+  barPercent.textContent = `1 %`;
   progressBar.style.width = `1%`;
 
   // FETCH TOPLISTS DATA BY PAGE…
@@ -165,11 +166,12 @@ let nombrePages = getNombrePages.nb_pages,
     });
 
     // INCREMENTE PROGRESS BAR…
-    if (progressBarWidthNumber <= 84) {
-      progressBarWidthNumber += 9;
-      h1.textContent = `${progressBarWidthNumber} %`;
-      progressBar.style.width = `${progressBarWidthNumber}%`;
-    }
+    iteration = 100 / nombrePages;
+    progressBarWidthNumber += Math.round(iteration);
+    progressBarWidthNumber = Math.min(progressBarWidthNumber, 99)
+    barPercent.textContent = `${progressBarWidthNumber} %`;
+    barPercent.style.left = `${progressBarWidthNumber - 3}%`;
+    progressBar.style.width = `${progressBarWidthNumber}%`;
 
     // LAST ITERATION OF THE LOOP, ALL THE DATA FETCHED…
     if (i === nombrePages) {
@@ -365,10 +367,6 @@ let nombrePages = getNombrePages.nb_pages,
           });
           console.log("My ranking: ", myContenders);
 
-          // SO CLOSE TO SHOW THE RESULTS TO THE USER…
-          h1.textContent = `98 %`;
-          progressBar.style.width = `98%`;
-
           // USERS RANKS…
           const usersRanksQuery = query(
             collection(database, "wpClassement"),
@@ -446,7 +444,6 @@ let nombrePages = getNombrePages.nb_pages,
               document
                 .querySelectorAll(".uncalculated")
                 .forEach((el) => el.remove());
-              progressBar.style.width = `100%`;
 
               resetTable();
             }

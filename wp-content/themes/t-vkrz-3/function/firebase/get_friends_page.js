@@ -18,7 +18,7 @@ import {
   const followingQuery = query(
     collection(database, "notifications"),
     where("notifType", "==", "follow"),
-    where("userId", "==", currentUserId),
+    where("uuid", "==", currentUuid),
     orderBy("createdAt", "desc")
   );
   const followingQuerySnapshot = await getDocs(followingQuery);
@@ -27,7 +27,7 @@ import {
   const followersQuery = query(
     collection(database, "notifications"),
     where("notifType", "==", "follow"),
-    where("relatedId", "==", currentUserId),
+    where("relatedUuid", "==", currentUuid),
     orderBy("createdAt", "desc")
   );
   const followersQuerySnapshot = await getDocs(followersQuery);
@@ -49,7 +49,7 @@ import {
 
     followers.push(dataFollowersObject);
     followingQuerySnapshot.forEach((data2) => {
-      if (data1.data().userId == data2.data().relatedId) {
+      if (data1.data().uuid == data2.data().relatedUuid) {
         let dataObject = data1.data();
         dataObject["extra"] = { id: data2.id, friend: true };
 
@@ -305,8 +305,9 @@ import {
           try {
             let q = query(
               collection(database, "notifications"),
-              where("userId", "==", currentUserId),
-              where("relatedId", "==", idVainkeurProfil)
+              where("notifType", "==", "follow"),
+              where("uuid", "==", currentUuid),
+              where("relatedUuid", "==", uuidVainkeurProfile)
             );
             let querySnapshot = await getDocs(q);
 

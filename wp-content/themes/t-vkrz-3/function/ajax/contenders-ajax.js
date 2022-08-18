@@ -207,9 +207,9 @@ $(document).ready(function ($) {
                   collection(database, "notifications"),
                   where("notifType", "==", "follow"),
                   where(
-                    "relatedId",
+                    "relatedUuid",
                     "==",
-                    vkrz_tracking_vars_user.id_user_layer.toString()
+                    currentUuid
                   )
                 );
                 const followersQuerySnapshot = await getDocs(followersQuery);
@@ -221,9 +221,9 @@ $(document).ready(function ($) {
                     collection(database, "notifications"),
                     where("notifType", "==", "follow"),
                     where(
-                      "userId",
+                      "uuid",
                       "==",
-                      vkrz_tracking_vars_user.id_user_layer.toString()
+                      currentUuid
                     )
                   );
                   const followingQuerySnapshot = await getDocs(followingQuery);
@@ -233,7 +233,7 @@ $(document).ready(function ($) {
                   followersQuerySnapshot.forEach((follower) => {
                     followers.push(follower.data());
                     followingQuerySnapshot.forEach((following) => {
-                      if (follower.data().userId == following.data().relatedId) {
+                      if (follower.data().uuid == following.data().relatedUuid) {
                         friends.push(follower.data());
                       }
                     });
@@ -244,7 +244,7 @@ $(document).ready(function ($) {
                       // CHECK IF THE FRIEND ALREADY PASSED THE TOP OR NOT… 🤙
                       const didRankingQuery = query(
                         collection(database, "wpClassement"),
-                        where("author.id", "==", friend["userId"]),
+                        where("custom_fields.uuid_user_r", "==", friend["uuid"]),
                         where(
                           "custom_fields.id_tournoi_r",
                           "==",

@@ -15,7 +15,7 @@ const table = document.querySelector(".table-notifications"),
 (async function renderNotifs() {
   const notifsQuery = query(
     collection(database, "notifications"),
-    where("relatedId", "==", currentUserId),
+    where("relatedUuid", "==", currentUuid),
     orderBy("createdAt", "desc")
   );
   const notifsQuerySnapshot = await getDocs(notifsQuery);

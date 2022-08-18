@@ -22,9 +22,9 @@ function checkGuetterButton() {
         /* CHECK IF HE'S FOLLOWED BY CURRENT VAINKEUR! */
         let q = query(
           collection(database, "notifications"),
-          where("userId", "==", currentUserId),
-          where("notifText", "==", `${vainkeurPseudo} te guette !`),
-          where("relatedId", "==", followBtn.dataset.relatedid)
+          where("notifType", "==", "follow"),
+          where("uuid", "==", currentUuid),
+          where("relatedUuid", "==", followBtn.dataset.relateduuid)
         );
         let querySnapshot = await getDocs(q);
 
@@ -68,8 +68,9 @@ function checkGuetterButton() {
                 try {
                   q = query(
                     collection(database, "notifications"),
-                    where("userId", "==", currentUserId),
-                    where("relatedId", "==", followBtn.dataset.relatedid)
+                    where("notifType", "==", "follow"),
+                    where("uuid", "==", currentUuid),
+                    where("relatedUuid", "==", followBtn.dataset.relateduuid)
                   );
                   querySnapshot = await getDocs(q);
 
@@ -172,8 +173,9 @@ function checkGuetterButton() {
                 try {
                   q = query(
                     collection(database, "notifications"),
-                    where("userId", "==", currentUserId),
-                    where("relatedId", "==", followBtn.dataset.relatedid)
+                    where("notifType", "==", "follow"),
+                    where("uuid", "==", currentUuid),
+                    where("relatedUuid", "==", followBtn.dataset.relateduuid)
                   );
                   querySnapshot = await getDocs(q);
 
@@ -243,7 +245,7 @@ if (document.querySelector(".followers-nbr")) {
   let q = query(
     collection(database, "notifications"),
     where("notifType", "==", "follow"),
-    where("relatedId", "==", idVainkeurProfil)
+    where("relatedUuid", "==", uuidVainkeurProfile)
   );
   let querySnapshot = await getDocs(q);
 
@@ -258,7 +260,7 @@ if (document.querySelector(".followers-account-nbr")) {
   let q = query(
     collection(database, "notifications"),
     where("notifType", "==", "follow"),
-    where("relatedId", "==", currentUserId)
+    where("relatedUuid", "==", currentUuid)
   );
   let querySnapshot = await getDocs(q);
 

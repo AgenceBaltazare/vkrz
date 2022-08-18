@@ -327,10 +327,9 @@ if ($list_user_toplists) {
                               </h2>
                             </div>
                           </div>
-                          <div class="bar">
-                            <span class="calc-resemblance-h1">
-                              0%
-                            </span>
+                          <div class="bar-container">
+                              <div class="bar"></div>
+                              <span class="bar-percent">0 %</span>
                           </div>
                         </div>
                         <div class="card invoice-list-wrapper list-php">

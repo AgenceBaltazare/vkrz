@@ -82,10 +82,9 @@ $count_toplist        = count($list_toplist);
                                         <?php endif; ?>
                                     </div>
                                 </div>
-                                <div class="bar">
-                                    <span class="calc-resemblance-h1">
-                                        0%
-                                    </span>
+                                <div class="bar-container">
+                                    <div class="bar"></div>
+                                    <span class="bar-percent">0 %</span>
                                 </div>
                             </div>
 
