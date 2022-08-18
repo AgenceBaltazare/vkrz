@@ -303,13 +303,16 @@ get_header();
         <div class="tournament-heading text-center">
           <h3 class="mb-0 t-titre-tournoi">
             <?php
-            if ($total_top_founded == 0 || !$total_top_founded) {
-              echo "Aucun résultat trouvé pour " . $term_to_search;
-            } elseif ($total_top_founded == 1) {
-              echo "Un seul résultat trouvé pour " . $term_to_search;
-            } else {
-              echo $total_top_founded . " résultats trouvés pour " . $term_to_search;
-            }
+              if ($searching_for_a_vainkeur) {
+                echo 'Vainkeur trouvé  - ';
+              }
+              if ($total_top_founded == 0 || !$total_top_founded) {
+                echo "Aucun Top trouvé";
+              } elseif ($total_top_founded == 1) {
+                echo "Un seul Top trouvé";
+              } else {
+                echo $total_top_founded . " Tops trouvés";
+              }
             ?>
           </h3>
         </div>
