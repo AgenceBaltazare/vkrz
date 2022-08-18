@@ -66,19 +66,24 @@
         $l++;
         if ($l == 4) break;
     }
+    if(get_field('bannerbear_t', $top)){
+        $bannerbear_id = get_field('bannerbear_t', $top);
+    }
+    else{
+        if($top_infos['top_number'] < 3){
+            $bannerbear_id = "nYaKxNMeoDRVW9BXPl";
+        }
+        else{
+            $bannerbear_id = "LR7D41MVLLPVB8OGab";
+        }
+    }
+    $api_key    = "3I6bGZa3zyHsiZL2toeoagtt";
+    $base       = "https://on-demand.bannerbear.com/signedurl/" . $bannerbear_id . "/image.jpg";
+    $name_contender_1 = str_replace("&rsquo;", "'", $name_contender_1);
+    $name_contender_2 = str_replace("&rsquo;", "'", $name_contender_2);
     if ($top_infos['top_number'] < 3) {
-        $api_key = "3I6bGZa3zyHsiZL2toeoagtt";
-        $base = "https://on-demand.bannerbear.com/signedurl/nYaKxNMeoDRVW9BXPl/image.jpg";
         $modifications = '[{"name":"h1","text":"TOP ' . $top_infos['top_number'] . ' ' . $top_infos['top_title'] . '"},{"name":"h2","text":"Voici mon Top 2 👉"},{"name":"h1-question","text":"' . $top_infos['top_question'] . '"}, {"name":"contenders_1","image_url":"' . $picture_contender_1 . '"},{"name":"contenders_2","image_url":"' . $picture_contender_2 . '"},{"name":"1","text":"🥇 ' . $name_contender_1 . '"},{"name":"2","text":"🥈 ' . $name_contender_2 . '"}]';
     } else {
-        $api_key    = "3I6bGZa3zyHsiZL2toeoagtt";
-        if ($id_top == 461704) {
-            $base       = "https://on-demand.bannerbear.com/signedurl/AkWYPw8VjYKe2qNQa9/image.jpg";
-        } else {
-            $base       = "https://on-demand.bannerbear.com/signedurl/LR7D41MVLLPVB8OGab/image.jpg";
-        }
-        $name_contender_1 = str_replace("&rsquo;", "'", $name_contender_1);
-        $name_contender_2 = str_replace("&rsquo;", "'", $name_contender_2);
         $name_contender_3 = str_replace("&rsquo;", "'", $name_contender_3);
         $modifications    = '[{"name":"background","image_url":"' . $top_infos['top_cover'] . '"},{"name":"h1-2","text":"TOP ' . $top_infos['top_number'] . ' ' . $top_infos['top_title'] . '"},{"name":"h1","text":"TOP ' . $top_infos['top_number'] . ' ' . $top_infos['top_title'] . '"},{"name":"h2","text":"VOICI MON TOP 3 👉"},{"name":"contenders_1","image_url":"' . $picture_contender_1 . '"},{"name":"contenders_2","image_url":"' . $picture_contender_2 . '"},{"name":"contenders_3","image_url":"' . $picture_contender_3 . '"},{"name":"1","text":"🥇 ' . $name_contender_1 . '"},{"name":"2","text":"🥈 ' . $name_contender_2 . '"},{"name":"3","text":"🥉 ' . $name_contender_3 . '"},{"name":"h1-question-2","text":"' . $top_infos['top_question'] . '"},{"name":"h1-question","text":"' . $top_infos['top_question'] . '"}]';
     }
