@@ -348,6 +348,20 @@
     }
 }
 
+.share-bloc{
+    .share-t{
+        a {
+            display: inline-block;
+            min-width: 40px;
+            text-align: center;
+            min-height: 70px;
+            align-items: center;
+            display: flex;
+            justify-content: center;
+        }
+    }
+}
+
 .share-label {
     display: inline-block;
     color: #7367f0;

@@ -38,7 +38,7 @@ if ($id_vainkeur) {
         <form action="<?= the_permalink(get_page_by_path('recherche')); ?>" method="GET" class="d-flex rechercher-form" autocomplete="off">
           <input type="search" name="term" id="term" class="form-control rechercher-input" placeholder="Rechercher..." required oninvalid="this.setCustomValidity('Son goku par exemple..')">
           <button type="submit" name="go" class="form-control lead go-input">
-            <span class="ico ico-search va va-magnifying-glass-tilted-left va-lg"></span>
+            <span class="ico ico-search va va-loupe va-lg"></span>
           </button>
         </form>
       </div>
@@ -234,7 +234,7 @@ if ($id_vainkeur) {
                     </div>
                     <div class="separate-top">
                       <a href="<?php the_permalink(get_page_by_path('best-of/best-vainkeurs')); ?>" class="btn btn-flat-dark waves-effect">
-                        Découvre le classement ALL Time des vainkeurs les plus <span class="va va-fire va-z-15"></span>
+                        <small>Découvre le classement ALL Time des vainkeurs les plus <span class="va va-fire va-z-15"></span></small>
                       </a>
                     </div>
                   </div>
