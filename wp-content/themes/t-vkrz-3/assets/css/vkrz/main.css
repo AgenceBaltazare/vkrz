@@ -1252,7 +1252,7 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
 
 .wp-block-button__link {
   display: inline-block;
-  color: #6E6B7B;
+  color: #fff !important;
   text-align: center;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -1283,6 +1283,7 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
 .wp-block-button__link:hover {
   background: #7367f0 !important;
   color: #fff !important;
+  text-decoration: none !important;
 }
 
 .page-template-monitor .list-vainkeur-monitor {
