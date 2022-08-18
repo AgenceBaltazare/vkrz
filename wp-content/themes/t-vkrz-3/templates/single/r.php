@@ -260,7 +260,7 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
 
                     <div class="col-md-4">
 
-                      <div class="animate__fadeInUp animate__animated animate__delay-Xs">
+                      <div class="animate__fadeInUp animate__animated animate__delay-2s">
 
                         <div class="separate mt-1 mb-2 d-block d-sm-none"></div>
 
