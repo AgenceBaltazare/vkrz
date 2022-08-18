@@ -4051,6 +4051,7 @@ select:-webkit-autofill:focus {
   position: fixed;
   bottom: -100%;
   right: 0;
+  display: none;
   left: 0;
   transition: all 0.5s ease-in;
 }
@@ -4132,6 +4133,7 @@ select:-webkit-autofill:focus {
 .active-box {
   z-index: 999999999;
   bottom: 0;
+  display: block;
 }
 
 @media (max-width: 500px) {
