@@ -1012,39 +1012,41 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
     }
 }
 
-.wp-block-button__link{
-    display: inline-block;
-    color: #fff !important;
-    text-align: center;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    background-color: transparent;
-    border: 1px solid transparent;
-    padding: 0.786rem 1.5rem;
-    font-size: 1rem;
-    position: relative;
-    cursor: pointer;
-    display: inline-block;
-    overflow: hidden;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-    line-height: 1;
-    border-radius: 0.358rem;
-    -webkit-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out,background 0s,border 0s;
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out,background 0s,border 0s;
-    border: 1px solid #7367f0 !important;
-    background-color: transparent;
-    color: #7367f0;
-    box-shadow: none;
-    font-weight: 500;
-    &:hover{
-        background: #7367f0 !important;
+.wp-block-button{
+    .wp-block-button__link{
+        display: inline-block;
         color: #fff !important;
-        text-decoration: none !important;
+        text-align: center;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        background-color: transparent;
+        border: 1px solid transparent;
+        padding: 0.786rem 1.5rem;
+        font-size: 1rem;
+        position: relative;
+        cursor: pointer;
+        display: inline-block;
+        overflow: hidden;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+        line-height: 1;
+        border-radius: 0.358rem;
+        -webkit-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out,background 0s,border 0s;
+        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out,background 0s,border 0s;
+        border: 1px solid #7367f0 !important;
+        background-color: transparent;
+        color: #7367f0;
+        box-shadow: none;
+        font-weight: 500;
+        &:hover{
+            background: #7367f0 !important;
+            color: #fff !important;
+            text-decoration: none !important;
+        }
     }
 }

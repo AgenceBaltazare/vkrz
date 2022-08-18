@@ -1250,7 +1250,7 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   font-size: 12px;
 }
 
-.wp-block-button__link {
+.wp-block-button .wp-block-button__link {
   display: inline-block;
   color: #fff !important;
   text-align: center;
@@ -1280,7 +1280,7 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   box-shadow: none;
   font-weight: 500;
 }
-.wp-block-button__link:hover {
+.wp-block-button .wp-block-button__link:hover {
   background: #7367f0 !important;
   color: #fff !important;
   text-decoration: none !important;
