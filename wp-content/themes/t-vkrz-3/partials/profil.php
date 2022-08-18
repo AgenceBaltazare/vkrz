@@ -14,7 +14,7 @@ else{
 $cover_profil_id = 0;
 ?>
 <script>
-  const idVainkeurProfil = "<?php echo $id_membre ?>";
+  const uuidVainkeurProfile = "<?php echo get_field('uuiduser_user', 'user_' . $id_membre); ?>";
 </script>
 <div class="card profile-header mb-2">
 

@@ -1184,9 +1184,10 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   justify-content: center;
 }
 
-.bar {
-  display: none;
+.bar-container {
   position: relative;
+}
+.bar-container .bar-percent {
   bottom: 0;
   left: 0;
   width: 100%;
@@ -1194,13 +1195,22 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   height: 4px;
   transition: all 0.2s ease-in;
 }
-.bar span {
+.bar-container .bar-percent span {
   position: absolute;
-  right: 0px;
+  left: 0px;
   top: -20px;
   color: #f4167f;
   font-size: 11px;
   height: 15px;
+}
+.bar-container .bar {
+  display: none;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  background-color: #f4167f;
+  height: 4px;
 }
 
 .page-template-monitor .list-vainkeur-monitor {

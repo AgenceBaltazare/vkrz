@@ -936,9 +936,10 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
 }
 
 // Stepbar
-.bar {
-    display: none;
+.bar-container {
     position: relative;
+
+    .bar-percent {
     bottom: 0;
     left: 0;
     width: 100%;
@@ -947,10 +948,21 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
     transition: all 0.2s ease-in;
     span {
         position: absolute;
-        right: 0px;
+        left: 0px;
         top: -20px;
         color: $rose;
         font-size: 11px;
         height: 15px;
+    }
+    }
+    
+    .bar {
+        display: none;
+        position: relative;
+        bottom: 0;
+        left: 0;
+        width: 0%;
+        background-color: $rose;
+        height: 4px;
     }
 }

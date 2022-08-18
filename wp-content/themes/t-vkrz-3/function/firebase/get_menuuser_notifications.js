@@ -12,7 +12,7 @@ import {
 (async function renderMenuNotifs() {
   const menuUserQuery = query(
     collection(database, "notifications"),
-    where("relatedId", "==", currentUserId),
+    where("relatedUuid", "==", currentUuid),
     where("statut", "==", "nouveau"),
     orderBy("createdAt", "desc")
   );
