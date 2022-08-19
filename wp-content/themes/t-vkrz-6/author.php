@@ -369,7 +369,7 @@ foreach ($list_user_toplists as $top) {
                                       array_push($list_type, $type_top->slug);
                                     }
                                   }
-                                  if (!in_array('private', $list_type) && !in_array('onboarding', $list_type)) : ?>
+                                  if (!in_array('private', $list_type) && !in_array('onboarding', $list_type) && get_post_status($r_user['id_top'])) : ?>
                                     <tr id="top-<?php echo $r_user['id_ranking']; ?>">
                                       <td>
                                         <?php

@@ -308,7 +308,7 @@ function get_all_toplist_by_id_vainkeur($data)
           array_push($list_type, $type_top->slug);
         }
       }
-      if (!in_array('private', $list_type) && !in_array('onboarding', $list_type)) {
+      if (!in_array('private', $list_type) && !in_array('onboarding', $list_type) && get_post_status($id_top)) {
 
         $thumbnail    = get_the_post_thumbnail_url($id_top, 'thumbnail');
         $top_link     = get_the_permalink($id_top);
