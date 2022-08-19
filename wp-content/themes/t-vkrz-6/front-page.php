@@ -69,7 +69,7 @@ if ($id_vainkeur) {
           ),
         ),
       ));
-      if ($tops_vedette->have_posts) : ?>
+      if ($tops_vedette->have_posts()) : ?>
         <section class="list-tournois">
           <div class="big-cat">
             <div class="heading-cat">
