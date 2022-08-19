@@ -363,3 +363,22 @@ function get_all_toplist_by_id_vainkeur($data)
 
   return $results;
 }
+
+function get_the_dodo($data){
+
+  $results              = array();
+  $critere              = $data['critere'];
+  $duree                = $data['duree'];
+
+  $dodo       = get_best_vainkeur($critere, $duree, 5);
+  $dodo_uuid  = $dodo[0]['uuid'];
+  $dodo_infos = get_user_infos($dodo_uuid);
+
+  if ($dodo_uuid) {
+    if (!get_vainkeur_badge($dodo_infos['id_vainkeur'], "Dodo")) {
+      update_vainkeur_badge($dodo_infos['id_vainkeur'], "Dodo");
+    }
+  }
+  $result = array_merge($dodo, $dodo_infos);
+  return $result;
+}

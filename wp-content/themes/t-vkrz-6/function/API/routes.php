@@ -91,4 +91,14 @@ add_action('rest_api_init', function () {
     ]
   ));
 
+  // Liste des TopList d'un Top
+  register_rest_route('vkrz/v1', '/getdodo/(?P<critere>\w+)/(?P<duree>\w+)', array(
+    'methods' => 'GET',
+    'callback' => 'get_the_dodo',
+    'args' => [
+      'critere',
+      'duree'
+    ]
+  ));
+
 });

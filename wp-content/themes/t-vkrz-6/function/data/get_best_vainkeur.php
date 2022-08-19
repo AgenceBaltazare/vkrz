@@ -13,7 +13,7 @@ function get_best_vainkeur($type = "top", $period = NULL, $limit = 1) {
 
     if($type == "top"){
         $meta_key = "nb_top_vkrz";
-    } elseif ($type == "top") {
+    } elseif ($type == "vote") {
         $meta_key = "nb_vote_vkrz";
     } elseif ($type == "money") {
         $meta_key = "money_vkrz";
@@ -100,6 +100,12 @@ function get_best_vainkeur($type = "top", $period = NULL, $limit = 1) {
                     }
                 }
             }
+        }
+
+        if ($type == "money") {
+            usort($return, function ($a, $b) {
+                return $b["money"] <=> $a["money"];
+            });
         }
 
         if ($type == "top") {
