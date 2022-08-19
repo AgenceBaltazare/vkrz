@@ -1,11 +1,11 @@
 <?php
 require_once('fct.php');
 
-function get_user_infos_from_api($data){
+function get_user_infos_from_api($data)
+{
 
   $uuid_vainkeur = $data['uuiduser'];
   return get_user_infos($uuid_vainkeur, "complete");
-  
 }
 
 function get_contender($data)
@@ -181,21 +181,21 @@ function get_numberpage($data)
   $nb_items             = 100;
 
   $rankings = new WP_Query(array(
-    'ignore_sticky_posts'	    => true,
+    'ignore_sticky_posts'      => true,
     'update_post_meta_cache'  => false,
-    'post_type'			          => 'classement',
+    'post_type'                => 'classement',
     "author__not_in"          => array(0, 1),
     'meta_query' => array(
-        'relation' => 'AND',
-        array(
-            'key'     => 'id_tournoi_r',
-            'value'   => $id_top,
-            'compare' => '=',
-        ),
-        array(
-          'key'     => 'done_r',
-          'value'   => 'done',
-          'compare' => '=',
+      'relation' => 'AND',
+      array(
+        'key'     => 'id_tournoi_r',
+        'value'   => $id_top,
+        'compare' => '=',
+      ),
+      array(
+        'key'     => 'done_r',
+        'value'   => 'done',
+        'compare' => '=',
       )
     )
   ));
@@ -217,25 +217,25 @@ function get_all_toplist_by_id_top($data)
   $nb_items             = 100;
 
   $rankings = new WP_Query(array(
-    'ignore_sticky_posts'	    => true,
+    'ignore_sticky_posts'      => true,
     'update_post_meta_cache'  => false,
-    'post_type'			          => 'classement',
-    'orderby'				          => 'date',
-    'order'				            => 'DESC',
-    'posts_per_page'		      => $nb_items,
+    'post_type'                => 'classement',
+    'orderby'                  => 'date',
+    'order'                    => 'DESC',
+    'posts_per_page'          => $nb_items,
     'paged'                   => $page,
     "author__not_in"          => array(0, 1),
     'meta_query' => array(
-        'relation' => 'AND',
-        array(
-            'key'     => 'id_tournoi_r',
-            'value'   => $id_top,
-            'compare' => '=',
-        ),
-        array(
-          'key'     => 'done_r',
-          'value'   => 'done',
-          'compare' => '=',
+      'relation' => 'AND',
+      array(
+        'key'     => 'id_tournoi_r',
+        'value'   => $id_top,
+        'compare' => '=',
+      ),
+      array(
+        'key'     => 'done_r',
+        'value'   => 'done',
+        'compare' => '=',
       )
     )
   ));
@@ -260,7 +260,7 @@ function get_all_toplist_by_id_top($data)
       'podium'        => $list_podium,
       'toplist_url'   => get_the_permalink($id_ranking),
     );
-  
+
   endwhile;
 
   return $results;
@@ -292,79 +292,89 @@ function get_all_toplist_by_id_vainkeur($data)
   $val_min              = $nb_items * $page - $nb_items;
   $val_max              = $nb_items * $page;
 
-  if($vainkeur_toplist){
-    
-    foreach(array_slice($vainkeur_toplist, $val_min, $val_max) as $toplist){
+  if ($vainkeur_toplist) {
+
+    foreach (array_slice($vainkeur_toplist, $val_min, $val_max) as $toplist) {
 
       $id_top         = $toplist['id_top'];
       $id_ranking     = $toplist['id_ranking'];
       $typetop        = $toplist['typetop'];
       $state          = $toplist['state'];
-      
-      $thumbnail    = get_the_post_thumbnail_url($id_top, 'thumbnail');
-      $top_link     = get_the_permalink($id_top);
-      $toplist_link = get_the_permalink($id_ranking);
-      $elo_link     = get_the_permalink(get_page_by_path('elo')) . "?id_top=" . $id_top;
-      $top_question = get_field('question_t', $id_top);
+      $list_type    = array();
 
-      $nb_votes     = intval(get_field('nb_votes_r', $id_ranking));
+      $get_top_type = get_the_terms($id_top, 'type');
+      if ($get_top_type) {
+        foreach ($get_top_type as $type_top) {
+          array_push($list_type, $type_top->slug);
+        }
+      }
+      if (!in_array('private', $list_type) && !in_array('onboarding', $list_type)) {
 
-      if ($id_ranking) {
-        $top_type       = get_field('type_top_r', $id_ranking);
-        if ($top_type == "top3") {
-          $top_number = 3;
+        $thumbnail    = get_the_post_thumbnail_url($id_top, 'thumbnail');
+        $top_link     = get_the_permalink($id_top);
+        $toplist_link = get_the_permalink($id_ranking);
+        $elo_link     = get_the_permalink(get_page_by_path('elo')) . "?id_top=" . $id_top;
+        $top_question = get_field('question_t', $id_top);
+
+        $nb_votes     = intval(get_field('nb_votes_r', $id_ranking));
+
+        if ($id_ranking) {
+          $top_type       = get_field('type_top_r', $id_ranking);
+          if ($top_type == "top3") {
+            $top_number = 3;
+          } else {
+            $top_number = get_field('count_contenders_t', $id_top);
+          }
         } else {
           $top_number = get_field('count_contenders_t', $id_top);
         }
-      } else {
-        $top_number = get_field('count_contenders_t', $id_top);
-      }
 
-      $list_cat   = get_the_terms($id_top, 'categorie');
-      $cat_id     = false;
-      if ($list_cat) {
-        foreach ($list_cat as $cat) {
-          $cat_id = $cat->term_id;
+        $list_cat   = get_the_terms($id_top, 'categorie');
+        $cat_id     = false;
+        if ($list_cat) {
+          foreach ($list_cat as $cat) {
+            $cat_id = $cat->term_id;
+          }
         }
-      }
-      if ($cat_id) {
-        $cat_icon = get_field('icone_cat', 'term_' . $cat_id);
-      } else {
-        $cat_icon = "<span class='va va-crossed-swords va-lg'></span>";
-      }
-      $top_title    = "TOP " . $top_number . " " . $cat_icon . " " . get_the_title($id_top);
+        if ($cat_id) {
+          $cat_icon = get_field('icone_cat', 'term_' . $cat_id);
+        } else {
+          $cat_icon = "<span class='va va-crossed-swords va-lg'></span>";
+        }
+        $top_title    = "TOP " . $top_number . " " . $cat_icon . " " . get_the_title($id_top);
 
-      $user_top3    = get_user_ranking($id_ranking, 3);
-      $list_podium  = array();
-      foreach ($user_top3 as $contender) {
-        $list_podium[] = array(
-          'id_contender'      => $contender,
-          'nom_contender'     => get_the_title($contender),
-          'visuel_contender'  => get_the_post_thumbnail_url($contender, 'thumbnail'),
+        $user_top3    = get_user_ranking($id_ranking, 3);
+        $list_podium  = array();
+        foreach ($user_top3 as $contender) {
+          $list_podium[] = array(
+            'id_contender'      => $contender,
+            'nom_contender'     => get_the_title($contender),
+            'visuel_contender'  => get_the_post_thumbnail_url($contender, 'thumbnail'),
+          );
+        };
+
+        $results[] = array(
+          "id_top"            => $id_top,
+          "top_title"         => $top_title,
+          "typetop"           => $typetop,
+          "thumbnail"         => $thumbnail,
+          "top_link"          => $top_link,
+          "toplist_link"      => $toplist_link,
+          "top_question"      => $top_question,
+          "nb_votes"          => $nb_votes,
+          "elo_link"          => $elo_link,
+          "podium"            => $list_podium,
+          "state"             => $state
         );
-      };
-
-      $results[] = array(
-        "id_top"            => $id_top,
-        "top_title"         => $top_title,
-        "typetop"           => $typetop,
-        "thumbnail"         => $thumbnail,
-        "top_link"          => $top_link,
-        "toplist_link"      => $toplist_link,
-        "top_question"      => $top_question,
-        "nb_votes"          => $nb_votes,
-        "elo_link"          => $elo_link,
-        "podium"            => $list_podium,
-        "state"             => $state
-      );
-    
+      }
     }
   }
 
   return $results;
 }
 
-function get_the_dodo($data){
+function get_the_dodo($data)
+{
 
   $results              = array();
   $critere              = $data['critere'];
