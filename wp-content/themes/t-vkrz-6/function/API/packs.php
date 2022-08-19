@@ -370,7 +370,7 @@ function get_the_dodo($data){
   $critere              = $data['critere'];
   $duree                = $data['duree'];
 
-  $dodo       = get_best_vainkeur($critere, $duree, 5);
+  $dodo       = get_best_vainkeur($critere, $duree, 1);
   $dodo_uuid  = $dodo[0]['uuid'];
   $dodo_infos = get_user_infos($dodo_uuid);
 
