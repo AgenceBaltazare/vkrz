@@ -4838,6 +4838,10 @@ select:-webkit-autofill:focus {
 }
 
 .va-slot {
+  background-image: url(../../images/emojis/game-die_1f3b2.png);
+}
+
+.va-casino {
   background-image: url(../../images/emojis/slot-machine_1f3b0.png);
 }
 
