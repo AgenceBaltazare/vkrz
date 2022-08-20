@@ -35,9 +35,9 @@ if ($id_vainkeur) {
       </div>
 
       <div class="d-block d-sm-none my-2">
-        <form action="<?= the_permalink(get_page_by_path('recherche')); ?>" method="GET" class="d-flex rechercher-form" autocomplete="off">
+        <form action="<?= the_permalink(get_page_by_path('rechercher')); ?>" method="GET" class="mt-2 d-flex rechercher-form" autocomplete="off">
           <input type="search" name="term" id="term" class="form-control rechercher-input" placeholder="Rechercher..." required oninvalid="this.setCustomValidity('Son goku par exemple..')">
-          <button type="submit" name="go" class="form-control lead go-input">
+          <button type="submit" class="form-control lead go-input">
             <span class="ico ico-search va va-loupe va-lg"></span>
           </button>
         </form>

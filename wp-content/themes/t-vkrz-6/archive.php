@@ -12,7 +12,7 @@ if (is_user_logged_in()) {
   $infos_vainkeur = get_fantom($id_vainkeur);
 }
 get_header();
-if($id_vainkeur){
+if ($id_vainkeur) {
   if (is_user_logged_in() && env() != "local") {
     if (false === ($user_tops = get_transient('user_' . $user_id . '_get_user_tops'))) {
       $user_tops = get_user_tops($id_vainkeur);
@@ -20,19 +20,47 @@ if($id_vainkeur){
     } else {
       $user_tops = get_transient('user_' . $user_id . '_get_user_tops');
     }
-  } 
-  else {
+  } else {
     $user_tops  = get_user_tops($id_vainkeur);
   }
   $list_user_tops         = $user_tops['list_user_tops_done_ids'];
   $list_user_tops_begin   = $user_tops['list_user_tops_begin_ids'];
-}
-else{
+} else {
   $user_tops            = array();
   $list_user_tops       = array();
   $list_user_tops_begin = array();
 }
 $current_cat            = get_queried_object();
+$tops_in_cat_vedette    = new WP_Query(array(
+  'post_type'                 => 'tournoi',
+  'orderby'                   => 'date',
+  'order'                     => 'DESC',
+  'posts_per_page'            => -1,
+  'ignore_sticky_posts'       => true,
+  'update_post_meta_cache'    => false,
+  'no_found_rows'             => true,
+  'meta_query' => array(
+    array(
+      'key'       => 'vedette_t',
+      'value'     => '1',
+      'compare'   => '=',
+    )
+  ),
+  'tax_query'                 => array(
+    'relation' => 'AND',
+    array(
+      'taxonomy' => $current_cat->taxonomy,
+      'field'    => 'term_id',
+      'terms'    => $current_cat->term_taxonomy_id,
+    ),
+    array(
+      'taxonomy' => 'type',
+      'field'    => 'slug',
+      'terms'    => array('private', 'whitelabel', 'onboarding'),
+      'operator' => 'NOT IN'
+    ),
+  )
+));
 $tops_in_cat            = new WP_Query(array(
   'post_type'                 => 'tournoi',
   'orderby'                   => 'date',
@@ -41,6 +69,18 @@ $tops_in_cat            = new WP_Query(array(
   'ignore_sticky_posts'       => true,
   'update_post_meta_cache'    => false,
   'no_found_rows'             => true,
+  'meta_query' => array(
+    'relation' => 'OR',
+    array(
+      'key'       => 'vedette_t',
+      'value'     => '1',
+      'compare'   => '!=',
+    ),
+    array(
+      'key'       => 'vedette_t',
+      'compare'   => 'NOT EXISTS',
+    )
+  ),
   'tax_query'                 => array(
     'relation' => 'AND',
     array(
@@ -72,10 +112,21 @@ $tops_in_cat            = new WP_Query(array(
         </div>
       </div>
 
-      <?php if ($tops_in_cat->have_posts()) : ?>
+      <?php if ($tops_in_cat->have_posts()) : $i = 1; ?>
 
         <section class="grid-to-filtre row match-height mt-2 tournois">
-          <?php $i = 1;
+
+          <?php if ($tops_in_cat_vedette->have_posts()) :
+
+            while ($tops_in_cat_vedette->have_posts()) : $tops_in_cat_vedette->the_post(); ?>
+              <div class="col-md-3 col-sm-4 col-6">
+                <?php get_template_part('partials/min-t'); ?>
+              </div>
+            <?php $i++;
+            endwhile; 
+          
+          endif;
+
           while ($tops_in_cat->have_posts()) : $tops_in_cat->the_post(); ?>
             <div class="col-md-3 col-sm-4 col-6">
               <?php get_template_part('partials/min-t'); ?>

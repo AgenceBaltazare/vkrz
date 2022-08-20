@@ -667,17 +667,17 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
           </a>
         </li>
         <li>
-          <a href="https://twitter.com/intent/tweet?text=Go faire le TOP <?php echo $top_infos['top_number']; ?> <?php echo $top_infos['top_title']; ?>&via=vainkeurz&hashtags=VKRZ&url=<?php echo $url_ranking; ?>" target="_blank" title="Tweet">
+          <a href="https://twitter.com/intent/tweet?text=Go faire le TOP <?php echo $top_infos['top_number']; ?> <?php echo $top_infos['top_title']; ?>&via=vainkeurz&hashtags=VKRZ&url=<?php echo $top_infos['top_url']; ?>" target="_blank" title="Tweet">
             <i class="social-media fab fa-twitter"></i> Dans un Tweet
           </a>
         </li>
         <li>
-          <a href="whatsapp://send?text=<?php echo $url_ranking; ?>" data-action="share/whatsapp/share">
+          <a href="whatsapp://send?text=<?php echo $top_infos['top_url']; ?>" data-action="share/whatsapp/share">
             <i class="social-media mb-12 fab fa-whatsapp"></i> Sur WhatsApp
           </a>
         </li>
         <li>
-          <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $url_ranking; ?>" title="Partager sur Facebook" target="_blank">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $top_infos['top_url']; ?>" title="Partager sur Facebook" target="_blank">
             <i class="social-media fab fa-facebook-f"></i> Sur Facebook
           </a>
         </li>
