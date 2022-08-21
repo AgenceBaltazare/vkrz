@@ -344,7 +344,7 @@ get_header();
                 $placeholder = "Rechercher...";
               }
               ?>
-              <input type="text" class="form-control search-product" id="search_text" placeholder="<?php echo $placeholder; ?>" aria-label="<?php echo $placeholder; ?>" name="term" aria-describedby="shop-search" required oninvalid="this.setCustomValidity('Son goku par exemple..')" />
+              <input type="text" class="form-control search-product" id="search_text" placeholder="<?php echo $placeholder; ?>" aria-label="<?php echo $placeholder; ?>" name="term" aria-describedby="shop-search" minlength="3" required/>
               <button type="submit">
                 <span class="ico ico-search ico-search-result va va-loupe va-lg"></span>
               </button>

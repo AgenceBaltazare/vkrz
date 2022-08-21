@@ -49,7 +49,7 @@
 
       <li class="mx-auto boxtosearch mb-2" style="width: 80%;">
         <form action="<?= the_permalink(get_page_by_path('rechercher')); ?>" method="GET" class="mt-2 d-flex rechercher-form" autocomplete="off">
-          <input type="search" name="term" id="term" class="form-control rechercher-input" placeholder="Rechercher..." required oninvalid="this.setCustomValidity('Son goku par exemple..')">
+          <input type="search" name="term" id="term" class="form-control rechercher-input" placeholder="Rechercher..." minlength="3" required>
           <button type="submit" class="form-control lead go-input">
             <span class="ico ico-search va va-loupe va-lg"></span>
           </button>
