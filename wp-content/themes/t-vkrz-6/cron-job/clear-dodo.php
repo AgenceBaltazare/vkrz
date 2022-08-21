@@ -29,8 +29,8 @@ while ($dodo->have_posts()) : $dodo->the_post();
     $get_money    = get_field('money_vkrz', $id_vainkeur);
     $get_dispo    = get_field('money_disponible_vkrz', $id_vainkeur);
 
-    //update_field('money_vkrz', $get_money - 300, $id_vainkeur);
-    //update_field('money_disponible_vkrz', $get_dispo - 300, $id_vainkeur);
+    update_field('money_vkrz', $get_money - 300, $id_vainkeur);
+    update_field('money_disponible_vkrz', $get_dispo - 300, $id_vainkeur);
 
     echo $user_pseudo . " - " . get_the_ID() . " Money : " . $get_money . " Dispo : " . $get_dispo . "<br>";
 
