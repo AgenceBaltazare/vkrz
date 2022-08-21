@@ -63,23 +63,23 @@
                   <p class="card-text text-muted mb-2 text-center">
                     <span class="va va-clapping va-z-20"></span> au vainkeur le plus <span class="va va-fire va-z-15"></span> des <span class="va va-seven va-z-15"></span> derniers jours
                   </p>
-                  <?php $dodo_infos = get_dodo(); ?>
                   <div class="dodo-box">
                     <div class="d-flex align-items-center flex-column">
                       <div class="dodo-user">
                         <div class="vainkeur-card">
-                          <a href="<?php echo esc_url(get_author_posts_url($dodo_infos['id_user'])); ?>" class="btn btn-outline-primary btn-flat-primary waves-effect">
+                          <?php $info_dodo = get_user_infos(get_field('uuid_dodo', 'options')); ?>
+                          <a href="<?php echo esc_url(get_author_posts_url($info_dodo['id_user'])); ?>" class="btn btn-outline-primary btn-flat-primary waves-effect">
                             <span class="avatar">
-                              <span class="avatar-picture" style="background-image: url(<?php echo $dodo_infos['avatar']; ?>);"></span>
+                              <span class="avatar-picture" style="background-image: url(<?php echo $info_dodo['avatar']; ?>);"></span>
                             </span>
                             <span class="championname">
-                              <h4><?php echo $dodo_infos['pseudo']; ?></h4>
+                              <h4><?php echo $info_dodo['pseudo']; ?></h4>
                               <span class="medailles">
-                                <?php echo $dodo_infos['level']; ?>
-                                <?php if ($dodo_infos['user_role'] == "administrator") : ?>
+                                <?php echo $info_dodo['level']; ?>
+                                <?php if ($info_dodo['user_role'] == "administrator") : ?>
                                   <span class="va va-vkrzteam va-z-15" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ"></span>
                                 <?php endif; ?>
-                                <?php if ($dodo_infos['user_role'] == "administrator" || $dodo_infos['user_role'] == "author") : ?>
+                                <?php if ($info_dodo['user_role'] == "administrator" || $info_dodo['user_role'] == "author") : ?>
                                   <span class="va va-man-singer va-z-15" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops"></span>
                                 <?php endif; ?>
                               </span>
@@ -88,8 +88,8 @@
                         </div>
                       </div>
                       <div class="dodo-score text-center mt-1 mb-2">
-                        avec <span class="t-rose"><?php echo $dodo_infos[0]['total_vote']; ?></span> votes <span class="va va-high-voltage va-z-15"></span>
-                        & <span class="t-rose"><?php echo $dodo_infos[0]['total_top']; ?></span> TopList <span class="va va-trophy va-z-15"></span>
+                        avec <span class="t-rose"><?php the_field('nb_votes_dodo', 'options'); ?></span> votes <span class="va va-high-voltage va-z-15"></span>
+                        & <span class="t-rose"><?php the_field('nb_tops_dodo', 'options'); ?></span> TopList <span class="va va-trophy va-z-15"></span>
                       </div>
                       <div class="separate-top">
                         <a href="<?php the_permalink(get_page_by_path('best-of/best-vainkeurs')); ?>" class="btn btn-flat-dark waves-effect">
