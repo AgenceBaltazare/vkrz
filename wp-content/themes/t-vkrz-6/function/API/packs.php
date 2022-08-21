@@ -463,6 +463,11 @@ function get_the_dodo($data)
     update_field('date_dodo', date('d-m-Y H:i:s'), 'options');
     update_field('nb_votes_dodo', $dodo[0]['total_vote'], 'options');
     update_field('nb_tops_dodo', $dodo[0]['total_top'], 'options');
-  }
 
+    if ($dodo[0]['uuid']) {
+      if (!get_vainkeur_badge($dodo[0]['uuid'], "Dodo")) {
+        update_vainkeur_badge($dodo[0]['uuid'], "Dodo");
+      }
+    }
+  }
 }
