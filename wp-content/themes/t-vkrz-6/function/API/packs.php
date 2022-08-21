@@ -376,19 +376,93 @@ function get_all_toplist_by_id_vainkeur($data)
 function get_the_dodo($data)
 {
 
-  $results              = array();
-  $critere              = $data['critere'];
-  $duree                = $data['duree'];
+  $type      = $data['critere'];
+  $period    = $data['duree'];
+  $limit     = 1;
+  $return    = array();
 
-  $dodo       = get_best_vainkeur($critere, $duree, 1);
-  $dodo_uuid  = $dodo[0]['uuid'];
-  $dodo_infos = get_user_infos($dodo_uuid);
 
-  if ($dodo_uuid) {
-    if (!get_vainkeur_badge($dodo_infos['id_vainkeur'], "Dodo")) {
-      update_vainkeur_badge($dodo_infos['id_vainkeur'], "Dodo");
+  $tops = new WP_Query(array(
+    "post_type"              => "classement",
+    "posts_per_page"         => -1,
+    "fields"                 => "ids",
+    "post_status"            => "publish",
+    "update_post_meta_cache" => false,
+    "no_found_rows"          => false,
+    "author__not_in"         => array(0, 1, 18, 58), // To exclude vainkeur not registered (with no author)
+    "date_query"             => array(
+      array(
+        "after" => $period . " days ago"
+      )
+    )
+  ));
+
+  if ($tops->have_posts()) {
+
+    foreach ($tops->posts as $top_id) {
+
+      $author_id = get_post_field("post_author", $top_id);
+
+      $key = array_search($author_id, array_column($return, 'author_id'));
+
+      if ($key !== false || $key === 0) {
+        $return[$key]["total_vote"] = $return[$key]["total_vote"] + intval(get_field("nb_votes_r", $top_id));
+        get_field("done_r", $top_id) == "done" ? $return[$key]["total_top"]++ : $return[$key]["total_top"];
+      } 
+      else {
+        $vainkeur = new WP_Query(array(
+          "post_type"              => "vainkeur",
+          "posts_per_page"         => "1",
+          "fields"                 => "ids",
+          "post_status"            => "publish",
+          "ignore_sticky_posts"    => true,
+          "update_post_meta_cache" => false,
+          "no_found_rows"          => false,
+          "author"                 => $author_id,
+        ));
+
+        if ($vainkeur->have_posts()) {
+          $vainkeur_id = $vainkeur->posts[0];
+
+          $return[] = array(
+            "vainkeur_id"   => $vainkeur_id,
+            "author_id"     => $author_id,
+            "uuid"          => get_field("uuid_user_r", $top_id)
+          );
+        }
+      }
     }
   }
-  $result = array_merge($dodo, $dodo_infos);
-  return $result;
+
+  if ($type == "money") {
+    usort($return, function ($a, $b) {
+      return $b["money"] <=> $a["money"];
+    });
+  }
+
+  if ($type == "top") {
+    usort($return, function ($a, $b) {
+      return $b["total_top"] <=> $a["total_top"];
+    });
+  }
+
+  if ($type == "vote") {
+    usort($return, function ($a, $b) {
+      return $b["total_vote"] <=> $a["total_vote"];
+    });
+  }
+
+  $user_info       = get_userdata($author_id);
+  $user_pseudo     = $user_info->user_nicename;
+  $dodo            = array_slice($return, 0, $limit);
+
+  if (get_field('nb_votes_dodo', 'options') < $dodo[0]['total_vote']) {
+    update_field('id_vainkeur_dodo', $dodo[0]['vainkeur_id'], 'options');
+    update_field('uuid_dodo', $dodo[0]['uuid'], 'options');
+    update_field('pseudo_dodo', $user_pseudo, 'options');
+    update_field('date_dodo', date('d-m-Y H:i:s'), 'options');
+    update_field('nb_votes_dodo', $dodo[0]['total_vote'], 'options');
+    update_field('nb_tops_dodo', $dodo[0]['total_top'], 'options');
+  }
+
 }
