@@ -244,7 +244,11 @@ $(document).ready(function ($) {
                       // CHECK IF THE FRIEND ALREADY PASSED THE TOP OR NOT… 🤙
                       const didRankingQuery = query(
                         collection(database, "wpClassement"),
-                        where("custom_fields.uuid_user_r", "==", friend["uuid"]),
+                        where(
+                          "custom_fields.uuid_user_r",
+                          "==",
+                          friend["uuid"]
+                        ),
                         where(
                           "custom_fields.id_tournoi_r",
                           "==",
@@ -304,6 +308,7 @@ $(document).ready(function ($) {
                         });
                       }
 
+                      // SEND NOTIFICATION…
                       (async function () {
                         try {
                           const newRankingFollow = await addDoc(
@@ -373,7 +378,7 @@ $(document).ready(function ($) {
                   });
                 }
 
-                $(location).attr("href", link_to_ranking);
+                // $(location).attr("href", link_to_ranking);
               } else {
                 $(location).attr("href", link_to_ranking);
               }

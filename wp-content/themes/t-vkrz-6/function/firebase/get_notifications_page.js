@@ -58,6 +58,12 @@ const table = document.querySelector(".table-notifications"),
       notificationsIDs.push(notification.id);
     });
 
+    // REMOVE DUPLICATE UUIDs FROM ARRAY…
+    let set = new Set(
+      notificationsUsersUuids.map((notificationUserUuid) => JSON.stringify(notificationUserUuid))
+    );
+    notificationsUsersUuids = Array.from(set).map((elem) => JSON.parse(elem));
+
     // GET USERS DATA FIRST…
     const map = new Map();
     await Promise.all(

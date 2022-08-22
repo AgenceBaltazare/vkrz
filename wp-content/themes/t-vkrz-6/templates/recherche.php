@@ -303,7 +303,7 @@ get_header();
     data-userName="<?php echo wp_get_current_user()->display_name; ?>"
     data-uuid="<?php echo get_field('uuiduser_user', 'user_' . get_current_user_id()); ?>"
     data-searchedTerm="<?php echo $term_to_search; ?>"
-    data-resultsNumber="<?php echo $total_top_founded ? $total_top_founded : '0'; ?>"
+    data-resultsNumber="<?php echo $total_top_founded + count($searching_for_a_vainkeur); ?>"
   >
   </div>
 
@@ -344,7 +344,7 @@ get_header();
                 $placeholder = "Rechercher...";
               }
               ?>
-              <input type="text" class="form-control search-product" id="search_text" placeholder="<?php echo $placeholder; ?>" aria-label="<?php echo $placeholder; ?>" name="term" aria-describedby="shop-search" required oninvalid="this.setCustomValidity('Son goku par exemple..')" />
+              <input type="text" class="form-control search-product" id="search_text" placeholder="<?php echo $placeholder; ?>" aria-label="<?php echo $placeholder; ?>" name="term" aria-describedby="shop-search" minlength="3" required/>
               <button type="submit">
                 <span class="ico ico-search ico-search-result va va-loupe va-lg"></span>
               </button>
