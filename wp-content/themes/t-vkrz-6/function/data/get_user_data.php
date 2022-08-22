@@ -162,7 +162,7 @@ function get_fantom($id_vainkeur = false){
         $result = array(
             'id_user'           => false,
             'pseudo'            => 'Lama2Lombre',
-            'avatar'            => 'https://vainkeurz.com/wp-content/themes/t-vkrz-3/assets/images/vkrz/avatar-rose.png',
+            'avatar'            => 'https://vainkeurz.com/wp-content/themes/t-vkrz-6/assets/images/vkrz/avatar-rose.png',
             'user_email'        => '',
             'user_role'         => 'subscriber',
             'level'             => '<span class="va va-z-20 va-egg"></span>',
@@ -183,7 +183,7 @@ function get_fantom($id_vainkeur = false){
         $result = array(
             'id_user'           => false,
             'pseudo'            => 'Lama2Lombre',
-            'avatar'            => 'https://vainkeurz.com/wp-content/themes/t-vkrz-3/assets/images/vkrz/avatar-rose.png',
+            'avatar'            => 'https://vainkeurz.com/wp-content/themes/t-vkrz-6/assets/images/vkrz/avatar-rose.png',
             'user_email'        => '',
             'user_role'         => 'subscriber',
             'level'             => '<span class="va va-z-20 va-egg"></span>',
@@ -274,7 +274,7 @@ function get_user_infos($uuid_vainkeur, $size = "short"){
         $result = array(
             'id_user'           => false,
             'pseudo'            => 'Lama2Lombre',
-            'avatar'            => 'https://vainkeurz.com/wp-content/themes/t-vkrz-3/assets/images/vkrz/avatar-rose.png',
+            'avatar'            => 'https://vainkeurz.com/wp-content/themes/t-vkrz-6/assets/images/vkrz/avatar-rose.png',
             'user_email'        => '',
             'user_role'         => 'anonyme',
             'level'             => '<span class="va va-z-20 va-egg"></span>',
