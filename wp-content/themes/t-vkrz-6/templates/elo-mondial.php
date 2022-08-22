@@ -149,7 +149,7 @@ $contenders_ranking   = get_contenders_ranking($id_top);
                                         <div class="card-body">
                                             <div class="pricing-badge text-right">
                                                 <div class="badge badge-pill badge-light-primary">
-                                                    <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_top; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir les <?php echo $top_datas['nb_completed_top']; ?> Tops">
+                                                    <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_top; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir les <?php echo $top_datas['nb_tops']; ?> Tops">
                                                         <span class="va va-eyes va-lg"></span>
                                                     </a>
                                                 </div>
@@ -158,7 +158,7 @@ $contenders_ranking   = get_contenders_ranking($id_top);
                                                 <span class="ico4 va va-trophy va-md"></span>
                                             </div>
                                             <h2 class="font-weight-bolder">
-                                                <?php echo $top_datas['nb_completed_top']; ?>
+                                                <?php echo $top_datas['nb_tops']; ?>
                                             </h2>
                                             <p class="card-text legende">
                                                 TopList

@@ -93,7 +93,7 @@ $top_selected       = get_field('liste_des_tops_selectionnes_special', false, fa
                                             </div>
                                             <div class="content-body mt-01">
                                                 <h4 class="mb-0">
-                                                    <?php echo $top_datas['nb_completed_top']; ?>
+                                                    <?php echo $top_datas['nb_tops']; ?>
                                                 </h4>
                                             </div>
                                         </div>

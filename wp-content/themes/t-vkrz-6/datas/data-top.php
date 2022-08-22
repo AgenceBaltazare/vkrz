@@ -132,10 +132,10 @@ foreach ($contender_list as $contender) {
                                                 <span class="va va-trophy va-2x"></span>
                                             </div>
                                             <h2 class="font-weight-bolder">
-                                                <?php echo $top_datas['nb_completed_top']; ?>
+                                                <?php echo $top_datas['nb_tops']; ?>
                                             </h2>
                                             <p class="card-text legende">
-                                                <?php if ($top_datas['nb_completed_top'] <= 1) : ?>
+                                                <?php if ($top_datas['nb_tops'] <= 1) : ?>
                                                     Top finalisé
                                                 <?php else : ?>
                                                     Tops finalisés

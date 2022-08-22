@@ -169,7 +169,7 @@ get_header();
                           </div>
                           <div class="content-body text-left">
                             <h4 class="mb-0">
-                              <?php echo $top_datas['nb_completed_top']; ?>
+                              <?php echo $top_datas['nb_tops']; ?>
                             </h4>
                             <small class="text-muted">Tops terminés</small>
                           </div>
