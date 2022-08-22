@@ -7,6 +7,7 @@ import {
   where,
   orderBy,
   database,
+  limit
 } from "./config.js";
 
 (async function renderMenuNotifs() {
@@ -55,6 +56,12 @@ import {
   
   let notificationsUsersUuids = [];
   menuUserQuerySnapshot.forEach((notification) => notificationsUsersUuids.push(notification.data().uuid));
+
+  // REMOVE DUPLICATE UUIDs FROM ARRAY…
+  let set = new Set(
+    notificationsUsersUuids.map((notificationUserUuid) => JSON.stringify(notificationUserUuid))
+  );
+  notificationsUsersUuids = Array.from(set).map((elem) => JSON.parse(elem));
 
   // GET USERS DATA FIRST…
   const map = new Map();
