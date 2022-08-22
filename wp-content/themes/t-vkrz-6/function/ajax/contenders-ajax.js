@@ -378,7 +378,7 @@ $(document).ready(function ($) {
                   });
                 }
 
-                // $(location).attr("href", link_to_ranking);
+                $(location).attr("href", link_to_ranking);
               } else {
                 $(location).attr("href", link_to_ranking);
               }
