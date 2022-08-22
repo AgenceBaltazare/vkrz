@@ -5,4 +5,5 @@
         acf_add_options_sub_page('Social');
         acf_add_options_sub_page('Datas');
         acf_add_options_sub_page('Games');
+        acf_add_options_sub_page('Dodo');
     }
