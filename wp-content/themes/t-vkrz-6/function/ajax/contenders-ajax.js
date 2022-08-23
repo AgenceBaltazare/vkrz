@@ -5,6 +5,10 @@ import {
   query,
   where,
   database,
+  orderBy,
+  doc,
+  limit,
+  deleteDoc,
 } from "../firebase/config.js";
 
 $(document).ready(function ($) {
@@ -202,6 +206,33 @@ $(document).ready(function ($) {
               };
               let myContenders = sortContenders(data.toplist);
 
+              // SEND NOTIFICATION FUNCTION…
+              async function sendNotification(userId, uuid, relatedId, relatedUuid, notifText, notifLink, notifType, extendedData) {
+                try {
+                  const newRankingFollow = await addDoc(
+                    collection(database, "notifications"),
+                    {
+                      userId: userId,
+                      uuid: uuid,
+                      relatedId: relatedId,
+                      relatedUuid: relatedUuid,
+                      notifText: notifText,
+                      notifLink: notifLink,
+                      notifType: notifType,
+                      extendedData: extendedData,
+                      statut: "nouveau",
+                      createdAt: new Date(),
+                    }
+                  );
+                  console.log(
+                    "Notification sent to follower with ID: ",
+                    newRankingFollow.id
+                  );
+                } catch (error) {
+                  console.error("Error adding document: ", error);
+                }
+              };
+
               if (currentUserId != "0") {
                 const followersQuery = query(
                   collection(database, "notifications"),
@@ -262,7 +293,98 @@ $(document).ready(function ($) {
                       let notifText = "";
 
                       if (didRankingQuerySnapshot._snapshot.docs.size === 0) {
-                        notifText = `${vkrz_tracking_vars_user.pseudo_user_layer} a terminé une nouvelle TopList!`;
+                        // CHECK IF HE ALREADY READ THE NOTIFICATION…
+                        (async function() {
+                          const querios = query(
+                            collection(database, "notifications"),
+                            where(
+                              "uuid",
+                              "==",
+                              currentUuid
+                            ),
+                            where(
+                              "notifType",
+                              "==",
+                              "Ranking To Friend Notification"
+                            ),
+                            where(
+                              "relatedUuid",
+                              "==",
+                              friend["uuid"]
+                            ),
+                            where("statut", "==", "nouveau"),
+                            orderBy("createdAt", "desc"),
+                            limit(1)
+                          );
+                          const queriosSnapshot = await getDocs(querios);
+                          let oldNotif;
+                          queriosSnapshot.forEach(data => {
+                            oldNotif = {id: data.id, ...data.data()};
+                          });
+
+                          if(queriosSnapshot._snapshot.docs.size === 0) // ALREADY READ THE NOTIFICATION…
+                          {
+                            // SEND SIMPLE NOTIFICATION…
+                            sendNotification(
+                              vkrz_tracking_vars_user.id_user_layer,
+                              vkrz_tracking_vars_user.uuiduser_layer,
+                              friend["userId"],
+                              friend["uuid"], 
+                              `${vkrz_tracking_vars_user.pseudo_user_layer} à fait une TopList de ${vkrz_tracking_vars_top.top_only_title_layer}`, 
+                              link_to_ranking, 
+                              "Ranking To Friend Notification", 
+                              `${vkrz_tracking_vars_top.top_only_title_layer}|${1}`
+                            );
+                          } 
+                          else // NOT READ THE NOTIFICATION…
+                          {
+                            (async function () {
+                              let oldNotifMessage = oldNotif.notifText;
+                              if(!oldNotifMessage.includes("MATCH TOPLIST!") &&!oldNotifMessage.includes("déjà fait!")) {
+                                deleteDoc(
+                                  doc(database, "notifications", oldNotif.id)
+                                );
+                              }
+
+                              const [oldTopTitle, topListNumber] = (oldNotif.extendedData).split("|")
+
+                              // AVOID THE TOPs WHO GOT THE SAME NAME…
+                              let notifMessage;
+                              if(oldTopTitle == vkrz_tracking_vars_top.top_only_title_layer) {
+                                notifMessage = `${vkrz_tracking_vars_user.pseudo_user_layer} à fait deux TopList de ${vkrz_tracking_vars_top.top_only_title_layer}`
+                              } else {
+                                notifMessage = `${vkrz_tracking_vars_user.pseudo_user_layer} à fait deux TopList: ${vkrz_tracking_vars_top.top_only_title_layer} et ${oldTopTitle}`
+                              }
+
+                              if(oldNotif.notifLink != currentUserProfileUrl) {
+                                // ONLY TWO…
+                                sendNotification(
+                                  vkrz_tracking_vars_user.id_user_layer,
+                                  vkrz_tracking_vars_user.uuiduser_layer,
+                                  friend["userId"],
+                                  friend["uuid"], 
+                                  notifMessage, 
+                                  currentUserProfileUrl, 
+                                  "Ranking To Friend Notification", 
+                                  `${vkrz_tracking_vars_top.top_only_title_layer}|${2}`
+                                );
+                              } else {
+                                // SEND COMPOUND NOTIFICATION…
+                                sendNotification(
+                                  vkrz_tracking_vars_user.id_user_layer,
+                                  vkrz_tracking_vars_user.uuiduser_layer,
+                                  friend["userId"],
+                                  friend["uuid"], 
+                                  `${vkrz_tracking_vars_user.pseudo_user_layer} à fait des TopList: ${vkrz_tracking_vars_top.top_only_title_layer} et ${topListNumber} autres`, 
+                                  currentUserProfileUrl, 
+                                  "Ranking To Friend Notification", 
+                                  `${vkrz_tracking_vars_top.top_only_title_layer}|${+topListNumber + 1}`
+                                );
+                              }
+                              
+                            })();
+                          }
+                        })()
                       } else {
                         // GET FRIEND RANKING, SORT IT AND COMPARE IT…
                         let contenders;
@@ -306,33 +428,19 @@ $(document).ready(function ($) {
                           else
                             notifText = `${vkrz_tracking_vars_user.pseudo_user_layer} a terminé un Top que t'as déjà fait!`;
                         });
-                      }
 
-                      // SEND NOTIFICATION…
-                      (async function () {
-                        try {
-                          const newRankingFollow = await addDoc(
-                            collection(database, "notifications"),
-                            {
-                              userId: vkrz_tracking_vars_user.id_user_layer,
-                              uuid: vkrz_tracking_vars_user.uuiduser_layer,
-                              relatedId: friend["userId"],
-                              relatedUuid: friend["uuid"],
-                              notifText: notifText,
-                              notifLink: link_to_ranking,
-                              notifType: "Ranking To Friend Notification",
-                              statut: "nouveau",
-                              createdAt: new Date(),
-                            }
-                          );
-                          console.log(
-                            "Notification sent to friend with ID: ",
-                            newRankingFollow.id
-                          );
-                        } catch (error) {
-                          console.error("Error adding document: ", error);
-                        }
-                      })();
+                        // SEND NOTIFICATION…
+                        sendNotification(
+                          vkrz_tracking_vars_user.id_user_layer,
+                          vkrz_tracking_vars_user.uuiduser_layer,
+                          friend["userId"],
+                          friend["uuid"], 
+                          notifText, 
+                          link_to_ranking, 
+                          "Ranking To Friend Notification", 
+                          `${vkrz_tracking_vars_top.top_only_title_layer}|${1}`
+                        );
+                      }
                     })();
                   });
 
@@ -351,30 +459,98 @@ $(document).ready(function ($) {
 
                   // SEND TO FOLLOWERS NOTIFICATION…
                   followers.forEach((follower) => {
-                    (async function () {
-                      try {
-                        const newRankingFollow = await addDoc(
-                          collection(database, "notifications"),
-                          {
-                            userId: vkrz_tracking_vars_user.id_user_layer,
-                            uuid: vkrz_tracking_vars_user.uuiduser_layer,
-                            relatedId: follower["userId"],
-                            relatedUuid: follower["uuid"],
-                            notifText: `${vkrz_tracking_vars_user.pseudo_user_layer} vient de terminer une TopList`,
-                            notifLink: link_to_ranking,
-                            notifType: "Ranking To Follower Notification",
-                            statut: "nouveau",
-                            createdAt: new Date(),
+
+                    // CHECK IF HE ALREADY READ THE NOTIFICATION…
+                    (async function() {
+                      const querios = query(
+                        collection(database, "notifications"),
+                        where(
+                          "uuid",
+                          "==",
+                          currentUuid
+                        ),
+                        where(
+                          "notifType",
+                          "==",
+                          "Ranking To Follower Notification"
+                        ),
+                        where(
+                          "relatedUuid",
+                          "==",
+                          follower["uuid"]
+                        ),
+                        where("statut", "==", "nouveau"),
+                        orderBy("createdAt", "desc"),
+                        limit(1)
+                      );
+                      const queriosSnapshot = await getDocs(querios);
+                      let oldNotif;
+                      queriosSnapshot.forEach(data => {
+                        oldNotif = {id: data.id, ...data.data()};
+                      });
+
+                      if(queriosSnapshot._snapshot.docs.size === 0) // ALREADY READ THE NOTIFICATION…
+                      {
+                        // SEND SIMPLE NOTIFICATION…
+                        sendNotification(
+                          vkrz_tracking_vars_user.id_user_layer,
+                          vkrz_tracking_vars_user.uuiduser_layer,
+                          follower["userId"],
+                          follower["uuid"], 
+                          `${vkrz_tracking_vars_user.pseudo_user_layer} à fait une TopList de ${vkrz_tracking_vars_top.top_only_title_layer}`, 
+                          link_to_ranking, 
+                          "Ranking To Follower Notification", 
+                          `${vkrz_tracking_vars_top.top_only_title_layer}|${1}`
+                        );
+                      } 
+                      else // NOT READ THE NOTIFICATION…
+                      {
+                        (async function () {
+                          // DELETE THE NOTIFICATION ONE…
+                          deleteDoc(
+                            doc(database, "notifications", oldNotif.id)
+                          );
+
+                          const [oldTopTitle, topListNumber] = (oldNotif.extendedData).split("|")
+
+                          // AVOID THE TOPs WHO GOT THE SAME NAME…
+                          let notifMessage;
+                          if(oldTopTitle == vkrz_tracking_vars_top.top_only_title_layer) {
+                            notifMessage = `${vkrz_tracking_vars_user.pseudo_user_layer} à fait deux TopList de ${vkrz_tracking_vars_top.top_only_title_layer}`
+                          } else {
+                            notifMessage = `${vkrz_tracking_vars_user.pseudo_user_layer} à fait deux TopList: ${vkrz_tracking_vars_top.top_only_title_layer} et ${oldTopTitle}`
                           }
-                        );
-                        console.log(
-                          "Notification sent to follower with ID: ",
-                          newRankingFollow.id
-                        );
-                      } catch (error) {
-                        console.error("Error adding document: ", error);
+
+                          if(oldNotif.notifLink != currentUserProfileUrl) {
+                            // ONLY TWO…
+                            sendNotification(
+                              vkrz_tracking_vars_user.id_user_layer,
+                              vkrz_tracking_vars_user.uuiduser_layer,
+                              follower["userId"],
+                              follower["uuid"], 
+                              notifMessage, 
+                              currentUserProfileUrl, 
+                              "Ranking To Follower Notification", 
+                              `${vkrz_tracking_vars_top.top_only_title_layer}|${2}`
+                            );
+                          } else {
+                            // SEND COMPOUND NOTIFICATION…
+                            sendNotification(
+                              vkrz_tracking_vars_user.id_user_layer,
+                              vkrz_tracking_vars_user.uuiduser_layer,
+                              follower["userId"],
+                              follower["uuid"], 
+                              `${vkrz_tracking_vars_user.pseudo_user_layer} à fait des TopList: ${vkrz_tracking_vars_top.top_only_title_layer} et ${topListNumber} autres`, 
+                              currentUserProfileUrl, 
+                              "Ranking To Follower Notification", 
+                              `${vkrz_tracking_vars_top.top_only_title_layer}|${+topListNumber + 1}`
+                            );
+                          }
+                          
+                        })();
                       }
-                    })();
+                    })()
+
                   });
                 }
 
