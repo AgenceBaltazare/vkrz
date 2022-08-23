@@ -11,6 +11,14 @@ All notable changes to this project will be documented in this file.
 > - :memo: [Documentation]
 > - :nail_care: [Polish]
 
+## [ 3.16.0 ] - 2022-08-21
+
+#### - :nail_care: [Polish]
+
+- only save user if userId exists
+- improve syncing WordPress data to firebase
+- add ability to modify document id before saving to firebase database
+
 ## [ 3.15.1 ] - 2022-08-10
 
 #### - :bug: [Bug Fix]
