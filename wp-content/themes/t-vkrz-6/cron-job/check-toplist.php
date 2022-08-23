@@ -15,7 +15,9 @@ $classements = new WP_Query(array(
 if ($classements->have_posts()) {
     $i=1; foreach ($classements->posts as $classement) {
 
+        
         echo $i . " -> TopList " . get_the_title($classement) . "\n";
+        wp_update_post(array('ID' => $classement));
 
         $i++;
     }
