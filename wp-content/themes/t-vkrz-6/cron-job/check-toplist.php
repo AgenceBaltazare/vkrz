@@ -22,17 +22,14 @@ if ($classements->have_posts()) {
         $id_top      = get_field('id_tournoi_r', $classement);
         $id_resume   = get_resume_id($id_top);
 
-        array_push($array_vainkeur, $id_vainkeur);
-        if(!in_array($id_vainkeur, $array_vainkeur)){
-            //wp_update_post(array('ID' => $id_vainkeur));
+        
+            wp_update_post(array('ID' => $id_vainkeur));
             echo $i . " VAINKEUR : " . $id_vainkeur . "\n";
-        }
+        
 
-        array_push($array_resume, $id_resume);
-        if (!in_array($id_resume, $array_resume)) {
-            //wp_update_post(array('ID' => $id_resume));
+            wp_update_post(array('ID' => $id_resume));
             echo $r . " Resume : " . $id_resume . "\n";
-        }
+
 
         //echo $i . " -> TopList : " . $classement . " titre : " . get_the_title($classement) . "\n";
 
