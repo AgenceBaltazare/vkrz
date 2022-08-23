@@ -456,7 +456,7 @@ function get_the_dodo($data)
   $user_pseudo     = $user_info->user_nicename;
   $dodo            = array_slice($return, 0, $limit);
 
-  if (get_field('nb_votes_dodo', 'options') <= $dodo[0]['total_vote']) {
+  if (get_field('id_vainkeur_dodo', 'options') != $dodo[0]['vainkeur_id']) {
     update_field('id_vainkeur_dodo', $dodo[0]['vainkeur_id'], 'options');
     update_field('uuid_dodo', $dodo[0]['uuid'], 'options');
     update_field('pseudo_dodo', $user_pseudo, 'options');
@@ -469,5 +469,9 @@ function get_the_dodo($data)
         update_vainkeur_badge($dodo[0]['uuid'], "Dodo");
       }
     }
+  }
+  else{
+    update_field('nb_votes_dodo', $dodo[0]['total_vote'], 'options');
+    update_field('nb_tops_dodo', $dodo[0]['total_top'], 'options');
   }
 }
