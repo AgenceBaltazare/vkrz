@@ -26,7 +26,7 @@ if (!class_exists('FirebaseService', false)) :
       return $this->firebase_settings;
     }
 
-    private function collection_name_generator($post_type) {
+    private function collection_name_generetor($post_type) {
       $type_object = get_post_type_object($post_type);
       $plural_name = isset($type_object->labels) ? $type_object->labels->name : $post_type;
       $name_array = preg_split("/[_,\- ]+/", $plural_name);
@@ -125,9 +125,6 @@ if (!class_exists('FirebaseService', false)) :
         $data['firebase_synced_at'] = time();
       }
 
-      // hooks
-      $doc_id = apply_filters('firebase_update_doc_id_before_saving_to_database', $collection_name, $doc_id);
-
       // Prepare data
       $prepared_data = new stdClass();
       $prepared_data->dbType = $database_type;
@@ -221,30 +218,33 @@ if (!class_exists('FirebaseService', false)) :
     }
 
     public function save_wordpress_data_to_firebase($post_id, $post) {
-      if (isset($this->options_wordpress['wp_sync_post_types']) && in_array($post->post_type, $this->options_wordpress['wp_sync_post_types'])) {
-        $this->sync_wordpress_data_handler($post_id, $post);
-      }
+      if (
+        isset($this->options_wordpress['wp_sync_post_types'])
+        || isset($this->options_wordpress['wp_sync_custom_post_types'])
+      ) {
+        $collection_name = null;
+        $post_type = $post->post_type;
 
-      if (isset($this->options_wordpress['wp_sync_custom_post_types']) && strpos($this->options_wordpress['wp_sync_custom_post_types'], $post->post_type) !== false) {
-        $this->sync_wordpress_data_handler($post_id, $post);
-      }
-    }
+        if (
+          in_array($post_type, $this->options_wordpress['wp_sync_post_types'] ?? [])
+          || strpos($this->options_wordpress['wp_sync_custom_post_types'], $post_type) !== false
+        ) {
+          $collection_name = $this->collection_name_generetor($post_type);
+        }
 
-    private function sync_wordpress_data_handler($post_id, $post) {
-      $collection_name = $this->collection_name_generator($post->post_type);
+        if ($collection_name) {
+          $database_type = $this->options_wordpress['wp_sync_database_type'];
+          $doc_id = (string) $post_id;
 
-      if ($collection_name) {
-        $database_type = $this->options_wordpress['wp_sync_database_type'];
-        $doc_id = (string) $post_id;
+          // allow to modify post before saving to database
+          $post = apply_filters('firebase_before_saving_post_to_database', $post);
 
-        // allow to modify post before saving to database
-        $post = apply_filters('firebase_before_saving_post_to_database', $post);
-
-        // Delete data before saving new one
-        apply_filters('firebase_delete_data_from_database', $database_type, $collection_name, $doc_id);
-        apply_filters('firebase_save_data_to_database', $database_type, $collection_name, $doc_id, $post);
-      } else {
-        // error_log('Integrate Firebase PRO does not support post type: ' . $post->$post_type);
+          // Delete data before saving new one
+          apply_filters('firebase_delete_data_from_database', $database_type, $collection_name, $doc_id);
+          apply_filters('firebase_save_data_to_database', $database_type, $collection_name, $doc_id, $post);
+        } else {
+          // error_log('Integrate Firebase PRO does not support post type: ' . $post_type);
+        }
       }
     }
 
@@ -255,7 +255,7 @@ if (!class_exists('FirebaseService', false)) :
         (isset($this->options_wordpress['wp_sync_post_types']) && in_array($post_type, $this->options_wordpress['wp_sync_post_types']))
         || (isset($this->options_wordpress['wp_sync_custom_post_types']) && strpos($this->options_wordpress['wp_sync_custom_post_types'], $post_type) !== false)
       ) {
-        $collection_name = $this->collection_name_generator($post_type);
+        $collection_name = $this->collection_name_generetor($post_type);
       }
 
       if ($collection_name) {
@@ -289,11 +289,6 @@ if (!class_exists('FirebaseService', false)) :
 
       unset($firebase_user['password']);
       $filtered_data = array_filter($firebase_user);
-
-      if (empty($filtered_data['userId'])) {
-        return false;
-      }
-
       $database_type = $this->options_wordpress['wp_sync_database_type'];
       $collection_name = $this->options_wordpress['wp_sync_users'];
       $doc_id = (string) $filtered_data['userId'];
