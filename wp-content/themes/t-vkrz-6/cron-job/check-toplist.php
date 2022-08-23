@@ -17,7 +17,7 @@ if ($classements->have_posts()) {
 
         
         echo $i . " -> TopList : " . $classement . " titre : " . get_the_title($classement) . "\n";
-        //wp_update_post(array('ID' => $classement));
+        wp_update_post(array('ID' => $classement));
 
         $i++;
     }
