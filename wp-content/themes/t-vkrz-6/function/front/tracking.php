@@ -111,6 +111,7 @@ function vkrz_tracking_vars()
         if($current_post_type == "tournoi"){
             $id_top     = get_the_ID();
             $top_title  = "Top : ".$top_infos['top_number'] . " " . $top_infos['top_title'] . " - " . $top_infos['top_question'];
+            $top_only_title  = $top_infos['top_title'];
         }
         elseif($current_post_type == "classement"){
             $id_top = get_field('id_tournoi_r');
@@ -119,6 +120,7 @@ function vkrz_tracking_vars()
 
         vkrz_output_tracking_vars_in_head('vkrz_tracking_vars_top', [
             'top_title_layer' => $top_title,
+            'top_only_title_layer' => $top_only_title,
             'top_categorie_layer' => !empty($top_infos['top_cat']) ? $top_infos['top_cat'][0]->name : "",
             'top_id_top_layer' => $id_top,
             'top_user_level_layer' => $infos_vainkeur['level_number'],
