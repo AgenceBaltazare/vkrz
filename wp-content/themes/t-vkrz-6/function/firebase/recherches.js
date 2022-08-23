@@ -5,6 +5,8 @@ import {
 } from "./config.js";
 
 if(document.querySelector('.recherche-firestore')) {
+  document.querySelector('#search_text').focus();
+
   const container     = document.querySelector('.recherche-firestore'),
         lama2lombre   = container.dataset.lama2lombre,
         userId        = container.dataset.userid,

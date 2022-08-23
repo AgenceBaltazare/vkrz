@@ -7,10 +7,13 @@
 global $term_to_search;
 global $total_top_founded;
 global $infos_vainkeur;
+
 if (isset($_GET['term']) && $_GET['term'] != "") {
   $term_to_search = $_GET['term'];
 }
 $list_tops = array();
+
+// SEARCH BY TITLE…
 $tops_to_find = new WP_Query(array(
   'post_type'                 => 'tournoi',
   'posts_per_page'            => -1,
@@ -31,14 +34,32 @@ while ($tops_to_find->have_posts()) : $tops_to_find->the_post();
   array_push($list_tops, get_the_ID());
 endwhile;
 
-////////////////// CATEGORIES 1️⃣ /////////////
-
-function sans_accents($string)
-{
-  $translit = array('Á' => 'A', 'À' => 'A', 'Â' => 'A', 'Ä' => 'A', 'Ã' => 'A', 'Å' => 'A', 'Ç' => 'C', 'É' => 'E', 'È' => 'E', 'Ê' => 'E', 'Ë' => 'E', 'Í' => 'I', 'Ï' => 'I', 'Î' => 'I', 'Ì' => 'I', 'Ñ' => 'N', 'Ó' => 'O', 'Ò' => 'O', 'Ô' => 'O', 'Ö' => 'O', 'Õ' => 'O', 'Ú' => 'U', 'Ù' => 'U', 'Û' => 'U', 'Ü' => 'U', 'Ý' => 'Y', 'á' => 'a', 'à' => 'a', 'â' => 'a', 'ä' => 'a', 'ã' => 'a', 'å' => 'a', 'ç' => 'c', 'é' => 'e', 'è' => 'e', 'ê' => 'e', 'ë' => 'e', 'í' => 'i', 'ì' => 'i', 'î' => 'i', 'ï' => 'i', 'ñ' => 'n', 'ó' => 'o', 'ò' => 'o', 'ô' => 'o', 'ö' => 'o', 'õ' => 'o', 'ú' => 'u', 'ù' => 'u', 'û' => 'u', 'ü' => 'u', 'ý' => 'y', 'ÿ' => 'y');
-  $string = strtr($string, $translit);
-  return preg_replace('#[^a-zA-Z0-9\-\._]#', '-', $string);
-}
+// SEARCH BY QUESTION_T…
+$tops_to_find = new WP_Query(array(
+  'post_type'                 => 'tournoi',
+  'posts_per_page'            => -1,
+  'ignore_sticky_posts'       => true,
+  'update_post_meta_cache'    => false,
+  'no_found_rows'             => true,
+  'tax_query'                 => array(
+    array(
+      'taxonomy' => 'type',
+      'field'    => 'slug',
+      'terms'    => array('private', 'whitelabel', 'onboarding'),
+      'operator' => 'NOT IN'
+    ),
+  ),
+  'meta_query'                => array(
+    array(
+      'key'		   => 'question_t',
+			'value'		 => $term_to_search,
+      'compare'  => 'LIKE',
+    ),
+  ),
+));
+while ($tops_to_find->have_posts()) : $tops_to_find->the_post();
+  array_push($list_tops, get_the_ID());
+endwhile;
 
 $cat_id = 0;
 $cat_t = get_terms(array(
@@ -48,7 +69,7 @@ $cat_t = get_terms(array(
   'hide_empty'    => true,
 ));
 foreach ($cat_t as $cat) :
-  if (mb_strtolower(sans_accents($term_to_search)) == mb_strtolower(sans_accents($cat->name))) {
+  if ($term_to_search == mb_strtolower($cat->name)) {
     $cat_id = $cat->term_id;
   }
 endforeach;
@@ -77,11 +98,7 @@ while ($tops_to_find->have_posts()) : $tops_to_find->the_post();
   array_push($list_tops, get_the_ID());
 endwhile;
 
-//////////////////////////////////////////////
-
-////////////////// TYPE TOP 2️⃣ /////////////
 $type_top_id = 0;
-
 $type_t = get_terms(array(
   'taxonomy'      => 'type',
   'orderby'       => 'count',
@@ -89,7 +106,7 @@ $type_t = get_terms(array(
   'hide_empty'    => true,
 ));
 foreach ($type_t as $type) :
-  if (mb_strtolower(sans_accents($term_to_search)) == mb_strtolower(sans_accents($type->name))) {
+  if ($term_to_search == mb_strtolower($type->name)) {
     $type_top_id = $type->term_id;
   }
 endforeach;
@@ -117,12 +134,8 @@ $tops_to_find = new WP_Query(array(
 while ($tops_to_find->have_posts()) : $tops_to_find->the_post();
   array_push($list_tops, get_the_ID());
 endwhile;
-/////////////////////////////////////////////
 
-
-////////////////// SUB-CATEGORY 3️⃣ /////////
 $sous_cat_id = 0;
-
 $sous_cat_t = get_terms(array(
   'taxonomy'      => 'sous-cat',
   'orderby'       => 'count',
@@ -130,7 +143,7 @@ $sous_cat_t = get_terms(array(
   'hide_empty'    => true,
 ));
 foreach ($sous_cat_t as $sous_cat) :
-  if (mb_strtolower(sans_accents($term_to_search)) == mb_strtolower(sans_accents($sous_cat->name))) {
+  if ($term_to_search == mb_strtolower($sous_cat->name)) {
     $sous_cat_id = $sous_cat->term_id;
   }
 endforeach;
@@ -158,11 +171,8 @@ $tops_to_find = new WP_Query(array(
 while ($tops_to_find->have_posts()) : $tops_to_find->the_post();
   array_push($list_tops, get_the_ID());
 endwhile;
-/////////////////////////////////////////////
 
-////////////////// CONCEPT 3️⃣ /////////
 $concept_id = 0;
-
 $concept_t = get_terms(array(
   'taxonomy'      => 'tag',
   'orderby'       => 'name',
@@ -170,7 +180,7 @@ $concept_t = get_terms(array(
   'hide_empty'    => true,
 ));
 foreach ($concept_t as $concept) :
-  if (mb_strtolower(sans_accents($term_to_search)) == mb_strtolower(sans_accents($concept->name))) {
+  if ($term_to_search == mb_strtolower($concept->name)) {
     $concept_id = $concept->term_id;
   }
 endforeach;
@@ -198,11 +208,8 @@ $tops_to_find = new WP_Query(array(
 while ($tops_to_find->have_posts()) : $tops_to_find->the_post();
   array_push($list_tops, get_the_ID());
 endwhile;
-/////////////////////////////////////////////
 
-////////////////// SUJET 3️⃣ /////////
 $sujet_id = 0;
-
 $sujet_t = get_terms(array(
   'taxonomy'      => 'concept',
   'orderby'       => 'name',
@@ -210,7 +217,7 @@ $sujet_t = get_terms(array(
   'hide_empty'    => true,
 ));
 foreach ($sujet_t as $sujet) :
-  if (mb_strtolower(sans_accents($term_to_search)) == mb_strtolower(sans_accents($sujet->name))) {
+  if ($term_to_search == mb_strtolower($sujet->name)) {
     $sujet_id = $sujet->term_id;
   }
 endforeach;
@@ -238,10 +245,7 @@ $tops_to_find = new WP_Query(array(
 while ($tops_to_find->have_posts()) : $tops_to_find->the_post();
   array_push($list_tops, get_the_ID());
 endwhile;
-/////////////////////////////////////////////
 
-
-////////////////// CONTENDER 4️⃣ ////////////
 $contenders_to_find = new WP_Query(array(
   'post_type'                 => 'contender',
   'posts_per_page'            => -1,
@@ -255,7 +259,6 @@ while ($contenders_to_find->have_posts()) : $contenders_to_find->the_post();
 endwhile;
 
 $list_tops_unique = array_unique($list_tops);
-/////////////////////////////////////////////
 
 if (!empty($list_tops_unique)) {
   $tops_unique_to_find = new WP_Query(array(
@@ -276,19 +279,15 @@ if (!empty($list_tops_unique)) {
   ));
 }
 
-////////////////// VAINKEUR 5️⃣ ////////////
 $user_query = new WP_User_Query(
   array(
     'search'          => '*' . esc_attr($term_to_search) . '*',
     'search_columns'  => array('user_login')
   )
 );
-// Get the results
 $searching_for_a_vainkeur = $user_query->get_results();
 
 wp_reset_query();
-
-///////////////////////////////////////////
 
 global $total_top_founded;
 if (!empty($tops_unique_to_find)) {
