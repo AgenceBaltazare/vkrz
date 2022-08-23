@@ -9,18 +9,16 @@ $classements = new WP_Query(array(
     'ignore_sticky_posts'    => true,
     'update_post_meta_cache' => false,
     'no_found_rows'          => false,
-    'meta_query'             => array(
+    'date_query' => array(
         array(
-            'key' => 'id_vainkeur_r',
-            'value' => '',
-            'compare' => '='
-        )
-    )
+            'column' => 'post_date_gmt',
+            'before' => '1 day ago',
+        ),
+    ),
 ));
 if ($classements->have_posts()) {
     $i=1; foreach ($classements->posts as $classement) {
 
-        wp_delete_post($classement, true);
         echo $i . " -> TopList " . $classement . "\n";
 
         $i++;
