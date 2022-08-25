@@ -19,6 +19,57 @@ function get_vainkeur(){
         $user_id        = get_user_logged_id();
         $uuiduser       = get_field('uuiduser_user', 'user_'.$user_id);
         $id_vainkeur    = get_field('id_vainkeur_user', 'user_' . $user_id);
+
+        if($uuiduser == ""){
+            $uuiduser   = uniqidReal();
+            update_field('uuiduser_user', $uuiduser, 'user_' . $user_id);
+        }
+
+        if ($id_vainkeur == "") {
+
+            $vainkeur_entry = new WP_Query(array(
+                'post_type'              => 'vainkeur',
+                'posts_per_page'         => '1',
+                'fields'                 => 'ids',
+                'post_status'            => 'publish',
+                'ignore_sticky_posts'    => true,
+                'update_post_meta_cache' => false,
+                'no_found_rows'          => false,
+                'meta_query'             => array(
+                    array(
+                        'key'       => 'uuid_user_vkrz',
+                        'value'     => $uuiduser,
+                        'compare'   => '='
+                    )
+                )
+            ));
+
+            if ($vainkeur_entry->have_posts()) {
+
+                $id_vainkeur    = $vainkeur_entry->posts[0];
+
+            } else {
+
+                $new_vainkeur_entry = array(
+                    'post_type'   => 'vainkeur',
+                    'post_title'  => $uuiduser,
+                    'post_status' => 'publish',
+                );
+
+                if ($uuiduser) {
+                    $id_vainkeur  = wp_insert_post($new_vainkeur_entry);
+
+                    update_field('uuid_user_vkrz', $uuiduser, $id_vainkeur);
+                    update_field('nb_vote_vkrz', 0, $id_vainkeur);
+                    update_field('nb_top_vkrz', 0, $id_vainkeur);
+
+                    // Save vainkeur to firebase
+                    wp_update_post(array('ID' => $id_vainkeur));
+                }
+            }
+
+            update_field('id_vainkeur_user', $id_vainkeur, 'user_' . $user_id);
+        }
         
     } 
     else {
