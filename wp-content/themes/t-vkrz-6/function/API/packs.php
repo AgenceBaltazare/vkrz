@@ -454,7 +454,9 @@ function get_the_dodo($data)
   $user_info       = get_userdata($author_id);
   $user_pseudo     = $user_info->user_nicename;
   $dodo            = array_slice($return, 0, $limit);
-
+  if (!get_vainkeur_badge($dodo[0]['vainkeur_id'], "Dodo")) {
+    update_vainkeur_badge($dodo[0]['vainkeur_id'], "Dodo");
+  }
   if (get_field('id_vainkeur_dodo', 'options') != $dodo[0]['vainkeur_id']) {
     update_field('id_vainkeur_dodo', $dodo[0]['vainkeur_id'], 'options');
     update_field('uuid_dodo', $dodo[0]['uuid'], 'options');
