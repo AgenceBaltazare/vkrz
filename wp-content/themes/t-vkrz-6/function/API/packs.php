@@ -408,8 +408,7 @@ function get_the_dodo($data)
       if ($key !== false || $key === 0) {
         $return[$key]["total_vote"] = $return[$key]["total_vote"] + intval(get_field("nb_votes_r", $top_id));
         get_field("done_r", $top_id) == "done" ? $return[$key]["total_top"]++ : $return[$key]["total_top"];
-      } 
-      else {
+      } else {
         $vainkeur = new WP_Query(array(
           "post_type"              => "vainkeur",
           "posts_per_page"         => "1",
@@ -464,13 +463,12 @@ function get_the_dodo($data)
     update_field('nb_votes_dodo', $dodo[0]['total_vote'], 'options');
     update_field('nb_tops_dodo', $dodo[0]['total_top'], 'options');
 
-    if ($dodo[0]['uuid']) {
-      if (!get_vainkeur_badge($dodo[0]['uuid'], "Dodo")) {
-        update_vainkeur_badge($dodo[0]['uuid'], "Dodo");
+    if ($dodo[0]['vainkeur_id']) {
+      if (!get_vainkeur_badge($dodo[0]['vainkeur_id'], "Dodo")) {
+        update_vainkeur_badge($dodo[0]['vainkeur_id'], "Dodo");
       }
     }
-  }
-  else{
+  } else {
     update_field('nb_votes_dodo', $dodo[0]['total_vote'], 'options');
     update_field('nb_tops_dodo', $dodo[0]['total_top'], 'options');
   }
