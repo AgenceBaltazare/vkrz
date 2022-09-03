@@ -5,7 +5,11 @@ Tags: svg, vector, safesvg, safe svg, sanitization, sanitisation, sanitizer, san
 Requires at least: 4.8
 Tested up to: 6.0
 Requires PHP: 7.2
+<<<<<<< HEAD
 Stable tag: 2.5
+=======
+Stable tag: 2.5.1
+>>>>>>> b4f46597bf7499598a02252b5910d378c905102f
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -161,6 +165,12 @@ You need to add the mime type for svg and svgz to: "MLA Settings > Media Library
 
 == Changelog ==
 
+<<<<<<< HEAD
+=======
+= 2.5.1 =
+* Added missing quotes in uninstall.php.
+
+>>>>>>> b4f46597bf7499598a02252b5910d378c905102f
 = 2.5 =
 * Cleaned up spelling mistakes and general formatting.
 * Addressed security concern.
@@ -378,6 +388,13 @@ You need to add the mime type for svg and svgz to: "MLA Settings > Media Library
 
 == Upgrade Notice ==
 
+<<<<<<< HEAD
+=======
+= 2.5.1 =
+2.5 Adds new features and addresses a number of recent issues raised. Please take a backup before updating!
+2.5.1 fixes the uninstall file.
+
+>>>>>>> b4f46597bf7499598a02252b5910d378c905102f
 = 2.5 =
 Adds new features and addresses a number of recent issues raised. Please take a backup before updating!
 
