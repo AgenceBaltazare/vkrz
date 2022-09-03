@@ -21,10 +21,10 @@ function increase_vote_counter($id_vainkeur)
                 case 1000:
                     update_vainkeur_badge($id_vainkeur, '1 000 votes');
                     break;
-                case 100000:
+                case 10000:
                     update_vainkeur_badge($id_vainkeur, '10 000 votes');
                     break;
-                case 1000000:
+                case 100000:
                     update_vainkeur_badge($id_vainkeur, '100 000 votes');
                     break;
             }
