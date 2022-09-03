@@ -14,6 +14,7 @@ $vainkeur = new WP_Query(
             array(
                 'key'     => 'nb_vote_vkrz',
                 'value'   => '10000',
+                'type'    => 'NUMERIC',
                 'compare' => '>=',
             ),
         ),
@@ -27,6 +28,10 @@ while ($vainkeur->have_posts()) : $vainkeur->the_post();
     $user_pseudo  = $user_info->user_nicename;
 
     $nb_vote      = get_field('nb_vote_vkrz', $id_vainkeur);
+
+    if (!get_vainkeur_badge($id_vainkeur, "10 000 votes")) {
+        update_vainkeur_badge($id_vainkeur, '10 000 votes');
+    }
 
     echo $user_pseudo . " - " . get_the_ID() . " Votes : " . $nb_vote . "<br>";
 
