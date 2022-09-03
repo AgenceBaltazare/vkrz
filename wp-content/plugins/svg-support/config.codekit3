@@ -207,6 +207,28 @@
       "sC" : 3,
       "tS" : 0
     },
+    "\/js\/min\/svgs-inline-vanilla-min.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/js\/min\/svgs-inline-vanilla-min-min.js",
+      "oF" : 0,
+      "sC" : 3,
+      "tS" : 0
+    },
+    "\/js\/svgs-inline-vanilla.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/js\/min\/svgs-inline-vanilla-min.js",
+      "oF" : 2,
+      "sC" : 3,
+      "tS" : 0
+    },
     "\/js\/svgs-inline.js" : {
       "bF" : 0,
       "ft" : 64,
@@ -347,6 +369,14 @@
       "q" : 100,
       "rq" : 75
     },
+    "\/uninstall.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 2,
+      "oAP" : "\/uninstall.php",
+      "oF" : 0
+    },
     "\/vendor\/autoload.php" : {
       "cB" : 0,
       "ft" : 8192,
@@ -442,6 +472,28 @@
       "oA" : 2,
       "oAP" : "\/vendor\/composer\/platform_check.php",
       "oF" : 0
+    },
+    "\/vendor\/DOMPurify\/DOMPurify.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/vendor\/DOMPurify\/DOMPurify-min.js",
+      "oF" : 0,
+      "sC" : 3,
+      "tS" : 0
+    },
+    "\/vendor\/DOMPurify\/DOMPurify.min.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/vendor\/DOMPurify\/DOMPurify.min-min.js",
+      "oF" : 0,
+      "sC" : 3,
+      "tS" : 0
     },
     "\/vendor\/enshrined\/svg-sanitize\/.github\/workflows\/tests.yml" : {
       "cB" : 0,

@@ -148,9 +148,7 @@ add_action( 'wppb_backend_save_form_field', 'wppb_save_avatar_value', 10, 4 );
  * @param $field_name
  * @return string|WP_Error
  */
-function wppb_avatar_save_simple_upload_file ( $field_name, $field ){
-    wppb_add_avatar_sizes( $field );
-    wppb_userlisting_avatar();
+function wppb_avatar_save_simple_upload_file ( $field_name ){
 
     require_once( ABSPATH . 'wp-admin/includes/file.php' );
     $upload_overrides = array( 'test_form' => false );
@@ -214,7 +212,7 @@ add_filter( 'wppb_add_to_user_signup_form_field_avatar', 'wppb_avatar_add_upload
 function wppb_woo_simple_avatar(){
     check_ajax_referer( 'wppb_woo_simple_upload', 'nonce' );
     if ( isset($_POST["name"]) ) {
-        echo json_encode( wppb_save_simple_upload_file( sanitize_text_field( $_POST["name"] ) ) );
+        echo json_encode( wppb_avatar_save_simple_upload_file( sanitize_text_field( $_POST["name"] ) ) );
     }
     wp_die();
 }
@@ -249,7 +247,7 @@ add_filter( 'wppb_check_form_field_avatar', 'wppb_check_avatar_value', 10, 4 );
 /* register image size defined in avatar field */
 add_action( 'after_setup_theme', 'wppb_add_avatar_image_sizes' );
 function wppb_add_avatar_image_sizes() {
-    if ( isset($_REQUEST['action']) && 'upload-attachment' == $_REQUEST['action'] && isset($_REQUEST['wppb_upload']) && 'true' == $_REQUEST['wppb_upload'] ) {
+    if ( isset($_REQUEST['action']) && ( ( 'upload-attachment' == $_REQUEST['action'] && isset($_REQUEST['wppb_upload']) && 'true' == $_REQUEST['wppb_upload'] ) || 'wppb_woo_simple_avatar' == $_REQUEST['action'] ) ) {
 
         $all_fields = get_option('wppb_manage_fields');
         if( !empty( $all_fields ) ) {

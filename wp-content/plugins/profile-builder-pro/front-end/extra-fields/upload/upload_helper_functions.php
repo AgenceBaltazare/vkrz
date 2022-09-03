@@ -73,7 +73,7 @@ if( !function_exists( 'wppb_upload_file_type' ) ) {
                                 $allowed_upload_extensions = $field['allowed-upload-extensions'];
                             if ($field['field'] == 'Avatar' && !empty($field['allowed-image-extensions'])) {
                                 if (trim($field['allowed-image-extensions']) == '.*')
-                                    $allowed_upload_extensions = '.jpg,.jpeg,.gif,.png';
+                                    $allowed_upload_extensions = '.jpg,.jpeg,.gif,.png,.ico';
                                 else
                                     $allowed_upload_extensions = $field['allowed-image-extensions'];
                             }

@@ -7,7 +7,7 @@ custom registration, custom registration form, custom registration page, extra u
 front-end register, front-end registration, frontend edit profile, edit profileregistration, customize profile, user fields, builder, profile builder, custom fields, avatar
 Requires at least: 3.1
 Tested up to: 6.0
-Stable tag: 3.7.7
+Stable tag: 3.7.8
 
 
 Login, registration and edit profile shortcodes for the front-end. Also you can choose what fields should be displayed or add custom ones.
@@ -101,6 +101,12 @@ This plugin only adds/removes fields in the front-end. The default information-f
 
 
 == Changelog ==
+= 3.7.8 =
+* Feature: Add support to restrict the BuddyPress Activity and Member pages with a redirect, through the Content Restriction feature
+* Fix: Add compatibility between Custom Profile Menus iFrames and Max Mega Menu plugin
+* Fix: Issue between Simple Upload Fields and Conditional Logic
+* Misc: Add .ico image type in the default image types for Avatar fields
+
 = 3.7.7 =
 * Fix: cases where forms were submitted before the file in an simple upload field was uploaded
 * Fix: don't show unnapproved users in the userlisting
