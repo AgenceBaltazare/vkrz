@@ -116,6 +116,7 @@
                 border-radius: 10px;
                 max-width: 100%;
                 height: auto;
+                transition: all .3s ease-in;
             }
 
         }
@@ -585,5 +586,41 @@
     h4 {
         text-transform: uppercase;
         margin-top: 20px;
+    }
+}
+
+.votes-container {
+    .taper {
+        color: $rose;
+        font-weight: bold;
+        font-size: 1.3rem;
+    }
+
+    .votes-stats {
+        color: #FFF;
+        padding: 2.2rem;
+        border: 1px solid #7367F0;
+        border-radius: 50%;
+        text-align: center;
+        display: inline-block;
+        outline-color:#7367F0;
+        transition: all 700ms linear;
+
+        &.active{
+            outline-color:rgba(255,255,255,0);
+            text-shadow:0 0 20px rgba(255,255,255,1);
+            box-shadow:inset 0 0 20px rgba(255,255,255,.2),
+                0 0 20px rgba(255,255,255,.3);
+            outline-offset:15px;
+        }
+
+        .votes-percent {
+            font-size: 2.6rem;
+            font-weight: bold;
+        }
+
+        .votes-paragraph {
+        margin: 0 !important;
+        }
     }
 }

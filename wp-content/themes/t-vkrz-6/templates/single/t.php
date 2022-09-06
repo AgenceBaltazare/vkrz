@@ -267,13 +267,153 @@ get_header();
 
             <div class="container <?php echo (get_field('c_rounded_t', $id_top)) ? 'rounded' : ''; ?>">
               <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-9">
+
                   <div class="display_battle">
                     <?php
                     set_query_var('battle_vars', compact('contender_1', 'contender_2', 'id_top', 'id_ranking', 'id_vainkeur'));
                     get_template_part('templates/parts/content', 'battle');
                     ?>
                   </div>
+
+                  <?php if (is_user_logged_in() && get_userdata($user_id)->twitch_user) : ?>
+                    <div class="card text-center">
+                      <div class="card-body">
+                        <h4 class="card-title">
+                          <span class="ico">🎙</span> You seem like you have a Twitch Channel
+                        </h4>
+                        <h6 class="card-subtitle text-muted mb-1">
+                          Click on the button below to let your public vote
+                        </h6>
+                        <a href="#" id="voteParticipatif" class="btn btn-icon btn-outline-primary">
+                          <i class="fab fa-twitch"></i> Vote Participatif
+                        </a>
+
+                        <a href="#" id="votePrediction" class="btn btn-icon btn-outline-primary ml-2">
+                          <i class="fab fa-twitch"></i> Prédiction
+                        </a>
+
+                        <a href="#" id="votePoints" class="btn btn-icon btn-outline-primary ml-2">
+                          <i class="fab fa-twitch"></i> Points
+                        </a>
+                      </div>
+                    </div>
+
+                    <div class="d-none twitch-votes-container row align-items-center contenders-containers justify-content-center mt-2" data-twitchChannel="<?= get_userdata($user_id)->twitch_user; ?>">
+                      <div class="col-sm-5 col-12 animate__animated animate__slideInDown taper-zone">
+                        <div class="votes-container">
+                          <p class="taper">Taper 1</p>
+
+                          <div class="votes-stats" id="votes-stats-1">
+                            <p class="votes-percent" id="votes-percent-1">0%</p>
+                            <p class="votes-paragraph">
+                              <span id="span-contender-1">0</span> votes
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-sm-2">
+                        <div id="countdown" class="d-none">
+                          <div class="counter">
+                            <div class="nums">
+                              <span class="in">3</span>
+                              <span>2</span>
+                              <span>1</span>
+                              <span>0</span>
+                            </div>
+                            <h4>Get Ready</h4>
+                          </div>
+                          <div class="final">
+                            <h1>Taper VKRZ sur le chat!</h1>
+
+                            <button type="button" id="disableWaiting" class="btn btn-relief-danger" spellcheck="false">Stop Waiting</button>
+                          </div>
+                        </div>
+
+                        <div class="row align-items-center justify-content-around buttons my-1">
+                          <button type="button" class="btn btn-relief-primary" id="start-count" spellcheck="false">Start</button>
+
+                          <button type="button" class="btn btn-flat-danger waves-effect" spellcheck="false" id="reset-count" disabled="true">
+                            <i data-feather='refresh-ccw'></i>&nbsp;
+                            <span>Reset</span>
+                          </button>
+                        </div>
+                      </div>
+
+                      <div class="col-sm-5 col-12 animate__animated animate__slideInUp taper-zone">
+                        <div class="votes-container">
+                          <p class="taper">Taper 2</p>
+
+                          <div class="votes-stats" id="votes-stats-2">
+                            <p class="votes-percent" id="votes-percent-2">0%</p>
+                            <p class="votes-paragraph">
+                              <span id="span-contender-2">0</span> votes
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  <?php endif; ?>
+
+                </div>
+
+                <!-- LIST OF PARTICIPANTS… -->
+                <!--
+                  <div class="col-md-2">
+                    <div class="card mb-2" id="participants">
+                      <div class="card-header">
+                      <h4 class="card-title">Participants</h4>
+                      </div>
+                      <div class="card-body">
+                      <ul class="list-group"></ul>
+                      </div>
+                    </div>
+
+                    <div class="card d-none" id="losers">
+                      <div class="card-header">
+                      <h4 class="card-title">Losers</h4>
+                      </div>
+                      <div class="card-body">
+                        <ul class="list-group"></ul>
+                      </div>
+                    </div>
+                  </div>  
+                -->
+
+                <!-- 3eme MODE DE JEU -->
+                <div class="col-md-3">
+                  <table class="table table-points">
+                    <thead>
+                      <tr>
+                        <th>
+                          <span class="text-muted">
+                            Position
+                          </span>
+                        </th>
+
+                        <th>
+                          <span class="text-muted">
+                            Vainkeur
+                          </span>
+                        </th>
+
+                        <th>
+                          <span class="text-muted">
+                            Voted
+                          </span>
+                        </th>
+
+                        <th class="text-left">
+                          <span class="text-muted">
+                            Points
+                          </span>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>

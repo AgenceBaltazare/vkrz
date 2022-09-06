@@ -23,6 +23,152 @@ $(document).ready(function ($) {
   });
 
   $(document).on("click", ".display_battle .link-contender", {}, function (e) {
+    if (document.querySelector(".twitch-votes-container")) {
+      // CLEAR COUNTING FOR EACH VOTE…
+      console.log("Clear counting…");
+      listeningForCount = false;
+      votesNumberForContenderOne = 0;
+      votesNumberForContenderTwo = 0;
+      contenderOneVotes.textContent = votesNumberForContenderOne;
+      contenderTwoVotes.textContent = votesNumberForContenderTwo;
+      contenderOneVotesPercent.textContent = "0%";
+      contenderTwoVotesPercent.textContent = "0%";
+      X = A = B = 0;
+
+      document.querySelector("#votes-stats-1").classList.remove("active");
+      document.querySelector("#votes-stats-2").classList.remove("active");
+
+      startCountBtn.classList.add("btn-relief-primary");
+      startCountBtn.classList.remove("btn-outline-warning");
+      startCountBtn.textContent = "Start";
+
+      if (voteParticipatifBoolean) {
+        users = {};
+      } else if (votePredictionBoolean) {
+        console.log("vote prediction");
+        let side;
+        if (e.target.closest("div").getAttribute("id") == "c_1") side = "1";
+        else if (e.target.closest("div").getAttribute("id") == "c_2")
+          side = "2";
+
+        toFilter = Object.entries(users);
+        nonPassed = toFilter.filter(([key, value]) => value.side !== side);
+        losers = {...losers, ...Object.fromEntries(nonPassed)};
+
+        passed = toFilter.filter(([key, value]) => value.side === side);
+        for (let user of toFilter)
+          if (user[1]["voted"]) user[1]["voted"] = false;
+        users = Object.fromEntries(passed);
+
+        // PROCESS FOR PARTICIPANTS…
+        participantsDOM.innerHTML = userListItem = "";
+        for(let participant of Object.keys(users)) userListItem += `<li class="list-group-item" id="${participant}">${participant}</li>`;
+        participantsDOM.innerHTML = userListItem 
+
+        // PROCESS FOR LOSERS…
+        if(nonPassed.length > 0) {
+          let losersDOM = document.querySelector('#losers');
+          losersDOM.classList.remove('d-none');
+          losersDOM = losersDOM.querySelector('.list-group');
+
+          for(const [key, loser] of Object.entries(nonPassed)) {
+            losersDOM.insertAdjacentHTML("afterbegin", `<li class="list-group-item text-danger">${loser[0]}</li>`);
+          }
+        }
+      } else if (votePointsBoolean) {
+        console.log(users);
+        let side;
+        if (e.target.closest("div").getAttribute("id") == "c_1") side = "1";
+        else if (e.target.closest("div").getAttribute("id") == "c_2")
+          side = "2";
+
+        toFilter = Object.entries(users);
+
+        let oppositeSide = side === "1" ? "2" : "1";
+        notSameVoteGroup = toFilter.filter(([key, value]) => value.side === oppositeSide);
+        notSameVoteGroupObj = Object.fromEntries(notSameVoteGroup);
+        
+        sameVoteGroup = toFilter.filter(([key, value]) => value.side === side);
+        sameVoteGroupObj = Object.fromEntries(sameVoteGroup);
+
+        for (const vainkeurPlusOne of Object.keys(sameVoteGroupObj)) {
+          const vainkeurPlusOneDOM                = document.querySelector(`#${vainkeurPlusOne}`),
+                vainkeurPlusOneDOMpoints          = vainkeurPlusOneDOM.querySelector('td:last-of-type');
+          let vainkeurPlusOneDOMpointsTextContent = vainkeurPlusOneDOMpoints.textContent;
+
+          if(vainkeurPlusOneDOMpointsTextContent.includes("↑")) {
+            pointsOne = vainkeurPlusOneDOMpointsTextContent.substring(0, vainkeurPlusOneDOMpointsTextContent.indexOf("↑"));
+          } else {
+            pointsOne = vainkeurPlusOneDOMpointsTextContent.substring(0, vainkeurPlusOneDOMpointsTextContent.indexOf("↓"));
+          }
+
+          vainkeurPlusOneDOMpoints.innerHTML = `${+pointsOne + 1} &uarr;`
+          vainkeurPlusOneDOMpoints.setAttribute('data-order', `${+pointsOne + 1}`)
+          vainkeurPlusOneDOMpoints.classList.remove('text-danger')
+          vainkeurPlusOneDOMpoints.classList.add('text-success')
+        } 
+
+        if(notSameVoteGroup.length > 0) {
+          for (let vainkeurMinusOne of Object.keys(notSameVoteGroupObj)) {
+            const vainkeurMinusOneDOM                 = document.querySelector(`#${vainkeurMinusOne}`),
+                  vainkeurMinusOneDOMpoints           = vainkeurMinusOneDOM.querySelector('td:last-of-type');
+            let vainkeurMinusOneDOMpointsTextContent  = vainkeurMinusOneDOMpoints.textContent;
+
+            if(vainkeurMinusOneDOMpointsTextContent.includes("↑")) {
+              pointsTwo = vainkeurMinusOneDOMpointsTextContent.substring(0, vainkeurMinusOneDOMpointsTextContent.indexOf("↑"));
+            } else {
+              pointsTwo = vainkeurMinusOneDOMpointsTextContent.substring(0, vainkeurMinusOneDOMpointsTextContent.indexOf("↓"));
+            }
+
+            if(+pointsTwo > 0) {
+              vainkeurMinusOneDOMpoints.innerHTML = `${+pointsTwo - 1} &darr;`
+              vainkeurMinusOneDOMpoints.setAttribute('data-order', `${+pointsTwo - 1}`)
+            } else {
+              vainkeurMinusOneDOMpoints.innerHTML = "0 &darr;"
+              vainkeurMinusOneDOMpoints.setAttribute('data-order', '0')
+            }
+            vainkeurMinusOneDOMpoints.classList.remove('text-success')
+            vainkeurMinusOneDOMpoints.classList.add('text-danger')
+          }
+        }   
+
+        if(Object.keys(users).length) {
+          const initTable = function () {
+            let table = $('.table-points').dataTable();
+            table.fnDestroy();
+
+            table.dataTable({
+              autoWidth: true,
+              order: [[3, 'desc']],
+            });
+
+            positionStr = "";
+            document.querySelector('.table-points tbody').querySelectorAll('tr').forEach((row, index) => {
+              switch (index) {
+                case 0:
+                  positionStr = '<span class="ico va va-medal-1 va-lg"></span>';
+                  break;
+                case 1:
+                  positionStr = '<span class="ico va va-medal-2 va-lg"></span>';
+                  break;
+                case 2:
+                  positionStr = '<span class="ico va va-medal-3 va-lg"></span>';
+                  break;
+                default:
+                  positionStr = index + 1;
+              }
+
+              row.querySelector('td:first-of-type').innerHTML = positionStr;
+              row.querySelector('td:nth-of-type(3)').textContent = '🟠';
+
+            })
+          }();
+        }
+
+        for(let user in users) users[user] = { side: "0", voted: false };
+      }
+    }
+
     $(".contender_zone").removeClass("animate__zoomIn");
     $(".contender_zone").removeClass("animate__slideInDown");
     $(".contender_zone").removeClass("animate__slideInUp");
@@ -207,10 +353,19 @@ $(document).ready(function ($) {
               let myContenders = sortContenders(data.toplist);
 
               // SEND NOTIFICATION FUNCTION…
-              async function sendNotification(userId, uuid, relatedId, relatedUuid, notifText, notifLink, notifType, extendedData) {
+              async function sendNotification(
+                userId,
+                uuid,
+                relatedId,
+                relatedUuid,
+                notifText,
+                notifLink,
+                notifType,
+                extendedData
+              ) {
                 try {
                   const newRankingFollow = await addDoc(
-                    collection(database, "notifications"),
+                    collection(database, "notificationsLocal"),
                     {
                       userId: userId,
                       uuid: uuid,
@@ -231,31 +386,23 @@ $(document).ready(function ($) {
                 } catch (error) {
                   console.error("Error adding document: ", error);
                 }
-              };
+              }
 
               if (currentUserId != "0") {
                 const followersQuery = query(
                   collection(database, "notifications"),
                   where("notifType", "==", "follow"),
-                  where(
-                    "relatedUuid",
-                    "==",
-                    currentUuid
-                  )
+                  where("relatedUuid", "==", currentUuid)
                 );
                 const followersQuerySnapshot = await getDocs(followersQuery);
 
                 // THERE IS NO FOLLOWERS, SO YOU STOP HERE…
-                if (followersQuerySnapshot._snapshot.docs.size != 0){
+                if (followersQuerySnapshot._snapshot.docs.size != 0) {
                   // FRIENDS PROCESS FIRST…
                   const followingQuery = query(
                     collection(database, "notifications"),
                     where("notifType", "==", "follow"),
-                    where(
-                      "uuid",
-                      "==",
-                      currentUuid
-                    )
+                    where("uuid", "==", currentUuid)
                   );
                   const followingQuerySnapshot = await getDocs(followingQuery);
 
@@ -264,7 +411,9 @@ $(document).ready(function ($) {
                   followersQuerySnapshot.forEach((follower) => {
                     followers.push(follower.data());
                     followingQuerySnapshot.forEach((following) => {
-                      if (follower.data().uuid == following.data().relatedUuid) {
+                      if (
+                        follower.data().uuid == following.data().relatedUuid
+                      ) {
                         friends.push(follower.data());
                       }
                     });
@@ -294,79 +443,81 @@ $(document).ready(function ($) {
 
                       if (didRankingQuerySnapshot._snapshot.docs.size === 0) {
                         // CHECK IF HE ALREADY READ THE NOTIFICATION…
-                        (async function() {
+                        (async function () {
                           const querios = query(
                             collection(database, "notifications"),
-                            where(
-                              "uuid",
-                              "==",
-                              currentUuid
-                            ),
+                            where("uuid", "==", currentUuid),
                             where(
                               "notifType",
                               "==",
                               "Ranking To Friend Notification"
                             ),
-                            where(
-                              "relatedUuid",
-                              "==",
-                              friend["uuid"]
-                            ),
+                            where("relatedUuid", "==", friend["uuid"]),
                             where("statut", "==", "nouveau"),
                             orderBy("createdAt", "desc"),
                             limit(1)
                           );
                           const queriosSnapshot = await getDocs(querios);
                           let oldNotif;
-                          queriosSnapshot.forEach(data => {
-                            oldNotif = {id: data.id, ...data.data()};
+                          queriosSnapshot.forEach((data) => {
+                            oldNotif = { id: data.id, ...data.data() };
                           });
 
-                          if(queriosSnapshot._snapshot.docs.size === 0) // ALREADY READ THE NOTIFICATION…
-                          {
+                          if (queriosSnapshot._snapshot.docs.size === 0) {
+                            // ALREADY READ THE NOTIFICATION…
                             // SEND SIMPLE NOTIFICATION…
                             sendNotification(
                               vkrz_tracking_vars_user.id_user_layer,
                               vkrz_tracking_vars_user.uuiduser_layer,
                               friend["userId"],
-                              friend["uuid"], 
-                              `${vkrz_tracking_vars_user.pseudo_user_layer} à fait une TopList de ${vkrz_tracking_vars_top.top_only_title_layer}`, 
-                              link_to_ranking, 
-                              "Ranking To Friend Notification", 
-                              `${vkrz_tracking_vars_top.top_only_title_layer}|${1}`
+                              friend["uuid"],
+                              `${vkrz_tracking_vars_user.pseudo_user_layer} à fait une TopList de ${vkrz_tracking_vars_top.top_only_title_layer}`,
+                              link_to_ranking,
+                              "Ranking To Friend Notification",
+                              `${
+                                vkrz_tracking_vars_top.top_only_title_layer
+                              }|${1}`
                             );
-                          } 
-                          else // NOT READ THE NOTIFICATION…
-                          {
+                          } // NOT READ THE NOTIFICATION…
+                          else {
                             (async function () {
                               let oldNotifMessage = oldNotif.notifText;
-                              if(!oldNotifMessage.includes("MATCH TOPLIST!") &&!oldNotifMessage.includes("déjà fait!")) {
+                              if (
+                                !oldNotifMessage.includes("MATCH TOPLIST!") &&
+                                !oldNotifMessage.includes("déjà fait!")
+                              ) {
                                 deleteDoc(
                                   doc(database, "notifications", oldNotif.id)
                                 );
                               }
 
-                              const [oldTopTitle, topListNumber] = (oldNotif.extendedData).split("|")
+                              const [oldTopTitle, topListNumber] =
+                                oldNotif.extendedData.split("|");
 
                               // AVOID THE TOPs WHO GOT THE SAME NAME…
                               let notifMessage;
-                              if(oldTopTitle == vkrz_tracking_vars_top.top_only_title_layer) {
-                                notifMessage = `${vkrz_tracking_vars_user.pseudo_user_layer} à fait deux TopList de ${vkrz_tracking_vars_top.top_only_title_layer}`
+                              if (
+                                oldTopTitle ==
+                                vkrz_tracking_vars_top.top_only_title_layer
+                              ) {
+                                notifMessage = `${vkrz_tracking_vars_user.pseudo_user_layer} à fait deux TopList de ${vkrz_tracking_vars_top.top_only_title_layer}`;
                               } else {
-                                notifMessage = `${vkrz_tracking_vars_user.pseudo_user_layer} à fait deux TopList: ${vkrz_tracking_vars_top.top_only_title_layer} et ${oldTopTitle}`
+                                notifMessage = `${vkrz_tracking_vars_user.pseudo_user_layer} à fait deux TopList: ${vkrz_tracking_vars_top.top_only_title_layer} et ${oldTopTitle}`;
                               }
 
-                              if(oldNotif.notifLink != currentUserProfileUrl) {
+                              if (oldNotif.notifLink != currentUserProfileUrl) {
                                 // ONLY TWO…
                                 sendNotification(
                                   vkrz_tracking_vars_user.id_user_layer,
                                   vkrz_tracking_vars_user.uuiduser_layer,
                                   friend["userId"],
-                                  friend["uuid"], 
-                                  notifMessage, 
-                                  currentUserProfileUrl, 
-                                  "Ranking To Friend Notification", 
-                                  `${vkrz_tracking_vars_top.top_only_title_layer}|${2}`
+                                  friend["uuid"],
+                                  notifMessage,
+                                  currentUserProfileUrl,
+                                  "Ranking To Friend Notification",
+                                  `${
+                                    vkrz_tracking_vars_top.top_only_title_layer
+                                  }|${2}`
                                 );
                               } else {
                                 // SEND COMPOUND NOTIFICATION…
@@ -374,17 +525,18 @@ $(document).ready(function ($) {
                                   vkrz_tracking_vars_user.id_user_layer,
                                   vkrz_tracking_vars_user.uuiduser_layer,
                                   friend["userId"],
-                                  friend["uuid"], 
-                                  `${vkrz_tracking_vars_user.pseudo_user_layer} à fait des TopList: ${vkrz_tracking_vars_top.top_only_title_layer} et ${topListNumber} autres`, 
-                                  currentUserProfileUrl, 
-                                  "Ranking To Friend Notification", 
-                                  `${vkrz_tracking_vars_top.top_only_title_layer}|${+topListNumber + 1}`
+                                  friend["uuid"],
+                                  `${vkrz_tracking_vars_user.pseudo_user_layer} à fait des TopList: ${vkrz_tracking_vars_top.top_only_title_layer} et ${topListNumber} autres`,
+                                  currentUserProfileUrl,
+                                  "Ranking To Friend Notification",
+                                  `${
+                                    vkrz_tracking_vars_top.top_only_title_layer
+                                  }|${+topListNumber + 1}`
                                 );
                               }
-                              
                             })();
                           }
-                        })()
+                        })();
                       } else {
                         // GET FRIEND RANKING, SORT IT AND COMPARE IT…
                         let contenders;
@@ -434,10 +586,10 @@ $(document).ready(function ($) {
                           vkrz_tracking_vars_user.id_user_layer,
                           vkrz_tracking_vars_user.uuiduser_layer,
                           friend["userId"],
-                          friend["uuid"], 
-                          notifText, 
-                          link_to_ranking, 
-                          "Ranking To Friend Notification", 
+                          friend["uuid"],
+                          notifText,
+                          link_to_ranking,
+                          "Ranking To Friend Notification",
                           `${vkrz_tracking_vars_top.top_only_title_layer}|${1}`
                         );
                       }
@@ -459,79 +611,75 @@ $(document).ready(function ($) {
 
                   // SEND TO FOLLOWERS NOTIFICATION…
                   followers.forEach((follower) => {
-
                     // CHECK IF HE ALREADY READ THE NOTIFICATION…
-                    (async function() {
+                    (async function () {
                       const querios = query(
                         collection(database, "notifications"),
-                        where(
-                          "uuid",
-                          "==",
-                          currentUuid
-                        ),
+                        where("uuid", "==", currentUuid),
                         where(
                           "notifType",
                           "==",
                           "Ranking To Follower Notification"
                         ),
-                        where(
-                          "relatedUuid",
-                          "==",
-                          follower["uuid"]
-                        ),
+                        where("relatedUuid", "==", follower["uuid"]),
                         where("statut", "==", "nouveau"),
                         orderBy("createdAt", "desc"),
                         limit(1)
                       );
                       const queriosSnapshot = await getDocs(querios);
                       let oldNotif;
-                      queriosSnapshot.forEach(data => {
-                        oldNotif = {id: data.id, ...data.data()};
+                      queriosSnapshot.forEach((data) => {
+                        oldNotif = { id: data.id, ...data.data() };
                       });
 
-                      if(queriosSnapshot._snapshot.docs.size === 0) // ALREADY READ THE NOTIFICATION…
-                      {
+                      if (queriosSnapshot._snapshot.docs.size === 0) {
+                        // ALREADY READ THE NOTIFICATION…
                         // SEND SIMPLE NOTIFICATION…
                         sendNotification(
                           vkrz_tracking_vars_user.id_user_layer,
                           vkrz_tracking_vars_user.uuiduser_layer,
                           follower["userId"],
-                          follower["uuid"], 
-                          `${vkrz_tracking_vars_user.pseudo_user_layer} à fait une TopList de ${vkrz_tracking_vars_top.top_only_title_layer}`, 
-                          link_to_ranking, 
-                          "Ranking To Follower Notification", 
+                          follower["uuid"],
+                          `${vkrz_tracking_vars_user.pseudo_user_layer} à fait une TopList de ${vkrz_tracking_vars_top.top_only_title_layer}`,
+                          link_to_ranking,
+                          "Ranking To Follower Notification",
                           `${vkrz_tracking_vars_top.top_only_title_layer}|${1}`
                         );
-                      } 
-                      else // NOT READ THE NOTIFICATION…
-                      {
+                      } // NOT READ THE NOTIFICATION…
+                      else {
                         (async function () {
                           // DELETE THE NOTIFICATION ONE…
                           deleteDoc(
                             doc(database, "notifications", oldNotif.id)
                           );
 
-                          const [oldTopTitle, topListNumber] = (oldNotif.extendedData).split("|")
+                          const [oldTopTitle, topListNumber] =
+                            oldNotif.extendedData.split("|");
 
                           // AVOID THE TOPs WHO GOT THE SAME NAME…
                           let notifMessage;
-                          if(oldTopTitle == vkrz_tracking_vars_top.top_only_title_layer) {
-                            notifMessage = `${vkrz_tracking_vars_user.pseudo_user_layer} à fait deux TopList de ${vkrz_tracking_vars_top.top_only_title_layer}`
+                          if (
+                            oldTopTitle ==
+                            vkrz_tracking_vars_top.top_only_title_layer
+                          ) {
+                            notifMessage = `${vkrz_tracking_vars_user.pseudo_user_layer} à fait deux TopList de ${vkrz_tracking_vars_top.top_only_title_layer}`;
                           } else {
-                            notifMessage = `${vkrz_tracking_vars_user.pseudo_user_layer} à fait deux TopList: ${vkrz_tracking_vars_top.top_only_title_layer} et ${oldTopTitle}`
+                            notifMessage = `${vkrz_tracking_vars_user.pseudo_user_layer} à fait deux TopList: ${vkrz_tracking_vars_top.top_only_title_layer} et ${oldTopTitle}`;
                           }
 
-                          if(oldNotif.notifLink != currentUserProfileUrl) {
+                          if (oldNotif.notifLink != currentUserProfileUrl) {
                             // ONLY TWO…
                             sendNotification(
                               vkrz_tracking_vars_user.id_user_layer,
                               vkrz_tracking_vars_user.uuiduser_layer,
                               follower["userId"],
-                              follower["uuid"], 
-                              notifMessage, 
-                              currentUserProfileUrl, 
-                              "Ranking To Follower Notification", 
-                              `${vkrz_tracking_vars_top.top_only_title_layer}|${2}`
+                              follower["uuid"],
+                              notifMessage,
+                              currentUserProfileUrl,
+                              "Ranking To Follower Notification",
+                              `${
+                                vkrz_tracking_vars_top.top_only_title_layer
+                              }|${2}`
                             );
                           } else {
                             // SEND COMPOUND NOTIFICATION…
@@ -539,24 +687,24 @@ $(document).ready(function ($) {
                               vkrz_tracking_vars_user.id_user_layer,
                               vkrz_tracking_vars_user.uuiduser_layer,
                               follower["userId"],
-                              follower["uuid"], 
-                              `${vkrz_tracking_vars_user.pseudo_user_layer} à fait des TopList: ${vkrz_tracking_vars_top.top_only_title_layer} et ${topListNumber} autres`, 
-                              currentUserProfileUrl, 
-                              "Ranking To Follower Notification", 
-                              `${vkrz_tracking_vars_top.top_only_title_layer}|${+topListNumber + 1}`
+                              follower["uuid"],
+                              `${vkrz_tracking_vars_user.pseudo_user_layer} à fait des TopList: ${vkrz_tracking_vars_top.top_only_title_layer} et ${topListNumber} autres`,
+                              currentUserProfileUrl,
+                              "Ranking To Follower Notification",
+                              `${vkrz_tracking_vars_top.top_only_title_layer}|${
+                                +topListNumber + 1
+                              }`
                             );
                           }
-                          
                         })();
                       }
-                    })()
-
+                    })();
                   });
                 }
 
-                $(location).attr("href", link_to_ranking);
+                // $(location).attr("href", link_to_ranking);
               } else {
-                $(location).attr("href", link_to_ranking);
+                // $(location).attr("href", link_to_ranking);
               }
             })();
           }
