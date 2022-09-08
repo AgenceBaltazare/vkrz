@@ -1177,3 +1177,12 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
         }
     }
 }
+
+.twitch_link{
+    a{
+        display: block;
+        min-height: 250px;
+        width: 100%;
+        background-size: cover !important;
+    }
+}

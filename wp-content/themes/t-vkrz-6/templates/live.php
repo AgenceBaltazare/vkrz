@@ -123,6 +123,12 @@ if ($id_vainkeur) {
                                     </div>
                                 </div>
                             <?php endif; ?>
+                            <?php if (get_field('twitch_live')) : ?>
+                                <div class="twitch_link">
+                                    <?php $url_img_twitch = wp_get_attachment_image_src(get_field('twitch_link'), 'large'); ?>
+                                    <a href="https://www.twitch.tv/<?php echo get_userdata($id_membre)->twitch_user; ?>" target="_blank" style="background-image: url(<?php echo $url_img_twitch; ?>);"></a>
+                                </div>
+                            <?php endif; ?>
                             <?php if (get_userdata($id_membre)->twitch_user || get_userdata($id_membre)->youtube_user || get_userdata($id_membre)->Instagram_user || get_userdata($id_membre)->tiktok_user) : ?>
                                 <div class="card card-transaction">
                                     <div class="card-header">
