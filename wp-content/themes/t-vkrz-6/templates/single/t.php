@@ -326,7 +326,7 @@ get_header();
                           </div>
                           <div class="final">
                             <h1>Taper VKRZ dans le chat!</h1>
-                            <button type="button" id="disableWaiting" class="btn btn-relief-danger" spellcheck="false">Récupérer les joueurs</button>
+                            <button type="button" id="disableWaiting" class="btn btn-relief-danger" spellcheck="false">Lancer le jeu</button>
                           </div>
                         </div>
 
