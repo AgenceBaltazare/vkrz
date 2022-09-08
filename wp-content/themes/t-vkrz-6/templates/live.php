@@ -7,6 +7,7 @@ $id_membre          = get_field('vainkeur_live');
 $uuid_vainkeur      = get_field('uuiduser_user', 'user_' . $id_membre);
 $infos_vainkeur     = get_user_infos($uuid_vainkeur, 'complete');
 $id_vainkeur        = $infos_vainkeur['id_vainkeur'];
+$url_img_twitch     = wp_get_attachment_image_src(get_field('twitch_live'), 'large');
 if ($id_vainkeur) {
     if (is_user_logged_in() && env() != "local") {
         if (false === ($user_tops = get_transient('user_' . $user_id . '_get_user_tops'))) {
@@ -123,9 +124,8 @@ if ($id_vainkeur) {
                                     </div>
                                 </div>
                             <?php endif; ?>
-                            <?php if (get_field('twitch_live')) : ?>
+                            <?php if ($url_img_twitch) : ?>
                                 <div class="twitch_live">
-                                    <?php $url_img_twitch = wp_get_attachment_image_src(get_field('twitch_live'), 'large'); ?>
                                     <a href="https://www.twitch.tv/<?php echo get_userdata($id_membre)->twitch_user; ?>" target="_blank" style="background-image: url(<?php echo $url_img_twitch; ?>);"></a>
                                 </div>
                             <?php endif; ?>
