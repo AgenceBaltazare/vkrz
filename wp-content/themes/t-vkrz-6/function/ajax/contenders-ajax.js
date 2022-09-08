@@ -45,7 +45,6 @@ $(document).ready(function ($) {
       if (voteParticipatifBoolean) {
         users = {};
       } else if (votePredictionBoolean) {
-        console.log("vote prediction");
         let side;
         if (e.target.closest("div").getAttribute("id") == "c_1") side = "1";
         else if (e.target.closest("div").getAttribute("id") == "c_2")
@@ -139,6 +138,8 @@ $(document).ready(function ($) {
 
             table.dataTable({
               autoWidth: true,
+              paging: false,
+              searching: false,
               order: [[3, 'desc']],
             });
 
@@ -365,7 +366,7 @@ $(document).ready(function ($) {
               ) {
                 try {
                   const newRankingFollow = await addDoc(
-                    collection(database, "notificationsLocal"),
+                    collection(database, "notifications"),
                     {
                       userId: userId,
                       uuid: uuid,
@@ -702,9 +703,9 @@ $(document).ready(function ($) {
                   });
                 }
 
-                // $(location).attr("href", link_to_ranking);
+                $(location).attr("href", link_to_ranking);
               } else {
-                // $(location).attr("href", link_to_ranking);
+                $(location).attr("href", link_to_ranking);
               }
             })();
           }

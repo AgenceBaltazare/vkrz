@@ -313,7 +313,7 @@ get_header();
                         </div>
                       </div>
 
-                      <div class="col-sm-2">
+                      <div class="col">
                         <div id="countdown" class="d-none">
                           <div class="counter">
                             <div class="nums">
@@ -322,7 +322,7 @@ get_header();
                               <span>1</span>
                               <span>0</span>
                             </div>
-                            <h4>Go</h4>
+                            <h4>Se préparer</h4>
                           </div>
                           <div class="final">
                             <h1>Taper VKRZ dans le chat!</h1>
@@ -358,30 +358,28 @@ get_header();
                 </div>
 
                 <!-- LIST OF PARTICIPANTS… -->
-                <!--
-                  <div class="col-md-2">
-                    <div class="card mb-2" id="participants">
-                      <div class="card-header">
-                      <h4 class="card-title">Participants</h4>
-                      </div>
-                      <div class="card-body">
-                      <ul class="list-group"></ul>
-                      </div>
+                <div id="prediction-player" class="col-md-3 d-none">
+                  <div class="card mb-2" id="participants">
+                    <div class="card-header">
+                    <h4 class="card-title">Participants</h4>
                     </div>
+                    <div class="card-body">
+                    <ul class="list-group"></ul>
+                    </div>
+                  </div>
 
-                    <div class="card d-none" id="losers">
-                      <div class="card-header">
-                      <h4 class="card-title">Losers</h4>
-                      </div>
-                      <div class="card-body">
-                        <ul class="list-group"></ul>
-                      </div>
+                  <div class="card d-none" id="losers">
+                    <div class="card-header">
+                    <h4 class="card-title">Eliminés</h4>
                     </div>
-                  </div>  
-                -->
+                    <div class="card-body">
+                      <ul class="list-group"></ul>
+                    </div>
+                  </div>
+                </div>  
 
                 <!-- 3eme MODE DE JEU -->
-                <div id="ranking-player" class="col-md-3 d-none">
+                <div id="ranking-player" class="col d-none">
                   <table class="table table-points">
                     <thead>
                       <tr>

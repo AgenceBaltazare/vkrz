@@ -46,6 +46,7 @@ const launchVotes = function (typeVotes) {
   if (typeVotes === "voteParticipatif") {
     voteParticipatifBoolean = true;
   } else if (typeVotes === "votePrediction") {
+    document.querySelector('#prediction-player').classList.remove('d-none');
     const countdownContainer = twitchVotesContainer.querySelector('#countdown');
     countdownContainer.classList.remove('d-none')
 
@@ -90,6 +91,7 @@ const launchVotes = function (typeVotes) {
       });
     })()
   } else if (typeVotes === "votePoints") {
+    document.querySelector('#ranking-player').classList.remove('d-none');
     const countdownContainer = twitchVotesContainer.querySelector('#countdown');
     countdownContainer.classList.remove('d-none')
 
