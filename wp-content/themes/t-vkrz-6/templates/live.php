@@ -124,8 +124,8 @@ if ($id_vainkeur) {
                                 </div>
                             <?php endif; ?>
                             <?php if (get_field('twitch_live')) : ?>
-                                <div class="twitch_link">
-                                    <?php $url_img_twitch = wp_get_attachment_image_src(get_field('twitch_link'), 'large'); ?>
+                                <div class="twitch_live">
+                                    <?php $url_img_twitch = wp_get_attachment_image_src(get_field('twitch_live'), 'large'); ?>
                                     <a href="https://www.twitch.tv/<?php echo get_userdata($id_membre)->twitch_user; ?>" target="_blank" style="background-image: url(<?php echo $url_img_twitch; ?>);"></a>
                                 </div>
                             <?php endif; ?>
