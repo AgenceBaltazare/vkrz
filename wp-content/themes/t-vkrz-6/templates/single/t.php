@@ -267,7 +267,7 @@ get_header();
 
             <div class="container <?php echo (get_field('c_rounded_t', $id_top)) ? 'rounded' : ''; ?>">
               <div class="row">
-                <div class="col-md-9">
+                <div class="col">
 
                   <div class="display_battle">
                     <?php
@@ -280,21 +280,21 @@ get_header();
                     <div class="card text-center">
                       <div class="card-body">
                         <h4 class="card-title">
-                          <span class="ico">🎙</span> You seem like you have a Twitch Channel
+                          <i class="fab fa-twitch"></i> Modes de jeu disponible pour ton stream
                         </h4>
                         <h6 class="card-subtitle text-muted mb-1">
-                          Click on the button below to let your public vote
+                          Clique sur un mode pour permettre à ton chat de voter
                         </h6>
                         <a href="#" id="voteParticipatif" class="btn btn-icon btn-outline-primary">
-                          <i class="fab fa-twitch"></i> Vote Participatif
+                          Vote Participatif
                         </a>
 
                         <a href="#" id="votePrediction" class="btn btn-icon btn-outline-primary ml-2">
-                          <i class="fab fa-twitch"></i> Prédiction
+                          Prédiction : Élimination directe
                         </a>
 
                         <a href="#" id="votePoints" class="btn btn-icon btn-outline-primary ml-2">
-                          <i class="fab fa-twitch"></i> Points
+                          Prédiction : Match aux points
                         </a>
                       </div>
                     </div>
@@ -307,7 +307,7 @@ get_header();
                           <div class="votes-stats" id="votes-stats-1">
                             <p class="votes-percent" id="votes-percent-1">0%</p>
                             <p class="votes-paragraph">
-                              <span id="span-contender-1">0</span> votes
+                              <span id="span-contender-1">0</span> <span class="ico va-high-voltage va va-lg"></span>
                             </p>
                           </div>
                         </div>
@@ -322,12 +322,11 @@ get_header();
                               <span>1</span>
                               <span>0</span>
                             </div>
-                            <h4>Get Ready</h4>
+                            <h4>Go</h4>
                           </div>
                           <div class="final">
-                            <h1>Taper VKRZ sur le chat!</h1>
-
-                            <button type="button" id="disableWaiting" class="btn btn-relief-danger" spellcheck="false">Stop Waiting</button>
+                            <h1>Taper VKRZ dans le chat!</h1>
+                            <button type="button" id="disableWaiting" class="btn btn-relief-danger" spellcheck="false">Récupérer les joueurs</button>
                           </div>
                         </div>
 
@@ -348,7 +347,7 @@ get_header();
                           <div class="votes-stats" id="votes-stats-2">
                             <p class="votes-percent" id="votes-percent-2">0%</p>
                             <p class="votes-paragraph">
-                              <span id="span-contender-2">0</span> votes
+                              <span id="span-contender-2">0</span> <span class="ico va-high-voltage va va-lg"></span>
                             </p>
                           </div>
                         </div>
@@ -382,7 +381,7 @@ get_header();
                 -->
 
                 <!-- 3eme MODE DE JEU -->
-                <div class="col-md-3">
+                <div id="ranking-player" class="col-md-3 d-none">
                   <table class="table table-points">
                     <thead>
                       <tr>
