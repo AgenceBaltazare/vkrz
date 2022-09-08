@@ -211,5 +211,3 @@ if(!localStorage.getItem('come-back')) {
         localStorage.setItem('come-back', 'hide');
     })
 }
-
-

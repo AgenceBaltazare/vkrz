@@ -48,6 +48,11 @@ function load_css_js()
   wp_enqueue_script('app-menu', get_template_directory_uri() . '/assets/js/core/app-menu.min.js', array(), null, true);
   wp_enqueue_script('main', get_template_directory_uri() . '/assets/js/vkrz/main.js', array(), $template_version, true);
 
+  if(is_user_logged_in() && get_userdata(get_user_logged_id())->twitch_user && get_post_type() == 'tournoi') {
+    wp_enqueue_script('tmi.min', get_template_directory_uri() . '/function/twitch/tmi.min.js', array(), $template_version, true);
+    wp_enqueue_script('twitch_votes', get_template_directory_uri() . '/function/twitch/twitch_votes.js', array(), $template_version, true);
+  }
+
   if (is_single()) {
     wp_enqueue_script('contenders-ajax', get_template_directory_uri() . '/function/ajax/contenders-ajax.js', array(), $template_version, true);
   }
@@ -62,7 +67,7 @@ function load_css_js()
   if (is_page(get_page_by_path('monitor'))) {
     wp_enqueue_script('monitor', get_template_directory_uri() . '/function/ajax/monitor.js', array(), $template_version, true);
   }
-  if (is_author() || is_page('Notifications') || is_page('Guetteur') || is_page(array(140701, 284946, 143788, 284948, 218587)) || is_page(get_page_by_path('tas')) || is_page(get_page_by_path('mon-compte')) || is_page(get_page_by_path('mon-compte/createur'))) {
+  if (is_single() || is_author() || is_page('Notifications') || is_page('Guetteur') || is_page(array(140701, 284946, 143788, 284948, 218587)) || is_page(get_page_by_path('tas')) || is_page(get_page_by_path('mon-compte')) || is_page(get_page_by_path('mon-compte/createur'))) {
     wp_enqueue_script('datatables', get_template_directory_uri() . '/assets/js/core/datatable/datatables.min.js', array(), null, true);
     wp_enqueue_script('datatables-advanced', get_template_directory_uri() . '/assets/js/core/datatable/table-datatables-advanced.js', array(), null, true);
     wp_enqueue_script('datatables.buttons', get_template_directory_uri() . '/assets/js/core/datatable/datatables.buttons.min.js', array(), null, true);

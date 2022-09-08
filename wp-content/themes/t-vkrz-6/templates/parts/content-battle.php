@@ -13,11 +13,11 @@ extract($battle_vars);
                     <?php if (get_field('visuel_instagram_contender', $contender_1)) : ?>
                         <img src="<?php the_field('visuel_instagram_contender', $contender_1); ?>" alt="" class="img-fluid">
                     <?php else : ?>
-                        <?php echo get_the_post_thumbnail($contender_1, 'full', array('class' => 'img-fluid')); ?>
+                        <?php echo get_the_post_thumbnail($contender_1, 'full', array('class' => 'img-fluid contender-1-votes-twitch')); ?>
                     <?php endif; ?>
                 <?php endif; ?>
                 <?php if (!get_field('ne_pas_afficher_les_titres_t', $id_top)) : ?>
-                    <h2 class="title-contender">
+                    <h2 id="contender-1" class="title-contender">
                         <?php echo get_the_title($contender_1); ?>
                     </h2>
                 <?php endif; ?>
@@ -74,7 +74,6 @@ extract($battle_vars);
                 <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/vainkeurz-eclair.svg" alt="" class="img-fluid">
             </h4>
         <?php endif; ?>
-
     </div>
 
     <div class="col-sm-5 col-12">
@@ -87,11 +86,11 @@ extract($battle_vars);
                     <?php if (get_field('visuel_instagram_contender', $contender_2)) : ?>
                         <img src="<?php the_field('visuel_instagram_contender', $contender_2); ?>" alt="" class="img-fluid">
                     <?php else : ?>
-                        <?php echo get_the_post_thumbnail($contender_2, 'full', array('class' => 'img-fluid')); ?>
+                        <?php echo get_the_post_thumbnail($contender_2, 'full', array('class' => 'img-fluid contender-2-votes-twitch')); ?>
                     <?php endif; ?>
                 <?php endif; ?>
                 <?php if (!get_field('ne_pas_afficher_les_titres_t', $id_top)) : ?>
-                    <h2 class="title-contender">
+                    <h2 id="contender-2" class="title-contender">
                         <?php echo get_the_title($contender_2); ?>
                     </h2>
                 <?php endif; ?>
