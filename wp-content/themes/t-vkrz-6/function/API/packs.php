@@ -67,7 +67,6 @@ function add_contender_from_api()
   $url_visual  = $_GET['url_visual'];
   $pseudo      = $_GET['pseudo'];
   $id_top      = $_GET['id_top'];
-  $email       = $_GET['email'];
 
   if ($id_visual) {
 
@@ -80,7 +79,6 @@ function add_contender_from_api()
 
     update_field('visuel_instagram_contender', $url_visual, $id_new_contender);
     update_field('id_tournoi_c', $id_top, $id_new_contender);
-    update_field('email_contender', $email, $id_new_contender);
     update_field('ELO_c', '1200', $id_new_contender);
 
     if ($id_new_contender) {

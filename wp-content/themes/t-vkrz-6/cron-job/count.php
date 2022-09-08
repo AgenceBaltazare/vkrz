@@ -9,12 +9,12 @@ $classement = new WP_Query(
         'post_type'              => 'classement',
         'orderby'                => 'date',
         'order'                  => 'DESC',
-        'posts_per_page'         => -1,
+        'posts_per_page'         => 10,
         'date_query'     => array(
             'after' => array(
-                'year'  => 2022,
-                'month' => 8,
-                'day'   => 19,
+                'year'  => 2020,
+                'month' => 5,
+                'day'   => 1,
             )
         )
     )
@@ -28,11 +28,11 @@ while ($classement->have_posts()) : $classement->the_post();
 
     $nb_votes     = $nb_votes + $nb_vote;
 
-    echo $id_ranking . " - Votes : " . $nb_vote . "\n";
+    echo $id_ranking . " - Votes : " . $nb_vote . "\n<br>";
 
     $nb_tops++;
 
 endwhile;
 wp_reset_query();
 
-echo "\n\n Résultat : " . $nb_tops . " " . $nb_votes;
+//echo "\n\n Résultat : " . $nb_tops . " " . $nb_votes;
