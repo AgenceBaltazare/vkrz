@@ -4,10 +4,10 @@
 */
 get_header();
 $id_membre          = get_field('vainkeur_live');
+$url_img_twitch     = wp_get_attachment_image_src(get_field('twitch_live'), 'large');
 $uuid_vainkeur      = get_field('uuiduser_user', 'user_' . $id_membre);
 $infos_vainkeur     = get_user_infos($uuid_vainkeur, 'complete');
 $id_vainkeur        = $infos_vainkeur['id_vainkeur'];
-$url_img_twitch     = wp_get_attachment_image_src(get_field('twitch_live'), 'large');
 if ($id_vainkeur) {
     if (is_user_logged_in() && env() != "local") {
         if (false === ($user_tops = get_transient('user_' . $user_id . '_get_user_tops'))) {
@@ -126,7 +126,9 @@ if ($id_vainkeur) {
                             <?php endif; ?>
                             <?php if ($url_img_twitch) : ?>
                                 <div class="twitch_live">
-                                    <a href="https://www.twitch.tv/<?php echo get_userdata($id_membre)->twitch_user; ?>" target="_blank" style="background-image: url(<?php echo $url_img_twitch; ?>);"></a>
+                                    <a href="https://www.twitch.tv/<?php echo get_userdata($id_membre)->twitch_user; ?>" target="_blank">
+                                        <img src="<?php echo $url_img_twitch[0]; ?>" class="img-fluid" alt="">
+                                    </a>
                                 </div>
                             <?php endif; ?>
                             <?php if (get_userdata($id_membre)->twitch_user || get_userdata($id_membre)->youtube_user || get_userdata($id_membre)->Instagram_user || get_userdata($id_membre)->tiktok_user) : ?>
@@ -266,7 +268,7 @@ if ($id_vainkeur) {
                             ));
                             if ($tops_in_live->have_posts()) : $i = 1; ?>
 
-                                <section class="grid-to-filtre row match-height mt-2 tournois">
+                                <section class="grid-to-filtre row match-height mt-0 tournois">
 
                                     <?php while ($tops_in_live->have_posts()) : $tops_in_live->the_post(); ?>
                                         <div class="col-md-3 col-sm-4 col-6">

@@ -1178,11 +1178,15 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
     }
 }
 
-.twitch_link{
+.twitch_live{
+    margin-bottom: 15px;
     a{
-        display: block;
-        min-height: 250px;
-        width: 100%;
-        background-size: cover !important;
+        img{
+            border-radius: 10px;
+        }
+        &:hover{
+            transition: all 0.2s ease-in;
+            transform: scale(1.1);
+        }
     }
 }
