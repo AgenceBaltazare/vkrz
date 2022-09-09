@@ -300,11 +300,11 @@ get_header();
                     </div>
 
                     <div class="d-none twitch-votes-container row align-items-center contenders-containers justify-content-center mt-2" data-twitchChannel="<?= get_userdata($user_id)->twitch_user; ?>">
-                      <div class="col-sm-5 col-12 animate__animated animate__slideInDown taper-zone">
+                      <div class="col-sm-5 col-12 taper-container d-none animate__animated animate__slideInDown">
                         <div class="votes-container">
                           <p class="taper">Taper 1</p>
 
-                          <div class="votes-stats" id="votes-stats-1">
+                          <div class="votes-stats taper-zone" id="votes-stats-1">
                             <p class="votes-percent" id="votes-percent-1">0%</p>
                             <p class="votes-paragraph">
                               <span id="span-contender-1">0</span> <span class="ico va-high-voltage va va-lg"></span>
@@ -329,22 +329,13 @@ get_header();
                             <button type="button" id="disableWaiting" class="btn btn-relief-danger" spellcheck="false">Lancer le jeu</button>
                           </div>
                         </div>
-
-                        <div class="row align-items-center justify-content-around buttons my-1">
-                          <button type="button" class="btn btn-relief-primary" id="start-count" spellcheck="false">Start</button>
-
-                          <button type="button" class="btn btn-flat-danger waves-effect" spellcheck="false" id="reset-count" disabled="true">
-                            <i data-feather='refresh-ccw'></i>&nbsp;
-                            <span>Reset</span>
-                          </button>
-                        </div>
                       </div>
 
-                      <div class="col-sm-5 col-12 animate__animated animate__slideInUp taper-zone">
+                      <div class="col-sm-5 col-12 taper-container d-none animate__animated animate__slideInUp">
                         <div class="votes-container">
                           <p class="taper">Taper 2</p>
 
-                          <div class="votes-stats" id="votes-stats-2">
+                          <div class="votes-stats taper-zone" id="votes-stats-2">
                             <p class="votes-percent" id="votes-percent-2">0%</p>
                             <p class="votes-paragraph">
                               <span id="span-contender-2">0</span> <span class="ico va-high-voltage va va-lg"></span>
