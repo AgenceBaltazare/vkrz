@@ -12,7 +12,7 @@ const voteParticipatifBtn      = document.querySelector("#voteParticipatif"),
       contenderOneVotesPercent = twitchVotesContainer.querySelector("#votes-percent-1"),
       contenderTwoVotesPercent = twitchVotesContainer.querySelector("#votes-percent-2");
 
-let listeningForCount                      = false,
+let listeningForCount                      = true,
     votePredictionBoolean                  = false,
     waitingForParticipantsForPoints        = false,
     votePointsBoolean                      = false,
@@ -44,18 +44,20 @@ const launchVotes = function (typeVotes) {
   $(".twitch-votes-container").fadeIn(); // jQuery TOUCH… 🤹
 
   if (typeVotes === "voteParticipatif") {
+    twitchVotesContainer.querySelectorAll('.taper-container').forEach(div => div.classList.remove("d-none"));
     voteParticipatifBoolean = true;
   } else if (typeVotes === "votePrediction") {
+    listeningForCount = false;
+
+    twitchVotesContainer.querySelectorAll('.taper-zone').forEach(div => div.classList.add("d-none"));
     document.querySelector('#prediction-player').classList.remove('d-none');
+
     const countdownContainer = twitchVotesContainer.querySelector('#countdown');
     countdownContainer.classList.remove('d-none')
 
     participantsDOM = document.querySelector('#participants'); 
     participantsDOM.classList.remove('d-none'); 
     participantsDOM = participantsDOM.querySelector('.list-group'); 
-
-    twitchVotesContainer.querySelector('.buttons').classList.add('d-none');
-    twitchVotesContainer.querySelectorAll('.taper-zone').forEach(div => div.classList.add("d-none"));
 
     (function countdownFunc() {
       const nums = document.querySelectorAll('.nums span');
@@ -85,17 +87,21 @@ const launchVotes = function (typeVotes) {
       }
 
       stopWaitingBtn.addEventListener('click', () => {
+        twitchVotesContainer.querySelectorAll('.taper-container').forEach(div => div.classList.remove("d-none"));
         countdownContainer.remove();
         waitingForParticipantsForPrediction = false;
-        twitchVotesContainer.querySelector('.buttons').classList.remove('d-none');
+        listeningForCount = true;
       });
     })()
   } else if (typeVotes === "votePoints") {
+    listeningForCount = false;
+
+    twitchVotesContainer.querySelectorAll('.taper-zone').forEach(div => div.classList.add("d-none"));
+
     document.querySelector('#ranking-player').classList.remove('d-none');
     const countdownContainer = twitchVotesContainer.querySelector('#countdown');
     countdownContainer.classList.remove('d-none')
 
-    twitchVotesContainer.querySelector('.buttons').classList.add('d-none');
     twitchVotesContainer.querySelectorAll('.taper-zone').forEach(div => div.classList.add("d-none"));
 
     votePointsTable = document.querySelector('.table-points');
@@ -130,9 +136,9 @@ const launchVotes = function (typeVotes) {
 
       stopWaitingBtn.addEventListener('click', () => {
         countdownContainer.remove();
+        twitchVotesContainer.querySelectorAll('.taper-container').forEach(div => div.classList.remove("d-none"));
         waitingForParticipantsForPoints = false;
-        twitchVotesContainer.querySelector('.buttons').classList.remove('d-none');
-
+        listeningForCount = true;
         votePointsTableFirstCopy = votePointsTable.innerHTML;
       });
     })()
@@ -142,69 +148,6 @@ const launchVotes = function (typeVotes) {
 voteParticipatifBtn.addEventListener("click", launchVotes.bind(this, "voteParticipatif"));
 votePredictionBtn.addEventListener("click", launchVotes.bind(this, "votePrediction"));
 votePointsBtn.addEventListener("click", launchVotes.bind(this, "votePoints"));
-
-const resetCountFunc = function () {
-  // CLEAR COUNTING FOR EACH VOTE…
-  console.log("Clear counting…");
-  listeningForCount = false;
-  votesNumberForContenderOne = 0;
-  votesNumberForContenderTwo = 0;
-  contenderOneVotes.textContent = votesNumberForContenderOne;
-  contenderTwoVotes.textContent = votesNumberForContenderTwo;
-  contenderOneVotesPercent.textContent = "0%";
-  contenderTwoVotesPercent.textContent = "0%";
-  X = A = B = 0;
-
-  document.querySelector("#votes-stats-1").classList.remove("active");
-  document.querySelector("#votes-stats-2").classList.remove("active");
-
-  startCountBtn.classList.add("btn-relief-primary");
-  startCountBtn.classList.remove("btn-outline-warning");
-  startCountBtn.textContent = "Start";
-
-  if(voteParticipatifBoolean) {
-    users = {};
-  } else if(votePredictionBoolean) {
-    users  = {...users, ...losers};
-    for(let user in users) users[user] = { side: "0", voted: false };
-
-    losers = {}; nonPassed = []; 
-    document.querySelector('#losers').classList.add('d-none');
-    document.querySelector('#losers .list-group').innerHTML = ""
-
-    participantsDOM.innerHTML = userListItem = "";
-    for(let participant of Object.keys(users)) userListItem += `<li class="list-group-item" id="${participant}">${participant}</li>`;
-    participantsDOM.innerHTML = userListItem 
-  } else if(votePointsBoolean) {
-    votePointsTable.innerHTML = votePointsTableFirstCopy
-
-    for(let user in users) users[user] = { side: "0", voted: false };
-    toFilter = notSameVoteGroup = sameVoteGroup = [];
-    notSameVoteGroupObj = sameVoteGroupObj = {};
-    pointsOne = pointsTwo = "";
-  }
-};
-
-startCountBtn.addEventListener("click", () => {
-  resetCountBtn.removeAttribute("disabled");
-
-  if (!listeningForCount) {
-    console.log("Start counting…");
-    listeningForCount = true;
-
-    startCountBtn.classList.remove("btn-relief-primary");
-    startCountBtn.classList.add("btn-outline-warning");
-    startCountBtn.textContent = "Stop";
-  } else {
-    console.log("End counting…");
-    listeningForCount = false;
-
-    startCountBtn.classList.add("btn-relief-primary");
-    startCountBtn.classList.remove("btn-outline-warning");
-    startCountBtn.textContent = "Start";
-  }
-});
-resetCountBtn.addEventListener("click", resetCountFunc);
 
 const client = new tmi.Client({
   channels: [twitchChannel],
@@ -217,7 +160,6 @@ client.on("message", (channel, tags, message, self) => {
 
   if (voteParticipatifBoolean) {
     if (
-      listeningForCount &&
       twitchChannel !== username &&
       !users.hasOwnProperty(username) &&
       (message === "1" || message === "2")
@@ -277,7 +219,7 @@ client.on("message", (channel, tags, message, self) => {
     if (
       votePredictionBoolean &&
       waitingForParticipantsForPrediction &&
-      !listeningForCount &&
+      listeningForCount === false &&
       message.toLowerCase() === "vkrz" &&
       twitchChannel !== username &&
       !users.hasOwnProperty(username)
@@ -290,7 +232,7 @@ client.on("message", (channel, tags, message, self) => {
 
     // DEALING WITH VOTES…
     if (
-      listeningForCount &&
+      listeningForCount === true &&
       twitchChannel !== username &&
       users.hasOwnProperty(username) &&
       !users[username].voted &&
@@ -309,7 +251,7 @@ client.on("message", (channel, tags, message, self) => {
     if (
       votePointsBoolean &&
       waitingForParticipantsForPoints &&
-      !listeningForCount &&
+      listeningForCount === false &&
       message.toLowerCase() === "vkrz" &&
       twitchChannel !== username &&
       !users.hasOwnProperty(username)
@@ -344,7 +286,7 @@ client.on("message", (channel, tags, message, self) => {
 
     // DEALING WITH VOTES…
     if(
-      listeningForCount &&
+      listeningForCount === true &&
       twitchChannel !== username &&
       users.hasOwnProperty(username) &&
       !users[username].voted &&

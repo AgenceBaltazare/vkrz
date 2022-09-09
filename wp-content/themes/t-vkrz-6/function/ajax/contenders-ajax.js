@@ -26,7 +26,6 @@ $(document).ready(function ($) {
     if (document.querySelector(".twitch-votes-container")) {
       // CLEAR COUNTING FOR EACH VOTE…
       console.log("Clear counting…");
-      listeningForCount = false;
       votesNumberForContenderOne = 0;
       votesNumberForContenderTwo = 0;
       contenderOneVotes.textContent = votesNumberForContenderOne;
@@ -37,10 +36,6 @@ $(document).ready(function ($) {
 
       document.querySelector("#votes-stats-1").classList.remove("active");
       document.querySelector("#votes-stats-2").classList.remove("active");
-
-      startCountBtn.classList.add("btn-relief-primary");
-      startCountBtn.classList.remove("btn-outline-warning");
-      startCountBtn.textContent = "Start";
 
       if (voteParticipatifBoolean) {
         users = {};
@@ -74,8 +69,9 @@ $(document).ready(function ($) {
             losersDOM.insertAdjacentHTML("afterbegin", `<li class="list-group-item text-danger">${loser[0]}</li>`);
           }
         }
+
+        for(let user in users) users[user] = { side: "0", voted: false };
       } else if (votePointsBoolean) {
-        console.log(users);
         let side;
         if (e.target.closest("div").getAttribute("id") == "c_1") side = "1";
         else if (e.target.closest("div").getAttribute("id") == "c_2")
