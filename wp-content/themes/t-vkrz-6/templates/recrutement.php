@@ -1,6 +1,5 @@
 <?php /* Template Name: Recrutement */ ?>
 <?php get_header(); ?>
-
 <div class="app-content content recrutement-page">
     <div class="content-wrapper">
         <div class="content-body">
@@ -24,5 +23,4 @@
         </div>
     </div>
 </div>
-
 <?php get_footer(); ?>
