@@ -101,4 +101,13 @@ add_action('rest_api_init', function () {
     ]
   ));
 
+  // Nombre de Shopper
+  register_rest_route('vkrz/v1', '/getshopper/(?P<keurz>\w+)', array(
+    'methods' => 'GET',
+    'callback' => 'get_shopper',
+    'args' => [
+      'keurz'
+    ]
+  ));
+
 });
