@@ -2,7 +2,7 @@
 global $type_top;
 extract($battle_vars);
 ?>
-<div class="row align-items-center contenders-containers justify-content-center battle-marqueblanche">
+<div class="row align-items-center justify-content-center contenders-containers battle-marqueblanche">
     <div class="col-sm-5 col-12">
         <div class="bloc-contenders link-contender_1 contender_1 cover_contenders link-contender">
             <div class="contender_zone animate__animated animate__slideInDown" data-id-winner="<?= $contender_1 ?>" data-id-looser="<?= $contender_2 ?>" data-id-top="<?= $id_top ?>" data-id-ranking="<?= $id_ranking ?>" id="c_1">
