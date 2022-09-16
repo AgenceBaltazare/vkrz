@@ -1,5 +1,4 @@
 <?php
-require_once('fct.php');
 
 function get_user_infos_from_api($data)
 {
@@ -591,4 +590,30 @@ function get_the_dodo($data)
     update_field('nb_votes_dodo', $dodo[0]['total_vote'], 'options');
     update_field('nb_tops_dodo', $dodo[0]['total_top'], 'options');
   }
+}
+
+
+function get_shopper($data)
+{
+
+  $keurz     = intval($data['keurz']);
+  $shopper   = new WP_Query(array(
+    "post_type"              => "vainkeur",
+    "posts_per_page"         => -1,
+    "fields"                 => "ids",
+    "post_status"            => "publish",
+    "update_post_meta_cache" => false,
+    "no_found_rows"          => false,
+    'meta_query' => array(
+      array(
+        'key'     => 'money_disponible_vkrz',
+        'value'   => $keurz,
+        'compare' => '>=',
+        'type'    => 'NUMERIC'
+      ),
+    ),
+  ));
+
+  return $shopper->post_count;
+
 }
