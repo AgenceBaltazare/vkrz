@@ -76,7 +76,7 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
           </h4>
         </div>
       </div>
-      <div class="classement">
+      <div class="classement" data-idranking="<?= $id_ranking ?>">
         <div class="row">
           <div class="col-md-8">
 
@@ -260,7 +260,7 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
 
                     <div class="col-md-4">
 
-                      <div class="animate__fadeInUp animate__animated animate__delay-2s">
+                      <div class="animate__fadeInUp animate__animated animate__delay-Xs">
 
                         <div class="separate mt-1 mb-2 d-block d-sm-none"></div>
 
@@ -380,6 +380,8 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
                               <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_top_global; ?>" class="btn btn-outline-primary waves-effect mb-1">
                                 <span class="va va-globe va-lg"></span> TopList mondiale
                               </a>
+
+                              <div>Ressemblance mondiale : <strong id="ressemblance-mondiale">-</strong></div>
                             </div>
                           </div>
                         </div>
