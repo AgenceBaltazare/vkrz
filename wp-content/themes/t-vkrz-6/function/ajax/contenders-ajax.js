@@ -47,7 +47,10 @@ $(document).ready(function ($) {
           losers = {...losers, ...Object.fromEntries(nonPassed)};
   
           passed = toFilter.filter(([key, value]) => value.side === side);
-          if(passed.length === 1) {
+          if(passed.length === 1 && winnerAlready === false) // WINNER CHICKEN DINNER…
+          {
+            winnerAlready = true;
+            document.querySelector('.display_battle').classList.add('blur')
             document.querySelector("#winner-sound").play()
             document.querySelector('.particletext').textContent = passed[0][0];
             $(".textcontainer").addClass('show');
@@ -62,7 +65,7 @@ $(document).ready(function ($) {
   
             function confetti() {
               $.each($(".particletext.confetti"), function(){
-                 var confetticount = ($(this).width()/50)*10;
+                 var confetticount = ($(this).width()/50) * 10;
                  for(var i = 0; i <= confetticount; i++) {
                     $(this).append('<span class="particle c' + rnd(1,4) + '" style="top:' + rnd(10,50) + '%; left:' + rnd(0,100) + '%;width:' + rnd(5,15) + 'px; height:' + rnd(5,10) + 'px;animation-delay: ' + (rnd(0,30)/10) + 's;"></span>');
                  }
@@ -70,31 +73,28 @@ $(document).ready(function ($) {
             }
 
             setTimeout(() => {
-              $(".particletext").fadeOut('slow');
+              document.querySelector('.display_battle').classList.remove('blur')
+              document.querySelector('.textcontainer').remove()
             }, 4000)
           }
-          
-          for (let user of toFilter)
+
+          for (let user of toFilter) {
             if (user[1]["voted"]) user[1]["voted"] = false;
+            document.querySelector(`#${user[0]}`).classList.remove('text-primary')
+          }
           users = Object.fromEntries(passed);
-  
-          // PROCESS FOR PARTICIPANTS…
-          participantsDOM.innerHTML = userListItem = "";
-          for(let participant of Object.keys(users)) userListItem += `<li class="list-group-item" id="${participant}">${participant}</li>`;
-          participantsDOM.innerHTML = userListItem 
-  
+    
           // PROCESS FOR LOSERS…
           if(nonPassed.length > 0) {
-            let losersDOM = document.querySelector('#losers');
-            losersDOM.classList.remove('d-none');
-            losersDOM = losersDOM.querySelector('.list-group');
-  
             for(const [key, loser] of Object.entries(nonPassed)) {
-              losersDOM.insertAdjacentHTML("afterbegin", `<li class="list-group-item text-danger">${loser[0]}</li>`);
+              let target = document.querySelector(`#${loser[0]}`)
+              target.classList.remove('text-primary');
+              target.classList.add('beforeDelete');
+              setTimeout(() => {
+                target.remove()
+              }, 4000)
             }
           }
-  
-          for(let user in users) users[user] = { side: "0", voted: false };
       } else if (votePointsBoolean) {
         let side;
         if (e.target.closest("div").getAttribute("id") == "c_1") side = "1";

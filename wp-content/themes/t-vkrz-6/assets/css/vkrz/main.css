@@ -2283,28 +2283,6 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
     transform: translate(-50%, -50%) scale(0);
   }
 }
-@-webkit-keyframes show {
-  0% {
-    transform: translate(-50%, -50%) scale(0);
-  }
-  80% {
-    transform: translate(-50%, -50%) scale(1.4);
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(1);
-  }
-}
-@keyframes show {
-  0% {
-    transform: translate(-50%, -50%) scale(0);
-  }
-  80% {
-    transform: translate(-50%, -50%) scale(1.4);
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(1);
-  }
-}
 
 .twitch_live {
   margin-bottom: 15px;
@@ -2340,7 +2318,7 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
 
 .particletext {
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  font-size: 82px;
+  font-size: 120px;
   text-transform: uppercase;
   text-align: center;
   position: relative;
@@ -2413,6 +2391,17 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
     transform: translateY(2000%) rotate(1440deg);
   }
 }
+@-webkit-keyframes show {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+  }
+  80% {
+    transform: translate(-50%, -50%) scale(1.4);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
 @keyframes show {
   0% {
     transform: translate(-50%, -50%) scale(0);
@@ -2424,6 +2413,11 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
     transform: translate(-50%, -50%) scale(1);
   }
 }
+.swal2-container {
+  position: fixed !important;
+  z-index: 1000000 !important;
+}
+
 .twitch-overlay {
   width: 100%;
   height: 100vh;
@@ -2445,6 +2439,46 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   font-size: 1.6rem;
   color: #861053;
 }
+.twitch-overlay .btn-lg {
+  font-size: 1.7rem !important;
+}
+.twitch-overlay #participants-overlay {
+  position: relative;
+}
+.twitch-overlay #participants-overlay::after {
+  content: "Participants :";
+  position: absolute;
+  top: -22%;
+  left: 0;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+#participants {
+  background: linear-gradient(181deg, rgba(238, 19, 207, 0) 0%, rgba(166, 1, 214, 0.5) 100%);
+}
+#participants .card-title {
+  color: #7367f0 !important;
+  text-transform: uppercase;
+  font-size: 1rem;
+}
+#participants .card-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  flex-direction: column;
+  min-height: 50vh;
+}
+#participants .card-body .card-element {
+  flex: 1;
+  font-size: 3.2vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#participants .card-body .card-element:not(:last-of-type) {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
 
 body {
   overflow-x: hidden !important;
@@ -2461,7 +2495,7 @@ body {
   flex-direction: column;
 }
 .modes-jeu-twitch__content {
-  max-width: 70%;
+  max-width: 90%;
 }
 .modes-jeu-twitch__content-header {
   margin: 5rem 0 8rem;
@@ -2553,6 +2587,48 @@ body {
     box-shadow: none;
   }
 }
+.beforeDelete {
+  -webkit-animation-name: delete;
+          animation-name: delete;
+  -webkit-animation-duration: 4s;
+          animation-duration: 4s;
+  transition: all 0.2s;
+}
+
+@-webkit-keyframes delete {
+  25% {
+    color: #EA5455;
+    visibility: visible;
+  }
+  50% {
+    color: #fff;
+    visibility: visible;
+  }
+  75% {
+    color: #EA5455;
+    visibility: visible;
+  }
+}
+
+@keyframes delete {
+  25% {
+    color: #EA5455;
+    visibility: visible;
+  }
+  50% {
+    color: #fff;
+    visibility: visible;
+  }
+  75% {
+    color: #EA5455;
+    visibility: visible;
+  }
+}
+.blur {
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+}
+
 .list-share {
   flex-wrap: wrap;
 }

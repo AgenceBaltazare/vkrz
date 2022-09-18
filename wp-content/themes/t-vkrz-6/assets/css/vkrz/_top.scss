@@ -589,6 +589,7 @@
     }
 }
 
+// MY INTERACTION… 🦙
 .twitch-votes-container {
     margin-top: -2rem;
 
@@ -651,7 +652,6 @@
     }
 }
 
-// MY INTERACTION… 🦙
 #countdown {
     display: flex;
     justify-content: center;
@@ -756,20 +756,6 @@
             transform: translate(-50%, -50%) scale(0);
         }
     }
-
-    @keyframes show {
-        0% {
-            transform: translate(-50%, -50%) scale(0);
-        }
-
-        80% {
-            transform: translate(-50%, -50%) scale(1.4);
-        }
-
-        100% {
-            transform: translate(-50%, -50%) scale(1);
-        }
-    } 
 }
 
 .twitch_live{
@@ -795,43 +781,45 @@
     padding: 40px 0;
     text-align: center;
 
-     width: 100%;
-     position: absolute;
-     top: 50%;
-     left: 50%;
-     transform: translate(-50%, -50%) scale(0);
-     
-     &.show {
-        transform: translate(-50%, -50%) scale(1);
-        animation: show .3s ease-in;
-     }
-}
-.particletext {
-font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-font-size: 82px;
-text-transform: uppercase;
-text-align: center;
-position: relative;
-&.confetti {
-    > .particle {
-    opacity: 0;
+    width: 100%;
     position: absolute;
-    animation: confetti 3s ease-in infinite;
-    &.c1 {
-        background-color: #d13447;
-    }
-    &.c2 {
-        background-color: #ffbf00;
-    }
-    &.c3 {
-        background-color: #263672;
-    }
-    &.c4 {
-        background-color: #0d963d;
-    }
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    
+    &.show {
+    transform: translate(-50%, -50%) scale(1);
+    animation: show .3s ease-in;
     }
 }
-&::before {   
+
+.particletext {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 120px;
+    text-transform: uppercase;
+    text-align: center;
+    position: relative;
+
+    &.confetti {
+        > .particle {
+        opacity: 0;
+        position: absolute;
+        animation: confetti 3s ease-in infinite;
+        &.c1 {
+            background-color: #d13447;
+        }
+        &.c2 {
+            background-color: #ffbf00;
+        }
+        &.c3 {
+            background-color: #263672;
+        }
+        &.c4 {
+            background-color: #0d963d;
+        }
+        }
+    }
+    &::before {   
     content: url("https://www.freepnglogos.com/uploads/crown-png/pin-leanne-dlamini-women-women-gold-king-crown-35.png") ;
     position: absolute; 
     width: 100px;
@@ -877,6 +865,11 @@ position: relative;
         }
 }
 
+.swal2-container {
+    position: fixed !important;
+    z-index: 1000000 !important;
+}
+
 .twitch-overlay {
     width: 100%;
     height: 100vh;
@@ -901,10 +894,58 @@ position: relative;
         font-size: 1.6rem;
         color: #861053;
     }
+
+    .btn-lg {
+        font-size: 1.7rem !important;
+    }
+
+    #participants-overlay {
+        position: relative;
+
+        &::after {
+            content: 'Participants :';
+            position: absolute;
+            top: -22%;
+            left: 0;
+            font-size: 1rem;
+            text-transform: uppercase;
+        }
+    }
+}
+
+#participants {
+    background: linear-gradient(181deg, rgba(238, 19, 207, 0) 0%, rgb(166 1 214 / 50%) 100%);
+    
+    .card-title {
+        color: $c5 !important;
+        text-transform: uppercase;
+        font-size: 1rem;
+    }
+
+    .card-body {
+        display: flex;
+        justify-content: space-between;
+        align-items: stretch;
+        flex-direction: column;
+        min-height: 50vh;
+
+        .card-element {
+            flex: 1;
+            font-size: 3.2vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &:not(:last-of-type) {
+                border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            }
+        }
+    }
 }
 
 body {
-    overflow-x: hidden !important;
+   overflow-x: hidden !important;
 }
 
 .modes-jeu-twitch {
@@ -920,7 +961,7 @@ body {
     flex-direction: column;
 
     &__content {
-        max-width: 70%;
+        max-width: 90%;
 
         &-header {
             margin: 5rem 0 8rem;
@@ -1004,4 +1045,27 @@ body {
         box-shadow: none; 
     } 
 }
+.beforeDelete {
+    animation-name: delete;
+    animation-duration: 4s;
+    transition: all .2s;
+}
+@keyframes delete {
+    25% {
+        color: #EA5455;
+        visibility: visible;
+    }
+    50% {
+        color: #fff;
+        visibility: visible;
+    }
+    75% {
+        color: #EA5455;
+        visibility: visible;
+    }
+}
 
+.blur {
+    filter: blur(4px);
+  -webkit-filter: blur(4px);
+}

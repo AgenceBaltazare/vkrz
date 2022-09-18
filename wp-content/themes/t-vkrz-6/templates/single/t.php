@@ -136,6 +136,7 @@ get_header();
                     <div class="choosecta flex-row-reverse">
                       <div class="cta-begin cta-complet">
                         <a href="#" id="begin_t" data-typetop="complet" data-top="<?php echo $id_top; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-uuiduser="<?php echo $uuid_vainkeur; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
+                          <i class="fab fa-twitch twitch-icon-tbegin d-none"></i>&nbsp;
                           Top Complet
                         </a>
                         <small class="text-muted">
@@ -153,6 +154,7 @@ get_header();
                       <?php if ($top_infos['top_number'] > 10) : ?>
                         <div class="cta-begin cta-top3">
                           <a href="#" id="begin_top3" data-typetop="top3" data-top="<?php echo $id_top; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-uuiduser="<?php echo $uuid_vainkeur; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
+                            <i class="fab fa-twitch twitch-icon-tbegin d-none"></i>&nbsp;
                             Top 3
                           </a>
                           <small class="text-muted">
@@ -323,7 +325,6 @@ get_header();
                           </div>
                         </div>
 
-
                         <div class="votes-stats-container d-none">
                           <p class="votes-stats-p">
                             <strong class="votes-number">0</strong> <span class="votes-number-wording">Vote</span> du chat
@@ -359,7 +360,7 @@ get_header();
                       <h4>Lancement du jeu dans</h4>
                       <div id="countdown">
                         <div class="counter">
-                          <div class="nums">
+                          <!-- <div class="nums">
                             <span class="in">30</span>
                             <span>29</span>
                             <span>28</span>
@@ -391,41 +392,49 @@ get_header();
                             <span>2</span>
                             <span>1</span>
                             <span>0</span>
+                          </div> -->
+                          <div class="nums">
+                            <span class="in">6</span>
+                            <span>5</span>
+                            <span>4</span>
+                            <span>3</span>
+                            <span>2</span>
+                            <span>1</span>
+                            <span>0</span>
                           </div>
                           <h4>Taper VKRZ dans le chat <br> pour participer!</h4>
 
                         </div>
 
                         <div class="final">
-                          <button type="button" id="launchGameBtn" class="btn btn-lg btn-relief-danger" spellcheck="false">Lancer le jeu</button>
+                          <button 
+                            type="button" 
+                            id="launchGameBtn" 
+                            class="btn btn-lg waves-effect btn-rose" 
+                            spellcheck="false"
+                          >
+                            Lancer le jeu
+                          </button>
                         </div>
                       </div>
-                      <span class="mode-alert"><i data-feather='alert-circle'></i> This mode need at least two participants<a href="#" onClick="window.location.reload();" class="reload d-none text-white">, i want to reload page! 🙃</a></span>
+                      <span class="mode-alert"><i class="far fa-info-circle"></i>  This mode need at least two participants</span>
 
-                      <div id="participants-overlay" class="mt-3 display-4 text-white"></div>
+                      <div id="participants-overlay" class="mt-2 display-4 text-white d-none"></div>
+
+                      <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" href="#" class="confirm_delete btn btn-sm btn-outline-dark waves-effect">
+                        Annuler
+                      </a>
                     </div>
                   <?php endif; ?>
                 </div>
-
-                
 
                 <!-- LIST OF PARTICIPANTS… -->
                 <div id="prediction-player" class="col-md-3 d-none">
                   <div class="card mb-2" id="participants">
                     <div class="card-header">
-                      <h4 class="card-title">Participants</h4>
+                      <h4 class="card-title"><i class="fab fa-twitch"></i> Participants</h4>
                     </div>
                     <div class="card-body">
-                      <ul class="list-group"></ul>
-                    </div>
-                  </div>
-
-                  <div class="card d-none" id="losers">
-                    <div class="card-header">
-                      <h4 class="card-title">Eliminés</h4>
-                    </div>
-                    <div class="card-body">
-                      <ul class="list-group"></ul>
                     </div>
                   </div>
                 </div>
