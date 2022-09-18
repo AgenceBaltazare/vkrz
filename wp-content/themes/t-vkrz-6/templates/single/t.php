@@ -233,8 +233,7 @@ get_header();
               </div>
             </div>
 
-            <!-- TWITCH BANNER… 🍉 -->
-            <?php if (is_user_logged_in() && get_userdata($user_id)->twitch_user) : ?>
+            <?php if (!isMobile() && is_user_logged_in() && get_userdata($user_id)->twitch_user) : ?>
               <div class="col-sm-2 col-md-3 col-12 modes-jeu-twitch animate__animated animate__slideInRight" style="background-image: url(http://localhost:8888/vkrz/wp-content/uploads/2022/09/twitch-banner2.png);">
                 <div class="modes-jeu-twitch__content">
 
@@ -307,8 +306,7 @@ get_header();
                     ?>
                   </div>
 
-                  <!-- TWITCH VOTES CONTAINER… 🍇 -->
-                  <?php if (is_user_logged_in() && get_userdata($user_id)->twitch_user) : ?>
+                  <?php if (!isMobile() && is_user_logged_in() && get_userdata($user_id)->twitch_user) : ?>
                     <div 
                       class="d-none twitch-votes-container row align-items-center justify-content-center" data-twitchChannel="<?= get_userdata($user_id)->twitch_user; ?>">
                       <div class="col-sm-4 col-12">
@@ -355,12 +353,11 @@ get_header();
                       <source src="http://localhost:8888/vkrz/wp-content/uploads/2022/09/winner-sound.mp3" type="audio/mpeg" />
                     </audio>
 
-                    <!-- OVERLAY… -->
                     <div class="twitch-overlay d-none">
                       <h4>Lancement du jeu dans</h4>
                       <div id="countdown">
                         <div class="counter">
-                          <!-- <div class="nums">
+                          <div class="nums">
                             <span class="in">30</span>
                             <span>29</span>
                             <span>28</span>
@@ -392,15 +389,6 @@ get_header();
                             <span>2</span>
                             <span>1</span>
                             <span>0</span>
-                          </div> -->
-                          <div class="nums">
-                            <span class="in">6</span>
-                            <span>5</span>
-                            <span>4</span>
-                            <span>3</span>
-                            <span>2</span>
-                            <span>1</span>
-                            <span>0</span>
                           </div>
                           <h4>Taper VKRZ dans le chat <br> pour participer!</h4>
 
@@ -419,7 +407,7 @@ get_header();
                       </div>
                       <span class="mode-alert"><i class="far fa-info-circle"></i>  This mode need at least two participants</span>
 
-                      <div id="participants-overlay" class="mt-2 display-4 text-white d-none"></div>
+                      <div id="participants-overlay" class="mt-2 display-5 text-white d-none"></div>
 
                       <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" href="#" class="confirm_delete btn btn-sm btn-outline-dark waves-effect">
                         Annuler
@@ -428,7 +416,6 @@ get_header();
                   <?php endif; ?>
                 </div>
 
-                <!-- LIST OF PARTICIPANTS… -->
                 <div id="prediction-player" class="col-md-3 d-none">
                   <div class="card mb-2" id="participants">
                     <div class="card-header">
@@ -439,7 +426,6 @@ get_header();
                   </div>
                 </div>
 
-                <!-- 3eme MODE DE JEU -->
                 <div id="ranking-player" class="col d-none">
                   <table class="table table-points">
                     <thead>

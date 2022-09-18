@@ -24,18 +24,17 @@ $(document).ready(function ($) {
 
   $(document).on("click", ".display_battle .link-contender", {}, function (e) {
     if (document.querySelector('.display_battle') && localStorage.getItem('twitchGameMode')) {
-      console.log("Clear counting…");
-      votesNumber.textContent = "0";
-      votesNumberForContenderOne = 0;
-      votesNumberForContenderTwo = 0;
-      contenderOneVotesPercent.textContent = "0%";
-      contenderTwoVotesPercent.textContent = "0%";
-      X = A = B = 0;
-      document.querySelector("#votes-stats-1").classList.remove("active");
-      document.querySelector("#votes-stats-2").classList.remove("active");
-
+      
       if (voteParticipatifBoolean) {
         users = {};
+        votesNumber.textContent = "0";
+        votesNumberForContenderOne = 0;
+        votesNumberForContenderTwo = 0;
+        contenderOneVotesPercent.textContent = "0%";
+        contenderTwoVotesPercent.textContent = "0%";
+        X = A = B = 0;
+        document.querySelector("#votes-stats-1").classList.remove("active");
+        document.querySelector("#votes-stats-2").classList.remove("active");
       } else if (votePredictionBoolean) {
           let side;
           if (e.target.closest("div").getAttribute("id") == "c_1") side = "1";
