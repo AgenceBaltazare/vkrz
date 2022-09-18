@@ -234,7 +234,7 @@ get_header();
             </div>
 
             <?php if (!isMobile() && is_user_logged_in() && get_userdata($user_id)->twitch_user) : ?>
-              <div class="col-sm-2 col-md-3 col-12 modes-jeu-twitch animate__animated animate__slideInRight" style="background-image: url(http://localhost:8888/vkrz/wp-content/uploads/2022/09/twitch-banner2.png);">
+              <div class="col-sm-2 col-md-3 col-12 modes-jeu-twitch animate__animated animate__slideInRight" style="background-image: url(<?php bloginfo('template_directory'); ?>/assets/images/events/twitch-games-banner.png);">
                 <div class="modes-jeu-twitch__content">
 
                   <div class="modes-jeu-twitch__content-header">
@@ -350,7 +350,7 @@ get_header();
                       <span class="particletext confetti"></span>
                     </div>
                     <audio id="winner-sound" style="display: none; width: 0 !important;">
-                      <source src="http://localhost:8888/vkrz/wp-content/uploads/2022/09/winner-sound.mp3" type="audio/mpeg" />
+                      <source src="<?php bloginfo('template_directory'); ?>/assets/audios/winner-sound.mp3" type="audio/mpeg" />
                     </audio>
 
                     <div class="twitch-overlay d-none">
@@ -407,7 +407,7 @@ get_header();
                       </div>
                       <span class="mode-alert"><i class="far fa-info-circle"></i>  This mode need at least two participants</span>
 
-                      <div id="participants-overlay" class="mt-2 display-5 text-white d-none"></div>
+                      <div id="participants-overlay" class="mt-2 text-white d-none"></div>
 
                       <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" href="#" class="confirm_delete btn btn-sm btn-outline-dark waves-effect">
                         Annuler
