@@ -1,5 +1,5 @@
 <?php
-require_once 'meca/get_paid.php';
+// Public
 require_once 'meca/compil.php';
 require_once 'meca/do_elo.php';
 require_once('meca/uniq_user_id.php');
@@ -22,3 +22,7 @@ require_once 'meca/nicenumber.php';
 require_once 'meca/deal_cookies.php';
 require_once 'meca/save_to_firestore.php';
 require_once 'meca/do_jugement.php';
+
+// Admin
+require_once 'meca/get_paid.php';
+require_once('meca/duplicate.php');
