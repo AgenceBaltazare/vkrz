@@ -48,7 +48,7 @@ $utm = deal_utm();
   <meta name="twitter:creator" content="@Vainkeurz">
   <meta name="twitter:domain" content="vainkeurz.com">
 
-  <?php if (is_page(array(26626, 256697, 256700, 284944, 292414))) : ?>
+  <?php if (is_page(array(482612, 26626, 256697, 256700, 284944, 292414))) : ?>
     <meta name='robots' content='noindex, nofollow' />
   <?php endif; ?>
 
