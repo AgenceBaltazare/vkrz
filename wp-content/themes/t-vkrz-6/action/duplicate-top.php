@@ -51,6 +51,9 @@ if (isset($_GET['id_top']) && $_GET['id_top'] != "") {
 
                                 $id_top_duplicated = duplicatator($id_top);
                                 update_field('id_du_resume_t', '', $id_top_duplicated);
+                                $creator_id        = get_post_field('post_author', $id_top);
+                                update_field('duplication_top_t', $id_top, $id_top_duplicated);
+                                update_field('duplication_createur_t', $creator_id, $id_top_duplicated);
 
                                 $contenders_t = new WP_Query(array(
                                     'post_type' => 'contender', 
