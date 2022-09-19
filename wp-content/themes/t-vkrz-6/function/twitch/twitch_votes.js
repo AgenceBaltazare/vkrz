@@ -1,5 +1,57 @@
 console.log("TWITCH VOTES SCRIPT… 🤹");
 
+const changeIcon = function(to) {
+  const plus = document.querySelector('.plus');
+
+  if(to === "plus") {
+    plus.querySelector('.fa-twitch').classList.add('d-none');
+    plus.querySelector('.fa-plus').classList.remove('d-none');
+    plus.querySelector('.fa-minus').classList.add('d-none');
+  } else if(to === "twitch") {
+    plus.querySelector('.fa-twitch').classList.remove('d-none');
+    plus.querySelector('.fa-plus').classList.add('d-none');
+    plus.querySelector('.fa-minus').classList.add('d-none');
+  } else if(to === "minus") {
+    plus.querySelector('.fa-twitch').classList.add('d-none');
+    plus.querySelector('.fa-plus').classList.add('d-none');
+    plus.querySelector('.fa-minus').classList.remove('d-none');
+  }
+}
+
+if(document.querySelector('.t-sponso-container') && document.querySelector('.t-sponso-banner')) {
+  const tSponsoContainer  = document.querySelector('.t-sponso-container'),
+        tSponsoBanner     = tSponsoContainer.querySelector('.t-sponso-banner'),
+        plus              = tSponsoContainer.querySelector('.plus'),
+        twitchModesBanner = document.querySelector('.modes-jeu-twitch');
+
+  $('html').scroll(function() { 
+      $('.plus').animate({top:$(this).scrollTop()},100,"linear");
+  });
+
+  plus.classList.remove('d-none')
+
+  plus.addEventListener('click', () => {
+    if(twitchModesBanner.classList.contains('out')) {
+
+      changeIcon("twitch");
+
+      plus.setAttribute('onmouseover', "changeIcon('plus')");
+      plus.setAttribute('onmouseout', "changeIcon('twitch')");
+
+      twitchModesBanner.classList.remove('out');
+      tSponsoBanner.classList.remove('blur');
+    } else {
+      twitchModesBanner.classList.add('out');
+      tSponsoBanner.classList.add('blur');
+
+      changeIcon("minus");
+
+      plus.removeAttribute('onmouseover');
+      plus.removeAttribute('onmouseout');
+    }
+  })
+}
+
 // INTRO PAGE… 1️⃣
 if(document.querySelector('.modes-jeu-twitch')) {
   const gameModesBanner = document.querySelector('.modes-jeu-twitch'),

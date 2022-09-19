@@ -298,7 +298,6 @@ get_header();
             <div class="container <?php echo (get_field('c_rounded_t', $id_top)) ? 'rounded' : ''; ?>">
               <div class="row">
                 <div class="col">
-
                   <div class="display_battle">
                     <?php
                     set_query_var('battle_vars', compact('contender_1', 'contender_2', 'id_top', 'id_ranking', 'id_vainkeur'));

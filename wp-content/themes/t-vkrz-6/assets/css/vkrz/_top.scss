@@ -1067,6 +1067,52 @@ body {
 }
 
 .blur {
-    filter: blur(4px);
-  -webkit-filter: blur(4px);
+    filter: blur(5px);
+  -webkit-filter: blur(5px);
+}
+
+.t-sponso-container {
+    position: relative;
+
+    .modes-jeu-twitch {
+        position: absolute;
+        right: -100%;
+        transition: .5s all ease-in-out;
+        top: 12%;
+
+        width: 286px;
+        height: 70%;
+        
+        &.out {
+            right: 7%;
+        }
+    }
+
+    .plus {
+        width: 100px;
+        height: 100px;
+
+        background-position: center;
+        background-size: contain !important;
+        background-repeat: no-repeat;
+        position: absolute;
+
+        cursor: pointer;
+
+        right: -2%;
+        bottom: 34%;
+        opacity: 1 !important;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        transition: .5s all;
+
+        i {
+            background: radial-gradient(circle at 10% 20%, rgb(163, 175, 243) 0%, rgb(220, 182, 232) 100.2%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    }
 }
