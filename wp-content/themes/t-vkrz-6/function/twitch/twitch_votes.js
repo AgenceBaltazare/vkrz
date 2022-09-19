@@ -1,5 +1,6 @@
 console.log("TWITCH VOTES SCRIPT… 🤹");
 
+// T SPONSO…
 const changeIcon = function(to) {
   const plus = document.querySelector('.plus');
 
@@ -23,11 +24,7 @@ if(document.querySelector('.t-sponso-container') && document.querySelector('.t-s
         tSponsoBanner     = tSponsoContainer.querySelector('.t-sponso-banner'),
         plus              = tSponsoContainer.querySelector('.plus'),
         twitchModesBanner = document.querySelector('.modes-jeu-twitch');
-
-  $('html').scroll(function() { 
-      $('.plus').animate({top:$(this).scrollTop()},100,"linear");
-  });
-
+        
   plus.classList.remove('d-none')
 
   plus.addEventListener('click', () => {
