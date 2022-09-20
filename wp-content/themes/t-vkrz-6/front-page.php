@@ -158,6 +158,122 @@ if ($id_vainkeur) {
         </div>
       </section>
 
+      <?php
+        $last_top_by_user   = $list_user_tops[0];
+        $last_top_url_top   = get_the_permalink($last_top_by_user);
+        $last_top_top_datas = get_top_data($last_top_by_user);
+        $last_top_top_infos = get_top_infos($last_top_by_user);
+
+        $top_cat = $last_top_top_infos['top_cat'];
+        foreach ($top_cat as $cat) {
+          $top_cat_id = $cat->term_id;
+        }
+        $list_souscat  = array();
+        $top_souscat   = get_the_terms($last_top_by_user, 'concept');
+        if (!empty($top_souscat)) {
+          foreach ($top_souscat as $souscat) {
+            array_push($list_souscat, $souscat->slug);
+          }
+        }
+
+        $tops_in_close_cat     = new WP_Query(array(
+          'ignore_sticky_posts'    => true,
+          'update_post_meta_cache' => false,
+          'no_found_rows'          => true,
+          'post_type'              => 'tournoi',
+          'post__not_in'           => $list_user_tops,
+          'orderby'                => 'rand',
+          'order'                  => 'ASC',
+          'posts_per_page'         => 10,
+          'tax_query' => array(
+            'relation' => 'AND',
+            array(
+              'taxonomy' => 'categorie',
+              'field'    => 'term_id',
+              'terms'    => array($top_cat_id)
+            ),
+            array(
+              'taxonomy' => 'concept',
+              'field' => 'slug',
+              'terms' => $list_souscat
+            ),
+            array(
+              'taxonomy' => 'type',
+              'field'    => 'slug',
+              'terms'    => array('private', 'whitelabel'),
+              'operator' => 'NOT IN'
+            ),
+          ),
+        ));
+        $count_similar = $tops_in_close_cat->post_count;
+        $count_next    = 10 - $count_similar;
+
+        if ($count_similar < 10) {
+
+          $tops_in_large_cat     = new WP_Query(array(
+            'ignore_sticky_posts'    => true,
+            'update_post_meta_cache' => false,
+            'no_found_rows'          => true,
+            'post_type'              => 'tournoi',
+            'post__not_in'           => $list_user_tops,
+            'orderby'                => 'rand',
+            'order'                  => 'ASC',
+            'posts_per_page'         => $count_next,
+            'tax_query' => array(
+              'relation' => 'AND',
+              array(
+                'taxonomy' => 'categorie',
+                'field'    => 'term_id',
+                'terms'    => array($top_cat_id)
+              ),
+              array(
+                'taxonomy' => 'type',
+                'field'    => 'slug',
+                'terms'    => array('private', 'whitelabel', 'onboarding'),
+                'operator' => 'NOT IN'
+              ),
+            ),
+          ));
+        }
+        if ($tops_in_close_cat->have_posts() || $tops_in_large_cat->have_posts()) : ?>
+        <section class="list-tournois">
+          <div class="big-cat">
+            <div class="heading-cat">
+              <div class="row">
+                <div class="col">
+                  <h2 class="text-primary text-uppercase">
+                    <span class="va va-keurz va-lg"></span> Parceque t'as fait la TopList de <a href="#" class="text-white d-inline-block"><?php echo $last_top_top_infos['top_title']; ?></a>
+                    <small class="text-muted">We offer you what you like</small>
+                  </h2>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="component-swiper-responsive-breakpoints">
+            <div class="swiper-responsive-breakpoints swiper-container swiper-7">
+              <div class="swiper-wrapper">
+                <?php
+                while ($tops_in_close_cat->have_posts()) : $tops_in_close_cat->the_post(); ?>
+
+                  <?php get_template_part('partials/min-t'); ?>
+
+                <?php endwhile; ?>
+                <?php if ($count_similar < 10) : ?>
+                  <?php
+                  while ($tops_in_large_cat->have_posts()) : $tops_in_large_cat->the_post(); ?>
+
+                    <?php get_template_part('partials/min-t'); ?>
+
+                  <?php endwhile; ?>
+                <?php endif; ?>
+              </div>
+              <div class="swiper-button-next swiper-button-next-7"></div>
+              <div class="swiper-button-prev swiper-button-prev-7"></div>
+            </div>
+          </div>
+        </section>
+      <?php endif; ?>
+
       <section id="vkrz-intro">
         <div class="row match-height mt-2">
           <div class="col-md-5">
