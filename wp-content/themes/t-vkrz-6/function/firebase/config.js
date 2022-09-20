@@ -28,6 +28,10 @@ import {
 } from "https://cdnjs.cloudflare.com/ajax/libs/firebase/9.8.1/firebase-firestore.min.js";
 const database = getFirestore(app);
 
+let localhost = false;
+if (location.hostname === "localhost" || location.hostname === "127.0.0.1") 
+  localhost = true;
+
 export {
   getFirestore,
   collection,
@@ -43,4 +47,5 @@ export {
   limit,
   orderBy,
   database,
+  localhost
 };
