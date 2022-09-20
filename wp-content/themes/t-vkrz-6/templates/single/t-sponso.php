@@ -256,7 +256,7 @@ get_header();
                     </h4>
 
                     <h6>
-                      Clique sur un mode pour permettre à ton chat de voter
+                      Clik sur un mode pour permettre à ton chat de voter
                     </h6>
                   </div>
 
@@ -268,7 +268,7 @@ get_header();
                     <button type="button" id="votePoints" class="btn btn-gradient-primary modeGameTwitchBtn" spellcheck="false">Match aux points</button>
                   </div>
                   <span class="modes-jeu-twitch__content-msg d-none">
-                    <i data-feather='check'></i> Game Mode selected, please click in "Top Complet" Or "Top 3" to start your Top !
+                    <i data-feather='check'></i> Mode sélectionné, tu peux lancer le Top 🚀 
                   </span>
                 </div>
               </div>
@@ -417,7 +417,7 @@ get_header();
                           </button>
                         </div>
                       </div>
-                      <span class="mode-alert"><i class="far fa-info-circle"></i>  This mode need at least two participants</span>
+                      <span class="mode-alert"><i class="far fa-info-circle"></i> Il faut au moins deux participants</span>
 
                       <div id="participants-overlay" class="mt-2 text-white d-none"></div>
 
@@ -456,7 +456,7 @@ get_header();
 
                         <th>
                           <span class="text-muted">
-                            Voted
+                            A voté ?
                           </span>
                         </th>
 
