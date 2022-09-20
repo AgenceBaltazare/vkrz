@@ -177,7 +177,7 @@ if(document.querySelector('.display_battle') && localStorage.getItem('twitchGame
               if(Object.keys(users).length < 2) {
                 launchGameBtn.classList.remove('btn-rose');
                 launchGameBtn.classList.add('btn-relief-danger');
-                launchGameBtn.textContent = "Reload the page";
+                launchGameBtn.textContent = "Recharger le Top";
                 launchGameBtn.addEventListener('click', () => {location.reload()});
               } else {
                 twitchOverlay.querySelector('.mode-alert').remove();
