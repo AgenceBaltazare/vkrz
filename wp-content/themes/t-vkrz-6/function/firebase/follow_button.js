@@ -1,4 +1,5 @@
 import {
+  localhost,
   collection,
   getDocs,
   deleteDoc,
@@ -74,7 +75,7 @@ function checkGuetterButton() {
                   );
                   querySnapshot = await getDocs(q);
 
-                  if (querySnapshot._snapshot.docs.size === 0) {
+                  if (querySnapshot._snapshot.docs.size === 0 && localhost === false) {
                     const newFollow = await addDoc(
                       collection(database, "notifications"),
                       {
@@ -179,7 +180,7 @@ function checkGuetterButton() {
                   );
                   querySnapshot = await getDocs(q);
 
-                  if (querySnapshot._snapshot.docs.size === 0) {
+                  if (querySnapshot._snapshot.docs.size === 0 && localhost === false) {
                     const newFollow = await addDoc(
                       collection(database, "notifications"),
                       {

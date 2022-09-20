@@ -1,4 +1,5 @@
 import {
+  localhost,
   collection,
   database,
   query,
@@ -449,7 +450,7 @@ if (document.querySelector(".toplist_comments")) {
   const validComment = function () {
     let comment = commentArea.value;
 
-    if (comment) {
+    if (comment && localhost === false) {
       // INIT COMMENTAREA…
       if (topListCommentsLength === 0) {
         commentsContainer.innerHTML = "";
