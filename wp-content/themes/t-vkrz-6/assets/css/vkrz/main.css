@@ -2498,6 +2498,11 @@ body {
 .modes-jeu-twitch__content {
   max-width: 90%;
 }
+@media (min-width: 1920px) {
+  .modes-jeu-twitch__content {
+    max-width: 70%;
+  }
+}
 .modes-jeu-twitch__content-header {
   margin: 5rem 0 8rem;
 }
@@ -2638,13 +2643,30 @@ body {
   right: -100%;
   transition: 0.5s all ease-in-out;
   top: 12%;
-  width: 286px;
   height: 70%;
 }
 .t-sponso-container .modes-jeu-twitch.out {
-  right: 7%;
+  right: 1%;
 }
-.t-sponso-container .plus {
+@media (min-width: 1920px) {
+  .t-sponso-container .modes-jeu-twitch {
+    width: 286px;
+    top: 9%;
+  }
+  .t-sponso-container .modes-jeu-twitch.out {
+    right: 16%;
+  }
+}
+.t-sponso-container .modes-jeu-twitch__content {
+  max-width: 70% !important;
+}
+@media (min-width: 1920px) {
+  .t-sponso-container .modes-jeu-twitch__content {
+    padding-top: 2rem;
+    max-width: 90% !important;
+  }
+}
+.t-sponso-container .showTwitchBanner {
   width: 100px;
   height: 100px;
   background-position: center;
@@ -2652,18 +2674,23 @@ body {
   background-repeat: no-repeat;
   position: absolute;
   cursor: pointer;
-  right: -2%;
+  right: -1.5%;
   bottom: 34%;
-  opacity: 1 !important;
+  opacity: 0.6;
   display: flex;
   justify-content: center;
   align-items: center;
   transition: 0.5s all;
 }
-.t-sponso-container .plus i {
+.t-sponso-container .showTwitchBanner i {
   background: radial-gradient(circle at 10% 20%, rgb(163, 175, 243) 0%, rgb(220, 182, 232) 100.2%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  padding-right: 10px;
+  font-size: 2.8rem;
+}
+.t-sponso-container .showTwitchBanner:hover {
+  opacity: 1;
 }
 
 .list-share {

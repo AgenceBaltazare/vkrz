@@ -485,10 +485,10 @@ get_header();
     </div>
   </div>
 
-  <div class="plus d-none" style="background-image: url(<?php bloginfo('template_directory'); ?>/assets/images/events/twitch-plus.png);" onmouseover="changeIcon('plus')" onmouseout="changeIcon('twitch')">
-    <i class="fab fa-2x fa-twitch"></i>
-    <i class="fa fa-2x fa-plus d-none"></i>
-    <i class="fa fa-2x fa-minus d-none"></i>
+  <div class="showTwitchBanner d-none" style="background-image: url(<?php bloginfo('template_directory'); ?>/assets/images/events/twitch-plus.png);" onmouseover="changeIcon('plus')" onmouseout="changeIcon('twitch')">
+    <i class="fab fa-twitch"></i>
+    <i class="fa fa-plus d-none"></i>
+    <i class="fa fa-minus d-none"></i>
   </div>
 </div>
 

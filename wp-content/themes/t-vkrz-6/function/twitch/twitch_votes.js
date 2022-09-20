@@ -2,7 +2,7 @@ console.log("TWITCH VOTES SCRIPT… 🤹");
 
 // T SPONSO…
 const changeIcon = function(to) {
-  const plus = document.querySelector('.plus');
+  const plus = document.querySelector('.showTwitchBanner');
 
   if(to === "plus") {
     plus.querySelector('.fa-twitch').classList.add('d-none');
@@ -22,7 +22,7 @@ const changeIcon = function(to) {
 if(document.querySelector('.t-sponso-container') && document.querySelector('.t-sponso-banner')) {
   const tSponsoContainer  = document.querySelector('.t-sponso-container'),
         tSponsoBanner     = tSponsoContainer.querySelector('.t-sponso-banner'),
-        plus              = tSponsoContainer.querySelector('.plus'),
+        plus              = tSponsoContainer.querySelector('.showTwitchBanner'),
         twitchModesBanner = document.querySelector('.modes-jeu-twitch');
         
   plus.classList.remove('d-none')
