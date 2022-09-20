@@ -45,7 +45,7 @@
 ?>
 
     <title>
-        TopList : <?php echo $top_infos['top_title']; ?> - <?php the_field('question_t', $id_top); ?> - VAINKEURZ 🦙
+        TopList <?php echo $top_infos['top_title']; ?> - <?php the_field('question_t', $id_top); ?> - VAINKEURZ 🦙
     </title>
     <meta name="description" content="Découvre ma TopList à propos de <?php echo $top_infos['top_title']; ?>" />
 
@@ -66,14 +66,12 @@
         $l++;
         if ($l == 4) break;
     }
-    if(get_field('bannerbear_t', $id_top)){
+    if (get_field('bannerbear_t', $id_top)) {
         $bannerbear_id = get_field('bannerbear_t', $id_top);
-    }
-    else{
-        if($top_infos['top_number'] < 3){
+    } else {
+        if ($top_infos['top_number'] < 3) {
             $bannerbear_id = "nYaKxNMeoDRVW9BXPl";
-        }
-        else{
+        } else {
             $bannerbear_id = "LR7D41MVLLPVB8OGab";
         }
     }
@@ -95,10 +93,10 @@
     <link rel="canonical" href="<?php echo get_the_permalink($id_ranking); ?>" />
     <meta property="og:image" content="<?php echo $banner; ?>" />
     <meta property="og:title" content="TopList <?php echo $top_infos['top_number']; ?> 🏆 <?php echo $top_infos['top_title']; ?> - <?php echo $top_infos['top_question']; ?>" />
-    <meta property="og:description" content="Voici ma TopList et fais la tienne !" />
+    <meta property="og:description" content="Voici ma TopList, j'attends la tienne !" />
     <meta property="og:url" content="<?php echo get_the_permalink($id_ranking); ?>" />
     <meta name="twitter:title" content="TopList <?php echo $top_infos['top_number']; ?> 🏆 <?php echo $top_infos['top_title']; ?> - <?php echo $top_infos['top_question']; ?>" />
-    <meta name="twitter:description" content="Voici ma TopList et fais la tienne !" />
+    <meta name="twitter:description" content="Voici ma TopList, j'attends la tienne !" />
     <meta name="twitter:image" content="<?php echo $banner; ?>" />
 
 <?php elseif (is_page(get_page_by_path('elo'))) :
@@ -151,7 +149,7 @@
         $id_membre          = $author->ID;
     }
     $uuid_vainkeur          = get_field('uuiduser_user', 'user_' . $id_membre);
-    $infos_vainkeur_to_watch= get_user_infos($uuid_vainkeur, 'complete');
+    $infos_vainkeur_to_watch = get_user_infos($uuid_vainkeur, 'complete');
     $id_vainkeur_to_watch   = $infos_vainkeur_to_watch['id_vainkeur'];
 ?>
     <title>
