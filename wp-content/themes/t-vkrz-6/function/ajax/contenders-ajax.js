@@ -23,54 +23,77 @@ $(document).ready(function ($) {
   });
 
   $(document).on("click", ".display_battle .link-contender", {}, function (e) {
-    if (document.querySelector(".twitch-votes-container")) {
-      // CLEAR COUNTING FOR EACH VOTE…
-      console.log("Clear counting…");
-      votesNumberForContenderOne = 0;
-      votesNumberForContenderTwo = 0;
-      contenderOneVotes.textContent = votesNumberForContenderOne;
-      contenderTwoVotes.textContent = votesNumberForContenderTwo;
-      contenderOneVotesPercent.textContent = "0%";
-      contenderTwoVotesPercent.textContent = "0%";
-      X = A = B = 0;
-
-      document.querySelector("#votes-stats-1").classList.remove("active");
-      document.querySelector("#votes-stats-2").classList.remove("active");
-
+    if (document.querySelector('.display_battle') && localStorage.getItem('twitchGameMode')) {
+      
       if (voteParticipatifBoolean) {
         users = {};
+        votesNumber.textContent = "0";
+        votesNumberForContenderOne = 0;
+        votesNumberForContenderTwo = 0;
+        contenderOneVotesPercent.textContent = "0%";
+        contenderTwoVotesPercent.textContent = "0%";
+        X = A = B = 0;
+        document.querySelector("#votes-stats-1").classList.remove("active");
+        document.querySelector("#votes-stats-2").classList.remove("active");
       } else if (votePredictionBoolean) {
-        let side;
-        if (e.target.closest("div").getAttribute("id") == "c_1") side = "1";
-        else if (e.target.closest("div").getAttribute("id") == "c_2")
-          side = "2";
+          let side;
+          if (e.target.closest("div").getAttribute("id") == "c_1") side = "1";
+          else if (e.target.closest("div").getAttribute("id") == "c_2")
+            side = "2";
+  
+          toFilter = Object.entries(users);
+          nonPassed = toFilter.filter(([key, value]) => value.side !== side);
+          losers = {...losers, ...Object.fromEntries(nonPassed)};
+  
+          passed = toFilter.filter(([key, value]) => value.side === side);
+          if(passed.length === 1 && winnerAlready === false) // WINNER CHICKEN DINNER…
+          {
+            winnerAlready = true;
+            document.querySelector('.display_battle').classList.add('blur')
+            document.querySelector("#winner-sound").play()
+            document.querySelector('.particletext').textContent = passed[0][0];
+            $(".textcontainer").addClass('show');
+            confetti();
 
-        toFilter = Object.entries(users);
-        nonPassed = toFilter.filter(([key, value]) => value.side !== side);
-        losers = {...losers, ...Object.fromEntries(nonPassed)};
+            function rnd(m,n) {
+              m = parseInt(m);
+              n = parseInt(n);
 
-        passed = toFilter.filter(([key, value]) => value.side === side);
-        for (let user of toFilter)
-          if (user[1]["voted"]) user[1]["voted"] = false;
-        users = Object.fromEntries(passed);
+              return Math.floor( Math.random() * (n - m + 1) ) + m;
+            }
+  
+            function confetti() {
+              $.each($(".particletext.confetti"), function(){
+                 var confetticount = ($(this).width()/50) * 10;
+                 for(var i = 0; i <= confetticount; i++) {
+                    $(this).append('<span class="particle c' + rnd(1,4) + '" style="top:' + rnd(10,50) + '%; left:' + rnd(0,100) + '%;width:' + rnd(5,15) + 'px; height:' + rnd(5,10) + 'px;animation-delay: ' + (rnd(0,30)/10) + 's;"></span>');
+                 }
+              });
+            }
 
-        // PROCESS FOR PARTICIPANTS…
-        participantsDOM.innerHTML = userListItem = "";
-        for(let participant of Object.keys(users)) userListItem += `<li class="list-group-item" id="${participant}">${participant}</li>`;
-        participantsDOM.innerHTML = userListItem 
-
-        // PROCESS FOR LOSERS…
-        if(nonPassed.length > 0) {
-          let losersDOM = document.querySelector('#losers');
-          losersDOM.classList.remove('d-none');
-          losersDOM = losersDOM.querySelector('.list-group');
-
-          for(const [key, loser] of Object.entries(nonPassed)) {
-            losersDOM.insertAdjacentHTML("afterbegin", `<li class="list-group-item text-danger">${loser[0]}</li>`);
+            setTimeout(() => {
+              document.querySelector('.display_battle').classList.remove('blur')
+              document.querySelector('.textcontainer').remove()
+            }, 4000)
           }
-        }
 
-        for(let user in users) users[user] = { side: "0", voted: false };
+          for (let user of toFilter) {
+            if (user[1]["voted"]) user[1]["voted"] = false;
+            document.querySelector(`#${user[0]}`).classList.remove('text-primary')
+          }
+          users = Object.fromEntries(passed);
+    
+          // PROCESS FOR LOSERS…
+          if(nonPassed.length > 0) {
+            for(const [key, loser] of Object.entries(nonPassed)) {
+              let target = document.querySelector(`#${loser[0]}`)
+              target.classList.remove('text-primary');
+              target.classList.add('beforeDelete');
+              setTimeout(() => {
+                target.remove()
+              }, 4000)
+            }
+          }
       } else if (votePointsBoolean) {
         let side;
         if (e.target.closest("div").getAttribute("id") == "c_1") side = "1";
