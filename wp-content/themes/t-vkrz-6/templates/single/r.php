@@ -108,7 +108,7 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
                         S'INSCRIRE (ou se connecter)
                       </p>
                     </a>
-                  <?php elseif (get_field('uuid_user_r', $id_ranking) != $uuid_vainkeur && $id_top_global == 465667) : ?>
+                  <?php elseif ($id_top_global == 465667) : ?>
                     <div class="doitbro mt-1">
                       <h1>Toi aussi participe au concours eneba</h1>
                       <p>Pour tenter de gagner 1 bon d'achat d'une valeur de 50€, termine ta TopList et partage-la sur Twitter</p>
