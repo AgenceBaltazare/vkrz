@@ -49,7 +49,7 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
   <div class="content-overlay"></div>
   <div class="content-wrapper">
     <div class="content-body">
-      <?php if (!is_user_logged_in()) : ?>
+      <?php if (!is_user_logged_in() && !in_array("sponso", $types_top)) : ?>
         <section class="please-rejoin app-user-view">
           <div role="alert" aria-live="polite" aria-atomic="true" class="alert alert-account" data-v-aa799a9e="">
             <div class="alert-body d-flex align-items-center justify-content-between">
