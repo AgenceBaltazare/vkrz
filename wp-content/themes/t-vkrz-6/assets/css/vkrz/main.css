@@ -2349,7 +2349,7 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   display: inline-block;
   transform: scale(0.05) rotate(45deg);
   right: -13%;
-  top: -105%;
+  top: -86%;
 }
 
 @-webkit-keyframes confetti {
