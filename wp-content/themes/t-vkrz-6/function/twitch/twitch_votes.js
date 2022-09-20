@@ -283,17 +283,17 @@ if(document.querySelector('.display_battle') && localStorage.getItem('twitchGame
         if(X > 1) votesNumberWording.textContent = "Votes";
 
         if (message === "1") {
-          A = votesNumberForContenderOne + 1;
+          A = A + 1;
 
           contenderOneVotesPercent.textContent = Math.round((A * 100) / X) + "%";
           contenderTwoVotesPercent.textContent =
-            Math.round(100 - (A * 100) / X) + "%";
+            Math.round(100 - Math.round((A * 100) / X)) + "%";
         } else if (message === "2") {
-          B = votesNumberForContenderTwo + 1;
+          B = B + 1;
 
           contenderOneVotesPercent.textContent = Math.round((A * 100) / X) + "%";
           contenderTwoVotesPercent.textContent =
-            Math.round(100 - (A * 100) / X) + "%";
+            Math.round(100 - Math.round((A * 100) / X)) + "%";
         }
 
         // STYLES… 🍏
