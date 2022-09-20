@@ -162,20 +162,10 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
                               Post Twitter
                             </a>
                           <?php elseif (get_field('type_de_fin_t_sponso', $id_top_global) == "twitter_2") : ?>
-
-                            <?php if ($id_top_global == 461704) : ?>
-
-                              <a href="https://twitter.com/intent/tweet?hashtags=#DLCOMPxVKRZ&original_referer=<?php echo $url_ranking; ?>&ref_src=&text=<?php echo urlencode("Merci @dLcompare pour le #concours !") ?>%0a%0a&url=<?php echo $url_ranking; ?>&via=Vainkeurz" class="animate__jello animate__animated animate__delay-1s btn btn-max btn-tweet btn-rose waves-effect waves-float waves-light" target="_blank" style="background-color: #1b95e0 !important; border-color: #1b95e0 !important;">
+                              <a href="https://twitter.com/intent/tweet?hashtags=<?php the_field('hashtags_du_tweet_twitter_2', $id_top_global); ?>&original_referer=<?php echo $url_ranking; ?>&ref_src=&text=<?php the_field('message_du_tweet_twitter_2', $id_top_global); ?>&url=<?php echo $url_ranking; ?>&via=<?php the_field('compte_twitter_twitter_2', $id_top_global); ?>" class="animate__jello animate__animated animate__delay-1s btn btn-max btn-tweet btn-rose waves-effect waves-float waves-light" target="_blank">
                                 <img src="https://vainkeurz.com/wp-content/uploads/2022/06/twitter.png" width="20" height="16" alt="Tweet icon">
                                 <?php the_field('message_du_bouton_tweet_twitter2', $id_top_global); ?>
                               </a>
-
-                            <?php else : ?>
-                              <a href="https://twitter.com/intent/tweet?hashtags=<?php the_field('hashtags_du_tweet_twitter_2', $id_top_global); ?>&original_referer=<?php echo $url_ranking; ?>&ref_src=&text=<?php the_field('message_du_tweet_twitter_2', $id_top_global); ?>&url=<?php echo $url_ranking; ?>&via=Vainkeurz" class="animate__jello animate__animated animate__delay-1s btn btn-max btn-tweet btn-rose waves-effect waves-float waves-light" target="_blank">
-                                <?php the_field('message_du_bouton_tweet_twitter2', $id_top_global); ?>
-                              </a>
-                            <?php endif; ?>
-
                           <?php endif; ?>
                         </div>
                       </div>

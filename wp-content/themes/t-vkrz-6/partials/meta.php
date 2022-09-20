@@ -45,7 +45,7 @@
 ?>
 
     <title>
-        TopList : <?php echo $top_infos['top_title']; ?> - <?php the_field('question_t', $id_top); ?> - VAINKEURZ 🦙
+        TopList <?php echo $top_infos['top_title']; ?> - <?php the_field('question_t', $id_top); ?> - VAINKEURZ 🦙
     </title>
     <meta name="description" content="Découvre ma TopList à propos de <?php echo $top_infos['top_title']; ?>" />
 
