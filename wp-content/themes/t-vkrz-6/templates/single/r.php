@@ -49,7 +49,7 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
   <div class="content-overlay"></div>
   <div class="content-wrapper">
     <div class="content-body">
-      <?php if (!is_user_logged_in()) : ?>
+      <?php if (!is_user_logged_in() && !in_array("sponso", $types_top)) : ?>
         <section class="please-rejoin app-user-view">
           <div role="alert" aria-live="polite" aria-atomic="true" class="alert alert-account" data-v-aa799a9e="">
             <div class="alert-body d-flex align-items-center justify-content-between">
@@ -108,12 +108,6 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
                         S'INSCRIRE (ou se connecter)
                       </p>
                     </a>
-                  <?php elseif (get_field('uuid_user_r', $id_ranking) != $uuid_vainkeur && $id_top_global == 461704) : ?>
-                    <div class="doitbro mt-1">
-                      <h1>Toi aussi participe au concours</h1>
-                      <p>Pour tenter de gagner 1 des 3 bons d'achat d'une valeur de 50€, termine ta TopList et partage-la sur Twitter</p>
-                      <a href="<?php echo $top_infos['top_url']; ?>" class="animate__jello animate__animated animate__delay-1s btn btn-max btn-tweet btn-rose waves-effect waves-float waves-light">Je Participe</a>
-                    </div>
                   <?php else : ?>
                     <div class="row">
                       <div class="col-md-12 mt-1">
@@ -162,20 +156,10 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
                               Post Twitter
                             </a>
                           <?php elseif (get_field('type_de_fin_t_sponso', $id_top_global) == "twitter_2") : ?>
-
-                            <?php if ($id_top_global == 461704) : ?>
-
-                              <a href="https://twitter.com/intent/tweet?hashtags=#DLCOMPxVKRZ&original_referer=<?php echo $url_ranking; ?>&ref_src=&text=<?php echo urlencode("Merci @dLcompare pour le #concours !") ?>%0a%0a&url=<?php echo $url_ranking; ?>&via=Vainkeurz" class="animate__jello animate__animated animate__delay-1s btn btn-max btn-tweet btn-rose waves-effect waves-float waves-light" target="_blank" style="background-color: #1b95e0 !important; border-color: #1b95e0 !important;">
-                                <img src="https://vainkeurz.com/wp-content/uploads/2022/06/twitter.png" width="20" height="16" alt="Tweet icon">
-                                <?php the_field('message_du_bouton_tweet_twitter2', $id_top_global); ?>
-                              </a>
-
-                            <?php else : ?>
-                              <a href="https://twitter.com/intent/tweet?hashtags=<?php the_field('hashtags_du_tweet_twitter_2', $id_top_global); ?>&original_referer=<?php echo $url_ranking; ?>&ref_src=&text=<?php the_field('message_du_tweet_twitter_2', $id_top_global); ?>&url=<?php echo $url_ranking; ?>&via=Vainkeurz" class="animate__jello animate__animated animate__delay-1s btn btn-max btn-tweet btn-rose waves-effect waves-float waves-light" target="_blank">
-                                <?php the_field('message_du_bouton_tweet_twitter2', $id_top_global); ?>
-                              </a>
-                            <?php endif; ?>
-
+                            <a href="https://twitter.com/intent/tweet?hashtags=<?php the_field('hashtags_du_tweet_twitter_2', $id_top_global); ?>&original_referer=<?php echo $url_ranking; ?>&ref_src=&text=<?php the_field('message_du_tweet_twitter_2', $id_top_global); ?>&url=<?php echo $url_ranking; ?>&via=<?php the_field('compte_twitter_twitter_2', $id_top_global); ?>" class="animate__jello animate__animated animate__delay-1s btn btn-max btn-tweet btn-rose waves-effect waves-float waves-light" target="_blank">
+                              <img src="https://vainkeurz.com/wp-content/uploads/2022/06/twitter.png" width="20" height="16" alt="Tweet icon">
+                              <?php the_field('message_du_bouton_tweet_twitter2', $id_top_global); ?>
+                            </a>
                           <?php endif; ?>
                         </div>
                       </div>
@@ -186,6 +170,16 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
                     <?php the_field('message_de_confirmation_t_sponso', $id_top_global); ?>
                   </div>
                 <?php endif; ?>
+              </div>
+            <?php endif; ?>
+
+            <?php if (get_field('uuid_user_r', $id_ranking) != $uuid_vainkeur && $id_top_global == 465667) : ?>
+              <div class="participation-content-sponso mb-4">
+                <div class="doitbro mt-1">
+                  <h1>Toi aussi participe au concours eneba</h1>
+                  <p>Pour tenter de gagner 1 bon d'achat d'une valeur de 50€, termine ta TopList et partage-la sur Twitter</p>
+                  <a href="<?php echo $top_infos['top_url']; ?>" class="animate__jello animate__animated animate__delay-1s btn btn-max btn-tweet btn-rose waves-effect waves-float waves-light">Je Participe</a>
+                </div>
               </div>
             <?php endif; ?>
 
@@ -310,10 +304,10 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
                                 <div class="loader loader--style1 w-100 mx-auto mt-1 text-center" title="0">
                                   <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
                                     <path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946
-                                      s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634
-                                      c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z" />
+                                    s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634
+                                    c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z" />
                                     <path fill="#000" d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0
-                                      C22.32,8.481,24.301,9.057,26.013,10.047z">
+                                    C22.32,8.481,24.301,9.057,26.013,10.047z">
                                       <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 20 20" to="360 20 20" dur="0.5s" repeatCount="indefinite" />
                                     </path>
                                   </svg>
@@ -335,17 +329,17 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
                               </div>
                               <div class="d-flex align-items-center flex-column">
                                 <!-- <div class="logo-vkrz-sponso">
-                                  <?php
-                                  if (get_field('illustration_de_la_sponso_t_sponso', $id_top_global)) : ?>
-                                    <a href="<?php the_field('lien_de_la_sponso_t_sponso', $id_top_global); ?>" target="_blank">
-                                      <?php echo wp_get_attachment_image(get_field('illustration_de_la_sponso_t_sponso', $id_top_global), 'large', '', array('class' => 'img-fluid')); ?>
-                                    </a>
-                                  <?php elseif (get_field('logo_de_la_sponso_t_sponso', $id_top_global)) : ?>
-                                    <a href="<?php the_field('lien_de_la_sponso_t_sponso', $id_top_global); ?>" target="_blank">
-                                      <?php echo wp_get_attachment_image(get_field('logo_de_la_sponso_t_sponso', $id_top_global), 'large', '', array('class' => 'img-fluid')); ?>
-                                    </a>
-                                  <?php endif; ?>
-                                </div> -->
+                                <?php
+                                if (get_field('illustration_de_la_sponso_t_sponso', $id_top_global)) : ?>
+                                  <a href="<?php the_field('lien_de_la_sponso_t_sponso', $id_top_global); ?>" target="_blank">
+                                    <?php echo wp_get_attachment_image(get_field('illustration_de_la_sponso_t_sponso', $id_top_global), 'large', '', array('class' => 'img-fluid')); ?>
+                                  </a>
+                                <?php elseif (get_field('logo_de_la_sponso_t_sponso', $id_top_global)) : ?>
+                                  <a href="<?php the_field('lien_de_la_sponso_t_sponso', $id_top_global); ?>" target="_blank">
+                                    <?php echo wp_get_attachment_image(get_field('logo_de_la_sponso_t_sponso', $id_top_global), 'large', '', array('class' => 'img-fluid')); ?>
+                                  </a>
+                                <?php endif; ?>
+                              </div> -->
                                 <div class="mt-2 social-media-sponso btn-group">
                                   <?php if (have_rows('liste_des_liens_t_sponso', $id_top_global)) : ?>
                                     <?php while (have_rows('liste_des_liens_t_sponso', $id_top_global)) : the_row(); ?>
@@ -761,7 +755,6 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
       </div>
     </div>
   </section>
-</div>
 </div>
 
 <?php get_footer(); ?>

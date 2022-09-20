@@ -107,7 +107,8 @@ function vkrz_tracking_vars()
         global $id_top;
         global $top_infos;
         global $infos_vainkeur;
-
+        $top_only_title = "";
+        
         if($current_post_type == "tournoi"){
             $id_top     = get_the_ID();
             $top_title  = "Top : ".$top_infos['top_number'] . " " . $top_infos['top_title'] . " - " . $top_infos['top_question'];
