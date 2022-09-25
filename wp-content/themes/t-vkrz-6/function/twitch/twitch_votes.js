@@ -1,66 +1,130 @@
-console.log("TWITCH VOTES SCRIPT… 🤹");
+// DECLARATION OF VARIABLES…
+let listeningForCount                      = true,
+    votePredictionBoolean                  = false,
+    waitingForParticipantsForPoints        = false,
+    votePointsBoolean                      = false,
+    voteParticipatifBoolean                = false,
+    waitingForParticipantsForPrediction    = false,
+    winnerAlready                          = false,
+    votesNumberForContenderOne             = 0,
+    votesNumberForContenderTwo             = 0,
+    users                                  = {},
+    losers                                 = {},
+    toFilter                               = [],
+    passed                                 = [],
+    nonPassed                              = [],
+    sameVoteGroup                          = [],
+    sameVoteGroupObj                       = {},
+    notSameVoteGroup                       = [],
+    notSameVoteGroupObj                    = {},
+    participantsDOM,
+    contenderOneVotesPercent, contenderTwoVotesPercent, votesNumber,
+    votePointsTable, votePointsTBody, votePointsTableFirstCopy,
+    preditcionParticipantsNumber, preditcionParticipantsVotedNumber,
+    pointsParticipantsNumber, pointsParticipantsVotedNumber,
+    position                               = 1,
+    positionStr                            = "",
+    userListItem                           = "",
+    X, A, B;
+  X = A = B = 0;
 
-// T SPONSO…
-const changeIcon = function(to) {
-  const plus = document.querySelector('.showTwitchBanner');
-
-  if(to === "plus") {
-    plus.querySelector('.fa-twitch').classList.add('d-none');
-    plus.querySelector('.fa-plus').classList.remove('d-none');
-    plus.querySelector('.fa-minus').classList.add('d-none');
-  } else if(to === "twitch") {
-    plus.querySelector('.fa-twitch').classList.remove('d-none');
-    plus.querySelector('.fa-plus').classList.add('d-none');
-    plus.querySelector('.fa-minus').classList.add('d-none');
-  } else if(to === "minus") {
-    plus.querySelector('.fa-twitch').classList.add('d-none');
-    plus.querySelector('.fa-plus').classList.add('d-none');
-    plus.querySelector('.fa-minus').classList.remove('d-none');
-  }
-}
-
-if(document.querySelector('.t-sponso-container') && document.querySelector('.t-sponso-banner')) {
-  const tSponsoContainer  = document.querySelector('.t-sponso-container'),
-        tSponsoBanner     = tSponsoContainer.querySelector('.t-sponso-banner'),
-        plus              = tSponsoContainer.querySelector('.showTwitchBanner'),
-        twitchModesBanner = document.querySelector('.modes-jeu-twitch');
-        
-  plus.classList.remove('d-none')
-
-  plus.addEventListener('click', () => {
-    if(twitchModesBanner.classList.contains('out')) {
-
-      changeIcon("twitch");
-
-      plus.setAttribute('onmouseover', "changeIcon('plus')");
-      plus.setAttribute('onmouseout', "changeIcon('twitch')");
-
-      twitchModesBanner.classList.remove('out');
-      tSponsoBanner.classList.remove('blur');
-    } else {
-      twitchModesBanner.classList.add('out');
-      tSponsoBanner.classList.add('blur');
-
-      changeIcon("minus");
-
-      plus.removeAttribute('onmouseover');
-      plus.removeAttribute('onmouseout');
-    }
-  })
-}
-
-// INTRO PAGE… 1️⃣
+// INTRO PAGE…
 if(document.querySelector('.modes-jeu-twitch')) {
+  const twitchBannerToggleBtnGlobal = document.querySelector('.showTwitchBanner');
+  twitchBannerToggleBtnGlobal.classList.remove('d-none');
+
+  // EXTENSION TOGGLE ICON…
+  const twitchGamesToggleIcon = function(to) {
+    const twitchBannerToggleBtn = document.querySelector('.showTwitchBanner');
+
+    if(to === "plus") {
+      twitchBannerToggleBtn.querySelector('.fa-twitch').classList.add('d-none');
+      twitchBannerToggleBtn.querySelector('.fa-plus').classList.remove('d-none');
+      twitchBannerToggleBtn.querySelector('.fa-minus').classList.add('d-none');
+    } else if(to === "twitch") {
+      twitchBannerToggleBtn.querySelector('.fa-twitch').classList.remove('d-none');
+      twitchBannerToggleBtn.querySelector('.fa-plus').classList.add('d-none');
+      twitchBannerToggleBtn.querySelector('.fa-minus').classList.add('d-none');
+    } else if(to === "minus") {
+      twitchBannerToggleBtn.querySelector('.fa-twitch').classList.add('d-none');
+      twitchBannerToggleBtn.querySelector('.fa-plus').classList.add('d-none');
+      twitchBannerToggleBtn.querySelector('.fa-minus').classList.remove('d-none');
+    }
+  }
+
+  // T-NORMAL…
+  if(document.querySelector('.t-normal-container')) {
+    const tNormalContainer      = document.querySelector('.t-normal-container'),
+          twitchBannerToggleBtn = tNormalContainer.querySelector('.showTwitchBanner'),
+          twitchModesBanner     = document.querySelector('.modes-jeu-twitch');
+          
+    let out;
+    window.addEventListener('click', (e) => {
+      if(e.target.closest('.modes-jeu-twitch') !== twitchModesBanner && e.target !== twitchModesBanner && out === true) {
+        setTimeout(() => twitchModesBanner.classList.add('d-none'), 1000)
+        twitchModesBanner.classList.add('animate__slideOutRight');
+
+        twitchGamesToggleIcon("twitch");
+
+        twitchBannerToggleBtn.setAttribute('onmouseover', "twitchGamesToggleIcon('plus')");
+        twitchBannerToggleBtn.setAttribute('onmouseout', "twitchGamesToggleIcon('twitch')");
+        out = false;
+      } else if(e.target.parentNode === twitchBannerToggleBtn || e.target === twitchBannerToggleBtn) {
+        out = true;
+        twitchBannerToggleBtn.removeAttribute('onmouseover');
+        twitchBannerToggleBtn.removeAttribute('onmouseout');
+
+        twitchModesBanner.classList.remove('d-none');
+        twitchModesBanner.classList.remove('animate__slideOutRight');
+
+        twitchGamesToggleIcon("minus");
+      }
+    })
+  }
+
+  // T-SPONSO…
+  if(document.querySelector('.t-sponso-container') && document.querySelector('.t-sponso-banner')) {
+    const tSponsoContainer      = document.querySelector('.t-sponso-container'),
+          tSponsoBanner         = tSponsoContainer.querySelector('.t-sponso-banner'),
+          twitchBannerToggleBtn = tSponsoContainer.querySelector('.showTwitchBanner'),
+          twitchModesBanner     = document.querySelector('.modes-jeu-twitch');
+    
+    let out;
+    window.addEventListener('click', (e) => {
+      if(e.target.closest('.modes-jeu-twitch') !== twitchModesBanner && e.target !== twitchModesBanner && out === true) {
+        twitchGamesToggleIcon("twitch");
+
+        twitchBannerToggleBtn.setAttribute('onmouseover', "twitchGamesToggleIcon('plus')");
+        twitchBannerToggleBtn.setAttribute('onmouseout', "twitchGamesToggleIcon('twitch')");
+
+        twitchModesBanner.classList.remove('out');
+        tSponsoBanner.classList.remove('blur');
+        out = false;
+      } else if(e.target.parentNode === twitchBannerToggleBtn || e.target === twitchBannerToggleBtn) {
+        out = true;
+        twitchModesBanner.classList.add('out');
+        tSponsoBanner.classList.add('blur');
+
+        twitchGamesToggleIcon("minus");
+
+        twitchBannerToggleBtn.removeAttribute('onmouseover');
+        twitchBannerToggleBtn.removeAttribute('onmouseout');
+      }
+    })
+  }
+
   const gameModesBanner = document.querySelector('.modes-jeu-twitch'),
         gameModesBtns   = gameModesBanner.querySelectorAll('.modeGameTwitchBtn'),
         gameModesSpan   = gameModesBanner.querySelector('.modes-jeu-twitch__content-msg');
-  
+
   if(localStorage.getItem('twitchGameMode')) {
     document.querySelector(`#${localStorage.getItem('twitchGameMode')}`).classList.add('selectedGameMode');
     gameModesSpan.classList.remove('d-none');
     document.querySelector('#begin_t')?.classList.add('pulsate');
     document.querySelector('#begin_top3')?.classList.add('pulsate');
     document.querySelectorAll('.twitch-icon-tbegin')?.forEach(icon => icon.classList.remove('d-none'));
+
+    twitchBannerToggleBtnGlobal.classList.add('alreadySelected')
   }
 
   gameModesBtns.forEach(button => {
@@ -87,39 +151,13 @@ if(document.querySelector('.modes-jeu-twitch')) {
         document.querySelectorAll('.twitch-icon-tbegin')?.forEach(icon => icon.classList.add('d-none'));
 
         localStorage.removeItem('twitchGameMode');
+        twitchBannerToggleBtnGlobal.classList.remove('alreadySelected')
       }
     })
   })
 }
 
-let listeningForCount                      = true,
-    votePredictionBoolean                  = false,
-    waitingForParticipantsForPoints        = false,
-    votePointsBoolean                      = false,
-    voteParticipatifBoolean                = false,
-    waitingForParticipantsForPrediction    = false,
-    winnerAlready                          = false,
-    votesNumberForContenderOne             = 0,
-    votesNumberForContenderTwo             = 0,
-    users                                  = {},
-    losers                                 = {},
-    toFilter                               = [],
-    passed                                 = [],
-    nonPassed                              = [],
-    sameVoteGroup                          = [],
-    sameVoteGroupObj                       = {},
-    notSameVoteGroup                       = [],
-    notSameVoteGroupObj                    = {},
-    participantsDOM,
-    contenderOneVotesPercent, contenderTwoVotesPercent, votesNumber,
-    votePointsTable, votePointsTBody, votePointsTableFirstCopy, pointsOne, pointsTwo,
-    position                               = 1,
-    positionStr                            = "",
-    userListItem                           = "",
-    X, A, B;
-  X = A = B = 0;
-
-// BATTLE PAGE… 2️⃣
+// BATTLE PAGE… 
 if(document.querySelector('.display_battle') && localStorage.getItem('twitchGameMode')) {
   const gameMode                 = localStorage.getItem('twitchGameMode'),
         twitchVotesContainer     = document.querySelector(".twitch-votes-container"),
@@ -140,6 +178,9 @@ if(document.querySelector('.display_battle') && localStorage.getItem('twitchGame
   } else if (gameMode === "votePrediction") {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     listeningForCount = false;
+
+    preditcionParticipantsNumber = document.querySelector('.prediction-participants');
+    preditcionParticipantsVotedNumber = document.querySelector('.prediction-participants-votey-nbr');
 
     document.querySelectorAll('.votes-container > p:first-of-type').forEach(p => p.style.marginTop = '2rem');
 
@@ -202,6 +243,9 @@ if(document.querySelector('.display_battle') && localStorage.getItem('twitchGame
     window.scrollTo({ top: 0, behavior: 'smooth' });
     listeningForCount = false;
 
+    pointsParticipantsNumber = document.querySelector('.points-participants');
+    pointsParticipantsVotedNumber = document.querySelector('.points-participants-votey-nbr');
+
     document.querySelectorAll('.votes-container > p:first-of-type').forEach(p => p.style.marginTop = '2rem');
 
     document.querySelector('#ranking-player').classList.remove('d-none');
@@ -256,7 +300,6 @@ if(document.querySelector('.display_battle') && localStorage.getItem('twitchGame
   
         twitchOverlay.classList.add('d-none')
         listeningForCount = true;
-        votePointsTableFirstCopy = votePointsTable.innerHTML;
       });
     })()
   }
@@ -335,8 +378,22 @@ if(document.querySelector('.display_battle') && localStorage.getItem('twitchGame
       ) {
         users[username] = { ...true, voted: false };
 
-        document.querySelector('#participants-overlay').classList.remove('d-none')
-        document.querySelector('#participants-overlay').textContent = Object.keys(users).join(', ') // SHOW PARTICIPANTS…
+        const participants = document.querySelector('#participants-overlay');
+        participants.classList.remove('d-none');
+        if(Object.keys(users).length < 25) {
+          if(Object.keys(users).length > 1) {
+            participants.dataset.content = `${Object.keys(users).length} Participants :`;
+          } else {
+            participants.dataset.content = `${Object.keys(users).length} Participant :`;
+          }
+          participants.textContent = Object.keys(users).join(', ') // SHOW PARTICIPANTS…
+        } else {
+          participants.dataset.content = ``;
+          participants.innerHTML = `Plus de ${Object.keys(users).length - 1} participants… <span class="va va-star-struck va-lg" style="vertical-align: sub !important;
+          "></span>`
+        }
+
+        preditcionParticipantsNumber.textContent = Object.keys(users).length;
   
         // ADD TO THE TABLE…
         userListItem = `<div class="card-element" id="${username}">${username}</div>`;
@@ -351,9 +408,11 @@ if(document.querySelector('.display_battle') && localStorage.getItem('twitchGame
         twitchChannel !== username &&
         users.hasOwnProperty(username) &&
         !users[username].voted &&
+        winnerAlready === false &&
         (message === "1" || message === "2")
       ) {
         document.querySelector(`#${username}`).classList.add('text-primary');
+        preditcionParticipantsVotedNumber.textContent = +preditcionParticipantsVotedNumber.textContent + 1;
   
         if (message === "1") {
           users[tags.username] = { side: "1", voted: true };
@@ -373,8 +432,22 @@ if(document.querySelector('.display_battle') && localStorage.getItem('twitchGame
       ) {
         users[username] = { ...true, voted: false };
   
-        document.querySelector('#participants-overlay').classList.remove('d-none')
-        document.querySelector('#participants-overlay').textContent = Object.keys(users).join(', ') // SHOW PARTICIPANTS…
+        const participants = document.querySelector('#participants-overlay');
+        participants.classList.remove('d-none');
+        if(Object.keys(users).length < 25) {
+          if(Object.keys(users).length > 1) {
+            participants.dataset.content = `${Object.keys(users).length} Participants :`;
+          } else {
+            participants.dataset.content = `${Object.keys(users).length} Participant :`;
+          }
+          participants.textContent = Object.keys(users).join(', ') // SHOW PARTICIPANTS…
+        } else {
+          participants.dataset.content = ``;
+          participants.innerHTML = `Plus de ${Object.keys(users).length - 1} participants… <span class="va va-star-struck va-lg" style="vertical-align: sub !important;
+          "></span>`
+        }
+
+        pointsParticipantsNumber.textContent = Object.keys(users).length;
 
         if(Object.keys(users).length >= 2) $('.mode-alert').animate({ opacity: 0 }); // REMOVE THE ALERT IF THERE IS MORE THAN 2 PARTICIPANTS…
 
@@ -396,8 +469,7 @@ if(document.querySelector('.display_battle') && localStorage.getItem('twitchGame
           <tr id="${username}">
             <td>${positionStr}</td>
             <td>${username}</td>
-            <td>🟠</td>
-            <td>0</td>
+            <td data-order="0">0</td>
           </tr>
         `;
         votePointsTBody.insertAdjacentHTML("beforeend", userListItem);
@@ -413,7 +485,8 @@ if(document.querySelector('.display_battle') && localStorage.getItem('twitchGame
         (message === "1" || message === "2")
       ) 
       {
-        document.querySelector(`#${username} td:nth-of-type(3)`).textContent = '🟢'
+        document.querySelector(`#${username} td:nth-of-type(2)`).classList.add('voted');
+        pointsParticipantsVotedNumber.textContent = +pointsParticipantsVotedNumber.textContent + 1;
         // let speech = new SpeechSynthesisUtterance(`${username} a bien voté!`)
         // window.speechSynthesis.speak(speech)
   
