@@ -77,7 +77,7 @@ function increase_top_counter($id_vainkeur)
             $list_tops_done = array();
             $top_gpexplorer = array();
             $list_tops_done = json_decode(get_field('liste_des_top_vkrz', $id_vainkeur));
-            $top_gpexplorer = get_field('liste_des_tops_room', 470827);
+            $top_gpexplorer = get_field('liste_des_tops_room', 484210);
             $all_done       = true;
             foreach ($top_gpexplorer as $top) {
                 if (!in_array($top, $list_tops_done)) {
