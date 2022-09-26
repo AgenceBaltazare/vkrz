@@ -72,8 +72,7 @@ get_header();
                           <img src="<?php echo $illu; ?>" alt="<?php echo get_the_title(get_the_id()); ?>" height="32" width="32">
                         <?php endif; ?>
                       </div>
-                    <?php $counter++;
-                    endwhile; ?>
+                    <?php endwhile; ?>
                   </div>
                 </div>
                 <div class="card-body">

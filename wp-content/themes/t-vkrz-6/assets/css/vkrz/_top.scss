@@ -1178,3 +1178,9 @@ body {
     position: fixed !important;
     z-index: 1000000 !important;
 }
+
+.top-big{
+    .min-tournoi .cov-illu {
+        min-height: 220px;
+    }
+}
