@@ -361,6 +361,10 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
                           </div>
                         <?php endif; ?>
 
+                        <?php if (!isMobile() && is_user_logged_in() && get_userdata($user_id)->twitch_user) : ?>
+                          <div id="twitch-games-ranking" class="card d-none" data-idRanking="<?= $id_ranking; ?>"></div>
+                        <?php endif; ?>
+
                         <div class="card">
                           <div class="card-body">
                             <h2 class="stats-mondiales mb-0">

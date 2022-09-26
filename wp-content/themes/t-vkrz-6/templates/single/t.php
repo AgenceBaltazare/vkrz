@@ -35,18 +35,18 @@ get_header();
 <script>
   const link_to_ranking = "<?= get_the_permalink($id_ranking) ?>";
 </script>
-<div class="app-content content cover" style="background: url(<?php echo $top_infos['top_cover']; ?>) center center no-repeat">
+
+<div class="app-content content cover t-normal-container" style="background: url(<?php echo $top_infos['top_cover']; ?>) center center no-repeat">
   <div class="content-overlay"></div>
   <div class="content-wrapper">
     <div class="content-body tournoi-content">
 
+
       <?php if (!$id_ranking) : ?>
 
-        <div class="content-intro">
-
-          <div class="row match-height">
-            <div class="intro col-sm-8 col-md-8 col-12">
-
+        <div class="content-intro container">
+          <div class="row justify-content-center">
+            <div class="col-md-8">
               <div class="card animate__animated animate__flipInX card-developer-meetup">
                 <div class="meetup-img-wrapper rounded-top text-left" style="background-image: url(<?php echo $top_infos['top_img']; ?>);">
                   <span class="badge badge-light-primary">Créé le <?php echo $top_infos['top_date']; ?></span>
@@ -234,7 +234,7 @@ get_header();
             </div>
 
             <?php if (!isMobile() && is_user_logged_in() && get_userdata($user_id)->twitch_user) : ?>
-              <div class="col-sm-2 col-md-3 col-12 modes-jeu-twitch animate__animated animate__slideInRight" style="background-image: url(<?php bloginfo('template_directory'); ?>/assets/images/events/twitch-games-banner.png);">
+              <div class="col-md-4 d-none modes-jeu-twitch animate__animated animate__slideInRight" style="background-image: url(<?php bloginfo('template_directory'); ?>/assets/images/events/twitch-games-banner.png);">
                 <div class="modes-jeu-twitch__content">
 
                   <div class="modes-jeu-twitch__content-header">
@@ -344,9 +344,8 @@ get_header();
                       </div>
                     </div>
 
-                    <!-- WINNER MODE… -->
-                    <div class="textcontainer">
-                      <span class="particletext confetti"></span>
+                    <div class="twitchGamesWinnerContainer">
+                      <span class="twitchGamesWinnerName confetti"></span>
                     </div>
                     <audio id="winner-sound" style="display: none; width: 0 !important;">
                       <source src="<?php bloginfo('template_directory'); ?>/assets/audios/winner-sound.mp3" type="audio/mpeg" />
@@ -406,58 +405,67 @@ get_header();
                       </div>
                       <span class="mode-alert"><i class="far fa-info-circle"></i> Il faut au moins deux participants</span>
 
-                      <div id="participants-overlay" class="mt-2 text-white d-none"></div>
+                      <div id="participants-overlay" class="mt-2 text-white d-none" data-content="Participants :"></div>
 
-                      <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" href="#" class="confirm_delete btn btn-sm btn-outline-dark waves-effect">
+                      <a 
+                        data-phrase1="Es-tu sûr de vouloir recommencer ?" 
+                        data-phrase2="Tous les votes de ce Top seront remis à 0" 
+                        data-id_ranking="<?php echo $id_ranking; ?>" 
+                        data-id_vainkeur="<?php echo $id_vainkeur; ?>" 
+                        href="#" 
+                        class="confirm_delete btn btn-sm btn-outline-dark waves-effect"
+                      >
                         Annuler
                       </a>
                     </div>
                   <?php endif; ?>
                 </div>
 
-                <div id="prediction-player" class="col-md-3 d-none">
-                  <div class="card mb-2" id="participants">
-                    <div class="card-header">
-                      <h4 class="card-title"><i class="fab fa-twitch"></i> Participants</h4>
-                    </div>
-                    <div class="card-body">
+                <?php if (!isMobile() && is_user_logged_in() && get_userdata($user_id)->twitch_user) : ?>
+                  <div id="prediction-player" class="col-3 d-none">
+                    <div class="card mb-2" id="participants">
+                      <div class="card-header flex-column align-items-start">
+                        <h4 class="card-title">
+                          <i class="fab fa-twitch"></i> <strong class="prediction-participants-votey-nbr">0</strong> de <strong class="prediction-participants">0</strong> Participants ont Voté
+                        </h4>
+                        <h4 class="card-title elimines d-none"></h4>
+                      </div>
+                      <div class="card-body">
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div id="ranking-player" class="col d-none">
-                  <table class="table table-points">
-                    <thead>
-                      <tr>
-                        <th>
-                          <span class="text-muted">
-                            Position
-                          </span>
-                        </th>
+                  <div id="ranking-player" class="col-3 d-none">
+                        <h4 class="card-title">
+                          <i class="fab fa-twitch"></i> <strong class="points-participants-votey-nbr">0</strong> de <strong class="points-participants">0</strong> Participants ont Voté
+                        </h4>
+                    <table class="table table-points">
+                      <thead>
+                        <tr>
+                          <th>
+                            <span class="text-muted">
+                              Position
+                            </span>
+                          </th>
 
-                        <th>
-                          <span class="text-muted">
-                            Vainkeur
-                          </span>
-                        </th>
+                          <th>
+                            <span class="text-muted">
+                              Vainkeur
+                            </span>
+                          </th>
 
-                        <th>
-                          <span class="text-muted">
-                            A voté ?
-                          </span>
-                        </th>
-
-                        <th class="text-left">
-                          <span class="text-muted">
-                            Points
-                          </span>
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                  </table>
-                </div>
+                          <th class="text-left">
+                            <span class="text-muted">
+                              Points
+                            </span>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      </tbody>
+                    </table>
+                  </div>
+                <?php endif; ?>
               </div>
             </div>
           </div>
@@ -471,6 +479,19 @@ get_header();
       <?php endif; ?>
     </div>
   </div>
+
+  <?php if (!isMobile() && is_user_logged_in() && get_userdata($user_id)->twitch_user) : ?>
+    <div 
+      class="showTwitchBanner d-none" 
+      style="background-image: url(<?php bloginfo('template_directory'); ?>/assets/images/events/twitch-plus.png);" 
+      onmouseover="twitchGamesToggleIcon('plus')" 
+      onmouseout="twitchGamesToggleIcon('twitch')"
+    >
+      <i class="fab fa-twitch"></i>
+      <i class="fa fa-plus d-none"></i>
+      <i class="fa fa-minus d-none"></i>
+    </div>
+  <?php endif; ?>
 </div>
 
 <?php if ($id_ranking) : ?>

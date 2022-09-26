@@ -12,6 +12,174 @@ import {
   orderBy,
 } from "./config.js";
 
+if(document.querySelector('#twitch-games-ranking')) {
+  const twitchGamesRankingContainer = document.querySelector('#twitch-games-ranking'),
+        idRanking                   = twitchGamesRankingContainer.dataset.idranking;
+
+  const predictionWinnerTemplate = function(winner, participantsNumber) {
+    return `
+      <div class="card-body">
+        <h4 class="card-title">
+          <i class="fab fa-twitch"></i> a gagné contre ${+participantsNumber - 1} autres participants
+        </h4>
+              
+        <div class="twitchGamesWinnerContainer">
+          <span class="twitchGamesWinnerName confetti">${winner}</span>
+        </div>
+      </div>
+    `
+  }
+
+  const tablePointsTemplate = function(tbody, participantsNumber) {
+    tbody = tbody.replaceAll('text-success', '')
+    tbody = tbody.replaceAll('↑', '')
+
+    let tbodyDOM = document.createElement('tbody');
+    tbodyDOM.innerHTML = tbody;
+
+    // REFACTOR POSITIONS WITH NUMBERS…
+    let rank = 1;
+    const rows = tbodyDOM.querySelectorAll('tr');
+    rows.forEach((row, index) => {
+      let position = Number(row.querySelector('td:last-of-type').dataset.order);
+
+      if(index > 0 && position < Number(rows[index - 1].querySelector('td:last-of-type').dataset.order)) {
+        rank = index + 1;
+      }
+
+      row.querySelector('td:first-of-type').innerHTML = rank;
+    })
+
+    // REFACTOR POSITIONS WITH EMOJIS…
+    let positionStr = "";
+    tbodyDOM.querySelectorAll('tr').forEach((row, index) => {
+      row.querySelector('td:first-of-type').classList.add('text-center');
+      row.querySelector('td:last-of-type').classList.add('text-center');
+ 
+      let position = row.querySelector('td:first-of-type').innerHTML;
+      console.log(position);
+      switch (position) {
+        case "1":
+          positionStr = '<span class="ico va va-medal-1 va-lg"></span>';
+          break;
+        case "2":
+          positionStr = '<span class="ico va va-medal-2 va-lg"></span>';
+          break;
+        case "3":
+          positionStr = '<span class="ico va va-medal-3 va-lg"></span>';
+          break;
+        default:
+          positionStr = index + 1;
+      }
+      row.querySelector('td:first-of-type').innerHTML = positionStr;
+    })
+
+    return `
+      <div class="card-body">
+        <h4 class="card-title">
+          <i class="fab fa-twitch"></i> Classements des ${participantsNumber} participants
+        </h4>
+
+        <table class="table table-points" style="margin-top: auto;">
+          <thead>
+            <tr>
+              <th>
+                <span class="text-muted">
+                  Position
+                </span>
+              </th>
+
+              <th>
+                <span class="text-muted">
+                  Vainkeur
+                </span>
+              </th>
+
+              <th class="text-left">
+                <span class="text-muted">
+                  Points
+                </span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            ${tbodyDOM.innerHTML}
+          </tbody>
+        </table>
+      </div> 
+    `
+  }
+
+  if(localStorage.getItem('resumeTwitchGame')) {    
+    let resumeTwitchGame = localStorage.getItem('resumeTwitchGame');
+    resumeTwitchGame = JSON.parse(resumeTwitchGame);
+
+    if(resumeTwitchGame.idRanking === idRanking) {
+      if(resumeTwitchGame.mode === "votePoints") {
+        twitchGamesRankingContainer.innerHTML = tablePointsTemplate(resumeTwitchGame.tbody, resumeTwitchGame.participantsNumber);
+        twitchGamesRankingContainer.classList.remove('d-none');
+
+        if(resumeTwitchGame.participantsNumber >= 25) {
+          let table = $('.table-points').dataTable();
+          table.fnDestroy();
+  
+          table.dataTable({
+            lengthMenu: [25],
+            paging: true,
+            searching: true,
+            language: {
+              search: "_INPUT_",
+              searchPlaceholder: "Rechercher...",
+              processing: "Traitement en cours...",
+              info: "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
+              infoEmpty:
+                  "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
+              infoFiltered: "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+              infoPostFix: "",
+              loadingRecords: "Chargement en cours...",
+              zeroRecords: "Aucun &eacute;l&eacute;ment &agrave; afficher 😩",
+              emptyTable: "Aucun résultat trouvé 😩",
+              paginate: {
+                  first: "Premier",
+                  previous: "Pr&eacute;c&eacute;dent",
+                  next: "Suivant",
+                  last: "Dernier",
+              },
+            },
+          });
+        }
+      } else if (resumeTwitchGame.mode === "votePrediction") {
+        twitchGamesRankingContainer.innerHTML = predictionWinnerTemplate(resumeTwitchGame.winner, resumeTwitchGame.participantsNumber)
+
+        twitchGamesRankingContainer.classList.remove('d-none');
+
+        $(".twitchGamesWinnerContainer").addClass('show');
+        confetti();
+      
+        function rnd(m,n) {
+          m = parseInt(m);
+          n = parseInt(n);
+      
+          return Math.floor( Math.random() * (n - m + 1) ) + m;
+        }
+      
+        function confetti() {
+          $.each($(".twitchGamesWinnerName.confetti"), function(){
+            var confetticount = ($(this).width()/50) * 10;
+            for(var i = 0; i <= confetticount; i++) {
+                $(this).append('<span class="particle c' + rnd(1,4) + '" style="top:' + rnd(10,50) + '%; left:' + rnd(0,100) + '%;width:' + rnd(2,12) + 'px; height:' + rnd(2,14) + 'px;animation-delay: ' + (rnd(0,30)/10) + 's;"></span>');
+            }
+          });
+        }
+      }
+    }
+
+    // REMOVE LOCAL STORAGE…
+    localStorage.removeItem('resumeTwitchGame');
+    localStorage.removeItem('twitchGameMode');
+  }
+}
+
 if (document.querySelector(".vs-resemblance")) {
   const cardResemblance = document.querySelector(".vs-resemblance");
   const idRanking = cardResemblance.dataset.idranking;
