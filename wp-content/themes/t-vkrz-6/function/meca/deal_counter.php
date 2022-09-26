@@ -73,7 +73,7 @@ function increase_top_counter($id_vainkeur)
         }
 
         // Badge : GP Explorer
-        if (!get_vainkeur_badge($id_vainkeur, "GP explorer")) {
+        if (!get_vainkeur_badge($id_vainkeur, "GP Explorer")) {
             $list_tops_done = array();
             $top_gpexplorer = array();
             $list_tops_done = json_decode(get_field('liste_des_top_vkrz', $id_vainkeur));
@@ -85,7 +85,7 @@ function increase_top_counter($id_vainkeur)
                 }
             }
             if ($all_done == true) {
-                update_vainkeur_badge($id_vainkeur, "GP explorer");
+                update_vainkeur_badge($id_vainkeur, "GP Explorer");
             }
         }
 
