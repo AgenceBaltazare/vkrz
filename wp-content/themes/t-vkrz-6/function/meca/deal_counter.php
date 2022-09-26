@@ -72,6 +72,23 @@ function increase_top_counter($id_vainkeur)
             }
         }
 
+        // Badge : GP Explorer
+        if (!get_vainkeur_badge($id_vainkeur, "GP explorer")) {
+            $list_tops_done = array();
+            $top_gpexplorer = array();
+            $list_tops_done = json_decode(get_field('liste_des_top_vkrz', $id_vainkeur));
+            $top_gpexplorer = get_field('liste_des_tops_room', 470827);
+            $all_done       = true;
+            foreach ($top_gpexplorer as $top) {
+                if (!in_array($top, $list_tops_done)) {
+                    $all_done = false;
+                }
+            }
+            if ($all_done == true) {
+                update_vainkeur_badge($id_vainkeur, "GP explorer");
+            }
+        }
+
         // Badge : Nocturne
         if (!get_vainkeur_badge($id_vainkeur, "Nocturne")) {
             if (

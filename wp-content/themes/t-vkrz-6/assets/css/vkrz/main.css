@@ -2768,6 +2768,10 @@ body {
   z-index: 1000000 !important;
 }
 
+.top-big .min-tournoi .cov-illu {
+  min-height: 220px;
+}
+
 .list-share {
   flex-wrap: wrap;
 }
@@ -5574,6 +5578,10 @@ select:-webkit-autofill:focus {
 
 .va-seven {
   background-image: url(../../images/emojis/keycap-digit-seven_37-fe0f-20e3.png);
+}
+
+.va-gpexplorer {
+  background-image: url(../../images/emojis/f1.png);
 }
 
 .va-avis {
