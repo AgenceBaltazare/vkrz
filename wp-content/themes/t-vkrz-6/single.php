@@ -33,4 +33,8 @@ switch (get_post_type()) {
   case "post":
     get_template_part("templates/single/post");
     break;
+
+  case "room":
+    get_template_part("templates/single/room");
+    break;
 }

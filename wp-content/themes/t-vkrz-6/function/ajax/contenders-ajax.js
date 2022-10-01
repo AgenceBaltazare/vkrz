@@ -1,4 +1,5 @@
 import {
+  localhost,
   collection,
   getDocs,
   addDoc,
@@ -23,54 +24,109 @@ $(document).ready(function ($) {
   });
 
   $(document).on("click", ".display_battle .link-contender", {}, function (e) {
-    if (document.querySelector(".twitch-votes-container")) {
-      // CLEAR COUNTING FOR EACH VOTE…
-      console.log("Clear counting…");
-      votesNumberForContenderOne = 0;
-      votesNumberForContenderTwo = 0;
-      contenderOneVotes.textContent = votesNumberForContenderOne;
-      contenderTwoVotes.textContent = votesNumberForContenderTwo;
-      contenderOneVotesPercent.textContent = "0%";
-      contenderTwoVotesPercent.textContent = "0%";
-      X = A = B = 0;
-
-      document.querySelector("#votes-stats-1").classList.remove("active");
-      document.querySelector("#votes-stats-2").classList.remove("active");
-
+    if (document.querySelector('.display_battle') && localStorage.getItem('twitchGameMode') !== null) {
+      
       if (voteParticipatifBoolean) {
         users = {};
-      } else if (votePredictionBoolean) {
-        let side;
-        if (e.target.closest("div").getAttribute("id") == "c_1") side = "1";
-        else if (e.target.closest("div").getAttribute("id") == "c_2")
-          side = "2";
+        votesNumber.textContent = "0";
+        votesNumberForContenderOne = 0;
+        votesNumberForContenderTwo = 0;
+        contenderOneVotesPercent.textContent = "0%";
+        contenderTwoVotesPercent.textContent = "0%";
+        X = A = B = 0;
+        document.querySelector("#votes-stats-1").classList.remove("active");
+        document.querySelector("#votes-stats-2").classList.remove("active");
+      } else if (votePredictionBoolean && winnerAlready === false) {
+          let side;
+          if (e.target.closest("div").getAttribute("id") == "c_1") side = "1";
+          else if (e.target.closest("div").getAttribute("id") == "c_2")
+            side = "2";
+  
+          toFilter = Object.entries(users);
+          nonPassed = toFilter.filter(([key, value]) => value.side !== side);    
+          passed = toFilter.filter(([key, value]) => value.side === side);
 
-        toFilter = Object.entries(users);
-        nonPassed = toFilter.filter(([key, value]) => value.side !== side);
-        losers = {...losers, ...Object.fromEntries(nonPassed)};
+          // WINNER CHICKEN DINNER… 
+          if(passed.length === 1 && winnerAlready === false) 
+          {
+            winnerAlready = true;
+            document.querySelectorAll('.votes-container > p:first-of-type').forEach(p => p.remove());
+            document.querySelector('.display_battle').classList.add('blur')
+            document.querySelector("#winner-sound").play()
+            document.querySelector('.twitchGamesWinnerName').textContent = passed[0][0];
+            $(".twitchGamesWinnerContainer").addClass('show');
+            confetti();
 
-        passed = toFilter.filter(([key, value]) => value.side === side);
-        for (let user of toFilter)
-          if (user[1]["voted"]) user[1]["voted"] = false;
-        users = Object.fromEntries(passed);
+            function rnd(m,n) {
+              m = parseInt(m);
+              n = parseInt(n);
 
-        // PROCESS FOR PARTICIPANTS…
-        participantsDOM.innerHTML = userListItem = "";
-        for(let participant of Object.keys(users)) userListItem += `<li class="list-group-item" id="${participant}">${participant}</li>`;
-        participantsDOM.innerHTML = userListItem 
+              return Math.floor( Math.random() * (n - m + 1) ) + m;
+            }
+  
+            function confetti() {
+              $.each($(".twitchGamesWinnerName.confetti"), function(){
+                var confetticount = ($(this).width()/50) * 10;
+                for(var i = 0; i <= confetticount; i++) {
+                    $(this).append('<span class="particle c' + rnd(1,4) + '" style="top:' + rnd(10,50) + '%; left:' + rnd(0,100) + '%;width:' + rnd(5,15) + 'px; height:' + rnd(5,10) + 'px;animation-delay: ' + (rnd(0,30)/10) + 's;"></span>');
+                }
+              });
+            }
 
-        // PROCESS FOR LOSERS…
-        if(nonPassed.length > 0) {
-          let losersDOM = document.querySelector('#losers');
-          losersDOM.classList.remove('d-none');
-          losersDOM = losersDOM.querySelector('.list-group');
+            setTimeout(() => {
+              document.querySelector('.display_battle').classList.remove('blur')
+              document.querySelector('.twitchGamesWinnerContainer').remove()
+            }, 4000)
 
-          for(const [key, loser] of Object.entries(nonPassed)) {
-            losersDOM.insertAdjacentHTML("afterbegin", `<li class="list-group-item text-danger">${loser[0]}</li>`);
+            // SAVE TO LOCAL STORAGE…
+            const twitchGameResumeObj = {
+              "idRanking": `${$(".contender_zone").data("id-ranking")}`,
+              "participantsNumber": `${Object.keys(users).length + Object.keys(losers).length}`,
+              "mode": "votePrediction",
+              "winner": `${passed[0][0]}`
+            }
+            localStorage.removeItem('resumeTwitchGame');
+            localStorage.setItem('resumeTwitchGame', JSON.stringify(twitchGameResumeObj));
           }
-        }
 
-        for(let user in users) users[user] = { side: "0", voted: false };
+          for (let user of toFilter) {
+            user[1]["voted"] = false;
+            user[1]["side"]  = "0";
+            document.querySelector(`#${user[0]}`).classList.remove('text-primary')
+          }
+
+          if(passed.length === 0) {
+            users = Object.fromEntries(nonPassed);
+          } else {
+            users = Object.fromEntries(passed);
+
+            losers = {...losers, ...Object.fromEntries(nonPassed)};
+
+            // PROCESS FOR LOSERS…
+            if(nonPassed.length > 0) {
+              const elimines = document.querySelector('#participants .card-title.elimines');
+              elimines.classList.remove('d-none');
+              elimines.textContent = `🥲 ${Object.keys(losers).length} ${Object.keys(losers).length > 1 ? 'Eliminés' : 'Eliminé'}`;
+
+              for(const [key, loser] of Object.entries(nonPassed)) {
+                let target = document.querySelector(`#${loser[0]}`)
+                target.classList.remove('text-primary');
+                target.classList.add('beforeDelete');
+                setTimeout(() => {
+                  target.remove()
+                }, 4000)
+              }
+            }
+          }
+      
+          if(Object.keys(users).length === 1 || winnerAlready === true) {
+            document.querySelector('#participants .card-title').innerHTML = "<i class='fab fa-twitch'></i> On a un gagnant!! 🎉"
+          } else if (Object.keys(users).length > 1) {
+            preditcionParticipantsVotedNumber.textContent = 0;
+            preditcionParticipantsNumber.textContent = Object.keys(users).length;
+          } else if (Object.keys(users).length === 0) {
+            document.querySelector('#participants .card-title').innerHTML = "<i class='fab fa-twitch'></i> 0 Participants"
+          }
       } else if (votePointsBoolean) {
         let side;
         if (e.target.closest("div").getAttribute("id") == "c_1") side = "1";
@@ -89,41 +145,20 @@ $(document).ready(function ($) {
         for (const vainkeurPlusOne of Object.keys(sameVoteGroupObj)) {
           const vainkeurPlusOneDOM                = document.querySelector(`#${vainkeurPlusOne}`),
                 vainkeurPlusOneDOMpoints          = vainkeurPlusOneDOM.querySelector('td:last-of-type');
-          let vainkeurPlusOneDOMpointsTextContent = vainkeurPlusOneDOMpoints.textContent;
 
-          if(vainkeurPlusOneDOMpointsTextContent.includes("↑")) {
-            pointsOne = vainkeurPlusOneDOMpointsTextContent.substring(0, vainkeurPlusOneDOMpointsTextContent.indexOf("↑"));
-          } else {
-            pointsOne = vainkeurPlusOneDOMpointsTextContent.substring(0, vainkeurPlusOneDOMpointsTextContent.indexOf("↓"));
-          }
-
-          vainkeurPlusOneDOMpoints.innerHTML = `${+pointsOne + 1} &uarr;`
-          vainkeurPlusOneDOMpoints.setAttribute('data-order', `${+pointsOne + 1}`)
-          vainkeurPlusOneDOMpoints.classList.remove('text-danger')
+          vainkeurPlusOneDOMpoints.innerHTML = `${+vainkeurPlusOneDOMpoints.dataset.order + 1} &uarr;`
           vainkeurPlusOneDOMpoints.classList.add('text-success')
+          vainkeurPlusOneDOMpoints.setAttribute('data-order', `${+vainkeurPlusOneDOMpoints.dataset.order + 1}`)
         } 
 
         if(notSameVoteGroup.length > 0) {
           for (let vainkeurMinusOne of Object.keys(notSameVoteGroupObj)) {
             const vainkeurMinusOneDOM                 = document.querySelector(`#${vainkeurMinusOne}`),
                   vainkeurMinusOneDOMpoints           = vainkeurMinusOneDOM.querySelector('td:last-of-type');
-            let vainkeurMinusOneDOMpointsTextContent  = vainkeurMinusOneDOMpoints.textContent;
 
-            if(vainkeurMinusOneDOMpointsTextContent.includes("↑")) {
-              pointsTwo = vainkeurMinusOneDOMpointsTextContent.substring(0, vainkeurMinusOneDOMpointsTextContent.indexOf("↑"));
-            } else {
-              pointsTwo = vainkeurMinusOneDOMpointsTextContent.substring(0, vainkeurMinusOneDOMpointsTextContent.indexOf("↓"));
-            }
-
-            if(+pointsTwo > 0) {
-              vainkeurMinusOneDOMpoints.innerHTML = `${+pointsTwo - 1} &darr;`
-              vainkeurMinusOneDOMpoints.setAttribute('data-order', `${+pointsTwo - 1}`)
-            } else {
-              vainkeurMinusOneDOMpoints.innerHTML = "0 &darr;"
-              vainkeurMinusOneDOMpoints.setAttribute('data-order', '0')
-            }
+            vainkeurMinusOneDOMpoints.innerHTML = vainkeurMinusOneDOMpoints.dataset.order;
             vainkeurMinusOneDOMpoints.classList.remove('text-success')
-            vainkeurMinusOneDOMpoints.classList.add('text-danger')
+            vainkeurMinusOneDOMpoints.setAttribute('data-order', vainkeurMinusOneDOMpoints.dataset.order)
           }
         }   
 
@@ -136,7 +171,7 @@ $(document).ready(function ($) {
               autoWidth: true,
               paging: false,
               searching: false,
-              order: [[3, 'desc']],
+              order: [[2, 'desc']],
             });
 
             positionStr = "";
@@ -156,11 +191,12 @@ $(document).ready(function ($) {
               }
 
               row.querySelector('td:first-of-type').innerHTML = positionStr;
-              row.querySelector('td:nth-of-type(3)').textContent = '🟠';
-
+              row.querySelector('td:nth-of-type(2)').classList.remove('voted');
             })
           }();
         }
+
+        pointsParticipantsVotedNumber.textContent = 0;
 
         for(let user in users) users[user] = { side: "0", voted: false };
       }
@@ -385,7 +421,7 @@ $(document).ready(function ($) {
                 }
               }
 
-              if (currentUserId != "0") {
+              if (currentUserId != "0" && localhost === false) {
                 const followersQuery = query(
                   collection(database, "notifications"),
                   where("notifType", "==", "follow"),
@@ -701,7 +737,23 @@ $(document).ready(function ($) {
 
                 $(location).attr("href", link_to_ranking);
               } else {
-                $(location).attr("href", link_to_ranking);
+                if(document.querySelector('.display_battle') && localStorage.getItem('twitchGameMode') !== null && votePointsBoolean) {
+                  // SAVE TO LOCAL STORAGE…
+                  const twitchGameResumeObj = {
+                    "idRanking": `${id_ranking}`,
+                    "participantsNumber": `${Object.keys(users).length}`,
+                    "mode": "votePoints",
+                    "tbody": `${document.querySelector('.table-points tbody').innerHTML}`
+                  }
+                  localStorage.removeItem('resumeTwitchGame');
+                  localStorage.setItem('resumeTwitchGame', JSON.stringify(twitchGameResumeObj));
+
+                  $(location).attr("href", link_to_ranking);
+                } else {
+                  localStorage.removeItem('twitchGameMode');
+
+                  $(location).attr("href", link_to_ranking);
+                }
               }
             })();
           }

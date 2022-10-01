@@ -1295,161 +1295,6 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   background-color: transparent !important;
 }
 
-#countdown {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  margin: 4rem 0;
-}
-#countdown .counter {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-}
-#countdown .counter.hide {
-  transform: translate(-50%, -50%) scale(0);
-  -webkit-animation: hide 0.2s ease-out;
-          animation: hide 0.2s ease-out;
-}
-@-webkit-keyframes hide {
-  0% {
-    transform: translate(-50%, -50%) scale(1);
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(0);
-  }
-}
-@keyframes hide {
-  0% {
-    transform: translate(-50%, -50%) scale(1);
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(0);
-  }
-}
-#countdown .final {
-  width: 100%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0);
-}
-#countdown .final.show {
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-animation: show 0.3s ease-in;
-          animation: show 0.3s ease-in;
-}
-@-webkit-keyframes show {
-  0% {
-    transform: translate(-50%, -50%) scale(0);
-  }
-  80% {
-    transform: translate(-50%, -50%) scale(1.4);
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(1);
-  }
-}
-@keyframes show {
-  0% {
-    transform: translate(-50%, -50%) scale(0);
-  }
-  80% {
-    transform: translate(-50%, -50%) scale(1.4);
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(1);
-  }
-}
-#countdown .nums {
-  color: #f4167f;
-  position: relative;
-  font-size: 50px;
-  overflow: hidden;
-  width: 250px;
-  height: 50px;
-}
-#countdown .nums span {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%) rotate(120deg);
-  transform-origin: bottom center;
-}
-#countdown .nums span.in {
-  transform: translate(-50%, -50%) rotate(0deg);
-  -webkit-animation: goIn 0.5s ease-in-out;
-          animation: goIn 0.5s ease-in-out;
-}
-#countdown .nums span.out {
-  -webkit-animation: goOut 0.5s ease-in-out;
-          animation: goOut 0.5s ease-in-out;
-}
-@-webkit-keyframes goIn {
-  0% {
-    transform: translate(-50%, -50%) rotate(120deg);
-  }
-  30% {
-    transform: translate(-50%, -50%) rotate(-20deg);
-  }
-  60% {
-    transform: translate(-50%, -50%) rotate(10deg);
-  }
-  90%, 100% {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-}
-@keyframes goIn {
-  0% {
-    transform: translate(-50%, -50%) rotate(120deg);
-  }
-  30% {
-    transform: translate(-50%, -50%) rotate(-20deg);
-  }
-  60% {
-    transform: translate(-50%, -50%) rotate(10deg);
-  }
-  90%, 100% {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-}
-@-webkit-keyframes goOut {
-  0%, 30% {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  60% {
-    transform: translate(-50%, -50%) rotate(20deg);
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(-120deg);
-  }
-}
-@keyframes goOut {
-  0%, 30% {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  60% {
-    transform: translate(-50%, -50%) rotate(20deg);
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(-120deg);
-  }
-}
-
-.twitch_live {
-  margin-bottom: 15px;
-}
-.twitch_live a img {
-  border-radius: 10px;
-}
-.twitch_live a:hover {
-  transition: all 0.2s ease-in;
-  transform: scale(1.1);
-}
-
 .page-template-monitor .list-vainkeur-monitor {
   line-height: 14px;
 }
@@ -2024,7 +1869,7 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
 
 .display_battle {
   overflow: hidden;
-  padding: 20px 0 40px;
+  padding: 20px 0 10px;
 }
 
 .current_rank .demo-inline-spacing {
@@ -2263,33 +2108,668 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   margin-top: 20px;
 }
 
-.votes-container .taper {
+.twitch_live {
+  margin-bottom: 15px;
+}
+.twitch_live a img {
+  border-radius: 10px;
+}
+.twitch_live a:hover {
+  transition: all 0.2s ease-in;
+  transform: scale(1.1);
+}
+
+.t-sponso-container .twitch-votes-container,
+.t-normal-container .twitch-votes-container {
+  margin-top: -2rem;
+}
+.t-sponso-container .twitch-votes-container .votes-stats-p,
+.t-normal-container .twitch-votes-container .votes-stats-p {
+  font-size: 1.8rem;
+  line-height: 100%;
+  margin: 0.5rem;
+}
+.t-sponso-container .twitch-votes-container .votes-stats-p .votes-number,
+.t-normal-container .twitch-votes-container .votes-stats-p .votes-number {
+  color: #FFE160;
+}
+.t-sponso-container .twitch-votes-container .votes-stats-p + p,
+.t-normal-container .twitch-votes-container .votes-stats-p + p {
+  font-size: 1rem;
+}
+.t-sponso-container .twitch-votes-container .votes-container > p:first-of-type,
+.t-normal-container .twitch-votes-container .votes-container > p:first-of-type {
   color: #f4167f;
   font-weight: bold;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
 }
-.votes-container .votes-stats {
+.t-sponso-container .twitch-votes-container .votes-container .votes-stats,
+.t-normal-container .twitch-votes-container .votes-container .votes-stats {
   color: #FFF;
-  padding: 2.2rem;
+  height: 80px;
+  width: 80px;
   border: 1px solid #7367F0;
   border-radius: 50%;
   text-align: center;
   display: inline-block;
   outline-color: #7367F0;
   transition: all 700ms linear;
+  position: relative;
 }
-.votes-container .votes-stats.active {
+.t-sponso-container .twitch-votes-container .votes-container .votes-stats.active,
+.t-normal-container .twitch-votes-container .votes-container .votes-stats.active {
   outline-color: rgba(255, 255, 255, 0);
   text-shadow: 0 0 20px rgb(255, 255, 255);
   box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.2), 0 0 20px rgba(255, 255, 255, 0.3);
   outline-offset: 15px;
 }
-.votes-container .votes-stats .votes-percent {
-  font-size: 2.6rem;
+.t-sponso-container .twitch-votes-container .votes-container .votes-stats .votes-percent,
+.t-normal-container .twitch-votes-container .votes-container .votes-stats .votes-percent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.4rem;
   font-weight: bold;
+  margin: 0;
 }
-.votes-container .votes-stats .votes-paragraph {
+.t-sponso-container .twitch-votes-container .votes-container .votes-stats .votes-paragraph,
+.t-normal-container .twitch-votes-container .votes-container .votes-stats .votes-paragraph {
   margin: 0 !important;
+}
+.t-sponso-container #countdown,
+.t-normal-container #countdown {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin: 4rem 0;
+  width: 100%;
+}
+.t-sponso-container #countdown .counter,
+.t-normal-container #countdown .counter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.t-sponso-container #countdown .counter.hide,
+.t-normal-container #countdown .counter.hide {
+  transform: translate(-50%, -50%) scale(0);
+  -webkit-animation: hide 0.2s ease-out;
+          animation: hide 0.2s ease-out;
+}
+.t-sponso-container #countdown .counter .nums,
+.t-normal-container #countdown .counter .nums {
+  color: #f4167f;
+  position: relative;
+  font-size: 100px;
+  overflow: hidden;
+  height: 80px;
+}
+.t-sponso-container #countdown .counter .nums span,
+.t-normal-container #countdown .counter .nums span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(120deg);
+  transform-origin: bottom center;
+}
+.t-sponso-container #countdown .counter .nums span.in,
+.t-normal-container #countdown .counter .nums span.in {
+  transform: translate(-50%, -50%) rotate(0deg);
+  -webkit-animation: goIn 0.5s ease-in-out;
+          animation: goIn 0.5s ease-in-out;
+}
+.t-sponso-container #countdown .counter .nums span.out,
+.t-normal-container #countdown .counter .nums span.out {
+  -webkit-animation: goOut 0.5s ease-in-out;
+          animation: goOut 0.5s ease-in-out;
+}
+@-webkit-keyframes goIn {
+  0% {
+    transform: translate(-50%, -50%) rotate(120deg);
+  }
+  30% {
+    transform: translate(-50%, -50%) rotate(-20deg);
+  }
+  60% {
+    transform: translate(-50%, -50%) rotate(10deg);
+  }
+  90%, 100% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+}
+@keyframes goIn {
+  0% {
+    transform: translate(-50%, -50%) rotate(120deg);
+  }
+  30% {
+    transform: translate(-50%, -50%) rotate(-20deg);
+  }
+  60% {
+    transform: translate(-50%, -50%) rotate(10deg);
+  }
+  90%, 100% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+}
+@-webkit-keyframes goOut {
+  0%, 30% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  60% {
+    transform: translate(-50%, -50%) rotate(20deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(-120deg);
+  }
+}
+@keyframes goOut {
+  0%, 30% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  60% {
+    transform: translate(-50%, -50%) rotate(20deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(-120deg);
+  }
+}
+.t-sponso-container #countdown .counter h4,
+.t-normal-container #countdown .counter h4 {
+  font-size: 3.1rem !important;
+}
+.t-sponso-container #countdown .final,
+.t-normal-container #countdown .final {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+}
+.t-sponso-container #countdown .final.show,
+.t-normal-container #countdown .final.show {
+  transform: translate(-50%, -50%) scale(1);
+  -webkit-animation: show 0.3s ease-in;
+          animation: show 0.3s ease-in;
+}
+@-webkit-keyframes hide {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0);
+  }
+}
+@keyframes hide {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0);
+  }
+}
+.t-sponso-container .mode-alert,
+.t-normal-container .mode-alert {
+  margin-top: 0.35rem;
+  display: block;
+  color: rgba(234, 83, 86, 0.5176470588);
+}
+.t-sponso-container .twitchGamesWinnerContainer,
+.t-normal-container .twitchGamesWinnerContainer {
+  padding: 40px 0;
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+}
+.t-sponso-container .twitchGamesWinnerContainer.show,
+.t-normal-container .twitchGamesWinnerContainer.show {
+  transform: translate(-50%, -50%) scale(1);
+  -webkit-animation: show 0.3s ease-in;
+          animation: show 0.3s ease-in;
+}
+.t-sponso-container .twitchGamesWinnerName,
+.t-normal-container .twitchGamesWinnerName {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 120px;
+  text-transform: uppercase;
+  text-align: center;
+  position: relative;
+}
+.t-sponso-container .twitchGamesWinnerName.confetti > .particle,
+.t-normal-container .twitchGamesWinnerName.confetti > .particle {
+  opacity: 0;
+  position: absolute;
+  -webkit-animation: confetti 3s ease-in infinite;
+          animation: confetti 3s ease-in infinite;
+}
+.t-sponso-container .twitchGamesWinnerName.confetti > .particle.c1,
+.t-normal-container .twitchGamesWinnerName.confetti > .particle.c1 {
+  background-color: #d13447;
+}
+.t-sponso-container .twitchGamesWinnerName.confetti > .particle.c2,
+.t-normal-container .twitchGamesWinnerName.confetti > .particle.c2 {
+  background-color: #ffbf00;
+}
+.t-sponso-container .twitchGamesWinnerName.confetti > .particle.c3,
+.t-normal-container .twitchGamesWinnerName.confetti > .particle.c3 {
+  background-color: #263672;
+}
+.t-sponso-container .twitchGamesWinnerName.confetti > .particle.c4,
+.t-normal-container .twitchGamesWinnerName.confetti > .particle.c4 {
+  background-color: #0d963d;
+}
+.t-sponso-container .twitchGamesWinnerName::before,
+.t-normal-container .twitchGamesWinnerName::before {
+  content: url("https://www.freepnglogos.com/uploads/crown-png/pin-leanne-dlamini-women-women-gold-king-crown-35.png");
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+  transform: scale(0.05) rotate(45deg);
+  right: -13%;
+  top: -86%;
+}
+@-webkit-keyframes confetti {
+  0% {
+    opacity: 0;
+    transform: translateY(0%) rotate(0deg);
+  }
+  10% {
+    opacity: 1;
+  }
+  35% {
+    transform: translateY(-800%) rotate(270deg);
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(2000%) rotate(1440deg);
+  }
+}
+@keyframes confetti {
+  0% {
+    opacity: 0;
+    transform: translateY(0%) rotate(0deg);
+  }
+  10% {
+    opacity: 1;
+  }
+  35% {
+    transform: translateY(-800%) rotate(270deg);
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(2000%) rotate(1440deg);
+  }
+}
+@-webkit-keyframes show {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+  }
+  80% {
+    transform: translate(-50%, -50%) scale(1.4);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+@keyframes show {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+  }
+  80% {
+    transform: translate(-50%, -50%) scale(1.4);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+.t-sponso-container .twitch-overlay,
+.t-normal-container .twitch-overlay {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 3rem;
+  background: linear-gradient(210deg, rgba(12, 10, 39, 0.8705882353) 40%, rgba(35, 11, 54, 0.99) 100%) fixed;
+  border: 8px solid #f4167f;
+  border-radius: 12px;
+  box-shadow: 2px 2px 32px 1px #f4167f inset;
+}
+.t-sponso-container .twitch-overlay > h4:first-of-type,
+.t-normal-container .twitch-overlay > h4:first-of-type {
+  font-size: 1.6rem;
+  color: #861053;
+}
+.t-sponso-container .twitch-overlay .btn-lg,
+.t-normal-container .twitch-overlay .btn-lg {
+  font-size: 1.7rem !important;
+}
+.t-sponso-container .twitch-overlay #participants-overlay,
+.t-normal-container .twitch-overlay #participants-overlay {
+  font-size: 2.4rem;
+  position: relative;
+}
+.t-sponso-container .twitch-overlay #participants-overlay::after,
+.t-normal-container .twitch-overlay #participants-overlay::after {
+  content: attr(data-content);
+  position: absolute;
+  top: -22%;
+  left: 0;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+.t-sponso-container .modes-jeu-twitch,
+.t-normal-container .modes-jeu-twitch {
+  background-position: center;
+  background-size: contain !important;
+  background-repeat: no-repeat;
+  border-radius: 6px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.t-sponso-container .modes-jeu-twitch__content,
+.t-normal-container .modes-jeu-twitch__content {
+  max-width: 70%;
+}
+@media (min-width: 1920px) {
+  .t-sponso-container .modes-jeu-twitch__content,
+.t-normal-container .modes-jeu-twitch__content {
+    max-width: 70%;
+  }
+}
+.t-sponso-container .modes-jeu-twitch__content-header,
+.t-normal-container .modes-jeu-twitch__content-header {
+  margin: 5rem 0 8rem;
+}
+.t-sponso-container .modes-jeu-twitch__content-header h4,
+.t-normal-container .modes-jeu-twitch__content-header h4 {
+  font-size: 1.8rem;
+  font-style: italic;
+  font-weight: 800;
+  background: radial-gradient(circle at 10% 20%, rgb(163, 175, 243) 0%, rgb(220, 182, 232) 100.2%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+}
+.t-sponso-container .modes-jeu-twitch__content-header h6,
+.t-normal-container .modes-jeu-twitch__content-header h6 {
+  margin-top: 1rem;
+  color: #fff;
+  width: 90%;
+  margin: 0 auto;
+}
+.t-sponso-container .modes-jeu-twitch__content-btns,
+.t-normal-container .modes-jeu-twitch__content-btns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-direction: column;
+}
+.t-sponso-container .modes-jeu-twitch__content-btns button,
+.t-normal-container .modes-jeu-twitch__content-btns button {
+  width: 80%;
+  background-image: linear-gradient(47deg, #c821a6, #8d25c2) !important;
+  border: transparent 2px solid;
+  transition: all 0.3s ease 0s;
+}
+.t-sponso-container .modes-jeu-twitch__content-btns button:hover,
+.t-normal-container .modes-jeu-twitch__content-btns button:hover {
+  transform: translateX(10px) !important;
+}
+.t-sponso-container .modes-jeu-twitch__content-btns button.selectedGameMode,
+.t-normal-container .modes-jeu-twitch__content-btns button.selectedGameMode {
+  color: #6f63e8;
+  background: transparent !important;
+  border: #6f63e8 2px solid;
+}
+.t-sponso-container .modes-jeu-twitch__content-msg,
+.t-normal-container .modes-jeu-twitch__content-msg {
+  color: #3fd084;
+  font-size: 0.8rem;
+  margin-top: 1rem;
+  display: block;
+  text-align: center;
+  line-height: 1;
+}
+.t-sponso-container #begin_t,
+.t-sponso-container #begin_top3,
+.t-normal-container #begin_t,
+.t-normal-container #begin_top3 {
+  transition: all 0.3s ease 0s;
+}
+.t-sponso-container #begin_t.pulsate,
+.t-sponso-container #begin_top3.pulsate,
+.t-normal-container #begin_t.pulsate,
+.t-normal-container #begin_top3.pulsate {
+  background-image: linear-gradient(47deg, #c821a6, #8d25c2) !important;
+  border: transparent 2px solid !important;
+  -webkit-animation: pulsate 2s infinite !important;
+          animation: pulsate 2s infinite !important;
+}
+@-webkit-keyframes pulsate {
+  0% {
+    transform: scale(1);
+    box-shadow: none;
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 1rem 4rem rgba(0, 0, 0, 0.25);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: none;
+  }
+}
+@keyframes pulsate {
+  0% {
+    transform: scale(1);
+    box-shadow: none;
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 1rem 4rem rgba(0, 0, 0, 0.25);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: none;
+  }
+}
+.t-sponso-container .beforeDelete,
+.t-normal-container .beforeDelete {
+  -webkit-animation-name: delete;
+          animation-name: delete;
+  -webkit-animation-duration: 4s;
+          animation-duration: 4s;
+  transition: all 0.2s;
+}
+@-webkit-keyframes delete {
+  25% {
+    color: #EA5455;
+    visibility: visible;
+  }
+  50% {
+    color: #fff;
+    visibility: visible;
+  }
+  75% {
+    color: #EA5455;
+    visibility: visible;
+  }
+}
+@keyframes delete {
+  25% {
+    color: #EA5455;
+    visibility: visible;
+  }
+  50% {
+    color: #fff;
+    visibility: visible;
+  }
+  75% {
+    color: #EA5455;
+    visibility: visible;
+  }
+}
+.t-sponso-container .blur,
+.t-normal-container .blur {
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+}
+.t-sponso-container .showTwitchBanner,
+.t-normal-container .showTwitchBanner {
+  width: 100px;
+  height: 100px;
+  background-position: center;
+  background-size: contain !important;
+  background-repeat: no-repeat;
+  position: absolute;
+  cursor: pointer;
+  right: -1.5%;
+  bottom: 34%;
+  opacity: 0.6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s all;
+}
+.t-sponso-container .showTwitchBanner i,
+.t-normal-container .showTwitchBanner i {
+  background: radial-gradient(circle at 10% 20%, rgb(163, 175, 243) 0%, rgb(220, 182, 232) 100.2%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding-right: 10px;
+  font-size: 2.8rem;
+}
+.t-sponso-container .showTwitchBanner:hover,
+.t-normal-container .showTwitchBanner:hover {
+  opacity: 1;
+}
+.t-sponso-container .showTwitchBanner.alreadySelected,
+.t-normal-container .showTwitchBanner.alreadySelected {
+  opacity: 1;
+  filter: drop-shadow(0px 0px 8px #670552);
+}
+.t-sponso-container #ranking-player,
+.t-normal-container #ranking-player {
+  max-width: 100% !important;
+}
+.t-sponso-container #ranking-player h4,
+.t-normal-container #ranking-player h4 {
+  color: #7367f0 !important;
+  font-size: 1.2rem;
+  text-align: left;
+  margin: 0;
+  margin-bottom: 6px !important;
+}
+.t-sponso-container #ranking-player table,
+.t-normal-container #ranking-player table {
+  background: linear-gradient(181deg, rgba(238, 19, 207, 0) 0%, rgba(166, 1, 214, 0.5) 100%);
+}
+.t-sponso-container #ranking-player .voted,
+.t-normal-container #ranking-player .voted {
+  color: #7367F0 !important;
+  font-weight: bold !important;
+}
+.t-sponso-container #participants,
+.t-normal-container #participants {
+  background: linear-gradient(181deg, rgba(238, 19, 207, 0) 0%, rgba(166, 1, 214, 0.5) 100%);
+}
+.t-sponso-container #participants .card-title,
+.t-normal-container #participants .card-title {
+  color: #7367f0 !important;
+  font-size: 1rem;
+}
+.t-sponso-container #participants .card-title.elimines,
+.t-normal-container #participants .card-title.elimines {
+  color: #903334 !important;
+  margin-top: 6px;
+}
+.t-sponso-container #participants .card-body,
+.t-normal-container #participants .card-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  flex-direction: column;
+  min-height: 50vh;
+}
+.t-sponso-container #participants .card-body .card-element,
+.t-normal-container #participants .card-body .card-element {
+  flex: 1;
+  font-size: 3.2vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.t-sponso-container #participants .card-body .card-element:not(:last-of-type),
+.t-normal-container #participants .card-body .card-element:not(:last-of-type) {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.t-sponso-container {
+  position: relative;
+}
+.t-sponso-container .modes-jeu-twitch {
+  position: absolute;
+  right: -100%;
+  transition: 0.5s all ease-in-out;
+  top: 12%;
+  height: 70%;
+}
+.t-sponso-container .modes-jeu-twitch.out {
+  right: 1%;
+}
+@media (min-width: 1920px) {
+  .t-sponso-container .modes-jeu-twitch {
+    width: 286px;
+    top: 9%;
+  }
+  .t-sponso-container .modes-jeu-twitch.out {
+    right: 16%;
+  }
+}
+.t-sponso-container .modes-jeu-twitch__content {
+  max-width: 70% !important;
+}
+@media (min-width: 1920px) {
+  .t-sponso-container .modes-jeu-twitch__content {
+    padding-top: 2rem;
+    max-width: 90% !important;
+  }
+}
+
+body {
+  overflow-x: hidden !important;
+}
+
+.swal2-container {
+  position: fixed !important;
+  z-index: 1000000 !important;
+}
+
+.top-big .min-tournoi .cov-illu {
+  min-height: 220px;
 }
 
 .list-share {
@@ -2526,6 +3006,88 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
 }
 .toplist_comments .replyCommentBtn {
   font-size: 10px;
+}
+
+#twitch-games-ranking {
+  background: linear-gradient(159deg, rgba(238, 19, 207, 0) 0%, rgba(166, 1, 214, 0.5) 100%);
+  min-height: 24vh;
+  position: relative;
+}
+#twitch-games-ranking .card-title {
+  background: radial-gradient(circle at 10% 20%, rgb(163, 175, 243) 0%, rgb(220, 182, 232) 100.2%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+}
+#twitch-games-ranking .twitchGamesWinnerContainer {
+  padding: 40px 0;
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+}
+#twitch-games-ranking .twitchGamesWinnerContainer.show {
+  transform: translate(-50%, -50%) scale(1);
+  -webkit-animation: show 0.3s ease-in;
+          animation: show 0.3s ease-in;
+}
+#twitch-games-ranking .twitchGamesWinnerName {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 46px;
+  text-transform: uppercase;
+  text-align: center;
+  position: relative;
+}
+#twitch-games-ranking .twitchGamesWinnerName.confetti > .particle {
+  opacity: 0;
+  position: absolute;
+  -webkit-animation: confetti 3s ease-in infinite;
+          animation: confetti 3s ease-in infinite;
+}
+#twitch-games-ranking .twitchGamesWinnerName.confetti > .particle.c1 {
+  background-color: #d13447;
+}
+#twitch-games-ranking .twitchGamesWinnerName.confetti > .particle.c2 {
+  background-color: #ffbf00;
+}
+#twitch-games-ranking .twitchGamesWinnerName.confetti > .particle.c3 {
+  background-color: #263672;
+}
+#twitch-games-ranking .twitchGamesWinnerName.confetti > .particle.c4 {
+  background-color: #0d963d;
+}
+#twitch-games-ranking .twitchGamesWinnerName::before {
+  content: url("https://www.freepnglogos.com/uploads/crown-png/pin-leanne-dlamini-women-women-gold-king-crown-35.png");
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  transform: scale(0.03) rotate(45deg);
+  right: -14%;
+  top: -96%;
+}
+@keyframes confetti {
+  0% {
+    opacity: 0;
+    transform: translateY(0%) rotate(0deg);
+  }
+  10% {
+    opacity: 1;
+  }
+  35% {
+    transform: translateY(-800%) rotate(270deg);
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(2000%) rotate(1440deg);
+  }
 }
 
 .cover-profil {
@@ -5016,6 +5578,10 @@ select:-webkit-autofill:focus {
 
 .va-seven {
   background-image: url(../../images/emojis/keycap-digit-seven_37-fe0f-20e3.png);
+}
+
+.va-gpexplorer {
+  background-image: url(../../images/emojis/f1.png);
 }
 
 .va-avis {

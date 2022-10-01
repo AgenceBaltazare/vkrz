@@ -20,6 +20,8 @@ $(document).ready(function ($) {
                 },
                 buttonsStyling: false
             }).then(function (result) {
+                localStorage.removeItem('twitchGameMode');
+                
                 if (result.value) {
                     $.ajax({
                         method: "POST",
