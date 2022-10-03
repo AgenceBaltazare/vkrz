@@ -242,7 +242,7 @@ if ($id_vainkeur) {
                 <div class="row">
                   <div class="col">
                     <h2 class="text-primary text-uppercase">
-                      <span class="va va-keurz va-lg"></span> Parceque t'as fait un Top <span class="text-white d-inline-block"><?php echo $last_top_top_infos['top_title']; ?></span>
+                      <span class="va va-keurz va-lg"></span> Parceque t'as fait un Top <a href="<?= $last_top_url_top ; ?>" class="text-white d-inline-block"><?php echo $last_top_top_infos['top_title']; ?></a>
                       <small class="text-muted">Des Recommandations selon tes goûts</small>
                     </h2>
                   </div>
