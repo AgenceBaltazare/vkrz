@@ -355,7 +355,36 @@ get_header();
                       <div id="countdown">
                         <div class="counter">
                           <div class="nums">
-                            <span class="in">30</span>
+                            <span class="in">59</span>
+                            <span>58</span>
+                            <span>57</span>
+                            <span>56</span>
+                            <span>55</span>
+                            <span>54</span>
+                            <span>53</span>
+                            <span>52</span>
+                            <span>51</span>
+                            <span>50</span>
+                            <span>49</span>
+                            <span>48</span>
+                            <span>47</span>
+                            <span>46</span>
+                            <span>45</span>
+                            <span>44</span>
+                            <span>43</span>
+                            <span>42</span>
+                            <span>41</span>
+                            <span>40</span>
+                            <span>39</span>
+                            <span>38</span>
+                            <span>37</span>
+                            <span>36</span>
+                            <span>35</span>
+                            <span>34</span>
+                            <span>33</span>
+                            <span>32</span>
+                            <span>31</span>
+                            <span>30</span>
                             <span>29</span>
                             <span>28</span>
                             <span>27</span>
