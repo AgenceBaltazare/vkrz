@@ -57,7 +57,6 @@ if(document.querySelector('#twitch-games-ranking')) {
       row.querySelector('td:last-of-type').classList.add('text-center');
  
       let position = row.querySelector('td:first-of-type').innerHTML;
-      console.log(position);
       switch (position) {
         case "1":
           positionStr = '<span class="ico va va-medal-1 va-lg"></span>';
