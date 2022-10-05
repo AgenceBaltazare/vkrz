@@ -17,10 +17,17 @@ if(document.querySelector('#twitch-games-ranking')) {
         idRanking                   = twitchGamesRankingContainer.dataset.idranking;
 
   const predictionWinnerTemplate = function(winner, participantsNumber) {
+    let wording = "";
+    if(+participantsNumber === 2) {
+      wording = `le gagant est `;
+    } else {
+      wording = `a gagné contre ${+participantsNumber - 1} autres participants`;
+    }
+
     return `
       <div class="card-body">
         <h4 class="card-title">
-          <i class="fab fa-twitch"></i> a gagné contre ${+participantsNumber - 1} autres participants
+          <i class="fab fa-twitch"></i> ${wording}
         </h4>
               
         <div class="twitchGamesWinnerContainer">

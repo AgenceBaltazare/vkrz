@@ -2337,7 +2337,7 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
 .t-sponso-container .twitchGamesWinnerName,
 .t-normal-container .twitchGamesWinnerName {
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  font-size: 120px;
+  font-size: 156px;
   text-transform: uppercase;
   text-align: center;
   position: relative;
@@ -2373,8 +2373,8 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   height: 100px;
   display: inline-block;
   transform: scale(0.05) rotate(45deg);
-  right: -13%;
-  top: -86%;
+  right: -10%;
+  top: -70%;
 }
 @-webkit-keyframes confetti {
   0% {
@@ -3012,6 +3012,7 @@ body {
   background: linear-gradient(159deg, rgba(238, 19, 207, 0) 0%, rgba(166, 1, 214, 0.5) 100%);
   min-height: 24vh;
   position: relative;
+  overflow: hidden;
 }
 #twitch-games-ranking .card-title {
   background: radial-gradient(circle at 10% 20%, rgb(163, 175, 243) 0%, rgb(220, 182, 232) 100.2%);
@@ -3067,8 +3068,8 @@ body {
   height: 50px;
   display: inline-block;
   transform: scale(0.03) rotate(45deg);
-  right: -14%;
-  top: -96%;
+  right: -16%;
+  top: -114%;
 }
 @keyframes confetti {
   0% {

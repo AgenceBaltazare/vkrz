@@ -320,7 +320,13 @@ get_header();
 
                   <?php if (!isMobile() && is_user_logged_in() && get_userdata($user_id)->twitch_user) : ?>
                     <div 
-                      class="d-none twitch-votes-container row align-items-center justify-content-center" data-twitchChannel="<?= get_userdata($user_id)->twitch_user; ?>">
+                      class="d-none twitch-votes-container row align-items-center justify-content-center"
+                      data-twitchChannel="<?= get_userdata($user_id)->twitch_user; ?>"
+                      data-top="<?= $top_infos['top_title'] . ' ' . $top_infos['top_number'] . ' ' . $top_infos['top_question'];  ?> "
+                      data-topCategory="<?= $top_infos['top_cat_name'] ?>"
+                      data-idTop="<?= $id_top; ?>"
+                      data-idVainkeur="<?= $id_vainkeur; ?>"
+                      >
                       <div class="col-sm-4 col-12">
                       </div>
 
@@ -360,6 +366,14 @@ get_header();
                     <!-- WINNER MODE… -->
                     <div class="twitchGamesWinnerContainer">
                       <span class="twitchGamesWinnerName confetti"></span>
+
+                      <div class="buttons">
+                        <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" href="#" class="confirm_delete btn btn-sm btn-outline-dark waves-effect mr-1"> Recommencer</a>
+
+                        <a href="#" class="btn btn-sm btn-outline-primary waves-effect mr-1" id="winner-continuer"> Continuer</a>
+
+                        <a href="#" class="btn btn-sm btn-outline-danger waves-effect" id="winner-relancer"> Relancer</a>
+                      </div>
                     </div>
                     <audio id="winner-sound" style="display: none; width: 0 !important;">
                       <source src="<?php bloginfo('template_directory'); ?>/assets/audios/winner-sound.mp3" type="audio/mpeg" />
@@ -369,56 +383,58 @@ get_header();
                       <h4>Lancement du jeu dans</h4>
                       <div id="countdown">
                         <div class="counter">
-                        <div class="nums">
-                            <span class="in">59</span>
-                            <span>58</span>
-                            <span>57</span>
-                            <span>56</span>
-                            <span>55</span>
-                            <span>54</span>
-                            <span>53</span>
-                            <span>52</span>
-                            <span>51</span>
-                            <span>50</span>
-                            <span>49</span>
-                            <span>48</span>
-                            <span>47</span>
-                            <span>46</span>
-                            <span>45</span>
-                            <span>44</span>
-                            <span>43</span>
-                            <span>42</span>
-                            <span>41</span>
-                            <span>40</span>
-                            <span>39</span>
-                            <span>38</span>
-                            <span>37</span>
-                            <span>36</span>
-                            <span>35</span>
-                            <span>34</span>
-                            <span>33</span>
-                            <span>32</span>
-                            <span>31</span>
-                            <span>30</span>
-                            <span>29</span>
-                            <span>28</span>
-                            <span>27</span>
-                            <span>26</span>
-                            <span>25</span>
-                            <span>24</span>
-                            <span>23</span>
-                            <span>22</span>
-                            <span>21</span>
-                            <span>20</span>
-                            <span>19</span>
-                            <span>18</span>
-                            <span>17</span>
-                            <span>16</span>
-                            <span>15</span>
-                            <span>14</span>
-                            <span>13</span>
-                            <span>12</span>
-                            <span>11</span>
+                          <div class="nums">
+                            <span class="in">11</span>
+                            <!-- 
+                              <span>58</span>
+                              <span>57</span>
+                              <span>56</span>
+                              <span>55</span>
+                              <span>54</span>
+                              <span>53</span>
+                              <span>52</span>
+                              <span>51</span>
+                              <span>50</span>
+                              <span>49</span>
+                              <span>48</span>
+                              <span>47</span>
+                              <span>46</span>
+                              <span>45</span>
+                              <span>44</span>
+                              <span>43</span>
+                              <span>42</span>
+                              <span>41</span>
+                              <span>40</span>
+                              <span>39</span>
+                              <span>38</span>
+                              <span>37</span>
+                              <span>36</span>
+                              <span>35</span>
+                              <span>34</span>
+                              <span>33</span>
+                              <span>32</span>
+                              <span>31</span>
+                              <span>30</span>
+                              <span>29</span>
+                              <span>28</span>
+                              <span>27</span>
+                              <span>26</span>
+                              <span>25</span>
+                              <span>24</span>
+                              <span>23</span>
+                              <span>22</span>
+                              <span>21</span>
+                              <span>20</span>
+                              <span>19</span>
+                              <span>18</span>
+                              <span>17</span>
+                              <span>16</span>
+                              <span>15</span>
+                              <span>14</span>
+                              <span>13</span>
+                              <span>12</span>
+                              <span>11</span> 
+                            -->
                             <span>10</span>
                             <span>9</span>
                             <span>8</span>
@@ -432,7 +448,6 @@ get_header();
                             <span>0</span>
                           </div>
                           <h4>Taper VKRZ dans le chat <br> pour participer!</h4>
-
                         </div>
 
                         <div class="final">
@@ -448,9 +463,16 @@ get_header();
                       </div>
                       <span class="mode-alert"><i class="far fa-info-circle"></i> Il faut au moins deux participants</span>
 
-                      <div id="participants-overlay" class="mt-2 text-white d-none"></div>
+                      <div id="participants-overlay" class="mt-2 text-white d-none" data-content="Participants :"></div>
 
-                      <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" href="#" class="confirm_delete btn btn-sm btn-outline-dark waves-effect">
+                      <a 
+                        data-phrase1="Es-tu sûr de vouloir recommencer ?" 
+                        data-phrase2="Tous les votes de ce Top seront remis à 0" 
+                        data-id_ranking="<?php echo $id_ranking; ?>" 
+                        data-id_vainkeur="<?php echo $id_vainkeur; ?>" 
+                        href="#" 
+                        class="confirm_delete btn btn-sm btn-outline-dark waves-effect"
+                      >
                         Annuler
                       </a>
                     </div>

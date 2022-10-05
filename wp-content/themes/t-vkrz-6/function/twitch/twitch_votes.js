@@ -28,29 +28,59 @@ let listeningForCount                      = true,
     X, A, B;
   X = A = B = 0;
 
+// EXTENSION TOGGLE ICON…
+const twitchGamesToggleIcon = function(to) {
+  const twitchBannerToggleBtn = document.querySelector('.showTwitchBanner');
+
+  if(to === "plus") {
+    twitchBannerToggleBtn.querySelector('.fa-twitch').classList.add('d-none');
+    twitchBannerToggleBtn.querySelector('.fa-plus').classList.remove('d-none');
+    twitchBannerToggleBtn.querySelector('.fa-minus').classList.add('d-none');
+  } else if(to === "twitch") {
+    twitchBannerToggleBtn.querySelector('.fa-twitch').classList.remove('d-none');
+    twitchBannerToggleBtn.querySelector('.fa-plus').classList.add('d-none');
+    twitchBannerToggleBtn.querySelector('.fa-minus').classList.add('d-none');
+  } else if(to === "minus") {
+    twitchBannerToggleBtn.querySelector('.fa-twitch').classList.add('d-none');
+    twitchBannerToggleBtn.querySelector('.fa-plus').classList.add('d-none');
+    twitchBannerToggleBtn.querySelector('.fa-minus').classList.remove('d-none');
+  }
+}
+
+// SEND STREAM TWITCH NOTIFICATION…
+const sendTwitchStreamNotif = async (streamer, top, topCategory, viewers, participants, gameMode, idTop, idVainkeur, streamLink) => {
+  const headers = new Headers();
+  headers.append('Access-Control-Allow-Origin','*');
+  headers.append('Accept', "application/json");
+  headers.append("Content-Type", "application/json");
+
+  const options = {
+    method: 'POST',
+    headers: headers,
+    body: JSON.stringify({
+      streamer: streamer,
+      top: top,
+      categorie: topCategory,
+      viewers: viewers,
+      participants: participants,
+      modejeu: gameMode,
+      idtop: idTop,
+      idvainkeur: idVainkeur,
+      stream: streamLink
+    }),
+  };
+
+  try {
+    const response = await fetch('https://hook.eu1.make.com/zaqgftdf6o8mxac8wu81psqh5233c3rz', options);
+  } catch (error) {
+    console.error(`💥 Error sending stream Twitch notification: ${error.message}`);
+  }
+}
+  
 // INTRO PAGE…
 if(document.querySelector('.modes-jeu-twitch')) {
   const twitchBannerToggleBtnGlobal = document.querySelector('.showTwitchBanner');
   twitchBannerToggleBtnGlobal.classList.remove('d-none');
-
-  // EXTENSION TOGGLE ICON…
-  const twitchGamesToggleIcon = function(to) {
-    const twitchBannerToggleBtn = document.querySelector('.showTwitchBanner');
-
-    if(to === "plus") {
-      twitchBannerToggleBtn.querySelector('.fa-twitch').classList.add('d-none');
-      twitchBannerToggleBtn.querySelector('.fa-plus').classList.remove('d-none');
-      twitchBannerToggleBtn.querySelector('.fa-minus').classList.add('d-none');
-    } else if(to === "twitch") {
-      twitchBannerToggleBtn.querySelector('.fa-twitch').classList.remove('d-none');
-      twitchBannerToggleBtn.querySelector('.fa-plus').classList.add('d-none');
-      twitchBannerToggleBtn.querySelector('.fa-minus').classList.add('d-none');
-    } else if(to === "minus") {
-      twitchBannerToggleBtn.querySelector('.fa-twitch').classList.add('d-none');
-      twitchBannerToggleBtn.querySelector('.fa-plus').classList.add('d-none');
-      twitchBannerToggleBtn.querySelector('.fa-minus').classList.remove('d-none');
-    }
-  }
 
   // T-NORMAL…
   if(document.querySelector('.t-normal-container')) {
@@ -162,6 +192,10 @@ if(document.querySelector('.display_battle') && localStorage.getItem('twitchGame
   const gameMode                 = localStorage.getItem('twitchGameMode'),
         twitchVotesContainer     = document.querySelector(".twitch-votes-container"),
         twitchChannel            = twitchVotesContainer.dataset.twitchchannel,
+        top                      = twitchVotesContainer.dataset.top,
+        topCategory              = twitchVotesContainer.dataset.topcategory,
+        idTop                    = twitchVotesContainer.dataset.idtop,
+        idVainkeur               = twitchVotesContainer.dataset.idvainkeur,
         totalVotesNumber         = twitchVotesContainer.querySelector('.votes-number-total'),
         votesNumberWording       = twitchVotesContainer.querySelector('.votes-number-wording');
 
@@ -175,6 +209,18 @@ if(document.querySelector('.display_battle') && localStorage.getItem('twitchGame
     twitchVotesContainer.querySelectorAll('.taper-zone').forEach(div => div.classList.remove("d-none"));
     twitchVotesContainer.querySelector('.votes-stats-container').classList.remove('d-none')
     voteParticipatifBoolean = true;
+
+    sendTwitchStreamNotif(
+      vainkeurPseudo,
+      top,
+      topCategory,
+      0,
+      Object.keys(users).length,
+      1,
+      idTop,
+      idVainkeur,
+      `https://www.twitch.tv/${twitchChannel}`
+    );
   } else if (gameMode === "votePrediction") {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     listeningForCount = false;
@@ -219,7 +265,7 @@ if(document.querySelector('.display_battle') && localStorage.getItem('twitchGame
                 launchGameBtn.classList.remove('btn-rose');
                 launchGameBtn.classList.add('btn-relief-danger');
                 launchGameBtn.textContent = "Recharger le Top";
-                launchGameBtn.addEventListener('click', () => {location.reload()});
+                launchGameBtn.addEventListener('click', () => {window.location.reload();});
               } else {
                 twitchOverlay.querySelector('.mode-alert').remove();
               }
@@ -234,7 +280,19 @@ if(document.querySelector('.display_battle') && localStorage.getItem('twitchGame
 
       launchGameBtn.addEventListener('click', () => {
         if(Object.keys(users).length < 2) return false;
-  
+
+        sendTwitchStreamNotif(
+          vainkeurPseudo,
+          top,
+          topCategory,
+          0,
+          Object.keys(users).length,
+          2,
+          idTop,
+          idVainkeur,
+          `https://www.twitch.tv/${twitchChannel}`
+        );
+
         listeningForCount = true;
         twitchOverlay.classList.add('d-none')
       });
@@ -282,7 +340,7 @@ if(document.querySelector('.display_battle') && localStorage.getItem('twitchGame
                 launchGameBtn.classList.remove('btn-rose');
                 launchGameBtn.classList.add('btn-relief-danger');
                 launchGameBtn.textContent = "Reload the page";
-                launchGameBtn.addEventListener('click', () => {location.reload()});
+                launchGameBtn.addEventListener('click', () => {window.location.reload();});
               } else {
                 twitchOverlay.querySelector('.mode-alert').remove();
               }
@@ -297,6 +355,18 @@ if(document.querySelector('.display_battle') && localStorage.getItem('twitchGame
 
       launchGameBtn.addEventListener('click', () => {
         if(Object.keys(users).length < 2) return false;
+
+        sendTwitchStreamNotif(
+          vainkeurPseudo,
+          top,
+          topCategory,
+          0,
+          Object.keys(users).length,
+          3,
+          idTop,
+          idVainkeur,
+          `https://www.twitch.tv/${twitchChannel}`
+        );
   
         twitchOverlay.classList.add('d-none')
         listeningForCount = true;
@@ -389,8 +459,16 @@ if(document.querySelector('.display_battle') && localStorage.getItem('twitchGame
           participants.textContent = Object.keys(users).join(', ') // SHOW PARTICIPANTS…
         } else {
           participants.dataset.content = ``;
-          participants.innerHTML = `Plus de ${Object.keys(users).length - 1} participants… <span class="va va-star-struck va-lg" style="vertical-align: sub !important;
-          "></span>`
+
+          // RANDOM PARTICIPANTS…
+          let randomParticipants = [];
+          while(randomParticipants.length < 25){
+              let random = Math.floor((Math.random() * Object.keys(users).length) + 1) - 1;
+              if(randomParticipants.indexOf(random) === -1) randomParticipants.push(random);
+          }
+          participants.innerHTML = `
+            ${Object.keys(users)[randomParticipants[0]]}, ${Object.keys(users)[randomParticipants[1]]}; ${Object.keys(users)[randomParticipants[2]]} et ${Object.keys(users).length - 2} d'autres participants… <span class="va va-star-struck va-lg" style="vertical-align: sub !important;"></span>
+          `
         }
 
         preditcionParticipantsNumber.textContent = Object.keys(users).length;
@@ -443,8 +521,16 @@ if(document.querySelector('.display_battle') && localStorage.getItem('twitchGame
           participants.textContent = Object.keys(users).join(', ') // SHOW PARTICIPANTS…
         } else {
           participants.dataset.content = ``;
-          participants.innerHTML = `Plus de ${Object.keys(users).length - 1} participants… <span class="va va-star-struck va-lg" style="vertical-align: sub !important;
-          "></span>`
+
+          // RANDOM PARTICIPANTS…
+          let randomParticipants = [];
+          while(randomParticipants.length < 25){
+              let random = Math.floor((Math.random() * Object.keys(users).length) + 1) - 1;
+              if(randomParticipants.indexOf(random) === -1) randomParticipants.push(random);
+          }
+          participants.innerHTML = `
+            ${Object.keys(users)[randomParticipants[0]]}, ${Object.keys(users)[randomParticipants[1]]}; ${Object.keys(users)[randomParticipants[2]]} et ${Object.keys(users).length - 2} d'autres participants… <span class="va va-star-struck va-lg" style="vertical-align: sub !important;"></span>
+          `
         }
 
         pointsParticipantsNumber.textContent = Object.keys(users).length;

@@ -50,13 +50,16 @@ $(document).ready(function ($) {
           if(passed.length === 1 && winnerAlready === false) 
           {
             winnerAlready = true;
+            document.querySelector('#prediction-player').classList.add('d-none');
+            document.querySelector('#prediction-player .card-header').classList.add('flex-column-reverse');
+            document.querySelector('#prediction-player .card-header').style.gap = "8px";
             document.querySelectorAll('.votes-container > p:first-of-type').forEach(p => p.remove());
             document.querySelector('.display_battle').classList.add('blur')
             document.querySelector("#winner-sound").play()
             document.querySelector('.twitchGamesWinnerName').textContent = passed[0][0];
             $(".twitchGamesWinnerContainer").addClass('show');
             confetti();
-
+            
             function rnd(m,n) {
               m = parseInt(m);
               n = parseInt(n);
@@ -73,10 +76,12 @@ $(document).ready(function ($) {
               });
             }
 
-            setTimeout(() => {
-              document.querySelector('.display_battle').classList.remove('blur')
-              document.querySelector('.twitchGamesWinnerContainer').remove()
-            }, 4000)
+            document.querySelector('#winner-continuer').addEventListener('click', () => {
+              document.querySelector('.display_battle').classList.remove('blur');
+              document.querySelector('.twitchGamesWinnerContainer').remove();
+              document.querySelector('#prediction-player').classList.remove('d-none');
+            });
+            document.querySelector('#winner-relancer').addEventListener('click', () => {window.location.reload();});
 
             // SAVE TO LOCAL STORAGE…
             const twitchGameResumeObj = {
@@ -106,7 +111,7 @@ $(document).ready(function ($) {
             if(nonPassed.length > 0) {
               const elimines = document.querySelector('#participants .card-title.elimines');
               elimines.classList.remove('d-none');
-              elimines.textContent = `🥲 ${Object.keys(losers).length} ${Object.keys(losers).length > 1 ? 'Eliminés' : 'Eliminé'}`;
+              elimines.innerHTML = `<span class="va va-unknow va-lg"></span> ${Object.keys(losers).length} ${Object.keys(losers).length > 1 ? 'Eliminés' : 'Eliminé'}`;
 
               for(const [key, loser] of Object.entries(nonPassed)) {
                 let target = document.querySelector(`#${loser[0]}`)
@@ -120,7 +125,7 @@ $(document).ready(function ($) {
           }
       
           if(Object.keys(users).length === 1 || winnerAlready === true) {
-            document.querySelector('#participants .card-title').innerHTML = "<i class='fab fa-twitch'></i> On a un gagnant!! 🎉"
+            document.querySelector('#participants .card-title').innerHTML = "<i class='fab fa-twitch'></i> Le gagnant!! 🎉"
           } else if (Object.keys(users).length > 1) {
             preditcionParticipantsVotedNumber.textContent = 0;
             preditcionParticipantsNumber.textContent = Object.keys(users).length;
@@ -345,6 +350,19 @@ $(document).ready(function ($) {
               utm: vkrz_tracking_vars_top.utm_layer,
               event_score: 20,
             });
+
+            // SAVE WINNER OF THE MATCH AUX POINTS TWITCH GAME…
+            if(document.querySelector('.display_battle') && localStorage.getItem('twitchGameMode') !== null && votePointsBoolean) {
+              // SAVE TO LOCAL STORAGE…
+              const twitchGameResumeObj = {
+                "idRanking": `${id_ranking}`,
+                "participantsNumber": `${Object.keys(users).length}`,
+                "mode": "votePoints",
+                "tbody": `${document.querySelector('.table-points tbody').innerHTML}`
+              }
+              localStorage.removeItem('resumeTwitchGame');
+              localStorage.setItem('resumeTwitchGame', JSON.stringify(twitchGameResumeObj));
+            }
 
             // CHECK IF THERE IS SOME FOLLOWERS (CAN BE ALSO A FRIENDS), SEND NOTIFICATIONS TO THEM AND GO THE RANKING PAGE…
             (async function () {
@@ -734,26 +752,10 @@ $(document).ready(function ($) {
                     })();
                   });
                 }
+              } else {
+                localStorage.removeItem('twitchGameMode');
 
                 $(location).attr("href", link_to_ranking);
-              } else {
-                if(document.querySelector('.display_battle') && localStorage.getItem('twitchGameMode') !== null && votePointsBoolean) {
-                  // SAVE TO LOCAL STORAGE…
-                  const twitchGameResumeObj = {
-                    "idRanking": `${id_ranking}`,
-                    "participantsNumber": `${Object.keys(users).length}`,
-                    "mode": "votePoints",
-                    "tbody": `${document.querySelector('.table-points tbody').innerHTML}`
-                  }
-                  localStorage.removeItem('resumeTwitchGame');
-                  localStorage.setItem('resumeTwitchGame', JSON.stringify(twitchGameResumeObj));
-
-                  $(location).attr("href", link_to_ranking);
-                } else {
-                  localStorage.removeItem('twitchGameMode');
-
-                  $(location).attr("href", link_to_ranking);
-                }
               }
             })();
           }
