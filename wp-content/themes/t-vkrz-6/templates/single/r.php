@@ -189,10 +189,13 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
                 $i = 1;
                 foreach ($user_ranking as $c) : ?>
                   <?php if ($i == 1) : ?>
+                    <?php $first_id_contender = $c; ?>
                     <div class="col-12 col-md-5">
                     <?php elseif ($i == 2) : ?>
+                      <?php $second_id_contender = $c; ?>
                       <div class="col-7 col-md-4">
                       <?php elseif ($i == 3) : ?>
+                        <?php $third_id_contender = $c; ?>
                         <div class="col-5 col-md-3">
                         <?php else : ?>
                           <div class="col-md-2 col-4">
@@ -359,6 +362,10 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
                               </span>
                             </div>
                           </div>
+                        <?php endif; ?>
+
+                        <?php if (!isMobile() && is_user_logged_in() && get_userdata($user_id)->twitch_user) : ?>
+                          <div id="twitch-games-ranking" class="card d-none" data-idRanking="<?= $id_ranking; ?>"></div>
                         <?php endif; ?>
 
                         <div class="card">
@@ -632,9 +639,22 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
           </a>
         </li>
         <li>
+
+        <?php if(get_field('@_twitter', $id_top_global)) : ?>
+          <?php 
+          $arobaseFirstContender = get_field('info_supplementaire_contender', $first_id_contender); 
+          $arobaseSecondContender = get_field('info_supplementaire_contender', $second_id_contender); 
+          $arobaseThirdContender = get_field('info_supplementaire_contender', $third_id_contender); 
+          ?>
+          <a href="https://twitter.com/intent/tweet?text=Voici ma TopList <?php echo $top_infos['top_number']; ?> <?php echo $top_infos['top_title']; ?>%0a🥇<?= $arobaseFirstContender ?> 🥈<?= $arobaseSecondContender ?> 🥉<?= $arobaseThirdContender ?>%0a&via=vainkeurz&hashtags=VKRZ&hashtags=<?php echo get_field('#top_twitter', $id_top_global) ?>&url=<?php echo $url_ranking; ?>" target="_blank" title="Tweet">
+            <i class="social-media fab fa-twitter"></i> Twitter
+          </a>
+        <?php else :  ?>
           <a href="https://twitter.com/intent/tweet?text=Voici ma TopList <?php echo $top_infos['top_number']; ?> <?php echo $top_infos['top_title']; ?>&via=vainkeurz&hashtags=VKRZ&url=<?php echo $url_ranking; ?>" target="_blank" title="Tweet">
             <i class="social-media fab fa-twitter"></i> Twitter
           </a>
+        <?php endif; ?>
+
         </li>
         <li>
           <a href="whatsapp://send?text=<?php echo $url_ranking; ?>" data-action="share/whatsapp/share">

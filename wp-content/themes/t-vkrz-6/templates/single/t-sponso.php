@@ -35,7 +35,7 @@ get_header();
 <script>
   const link_to_ranking = "<?= get_the_permalink($id_ranking) ?>";
 </script>
-<div class="app-content content cover" style="background: url(<?php echo $top_infos['top_cover']; ?>) center center no-repeat">
+<div class="app-content content cover t-sponso-container" style="background: url(<?php echo $top_infos['top_cover']; ?>) center center no-repeat">
   <div class="content-overlay"></div>
   <div class="content-wrapper">
     <div class="content-body tournoi-content">
@@ -116,6 +116,7 @@ get_header();
                       <?php if ($top_infos['top_number'] > 15) : ?>
                         <div class="cta-begin cta-top3">
                           <a href="#" id="begin_top3" data-typetop="top3" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuid_vainkeur; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
+                            <i class="fab fa-twitch twitch-icon-tbegin d-none"></i>&nbsp;
                             Participer
                           </a>
                           <small class="text-muted">
@@ -130,6 +131,7 @@ get_header();
                       <?php else : ?>
                         <div class="cta-begin cta-complet">
                           <a href="#" id="begin_t" data-typetop="complet" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuid_vainkeur; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
+                            <i class="fab fa-twitch twitch-icon-tbegin d-none"></i>&nbsp;
                             Participer
                           </a>
                           <small class="text-muted">
@@ -193,9 +195,10 @@ get_header();
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
+
+            <div class="col-md-4 t-sponso-banner">
               <div class="card animate__animated animate__flipInX card-developer-meetup">
-                <div class="card-body rules-content">
+                <div class="card-body rules-content">                  
                   <div class="mb-1 d-none d-sm-block">
                     <div class="title-win">
                       <h4>
@@ -242,6 +245,34 @@ get_header();
                 </div>
               </div>
             </div>
+
+            <?php if (!isMobile() && is_user_logged_in() && get_userdata($user_id)->twitch_user) : ?>
+              <div class="modes-jeu-twitch" style="background-image: url(<?php bloginfo('template_directory'); ?>/assets/images/events/twitch-games-banner.png);">
+                <div class="modes-jeu-twitch__content">
+
+                  <div class="modes-jeu-twitch__content-header">
+                    <h4>
+                      <i class="fab fa-2x fa-twitch mb-50"></i><br> Modes de jeu pour ton stream
+                    </h4>
+
+                    <h6>
+                      Clik sur un mode pour permettre à ton chat de voter
+                    </h6>
+                  </div>
+
+                  <div class="modes-jeu-twitch__content-btns">
+                    <button type="button" id="voteParticipatif" class="btn btn-gradient-primary modeGameTwitchBtn" spellcheck="false">Vote Participatif</button>
+
+                    <button type="button" id="votePrediction" class="btn btn-gradient-primary modeGameTwitchBtn" spellcheck="false">Élimination directe</button>
+
+                    <button type="button" id="votePoints" class="btn btn-gradient-primary modeGameTwitchBtn" spellcheck="false">Match aux points</button>
+                  </div>
+                  <span class="modes-jeu-twitch__content-msg d-none">
+                    <i data-feather='check'></i> Mode sélectionné, tu peux lancer le Top 🚀 
+                  </span>
+                </div>
+              </div>
+            <?php endif; ?>
           </div>
         </div>
 
@@ -279,14 +310,198 @@ get_header();
 
             <div class="container <?php echo (get_field('c_rounded_t', $id_top)) ? 'rounded' : ''; ?>">
               <div class="row">
-                <div class="col-md-12">
+                <div class="col">
                   <div class="display_battle">
                     <?php
                     set_query_var('battle_vars', compact('contender_1', 'contender_2', 'id_top', 'id_ranking', 'id_vainkeur'));
                     get_template_part('templates/parts/content', 'battle');
                     ?>
                   </div>
+
+                  <?php if (!isMobile() && is_user_logged_in() && get_userdata($user_id)->twitch_user) : ?>
+                    <div 
+                      class="d-none twitch-votes-container row align-items-center justify-content-center" data-twitchChannel="<?= get_userdata($user_id)->twitch_user; ?>">
+                      <div class="col-sm-4 col-12">
+                      </div>
+
+                      <div class="col col-sm-4 row justify-content-between align-items-center">
+                        <div class="taper-container animate__animated animate__slideInDown">
+                          <div class="votes-container">
+                            <p>Taper 1</p>
+
+                            <div class="votes-stats taper-zone d-none" id="votes-stats-1">
+                              <p class="votes-percent" id="votes-percent-1">0%</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="votes-stats-container d-none">
+                          <p class="votes-stats-p">
+                            <strong class="votes-number">0</strong> <span class="votes-number-wording">Vote</span> du chat
+                          </p>
+                          <p><strong class="votes-number-total">0</strong> votes depuis le début</p>
+                        </div>
+
+                        <div class="taper-container animate__animated animate__slideInUp">
+                          <div class="votes-container">
+                            <p>Taper 2</p>
+
+                            <div class="votes-stats taper-zone d-none" id="votes-stats-2">
+                              <p class="votes-percent" id="votes-percent-2">0%</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-sm-4 col-12">
+                      </div>
+                    </div>
+
+                    <!-- WINNER MODE… -->
+                    <div class="twitchGamesWinnerContainer">
+                      <span class="twitchGamesWinnerName confetti"></span>
+                    </div>
+                    <audio id="winner-sound" style="display: none; width: 0 !important;">
+                      <source src="<?php bloginfo('template_directory'); ?>/assets/audios/winner-sound.mp3" type="audio/mpeg" />
+                    </audio>
+
+                    <div class="twitch-overlay d-none">
+                      <h4>Lancement du jeu dans</h4>
+                      <div id="countdown">
+                        <div class="counter">
+                        <div class="nums">
+                            <span class="in">59</span>
+                            <span>58</span>
+                            <span>57</span>
+                            <span>56</span>
+                            <span>55</span>
+                            <span>54</span>
+                            <span>53</span>
+                            <span>52</span>
+                            <span>51</span>
+                            <span>50</span>
+                            <span>49</span>
+                            <span>48</span>
+                            <span>47</span>
+                            <span>46</span>
+                            <span>45</span>
+                            <span>44</span>
+                            <span>43</span>
+                            <span>42</span>
+                            <span>41</span>
+                            <span>40</span>
+                            <span>39</span>
+                            <span>38</span>
+                            <span>37</span>
+                            <span>36</span>
+                            <span>35</span>
+                            <span>34</span>
+                            <span>33</span>
+                            <span>32</span>
+                            <span>31</span>
+                            <span>30</span>
+                            <span>29</span>
+                            <span>28</span>
+                            <span>27</span>
+                            <span>26</span>
+                            <span>25</span>
+                            <span>24</span>
+                            <span>23</span>
+                            <span>22</span>
+                            <span>21</span>
+                            <span>20</span>
+                            <span>19</span>
+                            <span>18</span>
+                            <span>17</span>
+                            <span>16</span>
+                            <span>15</span>
+                            <span>14</span>
+                            <span>13</span>
+                            <span>12</span>
+                            <span>11</span>
+                            <span>10</span>
+                            <span>9</span>
+                            <span>8</span>
+                            <span>7</span>
+                            <span>6</span>
+                            <span>5</span>
+                            <span>4</span>
+                            <span>3</span>
+                            <span>2</span>
+                            <span>1</span>
+                            <span>0</span>
+                          </div>
+                          <h4>Taper VKRZ dans le chat <br> pour participer!</h4>
+
+                        </div>
+
+                        <div class="final">
+                          <button 
+                            type="button" 
+                            id="launchGameBtn" 
+                            class="btn btn-lg waves-effect btn-rose" 
+                            spellcheck="false"
+                          >
+                            Lancer le jeu
+                          </button>
+                        </div>
+                      </div>
+                      <span class="mode-alert"><i class="far fa-info-circle"></i> Il faut au moins deux participants</span>
+
+                      <div id="participants-overlay" class="mt-2 text-white d-none"></div>
+
+                      <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" href="#" class="confirm_delete btn btn-sm btn-outline-dark waves-effect">
+                        Annuler
+                      </a>
+                    </div>
+                  <?php endif; ?>
                 </div>
+
+                <?php if (!isMobile() && is_user_logged_in() && get_userdata($user_id)->twitch_user) : ?>
+                  <div id="prediction-player" class="col-3 d-none">
+                    <div class="card mb-2" id="participants">
+                      <div class="card-header flex-column align-items-start">
+                        <h4 class="card-title">
+                          <i class="fab fa-twitch"></i> <strong class="prediction-participants-votey-nbr">0</strong> de <strong class="prediction-participants">0</strong> Participants ont Voté
+                        </h4>
+                        <h4 class="card-title elimines d-none"></h4>
+                      </div>
+                      <div class="card-body">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div id="ranking-player" class="col-3 d-none">
+                        <h4 class="card-title">
+                          <i class="fab fa-twitch"></i> <strong class="points-participants-votey-nbr">0</strong> de <strong class="points-participants">0</strong> Participants ont Voté
+                        </h4>
+                    <table class="table table-points">
+                      <thead>
+                        <tr>
+                          <th>
+                            <span class="text-muted">
+                              Position
+                            </span>
+                          </th>
+
+                          <th>
+                            <span class="text-muted">
+                              Vainkeur
+                            </span>
+                          </th>
+
+                          <th class="text-left">
+                            <span class="text-muted">
+                              Points
+                            </span>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      </tbody>
+                    </table>
+                  </div>
+                <?php endif; ?>
               </div>
             </div>
           </div>
@@ -300,6 +515,19 @@ get_header();
       <?php endif; ?>
     </div>
   </div>
+
+  <?php if (!isMobile() && is_user_logged_in() && get_userdata($user_id)->twitch_user) : ?>
+    <div 
+      class="showTwitchBanner d-none" 
+      style="background-image: url(<?php bloginfo('template_directory'); ?>/assets/images/events/twitch-plus.png);" 
+      onmouseover="twitchGamesToggleIcon('plus')" 
+      onmouseout="twitchGamesToggleIcon('twitch')"
+    >
+      <i class="fab fa-twitch"></i>
+      <i class="fa fa-plus d-none"></i>
+      <i class="fa fa-minus d-none"></i>
+    </div>
+  <?php endif; ?>
 </div>
 
 <?php if ($id_ranking) : ?>

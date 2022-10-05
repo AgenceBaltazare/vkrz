@@ -48,7 +48,7 @@ function load_css_js()
   wp_enqueue_script('app-menu', get_template_directory_uri() . '/assets/js/core/app-menu.min.js', array(), null, true);
   wp_enqueue_script('main', get_template_directory_uri() . '/assets/js/vkrz/main.js', array(), $template_version, true);
 
-  if(is_user_logged_in() && get_userdata(get_user_logged_id())->twitch_user && get_post_type() == 'tournoi') {
+  if(!isMobile() && is_user_logged_in() && get_userdata(get_user_logged_id())->twitch_user && get_post_type() == 'tournoi') {
     wp_enqueue_script('tmi.min', get_template_directory_uri() . '/function/twitch/tmi.min.js', array(), $template_version, true);
     wp_enqueue_script('twitch_votes', get_template_directory_uri() . '/function/twitch/twitch_votes.js', array(), $template_version, true);
   }

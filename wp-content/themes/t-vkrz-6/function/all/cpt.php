@@ -254,8 +254,8 @@ function cpt_init() {
         'all_items' => 'Tous les transactions',
         'view_item' => 'Voir transaction',
         'search_items' => 'Chercher une transaction',
-        'not_found' =>  'Aucune transaction trouvé',
-        'not_found_in_trash' => 'Aucune transaction trouvé dans la corbeille',
+        'not_found' =>  'Aucune transaction trouvée',
+        'not_found_in_trash' => 'Aucune transaction trouvée dans la corbeille',
         'menu_name' => 'transactions'
     );
     $args = array(
@@ -275,6 +275,39 @@ function cpt_init() {
         'supports' => array('title', 'author')
     );
     register_post_type('transaction', $args);
+
+    // Room
+    $labels = array(
+        'name' => 'Room',
+        'singular_name' => 'Room',
+        'add_new' => 'Ajouter une room',
+        'add_new_item' => 'Ajouter une room',
+        'edit_item' => 'Editer une room',
+        'new_item' => 'Nouveau room',
+        'all_items' => 'Tous les rooms',
+        'view_item' => 'Voir room',
+        'search_items' => 'Chercher une room',
+        'not_found' =>  'Aucune room trouvée',
+        'not_found_in_trash' => 'Aucune room trouvée dans la corbeille',
+        'menu_name' => 'Room'
+    );
+    $args = array(
+        'labels' => $labels,
+        'public' => true,
+        'publicly_queryable' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'query_var' => true,
+        'rewrite' => array('slug' => 'room'),
+        'map_meta_cap' => true,
+        'has_archive' => true,
+        'hierarchical' => false,
+        'menu_position' => null,
+        'menu_icon' => 'dashicons-admin-multisite',
+        'show_in_rest' => true,
+        'supports' => array('title', 'author', 'thumbnail')
+    );
+    register_post_type('room', $args);
 
 }
 add_action( 'init', 'cpt_init' );

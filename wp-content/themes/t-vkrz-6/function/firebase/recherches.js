@@ -1,10 +1,11 @@
 import {
+  localhost,
   collection,
   database,
   addDoc
 } from "./config.js";
 
-if(document.querySelector('.recherche-firestore')) {
+if(document.querySelector('.recherche-firestore') && localhost === false) {
   document.querySelector('#search_text').focus();
 
   const container     = document.querySelector('.recherche-firestore'),
