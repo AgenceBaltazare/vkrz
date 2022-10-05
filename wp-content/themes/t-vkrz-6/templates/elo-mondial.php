@@ -185,6 +185,25 @@ $contenders_ranking   = get_contenders_ranking($id_top);
                                         </div>
                                     </div>
                                 </div>
+
+                                <?php if (get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $list_user_tops)) : ?>
+                                    <div class="col-6 col-sm-12 ressemblance-elo-avec-ma-toplist" data-idtop="<?= $id_top; ?>">
+                                        <div class="card text-center">
+                                            <div class="card-body">
+                                                <div class="ico-stats">
+                                                    <span class="ico4 va-duo va va-md va-z-50"></span>
+                                                </div>
+                                                <h2 class="font-weight-bolder results">
+                                                    -
+                                                </h2>
+                                                <p class="card-text legende" style="line-height: 1.4;">
+                                                    de Ressemblance avec ta <a class="my-ranking-url" href="#"> TopList !</a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php endif; ?>
+
                                 <div class="col-6 col-sm-12">
                                     <div class="card text-center">
                                         <div class="card-body">

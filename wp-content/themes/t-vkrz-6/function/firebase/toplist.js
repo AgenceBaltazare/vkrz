@@ -12,110 +12,6 @@ import {
   orderBy,
 } from "./config.js";
 
-<<<<<<< HEAD
-// FUNCTION TO SORT CONTENDERS…
-const sortContenders = function (contenders) {
-  let contendersArr = [],
-    contendersArrPlaces = [],
-    contendersArrIDs = [];
-
-  for (let contender of contenders) {
-    delete contender.c_name;
-    delete contender.elo;
-    delete contender.id;
-    delete contender.less_to;
-    delete contender.more_to;
-    delete contender.ratio;
-    delete contender.image;
-
-    contendersArr.push(contender);
-    contendersArrPlaces.push(contender.place);
-
-    contendersArrIDs.push(contender.id_wp);
-  }
-  contendersArr.sort(function (a, b) {
-    return b.place - a.place;
-  });
-  contendersArrPlaces
-    .sort(function (a, b) {
-      return b - a;
-    })
-    .reverse();
-  for (let j = 0; j < contendersArr.length; j++) {
-    contendersArr[j].place = contendersArrPlaces[j];
-  }
-  contenders = contendersArr;
-
-  return contenders;
-};
-
-// FUCNTION TO CALC RESEMBLANCE…
-const calcResemblanceFunc = function (
-  myContenders,
-  othersContenders,
-  top3
-) {
-  let numberContenders = myContenders.length,
-    positionEcart,
-    similaire,
-    pourcentSimilaire = [],
-    ressemblances = [],
-    ecartRessemblance;
-
-  if (top3 === true) {
-    myContenders = myContenders.slice(0, 3);
-    othersContenders = othersContenders.slice(0, 3);
-
-    numberContenders = 3;
-
-    myContenders.forEach((contender, index) => (contender.place = index));
-    othersContenders.forEach(
-      (contender, index) => (contender.place = index)
-    );
-  }
-
-  for (let i = 0; i < numberContenders; i++) {
-    let otherContenderPlace;
-    if (
-      othersContenders.find(
-        (contender) => contender.id_wp === myContenders[i].id_wp
-      )
-    ) {
-      otherContenderPlace = othersContenders.find(
-        (contender) => contender.id_wp === myContenders[i].id_wp
-      ).place;
-      positionEcart = Math.abs(
-        myContenders[i].place - otherContenderPlace
-      );
-      similaire = 1 / numberContenders / (positionEcart + 1);
-    } else {
-      otherContenderPlace = 0;
-      positionEcart = Math.abs(
-        myContenders[i].place - otherContenderPlace
-      );
-      similaire = 0;
-    }
-
-    if (top3 == true) {
-      ecartRessemblance =
-        1 / numberContenders / (numberContenders / 2 + 1);
-      pourcentSimilaire.push(similaire);
-    } else {
-      ecartRessemblance =
-        1 / numberContenders / (Math.floor(numberContenders / 2) + 1);
-
-      if (similaire <= ecartRessemblance) {
-        similaire = 0;
-        pourcentSimilaire.push(similaire);
-      } else {
-        pourcentSimilaire.push(similaire);
-      }
-    }
-  }
-
-  ressemblances.push(
-    Math.round(pourcentSimilaire.reduce((a, b) => a + b, 0) * 100)
-=======
 if(document.querySelector('#twitch-games-ranking')) {
   const twitchGamesRankingContainer = document.querySelector('#twitch-games-ranking'),
         idRanking                   = twitchGamesRankingContainer.dataset.idranking;
@@ -283,19 +179,108 @@ if(document.querySelector('#twitch-games-ranking')) {
   }
 }
 
-if (document.querySelector(".vs-resemblance")) {
-  const cardResemblance = document.querySelector(".vs-resemblance");
-  const idRanking = cardResemblance.dataset.idranking;
-  const idTop = cardResemblance.dataset.idtop;
-  const rankingUrl = cardResemblance.dataset.rankingUrl;
-  const topUrl = cardResemblance.dataset.topurl;
+// FUNCTION TO SORT CONTENDERS…
+const sortContenders = function (contenders) {
+  let contendersArr = [],
+    contendersArrPlaces = [],
+    contendersArrIDs = [];
 
-  // CHECK IF IT IS MY RANKING OR NOT…
-  const rankingQuery = query(
-    collection(database, "wpClassement"),
-    where("ID", "==", +idRanking),
-    where("author.id", "==", currentUserId)
->>>>>>> dba7b02a8f1b22ee283304c87d387aca268457d1
+  for (let contender of contenders) {
+    delete contender.c_name;
+    delete contender.elo;
+    delete contender.id;
+    delete contender.less_to;
+    delete contender.more_to;
+    delete contender.ratio;
+    delete contender.image;
+
+    contendersArr.push(contender);
+    contendersArrPlaces.push(contender.place);
+
+    contendersArrIDs.push(contender.id_wp);
+  }
+  contendersArr.sort(function (a, b) {
+    return b.place - a.place;
+  });
+  contendersArrPlaces
+    .sort(function (a, b) {
+      return b - a;
+    })
+    .reverse();
+  for (let j = 0; j < contendersArr.length; j++) {
+    contendersArr[j].place = contendersArrPlaces[j];
+  }
+  contenders = contendersArr;
+
+  return contenders;
+};
+
+// FUCNTION TO CALC RESEMBLANCE…
+const calcResemblanceFunc = function (
+  myContenders,
+  othersContenders,
+  top3
+) {
+  let numberContenders = myContenders.length,
+    positionEcart,
+    similaire,
+    pourcentSimilaire = [],
+    ressemblances = [],
+    ecartRessemblance;
+
+  if (top3 === true) {
+    myContenders = myContenders.slice(0, 3);
+    othersContenders = othersContenders.slice(0, 3);
+
+    numberContenders = 3;
+
+    myContenders.forEach((contender, index) => (contender.place = index));
+    othersContenders.forEach(
+      (contender, index) => (contender.place = index)
+    );
+  }
+
+  for (let i = 0; i < numberContenders; i++) {
+    let otherContenderPlace;
+    if (
+      othersContenders.find(
+        (contender) => contender.id_wp === myContenders[i].id_wp
+      )
+    ) {
+      otherContenderPlace = othersContenders.find(
+        (contender) => contender.id_wp === myContenders[i].id_wp
+      ).place;
+      positionEcart = Math.abs(
+        myContenders[i].place - otherContenderPlace
+      );
+      similaire = 1 / numberContenders / (positionEcart + 1);
+    } else {
+      otherContenderPlace = 0;
+      positionEcart = Math.abs(
+        myContenders[i].place - otherContenderPlace
+      );
+      similaire = 0;
+    }
+
+    if (top3 == true) {
+      ecartRessemblance =
+        1 / numberContenders / (numberContenders / 2 + 1);
+      pourcentSimilaire.push(similaire);
+    } else {
+      ecartRessemblance =
+        1 / numberContenders / (Math.floor(numberContenders / 2) + 1);
+
+      if (similaire <= ecartRessemblance) {
+        similaire = 0;
+        pourcentSimilaire.push(similaire);
+      } else {
+        pourcentSimilaire.push(similaire);
+      }
+    }
+  }
+
+  ressemblances.push(
+    Math.round(pourcentSimilaire.reduce((a, b) => a + b, 0) * 100)
   );
   let result =
     Math.round(pourcentSimilaire.reduce((a, b) => a + b, 0) * 100) + "%";
@@ -318,7 +303,7 @@ rankingQuerySnapshot.forEach(ranking => rankingArr = sortContenders(ranking.data
 
 for(let [index, contender] of rankingArr.entries()){
   (async function() {
-    const documentReference = doc(database, "wpContender", contender.id_wp.toString());
+    const documentReference = doc(database, "wpContender", (contender.id_wp).toString());
     const documentSnap      = await getDoc(documentReference);
 
     eloArr.push({place: index, elo: +documentSnap.data().custom_fields.ELO_c, id_wp: contender.id_wp})
@@ -395,11 +380,11 @@ if (document.querySelector(".vs-resemblance")) {
         `;
       } else {
         // NOT FOUND IN FIRESTORE…
-        console.log("No such document in Firestore!");
+        // console.log("No such document in Firestore!");
       }
     } else {
       // I DIDN'T THE RANKING…
-      console.log("I did not the ranking…");
+      // console.log("I did not the ranking…");
       cardResemblance.innerHTML = `
         <a href="${topUrl}" class="w-100 btn btn-rose waves-effect p-1 mt-2">
           <p class="h4 text-white m-0">
@@ -560,7 +545,7 @@ if (document.querySelector(".toplist_comments")) {
         userId: currentUserId,
         createdAt: new Date(),
       });
-      console.log("Comment sent with ID: ", newComment.id);
+      // console.log("Comment sent with ID: ", newComment.id);
 
       // ADD TO DOM…
       let commentTemplateDiv = await commentTemplate(
@@ -635,7 +620,7 @@ if (document.querySelector(".toplist_comments")) {
                 }
               );
 
-              console.log("Notification sent with ID: ", notification.id);
+              // console.log("Notification sent with ID: ", notification.id);
             } catch (error) {
               console.error("Error adding comment notification: ", error);
             }
