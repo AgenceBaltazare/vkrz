@@ -374,6 +374,51 @@ if(document.querySelector('.display_battle') && localStorage.getItem('twitchGame
     })()
   }
 
+  document.querySelector('.testParticipants').addEventListener('click', () => {
+    users = {
+      adil: 'adil',
+      oussama: 'oussama',
+      othmane: 'othmane',
+      guillaume: 'guillaume',
+      hugo: 'hugo',
+      artics: 'artics',
+      romain: 'romain',
+      houda: 'houda',
+      damien: 'damien',
+      simon: 'simon',
+      lucas: 'lucas',
+      lamis: 'lamis',
+      antonin: 'antonin',
+      chico: 'chico',
+      aymen: 'aymen',
+      achraf: 'achraf',
+      omar: 'omar',
+      said: 'said',
+      clemence: 'clemence',
+      chouchou: 'chouchou',
+      taybi: 'taybi',
+      badr: 'badr',
+      adnan: 'adnan',
+      mokhtar: 'mokhtar',
+      skafandri: 'skafandri',
+      james: 'james',
+      vergy: 'vergy',
+      anthony: 'anthony',
+      raheem: 'raheem',
+      haaland: 'haaland',
+      teramir: 'teramir',
+      quentin: 'quentin',
+      nina: 'nina',
+      aplha: 'alpha',
+      youpi: 'youpi',
+      tipo: 'tipo',
+      psg: 'psg',
+      fifa: 'fifa',
+      pes: 'pes',
+      zomorra: 'zomorra'
+    }
+  })
+
   // tmi.js STUFF… 🎙
   const client = new tmi.Client({
     channels: [twitchChannel],
@@ -450,6 +495,7 @@ if(document.querySelector('.display_battle') && localStorage.getItem('twitchGame
 
         const participants = document.querySelector('#participants-overlay');
         participants.classList.remove('d-none');
+
         if(Object.keys(users).length < 25) {
           if(Object.keys(users).length > 1) {
             participants.dataset.content = `${Object.keys(users).length} Participants :`;
@@ -464,10 +510,10 @@ if(document.querySelector('.display_battle') && localStorage.getItem('twitchGame
           let randomParticipants = [];
           while(randomParticipants.length < 25){
               let random = Math.floor((Math.random() * Object.keys(users).length) + 1) - 1;
-              if(randomParticipants.indexOf(random) === -1) randomParticipants.push(random);
+              if(randomParticipants.indexOf(random) === -1 || randomParticipants.indexOf(username) === -1) randomParticipants.push(random);
           }
           participants.innerHTML = `
-            ${Object.keys(users)[randomParticipants[0]]}, ${Object.keys(users)[randomParticipants[1]]}; ${Object.keys(users)[randomParticipants[2]]} et ${Object.keys(users).length - 2} d'autres participants… <span class="va va-star-struck va-lg" style="vertical-align: sub !important;"></span>
+            ${Object.keys(users)[randomParticipants[1]]}, ${Object.keys(users)[randomParticipants[2]]}, ${username} et ${Object.keys(users).length - 3} d'autres participants… <span class="va va-man-raising va-lg" style="vertical-align: sub !important;"></span>
           `
         }
 
@@ -526,10 +572,10 @@ if(document.querySelector('.display_battle') && localStorage.getItem('twitchGame
           let randomParticipants = [];
           while(randomParticipants.length < 25){
               let random = Math.floor((Math.random() * Object.keys(users).length) + 1) - 1;
-              if(randomParticipants.indexOf(random) === -1) randomParticipants.push(random);
+              if(randomParticipants.indexOf(random) === -1 || randomParticipants.indexOf(username) === -1) randomParticipants.push(random);
           }
           participants.innerHTML = `
-            ${Object.keys(users)[randomParticipants[0]]}, ${Object.keys(users)[randomParticipants[1]]}; ${Object.keys(users)[randomParticipants[2]]} et ${Object.keys(users).length - 2} d'autres participants… <span class="va va-star-struck va-lg" style="vertical-align: sub !important;"></span>
+            ${Object.keys(users)[randomParticipants[1]]}, ${Object.keys(users)[randomParticipants[2]]}, ${username} et ${Object.keys(users).length - 3} d'autres participants… <span class="va va-man-raising va-lg" style="vertical-align: sub !important;"></span>
           `
         }
 
