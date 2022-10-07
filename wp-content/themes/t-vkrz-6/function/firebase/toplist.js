@@ -295,6 +295,7 @@ const calcResemblanceFunc = function (
   return result;
 };
 
+// RESSEMBLANCE MONDIALE…
 if(document.querySelector('.classement')) {
   const idRanking = document.querySelector('.classement').dataset.idranking;
 
@@ -307,8 +308,15 @@ if(document.querySelector('.classement')) {
     
     // RESSEMBLANCE MONDIALE… 🌍
     let rankingArr = [],
-        eloArr     = [];
-    rankingQuerySnapshot.forEach(ranking => rankingArr = sortContenders(ranking.data().custom_fields.ranking_r));
+        eloArr     = [],
+        myTypeTopRanking;
+    rankingQuerySnapshot.forEach(ranking => {
+      rankingArr = sortContenders(ranking.data().custom_fields.ranking_r);
+      myTypeTopRanking = ranking.data().custom_fields.type_top_r;
+    });
+
+    let top3 = false;
+    if (myTypeTopRanking == "top3") top3 = true;
     
     for(let [index, contender] of rankingArr.entries()){
       (async function() {
@@ -322,7 +330,7 @@ if(document.querySelector('.classement')) {
     
         if((index + 1) == rankingArr.length) {
           const ressemblanceMondiale = document.querySelector('#ressemblance-mondiale');
-          ressemblanceMondiale.innerHTML = calcResemblanceFunc(rankingArr, eloArr);
+          ressemblanceMondiale.innerHTML = calcResemblanceFunc(rankingArr, eloArr, top3);
         }
       })()
     }
