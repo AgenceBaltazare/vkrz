@@ -797,7 +797,7 @@
     
     .twitchGamesWinnerName {
         font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-        font-size: 120px;
+        font-size: 156px;
         text-transform: uppercase;
         text-align: center;
         position: relative;
@@ -822,14 +822,14 @@
             }
         }
         &::before {   
-        content: url("https://www.freepnglogos.com/uploads/crown-png/pin-leanne-dlamini-women-women-gold-king-crown-35.png") ;
-        position: absolute; 
-        width: 100px;
-        height: 100px;
-        display: inline-block;
-        transform: scale(.05) rotate(45deg);
-        right: -13%;
-        top: -86%;
+            content: url("https://www.freepnglogos.com/uploads/crown-png/pin-leanne-dlamini-women-women-gold-king-crown-35.png") ;
+            position: absolute; 
+            width: 100px;
+            height: 100px;
+            display: inline-block;
+            transform: scale(.05) rotate(45deg);
+            right: -10%;
+            top: -70%;
         }
     }
     
@@ -938,7 +938,6 @@
                     font-style: italic;
                     font-weight: 800;
                     background: radial-gradient(circle at 10% 20%, rgb(163, 175, 243) 0%, rgb(220, 182, 232) 100.2%);
-                    -webkit-background-clip: text;
                     -webkit-text-fill-color: transparent;
                     text-transform: uppercase;
                 }
@@ -1060,7 +1059,6 @@
 
         i {
             background: radial-gradient(circle at 10% 20%, rgb(163, 175, 243) 0%, rgb(220, 182, 232) 100.2%);
-            -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             padding-right: 10px;
             font-size: 2.8rem;

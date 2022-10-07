@@ -306,7 +306,13 @@ get_header();
 
                   <?php if (!isMobile() && is_user_logged_in() && get_userdata($user_id)->twitch_user) : ?>
                     <div 
-                      class="d-none twitch-votes-container row align-items-center justify-content-center" data-twitchChannel="<?= get_userdata($user_id)->twitch_user; ?>">
+                      class="d-none twitch-votes-container row align-items-center justify-content-center" 
+                      data-twitchChannel="<?= get_userdata($user_id)->twitch_user; ?>"
+                      data-top="<?= $top_infos['top_title'] . ' ' . $top_infos['top_number'] . ' ' . $top_infos['top_question'];  ?> "
+                      data-topCategory="<?= $top_infos['top_cat_name'] ?>"
+                      data-idTop="<?= $id_top; ?>"
+                      data-idVainkeur="<?= $id_vainkeur; ?>"
+                    >
                       <div class="col-sm-4 col-12">
                       </div>
 
@@ -345,6 +351,14 @@ get_header();
 
                     <div class="twitchGamesWinnerContainer">
                       <span class="twitchGamesWinnerName confetti"></span>
+
+                      <div class="buttons">
+                        <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" href="#" class="confirm_delete btn btn-sm btn-outline-dark waves-effect mr-1"> Recommencer</a>
+
+                        <a href="#" class="btn btn-sm btn-outline-primary waves-effect mr-1" id="winner-continuer"> Continuer</a>
+
+                        <a href="#" class="btn btn-sm btn-outline-danger waves-effect" id="winner-relancer"> Relancer</a>
+                      </div>
                     </div>
                     <audio id="winner-sound" style="display: none; width: 0 !important;">
                       <source src="<?php bloginfo('template_directory'); ?>/assets/audios/winner-sound.mp3" type="audio/mpeg" />
@@ -403,8 +417,8 @@ get_header();
                             <span>14</span>
                             <span>13</span>
                             <span>12</span>
-                            <span>11</span>
-                            <span>10</span>
+                            <span>11</span> 
+                            <span>10</span> 
                             <span>9</span>
                             <span>8</span>
                             <span>7</span>
@@ -417,7 +431,6 @@ get_header();
                             <span>0</span>
                           </div>
                           <h4>Taper VKRZ dans le chat <br> pour participer!</h4>
-
                         </div>
 
                         <div class="final">
