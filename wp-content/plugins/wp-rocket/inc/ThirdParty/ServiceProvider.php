@@ -38,6 +38,7 @@ use WP_Rocket\ThirdParty\Themes\Flatsome;
 use WP_Rocket\ThirdParty\Themes\Polygon;
 use WP_Rocket\ThirdParty\Themes\Jevelin;
 use WP_Rocket\ThirdParty\Themes\Xstore;
+use WP_Rocket\ThirdParty\Plugins\CDN\Cloudflare;
 
 /**
  * Service provider for WP Rocket third party compatibility
@@ -84,12 +85,19 @@ class ServiceProvider extends AbstractServiceProvider {
 		'ezoic',
 		'pwa',
 		'flatsome',
+		'minimalist_blogger',
 		'convertplug',
 		'unlimited_elements',
 		'inline_related_posts',
+		'jetpack',
+		'rank_math_seo',
+		'all_in_one_seo_pack',
+		'seopress',
+		'the_seo_framework',
 		'jevelin',
 		'wpml',
 		'xstore',
+		'cloudflare_plugin_subscriber',
 	];
 
 	/**
@@ -227,6 +235,36 @@ class ServiceProvider extends AbstractServiceProvider {
 			->addTag( 'common_subscriber' );
 		$this->getContainer()
 			->share( 'wpml', WPML::class )
+			->addTag( 'common_subscriber' );
+		$this->getContainer()
+			->share( 'cloudflare_plugin_subscriber', Cloudflare::class )
+			->addArgument( $options )
+			->addTag( 'common_subscriber' );
+		$this->getContainer()
+			->share( 'jetpack', 'WP_Rocket\ThirdParty\Plugins\Jetpack' )
+			->addArgument( $options )
+			->addTag( 'common_subscriber' );
+		$this->getContainer()
+			->share( 'minimalist_blogger', 'WP_Rocket\ThirdParty\Themes\MinimalistBlogger' )
+			->addTag( 'common_subscriber' );
+		$this->getContainer()
+			->share( 'convertplug', 'WP_Rocket\ThirdParty\Plugins\ConvertPlug' )
+			->addTag( 'common_subscriber' );
+		$this->getContainer()
+			->share( 'rank_math_seo', 'WP_Rocket\ThirdParty\Plugins\SEO\RankMathSEO' )
+			->addArgument( $options )
+			->addTag( 'common_subscriber' );
+		$this->getContainer()
+			->share( 'all_in_one_seo_pack', 'WP_Rocket\ThirdParty\Plugins\SEO\AllInOneSEOPack' )
+			->addArgument( $options )
+			->addTag( 'common_subscriber' );
+		$this->getContainer()
+			->share( 'seopress', 'WP_Rocket\ThirdParty\Plugins\SEO\SEOPress' )
+			->addArgument( $options )
+			->addTag( 'common_subscriber' );
+		$this->getContainer()
+			->share( 'the_seo_framework', 'WP_Rocket\ThirdParty\Plugins\SEO\TheSEOFramework' )
+			->addArgument( $options )
 			->addTag( 'common_subscriber' );
 	}
 }
