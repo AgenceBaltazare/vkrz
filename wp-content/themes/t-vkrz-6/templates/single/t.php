@@ -365,8 +365,6 @@ get_header();
                     </audio>
 
                     <div class="twitch-overlay d-none">
-                      <a href="#" class="testParticipants">Test participants</a>
-
                       <h4>Lancement du jeu dans</h4>
                       <div id="countdown">
                         <div class="counter">

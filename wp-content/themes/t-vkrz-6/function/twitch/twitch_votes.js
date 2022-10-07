@@ -222,7 +222,6 @@ if(document.querySelector('.display_battle') && localStorage.getItem('twitchGame
       `https://www.twitch.tv/${twitchChannel}`
     );
   } else if (gameMode === "votePrediction") {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
     listeningForCount = false;
 
     preditcionParticipantsNumber = document.querySelector('.prediction-participants');
@@ -280,6 +279,7 @@ if(document.querySelector('.display_battle') && localStorage.getItem('twitchGame
 
       launchGameBtn.addEventListener('click', () => {
         if(Object.keys(users).length < 2) return false;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
 
         sendTwitchStreamNotif(
           vainkeurPseudo,
@@ -298,7 +298,6 @@ if(document.querySelector('.display_battle') && localStorage.getItem('twitchGame
       });
     })()
   } else if (gameMode === "votePoints") {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
     listeningForCount = false;
 
     pointsParticipantsNumber = document.querySelector('.points-participants');
@@ -355,6 +354,7 @@ if(document.querySelector('.display_battle') && localStorage.getItem('twitchGame
 
       launchGameBtn.addEventListener('click', () => {
         if(Object.keys(users).length < 2) return false;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
 
         sendTwitchStreamNotif(
           vainkeurPseudo,
@@ -373,51 +373,6 @@ if(document.querySelector('.display_battle') && localStorage.getItem('twitchGame
       });
     })()
   }
-
-  document.querySelector('.testParticipants').addEventListener('click', () => {
-    users = {
-      adil: 'adil',
-      oussama: 'oussama',
-      othmane: 'othmane',
-      guillaume: 'guillaume',
-      hugo: 'hugo',
-      artics: 'artics',
-      romain: 'romain',
-      houda: 'houda',
-      damien: 'damien',
-      simon: 'simon',
-      lucas: 'lucas',
-      lamis: 'lamis',
-      antonin: 'antonin',
-      chico: 'chico',
-      aymen: 'aymen',
-      achraf: 'achraf',
-      omar: 'omar',
-      said: 'said',
-      clemence: 'clemence',
-      chouchou: 'chouchou',
-      taybi: 'taybi',
-      badr: 'badr',
-      adnan: 'adnan',
-      mokhtar: 'mokhtar',
-      skafandri: 'skafandri',
-      james: 'james',
-      vergy: 'vergy',
-      anthony: 'anthony',
-      raheem: 'raheem',
-      haaland: 'haaland',
-      teramir: 'teramir',
-      quentin: 'quentin',
-      nina: 'nina',
-      aplha: 'alpha',
-      youpi: 'youpi',
-      tipo: 'tipo',
-      psg: 'psg',
-      fifa: 'fifa',
-      pes: 'pes',
-      zomorra: 'zomorra'
-    }
-  })
 
   // tmi.js STUFF… 🎙
   const client = new tmi.Client({
@@ -510,11 +465,11 @@ if(document.querySelector('.display_battle') && localStorage.getItem('twitchGame
           let randomParticipants = [];
           while(randomParticipants.length < 25){
               let random = Math.floor((Math.random() * Object.keys(users).length) + 1) - 1;
-              if(randomParticipants.indexOf(random) === -1 || randomParticipants.indexOf(username) === -1) randomParticipants.push(random);
+              if(randomParticipants.indexOf(random) === -1) randomParticipants.push(random);
           }
           participants.innerHTML = `
-            ${Object.keys(users)[randomParticipants[1]]}, ${Object.keys(users)[randomParticipants[2]]}, ${username} et ${Object.keys(users).length - 3} d'autres participants… <span class="va va-man-raising va-lg" style="vertical-align: sub !important;"></span>
-          `
+            ${Object.keys(users)[randomParticipants[1]] === username ? Object.keys(users)[randomParticipants[2]] : Object.keys(users)[randomParticipants[1]]}, ${Object.keys(users)[randomParticipants[3]] === username ? Object.keys(users)[randomParticipants[4]] : Object.keys(users)[randomParticipants[3]]}, ${username} et ${Object.keys(users).length - 3} autres participants… <span class="va va-man-raising va-lg" style="vertical-align: sub !important;"></span>
+          `;
         }
 
         preditcionParticipantsNumber.textContent = Object.keys(users).length;
@@ -535,7 +490,7 @@ if(document.querySelector('.display_battle') && localStorage.getItem('twitchGame
         winnerAlready === false &&
         (message === "1" || message === "2")
       ) {
-        document.querySelector(`#${username}`).classList.add('text-primary');
+        document.querySelector(`#prediction-player #${username}`).classList.add('text-primary');
         preditcionParticipantsVotedNumber.textContent = +preditcionParticipantsVotedNumber.textContent + 1;
   
         if (message === "1") {
@@ -572,11 +527,11 @@ if(document.querySelector('.display_battle') && localStorage.getItem('twitchGame
           let randomParticipants = [];
           while(randomParticipants.length < 25){
               let random = Math.floor((Math.random() * Object.keys(users).length) + 1) - 1;
-              if(randomParticipants.indexOf(random) === -1 || randomParticipants.indexOf(username) === -1) randomParticipants.push(random);
+              if(randomParticipants.indexOf(random) === -1) randomParticipants.push(random);
           }
           participants.innerHTML = `
-            ${Object.keys(users)[randomParticipants[1]]}, ${Object.keys(users)[randomParticipants[2]]}, ${username} et ${Object.keys(users).length - 3} d'autres participants… <span class="va va-man-raising va-lg" style="vertical-align: sub !important;"></span>
-          `
+            ${Object.keys(users)[randomParticipants[1]] === username ? Object.keys(users)[randomParticipants[2]] : Object.keys(users)[randomParticipants[1]]}, ${Object.keys(users)[randomParticipants[3]] === username ? Object.keys(users)[randomParticipants[4]] : Object.keys(users)[randomParticipants[3]]}, ${username} et ${Object.keys(users).length - 3} autres participants… <span class="va va-man-raising va-lg" style="vertical-align: sub !important;"></span>
+          `;
         }
 
         pointsParticipantsNumber.textContent = Object.keys(users).length;
@@ -617,7 +572,7 @@ if(document.querySelector('.display_battle') && localStorage.getItem('twitchGame
         (message === "1" || message === "2")
       ) 
       {
-        document.querySelector(`#${username} td:nth-of-type(2)`).classList.add('voted');
+        document.querySelector(`#ranking-player #${username} td:nth-of-type(2)`).classList.add('voted');
         pointsParticipantsVotedNumber.textContent = +pointsParticipantsVotedNumber.textContent + 1;
         // let speech = new SpeechSynthesisUtterance(`${username} a bien voté!`)
         // window.speechSynthesis.speak(speech)
