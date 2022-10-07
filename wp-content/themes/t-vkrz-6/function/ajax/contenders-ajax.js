@@ -416,7 +416,7 @@ $(document).ready(function ($) {
               ) {
                 try {
                   const newRankingFollow = await addDoc(
-                    collection(database, "notifications"),
+                    collection(database, "notificationsLocal"),
                     {
                       userId: userId,
                       uuid: uuid,
@@ -439,7 +439,8 @@ $(document).ready(function ($) {
                 }
               }
 
-              if (currentUserId != "0" && localhost === false) {
+              // if (currentUserId != "0" && localhost === false) {
+              if (currentUserId != "0") {
                 const followersQuery = query(
                   collection(database, "notifications"),
                   where("notifType", "==", "follow"),
@@ -752,14 +753,12 @@ $(document).ready(function ($) {
                     })();
                   });
                 }
+              } 
 
-                $(location).attr("href", link_to_ranking);
-              } else {
-                localStorage.removeItem('twitchGameMode');
+              localStorage.removeItem('twitchGameMode');
+            })()
 
-                $(location).attr("href", link_to_ranking);
-              }
-            })();
+            $(location).attr("href", link_to_ranking);
           }
         })
         .always(function () {
