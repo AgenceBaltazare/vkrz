@@ -340,8 +340,15 @@ if(document.querySelector('.classement')) {
 if (document.querySelector(".vs-resemblance")) {
   const cardResemblance = document.querySelector(".vs-resemblance");
   const idTop           = cardResemblance.dataset.idtop;
+  const idRanking       = cardResemblance.dataset.idranking;
   const rankingUrl      = cardResemblance.dataset.rankingUrl;
   const topUrl          = cardResemblance.dataset.topurl;
+
+  const rankingQuery = query(
+    collection(database, "wpClassement"),
+    where("ID", "==", +idRanking),
+  );
+  const rankingQuerySnapshot = await getDocs(rankingQuery);
 
   if (rankingQuerySnapshot._snapshot.docs.size === 1) {
     // CHECK IF I ALREADY DID THE RANKING…
