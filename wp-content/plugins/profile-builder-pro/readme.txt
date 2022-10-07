@@ -7,7 +7,7 @@ custom registration, custom registration form, custom registration page, extra u
 front-end register, front-end registration, frontend edit profile, edit profileregistration, customize profile, user fields, builder, profile builder, custom fields, avatar
 Requires at least: 3.1
 Tested up to: 6.0
-Stable tag: 3.7.8
+Stable tag: 3.8.1
 
 
 Login, registration and edit profile shortcodes for the front-end. Also you can choose what fields should be displayed or add custom ones.
@@ -101,6 +101,20 @@ This plugin only adds/removes fields in the front-end. The default information-f
 
 
 == Changelog ==
+= 3.8.1 = 
+* Feature: Added option to set the password recovery link on the login form that can be added on the WooCommerce account page
+* Misc: compatibility changes
+
+= 3.8.0 = 
+* Fix: Small issues with Userlisting Themes loading
+* Fix: Userlisting javascript error
+
+= 3.7.9 = 
+* Feature: added a Template Selector for Userlisting allowing you to choose different styles for your userlistings
+* Fix: issue with Language field not saving the language correctly when Email Confirmation was enabled
+* Fix: case where back-end fields were validated for the currently logged in user
+* Misc: compatibility fixes for Datepicker field with a WooCommerce add-on
+
 = 3.7.8 =
 * Feature: Add support to restrict the BuddyPress Activity and Member pages with a redirect, through the Content Restriction feature
 * Fix: Add compatibility between Custom Profile Menus iFrames and Max Mega Menu plugin
