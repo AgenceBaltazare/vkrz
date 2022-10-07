@@ -4,7 +4,7 @@ Donate link: http://www.cozmoslabs.com/wordpress-profile-builder/
 Tags: user registration, user profile, registration, profile, user registration form, user fields, edit profile, user custom fields, front-end login, front-end edit profile, front-end user registration, email confirmation, login form, content restriction, restrict content
 Requires at least: 3.1
 Tested up to: 6.0
-Stable tag: 3.7.9
+Stable tag: 3.8.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,7 +38,9 @@ You can use the following shortcode list to display the forms:
 == Profile Builder Features ==
 
 * drag & drop to reorder user profile fields
+* add Avatar Upload field for users to manage their avatar on your website
 * enable **Email Confirmation** (on registration users will receive a notification to [confirm their email address](https://www.cozmoslabs.com/14722-wordpress-email-confirmation/))
+* Email Customizer - Personalize all emails sent to your users or admins; customize default WordPress registration email
 * choose between login with **only Username, Email** or **both**
 * enforce [WordPress password requirements](https://www.cozmoslabs.com/28998-wordpress-minimum-password-length-strength/) by setting up a **minimum password length** and **minimum password strength** (using the default WordPress password strength meter)
 * assign users a specific role at registration (using **[wppb-register role="desired_role"]** shortcode argument for the register form)
@@ -62,8 +64,7 @@ You can use the following shortcode list to display the forms:
 
 The [Pro version](http://www.cozmoslabs.com/wordpress-profile-builder/?utm_source=wp.org&utm_medium=pb-description-page&utm_campaign=PBFree) has the following extra features:
 
-* Create Extra User Fields (Heading, Input, Hidden Input, Number, Checkbox, Agree to Terms Checkbox, Radio Buttons, , Textarea, WYSIWYG, reCAPTCHA, Upload fields, Selects, User Role Select, Country Select, Timezone Select, Avatar Upload, Map, HTML, Phone, Datepicker, Timepicker, Colorpicker, Custom Validation field, Currency Select, CPT Select)
-* Add Avatar Upload for users
+* Create Extra User Fields (Hidden Input, Agree to Terms Checkbox WYSIWYG, Upload fields, User Role Select, Country Select, Timezone Select Upload, Map, HTML, Phone, Datepicker, Timepicker, Colorpicker, Custom Validation field, Currency Select, CPT Select)
 * Support for Conditional Fields
 * Front-end User Listing (fully customizable, sorting included)
 * Create Multiple User Listings
@@ -72,7 +73,6 @@ The [Pro version](http://www.cozmoslabs.com/wordpress-profile-builder/?utm_sourc
 * Multiple Registration Forms (set up [multiple registration forms](https://www.cozmoslabs.com/docs/profile-builder-2/add-ons/multiple-registration-forms/?utm_source=wp.org&utm_medium=pb-description-page&utm_campaign=PBFree) with different profile fields for certain user roles)
 * Multiple Edit Profile Forms
 * Admin Approval ([approve new users from dashboard or via email](https://www.cozmoslabs.com/112321-approve-users-from-admin-email-using-profile-builder/))
-* Email Customizer (Personalize all emails sent to your users or admins; customize default WordPress registration email)
 * Advanced Add-ons (e.g. custom redirects, user listing, multiple registration forms etc.)
 * Access to support and documentation
 * 1 Year of Updates / Priority Support
@@ -177,6 +177,16 @@ This plugin adds/removes user fields in the front-end. Both default and extra pr
 15. Edit or Add New User Role
 
 == Changelog ==
+= 3.8.1 =
+* Feature: added new field types: Heading, Input, Textarea, Select, Select2, Checkbox, Radio
+* Feature: added Avatar field which lets your users manage their avatar on your website from the Profile Builder forms
+* Feature: added Email Customizer feature which lets you edit all the emails that the plugin sends with custom content and tags for the defined fields
+* Fix: issue with licence activation not working on multisite
+
+= 3.8.0 =
+* Feature: added the possibility to restrict the purchase of WooCommerce Products based on User Roles
+* Misc: fix some cases where HTML was displaying in the back-end
+
 = 3.7.9 =
 * Fix: Bug happening with the Elementor Registration widget in some cases
 * Fix: Backwards compatibility issues with Password Strength feature on older versions of WordPress
