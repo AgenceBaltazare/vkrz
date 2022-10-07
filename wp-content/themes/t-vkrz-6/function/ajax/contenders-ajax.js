@@ -752,6 +752,8 @@ $(document).ready(function ($) {
                     })();
                   });
                 }
+
+                $(location).attr("href", link_to_ranking);
               } else {
                 localStorage.removeItem('twitchGameMode');
 
