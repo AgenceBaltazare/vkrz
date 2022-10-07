@@ -101,7 +101,7 @@ function wppb_in_woosync_settings_content() {
                         </select>
 
                         <p class="description">
-                            <?php esc_html_e( 'Select which Profile Builder Register form to display on My Account page from WooCommerce. <br/> This will also add the Profile Builder Login form to MyAccount page.', 'profile-builder' ); ?>
+                            <?php printf( esc_html__( 'Select which Profile Builder Register form to display on My Account page from WooCommerce. %s This will also add the Profile Builder Login form to MyAccount page.', 'profile-builder' ), '<br>' ); ?>
                         </p>
                     </td>
                 </tr>

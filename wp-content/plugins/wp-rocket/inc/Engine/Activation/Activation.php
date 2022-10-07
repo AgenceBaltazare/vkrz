@@ -2,7 +2,9 @@
 
 namespace WP_Rocket\Engine\Activation;
 
+use WP_Rocket\Admin\Options;
 use WP_Rocket\Dependencies\League\Container\Container;
+use WP_Rocket\Event_Management\Event_Manager;
 use WP_Rocket\ThirdParty\Hostings\HostResolver;
 
 /**
@@ -20,6 +22,8 @@ class Activation {
 		'advanced_cache',
 		'capabilities_manager',
 		'wp_cache',
+		'action_scheduler_check',
+		'preload_activation',
 	];
 
 	/**
@@ -31,8 +35,12 @@ class Activation {
 		$container = new Container();
 
 		$container->add( 'template_path', WP_ROCKET_PATH . 'views' );
-		$container->addServiceProvider( 'WP_Rocket\Engine\Activation\ServiceProvider' );
-		$container->addServiceProvider( 'WP_Rocket\ThirdParty\Hostings\ServiceProvider' );
+		$options_api = new Options( 'wp_rocket_' );
+		$container->add( 'options_api', $options_api );
+		$container->addServiceProvider( \WP_Rocket\ServiceProvider\Options::class );
+		$container->addServiceProvider( \WP_Rocket\Engine\Preload\Activation\ServiceProvider::class );
+		$container->addServiceProvider( ServiceProvider::class );
+		$container->addServiceProvider( \WP_Rocket\ThirdParty\Hostings\ServiceProvider::class );
 
 		$host_type = HostResolver::get_host_service();
 
