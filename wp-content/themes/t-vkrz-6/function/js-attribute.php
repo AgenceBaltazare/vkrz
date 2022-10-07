@@ -89,3 +89,12 @@ function add_type_attribute10($tag, $handle, $src)
   return $tag;
 }
 add_filter('script_loader_tag', 'add_type_attribute10', 10, 6);
+
+function add_type_attribute11($tag, $handle, $src)
+{
+  if ('ranking' !== $handle) return $tag;
+  $tag = '<script type="module" src="' . esc_url($src) . '"></script>';
+  
+  return $tag;
+}
+add_filter('script_loader_tag', 'add_type_attribute11', 10, 6);

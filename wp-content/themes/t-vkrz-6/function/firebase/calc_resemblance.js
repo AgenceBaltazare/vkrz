@@ -1,4 +1,4 @@
-import { collection, database, query, where, getDocs } from "./config.js";
+import { collection, database, query, where, getDocs, getDoc, doc } from "./config.js";
 import { checkGuetterButton } from "./follow_button.js";
 
 const table = document.querySelector("table"),
@@ -354,6 +354,31 @@ let nombrePages = getNombrePages.nb_pages,
         const actualUserRankingQuerySnapshot = await getDocs(
           actualUserRankingQuery
         );
+
+        // CALC TOPLIST MONDIALE…
+        if(document.querySelector('#ressemblance-ma-toplist-mondiale')) {
+          const resultsDOM = document.querySelector('#ressemblance-ma-toplist-mondiale');
+
+          let rankingArr   = [],
+            eloArr       = [];
+          actualUserRankingQuerySnapshot.forEach(ranking => rankingArr = sortContenders(ranking.data().custom_fields.ranking_r));
+
+          for(let [index, contender] of rankingArr.entries()){
+            (async function() {
+                const documentReference = doc(database, "wpContender", (contender.id_wp).toString());
+                const documentSnap      = await getDoc(documentReference);
+
+                eloArr.push({place: index, elo: +documentSnap.data().custom_fields.ELO_c, id_wp: contender.id_wp})
+
+                eloArr = eloArr.sort((a, b) => b.elo - a.elo)
+                eloArr.forEach((contender, index) => contender.place = index);
+
+                if((index + 1) == rankingArr.length) {
+                  resultsDOM.textContent = calcResemblanceFunc(rankingArr, eloArr);
+                }
+            })()
+          }
+        }
 
         if (actualUserRankingQuerySnapshot._snapshot.docs.size != 0) {
           let myTypeTopRanking, otherTypeTopRanking; // TO DEFINE…

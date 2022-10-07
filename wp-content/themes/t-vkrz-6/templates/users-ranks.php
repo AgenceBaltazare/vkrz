@@ -175,6 +175,27 @@ $count_toplist        = count($list_toplist);
 
                             <div class="card">
                                 <div class="card-body">
+                                    <?php if(get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $list_user_tops)) : ?>
+                                        <h4 class="card-title">
+                                            <span class="va va-globe va-lg"></span> <b id="ressemblance-ma-toplist-mondiale" style="color: #7367f0;">-</b> de ressemblance de ta TopList avec la TopList mondiale
+                                         </h4>
+                                    <?php else : ?>
+                                        <h4 class="card-title">
+                                            <span class="va va-globe va-lg"></span> TopList mondiale
+                                        </h4>
+                                    <?php endif; ?>
+                                   
+                                    <h6 class="card-subtitle text-muted mb-1">
+                                        Découvre le classement complet généré par les <?php echo $top_datas['nb_votes']; ?> votes !
+                                    </h6>
+                                    <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_top; ?>" class="btn btn-outline-primary waves-effect">
+                                        Voir la TopList mondiale
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-body">
                                     <h4 class="card-title">
                                         <span class="ico va va-speech-balloon va-lg"></span> <?php echo $top_datas['nb_comments']; ?>
                                         <?php if ($top_datas['nb_comments'] <= 1) : ?>
@@ -188,20 +209,6 @@ $count_toplist        = count($list_toplist);
                                     </h6>
                                     <a href="<?php echo get_the_permalink(get_page_by_path('discuz')) . '?id_top=' . $id_top; ?>" class="btn btn-outline-primary waves-effect">
                                         Lire & poster
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title">
-                                        <span class="va va-globe va-lg"></span> TopList mondiale
-                                    </h4>
-                                    <h6 class="card-subtitle text-muted mb-1">
-                                        Découvre le classement complet généré par les <?php echo $top_datas['nb_votes']; ?> votes !
-                                    </h6>
-                                    <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_top; ?>" class="btn btn-outline-primary waves-effect">
-                                        Voir la TopList mondiale
                                     </a>
                                 </div>
                             </div>
