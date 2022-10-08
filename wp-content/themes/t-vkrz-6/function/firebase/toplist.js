@@ -295,41 +295,60 @@ const calcResemblanceFunc = function (
   return result;
 };
 
-// GET RANKING FROM FIRESTORE…
-const idRanking = document.querySelector('.classement').dataset.idranking;
-const rankingQuery = query(
-  collection(database, "wpClassement"),
-  where("ID", "==", +idRanking),
-);
-const rankingQuerySnapshot = await getDocs(rankingQuery);
+// RESSEMBLANCE MONDIALE…
+if(document.querySelector('.classement')) {
+  const idRanking = document.querySelector('.classement').dataset.idranking;
 
-// RESSEMBLANCE MONDIALE… 🌍
-let rankingArr = [],
-    eloArr     = [];
-rankingQuerySnapshot.forEach(ranking => rankingArr = sortContenders(ranking.data().custom_fields.ranking_r));
+  setTimeout(async () => {
+    const rankingQuery = query(
+      collection(database, "wpClassement"),
+      where("ID", "==", +idRanking),
+    );
+    const rankingQuerySnapshot = await getDocs(rankingQuery);
+    
+    // RESSEMBLANCE MONDIALE… 🌍
+    let rankingArr = [],
+        eloArr     = [],
+        myTypeTopRanking;
+    rankingQuerySnapshot.forEach(ranking => {
+      rankingArr = sortContenders(ranking.data().custom_fields.ranking_r);
+      myTypeTopRanking = ranking.data().custom_fields.type_top_r;
+    });
 
-for(let [index, contender] of rankingArr.entries()){
-  (async function() {
-    const documentReference = doc(database, "wpContender", (contender.id_wp).toString());
-    const documentSnap      = await getDoc(documentReference);
-
-    eloArr.push({place: index, elo: +documentSnap.data().custom_fields.ELO_c, id_wp: contender.id_wp})
-
-    eloArr = eloArr.sort((a, b) => b.elo - a.elo)
-    eloArr.forEach((contender, index) => contender.place = index);
-
-    if((index + 1) == rankingArr.length) {
-      const ressemblanceMondiale = document.querySelector('#ressemblance-mondiale');
-      ressemblanceMondiale.textContent = calcResemblanceFunc(rankingArr, eloArr);
+    let top3 = false;
+    if (myTypeTopRanking == "top3") top3 = true;
+    
+    for(let [index, contender] of rankingArr.entries()){
+      (async function() {
+        const documentReference = doc(database, "wpContender", (contender.id_wp).toString());
+        const documentSnap      = await getDoc(documentReference);
+    
+        eloArr.push({place: index, elo: +documentSnap.data().custom_fields.ELO_c, id_wp: contender.id_wp})
+    
+        eloArr = eloArr.sort((a, b) => b.elo - a.elo)
+        eloArr.forEach((contender, index) => contender.place = index);
+    
+        if((index + 1) == rankingArr.length) {
+          const ressemblanceMondiale = document.querySelector('#ressemblance-mondiale');
+          ressemblanceMondiale.innerHTML = calcResemblanceFunc(rankingArr, eloArr, top3);
+        }
+      })()
     }
-  })()
+  }, 3000)
 }
 
 if (document.querySelector(".vs-resemblance")) {
   const cardResemblance = document.querySelector(".vs-resemblance");
   const idTop           = cardResemblance.dataset.idtop;
+  const idRanking       = cardResemblance.dataset.idranking;
   const rankingUrl      = cardResemblance.dataset.rankingUrl;
   const topUrl          = cardResemblance.dataset.topurl;
+
+  const rankingQuery = query(
+    collection(database, "wpClassement"),
+    where("ID", "==", +idRanking),
+  );
+  const rankingQuerySnapshot = await getDocs(rankingQuery);
 
   if (rankingQuerySnapshot._snapshot.docs.size === 1) {
     // CHECK IF I ALREADY DID THE RANKING…
