@@ -202,11 +202,16 @@ $(document).ready(function ($) {
         const myRankingQuerySnapshot = await getDocs(myRankingQuery);
 
         let rankingArr   = [],
-            eloArr       = [];
+            eloArr       = [],
+            myTypeTopRanking;
         myRankingQuerySnapshot.forEach(ranking => {
             myRankingLink.setAttribute('href', ranking.data().permalink);
             rankingArr = sortContenders(ranking.data().custom_fields.ranking_r);
+            myTypeTopRanking = ranking.data().custom_fields.type_top_r;
         });
+
+        let top3 = false;
+        if (myTypeTopRanking == "top3") top3 = true;
 
         for(let [index, contender] of rankingArr.entries()){
         (async function() {
@@ -219,7 +224,7 @@ $(document).ready(function ($) {
             eloArr.forEach((contender, index) => contender.place = index);
 
             if((index + 1) == rankingArr.length) {
-                results.textContent = calcResemblanceFunc(rankingArr, eloArr);
+                results.textContent = calcResemblanceFunc(rankingArr, eloArr, top3);
             }
         })()
         }
