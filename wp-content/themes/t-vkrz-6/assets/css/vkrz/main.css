@@ -2467,13 +2467,14 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
 .t-normal-container .twitch-overlay #participants-overlay {
   font-size: 2.4rem;
   position: relative;
+  width: 80%;
 }
 .t-sponso-container .twitch-overlay #participants-overlay::after,
 .t-normal-container .twitch-overlay #participants-overlay::after {
   content: attr(data-content);
   position: absolute;
-  top: -22%;
-  left: 0;
+  top: -10%;
+  left: 2%;
   font-size: 0.8rem;
   text-transform: uppercase;
 }
