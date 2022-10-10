@@ -178,11 +178,10 @@ if(document.querySelector('#twitch-games-ranking')) {
           });
         }
       }
-    }
 
-    // REMOVE LOCAL STORAGE…
-    localStorage.removeItem('resumeTwitchGame');
-    localStorage.removeItem('twitchGameMode');
+      // REMOVE LOCAL STORAGE…
+      localStorage.removeItem('resumeTwitchGame');
+    }
   }
 }
 
@@ -306,7 +305,7 @@ if(document.querySelector('.classement')) {
     );
     const rankingQuerySnapshot = await getDocs(rankingQuery);
     
-    // RESSEMBLANCE MONDIALE… 🌍
+    // RESSEMBLANCE MONDIALE… 
     let rankingArr = [],
         eloArr     = [],
         myTypeTopRanking;

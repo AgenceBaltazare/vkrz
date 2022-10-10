@@ -360,8 +360,15 @@ let nombrePages = getNombrePages.nb_pages,
           const resultsDOM = document.querySelector('#ressemblance-ma-toplist-mondiale');
 
           let rankingArr   = [],
-            eloArr       = [];
-          actualUserRankingQuerySnapshot.forEach(ranking => rankingArr = sortContenders(ranking.data().custom_fields.ranking_r));
+            eloArr       = [],
+            myTypeTopRankingMondiale;
+          actualUserRankingQuerySnapshot.forEach(ranking => {
+            rankingArr = sortContenders(ranking.data().custom_fields.ranking_r)
+            myTypeTopRankingMondiale = ranking.data().custom_fields.type_top_r;
+          });
+
+          let top3Mondiale = false;
+          if (myTypeTopRankingMondiale == "top3") top3Mondiale = true;
 
           for(let [index, contender] of rankingArr.entries()){
             (async function() {
@@ -374,7 +381,7 @@ let nombrePages = getNombrePages.nb_pages,
                 eloArr.forEach((contender, index) => contender.place = index);
 
                 if((index + 1) == rankingArr.length) {
-                  resultsDOM.textContent = calcResemblanceFunc(rankingArr, eloArr);
+                  resultsDOM.textContent = calcResemblanceFunc(rankingArr, eloArr, top3Mondiale);
                 }
             })()
           }

@@ -364,8 +364,7 @@ $(document).ready(function ($) {
               localStorage.setItem('resumeTwitchGame', JSON.stringify(twitchGameResumeObj));
             }
 
-            // CHECK IF THERE IS SOME FOLLOWERS (CAN BE ALSO A FRIENDS), SEND NOTIFICATIONS TO THEM AND GO THE RANKING PAGE…
-            (async function () {
+            async function notificationsProcess() {
               // FUNCTION TO SORT CONTENDERS…
               const sortContenders = function (ranking) {
                 let contendersArr = [],
@@ -752,14 +751,15 @@ $(document).ready(function ($) {
                     })();
                   });
                 }
-
-                $(location).attr("href", link_to_ranking);
-              } else {
-                localStorage.removeItem('twitchGameMode');
-
-                $(location).attr("href", link_to_ranking);
               }
-            })();
+
+              return "done";
+            }
+            async function goToTopListPage() {
+              localStorage.removeItem('twitchGameMode');
+              $(location).attr("href", link_to_ranking);
+            }
+            notificationsProcess().then(async (result) => await goToTopListPage());
           }
         })
         .always(function () {
