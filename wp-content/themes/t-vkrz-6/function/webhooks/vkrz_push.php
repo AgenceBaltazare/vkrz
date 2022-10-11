@@ -63,17 +63,17 @@ function vkrz_push_level_up($user_id, $level_number){
 
 function vkrz_push_transaction($id_transaction){
 
-    if(env() != "local" && $id_transaction){
+    if(env() != $id_transaction){
         $name_produit       = get_the_title(get_field('id_produit_transaction', $id_transaction));
         $price_produit      = get_field('montant_transaction', $id_transaction);
 
-        $user_id     = get_the_author_meta('ID');
+        $user_id        = get_user_logged_id();
         if ($user_id) {
             $user_info   = get_userdata($user_id);
             $user_pseudo = $user_info->nickname;
         }
 
-        $url    = "https://hook.integromat.com/4uyy4a8q31f2u2vwwellsw8ndjfgjz6n";
+        $url    = "https://hook.eu1.make.com/etc5p54ljmff8yh2zpxxbifnqbptub0g";
         $args   = array(
             'body' => array(
                 'name_produit'     => $name_produit,
