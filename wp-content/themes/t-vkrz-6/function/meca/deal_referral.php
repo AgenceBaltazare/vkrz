@@ -25,7 +25,7 @@ function deal_referral($referral, $id_vainkeur, $keurz) {
   if (get_field('referral_from_me', $referral)) {
     $referral_from_me = json_decode(get_field('referral_from_me', $referral));
   }
-  // if (!in_array($id_vainkeur, $referral_from_me)) {
+  if (!in_array($id_vainkeur, $referral_from_me)) {
     array_push($referral_from_me, $id_vainkeur);
     update_field('referral_from_me', json_encode($referral_from_me), $referral);
 
@@ -42,18 +42,15 @@ function deal_referral($referral, $id_vainkeur, $keurz) {
     $user_money_for_him_dispo  = get_field('money_disponible_vkrz', $referral);
     update_field('money_disponible_vkrz', $user_money_for_him_dispo + $keurz, $referral);
 
-    $template_data       = wp_get_theme();
-    $template_version    = $template_data['Version'];
-    wp_enqueue_script('deal_parrainage', get_template_directory_uri() . '/function/firebase/deal_parrainage.js', array(), $template_version, true);
-
-    ob_start();
-    ?>
-    <script>
-        jQuery(document).ready(function ($){
-          callMe('Adil');
-        });
-    </script>
-    <?php
-    echo ob_get_clean();
-  // }
+    // ob_start();
+    // ? >
+    // <script>
+    //     jQuery(document).ready(function ($){
+    //       alert('HELLO');
+    //       callMe('Adil');
+    //     });
+    // </script>
+    // <?php
+    // echo ob_get_clean();
+  }
 }

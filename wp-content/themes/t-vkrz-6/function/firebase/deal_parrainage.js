@@ -10,6 +10,8 @@ import {
   database,
 } from "./config.js";
 
+console.log('dEAL PARRAINAGE JS')
+
 // SEND NOTIFICATION FUNCTION…
 async function sendNotification(
   userId,
@@ -44,8 +46,4 @@ async function sendNotification(
   } catch (error) {
     console.error("Error adding document: ", error);
   }
-}
-
-function callMe(name) {
-  alert(`Hello ${name} :)`);
 }

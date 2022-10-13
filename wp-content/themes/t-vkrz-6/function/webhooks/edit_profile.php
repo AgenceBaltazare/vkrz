@@ -22,7 +22,8 @@ function edit_profile( $http_request, $form_name, $user_id ){
                 get_userdata($user_id)->twitch_user ||
                 get_userdata($user_id)->youtube_user ||
                 get_userdata($user_id)->Instagram_user ||
-                get_userdata($user_id)->tiktok_user
+                get_userdata($user_id)->tiktok_user ||
+                get_userdata($user_id)->referral 
             ) {
                 update_vainkeur_badge($vainkeur_id, "Connecté");
             }

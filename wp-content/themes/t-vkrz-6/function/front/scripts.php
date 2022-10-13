@@ -32,6 +32,8 @@ function load_css_js()
   // FOLLOW BUTTON…
   wp_enqueue_script('follow_button', get_template_directory_uri() . '/function/firebase/follow_button.js', array(), $template_version, true);
 
+  wp_enqueue_script('deal_parrainage', get_template_directory_uri() . '/function/firebase/deal_parrainage.js', array(), $template_version, false);
+
   wp_enqueue_script('popper', get_template_directory_uri() . '/assets/js/core/popper.min.js', array(), null, true);
   wp_enqueue_script('bootstrap', get_template_directory_uri() . '/assets/js/core/bootstrap.min.js', array(), null, true);
   wp_enqueue_script('unison', get_template_directory_uri() . '/assets/js/core/unison-js.min.js', array(), null, true);

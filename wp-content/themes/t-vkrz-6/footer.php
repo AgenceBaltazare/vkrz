@@ -1,12 +1,4 @@
-<?php
-global $id_top;
-global $id_vainkeur;
-
-// REFERRAL…
-if(get_userdata(get_user_logged_id())->referral) {
-    deal_referral(get_userdata(get_user_logged_id())->referral, $id_vainkeur, 40);
-}
-?>
+<?php global $id_top; ?>
 <div class="come-back d-none">
     <div class="d-flex">
         <div class="text-center w-100">
@@ -50,6 +42,7 @@ if(get_userdata(get_user_logged_id())->referral) {
     </footer>
 <?php endif; ?>
 
+<?php global $id_vainkeur; ?>
 <script>
     const vkrz_ajaxurl = "<?= admin_url('admin-ajax.php') ?>";
     const id_vainkeur = "<?= $id_vainkeur ?>";

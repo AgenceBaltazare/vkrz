@@ -124,7 +124,15 @@ $(window).scroll(function () {
   }
 });
 
+
+
+
 jQuery(document).ready(function ($) {
+  function callMe(name) {
+    alert(`Hello ${name} :)`);
+  }
+  console.log('HELLO')
+
   $(".eh").equalHeights();
   $(".ehcard").equalHeights();
   $(".eh2").equalHeights();
@@ -208,6 +216,18 @@ jQuery(document).ready(function ($) {
       champs.classList.add('readonly');
       champs.value = `${champs.value} (Invitation Code)`;
     }
+  }
+
+  if(document.querySelector('#wppb-register-user-sign-on')) {
+    const form = document.querySelector('#wppb-register-user-sign-on');
+    form.addEventListener('submit', () => {
+      const formAction = form.getAttribute('action');
+      const codeInvitValue = form.querySelector('#referral').value;
+
+      if(!formAction.includes('codeinvit')) {
+        form.setAttribute('action', `${formAction}?codeinvit=${codeInvitValue}`)
+      }
+    });
   }
 
   if(document.querySelector('#copyReferralLink')) {

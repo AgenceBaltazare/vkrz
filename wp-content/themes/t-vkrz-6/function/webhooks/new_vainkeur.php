@@ -95,7 +95,11 @@ function new_vainkeur($user_id){
 
             update_field('uuiduser_user', $uuid_vainkeur, 'user_' . $user_id);
             update_field('id_vainkeur_user', $id_vainkeur, 'user_' . $user_id);
-            
+
+            // REFERRAL…
+            if($_GET['codeinvit']) {
+                deal_referral($_GET['codeinvit'], $id_vainkeur, 40);
+            }
         }
     }
 
@@ -117,6 +121,8 @@ function new_vainkeur($user_id){
                 'event_score': 100
             })
         });
+
+        
     </script>
     <?php
     echo ob_get_clean();
