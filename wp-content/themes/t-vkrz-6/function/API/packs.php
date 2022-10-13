@@ -244,6 +244,8 @@ function get_stats($data)
   ));
   $rankingsPosts = $rankings->posts;
   $rankingsLama = 0;
+
+  $toplistsLamaArr = array();
   foreach($rankingsPosts as $post) {
     $postSolo = (array) $post;
     $post_id = $postSolo["ID"];
@@ -252,9 +254,11 @@ function get_stats($data)
     $wp_post_author_uuid = get_field('uuiduser_user', 'user_' . $postSolo["post_author"]);
 
     if($original_post_author_uuid !== $wp_post_author_uuid) {
-      $rankingsLama++;
+      array_push($toplistsLamaArr, $original_post_author_uuid);
     }
   }
+  $toplistsLamaArr = array_unique($toplistsLamaArr);
+  $toplistsLamaArr = count($toplistsLamaArr);
 
   $results = array(
     "Aujourd'hui"             => date("d-m-Y", strtotime($today)),
@@ -267,7 +271,7 @@ function get_stats($data)
     "Dodo"                    => $dodo["pseudo"],
     "Dodo Image"              => $dodo["avatar"],
     "NB Creators"             => $nb_creators,
-    "TopList Lama2Lombre"     => $rankingsLama,
+    "TopList Lama2Lombre"     => $toplistsLamaArr,
     "Total Nombre Tops"       => $numberTotalTops,
     "NB Tops createur "       => $TopsBySimpleUsers,
   );
