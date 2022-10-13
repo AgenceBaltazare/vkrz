@@ -1,6 +1,10 @@
 <?php
-function form_newplayer($emailplayer, $uuiduser, $ranking, $top, $id_vainkeur){
 
+
+function form_newplayer($emailplayer, $uuiduser, $ranking, $top, $id_vainkeur){
+    
+    $mailcontent = get_field('message_email_t_sponso', $top);
+    
     $user_id = "";
 
     if(is_user_logged_in()){
@@ -35,6 +39,7 @@ function form_newplayer($emailplayer, $uuiduser, $ranking, $top, $id_vainkeur){
                 'id_vainkeurz' => $id_vainkeur,
                 'id_top' => $top,
                 'id_ranking' => $ranking,
+                'mail_content' => $mailcontent,
                             )
                         );
             
