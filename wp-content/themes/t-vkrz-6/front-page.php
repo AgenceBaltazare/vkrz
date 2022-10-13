@@ -22,6 +22,8 @@ if ($id_vainkeur) {
   $list_user_tops       = array();
   $list_user_tops_begin = array();
 }
+
+// echo '<h1 style="text-align:center;">' . get_userdata(get_current_user_id())->referral . '</h1>';
 ?>
 <div class="app-content content ">
   <div class="content-wrapper">
@@ -158,25 +160,59 @@ if ($id_vainkeur) {
         </div>
       </section>
 
-      <?php if(isset($list_user_tops[0])) :
-          $last_top_by_user   = $list_user_tops[0];
-          $last_top_url_top   = get_the_permalink($last_top_by_user);
-          $last_top_top_datas = get_top_data($last_top_by_user);
-          $last_top_top_infos = get_top_infos($last_top_by_user);
+      <?php if (isset($list_user_tops[0])) :
+        $last_top_by_user   = $list_user_tops[0];
+        $last_top_url_top   = get_the_permalink($last_top_by_user);
+        $last_top_top_datas = get_top_data($last_top_by_user);
+        $last_top_top_infos = get_top_infos($last_top_by_user);
 
-          $top_cat = $last_top_top_infos['top_cat'];
-          foreach ($top_cat as $cat) {
-            $top_cat_id = $cat->term_id;
+        $top_cat = $last_top_top_infos['top_cat'];
+        foreach ($top_cat as $cat) {
+          $top_cat_id = $cat->term_id;
+        }
+        $list_souscat  = array();
+        $top_souscat   = get_the_terms($last_top_by_user, 'concept');
+        if (!empty($top_souscat)) {
+          foreach ($top_souscat as $souscat) {
+            array_push($list_souscat, $souscat->slug);
           }
-          $list_souscat  = array();
-          $top_souscat   = get_the_terms($last_top_by_user, 'concept');
-          if (!empty($top_souscat)) {
-            foreach ($top_souscat as $souscat) {
-              array_push($list_souscat, $souscat->slug);
-            }
-          }
+        }
 
-          $tops_in_close_cat     = new WP_Query(array(
+        $tops_in_close_cat     = new WP_Query(array(
+          'ignore_sticky_posts'    => true,
+          'update_post_meta_cache' => false,
+          'no_found_rows'          => true,
+          'post_type'              => 'tournoi',
+          'post__not_in'           => $list_user_tops,
+          'orderby'                => 'rand',
+          'order'                  => 'ASC',
+          'posts_per_page'         => 10,
+          'tax_query' => array(
+            'relation' => 'AND',
+            array(
+              'taxonomy' => 'categorie',
+              'field'    => 'term_id',
+              'terms'    => array($top_cat_id)
+            ),
+            array(
+              'taxonomy' => 'concept',
+              'field' => 'slug',
+              'terms' => $list_souscat
+            ),
+            array(
+              'taxonomy' => 'type',
+              'field'    => 'slug',
+              'terms'    => array('private', 'whitelabel'),
+              'operator' => 'NOT IN'
+            ),
+          ),
+        ));
+        $count_similar = $tops_in_close_cat->post_count;
+        $count_next    = 10 - $count_similar;
+
+        if ($count_similar < 10) {
+
+          $tops_in_large_cat     = new WP_Query(array(
             'ignore_sticky_posts'    => true,
             'update_post_meta_cache' => false,
             'no_found_rows'          => true,
@@ -184,7 +220,7 @@ if ($id_vainkeur) {
             'post__not_in'           => $list_user_tops,
             'orderby'                => 'rand',
             'order'                  => 'ASC',
-            'posts_per_page'         => 10,
+            'posts_per_page'         => $count_next,
             'tax_query' => array(
               'relation' => 'AND',
               array(
@@ -193,56 +229,22 @@ if ($id_vainkeur) {
                 'terms'    => array($top_cat_id)
               ),
               array(
-                'taxonomy' => 'concept',
-                'field' => 'slug',
-                'terms' => $list_souscat
-              ),
-              array(
                 'taxonomy' => 'type',
                 'field'    => 'slug',
-                'terms'    => array('private', 'whitelabel'),
+                'terms'    => array('private', 'whitelabel', 'onboarding'),
                 'operator' => 'NOT IN'
               ),
             ),
           ));
-          $count_similar = $tops_in_close_cat->post_count;
-          $count_next    = 10 - $count_similar;
-
-          if ($count_similar < 10) {
-
-            $tops_in_large_cat     = new WP_Query(array(
-              'ignore_sticky_posts'    => true,
-              'update_post_meta_cache' => false,
-              'no_found_rows'          => true,
-              'post_type'              => 'tournoi',
-              'post__not_in'           => $list_user_tops,
-              'orderby'                => 'rand',
-              'order'                  => 'ASC',
-              'posts_per_page'         => $count_next,
-              'tax_query' => array(
-                'relation' => 'AND',
-                array(
-                  'taxonomy' => 'categorie',
-                  'field'    => 'term_id',
-                  'terms'    => array($top_cat_id)
-                ),
-                array(
-                  'taxonomy' => 'type',
-                  'field'    => 'slug',
-                  'terms'    => array('private', 'whitelabel', 'onboarding'),
-                  'operator' => 'NOT IN'
-                ),
-              ),
-            ));
-          }
-          if ($tops_in_close_cat->have_posts() || $tops_in_large_cat->have_posts()) : ?>
+        }
+        if ($tops_in_close_cat->have_posts() || $tops_in_large_cat->have_posts()) : ?>
           <section class="list-tournois">
             <div class="big-cat">
               <div class="heading-cat">
                 <div class="row">
                   <div class="col">
                     <h2 class="text-primary text-uppercase">
-                      <span class="va va-keurz va-lg"></span> Parceque t'as fait un Top <a href="<?= $last_top_url_top ; ?>" class="text-white d-inline-block"><?php echo $last_top_top_infos['top_title']; ?></a>
+                      <span class="va va-keurz va-lg"></span> Parceque t'as fait un Top <a href="<?= $last_top_url_top; ?>" class="text-white d-inline-block"><?php echo $last_top_top_infos['top_title']; ?></a>
                       <small class="text-muted">Des Recommandations selon tes goûts</small>
                     </h2>
                   </div>
@@ -272,7 +274,7 @@ if ($id_vainkeur) {
               </div>
             </div>
           </section>
-          <?php endif; ?>
+        <?php endif; ?>
       <?php endif; ?>
 
       <section id="vkrz-intro">

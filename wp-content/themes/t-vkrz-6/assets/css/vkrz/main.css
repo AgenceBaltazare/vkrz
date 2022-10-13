@@ -3222,14 +3222,18 @@ textarea {
 .wppb-user-forms textarea:valid {
   border: 2px solid #fff !important;
 }
-.wppb-user-forms input[type=text]:focus,
-.wppb-user-forms input[type=email]:focus,
-.wppb-user-forms input[type=password]:focus,
-.wppb-user-forms textarea:focus {
+.wppb-user-forms input[type=text]:focus:not(.readonly),
+.wppb-user-forms input[type=email]:focus:not(.readonly),
+.wppb-user-forms input[type=password]:focus:not(.readonly),
+.wppb-user-forms textarea:focus:not(.readonly) {
   border: 2px solid #f4167f !important;
   transition: background-color 5000s ease-in-out 0s !important;
   background: transparent !important;
   outline: 0;
+}
+.wppb-user-forms input[type=text].readonly {
+  color: #4B4161 !important;
+  outline: none !important;
 }
 
 /* Change Autocomplete styles in Chrome*/
@@ -5755,6 +5759,17 @@ select:-webkit-autofill:focus {
 }
 
 /***** Icons END *****/
+.parrainage-card .card-header .card-title {
+  color: #fff;
+  font-weight: 600;
+  font-size: 2.5rem;
+  margin: 0;
+  text-align: center;
+}
+.parrainage-card .card-body .btn {
+  width: 100%;
+}
+
 .logopm {
   width: 310px;
   text-align: center;

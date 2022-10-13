@@ -273,6 +273,10 @@ function get_stats($data)
   // DODO…
   $dodo = get_user_infos(get_field('uuid_dodo', 'options'));
 
+  // NOMBRE CREATEURS…
+  $nb_creators = new WP_User_Query( array( 'role' => 'Author' ) );
+  $nb_creators = (int) $nb_creators->get_total();
+
   $results = array(
     "Aujourd'hui"         => date("d-m-Y", strtotime($today)),
     "$quand"              => date("d-m-Y", strtotime($whereTo)),
@@ -285,6 +289,7 @@ function get_stats($data)
     "Dodo Image"          => $dodo["avatar"],
     "Best Createur"       => $best_creators[0]["user_pseudo"],
     "Image Createur"      => $best_creators[0]["user_avatar"],
+    "NB Creators"         => $nb_creators,
   );
 
   return $results;

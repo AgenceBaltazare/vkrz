@@ -198,16 +198,42 @@ jQuery(document).ready(function ($) {
   $(".share-natif-classement").click(function () {
     $(".share-classement-content").addClass("active-box");
   });
+
+  // FIX REFERRAL INPUT…
+  if(document.querySelector('#basic-tabs-components #referral')) {
+    const champs = document.querySelector('#referral');
+
+    if(champs.value !== "") {
+      champs.setAttribute('readonly', 'true');
+      champs.classList.add('readonly');
+      champs.value = `${champs.value} (Invitation Code)`;
+    }
+  }
+
+  if(document.querySelector('#copyReferralLink')) {
+    const button = document.querySelector("#copyReferralLink");
+
+    button.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.addEventListener('copy', function(e) {
+        e.clipboardData.setData('text/plain', button.getAttribute('href'));
+        e.preventDefault();
+      }, true);
+      document.execCommand('copy');  
+
+      button.querySelector('p:first-of-type').innerHTML = 'Bien copié ! <span class="ico va va-floppy-disk va-lg"></span>'
+    })
+  }
 });
 
-if(!localStorage.getItem('come-back')) {
-    const comesBackDiv = document.querySelector('.come-back'),
-    comesBackCloseBtn = comesBackDiv.querySelector('.come-back-closeBtn');
+if (!localStorage.getItem("come-back")) {
+  const comesBackDiv = document.querySelector(".come-back"),
+    comesBackCloseBtn = comesBackDiv.querySelector(".come-back-closeBtn");
 
-    comesBackDiv.classList.remove('d-none');
+  comesBackDiv.classList.remove("d-none");
 
-    comesBackCloseBtn.addEventListener('click', function() {
-        $('.come-back').fadeOut();
-        localStorage.setItem('come-back', 'hide');
-    })
+  comesBackCloseBtn.addEventListener("click", function () {
+    $(".come-back").fadeOut();
+    localStorage.setItem("come-back", "hide");
+  });
 }

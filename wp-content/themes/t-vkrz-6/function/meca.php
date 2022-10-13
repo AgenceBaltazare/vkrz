@@ -23,6 +23,7 @@ require_once 'meca/ismobile.php';
 require_once 'meca/deal_cookies.php';
 require_once 'meca/save_to_firestore.php';
 require_once 'meca/do_jugement.php';
+require_once 'meca/deal_referral.php';
 
 // Admin
 require_once 'meca/get_paid.php';
