@@ -179,112 +179,97 @@ function get_stats($data)
   $query4 = new WP_Query($args4);
   $newTops = $query4->found_posts;
 
-  // FIRST BEST CREATOR…
-  $rankings_by_top = array();
-  $best_creators = array();
-
-  $rankings = new WP_Query(array(
-      "post_type" => "resume",
-      "posts_per_page" => -1,
-      "fields" => "ids",
-      "ignore_sticky_posts" => true,
-      "update_post_meta_cache" => false,
-      "no_found_rows" => true,
-      'date_query' => array(
-        array(
-          'after'     => "$whereTo",
-          'before'    => "$today",
-          'inclusive' => true
-        )
-      ),
-  ));
-
-  if ($rankings->have_posts()) {
-      foreach ($rankings->posts as $ranking_id) {
-          $top_id = get_field("id_top_resume", $ranking_id);
-          if (array_key_exists($top_id, $rankings_by_top)) {
-              $rankings_by_top[$top_id]["total_vote"] = $rankings_by_top[$top_id]["total_vote"] + get_field("nb_votes_resume", $ranking_id);
-              $rankings_by_top[$top_id]["total_completed_top"] = $rankings_by_top[$top_id]["total_completed_top"] + get_field("nb_done_resume", $ranking_id);
-          } else {
-              $rankings_by_top[$top_id] = array(
-                  "total_vote" => get_field("nb_votes_resume", $ranking_id),
-                  "total_completed_top" => get_field("nb_done_resume", $ranking_id),
-              );
-          }
-      }
-  }
-
-  $users = new WP_User_Query(
-      array(
-          "fields" => "ID",
-          "number" => -1,
-          "role__in" => array("author", "administrator"),
-      ),
+  $administrators = new WP_User_Query(
+    array(
+        "fields" => "ID",
+        "number" => -1,
+        "role__in" => array("administrator"),
+    ),
   );
-  $users = $users->get_results();
+  $administrators = $administrators->get_results();
 
-  foreach ($users as $user_id) {
-      $user_info = get_userdata($user_id);
-      $count_vote = 0;
-      $count_completed_top = 0;
+  // TOPS CREES BY SIMPLE USERS (NO ADMINS)
+  $args5 = array(
+    'post_type' => 'tournoi',
+    "author__not_in"         => $administrators, // TO EXCLUDE ADMINS
+    'tax_query' => array(
+      array(
+        'taxonomy' => 'type',
+        'field'    => 'slug',
+        'terms'    => array('private', 'whitelabel', 'onboarding'),
+        'operator' => 'NOT IN',
+      )
+    ),
+  );
+  $query5 = new WP_Query($args5);
+  $TopsBySimpleUsers = $query5->found_posts;
 
-      $tops = new WP_Query(array(
-          'post_type' => 'tournoi',
-          'posts_per_page' => -1,
-          "fields" => "ids",
-          'ignore_sticky_posts' => true,
-          'update_post_meta_cache' => false,
-          'no_found_rows' => false,
-          'author' => $user_id,
-          'tax_query' => array(
-              array(
-                  'taxonomy' => 'categorie',
-                  'field'    => 'slug',
-                  'terms'    => array('onboarding', 'private', 'whitelabel'),
-                  'operator' => 'NOT IN',
-              )
-          ),
-      ));
+  // TOTAL NUMBER TOPS
+  $args6 = array(
+    'post_type' => 'tournoi',
+    'tax_query' => array(
+      array(
+        'taxonomy' => 'type',
+        'field'    => 'slug',
+        'terms'    => array('private', 'whitelabel', 'onboarding'),
+        'operator' => 'NOT IN',
+      )
+    ),
+  );
+  $query6 = new WP_Query($args6);
+  $numberTotalTops = $query6->found_posts;
 
-      if ($tops->have_posts()) {
-          foreach ($tops->posts as $top_id) {
-              if (array_key_exists($top_id, $rankings_by_top)) {
-                  $count_vote = $rankings_by_top[$top_id]["total_vote"] + $count_vote;
-                  $count_completed_top = $rankings_by_top[$top_id]["total_completed_top"] + $count_completed_top;
-              }
-          }
-      }
-
-      $best_creators[] = array(
-          "user_id" => $user_id,
-          "user_pseudo" => $user_info->nickname,
-          "user_avatar" => get_avatar_url($user_id, ["size" => "80", "force_default" => false]),
-          "user_level_icon" => get_user_level($user_id)["level_ico"],
-          "user_role" => $user_info->roles[0],
-          "total_vote" => $count_vote,
-          "total_completed_top" => $count_completed_top
-      );
-  }
-
-  usort($best_creators, function ($a, $b) {
-      return $b["total_vote"] <=> $a["total_vote"];
-  });
+  // BEST CREATOR… (GUILLAUME PART)
 
   // DODO…
   $dodo = get_user_infos(get_field('uuid_dodo', 'options'));
 
+  // NOMBRE CREATEURS…
+  $nb_creators = new WP_User_Query(array('role' => 'Author'));
+  $nb_creators = (int) $nb_creators->get_total();
+
+  // TOPLIST BY LAMA2LOMBRE
+  $rankings = new WP_Query(array(
+    "post_type"              => "classement",
+    "post_status"            => "publish",
+    "update_post_meta_cache" => false,
+    "no_found_rows"          => false,
+    'date_query' => array(
+      array(
+        'after'     => "$whereTo",
+        'before'    => "$today",
+        'inclusive' => true
+      )
+    ),
+  ));
+  $rankingsPosts = $rankings->posts;
+  $rankingsLama = 0;
+  foreach($rankingsPosts as $post) {
+    $postSolo = (array) $post;
+    $post_id = $postSolo["ID"];
+
+    $original_post_author_uuid = get_field('uuid_user_r', (int) $post_id);
+    $wp_post_author_uuid = get_field('uuiduser_user', 'user_' . $postSolo["post_author"]);
+
+    if($original_post_author_uuid !== $wp_post_author_uuid) {
+      $rankingsLama++;
+    }
+  }
+
   $results = array(
-    "Aujourd'hui"         => date("d-m-Y", strtotime($today)),
-    "$quand"              => date("d-m-Y", strtotime($whereTo)),
-    "Compte enregistre"   => $comptes,
-    "Classement publie"   => $classements,
-    "Player publie"       => $players,
-    "Classement NB votes" => $nb_classement_votes,
-    "Tops crees"          => $newTops,
-    "Dodo"                => $dodo["pseudo"],
-    "Dodo Image"          => $dodo["avatar"],
-    "Best Createur"       => $best_creators[0]["user_pseudo"],
-    "Image Createur"      => $best_creators[0]["user_avatar"],
+    "Aujourd'hui"             => date("d-m-Y", strtotime($today)),
+    "$quand"                  => date("d-m-Y", strtotime($whereTo)),
+    "Compte enregistre"       => $comptes,
+    "Classement publie"       => $classements,
+    "Player publie"           => $players,
+    "Classement NB votes"     => $nb_classement_votes,
+    "Tops crees"              => $newTops,
+    "Dodo"                    => $dodo["pseudo"],
+    "Dodo Image"              => $dodo["avatar"],
+    "NB Creators"             => $nb_creators,
+    "TopList Lama2Lombre"     => $rankingsLama,
+    "Total Nombre Tops"       => $numberTotalTops,
+    "NB Tops createur "       => $TopsBySimpleUsers,
   );
 
   return $results;
