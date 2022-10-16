@@ -14,8 +14,9 @@ $user_query = new WP_User_Query(
 $users = $user_query->get_results();
 foreach ($users as $user) {
     $user_id = $user->ID;
-    $data_t_created = get_creator_t($user_id);
-    $creator_money = round(($data_t_created['total_completed_top'] * 5) + ($data_t_created['creator_all_v'] * 0.3) + ($data_t_created['creator_nb_tops'] * 1000));
+    $data_t_created = get_creator_money($user_id);
+    
+    $creator_money  = round(($data_t_created[0]['top_ranks'] * 5) + ($data_t_created[0]['top_votes'] * 0.3) + ($data_t_created[0]['nb_top_created'] * 1000));
 
     $vainkeur_entry = new WP_Query(array(
         'post_type'              => 'vainkeur',
@@ -31,7 +32,8 @@ foreach ($users as $user) {
     if ($vainkeur_entry->have_posts()) {
 
         $id_vainkeur    = $vainkeur_entry->posts[0];
-        update_field('money_creator_vkrz', $creator_money, $id_vainkeur);
+        //update_field('money_creator_vkrz', $creator_money, $id_vainkeur);
+        echo "vainkeur : ". $id_vainkeur . " a ". $creator_money . "keurz </br>";
 
     }
 }

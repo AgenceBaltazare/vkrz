@@ -662,11 +662,11 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
           $arobaseSecondContender = get_field('info_supplementaire_contender', $second_id_contender); 
           $arobaseThirdContender = get_field('info_supplementaire_contender', $third_id_contender); 
           ?>
-          <a href="https://twitter.com/intent/tweet?text=Voici ma TopList <?php echo $top_infos['top_number']; ?> <?php echo $top_infos['top_title']; ?>%0a🥇<?= $arobaseFirstContender ?> 🥈<?= $arobaseSecondContender ?> 🥉<?= $arobaseThirdContender ?>%0a&via=vainkeurz&hashtags=VKRZ&hashtags=<?php echo get_field('#top_twitter', $id_top_global) ?>&url=<?php echo $url_ranking; ?>" target="_blank" title="Tweet">
+          <a href="https://twitter.com/intent/tweet?text=Voici ma TopList <?php echo $top_infos['top_title']; ?>%0a🥇<?= $arobaseFirstContender ?> 🥈<?= $arobaseSecondContender ?> 🥉<?= $arobaseThirdContender ?>%0a&via=vainkeurz&hashtags=VKRZ&hashtags=<?php echo get_field('#top_twitter', $id_top_global) ?>&url=<?php echo $url_ranking; ?>" target="_blank" title="Tweet">
             <i class="social-media fab fa-twitter"></i> Twitter
           </a>
         <?php else :  ?>
-          <a href="https://twitter.com/intent/tweet?text=Voici ma TopList <?php echo $top_infos['top_number']; ?> <?php echo $top_infos['top_title']; ?>&via=vainkeurz&hashtags=VKRZ&url=<?php echo $url_ranking; ?>" target="_blank" title="Tweet">
+          <a href="https://twitter.com/intent/tweet?text=Voici ma TopList <?php echo $top_infos['top_title']; ?>&via=vainkeurz&hashtags=VKRZ&url=<?php echo $url_ranking; ?>" target="_blank" title="Tweet">
             <i class="social-media fab fa-twitter"></i> Twitter
           </a>
         <?php endif; ?>
