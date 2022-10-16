@@ -246,6 +246,21 @@ $vainkeur_badges = get_the_terms($infos_vainkeur['id_vainkeur'], 'badges');
                                                                             <?php echo round($data_t_created['creator_all_v'] * 0.3); ?> <span class="va-gem va va-1x"></span>
                                                                         </th>
                                                                     </tr>
+                                                                    <?php
+                                                                    $money_duplicated = get_creator_money_for_duplicated($user_id);
+                                                                    if ($money_duplicated) : ?>
+                                                                        <tr>
+                                                                            <th>
+                                                                                Duplication de Tops par l'éKip VAINKEURZ
+                                                                            </th>
+                                                                            <th class="text-right">
+                                                                                
+                                                                            </th>
+                                                                            <th class="text-right">
+                                                                                <?php echo $money_duplicated['money_creator']; ?> <span class="va-gem va va-1x"></span>
+                                                                            </th>
+                                                                        </tr>
+                                                                    <?php endif; ?>
                                                                     <tr>
                                                                         <th>
                                                                             <span class="text-info">

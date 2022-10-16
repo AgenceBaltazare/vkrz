@@ -12,3 +12,4 @@ require_once('data/get_resume.php');
 require_once('data/played.php');
 require_once('data/get_similar.php');
 require_once('data/get_dodo.php');
+require_once('data/money.php');
