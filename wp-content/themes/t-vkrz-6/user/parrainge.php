@@ -76,7 +76,6 @@ $referrals = json_decode(get_field('referral_from_me', $id_vainkeur));
                                   foreach ($referrals as $referral) :
                                     $referral_uuid          = get_field('uuid_user_vkrz', $referral);
                                     $infos_referral         = get_user_infos($referral_uuid, 'complete');
-
                                     $user_id                = $infos_referral["id_user"];
                                     $total_vote             = $infos_referral["nb_vote_vkrz"];
                                     $total_top              = $infos_referral["nb_top_vkrz"];

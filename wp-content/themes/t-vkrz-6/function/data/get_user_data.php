@@ -257,6 +257,7 @@ function get_user_infos($uuid_vainkeur, $size = "short"){
             $nb_top_vkrz            = get_field('nb_top_vkrz', $id_vainkeur);
             $money_vkrz             = get_field('money_vkrz', $id_vainkeur);
             $money_createur_vkrz    = get_field('money_creator_vkrz', $id_vainkeur);
+            $money_parrain_vkrz     = get_field('money_parrainage_vkrz', $id_vainkeur);
             $current_money_vkrz     = get_field('money_disponible_vkrz', $id_vainkeur);
 
             $result_more = array(
@@ -264,6 +265,7 @@ function get_user_infos($uuid_vainkeur, $size = "short"){
                 'nb_top_vkrz'           => $nb_top_vkrz,
                 'money_vkrz'            => $money_vkrz,
                 'money_creator_vkrz'    => $money_createur_vkrz,
+                'money_parrain_vkrz'    => $money_parrain_vkrz,
                 'current_money_vkrz'    => $current_money_vkrz
             );
 
