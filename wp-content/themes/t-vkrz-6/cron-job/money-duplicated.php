@@ -30,7 +30,7 @@ foreach ($users as $user) {
     }
     $total_money       = get_creator_money_for_duplicated($user_id);
 
-
+    var_dump($total_money);
     $current_money          = intval(get_field('money_disponible_vkrz', $id_vainkeur));
     $current_money_creator  = intval(get_field('money_creator_vkrz', $id_vainkeur));
     $money_duplicated       = $current_money_creator + $total_money['money_duplicated'];
