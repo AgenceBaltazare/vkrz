@@ -29,7 +29,14 @@ foreach ($users as $user) {
         $id_vainkeur    = $vainkeur_entry->posts[0];
     }
     $total_money       = get_creator_money_for_duplicated($user_id);
-    $money_duplicated  = intval(get_field('money_creator_vkrz', $id_vainkeur));
-    $money_duplicated  = $money_duplicated + $total_money['money_creator'];
-    update_field('money_creator_vkrz', $money_duplicated, $id_vainkeur);
+
+
+    $current_money          = intval(get_field('money_disponible_vkrz', $id_vainkeur));
+    $current_money_creator  = intval(get_field('money_creator_vkrz', $id_vainkeur));
+    $money_duplicated       = $current_money_creator + $total_money['money_duplicated'];
+    $new_money_dispo        = $current_money - $current_money_creator + $money_duplicated;
+
+    update_field('money_creator_vkrz', $new_money_dispo, $id_vainkeur);
+    update_field('money_disponible_vkrz', $money_duplicated, $id_vainkeur);
+
 }

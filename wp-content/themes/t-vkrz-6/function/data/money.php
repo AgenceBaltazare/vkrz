@@ -98,8 +98,8 @@ function get_creator_money_for_duplicated($user_id){
     $total_money            = round((($nb_votes_all_t * 0.3) + ($nb_ranks_all_t * 5)) * 0.75);
 
     return array(
-        "money_creator"     => $total_money,
-        "nb_top_duplicated" => $list_tops->post_count
+        "money_duplicated"     => $total_money,
+        "nb_top_duplicated"    => $list_tops->post_count
     );
 
 }
