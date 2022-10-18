@@ -38,8 +38,8 @@ function vkrz_push_level_up($user_id, $level_number){
                 break;
         }
 
-        if(env() != "local"){
-            $url    = "https://hook.integromat.com/5395gfiwt0abf2y7uimxpp329tdnn27s";
+        if(env()){
+            $url    = "https://hook.eu1.make.com/c1dxc9xg3urg8sddxx8uyyupfoaupc90";
             $args   = array(
                 'body' => array(
                     'id_vainkeur'       => $new_user_infos['id_vainkeur'],
@@ -63,17 +63,17 @@ function vkrz_push_level_up($user_id, $level_number){
 
 function vkrz_push_transaction($id_transaction){
 
-    if(env() != "local" && $id_transaction){
+    if(env() != $id_transaction){
         $name_produit       = get_the_title(get_field('id_produit_transaction', $id_transaction));
         $price_produit      = get_field('montant_transaction', $id_transaction);
 
-        $user_id     = get_the_author_meta('ID');
+        $user_id        = get_user_logged_id();
         if ($user_id) {
             $user_info   = get_userdata($user_id);
             $user_pseudo = $user_info->nickname;
         }
 
-        $url    = "https://hook.integromat.com/4uyy4a8q31f2u2vwwellsw8ndjfgjz6n";
+        $url    = "https://hook.eu1.make.com/etc5p54ljmff8yh2zpxxbifnqbptub0g";
         $args   = array(
             'body' => array(
                 'name_produit'     => $name_produit,
@@ -99,3 +99,29 @@ function vkrz_push_event($event){
     }
 
 }
+
+// function vkrz_push_dodo($result){
+
+//     $dodo       = get_best_vainkeur("money", "7", "1");
+//     $dodo_uuid  = $dodo[0]['uuid'];
+//     $dodo_infos = get_user_infos($dodo_uuid);
+
+//     if ($dodo_uuid) {
+//         if (!get_vainkeur_badge($dodo_infos['id_vainkeur'], "Dodo")) {
+//             update_vainkeur_badge($dodo_infos['id_vainkeur'], "Dodo");
+//         }
+//     }
+
+//     $result = array_merge($dodo, $dodo_infos);
+//     return $result;
+
+//     if (env() != "local") {
+//         $url    = "https://hook.integromat.com/t4m1rces3mtdluer1f9g91lemug5497y";
+//         $args   = array(
+//             'body' => $dodo_infos
+//         );
+        
+//         wp_remote_post($url, $args);
+//     }
+
+// }

@@ -4,7 +4,8 @@ $(document).ready(function ($) {
 
     form.submit(function (e) {
 
-        form.find('#btn-coupon').html('Go')
+        form.find('#btn-coupon').hide();
+        
         e.preventDefault();
 
         $.ajax({
