@@ -30,20 +30,15 @@ function form_newplayer($emailplayer, $uuiduser, $ranking, $top, $id_vainkeur){
 
     }
     
-
-    if (env()) {
-        $url    = "https://hook.eu1.make.com/u842gfb48zjijv3b7cvih8v1jwphp254";
-        $args   = array(
-            'body' => array(
-                'email_player' => $emailplayer,
-                'id_vainkeurz' => $id_vainkeur,
-                'id_top' => $top,
-                'id_ranking' => $ranking,
-                'mail_content' => $mailcontent,
-                            )
-                        );
-            
-            wp_remote_post($url, $args);
-        }
-    
+    $url    = "https://hook.eu1.make.com/u842gfb48zjijv3b7cvih8v1jwphp254";
+    $args   = array(
+        'body' => array(
+            'email_player'  => $emailplayer,
+            'id_vainkeurz'  => $id_vainkeur,
+            'id_top'        => $top,
+            'id_ranking'    => $ranking,
+            'mail_content'  => $mailcontent,
+        )
+    );
+    wp_remote_post($url, $args);
 }
