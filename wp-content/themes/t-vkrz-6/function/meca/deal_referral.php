@@ -87,12 +87,6 @@
         "referredTo" => $referredTo,
       );
       setcookie("wordpress_parrainage_cookies", json_encode($arr_cookies_data), $arr_cookie_options);
-
-      // MONEY…
-      $user_money_for_him        = get_field('money_vkrz', $referral);
-      update_field('money_vkrz', $user_money_for_him + $keurz, $referral);
-      $user_money_for_him_dispo  = get_field('money_disponible_vkrz', $referral);
-      update_field('money_disponible_vkrz', $user_money_for_him_dispo + $keurz, $referral);
     }
   }
 

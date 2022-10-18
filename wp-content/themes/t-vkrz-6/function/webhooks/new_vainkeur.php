@@ -98,7 +98,7 @@ function new_vainkeur($user_id){
 
             // REFERRAL…
             if($_GET['codeinvit']) {
-                deal_referral($_GET['codeinvit'], $id_vainkeur, 40);
+                deal_referral($_GET['codeinvit'], $id_vainkeur, 200);
             }
         }
     }

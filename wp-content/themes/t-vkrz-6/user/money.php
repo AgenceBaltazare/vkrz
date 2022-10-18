@@ -125,7 +125,7 @@ $vainkeur_badges = get_the_terms($infos_vainkeur['id_vainkeur'], 'badges');
                                     </li>
                                 </ul>
                                 <div class="tab-content">
-                                    <div class="tab-pane" id="tab2" aria-labelledby="profileIcon-tab" role="tabpanel">
+                                    <div class="tab-pane active" id="tab2" aria-labelledby="profileIcon-tab" role="tabpanel">
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="card invoice-list-wrapper">
@@ -171,7 +171,7 @@ $vainkeur_badges = get_the_terms($infos_vainkeur['id_vainkeur'], 'badges');
                                                                     <?php while (have_rows('liste_des_recompenses_vkrz', $infos_vainkeur['id_vainkeur'])) : the_row(); ?>
                                                                         <tr>
                                                                             <th>
-                                                                                <?php the_sub_field('nom_de_la_recompense_vkrz'); ?>
+                                                                                Récompense : <?php the_sub_field('nom_de_la_recompense_vkrz'); ?>
                                                                             </th>
                                                                             <th class="text-right">
                                                                             </th>
@@ -217,7 +217,7 @@ $vainkeur_badges = get_the_terms($infos_vainkeur['id_vainkeur'], 'badges');
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="tab-pane active" id="tab4" aria-labelledby="profileIcon-tab" role="tabpanel">
+                                    <div class="tab-pane" id="tab4" aria-labelledby="profileIcon-tab" role="tabpanel">
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="card invoice-list-wrapper">
@@ -247,6 +247,7 @@ $vainkeur_badges = get_the_terms($infos_vainkeur['id_vainkeur'], 'badges');
                                                                     $infos_referral         = get_user_infos($referral_uuid, 'complete');
                                                                     $xp                     = $infos_referral["money_vkrz"];
                                                                     $vainkeur_data_selected = $infos_referral;
+                                                                    $price_inscription      = 200;
                                                                     $get_enfant_money       = round($xp * 0.1);
                                                                 ?>
                                                                     <tr>
@@ -254,7 +255,7 @@ $vainkeur_badges = get_the_terms($infos_vainkeur['id_vainkeur'], 'badges');
                                                                             <?php get_template_part('partials/vainkeur-card'); ?>
                                                                         </th>
                                                                         <th class="text-right">
-                                                                            200 <span class="va-gem va va-1x"></span>
+                                                                            <?php echo $price_inscription; ?> <span class="va-gem va va-1x"></span>
                                                                         </th>
                                                                         <th class="text-right">
                                                                             <span class="text-muted">20% de </span> <?php echo $xp; ?>
@@ -274,26 +275,22 @@ $vainkeur_badges = get_the_terms($infos_vainkeur['id_vainkeur'], 'badges');
                                                                                 $vainkeur_data_selected = $infos_referral;
                                                                                 switch ($e) {
                                                                                     case 1:
-                                                                                        $price_inscription = 150;
-                                                                                        $price_percent     = 0.15;
+                                                                                        $price_inscription = 100;
+                                                                                        $price_percent     = 0.07;
                                                                                         break;
                                                                                     case 2:
-                                                                                        $price_inscription = 100;
-                                                                                        $price_percent     = 0.1;
-                                                                                        break;
-                                                                                    case 3:
-                                                                                        $price_inscription = 75;
-                                                                                        $price_percent     = 0.075;
-                                                                                        break;
-                                                                                    case 4:
                                                                                         $price_inscription = 50;
                                                                                         $price_percent     = 0.05;
                                                                                         break;
-                                                                                    default:
+                                                                                    case 3:
                                                                                         $price_inscription = 10;
+                                                                                        $price_percent     = 0.03;
+                                                                                        break;
+                                                                                    default:
+                                                                                        $price_inscription = 5;
                                                                                         $price_percent     = 0.01;
                                                                                 }
-                                                                                $get_enfant_money       = round($xp * 0.05);
+                                                                                $get_enfant_money       = round($xp * $price_percent);
                                                                     ?>
                                                                                 <tr class="child-parrain-<?php echo $e; ?>" data-generation="<?php echo $e; ?>">
                                                                                     <th>
@@ -303,10 +300,10 @@ $vainkeur_badges = get_the_terms($infos_vainkeur['id_vainkeur'], 'badges');
                                                                                         <?php echo $price_inscription; ?> <span class="va-gem va va-1x"></span>
                                                                                     </th>
                                                                                     <th class="text-right">
-                                                                                        <span class="text-muted"><?php echo $price_percent*100; ?>% de </span> <?php echo $xp; ?>
+                                                                                        <span class="text-muted"><?php echo $price_percent * 100; ?>% de </span> <?php echo $xp; ?>
                                                                                     </th>
                                                                                     <th class="text-right">
-                                                                                        <?php echo round($get_enfant_money * $price_percent) + $price_inscription; ?> <span class="va-gem va va-1x"></span>
+                                                                                        <?php echo round($get_enfant_money + $price_inscription); ?> <span class="va-gem va va-1x"></span>
                                                                                     </th>
                                                                                 </tr>
                                                                 <?php endforeach;
@@ -401,7 +398,7 @@ $vainkeur_badges = get_the_terms($infos_vainkeur['id_vainkeur'], 'badges');
 
                                                                             </th>
                                                                             <th class="text-right">
-                                                                                <?php echo $money_duplicated['money_creator']; ?> <span class="va-gem va va-1x"></span>
+                                                                                <?php echo $infos_vainkeur['money_duplicated']; ?> <span class="va-gem va va-1x"></span>
                                                                             </th>
                                                                         </tr>
                                                                     <?php endif; ?>
