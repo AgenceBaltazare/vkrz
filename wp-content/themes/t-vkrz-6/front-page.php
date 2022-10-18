@@ -480,28 +480,4 @@ if ($id_vainkeur) {
   </div>
 </div>
 <!-- END: Content-->
-
-<?php if(isset($goToFirebase)) : ?>
-  <script type="module">
-    import {
-      collection,
-      getDocs,
-      deleteDoc,
-      doc,
-      query,
-      where,
-      orderBy,
-      addDoc,
-      database,
-    } from "https://vainkeurz.com/wp-content/themes/t-vkrz-6/function/firebase/config.js";
-
-    jQuery(document).ready(function ($){
-      console.log(database)
-
-      alert('Adil')
-      alert(database)
-    });
-    </script>
-<?php endif; ?>
-
 <?php get_footer(); ?>

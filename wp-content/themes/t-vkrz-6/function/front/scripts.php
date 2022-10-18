@@ -32,7 +32,9 @@ function load_css_js()
   // FOLLOW BUTTON…
   wp_enqueue_script('follow_button', get_template_directory_uri() . '/function/firebase/follow_button.js', array(), $template_version, true);
 
-  wp_enqueue_script('deal_parrainage', get_template_directory_uri() . '/function/firebase/deal_parrainage.js', array(), $template_version, false);
+  if (isset($_COOKIE["wordpress_parrainage_cookies"]) && !empty($_COOKIE["wordpress_parrainage_cookies"])) {
+    wp_enqueue_script('deal_parrainage', get_template_directory_uri() . '/function/firebase/deal_parrainage.js', array(), $template_version, false);
+  }
 
   wp_enqueue_script('popper', get_template_directory_uri() . '/assets/js/core/popper.min.js', array(), null, true);
   wp_enqueue_script('bootstrap', get_template_directory_uri() . '/assets/js/core/bootstrap.min.js', array(), null, true);
@@ -87,37 +89,24 @@ function load_css_js()
     wp_enqueue_script('toplist', get_template_directory_uri() . '/function/firebase/toplist.js', array(), $template_version, true);
   }
 
-  // COMMENTS…
   if (is_page('Discuz')) {
     wp_enqueue_script('set_comment_notification', get_template_directory_uri() . '/function/firebase/set_comment_notification.js', array(), $template_version, true);
   }
-
-  // MENU USER NOTIFICATIONS…
   if(is_user_logged_in()){
     wp_enqueue_script('get_menuuser_notifications', get_template_directory_uri() . '/function/firebase/get_menuuser_notifications.js', array(), $template_version, true);
   }
-
-  // NOTIFICATIONS PAGE…
   if (is_page('Notifications')) {
     wp_enqueue_script('get_notifications_page', get_template_directory_uri() . '/function/firebase/get_notifications_page.js', array(), $template_version, true);
   }
-
-  // FRIENDS PAGE…
   if (is_page('Guetteur')) {
     wp_enqueue_script('get_friends_page', get_template_directory_uri() . '/function/firebase/get_friends_page.js', array(), $template_version, true);
   }
-
-  // USERS RANKS PAGE…
   if (is_page('Liste des Tops !')) {
     wp_enqueue_script('calc_resemblance', get_template_directory_uri() . '/function/firebase/calc_resemblance.js', array(), $template_version, true);
   }
-
-  // FETCH TOPLISTS is_author() OR is_page(get_page_by_path('mon-compte'))…
   if (is_author() ||is_page(get_page_by_path('mon-compte'))  ) {
     wp_enqueue_script('fetch_toplist_by_vainkeur', get_template_directory_uri() . '/function/firebase/fetch_toplist_by_vainkeur.js', array(), $template_version, true);
   }
-
-  // RECHERCHE PAGE…
   if (is_page('Rechercher')) {
     wp_enqueue_script('recherches', get_template_directory_uri() . '/function/firebase/recherches.js', array(), $template_version, true);
   }

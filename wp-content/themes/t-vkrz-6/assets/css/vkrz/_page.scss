@@ -153,39 +153,19 @@
   }
 }
 
-.ajout-contender-page {
 
-  h1 {
-    font-size: 52px;
-    background: -webkit-linear-gradient(315deg, #9921e8 1.84%, #5f72be 102.67%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: bolder;
-    text-transform: uppercase;
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  min-height: 100vh;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    @media (max-width: 768px) {
-      font-size: 2.6rem;
-    }
-  }
-
-  .overlay {
-    position: fixed;
-    inset: 0;
-    height: 100%;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    z-index: 1000;
-  }
-
-  .overlay {
-    display: grid;
-    place-items: center;
-    height: 100%;
-    width: 100%;
-  }
-
-  .notification {
+  .popup {
     display: grid;
     place-items: center;
     text-align: center;
@@ -198,13 +178,7 @@
     border-radius: 12px;
     z-index: 1001;
 
-    position: fixed;
-    top: 35%;
-    left: 45%;
-
     @media (max-width: 794px) {
-      top: unset;
-      left: unset;
       width: 280px;
       padding: 0.5rem;
       min-height: 100px;
@@ -243,7 +217,7 @@
       }
     }
 
-    .closeNotification {
+    .close-popup {
       margin-left: auto;
       background: none;
       border: none;
@@ -253,6 +227,57 @@
       line-height: 100%;
       margin-top: -1rem;
       padding: 0;
+    }
+
+    .blog-rs {
+      width: 100%;
+  
+      ul {
+        list-style: none;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        gap: 1rem;
+        width: 100%;
+        padding: 1rem .6rem;
+        margin: 0;
+  
+        @media (max-width: 768px) {
+          gap: .8rem;
+          justify-content: space-around;
+        }
+  
+        i {
+          display: grid;
+          place-items: center;
+          font-size: 1.6rem;
+          border-radius: 50%;
+          border: #7367F0 2px solid;
+          width: 50px;
+          height: 50px;
+          transition: .3s all;
+          color: #7367F0;
+
+          @media (max-width: 768px) {
+            font-size: 1.1rem;
+            width: 40px;
+            height: 40px;
+          }
+  
+          &:hover {
+            border: #f4167f 2px solid;
+            color: #f4167f !important;
+          }
+        }
+      }
+    }
+
+    hr {
+      border-color: #7367F0 !important;
+    }
+
+    h6 {
+      color: #7367F0;
     }
   }
 
@@ -282,20 +307,6 @@
       -webkit-transform: rotate(0);
               transform: rotate(0);
       opacity: 1;
-    }
-  }
-
-  .msg-validation {
-    font-size: 1.5rem;
-    text-align: center;
-    padding: 2.4rem;
-    border: 2px dashed #7367f0;
-    color: #7367f0;
-    background-color: #2e3750;
-    border-radius: 4px;
-
-    a {
-      text-decoration: underline !important;
     }
   }
 }

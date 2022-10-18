@@ -362,7 +362,7 @@ if (is_single() && get_post_type() == "tournoi") {
     </div>
 
     <ul class="nav navbar-nav align-items-center justify-content-around">
-      <li class="nav-item dropdown dropdown-cart mt-3px">
+      <li class="nav-item dropdown dropdown-cart mt-3px keurz-dropdown-container">
         <a class="nav-link d-flex flex-column align-items-center" href="javascript:void(0);" data-toggle="dropdown">
           <div class="d-flex flex-column">
             <div>
@@ -376,7 +376,7 @@ if (is_single() && get_post_type() == "tournoi") {
               </span>
             </div>
             <div>
-              <span class="ico text-center va-gem va va-lg"></span>
+              <span class="ico text-center va-gem va va-lg <?php echo is_user_logged_in() ? "signs" : "" ?>"></span>
               <span class="value-user-stats money-disponible">
                 <?php if ($infos_vainkeur['current_money_vkrz']) : ?>
                   <?php echo $infos_vainkeur['current_money_vkrz']; ?>
@@ -387,16 +387,20 @@ if (is_single() && get_post_type() == "tournoi") {
             </div>
           </div>
         </a>
-        <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
+        <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right keurz-dropdown">
           <li class="dropdown-menu-header">
-            <div class="dropdown-header d-flex">
-              <h4 class="notification-title mb-0 mr-auto">
-                <?php echo $infos_vainkeur['current_money_vkrz']; ?> <span class="va-gem va va-lg"></span>
+            <div class="dropdown-header d-flex justify-content-between align-items-center">
+              <h4 class="mb-0 mr-auto">
+                <?php echo $infos_vainkeur['current_money_vkrz']; ?> <span class="va-gem va va-lg "></span>
               </h4>
+
+              <?php if(is_user_logged_in()) : ?>
+                <a href="#" class="btn btn-rose open-popup">Envie de gagner plus de KEURZ? <span class="va-cheese1 va va-lg"></span></a>
+              <?php endif; ?>
             </div>
           </li>
           <li class="dropdown-menu-footer">
-            <div class="text-center mb-2">
+            <div class="text-center mb-2 ">
               <h6 class="font-weight-bolder mb-0">
                 <?php if (is_user_logged_in()) : ?>
                   Profite du Shop pour dépenser tes KEURZ
@@ -446,8 +450,8 @@ if (is_single() && get_post_type() == "tournoi") {
 
       <?php if (is_user_logged_in()) : ?>
         <li class="nav-item dropdown dropdown-notification mr-25">
-          <a class="nav-link" href="javascript:void(0);" data-toggle="dropdown">
-            <span class="ico text-center va va-bell va-lg"></span>
+          <a class="nav-link menuuser-bell" href="javascript:void(0);" data-toggle="dropdown">
+            <span class="ico text-center va va-bell"></span>
             <span class="d-block text-center notifications-nombre">
               -
             </span>
@@ -529,3 +533,62 @@ if (is_single() && get_post_type() == "tournoi") {
   </div>
 </nav>
 <!-- END: Header-->
+
+<?php if(is_user_logged_in()) : ?>
+  <div class="popup-overlay" style="display: none;">
+    <div class="popup rotate-in-center">
+      <button class="close-popup">&times;</button>
+
+      <div class="popup-body">
+        <span class="va va-love-people va-5x"></span> <br>
+        <h3>Sharing is caring!</h3>
+        <p>Share your referral code to your friends and win 40 <span class="ico text-center va-gem va va-lg"></span> for you and 20 <span class="ico text-center va-gem va va-lg"></span> for your referral.</p>
+
+        <a href="<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>?codeinvit=<?= $infos_vainkeur["id_vainkeur"] ?>" class="btn btn-rose waves-effect waves-float waves-light p-1" id="copyReferralLink">
+          <p class="h4 text-white m-0">
+            Copier mon code d'invitation
+          </p>
+        </a>
+
+        <hr class="my-2">
+        <div class="blog-rs">
+          <div class="d-flex align-items-center">
+            <ul>
+              <li>
+                <h6 class="section-label text-center m-0">Ou par</h6>
+              </li>
+              <li>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>?codeinvit=<?= $infos_vainkeur["id_vainkeur"] ?>&quote=Use my referral code to win 20 KEURZ!" title="Share on Facebook" target="_blank">
+                  <span>
+                    <i class="fab fa-facebook-f"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/intent/tweet?source=<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>?codeinvit=<?= $infos_vainkeur["id_vainkeur"] ?>&text=Use my referral code to win 20 KEURZ!:%20<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>?codeinvit=<?= $infos_vainkeur["id_vainkeur"] ?>" target="_blank" title="Tweet" spellcheck="false">
+                  <span>
+                    <i class="fab fa-twitter"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url=<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>?codeinvit=<?= $infos_vainkeur["id_vainkeur"] ?>&title=Use my referral code to win 20 KEURZ!" target="_blank">
+                  <span>
+                    <i class="fab fa-linkedin-in"></i>
+                  </span>
+                </a>
+              </li>
+              <li class="whatsapp">
+                <a href="whatsapp://send?text=<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>?codeinvit=<?= $infos_vainkeur["id_vainkeur"] ?>" data-action="share/whatsapp/share">
+                  <span>
+                    <i class="fab fa-whatsapp"></i>
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<?php endif; ?>

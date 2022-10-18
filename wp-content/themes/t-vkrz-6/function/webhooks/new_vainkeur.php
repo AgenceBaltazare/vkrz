@@ -112,7 +112,7 @@ function new_vainkeur($user_id){
     ?>
     <script>
         jQuery(document).ready(function ($){
-            dataLayer.push({
+            window.dataLayer.push({
                 event: 'track_event',
                 event_name: 'signin',
                 user_id : "<?= $user_id ?>",
@@ -121,10 +121,7 @@ function new_vainkeur($user_id){
                 'event_score': 100
             })
         });
-
-        
     </script>
     <?php
     echo ob_get_clean();
-
 }

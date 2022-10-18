@@ -124,15 +124,7 @@ $(window).scroll(function () {
   }
 });
 
-
-
-
 jQuery(document).ready(function ($) {
-  function callMe(name) {
-    alert(`Hello ${name} :)`);
-  }
-  console.log('HELLO')
-
   $(".eh").equalHeights();
   $(".ehcard").equalHeights();
   $(".eh2").equalHeights();
@@ -207,17 +199,18 @@ jQuery(document).ready(function ($) {
     $(".share-classement-content").addClass("active-box");
   });
 
-  // FIX REFERRAL INPUT…
+  // BLOCK REFERRAL INPUT IF HE'S ALREADY FILLED
   if(document.querySelector('#basic-tabs-components #referral')) {
-    const champs = document.querySelector('#referral');
+    const input = document.querySelector('#referral');
 
-    if(champs.value !== "") {
-      champs.setAttribute('readonly', 'true');
-      champs.classList.add('readonly');
-      champs.value = `${champs.value} (Invitation Code)`;
+    if(input.value !== "") {
+      input.setAttribute('readonly', 'true');
+      input.classList.add('readonly');
+      input.value = `${input.value} (Invitation Code)`;
     }
   }
 
+  // IF THE USER ENTERS REFERRAL CODE MANUALLY
   if(document.querySelector('#wppb-register-user-sign-on')) {
     const form = document.querySelector('#wppb-register-user-sign-on');
     form.addEventListener('submit', () => {
@@ -230,6 +223,7 @@ jQuery(document).ready(function ($) {
     });
   }
 
+  // COPY REFERRAL INVITATION LINK FROM BUTTON
   if(document.querySelector('#copyReferralLink')) {
     const button = document.querySelector("#copyReferralLink");
 
@@ -244,6 +238,22 @@ jQuery(document).ready(function ($) {
       button.querySelector('p:first-of-type').innerHTML = 'Bien copié ! <span class="ico va va-floppy-disk va-lg"></span>'
     })
   }
+
+  // POPUP
+  const openPopUp = document.querySelector('.open-popup');
+  const popUp = document.querySelector('.popup-overlay');
+  const closePopUp = document.querySelector('.close-popup');
+  const keurzDropDownMenuContainer = document.querySelector('.keurz-dropdown-container');
+  const keurzDropDownMenu = document.querySelector('.keurz-dropdown');
+
+  keurzDropDownMenuContainer.addEventListener('click', () => document.querySelector('.signs').classList.remove('signs'))
+
+  openPopUp.addEventListener('click', () => {
+    popUp.style.display = 'flex';
+    keurzDropDownMenu.classList.remove('show');
+    keurzDropDownMenu.classList.add('hide');
+  });
+  closePopUp.addEventListener('click', () => popUp.style.display = 'none');
 });
 
 if (!localStorage.getItem("come-back")) {

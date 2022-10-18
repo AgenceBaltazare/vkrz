@@ -1,4 +1,8 @@
 <?php
+add_action('template_redirect', function () {
+  ob_start();
+});
+
 $templatepath = get_template_directory();
 
 if (defined('DOING_AJAX') && DOING_AJAX && is_admin()) {
