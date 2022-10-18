@@ -31,8 +31,13 @@ foreach ($users as $user) {
 
     if ($vainkeur_entry->have_posts()) {
 
-        $id_vainkeur    = $vainkeur_entry->posts[0];
+        $id_vainkeur            = $vainkeur_entry->posts[0];
+        $money_dispo            = intval(get_field('money_disponible_vkrz', $id_vainkeur));
+        $current_money_creator  = intval(get_field('money_creator_vkrz', $id_vainkeur));
+        $new_money_dispo        = $money_dispo - $current_money_creator + $creator_money;
+        
         update_field('money_creator_vkrz', $creator_money, $id_vainkeur);
+        update_field('money_disponible_vkrz', $new_money_dispo, $id_vainkeur);
         //echo "vainkeur : ". $id_vainkeur . " a ". $creator_money . "keurz </br>";
 
     }
