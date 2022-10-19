@@ -3,6 +3,32 @@ add_action('template_redirect', function () {
   ob_start();
 });
 
+add_filter( 'wppb_check_form_field_input', 'wppbc_custom_input_validation', 20, 4 );
+function wppbc_custom_input_validation( $message, $field, $request_data, $form_location ){
+	if( $field['field'] == 'Input' && $field['meta-name'] == 'referral' ){
+		if ( isset( $request_data[$field['meta-name']] ) && trim( $request_data[$field['meta-name']] ) != '' ){
+			$input = $request_data[$field['meta-name']];
+
+      $referral_uuid  = get_field('uuid_user_vkrz', intval($input));
+      $referral_infos = get_user_infos($referral_uuid);
+
+      if(!$referral_infos['id_user']) {
+        return "This Code Doesn't EXIST!";
+      }
+
+			// $possible_values = array('one' ,'two', 'three', 'four', 'five');
+			// if( !in_array( $input, $possible_values) ) {
+			// 	return 'You have entered an incorrect value for this field.';
+			// }
+		}
+		if ( ( isset( $request_data[$field['meta-name']] ) && ( trim( $request_data[$field['meta-name']] ) == '' ) ) && ( $field['required'] == 'Yes' ) ){
+			return wppb_required_field_error($field["field-title"]);
+		}
+	}
+ 
+	return $message;
+}
+
 $templatepath = get_template_directory();
 
 if (defined('DOING_AJAX') && DOING_AJAX && is_admin()) {
