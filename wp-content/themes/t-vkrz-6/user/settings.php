@@ -38,6 +38,11 @@ get_header();
                                                     Paramètres
                                                 </a>
                                             </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="profileIcon-tab" data-toggle="tab" href="#tab4" aria-controls="profile" role="tab" aria-selected="false">
+                                                    Parrainage
+                                                </a>
+                                            </li>
                                         </ul>
                                         <div class="tab-content mt-3">
                                             <div class="tab-pane active" id="tab1" aria-labelledby="homeIcon-tab" role="tabpanel">
@@ -55,6 +60,18 @@ get_header();
                                                 <div class="auth-register-form">
                                                     <div class="classic-form">
                                                         <?php echo do_shortcode('[wppb-edit-profile form_name="parametres"]'); ?>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="tab-pane" id="tab4" role="tabpanel" aria-labelledby="tab3">
+
+                                                <div class="auth-register-form">
+                                                    <div class="classic-form">
+                                                        <form action="">
+                                                            
+                                                        </form>
                                                     </div>
                                                 </div>
 
