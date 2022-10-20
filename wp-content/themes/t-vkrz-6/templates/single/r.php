@@ -148,15 +148,15 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
                               <?php the_field('message_de_confirmation_t_sponso', $id_top_global); ?>
                             </div>
                           <?php elseif (get_field('type_de_fin_t_sponso', $id_top_global) == "twitter_1") : ?>
-                            <?php if (!get_field('bouton_copier_toplist_tweet_twitter')) : ?>
+                            <?php if (!get_field('bouton_copier_toplist_tweet_twitter', $id_top_global)) : ?>
                               <a href="javascript: void(0)" class="sharelinkbtn2 w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-outline-primary waves-effect waves-float waves-light">
                                 <input type="text" value="<?php echo get_the_permalink($id_ranking); ?>" class="input_to_share2">
                                 Copier le lien de ma TopList
                               </a>
                             <?php endif; ?>
                             <a href="<?php the_field('lien_du_tweet_t_sponso', $id_top_global); ?>" target="_blank" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light">
-                              <?php if(get_field('intitule_du_bouton_tweet_twitter')): ?>
-                                <?php the_field('intitule_du_bouton_tweet_twitter'); ?>
+                              <?php if(get_field('intitule_du_bouton_tweet_twitter', $id_top_global)): ?>
+                                <?php the_field('intitule_du_bouton_tweet_twitter', $id_top_global); ?>
                               <?php else: ?>
                                 Post Twitter
                               <?php endif; ?>
