@@ -148,12 +148,18 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
                               <?php the_field('message_de_confirmation_t_sponso', $id_top_global); ?>
                             </div>
                           <?php elseif (get_field('type_de_fin_t_sponso', $id_top_global) == "twitter_1") : ?>
-                            <a href="javascript: void(0)" class="sharelinkbtn2 w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-outline-primary waves-effect waves-float waves-light">
-                              <input type="text" value="<?php echo get_the_permalink($id_ranking); ?>" class="input_to_share2">
-                              Copier le lien du Top
-                            </a>
+                            <?php if (!get_field('bouton_copier_toplist_tweet_twitter')) : ?>
+                              <a href="javascript: void(0)" class="sharelinkbtn2 w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-outline-primary waves-effect waves-float waves-light">
+                                <input type="text" value="<?php echo get_the_permalink($id_ranking); ?>" class="input_to_share2">
+                                Copier le lien de ma TopList
+                              </a>
+                            <?php endif; ?>
                             <a href="<?php the_field('lien_du_tweet_t_sponso', $id_top_global); ?>" target="_blank" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light">
-                              Post Twitter
+                              <?php if(get_field('intitule_du_bouton_tweet_twitter')): ?>
+                                <?php the_field('intitule_du_bouton_tweet_twitter'); ?>
+                              <?php else: ?>
+                                Post Twitter
+                              <?php endif; ?>
                             </a>
                           <?php elseif (get_field('type_de_fin_t_sponso', $id_top_global) == "twitter_2") : ?>
                             <a href="https://twitter.com/intent/tweet?hashtags=<?php the_field('hashtags_du_tweet_twitter_2', $id_top_global); ?>&original_referer=<?php echo $url_ranking; ?>&ref_src=&text=<?php the_field('message_du_tweet_twitter_2', $id_top_global); ?>&url=<?php echo $url_ranking; ?>&via=<?php the_field('compte_twitter_twitter_2', $id_top_global); ?>" class="animate__jello animate__animated animate__delay-1s btn btn-max btn-tweet btn-rose waves-effect waves-float waves-light" target="_blank">
@@ -382,18 +388,18 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
                                 <b>Ressemblance mondiale : </b>
                                 <span id="ressemblance-mondiale">
                                   <span class="">
-                                      <div class="loader loader--style1" title="0">
-                                        <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="30px" height="30px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
-                                          <path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946
+                                    <div class="loader loader--style1" title="0">
+                                      <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="30px" height="30px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
+                                        <path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946
                                       s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634
                                       c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z" />
-                                          <path fill="#000" d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0
+                                        <path fill="#000" d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0
                                       C22.32,8.481,24.301,9.057,26.013,10.047z">
-                                            <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 20 20" to="360 20 20" dur="0.5s" repeatCount="indefinite" />
-                                          </path>
-                                        </svg>
-                                      </div>
-                                    </span>
+                                          <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 20 20" to="360 20 20" dur="0.5s" repeatCount="indefinite" />
+                                        </path>
+                                      </svg>
+                                    </div>
+                                  </span>
                                 </span>
                               </h2>
                               <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_top_global; ?>" class="btn btn-outline-primary waves-effect mt-50">
@@ -656,20 +662,20 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
         </li>
         <li>
 
-        <?php if(get_field('@_twitter', $id_top_global)) : ?>
-          <?php 
-          $arobaseFirstContender = get_field('info_supplementaire_contender', $first_id_contender); 
-          $arobaseSecondContender = get_field('info_supplementaire_contender', $second_id_contender); 
-          $arobaseThirdContender = get_field('info_supplementaire_contender', $third_id_contender); 
-          ?>
-          <a href="https://twitter.com/intent/tweet?text=Voici ma TopList <?php echo $top_infos['top_title']; ?>%0a🥇<?= $arobaseFirstContender ?> 🥈<?= $arobaseSecondContender ?> 🥉<?= $arobaseThirdContender ?>%0a&via=vainkeurz&hashtags=VKRZ&hashtags=<?php echo get_field('#top_twitter', $id_top_global) ?>&url=<?php echo $url_ranking; ?>" target="_blank" title="Tweet">
-            <i class="social-media fab fa-twitter"></i> Twitter
-          </a>
-        <?php else :  ?>
-          <a href="https://twitter.com/intent/tweet?text=Voici ma TopList <?php echo $top_infos['top_title']; ?>&via=vainkeurz&hashtags=VKRZ&url=<?php echo $url_ranking; ?>" target="_blank" title="Tweet">
-            <i class="social-media fab fa-twitter"></i> Twitter
-          </a>
-        <?php endif; ?>
+          <?php if (get_field('@_twitter', $id_top_global)) : ?>
+            <?php
+            $arobaseFirstContender = get_field('info_supplementaire_contender', $first_id_contender);
+            $arobaseSecondContender = get_field('info_supplementaire_contender', $second_id_contender);
+            $arobaseThirdContender = get_field('info_supplementaire_contender', $third_id_contender);
+            ?>
+            <a href="https://twitter.com/intent/tweet?text=Voici ma TopList <?php echo $top_infos['top_title']; ?>%0a🥇<?= $arobaseFirstContender ?> 🥈<?= $arobaseSecondContender ?> 🥉<?= $arobaseThirdContender ?>%0a&via=vainkeurz&hashtags=VKRZ&hashtags=<?php echo get_field('#top_twitter', $id_top_global) ?>&url=<?php echo $url_ranking; ?>" target="_blank" title="Tweet">
+              <i class="social-media fab fa-twitter"></i> Twitter
+            </a>
+          <?php else :  ?>
+            <a href="https://twitter.com/intent/tweet?text=Voici ma TopList <?php echo $top_infos['top_title']; ?>&via=vainkeurz&hashtags=VKRZ&url=<?php echo $url_ranking; ?>" target="_blank" title="Tweet">
+              <i class="social-media fab fa-twitter"></i> Twitter
+            </a>
+          <?php endif; ?>
 
         </li>
         <li>
