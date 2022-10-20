@@ -106,7 +106,10 @@ class WPPB_Two_Factor_Authenticator {
 
         ?>
         <div class="wrap wppb-wrap wppb-two-factor-authentication">
-            <h2><?php esc_html_e( 'Two-Factor Authentication Settings', 'profile-builder' );?></h2>
+            <h2>
+                <?php esc_html_e( 'Two-Factor Authentication Settings', 'profile-builder' );?>
+                <a href="https://www.cozmoslabs.com/docs/profile-builder-2/general-settings/two-factor-authentication/?utm_source=wpbackend&utm_medium=pb-documentation&utm_campaign=PBDocs" target="_blank" data-code="f223" class="wppb-docs-link dashicons dashicons-editor-help"></a>
+            </h2>
 
             <?php settings_errors( ); ?>
 

@@ -67,7 +67,10 @@ function wppb_in_woosync_settings_content() {
             <?php $wppb_woosync_settings = get_option( 'wppb_woosync_settings' ); ?>
             <?php settings_fields( 'wppb_woosync_settings' ); ?>
 
-            <h2><?php esc_html_e( 'WooCommerce Sync', 'profile-builder' ); ?></h2>
+            <h2>
+                <?php esc_html_e( 'WooCommerce Sync', 'profile-builder' ); ?>
+                <a href="https://www.cozmoslabs.com/docs/profile-builder-2/add-ons/woocommerce-sync/?utm_source=wpbackend&utm_medium=pb-documentation&utm_campaign=PBDocs" target="_blank" data-code="f223" class="wppb-docs-link dashicons dashicons-editor-help"></a>
+            </h2>
 
             <table class="form-table">
 

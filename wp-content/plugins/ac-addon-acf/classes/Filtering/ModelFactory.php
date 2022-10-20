@@ -21,6 +21,7 @@ class ModelFactory implements Filtering\FilteringModelFactory {
 			case FieldType::TYPE_OEMBED:
 			case FieldType::TYPE_PASSWORD:
 			case FieldType::TYPE_TEXT:
+			case FieldType::TYPE_TEXTAREA:
 			case FieldType::TYPE_URL:
 				return new Filtering\Model\Unformatted( $column );
 

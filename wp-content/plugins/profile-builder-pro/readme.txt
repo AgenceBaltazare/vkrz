@@ -7,7 +7,7 @@ custom registration, custom registration form, custom registration page, extra u
 front-end register, front-end registration, frontend edit profile, edit profileregistration, customize profile, user fields, builder, profile builder, custom fields, avatar
 Requires at least: 3.1
 Tested up to: 6.0
-Stable tag: 3.8.1
+Stable tag: 3.8.2
 
 
 Login, registration and edit profile shortcodes for the front-end. Also you can choose what fields should be displayed or add custom ones.
@@ -101,6 +101,10 @@ This plugin only adds/removes fields in the front-end. The default information-f
 
 
 == Changelog ==
+= 3.8.2 =
+* Fix: issue with large icons and text Social Connect display option
+* Fix: issue with {{approval_url}} tag for EPAA email notification that wasn't working in some cases
+
 = 3.8.1 = 
 * Feature: Added option to set the password recovery link on the login form that can be added on the WooCommerce account page
 * Misc: compatibility changes
