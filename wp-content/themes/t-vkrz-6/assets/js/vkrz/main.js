@@ -243,7 +243,14 @@ jQuery(document).ready(function ($) {
     const keurzDropDownMenuContainer = document.querySelector('.keurz-dropdown-container');
     const keurzDropDownMenu = document.querySelector('.keurz-dropdown');
 
-    keurzDropDownMenuContainer.addEventListener('click', () => document.querySelector('.signs').classList.remove('signs'))
+    if(!localStorage.getItem('referral')) {
+      keurzDropDownMenuContainer.addEventListener('click', () => {
+        document.querySelector('.signs').classList.remove('signs')
+        localStorage.setItem("referral", "hide");
+      });
+    } else {
+      document.querySelector('.signs').classList.remove('signs');
+    }
 
     openPopUp.addEventListener('click', () => {
       popUp.style.display = 'flex';

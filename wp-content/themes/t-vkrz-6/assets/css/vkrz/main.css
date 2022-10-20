@@ -5882,7 +5882,60 @@ select:-webkit-autofill:focus {
   text-align: center;
 }
 .parrainage-card .card-body .btn {
+  width: 70%;
+}
+.parrainage-card .card-body .btn-solocode {
+  border: 1px solid #f4167f;
+}
+.parrainage-card .card-body .btn-solocode p {
+  color: #f4167f !important;
+}
+.parrainage-card .blog-rs {
   width: 100%;
+}
+.parrainage-card .blog-rs ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 1rem 0.6rem;
+  margin: 0;
+}
+@media (max-width: 768px) {
+  .parrainage-card .blog-rs ul {
+    gap: 0.8rem;
+    justify-content: space-around;
+  }
+}
+.parrainage-card .blog-rs ul i {
+  display: grid;
+  place-items: center;
+  font-size: 1.6rem;
+  border-radius: 50%;
+  border: #7367F0 2px solid;
+  width: 50px;
+  height: 50px;
+  transition: 0.3s all;
+  color: #7367F0;
+}
+@media (max-width: 768px) {
+  .parrainage-card .blog-rs ul i {
+    font-size: 1.1rem;
+    width: 40px;
+    height: 40px;
+  }
+}
+.parrainage-card .blog-rs ul i:hover {
+  border: #f4167f 2px solid;
+  color: #f4167f !important;
+}
+.parrainage-card hr {
+  border-color: rgba(114, 103, 240, 0.4745098039) !important;
+}
+.parrainage-card h6 {
+  color: #7367F0;
 }
 
 .logopm {

@@ -27,25 +27,90 @@ $codeparrain = get_field('code_parrain_user', 'user_' . $user_id);
             <div class="col-12">
               <section id="basic-tabs-components">
                 <div class="tab-content">
-                  <div class="tab-pane active" id="tab3" aria-labelledby="profileIcon-tab" role="tabpanel">
+                  <div class="tab-pane active parrainage-card" id="tab3" aria-labelledby="profileIcon-tab" role="tabpanel">
                     <div class="row">
-                      <div class="col-12">
+                      <div class="col-md-5 col-12">
+                        <div class="card">
+                          <div class="card-body text-center ">
+                            <div class="mb-1">
+                              <span class="va va-love-people va-5x"></span>
+                            </div>
+                            <h2 class="font-weight-bolder">
+                              Sharing is caring!
+                            </h2>
+                            <p class="card-text legende">
+                              Share your referral code to your friends and win 200 <span class="ico text-center va-gem va va-lg"></span> for you and 100 <span class="ico text-center va-gem va va-lg"></span> for your referral.
+                            </p>
 
-                        <div class="card p-1 parrainage-card">
-                          <div class="card-header">
-                            <h4 class="card-title">
-                              Parrainage
-                            </h4>
-                          </div>
-
-                          <div class="card-body p-2">
                             <a href="<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>?codeinvit=<?= $codeparrain ?>" class="btn btn-rose waves-effect p-1" id="copyReferralLink">
                               <p class="h4 text-white m-0">
-                                Copier mon code d'invitation
+                                Ok je copie le lien <span class="va-cheese1 va va-lg"></span>
                               </p>
                             </a>
-                          </div>
 
+                            <a href="<?php echo $codeparrain; ?>" class="btn btn-solocode waves-effect p-1  mt-2" id="copyReferralLink">
+                              <p class="h4 m-0">
+                                Je copie le code solo <span class="text-white"><?php echo $codeparrain; ?></span> ✨
+                              </p>
+                            </a>
+
+                            <hr class="my-2">
+                            <div class="blog-rs">
+                              <div class="d-flex align-items-center">
+                                <ul>
+                                  <li>
+                                    <h6 class="section-label text-center m-0">Ou par</h6>
+                                  </li>
+                                  <li>
+                                    <a href="https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>?codeinvit=<?= $codeparrain ?>&quote=Use my referral code to win 20 KEURZ!" title="Share on Facebook" target="_blank">
+                                      <span>
+                                        <i class="fab fa-facebook-f"></i>
+                                      </span>
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href="https://twitter.com/intent/tweet?source=<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>?codeinvit=<?= $codeparrain ?>&text=Use my referral code to win 20 KEURZ!:%20<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>?codeinvit=<?= $codeparrain ?>" target="_blank" title="Tweet" spellcheck="false">
+                                      <span>
+                                        <i class="fab fa-twitter"></i>
+                                      </span>
+                                    </a>
+                                  </li>
+                                  <li class="whatsapp">
+                                    <a href="whatsapp://send?text=<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>?codeinvit=<?= $codeparrain ?>" data-action="share/whatsapp/share">
+                                      <span>
+                                        <i class="fab fa-whatsapp"></i>
+                                      </span>
+                                    </a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-6 col-12">
+                            <div class="card text-center">
+                              <div class="card-body">
+                                <div class="mb-1">
+                                  <span class="va va-gem va-5x"></span>
+                                </div>
+                                <h3 class="font-weight-bolder my-1">
+                                  La page KEURZ
+                                </h3>
+                                <p class="card-text legende">
+                                  <a href="<?php the_permalink(get_page_by_path('mon-compte/keurz')); ?>/#tab4" class="btn btn-outline-primary waves-effect w-50" target="_blank">
+                                    Voir plus de details
+                                  </a>
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-md-7 col-12">
+                        <div class="card">
                           <?php if (!empty($referrals)) : ?>
 
                             <div class="table-responsive">
@@ -53,19 +118,16 @@ $codeparrain = get_field('code_parrain_user', 'user_' . $user_id);
                                 <thead>
                                   <tr>
                                     <th>
-                                      <span class="va va-chequered-flag va-lg"></span>
-                                    </th>
-                                    <th>
-                                      <span class="va va-lama va-lg"></span> <span class="text-muted">Vainkeur</span>
+                                      <span class="text-muted"><?php echo count($referrals) > 1 ? "Liste des <span class='t-rose'>" . count($referrals) . "</span> enfants" : "L'enfant" ?></span>
                                     </th>
                                     <th class="text-right shorted">
-                                      <span class="text-muted">XP <span class="va va-updown va-z-10"></span></span>
+                                      <span class="text-muted">XP</span>
                                     </th>
                                     <th class="text-right shorted">
-                                      <span class="text-muted">Votes <span class="va va-updown va-z-10"></span></span>
+                                      <span class="text-muted">TopList</span>
                                     </th>
                                     <th class="text-right shorted">
-                                      <span class="text-muted">TopList <span class="va va-updown va-z-10"></span></span>
+                                      <span class="text-muted">KEURZ générés</span>
                                     </th>
                                     <th class="text-right">
                                       <span class="text-muted">Guetter</span>
@@ -82,19 +144,10 @@ $codeparrain = get_field('code_parrain_user', 'user_' . $user_id);
                                     $total_top              = $infos_referral["nb_top_vkrz"];
                                     $xp                     = $infos_referral["money_vkrz"];
                                     $vainkeur_data_selected = $infos_referral;
+
+                                    $get_enfant_money       = round($xp * 0.1);
                                   ?>
                                     <tr>
-                                      <td>
-                                        <?php if ($r == 1) : ?>
-                                          <span class="ico va va-medal-1 va-lg"></span>
-                                        <?php elseif ($r == 2) : ?>
-                                          <span class="ico va va-medal-2 va-lg"></span>
-                                        <?php elseif ($r == 3) : ?>
-                                          <span class="ico va va-medal-3 va-lg"></span>
-                                        <?php else : ?>
-                                          #<?php echo $r; ?>
-                                        <?php endif; ?>
-                                      </td>
                                       <td>
                                         <?php get_template_part('partials/vainkeur-card'); ?>
                                       </td>
@@ -104,13 +157,12 @@ $codeparrain = get_field('code_parrain_user', 'user_' . $user_id);
                                       </td>
 
                                       <td class="text-right">
-                                        <?php echo $total_vote; ?> <span class="ico va-high-voltage va va-lg"></span>
-                                      </td>
-
-                                      <td class="text-right">
                                         <?php echo $total_top; ?> <span class="ico va va-trophy va-lg"></span>
                                       </td>
 
+                                      <td class="text-right">
+                                        <?php echo $get_enfant_money + 200; ?> <span class="va-gem va va-1x"></span>
+                                      </td>
 
                                       <td class="text-right checking-follower">
                                         <?php if (get_current_user_id() != $user_id && is_user_logged_in()) : ?>
@@ -135,7 +187,6 @@ $codeparrain = get_field('code_parrain_user', 'user_' . $user_id);
 
                           <?php endif; ?>
                         </div>
-
                       </div>
                     </div>
                   </div>

@@ -544,7 +544,7 @@ if (is_single() && get_post_type() == "tournoi") {
       <div class="popup-body">
         <span class="va va-love-people va-5x"></span> <br>
         <h3>Sharing is caring!</h3>
-        <p>Share your referral code to your friends and win 40 <span class="ico text-center va-gem va va-lg"></span> for you and 20 <span class="ico text-center va-gem va va-lg"></span> for your referral.</p>
+        <p>Share your referral code to your friends and win 200 <span class="ico text-center va-gem va va-lg"></span> for you and 100 <span class="ico text-center va-gem va va-lg"></span> for your referral.</p>
 
         <a href="<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>?codeinvit=<?= $codeparrain ?>" class="btn btn-rose waves-effect waves-float waves-light p-1" id="copyReferralLink">
           <p class="h4 text-white m-0">
@@ -570,13 +570,6 @@ if (is_single() && get_post_type() == "tournoi") {
                 <a href="https://twitter.com/intent/tweet?source=<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>?codeinvit=<?= $codeparrain ?>&text=Use my referral code to win 20 KEURZ!:%20<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>?codeinvit=<?= $codeparrain ?>" target="_blank" title="Tweet" spellcheck="false">
                   <span>
                     <i class="fab fa-twitter"></i>
-                  </span>
-                </a>
-              </li>
-              <li>
-                <a href="https://www.linkedin.com/shareArticle?mini=true&url=<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>?codeinvit=<?= $codeparrain ?>&title=Use my referral code to win 20 KEURZ!" target="_blank">
-                  <span>
-                    <i class="fab fa-linkedin-in"></i>
                   </span>
                 </a>
               </li>
