@@ -6,8 +6,8 @@ function begin_t($id_top, $uuiduser, $typetop, $id_vainkeur)
     
     global $utm;
 
-    if (!$utm && isset($_COOKIE['vainkeurz_user_utm']) && $_COOKIE['vainkeurz_user_utm'] != "") {
-        $utm = $_COOKIE['vainkeurz_user_utm'];
+    if (!$utm && isset($_COOKIE['wordpress_vainkeurz_user_utm']) && $_COOKIE['wordpress_vainkeurz_user_utm'] != "") {
+        $utm = $_COOKIE['wordpress_vainkeurz_user_utm'];
     }
 
     // set cookies to create vainkeur CPT

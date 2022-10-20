@@ -16,7 +16,7 @@ function deal_utm(){
             'samesite' => 'Lax'
         );
 
-        setcookie("vainkeurz_user_utm", $utm, $arr_cookie_options);
+        setcookie("wordpress_vainkeurz_user_utm", $utm, $arr_cookie_options);
 
     }
 
