@@ -9,17 +9,18 @@ function wppbc_custom_input_validation( $message, $field, $request_data, $form_l
 		if ( isset( $request_data[$field['meta-name']] ) && trim( $request_data[$field['meta-name']] ) != '' ){
 			$input = $request_data[$field['meta-name']];
 
-      $referral_uuid  = get_field('uuid_user_vkrz', intval($input));
-      $referral_infos = get_user_infos($referral_uuid);
+      if(is_user_logged_in()) {
+        $id_vainkeur = get_field('id_vainkeur_user', 'user_' . get_current_user_id());
+        $referred_to = get_field('referred_to', $id_vainkeur);
 
-      if(!$referral_infos['id_user']) {
-        return "This Code Doesn't EXIST!";
+        if($referred_to) {
+          return 'Parrain déjà saisi';
+        }
+      } else {
+        if(!check_codeparrain($input)) {
+          return "Aucun parrain trouvé";
+        } 
       }
-
-			// $possible_values = array('one' ,'two', 'three', 'four', 'five');
-			// if( !in_array( $input, $possible_values) ) {
-			// 	return 'You have entered an incorrect value for this field.';
-			// }
 		}
 		if ( ( isset( $request_data[$field['meta-name']] ) && ( trim( $request_data[$field['meta-name']] ) == '' ) ) && ( $field['required'] == 'Yes' ) ){
 			return wppb_required_field_error($field["field-title"]);

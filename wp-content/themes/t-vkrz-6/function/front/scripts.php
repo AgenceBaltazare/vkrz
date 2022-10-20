@@ -28,9 +28,9 @@ function load_css_js()
     wp_enqueue_style('main', get_template_directory_uri() . '/assets/css/vkrz/main.css', array(), filemtime(get_template_directory() . '/assets/css/vkrz/main.css'));
 
     // Scripts
-
-    // FOLLOW BUTTON…
     wp_enqueue_script('follow_button', get_template_directory_uri() . '/function/firebase/follow_button.js', array(), filemtime(get_template_directory() . '/function/firebase/follow_button.js'), true);
+    if (isset($_COOKIE["wordpress_parrainage_cookies"]) && !empty($_COOKIE["wordpress_parrainage_cookies"]))
+        wp_enqueue_script('deal_parrainage', get_template_directory_uri() . '/function/firebase/deal_parrainage.js', array(), filemtime(get_template_directory() . '/function/firebase/deal_parrainage.js'), false);
 
     wp_enqueue_script('popper', get_template_directory_uri() . '/assets/js/core/popper.min.js', array(), null, true);
     wp_enqueue_script('bootstrap', get_template_directory_uri() . '/assets/js/core/bootstrap.min.js', array(), null, true);

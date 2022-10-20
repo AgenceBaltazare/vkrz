@@ -40,30 +40,22 @@
   }
 
   function deal_referral($referral, $id_vainkeur, $keurz) {
-    $referral     = intval($referral);
+    $referral     = intval(check_codeparrain($referral));
     $id_vainkeur  = intval($id_vainkeur);
     
     // PROCESS FOR ME… 
-    $referral_to_them = array();
-    if (get_field('referral_to_them', $id_vainkeur)) {
-      $referral_to_them = json_decode(get_field('referral_to_them', $id_vainkeur));
-    }
-    if (!in_array($referral, $referral_to_them)) {
-      $referral_uuid  = get_field('uuid_user_vkrz', $referral);
-      $referral_infos = get_user_infos($referral_uuid);
+    $referred_to = get_field('referred_to', $id_vainkeur);
+    if(!$referred_to && $referred_to != (string) $referral) {
+      update_field('referred_to', $referral, $id_vainkeur);
 
-      if($referral_infos['id_user']) {
-        array_push($referral_to_them, $referral);
-        update_field('referral_to_them', json_encode($referral_to_them), $id_vainkeur);
-
-        // MONEY…
-        $keurz_for_me = $keurz / 2;
-        $user_money_for_me        = get_field('money_vkrz', $id_vainkeur);
-        update_field('money_vkrz', $user_money_for_me + $keurz_for_me, $id_vainkeur);
-        $user_money_for_me_dispo  = get_field('money_disponible_vkrz', $id_vainkeur);
-        update_field('money_disponible_vkrz', $user_money_for_me_dispo + $keurz_for_me, $id_vainkeur);
-      }
+      // MONEY…
+      $my_keurz        = $keurz / 2;
+      $my_money        = get_field('money_vkrz', $id_vainkeur);
+      update_field('money_vkrz', $my_money + $my_keurz, $id_vainkeur);
+      $my_money_dispo  = get_field('money_disponible_vkrz', $id_vainkeur);
+      update_field('money_disponible_vkrz', $my_money_dispo + $my_keurz, $id_vainkeur);
     }
+
 
     // PROCESS FOR WHO I'M REFERRED TO… 
     $referral_from_me = array();

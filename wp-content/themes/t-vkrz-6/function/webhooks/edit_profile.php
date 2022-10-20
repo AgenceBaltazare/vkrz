@@ -32,8 +32,8 @@ function edit_profile( $http_request, $form_name, $user_id ){
         if(get_userdata($user_id)->referral) {
             deal_referral(get_userdata($user_id)->referral, $vainkeur_id, 200);
 
-            $template_data = wp_get_theme();$template_version = $template_data['Version'];
-            wp_enqueue_script('deal_parrainage', get_template_directory_uri() . '/function/firebase/deal_parrainage.js', array(), $template_version, false);
+            // TO SEND NOTIF
+            wp_enqueue_script('deal_parrainage', get_template_directory_uri() . '/function/firebase/deal_parrainage.js', array(), filemtime(get_template_directory() . '/function/firebase/deal_parrainage.js'), false);
         }
     }
 

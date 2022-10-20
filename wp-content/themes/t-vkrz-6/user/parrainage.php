@@ -10,6 +10,7 @@ get_header();
 
 $referrals = array();
 $referrals = json_decode(get_field('referral_from_me', $id_vainkeur));
+$codeparrain = get_field('code_parrain_user', 'user_' . $user_id);
 ?>
 <!-- BEGIN: Content-->
 <div class="app-content content ">
@@ -38,7 +39,7 @@ $referrals = json_decode(get_field('referral_from_me', $id_vainkeur));
                           </div>
 
                           <div class="card-body p-2">
-                            <a href="<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>?codeinvit=<?= $id_vainkeur ?>" class="btn btn-rose waves-effect p-1" id="copyReferralLink">
+                            <a href="<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>?codeinvit=<?= $codeparrain ?>" class="btn btn-rose waves-effect p-1" id="copyReferralLink">
                               <p class="h4 text-white m-0">
                                 Copier mon code d'invitation
                               </p>

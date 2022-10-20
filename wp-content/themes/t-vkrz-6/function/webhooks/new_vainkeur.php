@@ -100,7 +100,7 @@ function new_vainkeur($user_id){
             $uniqcodeparrain = generate_codeparrain($user_id);
             update_field('code_parrain_user', $uniqcodeparrain, 'user_' . $user_id);
 
-            // REFERRAL…
+            // DEAL REFERRAL CODE IF HE USED ONE
             if($_GET['codeinvit']) {
                 deal_referral($_GET['codeinvit'], $id_vainkeur, 200);
             }

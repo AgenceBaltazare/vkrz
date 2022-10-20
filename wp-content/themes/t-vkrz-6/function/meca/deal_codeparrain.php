@@ -1,8 +1,15 @@
 <?php
+
+function random_strings($length_of_string) 
+{ 
+    $str_result = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyz'; 
+    return substr(str_shuffle($str_result), 0, $length_of_string); 
+} 
+
 function generate_codeparrain($user_id){
 
-    $random     = rand(10, 999);
-    $uniquecode = $user_id . $random;
+    $randomString = random_strings(4);
+    $uniquecode   = $user_id . $randomString;
 
     return $uniquecode;
 
@@ -10,6 +17,7 @@ function generate_codeparrain($user_id){
 
 function check_codeparrain($code)
 {
+    global $id_vainkeur;
 
     if ($code) {
 
@@ -32,13 +40,10 @@ function check_codeparrain($code)
             $id_vainkeur = get_field('id_vainkeur_user', 'user_' . $user_id);
         }
 
-        if($id_vainkeur){
+        if($id_vainkeur)
             return $id_vainkeur;
-        }
-        else{
-            return 'Aucun parrain trouvé';
-        }
-
+        else
+            return false;
     }
 
 }

@@ -534,7 +534,9 @@ if (is_single() && get_post_type() == "tournoi") {
 </nav>
 <!-- END: Header-->
 
-<?php if(is_user_logged_in()) : ?>
+<?php if(is_user_logged_in()) : 
+  $codeparrain = get_field('code_parrain_user', 'user_' . $infos_vainkeur['id_user']);
+?>
   <div class="popup-overlay" style="display: none;">
     <div class="popup rotate-in-center">
       <button class="close-popup">&times;</button>
@@ -544,7 +546,7 @@ if (is_single() && get_post_type() == "tournoi") {
         <h3>Sharing is caring!</h3>
         <p>Share your referral code to your friends and win 40 <span class="ico text-center va-gem va va-lg"></span> for you and 20 <span class="ico text-center va-gem va va-lg"></span> for your referral.</p>
 
-        <a href="<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>?codeinvit=<?= $infos_vainkeur["id_vainkeur"] ?>" class="btn btn-rose waves-effect waves-float waves-light p-1" id="copyReferralLink">
+        <a href="<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>?codeinvit=<?= $codeparrain ?>" class="btn btn-rose waves-effect waves-float waves-light p-1" id="copyReferralLink">
           <p class="h4 text-white m-0">
             Copier mon code d'invitation
           </p>
@@ -558,28 +560,28 @@ if (is_single() && get_post_type() == "tournoi") {
                 <h6 class="section-label text-center m-0">Ou par</h6>
               </li>
               <li>
-                <a href="https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>?codeinvit=<?= $infos_vainkeur["id_vainkeur"] ?>&quote=Use my referral code to win 20 KEURZ!" title="Share on Facebook" target="_blank">
+                <a href="https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>?codeinvit=<?= $codeparrain ?>&quote=Use my referral code to win 20 KEURZ!" title="Share on Facebook" target="_blank">
                   <span>
                     <i class="fab fa-facebook-f"></i>
                   </span>
                 </a>
               </li>
               <li>
-                <a href="https://twitter.com/intent/tweet?source=<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>?codeinvit=<?= $infos_vainkeur["id_vainkeur"] ?>&text=Use my referral code to win 20 KEURZ!:%20<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>?codeinvit=<?= $infos_vainkeur["id_vainkeur"] ?>" target="_blank" title="Tweet" spellcheck="false">
+                <a href="https://twitter.com/intent/tweet?source=<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>?codeinvit=<?= $codeparrain ?>&text=Use my referral code to win 20 KEURZ!:%20<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>?codeinvit=<?= $codeparrain ?>" target="_blank" title="Tweet" spellcheck="false">
                   <span>
                     <i class="fab fa-twitter"></i>
                   </span>
                 </a>
               </li>
               <li>
-                <a href="https://www.linkedin.com/shareArticle?mini=true&url=<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>?codeinvit=<?= $infos_vainkeur["id_vainkeur"] ?>&title=Use my referral code to win 20 KEURZ!" target="_blank">
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url=<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>?codeinvit=<?= $codeparrain ?>&title=Use my referral code to win 20 KEURZ!" target="_blank">
                   <span>
                     <i class="fab fa-linkedin-in"></i>
                   </span>
                 </a>
               </li>
               <li class="whatsapp">
-                <a href="whatsapp://send?text=<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>?codeinvit=<?= $infos_vainkeur["id_vainkeur"] ?>" data-action="share/whatsapp/share">
+                <a href="whatsapp://send?text=<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>?codeinvit=<?= $codeparrain ?>" data-action="share/whatsapp/share">
                   <span>
                     <i class="fab fa-whatsapp"></i>
                   </span>

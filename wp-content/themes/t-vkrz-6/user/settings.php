@@ -38,11 +38,6 @@ get_header();
                                                     Paramètres
                                                 </a>
                                             </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" id="profileIcon-tab" data-toggle="tab" href="#tab4" aria-controls="profile" role="tab" aria-selected="false">
-                                                    Parrainage
-                                                </a>
-                                            </li>
                                         </ul>
                                         <div class="tab-content mt-3">
                                             <div class="tab-pane active" id="tab1" aria-labelledby="homeIcon-tab" role="tabpanel">

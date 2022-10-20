@@ -215,9 +215,9 @@ jQuery(document).ready(function ($) {
     const form = document.querySelector('#wppb-register-user-sign-on');
     form.addEventListener('submit', () => {
       const formAction = form.getAttribute('action');
-      const codeInvitValue = form.querySelector('#referral').value;
-
+      
       if(!formAction.includes('codeinvit')) {
+        const codeInvitValue = form.querySelector('#referral').value;
         form.setAttribute('action', `${formAction}?codeinvit=${codeInvitValue}`)
       }
     });
@@ -225,35 +225,33 @@ jQuery(document).ready(function ($) {
 
   // COPY REFERRAL INVITATION LINK FROM BUTTON
   if(document.querySelector('#copyReferralLink')) {
-    const button = document.querySelector("#copyReferralLink");
+    const buttons = document.querySelectorAll("#copyReferralLink");
 
-    button.addEventListener('click', function(e) {
+    buttons.forEach(button => button.addEventListener('click', function(e) {
       e.preventDefault();
-      document.addEventListener('copy', function(e) {
-        e.clipboardData.setData('text/plain', button.getAttribute('href'));
-        e.preventDefault();
-      }, true);
-      document.execCommand('copy');  
-
+      const copy = (text) => navigator.clipboard.writeText(text);
+      copy(button.getAttribute('href'));
       button.querySelector('p:first-of-type').innerHTML = 'Bien copié ! <span class="ico va va-floppy-disk va-lg"></span>'
-    })
+    }))
   }
 
   // POPUP
-  const openPopUp = document.querySelector('.open-popup');
-  const popUp = document.querySelector('.popup-overlay');
-  const closePopUp = document.querySelector('.close-popup');
-  const keurzDropDownMenuContainer = document.querySelector('.keurz-dropdown-container');
-  const keurzDropDownMenu = document.querySelector('.keurz-dropdown');
+  if(document.querySelector('.open-popup')) {
+    const openPopUp = document.querySelector('.open-popup');
+    const popUp = document.querySelector('.popup-overlay');
+    const closePopUp = document.querySelector('.close-popup');
+    const keurzDropDownMenuContainer = document.querySelector('.keurz-dropdown-container');
+    const keurzDropDownMenu = document.querySelector('.keurz-dropdown');
 
-  keurzDropDownMenuContainer.addEventListener('click', () => document.querySelector('.signs').classList.remove('signs'))
+    keurzDropDownMenuContainer.addEventListener('click', () => document.querySelector('.signs').classList.remove('signs'))
 
-  openPopUp.addEventListener('click', () => {
-    popUp.style.display = 'flex';
-    keurzDropDownMenu.classList.remove('show');
-    keurzDropDownMenu.classList.add('hide');
-  });
-  closePopUp.addEventListener('click', () => popUp.style.display = 'none');
+    openPopUp.addEventListener('click', () => {
+      popUp.style.display = 'flex';
+      keurzDropDownMenu.classList.remove('show');
+      keurzDropDownMenu.classList.add('hide');
+    });
+    closePopUp.addEventListener('click', () => popUp.style.display = 'none');
+  }
 });
 
 if (!localStorage.getItem("come-back")) {
