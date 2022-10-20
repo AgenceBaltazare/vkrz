@@ -155,9 +155,9 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
                               </a>
                             <?php endif; ?>
                             <a href="<?php the_field('lien_du_tweet_t_sponso', $id_top_global); ?>" target="_blank" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light">
-                              <?php if(get_field('intitule_du_bouton_tweet_twitter', $id_top_global)): ?>
+                              <?php if (get_field('intitule_du_bouton_tweet_twitter', $id_top_global)) : ?>
                                 <?php the_field('intitule_du_bouton_tweet_twitter', $id_top_global); ?>
-                              <?php else: ?>
+                              <?php else : ?>
                                 Post Twitter
                               <?php endif; ?>
                             </a>
@@ -337,18 +337,18 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
                                 </p>
                               </div>
                               <div class="d-flex align-items-center flex-column">
-                                <!-- <div class="logo-vkrz-sponso">
-                                <?php
-                                if (get_field('illustration_de_la_sponso_t_sponso', $id_top_global)) : ?>
-                                  <a href="<?php the_field('lien_de_la_sponso_t_sponso', $id_top_global); ?>" target="_blank">
-                                    <?php echo wp_get_attachment_image(get_field('illustration_de_la_sponso_t_sponso', $id_top_global), 'large', '', array('class' => 'img-fluid')); ?>
-                                  </a>
-                                <?php elseif (get_field('logo_de_la_sponso_t_sponso', $id_top_global)) : ?>
-                                  <a href="<?php the_field('lien_de_la_sponso_t_sponso', $id_top_global); ?>" target="_blank">
-                                    <?php echo wp_get_attachment_image(get_field('logo_de_la_sponso_t_sponso', $id_top_global), 'large', '', array('class' => 'img-fluid')); ?>
-                                  </a>
-                                <?php endif; ?>
-                              </div> -->
+                                <div class="logo-vkrz-sponso">
+                                  <?php
+                                  if (get_field('illustration_de_la_sponso_t_sponso', $id_top_global)) : ?>
+                                    <a href="<?php the_field('lien_de_la_sponso_t_sponso', $id_top_global); ?>" target="_blank">
+                                      <?php echo wp_get_attachment_image(get_field('illustration_de_la_sponso_t_sponso', $id_top_global), 'large', '', array('class' => 'img-fluid')); ?>
+                                    </a>
+                                  <?php elseif (get_field('logo_de_la_sponso_t_sponso', $id_top_global)) : ?>
+                                    <a href="<?php the_field('lien_de_la_sponso_t_sponso', $id_top_global); ?>" target="_blank">
+                                      <?php echo wp_get_attachment_image(get_field('logo_de_la_sponso_t_sponso', $id_top_global), 'large', '', array('class' => 'img-fluid')); ?>
+                                    </a>
+                                  <?php endif; ?>
+                                </div>
                                 <div class="mt-2 social-media-sponso btn-group">
                                   <?php if (have_rows('liste_des_liens_t_sponso', $id_top_global)) : ?>
                                     <?php while (have_rows('liste_des_liens_t_sponso', $id_top_global)) : the_row(); ?>
@@ -661,22 +661,26 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
           </a>
         </li>
         <li>
-
-          <?php if (get_field('@_twitter', $id_top_global)) : ?>
-            <?php
-            $arobaseFirstContender = get_field('info_supplementaire_contender', $first_id_contender);
-            $arobaseSecondContender = get_field('info_supplementaire_contender', $second_id_contender);
-            $arobaseThirdContender = get_field('info_supplementaire_contender', $third_id_contender);
-            ?>
-            <a href="https://twitter.com/intent/tweet?text=Voici ma TopList <?php echo $top_infos['top_title']; ?>%0a🥇<?= $arobaseFirstContender ?> 🥈<?= $arobaseSecondContender ?> 🥉<?= $arobaseThirdContender ?>%0a&via=vainkeurz&hashtags=VKRZ&hashtags=<?php echo get_field('#top_twitter', $id_top_global) ?>&url=<?php echo $url_ranking; ?>" target="_blank" title="Tweet">
+          <?php if (get_field('tweet_personnalise_t', $id_top_global)) : ?>
+            <a href="https://twitter.com/intent/tweet?text=<?php the_field('tweet_personnalise_t', $id_top_global); ?>&via=<?php the_field('a_personnalise_t', $id_top_global); ?>&hashtags=<?php the_field('#top_twitter', $id_top_global); ?>&url=<?php echo $url_ranking; ?>" target="_blank" title="Tweet">
               <i class="social-media fab fa-twitter"></i> Twitter
             </a>
-          <?php else :  ?>
-            <a href="https://twitter.com/intent/tweet?text=Voici ma TopList <?php echo $top_infos['top_title']; ?>&via=vainkeurz&hashtags=VKRZ&url=<?php echo $url_ranking; ?>" target="_blank" title="Tweet">
-              <i class="social-media fab fa-twitter"></i> Twitter
-            </a>
+          <?php else : ?>
+            <?php if (get_field('@_twitter', $id_top_global)) : ?>
+              <?php
+              $arobaseFirstContender = get_field('info_supplementaire_contender', $first_id_contender);
+              $arobaseSecondContender = get_field('info_supplementaire_contender', $second_id_contender);
+              $arobaseThirdContender = get_field('info_supplementaire_contender', $third_id_contender);
+              ?>
+              <a href="https://twitter.com/intent/tweet?text=Voici ma TopList <?php echo $top_infos['top_title']; ?>%0a🥇<?= $arobaseFirstContender ?> 🥈<?= $arobaseSecondContender ?> 🥉<?= $arobaseThirdContender ?>%0a&via=vainkeurz&hashtags=VKRZ&hashtags=<?php echo get_field('#top_twitter', $id_top_global) ?>&url=<?php echo $url_ranking; ?>" target="_blank" title="Tweet">
+                <i class="social-media fab fa-twitter"></i> Twitter
+              </a>
+            <?php else :  ?>
+              <a href="https://twitter.com/intent/tweet?text=Voici ma TopList <?php echo $top_infos['top_title']; ?>&via=vainkeurz&hashtags=VKRZ&url=<?php echo $url_ranking; ?>" target="_blank" title="Tweet">
+                <i class="social-media fab fa-twitter"></i> Twitter
+              </a>
+            <?php endif; ?>
           <?php endif; ?>
-
         </li>
         <li>
           <a href="whatsapp://send?text=<?php echo $url_ranking; ?>" data-action="share/whatsapp/share">

@@ -12,7 +12,7 @@ $creator_pseudo   = $creator_info->nickname;
 $creator_avatar   = get_avatar_url($creator_id, ['size' => '80', 'force_default' => false]);
 $type_top         = "";
 $state            = "";
-$illu             = get_the_post_thumbnail_url($id_top, 'medium');
+$illu             = get_the_post_thumbnail_url($id_top, 'large');
 if (is_home()) {
   $class        = "swiper-slide";
 } elseif (is_single()) {
