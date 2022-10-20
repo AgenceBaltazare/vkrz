@@ -7,7 +7,16 @@ function deal_utm(){
 
         $utm = $_GET['utm_campaign'];
 
-        setcookie("vainkeurz_user_utm", $utm, time()+31556926, "/");
+        $arr_cookie_options = array(
+            'expires' => time() + 60 * 60 * 24 * 365,
+            'path' => '/',
+            'domain' => '',
+            'secure' => true,
+            'httponly' => false,
+            'samesite' => 'Lax'
+        );
+
+        setcookie("vainkeurz_user_utm", $utm, $arr_cookie_options);
 
     }
 
