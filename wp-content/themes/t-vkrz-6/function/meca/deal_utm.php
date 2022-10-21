@@ -10,7 +10,7 @@ function deal_utm(){
         $arr_cookie_options = array(
             'expires' => time() + 60 * 60 * 24 * 365,
             'path' => '/',
-            'domain' => '',
+            'domain' => 'vainkeurz.com',
             'secure' => true,
             'httponly' => false,
             'samesite' => 'Lax'
