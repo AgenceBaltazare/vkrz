@@ -198,6 +198,16 @@ jQuery(document).ready(function ($) {
   $(".share-natif-classement").click(function () {
     $(".share-classement-content").addClass("active-box");
   });
+
+  if(document.querySelector('#close-popup')) {
+    const closePopUps = document.querySelectorAll('#close-popup');
+
+    closePopUps.forEach(btn => btn.addEventListener('click', () => {
+      const overlay = btn.closest('.popup-overlay');
+
+      overlay.classList.add('d-none');
+    }))
+  }
 });
 
 if(!localStorage.getItem('come-back')) {
