@@ -1,6 +1,7 @@
 <?php
 global $id_top;
 ?>
+<!--
 <div class="come-back d-none">
     <div class="d-flex">
         <div class="text-center w-100">
@@ -11,6 +12,7 @@ global $id_top;
         </button>
     </div>
 </div>
+-->
 
 <?php if (!get_field('marqueblanche_t', $id_top)) : ?>
     <div class="sidenav-overlay"></div>
