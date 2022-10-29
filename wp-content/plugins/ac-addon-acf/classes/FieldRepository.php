@@ -32,7 +32,7 @@ class FieldRepository {
 
 		$fields = array_map( 'acf_get_fields', $groups );
 
-		return array_merge( ...$fields );
+		return array_filter( array_merge( ...$fields ) );
 	}
 
 }
