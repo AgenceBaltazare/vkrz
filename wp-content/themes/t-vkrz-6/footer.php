@@ -1,11 +1,7 @@
-<<<<<<< HEAD
-<?php global $id_top; ?>
-=======
 <?php
 global $id_top;
 ?>
 <!--
->>>>>>> 49fdf7f2943339d3518c86590d37194e997dd398
 <div class="come-back d-none">
     <div class="d-flex">
         <div class="text-center w-100">
