@@ -1151,12 +1151,13 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
         color: #FFF;
         border-color: #F4167F;
         margin: .6rem 0;
+        width: 80%;
         &:hover {
           box-shadow: 0 8px 25px -8px #F4167F;
         }
   
         @media (max-width: 768px) {
-          font-size: 1.1rem;
+          font-size: .8rem;
         }
       }
   
@@ -1188,6 +1189,7 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
           @media (max-width: 768px) {
             gap: .8rem;
             justify-content: space-around;
+            padding: 0.2rem 0.6rem
           }
     
           i {

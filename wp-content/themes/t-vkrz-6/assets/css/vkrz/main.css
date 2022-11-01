@@ -1381,13 +1381,14 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   color: #FFF;
   border-color: #F4167F;
   margin: 0.6rem 0;
+  width: 80%;
 }
 .popup-overlay .popup a:not(.t-rose):hover {
   box-shadow: 0 8px 25px -8px #F4167F;
 }
 @media (max-width: 768px) {
   .popup-overlay .popup a:not(.t-rose) {
-    font-size: 1.1rem;
+    font-size: 0.8rem;
   }
 }
 .popup-overlay .popup .close-popup {
@@ -1418,6 +1419,7 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   .popup-overlay .popup .rs ul {
     gap: 0.8rem;
     justify-content: space-around;
+    padding: 0.2rem 0.6rem;
   }
 }
 .popup-overlay .popup .rs ul i {
@@ -4341,8 +4343,6 @@ select:-webkit-autofill:focus {
   text-decoration: none;
 }
 .participation-content-sponso .info-win {
-  -moz-text-align-last: left;
-       text-align-last: left;
   font-size: 18px;
   line-height: 24px;
   margin: 10px 0 15px;
@@ -4377,29 +4377,6 @@ select:-webkit-autofill:focus {
   width: 100%;
 }
 
-#form-coupon {
-  display: flex;
-  max-width: 100%;
-}
-#form-coupon input[type=email] {
-  background: transparent;
-  border: 2px solid #7367f0;
-  padding: 10px;
-  color: #fff;
-  height: 50px;
-  width: 480px;
-  max-width: 80%;
-  border-radius: 5px 0 0 5px !important;
-}
-#form-coupon #btn-coupon {
-  max-width: 20%;
-  height: 50px;
-  background: #7367f0;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  border-radius: 0px 5px 5px 0 !important;
-}
-
 .single-classement .logo-vkrz-sponso {
   width: 100%;
   text-align: center;
@@ -4413,7 +4390,6 @@ select:-webkit-autofill:focus {
 }
 .single-classement .bravo {
   width: 100%;
-  padding: 15px 15px 0;
   text-align: center;
   border: 3px solid #f4167f;
   display: none;
@@ -4510,6 +4486,16 @@ select:-webkit-autofill:focus {
 }
 .other-topsponso-mobile a {
   border-radius: 0 !important;
+}
+
+.copy-toplist-url-btn {
+  background-color: #7367f0 !important;
+  color: #FFF !important;
+  font-weight: bold;
+  font-size: 16px;
+}
+.copy-toplist-url-btn:hover {
+  box-shadow: 0 8px 25px -8px #7367f0 !important;
 }
 
 @font-face {
