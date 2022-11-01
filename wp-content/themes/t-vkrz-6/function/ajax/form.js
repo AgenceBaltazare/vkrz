@@ -20,8 +20,8 @@ $(document).ready(function ($) {
                 id_vainkeur: form.find('#id_vainkeur').val()
             }
         }).done(function (response) {
-            form.hide();
-            $('.bravo').show();
+            $('.participate-init').hide();
+            $('.participation-confirme').removeClass("d-none");
 
         }).always(function () {
             
