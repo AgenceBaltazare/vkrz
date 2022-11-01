@@ -381,8 +381,8 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
                               <?php echo $top_datas['nb_tops']; ?> <span class="va va-trophy va-md"></span> <span class="space"></span> <?php echo $top_datas['nb_votes']; ?> <span class="va va-high-voltage va-md"></span>
                             </h2>
                             <div class="mt-1">
-                              <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_top_global; ?>" class="btn btn-primary waves-effect mb-1">
-                                Voir les <?php echo $top_datas['nb_tops']; ?> TopList et ressemblance <span class="va va-duo va-lg"></span>
+                              <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_top_global; ?>" class="btn btn-outline-primary waves-effect mb-1">
+                                <span class="va va-duo va-lg"></span> Voir les <?php echo $top_datas['nb_tops']; ?> TopList et ressemblance 
                               </a>
                               <h2 class="stats-mondiales mt-50">
                                 <b>Ressemblance mondiale : </b>
@@ -591,76 +591,77 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
   </div>
 
   <section class="nav-single">
+
+    <!-- WHERE I NEED TO WORK… 🚧 🚧 🚧 -->
     <nav class="navbar fixed-bottom mobile-navbar">
       <div class="row">
         <div class="col-md-8">
-          <div class="icons-navbar">
+          <?php 
+            if(is_user_logged_in())  $space_for_crisp = isMobile() && get_userdata(get_user_logged_id())->roles[0] != 'administrator'; else $space_for_crisp = true;
+          ?>
+          <div class="toplist-footer" style="<?php echo $space_for_crisp ? "width: 80%;gap:8px;" : "" ?>">
             <?php if (!in_array('private', $types_top)) : ?>
-              <div class="ico-nav-mobile box-info-show">
-                <span class="ico va va-placard va-lg hide-xs"></span> <span class="hide-spot">Infos <span class="hide-xs">du Top</span></span>
-              </div>
-              <div class="ico-nav-mobile share-content-show">
-                <span class="ico va va-megaphone va-lg hide-xs"></span> <span class="hide-spot">Partager</span>
+              <?php if ($already_done) : ?>
+                <?php if(get_field('uuid_user_r', $id_ranking) != $uuid_vainkeur) :  ?>
+                  <a href="<?php echo $top_infos['top_url']; ?>" class="toplist-f-item bubbly-button" style="<?php echo $space_for_crisp ? "padding: 0.3rem !important;" : "" ?>">
+                    Voir ma TopList
+                  </a>
+                <?php else : ?>
+                  <button class="toplist-f-item bubbly-button share-content-show share-natif-classement" style="<?php echo $space_for_crisp ? "padding: 0.3rem !important;" : "" ?>">
+                    Partage ta TopList                  
+                  </button>
+                <?php endif; ?>
+              <?php else : ?>
+                <a href="<?php echo $top_infos['top_url']; ?>" class="toplist-f-item bubbly-button" style="<?php echo $space_for_crisp ? "padding: 0.3rem !important;" : "" ?>">
+                  Faire ma TopList
+                </a>
+              <?php endif; ?>
+
+              <div class="toplist-f-item btn-show-hover box-info-show">
+                <span class="hide-xs">Infos du Top</span> <i class="fas fa-info-circle"></i>
               </div>
             <?php endif; ?>
-            <div class="ico-nav-mobile">
-              <a href="<?php echo get_the_permalink(get_page_by_path('discuz')) . '?id_top=' . $id_top_global; ?>">
-                <span class="ico va va-speech-balloon va-lg hide-xs"></span> <span class="hide-spot">Commenter</span>
+
+            <a href="<?php echo get_the_permalink(get_page_by_path('discuz')) . '?id_top=' . $id_top_global; ?>" class="toplist-f-item btn-show-hover ">
+              <span class="hide-xs">Commenter</span> <i class="fas fa-pencil-alt"></i>
+            </a>
+
+            <?php if ($already_done && get_field('uuid_user_r', $id_ranking) == $uuid_vainkeur) : ?>
+              <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" href="#" class="confirm_delete toplist-f-item btn-show-hover">
+               <span class="hide-xs">Recommencer</span> <i class="far fa-sync-alt"></i>
               </a>
-            </div>
-            <?php
-            if ($already_done) : ?>
-              <div class="ico-nav-mobile">
-                <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" href="#" class="confirm_delete">
-                  <span class="ico va va-repeat va-lg hide-xs"></span> <span class="hide-spot">Recommencer</span>
-                </a>
-              </div>
-            <?php else : ?>
-              <div class="ico-nav-mobile">
-                <a href="<?php echo $top_infos['top_url']; ?>">
-                  <span class="ico va va-trophy va-lg hide-xs"></span> <span class="hide-spot">Faire ma TopList</span>
-                </a>
-              </div>
             <?php endif; ?>
-          </div>
+          </div>                       
         </div>
       </div>
     </nav>
-    <div class="share-content">
-      <div class="close-share">
-        <i class="fal fa-times"></i>
-      </div>
-      <ul>
-        <?php if (get_field('uuid_user_r', $id_ranking) == $uuid_vainkeur) : ?>
-          <li class="share-natif-classement">
-            Partager ma TopList
-          </li>
-        <?php endif; ?>
-        <li class="share-natif-top">
-          Partager le lien du Top
-        </li>
-      </ul>
-    </div>
+
     <div class="share-classement-content">
       <h3>
+        <span class="va va-backhand-index-pointing-right va-lg"></span>
         Partager ma TopList
+        <span class="va va-backhand-index-pointing-right va-lg"></span>
       </h3>
+      <p>(Pas besoin de screen ! Une image de ton Top 3 sera ajoutée automatiquement à ton post avec le lien)</p>
+
       <div class="close-share">
         <i class="fal fa-times"></i>
       </div>
-      <ul>
-        <li>
+
+      <div class="share-classement-content-box">
+        <div class="left">
+          <img src="<?php echo $banner ?>" alt="">
+        </div>
+        <div class="right">
+          <a href="<?php echo $banner; ?>" download target="_blank">
+            <i class="social-media fas fa-download"></i> Télécharger l'image de ma TopList 
+          </a>
+
           <a href="javascript: void(0)" class="sharelinkbtn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copier le lien de ta TopList">
             <input type="text" value="<?php echo $url_ranking; ?>" class="input_to_share">
             <i class="social-media fas fa-paperclip"></i> Copier le lien de la TopList
           </a>
-        </li>
-        <li>
-          <a href="<?php echo $banner; ?>" download target="_blank">
-            <i class="social-media mb-12 fas fa-download"></i> Télécharger l'image de ma TopList
-          </a>
-        </li>
-        <li>
+
           <?php if (get_field('tweet_personnalise_t', $id_top_global)) : ?>
             <a href="https://twitter.com/intent/tweet?text=<?php the_field('tweet_personnalise_t', $id_top_global); ?>&via=<?php the_field('a_personnalise_t', $id_top_global); ?>&hashtags=<?php the_field('#top_twitter', $id_top_global); ?>&url=<?php echo $url_ranking; ?>" target="_blank" title="Tweet">
               <i class="social-media fab fa-twitter"></i> Twitter
@@ -681,19 +682,18 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
               </a>
             <?php endif; ?>
           <?php endif; ?>
-        </li>
-        <li>
+
           <a href="whatsapp://send?text=<?php echo $url_ranking; ?>" data-action="share/whatsapp/share">
             <i class="social-media fab fa-whatsapp"></i> WhatsApp
           </a>
-        </li>
-        <li>
+
           <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $url_ranking; ?>" title="Partager sur Facebook" target="_blank">
             <i class="social-media fab fa-facebook-f"></i> Facebook
           </a>
-        </li>
-      </ul>
+        </div>
+      </div>
     </div>
+
     <div class="share-top-content">
       <h3>
         Partager le lien du Top
@@ -753,6 +753,7 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
                   <?php endif; ?>
                 </div>
               </div>
+
               <div class="col-md-4">
                 <h4 class="card-title">
                   <?php
@@ -794,6 +795,12 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
                     </div>
                   </a>
                 </div>
+              </div>
+
+              <div class="col-md-3 mt-1">
+                <a href="#" class="share-natif-top btn btn-primary text-uppercase">
+                  Partage le Top <span class="va va-trophy va-md"></span>
+                </a>
               </div>
             </div>
           </div>
