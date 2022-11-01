@@ -591,15 +591,13 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
   </div>
 
   <section class="nav-single">
-
-    <!-- WHERE I NEED TO WORK… 🚧 🚧 🚧 -->
     <nav class="navbar fixed-bottom mobile-navbar">
       <div class="row">
         <div class="col-md-8">
           <?php 
             if(is_user_logged_in())  $space_for_crisp = isMobile() && get_userdata(get_user_logged_id())->roles[0] != 'administrator'; else $space_for_crisp = true;
           ?>
-          <div class="toplist-footer" style="<?php echo $space_for_crisp ? "width: 80%;gap:8px;" : "" ?>">
+          <div class="toplist-footer" style="<?php echo $space_for_crisp ? "width: 80%;gap:7px;" : "" ?>">
             <?php if (!in_array('private', $types_top)) : ?>
               <?php if ($already_done) : ?>
                 <?php if(get_field('uuid_user_r', $id_ranking) != $uuid_vainkeur) :  ?>
@@ -635,7 +633,6 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
         </div>
       </div>
     </nav>
-
     <div class="share-classement-content">
       <h3>
         <span class="va va-backhand-index-pointing-right va-lg"></span>
@@ -693,7 +690,6 @@ $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $l
         </div>
       </div>
     </div>
-
     <div class="share-top-content">
       <h3>
         Partager le lien du Top
