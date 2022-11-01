@@ -173,26 +173,18 @@ jQuery(document).ready(function ($) {
   });
 
   $(".close-share").click(function () {
-    $(".share-content").removeClass("active-box");
     $(".share-top-content").removeClass("active-box");
     $(".box-info-content").removeClass("active-box");
     $(".share-classement-content").removeClass("active-box");
   });
 
-  $(".share").click(function () {
-    $(".share-content").addClass("active-box");
-  });
-
   $(".share-natif-top").click(function () {
     $(".share-top-content").addClass("active-box");
+    $(".box-info-content").removeClass("active-box");
   });
 
   $(".box-info-show").click(function () {
     $(".box-info-content").addClass("active-box");
-  });
-
-  $(".share-content-show").click(function () {
-    $(".share-content").addClass("active-box");
   });
 
   $(".share-natif-classement").click(function () {
@@ -210,14 +202,14 @@ jQuery(document).ready(function ($) {
   }
 });
 
-if(!localStorage.getItem('come-back')) {
-    const comesBackDiv = document.querySelector('.come-back'),
-    comesBackCloseBtn = comesBackDiv.querySelector('.come-back-closeBtn');
+// if(!localStorage.getItem('come-back')) {
+//     const comesBackDiv = document.querySelector('.come-back'),
+//     comesBackCloseBtn = comesBackDiv.querySelector('.come-back-closeBtn');
 
-    comesBackDiv.classList.remove('d-none');
+//     comesBackDiv.classList.remove('d-none');
 
-    comesBackCloseBtn.addEventListener('click', function() {
-        $('.come-back').fadeOut();
-        localStorage.setItem('come-back', 'hide');
-    })
-}
+//     comesBackCloseBtn.addEventListener('click', function() {
+//         $('.come-back').fadeOut();
+//         localStorage.setItem('come-back', 'hide');
+//     })
+// }

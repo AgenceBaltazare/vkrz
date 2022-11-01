@@ -134,7 +134,7 @@
     }
 
     .hide-xs {
-        display: none;
+        display: none !important;
     }
 
     .hide-lg {
@@ -444,7 +444,7 @@
     }
 
     .hide-xs {
-        display: none;
+        display: none !important;
     }
 
     .single {
@@ -514,7 +514,6 @@
     }
 }
 
-
 @media (max-width: 425px) {
 
     .app-user-view .btns-alert .btn-outline-white {
@@ -522,7 +521,6 @@
     }
 
 }
-
 
 @media (max-height: 800px) {
 
