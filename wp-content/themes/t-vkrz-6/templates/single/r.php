@@ -897,9 +897,10 @@ endforeach;
       <div class="row">
         <div class="col-md-8">
           <?php 
-            if(is_user_logged_in())  $space_for_crisp = isMobile() && get_userdata(get_user_logged_id())->roles[0] != 'administrator'; else $space_for_crisp = true;
+            if(is_user_logged_in())  $space_for_crisp = isMobile() && get_userdata(get_user_logged_id())->roles[0] != 'administrator';
+            elseif(!is_user_logged_in() && isMobile()) $space_for_crisp = true;
           ?>
-          <div class="toplist-footer" style="<?php echo $space_for_crisp ? "width: 80%;gap:7px;" : "" ?>">
+          <div class="toplist-footer" style="<?php echo $space_for_crisp ? "width: 82%;gap:7px;" : "" ?>">
             <?php if (!in_array('private', $types_top)) : ?>
               <?php if ($already_done) : ?>
                 <?php if(get_field('uuid_user_r', $id_ranking) != $uuid_vainkeur) :  ?>
@@ -949,7 +950,7 @@ endforeach;
 
       <div class="share-classement-content-box">
         <div class="left">
-          <img src="<?php echo $banner ?>" alt="">
+          <img src="<?php echo $banner ?>" alt="Top 3">
         </div>
         <div class="right">
           <a href="<?php echo $banner; ?>" download target="_blank">

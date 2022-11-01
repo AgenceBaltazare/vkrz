@@ -68,37 +68,43 @@ $(window).on("load", function () {
 });
 
 window.onload = function () {
-  var copyBtn = document.querySelector(".sharelinkbtn");
-  if (copyBtn) {
+  var copyBtns = document.querySelectorAll(".sharelinkbtn");
+  copyBtns.forEach(copyBtn => {
     copyBtn.addEventListener("click", function (event) {
-      var copyInput = copyBtn.querySelector(".input_to_share");
-      copyInput.focus();
-      copyInput.select();
-      try {
-        var successful = document.execCommand("copy");
-        var msg = successful ? "successful" : "unsuccessful";
-        copyBtn.innerHTML = "Copié ✓";
-      } catch (err) {
-        console.log("Oops, impossible de copier - Demandes pas pourquoi :/");
-      }
-    });
-  }
+      var copyInputs = copyBtn.querySelectorAll(".input_to_share");
 
-  var copyBtn2 = document.querySelector(".sharelinkbtn2");
-  if (copyBtn2) {
-    copyBtn2.addEventListener("click", function (event) {
-      var copyInput = copyBtn2.querySelector(".input_to_share2");
-      copyInput.focus();
-      copyInput.select();
-      try {
-        var successful = document.execCommand("copy");
-        var msg = successful ? "successful" : "unsuccessful";
-        copyBtn2.innerHTML = "Copié ✓";
-      } catch (err) {
-        console.log("Oops, impossible de copier - Demandes pas pourquoi :/");
-      }
+      copyInputs.forEach(copyInput => {
+        copyInput.focus();
+        copyInput.select();
+        try {
+          var successful = document.execCommand("copy");
+          var msg = successful ? "successful" : "unsuccessful";
+          copyBtn.innerHTML = "Copié ✓";
+        } catch (err) {
+          console.log("Oops, impossible de copier - Demandes pas pourquoi :/");
+        }
+      })
     });
-  }
+  })
+
+  var copyBtns2 = document.querySelectorAll(".sharelinkbtn2");
+  copyBtns2.forEach(copyBtn => {
+    copyBtn.addEventListener("click", function (event) {
+      var copyInputs = copyBtn.querySelectorAll(".input_to_share2");
+
+      copyInputs.forEach(copyInput => {
+        copyInput.focus();
+        copyInput.select();
+        try {
+          var successful = document.execCommand("copy");
+          var msg = successful ? "successful" : "unsuccessful";
+          copyBtn.innerHTML = "Copié ✓";
+        } catch (err) {
+          console.log("Oops, impossible de copier - Demandes pas pourquoi :/");
+        }
+      })
+    });
+  })
 };
 
 $(window).scroll(function () {
