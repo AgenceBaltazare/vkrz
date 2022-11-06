@@ -193,18 +193,28 @@ jQuery(document).ready(function ($) {
     $(".box-info-content").addClass("active-box");
   });
 
-  $(".share-natif-classement").click(function () {
+  $(".share-natif-classement").click(function () {""
     $(".share-classement-content").addClass("active-box");
   });
 
-  if(document.querySelector('#close-popup')) {
-    const closePopUps = document.querySelectorAll('#close-popup');
+  if(document.querySelector('.popup-overlay')) {
+    const popUps = document.querySelectorAll('.popup-overlay');
 
-    closePopUps.forEach(btn => btn.addEventListener('click', () => {
-      const overlay = btn.closest('.popup-overlay');
+    popUps.forEach(popUp => {
+      if(!popUp.classList.contains('d-none')) {
+        popUp.addEventListener('click', () => {
+          popUp.classList.add('d-none');
+        });
 
-      overlay.classList.add('d-none');
-    }))
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape') {
+            popUp.classList.add('d-none');
+          }
+        });
+
+        popUp.querySelector('#close-popup').addEventListener('click',  () => popUp.classList.add('d-none'));
+      }
+    })
   }
 });
 
