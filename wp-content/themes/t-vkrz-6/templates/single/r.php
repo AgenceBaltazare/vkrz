@@ -161,7 +161,7 @@ endforeach;
                             </form>
                           <?php elseif (get_field('type_de_fin_t_sponso', $id_top_global) == "twitter_1") : ?>
                             <?php if (!get_field('bouton_copier_toplist_tweet_twitter', $id_top_global)) : ?>
-                              <a href="javascript: void(0)" class="sharelinkbtn2 animate__jello animate__animated animate__delay-1s btn btn-max btn-outline-primary waves-effect waves-float waves-light copy-toplist-url-btn">
+                              <a href="#" class="sharelinkbtn2 animate__jello animate__animated animate__delay-1s btn btn-max btn-outline-primary waves-effect waves-float waves-light copy-toplist-url-btn">
                                 <input type="text" value="<?php echo get_the_permalink($id_ranking); ?>" class="input_to_share2">
                                 <i class="social-media fas fa-paperclip"></i>
                                 Copier le lien de ma TopList
@@ -210,7 +210,7 @@ endforeach;
                                 <div class="d-flex align-items-center">
                                   <ul>
                                     <li>
-                                      <a href="javascript: void(0)" class="sharelinkbtn">
+                                      <a href="#" class="sharelinkbtn">
                                         <input type="text" value="<?php echo $url_ranking; ?>" class="input_to_share">
                                         <span>
                                           <i class="fa fa-link"></i>
@@ -281,7 +281,7 @@ endforeach;
                                 <div class="d-flex align-items-center">
                                   <ul>
                                     <li>
-                                      <a href="javascript: void(0)" class="sharelinkbtn2">
+                                      <a href="#" class="sharelinkbtn2">
                                         <input type="text" value="<?php echo $top_infos['top_url']; ?>" class="input_to_share2">
                                         <span>
                                           <i class="fa fa-link"></i>
@@ -348,7 +348,7 @@ endforeach;
                               <div class="d-flex align-items-center">
                                 <ul>
                                   <li>
-                                    <a href="javascript: void(0)" class="sharelinkbtn">
+                                    <a href="#" class="sharelinkbtn">
                                       <input type="text" value="<?php echo $url_ranking; ?>" class="input_to_share">
                                       <span>
                                         <i class="fa fa-link"></i>
@@ -419,7 +419,7 @@ endforeach;
                               <div class="d-flex align-items-center">
                                 <ul>
                                   <li>
-                                    <a href="javascript: void(0)" class="sharelinkbtn2">
+                                    <a href="#" class="sharelinkbtn2">
                                       <input type="text" value="<?php echo $top_infos['top_url']; ?>" class="input_to_share2">
                                       <span>
                                         <i class="fa fa-link"></i>
@@ -942,7 +942,7 @@ endforeach;
             <i class="social-media fas fa-download"></i> Télécharger l'image de ma TopList 
           </a>
 
-          <a href="javascript: void(0)" class="sharelinkbtn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copier le lien de ta TopList">
+          <a href="#" class="sharelinkbtn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copier le lien de ta TopList">
             <input type="text" value="<?php echo $url_ranking; ?>" class="input_to_share">
             <i class="social-media fas fa-paperclip"></i> Copier le lien de la TopList
           </a>
@@ -987,7 +987,7 @@ endforeach;
       </div>
       <ul>
         <li>
-          <a href="javascript: void(0)" class="sharelinkbtn2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copier le lien de ton Top">
+          <a href="#" class="sharelinkbtn2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copier le lien de ton Top">
             <input type="text" value="<?php echo $top_infos['top_url']; ?>" class="input_to_share2">
             <i class="social-media fas fa-paperclip"></i> Copier le lien du Top
           </a>
