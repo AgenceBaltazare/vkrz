@@ -66,8 +66,8 @@
         $l++;
         if ($l == 4) break;
     }
-    if (get_field('bannerbear_t', $id_top)) {
-        $bannerbear_id = get_field('bannerbear_t', $id_top);
+    if (get_field('bannerbear_list', $id_top)) {
+        $bannerbear_id = get_field('bannerbear_list', $id_top);
     } else {
         if ($top_infos['top_number'] < 3) {
             $bannerbear_id = "nYaKxNMeoDRVW9BXPl";
@@ -79,11 +79,13 @@
     $base       = "https://on-demand.bannerbear.com/signedurl/" . $bannerbear_id . "/image.jpg";
     $name_contender_1 = str_replace("&rsquo;", "'", $name_contender_1);
     $name_contender_2 = str_replace("&rsquo;", "'", $name_contender_2);
+    $toptitle = str_replace("&rsquo;", "'", $top_infos['top_title']);
+    
     if ($top_infos['top_number'] < 3) {
-        $modifications = '[{"name":"h1","text":"TOP ' . $top_infos['top_number'] . ' ' . $top_infos['top_title'] . '"},{"name":"h2","text":"Voici mon Top 2 👉"},{"name":"h1-question","text":"' . $top_infos['top_question'] . '"}, {"name":"contenders_1","image_url":"' . $picture_contender_1 . '"},{"name":"contenders_2","image_url":"' . $picture_contender_2 . '"},{"name":"1","text":"🥇 ' . $name_contender_1 . '"},{"name":"2","text":"🥈 ' . $name_contender_2 . '"}]';
+        $modifications = '[{"name":"h1","text":"TOP ' . $top_infos['top_number'] . ' ' . $toptitle . '"},{"name":"h1-2","text":"TOP ' . $top_infos['top_number'] . ' ' . $toptitle . '"},{"name":"h2","text":"Voici mon Top 2 👉"},{"name":"h1-question","text":"' . $top_infos['top_question'] . '"},{"name":"h1-question-2","text":"' . $top_infos['top_question'] . '"}, {"name":"contenders_1","image_url":"' . $picture_contender_1 . '"},{"name":"contenders_2","image_url":"' . $picture_contender_2 . '"},{"name":"1","text":"🥇 ' . $name_contender_1 . '"},{"name":"2","text":"🥈 ' . $name_contender_2 . '"}]';
     } else {
         $name_contender_3 = str_replace("&rsquo;", "'", $name_contender_3);
-        $modifications    = '[{"name":"background","image_url":"' . $top_infos['top_cover'] . '"},{"name":"h1-2","text":"TOP ' . $top_infos['top_number'] . ' ' . $top_infos['top_title'] . '"},{"name":"h1","text":"TOP ' . $top_infos['top_number'] . ' ' . $top_infos['top_title'] . '"},{"name":"h2","text":"VOICI MON TOP 3 👉"},{"name":"contenders_1","image_url":"' . $picture_contender_1 . '"},{"name":"contenders_2","image_url":"' . $picture_contender_2 . '"},{"name":"contenders_3","image_url":"' . $picture_contender_3 . '"},{"name":"1","text":"🥇 ' . $name_contender_1 . '"},{"name":"2","text":"🥈 ' . $name_contender_2 . '"},{"name":"3","text":"🥉 ' . $name_contender_3 . '"},{"name":"h1-question-2","text":"' . $top_infos['top_question'] . '"},{"name":"h1-question","text":"' . $top_infos['top_question'] . '"}]';
+        $modifications    = '[{"name":"background","image_url":"' . $top_infos['top_cover'] . '"},{"name":"h1-2","text":"TOP ' . $top_infos['top_number'] . ' ' . $toptitle . '"},{"name":"h1","text":"TOP ' . $top_infos['top_number'] . ' ' . $toptitle . '"},{"name":"h2","text":"VOICI MON TOP 3 👉"},{"name":"contenders_1","image_url":"' . $picture_contender_1 . '"},{"name":"contenders_2","image_url":"' . $picture_contender_2 . '"},{"name":"contenders_3","image_url":"' . $picture_contender_3 . '"},{"name":"1","text":"🥇 ' . $name_contender_1 . '"},{"name":"2","text":"🥈 ' . $name_contender_2 . '"},{"name":"3","text":"🥉 ' . $name_contender_3 . '"},{"name":"h1-question-2","text":"' . $top_infos['top_question'] . '"},{"name":"h1-question","text":"' . $top_infos['top_question'] . '"}]';
     }
     $query = "?modifications=" . rtrim(strtr(base64_encode($modifications), '+/', '-_'), '=');
     $signature = hash_hmac('sha256', $base . $query, $api_key);
