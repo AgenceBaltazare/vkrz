@@ -1,5 +1,4 @@
 import {
-  localhost,
   collection,
   getDocs,
   addDoc,
@@ -438,7 +437,7 @@ $(document).ready(function ($) {
                 }
               }
 
-              if (currentUserId != "0" && localhost === false) {
+              if (currentUserId != "0") {
                 const followersQuery = query(
                   collection(database, "notifications"),
                   where("notifType", "==", "follow"),
