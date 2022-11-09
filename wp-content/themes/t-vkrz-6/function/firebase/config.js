@@ -6,6 +6,7 @@ switch (location.hostname) {
   case "localhost":
   case "127.0.0.1":
   case "vainkeurz.local":
+  case "proto.vainkeurz.com":
     firebaseConfig = {
       apiKey: "AIzaSyDX3AkehDOsSpznrUG_mXRJBY_jkBeLCds",
       authDomain: "vainkeurz-48eb4.firebaseapp.com",
