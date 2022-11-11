@@ -118,7 +118,6 @@
     }
 
     .info-win {
-        text-align-last: left;
         font-size: 18px;
         line-height: 24px;
         margin: 10px 0 15px;
@@ -159,31 +158,6 @@
     width: 100%;
 }
 
-#form-coupon {
-    display: flex;
-    max-width: 100%;
-
-    input[type="email"] {
-        background: transparent;
-        border: 2px solid #7367f0;
-        padding: 10px;
-        color: #fff;
-        height: 50px;
-        width: 480px;
-        max-width: 80%;
-        border-radius: 5px 0 0 5px !important;
-    }
-
-    #btn-coupon {
-        max-width: 20%;
-        height: 50px;
-        background: #7367f0;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        border-radius: 0px 5px 5px 0 !important;
-    }
-}
-
 .single-classement {
     .logo-vkrz-sponso {
         width: 100%;
@@ -201,7 +175,6 @@
 
     .bravo {
         width: 100%;
-        padding: 15px 15px 0;
         text-align: center;
         border: 3px solid $rose;
         display: none;
@@ -323,5 +296,16 @@
 
     a {
         border-radius: 0 !important;
+    }
+}
+
+.copy-toplist-url-btn {
+    background-color: #7367f0 !important;
+    color: #FFF !important;
+    font-weight: bold;
+    font-size: 16px;
+
+    &:hover {
+        box-shadow: 0 8px 25px -8px #7367f0 !important;
     }
 }

@@ -67,40 +67,6 @@ $(window).on("load", function () {
   }
 });
 
-window.onload = function () {
-  var copyBtn = document.querySelector(".sharelinkbtn");
-  if (copyBtn) {
-    copyBtn.addEventListener("click", function (event) {
-      var copyInput = copyBtn.querySelector(".input_to_share");
-      copyInput.focus();
-      copyInput.select();
-      try {
-        var successful = document.execCommand("copy");
-        var msg = successful ? "successful" : "unsuccessful";
-        copyBtn.innerHTML = "Copié ✓";
-      } catch (err) {
-        console.log("Oops, impossible de copier - Demandes pas pourquoi :/");
-      }
-    });
-  }
-
-  var copyBtn2 = document.querySelector(".sharelinkbtn2");
-  if (copyBtn2) {
-    copyBtn2.addEventListener("click", function (event) {
-      var copyInput = copyBtn2.querySelector(".input_to_share2");
-      copyInput.focus();
-      copyInput.select();
-      try {
-        var successful = document.execCommand("copy");
-        var msg = successful ? "successful" : "unsuccessful";
-        copyBtn2.innerHTML = "Copié ✓";
-      } catch (err) {
-        console.log("Oops, impossible de copier - Demandes pas pourquoi :/");
-      }
-    });
-  }
-};
-
 $(window).scroll(function () {
   var scroll = $(window).scrollTop();
   if (scroll > 10) {
@@ -173,32 +139,26 @@ jQuery(document).ready(function ($) {
   });
 
   $(".close-share").click(function () {
-    $(".share-content").removeClass("active-box");
     $(".share-top-content").removeClass("active-box");
     $(".box-info-content").removeClass("active-box");
     $(".share-classement-content").removeClass("active-box");
   });
 
-  $(".share").click(function () {
-    $(".share-content").addClass("active-box");
-  });
-
   $(".share-natif-top").click(function () {
     $(".share-top-content").addClass("active-box");
+    $(".box-info-content").removeClass("active-box");
   });
 
   $(".box-info-show").click(function () {
     $(".box-info-content").addClass("active-box");
   });
 
-  $(".share-content-show").click(function () {
-    $(".share-content").addClass("active-box");
-  });
-
   $(".share-natif-classement").click(function () {
+    "";
     $(".share-classement-content").addClass("active-box");
   });
 
+<<<<<<< HEAD
   // BLOCK REFERRAL INPUT IF HE'S ALREADY FILLED
   if(document.querySelector('#basic-tabs-components #referral')) {
     const input = document.querySelector('#referral');
@@ -219,10 +179,38 @@ jQuery(document).ready(function ($) {
       if(!formAction.includes('codeinvit')) {
         const codeInvitValue = form.querySelector('#referral').value;
         form.setAttribute('action', `${formAction}?codeinvit=${codeInvitValue}`)
+=======
+  if (document.querySelector(".popup-overlay")) {
+    const popUps = document.querySelectorAll(".popup-overlay");
+
+    popUps.forEach((popUp) => {
+      let copyLinkTopList = popUp.querySelector(".sharelinkbtn .fa-link");
+      let copyLinkTop = popUp.querySelector(".sharelinkbtn2 .fa-link");
+
+      if (!popUp.classList.contains("d-none") || popUp.querySelector('.finish-participate-popup')) {
+        document.addEventListener("click", (e) => {
+          if (
+            e.target.closest(".popup") !== popUp.querySelector(".popup") ||
+            e.target === popUp.querySelector("#close-popup")
+          ) {
+
+            if (e.target !== copyLinkTopList && e.target !== copyLinkTop) {
+              popUp.classList.add("d-none");
+            }
+          }
+        });
+
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") {
+            popUp.classList.add("d-none");
+          }
+        });
+>>>>>>> 57c3be75313091a50029a8cdf3398ae34cded38b
       }
     });
   }
 
+<<<<<<< HEAD
   // COPY REFERRAL INVITATION LINK FROM BUTTON
   if(document.querySelector('#copyReferralLink')) {
     const buttons = document.querySelectorAll("#copyReferralLink");
@@ -272,3 +260,61 @@ if (!localStorage.getItem("come-back")) {
     localStorage.setItem("come-back", "hide");
   });
 }
+=======
+  window.onload = function () {
+    var copyBtns = document.querySelectorAll(".sharelinkbtn");
+    copyBtns.forEach((copyBtn) => {
+      copyBtn.addEventListener("click", function (event) {
+        var copyInputs = copyBtn.querySelectorAll(".input_to_share");
+
+        copyInputs.forEach((copyInput) => {
+          copyInput.focus();
+          copyInput.select();
+          try {
+            var successful = document.execCommand("copy");
+            var msg = successful ? "successful" : "unsuccessful";
+            copyBtn.innerHTML = "Copié ✓";
+          } catch (err) {
+            console.log(
+              "Oops, impossible de copier - Demandes pas pourquoi :/"
+            );
+          }
+        });
+      });
+    });
+
+    var copyBtns2 = document.querySelectorAll(".sharelinkbtn2");
+    copyBtns2.forEach((copyBtn) => {
+      copyBtn.addEventListener("click", function (event) {
+        var copyInputs = copyBtn.querySelectorAll(".input_to_share2");
+
+        copyInputs.forEach((copyInput) => {
+          copyInput.focus();
+          copyInput.select();
+          try {
+            var successful = document.execCommand("copy");
+            var msg = successful ? "successful" : "unsuccessful";
+            copyBtn.innerHTML = "Copié ✓";
+          } catch (err) {
+            console.log(
+              "Oops, impossible de copier - Demandes pas pourquoi :/"
+            );
+          }
+        });
+      });
+    });
+  };
+});
+
+// if(!localStorage.getItem('come-back')) {
+//     const comesBackDiv = document.querySelector('.come-back'),
+//     comesBackCloseBtn = comesBackDiv.querySelector('.come-back-closeBtn');
+
+//     comesBackDiv.classList.remove('d-none');
+
+//     comesBackCloseBtn.addEventListener('click', function() {
+//         $('.come-back').fadeOut();
+//         localStorage.setItem('come-back', 'hide');
+//     })
+// }
+>>>>>>> 57c3be75313091a50029a8cdf3398ae34cded38b
