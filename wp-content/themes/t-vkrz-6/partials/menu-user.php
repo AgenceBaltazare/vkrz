@@ -537,23 +537,25 @@ if (is_single() && get_post_type() == "tournoi") {
 <?php if(is_user_logged_in()) : 
   $codeparrain = get_field('code_parrain_user', 'user_' . $infos_vainkeur['id_user']);
 ?>
-  <div class="popup-overlay" style="display: none;">
-    <div class="popup rotate-in-center">
+  <div class="popup-overlay d-none">
+    <div class="popup referral-popup rotate-in-center">
       <button class="close-popup">&times;</button>
 
       <div class="popup-body">
         <span class="va va-love-people va-5x"></span> <br>
-        <h3>Sharing is caring!</h3>
-        <p>Share your referral code to your friends and win 200 <span class="ico text-center va-gem va va-lg"></span> for you and 100 <span class="ico text-center va-gem va va-lg"></span> for your referral.</p>
+        <h3>Partager c'est aimer!</h3>
+        <p>Partage ton code de parrainage avec tes amis et gagne 200 <span class="ico text-center va-gem va va-lg"></span> pour toi et 100 <span class="ico text-center va-gem va va-lg"></span> pour ton parrain.</p>
+
 
         <a href="<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>?codeinvit=<?= $codeparrain ?>" class="btn btn-rose waves-effect waves-float waves-light p-1" id="copyReferralLink">
           <p class="h4 text-white m-0">
             Copier mon code d'invitation
           </p>
         </a>
-
+      </div>
+      <div class="popup-footer">
         <hr class="my-2">
-        <div class="blog-rs">
+        <div class="rs">
           <div class="d-flex align-items-center">
             <ul>
               <li>

@@ -158,109 +158,6 @@ jQuery(document).ready(function ($) {
     $(".share-classement-content").addClass("active-box");
   });
 
-<<<<<<< HEAD
-  // BLOCK REFERRAL INPUT IF HE'S ALREADY FILLED
-  if(document.querySelector('#basic-tabs-components #referral')) {
-    const input = document.querySelector('#referral');
-
-    if(input.value !== "") {
-      input.setAttribute('readonly', 'true');
-      input.classList.add('readonly');
-      input.value = `${input.value} (Invitation Code)`;
-    }
-  }
-
-  // IF THE USER ENTERS REFERRAL CODE MANUALLY
-  if(document.querySelector('#wppb-register-user-sign-on')) {
-    const form = document.querySelector('#wppb-register-user-sign-on');
-    form.addEventListener('submit', () => {
-      const formAction = form.getAttribute('action');
-      
-      if(!formAction.includes('codeinvit')) {
-        const codeInvitValue = form.querySelector('#referral').value;
-        form.setAttribute('action', `${formAction}?codeinvit=${codeInvitValue}`)
-=======
-  if (document.querySelector(".popup-overlay")) {
-    const popUps = document.querySelectorAll(".popup-overlay");
-
-    popUps.forEach((popUp) => {
-      let copyLinkTopList = popUp.querySelector(".sharelinkbtn .fa-link");
-      let copyLinkTop = popUp.querySelector(".sharelinkbtn2 .fa-link");
-
-      if (!popUp.classList.contains("d-none") || popUp.querySelector('.finish-participate-popup')) {
-        document.addEventListener("click", (e) => {
-          if (
-            e.target.closest(".popup") !== popUp.querySelector(".popup") ||
-            e.target === popUp.querySelector("#close-popup")
-          ) {
-
-            if (e.target !== copyLinkTopList && e.target !== copyLinkTop) {
-              popUp.classList.add("d-none");
-            }
-          }
-        });
-
-        document.addEventListener("keydown", function (e) {
-          if (e.key === "Escape") {
-            popUp.classList.add("d-none");
-          }
-        });
->>>>>>> 57c3be75313091a50029a8cdf3398ae34cded38b
-      }
-    });
-  }
-
-<<<<<<< HEAD
-  // COPY REFERRAL INVITATION LINK FROM BUTTON
-  if(document.querySelector('#copyReferralLink')) {
-    const buttons = document.querySelectorAll("#copyReferralLink");
-
-    buttons.forEach(button => button.addEventListener('click', function(e) {
-      e.preventDefault();
-      const copy = (text) => navigator.clipboard.writeText(text);
-      copy(button.getAttribute('href'));
-      button.querySelector('p:first-of-type').innerHTML = 'Bien copié ! <span class="ico va va-floppy-disk va-lg"></span>'
-    }))
-  }
-
-  // POPUP
-  if(document.querySelector('.open-popup')) {
-    const openPopUp = document.querySelector('.open-popup');
-    const popUp = document.querySelector('.popup-overlay');
-    const closePopUp = document.querySelector('.close-popup');
-    const keurzDropDownMenuContainer = document.querySelector('.keurz-dropdown-container');
-    const keurzDropDownMenu = document.querySelector('.keurz-dropdown');
-
-    if(!localStorage.getItem('referral')) {
-      keurzDropDownMenuContainer.addEventListener('click', () => {
-        document.querySelector('.signs').classList.remove('signs')
-        localStorage.setItem("referral", "hide");
-      });
-    } else {
-      document.querySelector('.signs').classList.remove('signs');
-    }
-
-    openPopUp.addEventListener('click', () => {
-      popUp.style.display = 'flex';
-      keurzDropDownMenu.classList.remove('show');
-      keurzDropDownMenu.classList.add('hide');
-    });
-    closePopUp.addEventListener('click', () => popUp.style.display = 'none');
-  }
-});
-
-if (!localStorage.getItem("come-back")) {
-  const comesBackDiv = document.querySelector(".come-back"),
-    comesBackCloseBtn = comesBackDiv.querySelector(".come-back-closeBtn");
-
-  comesBackDiv.classList.remove("d-none");
-
-  comesBackCloseBtn.addEventListener("click", function () {
-    $(".come-back").fadeOut();
-    localStorage.setItem("come-back", "hide");
-  });
-}
-=======
   window.onload = function () {
     var copyBtns = document.querySelectorAll(".sharelinkbtn");
     copyBtns.forEach((copyBtn) => {
@@ -303,18 +200,108 @@ if (!localStorage.getItem("come-back")) {
         });
       });
     });
+
+    if(document.querySelector('#basic-tabs-components #referral')) {
+      const input = document.querySelector('#referral');
+
+      if(input.value !== "") {
+        input.setAttribute('readonly', 'true');
+        input.classList.add('readonly');
+        input.value = `${input.value} (Invitation Code)`;
+      }
+    }
+
+    if(document.querySelector('#wppb-register-user-sign-on')) {
+      const form = document.querySelector('#wppb-register-user-sign-on');
+      form.addEventListener('submit', () => {
+        const formAction = form.getAttribute('action');
+        
+        if(!formAction.includes('codeinvit')) {
+          const codeInvitValue = form.querySelector('#referral').value;
+          form.setAttribute('action', `${formAction}?codeinvit=${codeInvitValue}`)
+        }
+      });
+    }
+
+    if(document.querySelector('#copyReferralLink')) {
+      const buttons = document.querySelectorAll("#copyReferralLink");
+
+      buttons.forEach(button => button.addEventListener('click', function(e) {
+        e.preventDefault();
+        const copy = (text) => navigator.clipboard.writeText(text);
+        copy(button.getAttribute('href'));
+        button.querySelector('p:first-of-type').innerHTML = 'Bien copié ! <span class="ico va va-floppy-disk va-lg"></span>'
+      }))
+    }
+
+    if (document.querySelector(".popup-overlay")) {
+      const popUps = document.querySelectorAll(".popup-overlay");
+
+      const dealClosePopUp = function(popUp) {
+        let copyLinkTopList = popUp.querySelector(".sharelinkbtn .fa-link");
+        let copyLinkTop     = popUp.querySelector(".sharelinkbtn2 .fa-link");
+        
+        document.addEventListener("click", (e) => {
+          if (
+            e.target.closest(".popup") !== popUp.querySelector(".popup") ||
+            e.target === popUp.querySelector("#close-popup")
+          ) {
+
+            if (e.target !== copyLinkTopList && e.target !== copyLinkTop) {
+              popUp.classList.add("d-none");
+            }
+          }
+        });
+
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") {
+            popUp.classList.add("d-none");
+          }
+        });
+      }
+
+      popUps.forEach((popUp) => {
+        if (!popUp.classList.contains("d-none") || popUp.querySelector('.finish-participate-popup')) {
+          dealClosePopUp(popUp);
+        } else {
+          const openPopUp                  = document.querySelector('.open-popup');
+          const popUp                      = document.querySelector('.popup-overlay');
+          const closePopUp                 = document.querySelector('.close-popup');
+          const keurzDropDownMenuContainer = document.querySelector('.keurz-dropdown-container');
+          const keurzDropDownMenu          = document.querySelector('.keurz-dropdown');
+
+          if(!localStorage.getItem('referral')) {
+            keurzDropDownMenuContainer.addEventListener('click', () => {
+              document.querySelector('.signs').classList.remove('signs')
+              localStorage.setItem("referral", "hide");
+            });
+          } else {
+            document.querySelector('.signs').classList.remove('signs');
+          }
+
+          openPopUp.addEventListener('click', () => {
+            popUp.classList.remove('d-none');
+            dealClosePopUp(popUp);
+            keurzDropDownMenu.classList.remove('show');
+            keurzDropDownMenu.classList.add('hide');
+          });
+          closePopUp.addEventListener('click', () => popUp.classList.add('d-none'));
+        }
+      });
+    }
   };
 });
 
-// if(!localStorage.getItem('come-back')) {
-//     const comesBackDiv = document.querySelector('.come-back'),
-//     comesBackCloseBtn = comesBackDiv.querySelector('.come-back-closeBtn');
+/* 
+  if(!localStorage.getItem('come-back')) {
+      const comesBackDiv = document.querySelector('.come-back'),
+      comesBackCloseBtn = comesBackDiv.querySelector('.come-back-closeBtn');
 
-//     comesBackDiv.classList.remove('d-none');
+      comesBackDiv.classList.remove('d-none');
 
-//     comesBackCloseBtn.addEventListener('click', function() {
-//         $('.come-back').fadeOut();
-//         localStorage.setItem('come-back', 'hide');
-//     })
-// }
->>>>>>> 57c3be75313091a50029a8cdf3398ae34cded38b
+      comesBackCloseBtn.addEventListener('click', function() {
+          $('.come-back').fadeOut();
+          localStorage.setItem('come-back', 'hide');
+      })
+  } 
+*/

@@ -1,11 +1,5 @@
 import {
   collection,
-  getDocs,
-  deleteDoc,
-  doc,
-  query,
-  where,
-  orderBy,
   addDoc,
   database,
 } from "./config.js";
@@ -95,8 +89,8 @@ if (getCookie("wordpress_parrainage_cookies")) {
     if((window.location.href).includes("/mon-compte/")) {
       const totalVoteValue = document.querySelector('.user-total-vote-value');
       const keurzValue = document.querySelector('.money-disponible');
-      totalVoteValue.innerHTML = Number(totalVoteValue.innerHTML) + 20;
-      keurzValue.innerHTML = Number(keurzValue.innerHTML) + 20;
+      totalVoteValue.innerHTML = Number(totalVoteValue.innerHTML) + 100;
+      keurzValue.innerHTML = Number(keurzValue.innerHTML) + 100;
     }
 
     // REMOVE COOKIE

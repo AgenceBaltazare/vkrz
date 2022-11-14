@@ -13,6 +13,14 @@
   .card-body {
     .btn {
       width: 70%;
+
+      @media (max-width: 768px) {
+        padding: .6rem !important;
+
+        p.h4 {
+          font-size: 1rem;
+        }
+      }
     }
 
     .btn-solocode  {

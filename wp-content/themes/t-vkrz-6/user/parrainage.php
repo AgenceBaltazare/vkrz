@@ -36,10 +36,10 @@ $codeparrain = get_field('code_parrain_user', 'user_' . $user_id);
                               <span class="va va-love-people va-5x"></span>
                             </div>
                             <h2 class="font-weight-bolder">
-                              Sharing is caring!
+                              Partager c'est aimer!
                             </h2>
                             <p class="card-text legende">
-                              Share your referral code to your friends and win 200 <span class="ico text-center va-gem va va-lg"></span> for you and 100 <span class="ico text-center va-gem va va-lg"></span> for your referral.
+                              Partage ton code de parrainage avec tes amis et gagne 200 <span class="ico text-center va-gem va va-lg"></span> pour toi et 100 <span class="ico text-center va-gem va va-lg"></span> pour ton parrain.
                             </p>
 
                             <a href="<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>?codeinvit=<?= $codeparrain ?>" class="btn btn-rose waves-effect p-1" id="copyReferralLink">

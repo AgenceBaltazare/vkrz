@@ -40,9 +40,9 @@ function check_codeparrain($code)
             $id_vainkeur = get_field('id_vainkeur_user', 'user_' . $user_id);
         }
 
-        if($id_vainkeur)
+        if($id_vainkeur && is_user_logged_in() && $id_vainkeur != get_field('id_vainkeur_user', 'user_' . get_user_logged_id()))
             return $id_vainkeur;
-        else
+        else 
             return false;
     }
 

@@ -2,7 +2,6 @@
 add_action('template_redirect', function () {
   ob_start();
 });
-
 add_filter( 'wppb_check_form_field_input', 'wppbc_custom_input_validation', 20, 4 );
 function wppbc_custom_input_validation( $message, $field, $request_data, $form_location ){
 	if( $field['field'] == 'Input' && $field['meta-name'] == 'referral' ){
@@ -13,9 +12,12 @@ function wppbc_custom_input_validation( $message, $field, $request_data, $form_l
         $id_vainkeur = get_field('id_vainkeur_user', 'user_' . get_current_user_id());
         $referred_to = get_field('referred_to', $id_vainkeur);
 
-        if($referred_to) {
+        if(!check_codeparrain($input)) {
+          return "Aucun parrain trouvé";
+        } else if ($referred_to) {
           return 'Parrain déjà saisi';
-        }
+        } 
+
       } else {
         if(!check_codeparrain($input)) {
           return "Aucun parrain trouvé";
