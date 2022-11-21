@@ -1,4 +1,4 @@
-import { localhost, collection, addDoc, database } from "./config.js";
+import { collection, addDoc, database } from "./config.js";
 
 const commentBtn = document.querySelector("#submit-comment"),
   replyData = document.querySelector("#replyData"),
@@ -35,7 +35,7 @@ commentBtn.addEventListener("click", async function () {
     }
   }
 
-  if (userId != relatedId && localhost === false) {
+  if (userId != relatedId) {
     try {
       const newCommentNotification = await addDoc(
         collection(database, "notifications"),

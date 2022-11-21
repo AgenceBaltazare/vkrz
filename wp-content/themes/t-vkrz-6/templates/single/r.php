@@ -90,14 +90,10 @@ endforeach;
       <div class="classement" data-idranking="<?= $id_ranking ?>">
         <div class="row">
           <div class="col-md-8">
-
             <?php if (get_field('uuid_user_r', $id_ranking) == $uuid_vainkeur && in_array("sponso", $types_top)) : ?>
               <div class="participation-content-sponso mb-4">
-
                 <?php if (!already_play($uuid_vainkeur, $id_top)) : ?>
-
                   <?php if (get_field('inscription_requise_t_sponso', $id_top_global) && !is_user_logged_in()) : ?>
-
                     <div class="popup-overlay">
                       <div class="popup participate-popup inscription-requise-popup scale-up-center">
                         <div class="popup-body">
@@ -132,7 +128,6 @@ endforeach;
                         </div>
                       </div>
                     </div>
-
                   <?php else : ?>
                     <div class="popup-overlay participate-init">
                       <div class="popup participate-popup scale-up-center">
@@ -144,15 +139,12 @@ endforeach;
                               <p>Félicitation pour votre connexion, tu peux maintenant participer :)</p>
                             </div>
                           <?php endif; ?>
-
                           <div class="col-md-12 info-concours">
                             <div class="info-win">
                               <?php the_field('message_de_fin_t_sponso', $id_top_global); ?>
                             </div>
                           </div>
-
                           <?php if (get_field('type_de_fin_t_sponso', $id_top_global) == "mail_1") : ?>
-
                             <form action="" method="post" name="form2" id="form-coupon">
                               <?php if (is_user_logged_in()) : ?>
                                 <input type="email" value="<?php echo $infos_vainkeur['user_email']; ?>" name="email-player-input" id="email-player-input" required>
@@ -167,10 +159,9 @@ endforeach;
                                 <?php the_field('intitule_cta_mail_t_sponso', $id_top_global); ?>
                               </button>
                             </form>
-
                           <?php elseif (get_field('type_de_fin_t_sponso', $id_top_global) == "twitter_1") : ?>
                             <?php if (!get_field('bouton_copier_toplist_tweet_twitter', $id_top_global)) : ?>
-                              <a href="javascript: void(0)" class="sharelinkbtn2 animate__jello animate__animated animate__delay-1s btn btn-max btn-outline-primary waves-effect waves-float waves-light copy-toplist-url-btn">
+                              <a href="#" class="sharelinkbtn2 animate__jello animate__animated animate__delay-1s btn btn-max btn-outline-primary waves-effect waves-float waves-light copy-toplist-url-btn">
                                 <input type="text" value="<?php echo get_the_permalink($id_ranking); ?>" class="input_to_share2">
                                 <i class="social-media fas fa-paperclip"></i>
                                 Copier le lien de ma TopList
@@ -189,12 +180,9 @@ endforeach;
                               <?php the_field('message_du_bouton_tweet_twitter2', $id_top_global); ?>
                             </a>
                           <?php endif; ?>
-
                         </div>
-
                         <div class="popup-footer">
                           <hr class="m-0">
-
                           <button id="close-popup">
                             <span class="va va-backhand-index-pointing-right va-md"></span>
                             Ne pas partager et voir ma TopList
@@ -203,7 +191,6 @@ endforeach;
                         </div>
                       </div>
                     </div>
-
                     <div class="popup-overlay participation-confirme d-none">
                       <div class="popup participate-popup finish-participate-popup scale-up-center">
                         <div class="popup-body">
@@ -223,7 +210,7 @@ endforeach;
                                 <div class="d-flex align-items-center">
                                   <ul>
                                     <li>
-                                      <a href="javascript: void(0)" class="sharelinkbtn">
+                                      <a href="#" class="sharelinkbtn">
                                         <input type="text" value="<?php echo $url_ranking; ?>" class="input_to_share">
                                         <span>
                                           <i class="fa fa-link"></i>
@@ -294,7 +281,7 @@ endforeach;
                                 <div class="d-flex align-items-center">
                                   <ul>
                                     <li>
-                                      <a href="javascript: void(0)" class="sharelinkbtn2">
+                                      <a href="#" class="sharelinkbtn2">
                                         <input type="text" value="<?php echo $top_infos['top_url']; ?>" class="input_to_share2">
                                         <span>
                                           <i class="fa fa-link"></i>
@@ -341,7 +328,6 @@ endforeach;
                       </div>
                     </div>
                   <?php endif; ?>
-
                 <?php else : ?>
                   <div class="popup-overlay">
                     <div class="popup participate-popup finish-participate-popup scale-up-center">
@@ -362,7 +348,7 @@ endforeach;
                               <div class="d-flex align-items-center">
                                 <ul>
                                   <li>
-                                    <a href="javascript: void(0)" class="sharelinkbtn">
+                                    <a href="#" class="sharelinkbtn">
                                       <input type="text" value="<?php echo $url_ranking; ?>" class="input_to_share">
                                       <span>
                                         <i class="fa fa-link"></i>
@@ -433,7 +419,7 @@ endforeach;
                               <div class="d-flex align-items-center">
                                 <ul>
                                   <li>
-                                    <a href="javascript: void(0)" class="sharelinkbtn2">
+                                    <a href="#" class="sharelinkbtn2">
                                       <input type="text" value="<?php echo $top_infos['top_url']; ?>" class="input_to_share2">
                                       <span>
                                         <i class="fa fa-link"></i>
@@ -480,7 +466,6 @@ endforeach;
                     </div>
                   </div>
                 <?php endif; ?>
-
               </div>
             <?php endif; ?>
 
@@ -957,7 +942,7 @@ endforeach;
             <i class="social-media fas fa-download"></i> Télécharger l'image de ma TopList 
           </a>
 
-          <a href="javascript: void(0)" class="sharelinkbtn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copier le lien de ta TopList">
+          <a href="#" class="sharelinkbtn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copier le lien de ta TopList">
             <input type="text" value="<?php echo $url_ranking; ?>" class="input_to_share">
             <i class="social-media fas fa-paperclip"></i> Copier le lien de la TopList
           </a>
@@ -1002,7 +987,7 @@ endforeach;
       </div>
       <ul>
         <li>
-          <a href="javascript: void(0)" class="sharelinkbtn2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copier le lien de ton Top">
+          <a href="#" class="sharelinkbtn2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copier le lien de ton Top">
             <input type="text" value="<?php echo $top_infos['top_url']; ?>" class="input_to_share2">
             <i class="social-media fas fa-paperclip"></i> Copier le lien du Top
           </a>

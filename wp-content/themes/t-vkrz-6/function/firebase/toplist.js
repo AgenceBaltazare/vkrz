@@ -1,5 +1,4 @@
 import {
-  localhost,
   collection,
   database,
   query,
@@ -11,6 +10,8 @@ import {
   addDoc,
   orderBy,
 } from "./config.js";
+
+console.log(database);
 
 if(document.querySelector('#twitch-games-ranking')) {
   const twitchGamesRankingContainer = document.querySelector('#twitch-games-ranking'),
@@ -661,7 +662,7 @@ if (document.querySelector(".toplist_comments")) {
   const validComment = function () {
     let comment = commentArea.value;
 
-    if (comment && localhost === false) {
+    if (comment) {
       // INIT COMMENTAREA…
       if (topListCommentsLength === 0) {
         commentsContainer.innerHTML = "";

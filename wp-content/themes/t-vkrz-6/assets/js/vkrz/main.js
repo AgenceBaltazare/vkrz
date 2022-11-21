@@ -67,46 +67,6 @@ $(window).on("load", function () {
   }
 });
 
-window.onload = function () {
-  var copyBtns = document.querySelectorAll(".sharelinkbtn");
-  copyBtns.forEach(copyBtn => {
-    copyBtn.addEventListener("click", function (event) {
-      var copyInputs = copyBtn.querySelectorAll(".input_to_share");
-
-      copyInputs.forEach(copyInput => {
-        copyInput.focus();
-        copyInput.select();
-        try {
-          var successful = document.execCommand("copy");
-          var msg = successful ? "successful" : "unsuccessful";
-          copyBtn.innerHTML = "Copié ✓";
-        } catch (err) {
-          console.log("Oops, impossible de copier - Demandes pas pourquoi :/");
-        }
-      })
-    });
-  })
-
-  var copyBtns2 = document.querySelectorAll(".sharelinkbtn2");
-  copyBtns2.forEach(copyBtn => {
-    copyBtn.addEventListener("click", function (event) {
-      var copyInputs = copyBtn.querySelectorAll(".input_to_share2");
-
-      copyInputs.forEach(copyInput => {
-        copyInput.focus();
-        copyInput.select();
-        try {
-          var successful = document.execCommand("copy");
-          var msg = successful ? "successful" : "unsuccessful";
-          copyBtn.innerHTML = "Copié ✓";
-        } catch (err) {
-          console.log("Oops, impossible de copier - Demandes pas pourquoi :/");
-        }
-      })
-    });
-  })
-};
-
 $(window).scroll(function () {
   var scroll = $(window).scrollTop();
   if (scroll > 10) {
@@ -194,18 +154,82 @@ jQuery(document).ready(function ($) {
   });
 
   $(".share-natif-classement").click(function () {
+    "";
     $(".share-classement-content").addClass("active-box");
   });
 
-  if(document.querySelector('#close-popup')) {
-    const closePopUps = document.querySelectorAll('#close-popup');
+  if (document.querySelector(".popup-overlay")) {
+    const popUps = document.querySelectorAll(".popup-overlay");
 
-    closePopUps.forEach(btn => btn.addEventListener('click', () => {
-      const overlay = btn.closest('.popup-overlay');
+    popUps.forEach((popUp) => {
+      let copyLinkTopList = popUp.querySelector(".sharelinkbtn .fa-link");
+      let copyLinkTop = popUp.querySelector(".sharelinkbtn2 .fa-link");
 
-      overlay.classList.add('d-none');
-    }))
+      if (!popUp.classList.contains("d-none") || popUp.querySelector('.finish-participate-popup')) {
+        document.addEventListener("click", (e) => {
+          if (
+            e.target.closest(".popup") !== popUp.querySelector(".popup") ||
+            e.target === popUp.querySelector("#close-popup")
+          ) {
+
+            if (e.target !== copyLinkTopList && e.target !== copyLinkTop) {
+              popUp.classList.add("d-none");
+            }
+          }
+        });
+
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") {
+            popUp.classList.add("d-none");
+          }
+        });
+      }
+    });
   }
+
+  window.onload = function () {
+    var copyBtns = document.querySelectorAll(".sharelinkbtn");
+    copyBtns.forEach((copyBtn) => {
+      copyBtn.addEventListener("click", function (event) {
+        var copyInputs = copyBtn.querySelectorAll(".input_to_share");
+
+        copyInputs.forEach((copyInput) => {
+          copyInput.focus();
+          copyInput.select();
+          try {
+            var successful = document.execCommand("copy");
+            var msg = successful ? "successful" : "unsuccessful";
+            copyBtn.innerHTML = "Copié ✓";
+          } catch (err) {
+            console.log(
+              "Oops, impossible de copier - Demandes pas pourquoi :/"
+            );
+          }
+        });
+      });
+    });
+
+    var copyBtns2 = document.querySelectorAll(".sharelinkbtn2");
+    copyBtns2.forEach((copyBtn) => {
+      copyBtn.addEventListener("click", function (event) {
+        var copyInputs = copyBtn.querySelectorAll(".input_to_share2");
+
+        copyInputs.forEach((copyInput) => {
+          copyInput.focus();
+          copyInput.select();
+          try {
+            var successful = document.execCommand("copy");
+            var msg = successful ? "successful" : "unsuccessful";
+            copyBtn.innerHTML = "Copié ✓";
+          } catch (err) {
+            console.log(
+              "Oops, impossible de copier - Demandes pas pourquoi :/"
+            );
+          }
+        });
+      });
+    });
+  };
 });
 
 // if(!localStorage.getItem('come-back')) {
