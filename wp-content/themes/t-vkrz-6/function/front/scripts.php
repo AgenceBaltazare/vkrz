@@ -68,7 +68,7 @@ function load_css_js()
   if (is_page(get_page_by_path('monitor'))) {
     wp_enqueue_script('monitor', get_template_directory_uri() . '/function/ajax/monitor.js', array(), filemtime(get_template_directory() . '/function/ajax/monitor.js'), true );
   }
-  if (is_single() || is_author() || is_page('Notifications') || is_page('Guetteur') || is_page(array(140701, 284946, 143788, 284948, 218587)) || is_page(get_page_by_path('tas')) || is_page(get_page_by_path('mon-compte')) || is_page(get_page_by_path('mon-compte/createur'))) {
+  if (is_single() || is_author() || is_page('Notifications') || is_page('Proposition de Tops') || is_page('Guetteur') || is_page(array(140701, 284946, 143788, 284948, 218587)) || is_page(get_page_by_path('tas')) || is_page(get_page_by_path('mon-compte')) || is_page(get_page_by_path('mon-compte/createur'))) {
     wp_enqueue_script('datatables', get_template_directory_uri() . '/assets/js/core/datatable/datatables.min.js', array(), null, true);
     wp_enqueue_script('datatables-advanced', get_template_directory_uri() . '/assets/js/core/datatable/table-datatables-advanced.js', array(), null, true);
     wp_enqueue_script('datatables.buttons', get_template_directory_uri() . '/assets/js/core/datatable/datatables.buttons.min.js', array(), null, true);
@@ -105,6 +105,9 @@ function load_css_js()
   }
   if (is_page('Rechercher')) {
     wp_enqueue_script('recherches', get_template_directory_uri() . '/function/firebase/recherches.js', array(), filemtime(get_template_directory() . '/function/firebase/recherches.js'), true );
+  }
+  if (is_page('Proposition de Tops')) {
+    wp_enqueue_script('propositions', get_template_directory_uri() . '/function/firebase/propositions.js', array(), filemtime(get_template_directory() . '/function/firebase/propositions.js'), true );
   }
 }
 add_action('wp_enqueue_scripts', 'load_css_js');

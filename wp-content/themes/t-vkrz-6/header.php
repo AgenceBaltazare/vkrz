@@ -115,7 +115,6 @@ if (is_single() || is_page(get_page_by_path('monitor'))) {
   $list_body_class = "vertical-layout vertical-menu-modern navbar-floating footer-static";
 }
 
-// FOR NOTIFICATIONS… ✋
 if ($infos_vainkeur['avatar']) {
   $anonyme_avatar_url = $infos_vainkeur['avatar'];
 } else {
@@ -128,7 +127,8 @@ if ($infos_vainkeur['avatar']) {
     currentUserProfileUrl = "<?php echo get_author_posts_url($user_id); ?>",
     anonymeAvatarUrl = "<?php echo $anonyme_avatar_url; ?>",
     vainkeurPseudo = "<?php echo $infos_vainkeur['pseudo']; ?>",
-    currentUuid = "<?php echo $uuid_vainkeur; ?>";
+    currentUuid = "<?php echo $uuid_vainkeur; ?>",
+    currentUserRole = "<?php echo $infos_vainkeur['user_role']; ?>";
 </script>
 
 <body <?php body_class($list_body_class); ?> data-open="click" data-menu="vertical-menu-modern" data-col="">
