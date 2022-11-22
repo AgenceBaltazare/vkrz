@@ -606,3 +606,69 @@ function get_shopper($data)
   return $shopper->post_count;
 
 }
+
+function get_tops_tendance($data){
+  
+  $tendance     = $data['tendance'];
+  $list_tops    = array();
+  $result       = array();
+
+  // SEARCH BY TITLE…
+  $tops_to_find = new WP_Query(array(
+    'post_type'                 => 'tournoi',
+    'posts_per_page'            => -1,
+    'ignore_sticky_posts'       => true,
+    'update_post_meta_cache'    => false,
+    'no_found_rows'             => true,
+    'tax_query'                 => array(
+      array(
+        'taxonomy' => 'type',
+        'field'    => 'slug',
+        'terms'    => array('private', 'whitelabel', 'onboarding'),
+        'operator' => 'NOT IN'
+      ),
+    ),
+    's' => $tendance,
+  ));
+  while ($tops_to_find->have_posts()) : $tops_to_find->the_post();
+    array_push($list_tops, get_the_ID());
+  endwhile;
+
+  // SEARCH BY QUESTION_T…
+  $tops_to_find = new WP_Query(array(
+    'post_type'                 => 'tournoi',
+    'posts_per_page'            => -1,
+    'ignore_sticky_posts'       => true,
+    'update_post_meta_cache'    => false,
+    'no_found_rows'             => true,
+    'tax_query'                 => array(
+      array(
+        'taxonomy' => 'type',
+        'field'    => 'slug',
+        'terms'    => array('private', 'whitelabel', 'onboarding'),
+        'operator' => 'NOT IN'
+      ),
+    ),
+    'meta_query' => array(
+      array(
+        'key'       => 'question_t',
+        'value'     => $tendance,
+        'compare'   => 'LIKE',
+      ),
+    ),
+  ));
+  while ($tops_to_find->have_posts()) : $tops_to_find->the_post();
+    array_push($list_tops, get_the_ID());
+  endwhile;
+  
+  foreach($list_tops as $id_top){
+    $top_info = get_top_infos($id_top);
+    $url_top  = $top_info['top_url'] . "utm=monitor";
+    array_push($result, array(
+      "id_top"        => $id_top,
+      "tweet"         => "#" . $tendance . " - " . $top_info['top_question'] . " 👉 " . $url_top,
+    ));
+  }
+
+  return $result;
+}
