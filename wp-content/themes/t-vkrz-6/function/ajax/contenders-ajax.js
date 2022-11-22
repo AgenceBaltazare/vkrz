@@ -470,7 +470,7 @@ $(document).ready(function ($) {
 
                   friends.forEach((friend) => {
                     (async function () {
-                      // CHECK IF THE FRIEND ALREADY PASSED THE TOP OR NOT… 🤙
+                      // CHECK IF THE FRIEND ALREADY PASSED THE TOP OR NOT… 
                       const didRankingQuery = query(
                         collection(database, "wpClassement"),
                         where(

@@ -124,7 +124,6 @@ textarea {
     border-radius: 10px !important;
     color: #fff !important;
     transition: all .2s ease-in-out;
-
     &::placeholder {
       color: rgba(255, 255, 255, 0.8);
     }
@@ -133,12 +132,17 @@ textarea {
       border: 2px solid #fff !important;
     }
 
-    &:focus {
+    &:focus:not(.readonly) {
       border: 2px solid $rose !important;
       transition: background-color 5000s ease-in-out 0s !important;
       background: transparent !important;
       outline: 0;
     }
+  }
+
+  input[type="text"].readonly {
+    color: #4B4161 !important;
+    outline: none !important;
   }
 }
 

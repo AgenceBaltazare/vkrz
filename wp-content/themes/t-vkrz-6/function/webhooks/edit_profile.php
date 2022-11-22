@@ -27,6 +27,14 @@ function edit_profile( $http_request, $form_name, $user_id ){
                 update_vainkeur_badge($vainkeur_id, "Connecté");
             }
         }
+
+        // IF THE USER ENTERS REFERRAL CODE FROM SETTINGS
+        if(get_userdata($user_id)->referral) {
+            deal_referral(get_userdata($user_id)->referral, $vainkeur_id, 200);
+
+            // TO SEND NOTIF
+            wp_enqueue_script('deal_parrainage', get_template_directory_uri() . '/function/firebase/deal_parrainage.js', array(), filemtime(get_template_directory() . '/function/firebase/deal_parrainage.js'), false);
+        }
     }
 
 }

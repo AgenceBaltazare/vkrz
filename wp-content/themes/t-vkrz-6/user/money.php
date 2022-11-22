@@ -76,6 +76,26 @@ $vainkeur_badges = get_the_terms($infos_vainkeur['id_vainkeur'], 'badges');
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-6 col-sm-12">
+                                    <div class="card text-center">
+                                        <div class="card-body text-center">
+                                            <div class="mb-1">
+                                                <span class="ico4 va va-gem va va-z-85"></span>
+                                            </div>
+                                            <h2 class="font-weight-bolder">
+                                                <?php if ($infos_vainkeur['money_parrain_vkrz']) : ?>
+                                                    <?php echo number_format($infos_vainkeur['money_parrain_vkrz'], 0, ",", " "); ?>
+                                                <?php else : ?>
+                                                    -
+                                                <?php endif; ?>
+                                            </h2>
+                                            <p class="card-text legende">
+                                                Collection en tant que parrain
+                                            </p>
+                                            <small class="text-primary">Mis à jour tous les 24h</small>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-sm-9">
@@ -93,6 +113,11 @@ $vainkeur_badges = get_the_terms($infos_vainkeur['id_vainkeur'], 'badges');
                                             </a>
                                         </li>
                                     <?php endif; ?>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="homeIcon-tab" data-toggle="tab" href="#tab4" aria-controls="home" role="tab" aria-selected="false">
+                                            Collecte en tant que parrain
+                                        </a>
+                                    </li>
                                     <li class="nav-item">
                                         <a class="nav-link" id="profileIcon-tab" data-toggle="tab" href="#tab3" aria-controls="profile" role="tab" aria-selected="false">
                                             Historique des commandes
@@ -146,7 +171,7 @@ $vainkeur_badges = get_the_terms($infos_vainkeur['id_vainkeur'], 'badges');
                                                                     <?php while (have_rows('liste_des_recompenses_vkrz', $infos_vainkeur['id_vainkeur'])) : the_row(); ?>
                                                                         <tr>
                                                                             <th>
-                                                                                <?php the_sub_field('nom_de_la_recompense_vkrz'); ?>
+                                                                                Récompense : <?php the_sub_field('nom_de_la_recompense_vkrz'); ?>
                                                                             </th>
                                                                             <th class="text-right">
                                                                             </th>
@@ -183,6 +208,122 @@ $vainkeur_badges = get_the_terms($infos_vainkeur['id_vainkeur'], 'badges');
                                                                     </th>
                                                                     <th class="text-right text-info">
                                                                         <?php echo $infos_vainkeur['money_vkrz']; ?> <span class="va-gem va va-1x"></span>
+                                                                    </th>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="tab4" aria-labelledby="profileIcon-tab" role="tabpanel">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="card invoice-list-wrapper">
+                                                    <div class="card-datatable table-responsive">
+                                                        <table class="invoice-list-table table table-tdone">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="">
+                                                                        Liste des parrainages
+                                                                    </th>
+                                                                    <th class="text-right">
+                                                                        Inscription
+                                                                    </th>
+                                                                    <th class="text-right">
+                                                                        KEURZ générés
+                                                                    </th>
+                                                                    <th class="text-right">
+                                                                        Total <span class="va-gem va va-lg"></span>
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody class="nobold">
+                                                                <?php
+                                                                $enfants = json_decode(get_field('referral_from_me', $id_vainkeur));
+                                                                foreach ($enfants as $referral) :
+                                                                    $referral_uuid          = get_field('uuid_user_vkrz', $referral);
+                                                                    $infos_referral         = get_user_infos($referral_uuid, 'complete');
+                                                                    $xp                     = $infos_referral["money_vkrz"];
+                                                                    $vainkeur_data_selected = $infos_referral;
+                                                                    $price_inscription      = 200;
+                                                                    $get_enfant_money       = round($xp * 0.1);
+                                                                ?>
+                                                                    <tr>
+                                                                        <th>
+                                                                            <?php get_template_part('partials/vainkeur-card'); ?>
+                                                                        </th>
+                                                                        <th class="text-right">
+                                                                            <?php echo $price_inscription; ?> <span class="va-gem va va-1x"></span>
+                                                                        </th>
+                                                                        <th class="text-right">
+                                                                            <span class="text-muted">20% de </span> <?php echo $xp; ?>
+                                                                        </th>
+                                                                        <th class="text-right">
+                                                                            <?php echo $get_enfant_money + 200; ?> <span class="va-gem va va-1x"></span>
+                                                                        </th>
+                                                                    </tr>
+                                                                    <?php
+                                                                    for ($e = 1; $e < 100; $e++) :
+                                                                        $enfants = json_decode(get_field('referral_from_me', $referral));
+                                                                        if ($enfants) :
+                                                                            foreach ($enfants as $referral) :
+                                                                                $referral_uuid          = get_field('uuid_user_vkrz', $referral);
+                                                                                $infos_referral         = get_user_infos($referral_uuid, 'complete');
+                                                                                $xp                     = $infos_referral["money_vkrz"];
+                                                                                $vainkeur_data_selected = $infos_referral;
+                                                                                switch ($e) {
+                                                                                    case 1:
+                                                                                        $price_inscription = 100;
+                                                                                        $price_percent     = 0.07;
+                                                                                        break;
+                                                                                    case 2:
+                                                                                        $price_inscription = 50;
+                                                                                        $price_percent     = 0.05;
+                                                                                        break;
+                                                                                    case 3:
+                                                                                        $price_inscription = 10;
+                                                                                        $price_percent     = 0.03;
+                                                                                        break;
+                                                                                    default:
+                                                                                        $price_inscription = 5;
+                                                                                        $price_percent     = 0.01;
+                                                                                }
+                                                                                $get_enfant_money       = round($xp * $price_percent);
+                                                                    ?>
+                                                                                <tr class="child-parrain-<?php echo $e; ?>" data-generation="<?php echo $e; ?>">
+                                                                                    <th>
+                                                                                        <?php get_template_part('partials/vainkeur-card'); ?>
+                                                                                    </th>
+                                                                                    <th class="text-right">
+                                                                                        <?php echo $price_inscription; ?> <span class="va-gem va va-1x"></span>
+                                                                                    </th>
+                                                                                    <th class="text-right">
+                                                                                        <span class="text-muted"><?php echo $price_percent * 100; ?>% de </span> <?php echo $xp; ?>
+                                                                                    </th>
+                                                                                    <th class="text-right">
+                                                                                        <?php echo round($get_enfant_money + $price_inscription); ?> <span class="va-gem va va-1x"></span>
+                                                                                    </th>
+                                                                                </tr>
+                                                                <?php endforeach;
+                                                                        endif;
+                                                                    endfor;
+                                                                endforeach; ?>
+                                                                <tr>
+                                                                    <th>
+                                                                        <span class="text-info">
+                                                                            Total collecté
+                                                                        </span>
+                                                                    </th>
+                                                                    <th class="text-right">
+
+                                                                    </th>
+                                                                    <th class="text-right">
+
+                                                                    </th>
+                                                                    <th class="text-right text-info">
+                                                                        <?php echo number_format($infos_vainkeur['money_parrain_vkrz'], 0, ",", " "); ?> <span class="va-gem va va-1x"></span>
                                                                     </th>
                                                                 </tr>
                                                             </tbody>
@@ -254,10 +395,10 @@ $vainkeur_badges = get_the_terms($infos_vainkeur['id_vainkeur'], 'badges');
                                                                                 Duplication de Tops par l'éKip VAINKEURZ
                                                                             </th>
                                                                             <th class="text-right">
-                                                                                
+
                                                                             </th>
                                                                             <th class="text-right">
-                                                                                <?php echo $money_duplicated['money_creator']; ?> <span class="va-gem va va-1x"></span>
+                                                                                <?php echo $infos_vainkeur['money_duplicated']; ?> <span class="va-gem va va-1x"></span>
                                                                             </th>
                                                                         </tr>
                                                                     <?php endif; ?>
