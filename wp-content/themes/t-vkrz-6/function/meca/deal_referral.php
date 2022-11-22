@@ -58,6 +58,13 @@ function deal_referral($referral, $id_vainkeur, $keurz)
     update_field('money_disponible_vkrz', $my_money_dispo + $my_keurz, $id_vainkeur);
 
     // PROCESS FOR WHO I'M REFERRED TO… 
+    // MONEY for Parrain
+    $my_keurz        = $keurz;
+    $my_money        = get_field('money_vkrz', $referral);
+    update_field('money_vkrz', $my_money + $my_keurz, $referral);
+    $my_money_dispo  = get_field('money_disponible_vkrz', $referral);
+    update_field('money_disponible_vkrz', $my_money_dispo + $my_keurz, $referral);
+
     $referral_from_me = array();
     if (get_field('referral_from_me', $referral)) {
       $referral_from_me = json_decode(get_field('referral_from_me', $referral));

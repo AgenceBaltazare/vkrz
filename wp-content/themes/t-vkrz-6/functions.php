@@ -7,28 +7,14 @@ function wppbc_custom_input_validation( $message, $field, $request_data, $form_l
 	if( $field['field'] == 'Input' && $field['meta-name'] == 'referral' ){
 		if ( isset( $request_data[$field['meta-name']] ) && trim( $request_data[$field['meta-name']] ) != '' ){
 			$input = $request_data[$field['meta-name']];
-
-      if(is_user_logged_in()) {
-        $id_vainkeur = get_field('id_vainkeur_user', 'user_' . get_current_user_id());
-        $referred_to = get_field('referred_to', $id_vainkeur);
-
-        if(!check_codeparrain($input)) {
-          return "Aucun parrain trouvé";
-        } else if ($referred_to) {
-          return 'Parrain déjà saisi';
-        } 
-
-      } else {
-        if(!check_codeparrain($input)) {
-          return "Aucun parrain trouvé";
-        } 
-      }
+      if(!check_codeparrain($input)) {
+        return "Aucun parrain trouvé";
+      } 
 		}
 		if ( ( isset( $request_data[$field['meta-name']] ) && ( trim( $request_data[$field['meta-name']] ) == '' ) ) && ( $field['required'] == 'Yes' ) ){
 			return wppb_required_field_error($field["field-title"]);
 		}
 	}
- 
 	return $message;
 }
 
