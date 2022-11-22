@@ -91,6 +91,13 @@ function vkzr_save_elo_to_firestore()
     save_elo_to_firestore($_POST['contender_1'], $_POST['contender_2']);
 }
 
+add_action('wp_ajax_vkrz_to_discord', 'vkrz_to_discord');
+add_action('wp_ajax_nopriv_vkrz_to_discord', 'vkrz_to_discord');
+function vkrz_to_discord()
+{
+    to_discord($_POST['typeMessage'], $_POST["data"]);
+}
+
 add_action('wp_ajax_vkzr_new_jugement', 'vkzr_new_jugement');
 add_action('wp_ajax_nopriv_vkzr_new_jugement', 'vkzr_new_jugement');
 function vkzr_new_jugement()

@@ -373,6 +373,21 @@ submitBtn.addEventListener("click", (e) => {
           }
         );
 
+        let currentUserData = await getUserData(currentUuid);
+
+        $.ajax({
+          method: "POST",
+          url: vkrz_ajaxurl,
+          data: {
+            action: "vkrz_to_discord",
+            typeMessage: "topIdea",
+            data: {
+              proposition: `${themeTopPropose.value} | ${questionTop.value}`,
+              userData: currentUserData,
+            }
+          },
+        });
+
         form.classList.add('d-none');
         afterSubmitText.classList.remove('d-none')
         headingTitle.innerHTML = `
