@@ -39,7 +39,7 @@ $codeparrain = get_field('code_parrain_user', 'user_' . $user_id);
                               Partager c'est aimer!
                             </h2>
                             <p class="card-text legende">
-                              Partage ton code de parrainage avec tes amis et gagne 200 <span class="ico text-center va-gem va va-lg"></span> pour toi et 100 <span class="ico text-center va-gem va va-lg"></span> pour ton parrain.
+                              Partage ton code de parrainage avec tes amis et gagne 200 <span class="ico text-center va-gem va va-lg"></span> pour toi et 100 <span class="ico text-center va-gem va va-lg"></span> pour celui que tu as parrainé.
                             </p>
 
                             <a href="<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>?codeinvit=<?= $codeparrain ?>" class="btn btn-rose waves-effect p-1" id="copyReferralLink">
@@ -62,14 +62,14 @@ $codeparrain = get_field('code_parrain_user', 'user_' . $user_id);
                                     <h6 class="section-label text-center m-0">Ou par</h6>
                                   </li>
                                   <li>
-                                    <a href="https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>?codeinvit=<?= $codeparrain ?>&quote=Use my referral code to win 20 KEURZ!" title="Share on Facebook" target="_blank">
+                                    <a href="https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>?codeinvit=<?= $codeparrain ?>&quote=Deviens toi aussi un vainkeur" title="Share on Facebook" target="_blank">
                                       <span>
                                         <i class="fab fa-facebook-f"></i>
                                       </span>
                                     </a>
                                   </li>
                                   <li>
-                                    <a href="https://twitter.com/intent/tweet?source=<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>?codeinvit=<?= $codeparrain ?>&text=Use my referral code to win 20 KEURZ!:%20<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>?codeinvit=<?= $codeparrain ?>" target="_blank" title="Tweet" spellcheck="false">
+                                    <a href="https://twitter.com/intent/tweet?source=<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>?codeinvit=<?= $codeparrain ?>&text=Deviens toi aussi un vainkeur:%20<?php the_permalink(get_page_by_path('creer-mon-compte')); ?>?codeinvit=<?= $codeparrain ?>" target="_blank" title="Tweet" spellcheck="false">
                                       <span>
                                         <i class="fab fa-twitter"></i>
                                       </span>
