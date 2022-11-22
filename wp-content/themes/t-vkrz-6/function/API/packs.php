@@ -881,7 +881,7 @@ function get_tops_tendance($data){
   
   foreach($list_tops as $id_top){
     $top_info = get_top_infos($id_top);
-    $url_top  = $top_info['top_url'] . "utm=monitor";
+    $url_top  = $top_info['top_url'] . "?utm=monitor";
     array_push($result, array(
       "id_top"        => $id_top,
       "tweet"         => "#" . $tendance . " - " . $top_info['top_question'] . " 👉 " . $url_top,
