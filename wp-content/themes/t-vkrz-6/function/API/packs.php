@@ -878,15 +878,22 @@ function get_tops_tendance($data){
       ),
     ));
   }
-  
+
+  $tops_already_tweet = get_field('liste_des_tops_tweetes', 'options');
+
   foreach($list_tops as $id_top){
     $top_info = get_top_infos($id_top);
     $url_top  = $top_info['top_url'] . "utm=monitor";
-    array_push($result, array(
-      "id_top"        => $id_top,
-      "tweet"         => "#" . $tendance . " - " . $top_info['top_question'] . " 👉 " . $url_top,
-    ));
+    if(!in_array($id_top, json_decode($tops_already_tweet))){
+      array_push($result, array(
+        "id_top"        => $id_top,
+        "tweet"         => "#" . $tendance . " - " . $top_info['top_question'] . " 👉 " . $url_top,
+      ));
+    }
   }
+  
+  update_field('liste_des_tops_tweetes', json_encode($list_tops), 'options');
 
   return $result;
+  return get_field('liste_des_tops_tweetes', 'options');
 }
