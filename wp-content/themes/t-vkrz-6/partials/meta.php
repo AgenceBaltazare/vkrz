@@ -74,21 +74,17 @@
     } else {
         if (get_field('c_rounded_t', $id_top)) {
             if($top_infos['top_number'] < 3) {
-                // banner top 2 rond
-                $bannerbear_id = "w7vokBAex70ElnMZ1Q";
+                $bannerbear_id = "w7vokBAex70ElnMZ1Q"; // banner top 2 rond
             }
-            else{
-                // banner top 3 rond
-                $bannerbear_id = "O8DLd4begA8yl5apNz";
+            else {
+                $bannerbear_id = "O8DLd4begA8yl5apNz"; // banner top 3 rond
             }
         } else {
-            if($top_infos['top_number'] < 3){
-                // banner top 2 carré
-                $bannerbear_id = "nYaKxNMeowxeW9BXPl";
+            if($top_infos['top_number'] < 3) {
+                $bannerbear_id = "nYaKxNMeowxeW9BXPl"; // banner top 2 carré
             }
-            else{
-                // banner top 3 carré
-                $bannerbear_id = "5w6PKMLVwJjexG4DQg";
+            else {
+                $bannerbear_id = "5w6PKMLVwJjexG4DQg"; // banner top 3 carré
             }
         }
     }
@@ -96,10 +92,10 @@
     $base       = "https://on-demand.bannerbear.com/signedurl/" . $bannerbear_id . "/image.jpg";
     $toptitle   = str_replace("&rsquo;", "'", $top_infos['top_title']);
 
-    if($top_infos['top_number'] < 3){
+    if($top_infos['top_number'] < 3) {
         $modifications    = '[{"name":"background","image_url":"' . $top_infos['top_cover'] . '"},{"name":"h1-2","text":"' . $toptitle . '"},{"name":"h1","text":"' . $toptitle . '"},{"name":"contenders_1","image_url":"' . $picture_contender_1 . '"},{"name":"contenders_2","image_url":"' . $picture_contender_2 . '"},{"name":"1","text":"' . $name_contender_1 . '"},{"name":"2","text":"' . $name_contender_2 . '"},{"name":"h1-question-2","text":"' . $top_infos['top_question'] . '"},{"name":"h1-question","text":"' . $top_infos['top_question'] . '"}]';
     }
-    else{
+    else {
         $modifications    = '[{"name":"background","image_url":"' . $top_infos['top_cover'] . '"},{"name":"h1-2","text":"' . $toptitle . '"},{"name":"h1","text":"' . $toptitle . '"},{"name":"contenders_1","image_url":"' . $picture_contender_1 . '"},{"name":"contenders_2","image_url":"' . $picture_contender_2 . '"},{"name":"contenders_3","image_url":"' . $picture_contender_3 . '"},{"name":"1","text":"' . $name_contender_1 . '"},{"name":"2","text":"' . $name_contender_2 . '"},{"name":"3","text":"' . $name_contender_3 . '"},{"name":"h1-question-2","text":"' . $top_infos['top_question'] . '"},{"name":"h1-question","text":"' . $top_infos['top_question'] . '"}]';
     }
     $query = "?modifications=" . rtrim(strtr(base64_encode($modifications), '+/', '-_'), '=');
