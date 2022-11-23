@@ -31,7 +31,7 @@ if (getCookie("wordpress_parrainage_cookies")) {
     async function getUserData(uuid) {
       try {
         let response = await fetch(
-          `http://localhost:8888/vkrz/wp-json/vkrz/v1/getuserinfo/${uuid}`
+          `https://vainkeurz.com/wp-json/vkrz/v1/getuserinfo/${uuid}`
         );
         return await response.json();
       } catch (error) {
@@ -41,7 +41,6 @@ if (getCookie("wordpress_parrainage_cookies")) {
     referral = await getUserData(referral);
     referredTo = await getUserData(referredTo);
 
-    // FIREBASE PROCESS 🤹
     // SEND NOTIF
     async function sendNotification(
       userId,
