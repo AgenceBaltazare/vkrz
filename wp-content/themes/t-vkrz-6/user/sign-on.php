@@ -44,6 +44,15 @@ if (is_user_logged_in()) {
                     echo do_shortcode('[wppb-register form_name="sign-on"]');
                   }
                   ?>
+
+                  <!-- CODE D'INVITATION PARAMETER -->
+                  <script>
+                    const queryString = window.location.search;
+                    const urlParams = new URLSearchParams(queryString);
+                    const codeInvitation = urlParams.get('codeinvit')
+
+                    if(codeInvitation !== null) document.querySelector('#referral').value = codeInvitation;
+                  </script>
                 </div>
               </div>
 

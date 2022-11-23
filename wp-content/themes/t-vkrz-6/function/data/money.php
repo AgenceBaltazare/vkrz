@@ -95,7 +95,7 @@ function get_creator_money_for_duplicated($user_id){
 
     endwhile;
 
-    $total_money            = round((($nb_votes_all_t * 0.3) + ($nb_ranks_all_t * 5)) * 0.75);
+    $total_money                = round((($nb_votes_all_t * 0.3) + ($nb_ranks_all_t * 5)) * 0.75);
 
     return array(
         "money_duplicated"     => $total_money,

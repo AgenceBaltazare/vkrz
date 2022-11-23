@@ -27,6 +27,7 @@ function edit_profile( $http_request, $form_name, $user_id ){
                 update_vainkeur_badge($vainkeur_id, "Connecté");
             }
         }
+
     }
 
 }
