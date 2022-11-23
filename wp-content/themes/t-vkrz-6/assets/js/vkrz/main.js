@@ -159,6 +159,12 @@ jQuery(document).ready(function ($) {
   });
 
   window.onload = function () {
+    if(document.querySelector('.to-sign')) {
+      if(document.querySelector('.to-sign.connected')) {
+        document.querySelector('.to-sign').classList.add('signs');
+      }
+    }
+
     var copyBtns = document.querySelectorAll(".sharelinkbtn");
     copyBtns.forEach((copyBtn) => {
       copyBtn.addEventListener("click", function (event) {
@@ -200,16 +206,6 @@ jQuery(document).ready(function ($) {
         });
       });
     });
-
-    if(document.querySelector('#basic-tabs-components #referral')) {
-      const input = document.querySelector('#referral');
-
-      if(input.value !== "") {
-        input.setAttribute('readonly', 'true');
-        input.classList.add('readonly');
-        input.value = `${input.value} (Invitation Code)`;
-      }
-    }
 
     if(document.querySelector('#wppb-register-user-sign-on')) {
       const form = document.querySelector('#wppb-register-user-sign-on');
@@ -291,17 +287,3 @@ jQuery(document).ready(function ($) {
     }
   };
 });
-
-/* 
-  if(!localStorage.getItem('come-back')) {
-      const comesBackDiv = document.querySelector('.come-back'),
-      comesBackCloseBtn = comesBackDiv.querySelector('.come-back-closeBtn');
-
-      comesBackDiv.classList.remove('d-none');
-
-      comesBackCloseBtn.addEventListener('click', function() {
-          $('.come-back').fadeOut();
-          localStorage.setItem('come-back', 'hide');
-      })
-  } 
-*/

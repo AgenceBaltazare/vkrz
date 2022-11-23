@@ -904,17 +904,17 @@ endforeach;
               <?php endif; ?>
 
               <div class="toplist-f-item btn-show-hover box-info-show">
-                <span class="hide-xs">Infos du Top</span> <i class="fas fa-info-circle"></i>
+                <span class="tooltiptext hide-xs">Infos du Top</span> <i class="fas fa-info-circle"></i>
               </div>
             <?php endif; ?>
 
             <a href="<?php echo get_the_permalink(get_page_by_path('discuz')) . '?id_top=' . $id_top_global; ?>" class="toplist-f-item btn-show-hover ">
-              <span class="hide-xs">Commenter</span> <i class="fas fa-pencil-alt"></i>
+              <span class="tooltiptext hide-xs">Commenter</span> <i class="fas fa-pencil-alt"></i>
             </a>
 
             <?php if ($already_done && get_field('uuid_user_r', $id_ranking) == $uuid_vainkeur) : ?>
               <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" href="#" class="confirm_delete toplist-f-item btn-show-hover">
-               <span class="hide-xs">Recommencer</span> <i class="far fa-sync-alt"></i>
+               <span class="tooltiptext hide-xs">Recommencer</span> <i class="far fa-sync-alt"></i>
               </a>
             <?php endif; ?>
           </div>                       

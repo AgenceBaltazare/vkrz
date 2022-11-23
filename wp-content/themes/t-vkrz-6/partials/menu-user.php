@@ -376,7 +376,7 @@ if (is_single() && get_post_type() == "tournoi") {
               </span>
             </div>
             <div>
-              <span class="ico text-center va-gem va va-lg <?php echo is_user_logged_in() ? "signs" : "" ?>"></span>
+              <span class="ico text-center va-gem va va-lg to-sign <?php echo is_user_logged_in() ? "connected" : "" ?>"></span>
               <span class="value-user-stats money-disponible">
                 <?php if ($infos_vainkeur['current_money_vkrz']) : ?>
                   <?php echo $infos_vainkeur['current_money_vkrz']; ?>
