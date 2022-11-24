@@ -1,4 +1,23 @@
 <?php
+add_action('template_redirect', function () {
+  ob_start();
+});
+add_filter( 'wppb_check_form_field_input', 'wppbc_custom_input_validation', 20, 4 );
+function wppbc_custom_input_validation( $message, $field, $request_data, $form_location ){
+	if( $field['field'] == 'Input' && $field['meta-name'] == 'referral' ){
+		if ( isset( $request_data[$field['meta-name']] ) && trim( $request_data[$field['meta-name']] ) != '' ){
+			$input = $request_data[$field['meta-name']];
+      if(!check_codeparrain($input)) {
+        return "Aucun parrain trouvé";
+      } 
+		}
+		if ( ( isset( $request_data[$field['meta-name']] ) && ( trim( $request_data[$field['meta-name']] ) == '' ) ) && ( $field['required'] == 'Yes' ) ){
+			return wppb_required_field_error($field["field-title"]);
+		}
+	}
+	return $message;
+}
+
 $templatepath = get_template_directory();
 
 if (defined('DOING_AJAX') && DOING_AJAX && is_admin()) {

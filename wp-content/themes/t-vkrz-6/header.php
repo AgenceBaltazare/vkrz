@@ -121,7 +121,6 @@ if ($infos_vainkeur['avatar']) {
   $anonyme_avatar_url = get_bloginfo('template_directory') . '/assets/images/vkrz/avatar-rose.png';
 }
 ?>
-
 <script>
   const currentUserId = "<?php echo $user_id; ?>",
     currentUserProfileUrl = "<?php echo get_author_posts_url($user_id); ?>",

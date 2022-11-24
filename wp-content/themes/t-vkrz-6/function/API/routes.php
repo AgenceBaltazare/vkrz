@@ -110,4 +110,13 @@ add_action('rest_api_init', function () {
     ]
   ));
 
+  // Twitter Monitor - Get top tendance
+  register_rest_route('vkrz/v1', '/getstops/(?P<tendance>\w+)', array(
+    'methods' => 'GET',
+    'callback' => 'get_tops_tendance',
+    'args' => [
+      'tendande'
+    ]
+  ));
+
 });

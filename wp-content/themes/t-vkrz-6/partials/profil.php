@@ -126,6 +126,13 @@ $cover_profil_id = 0;
                     Editer
                   </a>
                 </li>
+
+                <li class="nav-item">
+                  <a class="nav-link font-weight-bold <?php if (is_page('Parrainage')) : echo 'btn btn-primary';
+                                                      endif; ?>" href="<?php the_permalink(get_page_by_path('/mon-compte/parrainage')); ?>">
+                    Parrainage
+                  </a>
+                </li>
               <?php endif; ?>
               <?php if ($infos_vainkeur['user_role']  == "administrator" || $infos_vainkeur['user_role'] == "author" && is_user_logged_in()) : ?>
                 <li class="nav-item">

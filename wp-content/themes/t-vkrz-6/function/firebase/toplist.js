@@ -11,8 +11,6 @@ import {
   orderBy,
 } from "./config.js";
 
-console.log(database);
-
 if(document.querySelector('#twitch-games-ranking')) {
   const twitchGamesRankingContainer = document.querySelector('#twitch-games-ranking'),
         idRanking                   = twitchGamesRankingContainer.dataset.idranking;

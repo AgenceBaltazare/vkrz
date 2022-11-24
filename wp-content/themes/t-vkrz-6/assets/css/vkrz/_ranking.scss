@@ -480,29 +480,55 @@
 }
 
 .btn-show-hover {
-  & > span {
-    margin: 0;
-    padding: 0;
-    display: inline-block;
-    overflow: hidden;
-    vertical-align: top; 
-    white-space: nowrap;
-    max-width: 0;
-    transition: max-width 0.2s ease-out;
-    margin-left: -4px;
-
-    &::before {
-      content: '';
-      margin-left: 4px;
-    }
-  }
+  position: relative;
+  display: inline-block;
   
-  &:hover, &:active {
-    & > span {
-      max-width: 300px;
-      transition: max-width 1s ease-in;
-    }
+  .tooltiptext {
+    visibility: hidden;
+    opacity: 0;
+    width: 122px;
+    background-color: #7367f0;;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+  
+    /* Position the tooltip */
+    position: absolute;
+    top: -36px;
+    left: -22px;
+    z-index: 1;
+    transition: .2s all linear;
   }
+
+  &:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  // & > span {
+  //   margin: 0;
+  //   padding: 0;
+  //   display: inline-block;
+  //   overflow: hidden;
+  //   vertical-align: top; 
+  //   white-space: nowrap;
+  //   max-width: 0;
+  //   transition: max-width 0.2s ease-out;
+  //   margin-left: -4px;
+
+  //   &::before {
+  //     content: '';
+  //     margin-left: 4px;
+  //   }
+  // }
+  
+  // &:hover, &:active {
+  //   & > span {
+  //     max-width: 300px;
+  //     transition: max-width 1s ease-in;
+  //   }
+  // }
 }
 
 .ico-social {
@@ -568,17 +594,15 @@
     font-size: 22px;
     font-weight: bold;
     text-transform: uppercase;
-    background: -webkit-linear-gradient($rose, #7a4d4b);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: $rose;
     text-align: center;
 
     span:not(:last-of-type) {
       margin-right: 10px;
     }
     span:last-of-type {
-        margin-left: 10px;
-        transform: scaleX(-1);
+      margin-left: 10px;
+      transform: scaleX(-1);
     }
   }
 
@@ -716,18 +740,8 @@
 .share-classement-content,
 .share-top-content,
 .box-info-content {
-  background: rgb(18, 11, 43);
-
-  &::after {
-    content: '';
-    position: absolute;
-    background: linear-gradient(135deg, rgba(18, 11, 43, 1) 0%, $rose 150%);
-    border-radius: 50%;
-    filter: blur(72px);
-    z-index: -1;
-    height: 100%;
-    width: 100%;
-  }
+  background: linear-gradient(150deg, #0c0a27, #471867, #0c0a27, #230b36, #0c0a27);
+  background-size: 400% 400%;
 }
 
 .separate {
