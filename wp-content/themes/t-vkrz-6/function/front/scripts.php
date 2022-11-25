@@ -65,7 +65,6 @@ function load_css_js()
     wp_enqueue_script('form', get_template_directory_uri() . '/function/ajax/form.js', array(), filemtime(get_template_directory() . '/function/ajax/form.js'), true);
     wp_enqueue_script('transaction', get_template_directory_uri() . '/function/ajax/transaction.js', array(), filemtime(get_template_directory() . '/function/ajax/transaction.js'), true);
 
-<<<<<<< HEAD
   if (is_page(get_page_by_path('monitor'))) {
     wp_enqueue_script('monitor', get_template_directory_uri() . '/function/ajax/monitor.js', array(), filemtime(get_template_directory() . '/function/ajax/monitor.js'), true );
   }
@@ -110,7 +109,6 @@ function load_css_js()
   if (is_page('Proposition de Tops')) {
     wp_enqueue_script('propositions', get_template_directory_uri() . '/function/firebase/propositions.js', array(), filemtime(get_template_directory() . '/function/firebase/propositions.js'), true );
   }
-=======
     if (is_page(get_page_by_path('monitor'))) {
         wp_enqueue_script('monitor', get_template_directory_uri() . '/function/ajax/monitor.js', array(), filemtime(get_template_directory() . '/function/ajax/monitor.js'), true);
     }
@@ -152,6 +150,5 @@ function load_css_js()
     if (is_page('Rechercher')) {
         wp_enqueue_script('recherches', get_template_directory_uri() . '/function/firebase/recherches.js', array(), filemtime(get_template_directory() . '/function/firebase/recherches.js'), true);
     }
->>>>>>> 9cce75f9ef9f369faa580f8c5bdde17bde1704e2
 }
 add_action('wp_enqueue_scripts', 'load_css_js');

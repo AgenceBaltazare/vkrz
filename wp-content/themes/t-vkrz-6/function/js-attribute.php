@@ -101,15 +101,12 @@ add_filter('script_loader_tag', 'add_type_attribute11', 10, 6);
 
 function add_type_attribute12($tag, $handle, $src)
 {
-<<<<<<< HEAD
   if ('propositions' !== $handle) return $tag;
   $tag = '<script type="module" src="' . esc_url($src) . '"></script>';
 
-=======
   if ('deal_parrainage' !== $handle) return $tag;
   $tag = '<script type="module" src="' . esc_url($src) . '"></script>';
   
->>>>>>> 9cce75f9ef9f369faa580f8c5bdde17bde1704e2
   return $tag;
 }
 add_filter('script_loader_tag', 'add_type_attribute12', 10, 6);

@@ -15,22 +15,18 @@ switch(typeMessage) {
 		embed = new EmbedBuilder()
 			.setTitle(`Nouvelle idée de Top!`)
 			.setColor(0xf4167f)
-			// .setDescription(`${data.userData.pseudo} a publié une nouvelle proposition du Top!`)
-			// .setTimestamp(Date.now())
-			// .setAuthor({
-			// 	url: data.userData.profil_url,
-			// 	iconURL: data.userData.profil_url,
-			// 	name: data.userData.pseudo
-			// })
-			// .setFooter({
-			// 	iconURL: data.userData.profil_url,
-			// 	text: data.userData.pseudo
-			// })
-			// .setURL("http://localhost:8888/vkrz/proposition-de-tops/");
+			.setDescription(`${data.userData.pseudo} a publié une nouvelle proposition du Top!`)
+			.setTimestamp(Date.now())
+			.setAuthor({
+				url: data.userData.profil_url,
+				iconURL: data.userData.avatar,
+				name: data.userData.pseudo
+			})
+			.setURL("http://localhost:8888/vkrz/proposition-de-tops/");
 
 		message = {
 			content: `
-			👉 ${data.proposition}	
+			👉  ${data.proposition}	
 			`,
 			username: "VAINKEUR",
 			avatarURL: 'https://i.imgur.com/81uHAdJ.png',
@@ -38,43 +34,41 @@ switch(typeMessage) {
 		};
 
     break;
+
+	case 'newTop' : 
+
+		embed = new EmbedBuilder()
+			.setTitle(data.top_title)
+			.setColor(0xB237F3)
+			.setDescription(`${data.top_creator} a publié un nouveau Top!`)
+			.setTimestamp(Date.now())
+			.setAuthor({
+				url: data.top_author_url,
+				iconURL: data.top_author_img,
+				name: data.top_creator
+			})
+			.setURL(data.top_url)
+			.setThumbnail(data.top_visuel)
+			.setImage(data.top_visuel)
+			.setFooter({
+				iconURL: data.top_author_img,
+				text: data.top_creator
+			})
+
+		message = {
+			content: data.top_title,
+			content: `
+			👉 ${data.top_title}
+Par ${data.top_creator}
+${data.top_url}
+		`,
+			username: "VAINKEUR",
+			avatarURL: 'https://i.imgur.com/81uHAdJ.png',
+			embeds: [embed],
+		};
+
+	break;
 }
 
 webhookClient.send(message);
-
-/*
-const typeMessage 		= process.argv[2];
-const themeTopPropose = process.argv[3];
-const user        		= process.argv[4];
-const newTopTitle 		= process.argv[5];
-const newTopUrl   		= process.argv[6];
-
- let messageTitle = "",
-		url          = "",
-		content      = "";
-
-switch (typeMessage) {
-  case 'topIdea':
-		messageTitle = `${user} a publié une nouvelle proposition du Top!`;
-		url = "http://localhost:8888/vkrz/proposition-de-tops/";
-		content = `
-		👉 ${themeTopPropose}	
-`
-    break;
-  case 'newTop':
-		messageTitle = `${user} a publié un nouveau Top!`;
-		url = newTopUrl;
-		content = `
-			👉 ${newTopTitle}
-Par ${user}
-${url}
-		`
-    break;
-
-	default:
-    console.log(`Sorry, we are out of ${typeMessage}.`);
-} 
-*/
-
-
 
