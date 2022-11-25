@@ -59,6 +59,18 @@ get_header();
                                                 </div>
 
                                             </div>
+
+                                            <div class="tab-pane" id="tab4" role="tabpanel" aria-labelledby="tab3">
+
+                                                <div class="auth-register-form">
+                                                    <div class="classic-form">
+                                                        <form action="">
+                                                            
+                                                        </form>
+                                                    </div>
+                                                </div>
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

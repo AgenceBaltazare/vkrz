@@ -95,7 +95,15 @@ function new_vainkeur($user_id){
 
             update_field('uuiduser_user', $uuid_vainkeur, 'user_' . $user_id);
             update_field('id_vainkeur_user', $id_vainkeur, 'user_' . $user_id);
-            
+
+            // Set uniq code for parrainage
+            $uniqcodeparrain = generate_codeparrain($user_id);
+            update_field('code_parrain_user', $uniqcodeparrain, 'user_' . $user_id);
+
+            // DEAL REFERRAL CODE IF HE USED ONE
+            if($_GET['codeinvit']) {
+                deal_referral($_GET['codeinvit'], $id_vainkeur, 200);
+            }
         }
     }
 
@@ -108,7 +116,7 @@ function new_vainkeur($user_id){
     ?>
     <script>
         jQuery(document).ready(function ($){
-            dataLayer.push({
+            window.dataLayer.push({
                 event: 'track_event',
                 event_name: 'signin',
                 user_id : "<?= $user_id ?>",
@@ -120,5 +128,4 @@ function new_vainkeur($user_id){
     </script>
     <?php
     echo ob_get_clean();
-
 }

@@ -115,14 +115,12 @@ if (is_single() || is_page(get_page_by_path('monitor'))) {
   $list_body_class = "vertical-layout vertical-menu-modern navbar-floating footer-static";
 }
 
-// FOR NOTIFICATIONS… ✋
 if ($infos_vainkeur['avatar']) {
   $anonyme_avatar_url = $infos_vainkeur['avatar'];
 } else {
   $anonyme_avatar_url = get_bloginfo('template_directory') . '/assets/images/vkrz/avatar-rose.png';
 }
 ?>
-
 <script>
   const currentUserId = "<?php echo $user_id; ?>",
     currentUserProfileUrl = "<?php echo get_author_posts_url($user_id); ?>",
