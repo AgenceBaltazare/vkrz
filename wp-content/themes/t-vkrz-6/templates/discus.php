@@ -14,12 +14,11 @@ else {
 get_header();
 ?>
 <div class="app-content content">
-  <div class="content-overlay"></div>
   <div class="content-wrapper">
 
     <div class="content-header mt-1">
       <a href="#" onclick="window.history.back();" class="btn btn-outline-primary waves-effect mb-1 mr-1">
-        <span class="ico va va-left-arrow va-lg"></span> Retour en arrière
+        <span class="ico va va-left-arrow va-lg"></span> Retour au Top
       </a>
     </div>
 
