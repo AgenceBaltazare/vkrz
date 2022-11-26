@@ -103,10 +103,16 @@ function add_type_attribute12($tag, $handle, $src)
 {
   if ('propositions' !== $handle) return $tag;
   $tag = '<script type="module" src="' . esc_url($src) . '"></script>';
+  
+  return $tag;
+}
+add_filter('script_loader_tag', 'add_type_attribute12', 10, 6);
 
+function add_type_attribute13($tag, $handle, $src)
+{
   if ('deal_parrainage' !== $handle) return $tag;
   $tag = '<script type="module" src="' . esc_url($src) . '"></script>';
   
   return $tag;
 }
-add_filter('script_loader_tag', 'add_type_attribute12', 10, 6);
+add_filter('script_loader_tag', 'add_type_attribute13', 10, 6);
