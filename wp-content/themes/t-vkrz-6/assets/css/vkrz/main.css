@@ -4542,6 +4542,129 @@ select:-webkit-autofill:focus {
   text-decoration: underline;
 }
 
+.propositions-top-wrapper .heading {
+  margin: 1rem 0;
+  text-transform: uppercase;
+}
+.propositions-top-wrapper .heading h1 {
+  font-size: 2.5rem;
+  color: #fff;
+  font-weight: bold;
+}
+.propositions-top-wrapper .heading h1 strong {
+  color: #f4167f;
+}
+.propositions-top-wrapper .heading p {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+.propositions-top-wrapper .btn {
+  padding: 0.8rem 1.4rem;
+  background-color: #7367f0;
+  border-radius: 2px;
+}
+.propositions-top-wrapper .form-propositions-card {
+  background: none;
+}
+.propositions-top-wrapper .form-propositions-card .card-body {
+  padding: 0 !important;
+  margin: 1rem 0 2rem;
+}
+.propositions-top-wrapper .form-propositions-card #form-propositions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+.propositions-top-wrapper .form-propositions-card #form-propositions.disable {
+  pointer-events: none;
+  opacity: 0.5;
+}
+.propositions-top-wrapper .form-propositions-card #form-propositions label {
+  text-transform: uppercase;
+  color: #7367f0;
+  font-size: 0.9rem;
+}
+.propositions-top-wrapper .form-propositions-card #form-propositions select {
+  background-color: #20143a;
+}
+.propositions-top-wrapper .form-propositions-card #form-propositions input, .propositions-top-wrapper .form-propositions-card #form-propositions select {
+  border: 0;
+  border-radius: 0;
+}
+.propositions-top-wrapper .form-propositions-card #form-propositions input::-moz-placeholder, .propositions-top-wrapper .form-propositions-card #form-propositions select::-moz-placeholder {
+  color: rgba(128, 128, 128, 0.694) !important;
+}
+.propositions-top-wrapper .form-propositions-card #form-propositions input:-ms-input-placeholder, .propositions-top-wrapper .form-propositions-card #form-propositions select:-ms-input-placeholder {
+  color: rgba(128, 128, 128, 0.694) !important;
+}
+.propositions-top-wrapper .form-propositions-card #form-propositions input::placeholder, .propositions-top-wrapper .form-propositions-card #form-propositions select::placeholder {
+  color: rgba(128, 128, 128, 0.694) !important;
+}
+.propositions-top-wrapper .form-propositions-card #form-propositions .question_top-input {
+  flex: 1;
+}
+.propositions-top-wrapper .form-propositions-card #form-propositions .proposer_btn-input {
+  margin-top: auto;
+}
+.propositions-top-wrapper .form-propositions-card #form-propositions .proposer_btn-input .btn {
+  background-color: #f4167f !important;
+  border: none !important;
+  box-shadow: none !important;
+  font-weight: bold;
+}
+@media screen and (max-width: 782px) {
+  .propositions-top-wrapper .form-propositions-card #form-propositions {
+    flex-direction: column;
+  }
+  .propositions-top-wrapper .form-propositions-card #form-propositions .form-input,
+.propositions-top-wrapper .form-propositions-card #form-propositions .proposer-btn {
+    width: 100%;
+  }
+}
+.propositions-top-wrapper .liste-propositions-card {
+  background: none;
+}
+.propositions-top-wrapper .liste-propositions-card .card-title {
+  font-size: 1.9rem;
+  text-transform: uppercase;
+  margin: 2rem 0;
+  font-weight: bold;
+}
+.propositions-top-wrapper .deviens-createur-wrapper {
+  background-color: #7367f0;
+  padding: 1rem;
+  border-radius: 2px;
+}
+.propositions-top-wrapper .deviens-createur-wrapper .heading h3 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+.propositions-top-wrapper .deviens-createur-wrapper .text p {
+  margin: 0 !important;
+}
+.propositions-top-wrapper .deviens-createur-wrapper .btn {
+  margin: 1rem auto;
+  display: block;
+  width: 50%;
+  background: #2a1f70;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.propositions-top-wrapper .prop-alert {
+  text-align: center;
+  margin: 2rem 0;
+  font-size: 1rem;
+  color: #c64143;
+}
+.propositions-top-wrapper .prop-alert i {
+  font-size: 0.8rem;
+}
+.propositions-top-wrapper .vainkeur-card .btn {
+  background: transparent;
+  border-radius: 6px;
+}
+
 .topnamebestof {
   margin-left: 10px;
 }
