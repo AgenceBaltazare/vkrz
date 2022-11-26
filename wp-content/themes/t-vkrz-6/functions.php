@@ -89,13 +89,13 @@ function publish_top_to_discord($post_id){
   $top_infos_to_send  = get_top_infos($id_top);
   $top_title          = $top_infos_to_send['top_title'];
   $top_url            = get_the_permalink($id_top);
-  // $top_question       = $top_infos_to_send['top_question'];
-  // $top_visuel         = $top_infos_to_send['top_img'];
-  // foreach(get_the_terms($id_top, 'categorie') as $cat ) {
-  //     $cat_id     = $cat->term_id;
-  //     $cat_name   = $cat->name;
-  // }
-  // $cat_value          = get_field('icone_cat', 'term_'.$cat_id)." ".$cat_name;
+  $top_question       = $top_infos_to_send['top_question'];
+  $top_visuel         = $top_infos_to_send['top_img'];
+  foreach(get_the_terms($id_top, 'categorie') as $cat ) {
+      $cat_id     = $cat->term_id;
+      $cat_name   = $cat->name;
+  }
+  $cat_value          = get_field('icone_cat', 'term_'.$cat_id)." ".$cat_name;
 
   $creator_id         = get_post_field('post_author', $id_top);
   $creator_data       = get_user_by('ID', $creator_id);
@@ -103,16 +103,14 @@ function publish_top_to_discord($post_id){
   $creator_img        = get_avatar_url($creator_id, ['size' => '80']);
 
   $data = (object) [
-      'top_title'     => $top_title,
-      // 'top_visuel'    => $top_visuel,
-      'top_visuel'    => "https://vainkeurz.com/wp-content/uploads/2022/04/86b8060660d0da70a4fd74aa022d82a0-1024x538.jpg",
-      'top_url'       => $top_url,
-      // 'top_question'  => $top_question,
-      // 'top_autor_img' => $creator_img,
-      'top_author_img' => "https://vainkeurz.com/wp-content/uploads/2022/08/fb-img-1661890719296-150x150.jpg",
-      'top_creator'   => $creator_name,
-      // 'top_cat'       => $cat_value,
-      'top_author_url' => "https://vainkeurz.com/v/adilelmoba"
+      'top_title'      => $top_title,
+      'top_visuel'     => $top_visuel,
+      'top_url'        => $top_url,
+      'top_question'   => $top_question,
+      'top_author_img' => $creator_img,
+      'top_creator'    => $creator_name,
+      'top_cat'        => $cat_value,
+      'top_author_url' => esc_url(get_author_posts_url($creator_id))
   ];
 
   to_discord("newTop", $data);

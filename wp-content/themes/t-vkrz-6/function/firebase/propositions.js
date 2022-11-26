@@ -14,7 +14,6 @@ async function getUserData(uuid) {
   try {
     let response = await fetch(
       `https://vainkeurz.com/wp-json/vkrz/v1/getuserinfo/${uuid}`
-      // `http://localhost:8888/vkrz/wp-json/vkrz/v1/getuserinfo/${uuid}`
     );
     return await response.json();
   } catch (error) {

@@ -1,6 +1,8 @@
 const { EmbedBuilder, WebhookClient } = require('discord.js');
 
-const webhookClient = new WebhookClient({ url: 'https://discord.com/api/webhooks/1039548051326509177/_2m-A0Bb4yfbq2ptYKLoFIGFVSjf8e7KpxeUXzOnDvu7cefcwh4v8wzuoHBvxyChJSF5' });
+const newTopsWebhook = new WebhookClient({ url: 'https://discord.com/api/webhooks/1045815659776454677/Te5GVS-eq8lROglK9czNLMgSqtftROBYYEGm5FMYTHT0QaqyxPEfWJDnnqxn-c4pVoxp' });
+
+const topsIdeasWebhook = new WebhookClient({ url: 'https://discord.com/api/webhooks/1045843792080683129/VapEauEL9nJhzU2FySrKvGvPWmRquS1bWUP2FlWszRFkZWF1aFTMP_755YOf90CHAQx3' });
 
 // PARAMETERS
 const typeMessage = process.argv[2];
@@ -22,7 +24,7 @@ switch(typeMessage) {
 				iconURL: data.userData.avatar,
 				name: data.userData.pseudo
 			})
-			.setURL("http://localhost:8888/vkrz/proposition-de-tops/");
+			.setURL("https://vainkeurz.com/proposition-de-tops/");
 
 		message = {
 			content: `
@@ -32,6 +34,8 @@ switch(typeMessage) {
 			avatarURL: 'https://i.imgur.com/81uHAdJ.png',
 			embeds: [embed],
 		};
+
+		topsIdeasWebhook.send(message);
 
     break;
 
@@ -67,8 +71,7 @@ ${data.top_url}
 			embeds: [embed],
 		};
 
+		newTopsWebhook.send(message);
+
 	break;
 }
-
-webhookClient.send(message);
-
