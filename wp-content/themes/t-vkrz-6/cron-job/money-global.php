@@ -108,7 +108,6 @@ while ($vainkeurs_to_update->have_posts()) : $vainkeurs_to_update->the_post();
     $money_creator      = get_field('money_creator_vkrz', $id_vainkeur);
     $money_parrain      = get_field('money_parrainage_vkrz', $id_vainkeur);
     $money_duplicated   = get_field('money_duplication_vkrz', $id_vainkeur);
-    $money_dispo        = get_field('money_disponible_vkrz', $id_vainkeur);
 
     $new_money_dispo    = round($money_xp + $money_creator + $money_duplicated + $money_parrain + $money_recompense - $money_depense);
 

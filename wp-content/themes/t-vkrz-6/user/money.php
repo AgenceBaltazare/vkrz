@@ -42,9 +42,15 @@ $vainkeur_badges = get_the_terms($infos_vainkeur['id_vainkeur'], 'badges');
                                             <div class="mb-1">
                                                 <span class="ico4 va va-gem va va-z-85"></span>
                                             </div>
+                                            <?php 
+                                            if (have_rows('liste_des_recompenses_vkrz', $infos_vainkeur['id_vainkeur'])) : $total_recompense = 0;
+                                                while (have_rows('liste_des_recompenses_vkrz', $infos_vainkeur['id_vainkeur'])) : the_row();
+                                                    $total_recompense = $total_recompense + get_sub_field('prix_recompense_vkrz');
+                                                endwhile; endif;
+                                            ?>
                                             <h2 class="font-weight-bolder">
                                                 <?php if ($infos_vainkeur['money_vkrz']) : ?>
-                                                    <?php echo number_format($infos_vainkeur['money_vkrz'], 0, ",", " "); ?>
+                                                    <?php echo number_format($infos_vainkeur['money_vkrz'] + $total_recompense, 0, ",", " "); ?>
                                                 <?php else : ?>
                                                     -
                                                 <?php endif; ?>
@@ -63,8 +69,12 @@ $vainkeur_badges = get_the_terms($infos_vainkeur['id_vainkeur'], 'badges');
                                                 <span class="ico4 va va-gem va va-z-85"></span>
                                             </div>
                                             <h2 class="font-weight-bolder">
+                                                <?php
+                                                $money_duplicated = 0;
+                                                $money_duplicated = get_creator_money_for_duplicated($user_id);
+                                                ?>
                                                 <?php if ($infos_vainkeur['money_creator_vkrz']) : ?>
-                                                    <?php echo number_format($infos_vainkeur['money_creator_vkrz'], 0, ",", " "); ?>
+                                                    <?php echo number_format($infos_vainkeur['money_creator_vkrz'] + $money_duplicated['money_duplicated'], 0, ",", " "); ?>
                                                 <?php else : ?>
                                                     -
                                                 <?php endif; ?>
@@ -167,8 +177,10 @@ $vainkeur_badges = get_the_terms($infos_vainkeur['id_vainkeur'], 'badges');
                                                                         <?php echo $money_tops; ?> <span class="va-gem va va-1x"></span>
                                                                     </th>
                                                                 </tr>
-                                                                <?php if (have_rows('liste_des_recompenses_vkrz', $infos_vainkeur['id_vainkeur'])) : ?>
-                                                                    <?php while (have_rows('liste_des_recompenses_vkrz', $infos_vainkeur['id_vainkeur'])) : the_row(); ?>
+                                                                <?php if (have_rows('liste_des_recompenses_vkrz', $infos_vainkeur['id_vainkeur'])) : $total_recompense = 0; ?>
+                                                                    <?php while (have_rows('liste_des_recompenses_vkrz', $infos_vainkeur['id_vainkeur'])) : the_row();
+                                                                        $total_recompense = $total_recompense + get_sub_field('prix_recompense_vkrz');
+                                                                    ?>
                                                                         <tr>
                                                                             <th>
                                                                                 Récompense : <?php the_sub_field('nom_de_la_recompense_vkrz'); ?>
@@ -207,7 +219,7 @@ $vainkeur_badges = get_the_terms($infos_vainkeur['id_vainkeur'], 'badges');
 
                                                                     </th>
                                                                     <th class="text-right text-info">
-                                                                        <?php echo $infos_vainkeur['money_vkrz']; ?> <span class="va-gem va va-1x"></span>
+                                                                        <?php echo $infos_vainkeur['money_vkrz'] + $total_recompense; ?> <span class="va-gem va va-1x"></span>
                                                                     </th>
                                                                 </tr>
                                                             </tbody>
@@ -388,14 +400,13 @@ $vainkeur_badges = get_the_terms($infos_vainkeur['id_vainkeur'], 'badges');
                                                                         </th>
                                                                     </tr>
                                                                     <?php
-                                                                    $money_duplicated = get_creator_money_for_duplicated($user_id);
                                                                     if ($money_duplicated) : ?>
                                                                         <tr>
                                                                             <th>
                                                                                 Duplication de Tops par l'éKip VAINKEURZ
                                                                             </th>
                                                                             <th class="text-right">
-
+                                                                                <?php echo $money_duplicated['nb_top_duplicated']; ?> <span class="text-muted">Top(s)</span>
                                                                             </th>
                                                                             <th class="text-right">
                                                                                 <?php echo $infos_vainkeur['money_duplicated']; ?> <span class="va-gem va va-1x"></span>
@@ -412,7 +423,7 @@ $vainkeur_badges = get_the_terms($infos_vainkeur['id_vainkeur'], 'badges');
 
                                                                         </th>
                                                                         <th class="text-right text-info">
-                                                                            <?php echo $infos_vainkeur['money_creator_vkrz']; ?> <span class="va-gem va va-1x"></span>
+                                                                            <?php echo $infos_vainkeur['money_creator_vkrz'] + $money_duplicated['money_duplicated']; ?> <span class="va-gem va va-1x"></span>
                                                                         </th>
                                                                     </tr>
                                                                 </tbody>
