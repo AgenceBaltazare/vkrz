@@ -3,7 +3,19 @@ include __DIR__ . '/../../../../wp-load.php';
 
 $user_query = new WP_User_Query(
     array(
-        'number' => -1
+        'number' => -1,
+        'meta_query' => array(
+            'relation' => 'OR',
+            array(
+                'key'     => 'code_parrain_user',
+                'value'   => '',
+                'compare' => '='
+            ),
+            array(
+                'key'     => 'code_parrain_user',
+                'compare' => 'NOT EXISTS'
+            )
+        )
     )
 );
 $users = $user_query->get_results();
