@@ -1836,6 +1836,9 @@ function wppb_ul_faceted_checkboxes( $faceted_filter_options, $meta_values, $wpp
     //sort by country name not country code
     $meta_values = wppb_sort_country_values_by_name( $meta_values, $wppb_manage_fields, $faceted_filter_options );
 
+    //filter meta values before displaying
+    $meta_values = apply_filters( 'wppb_filter_meta_values_before_output', $meta_values, $faceted_filter_options );
+
     if( !empty( $meta_values ) ){
         $filter = '';
 
@@ -1874,6 +1877,9 @@ function wppb_ul_faceted_select($faceted_filter_options, $meta_values, $wppb_man
 
     //sort by country name not country code
     $meta_values = wppb_sort_country_values_by_name( $meta_values, $wppb_manage_fields, $faceted_filter_options );
+
+    //filter meta values before displaying
+    $meta_values = apply_filters( 'wppb_filter_meta_values_before_output', $meta_values, $faceted_filter_options );
 
     if( !empty( $meta_values ) ){
         $filter = '<select class="wppb-facet-select';
@@ -1915,6 +1921,9 @@ function wppb_ul_faceted_select_multiple($faceted_filter_options, $meta_values, 
 
     //sort by country name not country code
     $meta_values = wppb_sort_country_values_by_name( $meta_values, $wppb_manage_fields, $faceted_filter_options );
+
+    //filter meta values before displaying
+    $meta_values = apply_filters( 'wppb_filter_meta_values_before_output', $meta_values, $faceted_filter_options );
 
     if( !empty( $meta_values ) ){
         /* initialize the select2 */
@@ -3306,6 +3315,32 @@ function wppb_resize_avatar_or_gravatar( $avatar_or_gravatar, $user_info, $avata
 
 }
 add_filter( 'wppb_userlisting_extra_avatar_or_gravatar', 'wppb_resize_avatar_or_gravatar', 10, 4 );
+
+
+/**
+ * Function that filters User Roles (Faceted Menus -> wp_capabilities) according to the "Roles to Display" Option from User-Listing Settings
+ *
+ */
+function wppb_filter_faceted_menus_wp_capabilities( $meta_values, $faceted_filter_options ) {
+
+    if ( $faceted_filter_options['facet-meta'] != 'wp_capabilities' )
+        return $meta_values;
+
+    global $userlisting_args;
+
+    $selected_user_roles  = explode( ', ', $userlisting_args[0]['roles-to-display'] );
+
+    if ( empty( $selected_user_roles ) || in_array( '*', $selected_user_roles ) )
+        return $meta_values;
+
+    foreach ( $meta_values as $role => $user_count ) {
+        if ( !in_array( $role, $selected_user_roles ) )
+            unset( $meta_values[$role] );
+    }
+
+    return $meta_values;
+}
+add_filter( 'wppb_filter_meta_values_before_output', 'wppb_filter_faceted_menus_wp_capabilities', 10, 2 );
 
 
 /**

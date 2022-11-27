@@ -1,3 +1,4 @@
+/*! This file is auto-generated */
 /*
  * Button mixin- creates a button effect with correct
  * highlights/shadows, based on a base color.
@@ -324,6 +325,7 @@ ul#adminmenu > li.current > a.current:after {
 }
 
 /* Admin Menu: bubble */
+#adminmenu .menu-counter,
 #adminmenu .awaiting-mod,
 #adminmenu .update-plugins {
   color: #fff;
@@ -705,15 +707,12 @@ div#wp-responsive-toggle a:before {
 
 /* Welcome Panel */
 .welcome-panel {
-  background-color: #e1f4f9;
+  background-color: #04a4cc;
 }
 
-.welcome-panel-header-image .about-six {
+.welcome-panel-header-image circle {
+  stroke: rgba(255, 255, 255, 0.5);
   fill: #04a4cc;
-}
-
-.welcome-panel-header-image .about-zero {
-  fill: #999;
 }
 
 [class*=welcome-panel-icon] {
@@ -724,4 +723,4 @@ div#wp-responsive-toggle a:before {
 .theme-section.current,
 .theme-filter.current {
   border-bottom-color: #04a4cc;
-}/*# sourceMappingURL=colors.css.map */
+}

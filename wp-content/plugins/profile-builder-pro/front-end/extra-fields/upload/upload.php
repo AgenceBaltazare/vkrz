@@ -101,7 +101,7 @@ add_filter( 'wppb_admin_output_form_field_upload', 'wppb_upload_handler', 10, 6 
 /* handle field save */
 function wppb_save_upload_value( $field, $user_id, $request_data, $form_location ){
     if( $field[ 'field' ] == 'Upload' ){
-        if ( isset( $field[ 'simple-upload' ] ) && $field[ 'simple-upload' ] == 'yes' && $field[ 'woocommerce-checkout-field' ] !== 'Yes' ) {
+        if ( isset( $field[ 'simple-upload' ] ) && $field[ 'simple-upload' ] == 'yes' && ( !isset( $field[ 'woocommerce-checkout-field' ] ) || $field[ 'woocommerce-checkout-field' ] !== 'Yes' ) ) {
             //Save data in the case the simple upload field is used
             $field_name = 'simple_upload_' . wppb_handle_meta_name( $field[ 'meta-name' ] );
             if( isset( $_FILES[ $field_name ] ) ) {
@@ -149,7 +149,7 @@ function wppb_add_upload_for_user_signup( $field_value, $field, $request_data ){
     // Save the uploaded file
     // It will have no author until the user's email is confirmed
     if( $field['field'] == 'Upload' ) {
-        if( isset( $field[ 'simple-upload' ] ) && $field[ 'simple-upload' ] === 'yes' && $field[ 'woocommerce-checkout-field' ] !== 'Yes' ) {
+        if( isset( $field[ 'simple-upload' ] ) && $field[ 'simple-upload' ] === 'yes' && ( !isset( $field[ 'woocommerce-checkout-field' ] ) || $field[ 'woocommerce-checkout-field' ] !== 'Yes' ) ) {
             $field_name = 'simple_upload_' . $field['meta-name'];
 
             if (isset($_FILES[$field_name]) &&
@@ -186,7 +186,7 @@ add_action( 'wp_ajax_wppb_woo_simple_upload', 'wppb_woo_simple_upload' );
 function wppb_check_upload_value( $message, $field, $request_data, $form_location ){
     if( $field['field'] == 'Upload' ){
         if( $field['required'] == 'Yes' ){
-            if ( isset( $field[ 'simple-upload' ] ) && $field[ 'simple-upload' ] == 'yes' && $field[ 'woocommerce-checkout-field' ] !== 'Yes' ) {
+            if ( isset( $field[ 'simple-upload' ] ) && $field[ 'simple-upload' ] == 'yes' && ( !isset( $field[ 'woocommerce-checkout-field' ] ) || $field[ 'woocommerce-checkout-field' ] !== 'Yes' ) ) {
                 //Check the required field in the case simple upload is used
                 $field_name = 'simple_upload_' . wppb_handle_meta_name( $field[ 'meta-name' ] );
                 if ( (!isset( $_FILES[ $field_name ] ) || ( isset( $_FILES[ $field_name ] ) && isset( $_FILES[ $field_name ][ 'size' ] ) && $_FILES[ $field_name ][ 'size' ] == 0 ) || !wppb_valid_simple_upload( $field, $_FILES[ $field_name ] ) ) && isset( $request_data[ $field[ 'meta-name' ] ] ) && empty( $request_data[ $field[ 'meta-name' ] ] ) ){/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */ /* no need here for wppb_valid_simple_upload() */

@@ -279,7 +279,7 @@ function wppb_make_upload_button( $field, $input_value, $extra_attr = '' ){
 
     if ( isset( $field[ 'simple-upload' ] ) && $field[ 'simple-upload' ] == 'yes' ){
         //If selected accordingly in form fields, generate a simple upload button
-        $upload_button .= '<input type="file" id="upload_' . esc_attr(Wordpress_Creation_Kit_PB::wck_generate_slug($field['meta-name'], $field)) . '_button" name="simple_upload_'. esc_attr( Wordpress_Creation_Kit_PB::wck_generate_slug( $field['meta-name'], $field ) ) .'"';
+        $upload_button .= '<input type="file" id="upload_' . esc_attr(Wordpress_Creation_Kit_PB::wck_generate_slug($field['meta-name'], $field)) . '_button" class="wppb_simple_upload" name="simple_upload_'. esc_attr( Wordpress_Creation_Kit_PB::wck_generate_slug( $field['meta-name'], $field ) ) .'"';
         $upload_button .=  $hide_upload_button . '>';
         $upload_button .= '<p id="p_simple_upload_'. esc_attr(Wordpress_Creation_Kit_PB::wck_generate_slug($field['meta-name'], $field)) .'"></p>';
         $limit = apply_filters( 'wppb_server_max_upload_size_byte_constant', wppb_return_bytes( ini_get( 'upload_max_filesize' ) ) );

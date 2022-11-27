@@ -6,8 +6,8 @@ Tags: registration, profile, user registration, custom field registration, custo
 custom registration, custom registration form, custom registration page, extra user fields, registration page, user custom fields, user listing, user login, user registration form, front-end login,
 front-end register, front-end registration, frontend edit profile, edit profileregistration, customize profile, user fields, builder, profile builder, custom fields, avatar
 Requires at least: 3.1
-Tested up to: 6.0
-Stable tag: 3.8.2
+Tested up to: 6.1
+Stable tag: 3.8.4
 
 
 Login, registration and edit profile shortcodes for the front-end. Also you can choose what fields should be displayed or add custom ones.
@@ -101,6 +101,15 @@ This plugin only adds/removes fields in the front-end. The default information-f
 
 
 == Changelog ==
+= 3.8.4 =
+* Fix: Issue with Select2 Multiple not loading correctly
+* Fix: Role Faceted Menus will now only display the roles selected in Userlisting Settings
+
+= 3.8.3 =
+* Fix: issue with 2FA functionality and newer block themes
+* Fix: simple upload fields issue on mobile and improve UI when waiting for the upload to process
+* Fix: case where 2FA fields were duplicated in a scenario with Elementor
+
 = 3.8.2 =
 * Fix: issue with large icons and text Social Connect display option
 * Fix: issue with {{approval_url}} tag for EPAA email notification that wasn't working in some cases
