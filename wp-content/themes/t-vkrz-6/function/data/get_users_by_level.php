@@ -6,7 +6,7 @@ function count_users_by_level($level = NULL){
     }
 
     $user_query = new WP_User_Query(array(
-        "number" => -1,
+        "number" => 10000,
         "meta_query" => array(
             array(
                 "key"     => "level_user",
@@ -17,12 +17,7 @@ function count_users_by_level($level = NULL){
     ));
     $users = $user_query->get_total();
 
-    if($level == 5 ){
-        return $users - 1;
-    }
-    else{
-        return $users;
-    }
+    return $users;
 }
 
 function get_users_by_level($level = NULL, $order_by = "login", $order = "ASC"){

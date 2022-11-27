@@ -87,15 +87,11 @@ function get_creator_money_for_duplicated($user_id){
     while ($list_tops->have_posts()) : $list_tops->the_post();
 
         $id_top                 = get_the_ID();
-        $id_resume              = get_resume_id($id_top);
-        $nb_votes_t             = intval(get_field('nb_votes_resume', $id_resume));
-        $nb_ranks_t             = intval(get_field("nb_done_resume", $id_resume));
-        $nb_votes_all_t         = $nb_votes_all_t + $nb_votes_t;
-        $nb_ranks_all_t         = $nb_ranks_all_t + $nb_ranks_t;
+        $nb_contenders          = get_field('count_contenders_t', $id_top);
 
     endwhile;
 
-    $total_money                = round((($nb_votes_all_t * 0.3) + ($nb_ranks_all_t * 5)) * 0.75);
+    $total_money                = 500 + $nb_contenders * 50;
 
     return array(
         "money_duplicated"     => $total_money,
