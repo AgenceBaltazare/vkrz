@@ -1692,9 +1692,14 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   top: -10px;
   right: 0;
   font-size: 12px;
-  padding: 2px 4px;
-  background-color: #C80A70;
+  height: 20px;
+  background-color: #f4167f;
   border-radius: 50%;
+  width: 20px;
+  line-height: 20px;
+  text-align: center;
+  transform: scale(0.9);
+  transition: all 0.2s ease-in;
 }
 @media (max-width: 767px) {
   .menuuser-bell .notifications-nombre {
@@ -1702,6 +1707,9 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
     right: 10px;
     padding: 1px 3px;
   }
+}
+.menuuser-bell:hover .notifications-nombre {
+  transform: scale(1.1);
 }
 
 .child-parrain-1 .vainkeur-card {
