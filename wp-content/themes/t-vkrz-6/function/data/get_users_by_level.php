@@ -6,7 +6,7 @@ function count_users_by_level($level = NULL){
     }
 
     $user_query = new WP_User_Query(array(
-        "number" => 10000,
+        "number" => 100,
         "meta_query" => array(
             array(
                 "key"     => "level_user",
