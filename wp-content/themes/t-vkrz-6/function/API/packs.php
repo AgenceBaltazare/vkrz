@@ -609,7 +609,7 @@ function get_shopper($data)
 
 function get_tops_tendance($data){
   
-  $tendance     = $data['tendance'];
+  $tendance     = strval(str_replace('-', ' ', $data['tendance']));
   $list_tops    = array();
   $result       = array();
 
