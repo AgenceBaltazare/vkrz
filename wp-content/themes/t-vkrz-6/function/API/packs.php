@@ -649,159 +649,11 @@ function get_tops_tendance($data){
         'operator' => 'NOT IN'
       ),
     ),
-    'meta_query'                => array(
+    'meta_query'   => array(
       array(
         'key'       => 'question_t',
         'value'     => $tendance,
-        'compare'  => 'LIKE',
-      ),
-    ),
-  ));
-  while ($tops_to_find->have_posts()) : $tops_to_find->the_post();
-    array_push($list_tops, get_the_ID());
-  endwhile;
-
-  $cat_id = 0;
-  $cat_t = get_terms(array(
-    'taxonomy'      => 'categorie',
-    'orderby'       => 'count',
-    'order'         => 'DESC',
-    'hide_empty'    => true,
-  ));
-  foreach ($cat_t as $cat) :
-    if ($tendance == mb_strtolower($cat->name)) {
-      $cat_id = $cat->term_id;
-    }
-  endforeach;
-  $tops_to_find = new WP_Query(array(
-    'post_type'                 => 'tournoi',
-    'posts_per_page'            => -1,
-    'ignore_sticky_posts'       => true,
-    'update_post_meta_cache'    => false,
-    'no_found_rows'             => true,
-    'tax_query'                 => array(
-      'relation' => 'AND',
-      array(
-        'taxonomy' => 'categorie',
-        'field'    => 'term_id',
-        'terms'    => $cat_id,
-      ),
-      array(
-        'taxonomy' => 'type',
-        'field'    => 'slug',
-        'terms'    => array('private', 'whitelabel', 'onboarding'),
-        'operator' => 'NOT IN'
-      ),
-    ),
-  ));
-  while ($tops_to_find->have_posts()) : $tops_to_find->the_post();
-    array_push($list_tops, get_the_ID());
-  endwhile;
-
-  $type_top_id = 0;
-  $type_t = get_terms(array(
-    'taxonomy'      => 'type',
-    'orderby'       => 'count',
-    'order'         => 'DESC',
-    'hide_empty'    => true,
-  ));
-  foreach ($type_t as $type) :
-    if ($tendance == mb_strtolower($type->name)) {
-      $type_top_id = $type->term_id;
-    }
-  endforeach;
-  $tops_to_find = new WP_Query(array(
-    'post_type'                 => 'tournoi',
-    'posts_per_page'            => -1,
-    'ignore_sticky_posts'       => true,
-    'update_post_meta_cache'    => false,
-    'no_found_rows'             => true,
-    'tax_query'                 => array(
-      'relation' => 'AND',
-      array(
-        'taxonomy' => 'type',
-        'field'    => 'term_id',
-        'terms'    => $type_top_id,
-      ),
-      array(
-        'taxonomy' => 'type',
-        'field'    => 'slug',
-        'terms'    => array('private', 'whitelabel', 'onboarding'),
-        'operator' => 'NOT IN'
-      ),
-    ),
-  ));
-  while ($tops_to_find->have_posts()) : $tops_to_find->the_post();
-    array_push($list_tops, get_the_ID());
-  endwhile;
-
-  $sous_cat_id = 0;
-  $sous_cat_t = get_terms(array(
-    'taxonomy'      => 'sous-cat',
-    'orderby'       => 'count',
-    'order'         => 'DESC',
-    'hide_empty'    => true,
-  ));
-  foreach ($sous_cat_t as $sous_cat) :
-    if ($tendance == mb_strtolower($sous_cat->name)) {
-      $sous_cat_id = $sous_cat->term_id;
-    }
-  endforeach;
-  $tops_to_find = new WP_Query(array(
-    'post_type'                 => 'tournoi',
-    'posts_per_page'            => -1,
-    'ignore_sticky_posts'       => true,
-    'update_post_meta_cache'    => false,
-    'no_found_rows'             => true,
-    'tax_query'                 => array(
-      'relation' => 'AND',
-      array(
-        'taxonomy' => 'sous-cat',
-        'field'    => 'term_id',
-        'terms'    => $sous_cat_id,
-      ),
-      array(
-        'taxonomy' => 'type',
-        'field'    => 'slug',
-        'terms'    => array('private', 'whitelabel', 'onboarding'),
-        'operator' => 'NOT IN'
-      ),
-    ),
-  ));
-  while ($tops_to_find->have_posts()) : $tops_to_find->the_post();
-    array_push($list_tops, get_the_ID());
-  endwhile;
-
-  $concept_id = 0;
-  $concept_t = get_terms(array(
-    'taxonomy'      => 'tag',
-    'orderby'       => 'name',
-    'order'         => 'ASC',
-    'hide_empty'    => true,
-  ));
-  foreach ($concept_t as $concept) :
-    if ($tendance == mb_strtolower($concept->name)) {
-      $concept_id = $concept->term_id;
-    }
-  endforeach;
-  $tops_to_find = new WP_Query(array(
-    'post_type'                 => 'tournoi',
-    'posts_per_page'            => -1,
-    'ignore_sticky_posts'       => true,
-    'update_post_meta_cache'    => false,
-    'no_found_rows'             => true,
-    'tax_query'                 => array(
-      'relation' => 'AND',
-      array(
-        'taxonomy' => 'tag',
-        'field'    => 'term_id',
-        'terms'    => $concept_id,
-      ),
-      array(
-        'taxonomy' => 'type',
-        'field'    => 'slug',
-        'terms'    => array('private', 'whitelabel', 'onboarding'),
-        'operator' => 'NOT IN'
+        'compare'   => 'LIKE',
       ),
     ),
   ));
@@ -858,42 +710,28 @@ function get_tops_tendance($data){
     array_push($list_tops, get_field('id_tournoi_c'));
   endwhile;
 
-  $list_tops_unique = array_unique($list_tops);
-
-  if (!empty($list_tops_unique)) {
-    $tops_unique_to_find = new WP_Query(array(
-      'post_type'                 => 'tournoi',
-      'posts_per_page'            => -1,
-      'ignore_sticky_posts'       => true,
-      'update_post_meta_cache'    => false,
-      'no_found_rows'             => true,
-      'post__in'                  => $list_tops_unique,
-      'tax_query'                 => array(
-        array(
-          'taxonomy' => 'type',
-          'field'    => 'slug',
-          'terms'    => array('private', 'whitelabel', 'onboarding'),
-          'operator' => 'NOT IN'
-        ),
-      ),
-    ));
-  }
-
-  $tops_already_tweet = get_field('liste_des_tops_tweetes', 'options');
-
-  foreach($list_tops as $id_top){
-    $top_info = get_top_infos($id_top);
-    $url_top  = $top_info['top_url'] . "?utm=monitor";
-    if(!in_array($id_top, json_decode($tops_already_tweet))){
-      array_push($result, array(
-        "id_top"        => $id_top,
-        "tweet"         => "#" . $tendance . " - " . $top_info['top_question'] . " 👉 " . $url_top,
-      ));
-    }
-  }
+  $list_tops_unique   = array_unique($list_tops);
   
-  update_field('liste_des_tops_tweetes', json_encode($list_tops), 'options');
+  // INSERT INTO BDD
+  global $wpdb;     
+  $table_name = 'boteurz_top';
 
+  foreach($list_tops_unique as $id_top){
+
+    $list_tops_already_tweet = $wpdb->get_results("SELECT * FROM $table_name WHERE id_top='$id_top' AND date_search > now() - interval 24 hour");
+
+    if(!$list_tops_already_tweet){
+      $top_info = get_top_infos($id_top);
+      $url_top  = $top_info['top_url'] . "?utm=boteurz";
+      if ($url_top) {
+        array_push($result, array(
+          "id_top"        => $id_top,
+          "tweet"         => "#" . $tendance . " - " . $top_info['top_question'] . " 👉 " . $url_top,
+        ));
+      }
+      $wpdb->insert($table_name, array('id_top' => $id_top, 'tendance' => $tendance)); 
+    }
+
+  }
   return $result;
-  return get_field('liste_des_tops_tweetes', 'options');
 }

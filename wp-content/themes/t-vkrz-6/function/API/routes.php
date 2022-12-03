@@ -115,7 +115,7 @@ add_action('rest_api_init', function () {
     'methods' => 'GET',
     'callback' => 'get_tops_tendance',
     'args' => [
-      'tendande'
+      'tendance'
     ]
   ));
 
