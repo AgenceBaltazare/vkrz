@@ -3,7 +3,7 @@
   <div class="navbar-header">
     <ul class="nav navbar-nav flex-row">
       <li class="nav-item mr-auto">
-        <a class="navbar-brand" href="<?php bloginfo('url'); ?>/">
+        <a class="navbar-brand" href="<?php bloginfo('url'); ?>">
           <h2 class="brand-text">
             <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/logo-vkrz.png" alt="VAINKEURZ logo" class="img-fluid">
           </h2>
@@ -125,7 +125,7 @@
         <span>Des lots à gagner</span> <i data-feather="more-horizontal"></i>
       </li>
       <li class="nav-item">
-        <a class="d-flex align-items-center" href="<?php the_permalink(get_page_by_path('tops-sponso')); ?>/">
+        <a class="d-flex align-items-center" href="<?php the_permalink(get_page_by_path('tops-sponso')); ?>">
           <span class="ico">
             <span class="va va-wrapped-gift va-lg"></span>
           </span>
@@ -135,7 +135,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="d-flex align-items-center" href="<?php the_permalink(get_page_by_path('tas')); ?>/">
+        <a class="d-flex align-items-center" href="<?php the_permalink(get_page_by_path('tas')); ?>">
           <span class="ico">
             <span class="va va-four-leaf-clover va-lg"></span>
           </span>
@@ -145,7 +145,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="d-flex align-items-center" href="<?php the_permalink(get_page_by_path('shop')); ?>/">
+        <a class="d-flex align-items-center" href="<?php the_permalink(get_page_by_path('shop')); ?>">
           <span class="ico">
             <span class="va va-shopping va-lg"></span>
           </span>
@@ -158,7 +158,7 @@
         <span>VAINKEURZ</span> <i data-feather="more-horizontal"></i>
       </li>
       <li class="nav-item">
-        <a class="d-flex align-items-center" href="<?php the_permalink(504055); ?>/">
+        <a class="d-flex align-items-center" href="<?php the_permalink(504055); ?>">
           <span class="ico">
             <span class="va va-light-bulb va-lg"></span>
           </span>
