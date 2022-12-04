@@ -77,7 +77,9 @@ $roles = (array) $user->roles;
                       </div>
                     </form>
                     <p class="merci-proposition d-none">
-                      Un grand merci pour ta proposition 💜 Tu seras tenu prévenu par mail si ton idée est validey et un autre mail quand le Top sera en ligne 🚀
+                      💜 Un grand merci pour ta proposition !
+                      <br>
+                      Tu seras prévenu par mail si ton idée est validey et un autre mail quand ton Top sera en ligne 🚀
                     </p>
                     <p class="prop-alert d-none">
                       <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
