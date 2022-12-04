@@ -651,6 +651,17 @@ html .content {
     color: #fff !important;
 }
 
+.btn-secondary {
+    border-color: $rose !important;
+    background-color: $rose !important;
+    color: #fff !important;
+    &:hover, &:focus, &:active{
+        border-color: $rose !important;
+        background-color: $rose !important;
+        color: #fff !important;
+    }
+}
+
 .btn-tweet{
     text-transform: uppercase;
     font-weight: bold;
@@ -1571,4 +1582,12 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
       opacity: 0;
     }
   }
+}
+
+.divider{
+    height: 1px;
+    background: #6719b9;
+    width: 100%;
+    display: block;
+    margin: 20px auto;
 }

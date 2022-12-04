@@ -41,6 +41,24 @@
 
 @media (max-width: 768px) {
 
+    .page-template-propositions-top{
+        .heading-title{
+            text-align: center;
+            font-size: 1.5rem;
+        }
+    }
+    .card-header{
+        margin-bottom: 15px;
+        display: block !important;
+        h3{
+            text-align: center;
+        }
+    }
+
+    .mt-xs-2{
+        margin-top: 1.5rem!important;
+    }
+
     .vainkeur-table {
         display: flex;
         flex-direction: column;

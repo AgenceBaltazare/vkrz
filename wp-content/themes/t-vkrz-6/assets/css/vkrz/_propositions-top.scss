@@ -35,10 +35,10 @@
     }
 
     #form-propositions {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px;
+
+      .cta-form-creator{
+        align-items: flex-end;  
+      }
 
       &.disable {
         pointer-events: none;
@@ -68,17 +68,6 @@
         flex: 1;
       }
 
-      .proposer_btn-input {
-        margin-top: auto;
-
-        .btn {
-          background-color: $rose !important;
-          border: none !important;
-          box-shadow: none !important;
-          font-weight: bold;
-        }
-      }
-
       @media screen and (max-width: 782px) {
         flex-direction: column;
 
@@ -102,31 +91,18 @@
   }
 
   .deviens-createur-wrapper {
-    background-color: $c5;
+    border: none !important;
+    border-radius: 0.358rem;
+    background: linear-gradient(to bottom right, #6F1CB5, #5E16BF) !important;
+    transition: 0.3s border-bottom;
     padding: 1rem;
-    border-radius: 2px;
 
-    .heading h3 {
-      font-size: 2rem;
-      font-weight: bold;
-    }
-
-    .text {
-      
-      p {
-        margin: 0 !important;
+    .heading{
+      h3{
+        font-weight: bold;
       }
     }
 
-    .btn {
-      margin: 1rem auto;
-      display: block;
-      width: 50%;
-      
-      background: $c6;
-      text-transform: uppercase;
-      font-weight: bold;
-    }
   }
 
   .prop-alert {
@@ -143,5 +119,20 @@
   .vainkeur-card .btn {
     background: transparent;
     border-radius: 6px;
+  }
+}
+
+.cta-creator-fixe-mobile{
+  a{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    display: block;
+    border-radius: 0;
+    font-weight: bold;
+    text-transform: uppercase;
+    line-height: 23px;
   }
 }

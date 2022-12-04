@@ -911,6 +911,17 @@ html .content {
   color: #fff !important;
 }
 
+.btn-secondary {
+  border-color: #f4167f !important;
+  background-color: #f4167f !important;
+  color: #fff !important;
+}
+.btn-secondary:hover, .btn-secondary:focus, .btn-secondary:active {
+  border-color: #f4167f !important;
+  background-color: #f4167f !important;
+  color: #fff !important;
+}
+
 .btn-tweet {
   text-transform: uppercase;
   font-weight: bold;
@@ -1787,6 +1798,14 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
     transform: scale(1.1);
     opacity: 0;
   }
+}
+
+.divider {
+  height: 1px;
+  background: #6719b9;
+  width: 100%;
+  display: block;
+  margin: 20px auto;
 }
 
 .page-template-monitor .list-vainkeur-monitor {
@@ -4585,11 +4604,8 @@ select:-webkit-autofill:focus {
   padding: 0 !important;
   margin: 1rem 0 2rem;
 }
-.propositions-top-wrapper .form-propositions-card #form-propositions {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 8px;
+.propositions-top-wrapper .form-propositions-card #form-propositions .cta-form-creator {
+  align-items: flex-end;
 }
 .propositions-top-wrapper .form-propositions-card #form-propositions.disable {
   pointer-events: none;
@@ -4619,15 +4635,6 @@ select:-webkit-autofill:focus {
 .propositions-top-wrapper .form-propositions-card #form-propositions .question_top-input {
   flex: 1;
 }
-.propositions-top-wrapper .form-propositions-card #form-propositions .proposer_btn-input {
-  margin-top: auto;
-}
-.propositions-top-wrapper .form-propositions-card #form-propositions .proposer_btn-input .btn {
-  background-color: #f4167f !important;
-  border: none !important;
-  box-shadow: none !important;
-  font-weight: bold;
-}
 @media screen and (max-width: 782px) {
   .propositions-top-wrapper .form-propositions-card #form-propositions {
     flex-direction: column;
@@ -4647,23 +4654,13 @@ select:-webkit-autofill:focus {
   font-weight: bold;
 }
 .propositions-top-wrapper .deviens-createur-wrapper {
-  background-color: #7367f0;
+  border: none !important;
+  border-radius: 0.358rem;
+  background: linear-gradient(to bottom right, #6F1CB5, #5E16BF) !important;
+  transition: 0.3s border-bottom;
   padding: 1rem;
-  border-radius: 2px;
 }
 .propositions-top-wrapper .deviens-createur-wrapper .heading h3 {
-  font-size: 2rem;
-  font-weight: bold;
-}
-.propositions-top-wrapper .deviens-createur-wrapper .text p {
-  margin: 0 !important;
-}
-.propositions-top-wrapper .deviens-createur-wrapper .btn {
-  margin: 1rem auto;
-  display: block;
-  width: 50%;
-  background: #2a1f70;
-  text-transform: uppercase;
   font-weight: bold;
 }
 .propositions-top-wrapper .prop-alert {
@@ -4678,6 +4675,19 @@ select:-webkit-autofill:focus {
 .propositions-top-wrapper .vainkeur-card .btn {
   background: transparent;
   border-radius: 6px;
+}
+
+.cta-creator-fixe-mobile a {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  display: block;
+  border-radius: 0;
+  font-weight: bold;
+  text-transform: uppercase;
+  line-height: 23px;
 }
 
 .topnamebestof {
@@ -6594,6 +6604,20 @@ select:-webkit-autofill:focus {
   }
 }
 @media (max-width: 768px) {
+  .page-template-propositions-top .heading-title {
+    text-align: center;
+    font-size: 1.5rem;
+  }
+  .card-header {
+    margin-bottom: 15px;
+    display: block !important;
+  }
+  .card-header h3 {
+    text-align: center;
+  }
+  .mt-xs-2 {
+    margin-top: 1.5rem !important;
+  }
   .vainkeur-table {
     display: flex;
     flex-direction: column;
