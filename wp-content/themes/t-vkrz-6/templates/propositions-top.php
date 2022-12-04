@@ -165,14 +165,14 @@ $roles = (array) $user->roles;
               </div>
               <div class="text">
                 <p>
-                  Devenir un créateur 👨‍🎤 sur VAINKEURZ, c'est se faire plaisir en créant les Tops de ton choix mais également faire plaisir à tout ceux qui enchaineront leurs meilleures TopList grâce à toi, et ça c'est BÔ
+                  Devenir un créateur 👨‍🎤 sur VAINKEURZ, c'est se faire plaisir en créant les Tops de ton choix mais également faire plaisir à tous ceux qui enchaineront leurs meilleures TopList grâce à toi, et ça c'est BÔ !!!
                   <br>
                 </p>
                 <p>
                   Et au délà de la gloire 🙌 que ça va te procurer, tu accumuleras aussi un pakey de KEURZ 💎
                   En effet, tu gagnes des KEURZ à chaque fois que vainkeur vote et termine un de tes Tops.
                 </p>
-                <p>Mais tu connais, la passion avant tout 🤑 comme dirait le LeChefOtaku</p>
+                <p>Mais tu connais, la passion avant tout 🤑 comme dirait LeChefOtaku.</p>
               </div>
               <div class="cta-creator mt-2 d-none d-sm-block">
                 <a href="<?php the_permalink(get_page_by_path('recrutement')); ?>" class="btn btn-secondary waves-effect">Top, je veux devenir un créateur</a>
