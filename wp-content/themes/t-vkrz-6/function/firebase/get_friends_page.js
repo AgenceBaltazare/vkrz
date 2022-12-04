@@ -191,13 +191,14 @@ import {
                       <h4>${map.get(item["uuid"]).pseudo}</h4>
                       <span class="medailles">
                           ${map.get(item["uuid"]).level}
-                          ${!map.get(item["uuid"]).user_role_administrator
+                          ${map.get(item["uuid"]).user_role === "administrator"
                             ? '<span class="va va-vkrzteam va-z-15" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ"></span>'
-                            : map.get(item["uuid"]).user_role_administrator
+                            : ""
                           } 
-                          ${!map.get(item["uuid"]).user_role_author
+                          ${map.get(item["uuid"]).user_role === "administrator" ||
+                          map.get(item["uuid"]).user_role === "author"
                             ? '<span class="va va-man-singer va-z-15" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops"></span>'
-                            : map.get(item["uuid"]).user_role_author
+                            : ""
                           }
                       </span>
                   </span>

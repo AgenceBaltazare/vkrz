@@ -193,6 +193,8 @@ endforeach;
                     </div>
                     <div class="popup-overlay participation-confirme d-none">
                       <div class="popup participate-popup finish-participate-popup scale-up-center">
+                        <button class="close-popup" id="close-popup">&times;</button>
+
                         <div class="popup-body">
                           <div class="popup-body__left">
                             <h3>Participation confirmée ! <span class="va va-sign-of-the-horns va-lg"></span></h3>
@@ -315,22 +317,14 @@ endforeach;
                             </div>
                           </div>
                         </div>
-
-                        <div class="popup-footer">
-                          <hr class="m-0">
-
-                          <button id="close-popup">
-                            <span class="va va-backhand-index-pointing-right va-md"></span>
-                            Ne pas partager et voir ma TopList
-                            <span class="va va-backhand-index-pointing-right va-md"></span>
-                          </button>
-                        </div>
                       </div>
                     </div>
                   <?php endif; ?>
                 <?php else : ?>
                   <div class="popup-overlay">
                     <div class="popup participate-popup finish-participate-popup scale-up-center">
+                      <button class="close-popup" id="close-popup">&times;</button>
+
                       <div class="popup-body">
                         <div class="popup-body__left">
                           <h3>Participation confirmée ! <span class="va va-sign-of-the-horns va-lg"></span></h3>
@@ -452,16 +446,6 @@ endforeach;
                             </div>
                           </div>
                         </div>
-                      </div>
-
-                      <div class="popup-footer">
-                        <hr class="m-0">
-
-                        <button id="close-popup">
-                          <span class="va va-backhand-index-pointing-right va-md"></span>
-                          Ne pas partager et voir ma TopList
-                          <span class="va va-backhand-index-pointing-right va-md"></span>
-                        </button>
                       </div>
                     </div>
                   </div>

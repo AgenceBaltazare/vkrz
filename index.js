@@ -6,7 +6,7 @@ const topsIdeasWebhook = new WebhookClient({ url: 'https://discord.com/api/webho
 
 // PARAMETERS
 const typeMessage = process.argv[2];
-const data        = JSON.parse(process.argv[3]);
+const data        = JSON.parse(process.argv[3].replaceAll("&rsquo;", "'"));
 
 // VARIABLES
 let embed, message; 
@@ -30,7 +30,7 @@ switch(typeMessage) {
 			content: `
 			👉  ${data.proposition}	
 			`,
-			username: "VAINKEUR",
+			username: "NOTEURZ 🤖",
 			avatarURL: 'https://i.imgur.com/81uHAdJ.png',
 			embeds: [embed],
 		};
@@ -42,9 +42,9 @@ switch(typeMessage) {
 	case 'newTop' : 
 
 		embed = new EmbedBuilder()
-			.setTitle(data.top_title)
+			.setTitle(data.top_full_title)
 			.setColor(0xB237F3)
-			.setDescription(`${data.top_creator} a publié un nouveau Top!`)
+			.setDescription(data.top_question)
 			.setTimestamp(Date.now())
 			.setAuthor({
 				url: data.top_author_url,
@@ -52,12 +52,7 @@ switch(typeMessage) {
 				name: data.top_creator
 			})
 			.setURL(data.top_url)
-			.setThumbnail(data.top_visuel)
 			.setImage(data.top_visuel)
-			.setFooter({
-				iconURL: data.top_author_img,
-				text: data.top_creator
-			})
 
 		message = {
 			content: data.top_title,
@@ -66,7 +61,7 @@ switch(typeMessage) {
 Par ${data.top_creator}
 ${data.top_url}
 		`,
-			username: "VAINKEUR",
+			username: "NOTEURZ 🤖",
 			avatarURL: 'https://i.imgur.com/81uHAdJ.png',
 			embeds: [embed],
 		};
