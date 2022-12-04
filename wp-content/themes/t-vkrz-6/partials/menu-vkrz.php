@@ -48,16 +48,16 @@
       </li>
 
       <?php if (!is_page(get_page_by_path('rechercher'))) : ?>
-      <li class="mx-auto boxtosearch mb-2" style="width: 80%;">
-        <form action="<?= the_permalink(get_page_by_path('rechercher')); ?>" method="GET" class="mt-2 d-flex rechercher-form" autocomplete="off">
-          <input type="search" name="term" id="term" class="form-control rechercher-input" placeholder="Rechercher..." minlength="3" required>
-          <button type="submit" class="form-control lead go-input">
-            <span class="ico ico-search va va-loupe va-lg"></span>
-          </button>
-        </form>
-      </li>
+        <li class="mx-auto boxtosearch mb-2" style="width: 80%;">
+          <form action="<?= the_permalink(get_page_by_path('rechercher')); ?>" method="GET" class="mt-2 d-flex rechercher-form" autocomplete="off">
+            <input type="search" name="term" id="term" class="form-control rechercher-input" placeholder="Rechercher..." minlength="3" required>
+            <button type="submit" class="form-control lead go-input">
+              <span class="ico ico-search va va-loupe va-lg"></span>
+            </button>
+          </form>
+        </li>
       <?php endif; ?>
-      
+
       <li class="nav-item item-search">
         <a class="d-flex align-items-center" href="#">
           <span class="ico">
@@ -157,6 +157,16 @@
       <li class="navigation-header">
         <span>VAINKEURZ</span> <i data-feather="more-horizontal"></i>
       </li>
+      <li class="nav-item">
+        <a class="d-flex align-items-center" href="<?php the_permalink(504055); ?>/">
+          <span class="ico">
+            <span class="va va-light-bulb va-lg"></span>
+          </span>
+          <span class="menu-title text-truncate">
+            Proposer des Tops
+          </span>
+        </a>
+      </li>
       <li class="nav-item has-sub">
         <a class="d-flex align-items-center" href="#">
           <span class="ico">
@@ -206,16 +216,6 @@
           </span>
           <span class="menu-title text-truncate">
             Monitor
-          </span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="d-flex align-items-center" href="<?php the_permalink(get_page_by_path('recrutement')); ?>/">
-          <span class="ico">
-            <span class="va va-man-singer va-lg"></span>
-          </span>
-          <span class="menu-title text-truncate">
-            Créer des Tops
           </span>
         </a>
       </li>
