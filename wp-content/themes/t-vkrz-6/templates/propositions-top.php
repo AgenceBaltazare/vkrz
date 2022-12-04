@@ -80,6 +80,8 @@ $roles = (array) $user->roles;
                       💜 Un grand merci pour ta proposition !
                       <br>
                       Tu seras prévenu par mail si ton idée est validey et un autre mail quand ton Top sera en ligne 🚀
+                      <br><br>
+                      <button onClick="window.location.reload();" class="btn btn btn-outline-primary waves-effect">Proposer un autre Top</button>
                     </p>
                     <p class="prop-alert d-none">
                       <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
