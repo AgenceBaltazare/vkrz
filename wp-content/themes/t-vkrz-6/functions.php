@@ -81,21 +81,60 @@ function publish_top_to_discord($post_id){
 
   global $post;
 
-  if($post->post_type != 'tournoi'){
+  if($post->post_type != 'tournoi' || $post->post_status == 'publish'){
       return;
+  }
+  $post_taxonomies = array();
+  foreach(get_the_terms($post_id, 'type') as $tax ) {
+    array_push($post_taxonomies, $tax->name);
+  }
+  if(in_array("Private", $post_taxonomies)) {
+    return;
   }
 
   $id_top             = $post_id;
   $top_infos_to_send  = get_top_infos($id_top);
   $top_title          = $top_infos_to_send['top_title'];
+
+  foreach(get_the_terms($id_top, 'categorie') as $cat ) {
+    $cat_name   = $cat->name;
+
+  }
+  switch ($cat_name) {
+    case 'Sport':
+      $cat_icon = " 🏓 ";
+      break; 
+    case 'Musique':
+      $cat_icon = " 💿 ";
+      break;
+    case 'Jeux vidéo':
+      $cat_icon = " 🕹️ ";
+      break;
+    case 'Food':
+      $cat_icon = " 🥨 ";
+      break;
+    case 'Écran':
+      $cat_icon = " 📺 ";
+      break;
+    case 'Comics':
+      $cat_icon = " 🕸️ ";
+      break;
+    case 'Manga':
+      $cat_icon = " 🐲 ";
+      break;
+    case 'Autres':
+      $cat_icon = " ⚔️ ";
+      break;
+
+    default: 
+      $cat_icon = " : ";
+  }
+
+  $top_full_title     = "TOP " . $top_infos_to_send['top_number'] . $cat_icon . $top_title;
   $top_url            = get_the_permalink($id_top);
   $top_question       = $top_infos_to_send['top_question'];
+  $top_question       = str_replace("'", "&rsquo;", $top_question);
   $top_visuel         = $top_infos_to_send['top_img'];
-  foreach(get_the_terms($id_top, 'categorie') as $cat ) {
-      $cat_id     = $cat->term_id;
-      $cat_name   = $cat->name;
-  }
-  $cat_value          = get_field('icone_cat', 'term_'.$cat_id)." ".$cat_name;
 
   $creator_id         = get_post_field('post_author', $id_top);
   $creator_data       = get_user_by('ID', $creator_id);
@@ -104,12 +143,13 @@ function publish_top_to_discord($post_id){
 
   $data = (object) [
       'top_title'      => $top_title,
+      'top_full_title' => $top_full_title,
       'top_visuel'     => $top_visuel,
       'top_url'        => $top_url,
       'top_question'   => $top_question,
+      'cat_name'       => $cat_name,
       'top_author_img' => $creator_img,
       'top_creator'    => $creator_name,
-      'top_cat'        => $cat_value,
       'top_author_url' => esc_url(get_author_posts_url($creator_id))
   ];
 

@@ -1064,8 +1064,9 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
 
 .popup-overlay {
     position: fixed;
-    inset: 0;
-    min-height: 100vh;
+    top: 0;
+    left: 0;    
+    min-height: 100%;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.6);
     z-index: 100000;
@@ -1082,18 +1083,18 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
       margin: 0 auto;
       max-width: 400px;
       width: 100%;
-      padding: 1rem;
+      padding: 8px;
       background: #36036D;
       background: linear-gradient(to bottom right, #36036D, #7B35F2);
       border-radius: 12px;
       z-index: 1001;
 
       .popup-body {
-        padding: 1rem 2rem .4rem;
+        padding: 6px 2rem;
       }
 
       .popup-footer {
-        margin-top: 2.4rem;
+        margin-top: 1.2rem;
         width: 90%;
 
         @media (max-width: 768px) {
@@ -1130,7 +1131,7 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   
       h3 {
         font-size: 2.5rem;
-        margin: .8rem 0 .4rem;
+        margin-bottom: 8px;
   
         @media (max-width: 768px) {
           font-size: 1.8rem;
@@ -1171,6 +1172,12 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
         line-height: 100%;
         margin-top: -1rem;
         padding: 0;
+      }
+      #close-popup {
+        position: absolute;
+        top: 18px;
+        right: 10px;
+        font-size: 1.4rem;
       }
   
       .rs {
