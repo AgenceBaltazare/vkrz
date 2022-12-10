@@ -81,7 +81,6 @@ function vkrz_push_transaction($id_transaction){
                 'acheteur_pseudo'  => $user_pseudo,
             )
         );
-
         wp_remote_post($url, $args);
     }
 }
@@ -90,7 +89,7 @@ function vkrz_push_transaction($id_transaction){
 function vkrz_push_event($event){
 
     if (env() != "local") {
-        $url    = "https://hook.integromat.com/t4m1rces3mtdluer1f9g91lemug5497y";
+        $url    = "https://hook.eu1.make.com/fd87p4hsv6udreh2lcw9j1mldh9x8atf";
         $args   = array(
             'body' => $event
         );

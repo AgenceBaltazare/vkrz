@@ -34,14 +34,14 @@ function increase_vote_counter($id_vainkeur)
         $vkrz_vote_counter = get_field('nb_total_votes', 'options');
         update_field('nb_total_votes', $vkrz_vote_counter + 1, 'options');
 
-        if ($vkrz_vote_counter + 1 === 10000000) {
+        if ($vkrz_vote_counter + 1 === 5000000) {
             $uuid_winner = get_field('uuid_user_vkrz', $id_vainkeur);
-            update_field('50k_top_uuid', $uuid_winner, 'options');
-            update_field('50k_tops_id_vainkeur', $id_vainkeur, 'options');
-            update_field('50k_tops_date', date('d/m/Y H:i:s'), 'options');
+            update_field('uuid_5m_votes', $uuid_winner, 'options');
+            update_field('id_vkrz_5m_votes', $id_vainkeur, 'options');
+            update_field('date_5m_votes', date('d/m/Y H:i:s'), 'options');
 
             $event = array(
-                'event_name' => '🚨 Le 10 000 000ème vote vient d\'être fait 🥳 🥳 🥳',
+                'event_name' => '🚨 Le 5 000 000ème vote vient d\'être fait 🥳 🥳 🥳',
                 'event_illu' => 'https://vainkeurz.com/wp-content/uploads/2021/08/giphy.gif'
             );
             vkrz_push_event($event);
@@ -106,6 +106,19 @@ function increase_top_counter($id_vainkeur)
         // Increase VAINKEURZ total tops
         $vkrz_top_counter = get_field('nb_total_tops', 'options');
         update_field('nb_total_tops', $vkrz_top_counter + 1, 'options');
+
+        if ($vkrz_top_counter + 1 === 200000) {
+            $uuid_topeur = get_field('uuid_user_vkrz', $id_vainkeur);
+            update_field('200k_top_uuid', $uuid_topeur, 'options');
+            update_field('200k_tops_id_vainkeur', $id_vainkeur, 'options');
+            update_field('200k_tops_date', date('d/m/Y H:i:s'), 'options');
+
+            $event = array(
+                'event_name' => '🚨 La 200 000ème TopList vient d\'être faite 🥳 🥳 🥳',
+                'event_illu' => 'https://vainkeurz.com/wp-content/uploads/2021/08/giphy.gif'
+            );
+            vkrz_push_event($event);
+        }
     }
 }
 
