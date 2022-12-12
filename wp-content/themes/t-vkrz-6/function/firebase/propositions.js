@@ -187,6 +187,7 @@ const getPropositions = async function() {
                 await updateDoc(updateClick, json);
                 await getPropositions();
 
+                if(currentUuid === button.dataset.useruuid) return false;
                 try {
                   const notification = await addDoc(
                     collection(database, "notifications"),
@@ -209,6 +210,7 @@ const getPropositions = async function() {
                 } catch (error) {
                   console.error("Error adding document: ", error);
                 }
+
               }
               updateDocFunc();
             });
@@ -230,6 +232,7 @@ const getPropositions = async function() {
                 await updateDoc(updateClick, json);
                 await getPropositions();
 
+                if(currentUuid === button.dataset.useruuid) return false;
                 try {
                   const notification = await addDoc(
                     collection(database, "notifications"),
@@ -252,6 +255,7 @@ const getPropositions = async function() {
                 } catch (error) {
                   console.error("Error adding document: ", error);
                 }
+
               }
               updateDocFunc();
             });
