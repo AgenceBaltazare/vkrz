@@ -94,11 +94,15 @@ const getPropositions = async function() {
             </div>
           `
         } else if (proposition.data().topValide === false) {
-          topValidOrNot = `
-            ${userCanValidateOrNot ? `<span class="d-none">valider</span>
+
+          if(currentUserRole === "administrator") {
+            topValidOrNot = `<span class="d-none">valider</span>
             <input type="submit" value="Valider" class="btn btn-primary waves-effect waves-float waves-light valider-proposition-top w-75 mb-50" data-userid=${dataUser.id_user} data-useruuid=${proposition.data().userUuid} data-iddocument="${proposition.id}">
-            <input type="submit" value="Refuser" class="btn btn-danger waves-effect waves-float waves-light refuser-proposition-top w-75" data-iddocument="${proposition.id}">` : 'En cours de validation… 🚧'}
-          `
+            <input type="submit" value="Refuser" class="btn btn-danger waves-effect waves-float waves-light refuser-proposition-top w-75" data-iddocument="${proposition.id}">`
+          } else {
+            topValidOrNot = `En cours de validation… 🚧`
+          }
+
         } 
 
         rows += `
