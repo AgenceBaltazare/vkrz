@@ -93,16 +93,16 @@ const getPropositions = async function() {
               </a>
             </div>
           `
-        } else if(proposition.data().userUuid === currentUuid && userCanValidateOrNot === true && proposition.data().topValide === false)  {
-          topValidOrNot = `
-            Tu peux pas valider ton propre Top ! <span class="va va-cheese3 va-lg"></span>
-          `
         } else if (proposition.data().topValide === false) {
-          topValidOrNot = `
-            ${userCanValidateOrNot ? `<span class="d-none">valider</span>
+
+          if(currentUserRole === "administrator") {
+            topValidOrNot = `<span class="d-none">valider</span>
             <input type="submit" value="Valider" class="btn btn-primary waves-effect waves-float waves-light valider-proposition-top w-75 mb-50" data-userid=${dataUser.id_user} data-useruuid=${proposition.data().userUuid} data-iddocument="${proposition.id}">
-            <input type="submit" value="Refuser" class="btn btn-danger waves-effect waves-float waves-light refuser-proposition-top w-75" data-iddocument="${proposition.id}">` : 'En cours de validation… 🚧'}
-          `
+            <input type="submit" value="Refuser" class="btn btn-danger waves-effect waves-float waves-light refuser-proposition-top w-75" data-iddocument="${proposition.id}">`
+          } else {
+            topValidOrNot = `En cours de validation… 🚧`
+          }
+
         } 
 
         rows += `
@@ -124,7 +124,7 @@ const getPropositions = async function() {
                 <div class="font-weight-bold">
                   <div class="media-body">
                     <div class="media-heading">
-                      <h6 class="cart-item-title mb-0"> TOP ${proposition.data().themeTopPropose} ${proposition.data().questionTop}  </h6>
+                      <h6 class="cart-item-title mb-0">${proposition.data().themeTopPropose} - ${proposition.data().questionTop}  </h6>
                     </div>
                   </div>
                 </div>
