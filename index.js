@@ -55,12 +55,6 @@ switch(typeMessage) {
 			.setImage(data.top_visuel)
 
 		message = {
-			content: data.top_title,
-			content: `
-			👉 ${data.top_title}
-Par ${data.top_creator}
-${data.top_url}
-		`,
 			username: "NOTEURZ 🤖",
 			avatarURL: 'https://i.imgur.com/81uHAdJ.png',
 			embeds: [embed],

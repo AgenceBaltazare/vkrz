@@ -93,10 +93,6 @@ const getPropositions = async function() {
               </a>
             </div>
           `
-        } else if(proposition.data().userUuid === currentUuid && userCanValidateOrNot === true && proposition.data().topValide === false)  {
-          topValidOrNot = `
-            Tu peux pas valider ton propre Top ! <span class="va va-cheese3 va-lg"></span>
-          `
         } else if (proposition.data().topValide === false) {
           topValidOrNot = `
             ${userCanValidateOrNot ? `<span class="d-none">valider</span>
@@ -124,7 +120,7 @@ const getPropositions = async function() {
                 <div class="font-weight-bold">
                   <div class="media-body">
                     <div class="media-heading">
-                      <h6 class="cart-item-title mb-0"> TOP ${proposition.data().themeTopPropose} ${proposition.data().questionTop}  </h6>
+                      <h6 class="cart-item-title mb-0">${proposition.data().themeTopPropose} - ${proposition.data().questionTop}  </h6>
                     </div>
                   </div>
                 </div>

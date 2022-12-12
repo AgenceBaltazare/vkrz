@@ -193,7 +193,7 @@ endforeach;
                     </div>
                     <div class="popup-overlay participation-confirme d-none">
                       <div class="popup participate-popup finish-participate-popup scale-up-center">
-                        <button class="close-popup" id="close-popup">&times;</button>
+                        <button class="close-popup only-x" id="close-popup">&times;</button>
 
                         <div class="popup-body">
                           <div class="popup-body__left">
@@ -323,7 +323,7 @@ endforeach;
                 <?php else : ?>
                   <div class="popup-overlay">
                     <div class="popup participate-popup finish-participate-popup scale-up-center">
-                      <button class="close-popup" id="close-popup">&times;</button>
+                      <button class="close-popup only-x" id="close-popup">&times;</button>
 
                       <div class="popup-body">
                         <div class="popup-body__left">
