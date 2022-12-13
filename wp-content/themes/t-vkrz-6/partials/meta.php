@@ -69,25 +69,28 @@
         $l++;
         if ($l == 4) break;
     }
-    if (get_field('bannerbear_t', $id_top)) {
-        $bannerbear_id = get_field('bannerbear_t', $id_top);
-    } else {
-        if (get_field('c_rounded_t', $id_top)) {
-            if($top_infos['top_number'] < 3) {
-                $bannerbear_id = "w7vokBAex70ElnMZ1Q"; // banner top 2 rond
-            }
-            else {
-                $bannerbear_id = "O8DLd4begA8yl5apNz"; // banner top 3 rond
-            }
-        } else {
-            if($top_infos['top_number'] < 3) {
-                $bannerbear_id = "nYaKxNMeowxeW9BXPl"; // banner top 2 carré
-            }
-            else {
-                $bannerbear_id = "5w6PKMLVwJjexG4DQg"; // banner top 3 carré
-            }
-        }
-    }
+
+    // if (get_field('bannerbear_t', $id_top)) {
+    //     $bannerbear_id = get_field('bannerbear_t', $id_top);
+    // } else {
+    //     if (get_field('c_rounded_t', $id_top)) {
+    //         if($top_infos['top_number'] < 3) {
+    //             $bannerbear_id = "w7vokBAex70ElnMZ1Q"; // banner top 2 rond
+    //         }
+    //         else {
+    //             $bannerbear_id = "O8DLd4begA8yl5apNz"; // banner top 3 rond
+    //         }
+    //     } else {
+    //         if($top_infos['top_number'] < 3) {
+    //             $bannerbear_id = "nYaKxNMeowxeW9BXPl"; // banner top 2 carré
+    //         }
+    //         else {
+    //             $bannerbear_id = "5w6PKMLVwJjexG4DQg"; // banner top 3 carré
+    //         }
+    //     }
+    // }
+    $bannerbear_id = "BRG38wPyGzoVYd2K7O";
+    
     $api_key    = "3I6bGZa3zyHsiZL2toeoagtt";
     $base       = "https://on-demand.bannerbear.com/signedurl/" . $bannerbear_id . "/image.jpg";
     $toptitle   = str_replace("&rsquo;", "'", $top_infos['top_title']);
