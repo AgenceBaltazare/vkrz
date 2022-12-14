@@ -55,11 +55,11 @@
         place-items: center;
         font-size: 1.6rem;
         border-radius: 50%;
-        border: #7367F0 2px solid;
+        border: $c5 2px solid;
         width: 50px;
         height: 50px;
         transition: .3s all;
-        color: #7367F0;
+        color: $c5;
 
         @media (max-width: 768px) {
           font-size: 1.1rem;
@@ -68,8 +68,8 @@
         }
 
         &:hover {
-          border: #f4167f 2px solid;
-          color: #f4167f !important;
+          border: $rose 2px solid;
+          color: $rose !important;
         }
       }
     }
@@ -80,6 +80,6 @@
   }
 
   h6 {
-    color: #7367F0;
+    color: $c5;
   }
 }

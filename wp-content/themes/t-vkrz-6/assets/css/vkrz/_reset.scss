@@ -122,7 +122,7 @@ body {
     .page-item.active {
         background: transparent !important;
         .page-link {
-            background-color: #7367f0 !important;
+            background-color: $c5 !important;
         }
     }
 }
@@ -227,7 +227,7 @@ div.dataTables_wrapper div.dataTables_length label {
 }
 
 .main-menu.menu-dark .navigation li.nav-item a.sociallink:hover {
-    background: #7367f0 !important;
+    background: $c5 !important;
     color: #fff !important;
 
     i {
@@ -236,7 +236,7 @@ div.dataTables_wrapper div.dataTables_length label {
 }
 
 a.sociallink:hover {
-    background: #7367f0 !important;
+    background: $c5 !important;
     color: #fff !important;
 
     i {

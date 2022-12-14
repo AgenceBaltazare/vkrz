@@ -1,5 +1,5 @@
 .text-rose {
-  color: #f4167f !important;
+  color: #78ac3e !important;
 }
 
 .big-cat .heading-cat h2 {
@@ -27,12 +27,12 @@
   }
 }
 .btn-rose {
-  background: #f4167f !important;
-  border-color: #f4167f !important;
+  background: #78ac3e !important;
+  border-color: #78ac3e !important;
 }
 .btn-rose:hover {
-  background: #f4167f !important;
-  border-color: #f4167f !important;
+  background: #78ac3e !important;
+  border-color: #78ac3e !important;
 }
 
 .mt-10p {
@@ -75,7 +75,7 @@
 }
 
 .auth-register-form h3 {
-  color: #7367f0;
+  color: #6cb7ef;
   -moz-text-align-last: left;
        text-align-last: left;
   text-transform: uppercase;

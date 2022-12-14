@@ -1,6 +1,9 @@
 <?php
 global $id_top;
 ?>
+<div class="snow-container" style="background-image: url('<?= bloginfo('template_directory'); ?>/assets/images/vkrz/snow.svg ?>');">
+</div>
+
 <?php if (!get_field('marqueblanche_t', $id_top)) : ?>
     <div class="sidenav-overlay"></div>
     <footer class="footer footer-static footer-light">

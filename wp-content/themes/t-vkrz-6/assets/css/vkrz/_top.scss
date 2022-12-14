@@ -335,7 +335,7 @@
 
     .btn-outline-primary {
         &:hover {
-            background: #7367f0 !important;
+            background: $c5 !important;
             color: #fff !important;
         }
     }
@@ -365,7 +365,7 @@
 
 .share-label {
     display: inline-block;
-    color: #7367f0;
+    color: $c5;
 }
 
 .content-intro {
@@ -634,11 +634,11 @@
             .votes-stats {
                 color: #FFF;
                 height:80px; width:80px;
-                border: 1px solid #7367F0;
+                border: 1px solid $c5;
                 border-radius: 50%;
                 text-align: center;
                 display: inline-block;
-                outline-color:#7367F0;
+                outline-color:$c5;
                 transition: all 700ms linear;
                 position: relative;
         
@@ -1093,7 +1093,7 @@
         max-width: 100% !important;
 
         .voted {
-            color: #7367F0!important;
+            color: $c5!important;
             font-weight: bold!important;
         }
     }

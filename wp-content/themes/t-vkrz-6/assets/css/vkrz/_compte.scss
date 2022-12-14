@@ -280,8 +280,8 @@ select:-webkit-autofill:focus {
   cursor: pointer;
   transition: 0.35s all ease-out;
   box-shadow: 0 1px 3px #b5bacf26;
-  border-color: #7367f0 !important;
-  background-color: #7367f0 !important;
+  border-color: $c5 !important;
+  background-color: $c5 !important;
   color: #fff !important;
   width: auto;
   min-height: 50px;
@@ -293,7 +293,7 @@ select:-webkit-autofill:focus {
   -webkit-appearance: button;
 
   &:hover {
-    box-shadow: 0 8px 25px -8px #7367f0;
+    box-shadow: 0 8px 25px -8px $c5;
   }
 }
 

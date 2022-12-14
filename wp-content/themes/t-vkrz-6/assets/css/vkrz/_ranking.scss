@@ -487,7 +487,7 @@
     visibility: hidden;
     opacity: 0;
     width: 122px;
-    background-color: #7367f0;;
+    background-color: $c1;
     color: #fff;
     text-align: center;
     border-radius: 6px;
@@ -505,30 +505,6 @@
     visibility: visible;
     opacity: 1;
   }
-
-  // & > span {
-  //   margin: 0;
-  //   padding: 0;
-  //   display: inline-block;
-  //   overflow: hidden;
-  //   vertical-align: top; 
-  //   white-space: nowrap;
-  //   max-width: 0;
-  //   transition: max-width 0.2s ease-out;
-  //   margin-left: -4px;
-
-  //   &::before {
-  //     content: '';
-  //     margin-left: 4px;
-  //   }
-  // }
-  
-  // &:hover, &:active {
-  //   & > span {
-  //     max-width: 300px;
-  //     transition: max-width 1s ease-in;
-  //   }
-  // }
 }
 
 .ico-social {

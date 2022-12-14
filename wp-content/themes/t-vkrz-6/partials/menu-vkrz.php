@@ -1,5 +1,7 @@
 <!-- BEGIN: Main Menu-->
 <div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow" data-scroll-to-active="true">
+  <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/fairy-lights.gif" alt="VAINKEURZ Fairy Lights" class="fairy-lights d-none d-lg-block">
+
   <div class="navbar-header">
     <ul class="nav navbar-nav flex-row">
       <li class="nav-item mr-auto">

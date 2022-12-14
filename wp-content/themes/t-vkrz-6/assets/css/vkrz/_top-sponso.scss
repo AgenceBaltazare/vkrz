@@ -300,12 +300,12 @@
 }
 
 .copy-toplist-url-btn {
-    background-color: #7367f0 !important;
+    background-color: $c5 !important;
     color: #FFF !important;
     font-weight: bold;
     font-size: 16px;
 
     &:hover {
-        box-shadow: 0 8px 25px -8px #7367f0 !important;
+        box-shadow: 0 8px 25px -8px $c5 !important;
     }
 }
