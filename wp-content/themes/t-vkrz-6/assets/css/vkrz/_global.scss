@@ -701,11 +701,11 @@ html .content {
 }
 
 .has-rose-color {
-    color: #f4167f !important;
+    color: $rose !important;
 }
 
 .has-rose-background-color {
-    background: #f4167f !important;
+    background: $rose !important;
 }
 
 .has-violet-color {
@@ -1049,13 +1049,13 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
         border-radius: 0.358rem;
         -webkit-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out,background 0s,border 0s;
         transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out,background 0s,border 0s;
-        border: 1px solid #7367f0 !important;
+        border: 1px solid $c5 !important;
         background-color: transparent;
-        color: #7367f0;
+        color: $c5;
         box-shadow: none;
         font-weight: 500;
         &:hover{
-            background: #7367f0 !important;
+            background: $c5 !important;
             color: #fff !important;
             text-decoration: none !important;
         }
@@ -1085,7 +1085,7 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
     justify-content: center;
     align-items: center;
 
-    $violet: #7367f0;
+    $violet: #6cb7ef;
   
     .popup {
       display: grid;
@@ -1159,13 +1159,13 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
       }
   
       a:not(.t-rose) {
-        background: #F4167F;
+        background: $rose;
         color: #FFF;
-        border-color: #F4167F;
+        border-color: $rose;
         margin: .6rem 0;
         width: 80%;
         &:hover {
-          box-shadow: 0 8px 25px -8px #F4167F;
+          box-shadow: 0 8px 25px -8px $rose;
         }
   
         @media (max-width: 768px) {
@@ -1215,11 +1215,11 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
             place-items: center;
             font-size: 1.6rem;
             border-radius: 50%;
-            border: #7367F0 2px solid;
+            border: $c5 2px solid;
             width: 50px;
             height: 50px;
             transition: .3s all;
-            color: #7367F0;
+            color: $c5;
   
             @media (max-width: 768px) {
               font-size: 1.1rem;
@@ -1228,19 +1228,19 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
             }
     
             &:hover {
-              border: #f4167f 2px solid;
-              color: #f4167f !important;
+              border: $rose 2px solid;
+              color: $rose !important;
             }
           }
         }
       }
   
       hr {
-        border-color: #7367F0 !important;
+        border-color: $c5 !important;
       }
   
       h6 {
-        color: #7367F0;
+        color: $c5;
       }
     }
 
