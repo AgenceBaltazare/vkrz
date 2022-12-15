@@ -285,5 +285,17 @@ jQuery(document).ready(function ($) {
         }
       });
     }
+
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const utm = urlParams.get("utm");
+
+    function setCookie(name, value, days) {
+      const date = new Date();
+      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+      let expires = "expires=" + date.toUTCString();
+      document.cookie = name + "=" + value + ";" + expires + ";path=/";
+    }
+    setCookie("wordpress_vainkeurz_user_utm", utm, 365)
   };
 });
