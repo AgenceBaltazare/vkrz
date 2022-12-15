@@ -718,18 +718,28 @@ function get_tops_tendance($data){
 
   foreach($list_tops_unique as $id_top){
 
-    $list_tops_already_tweet = $wpdb->get_results("SELECT * FROM $table_name WHERE id_top='$id_top' AND date_search > now() - interval 24 hour");
-
-    if(!$list_tops_already_tweet){
-      $top_info = get_top_infos($id_top);
-      $url_top  = $top_info['top_url'] . "?utm=boteurz";
-      if ($url_top) {
-        array_push($result, array(
-          "id_top"        => $id_top,
-          "tweet"         => "#" . $tendance . " - " . $top_info['top_question'] . " 👉 " . $url_top,
-        ));
+    $list_type    = array();
+    $get_top_type = get_the_terms($id_top, 'type');
+    if ($get_top_type) {
+      foreach ($get_top_type as $type_top) {
+        array_push($list_type, $type_top->slug);
       }
-      $wpdb->insert($table_name, array('id_top' => $id_top, 'tendance' => $tendance)); 
+    }
+    if (!in_array('private', $list_type) && !in_array('onboarding', $list_type) && get_post_status($id_top) == "publish"){
+
+      $list_tops_already_tweet = $wpdb->get_results("SELECT * FROM $table_name WHERE id_top='$id_top' AND date_search > now() - interval 24 hour");
+
+      if (!$list_tops_already_tweet) {
+        $top_info = get_top_infos($id_top);
+        $url_top  = $top_info['top_url'] . "?utm=boteurz";
+        if ($url_top) {
+          array_push($result, array(
+            "id_top"        => $id_top,
+            "tweet"         => "#" . $tendance . " - " . $top_info['top_question'] . " 👉 " . $url_top,
+          ));
+        }
+        $wpdb->insert($table_name, array('id_top' => $id_top, 'tendance' => $tendance));
+      }
     }
 
   }
