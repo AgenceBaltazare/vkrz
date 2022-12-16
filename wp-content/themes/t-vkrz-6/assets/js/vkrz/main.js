@@ -285,5 +285,22 @@ jQuery(document).ready(function ($) {
         }
       });
     }
+
+    // UTM
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    if(urlParams.get("utm")) {
+      const utm = urlParams.get("utm");
+
+      function setCookie(name, value, days) {
+        const date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        let expires = "expires=" + date.toUTCString();
+        document.cookie = name + "=" + value + ";" + expires + ";path=/";
+      }
+      document.cookie =
+      "wordpress_vainkeurz_user_utm=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 UTC";
+      setCookie("wordpress_vainkeurz_user_utm", utm, 365)
+    }
   };
 });

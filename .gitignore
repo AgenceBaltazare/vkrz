@@ -4,6 +4,18 @@
 *.sublime-workspace
 _ai-cache
 
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+# Local History for Visual Studio Code
+.history/
+
+# Built Visual Studio Code Extensions
+*.vsix
 
 #### Directory : dependancies
 wp-content/themes/node_modules/
@@ -12,7 +24,6 @@ wp-content/themes/gulp-tasks/
 #### Dot Directory
 .idea/
 .sass-cache/
-
 
 #### Dot file
 .DS_Store
