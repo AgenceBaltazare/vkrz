@@ -920,7 +920,6 @@ endforeach;
       <div class="share-classement-content-box">
         <div class="left">
           <img src="<?php echo $banner ?>" alt="Top 3">
-          <!-- <img src="<?php echo $banner ?>" height="300" width="300" alt="Top 3"> -->
         </div>
         <div class="right">
           <a href="<?php echo $banner; ?>" download target="_blank">

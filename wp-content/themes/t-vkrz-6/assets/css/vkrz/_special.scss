@@ -155,20 +155,3 @@
 .toplist-footer .toplist-f-item:hover {
   color: #FFF!important;
 }
-
-@media (max-width: 768px) {
-  .header-navbar.floating-nav {
-    margin: 2.3rem 1.3rem 0 !important;
-  }
-}
-.notifications-nombre {
-  color: #FFF!important;
-}
-.badge.badge-light-primary,
-.badge.badge-pill.badge-light-primary {
-  color: #78AC3E !important;
-  
-  .notifications-nombre {
-    color: #78AC3E !important;
-  }
-}

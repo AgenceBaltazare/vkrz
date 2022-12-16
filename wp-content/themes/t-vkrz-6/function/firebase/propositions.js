@@ -56,7 +56,7 @@ const getPropositions = async function() {
 
           if (userCanTakeTop) {
             attribuePar = `
-            <input type="submit" value="Je Prends" class="btn btn-success waves-effect waves-float waves-light prendre-proposition-top w-100" data-userid=${dataUser.id_user} data-useruuid=${proposition.data().userUuid} data-iddocument="${proposition.id}">
+            <input type="submit" value="Je Prends" class="btn btn-success waves-effect waves-float waves-light prendre-proposition-top w-75" data-userid=${dataUser.id_user} data-useruuid=${proposition.data().userUuid} data-iddocument="${proposition.id}">
             `
           }
         } else if(proposition.data().topValide === true && proposition.data().topValidePar !== "") {
@@ -97,8 +97,8 @@ const getPropositions = async function() {
 
           if(currentUserRole === "administrator") {
             topValidOrNot = `<span class="d-none">valider</span>
-            <input type="submit" value="Valider" class="btn btn-primary waves-effect waves-float waves-light valider-proposition-top w-100 mb-50" data-userid=${dataUser.id_user} data-useruuid=${proposition.data().userUuid} data-iddocument="${proposition.id}">
-            <input type="submit" value="Refuser" class="btn btn-danger waves-effect waves-float waves-light refuser-proposition-top w-100" data-iddocument="${proposition.id}">`
+            <input type="submit" value="Valider" class="btn btn-primary waves-effect waves-float waves-light valider-proposition-top w-75 mb-50" data-userid=${dataUser.id_user} data-useruuid=${proposition.data().userUuid} data-iddocument="${proposition.id}">
+            <input type="submit" value="Refuser" class="btn btn-danger waves-effect waves-float waves-light refuser-proposition-top w-75" data-iddocument="${proposition.id}">`
           } else {
             topValidOrNot = `En cours de validation… 🚧`
           }

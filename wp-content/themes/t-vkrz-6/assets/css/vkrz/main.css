@@ -6732,24 +6732,6 @@ select:-webkit-autofill:focus {
   color: #FFF !important;
 }
 
-@media (max-width: 768px) {
-  .header-navbar.floating-nav {
-    margin: 2.3rem 1.3rem 0 !important;
-  }
-}
-.notifications-nombre {
-  color: #FFF !important;
-}
-
-.badge.badge-light-primary,
-.badge.badge-pill.badge-light-primary {
-  color: #78AC3E !important;
-}
-.badge.badge-light-primary .notifications-nombre,
-.badge.badge-pill.badge-light-primary .notifications-nombre {
-  color: #78AC3E !important;
-}
-
 @media (min-width: 1200px) {
   .col-xxl-2 {
     flex: 0 0 16.66667%;
