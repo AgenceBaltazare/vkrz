@@ -31,7 +31,7 @@ switch(typeMessage) {
 			👉  ${data.proposition}	
 			`,
 			username: "NOTEURZ 🤖",
-			avatarURL: 'https://i.imgur.com/81uHAdJ.png',
+			avatarURL: 'https://vainkeurz.com/wp-content/uploads/2022/12/boteurz-image-300x300.jpeg',
 			embeds: [embed],
 		};
 
@@ -56,7 +56,7 @@ switch(typeMessage) {
 
 		message = {
 			username: "NOTEURZ 🤖",
-			avatarURL: 'https://i.imgur.com/81uHAdJ.png',
+			avatarURL: 'https://vainkeurz.com/wp-content/uploads/2022/12/boteurz-image-300x300.jpeg',
 			embeds: [embed],
 		};
 
