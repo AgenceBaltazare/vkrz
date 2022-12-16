@@ -31,7 +31,7 @@ switch(typeMessage) {
 			👉  ${data.proposition}	
 			`,
 			username: "NOTEURZ 🤖",
-			avatarURL: 'https://i.imgur.com/81uHAdJ.png',
+			avatarURL: 'https://pbs.twimg.com/profile_images/1597965737997508608/Q-KYnsK1_400x400.jpg',
 			embeds: [embed],
 		};
 
@@ -56,7 +56,7 @@ switch(typeMessage) {
 
 		message = {
 			username: "NOTEURZ 🤖",
-			avatarURL: 'https://i.imgur.com/81uHAdJ.png',
+			avatarURL: 'https://pbs.twimg.com/profile_images/1597965737997508608/Q-KYnsK1_400x400.jpg',
 			embeds: [embed],
 		};
 
