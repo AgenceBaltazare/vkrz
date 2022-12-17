@@ -6616,7 +6616,8 @@ select:-webkit-autofill:focus {
   }
 }
 
-.rechercher-form .rechercher-input {
+.rechercher-form .rechercher-input,
+#search_form input {
   background: linear-gradient(to bottom right, #0d7bd6, #0f71d3) !important;
 }
 
@@ -6730,6 +6731,24 @@ select:-webkit-autofill:focus {
 
 .toplist-footer .toplist-f-item:hover {
   color: #FFF !important;
+}
+
+@media (max-width: 768px) {
+  .header-navbar.floating-nav {
+    margin: 2.3rem 1.3rem 0 !important;
+  }
+}
+.notifications-nombre {
+  color: #FFF !important;
+}
+
+.badge.badge-light-primary,
+.badge.badge-pill.badge-light-primary {
+  color: #78AC3E !important;
+}
+.badge.badge-light-primary .notifications-nombre,
+.badge.badge-pill.badge-light-primary .notifications-nombre {
+  color: #78AC3E !important;
 }
 
 @media (min-width: 1200px) {

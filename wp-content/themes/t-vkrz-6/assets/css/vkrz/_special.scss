@@ -42,7 +42,8 @@
   }
 }
 
-.rechercher-form .rechercher-input {
+.rechercher-form .rechercher-input,
+#search_form input {
   background: linear-gradient(to bottom right, #0d7bd6, #0f71d3)!important;
 }
 .rechercher-form .rechercher-input:focus, .rechercher-form .rechercher-input:valid, .rechercher-form .rechercher-input:active {
