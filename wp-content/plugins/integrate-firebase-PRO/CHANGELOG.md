@@ -11,6 +11,78 @@ All notable changes to this project will be documented in this file.
 > - :memo: [Documentation]
 > - :nail_care: [Polish]
 
+## [ 3.22.0 ] - 2022-11-27
+
+#### - :rocket: [New Feature]
+
+- support custom user role
+
+## [ 3.21.0 ] - 2022-11-12
+
+#### - :nail_care: [Polish]
+
+- add create user filter hook
+
+#### - :bug: [Bug Fix]
+
+- fix Wordfence 2FA doesn't work after updating
+
+## [ 3.20.0 ] - 2022-10-01
+
+#### - :nail_care: [Polish]
+
+- improve button styling
+- support update profile for WP < v.5.8.0
+
+## [ 3.19.0 ] - 2022-09-17
+
+#### - :rocket: [New Feature]
+
+- support updating email from WordPress -> Firebase
+- adding experiment features
+
+## [ 3.18.1 ] - 2022-09-17
+
+#### - :nail_care: [Polish]
+
+- improve authentication process
+
+## [ 3.18.0 ] - 2022-09-10
+
+#### - :rocket: [New Feature]
+
+- add support for viewing / saving to subcollection
+
+## [ 3.17.1 ] - 2022-09-04
+
+#### - :bug: [Bug Fix]
+
+- improve product validation on saving settings
+
+## [ 3.17.0 ] - 2022-08-31
+
+#### - :rocket: [New Feature]
+
+- add support for AppCheck
+
+#### - :nail_care: [Polish]
+
+- improve validation process
+
+## [ 3.16.1 ] - 2022-08-24
+
+#### - :bug: [Bug Fix]
+
+- fix document name issue
+
+## [ 3.16.0 ] - 2022-08-21
+
+#### - :nail_care: [Polish]
+
+- only save user if userId exists
+- improve syncing WordPress data to firebase
+- add ability to modify document id before saving to firebase database
+
 ## [ 3.15.1 ] - 2022-08-10
 
 #### - :bug: [Bug Fix]

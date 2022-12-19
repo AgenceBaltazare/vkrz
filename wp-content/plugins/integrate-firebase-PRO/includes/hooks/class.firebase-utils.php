@@ -18,6 +18,7 @@ class FirebaseUtils {
         // Custom utils
         add_filter('firebase_generate_nice_username', array('FirebaseUtils', 'generate_nice_username'), 10, 1);
         add_filter('firebase_get_user_by_firebase_uid', array('FirebaseUtils', 'get_user_by_firebase_uid'), 10, 1);
+        add_filter('firebase_validate_pro_plugin', array('FirebaseUtils', 'validate_pro_plugin'), 10, 1);
     }
 
     public static function get_user_by_firebase_uid(string $firebase_uid) {
@@ -63,5 +64,41 @@ class FirebaseUtils {
             'ö' => 'o', 'ø' => 'o', 'ù' => 'u', 'ũ' => 'u', 'ú' => 'u', 'û' => 'u', 'ý' => 'y', 'þ' => 'b', 'ÿ' => 'y'
         );
         return strtr($str, $unwanted_array);
+    }
+
+    public static function validate_pro_plugin(string $product_key) {
+        // Validate product
+        $data = new stdClass();
+        $data->productKey = $product_key;
+        $url = "https://techcater.com/api-products/v1/products/IFP_YEARLY/validate";
+
+        if (strpos(get_site_url(), 'techcater-plugins.local') !== false) {
+            error_log('--------Validate DEV SITE------------');
+            $url = "https://dev.techcater.com/api-products/v1/products/IFP_YEARLY/validate";
+        }
+
+        $response = wp_remote_post($url, array(
+            'method' => 'POST',
+            'timeout' => 45,
+            'headers' => array(
+                'Content-Type' => 'application/json; charset=utf-8',
+            ),
+            'body' => json_encode($data),
+        ));
+
+
+        if (is_wp_error($response)) {
+            // ignore checking
+        } else if (isset($response['body'])) {
+            update_option('firebase_pro_validated_on', date('Y-m-d'));
+            $result = json_decode($response['body']);
+            if (is_object($result) && $result->status == 0) {
+                // Show missing error message
+                update_option('firebase_pro_is_valid', false);
+                new IFP_Message($result->message, 'error');
+            } else {
+                update_option('firebase_pro_is_valid', true);
+            }
+        }
     }
 }

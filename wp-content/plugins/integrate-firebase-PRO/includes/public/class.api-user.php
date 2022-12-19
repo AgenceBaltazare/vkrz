@@ -124,6 +124,12 @@ class Firebase_Rest_Api_User {
 
       // Retrieve firebase user from Firebase
       $firebase_user = apply_filters('firebase_get_firebase_user', $userId, 'lastSignInTime');
+
+      if (!$firebase_user) {
+        $error->add(500, __("Firebase User Validation Error", 'integrate-firebase-PRO'), array('status' => false));
+        return $error;
+      }
+
       $now = time();
       $last_sign_in_timestamp = date_timestamp_get(new DateTime($firebase_user->lastSignInTime));
 
@@ -218,6 +224,18 @@ class Firebase_Rest_Api_User {
     return $user;
   }
 
+  private static function generate_user_role($role) {
+    if (!empty($role)) {
+      return $role;
+    }
+
+    if (class_exists('WooCommerce')) {
+      return 'customer';
+    }
+
+    return 'subscriber';
+  }
+
   public static function register_and_autologin(WP_REST_Request $request = null) {
     $response = array();
     $parameters = $request->get_json_params();
@@ -239,6 +257,8 @@ class Firebase_Rest_Api_User {
 
     $password = sanitize_text_field($firebase_user['password']);
     $email = sanitize_text_field(isset($firebase_user['email']) ? $firebase_user['email'] : '');
+    $role = sanitize_text_field(isset($firebase_user['role']) ? $firebase_user['role'] : '');
+    $role = self::generate_user_role(($role));
 
     $error = new WP_Error();
 
@@ -262,10 +282,6 @@ class Firebase_Rest_Api_User {
 
         // doesn't exist in current blog
         if (!is_user_member_of_blog($user->ID, $blog_id)) {
-          $role = 'subscriber';
-          if (class_exists('WooCommerce')) {
-            $role = 'customer';
-          }
           add_existing_user_to_blog(array('user_id' => $user->ID, 'role' => $role));
         }
       }
@@ -288,11 +304,7 @@ class Firebase_Rest_Api_User {
       if (!is_wp_error($user_id)) {
         $user = get_user_by('id', $user_id);
         // Manually set user role to subscriber for now
-        $user->set_role('subscriber');
-        // WooCommerce role
-        if (class_exists('WooCommerce')) {
-          $user->set_role('customer');
-        }
+        $user->set_role($role);
         do_action('wp_rest_user_user_register', $user);
       } else {
         $error->add(400, __("Cannot create a new user with email: $email", 'integrate-firebase-PRO'), array('status' => false));

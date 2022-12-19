@@ -9,6 +9,7 @@ class FirebaseCustomWordPress {
   private static $options_auth;
   private static $options_wordpress;
 
+  private static $firebase_experiments;
   private static $firebase_service;
 
   public static function init() {
@@ -21,6 +22,7 @@ class FirebaseCustomWordPress {
     self::$initiated = true;
     self::$options_auth = get_option("firebase_auth");
     self::$options_wordpress = get_option("firebase_wordpress");
+    self::$firebase_experiments = get_option("firebase_experiments");
 
     if (self::$options_wordpress && isset(self::$options_wordpress['wp_sync_database_type'])) {
       self::$firebase_service = include FIREBASE_WP__PLUGIN_DIR . 'includes/service/class.firebase-service.php';
@@ -32,8 +34,16 @@ class FirebaseCustomWordPress {
       add_action('edited_category', array('FirebaseCustomWordPress', 'listen_to_update_category_event'), 10, 1);
       add_action('delete_category', array('FirebaseCustomWordPress', 'listen_to_delete_category_event'), 10, 1);
 
+      // Get the WP Version global.
+      global $wp_version;
+      // TODO: check for version 5.8.0 for third parameters
+      if (version_compare($wp_version, '5.8.0', '>=')) {
+        add_action('profile_update', array('FirebaseCustomWordPress', 'listen_to_profile_update_event_new'), 10, 3);
+      } else {
+        add_action('profile_update', array('FirebaseCustomWordPress', 'listen_to_profile_update_event_new'), 10, 2);
+      }
+
       // profile
-      add_action('profile_update', array('FirebaseCustomWordPress', 'listen_to_profile_update_event'), 10, 2);
       // add_action('updated_user_meta', array('FirebaseCustomWordPress', 'listen_to_profile_update_event'), 10, 3);
     }
 
@@ -178,22 +188,80 @@ class FirebaseCustomWordPress {
     return self::$firebase_service->delete_taxonomy_data_to_firebase('wpCategories', $category_id);
   }
 
-  public static function listen_to_profile_update_event($user_id, $old_user_data) {
+  /**
+   * This will trigger every time user meta is updated. So it will eventually have infinitely loop.
+   * To prevent that, we added firebase_synced_at and check the timestamp to eliminate repeated call.
+   */
+  public static function listen_to_profile_update_event_new($wp_user_id, $old_user_data, $user_data) {
     $firebase_user = [];
-    $firebase_uid = get_user_meta($user_id, 'firebase_uid', true);
+    $firebase_uid = get_user_meta($wp_user_id, 'firebase_uid', true);
+    $now = time();
 
-    $firebase_user['photoURL'] = get_avatar_url($user_id);
+    $firebase_user['photoURL'] = get_avatar_url($wp_user_id);
     $firebase_user['userId'] = $firebase_uid;
-    $firebase_user['wordpressUserId'] = $user_id;
+    $firebase_user['wordpressUserId'] = $wp_user_id;
+    $firebase_user['email'] = $user_data['user_email'];
+    $firebase_user['displayName'] = $user_data['display_name'];
+    $firebase_user['firebase_synced_at'] = $now;
 
-    // $new_user_email = $user_data['user_email'];
-    // $old_user_email = $old_user_data->data->user_email;
+    $new_user_email = $user_data['user_email'];
+    $old_user_email = $old_user_data->data->user_email;
 
-    // if ($new_user_email !== $old_user_email) {
-    //   // Do something if old and new email aren't the same
-    // }
+    // error_log(print_r($user_data, true));
+    $firebase_synced_data = get_user_meta($wp_user_id, 'firebase_synced_data', true) ?? [];
 
-    $firebase_synced_data = get_user_meta($user_id, 'firebase_synced_data', true) ?? [];
+    // Only sync if time pass > 3$ to prevent loop
+    if (isset($firebase_synced_data['firebase_synced_at']) && $now - $firebase_synced_data['firebase_synced_at'] < 3) {
+      // error_log('Abort..., TOO EARLY');
+      return;
+    }
+
+    $allow_updating_email = isset(self::$firebase_experiments['ifp_allow_updating_email']);
+
+    // Make sure that operation is only available in v3.19.0
+    if ($new_user_email !== $old_user_email && $allow_updating_email && version_compare(FIREBASE_WP_VERSION, '3.19.0', '>=')) {
+      // Do something if old and new email aren't the same
+      $response = self::$firebase_service->update_user_account($firebase_user);
+      if (!$response) {
+        // Update timestamp to prevent loop
+        $firebase_synced_data['firebase_synced_at'] = $now;
+        update_user_meta($firebase_user['wordpressUserId'], 'firebase_synced_data', $firebase_synced_data);
+        // revert email changes
+        wp_update_user(array(
+          'ID' => $wp_user_id,
+          'user_email' => $old_user_email
+        ));
+
+        return;
+      }
+    }
+
+
+    // TODO: add more conditions to check if user data has changed
+    if (empty($firebase_synced_data) || $firebase_synced_data['photoURL'] !== $firebase_user['photoURL']) {
+      self::$firebase_service->sync_user_profile_to_firebase($firebase_user);
+    }
+  }
+
+  // Support v5.8.0 which only receives two params
+  public static function listen_to_profile_update_event($wp_user_id, $old_user_data) {
+    $firebase_user = [];
+    $firebase_uid = get_user_meta($wp_user_id, 'firebase_uid', true);
+    $now = time();
+
+    $firebase_user['photoURL'] = get_avatar_url($wp_user_id);
+    $firebase_user['userId'] = $firebase_uid;
+    $firebase_user['wordpressUserId'] = $wp_user_id;
+    $firebase_user['firebase_synced_at'] = $now;
+
+    // error_log(print_r($user_data, true));
+    $firebase_synced_data = get_user_meta($wp_user_id, 'firebase_synced_data', true) ?? [];
+
+    // Only sync if time pass > 3$ to prevent loop
+    if (isset($firebase_synced_data['firebase_synced_at']) && $now - $firebase_synced_data['firebase_synced_at'] < 3) {
+      // error_log('Abort..., TOO EARLY');
+      return;
+    }
 
     // TODO: add more conditions to check if user data has changed
     if (empty($firebase_synced_data) || $firebase_synced_data['photoURL'] !== $firebase_user['photoURL']) {
