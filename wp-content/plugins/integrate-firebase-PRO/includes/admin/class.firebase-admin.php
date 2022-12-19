@@ -13,6 +13,9 @@ class Firebase_Admin {
   private static $options_auth;
   private static $options_wordpress;
   private static $options_settings;
+  private static $firebase_pro_validated_on;
+  private static $firebase_pro_is_valid;
+  private static $today;
 
   public static function init() {
     if (!self::$initiated) {
@@ -27,10 +30,16 @@ class Firebase_Admin {
     self::$options_auth = get_option("firebase_auth");
     self::$options_wordpress = get_option("firebase_wordpress");
     self::$options_settings = get_option("firebase_settings");
+    self::$firebase_pro_validated_on = get_option('firebase_pro_validated_on');
+    self::$firebase_pro_is_valid = get_option('firebase_pro_is_valid');
+    self::$today = date('Y-m-d');
 
     add_action('admin_menu', array("Firebase_Admin", "add_firebase_admin_menu"));
     add_action("admin_init", array("Firebase_Admin", "register_settings"));
     add_action('admin_enqueue_scripts', array('Firebase_Admin', 'load_firebase_admin_js'));
+
+
+    // Validate product
     add_action('firebase_pro_init', array('Firebase_Admin', 'validate_product'));
   }
 
@@ -48,35 +57,19 @@ class Firebase_Admin {
 
   public static function validate_product() {
     if (!empty(self::$options_settings['product_key']) && !self::$notified) {
-      // Validate product
-      $data = new stdClass();
-      $data->productKey = self::$options_settings['product_key'];
-      $url = "https://techcater.com/api-products/v1/products/IFP_YEARLY/validate";
 
-      if (strpos(get_site_url(), 'techcater-plugins.local') !== false) {
-        error_log('--------Validate DEV SITE------------');
-        $url = "https://dev.techcater.com/api-products/v1/products/IFP_YEARLY/validate";
+      // show error if API is checked today & the plugin is invalid
+      if (self::$firebase_pro_validated_on == self::$today && self::$firebase_pro_is_valid) {
+        return;
       }
 
-      $response = wp_remote_post($url, array(
-        'method' => 'POST',
-        'timeout' => 45,
-        'headers' => array(
-          'Content-Type' => 'application/json; charset=utf-8',
-        ),
-        'body' => json_encode($data),
-      ));
-
-
-      if (is_wp_error($response)) {
-        // ignore checking
-      } else if (isset($response['body'])) {
-        $result = json_decode($response['body']);
-        if (is_object($result) && $result->status == 0) {
-          // Show missing error message
-          new IFP_Message($result->message, 'error');
-        }
+      // send request is the check is expired
+      if (self::$firebase_pro_validated_on == self::$today && !self::$firebase_pro_is_valid) {
+        new IFP_Message('<p>Your purchase is invalid. Please go to <a href="https://techcater.com/shop/my-account" target="_blank">Techcater</a> and check your product.</p>', 'error');
+        return;
       }
+
+      apply_filters('firebase_validate_pro_plugin', self::$options_settings['product_key']);
     } else {
       // Show missing error message
       new IFP_Message('Your product key is missing. Please go to Firebase > Settings tab and add it.', 'error');
@@ -92,6 +85,7 @@ class Firebase_Admin {
     // wp_enqueue_style( 'firebase-admin', plugin_dir_url( dirname(__FILE__) ) . 'css/firebase-admin.css' );
 
     // Datatables Assets
+    wp_enqueue_style('firebase-datatables', '//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css', array(), FIREBASE_WP_VERSION, false);
     wp_enqueue_style('firebase-datatables-buttons', '//cdn.datatables.net/buttons/2.2.1/css/buttons.dataTables.min.css', array(), FIREBASE_WP_VERSION, false);
 
     wp_enqueue_script('firebase-datatables', '//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js', array('jquery'), FIREBASE_WP_VERSION, true);
@@ -128,7 +122,7 @@ class Firebase_Admin {
           'baseDomain' => isset(self::$options_settings['base_domain']) ? self::$options_settings['base_domain'] : null,
           'dashboardApiToken' => isset(self::$options_settings['dashboard_api_token']) ? self::$options_settings['dashboard_api_token'] : null,
           'frontendApiToken' => isset(self::$options_settings['frontend_api_token']) ? self::$options_settings['frontend_api_token'] : null,
-          'IFPROVersion' => FIREBASE_WP_VERSION,
+          'proVersion' => FIREBASE_WP_VERSION,
         )
       );
     } else {
@@ -222,6 +216,14 @@ class Firebase_Admin {
       'general_section_id' // Section
     );
 
+    add_settings_field(
+      're_captcha_id', // ID
+      __('reCaptcha Site Key', 'integrate-firebase-PRO'), // Title
+      array("Firebase_Admin", 're_captcha_id_callback'), // Callback
+      'credentials', // Page
+      'general_section_id' // Section
+    );
+
     // Optimization
     add_settings_section(
       'if_optimize_section_id', // ID
@@ -245,6 +247,7 @@ class Firebase_Admin {
           'analytics' => 'Analytics',
           'messaging' => 'Messaging',
           'functions' => 'Functions',
+          'app-check' => 'App Check',
         ),
       )
     );
@@ -494,6 +497,10 @@ class Firebase_Admin {
       $new_input['messaging_sender_id'] = sanitize_text_field($input['messaging_sender_id']);
     }
 
+    if (isset($input['re_captcha_id'])) {
+      $new_input['re_captcha_id'] = sanitize_text_field($input['re_captcha_id']);
+    }
+
     if (isset($input['project_id'])) {
       $new_input['project_id'] = sanitize_text_field($input['project_id']);
     }
@@ -634,6 +641,10 @@ class Firebase_Admin {
 
   public static function messaging_sender_id_callback() {
     self::print_form("messaging_sender_id");
+  }
+
+  public static function re_captcha_id_callback() {
+    self::print_form("re_captcha_id");
   }
 
   public static function project_id_callback() {
@@ -980,6 +991,12 @@ class Firebase_Admin {
     } else if ($active_tab === 'settings') {
       settings_fields('firebase_settings_group');
       do_settings_sections('settings');
+
+      // Do product validation
+      if (isset(self::$options_settings) && self::$options_settings['product_key']) {
+        apply_filters('firebase_validate_pro_plugin', self::$options_settings['product_key']);
+      }
+
       submit_button();
     } else if ($active_tab === 'about') {
       echo "<h3>" . __('Integrate Firebase PRO plugin will help to bring Firebase features to WordPress site.', 'integrate-firebase-PRO') . "</h3>";

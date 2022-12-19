@@ -6,6 +6,7 @@ class Firebase {
   private static $options_auth;
   private static $options_settings;
   private static $options_wordpress;
+  private static $firebase_experiments;
 
   public static function init() {
     if (!self::$initiated) {
@@ -25,6 +26,7 @@ class Firebase {
     self::$options_auth = get_option("firebase_auth");
     self::$options_settings = get_option("firebase_settings");
     self::$options_wordpress = get_option("firebase_wordpress");
+    self::$firebase_experiments = get_option('firebase_experiments');
 
     // Redirect Login Page when Login With Firebase is checked
     // TODO: validate product key
@@ -102,6 +104,7 @@ class Firebase {
         'appId' => isset(self::$options['app_id']) ? self::$options['app_id'] : '',
         'measurementId' => isset(self::$options['measurement_id']) ? self::$options['measurement_id'] : '',
         'messagingSenderId' => isset(self::$options['messaging_sender_id']) ? self::$options['messaging_sender_id'] : '',
+        'reCaptchaSiteKey' => isset(self::$options['re_captcha_id']) ? self::$options['re_captcha_id'] : '',
         'projectId' => isset(self::$options['project_id']) ? self::$options['project_id'] : '',
         'services' => $FIREBASE_SERVICES,
         // comment for development
@@ -135,6 +138,7 @@ class Firebase {
       array(
         'baseDomain' => isset(self::$options_settings['base_domain']) ? self::$options_settings['base_domain'] : null,
         'frontendApiToken' => isset(self::$options_settings['frontend_api_token']) ? self::$options_settings['frontend_api_token'] : null,
+        'proVersion' => FIREBASE_WP_VERSION
       )
     );
 
@@ -149,6 +153,14 @@ class Firebase {
         'isUserLoggedIn' => is_user_logged_in(),
         // Hide logout link if login with firebase is disabled
         'wpLogoutLink' => isset(self::$options_auth['login_with_firebase']) ? wp_logout_url() : null,
+      )
+    );
+
+    wp_localize_script(
+      'firebase',
+      'firebaseExperiments',
+      array(
+        'allowUpdatingEmail' => isset(self::$firebase_experiments['ifp_allow_updating_email']) ? self::$firebase_experiments['ifp_allow_updating_email'] : null,
       )
     );
 

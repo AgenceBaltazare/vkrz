@@ -138,7 +138,7 @@ class Firebase_Shortcode {
     }
 
     $logout_url = wp_logout_url($redirect);
-    return "<button id='firebase-signout' data-logout='$logout_url' data-redirect='$redirect'>" . __($button_text, 'integrate-firebase-PRO') . "</button>";
+    return "<button class='button' id='firebase-signout' data-logout='$logout_url' data-redirect='$redirect'>" . __($button_text, 'integrate-firebase-PRO') . "</button>";
   }
 
   public static function firebase_greetings_func() {
@@ -306,7 +306,7 @@ class Firebase_Shortcode {
     $html .= "</div>";
 
     $html .= "<div>";
-    $html .= "<button type='submit' id='firebase-register-form__submit'>" . __('Register', 'integrate-firebase-PRO') . "</button>";
+    $html .= "<button class='button' type='submit' id='firebase-register-form__submit'>" . __('Register', 'integrate-firebase-PRO') . "</button>";
     $html .= "</div>";
 
 

@@ -30,6 +30,7 @@ class FirebaseWordPressFilters {
       add_filter('firebase_get_data_from_database', array('FirebaseWordPressFilters', 'get_data_from_database'), 10, 3);
       add_filter('firebase_save_data_to_database', array('FirebaseWordPressFilters', 'save_data_to_database'), 10, 4);
       add_filter('firebase_delete_data_from_database', array('FirebaseWordPressFilters', 'delete_data_from_database'), 10, 4);
+      add_filter('firebase_create_new_user', array('FirebaseWordPressFilters', 'firebase_create_new_user'), 10, 2);
       add_filter('firebase_import_users_to_firebase', array('FirebaseWordPressFilters', 'import_users_to_firebase'), 10, 4);
       add_filter('firebase_get_firebase_user', array('FirebaseWordPressFilters', 'get_firebase_user'), 10, 4);
       add_filter('firebase_verify_id_token', array('FirebaseWordPressFilters', 'verify_firebase_id_token'), 10, 4);
@@ -46,6 +47,10 @@ class FirebaseWordPressFilters {
 
   public static function delete_data_from_database($database_type, $collection_name, $doc_id) {
     return self::$firebase_service->delete_data_from_database($database_type, $collection_name, $doc_id);
+  }
+
+  public static function firebase_create_new_user($user_id, $user_data) {
+    return self::$firebase_service->create_new_user($user_id, $user_data);
   }
 
   public static function import_users_to_firebase($users) {
