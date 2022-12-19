@@ -6716,7 +6716,7 @@ select:-webkit-autofill:focus {
 }
 
 .dark-layout a:hover {
-  color: #6cb7ef !important;
+  color: #FFF !important;
 }
 
 .t-normal-container .card-body, .t-normal-container .card-cta, .t-normal-container .card-footer, .t-sponso-container .card-body, .t-sponso-container .card-cta, .t-sponso-container .card-footer {
@@ -6749,6 +6749,29 @@ select:-webkit-autofill:focus {
 .badge.badge-light-primary .notifications-nombre,
 .badge.badge-pill.badge-light-primary .notifications-nombre {
   color: #78AC3E !important;
+}
+
+.propositions-top-wrapper .card {
+  background: unset !important;
+}
+.propositions-top-wrapper #form-propositions select {
+  background-color: transparent !important;
+}
+.propositions-top-wrapper .divider {
+  background: #6cb7ef;
+}
+.propositions-top-wrapper .deviens-createur-wrapper a:hover {
+  color: #FFF !important;
+}
+
+.main-menu.menu-dark .navigation > li.active > a,
+.main-menu.menu-dark .navigation > li ul .active {
+  background: linear-gradient(to bottom right, #76AC3C, #458135) !important;
+  box-shadow: unset !important;
+}
+
+.crisp-client .cc-1m7s .cc-qvio {
+  background-color: #6cb7ef !important;
 }
 
 @media (min-width: 1200px) {

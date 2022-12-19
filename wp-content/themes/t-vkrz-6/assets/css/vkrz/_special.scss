@@ -137,7 +137,7 @@
 }
 
 .dark-layout a:hover {
-  color: #6cb7ef!important;
+  color: #FFF!important;
 }
 
 .t-normal-container, .t-sponso-container {
@@ -172,4 +172,35 @@
   .notifications-nombre {
     color: #78AC3E !important;
   }
+}
+
+.propositions-top-wrapper {
+  .card {
+    background: unset!important;
+  }
+
+  #form-propositions select {
+    background-color: transparent!important;
+  }
+
+  .divider {
+    background: #6cb7ef;
+  }
+
+  .deviens-createur-wrapper {
+    a:hover {
+      color: #FFF!important;
+    }
+  }
+}
+
+.main-menu.menu-dark .navigation > li.active > a,
+.main-menu.menu-dark .navigation > li ul .active 
+{
+  background: linear-gradient(to bottom right, #76AC3C, #458135)!important;
+  box-shadow: unset!important;
+}
+
+.crisp-client .cc-1m7s .cc-qvio {
+  background-color: #6cb7ef!important;
 }
