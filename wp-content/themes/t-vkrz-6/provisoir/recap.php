@@ -16,16 +16,14 @@
                 <td>NB Jugements Faits</td>
                 <td>Code Parrainage</td>
                 <td>Participation Top Sponso</td>
-                <td>NB Tops Créés</td>
-                <td>NB Votes générées</td>
-                <td>NB TopList générées</td>
             </tr>
         </thead>
         <tbody>
             <?php
 
             $args = array(
-                'role'    => 'author',
+                'role'    => 'subscriber',
+                'number'  => 600
             );
             $users = get_users($args);
 
@@ -34,8 +32,6 @@
                 <?php
                     $id_vainkeur =  get_field("id_vainkeur_user", "user_" . $user->ID);
 
-                    $data_creator = get_creator_t($user->ID);
-                    
                     $count_sponso = 0;
                     $user_tops = get_field('liste_des_top_vkrz', $id_vainkeur);
                     $user_tops = json_decode($user_tops);
@@ -71,15 +67,6 @@
                     </td>
                     <td>
                         <?php echo $count_sponso; ?>
-                    </td>
-                    <td>
-                        <?php echo $data_creator['creator_nb_tops']; ?>
-                    </td>
-                    <td>
-                        <?php echo $data_creator['creator_all_v']; ?>
-                    </td>
-                    <td>
-                        <?php echo $data_creator['creator_all_t']; ?>
                     </td>
                 </tr>
             <?php endforeach; ?>
