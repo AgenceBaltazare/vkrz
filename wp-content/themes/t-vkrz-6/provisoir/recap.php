@@ -20,31 +20,30 @@
         </thead>
         <tbody>
             <?php
-
             $args = array(
                 'role'    => 'subscriber',
-                'number'  => 600
+                'number'  => 2000,
+                'offset'  => 2001
             );
             $users = get_users($args);
-
-            foreach ($users as $user) : ?>
-
-                <?php
-                    $id_vainkeur =  get_field("id_vainkeur_user", "user_" . $user->ID);
-
-                    $count_sponso = 0;
-                    $user_tops = get_field('liste_des_top_vkrz', $id_vainkeur);
-                    $user_tops = json_decode($user_tops);
-                    foreach($user_tops as $top) {
-                        $post_taxonomies = array();
-                        foreach(get_the_terms($top, 'type') as $tax ) {
-                          array_push($post_taxonomies, $tax->name);
-                        }
-                        if(in_array("Sponso", $post_taxonomies)) {
-                          $count_sponso++;
-                        }
-                    }
-                ?>
+            foreach ($users as $user) : 
+                $id_vainkeur        = get_field("id_vainkeur_user", "user_" . $user->ID);
+                $uuid_vainkeur      = get_field("uuid_user_vkrz", $id_vainkeur);
+                $played             = new WP_Query(array(
+                    'ignore_sticky_posts'	=> true,
+                    'update_post_meta_cache' => false,
+                    'no_found_rows'		  => true,
+                    'post_type'			  => 'player',
+                    'posts_per_page'		 => -1,
+                    'meta_query' => array(
+                        array(
+                            'key'     => 'uuid_vainkeur_p',
+                            'value'   => $uuid_vainkeur,
+                            'compare' => '=',
+                        ),
+                    ),
+                ));
+            ?>
 
                 <tr>
                     <td>
@@ -66,7 +65,7 @@
                         <?php echo get_field("code_parrain_user", "user_" . $user->ID); ?>
                     </td>
                     <td>
-                        <?php echo $count_sponso; ?>
+                        <?php echo $played->post_count; ?>
                     </td>
                 </tr>
             <?php endforeach; ?>
