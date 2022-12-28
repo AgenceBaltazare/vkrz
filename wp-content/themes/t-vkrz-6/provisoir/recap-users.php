@@ -1,6 +1,6 @@
 <?php
 /*
-    Template Name: Recap
+    Template Name: Recap users
 */
 ?>
 
@@ -20,10 +20,18 @@
         </thead>
         <tbody>
             <?php
+            $offset = $_GET['offset'];
+            if(!$offset){
+                $offset = 0;
+            }
+            $number = $_GET['number'];
+            if (!$number) {
+                $number = 2000;
+            }
             $args = array(
                 'role'    => 'subscriber',
-                'number'  => 2000,
-                'offset'  => 2001
+                'number'  => $number,
+                'offset'  => $offset
             );
             $users = get_users($args);
             foreach ($users as $user) : 
