@@ -6735,13 +6735,15 @@ select:-webkit-autofill:focus {
 }
 
 .t-normal-container .card-body, .t-normal-container .card-cta, .t-normal-container .card-footer, .t-sponso-container .card-body, .t-sponso-container .card-cta, .t-sponso-container .card-footer {
-  background: #0d1135 !important;
+  background: transparent !important;
   margin-top: 0 !important;
+  border: none !important;
 }
 
 .card-body, .card-cta, .card-footer {
-  background: rgba(13, 17, 53, 0.5490196078) !important;
+  background: transparent !important;
   margin-top: 0 !important;
+  border: none !important;
 }
 
 .toplist-footer .toplist-f-item:hover {

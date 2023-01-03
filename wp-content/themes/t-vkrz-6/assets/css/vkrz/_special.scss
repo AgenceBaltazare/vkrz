@@ -143,14 +143,16 @@
 .t-normal-container, .t-sponso-container {
 
   .card-body, .card-cta, .card-footer {
-    background: #0d1135 !important;
+    background: transparent !important;
     margin-top: 0!important;
+    border: none !important;
   }
 }
 
 .card-body, .card-cta, .card-footer {
-  background: #0d11358c !important;
+  background: transparent !important;
   margin-top: 0!important;
+  border: none !important;
 }
 
 .toplist-footer .toplist-f-item:hover {
