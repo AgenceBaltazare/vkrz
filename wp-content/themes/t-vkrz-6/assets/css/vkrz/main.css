@@ -1323,8 +1323,8 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   place-items: center;
   text-align: center;
   margin: 0 auto;
-  max-width: 400px;
-  width: 100%;
+  width: 560px;
+  max-width: 100%;
   padding: 8px;
   background: #36036D;
   background: linear-gradient(to bottom right, #36036D, #7B35F2);
@@ -1806,6 +1806,21 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   width: 100%;
   display: block;
   margin: 20px auto;
+}
+
+.banner-preview {
+  position: relative;
+}
+.banner-preview:after {
+  content: "";
+  background-image: url("../../images/vkrz/tweet.png");
+  background-repeat: no-repeat;
+  height: 40px;
+  width: 190px;
+  background-size: contain;
+  position: absolute;
+  top: -40px;
+  left: -50px;
 }
 
 .page-template-monitor .list-vainkeur-monitor {

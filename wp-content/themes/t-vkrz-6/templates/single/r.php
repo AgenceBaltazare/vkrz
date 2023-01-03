@@ -45,14 +45,14 @@ if ($get_top_type) {
 }
 $already_done       = get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $list_user_tops);
 $j = 1;
-foreach ($user_ranking as $c) : 
-  if ($j == 1) : 
-    $first_id_contender = $c; 
-    elseif ($j == 2) : 
-      $second_id_contender = $c; 
-      elseif ($j == 3) : 
-        $third_id_contender = $c; 
-      endif;
+foreach ($user_ranking as $c) :
+  if ($j == 1) :
+    $first_id_contender = $c;
+  elseif ($j == 2) :
+    $second_id_contender = $c;
+  elseif ($j == 3) :
+    $third_id_contender = $c;
+  endif;
   $j++;
 endforeach;
 ?>
@@ -175,6 +175,11 @@ endforeach;
                               <?php endif; ?>
                             </a>
                           <?php elseif (get_field('type_de_fin_t_sponso', $id_top_global) == "twitter_2") : ?>
+
+                            <div class="banner-preview">
+                              <img src="<?php echo $banner ?>" alt="Top 3" class="img-fluid">
+                            </div>
+
                             <a href="https://twitter.com/intent/tweet?hashtags=<?php the_field('hashtags_du_tweet_twitter_2', $id_top_global); ?>&original_referer=<?php echo $url_ranking; ?>&ref_src=&text=<?php the_field('message_du_tweet_twitter_2', $id_top_global); ?>&url=<?php echo $url_ranking; ?>&via=<?php the_field('compte_twitter_twitter_2', $id_top_global); ?>" class="animate__jello animate__animated animate__delay-1s btn btn-max btn-tweet btn-rose waves-effect waves-float waves-light" target="_blank">
                               <img src="https://vainkeurz.com/wp-content/uploads/2022/06/twitter.png" width="20" height="16" alt="Tweet icon">
                               <?php the_field('message_du_bouton_tweet_twitter2', $id_top_global); ?>
@@ -653,7 +658,7 @@ endforeach;
                             </h2>
                             <div class="mt-1">
                               <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_top_global; ?>" class="btn btn-outline-primary waves-effect mb-1">
-                                <span class="va va-duo va-lg"></span> Voir les <?php echo $top_datas['nb_tops']; ?> TopList et ressemblance 
+                                <span class="va va-duo va-lg"></span> Voir les <?php echo $top_datas['nb_tops']; ?> TopList et ressemblance
                               </a>
                               <h2 class="stats-mondiales mt-50">
                                 <b>Ressemblance mondiale : </b>
@@ -865,20 +870,20 @@ endforeach;
     <nav class="navbar fixed-bottom mobile-navbar">
       <div class="row">
         <div class="col-md-8">
-          <?php 
-            if(is_user_logged_in())  $space_for_crisp = isMobile() && get_userdata(get_user_logged_id())->roles[0] != 'administrator';
-            elseif(!is_user_logged_in() && isMobile()) $space_for_crisp = true;
+          <?php
+          if (is_user_logged_in())  $space_for_crisp = isMobile() && get_userdata(get_user_logged_id())->roles[0] != 'administrator';
+          elseif (!is_user_logged_in() && isMobile()) $space_for_crisp = true;
           ?>
           <div class="toplist-footer" style="<?php echo $space_for_crisp ? "width: 82%;gap:7px;" : "" ?>">
             <?php if (!in_array('private', $types_top)) : ?>
               <?php if ($already_done) : ?>
-                <?php if(get_field('uuid_user_r', $id_ranking) != $uuid_vainkeur) :  ?>
+                <?php if (get_field('uuid_user_r', $id_ranking) != $uuid_vainkeur) :  ?>
                   <a href="<?php echo $top_infos['top_url']; ?>" class="toplist-f-item bubbly-button" style="<?php echo $space_for_crisp ? "padding: 0.3rem !important;" : "" ?>">
                     Voir ma TopList
                   </a>
                 <?php else : ?>
                   <button class="toplist-f-item bubbly-button share-content-show share-natif-classement" style="<?php echo $space_for_crisp ? "padding: 0.3rem !important;" : "" ?>">
-                    Partage ta TopList                  
+                    Partage ta TopList
                   </button>
                 <?php endif; ?>
               <?php else : ?>
@@ -898,10 +903,10 @@ endforeach;
 
             <?php if ($already_done && get_field('uuid_user_r', $id_ranking) == $uuid_vainkeur) : ?>
               <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" href="#" class="confirm_delete toplist-f-item btn-show-hover">
-               <span class="tooltiptext hide-xs">Recommencer</span> <i class="far fa-sync-alt"></i>
+                <span class="tooltiptext hide-xs">Recommencer</span> <i class="far fa-sync-alt"></i>
               </a>
             <?php endif; ?>
-          </div>                       
+          </div>
         </div>
       </div>
     </nav>
@@ -923,7 +928,7 @@ endforeach;
         </div>
         <div class="right">
           <a href="<?php echo $banner; ?>" download target="_blank">
-            <i class="social-media fas fa-download"></i> Télécharger l'image de ma TopList 
+            <i class="social-media fas fa-download"></i> Télécharger l'image de ma TopList
           </a>
 
           <a href="#" class="sharelinkbtn" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copier le lien de ta TopList">
