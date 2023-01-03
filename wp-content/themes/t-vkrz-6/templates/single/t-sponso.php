@@ -113,7 +113,7 @@ get_header();
                   </div>
                   <div class="card-cta">
                     <div class="choosecta">
-                      <?php if ($top_infos['top_number'] > 15) : ?>
+                      <?php if ($top_infos['top_number'] > 10) : ?>
                         <div class="cta-begin cta-top3">
                           <a href="#" id="begin_top3" data-typetop="top3" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-top="<?php echo $id_top; ?>" data-uuiduser="<?php echo $uuid_vainkeur; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
                             <i class="fab fa-twitch twitch-icon-tbegin d-none"></i>&nbsp;
