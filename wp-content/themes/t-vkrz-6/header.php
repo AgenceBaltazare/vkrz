@@ -131,8 +131,6 @@ if ($infos_vainkeur['avatar']) {
 </script>
 
 <body <?php body_class($list_body_class); ?> data-open="click" data-menu="vertical-menu-modern" data-col="">
-  <div class="fairy-lights-container d-block d-sm-none" style="background: url('<?php bloginfo('template_directory'); ?>/assets/images/vkrz/fairy-lights.gif');">
-  </div>
 
   <?php if ($infos_vainkeur['user_role'] != "administrator" && env() != "local") : ?>
     <!-- Google Tag Manager (noscript) -->
