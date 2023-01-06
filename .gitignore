@@ -50,3 +50,5 @@ wp-content/wp-rocket-config
 #### Spécial
 twitch/
 twitch/*
+rooms/*
+rooms/
