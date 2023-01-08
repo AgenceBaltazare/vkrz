@@ -7,7 +7,7 @@ namespace Composer\Autoload;
 use Composer\AutoloadWPMediaImagifyWordPressPlugin\ClassLoader as ClassLoaderWPMediaImagifyWordPressPlugin;
 
 
-class ComposerStaticInit5c91431b47976e7eff13ffd9e4a50932
+class ComposerStaticInitffe78630202c47dcd646679b2a68f3ad
 {
     public static $prefixLengthsPsr4 = array (
         'I' => 
@@ -18,7 +18,6 @@ class ComposerStaticInit5c91431b47976e7eff13ffd9e4a50932
             'Imagify\\ThirdParty\\FormidablePro\\' => 33,
             'Imagify\\ThirdParty\\EnableMediaReplace\\' => 38,
             'Imagify\\ThirdParty\\AS3CF\\' => 25,
-            'Imagify\\Tests\\' => 14,
             'Imagify\\Deprecated\\Traits\\' => 26,
             'Imagify\\' => 8,
         ),
@@ -57,10 +56,6 @@ class ComposerStaticInit5c91431b47976e7eff13ffd9e4a50932
         array (
             0 => __DIR__ . '/../..' . '/inc/3rd-party/amazon-s3-and-cloudfront/classes',
         ),
-        'Imagify\\Tests\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/Tests',
-        ),
         'Imagify\\Deprecated\\Traits\\' => 
         array (
             0 => __DIR__ . '/../..' . '/inc/deprecated/Traits',
@@ -80,6 +75,7 @@ class ComposerStaticInit5c91431b47976e7eff13ffd9e4a50932
     );
 
     public static $classMap = array (
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Imagify' => __DIR__ . '/../..' . '/inc/classes/class-imagify.php',
         'Imagify_AS3CF_Attachment' => __DIR__ . '/../..' . '/inc/deprecated/classes/class-imagify-as3cf-attachment.php',
         'Imagify_AS3CF_Deprecated' => __DIR__ . '/../..' . '/inc/deprecated/classes/class-imagify-as3cf-deprecated.php',
@@ -114,7 +110,6 @@ class ComposerStaticInit5c91431b47976e7eff13ffd9e4a50932
         'Imagify_Folders_DB' => __DIR__ . '/../..' . '/inc/classes/class-imagify-folders-db.php',
         'Imagify_NGG_Attachment' => __DIR__ . '/../..' . '/inc/deprecated/classes/class-imagify-ngg-attachment.php',
         'Imagify_NGG_Dynamic_Thumbnails_Background_Process' => __DIR__ . '/../..' . '/inc/deprecated/classes/class-imagify-ngg-dynamic-thumbnails-background-process.php',
-        'Imagify_Notices' => __DIR__ . '/../..' . '/inc/classes/class-imagify-notices.php',
         'Imagify_Notices_Deprecated' => __DIR__ . '/../..' . '/inc/deprecated/classes/class-imagify-notices-deprecated.php',
         'Imagify_Options' => __DIR__ . '/../..' . '/inc/classes/class-imagify-options.php',
         'Imagify_Regenerate_Thumbnails_Deprecated' => __DIR__ . '/../..' . '/inc/deprecated/classes/class-imagify-regenerate-thumbnails-deprecated.php',
@@ -129,9 +124,9 @@ class ComposerStaticInit5c91431b47976e7eff13ffd9e4a50932
     public static function getInitializer(ClassLoaderWPMediaImagifyWordPressPlugin $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit5c91431b47976e7eff13ffd9e4a50932::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit5c91431b47976e7eff13ffd9e4a50932::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit5c91431b47976e7eff13ffd9e4a50932::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitffe78630202c47dcd646679b2a68f3ad::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitffe78630202c47dcd646679b2a68f3ad::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitffe78630202c47dcd646679b2a68f3ad::$classMap;
 
         }, null, ClassLoaderWPMediaImagifyWordPressPlugin::class);
     }

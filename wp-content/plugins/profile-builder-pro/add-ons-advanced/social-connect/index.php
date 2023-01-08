@@ -228,7 +228,8 @@ class WPPB_IN_Social_Connect {
 			array( 'type' => 'checkbox', 'slug' => 'facebook-login', 'title' => __( 'Facebook Login', 'profile-builder' ), 'options' => array( '%Enable%yes' ) ),
 			array( 'type' => 'text', 'slug' => 'facebook-app-id', 'title' => __( 'Facebook App ID', 'profile-builder' ), 'description' => 'Documentation: <a href="https://www.cozmoslabs.com/docs/profile-builder-2/add-ons/social-connect/create-facebook-app-social-connect" target="_blank">how to create and use a Facebook app</a>' ),
 			array( 'type' => 'checkbox', 'slug' => 'google-login', 'title' => __( 'Google Login', 'profile-builder' ), 'options' => array( '%Enable%yes' ) ),
-			array( 'type' => 'text', 'slug' => 'google-client-id', 'title' => __( 'Google Client ID', 'profile-builder' ), 'description' => 'Documentation: <a href="https://www.cozmoslabs.com/docs/profile-builder-2/add-ons/social-connect/create-google-app-social-connect" target="_blank">how to create and use a Google app</a>' ),
+			array( 'type' => 'text', 'slug' => 'google-client-id', 'title' => __( 'Google Client ID', 'profile-builder' ) ),
+			array( 'type' => 'text', 'slug' => 'google-client-name', 'title' => __( 'Google Client Name', 'profile-builder' ), 'description' => 'Documentation: <a href="https://www.cozmoslabs.com/docs/profile-builder-2/add-ons/social-connect/create-google-app-social-connect" target="_blank">how to create and use a Google app</a>' ),
 			array( 'type' => 'checkbox', 'slug' => 'twitter-login', 'title' => __( 'Twitter Login', 'profile-builder' ), 'options' => array( '%Enable%yes' ) ),
 			array( 'type' => 'text', 'slug' => 'twitter-api-key', 'title' => __( 'Twitter API Key', 'profile-builder' ) ),
 			array( 'type' => 'text', 'slug' => 'twitter-api-secret', 'title' => __( 'Twitter API Secret', 'profile-builder' ), 'description' => 'Documentation: <a href="https://www.cozmoslabs.com/docs/profile-builder-2/add-ons/social-connect/create-twitter-app-social-connect" target="_blank">how to create and use a Twitter app</a>' ),
@@ -444,8 +445,9 @@ class WPPB_IN_Social_Connect {
 			}
 
 			if( $platform == 'google' ) {
-				if( ! empty( $this->wppb_social_connect_settings[0]['google-client-id'] ) ) {
+				if( ! empty( $this->wppb_social_connect_settings[0]['google-client-id'] ) && ! empty( $this->wppb_social_connect_settings[0]['google-client-name'] ) ) {
 					$vars_array['client_id'] = esc_attr( trim( $this->wppb_social_connect_settings[0]['google-client-id'] ) );
+					$vars_array['plugin_name'] = esc_attr( trim( $this->wppb_social_connect_settings[0]['google-client-name'] ) );
 				}
 			}
 

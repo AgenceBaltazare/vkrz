@@ -279,7 +279,7 @@ function wppb_generate_mustache_array_for_single_user_list(){
 
 	$mustache_vars = array(
 						array(
-							'group-title' => 'User Fields Tags',
+                            'group-title' => __( 'User Fields Tags', 'profile-builder' ),
 							'variables' => $meta_tags
 						),
 						array(
