@@ -26,6 +26,12 @@ add_action('rest_api_init', function () {
     'callback' => 'add_contender_from_api',
   ));
 
+  // Create Top
+  register_rest_route('vkrz/v1', '/addtop/', array(
+    'methods' => 'GET',
+    'callback' => 'add_top_from_api',
+  ));
+
   // Info Top
   register_rest_route('vkrz/v1', '/infotop/(?P<id_top>[\d]+)', array(
     'methods' => 'GET',

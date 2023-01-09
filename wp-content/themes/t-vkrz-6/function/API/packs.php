@@ -85,6 +85,44 @@ function add_contender_from_api()
     }
   }
 }
+function add_top_from_api()
+{
+  $topTitle       = $_GET['topTitle'];
+  $topImage       = $_GET['topImage'];
+  $topCategory    = $_GET['topCategory'];
+  $topQuestion    = $_GET['topQuestion'];
+  $topDescription = $_GET['topDescription'];
+
+  $new_top = array(
+    'post_type'   => 'tournoi',
+    'post_title'  => $topTitle,
+    'post_status' => 'draft',
+  );
+  $id_new_top  = wp_insert_post($new_top);
+
+  $upload_dir = wp_upload_dir();
+  $image_data = file_get_contents($topImage);
+  $filename = basename($topImage);
+  if(wp_mkdir_p($upload_dir['path']))
+      $file = $upload_dir['path'] . '/' . $filename;
+  else
+      $file = $upload_dir['basedir'] . '/' . $filename;
+  file_put_contents($file, $image_data);
+  
+  $wp_filetype = wp_check_filetype($filename, null );
+  $attachment = array(
+      'post_mime_type' => $wp_filetype['type'],
+      'post_title' => sanitize_file_name($filename),
+      'post_content' => '',
+      'post_status' => 'inherit'
+  );
+  $attach_id = wp_insert_attachment( $attachment, $file, $id_new_top );
+  require_once(ABSPATH . 'wp-admin/includes/image.php');
+  $attach_data = wp_generate_attachment_metadata( $attach_id, $file );
+  wp_update_attachment_metadata( $attach_id, $attach_data );
+  
+  set_post_thumbnail( $id_new_top, $attach_id );
+}
 
 function get_stats($data)
 {
@@ -580,7 +618,6 @@ function get_the_dodo($data)
     update_field('nb_tops_dodo', $dodo[0]['total_top'], 'options');
   }
 }
-
 
 function get_shopper($data)
 {

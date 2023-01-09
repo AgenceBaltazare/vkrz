@@ -302,5 +302,125 @@ jQuery(document).ready(function ($) {
       "wordpress_vainkeurz_user_utm=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 UTC";
       setCookie("wordpress_vainkeurz_user_utm", utm, 365)
     }
+
+    // CREATE TOP
+    const createTopDoc = document.querySelector('.create-top-page');
+    const tabs         = createTopDoc.querySelectorAll('.tabs');
+    const suivantBtn   = createTopDoc.querySelector('.suivant');
+    const precBtn      = createTopDoc.querySelector('.prec');
+    const steps        = createTopDoc.querySelectorAll('.step');
+    let tabIndex = 0;
+
+    const showTab = function(direction) {
+      if(direction === "next") {
+        +tabIndex++;
+      } else if (direction === "prev") {
+        if(tabIndex == 0) return;
+        +tabIndex--;
+      } else {
+        tabIndex = +direction;
+      }
+
+      if((tabs.length - 1) === tabIndex) 
+        suivantBtn.classList.add('paginate-disable')
+      else 
+        suivantBtn.classList.remove('paginate-disable')
+
+      if(tabIndex < tabs.length) {
+        tabs.forEach((tab, index) => {
+          tab.classList.add('hidden');
+          tab.classList.remove('show');
+        })
+        tabs[tabIndex].classList.add('show');
+        tabs[tabIndex].classList.remove('hidden');
+      }
+    }
+
+    const topFormWrapper = createTopDoc.querySelector('.top-form-wrapper');
+    const alert          = createTopDoc.querySelector('.alert');
+    const topTitle       = topFormWrapper.querySelector('#top-title');
+    const topCategory    = topFormWrapper.querySelector('#top-category');
+    const topQuestion    = topFormWrapper.querySelector('#top-question');
+    const topDescription = topFormWrapper.querySelector('#top-description');
+    const topImage       = topFormWrapper.querySelector('#top-image');
+
+    suivantBtn.addEventListener('click', function(e) {
+      if(
+        !topTitle.value || !topCategory.value ||
+        !topQuestion.value || !topDescription.value ||
+        !topImage.value 
+        ) {
+        alert.classList.remove('d-none')
+      } else {
+        showTab("next");
+
+        let randomImageName = crypto.randomUUID();
+
+        const d = new Date();
+        let year = d.getFullYear();
+
+        Date.prototype.getFullMonth = function() {
+          const month = this.getMonth()+1
+          return month < 10 ? '0' + month : month
+        }
+        let month = d.getFullMonth();
+
+        // PROCESS TO RENAME THE IMAGE
+        let imgType = topImage.files[0].name.split('.').pop().toLowerCase();
+        let element = topImage;
+        let file = element.files[0];
+        let blob = file.slice(0, file.size, `image/${imgType}`);
+        let newImgFileName = new File([blob], `${randomImageName}.${imgType}`, {
+          type: `image/${imgType}`
+        });
+
+        let formData = new FormData();
+        formData.append('topImage', newImgFileName);
+
+        $.ajax({
+          url: window.location.href,
+          method: "POST",
+          processData: false,
+          contentType: false,
+          data: formData,
+          success: function(data) {
+            $.ajax({
+              url: "http://localhost:8888/vkrz/wp-json/vkrz/v1/addtop",
+              method: "GET",
+              data: {
+                topTitle: topTitle.value,
+                topImage: `http://localhost:8888/vkrz/wp-content/uploads/${year}/${month}/${randomImageName}.${imgType}`
+              },
+            })
+          }
+        }).done(function(response) {
+          console.log('Well did!');
+          console.log(`http://localhost:8888/vkrz/wp-content/uploads/${year}/${month}/${randomImageName}.${imgType}`)
+        });
+      }
+    });
+    topFormWrapper.addEventListener('input', function() {
+      if(
+        topTitle.value && topCategory.value &&
+        topQuestion.value && topDescription.value &&
+        topImage.value 
+        ) {
+        alert.classList.add('d-none');
+        steps[0].classList.add('active');
+        steps[1].classList.remove('disable');
+      } else {
+        steps[0].classList.remove('active');
+        steps[1].classList.add('disable');
+      }
+    })
+
+    precBtn.addEventListener('click', function(e) {
+      showTab("prev");
+    });
+    steps.forEach(step => {
+      step.addEventListener('click', function(e) {
+        showTab(step.dataset.tabindex);
+      })
+    });
   };
 });
