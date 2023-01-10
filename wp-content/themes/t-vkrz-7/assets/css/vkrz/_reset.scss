@@ -342,3 +342,10 @@ a.sociallink:hover {
 .btn-label-danger {
     background: transparent;
 }
+
+.btn:not([class*=btn-label-]):not([class*=btn-outline-]) {
+    box-shadow: unset!important;
+}
+input[type="submit"] {
+    border: none;
+}

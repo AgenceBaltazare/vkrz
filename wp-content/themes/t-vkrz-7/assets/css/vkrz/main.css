@@ -377,6 +377,14 @@ a.sociallink:hover i {
   background: transparent;
 }
 
+.btn:not([class*=btn-label-]):not([class*=btn-outline-]) {
+  box-shadow: unset !important;
+}
+
+input[type=submit] {
+  border: none;
+}
+
 .cover {
   background-size: cover !important;
 }

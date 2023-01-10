@@ -122,7 +122,7 @@
         </a>
         <ul class="menu-sub">
           <li class="menu-item">
-            <a href="<?php the_permalink(get_page_by_path(104853)); ?>" class="menu-link">
+            <a href="<?php the_permalink(get_page_by_path('a-propos')); ?>" class="menu-link">
               <span class="iconmenu">
                 <span class="va va-monocle va-lg"></span>
               </span>

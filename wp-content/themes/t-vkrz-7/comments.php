@@ -32,7 +32,7 @@ global $infos_vainkeur;
             <div class="card" data-comment-id="<?php echo $comment->comment_ID; ?>">
               <div class="card-body">
                 <div class="d-flex align-items-start">
-                  <div class="avatar me-75 mr-1">
+                  <div class="avatar me-2">
                     <?php
                     $url_author = "#";
                     if ($comment->comment_author_email) {
@@ -91,7 +91,7 @@ global $infos_vainkeur;
               <div class="card" data-comment-id="<?php echo $comment->comment_ID; ?>">
                 <div class="card-body">
                   <div class="d-flex align-items-start">
-                    <div class="avatar me-75 mr-1">
+                    <div class="avatar me-2">
                       <?php
                       $url_author = "#";
                       if ($comment->comment_author_email) {
@@ -198,7 +198,7 @@ global $infos_vainkeur;
           ?>
           <form id="commentform" action="<?php echo get_option('siteurl'); ?>/wp-comments-post.php" method="post" class="form">
             <div class="d-flex align-items-center">
-              <div class="avatar me-75 mr-1">
+              <div class="avatar me-2">
                 <img src="<?php echo $autor_comment_avatar; ?>" width="60" height="60" alt="Avatar">
               </div>
               <div class="pseudo-input">

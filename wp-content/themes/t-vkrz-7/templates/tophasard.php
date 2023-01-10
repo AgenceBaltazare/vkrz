@@ -40,31 +40,26 @@ $tops_rand          = new WP_Query(array(
   ),
 ));
 ?>
-<div class="app-content content ecommerce-application">
-  <div class="content-wrapper">
-    <div class="content-body">
 
-      <div class="text-center evolution">
-        <h1 class="mt-1 mb-1">
-          Tops au hasard
-        </h1>
-        <a href="<?php the_permalink(470569); ?>" class="btn btn-outline-primary btn-flat-primary waves-effect">
-          Relancer 3 nouveaux Tops
-        </a>
-      </div>
-
-      <section class="grid-to-filtre row match-height mt-2">
-        <?php $i = 1;
-        while ($tops_rand->have_posts()) : $tops_rand->the_post(); ?>
-
-          <div class="col-md-4">
-            <?php get_template_part('partials/min-t'); ?>
-          </div>
-
-        <?php $i++;
-        endwhile; ?>
-      </section>
-    </div>
-  </div>
+<div class="text-center evolution">
+  <h1 class="mt-1 mb-1">
+    Tops au hasard
+  </h1>
+  <a href="<?php the_permalink(470569); ?>" class="btn btn-outline-primary btn-flat-primary waves-effect">
+    Relancer 3 nouveaux Tops
+  </a>
 </div>
+
+<section class="grid-to-filtre row match-height mt-2">
+  <?php $i = 1;
+  while ($tops_rand->have_posts()) : $tops_rand->the_post(); ?>
+
+    <div class="col-md-4">
+      <?php get_template_part('partials/min-t'); ?>
+    </div>
+
+  <?php $i++;
+  endwhile; ?>
+</section>
+
 <?php get_footer(); ?>

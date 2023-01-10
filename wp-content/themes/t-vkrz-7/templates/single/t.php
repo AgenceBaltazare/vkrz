@@ -616,7 +616,7 @@ get_header();
                     </h4>
                     <div class="employee-task d-flex justify-content-center align-items-center mt-3">
                       <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator_id; ?>" class="d-flex flex-row link-to-creator">
-                        <div class="avatar me-75 mr-1">
+                        <div class="avatar me-2">
                           <img src="<?php echo $creator_data['avatar']; ?>" class="circle" width="42" height="42" alt="Avatar">
                         </div>
                         <div class="my-auto">

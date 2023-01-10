@@ -24,7 +24,7 @@ else{
             <div class="media-body">
                 <div class="media-heading">
                     <h6 class="cart-item-title mb-0">
-                        Top <?php the_field('count_contenders_t', $id_top); ?> <?php echo $cat_icon; ?> <?php echo get_the_title($id_top); ?>
+                        TOP <?php the_field('count_contenders_t', $id_top); ?> <?php echo $cat_icon; ?> <?php echo get_the_title($id_top); ?>
                     </h6>
                     <span class="cart-item-by legende">
                         <?php the_field('question_t', $id_top); ?>

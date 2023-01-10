@@ -633,7 +633,7 @@ get_header();
           </h4>
           <div class="employee-task d-flex justify-content-between align-items-center">
             <a href="<?php echo $creator_data['creator_url']; ?>" class="d-flex flex-row link-to-creator">
-              <div class="avatar me-75 mr-1">
+              <div class="avatar me-2">
                 <img src="<?php echo $creator_data['avatar']; ?>" class="circle" width="42" height="42" alt="Avatar">
               </div>
               <div class="my-auto">

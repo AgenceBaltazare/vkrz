@@ -2,12 +2,10 @@
 /*
     Template Name: Blog
 */
-?>
-<?php get_header(); ?>
-<div class="app-content content ">
-  <div class="content-overlay position-fixed" style="z-index: -1 !important;"></div>
-  <div class="header-navbar-shadow"></div>
-  <div class="content-wrapper container-xxl p-0 mt-2">
+get_header(); ?>
+
+<div class="row mt-lg-3">
+  <div class="col-sm-9">
     <div class="content-detached content-left">
       <div class="content-body">
 
@@ -54,20 +52,20 @@
                         </div>
                       </div>
                       <!--
-                      <div class="my-1 py-25">
-                        <?php
-                        foreach (get_the_terms(get_the_ID(), 'category') as $cat) {
-                          $cat_id     = $cat->term_id;
-                          $cat_name   = $cat->name;
-                        }
-                        ?>
-                        <a href="<?= get_category_link($cat_id); ?>">
-                          <span class="badge rounded-pill badge-light-info me-50">
-                            <?= $cat_name; ?>
-                          </span>
-                        </a>
-                      </div>
-                      -->
+                          <div class="my-1 py-25">
+                            <?php
+                            foreach (get_the_terms(get_the_ID(), 'category') as $cat) {
+                              $cat_id     = $cat->term_id;
+                              $cat_name   = $cat->name;
+                            }
+                            ?>
+                            <a href="<?= get_category_link($cat_id); ?>">
+                              <span class="badge rounded-pill badge-light-info me-50">
+                                <?= $cat_name; ?>
+                              </span>
+                            </a>
+                          </div>
+                          -->
                       <p class="card-text blog-content-truncate">
                         <?php echo get_the_excerpt(); ?>
                       </p>
@@ -105,10 +103,12 @@
 
       </div>
     </div>
+  </div>
+
+  <div class="col-sm-3">
     <div class="sidebar-detached sidebar-right">
       <div class="sidebar">
         <div class="blog-sidebar my-2 my-lg-0">
-          <!-- Recent Posts -->
           <div class="blog-recent-posts">
             <h6 class="section-label">Actualités</h6>
             <div class="mt-75">
@@ -150,52 +150,11 @@
 
             </div>
           </div>
-          <!--/ Recent Posts -->
-
-          <!-- Categories
-          <div class="blog-categories mt-3">
-            <h6 class="section-label">Catégories</h6>
-            <div class="mt-1">
-
-              <?php
-              $categories = get_terms(array(
-                'taxonomy'      => 'category',
-                'orderby'       => 'count',
-                'order'         => 'DESC',
-                'hide_empty'    => true,
-              ));
-
-              $styles = [
-                'bg-light-primary',
-                'bg-light-success',
-                'bg-light-danger'
-              ];
-              $i = 0;
-              foreach ($categories as $category) : ?>
-                <div class="d-flex justify-content-start align-items-center mb-75">
-                  <a href="<?php echo get_category_link($category->term_id); ?>" class="mr-50">
-                    <div class="avatar <?= $styles[$i++]; ?> rounded">
-                      <div class="avatar-content">
-                        <?php the_field('icone_cat_article', 'term_' . $category->term_id); ?>
-                      </div>
-                    </div>
-                  </a>
-
-                  <a href="<?php echo get_category_link($category->term_id); ?>">
-                    <div class="blog-category-title text-body">
-                      <?php echo $category->name; ?>
-                    </div>
-                  </a>
-                </div>
-              <?php endforeach; ?>
-            </div>
-          </div>
-          Categories -->
         </div>
       </div>
     </div>
   </div>
 </div>
-<!-- END: Content-->
+
 
 <?php get_footer(); ?>
