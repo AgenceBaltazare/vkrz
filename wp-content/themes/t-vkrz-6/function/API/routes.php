@@ -28,7 +28,7 @@ add_action('rest_api_init', function () {
 
   // Create Top
   register_rest_route('vkrz/v1', '/addtop/', array(
-    'methods' => 'GET',
+    'methods' => 'POST',
     'callback' => 'add_top_from_api',
   ));
 

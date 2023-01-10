@@ -354,8 +354,6 @@ jQuery(document).ready(function ($) {
       } else {
         showTab("next");
 
-        let randomImageName = crypto.randomUUID();
-
         const d = new Date();
         let year = d.getFullYear();
 
@@ -370,33 +368,27 @@ jQuery(document).ready(function ($) {
         let element = topImage;
         let file = element.files[0];
         let blob = file.slice(0, file.size, `image/${imgType}`);
-        let newImgFileName = new File([blob], `${randomImageName}.${imgType}`, {
+        let newImgFileName = new File([blob], `${topTitle.value}.${imgType}`, {
           type: `image/${imgType}`
         });
 
         let formData = new FormData();
         formData.append('topImage', newImgFileName);
+        formData.append('topTitle', topTitle.value);
+        formData.append('topCategory', topCategory.value);
+        formData.append('topQuestion', topQuestion.value);
+        formData.append('topDescription', topDescription.value);
 
         $.ajax({
-          url: window.location.href,
+          url: "http://localhost:8888/vkrz/wp-json/vkrz/v1/addtop",
           method: "POST",
-          processData: false,
-          contentType: false,
           data: formData,
+          contentType: false,
+          processData: false,
           success: function(data) {
-            $.ajax({
-              url: "http://localhost:8888/vkrz/wp-json/vkrz/v1/addtop",
-              method: "GET",
-              data: {
-                topTitle: topTitle.value,
-                topImage: `http://localhost:8888/vkrz/wp-content/uploads/${year}/${month}/${randomImageName}.${imgType}`
-              },
-            })
+            document.querySelector('.create-top-form').dataset.idtop = data;
           }
-        }).done(function(response) {
-          console.log('Well did!');
-          console.log(`http://localhost:8888/vkrz/wp-content/uploads/${year}/${month}/${randomImageName}.${imgType}`)
-        });
+        })
       }
     });
     topFormWrapper.addEventListener('input', function() {

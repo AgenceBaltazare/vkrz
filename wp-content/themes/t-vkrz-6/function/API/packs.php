@@ -61,7 +61,6 @@ function get_top_info($data)
 
 function add_contender_from_api()
 {
-
   $id_visual   = $_GET['idphoto'];
   $url_visual  = $_GET['url_visual'];
   $pseudo      = $_GET['pseudo'];
@@ -85,43 +84,39 @@ function add_contender_from_api()
     }
   }
 }
+
 function add_top_from_api()
 {
-  $topTitle       = $_GET['topTitle'];
-  $topImage       = $_GET['topImage'];
-  $topCategory    = $_GET['topCategory'];
-  $topQuestion    = $_GET['topQuestion'];
-  $topDescription = $_GET['topDescription'];
+  $topTitle       = $_POST['topTitle'];
+  $topCategory    = $_POST['topCategory'];
+  $topQuestion    = $_POST['topQuestion'];
+  $topDescription = $_POST['topDescription'];
 
-  $new_top = array(
-    'post_type'   => 'tournoi',
-    'post_title'  => $topTitle,
-    'post_status' => 'draft',
-  );
-  $id_new_top  = wp_insert_post($new_top);
+  // Récupérez les données du formulaire
+  $topImage = $_FILES['topImage'];
 
-  $upload_dir = wp_upload_dir();
-  $image_data = file_get_contents($topImage);
-  $filename = basename($topImage);
-  if(wp_mkdir_p($upload_dir['path']))
-      $file = $upload_dir['path'] . '/' . $filename;
-  else
-      $file = $upload_dir['basedir'] . '/' . $filename;
-  file_put_contents($file, $image_data);
-  
-  $wp_filetype = wp_check_filetype($filename, null );
-  $attachment = array(
-      'post_mime_type' => $wp_filetype['type'],
-      'post_title' => sanitize_file_name($filename),
-      'post_content' => '',
-      'post_status' => 'inherit'
+  // Insérez le nouvel article dans la base de données
+  $new_post = array(
+     'post_title' => $topTitle,
+     'post_status' => 'publish',
+     'post_type'   => 'tournoi',
+     'post_author' => 5761
   );
-  $attach_id = wp_insert_attachment( $attachment, $file, $id_new_top );
-  require_once(ABSPATH . 'wp-admin/includes/image.php');
-  $attach_data = wp_generate_attachment_metadata( $attach_id, $file );
-  wp_update_attachment_metadata( $attach_id, $attach_data );
-  
-  set_post_thumbnail( $id_new_top, $attach_id );
+  $post_id = wp_insert_post( $new_post );
+
+  // Téléchargez l'image à la une et assignez-la à l'article
+  require_once( ABSPATH . 'wp-admin/includes/image.php' );
+  require_once( ABSPATH . 'wp-admin/includes/file.php' );
+  require_once( ABSPATH . 'wp-admin/includes/media.php' );
+  $attachment_id = media_handle_upload( 'topImage', $post_id );
+  set_post_thumbnail( $post_id, $attachment_id );
+
+  wp_set_object_terms( $post_id, intval( $topCategory ), 'categorie' );
+
+  update_field('question_t', $topQuestion, $post_id);
+  update_field('precision_t', $topDescription, $post_id);
+
+  return $post_id;
 }
 
 function get_stats($data)
