@@ -57,7 +57,8 @@ $distance: 18rem;
     .create-top-content {
       padding: 1rem 2rem;
 
-      .create-top-form {
+      .create-top-form,
+      .create-top-contenders-form {
         display: flex;
         justify-content: space-between;
         align-items: center;

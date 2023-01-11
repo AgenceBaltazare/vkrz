@@ -85,6 +85,32 @@ function add_contender_from_api()
   }
 }
 
+function add_contender_from_api2()
+{
+  $contenderPhoto   = $_FILES['contenderPhoto'];
+  $contenderTitle   = $_POST['contenderTitle'];
+  $idTop            = $_POST['idTop'];
+
+  $new_contender = array(
+    'post_type'   => 'contender',
+    'post_title'  => $contenderTitle,
+    'post_status' => 'publish',
+  );
+  $id_new_contender  = wp_insert_post($new_contender);
+
+  require_once( ABSPATH . 'wp-admin/includes/image.php' );
+  require_once( ABSPATH . 'wp-admin/includes/file.php' );
+  require_once( ABSPATH . 'wp-admin/includes/media.php' );
+  $attachment_id = media_handle_upload( 'contenderPhoto', $id_new_contender );
+  set_post_thumbnail( $id_new_contender, $attachment_id );
+
+  update_field('id_tournoi_c', $idTop, $id_new_contender);
+
+  if ($id_new_contender) {
+    return "Nouveau contender dans le Top " . get_the_title($idTop);
+  }
+}
+
 function add_top_from_api()
 {
   $topTitle       = $_POST['topTitle'];

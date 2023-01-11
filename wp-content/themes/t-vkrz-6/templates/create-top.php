@@ -57,7 +57,7 @@ get_header();
 
         <div class="create-top-content">
           <form class="create-top-form" autocomplete="off" method="POST" enctype="multipart/form-data" data-idtop="">
-            <div class="top-form-wrapper tabs tab hidden">
+            <div class="top-form-wrapper tabs tab show">
 
               <!-- TITLE, CATEGORY -->
               <div class="form-group">
@@ -91,20 +91,21 @@ get_header();
               </div>
 
             </div>
+          </form>
 
-            <div class="contenders-form-wrapper tabs tab show">
+          <form class="create-top-contenders-form" autocomplete="off" method="POST" enctype="multipart/form-data">
+            <div class="contenders-form-wrapper tabs tab hidden">
               <div class="image-upload-wrapper" data-text="Déposez l'image ici ou cliquez pour la télécharger.">
                 <input name="file-upload-field" type="file" class="file-upload-field" value="" accept="image/*" onchange="uploadFiles(this)" multiple>
               </div>
 
               <div class="images"></div>
 
-              <a href="#" class="btn btn-primary mt-3" id="soumettre">Soumettre</a>
+              <a href="#" class="btn btn-outline-secondary mt-3 float-right suivant" id="soumettre">Soumettre</a>
             </div>
-
-            <div class="finish-wrapper tabs tab hidden">Youpi</div>
-
           </form>
+
+          <div class="finish-wrapper tabs tab hidden">La fin!</div>
 
           <p class="alert d-none">
             <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
@@ -112,7 +113,6 @@ get_header();
           </p>
 
           <div class="paginate">
-            <a href="#" class="prec" data-index="0">Précedent</a>
             <a href="#" class="suivant" data-index="0">Suivant</a>
           </div>
         </div>
@@ -140,30 +140,45 @@ get_header();
         text += target.files[image].name + ", ";
 
         images.insertAdjacentHTML('beforeend', `
-          <input type="text" class="imageName" value="${(target.files[image].name).split('.')[0]}" />
-          <img id="outputo-${target.files[image].name}" width="100" height="100" style="margin-top: 1rem;" /><br>
+          <div class="d-flex justify-content-between align-items-center" >
+            <img id="outputo-${target.files[image].name}" width="100" height="100" style="margin: 1.1rem 1rem;" />
+            <input type="text" class="imageName" value="${(target.files[image].name).split('.')[0]}" />
+          </div>
         `)
 
         var outputo = document.getElementById(`outputo-${target.files[image].name}`);
         outputo.src = URL.createObjectURL(target.files[image]);
         outputo.onload = function() {
-          URL.revokeObjectURL(outputo.src) // free memory
+          URL.revokeObjectURL(outputo.src)
         }
       }
     }
+    target.parentElement.dataset.text = text.slice(0, -2);
 
     document.querySelector('#soumettre').addEventListener('click', function() {
       const imagesNames = document.querySelectorAll('.imageName');
 
       imagesNames.forEach((imageInput, index) => {
-        console.log(imageInput.value)
-        target.files[index].title = imageInput.value
+
+        let formData = new FormData();
+        formData.append('contenderPhoto', target.files[index]);
+        formData.append('contenderTitle', imageInput.value);
+        formData.append('idTop', '470326');
+
+        $.ajax({
+          url: "http://localhost:8888/vkrz/wp-json/vkrz/v1/addcontender2",
+          method: "POST",
+          data: formData,
+          contentType: false,
+          processData: false,
+          success: function(data) {
+            console.log('Well did!');
+          }
+        })
       })
 
       console.log(target.files);
     })
-      
-    target.parentElement.dataset.text = text.slice(0, -2);
   }
 </script>
 

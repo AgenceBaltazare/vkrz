@@ -306,8 +306,7 @@ jQuery(document).ready(function ($) {
     // CREATE TOP
     const createTopDoc = document.querySelector('.create-top-page');
     const tabs         = createTopDoc.querySelectorAll('.tabs');
-    const suivantBtn   = createTopDoc.querySelector('.suivant');
-    const precBtn      = createTopDoc.querySelector('.prec');
+    const suivantBtn   = createTopDoc.querySelector('.paginate > .suivant');
     const steps        = createTopDoc.querySelectorAll('.step');
     let tabIndex = 0;
 
@@ -354,14 +353,7 @@ jQuery(document).ready(function ($) {
       } else {
         showTab("next");
 
-        const d = new Date();
-        let year = d.getFullYear();
-
-        Date.prototype.getFullMonth = function() {
-          const month = this.getMonth()+1
-          return month < 10 ? '0' + month : month
-        }
-        let month = d.getFullMonth();
+        document.querySelector('.paginate > .suivant').remove();
 
         // PROCESS TO RENAME THE IMAGE
         let imgType = topImage.files[0].name.split('.').pop().toLowerCase();
@@ -406,9 +398,6 @@ jQuery(document).ready(function ($) {
       }
     })
 
-    precBtn.addEventListener('click', function(e) {
-      showTab("prev");
-    });
     steps.forEach(step => {
       step.addEventListener('click', function(e) {
         showTab(step.dataset.tabindex);
