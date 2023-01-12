@@ -1,0 +1,70 @@
+.widget{
+  .card-body{
+    padding: 10px;
+  }
+}
+
+#jugement{
+  
+  overflow: hidden !important;
+
+  .info-jugement{
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+    color: $gris;
+    letter-spacing: 1px;
+  }
+  .card-footer{
+    margin-top: 10px;
+    padding: 0;
+  }
+  .comments-container {
+    list-style-type: none;
+
+    .comment-template {
+      padding-bottom: 1rem !important;
+      border-bottom: #a9a9ac4d 1px solid;
+    }
+  }
+
+  .commentarea-container {
+    position: relative;
+
+    textarea {
+      border: 2px solid #a9a9ac1a;
+      border-radius: 5px;
+      width: 100%;
+      background-color: transparent !important;
+      font-size: 13px;
+      resize: none;
+      padding: 5px 10px 10px;
+      color: #fff !important;
+      -webkit-text-fill-color: #fff !important;
+
+      &::placeholder {
+        -webkit-text-fill-color: #A9A9AC !important;
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    button {
+      position: absolute;
+      right: 0px;
+      top: 8px;
+    }
+
+    #send_comment_btn {
+      background: none !important;
+      border: none;
+      outline: none;
+    }
+  }
+
+  .replyCommentBtn {
+    font-size: 10px;
+  }
+}

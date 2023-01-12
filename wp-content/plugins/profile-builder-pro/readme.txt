@@ -7,7 +7,7 @@ custom registration, custom registration form, custom registration page, extra u
 front-end register, front-end registration, frontend edit profile, edit profileregistration, customize profile, user fields, builder, profile builder, custom fields, avatar
 Requires at least: 3.1
 Tested up to: 6.1
-Stable tag: 3.8.5
+Stable tag: 3.8.6
 
 
 Login, registration and edit profile shortcodes for the front-end. Also you can choose what fields should be displayed or add custom ones.
@@ -101,6 +101,9 @@ This plugin only adds/removes fields in the front-end. The default information-f
 
 
 == Changelog ==
+= 3.8.6 =
+* Fix: issue with EPAA emails edited from the back-end not applying when the message was sent
+
 = 3.8.5 =
 * Fix: Social Connect Google login. This requires you to add the Google Client Name on the Profile Builder -> Social Connect page
 * Fix: Disable WooCommerce auto login if Admin Approval is enabled
