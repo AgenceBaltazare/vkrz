@@ -3,7 +3,7 @@ include __DIR__ . '/../../../../wp-load.php';
 
 $players = new WP_Query(array(
   'post_type'              => 'player',
-  'posts_per_page'         => -1,
+  'posts_per_page'         => 1000,
   'fields'                 => 'ids',
   'post_status'            => 'publish',
   'ignore_sticky_posts'    => true,
