@@ -542,206 +542,101 @@ $vainkeur_data_selected = get_user_infos($uuid_who_did_toplist);
 
       <!-- Sidebar -->
       <div class="col-md-3">
-        <div class="sidebar">
-          <div class="animate__fadeInUp animate__animated prov-animate__delay-2s">
-
-            <div class="separate mt-1 mb-2 d-block d-sm-none"></div>
-
-            <!-- Share TopList -->
-            <div class="mb-2">
-              <?php if (!in_array('private', $types_top)) : ?>
-                <?php if ($already_done) : ?>
-                  <?php if (get_field('uuid_user_r', $id_ranking) != $uuid_vainkeur) :  ?>
-                    <a href="<?php echo $top_infos['top_url']; ?>" class="btn toplist-f-item btn-rose w-100" style="<?php echo $space_for_crisp ? "padding: 0.3rem !important;" : "" ?>">
-                      Voir ma TopList
-                    </a>
-                  <?php else : ?>
-                    <button class="btn toplist-f-item share-content-show share-natif-classement btn-rose w-100" style="<?php echo $space_for_crisp ? "padding: 0.3rem !important;" : "" ?>">
-                      Partage ta TopList
-                    </button>
-                  <?php endif; ?>
-                <?php else : ?>
+        <div class="sidebar animate__fadeInUp animate__animated prov-animate__delay-2s">
+          <!-- Share TopList -->
+          <div class="mb-2">
+            <?php if (!in_array('private', $types_top)) : ?>
+              <?php if ($already_done) : ?>
+                <?php if (get_field('uuid_user_r', $id_ranking) != $uuid_vainkeur) :  ?>
                   <a href="<?php echo $top_infos['top_url']; ?>" class="btn toplist-f-item btn-rose w-100" style="<?php echo $space_for_crisp ? "padding: 0.3rem !important;" : "" ?>">
-                    Faire ma TopList
+                    Voir ma TopList
                   </a>
+                <?php else : ?>
+                  <button class="btn toplist-f-item share-content-show share-natif-classement btn-rose w-100" style="<?php echo $space_for_crisp ? "padding: 0.3rem !important;" : "" ?>">
+                    Partage ta TopList
+                  </button>
                 <?php endif; ?>
+              <?php else : ?>
+                <a href="<?php echo $top_infos['top_url']; ?>" class="btn toplist-f-item btn-rose w-100" style="<?php echo $space_for_crisp ? "padding: 0.3rem !important;" : "" ?>">
+                  Faire ma TopList
+                </a>
               <?php endif; ?>
-            </div>
-            <!-- Share TopList -->
-
-            <div class="separate mt-2 mb-2"></div>
-
-            <!-- TopList autor -->
-            <?php if ($uuid_who_did_toplist != $uuid_vainkeur) : ?>
-              <?php get_template_part('widgets/toplist-autor'); ?>
-            <?php endif; ?>
-            <!-- TopList autor -->
-
-            <!-- Sponsor -->
-            <?php if (in_array("sponso", $types_top)) : ?>
-              <div class="card">
-                <div class="share-content-sponso">
-                  <div class="text-left">
-                    <p>
-                      <?php the_field('top_propose_par_t_sponso', $id_top_global); ?>
-                    </p>
-                  </div>
-                  <div class="d-flex align-items-center flex-column">
-                    <div class="logo-vkrz-sponso">
-                      <?php
-                      if (get_field('illustration_de_la_sponso_t_sponso', $id_top_global)) : ?>
-                        <a href="<?php the_field('lien_de_la_sponso_t_sponso', $id_top_global); ?>" target="_blank">
-                          <?php echo wp_get_attachment_image(get_field('illustration_de_la_sponso_t_sponso', $id_top_global), 'large', '', array('class' => 'img-fluid')); ?>
-                        </a>
-                      <?php elseif (get_field('logo_de_la_sponso_t_sponso', $id_top_global)) : ?>
-                        <a href="<?php the_field('lien_de_la_sponso_t_sponso', $id_top_global); ?>" target="_blank">
-                          <?php echo wp_get_attachment_image(get_field('logo_de_la_sponso_t_sponso', $id_top_global), 'large', '', array('class' => 'img-fluid')); ?>
-                        </a>
-                      <?php endif; ?>
-                    </div>
-                    <div class="mt-2 social-media-sponso btn-group">
-                      <?php if (have_rows('liste_des_liens_t_sponso', $id_top_global)) : ?>
-                        <?php while (have_rows('liste_des_liens_t_sponso', $id_top_global)) : the_row(); ?>
-                          <a href="<?php the_sub_field('lien_vers_t_sponso'); ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-icon btn-outline-primary waves-effect waves-float waves-light" target="_blank">
-                            <?php the_sub_field('intitule_t_sponso'); ?>
-                          </a>
-                        <?php endwhile; ?>
-                      <?php endif; ?>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="card-footer text-center p-20 m-0">
-                  <span class="t-rose">
-                    On te rappelle que la date de fin est <br>
-                    <b><?php echo lcfirst(get_field('fin_de_la_sponso_t_sponso', $id_top)); ?></b>
-                  </span>
-                </div>
-              </div>
-            <?php endif; ?>
-            <!-- Sponsor -->
-
-            <!-- Twitch ranking -->
-            <?php if (!isMobile() && is_user_logged_in() && get_userdata($user_id)->twitch_user) : ?>
-              <div id="twitch-games-ranking" class="card d-none" data-idRanking="<?= $id_ranking; ?>"></div>
-            <?php endif; ?>
-            <!-- Twitch ranking -->
-
-            <!-- Stats -->
-            <?php get_template_part('widgets/stats-toplist'); ?>
-            <!-- Stats -->
-
-            <div class="separate mt-2 mb-2"></div>
-
-            <!-- Jugement -->
-            <?php get_template_part('widgets/jugement'); ?>
-            <!-- Jugement -->
-
-            <?php
-            $top_cat = $top_infos['top_cat'];
-            foreach ($top_cat as $cat) {
-              $top_cat_id = $cat->term_id;
-            }
-            $list_souscat  = array();
-            $top_souscat   = get_the_terms($id_top_global, 'concept');
-            if (!empty($top_souscat)) {
-              foreach ($top_souscat as $souscat) {
-                array_push($list_souscat, $souscat->slug);
-              }
-            }
-            $tops_in_close_cat     = new WP_Query(array(
-              'ignore_sticky_posts'    => true,
-              'update_post_meta_cache' => false,
-              'no_found_rows'          => true,
-              'post_type'              => 'tournoi',
-              'post__not_in'           => $list_user_tops,
-              'orderby'                => 'rand',
-              'order'                  => 'ASC',
-              'posts_per_page'         => 4,
-              'tax_query' => array(
-                'relation' => 'AND',
-                array(
-                  'taxonomy' => 'categorie',
-                  'field'    => 'term_id',
-                  'terms'    => array($top_cat_id)
-                ),
-                array(
-                  'taxonomy' => 'concept',
-                  'field' => 'slug',
-                  'terms' => $list_souscat
-                ),
-                array(
-                  'taxonomy' => 'type',
-                  'field'    => 'slug',
-                  'terms'    => array('private', 'whitelabel'),
-                  'operator' => 'NOT IN'
-                ),
-              ),
-            ));
-            $count_similar = $tops_in_close_cat->post_count;
-            $count_next    = 4 - $count_similar;
-
-            if ($count_similar < 4) {
-
-              $tops_in_large_cat     = new WP_Query(array(
-                'ignore_sticky_posts'    => true,
-                'update_post_meta_cache' => false,
-                'no_found_rows'          => true,
-                'post_type'              => 'tournoi',
-                'post__not_in'           => $list_user_tops,
-                'orderby'                => 'rand',
-                'order'                  => 'ASC',
-                'posts_per_page'         => $count_next,
-                'tax_query' => array(
-                  'relation' => 'AND',
-                  array(
-                    'taxonomy' => 'categorie',
-                    'field'    => 'term_id',
-                    'terms'    => array($top_cat_id)
-                  ),
-                  array(
-                    'taxonomy' => 'type',
-                    'field'    => 'slug',
-                    'terms'    => array('private', 'whitelabel', 'onboarding'),
-                    'operator' => 'NOT IN'
-                  ),
-                ),
-              ));
-            }
-            if ($tops_in_close_cat->have_posts() || $tops_in_large_cat->have_posts()) : ?>
-              <section class="list-tournois">
-                <div class="mt-1 pslim">
-                  <h4 class="card-title">
-                    <span class="ico">🥰</span> Tops similaires
-                  </h4>
-                  <h6 class="card-subtitle text-muted mb-1">
-                    Voici quelques Tops qui devraient te plaire <span class="ico">👇</span>
-                  </h6>
-                </div>
-                <div class="similar-list mt-2">
-                  <div class="row">
-                    <?php
-                    while ($tops_in_close_cat->have_posts()) : $tops_in_close_cat->the_post();
-                      get_template_part('partials/min-t');
-                    endwhile;
-                    if ($count_similar < 4) :
-                      while ($tops_in_large_cat->have_posts()) : $tops_in_large_cat->the_post();
-                        get_template_part('partials/min-t');
-                      endwhile;
-                    endif;
-                    ?>
-                  </div>
-                </div>
-                <div class="gocat">
-                  <?php $current = get_term_by('term_id', $top_cat_id, 'categorie'); ?>
-                  <a class="w-100 btn btn-primary waves-effect" href="<?php echo get_category_link($top_cat_id); ?>">
-                    Voir tous les Tops <span class="text-uppercase"><?php echo $cat_name; ?></span> <span class="ico"><?php the_field('icone_cat', 'term_' . $top_cat_id); ?></span>
-                  </a>
-                </div>
-                <div class="separate mt-2 mb-2"></div>
-              </section>
             <?php endif; ?>
           </div>
+          <!-- Share TopList -->
+
+          <div class="separate mt-2 mb-2"></div>
+
+          <!-- TopList autor -->
+          <?php if ($uuid_who_did_toplist != $uuid_vainkeur) : ?>
+            <?php get_template_part('widgets/toplist-autor'); ?>
+          <?php endif; ?>
+          <!-- TopList autor -->
+
+          <!-- Sponsor -->
+          <?php if (in_array("sponso", $types_top)) : ?>
+            <div class="card">
+              <div class="share-content-sponso">
+                <div class="text-left">
+                  <p>
+                    <?php the_field('top_propose_par_t_sponso', $id_top_global); ?>
+                  </p>
+                </div>
+                <div class="d-flex align-items-center flex-column">
+                  <div class="logo-vkrz-sponso">
+                    <?php
+                    if (get_field('illustration_de_la_sponso_t_sponso', $id_top_global)) : ?>
+                      <a href="<?php the_field('lien_de_la_sponso_t_sponso', $id_top_global); ?>" target="_blank">
+                        <?php echo wp_get_attachment_image(get_field('illustration_de_la_sponso_t_sponso', $id_top_global), 'large', '', array('class' => 'img-fluid')); ?>
+                      </a>
+                    <?php elseif (get_field('logo_de_la_sponso_t_sponso', $id_top_global)) : ?>
+                      <a href="<?php the_field('lien_de_la_sponso_t_sponso', $id_top_global); ?>" target="_blank">
+                        <?php echo wp_get_attachment_image(get_field('logo_de_la_sponso_t_sponso', $id_top_global), 'large', '', array('class' => 'img-fluid')); ?>
+                      </a>
+                    <?php endif; ?>
+                  </div>
+                  <div class="mt-2 social-media-sponso btn-group">
+                    <?php if (have_rows('liste_des_liens_t_sponso', $id_top_global)) : ?>
+                      <?php while (have_rows('liste_des_liens_t_sponso', $id_top_global)) : the_row(); ?>
+                        <a href="<?php the_sub_field('lien_vers_t_sponso'); ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-icon btn-outline-primary waves-effect waves-float waves-light" target="_blank">
+                          <?php the_sub_field('intitule_t_sponso'); ?>
+                        </a>
+                      <?php endwhile; ?>
+                    <?php endif; ?>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-footer text-center p-20 m-0">
+                <span class="t-rose">
+                  On te rappelle que la date de fin est <br>
+                  <b><?php echo lcfirst(get_field('fin_de_la_sponso_t_sponso', $id_top)); ?></b>
+                </span>
+              </div>
+            </div>
+          <?php endif; ?>
+          <!-- Sponsor -->
+
+          <!-- Twitch ranking -->
+          <?php if (!isMobile() && is_user_logged_in() && get_userdata($user_id)->twitch_user) : ?>
+            <div id="twitch-games-ranking" class="card d-none" data-idRanking="<?= $id_ranking; ?>"></div>
+          <?php endif; ?>
+          <!-- Twitch ranking -->
+
+          <!-- Stats -->
+          <?php get_template_part('widgets/stats-toplist'); ?>
+          <!-- Stats -->
+
+          <div class="separate mt-2 mb-2"></div>
+
+          <!-- Jugement -->
+          <?php get_template_part('widgets/jugement'); ?>
+          <!-- Jugement -->
+
+          <!-- Tops similaire -->
+          
+          <!-- Tops similaire -->
+
         </div>
       </div>
       <!-- Sidebar -->
