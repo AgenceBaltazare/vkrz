@@ -95,6 +95,7 @@ function add_contender_from_api2()
     'post_type'   => 'contender',
     'post_title'  => $contenderTitle,
     'post_status' => 'publish',
+    'post_author' => 5761
   );
   $id_new_contender  = wp_insert_post($new_contender);
 

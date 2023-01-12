@@ -27,6 +27,7 @@
 
     body {
         background: transparent;
+        // font-family: 'Libre Franklin', sans-serif !important;
     }
 
     .main-menu {
@@ -204,7 +205,6 @@ html .content {
     animation: appear2 3s infinite ease-in-out;
 }
 
-
 @keyframes appear2 {
 
     20%,
@@ -226,7 +226,6 @@ html .content {
     overflow: hidden;
     animation: appear 3s infinite ease-in-out;
 }
-
 
 @keyframes appear {
 
