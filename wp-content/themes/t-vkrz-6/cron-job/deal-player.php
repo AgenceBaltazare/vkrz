@@ -68,7 +68,6 @@ if ($players->have_posts()) {
       const email_player = "<?= $email_player ?>";
 
       const customDocId = `U:${uuiduser};T:${id_top};R:${id_ranking}`;
-
       try {
         const newPlayer = await setDoc(doc(database, "players", customDocId), {
           uuidPlayer: uuiduser,
