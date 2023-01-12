@@ -30,18 +30,19 @@ if ($players->have_posts()) {
     $email_player   = get_field('email_player_p', $player_id);
     $date_player    = get_the_date('Y-m-d H:i:s', $player_id);
 
-    echo $i. " - Le player ".$id_vainkeur." qui a joué le ".$date_player." a été envoyé dans firebase <br>";
+    echo $i . " - Le player " . $id_vainkeur . " qui a joué le " . $date_player . " a été envoyé dans firebase <br>";
 
-    ?>
+?>
 
     <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
+      import {
+        initializeApp
+      } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
 
       const firebaseConfig = {
         apiKey: "AIzaSyCba6lgfmSJsZg02F9djkZB8mcuprgZSeI",
         authDomain: "vainkeurz---dev.firebaseapp.com",
-        databaseURL:
-          "https://vainkeurz---dev-default-rtdb.europe-west1.firebasedatabase.app",
+        databaseURL: "https://vainkeurz---dev-default-rtdb.europe-west1.firebasedatabase.app",
         projectId: "vainkeurz---dev",
         storageBucket: "vainkeurz---dev.appspot.com",
         messagingSenderId: "627334561477",
@@ -69,6 +70,7 @@ if ($players->have_posts()) {
       const id_top = "<?= $id_top ?>";
       const id_ranking = "<?= $id_ranking ?>";
       const email_player = "<?= $email_player ?>";
+      const date_player = "<?= $date_player ?>";
 
       const customDocId = `U:${uuiduser};T:${id_top};R:${id_ranking}`;
       try {
@@ -78,19 +80,17 @@ if ($players->have_posts()) {
           ranking: id_ranking,
           top: id_top,
           vainkeurId: id_vainkeur,
-          createdAt: new Date(),
+          createdAt: date_player,
         });
         console.log("Player well sent ! <?= $i ?>");
       } catch (error) {
         console.error("Error adding comment: ", error);
       }
-      
     </script>
 
-    <?php
+<?php
 
     $i++;
     update_field('sendtofirebase', date('d/m/Y'), $player_id);
-
   }
 }
