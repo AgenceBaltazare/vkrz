@@ -28,6 +28,9 @@ if ($players->have_posts()) {
     $id_top         = get_field('id_t_p', $player_id);
     $id_ranking     = get_field('id_r_p', $player_id);
     $email_player   = get_field('email_player_p', $player_id);
+    $date_player    = get_the_date('Y-m-d H:i:s', $player_id);
+
+    echo $i. " - Le player ".$id_vainkeur." qui a joué le ".$date_player." a été envoyé dans firebase <br>";
 
     ?>
 
