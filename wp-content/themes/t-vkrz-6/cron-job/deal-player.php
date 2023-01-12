@@ -18,6 +18,7 @@ $players = new WP_Query(array(
     ),
   )
 ));
+$i = 1;
 if ($players->have_posts()) {
 
   foreach ($players->posts as $player_id) {
@@ -29,15 +30,64 @@ if ($players->have_posts()) {
     $email_player   = get_field('email_player_p', $player_id);
 
     ?>
-    <script>
-        const vkrz_ajaxurl = "<?= admin_url('admin-ajax.php') ?>";
-        const id_vainkeur = "<?= $id_vainkeur ?>";
-    </script>
 
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyCba6lgfmSJsZg02F9djkZB8mcuprgZSeI",
+        authDomain: "vainkeurz---dev.firebaseapp.com",
+        databaseURL:
+          "https://vainkeurz---dev-default-rtdb.europe-west1.firebasedatabase.app",
+        projectId: "vainkeurz---dev",
+        storageBucket: "vainkeurz---dev.appspot.com",
+        messagingSenderId: "627334561477",
+        appId: "1:627334561477:web:cb476e53ad67bc5954faac",
+      };
+      const app = initializeApp(firebaseConfig);
+      import {
+        getFirestore,
+        collection,
+        getDocs,
+        getDoc,
+        query,
+        addDoc,
+        setDoc,
+        deleteDoc,
+        doc,
+        where,
+        orderBy,
+        updateDoc,
+      } from "https://cdnjs.cloudflare.com/ajax/libs/firebase/9.8.1/firebase-firestore.min.js";
+      const database = getFirestore(app);
+
+      const uuiduser = "<?= $uuid_vainkeur ?>";
+      const id_vainkeur = "<?= $id_vainkeur ?>";
+      const id_top = "<?= $id_top ?>";
+      const id_ranking = "<?= $id_ranking ?>";
+      const email_player = "<?= $email_player ?>";
+
+      const customDocId = `U:${uuiduser};T:${id_top};R:${id_ranking}`;
+
+      try {
+        const newPlayer = await setDoc(doc(database, "players", customDocId), {
+          uuidPlayer: uuiduser,
+          emailPlayer: email_player,
+          ranking: id_ranking,
+          top: id_top,
+          vainkeurId: id_vainkeur,
+          createdAt: new Date(),
+        });
+        console.log("Player well sent ! <?= $i ?>");
+      } catch (error) {
+        console.error("Error adding comment: ", error);
+      }
+      
+    </script>
 
     <?php
 
-
+    $i++;
     update_field('sendtofirebase', date('d/m/Y'), $player_id);
 
   }
