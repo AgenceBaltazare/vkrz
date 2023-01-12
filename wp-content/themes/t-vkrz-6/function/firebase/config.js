@@ -3,8 +3,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.1/firebase
 let firebaseConfig;
 switch (location.hostname) {
   // LOCAL
-  case "localhost":
-  case "127.0.0.1":
+  // case "localhost":
+  // case "127.0.0.1":
   case "vainkeurz.local":
   case "proto.vainkeurz.com":
     firebaseConfig = {
