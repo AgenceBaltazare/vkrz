@@ -27,7 +27,6 @@ function form_newplayer($emailplayer, $uuiduser, $ranking, $top, $id_vainkeur){
     // Badge : Top sponso
     if (!get_vainkeur_badge($id_vainkeur, "TOP sponso")) {
         update_vainkeur_badge($id_vainkeur, "TOP sponso");
-
     }
     
     $url    = "https://hook.eu1.make.com/u842gfb48zjijv3b7cvih8v1jwphp254";

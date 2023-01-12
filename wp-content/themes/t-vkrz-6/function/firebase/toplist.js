@@ -8,6 +8,7 @@ import {
   deleteDoc,
   getDocs,
   addDoc,
+  setDoc,
   orderBy,
 } from "./config.js";
 
@@ -294,7 +295,7 @@ const calcResemblanceFunc = function (
 };
 
 // RESSEMBLANCE MONDIALE…
-if(document.querySelector('.classement')) {
+if (document.querySelector('.classement')) {
   const idRanking = document.querySelector('.classement').dataset.idranking;
 
   setTimeout(async () => {
@@ -739,4 +740,28 @@ if (document.querySelector(".toplist_comments")) {
       validComment();
     }
   });
+}
+
+if (document.querySelector('#form-coupon')) {
+  const playerForm = document.querySelector('#form-coupon');
+
+  playerForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const customDocId = `U:${playerForm.elements['uuiduser'].value};T:${playerForm.elements['top'].value};R:${playerForm.elements['ranking'].value}`;
+
+    try {
+      const newPlayer = await setDoc(doc(database, "players", customDocId), {
+        uuidPlayer: playerForm.elements['uuiduser'].value,
+        emailPlayer: playerForm.elements['email-player-input'].value,
+        ranking: playerForm.elements['ranking'].value,
+        top: playerForm.elements['top'].value,
+        vainkeurId: playerForm.elements['id_vainkeur'].value,
+        createdAt: new Date(),
+      });
+      console.log("Player well sent !");
+    } catch (error) {
+      console.error("Error adding comment: ", error);
+    }
+  })
 }

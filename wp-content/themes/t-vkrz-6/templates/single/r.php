@@ -145,6 +145,7 @@ endforeach;
                             </div>
                           </div>
                           <?php if (get_field('type_de_fin_t_sponso', $id_top_global) == "mail_1") : ?>
+
                             <form action="" method="post" name="form2" id="form-coupon">
                               <?php if (is_user_logged_in()) : ?>
                                 <input type="email" value="<?php echo $infos_vainkeur['user_email']; ?>" name="email-player-input" id="email-player-input" required>
@@ -159,6 +160,7 @@ endforeach;
                                 <?php the_field('intitule_cta_mail_t_sponso', $id_top_global); ?>
                               </button>
                             </form>
+                            
                           <?php elseif (get_field('type_de_fin_t_sponso', $id_top_global) == "twitter_1") : ?>
                             <?php if (!get_field('bouton_copier_toplist_tweet_twitter', $id_top_global)) : ?>
                               <a href="#" class="sharelinkbtn2 animate__jello animate__animated animate__delay-1s btn btn-max btn-outline-primary waves-effect waves-float waves-light copy-toplist-url-btn">
