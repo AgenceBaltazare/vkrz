@@ -6885,6 +6885,9 @@ select:-webkit-autofill:focus {
   margin-right: 10px;
 }
 
+.widget {
+  margin: 0 !important;
+}
 .widget .card-body {
   padding: 10px;
 }
@@ -6948,6 +6951,61 @@ select:-webkit-autofill:focus {
 }
 #jugement .replyCommentBtn {
   font-size: 10px;
+}
+
+.min-t-2 {
+  background-color: transparent !important;
+  margin: 0;
+}
+.min-t-2 .content-card {
+  padding: 10px;
+  margin: 0 10px 10px 10px;
+  border-radius: 10px;
+  position: relative;
+}
+.min-t-2 .content-text {
+  text-align: center;
+}
+.min-t-2 .content-text h4 {
+  font-size: 12px;
+  justify-content: center;
+  margin: 0;
+}
+.min-t-2 .content-text h4 span {
+  margin: 0 2px;
+}
+.min-t-2 .content-text h3 {
+  text-align: center;
+  margin-top: 5px;
+  font-size: 14px;
+  color: #7367f0;
+}
+.min-t-2 .info-top {
+  opacity: 1 !important;
+}
+.min-t-2 .voilecover {
+  position: absolute;
+  top: 0;
+  border-radius: 5px;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+  opacity: 0.1;
+}
+.min-t-2 .card-text {
+  position: relative;
+  z-index: 2;
+}
+.min-t-2 .card-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 5px;
+  margin-top: 5px;
+}
+.min-t-2 .card-footer .info-top {
+  align-items: center;
+  justify-content: space-around;
+  position: inherit;
 }
 
 .separate {

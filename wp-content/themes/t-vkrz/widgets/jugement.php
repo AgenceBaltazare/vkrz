@@ -1,4 +1,4 @@
-<?php global $vainkeur_data_selected; ?>
+<?php global $vainkeur_data_selected; global $id_vainkeur; ?>
 <?php if ($vainkeur_data_selected['id_user']) : ?>
   <div id="jugement" class="card widget toplist_comments" data-id_vainkeur_actual="<?= $id_vainkeur; ?>" data-authorid="<?= $vainkeur_data_selected["id_user"] ?>" data-authorpseudo="<?= $vainkeur_data_selected["pseudo"] ?>" data-authoruuid="<?= $vainkeur_data_selected["uuid_vainkeur"] ?>" data-idranking="<?= $id_ranking; ?>" data-urlranking="<?= get_permalink($id_ranking); ?>">
     <div class="card-body">

@@ -16,6 +16,8 @@ global $list_user_tops_begin;
 global $vainkeur_data_selected;
 global $top_datas;
 global $id_top_global;
+global $top_cat_id;
+global $cat_name;
 $id_top_global = $id_top;
 if ($id_vainkeur) {
   if (is_user_logged_in() && env() != "local") {
@@ -565,11 +567,10 @@ $vainkeur_data_selected = get_user_infos($uuid_who_did_toplist);
           </div>
           <!-- Share TopList -->
 
-          <div class="separate mt-2 mb-2"></div>
-
           <!-- TopList autor -->
           <?php if ($uuid_who_did_toplist != $uuid_vainkeur) : ?>
             <?php get_template_part('widgets/toplist-autor'); ?>
+            <div class="separate mt-2 mb-2"></div>
           <?php endif; ?>
           <!-- TopList autor -->
 
@@ -614,27 +615,29 @@ $vainkeur_data_selected = get_user_infos($uuid_who_did_toplist);
                 </span>
               </div>
             </div>
+            <div class="separate mt-2 mb-2"></div>
           <?php endif; ?>
           <!-- Sponsor -->
 
           <!-- Twitch ranking -->
           <?php if (!isMobile() && is_user_logged_in() && get_userdata($user_id)->twitch_user) : ?>
             <div id="twitch-games-ranking" class="card d-none" data-idRanking="<?= $id_ranking; ?>"></div>
+            <div class="separate mt-2 mb-2"></div>
           <?php endif; ?>
           <!-- Twitch ranking -->
 
           <!-- Stats -->
           <?php get_template_part('widgets/stats-toplist'); ?>
-          <!-- Stats -->
-
           <div class="separate mt-2 mb-2"></div>
+          <!-- Stats -->
 
           <!-- Jugement -->
           <?php get_template_part('widgets/jugement'); ?>
+          <div class="separate mt-2 mb-2"></div>
           <!-- Jugement -->
 
           <!-- Tops similaire -->
-          
+          <?php get_template_part('widgets/top-similar'); ?>
           <!-- Tops similaire -->
 
         </div>

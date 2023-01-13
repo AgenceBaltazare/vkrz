@@ -1,4 +1,9 @@
 <?php
+global $top_infos;
+global $id_top_global;
+global $list_user_tops;
+global $top_cat_id;
+global $cat_name;
 $top_cat = $top_infos['top_cat'];
 foreach ($top_cat as $cat) {
   $top_cat_id = $cat->term_id;
@@ -41,9 +46,7 @@ $tops_in_close_cat     = new WP_Query(array(
 ));
 $count_similar = $tops_in_close_cat->post_count;
 $count_next    = 4 - $count_similar;
-
 if ($count_similar < 4) {
-
   $tops_in_large_cat     = new WP_Query(array(
     'ignore_sticky_posts'    => true,
     'update_post_meta_cache' => false,
@@ -70,35 +73,31 @@ if ($count_similar < 4) {
   ));
 }
 if ($tops_in_close_cat->have_posts() || $tops_in_large_cat->have_posts()) : ?>
-  <section class="list-tournois">
-    <div class="mt-1 pslim">
+  <section class="card widget">
+    <div class="card-body">
       <h4 class="card-title">
-        <span class="ico">🥰</span> Tops similaires
+        <span class="va va-smiling-face-with-heart-eyes va-lg"></span> Voici quelques Tops qui devraient te plaire
       </h4>
-      <h6 class="card-subtitle text-muted mb-1">
-        Voici quelques Tops qui devraient te plaire <span class="ico">👇</span>
-      </h6>
-    </div>
-    <div class="similar-list mt-2">
-      <div class="row">
-        <?php
-        while ($tops_in_close_cat->have_posts()) : $tops_in_close_cat->the_post();
-          get_template_part('partials/min-t');
-        endwhile;
-        if ($count_similar < 4) :
-          while ($tops_in_large_cat->have_posts()) : $tops_in_large_cat->the_post();
-            get_template_part('partials/min-t');
+      <div class="similar-list mt-2">
+        <div class="row">
+          <?php
+          while ($tops_in_close_cat->have_posts()) : $tops_in_close_cat->the_post();
+            get_template_part('partials/min-t-2');
           endwhile;
-        endif;
-        ?>
+          if ($count_similar < 4) :
+            while ($tops_in_large_cat->have_posts()) : $tops_in_large_cat->the_post();
+              get_template_part('partials/min-t-2');
+            endwhile;
+          endif;
+          ?>
+        </div>
+      </div>
+      <div class="gocat">
+        <?php $current = get_term_by('term_id', $top_cat_id, 'categorie'); ?>
+        <a class="w-100 btn btn-primary waves-effect" href="<?php echo get_category_link($top_cat_id); ?>">
+          Voir tous les Tops <span class="text-uppercase"><?php echo $cat_name; ?></span> <span class="ico"><?php the_field('icone_cat', 'term_' . $top_cat_id); ?></span>
+        </a>
       </div>
     </div>
-    <div class="gocat">
-      <?php $current = get_term_by('term_id', $top_cat_id, 'categorie'); ?>
-      <a class="w-100 btn btn-primary waves-effect" href="<?php echo get_category_link($top_cat_id); ?>">
-        Voir tous les Tops <span class="text-uppercase"><?php echo $cat_name; ?></span> <span class="ico"><?php the_field('icone_cat', 'term_' . $top_cat_id); ?></span>
-      </a>
-    </div>
-    <div class="separate mt-2 mb-2"></div>
   </section>
 <?php endif; ?>
