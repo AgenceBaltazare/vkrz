@@ -78,8 +78,11 @@ $list_sujets      = array();
           <div class="row align-items-center justify-content-center">
             <div class="col-md-4 offset-md-1">
               <div class="intro-archive">
+                <div class="iconarchive">
+                  <?php the_field('icone_cat', 'term_' . $current_cat->term_id); ?>
+                </div>
                 <h1>
-                  <span class="infonbtops"><?php echo $tops_in_cat->post_count; ?> Tops</span> <?php echo $current_cat->name; ?> <?php the_field('icone_cat', 'term_' . $current_cat->term_id); ?>
+                  <?php echo $current_cat->name; ?> <span class="infonbtops"><?php echo $tops_in_cat->post_count; ?> Tops</span>
                 </h1>
                 <h2>
                   <?php echo $current_cat->description; ?>
@@ -90,40 +93,44 @@ $list_sujets      = array();
               <div class="d-flex flex-column">
 
                 <div class="filtre-bloc">
-                  <label class="switch switch-primary">
-                    <input type="checkbox" class="switch-input" value="todo" />
-                    <span class="switch-toggle-slider">
-                      <span class="switch-on">
-                        <i class="ti ti-check"></i>
-                      </span>
-                      <span class="switch-off">
-                        <i class="ti ti-x"></i>
-                      </span>
-                    </span>
-                    <span class="switch-label">A faire</span>
-                  </label>
-                </div>
-                <div class="filtre-bloc">
-                  <select id="selectpickerLiveSearch" class="selectpicker w-100" data-style="btn-default" data-live-search="true">
-                    <option data-tokens="">Choix de la Licence</option>
-                    <?php
-                    $list_souscat = get_terms(array(
-                      'taxonomy' => 'concept',
-                      'orderby' => 'count',
-                      'order' => 'DESC',
-                      'hide_empty' => true,
-                      'include' => $list_souscat,
-                    ));
-                    $c = 0;
-                    foreach ($list_souscat as $souscat) :
-                      if ($c <= 20) : ?>
-                        <option data-tokens="<?php echo $souscat->slug; ?>" value="<?php echo $souscat->slug; ?>">
-                          <?php echo $souscat->name; ?>
-                        </option>
-                    <?php endif;
-                      $c++;
-                    endforeach; ?>
-                  </select>
+                  <div class="row align-items-center">
+                    <div class="col-8">
+                      <select id="selectpickerLiveSearch" class="selectpicker w-100" data-style="btn-default" data-live-search="true">
+                        <option data-tokens="">Choix de la Licence</option>
+                        <?php
+                        $list_souscat = get_terms(array(
+                          'taxonomy' => 'concept',
+                          'orderby' => 'count',
+                          'order' => 'DESC',
+                          'hide_empty' => true,
+                          'include' => $list_souscat,
+                        ));
+                        $c = 0;
+                        foreach ($list_souscat as $souscat) :
+                          if ($c <= 20) : ?>
+                            <option data-tokens="<?php echo $souscat->slug; ?>" value="<?php echo $souscat->slug; ?>">
+                              <?php echo $souscat->name; ?>
+                            </option>
+                        <?php endif;
+                          $c++;
+                        endforeach; ?>
+                      </select>
+                    </div>
+                    <div class="col-4">
+                      <label class="switch switch-primary">
+                        <input type="checkbox" class="switch-input" value="todo" />
+                        <span class="switch-toggle-slider">
+                          <span class="switch-on">
+                            <i class="ti ti-check"></i>
+                          </span>
+                          <span class="switch-off">
+                            <i class="ti ti-x"></i>
+                          </span>
+                        </span>
+                        <span class="switch-label">A faire</span>
+                      </label>
+                    </div>
+                  </div>
                 </div>
                 <div class="filtre-bloc">
                   <div class="input-group input-group-merge" id="search_form">

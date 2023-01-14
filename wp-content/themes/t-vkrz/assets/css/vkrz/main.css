@@ -5133,42 +5133,83 @@ select:-webkit-autofill:focus {
   font-size: 15px;
 }
 
+.intro-archive {
+  text-align: center;
+  margin: 20px 0 30px;
+  background: linear-gradient(#312673, #312673) 50% 50%/calc(100% - 10px) calc(100% - 10px) no-repeat, linear-gradient(270deg, #7367f0 0%, #f4167f 100%);
+  border-radius: 5px;
+  padding: 17px;
+  box-sizing: border-box;
+  padding: 20px 0;
+  transform: rotate(-1deg);
+  position: relative;
+}
+.intro-archive .iconarchive {
+  position: absolute;
+  left: -40px;
+  top: 15px;
+}
+.intro-archive .iconarchive span {
+  width: 90px !important;
+  height: 90px !important;
+}
+.intro-archive h1 {
+  font-size: 2rem;
+  color: #fff;
+  margin: 0;
+  text-transform: uppercase;
+  font-weight: 900;
+  font-family: "lato";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.intro-archive h2 {
+  font-size: 1rem;
+  color: #7367f0;
+  margin: 10px 0 0 0;
+}
+.intro-archive .infonbtops {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 5px 7px;
+  font-weight: 600;
+  border-radius: 5px;
+  color: #312673;
+  font-size: 1rem;
+  margin-left: 10px;
+}
+
 .filtres-bloc .filtre-bloc {
   margin: 5px 0;
 }
 .filtres-bloc .filtre-bloc .dropdown-toggle {
-  min-width: 250px;
+  min-width: 100%;
 }
-.filtres-bloc .filtre-bloc .input-group-text, .filtres-bloc .filtre-bloc .bootstrap-select {
+.filtres-bloc .filtre-bloc .input-group-text, .filtres-bloc .filtre-bloc .bootstrap-select, .filtres-bloc .filtre-bloc input {
   background-color: transparent;
 }
-.filtres-bloc .filtre-bloc input {
-  background: transparent;
+.filtres-bloc .filtre-bloc .input-group-text {
+  border: 2px solid #7367f0;
+  border-right: none;
 }
-
-.intro-archive {
-  text-align: center;
-  margin: 20px 0 30px;
-  background-color: #7367f0;
-  padding: 40px 0;
-  transform: rotate(-2deg);
-}
-.intro-archive h1 {
-  font-size: 16px;
-  color: #fff;
-  margin: 0;
-}
-.intro-archive h2 {
-  font-size: 20px;
-  color: #2a1f70;
-  margin: 10px 0 0 0;
-}
-.intro-archive .infonbtops {
-  background: #2a1f70;
-  padding: 5px;
+.filtres-bloc .filtre-bloc .switch-label {
+  font-family: "montserrat";
+  font-size: 13px;
   font-weight: 600;
-  border-radius: 5px;
-  color: #7367f0;
+}
+.filtres-bloc .filtre-bloc input {
+  border: 2px solid #7367f0;
+  border-left: none;
+  font-family: "montserrat";
+  font-size: 13px;
+  font-weight: 600;
+}
+.filtres-bloc .filtre-bloc .dropdown-toggle {
+  border: 2px solid #7367f0;
+  border-radius: 0.375rem;
+}
+.filtres-bloc .group-filtres {
+  margin-top: -20px;
 }
 
 .intro-sponso .intro {
@@ -7147,6 +7188,28 @@ select:-webkit-autofill:focus {
   }
 }
 @media (max-width: 768px) {
+  .intro-archive {
+    max-width: 80%;
+    margin: 40px auto;
+  }
+  .intro-archive .iconarchive {
+    position: absolute;
+    left: -20px;
+    top: 20px;
+  }
+  .intro-archive .iconarchive span {
+    width: 45px !important;
+    height: 45px !important;
+  }
+  .intro-archive h1 {
+    font-size: 1rem;
+  }
+  .intro-archive h2 {
+    font-size: 0.85rem;
+  }
+  .intro-archive .infonbtops {
+    font-size: 0.9rem;
+  }
   .page-template-propositions-top .heading-title {
     text-align: center;
     font-size: 1.5rem;
