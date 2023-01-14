@@ -37,4 +37,8 @@ switch (get_post_type()) {
   case "room":
     get_template_part("templates/single/room");
     break;
+
+  case "toplist-mondiale":
+    get_template_part("templates/single/mondial");
+    break;
 }

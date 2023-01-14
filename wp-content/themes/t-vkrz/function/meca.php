@@ -26,6 +26,8 @@ require_once 'meca/save_to_firestore.php';
 require_once 'meca/do_jugement.php';
 require_once 'meca/deal_referral.php';
 require_once 'meca/deal_codeparrain.php';
+require_once 'meca/generate-tm.php';
+require_once 'meca/get_tm.php';
 
 // Admin
 require_once 'meca/get_paid.php';

@@ -178,48 +178,12 @@ endif;
 </div>
 <!-- /Similar -->
 
-<!-- Right Nav -->
-<div class="infos-toplist">
-  <?php if (get_field('uuid_user_r', $id_ranking) != $uuid_vainkeur) : ?>
-    <button class="btn-emoji btn-emoji" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Découvre qui a fait cette TopList">
-      <div data-bs-toggle="offcanvas" data-bs-target="#topeur" aria-controls="offcanvasScroll" class="divfill">
-        <span class="va va-monocle va-lg"></span>
-      </div>
-    </button>
-  <?php endif; ?>
-  <?php if ($already_done && get_field('uuid_user_r', $id_ranking) == $uuid_vainkeur) : ?>
-    <a href="#" class="btn-emoji btn-emoji-recommencer confirm_delete" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Recommencer" data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>">
-      <span class="va va-recommencer va-lg"></span>
-    </a>
-  <?php endif; ?>
-  <button class="btn-emoji btn-emoji-wording" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Juge cette TopList">
-    <div data-bs-toggle="offcanvas" data-bs-target="#jugement" aria-controls="offcanvasScroll" class="divfill">
-      <span class="va va-hache va-lg"></span>
-      <div class="value">
-        2
-      </div>
-    </div>
-  </button>
-  <a href="<?php echo get_the_permalink(get_page_by_path('discuz')) . '?id_top=' . $id_top; ?>" class="btn-emoji btn-emoji-wording" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Commente le Top">
-    <span class="va va-writing-hand va-lg"></span>
-    <div class="value">
-      5
-    </div>
-  </a>
-  <?php
-  $creator_id = get_post_field('post_author', $id_top_global);
-  $creator_uuiduser = get_field('uuiduser_user', 'user_' . $creator_id);
-  $creator_data = get_user_infos($creator_uuiduser);
-  ?>
-  <button class="btn-emoji btn-avatar" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Top créé par <?php echo $creator_data['pseudo']; ?>" style="background-image: url(<?php echo $creator_data['avatar']; ?>);">
-    <div data-bs-toggle="offcanvas" data-bs-target="#infostop" aria-controls="offcanvasScroll" class="divfill">
-    </div>
-  </button>
-</div>
-<!-- /Right Nav -->
-
 <!-- Bottom Nav -->
 <div class="share-toplist">
+  <?php
+  $id_toplistmondiale = get_toplist_mondiale($id_top_global);
+  $id_listetoplist    = get_liste_toplist($id_top_global);
+  ?>
   <?php if (!in_array('private', $types_top)) : ?>
     <?php if ($already_done) : ?>
       <?php if (get_field('uuid_user_r', $id_ranking) != $uuid_vainkeur) :  ?>
@@ -237,10 +201,10 @@ endif;
       </a>
     <?php endif; ?>
   <?php endif; ?>
-  <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_top_global; ?>" class="btn-wording" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Voir les <?php echo $top_datas['nb_tops']; ?> TopList">
+  <a href="<?php the_permalink($id_listetoplist); ?>" class="btn-wording" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Voir les <?php echo $top_datas['nb_tops']; ?> TopList">
     <span class="va va-trophy va-lg"></span> <?php echo $top_datas['nb_tops']; ?>
   </a>
-  <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_top_global; ?>" class="btn-wording mt-2 mb-1 mb-sm-0" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Générée à partir des <?php echo $top_datas['nb_votes']; ?> votes">
+  <a href="<?php the_permalink($id_toplistmondiale); ?>" class="btn-wording mt-2 mb-1 mt-sm-0 mb-sm-0" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Générée à partir des <?php echo $top_datas['nb_votes']; ?> votes">
     Découvre la TopList mondiale <span class="va va-globe va-lg"></span>
     <span id="ressemblance-mondiale">
       <div class="loader loader--style1" title="0">
@@ -258,6 +222,56 @@ endif;
   </a>
 </div>
 <!-- /Bottom Nav -->
+
+<!-- Right Nav -->
+<div class="infos-toplist">
+  <?php if (get_field('uuid_user_r', $id_ranking) != $uuid_vainkeur) : ?>
+    <button class="btn-emoji btn-emoji" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Découvre qui a fait cette TopList">
+      <div data-bs-toggle="offcanvas" data-bs-target="#topeur" aria-controls="offcanvasScroll" class="divfill">
+        <span class="va va-monocle va-lg"></span>
+      </div>
+    </button>
+  <?php endif; ?>
+  <?php if ($already_done && get_field('uuid_user_r', $id_ranking) == $uuid_vainkeur) : ?>
+    <a href="#" class="btn-emoji btn-emoji-recommencer confirm_delete" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Recommencer" data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>">
+      <span class="va va-recommencer va-lg"></span>
+    </a>
+  <?php endif; ?>
+  <button class="btn-emoji btn-emoji-wording" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Juge cette TopList">
+    <div data-bs-toggle="offcanvas" data-bs-target="#jugement" aria-controls="offcanvasScroll" class="divfill">
+      <span class="va va-hache va-lg"></span>
+      <div class="value value-jugement-">
+        <div class="loader loader--style1" title="0">
+          <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="20px" height="20px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
+            <path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946
+                s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634
+                c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z" />
+            <path fill="#000" d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0
+                C22.32,8.481,24.301,9.057,26.013,10.047z">
+              <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 20 20" to="360 20 20" dur="0.5s" repeatCount="indefinite" />
+            </path>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </button>
+  <a href="<?php the_permalink($id_toplistmondiale); ?>#commentaires" class="btn-emoji btn-emoji-wording" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Commente le Top">
+    <span class="va va-writing-hand va-lg"></span>
+    <div class="value">
+      <?php echo $top_datas['nb_comments']; ?>
+    </div>
+  </a>
+  <?php
+  $creator_id = get_post_field('post_author', $id_top_global);
+  $creator_uuiduser = get_field('uuiduser_user', 'user_' . $creator_id);
+  $creator_data = get_user_infos($creator_uuiduser);
+  ?>
+  <button class="btn-emoji btn-avatar" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Top créé par <?php echo $creator_data['pseudo']; ?>" style="background-image: url(<?php echo $creator_data['avatar']; ?>);">
+    <div data-bs-toggle="offcanvas" data-bs-target="#infostop" aria-controls="offcanvasScroll" class="divfill">
+    </div>
+  </button>
+</div>
+<!-- /Right Nav -->
 
 <!-- Offcanvas -->
 <?php get_template_part('widgets/jugement'); ?>

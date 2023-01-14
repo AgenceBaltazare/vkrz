@@ -263,7 +263,7 @@ get_header();
         <div class="container">
           <h1 class="t-titre-tournoi">
             <div class="text-muted">
-              Top <?php echo $top_infos['top_number']; ?> <span class="ico">⚔️</span> <?php echo $top_infos['top_title']; ?>
+              TOP <?php echo $top_infos['top_number']; ?> <?php echo $top_infos['top_cat_icon']; ?> <?php echo $top_infos['top_title']; ?>
             </div>
             <?php echo $top_infos['top_question']; ?>
           </h1>
