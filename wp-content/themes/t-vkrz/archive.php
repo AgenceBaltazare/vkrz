@@ -79,7 +79,7 @@ $list_sujets      = array();
             <div class="col-md-4 offset-md-1">
               <div class="intro-archive">
                 <h1>
-                  <span class="infonbtops"><?php echo $tops_in_cat->post_count; ?> Tops</span> <?php echo $current_cat->name; ?> <?php the_field('icone_cat', 'term_' . $current_cat->term_id); ?>
+                  <span class="infonbtops"><?php echo $tops_in_cat->post_count; ?> Tops</span> <?php echo $current_cat->name; ?> <span class="ms-2"><?php the_field('icone_cat', 'term_' . $current_cat->term_id); ?></span>
                 </h1>
                 <h2>
                   <?php echo $current_cat->description; ?>

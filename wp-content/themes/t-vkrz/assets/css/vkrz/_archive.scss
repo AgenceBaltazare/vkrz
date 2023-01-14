@@ -16,27 +16,39 @@
 .intro-archive {
   text-align: center;
   margin: 20px 0 30px;
-  background-color: $c5;
+  background: linear-gradient($c3, $c3) 50% 50%/calc(100% - 10px) calc(100% - 10px) no-repeat,
+      linear-gradient(270deg, $c5 0%, $rose 100%);
+  border-radius: 5px;
+  padding: 17px;
+  box-sizing: border-box;
   padding: 40px 0;
   transform: rotate(-2deg);
 
   h1 {
-    font-size: 16px;
+    font-size: 2rem;
     color: #fff;
     margin: 0;
+    text-transform: uppercase;
+    font-weight: 900;
+    font-family: "lato";
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   h2 {
-    font-size: 20px;
-    color: $c6;
+    font-size: 1rem;
+    color: $c5;
     margin: 10px 0 0 0;
   }
 
   .infonbtops {
-    background: $c6;
-    padding: 5px;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 5px 7px;
     font-weight: 600;
     border-radius: 5px;
-    color: $c5;
+    color: $c3;
+    font-size: 1rem;
+    margin-right: 10px;
   }
 }
