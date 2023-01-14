@@ -492,12 +492,6 @@ get_header();
     <a href="#" class="btn-emoji btn-emoji-recommencer confirm_delete" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Recommencer" data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>">
       <span class="va va-recommencer va-lg"></span>
     </a>
-    <a href="<?php echo get_the_permalink(get_page_by_path('discuz')) . '?id_top=' . $id_top; ?>" class="btn-emoji btn-emoji-wording" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Commente le Top">
-      <span class="va va-writing-hand va-lg"></span>
-      <div class="value">
-        5
-      </div>
-    </a>
     <?php
     $creator_id = get_post_field('post_author', $id_top);
     $creator_uuiduser = get_field('uuiduser_user', 'user_' . $creator_id);

@@ -18,7 +18,7 @@ if(document.querySelector('#twitch-games-ranking')) {
   const predictionWinnerTemplate = function(winner, participantsNumber) {
     let wording = "";
     if(+participantsNumber === 2) {
-      wording = `le gagant est `;
+      wording = `le gagnant est `;
     } else {
       wording = `a gagné contre ${+participantsNumber - 1} autres participants`;
     }
@@ -682,7 +682,7 @@ if (document.querySelector(".toplist_comments")) {
   };
 
   if (topListCommentsLength !== 0) {
-    
+
     let commentsArr = [];
     topListCommentsQuerySnapshot.forEach((comment) =>
       commentsArr.push({ id: comment.id, ...comment.data() })

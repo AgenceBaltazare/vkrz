@@ -41,4 +41,5 @@ switch (get_post_type()) {
   case "toplist-mondiale":
     get_template_part("templates/single/mondial");
     break;
+  
 }

@@ -180,10 +180,7 @@ endif;
 
 <!-- Bottom Nav -->
 <div class="share-toplist">
-  <?php
-  $id_toplistmondiale = get_toplist_mondiale($id_top_global);
-  $id_listetoplist    = get_liste_toplist($id_top_global);
-  ?>
+  <?php $id_toplistmondiale = get_toplist_mondiale($id_top_global);?>
   <?php if (!in_array('private', $types_top)) : ?>
     <?php if ($already_done) : ?>
       <?php if (get_field('uuid_user_r', $id_ranking) != $uuid_vainkeur) :  ?>
@@ -201,7 +198,7 @@ endif;
       </a>
     <?php endif; ?>
   <?php endif; ?>
-  <a href="<?php the_permalink($id_listetoplist); ?>" class="btn-wording" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Voir les <?php echo $top_datas['nb_tops']; ?> TopList">
+  <a href="<?php the_permalink($id_toplistmondiale); ?>#toplist" class="btn-wording" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Voir les <?php echo $top_datas['nb_tops']; ?> TopList">
     <span class="va va-trophy va-lg"></span> <?php echo $top_datas['nb_tops']; ?>
   </a>
   <a href="<?php the_permalink($id_toplistmondiale); ?>" class="btn-wording mt-2 mb-1 mt-sm-0 mb-sm-0" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Générée à partir des <?php echo $top_datas['nb_votes']; ?> votes">

@@ -30,6 +30,10 @@ $top_infos            = get_top_infos($id_top);
 $top_datas            = get_top_data($id_top);
 $contenders_ranking   = get_contenders_ranking($id_top);
 $id_top_global        = $id_top;
+$id_resume            = get_resume_id($id_top);
+$list_toplist         = json_decode(get_field('all_toplist_resume', $id_resume));
+$list_toplist         = array_reverse($list_toplist);
+$count_toplist        = count($list_toplist);
 ?>
 <div class="col-12 m-0 ba-cover-r pe-0 py-5" style="background: url(<?php echo $top_infos['top_cover']; ?>) center center no-repeat">
   <div class="container-xxl m-auto">
@@ -135,8 +139,86 @@ $id_top_global        = $id_top;
   </div>
 </div>
 
-<!-- Similar -->
-<div class="col-12" id="commentaires">
+<!-- Liste des TopList -->
+<div class="col-12" id="toplist">
+  <div class="container-xxl">
+    <div class="row">
+      <div class="col-md-8 offset-md-2 col-10">
+        <div class="users-ranks">
+          <div class="card text-center calc-resemblance card-voile m-0" data-idtop="<?php echo $id_top; ?>" data-topurl="<?php echo get_permalink($id_top) ?>">
+            <div class="voile-gif" style="background-image: url(<?php bloginfo('template_directory'); ?>/assets/images/gif/wait-<?php echo rand(1, 7); ?>.gif)"></div>
+            <div class="card-body">
+              <div class="content-card">
+                <div class="loader-block">
+                  <div class="loader loader--style1 w-100 mx-auto text-center" title="0">
+                    <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
+                      <path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z" />
+                      <path fill="#000" d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0C22.32,8.481,24.301,9.057,26.013,10.047z">
+                        <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 20 20" to="360 20 20" dur="0.5s" repeatCount="indefinite" />
+                      </path>
+                    </svg>
+                  </div>
+                </div>
+                <h2 class="font-weight-bolder mb-1 mt-1">
+                  <small>Récupération des </small> <br>
+                  <span class="t-violet"><?php echo $count_toplist; ?></span> TopList
+                </h2>
+                <?php if (get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $list_user_tops)) : ?>
+                  <h6 class="card-subtitle text-muted">
+                    Notre algo maison va comparer toutes les TopList pour afficher le % de ressemblance avec la tienne.
+                  </h6>
+                <?php endif; ?>
+              </div>
+            </div>
+            <div class="bar-container">
+              <div class="bar"></div>
+              <span class="bar-percent">0 %</span>
+            </div>
+          </div>
+          <div class="card invoice-list-wrapper table-card-container d-none">
+            <div class="card-datatable table-responsive">
+              <table class="invoice-list-table table table-listuserranks">
+                <thead>
+                  <tr>
+                    <th>
+                      <span class="text-muted">
+                        Vainkeur
+                      </span>
+                    </th>
+                    <th>
+                      <span class="text-muted">
+                        Podium
+                      </span>
+                    </th>
+                    <th class="text-center shorted">
+                      <span class="text-muted">Ressemblance <span class="va va-updown va-z-15"></span></span>
+                    </th>
+                    <th class="text-center">
+                      <span class="text-muted">
+                        Action
+                      </span>
+                    </th>
+                    <th class="text-right">
+                      <span class="text-muted">
+                        Guetter
+                      </span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /Liste des TopList -->
+
+<!-- Commentaires -->
+<div class="col-12 mt-5" id="commentaires">
   <div class="container-xxl">
     <div class="row">
       <div class="col-md-8 offset-md-2 col-10">
@@ -145,14 +227,11 @@ $id_top_global        = $id_top;
     </div>
   </div>
 </div>
-<!-- /Similar -->
+<!-- /Commentaires -->
 
 <!-- Right Nav -->
-<?php
-$id_listetoplist = get_liste_toplist($id_top);
-?>
 <div class="infos-toplist">
-  <a href="<?php echo get_the_permalink($id_listetoplist); ?>" class="btn-emoji btn-emoji-wording" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Voir toutes les TopList">
+  <a href="#toplist" class="btn-emoji btn-emoji-wording" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Voir toutes les TopList">
     <span class="va va-trophy va-lg"></span>
     <div class="value">
       <?php echo $top_datas['nb_tops']; ?>
@@ -178,20 +257,23 @@ $id_listetoplist = get_liste_toplist($id_top);
 
 <!-- Bottom Nav -->
 
-<?php if (!get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $list_user_tops)) : ?>
-  <div class="share-toplist">
+<div class="share-toplist">
+  <?php if (!get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $list_user_tops)) : ?>
     <a href="<?php the_permalink($id_top); ?>" class="btn-wording-rose btn-wording bubbly-button">
       Fais ta TopList pour participer
     </a>
-    <a href="#commentaires" class="btn-wording" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Voir les <?php echo $top_datas['nb_tops']; ?> TopList">
-      Laisse ton meilleur commentaire
-    </a>
-  </div>
-<?php endif; ?>
+  <?php endif; ?>
+  <a href="#commentaires" class="btn-wording" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Matte les commentaires et laisse le tiens">
+    Laisse ton meilleur commentaire
+  </a>
+</div>
 <!-- /Bottom Nav -->
 
 <!-- Offcanvas -->
 <?php get_template_part('widgets/top-info'); ?>
 <!-- /Offcanvas -->
 
+<script>
+  const topId = "<?php echo $id_top; ?>";
+</script>
 <?php get_footer(); ?>

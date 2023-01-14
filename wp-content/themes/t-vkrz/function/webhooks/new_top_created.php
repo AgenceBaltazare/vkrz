@@ -11,7 +11,6 @@ function publish_top_by_creator($post_id){
 
     // Générer la TopList Mondiale et le listing
     generate_toplist_mondiale($id_top);
-    generate_liste_toplist($id_top);
 
     $top_infos_to_send  = get_top_infos($id_top);
     $top_title          = $top_infos_to_send['top_title'];
