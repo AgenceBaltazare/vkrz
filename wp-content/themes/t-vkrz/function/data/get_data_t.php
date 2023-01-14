@@ -43,6 +43,8 @@ function get_top_infos($id_top, $id_ranking = false)
   $rounded        = get_field('c_rounded_t', $id_top);
   $c_in_cover     = get_field('visuel_cover_t', $id_top);
 
+  $id_toplist_mondiale = get_toplist_mondiale($id_top);
+
   $result = array(
     'top_url'       => $top_url,
     'top_cat'       => $top_cat,
@@ -58,6 +60,7 @@ function get_top_infos($id_top, $id_ranking = false)
     'top_d_rounded' => $rounded,
     'top_d_cover'   => $c_in_cover,
     'top_date'      => get_the_date('d/m/Y', $id_top),
+    'toplist_mondiale' => $id_toplist_mondiale
   );
 
   return $result;

@@ -44,6 +44,39 @@ function cpt_init() {
         'supports' => array('title', 'thumbnail', 'author', 'comments')
     );
     register_post_type('tournoi', $args);
+    
+    // TopList mondial
+    $labels = array(
+        'name' => 'TopList mondiale',
+        'singular_name' => 'TopList mondiale',
+        'add_new' => 'Ajouter une TopList mondiale',
+        'add_new_item' => 'Ajouter une TopList mondiale',
+        'edit_item' => 'Editer une TopList mondiale',
+        'new_item' => 'Nouvelle TopList mondiale',
+        'all_items' => 'Toutes les TopList mondiales',
+        'view_item' => 'Voir la TopList mondiale',
+        'search_items' => 'Chercher une TopList mondiale',
+        'not_found' =>  'Aucune TopList mondiale trouvée',
+        'not_found_in_trash' => 'Aucune TopList mondiale trouvée dans la corbeille',
+        'menu_name' => 'TopList mondiale'
+    );
+    $args = array(
+        'labels' => $labels,
+        'public' => true,
+        'publicly_queryable' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'query_var' => true,
+        'rewrite' => array('slug' => 'top-mondial'),
+        'map_meta_cap' => true,
+        'has_archive' => true,
+        'hierarchical' => false,
+        'menu_position' => null,
+        'menu_icon' => 'dashicons-admin-site',
+        'show_in_rest' => true,
+        'supports' => array('title', 'editor')
+    );
+    register_post_type('toplist-mondiale', $args);
 
     // Classement
     $labels = array(

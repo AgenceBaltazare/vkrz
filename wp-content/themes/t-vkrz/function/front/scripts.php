@@ -98,15 +98,13 @@ function load_css_js()
     wp_enqueue_script('archive', get_template_directory_uri() . '/assets/js/archive.js', array(), filemtime(get_template_directory() . '/assets/js/archive.js'), true);
 
     // JS on specifik pages
-    if (is_page_template("templates/elo-mondial.php")) {
-      wp_enqueue_script('ranking', get_template_directory_uri() . '/function/ajax/ranking.js', array(), filemtime(get_template_directory() . '/function/ajax/ranking.js'), true);
+    if (get_post_type() == 'toplist-mondiale') {
+      wp_enqueue_script('set_comment_notification', get_template_directory_uri() . '/function/firebase/set_comment_notification.js', array(), filemtime(get_template_directory() . '/function/firebase/set_comment_notification.js'), true);
+      wp_enqueue_script('calc_resemblance', get_template_directory_uri() . '/function/firebase/calc_resemblance.js', array(), filemtime(get_template_directory() . '/function/firebase/calc_resemblance.js'), true);
     }
     if (get_post_type() == "classement") {
       wp_enqueue_script('similar', get_template_directory_uri() . '/function/ajax/similar.js', array(), filemtime(get_template_directory() . '/function/ajax/similar.js'), true);
       wp_enqueue_script('toplist', get_template_directory_uri() . '/function/firebase/toplist.js', array(), filemtime(get_template_directory() . '/function/firebase/toplist.js'), true);
-    }
-    if (is_page('Discuz')) {
-      wp_enqueue_script('set_comment_notification', get_template_directory_uri() . '/function/firebase/set_comment_notification.js', array(), filemtime(get_template_directory() . '/function/firebase/set_comment_notification.js'), true);
     }
     if (is_user_logged_in()) {
       wp_enqueue_script('get_menuuser_notifications', get_template_directory_uri() . '/function/firebase/get_menuuser_notifications.js', array(), filemtime(get_template_directory() . '/function/firebase/get_menuuser_notifications.js'), true);
@@ -116,9 +114,6 @@ function load_css_js()
     }
     if (is_page('Guetteur')) {
       wp_enqueue_script('get_friends_page', get_template_directory_uri() . '/function/firebase/get_friends_page.js', array(), filemtime(get_template_directory() . '/function/firebase/get_friends_page.js'), true);
-    }
-    if (is_page('Liste des Tops !')) {
-      wp_enqueue_script('calc_resemblance', get_template_directory_uri() . '/function/firebase/calc_resemblance.js', array(), filemtime(get_template_directory() . '/function/firebase/calc_resemblance.js'), true);
     }
     if (is_author() || is_page(get_page_by_path('mon-compte'))) {
       wp_enqueue_script('fetch_toplist_by_vainkeur', get_template_directory_uri() . '/function/firebase/fetch_toplist_by_vainkeur.js', array(), filemtime(get_template_directory() . '/function/firebase/fetch_toplist_by_vainkeur.js'), true);

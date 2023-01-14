@@ -1,14 +1,15 @@
 <?php
-global $top_comments_id;
+global $id_top;
 global $author_reply;
 global $author_reply_id;
 global $infos_vainkeur;
+global $id_top;
 ?>
-<div id="comments" class="comments-area">
+<div id="comments" class="comments-area pb-5">
   <?php
   $response_to_comment = false;
-  $actual_link         = get_the_permalink(get_page_by_path('discuz')) . '?id_top=' . $top_comments_id;
-  $comments            = get_comments('status=approve&type=comments&hierarchical=true&post_id=' . $top_comments_id);
+  $actual_link         = get_the_permalink() . "#commentaires";
+  $comments            = get_comments('status=approve&type=comments&hierarchical=true&post_id=' . $id_top);
   $nb_comments         = count($comments);
   if (isset($_GET['replytocom']) && $_GET['replytocom'] != "") {
     $response_to_comment = true;
@@ -21,7 +22,9 @@ global $infos_vainkeur;
 
   if ($nb_comments > 0) : ?>
     <h2 class="comments-title">
-      <span class="t-rose"><?php echo $nb_comments; ?> <?php echo $comment_wording; ?></span> sur le Top <?php the_field('count_contenders_t', $top_comments_id); ?> <span class="va va-high-voltage va-md"></span> <?php echo get_the_title($top_comments_id); ?> <span class="text-muted"><?php the_field('question_t', $top_comments_id); ?></span>
+      <span class="t-rose"><?php echo $nb_comments; ?> <?php echo $comment_wording; ?></span> sur le Top <?php echo get_the_title($id_top); ?>
+      <br>
+      <span class="text-muted"><?php the_field('question_t', $id_top); ?></span>
     </h2>
 
     <div class="comment-list row">
@@ -31,8 +34,8 @@ global $infos_vainkeur;
           <div class="col-12 comment-min">
             <div class="card" data-comment-id="<?php echo $comment->comment_ID; ?>">
               <div class="card-body">
-                <div class="d-flex align-items-start">
-                  <div class="avatar me-2">
+                <div class="d-flex align-items-center">
+                  <div class="avatar me-4">
                     <?php
                     $url_author = "#";
                     if ($comment->comment_author_email) {
@@ -61,21 +64,23 @@ global $infos_vainkeur;
                     <p class="card-text text-muted">
                       <small><?php echo $comment->comment_date; ?></small>
                     </p>
-                    <p class="card-text">
-                      <?php echo $comment->comment_content; ?>
-                    </p>
-                    <?php if ($comment->comment_parent == "0") : ?>
-                      <div class="reply-link">
-                        <a href="<?php echo $actual_link; ?>&replytocom=<?php echo $comment->comment_ID; ?>#respond" class="d-inline-flex align-items-center">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-corner-up-left font-medium-3 me-50">
-                            <polyline points="9 14 4 9 9 4"></polyline>
-                            <path d="M20 20v-7a4 4 0 0 0-4-4H4"></path>
-                          </svg>
-                          <span class="ml-05">Répondre</span>
-                        </a>
-                      </div>
-                    <?php endif; ?>
                   </div>
+                </div>
+                <div class="comment-content mt-3">
+                  <p class="card-text">
+                    <?php echo $comment->comment_content; ?>
+                  </p>
+                  <?php if ($comment->comment_parent == "0") : ?>
+                    <div class="reply-link">
+                      <a href="<?php echo $actual_link; ?>&replytocom=<?php echo $comment->comment_ID; ?>#respond" class="d-inline-flex align-items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-corner-up-left font-medium-3 me-50">
+                          <polyline points="9 14 4 9 9 4"></polyline>
+                          <path d="M20 20v-7a4 4 0 0 0-4-4H4"></path>
+                        </svg>
+                        <span class="ml-05">Répondre</span>
+                      </a>
+                    </div>
+                  <?php endif; ?>
                 </div>
               </div>
             </div>
@@ -90,8 +95,8 @@ global $infos_vainkeur;
             <div class="col-12 comment-min sub-comment-min">
               <div class="card" data-comment-id="<?php echo $comment->comment_ID; ?>">
                 <div class="card-body">
-                  <div class="d-flex align-items-start">
-                    <div class="avatar me-2">
+                  <div class="d-flex align-items-center">
+                    <div class="avatar me-4">
                       <?php
                       $url_author = "#";
                       if ($comment->comment_author_email) {
@@ -120,21 +125,23 @@ global $infos_vainkeur;
                       <p class="card-text text-muted">
                         <small><?php echo $comment->comment_date; ?></small>
                       </p>
-                      <p class="card-text">
-                        <?php echo $comment->comment_content; ?>
-                      </p>
-                      <?php if ($comment->comment_parent == "0") : ?>
-                        <div class="reply-link">
-                          <a href="<?php echo $actual_link; ?>&replytocom=<?php echo $comment->comment_ID; ?>#respond" class="d-inline-flex align-items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-corner-up-left font-medium-3 me-50">
-                              <polyline points="9 14 4 9 9 4"></polyline>
-                              <path d="M20 20v-7a4 4 0 0 0-4-4H4"></path>
-                            </svg>
-                            <span class="ml-05">Répondre</span>
-                          </a>
-                        </div>
-                      <?php endif; ?>
                     </div>
+                  </div>
+                  <div class="comment-content mt-3">
+                    <p class="card-text">
+                      <?php echo $comment->comment_content; ?>
+                    </p>
+                    <?php if ($comment->comment_parent == "0") : ?>
+                      <div class="reply-link">
+                        <a href="<?php echo $actual_link; ?>&replytocom=<?php echo $comment->comment_ID; ?>#respond" class="d-inline-flex align-items-center">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-corner-up-left font-medium-3 me-50">
+                            <polyline points="9 14 4 9 9 4"></polyline>
+                            <path d="M20 20v-7a4 4 0 0 0-4-4H4"></path>
+                          </svg>
+                          <span class="ml-05">Répondre</span>
+                        </a>
+                      </div>
+                    <?php endif; ?>
                   </div>
                 </div>
               </div>
@@ -157,11 +164,11 @@ global $infos_vainkeur;
     ?>
   <?php else : ?>
     <h2 class="comments-title">
-      Top <?php the_field('count_contenders_t', $top_comments_id); ?> <span class="va va-high-voltage va-md"></span> <?php echo get_the_title($top_comments_id); ?> <span class="text-muted"><?php the_field('question_t', $top_comments_id); ?></span>
+      Top <?php the_field('count_contenders_t', $id_top); ?> <span class="va va-high-voltage va-md"></span> <?php echo get_the_title($id_top); ?> <span class="text-muted"><?php the_field('question_t', $id_top); ?></span>
     </h2>
   <?php endif; ?>
 
-  <div id="respond" class="comment-form mt-3">
+  <div id="respond" class="comment-form mt-5">
 
     <h3 class="title-bloc mt-25">
       <?php if ($response_to_comment) : ?>
@@ -218,16 +225,16 @@ global $infos_vainkeur;
                 <?php endif; ?>
               </div>
               <div class="col-12">
-                <input name="submit" class="btn btn-primary waves-effect waves-float waves-light" type="submit" id="submit-comment" value="Poster mon commentaire">
-                <input type="hidden" name="comment_post_ID" value="<?php echo $top_comments_id; ?>" id="comment_post_ID">
+                <input type="hidden" name="comment_post_ID" value="<?php echo $id_top; ?>" id="comment_post_ID">
                 <input type="hidden" name="comment_parent" id="comment_parent" value="<?php echo $top_reponse_id; ?>">
+                <input type="submit" name="submit" id="submit-comment" value="Poster mon commentaire">
               </div>
 
               <!-- REPLY DATA… -->
               <div id="replyData" style="display: none !important;" data-userId="<?php echo get_current_user_id() ?>" data-uuid="<?php echo get_field('uuiduser_user', 'user_' . get_current_user_id()); ?>" data-relatedId="<?php echo $author_reply_id ?>" data-relatedUuid="<?php echo get_field('uuiduser_user', 'user_' . $author_reply_id); ?>" data-notifText="<?php echo $infos_vainkeur['pseudo'] ?>" data-notifLink="<?php echo $actual_link; ?>&replytocom=<?php echo $top_reponse_id; ?>#respond"></div>
 
               <!-- COMMENT DATA… -->
-              <div id="commentData" style="display: none !important;" data-userId="<?php echo get_current_user_id() ?>" data-uuid="<?php echo get_field('uuiduser_user', 'user_' . get_current_user_id()); ?>" data-relatedId="<?php echo get_post_field('post_author', $top_comments_id); ?>" data-relatedUuid="<?php echo get_field('uuiduser_user', 'user_' . get_post_field('post_author', $top_comments_id)); ?>" data-notifText="<?php echo $infos_vainkeur['pseudo'] ?>" data-notifLink="<?php echo $actual_link; ?>"></div>
+              <div id="commentData" style="display: none !important;" data-userId="<?php echo get_current_user_id() ?>" data-uuid="<?php echo get_field('uuiduser_user', 'user_' . get_current_user_id()); ?>" data-relatedId="<?php echo get_post_field('post_author', $id_top); ?>" data-relatedUuid="<?php echo get_field('uuiduser_user', 'user_' . get_post_field('post_author', $id_top)); ?>" data-notifText="<?php echo $infos_vainkeur['pseudo'] ?>" data-notifLink="<?php echo $actual_link; ?>"></div>
             </div>
           </form>
         </div>

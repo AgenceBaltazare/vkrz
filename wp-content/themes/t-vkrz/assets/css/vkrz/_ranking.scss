@@ -773,3 +773,63 @@
     z-index: 1;
   }
 }
+
+.infotoplistmondiale{
+  margin-bottom: 0;
+  h1{
+    font-size: 20px;
+  }
+  h2{
+    font-size: 15px;
+    margin-bottom: 5px;
+    font-weight: 600;
+  }
+  h3{
+    font-size: 15px;
+    margin-bottom: 5px;
+    font-weight: 600;
+  }
+  .separate{
+    width: 50%;
+    margin: 20px auto;
+  }
+}
+
+#toplist{
+  background: $c6;
+  padding: 40px 0;
+  margin: 0;
+}
+#comments{
+  h2{
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  .comment-min{
+    .avatar{
+      width: 70px;
+      height: 70px;
+    }
+    h6{
+      margin-bottom: 0;
+    }
+  }
+  #respond{
+    .avatar {
+      width: 70px;
+      height: 70px;
+    }
+    #submit-comment{
+      background: $c5 !important;
+      padding: 10px 20px;
+      font-weight: 500;
+      border-radius: 5px;
+      border: 2px solid $c5;
+      transition: all 0.2s ease-in;
+      &:hover{
+        background: transparent !important;
+        border: 2px solid $c5;
+      }
+    }
+  }
+}
