@@ -88,9 +88,10 @@ $list_sujets      = array();
             </div>
             <div class="col-md-4">
               <div class="d-flex flex-column">
+
                 <div class="filtre-bloc">
                   <label class="switch switch-primary">
-                    <input type="checkbox" class="switch-input" checked />
+                    <input type="checkbox" class="switch-input" value="todo" />
                     <span class="switch-toggle-slider">
                       <span class="switch-on">
                         <i class="ti ti-check"></i>
@@ -125,11 +126,12 @@ $list_sujets      = array();
                   </select>
                 </div>
                 <div class="filtre-bloc">
-                  <div class="input-group input-group-merge">
+                  <div class="input-group input-group-merge" id="search_form">
                     <span class="input-group-text" id="basic-addon-search31"><span class="va va-loupe va-lg"></span></span>
                     <input type="text" class="form-control" placeholder="Rechercher dans <?php echo $current_cat->name; ?>..." aria-label="Rechercher dans <?php echo $current_cat->name; ?>..." aria-describedby="basic-addon-search31" spellcheck="false">
                   </div>
                 </div>
+
               </div>
             </div>
           </div>
@@ -140,7 +142,7 @@ $list_sujets      = array();
 
   <?php if ($tops_in_cat->have_posts()) : $i = 1; ?>
 
-    <section class="row match-height mt-4">
+    <section class="row match-height mt-4 grid-to-filtre">
 
       <?php while ($tops_in_cat->have_posts()) : $tops_in_cat->the_post();
         $get_top_souscat = get_the_terms($id_top, 'concept');
@@ -161,7 +163,11 @@ $list_sujets      = array();
           $state = "todo";
         }
       ?>
-        <div class="col-md-3 col-sm-4 col-6" data-filter-item="<?php echo $state; ?> <?php echo $list_sous_cat; ?>" data-filter-name="<?php echo $term_to_search; ?>">
+        <div 
+        class="col-md-3 col-sm-4 col-6 grid-item" 
+        data-filter-item="<?php echo $state; ?> <?php echo $list_sous_cat; ?>"
+        data-filter-name="<?php echo $term_to_search; ?>"
+        >
           <?php get_template_part('partials/min-t'); ?>
         </div>
       <?php $i++;

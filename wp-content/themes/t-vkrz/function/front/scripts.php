@@ -93,6 +93,9 @@ function load_css_js()
 
     // Main VAINKEURE
     wp_enqueue_script('mainjs', get_template_directory_uri() . '/assets/js/main.js', array(), filemtime(get_template_directory() . '/assets/js/main.js'), true);
+    
+    wp_enqueue_script('filters', get_template_directory_uri() . '/assets/js/filters.js', array(), filemtime(get_template_directory() . '/assets/js/filters.js'), true);
+    wp_enqueue_script('archive', get_template_directory_uri() . '/assets/js/archive.js', array(), filemtime(get_template_directory() . '/assets/js/archive.js'), true);
 
     // JS on specifik pages
     if (is_page_template("templates/elo-mondial.php")) {
