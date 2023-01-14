@@ -41,6 +41,34 @@
 
 @media (max-width: 768px) {
 
+    .intro-archive {
+      max-width: 80%;
+      margin: 40px auto;
+
+      .iconarchive {
+        position: absolute;
+        left: -20px;
+        top: 20px;
+
+        span {
+          width: 45px !important;
+          height: 45px !important;
+        }
+      }
+
+      h1 {
+        font-size: 1rem;
+      }
+
+      h2 {
+        font-size: 0.85rem;
+      }
+
+      .infonbtops {
+        font-size: 0.9rem;
+      }
+    }
+
     .page-template-propositions-top{
         .heading-title{
             text-align: center;

@@ -92,40 +92,44 @@ $list_sujets      = array();
             <div class="col-md-4">
               <div class="d-flex flex-column group-filtres">
                 <div class="filtre-bloc">
-                  <label class="switch switch-primary">
-                    <input type="checkbox" class="switch-input" checked />
-                    <span class="switch-toggle-slider">
-                      <span class="switch-on">
-                        <i class="ti ti-check"></i>
-                      </span>
-                      <span class="switch-off">
-                        <i class="ti ti-x"></i>
-                      </span>
-                    </span>
-                    <span class="switch-label">A faire</span>
-                  </label>
-                </div>
-                <div class="filtre-bloc">
-                  <select id="selectpickerLiveSearch" class="selectpicker w-100" data-style="btn-default" data-live-search="true">
-                    <option data-tokens="">Choix de la Licence</option>
-                    <?php
-                    $list_souscat = get_terms(array(
-                      'taxonomy' => 'concept',
-                      'orderby' => 'count',
-                      'order' => 'DESC',
-                      'hide_empty' => true,
-                      'include' => $list_souscat,
-                    ));
-                    $c = 0;
-                    foreach ($list_souscat as $souscat) :
-                      if ($c <= 20) : ?>
-                        <option data-tokens="<?php echo $souscat->slug; ?>" value="<?php echo $souscat->slug; ?>">
-                          <?php echo $souscat->name; ?>
-                        </option>
-                    <?php endif;
-                      $c++;
-                    endforeach; ?>
-                  </select>
+                  <div class="row align-items-center">
+                    <div class="col-4">
+                      <label class="switch switch-primary">
+                        <input type="checkbox" class="switch-input" checked />
+                        <span class="switch-toggle-slider">
+                          <span class="switch-on">
+                            <i class="ti ti-check"></i>
+                          </span>
+                          <span class="switch-off">
+                            <i class="ti ti-x"></i>
+                          </span>
+                        </span>
+                        <span class="switch-label">A faire</span>
+                      </label>
+                    </div>
+                    <div class="col-8">
+                      <select id="selectpickerLiveSearch" class="selectpicker w-100" data-style="btn-default" data-live-search="true">
+                        <option data-tokens="">Choix de la Licence</option>
+                        <?php
+                        $list_souscat = get_terms(array(
+                          'taxonomy' => 'concept',
+                          'orderby' => 'count',
+                          'order' => 'DESC',
+                          'hide_empty' => true,
+                          'include' => $list_souscat,
+                        ));
+                        $c = 0;
+                        foreach ($list_souscat as $souscat) :
+                          if ($c <= 20) : ?>
+                            <option data-tokens="<?php echo $souscat->slug; ?>" value="<?php echo $souscat->slug; ?>">
+                              <?php echo $souscat->name; ?>
+                            </option>
+                        <?php endif;
+                          $c++;
+                        endforeach; ?>
+                      </select>
+                    </div>
+                  </div>
                 </div>
                 <div class="filtre-bloc">
                   <div class="input-group input-group-merge">
