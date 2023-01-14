@@ -353,3 +353,10 @@ input[type="submit"] {
 .btn-flat-primary:hover:not(.disabled):not(:disabled) {
   background-color: rgba(115, 103, 240, 0.12);
 }
+
+.offcanvas, .offcanvas-backdrop{
+  margin: 0 !important;
+}
+.offcanvas{
+  z-index: 99999999;
+}

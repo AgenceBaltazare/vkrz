@@ -8,6 +8,8 @@ global $utm;
 global $id_top;
 global $id_ranking;
 global $top_infos;
+global $id_top_global;
+global $creator_data;
 $user_id        = get_user_logged_id();
 $vainkeur       = get_vainkeur();
 $uuid_vainkeur  = $vainkeur['uuid_vainkeur'];
@@ -31,6 +33,7 @@ $top_infos          = get_top_infos($id_top);
 $creator_id         = get_post_field('post_author', $id_top);
 $creator_uuiduser   = get_field('uuiduser_user', 'user_' . $creator_id);
 $creator_data       = get_user_infos($creator_uuiduser);
+$id_top_global      = $id_top;
 get_header();
 ?>
 <script>
@@ -226,28 +229,22 @@ get_header();
             </div>
           </div>
         </div>
-
         <?php if (!isMobile() && is_user_logged_in() && get_userdata($user_id)->twitch_user) : ?>
           <div class="col-md-4 d-none modes-jeu-twitch animate__animated animate__slideInRight" style="background-image: url(<?php bloginfo('template_directory'); ?>/assets/images/events/twitch-games-banner.png);">
             <div class="modes-jeu-twitch__content">
-
               <div class="modes-jeu-twitch__content-header">
                 <h4>
                   <i class="fab fa-2x fa-twitch mb-50"></i>
                   <br>
                   Modes de jeu pour ton stream
                 </h4>
-
                 <h6>
                   Choisis un mode pour permettre à ton tchat de voter 🫡
                 </h6>
               </div>
-
               <div class="modes-jeu-twitch__content-btns">
                 <button type="button" id="voteParticipatif" class="btn btn-gradient-primary modeGameTwitchBtn" spellcheck="false">Votes collaboratifs</button>
-
                 <button type="button" id="votePrediction" class="btn btn-gradient-primary modeGameTwitchBtn" spellcheck="false">Mort subite</button>
-
                 <button type="button" id="votePoints" class="btn btn-gradient-primary modeGameTwitchBtn" spellcheck="false">Match aux points</button>
               </div>
               <span class="modes-jeu-twitch__content-msg d-none">
@@ -297,60 +294,52 @@ get_header();
                   get_template_part('templates/parts/content', 'battle');
                   ?>
                 </div>
-
                 <?php if (!isMobile() && is_user_logged_in() && get_userdata($user_id)->twitch_user) : ?>
                   <div class="d-none twitch-votes-container row align-items-center justify-content-center" data-twitchChannel="<?= get_userdata($user_id)->twitch_user; ?>" data-top="<?= $top_infos['top_title'] . ' ' . $top_infos['top_number'] . ' ' . $top_infos['top_question'];  ?> " data-topCategory="<?= $top_infos['top_cat_name'] ?>" data-idTop="<?= $id_top; ?>" data-idVainkeur="<?= $id_vainkeur; ?>">
-                    <div class="col-sm-4 col-12">
-                    </div>
+                    <div class="row">
+                      <div class="col col-sm-4 row justify-content-between align-items-center">
+                        <div class="taper-container animate__animated animate__slideInDown">
+                          <div class="votes-container">
+                            <p>Taper 1</p>
 
-                    <div class="col col-sm-4 row justify-content-between align-items-center">
-                      <div class="taper-container animate__animated animate__slideInDown">
-                        <div class="votes-container">
-                          <p>Taper 1</p>
+                            <div class="votes-stats taper-zone d-none" id="votes-stats-1">
+                              <p class="votes-percent" id="votes-percent-1">0%</p>
+                            </div>
+                          </div>
+                        </div>
 
-                          <div class="votes-stats taper-zone d-none" id="votes-stats-1">
-                            <p class="votes-percent" id="votes-percent-1">0%</p>
+                        <div class="votes-stats-container d-none">
+                          <p class="votes-stats-p">
+                            <strong class="votes-number">0</strong> <span class="votes-number-wording">Vote</span> du chat
+                          </p>
+                          <p><strong class="votes-number-total">0</strong> votes depuis le début</p>
+                        </div>
+
+                        <div class="taper-container animate__animated animate__slideInUp">
+                          <div class="votes-container">
+                            <p>Taper 2</p>
+
+                            <div class="votes-stats taper-zone d-none" id="votes-stats-2">
+                              <p class="votes-percent" id="votes-percent-2">0%</p>
+                            </div>
                           </div>
                         </div>
                       </div>
-
-                      <div class="votes-stats-container d-none">
-                        <p class="votes-stats-p">
-                          <strong class="votes-number">0</strong> <span class="votes-number-wording">Vote</span> du chat
-                        </p>
-                        <p><strong class="votes-number-total">0</strong> votes depuis le début</p>
+                      <div class="col-sm-4 col-12">
                       </div>
-
-                      <div class="taper-container animate__animated animate__slideInUp">
-                        <div class="votes-container">
-                          <p>Taper 2</p>
-
-                          <div class="votes-stats taper-zone d-none" id="votes-stats-2">
-                            <p class="votes-percent" id="votes-percent-2">0%</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="col-sm-4 col-12">
                     </div>
                   </div>
-
                   <div class="twitchGamesWinnerContainer">
                     <span class="twitchGamesWinnerName confetti"></span>
-
                     <div class="buttons">
                       <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" href="#" class="confirm_delete btn btn-sm btn-outline-dark waves-effect mr-1"> Recommencer</a>
-
                       <a href="#" class="btn btn-sm btn-outline-primary waves-effect mr-1" id="winner-continuer"> Continuer</a>
-
                       <a href="#" class="btn btn-sm btn-outline-danger waves-effect" id="winner-relancer"> Relancer</a>
                     </div>
                   </div>
                   <audio id="winner-sound" style="display: none; width: 0 !important;">
                     <source src="<?php bloginfo('template_directory'); ?>/assets/audios/winner-sound.mp3" type="audio/mpeg" />
                   </audio>
-
                   <div class="twitch-overlay d-none">
                     <h4>Lancement du jeu dans</h4>
                     <div id="countdown">
@@ -419,7 +408,6 @@ get_header();
                         </div>
                         <h4>Taper VKRZ dans le chat <br> pour participer!</h4>
                       </div>
-
                       <div class="final">
                         <button type="button" id="launchGameBtn" class="btn btn-lg waves-effect btn-rose" spellcheck="false">
                           Lancer le jeu
@@ -427,16 +415,13 @@ get_header();
                       </div>
                     </div>
                     <span class="mode-alert"><i class="far fa-info-circle"></i> Il faut au moins deux participants</span>
-
                     <div id="participants-overlay" class="mt-2 text-white d-none" data-content="Participants :"></div>
-
                     <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" href="#" class="confirm_delete btn btn-sm btn-outline-dark waves-effect">
                       Annuler
                     </a>
                   </div>
                 <?php endif; ?>
               </div>
-
               <?php if (!isMobile() && is_user_logged_in() && get_userdata($user_id)->twitch_user) : ?>
                 <div id="prediction-player" class="col-3 d-none">
                   <div class="card mb-2" id="participants">
@@ -450,7 +435,6 @@ get_header();
                     </div>
                   </div>
                 </div>
-
                 <div id="ranking-player" class="col-3 d-none">
                   <h4 class="card-title">
                     <i class="fab fa-twitch"></i> <strong class="points-participants-votey-nbr">0</strong> de <strong class="points-participants">0</strong> Participants ont Voté
@@ -487,12 +471,10 @@ get_header();
         </div>
       </div>
     </div>
-
     <?php
     set_query_var('steps_var', compact('current_step'));
     get_template_part('templates/parts/content', 'step-bar');
     ?>
-
   <?php endif; ?>
 </div>
 
@@ -505,145 +487,32 @@ get_header();
 <?php endif; ?>
 
 <?php if ($id_ranking) : ?>
-  <div class="tools-top">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 offset-md-3">
-          <div class="navbartop">
-            <div class="icons-navbar">
-              <div class="ico-nav-mobile">
-                <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" href="#" class="confirm_delete">
-                  <span class="hide-spot">Recommencer</span>
-                </a>
-              </div>
-              <div class="ico-nav-mobile share-natif-top">
-                <a href="#">
-                  <span class="hide-spot">Partager</span>
-                </a>
-              </div>
-              <div class="ico-nav-mobile">
-                <a href="<?php echo get_the_permalink(get_page_by_path('discuz')) . '?id_top=' . $id_top; ?>" target="_blank">
-                  <span class="hide-spot">Commenter</span>
-                </a>
-              </div>
-              <div class="ico-nav-mobile box-info-show">
-                <a href="#">
-                  <span class="hide-spot">Infos <span class="hide-xs">du Top</span></span>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="share-top-content">
-            <div class="close-share">
-              <i class="fal fa-times"></i>
-            </div>
-            <div class="row">
-              <div class="col-6">
-                <ul>
-                  <li>
-                    <a href="javascript: void(0)" class="sharelinkbtn2">
-                      <input type="text" value="<?php echo $top_infos['top_url']; ?>" class="input_to_share2">
-                      <i class="social-media fas fa-paperclip"></i> <span>Copier le lien du Top</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://twitter.com/intent/tweet?text=Go faire le TOP <?php echo $top_infos['top_number']; ?> <?php echo $top_infos['top_title']; ?>&via=vainkeurz&hashtags=VKRZ&url=<?php echo $url_top; ?>" target="_blank" title="Tweet">
-                      <i class="social-media fab fa-twitter"></i> Dans un Tweet
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div class="col-6">
-                <ul>
-                  <li>
-                    <a href="whatsapp://send?text=<?php echo $url_top; ?>" data-action="share/whatsapp/share">
-                      <i class="social-media mb-12 fab fa-whatsapp"></i> Sur WhatsApp
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $url_top; ?>" title="Partager sur Facebook" target="_blank">
-                      <i class="social-media fab fa-facebook-f"></i> Sur Facebook
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="box-info-content">
-            <div class="close-share">
-              <i class="fal fa-times"></i>
-            </div>
-            <div class="box-info-list">
-              <div class="container">
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="top-resume-tool">
-                      <h4 class="card-title mb-1">
-                        TOP <?php echo $top_infos['top_number']; ?> <?php echo $top_infos['top_cat_icon']; ?> <?php echo $top_infos['top_title']; ?>
-                      </h4>
-                      <h5 class="top-title t-rose">
-                        <?php echo $top_infos['top_question']; ?> <br>
-                      </h5>
-                      <?php if (get_field('precision_t', $id_top)) : ?>
-                        <div class="card-precision">
-                          <p class="card-text mb-1">
-                            <?php the_field('precision_t', $id_top); ?>
-                          </p>
-                        </div>
-                      <?php endif; ?>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <h4 class="card-title">
-                      <?php
-                      date_default_timezone_set('Europe/Paris');
-                      $date_wp    = get_the_date('Y-m-d', $id_top);
-                      $date_clean = get_the_date('d/m/Y', $id_top);
-                      $origin     = new DateTime($date_wp);
-                      $target     = new DateTime(date('Y-m-d'));
-                      $interval   = $origin->diff($target);
-                      if ($interval->days == 0) {
-                        $info_date = "aujourd'hui";
-                      } elseif ($interval->days == 1) {
-                        $info_date = "hier";
-                      } elseif ($interval->days > 10) {
-                        $info_date = "le " . $date_clean;
-                      } else {
-                        $info_date = "depuis " . $interval->days . " jours";
-                      }
-                      ?>
-                      <span class="va va-birthday-cake va-md"></span> Créé <span class="t-violet"><?php echo $info_date; ?></span> par
-                    </h4>
-                    <div class="employee-task d-flex justify-content-center align-items-center mt-3">
-                      <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator_id; ?>" class="d-flex flex-row link-to-creator">
-                        <div class="avatar me-2">
-                          <img src="<?php echo $creator_data['avatar']; ?>" class="circle" width="42" height="42" alt="Avatar">
-                        </div>
-                        <div class="my-auto">
-                          <h4 class="mb-0">
-                            <?php echo $creator_data['pseudo']; ?> <br>
-                            <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="niveau">
-                              <?php echo $creator_data['level']; ?>
-                            </span>
-                            <?php if ($creator_data['user_role']  == "administrator") : ?>
-                              <span class="ico va va-vkrzteam va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ"></span>
-                            <?php endif; ?>
-                            <?php if ($creator_data['user_role']  == "administrator" || $creator_data['user_role'] == "author") : ?>
-                              <span class="ico va va-man-singer va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops"></span>
-                            <?php endif; ?>
-                          </h4>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+  <!-- Right Nav -->
+  <div class="infos-toplist">
+    <a href="#" class="btn-emoji btn-emoji-recommencer confirm_delete" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Recommencer" data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>">
+      <span class="va va-recommencer va-lg"></span>
+    </a>
+    <a href="<?php echo get_the_permalink(get_page_by_path('discuz')) . '?id_top=' . $id_top; ?>" class="btn-emoji btn-emoji-wording" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Commente le Top">
+      <span class="va va-writing-hand va-lg"></span>
+      <div class="value">
+        5
       </div>
-    </div>
+    </a>
+    <?php
+    $creator_id = get_post_field('post_author', $id_top);
+    $creator_uuiduser = get_field('uuiduser_user', 'user_' . $creator_id);
+    $creator_data = get_user_infos($creator_uuiduser);
+    ?>
+    <button class="btn-emoji btn-avatar" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Top créé par <?php echo $creator_data['pseudo']; ?>" style="background-image: url(<?php echo $creator_data['avatar']; ?>);">
+      <div data-bs-toggle="offcanvas" data-bs-target="#infostop" aria-controls="offcanvasScroll" class="divfill">
+      </div>
+    </button>
   </div>
+  <!-- /Right Nav -->
+
+  <!-- Offcanvas -->
+  <?php get_template_part('widgets/top-info'); ?>
+  <!-- /Offcanvas -->
 <?php endif; ?>
 
 <?php get_template_part('partials/loader'); ?>

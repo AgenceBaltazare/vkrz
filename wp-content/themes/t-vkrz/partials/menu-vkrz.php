@@ -168,7 +168,7 @@
           <div class="iconmenu">
             <span class="va va-gem va-lg"></span>
           </div>
-          <div>Boutik</div>
+          <div>Récompenses</div>
         </a>
       </li>
       <li class="menu-item">

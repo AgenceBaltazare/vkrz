@@ -30,7 +30,7 @@ global $id_top_global; ?>
       </a>
     </div>
     <div class="mb-2">
-      <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_top_global; ?>" class="w-100 btn btn-outline-violet waves-effect waves-light btn-block">
+      <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_top_global; ?>" class="w-100 btn btn-violet waves-effect waves-light btn-block">
         <div class="wording-btn">
           <div class="main-wording">
             Guette les <?php echo $top_datas['nb_tops']; ?> TopList <span class="va va-trophy va-md me-1"></span>

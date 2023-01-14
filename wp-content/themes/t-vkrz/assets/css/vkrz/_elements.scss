@@ -5,3 +5,39 @@
   width: 70%;
   margin: 0 auto;
 }
+
+.btn-emoji-recommencer{
+  transition: all 1s ease-in;
+  &:hover{
+    transform: rotate(360deg);
+  }
+}
+
+.va-reverse{
+  transform: scaleX(-1);
+}
+
+.bg-deg {
+  background: linear-gradient(150deg, $c1, #471867, $c1, #230b36, $c1);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.divfill{
+  height: 100%;
+  width: 100%;
+}

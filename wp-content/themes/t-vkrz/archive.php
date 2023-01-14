@@ -31,36 +31,6 @@ if ($id_vainkeur) {
   $list_user_tops_begin = array();
 }
 $current_cat            = get_queried_object();
-$tops_in_cat_vedette    = new WP_Query(array(
-  'post_type'                 => 'tournoi',
-  'orderby'                   => 'date',
-  'order'                     => 'DESC',
-  'posts_per_page'            => -1,
-  'ignore_sticky_posts'       => true,
-  'update_post_meta_cache'    => false,
-  'no_found_rows'             => true,
-  'meta_query' => array(
-    array(
-      'key'       => 'vedette_t',
-      'value'     => '1',
-      'compare'   => '=',
-    )
-  ),
-  'tax_query'                 => array(
-    'relation' => 'AND',
-    array(
-      'taxonomy' => $current_cat->taxonomy,
-      'field'    => 'term_id',
-      'terms'    => $current_cat->term_taxonomy_id,
-    ),
-    array(
-      'taxonomy' => 'type',
-      'field'    => 'slug',
-      'terms'    => array('private', 'whitelabel', 'onboarding'),
-      'operator' => 'NOT IN'
-    ),
-  )
-));
 $tops_in_cat            = new WP_Query(array(
   'post_type'                 => 'tournoi',
   'orderby'                   => 'date',
@@ -69,18 +39,6 @@ $tops_in_cat            = new WP_Query(array(
   'ignore_sticky_posts'       => true,
   'update_post_meta_cache'    => false,
   'no_found_rows'             => true,
-  'meta_query' => array(
-    'relation' => 'OR',
-    array(
-      'key'       => 'vedette_t',
-      'value'     => '1',
-      'compare'   => '!=',
-    ),
-    array(
-      'key'       => 'vedette_t',
-      'compare'   => 'NOT EXISTS',
-    )
-  ),
   'tax_query'                 => array(
     'relation' => 'AND',
     array(
@@ -96,43 +54,119 @@ $tops_in_cat            = new WP_Query(array(
     ),
   )
 ));
+$list_souscat = array();
+foreach ($tops_in_cat->posts as $top_in_cat) {
+  $get_top_souscat = get_the_terms($top_in_cat, 'concept');
+  if ($get_top_souscat) {
+    foreach ($get_top_souscat as $souscat) {
+      array_push($list_souscat, $souscat->term_id);
+    }
+  }
+}
+$list_souscat     = array_unique($list_souscat);
+$list_tags        = array();
+$list_concepts    = array();
+$list_sujets      = array();
 ?>
 
 <div class="my-3">
-  <div class="row">
-    <div class="col">
-      <div class="intro-archive">
-        <h1>
-          <?php echo $tops_in_cat->post_count; ?> Tops <?php echo $current_cat->name; ?> <?php the_field('icone_cat', 'term_' . $current_cat->term_id); ?>
-        </h1>
-        <h2>
-          <?php echo $current_cat->description; ?>
-        </h2>
+
+  <div class="container-xxl mt-2">
+    <div class="row">
+      <div class="col">
+        <div class="filtres-bloc">
+          <div class="row align-items-center justify-content-center">
+            <div class="col-md-4 offset-md-1">
+              <div class="intro-archive">
+                <h1>
+                  <span class="infonbtops"><?php echo $tops_in_cat->post_count; ?> Tops</span> <?php echo $current_cat->name; ?> <?php the_field('icone_cat', 'term_' . $current_cat->term_id); ?>
+                </h1>
+                <h2>
+                  <?php echo $current_cat->description; ?>
+                </h2>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="d-flex flex-column">
+                <div class="filtre-bloc">
+                  <label class="switch switch-primary">
+                    <input type="checkbox" class="switch-input" checked />
+                    <span class="switch-toggle-slider">
+                      <span class="switch-on">
+                        <i class="ti ti-check"></i>
+                      </span>
+                      <span class="switch-off">
+                        <i class="ti ti-x"></i>
+                      </span>
+                    </span>
+                    <span class="switch-label">A faire</span>
+                  </label>
+                </div>
+                <div class="filtre-bloc">
+                  <select id="selectpickerLiveSearch" class="selectpicker w-100" data-style="btn-default" data-live-search="true">
+                    <option data-tokens="">Choix de la Licence</option>
+                    <?php
+                    $list_souscat = get_terms(array(
+                      'taxonomy' => 'concept',
+                      'orderby' => 'count',
+                      'order' => 'DESC',
+                      'hide_empty' => true,
+                      'include' => $list_souscat,
+                    ));
+                    $c = 0;
+                    foreach ($list_souscat as $souscat) :
+                      if ($c <= 20) : ?>
+                        <option data-tokens="<?php echo $souscat->slug; ?>" value="<?php echo $souscat->slug; ?>">
+                          <?php echo $souscat->name; ?>
+                        </option>
+                    <?php endif;
+                      $c++;
+                    endforeach; ?>
+                  </select>
+                </div>
+                <div class="filtre-bloc">
+                  <div class="input-group input-group-merge">
+                    <span class="input-group-text" id="basic-addon-search31"><span class="va va-loupe va-lg"></span></span>
+                    <input type="text" class="form-control" placeholder="Rechercher dans <?php echo $current_cat->name; ?>..." aria-label="Rechercher dans <?php echo $current_cat->name; ?>..." aria-describedby="basic-addon-search31" spellcheck="false">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
   <?php if ($tops_in_cat->have_posts()) : $i = 1; ?>
 
-    <section class="row match-height">
+    <section class="row match-height mt-4">
 
-      <?php if ($tops_in_cat_vedette->have_posts()) :
-
-        while ($tops_in_cat_vedette->have_posts()) : $tops_in_cat_vedette->the_post(); ?>
-          <div class="col-md-3 col-sm-4 col-6">
-            <?php get_template_part('partials/min-t'); ?>
-          </div>
-        <?php $i++;
-        endwhile;
-
-      endif;
-
-      while ($tops_in_cat->have_posts()) : $tops_in_cat->the_post(); ?>
-        <div class="col-md-3 col-sm-4 col-6">
+      <?php while ($tops_in_cat->have_posts()) : $tops_in_cat->the_post();
+        $get_top_souscat = get_the_terms($id_top, 'concept');
+        $list_sous_cat   = "";
+        if ($get_top_souscat) {
+          foreach ($get_top_souscat as $sous_cat) {
+            $list_sous_cat .= $sous_cat->slug . " ";
+          }
+        }
+        $top_question   = get_field('question_t', $id_top);
+        $top_title      = get_the_title($id_top);
+        $term_to_search = $top_question . " " . $top_title;
+        if (in_array($id_top, $list_user_tops)) {
+          $state = "done";
+        } elseif (in_array($id_top, $list_user_tops_begin)) {
+          $state = "begin";
+        } else {
+          $state = "todo";
+        }
+      ?>
+        <div class="col-md-3 col-sm-4 col-6" data-filter-item="<?php echo $state; ?> <?php echo $list_sous_cat; ?>" data-filter-name="<?php echo $term_to_search; ?>">
           <?php get_template_part('partials/min-t'); ?>
         </div>
       <?php $i++;
       endwhile; ?>
+
     </section>
 
   <?php else : ?>

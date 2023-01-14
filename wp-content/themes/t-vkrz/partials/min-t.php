@@ -13,8 +13,8 @@ $creator_avatar   = get_avatar_url($creator_id, ['size' => '80', 'force_default'
 $type_top         = "";
 $state            = "";
 $illu             = get_the_post_thumbnail_url($id_top, 'large');
-if (is_home()) {
-  $class        = "swiper-slide";
+if (is_single()) {
+  $class        = "col-md-4";
 } elseif (is_single()) {
   $class        = "col-md-12 col-6";
 }

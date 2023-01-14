@@ -2,11 +2,10 @@
 global $top_infos;
 global $id_top_global;
 global $list_user_tops;
-global $top_cat_id;
-global $cat_name;
 $top_cat = $top_infos['top_cat'];
 foreach ($top_cat as $cat) {
   $top_cat_id = $cat->term_id;
+  $top_cat_name = $cat->name;
 }
 $list_souscat  = array();
 $top_souscat   = get_the_terms($id_top_global, 'concept');
@@ -23,7 +22,7 @@ $tops_in_close_cat     = new WP_Query(array(
   'post__not_in'           => $list_user_tops,
   'orderby'                => 'rand',
   'order'                  => 'ASC',
-  'posts_per_page'         => 4,
+  'posts_per_page'         => 12,
   'tax_query' => array(
     'relation' => 'AND',
     array(
@@ -45,8 +44,8 @@ $tops_in_close_cat     = new WP_Query(array(
   ),
 ));
 $count_similar = $tops_in_close_cat->post_count;
-$count_next    = 4 - $count_similar;
-if ($count_similar < 4) {
+$count_next    = 12 - $count_similar;
+if ($count_similar < 12) {
   $tops_in_large_cat     = new WP_Query(array(
     'ignore_sticky_posts'    => true,
     'update_post_meta_cache' => false,
@@ -73,31 +72,29 @@ if ($count_similar < 4) {
   ));
 }
 if ($tops_in_close_cat->have_posts() || $tops_in_large_cat->have_posts()) : ?>
-  <section class="card widget">
-    <div class="card-body">
-      <h4 class="card-title">
-        <span class="va va-smiling-face-with-heart-eyes va-lg"></span> Voici quelques Tops qui devraient te plaire
-      </h4>
-      <div class="similar-list mt-2">
-        <div class="row">
-          <?php
-          while ($tops_in_close_cat->have_posts()) : $tops_in_close_cat->the_post();
-            get_template_part('partials/min-t-2');
+  <section class="similar-tops text-center py-5">
+    <h4 class="mb-3">
+      Voici quelques Tops qui devraient te plaire <span class="va va-smiling-face-with-heart-eyes va-lg"></span>
+    </h4>
+    <div class="similar-list mt-2">
+      <div class="row">
+        <?php
+        while ($tops_in_close_cat->have_posts()) : $tops_in_close_cat->the_post();
+          get_template_part('partials/min-t');
+        endwhile;
+        if ($count_similar < 4) :
+          while ($tops_in_large_cat->have_posts()) : $tops_in_large_cat->the_post();
+            get_template_part('partials/min-t');
           endwhile;
-          if ($count_similar < 4) :
-            while ($tops_in_large_cat->have_posts()) : $tops_in_large_cat->the_post();
-              get_template_part('partials/min-t-2');
-            endwhile;
-          endif;
-          ?>
-        </div>
+        endif;
+        ?>
       </div>
-      <div class="gocat">
-        <?php $current = get_term_by('term_id', $top_cat_id, 'categorie'); ?>
-        <a class="w-100 btn btn-primary waves-effect" href="<?php echo get_category_link($top_cat_id); ?>">
-          Voir tous les Tops <span class="text-uppercase"><?php echo $cat_name; ?></span> <span class="ico"><?php the_field('icone_cat', 'term_' . $top_cat_id); ?></span>
-        </a>
-      </div>
+    </div>
+    <div class="gocat">
+      <?php $current = get_term_by('term_id', $top_cat_id, 'categorie'); ?>
+      <a class="w-100 btn btn-primary waves-effect" href="<?php echo get_category_link($top_cat_id); ?>">
+        Voir tous les Tops <span class="text-uppercase ms-1"> <?php echo $top_cat_name; ?> </span> <span class="ico"><?php the_field('icone_cat', 'term_' . $top_cat_id); ?></span>
+      </a>
     </div>
   </section>
 <?php endif; ?>

@@ -129,26 +129,6 @@ jQuery(document).ready(function ($) {
     });
   });
 
-  $(".close-share").click(function () {
-    $(".share-top-content").removeClass("active-box");
-    $(".box-info-content").removeClass("active-box");
-    $(".share-classement-content").removeClass("active-box");
-  });
-
-  $(".share-natif-top").click(function () {
-    $(".share-top-content").addClass("active-box");
-    $(".box-info-content").removeClass("active-box");
-  });
-
-  $(".box-info-show").click(function () {
-    $(".box-info-content").addClass("active-box");
-  });
-
-  $(".share-natif-classement").click(function () {
-    "";
-    $(".share-classement-content").addClass("active-box");
-  });
-
   window.onload = function () {
     if(document.querySelector('.to-sign')) {
       if(document.querySelector('.to-sign.connected')) {

@@ -18,7 +18,8 @@ if (get_post_type() != "tournoi") {
   } else {
     $infos_vainkeur = get_fantom($id_vainkeur);
   }
-} elseif (get_post_type() != "tournoi" || get_post_type() != "classement") {
+}
+if (get_post_type() == "tournoi") {
   global $top_infos;
 }
 $utm = deal_utm();
@@ -140,9 +141,9 @@ if ($infos_vainkeur['avatar']) {
       <?php if (isset($top_infos)) : ?>
         <div class="layout-page cover t-normal-container " style="background: url(<?php echo $top_infos['top_cover']; ?>) center center no-repeat">
           <div class="overlay"></div>
-      <?php else : ?>
-        <div class="layout-page">
-      <?php endif; ?>
+        <?php else : ?>
+          <div class="layout-page">
+          <?php endif; ?>
 
           <!-- Content wrapper -->
           <div class="content-wrapper">
@@ -152,5 +153,9 @@ if ($infos_vainkeur['avatar']) {
             <!-- / Menu -->
 
             <!-- Content -->
-            <div class="container-xxl flex-grow-1 container-p-y">
+            <?php if (get_post_type() == "classement") : ?>
+              <div class="container-fluid flex-grow-1 p-0">
+            <?php else : ?>
+              <div class="container-xxl flex-grow-1 p-0">
+            <?php endif; ?>
               <div class="row g-4 mb-3">

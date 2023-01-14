@@ -15,16 +15,20 @@ function load_css_js()
     wp_enqueue_style('demo', get_template_directory_uri() . '/assets/vendor/css/rtl/demo.css', array(), null);
 
     // Vendor
-    wp_enqueue_style('bootstrap', get_template_directory_uri() . '/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css', array(), null);
-    wp_enqueue_style('bootstrap', get_template_directory_uri() . '/assets/vendor/libs/node-waves/node-waves.css', array(), null);
-    wp_enqueue_style('bootstrap', get_template_directory_uri() . '/assets/vendor/libs/typeahead-js/typeahead.css', array(), null);
-    wp_enqueue_style('bootstrap', get_template_directory_uri() . '/assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css', array(), null);
-    wp_enqueue_style('bootstrap', get_template_directory_uri() . '/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css', array(), null);
-    wp_enqueue_style('bootstrap', get_template_directory_uri() . '/assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css', array(), null);
-    wp_enqueue_style('bootstrap', get_template_directory_uri() . '/assets/vendor/libs/select2/select2.css', array(), null);
-    wp_enqueue_style('bootstrap', get_template_directory_uri() . '/assets/vendor/libs/formvalidation/dist/css/formValidation.min.css', array(), null);
+    wp_enqueue_style('scrollbar', get_template_directory_uri() . '/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css', array(), null);
+    wp_enqueue_style('waves', get_template_directory_uri() . '/assets/vendor/libs/node-waves/node-waves.css', array(), null);
+    wp_enqueue_style('typeahead', get_template_directory_uri() . '/assets/vendor/libs/typeahead-js/typeahead.css', array(), null);
+    wp_enqueue_style('datatables.bootstrap5', get_template_directory_uri() . '/assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css', array(), null);
+    wp_enqueue_style('responsive.bootstrap5', get_template_directory_uri() . '/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css', array(), null);
+    wp_enqueue_style('buttons.bootstrap5', get_template_directory_uri() . '/assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css', array(), null);
+    wp_enqueue_style('select2', get_template_directory_uri() . '/assets/vendor/libs/select2/select2.css', array(), null);
+    wp_enqueue_style('formValidation', get_template_directory_uri() . '/assets/vendor/libs/formvalidation/dist/css/formValidation.min.css', array(), null);
     wp_enqueue_style('sweetalert2', get_template_directory_uri() . '/assets/vendor/libs/sweetalert2/sweetalert2.css', array(), null);
     wp_enqueue_style('spinkit', get_template_directory_uri() . '/assets/vendor/libs/spinkit/spinkit.css', array(), null);
+    wp_enqueue_style('tagify', get_template_directory_uri() . '/assets/vendor/libs/tagify/tagify.css', array(), null);
+    wp_enqueue_style('bootstrap-select', get_template_directory_uri() . '/assets/vendor/libs/bootstrap-select/bootstrap-select.css', array(), null);
+    wp_enqueue_style('typeahead', get_template_directory_uri() . '/assets/vendor/libs/typeahead-js/typeahead.css', array(), null);
+
     if (is_page(array(27800, 27795, 27792, 27794, 443448))) {
       wp_enqueue_style('account', get_template_directory_uri() . '/assets/css/vkrz/login.css', array(), filemtime(get_template_directory() . '/assets/css/vkrz/login.css'));
     }
@@ -71,8 +75,15 @@ function load_css_js()
     wp_enqueue_script('autoFocus', get_template_directory_uri() . '/assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js', array(), null, true);
     wp_enqueue_script('sweetalert2', get_template_directory_uri() . '/assets/vendor/libs/sweetalert2/sweetalert2.js', array(), null, true);
     wp_enqueue_script('mainthemejs', get_template_directory_uri() . '/assets/vendor/js/main.js', array(), null, true);
+    wp_enqueue_script('bloodhound', get_template_directory_uri() . '/assets/vendor/libs/bloodhound/bloodhound.js', array(), null, true);
+    wp_enqueue_script('typeahead-js', get_template_directory_uri() . '/assets/vendor/libs/typeahead-js/typeahead.js', array(), null, true);
+    wp_enqueue_script('bootstrap-select', get_template_directory_uri() . '/assets/vendor/libs/bootstrap-select/bootstrap-select.js', array(), null, true);
+    wp_enqueue_script('tagify-js', get_template_directory_uri() . '/assets/vendor/libs/tagify/tagify.js', array(), null, true);
     wp_enqueue_script('cleave', get_template_directory_uri() . '/assets/vendor/libs/cleavejs/cleave.js', array(), null, true);
     wp_enqueue_script('cleave-phone', get_template_directory_uri() . '/assets/vendor/libs/cleavejs/cleave-phone.js', array(), null, true);
+    wp_enqueue_script('forms-selects', get_template_directory_uri() . '/assets/js/forms-selects.js', array(), null, true);
+    wp_enqueue_script('forms-tagify', get_template_directory_uri() . '/assets/js/forms-tagify.js', array(), null, true);
+    wp_enqueue_script('forms-typeahead', get_template_directory_uri() . '/assets/js/forms-typeahead.js', array(), null, true);
 
     // Twitch
     if (!isMobile() && is_user_logged_in() && get_userdata(get_user_logged_id())->twitch_user && get_post_type() == 'tournoi') {

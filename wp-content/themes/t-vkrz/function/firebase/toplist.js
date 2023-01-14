@@ -545,7 +545,7 @@ if (document.querySelector(".toplist_comments")) {
               ${deleteOrNot}
             </div>
           
-            <p class="media-heading m-0" style="font-size: 1.2em;">
+            <p class="media-heading">
                 ${content}
             </p>
 
@@ -682,9 +682,7 @@ if (document.querySelector(".toplist_comments")) {
   };
 
   if (topListCommentsLength !== 0) {
-    // THERE IS SOME COMMENTS…
-    commentsContainer.style.maxHeight = "150px";
-
+    
     let commentsArr = [];
     topListCommentsQuerySnapshot.forEach((comment) =>
       commentsArr.push({ id: comment.id, ...comment.data() })
