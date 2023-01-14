@@ -93,20 +93,6 @@ $list_sujets      = array();
               <div class="d-flex flex-column group-filtres">
                 <div class="filtre-bloc">
                   <div class="row align-items-center">
-                    <div class="col-4">
-                      <label class="switch switch-primary">
-                        <input type="checkbox" class="switch-input" checked />
-                        <span class="switch-toggle-slider">
-                          <span class="switch-on">
-                            <i class="ti ti-check"></i>
-                          </span>
-                          <span class="switch-off">
-                            <i class="ti ti-x"></i>
-                          </span>
-                        </span>
-                        <span class="switch-label">A faire</span>
-                      </label>
-                    </div>
                     <div class="col-8">
                       <select id="selectpickerLiveSearch" class="selectpicker w-100" data-style="btn-default" data-live-search="true">
                         <option data-tokens="">Choix de la Licence</option>
@@ -128,6 +114,20 @@ $list_sujets      = array();
                           $c++;
                         endforeach; ?>
                       </select>
+                    </div>
+                    <div class="col-4">
+                      <label class="switch switch-primary">
+                        <input type="checkbox" class="switch-input" checked />
+                        <span class="switch-toggle-slider">
+                          <span class="switch-on">
+                            <i class="ti ti-check"></i>
+                          </span>
+                          <span class="switch-off">
+                            <i class="ti ti-x"></i>
+                          </span>
+                        </span>
+                        <span class="switch-label">A faire</span>
+                      </label>
                     </div>
                   </div>
                 </div>
