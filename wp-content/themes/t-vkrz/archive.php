@@ -78,8 +78,11 @@ $list_sujets      = array();
           <div class="row align-items-center justify-content-center">
             <div class="col-md-4 offset-md-1">
               <div class="intro-archive">
+                <div class="iconarchive">
+                  <?php the_field('icone_cat', 'term_' . $current_cat->term_id); ?>
+                </div>
                 <h1>
-                  <span class="infonbtops"><?php echo $tops_in_cat->post_count; ?> Tops</span> <?php echo $current_cat->name; ?> <span class="ms-2"><?php the_field('icone_cat', 'term_' . $current_cat->term_id); ?></span>
+                  <?php echo $current_cat->name; ?> <span class="infonbtops"><?php echo $tops_in_cat->post_count; ?> Tops</span>
                 </h1>
                 <h2>
                   <?php echo $current_cat->description; ?>
@@ -87,7 +90,7 @@ $list_sujets      = array();
               </div>
             </div>
             <div class="col-md-4">
-              <div class="d-flex flex-column">
+              <div class="d-flex flex-column group-filtres">
                 <div class="filtre-bloc">
                   <label class="switch switch-primary">
                     <input type="checkbox" class="switch-input" checked />

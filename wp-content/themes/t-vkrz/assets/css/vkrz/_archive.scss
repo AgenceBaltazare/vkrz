@@ -1,28 +1,25 @@
-.filtres-bloc {
-  .filtre-bloc{
-    margin: 5px 0;
-    .dropdown-toggle{
-      min-width: 250px;
-    }
-    .input-group-text, .bootstrap-select{
-      background-color: transparent;
-    }
-    input{
-      background: transparent;
-    }
-  }
-}
-
 .intro-archive {
   text-align: center;
   margin: 20px 0 30px;
   background: linear-gradient($c3, $c3) 50% 50%/calc(100% - 10px) calc(100% - 10px) no-repeat,
-      linear-gradient(270deg, $c5 0%, $rose 100%);
+    linear-gradient(270deg, $c5 0%, $rose 100%);
   border-radius: 5px;
   padding: 17px;
   box-sizing: border-box;
-  padding: 40px 0;
-  transform: rotate(-2deg);
+  padding: 20px 0;
+  transform: rotate(-1deg);
+  position: relative;
+
+  .iconarchive {
+    position: absolute;
+    left: -40px;
+    top: 15px;
+
+    span {
+      width: 90px !important;
+      height: 90px !important;
+    }
+  }
 
   h1 {
     font-size: 2rem;
@@ -49,6 +46,41 @@
     border-radius: 5px;
     color: $c3;
     font-size: 1rem;
-    margin-right: 10px;
+    margin-left: 10px;
+  }
+}
+
+.filtres-bloc {
+  .filtre-bloc{
+    margin: 5px 0;
+    .dropdown-toggle{
+      min-width: 250px;
+    }
+    .input-group-text, .bootstrap-select, input{
+      background-color: transparent;
+    }
+    .input-group-text{
+      border: 2px solid $c5;
+      border-right: none;
+    }
+    .switch-label{
+      font-family: "montserrat";
+      font-size: 13px;
+      font-weight: 600;
+    }
+    input{
+      border: 2px solid $c5;
+      border-left: none;
+      font-family: "montserrat";
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .dropdown-toggle {
+      border: 2px solid $c5;
+      border-radius: 0.375rem;
+    }
+  }
+  .group-filtres{
+    margin-top: -20px;
   }
 }

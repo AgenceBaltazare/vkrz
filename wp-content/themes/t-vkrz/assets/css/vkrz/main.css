@@ -5133,19 +5133,6 @@ select:-webkit-autofill:focus {
   font-size: 15px;
 }
 
-.filtres-bloc .filtre-bloc {
-  margin: 5px 0;
-}
-.filtres-bloc .filtre-bloc .dropdown-toggle {
-  min-width: 250px;
-}
-.filtres-bloc .filtre-bloc .input-group-text, .filtres-bloc .filtre-bloc .bootstrap-select {
-  background-color: transparent;
-}
-.filtres-bloc .filtre-bloc input {
-  background: transparent;
-}
-
 .intro-archive {
   text-align: center;
   margin: 20px 0 30px;
@@ -5153,8 +5140,18 @@ select:-webkit-autofill:focus {
   border-radius: 5px;
   padding: 17px;
   box-sizing: border-box;
-  padding: 40px 0;
-  transform: rotate(-2deg);
+  padding: 20px 0;
+  transform: rotate(-1deg);
+  position: relative;
+}
+.intro-archive .iconarchive {
+  position: absolute;
+  left: -40px;
+  top: 15px;
+}
+.intro-archive .iconarchive span {
+  width: 90px !important;
+  height: 90px !important;
 }
 .intro-archive h1 {
   font-size: 2rem;
@@ -5179,7 +5176,40 @@ select:-webkit-autofill:focus {
   border-radius: 5px;
   color: #312673;
   font-size: 1rem;
-  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.filtres-bloc .filtre-bloc {
+  margin: 5px 0;
+}
+.filtres-bloc .filtre-bloc .dropdown-toggle {
+  min-width: 250px;
+}
+.filtres-bloc .filtre-bloc .input-group-text, .filtres-bloc .filtre-bloc .bootstrap-select, .filtres-bloc .filtre-bloc input {
+  background-color: transparent;
+}
+.filtres-bloc .filtre-bloc .input-group-text {
+  border: 2px solid #7367f0;
+  border-right: none;
+}
+.filtres-bloc .filtre-bloc .switch-label {
+  font-family: "montserrat";
+  font-size: 13px;
+  font-weight: 600;
+}
+.filtres-bloc .filtre-bloc input {
+  border: 2px solid #7367f0;
+  border-left: none;
+  font-family: "montserrat";
+  font-size: 13px;
+  font-weight: 600;
+}
+.filtres-bloc .filtre-bloc .dropdown-toggle {
+  border: 2px solid #7367f0;
+  border-radius: 0.375rem;
+}
+.filtres-bloc .group-filtres {
+  margin-top: -20px;
 }
 
 .intro-sponso .intro {
