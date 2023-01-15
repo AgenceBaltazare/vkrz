@@ -9,6 +9,10 @@ import {
   getDocs,
   addDoc,
   orderBy,
+  secondsToStrFuncHelper,
+  fetchDataFuncHelper,
+  sortContendersFuncHelper,
+  calcResemblanceFuncHelper,
 } from "./config.js";
 
 if(document.querySelector('#twitch-games-ranking')) {
@@ -184,115 +188,6 @@ if(document.querySelector('#twitch-games-ranking')) {
   }
 }
 
-// FUNCTION TO SORT CONTENDERS…
-const sortContenders = function (contenders) {
-  let contendersArr = [],
-    contendersArrPlaces = [],
-    contendersArrIDs = [];
-
-  for (let contender of contenders) {
-    delete contender.c_name;
-    delete contender.elo;
-    delete contender.id;
-    delete contender.less_to;
-    delete contender.more_to;
-    delete contender.ratio;
-    delete contender.image;
-
-    contendersArr.push(contender);
-    contendersArrPlaces.push(contender.place);
-
-    contendersArrIDs.push(contender.id_wp);
-  }
-  contendersArr.sort(function (a, b) {
-    return b.place - a.place;
-  });
-  contendersArrPlaces
-    .sort(function (a, b) {
-      return b - a;
-    })
-    .reverse();
-  for (let j = 0; j < contendersArr.length; j++) {
-    contendersArr[j].place = contendersArrPlaces[j];
-  }
-  contenders = contendersArr;
-
-  return contenders;
-};
-
-// FUCNTION TO CALC RESEMBLANCE…
-const calcResemblanceFunc = function (
-  myContenders,
-  othersContenders,
-  top3
-) {
-  let numberContenders = myContenders.length,
-    positionEcart,
-    similaire,
-    pourcentSimilaire = [],
-    ressemblances = [],
-    ecartRessemblance;
-
-  if (top3 === true) {
-    myContenders = myContenders.slice(0, 3);
-    othersContenders = othersContenders.slice(0, 3);
-
-    numberContenders = 3;
-
-    myContenders.forEach((contender, index) => (contender.place = index));
-    othersContenders.forEach(
-      (contender, index) => (contender.place = index)
-    );
-  }
-
-  for (let i = 0; i < numberContenders; i++) {
-    let otherContenderPlace;
-    if (
-      othersContenders.find(
-        (contender) => contender.id_wp === myContenders[i].id_wp
-      )
-    ) {
-      otherContenderPlace = othersContenders.find(
-        (contender) => contender.id_wp === myContenders[i].id_wp
-      ).place;
-      positionEcart = Math.abs(
-        myContenders[i].place - otherContenderPlace
-      );
-      similaire = 1 / numberContenders / (positionEcart + 1);
-    } else {
-      otherContenderPlace = 0;
-      positionEcart = Math.abs(
-        myContenders[i].place - otherContenderPlace
-      );
-      similaire = 0;
-    }
-
-    if (top3 == true) {
-      ecartRessemblance =
-        1 / numberContenders / (numberContenders / 2 + 1);
-      pourcentSimilaire.push(similaire);
-    } else {
-      ecartRessemblance =
-        1 / numberContenders / (Math.floor(numberContenders / 2) + 1);
-
-      if (similaire <= ecartRessemblance) {
-        similaire = 0;
-        pourcentSimilaire.push(similaire);
-      } else {
-        pourcentSimilaire.push(similaire);
-      }
-    }
-  }
-
-  ressemblances.push(
-    Math.round(pourcentSimilaire.reduce((a, b) => a + b, 0) * 100)
-  );
-  let result =
-    Math.round(pourcentSimilaire.reduce((a, b) => a + b, 0) * 100) + "%";
-
-  return result;
-};
-
 // RESSEMBLANCE MONDIALE…
 if(document.querySelector('.classement')) {
   const idRanking = document.querySelector('.classement').dataset.idranking;
@@ -309,7 +204,7 @@ if(document.querySelector('.classement')) {
         eloArr     = [],
         myTypeTopRanking;
     rankingQuerySnapshot.forEach(ranking => {
-      rankingArr = sortContenders(ranking.data().custom_fields.ranking_r);
+      rankingArr = sortContendersFuncHelper(ranking.data().custom_fields.ranking_r);
       myTypeTopRanking = ranking.data().custom_fields.type_top_r;
     });
 
@@ -328,18 +223,17 @@ if(document.querySelector('.classement')) {
     
         if((index + 1) == rankingArr.length) {
           const ressemblanceMondiale = document.querySelector('#ressemblance-mondiale');
-          ressemblanceMondiale.innerHTML = calcResemblanceFunc(rankingArr, eloArr, top3);
+          ressemblanceMondiale.innerHTML = calcResemblanceFuncHelper(rankingArr, eloArr, top3);
         }
       })()
     }
-  }, 3000)
+  }, 1000)
 }
 
 if (document.querySelector(".vs-resemblance")) {
   const cardResemblance = document.querySelector(".vs-resemblance");
   const idTop           = cardResemblance.dataset.idtop;
   const idRanking       = cardResemblance.dataset.idranking;
-  const rankingUrl      = cardResemblance.dataset.rankingUrl;
   const topUrl          = cardResemblance.dataset.topurl;
 
   const rankingQuery = query(
@@ -353,8 +247,8 @@ if (document.querySelector(".vs-resemblance")) {
     const myRankingQuery = query(
       collection(database, "wpClassement"),
       where("custom_fields.id_tournoi_r", "==", idTop),
-      where("custom_fields.done_r", "==", "done"),
-      where("custom_fields.uuid_user_r", "==", currentUuid)
+      where("custom_fields.uuid_user_r", "==", currentUuid),
+      where("custom_fields.done_r", "==", "done")
     );
     const myRankingQuerySnapshot = await getDocs(myRankingQuery);
 
@@ -365,7 +259,7 @@ if (document.querySelector(".vs-resemblance")) {
       let myRankingArr = [],
           myRankingUrl;
       myRankingQuerySnapshot.forEach((ranking) => {
-        myRankingArr = sortContenders(ranking.data().custom_fields.ranking_r);
+        myRankingArr = sortContendersFuncHelper(ranking.data().custom_fields.ranking_r);
         myRankingUrl = ranking.data().permalink;
 
         myTypeTopRanking = ranking.data().custom_fields.type_top_r;
@@ -378,7 +272,7 @@ if (document.querySelector(".vs-resemblance")) {
       if (rankingQuerySnapshot.exists()) {
         // FOUND IN FIRESTORE…
         let othersRankingArr = [];
-        othersRankingArr = sortContenders(
+        othersRankingArr = sortContendersFuncHelper(
           rankingQuerySnapshot.data().custom_fields.ranking_r
         );
         otherTypeTopRanking =
@@ -390,25 +284,25 @@ if (document.querySelector(".vs-resemblance")) {
           top3 = true;
         }
         // COMPARE IT WITH MY RANKING…
-        let calcResemblance = calcResemblanceFunc(
+        let calcResemblance = calcResemblanceFuncHelper(
           myRankingArr,
           othersRankingArr,
           top3
         );
 
         document.querySelector(".vs-resemblance").innerHTML = `
-          <h2 class="mt-2 text-center mb-0">
+          <h6 class="mt-1 text-center mb-0">
             <b style="color: #7266EF;">${calcResemblance}</b> de ressemblance avec
             <a href="${myRankingUrl}">ta TopList !</a> 
-          </h2>
+          </h6>
         `;
       } else {
         // NOT FOUND IN FIRESTORE…
-        // console.log("No such document in Firestore!");
+        console.log("No such document in Firestore!");
       }
     } else {
       // I DIDN'T THE RANKING…
-      // console.log("I did not the ranking…");
+      console.log("I did not the ranking…");
       cardResemblance.innerHTML = `
         <a href="${topUrl}" class="w-100 btn btn-rose waves-effect p-1 mt-2">
           <p class="h4 text-white m-0">
@@ -433,6 +327,7 @@ if (document.querySelector(".toplist_comments")) {
         commentsContainer   = toplistCommentsCard.querySelector(
           ".comments-container"
         ),
+        jugementsNumber      = document.querySelector('.jugements-nbr'),
         commentArea = toplistCommentsCard.querySelector("#comment");
 
   // CHECK IF THERE IS ALREADY A COMMENTS FOR THE TopList…
@@ -443,6 +338,8 @@ if (document.querySelector(".toplist_comments")) {
     orderBy("createdAt", "asc")
   );
   const topListCommentsQuerySnapshot = await getDocs(topListCommentsQuery);
+
+  jugementsNumber.innerHTML = topListCommentsQuerySnapshot._snapshot.docs.size;
 
   topListCommentsQuerySnapshot.forEach((comment) => {
     if (authorid != comment.data().userId) {
@@ -459,48 +356,7 @@ if (document.querySelector(".toplist_comments")) {
   let topListCommentsLength = topListCommentsQuerySnapshot._snapshot.docs.size;
 
   const commentTemplate = async function (commentId, uuid, content, secondes) {
-    // FUNCTION TO CALCULATE TIME…
-    const secondsToStr = function (secondes) {
-      function numberEnding(number) {
-        return number > 1 ? "s" : "";
-      }
-
-      let temp = Math.floor(secondes / 1000);
-      let years = Math.floor(temp / 31536000);
-      if (years) {
-        return years + " ans" + numberEnding(years);
-      }
-      let days = Math.floor((temp %= 31536000) / 86400);
-      if (days) {
-        return days + " jour" + numberEnding(days);
-      }
-      let hours = Math.floor((temp %= 86400) / 3600);
-      if (hours) {
-        return hours + " heure" + numberEnding(hours);
-      }
-      let minutes = Math.floor((temp %= 3600) / 60);
-      if (minutes) {
-        return minutes + " minute" + numberEnding(minutes);
-      }
-      let seconds = temp % 60;
-      if (seconds) {
-        return seconds + " seconde" + numberEnding(seconds);
-      }
-      return "moins d'une seconde"; //'just now' //or other string you like;
-    };
-
-    // FUNCTION TO GET USER DATA BY UUID…
-    async function getUserData() {
-      try {
-        let response = await fetch(
-          `https://vainkeurz.com/wp-json/vkrz/v1/getuserinfo/${uuid}`
-        );
-        return await response.json();
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    const data = await getUserData();
+    const data = await fetchDataFuncHelper(`http://vainkeurz.local/wp-json/vkrz/v1/getuserinfo/${uuid}`);
 
     // RETURN THE COMMENT TEMPLATE DIV…
     let deleteOrNot = "";
@@ -537,7 +393,7 @@ if (document.querySelector(".toplist_comments")) {
                     data.pseudo
                   }</small>
                 </a>
-                <small class="text-muted" style="font-size: .75em; margin-left: .5rem; line-height:0;">Il y a ${secondsToStr(
+                <small class="text-muted" style="font-size: .75em; margin-left: .5rem; line-height:0;">Il y a ${secondsToStrFuncHelper(
                   secondes
                 )}</small>
               </div>
@@ -603,6 +459,7 @@ if (document.querySelector(".toplist_comments")) {
 
           // Décremente
           post_new_jugement(idRanking, id_vainkeur, "delete");
+          jugementsNumber.innerHTML = +jugementsNumber.textContent > 0 ? +jugementsNumber.textContent - 1 : 0;
         });
       });
 
@@ -612,7 +469,7 @@ if (document.querySelector(".toplist_comments")) {
       replyCommentsBtns.forEach((btn) => {
         btn.addEventListener("click", (e) => {
           e.preventDefault();
-          commentArea.value = `${btn.dataset.replyto}`;
+          commentArea.value = `${btn.dataset.replyto} `;
           commentArea.focus();
         });
       });
@@ -673,6 +530,8 @@ if (document.querySelector(".toplist_comments")) {
 
       // Incremente + check badge
       post_new_jugement(idRanking, id_vainkeur, "add");
+
+      jugementsNumber.innerHTML = +jugementsNumber.textContent + 1;
     } else {
       commentArea.setAttribute(
         "placeholder",
@@ -713,6 +572,7 @@ if (document.querySelector(".toplist_comments")) {
 
         // Décremente
         post_new_jugement(idRanking, id_vainkeur, "delete");
+        jugementsNumber.innerHTML = +jugementsNumber.textContent > 0 ? +jugementsNumber.textContent - 1 : 0;
       });
     });
 
@@ -721,7 +581,7 @@ if (document.querySelector(".toplist_comments")) {
     replyCommentsBtns.forEach((btn) => {
       btn.addEventListener("click", (e) => {
         e.preventDefault();
-        commentArea.value = `${btn.dataset.replyto}`;
+        commentArea.value = `${btn.dataset.replyto} `;
         commentArea.focus();
       });
     });

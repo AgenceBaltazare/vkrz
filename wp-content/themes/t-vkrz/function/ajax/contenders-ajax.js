@@ -9,6 +9,7 @@ import {
   doc,
   limit,
   deleteDoc,
+  sortContendersFuncHelper,
 } from "../firebase/config.js";
 
 $(document).ready(function ($) {
@@ -365,41 +366,7 @@ $(document).ready(function ($) {
 
             async function notificationsProcess() {
               // FUNCTION TO SORT CONTENDERS…
-              const sortContenders = function (ranking) {
-                let contendersArr = [],
-                  contendersArrPlaces = [],
-                  contendersArrIDs = [];
-
-                for (let contender of ranking) {
-                  delete contender.c_name;
-                  delete contender.elo;
-                  delete contender.id;
-                  delete contender.less_to;
-                  delete contender.more_to;
-                  delete contender.ratio;
-                  delete contender.image;
-
-                  contendersArr.push(contender);
-                  contendersArrPlaces.push(contender.place);
-
-                  contendersArrIDs.push(contender.id_wp);
-                }
-                contendersArr.sort(function (a, b) {
-                  return b.place - a.place;
-                });
-                contendersArrPlaces
-                  .sort(function (a, b) {
-                    return b - a;
-                  })
-                  .reverse();
-                for (let j = 0; j < contendersArr.length; j++) {
-                  contendersArr[j].place = contendersArrPlaces[j];
-                }
-                ranking = contendersArr;
-
-                return ranking;
-              };
-              let myContenders = sortContenders(data.toplist);
+              let myContenders = sortContendersFuncHelper(data.toplist);
 
               // SEND NOTIFICATION FUNCTION…
               async function sendNotification(
@@ -590,7 +557,7 @@ $(document).ready(function ($) {
                         // GET FRIEND RANKING, SORT IT AND COMPARE IT…
                         let contenders;
                         didRankingQuerySnapshot.forEach((ranking) => {
-                          contenders = sortContenders(
+                          contenders = sortContendersFuncHelper(
                             ranking.data().custom_fields.ranking_r
                           );
 

@@ -8,18 +8,8 @@ import {
   query,
   orderBy,
   database,
+  fetchDataFuncHelper,
 } from "./config.js";
-
-async function getUserData(uuid) {
-  try {
-    let response = await fetch(
-      `https://vainkeurz.com/wp-json/vkrz/v1/getuserinfo/${uuid}`
-    );
-    return await response.json();
-  } catch (error) {
-    console.log(error);
-  }
-}
 
 // GET PROPOSTIONS
 const tablePropositions = document.querySelector(".table-propositions"),
@@ -47,7 +37,7 @@ const getPropositions = async function() {
             attribuePar   = "";
 
         let propositionByUuid = proposition.data().userUuid;
-        let dataUser = await getUserData(propositionByUuid);
+        let dataUser = await fetchDataFuncHelper(`http://vainkeurz.local/wp-json/vkrz/v1/getuserinfo/${propositionByUuid}`);
 
         if(proposition.data().topValide === true && proposition.data().topValidePar === "") {
           topValidOrNot = `
@@ -64,7 +54,7 @@ const getPropositions = async function() {
             Top Validé! ✅
           `
 
-          let AttribueParDataUser = await getUserData(proposition.data().topValidePar);
+          let AttribueParDataUser = await fetchDataFuncHelper(`http://vainkeurz.local/wp-json/vkrz/v1/getuserinfo/${proposition.data().topValidePar}`);
           attribuePar = `
             <div class="vainkeur-card">
               <a href="${AttribueParDataUser.profil_url}" class="btn btn-flat-primary waves-effect">
@@ -376,8 +366,8 @@ submitBtn.addEventListener("click", (e) => {
           }
         );
 
-        let currentUserData = await getUserData(currentUuid);
-
+        let currentUserData = await fetchDataFuncHelper(`http://vainkeurz.local/wp-json/vkrz/v1/getuserinfo/${currentUuid}`);
+        
         $.ajax({
           method: "POST",
           url: vkrz_ajaxurl,

@@ -35,6 +35,7 @@ $list_toplist         = json_decode(get_field('all_toplist_resume', $id_resume))
 $list_toplist         = array_reverse($list_toplist);
 $count_toplist        = count($list_toplist);
 ?>
+
 <div class="col-12 m-0 ba-cover-r pe-0 py-5" style="background: url(<?php echo $top_infos['top_cover']; ?>) center center no-repeat">
   <div class="container-xxl m-auto">
     <div class="row zindex-2 position-relative">
@@ -50,23 +51,27 @@ $count_toplist        = count($list_toplist);
           <h2>
             Cette TopList a été générée via l'algo ELO à partir des <span class="t-violet"><?php echo $top_datas['nb_votes']; ?></span> votes <span class="va va-high-voltage va-md"></span>
           </h2>
-          <h3>
-            Ta TopList y ressemble à <span class="t-violet">
-              <span id="ressemblance-mondiale">
-                <div class="loader loader--style1" title="0">
-                  <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="20px" height="20px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
-                    <path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946
-              s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634
-              c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z" />
-                    <path fill="#000" d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0
-              C22.32,8.481,24.301,9.057,26.013,10.047z">
-                      <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 20 20" to="360 20 20" dur="0.5s" repeatCount="indefinite" />
-                    </path>
-                  </svg>
-                </div>
-              </span>
-            </span>
-          </h3>
+
+          <?php if (get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $list_user_tops)) : ?>
+            <h3>
+              Ta <a href="<?= get_permalink($id_top); ?>" class="t-violet">TopList</a> y ressemble à <div id="ressemblance-ma-toplist-mondiale" class="d-inline t-violet">
+                <span>
+                  <div class="loader loader--style1" title="0">
+                    <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="20px" height="20px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
+                      <path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946
+                          s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634
+                          c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z" />
+                                <path fill="#000" d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0
+                          C22.32,8.481,24.301,9.057,26.013,10.047z">
+                        <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 20 20" to="360 20 20" dur="0.5s" repeatCount="indefinite" />
+                      </path>
+                    </svg>
+                  </div>
+                </span>
+              </div>
+            </h3>
+          <?php endif; ?>
+
         </div>
       </div>
     </div>
@@ -134,6 +139,7 @@ $count_toplist        = count($list_toplist);
           </div>
         </div>
         <!-- TopList -->
+
       </div>
     </div>
   </div>
@@ -191,7 +197,7 @@ $count_toplist        = count($list_toplist);
                       </span>
                     </th>
                     <th class="text-center shorted">
-                      <span class="text-muted">Ressemblance <span class="va va-updown va-z-15"></span></span>
+                      <span class="text-muted">Ressemblance</span>
                     </th>
                     <th class="text-center">
                       <span class="text-muted">
@@ -256,7 +262,6 @@ $count_toplist        = count($list_toplist);
 <!-- /Right Nav -->
 
 <!-- Bottom Nav -->
-
 <div class="share-toplist">
   <?php if (!get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $list_user_tops)) : ?>
     <a href="<?php the_permalink($id_top); ?>" class="btn-wording-rose btn-wording bubbly-button">

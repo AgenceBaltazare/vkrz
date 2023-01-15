@@ -103,6 +103,8 @@ $best_creators = best_creators();
                                             <span class="wording">Guetter</span>
                                             <span class="va va-guetteur-close va va-z-20 emoji"></span>
                                         </button>
+                                    <?php elseif(get_current_user_id() == $creator['user_id']) : ?>
+
                                     <?php else : ?>
                                         <a href="<?php the_permalink(get_page_by_path('se-connecter')); ?>" class="btn btn-flat-secondary waves-effect" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tu dois être connecté pour guetter <?php echo $vainkeur_data_selected['pseudo']; ?>">
                                             <span class="text-muted">

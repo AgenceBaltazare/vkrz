@@ -2,6 +2,8 @@ import {
   collection,
   addDoc,
   database,
+  fetchDataFuncHelper,
+  
 } from "./config.js";
 
 // CHECK PARRAINAGE COOKIES
@@ -27,19 +29,8 @@ if (getCookie("wordpress_parrainage_cookies")) {
       referredTo = cookies.referredTo;
 
   if (currentUuid == referral) {
-    // GET USERS DATA BY UUID
-    async function getUserData(uuid) {
-      try {
-        let response = await fetch(
-          `https://vainkeurz.com/wp-json/vkrz/v1/getuserinfo/${uuid}`
-        );
-        return await response.json();
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    referral = await getUserData(referral);
-    referredTo = await getUserData(referredTo);
+    referral = await fetchDataFuncHelper(`http://vainkeurz.local/wp-json/vkrz/v1/getuserinfo/${referral}`);
+    referredTo = await fetchDataFuncHelper(`http://vainkeurz.local/wp-json/vkrz/v1/getuserinfo/${referredTo}`);
 
     // SEND NOTIF
     async function sendNotification(

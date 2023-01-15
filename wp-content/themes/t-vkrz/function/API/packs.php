@@ -323,13 +323,13 @@ function get_all_toplist_by_id_top($data)
 
   $rankings = new WP_Query(array(
     'ignore_sticky_posts'      => true,
-    'update_post_meta_cache'  => false,
+    'update_post_meta_cache'   => false,
     'post_type'                => 'classement',
     'orderby'                  => 'date',
     'order'                    => 'DESC',
-    'posts_per_page'          => $nb_items,
-    'paged'                   => $page,
-    "author__not_in"          => array(0, 1),
+    'posts_per_page'           => $nb_items,
+    'paged'                    => $page,
+    // "author__not_in"           => array(0, 1),
     'meta_query' => array(
       'relation' => 'AND',
       array(

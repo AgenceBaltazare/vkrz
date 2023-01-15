@@ -3,6 +3,7 @@ global $uuid_who_did_toplist;
 global $uuid_vainkeur;
 global $vainkeur_data_selected;
 global $id_ranking;
+global $id_top_global;
 ?>
 <div class="offcanvas offcanvas-end bg-deg" id="topeur">
   <div class="offcanvas-header">
@@ -21,10 +22,10 @@ global $id_ranking;
         <?php get_template_part('partials/vainkeur-card'); ?>
 
         <?php if ($vainkeur_data_selected['user_role'] != "anonyme") : ?>
-
+          
           <?php if (is_user_logged_in()) : ?>
 
-            <?php if ($vainkeur_data_selected && get_current_user_id() != $vainkeur_data_selected['id_user'] && is_user_logged_in()) : ?>
+            <?php if ($vainkeur_data_selected && get_current_user_id() != $vainkeur_data_selected['id_user']) : ?>
 
               <button type="button" id="followBtn" class="btn waves-effect btn-follow d-none btn btn-outline-primary" data-userid="<?= get_current_user_id(); ?>" data-uuid="<?= get_field('uuiduser_user', 'user_' . get_current_user_id()); ?>" data-relatedid="<?= $vainkeur_data_selected['id_user']; ?>" data-relateduuid="<?= get_field('uuiduser_user', 'user_' . $vainkeur_data_selected['id_user']); ?>" data-text="<?= get_the_author_meta('nickname', get_current_user_id()); ?> te guette !" data-url="<?= get_author_posts_url(get_current_user_id()); ?>">
                 <span class="wording">Guetter</span>
@@ -48,8 +49,7 @@ global $id_ranking;
 
       <div class="separate mt-4 mb-4"></div>
 
-      <h6 class="text-center">Ressemblance entre ta TopList et celle-ci : </h6>
-      <div class="vs-resemblance" data-idranking="<?= $id_ranking; ?>" data-idtop="<?= $id_top; ?>" data-topurl="<?= $top_infos['top_url']; ?>">
+      <div class="vs-resemblance" data-idranking="<?= $id_ranking; ?>" data-idtop="<?= $id_top_global; ?>">
         <div class="loader loader--style1 w-100 mx-auto mt-1 text-center" title="0">
           <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
             <path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946
