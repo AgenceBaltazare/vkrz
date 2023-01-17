@@ -83,4 +83,9 @@
   .group-filtres{
     margin-top: -20px;
   }
+  .bs-searchbox{
+    input{
+      border: 1px solid $c5 !important;
+    }
+  }
 }

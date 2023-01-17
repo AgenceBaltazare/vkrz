@@ -5266,6 +5266,9 @@ select:-webkit-autofill:focus {
 .filtres-bloc .group-filtres {
   margin-top: -20px;
 }
+.filtres-bloc .bs-searchbox input {
+  border: 1px solid #7367f0 !important;
+}
 
 .intro-sponso .intro {
   width: 100%;

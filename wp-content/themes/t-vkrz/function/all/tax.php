@@ -25,18 +25,6 @@ function tax_init() {
         )
     );
 
-    # Tags Top
-    register_taxonomy(
-        'tag',
-        array('tournoi'),
-        array(
-            'label'         => 'Concepts',
-            'rewrite'       => array('slug' => 'tag'),
-            'hierarchical'  => false,
-            'show_in_rest'  => true,
-        )
-    );
-
     # Concept Top
     register_taxonomy(
         'concept',
@@ -47,6 +35,18 @@ function tax_init() {
             'hierarchical'  => false,
             'show_in_rest'  => true,
         )
+    );
+
+    # Rubrique
+    register_taxonomy(
+      'rubrique',
+      array('tournoi'),
+      array(
+        'label'         => 'Rubrique',
+        'rewrite'       => array('slug' => 'rubrique'),
+        'hierarchical'  => false,
+        'show_in_rest'  => true,
+      )
     );
 
     # Type de Top

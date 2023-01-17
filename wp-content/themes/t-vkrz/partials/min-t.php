@@ -13,6 +13,12 @@ $creator_avatar   = get_avatar_url($creator_id, ['size' => '80', 'force_default'
 $type_top         = "";
 $state            = "";
 $illu             = get_the_post_thumbnail_url($id_top, 'large');
+$get_top_type = get_the_terms($id_top, 'type');
+if ($get_top_type) {
+  foreach ($get_top_type as $type_top) {
+    $type_top = $type_top->slug;
+  }
+}
 if (is_single()) {
   $class        = "col-md-4";
 } elseif (is_single()) {
@@ -25,12 +31,7 @@ if (in_array($id_top, $list_user_tops)) {
 } else {
   $state = "todo";
 }
-$get_top_type = get_the_terms($id_top, 'type');
-if ($get_top_type) {
-  foreach ($get_top_type as $type_top) {
-    $type_top = $type_top->slug;
-  }
-}
+
 ?>
 <div class="<?php echo $class; ?>">
   <div class="min-tournoi card scaler ehcard">

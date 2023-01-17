@@ -54,18 +54,17 @@ $tops_in_cat            = new WP_Query(array(
     ),
   )
 ));
-$list_souscat = array();
+$list_rubrique = array();
 foreach ($tops_in_cat->posts as $top_in_cat) {
-  $get_top_souscat = get_the_terms($top_in_cat, 'concept');
-  if ($get_top_souscat) {
-    foreach ($get_top_souscat as $souscat) {
-      array_push($list_souscat, $souscat->term_id);
+  $get_top_rubrique = get_the_terms($top_in_cat, 'rubrique');
+  if ($get_top_rubrique) {
+    foreach ($get_top_rubrique as $rubrique) {
+      array_push($list_rubrique, $rubrique->term_id);
     }
   }
 }
-$list_souscat     = array_unique($list_souscat);
+$list_rubrique     = array_unique($list_rubrique);
 $list_tags        = array();
-$list_concepts    = array();
 $list_sujets      = array();
 ?>
 
@@ -91,25 +90,24 @@ $list_sujets      = array();
             </div>
             <div class="col-md-4">
               <div class="d-flex flex-column">
-
                 <div class="filtre-bloc">
                   <div class="row align-items-center">
                     <div class="col-8">
                       <select id="selectpickerLiveSearch" class="selectpicker w-100" data-style="btn-default" data-live-search="true">
-                        <option data-tokens="">Choix de la Licence</option>
+                        <option data-tokens="">Rubriques populaires</option>
                         <?php
-                        $list_souscat = get_terms(array(
-                          'taxonomy' => 'concept',
-                          'orderby' => 'count',
-                          'order' => 'DESC',
-                          'hide_empty' => true,
-                          'include' => $list_souscat,
+                        $list_rubrique = get_terms(array(
+                          'taxonomy'    => 'rubrique',
+                          'orderby'     => 'count',
+                          'order'       => 'DESC',
+                          'hide_empty'  => true,
+                          'include'     => $list_rubrique,
                         ));
                         $c = 0;
-                        foreach ($list_souscat as $souscat) :
+                        foreach ($list_rubrique as $rubrique) :
                           if ($c <= 20) : ?>
-                            <option data-tokens="<?php echo $souscat->slug; ?>" value="<?php echo $souscat->slug; ?>">
-                              <?php echo $souscat->name; ?>
+                            <option data-tokens="<?php echo $rubrique->slug; ?>" value="<?php echo $rubrique->slug; ?>">
+                              <?php echo $rubrique->name; ?>
                             </option>
                         <?php endif;
                           $c++;
@@ -138,7 +136,6 @@ $list_sujets      = array();
                     <input type="text" class="form-control" placeholder="Rechercher dans <?php echo $current_cat->name; ?>..." aria-label="Rechercher dans <?php echo $current_cat->name; ?>..." aria-describedby="basic-addon-search31" spellcheck="false">
                   </div>
                 </div>
-
               </div>
             </div>
           </div>
@@ -152,16 +149,33 @@ $list_sujets      = array();
     <section class="row match-height mt-4 grid-to-filtre">
 
       <?php while ($tops_in_cat->have_posts()) : $tops_in_cat->the_post();
-        $get_top_souscat = get_the_terms($id_top, 'concept');
-        $list_sous_cat   = "";
-        if ($get_top_souscat) {
-          foreach ($get_top_souscat as $sous_cat) {
-            $list_sous_cat .= $sous_cat->slug . " ";
+
+        $id_top             = get_the_ID();
+        $get_top_rubrique   = get_the_terms($id_top, 'rubrique');
+        $list_des_rubriques = array();
+        if ($get_top_rubrique) {
+          foreach ($get_top_rubrique as $rubrique) {
+            $list_des_rubriques = $rubrique->slug;
           }
         }
         $top_question   = get_field('question_t', $id_top);
         $top_title      = get_the_title($id_top);
         $term_to_search = $top_question . " " . $top_title;
+        $id_top           = get_the_ID();
+        $top_datas        = get_top_data($id_top);
+        $creator_id       = get_post_field('post_author', $id_top);
+        $creator_info     = get_userdata($creator_id);
+        $creator_pseudo   = $creator_info->nickname;
+        $creator_avatar   = get_avatar_url($creator_id, ['size' => '80', 'force_default' => false]);
+        $type_top         = "";
+        $state            = "";
+        $illu             = get_the_post_thumbnail_url($id_top, 'large');
+        $get_top_type = get_the_terms($id_top, 'type');
+        if ($get_top_type) {
+          foreach ($get_top_type as $type_top) {
+            $type_top = $type_top->slug;
+          }
+        }
         if (in_array($id_top, $list_user_tops)) {
           $state = "done";
         } elseif (in_array($id_top, $list_user_tops_begin)) {
@@ -170,12 +184,96 @@ $list_sujets      = array();
           $state = "todo";
         }
       ?>
-        <div 
-        class="col-md-3 col-sm-4 col-6 grid-item" 
-        data-filter-item="<?php echo $state; ?> <?php echo $list_sous_cat; ?>"
-        data-filter-name="<?php echo $term_to_search; ?>"
-        >
-          <?php get_template_part('partials/min-t'); ?>
+        <div class="col-md-3 col-sm-4 col-6 grid-item" data-filter-item="<?php echo $state; ?> <?php echo $list_des_rubriques; ?>" data-filter-name="<?php echo $term_to_search; ?>">
+          <div class="min-tournoi card scaler ehcard">
+            <div class="cov-illu cover" style="background: url(<?php echo $illu; ?>) center center no-repeat">
+              <?php if ($type_top == "sponso") : ?>
+                <span class="badge badge-light-rose ml-0">Top sponso</span>
+              <?php endif; ?>
+              <?php if ($state == "done") : ?>
+                <div class="badge bg-success">Terminé</div>
+              <?php elseif ($state == "begin") : ?>
+                <div class="badge bg-warning">En cours</div>
+              <?php else : ?>
+                <div class="badge bg-primary">A faire</div>
+              <?php endif; ?>
+              <div class="voile">
+                <?php if ($state == "done") : ?>
+                  <div class="spoun">
+                    <h5>Voir ma Toplist</h5>
+                  </div>
+                <?php elseif ($state == "begin") : ?>
+                  <div class="spoun">
+                    <h5>Terminer</h5>
+                  </div>
+                <?php else : ?>
+                  <div class="spoun">
+                    <h5>Faire ma Toplist</h5>
+                  </div>
+                <?php endif; ?>
+              </div>
+              <div class="info-top">
+                <div class="info-top-col">
+                  <div class="infos-card-t info-card-t-v d-flex align-items-center">
+                    <div class="d-flex align-items-center mr-10px">
+                      <span class="ico va-high-voltage va va-md"></span>
+                    </div>
+                    <div class="content-body mt-01">
+                      <h5 class="mb-0">
+                        <?php echo $top_datas['nb_votes']; ?>
+                      </h5>
+                    </div>
+                  </div>
+                </div>
+                <div class="info-top-col">
+                  <div class="infos-card-t d-flex align-items-center">
+                    <div class="d-flex align-items-center mr-10px">
+                      <span class="ico va va-trophy va-md"></span>
+                    </div>
+                    <div class="content-body mt-01">
+                      <h5 class="mb-0">
+                        <?php echo $top_datas['nb_tops']; ?>
+                      </h5>
+                    </div>
+                  </div>
+                </div>
+                <div class="info-top-col hide-xs">
+                  <div class="infos-card-t d-flex align-items-center infos-card-t-c">
+                    <div class="avatar-infomore">
+                      <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator_id; ?>" target="_blank">
+                        <div class="avatar me-50">
+                          <img src="<?php echo $creator_avatar; ?>" alt="<?php echo $creator_pseudo; ?>" width="38" height="38">
+                        </div>
+                      </a>
+                    </div>
+                    <div class="content-body mt-01">
+                      <h5 class="mb-0 link-creator d-flex flex-column text-left">
+                        <span class="text-muted">Créé par</span>
+                        <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator_id; ?>" target="_blank" class="link-to-creator">
+                          <?php echo $creator_pseudo; ?>
+                        </a>
+                      </h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-body eh mb-3-hover">
+              <h4 class="card-text text-white">
+                <?php
+                foreach (get_the_terms($id_top, 'categorie') as $cat) {
+                  $cat_id     = $cat->term_id;
+                  $cat_name   = $cat->name;
+                }
+                ?>
+                TOP <?php echo get_field('count_contenders_t', $id_top); ?> <?php the_field('icone_cat', 'term_' . $cat_id); ?> <?php echo get_the_title($id_top); ?>
+              </h4>
+              <h3 class="card-title">
+                <?php the_field('question_t', $id_top); ?>
+              </h3>
+            </div>
+            <a href="<?php the_permalink($id_top); ?>" class="stretched-link"></a>
+          </div>
         </div>
       <?php $i++;
       endwhile; ?>
