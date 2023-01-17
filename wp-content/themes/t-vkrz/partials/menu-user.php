@@ -156,7 +156,7 @@ if (is_single() && get_post_type() == "tournoi") {
                   </div>
                   <div class="valuestat">
                     <span class="followers-account-nbr"></span>
-                    <small class="text-muted mb-0">Guetteurs</small>
+                    <small class="text-muted mb-0 followers-account-nbr-text">Guetteurs</small>
                   </div>
                 </div>
               </a>

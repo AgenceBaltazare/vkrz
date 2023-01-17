@@ -7,6 +7,7 @@ import {
   where,
   database,
   orderBy,
+  secondsToStrFuncHelper
 } from "./config.js";
 
 const table = document.querySelector(".table-notifications"),
@@ -19,35 +20,6 @@ const table = document.querySelector(".table-notifications"),
     orderBy("createdAt", "desc")
   );
   const notifsQuerySnapshot = await getDocs(notifsQuery);
-
-  const secondsToStr = function (secondes) {
-    function numberEnding(number) {
-      return number > 1 ? "s" : "";
-    }
-
-    let temp = Math.floor(secondes / 1000);
-    let years = Math.floor(temp / 31536000);
-    if (years) {
-      return years + " ans" + numberEnding(years);
-    }
-    let days = Math.floor((temp %= 31536000) / 86400);
-    if (days) {
-      return days + " jour" + numberEnding(days);
-    }
-    let hours = Math.floor((temp %= 86400) / 3600);
-    if (hours) {
-      return hours + " heure" + numberEnding(hours);
-    }
-    let minutes = Math.floor((temp %= 3600) / 60);
-    if (minutes) {
-      return minutes + " minute" + numberEnding(minutes);
-    }
-    let seconds = temp % 60;
-    if (seconds) {
-      return seconds + " seconde" + numberEnding(seconds);
-    }
-    return "less than a second"; //'just now' //or other string you like;
-  };
 
   let html = "";
   if (notifsQuerySnapshot._snapshot.docs.size !== 0) {
@@ -68,7 +40,7 @@ const table = document.querySelector(".table-notifications"),
     const map = new Map();
     await Promise.all(
       notificationsUsersUuids.map(async (uuid) => {
-        await fetch(`https://vainkeurz.com/wp-json/vkrz/v1/getuserinfo/${uuid}`)
+        await fetch(`http://vainkeurz.local/wp-json/vkrz/v1/getuserinfo/${uuid}`)
           .then((response) => response.json())
           .then((data) => map.set(uuid, data));
       })
@@ -97,7 +69,7 @@ const table = document.querySelector(".table-notifications"),
                     <a class="cart-item-title lead mb-0 text-body" id="readNotification" style="line-height: 0;" href="${
                       notification.data().notifLink
                     }" data-id="">${notification.data().notifText}</a>
-                    <small class="cart-item-by legende">Il y a ${secondsToStr(
+                    <small class="cart-item-by legende">Il y a ${secondsToStrFuncHelper(
                       secondes
                     )}</small>
                   </div>

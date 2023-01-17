@@ -97,10 +97,11 @@ function load_css_js()
     wp_enqueue_script('filters', get_template_directory_uri() . '/assets/js/filters.js', array(), filemtime(get_template_directory() . '/assets/js/filters.js'), true);
     wp_enqueue_script('archive', get_template_directory_uri() . '/assets/js/archive.js', array(), filemtime(get_template_directory() . '/assets/js/archive.js'), true);
 
+    wp_enqueue_script('follow_button', get_template_directory_uri() . '/function/firebase/follow_button.js', array(), filemtime(get_template_directory() . '/function/firebase/follow_button.js'), true);
+
     // JS on specifik pages
     if (get_post_type() == 'toplist-mondiale') {
-      wp_enqueue_script('set_comment_notification', get_template_directory_uri() . '/function/firebase/set_comment_notification.js', array(), filemtime(get_template_directory() . '/function/firebase/set_comment_notification.js'), true);
-      wp_enqueue_script('calc_resemblance', get_template_directory_uri() . '/function/firebase/calc_resemblance.js', array(), filemtime(get_template_directory() . '/function/firebase/calc_resemblance.js'), true);
+      wp_enqueue_script('toplist_global', get_template_directory_uri() . '/function/firebase/toplist_global.js', array(), filemtime(get_template_directory() . '/function/firebase/toplist_global.js'), true);
     }
     if (get_post_type() == "classement") {
       wp_enqueue_script('similar', get_template_directory_uri() . '/function/ajax/similar.js', array(), filemtime(get_template_directory() . '/function/ajax/similar.js'), true);
@@ -117,7 +118,6 @@ function load_css_js()
     }
     if (is_author() || is_page(get_page_by_path('mon-compte'))) {
       wp_enqueue_script('fetch_toplist_by_vainkeur', get_template_directory_uri() . '/function/firebase/fetch_toplist_by_vainkeur.js', array(), filemtime(get_template_directory() . '/function/firebase/fetch_toplist_by_vainkeur.js'), true);
-      wp_enqueue_script('follow_button', get_template_directory_uri() . '/function/firebase/follow_button.js', array(), filemtime(get_template_directory() . '/function/firebase/follow_button.js'), true);
     }
     if (is_page('Proposition de Tops')) {
       wp_enqueue_script('propositions', get_template_directory_uri() . '/function/firebase/propositions.js', array(), filemtime(get_template_directory() . '/function/firebase/propositions.js'), true);

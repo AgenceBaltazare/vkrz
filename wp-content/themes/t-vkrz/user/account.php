@@ -52,7 +52,6 @@ if ($list_user_toplists) {
   <section id="profile-info">
     <div class="row">
       <div class="col-lg-3 col-12 order-2 order-lg-1">
-
         <div class="hide-xs">
 
           <?php $vainkeur_badges = get_the_terms($id_vainkeur, 'badges'); ?>
@@ -281,39 +280,13 @@ if ($list_user_toplists) {
           </div>
         </section>
         <section id=" basic-tabs-components">
-          <!-- 
-                <ul class="nav nav-tabs" role="tablist">  
-                  <li class="nav-item">
-                    <a class="nav-link active" id="profileIcon-tab" data-toggle="tab" href="#tab2" aria-controls="profile" role="tab" aria-selected="false">
-                      TopList finito
-                    </a>
-                  </li>
-                  <?php if ($has_t_begin) : ?>
-                    <li class="nav-item">
-                      <a class="nav-link" id="homeIcon-tab" data-toggle="tab" href="#tab1" aria-controls="home" role="tab" aria-selected="true">
-                        <?php if (count($list_t_begin) > 1) : ?>
-                          Tops à terminer
-                        <?php else : ?>
-                          Top à terminer
-                        <?php endif; ?>
-                      </a>
-                    </li>
-                  <?php endif; ?>
-                </ul>
-                -->
+
           <div class="tab-content">
             <div class="tab-pane active" id="tab2" aria-labelledby="profileIcon-tab" role="tabpanel">
               <div class="row">
                 <div class="col-12">
                   <div class="card text-center loader-list card-voile" data-idtop="<?php echo $id_top; ?>" data-topurl="<?php echo get_permalink($id_top) ?>">
                     <div class="voile-gif" style="background-image: url(<?php bloginfo('template_directory'); ?>/assets/images/gif/wait-<?php echo rand(1, 7); ?>.gif)"></div>
-                    <!-- <a href="https://elmobachiadil.com" target="_blank" class="participate-gif-top">
-                            <span data-toggle="tooltip" data-placement="top" title="Participate to the best Waiting GIF Top" data-original-title="Participate to the best Waiting GIF Top">
-                              <span class="badge badge-pill badge-light-primary">
-                                <span class="ico text-center va va-trophy va-lg"></span>
-                              </span>
-                            </span>
-                          </a> -->
                     <div class="card-body">
                       <div class="content-card">
                         <div class="loader-block">

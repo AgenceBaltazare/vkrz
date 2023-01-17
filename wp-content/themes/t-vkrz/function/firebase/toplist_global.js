@@ -1,7 +1,7 @@
-import { collection, database, query, where, getDocs, getDoc, doc } from "./config.js";
+import { collection, database, addDoc, query, where, getDocs, getDoc, doc, fetchDataFuncHelper, sortContendersFuncHelper, calcResemblanceFuncHelper } from "./config.js";
 import { checkGuetterButton } from "./follow_button.js";
 
-const table = document.querySelector("table"),
+const table = document.querySelector(".table-listuserranks"),
   tbody = table.querySelector("tbody"),
   calcResemblanceDiv = document.querySelector(".calc-resemblance"),
   idTop = calcResemblanceDiv.dataset.idtop,
@@ -9,17 +9,8 @@ const table = document.querySelector("table"),
   barPercent = calcResemblanceDiv.querySelector(".bar-percent"),
   progressBar = calcResemblanceDiv.querySelector(".bar");
 
-async function getDataAPI(url) {
-  try {
-    let response = await fetch(url);
-    return await response.json();
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-const getNombrePages = await getDataAPI(
-  `https://vainkeurz.com/wp-json/vkrz/v1/getalltoplistnumberpage/${idTop}`
+const getNombrePages = await fetchDataFuncHelper(
+  `http://vainkeurz.local/wp-json/vkrz/v1/getalltoplistnumberpage/${idTop}`
 );
 
 let nombrePages = getNombrePages.nb_pages,
@@ -37,8 +28,8 @@ let nombrePages = getNombrePages.nb_pages,
 
   // FETCH TOPLISTS DATA BY PAGE…
   for (let i = 1; i <= nombrePages; i++) {
-    let toplists = await getDataAPI(
-      `https://vainkeurz.com/wp-json/vkrz/v1/getalltoplistbyidtop/${idTop}/${i}`
+    let toplists = await fetchDataFuncHelper(
+      `http://vainkeurz.local/wp-json/vkrz/v1/getalltoplistbyidtop/${idTop}/${i}`
     );
 
     toplists.forEach((toplist) => {
@@ -182,117 +173,6 @@ let nombrePages = getNombrePages.nb_pages,
 
       // GET DATA FROM FIRESTORE AND CALCULATE RESEMBLANCE…
       (async function () {
-        // SORT CONTENDERS FUNCTION…
-        const sortContenders = function (contenders) {
-          let contendersArr = [],
-            contendersArrPlaces = [],
-            contendersArrIDs = [];
-
-          for (let contender of contenders) {
-            delete contender.c_name;
-            delete contender.elo;
-            delete contender.id;
-            delete contender.less_to;
-            delete contender.more_to;
-            delete contender.ratio;
-            delete contender.image;
-
-            contendersArr.push(contender);
-            contendersArrPlaces.push(contender.place);
-
-            contendersArrIDs.push(contender.id_wp);
-          }
-          contendersArr.sort(function (a, b) {
-            return b.place - a.place;
-          });
-          contendersArrPlaces
-            .sort(function (a, b) {
-              return b - a;
-            })
-            .reverse();
-          for (let j = 0; j < contendersArr.length; j++) {
-            contendersArr[j].place = contendersArrPlaces[j];
-          }
-          contenders = contendersArr;
-
-          return contenders;
-        };
-
-        // CALC RESEMBLANCE FUNCTION…
-        const calcResemblanceFunc = function (
-          myContenders,
-          othersContenders,
-          top3
-        ) {
-          let numberContenders = myContenders.length,
-            positionEcart,
-            similaire,
-            pourcentSimilaire = [],
-            ressemblances = [],
-            ecartRessemblance;
-
-          if (top3 === true) {
-            myContenders = myContenders.slice(0, 3);
-            othersContenders = othersContenders.slice(0, 3);
-
-            numberContenders = 3;
-
-            myContenders.forEach(
-              (contender, index) => (contender.place = index)
-            );
-            othersContenders.forEach(
-              (contender, index) => (contender.place = index)
-            );
-          }
-
-          for (let i = 0; i < numberContenders; i++) {
-            let otherContenderPlace;
-            if (
-              othersContenders.find(
-                (contender) => contender.id_wp === myContenders[i].id_wp
-              )
-            ) {
-              otherContenderPlace = othersContenders.find(
-                (contender) => contender.id_wp === myContenders[i].id_wp
-              ).place;
-              positionEcart = Math.abs(
-                myContenders[i].place - otherContenderPlace
-              );
-              similaire = 1 / numberContenders / (positionEcart + 1);
-            } else {
-              otherContenderPlace = 0;
-              positionEcart = Math.abs(
-                myContenders[i].place - otherContenderPlace
-              );
-              similaire = 0;
-            }
-
-            if (top3 == true) {
-              ecartRessemblance =
-                1 / numberContenders / (numberContenders / 2 + 1);
-              pourcentSimilaire.push(similaire);
-            } else {
-              ecartRessemblance =
-                1 / numberContenders / (Math.floor(numberContenders / 2) + 1);
-
-              if (similaire <= ecartRessemblance) {
-                similaire = 0;
-                pourcentSimilaire.push(similaire);
-              } else {
-                pourcentSimilaire.push(similaire);
-              }
-            }
-          }
-
-          ressemblances.push(
-            Math.round(pourcentSimilaire.reduce((a, b) => a + b, 0) * 100)
-          );
-          let result =
-            Math.round(pourcentSimilaire.reduce((a, b) => a + b, 0) * 100) +
-            "%";
-
-          return result;
-        };
 
         // RESET TABLE FUNCTION…
         const resetTable = function () {
@@ -363,7 +243,7 @@ let nombrePages = getNombrePages.nb_pages,
             eloArr       = [],
             myTypeTopRankingMondiale;
           actualUserRankingQuerySnapshot.forEach(ranking => {
-            rankingArr = sortContenders(ranking.data().custom_fields.ranking_r)
+            rankingArr = sortContendersFuncHelper(ranking.data().custom_fields.ranking_r)
             myTypeTopRankingMondiale = ranking.data().custom_fields.type_top_r;
           });
 
@@ -381,7 +261,7 @@ let nombrePages = getNombrePages.nb_pages,
                 eloArr.forEach((contender, index) => contender.place = index);
 
                 if((index + 1) == rankingArr.length) {
-                  resultsDOM.textContent = calcResemblanceFunc(rankingArr, eloArr, top3Mondiale);
+                  resultsDOM.textContent = calcResemblanceFuncHelper(rankingArr, eloArr, top3Mondiale);
                 }
             })()
           }
@@ -392,12 +272,11 @@ let nombrePages = getNombrePages.nb_pages,
           // SORT MY RANKING…
           let myContenders = [];
           actualUserRankingQuerySnapshot.forEach((ranking) => {
-            myContenders = sortContenders(
+            myContenders = sortContendersFuncHelper(
               ranking.data().custom_fields.ranking_r
             );
             myTypeTopRanking = ranking.data().custom_fields.type_top_r;
           });
-          console.log("My ranking: ", myContenders);
 
           // USERS RANKS…
           const usersRanksQuery = query(
@@ -415,7 +294,7 @@ let nombrePages = getNombrePages.nb_pages,
           usersRanksQuerySnapshot.forEach((ranking) => {
             let uuid = ranking.data().custom_fields.uuid_user_r,
               contenders = [];
-            contenders = sortContenders(ranking.data().custom_fields.ranking_r);
+            contenders = sortContendersFuncHelper(ranking.data().custom_fields.ranking_r);
 
             otherTypeTopRanking = ranking.data().custom_fields.type_top_r;
 
@@ -435,7 +314,7 @@ let nombrePages = getNombrePages.nb_pages,
                 row.querySelector("td:nth-of-type(5)").innerHTML = "";
               }
 
-              let calcResemblanceVar = calcResemblanceFunc(
+              let calcResemblanceVar = calcResemblanceFuncHelper(
                 myContenders,
                 contenders,
                 top3
@@ -487,3 +366,63 @@ let nombrePages = getNombrePages.nb_pages,
     }
   }
 })();
+
+if (document.querySelector("#commentaires")) {
+  const commentBtn = document.querySelector("#submit-comment"),
+  replyData = document.querySelector("#replyData"),
+  commentData = document.querySelector("#commentData");
+commentBtn.addEventListener("click", async function () {
+  let userId, uuid, relatedId, relatedUuid, notifText, notifLink, notifType;
+
+  /* CHECK IF IT IS ABOUT A COMMENT OR REPLY… 😎 */
+  if (document.querySelector("#comment_parent").value) {
+    // REPLY…
+    userId = replyData.dataset.userid;
+    uuid = replyData.dataset.uuid;
+    relatedId = replyData.dataset.relatedid;
+    relatedUuid = replyData.dataset.relateduuid;
+    notifText = `${replyData.dataset.notiftext} a répondu à ton commentaire!`;
+    notifLink = replyData.dataset.notiflink;
+    notifType = "Comment Reply Notification";
+
+    if (userId == "0") {
+      notifText = "Quelqu'un a répondu a ton commentaire!";
+    }
+  } else {
+    // COMMENT…
+    userId = commentData.dataset.userid;
+    uuid = commentData.dataset.uuid;
+    relatedId = commentData.dataset.relatedid;
+    relatedUuid = commentData.dataset.relateduuid;
+    notifText = `${commentData.dataset.notiftext} a commenté sur ton Top!`;
+    notifLink = commentData.dataset.notiflink;
+    notifType = "Comment Reply Notification";
+
+    if (userId == "0") {
+      notifText = "Un Lama2Lombre a laisser un commentaire sur un de tes Top!";
+    }
+  }
+
+  if (userId != relatedId) {
+    try {
+      const newCommentNotification = await addDoc(
+        collection(database, "notifications"),
+        {
+          userId: userId,
+          uuid: uuid,
+          relatedId: relatedId,
+          relatedUuid: relatedUuid,
+          notifText: notifText,
+          notifLink: notifLink,
+          notifType: notifType,
+          statut: "nouveau",
+          createdAt: new Date(),
+        }
+      );
+      console.log("Notification sent with ID: ", newCommentNotification.id);
+    } catch (error) {
+      console.error("Error adding document: ", error);
+    }
+  }
+});
+}
