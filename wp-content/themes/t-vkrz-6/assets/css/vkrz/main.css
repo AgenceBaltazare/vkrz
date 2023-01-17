@@ -6605,7 +6605,7 @@ select:-webkit-autofill:focus {
 }
 @media (max-width: 768px) {
   .create-top-page .create-top-wrapper .create-top-steps {
-    gap: 1rem;
+    gap: 5.1rem;
   }
 }
 .create-top-page .create-top-wrapper .create-top-steps .step {
@@ -6653,7 +6653,7 @@ select:-webkit-autofill:focus {
 }
 @media (max-width: 768px) {
   .create-top-page .create-top-wrapper .create-top-steps .step.active::after {
-    width: 1rem;
+    width: 5.1rem;
   }
 }
 .create-top-page .create-top-wrapper .create-top-content {

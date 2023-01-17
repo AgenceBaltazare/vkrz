@@ -107,6 +107,31 @@ function add_contender_from_api2()
 
   update_field('id_tournoi_c', $idTop, $id_new_contender);
 
+  $contenders = new WP_Query(
+    array(
+        'post_type'              => 'contender',
+        'posts_per_page'         => '-1',
+        'fields'                 => 'ids',
+        'post_status'            => 'publish',
+        'ignore_sticky_posts'    => true,
+        'update_post_meta_cache' => false,
+        'no_found_rows'          => false,
+        'meta_query'     => array(
+            array(
+                'key'     => 'id_tournoi_c',
+                'value'   => $idTop,
+                'compare' => '=',
+            )
+        )
+    )
+  );
+  while ($contenders->have_posts()) : $contenders->the_post();
+
+    wp_update_post(get_the_ID());
+
+  endwhile;
+  update_field('count_contenders_t', $contenders->post_count, $idTop);
+
   if ($id_new_contender) {
     return "Nouveau contender dans le Top " . get_the_title($idTop);
   }

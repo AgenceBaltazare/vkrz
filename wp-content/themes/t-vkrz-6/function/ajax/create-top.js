@@ -139,7 +139,7 @@ function uploadFiles(target) {
         contentType: false,
         processData: false,
         success: function(data) {
-          // console.log('Well did!');
+          console.log(data);
         }
       })
     })

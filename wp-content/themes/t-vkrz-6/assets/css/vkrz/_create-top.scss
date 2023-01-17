@@ -16,7 +16,7 @@ $distance: 18rem;
       gap: $distance;
 
       @media (max-width: 768px) {
-        $distance: 1rem;
+        $distance: 5.1rem;
         gap: $distance;
       }
 
@@ -66,7 +66,7 @@ $distance: 18rem;
         width: $distance;
 
         @media (max-width: 768px) {
-          $distance: 1rem;
+          $distance: 5.1rem;
           width: $distance;
         }
 
