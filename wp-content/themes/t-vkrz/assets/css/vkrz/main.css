@@ -1239,6 +1239,10 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   padding-top: 20px;
 }
 
+.load_more_toplists {
+  flex-direction: column;
+  display: flex;
+}
 .load_more_toplists .text-muted {
   font-size: 12px;
 }
@@ -1533,6 +1537,7 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   display: flex;
   flex-direction: column;
   align-items: center;
+  line-height: 18px;
 }
 
 .progressionniveau {
@@ -4199,6 +4204,7 @@ body {
   background-size: cover !important;
   position: relative;
   background-position: center;
+  border-radius: 5px 5px 0 0;
 }
 .cover-profil .edit-cover-btn {
   position: absolute;
@@ -4621,6 +4627,57 @@ select:-webkit-autofill:focus {
   font-size: 12px;
   letter-spacing: 1px;
   line-height: 16px;
+}
+
+.card-compte {
+  padding-top: 0;
+  margin-top: -65px;
+}
+.card-compte .card-body {
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.content-compte .card-header .card-title {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin: 0;
+  color: #fff;
+  transform: rotate(-2deg);
+}
+.content-compte .valuestat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 18px;
+  font-weight: 700;
+}
+.content-compte .card-stats {
+  padding: 10px;
+}
+.content-compte .card-stats .iconstats {
+  margin: 0;
+}
+.content-compte .navbar-brand {
+  font-weight: 700;
+  color: #7367f0;
+}
+.content-compte .nav-link {
+  font-weight: 600;
+  color: #fff;
+  padding: 8px 15px;
+  transition: all 0.2s ease-in;
+  margin: 0 10px;
+  border-radius: 5px;
+}
+.content-compte .nav-link:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+.content-compte .nav-link.active {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
 }
 
 .blog h1 {
@@ -6299,6 +6356,10 @@ select:-webkit-autofill:focus {
   background-image: url(../../images/emojis/package_1f4e6-1.png);
 }
 
+.va-spiral-eyes {
+  background-image: url(../../images/emojis/face-with-spiral-eyes_1f635-200d-1f4ab-1);
+}
+
 .va-star-struck {
   background-image: url(../../images/emojis/star-struck_1f929.png);
 }
@@ -7040,6 +7101,35 @@ select:-webkit-autofill:focus {
 .divfill {
   height: 100%;
   width: 100%;
+}
+
+@-webkit-keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.rotating span {
+  -webkit-animation: rotating 2s linear infinite;
+  animation: rotating 2s linear infinite;
+}
+
+.btn-label-primary {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.dark-style table.dataTable td a.btn {
+  margin: 0 2px;
 }
 
 .popup-overlay {

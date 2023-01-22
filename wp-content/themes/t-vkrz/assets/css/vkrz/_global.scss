@@ -869,6 +869,8 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
 }
 
 .load_more_toplists{
+    flex-direction: column;
+    display: flex;
     .text-muted{
         font-size: 12px;
     }
@@ -1194,6 +1196,7 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
     display: flex;
     flex-direction: column;
     align-items: center;
+    line-height: 18px;
 }
 
 .progressionniveau{
