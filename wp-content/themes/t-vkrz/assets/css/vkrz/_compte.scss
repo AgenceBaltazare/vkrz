@@ -4,6 +4,7 @@
   background-size: cover !important;
   position: relative;
   background-position: center;
+  border-radius: 5px 5px 0 0;
   
   .edit-cover-btn{
     position: absolute;
@@ -460,3 +461,57 @@ select:-webkit-autofill:focus {
   }
 }
 
+.card-compte{
+  padding-top: 0;
+  margin-top: -65px;
+  .card-body{
+    padding-top: 0;
+    margin-top: 0;
+  }
+}
+
+.content-compte{
+  .card-header{
+    .card-title{
+      text-align: center;
+      font-size: 1rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin: 0;
+      color: #fff;
+      transform: rotate(-2deg);
+    }
+  }
+  .valuestat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 18px;
+    font-weight: 700;
+  }
+  .card-stats{
+    padding: 10px;
+    .iconstats{
+      margin: 0;
+    }
+  }
+  .navbar-brand{
+    font-weight: 700;
+    color: $c5;
+  }
+  .nav-link{
+    font-weight: 600;
+    color: #fff;
+    padding: 8px 15px;
+    transition: all 0.2s ease-in;
+    margin: 0 10px;
+    border-radius: 5px;
+    &:hover{
+      background: rgba(255, 255, 255, 0.05);
+    }
+    &.active{
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+    }
+  }
+}

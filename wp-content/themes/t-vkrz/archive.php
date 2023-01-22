@@ -76,7 +76,7 @@ $list_sujets      = array();
           <div class="row align-items-center justify-content-center">
             <div class="col-md-4 offset-md-1">
               <div class="intro-archive">
-                <div class="iconarchive">
+                <div class="iconarchive <?php if ($current_cat->term_id == 2) : echo 'rotating'; endif; ?>">
                   <?php the_field('icone_cat', 'term_' . $current_cat->term_id); ?>
                 </div>
                 <h1>
