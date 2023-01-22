@@ -5,11 +5,8 @@ import {
   query,
   where,
   database,
-  orderBy,
-  doc,
-  limit,
-  deleteDoc,
   sortContendersFuncHelper,
+  calcResemblanceFuncHelper,
 } from "../firebase/config.js";
 
 $(document).ready(function ($) {
@@ -24,8 +21,10 @@ $(document).ready(function ($) {
   });
 
   $(document).on("click", ".display_battle .link-contender", {}, function (e) {
-    if (document.querySelector('.display_battle') && localStorage.getItem('twitchGameMode') !== null) {
-      
+    if (
+      document.querySelector(".display_battle") &&
+      localStorage.getItem("twitchGameMode") !== null
+    ) {
       if (voteParticipatifBoolean) {
         users = {};
         votesNumber.textContent = "0";
@@ -37,101 +36,143 @@ $(document).ready(function ($) {
         document.querySelector("#votes-stats-1").classList.remove("active");
         document.querySelector("#votes-stats-2").classList.remove("active");
       } else if (votePredictionBoolean && winnerAlready === false) {
-          let side;
-          if (e.target.closest("div").getAttribute("id") == "c_1") side = "1";
-          else if (e.target.closest("div").getAttribute("id") == "c_2")
-            side = "2";
-  
-          toFilter = Object.entries(users);
-          nonPassed = toFilter.filter(([key, value]) => value.side !== side);    
-          passed = toFilter.filter(([key, value]) => value.side === side);
+        let side;
+        if (e.target.closest("div").getAttribute("id") == "c_1") side = "1";
+        else if (e.target.closest("div").getAttribute("id") == "c_2")
+          side = "2";
 
-          // WINNER CHICKEN DINNER… 
-          if(passed.length === 1 && winnerAlready === false) 
-          {
-            winnerAlready = true;
-            document.querySelector('#prediction-player').classList.add('d-none');
-            document.querySelector('#prediction-player .card-header').classList.add('flex-column-reverse');
-            document.querySelector('#prediction-player .card-header').style.gap = "8px";
-            document.querySelectorAll('.votes-container > p:first-of-type').forEach(p => p.remove());
-            document.querySelector('.display_battle').classList.add('blur')
-            document.querySelector("#winner-sound").play()
-            document.querySelector('.twitchGamesWinnerName').textContent = passed[0][0];
-            $(".twitchGamesWinnerContainer").addClass('show');
-            confetti();
-            
-            function rnd(m,n) {
-              m = parseInt(m);
-              n = parseInt(n);
+        toFilter = Object.entries(users);
+        nonPassed = toFilter.filter(([key, value]) => value.side !== side);
+        passed = toFilter.filter(([key, value]) => value.side === side);
 
-              return Math.floor( Math.random() * (n - m + 1) ) + m;
-            }
-  
-            function confetti() {
-              $.each($(".twitchGamesWinnerName.confetti"), function(){
-                var confetticount = ($(this).width()/50) * 10;
-                for(var i = 0; i <= confetticount; i++) {
-                    $(this).append('<span class="particle c' + rnd(1,4) + '" style="top:' + rnd(10,50) + '%; left:' + rnd(0,100) + '%;width:' + rnd(5,15) + 'px; height:' + rnd(5,10) + 'px;animation-delay: ' + (rnd(0,30)/10) + 's;"></span>');
-                }
-              });
-            }
+        // WINNER CHICKEN DINNER…
+        if (passed.length === 1 && winnerAlready === false) {
+          winnerAlready = true;
+          document.querySelector("#prediction-player").classList.add("d-none");
+          document
+            .querySelector("#prediction-player .card-header")
+            .classList.add("flex-column-reverse");
+          document.querySelector("#prediction-player .card-header").style.gap =
+            "8px";
+          document
+            .querySelectorAll(".votes-container > p:first-of-type")
+            .forEach((p) => p.remove());
+          document.querySelector(".display_battle").classList.add("blur");
+          document.querySelector("#winner-sound").play();
+          document.querySelector(".twitchGamesWinnerName").textContent =
+            passed[0][0];
+          $(".twitchGamesWinnerContainer").addClass("show");
+          confetti();
 
-            document.querySelector('#winner-continuer').addEventListener('click', () => {
-              document.querySelector('.display_battle').classList.remove('blur');
-              document.querySelector('.twitchGamesWinnerContainer').remove();
-              document.querySelector('#prediction-player').classList.remove('d-none');
-            });
-            document.querySelector('#winner-relancer').addEventListener('click', () => {window.location.reload();});
+          function rnd(m, n) {
+            m = parseInt(m);
+            n = parseInt(n);
 
-            // SAVE TO LOCAL STORAGE…
-            const twitchGameResumeObj = {
-              "idRanking": `${$(".contender_zone").data("id-ranking")}`,
-              "participantsNumber": `${Object.keys(users).length + Object.keys(losers).length}`,
-              "mode": "votePrediction",
-              "winner": `${passed[0][0]}`
-            }
-            localStorage.removeItem('resumeTwitchGame');
-            localStorage.setItem('resumeTwitchGame', JSON.stringify(twitchGameResumeObj));
+            return Math.floor(Math.random() * (n - m + 1)) + m;
           }
 
-          for (let user of toFilter) {
-            user[1]["voted"] = false;
-            user[1]["side"]  = "0";
-            document.querySelector(`#prediction-player #${user[0]}`).classList.remove('text-primary')
-          }
-
-          if(passed.length === 0) {
-            users = Object.fromEntries(nonPassed);
-          } else {
-            users = Object.fromEntries(passed);
-
-            losers = {...losers, ...Object.fromEntries(nonPassed)};
-
-            // PROCESS FOR LOSERS…
-            if(nonPassed.length > 0) {
-              const elimines = document.querySelector('#participants .card-title.elimines');
-              elimines.classList.remove('d-none');
-              elimines.innerHTML = `<span class="va va-unknow va-lg"></span> ${Object.keys(losers).length} ${Object.keys(losers).length > 1 ? 'Eliminés' : 'Eliminé'}`;
-
-              for(const [key, loser] of Object.entries(nonPassed)) {
-                let target = document.querySelector(`#prediction-player #${loser[0]}`)
-                target.classList.remove('text-primary');
-                target.classList.add('beforeDelete');
-                setTimeout(() => {
-                  target.remove()
-                }, 4000)
+          function confetti() {
+            $.each($(".twitchGamesWinnerName.confetti"), function () {
+              var confetticount = ($(this).width() / 50) * 10;
+              for (var i = 0; i <= confetticount; i++) {
+                $(this).append(
+                  '<span class="particle c' +
+                    rnd(1, 4) +
+                    '" style="top:' +
+                    rnd(10, 50) +
+                    "%; left:" +
+                    rnd(0, 100) +
+                    "%;width:" +
+                    rnd(5, 15) +
+                    "px; height:" +
+                    rnd(5, 10) +
+                    "px;animation-delay: " +
+                    rnd(0, 30) / 10 +
+                    's;"></span>'
+                );
               }
+            });
+          }
+
+          document
+            .querySelector("#winner-continuer")
+            .addEventListener("click", () => {
+              document
+                .querySelector(".display_battle")
+                .classList.remove("blur");
+              document.querySelector(".twitchGamesWinnerContainer").remove();
+              document
+                .querySelector("#prediction-player")
+                .classList.remove("d-none");
+            });
+          document
+            .querySelector("#winner-relancer")
+            .addEventListener("click", () => {
+              window.location.reload();
+            });
+
+          const twitchGameResumeObj = {
+            idRanking: `${$(".contender_zone").data("id-ranking")}`,
+            participantsNumber: `${
+              Object.keys(users).length + Object.keys(losers).length
+            }`,
+            mode: "votePrediction",
+            winner: `${passed[0][0]}`,
+          };
+          localStorage.removeItem("resumeTwitchGame");
+          localStorage.setItem(
+            "resumeTwitchGame",
+            JSON.stringify(twitchGameResumeObj)
+          );
+        }
+
+        for (let user of toFilter) {
+          user[1]["voted"] = false;
+          user[1]["side"] = "0";
+          document
+            .querySelector(`#prediction-player #${user[0]}`)
+            .classList.remove("text-primary");
+        }
+
+        if (passed.length === 0) {
+          users = Object.fromEntries(nonPassed);
+        } else {
+          users = Object.fromEntries(passed);
+
+          losers = { ...losers, ...Object.fromEntries(nonPassed) };
+
+          if (nonPassed.length > 0) {
+            const elimines = document.querySelector(
+              "#participants .card-title.elimines"
+            );
+            elimines.classList.remove("d-none");
+            elimines.innerHTML = `<span class="va va-unknow va-lg"></span> ${
+              Object.keys(losers).length
+            } ${Object.keys(losers).length > 1 ? "Eliminés" : "Eliminé"}`;
+
+            for (const [key, loser] of Object.entries(nonPassed)) {
+              let target = document.querySelector(
+                `#prediction-player #${loser[0]}`
+              );
+              target.classList.remove("text-primary");
+              target.classList.add("beforeDelete");
+              setTimeout(() => {
+                target.remove();
+              }, 4000);
             }
           }
-      
-          if(Object.keys(users).length === 1 || winnerAlready === true) {
-            document.querySelector('#participants .card-title').innerHTML = "<i class='fab fa-twitch'></i> Le gagnant!! 🎉"
-          } else if (Object.keys(users).length > 1) {
-            preditcionParticipantsVotedNumber.textContent = 0;
-            preditcionParticipantsNumber.textContent = Object.keys(users).length;
-          } else if (Object.keys(users).length === 0) {
-            document.querySelector('#participants .card-title').innerHTML = "<i class='fab fa-twitch'></i> 0 Participants"
-          }
+        }
+
+        if (Object.keys(users).length === 1 || winnerAlready === true) {
+          document.querySelector("#participants .card-title").innerHTML =
+            "<i class='fab fa-twitch'></i> Le gagnant!! 🎉";
+        } else if (Object.keys(users).length > 1) {
+          preditcionParticipantsVotedNumber.textContent = 0;
+          preditcionParticipantsNumber.textContent = Object.keys(users).length;
+        } else if (Object.keys(users).length === 0) {
+          document.querySelector("#participants .card-title").innerHTML =
+            "<i class='fab fa-twitch'></i> 0 Participants";
+        }
       } else if (votePointsBoolean) {
         let side;
         if (e.target.closest("div").getAttribute("id") == "c_1") side = "1";
@@ -141,69 +182,94 @@ $(document).ready(function ($) {
         toFilter = Object.entries(users);
 
         let oppositeSide = side === "1" ? "2" : "1";
-        notSameVoteGroup = toFilter.filter(([key, value]) => value.side === oppositeSide);
+        notSameVoteGroup = toFilter.filter(
+          ([key, value]) => value.side === oppositeSide
+        );
         notSameVoteGroupObj = Object.fromEntries(notSameVoteGroup);
-        
+
         sameVoteGroup = toFilter.filter(([key, value]) => value.side === side);
         sameVoteGroupObj = Object.fromEntries(sameVoteGroup);
 
         for (const vainkeurPlusOne of Object.keys(sameVoteGroupObj)) {
-          const vainkeurPlusOneDOM                = document.querySelector(`#ranking-player #${vainkeurPlusOne}`),
-                vainkeurPlusOneDOMpoints          = vainkeurPlusOneDOM.querySelector('td:last-of-type');
+          const vainkeurPlusOneDOM = document.querySelector(
+              `#ranking-player #${vainkeurPlusOne}`
+            ),
+            vainkeurPlusOneDOMpoints =
+              vainkeurPlusOneDOM.querySelector("td:last-of-type");
 
-          vainkeurPlusOneDOMpoints.innerHTML = `${+vainkeurPlusOneDOMpoints.dataset.order + 1} &uarr;`
-          vainkeurPlusOneDOMpoints.classList.add('text-success')
-          vainkeurPlusOneDOMpoints.setAttribute('data-order', `${+vainkeurPlusOneDOMpoints.dataset.order + 1}`)
-        } 
+          vainkeurPlusOneDOMpoints.innerHTML = `${
+            +vainkeurPlusOneDOMpoints.dataset.order + 1
+          } &uarr;`;
+          vainkeurPlusOneDOMpoints.classList.add("text-success");
+          vainkeurPlusOneDOMpoints.setAttribute(
+            "data-order",
+            `${+vainkeurPlusOneDOMpoints.dataset.order + 1}`
+          );
+        }
 
-        if(notSameVoteGroup.length > 0) {
+        if (notSameVoteGroup.length > 0) {
           for (let vainkeurMinusOne of Object.keys(notSameVoteGroupObj)) {
-            const vainkeurMinusOneDOM                 = document.querySelector(`#ranking-player #${vainkeurMinusOne}`),
-                  vainkeurMinusOneDOMpoints           = vainkeurMinusOneDOM.querySelector('td:last-of-type');
+            const vainkeurMinusOneDOM = document.querySelector(
+                `#ranking-player #${vainkeurMinusOne}`
+              ),
+              vainkeurMinusOneDOMpoints =
+                vainkeurMinusOneDOM.querySelector("td:last-of-type");
 
-            vainkeurMinusOneDOMpoints.innerHTML = vainkeurMinusOneDOMpoints.dataset.order;
-            vainkeurMinusOneDOMpoints.classList.remove('text-success')
-            vainkeurMinusOneDOMpoints.setAttribute('data-order', vainkeurMinusOneDOMpoints.dataset.order)
+            vainkeurMinusOneDOMpoints.innerHTML =
+              vainkeurMinusOneDOMpoints.dataset.order;
+            vainkeurMinusOneDOMpoints.classList.remove("text-success");
+            vainkeurMinusOneDOMpoints.setAttribute(
+              "data-order",
+              vainkeurMinusOneDOMpoints.dataset.order
+            );
           }
-        }   
+        }
 
-        if(Object.keys(users).length) {
-          const initTable = function () {
-            let table = $('.table-points').dataTable();
+        if (Object.keys(users).length) {
+          const initTable = (function () {
+            let table = $(".table-points").dataTable();
             table.fnDestroy();
 
             table.dataTable({
               autoWidth: true,
               paging: false,
               searching: false,
-              order: [[2, 'desc']],
+              order: [[2, "desc"]],
             });
 
             positionStr = "";
-            document.querySelector('.table-points tbody').querySelectorAll('tr').forEach((row, index) => {
-              switch (index) {
-                case 0:
-                  positionStr = '<span class="ico va va-medal-1 va-lg"></span>';
-                  break;
-                case 1:
-                  positionStr = '<span class="ico va va-medal-2 va-lg"></span>';
-                  break;
-                case 2:
-                  positionStr = '<span class="ico va va-medal-3 va-lg"></span>';
-                  break;
-                default:
-                  positionStr = index + 1;
-              }
+            document
+              .querySelector(".table-points tbody")
+              .querySelectorAll("tr")
+              .forEach((row, index) => {
+                switch (index) {
+                  case 0:
+                    positionStr =
+                      '<span class="ico va va-medal-1 va-lg"></span>';
+                    break;
+                  case 1:
+                    positionStr =
+                      '<span class="ico va va-medal-2 va-lg"></span>';
+                    break;
+                  case 2:
+                    positionStr =
+                      '<span class="ico va va-medal-3 va-lg"></span>';
+                    break;
+                  default:
+                    positionStr = index + 1;
+                }
 
-              row.querySelector('td:first-of-type').innerHTML = positionStr;
-              row.querySelector('td:nth-of-type(2)').classList.remove('voted');
-            })
-          }();
+                row.querySelector("td:first-of-type").innerHTML = positionStr;
+                row
+                  .querySelector("td:nth-of-type(2)")
+                  .classList.remove("voted");
+              });
+          })();
         }
 
         pointsParticipantsVotedNumber.textContent = 0;
 
-        for(let user in users) users[user] = { side: "0", voted: false };
+        for (let user in users) users[user] = { side: "0", voted: false };
       }
     }
 
@@ -352,32 +418,35 @@ $(document).ready(function ($) {
             });
 
             // SAVE WINNER OF THE MATCH AUX POINTS TWITCH GAME…
-            if(document.querySelector('.display_battle') && localStorage.getItem('twitchGameMode') !== null && votePointsBoolean) {
-              // SAVE TO LOCAL STORAGE…
+            if (
+              document.querySelector(".display_battle") &&
+              localStorage.getItem("twitchGameMode") !== null &&
+              votePointsBoolean
+            ) {
               const twitchGameResumeObj = {
-                "idRanking": `${id_ranking}`,
-                "participantsNumber": `${Object.keys(users).length}`,
-                "mode": "votePoints",
-                "tbody": `${document.querySelector('.table-points tbody').innerHTML}`
-              }
-              localStorage.removeItem('resumeTwitchGame');
-              localStorage.setItem('resumeTwitchGame', JSON.stringify(twitchGameResumeObj));
+                idRanking: `${id_ranking}`,
+                participantsNumber: `${Object.keys(users).length}`,
+                mode: "votePoints",
+                tbody: `${document.querySelector(".table-points tbody").innerHTML}`,
+              };
+              localStorage.removeItem("resumeTwitchGame");
+              localStorage.setItem(
+                "resumeTwitchGame",
+                JSON.stringify(twitchGameResumeObj)
+              );
             }
 
             async function notificationsProcess() {
-              // FUNCTION TO SORT CONTENDERS…
               let myContenders = sortContendersFuncHelper(data.toplist);
 
-              // SEND NOTIFICATION FUNCTION…
-              async function sendNotification(
+              const sendNotification = async function(
                 userId,
                 uuid,
                 relatedId,
                 relatedUuid,
                 notifText,
                 notifLink,
-                notifType,
-                extendedData
+                notifType
               ) {
                 try {
                   const newRankingFollow = await addDoc(
@@ -390,7 +459,6 @@ $(document).ready(function ($) {
                       notifText: notifText,
                       notifLink: notifLink,
                       notifType: notifType,
-                      extendedData: extendedData,
                       statut: "nouveau",
                       createdAt: new Date(),
                     }
@@ -412,9 +480,7 @@ $(document).ready(function ($) {
                 );
                 const followersQuerySnapshot = await getDocs(followersQuery);
 
-                // THERE IS NO FOLLOWERS, SO YOU STOP HERE…
                 if (followersQuerySnapshot._snapshot.docs.size != 0) {
-                  // FRIENDS PROCESS FIRST…
                   const followingQuery = query(
                     collection(database, "notifications"),
                     where("notifType", "==", "follow"),
@@ -437,7 +503,7 @@ $(document).ready(function ($) {
 
                   friends.forEach((friend) => {
                     (async function () {
-                      // CHECK IF THE FRIEND ALREADY PASSED THE TOP OR NOT… 
+                      // CHECK IF THE FRIEND ALREADY PASSED THE TOP OR NOT…
                       const didRankingQuery = query(
                         collection(database, "wpClassement"),
                         where(
@@ -458,101 +524,6 @@ $(document).ready(function ($) {
                       let notifText = "";
 
                       if (didRankingQuerySnapshot._snapshot.docs.size === 0) {
-                        // CHECK IF HE ALREADY READ THE NOTIFICATION…
-                        (async function () {
-                          const querios = query(
-                            collection(database, "notifications"),
-                            where("uuid", "==", currentUuid),
-                            where(
-                              "notifType",
-                              "==",
-                              "Ranking To Friend Notification"
-                            ),
-                            where("relatedUuid", "==", friend["uuid"]),
-                            where("statut", "==", "nouveau"),
-                            orderBy("createdAt", "desc"),
-                            limit(1)
-                          );
-                          const queriosSnapshot = await getDocs(querios);
-                          let oldNotif;
-                          queriosSnapshot.forEach((data) => {
-                            oldNotif = { id: data.id, ...data.data() };
-                          });
-
-                          if (queriosSnapshot._snapshot.docs.size === 0) {
-                            // ALREADY READ THE NOTIFICATION…
-                            // SEND SIMPLE NOTIFICATION…
-                            sendNotification(
-                              vkrz_tracking_vars_user.id_user_layer,
-                              vkrz_tracking_vars_user.uuiduser_layer,
-                              friend["userId"],
-                              friend["uuid"],
-                              `${vkrz_tracking_vars_user.pseudo_user_layer} à fait une TopList de ${vkrz_tracking_vars_top.top_only_title_layer}`,
-                              link_to_ranking,
-                              "Ranking To Friend Notification",
-                              `${
-                                vkrz_tracking_vars_top.top_only_title_layer
-                              }|${1}`
-                            );
-                          } // NOT READ THE NOTIFICATION…
-                          else {
-                            (async function () {
-                              let oldNotifMessage = oldNotif.notifText;
-                              if (
-                                !oldNotifMessage.includes("MATCH TOPLIST!") &&
-                                !oldNotifMessage.includes("déjà fait!")
-                              ) {
-                                deleteDoc(
-                                  doc(database, "notifications", oldNotif.id)
-                                );
-                              }
-
-                              const [oldTopTitle, topListNumber] =
-                                oldNotif.extendedData.split("|");
-
-                              // AVOID THE TOPs WHO GOT THE SAME NAME…
-                              let notifMessage;
-                              if (
-                                oldTopTitle ==
-                                vkrz_tracking_vars_top.top_only_title_layer
-                              ) {
-                                notifMessage = `${vkrz_tracking_vars_user.pseudo_user_layer} à fait deux TopList de ${vkrz_tracking_vars_top.top_only_title_layer}`;
-                              } else {
-                                notifMessage = `${vkrz_tracking_vars_user.pseudo_user_layer} à fait deux TopList: ${vkrz_tracking_vars_top.top_only_title_layer} et ${oldTopTitle}`;
-                              }
-
-                              if (oldNotif.notifLink != currentUserProfileUrl) {
-                                // ONLY TWO…
-                                sendNotification(
-                                  vkrz_tracking_vars_user.id_user_layer,
-                                  vkrz_tracking_vars_user.uuiduser_layer,
-                                  friend["userId"],
-                                  friend["uuid"],
-                                  notifMessage,
-                                  currentUserProfileUrl,
-                                  "Ranking To Friend Notification",
-                                  `${
-                                    vkrz_tracking_vars_top.top_only_title_layer
-                                  }|${2}`
-                                );
-                              } else {
-                                // SEND COMPOUND NOTIFICATION…
-                                sendNotification(
-                                  vkrz_tracking_vars_user.id_user_layer,
-                                  vkrz_tracking_vars_user.uuiduser_layer,
-                                  friend["userId"],
-                                  friend["uuid"],
-                                  `${vkrz_tracking_vars_user.pseudo_user_layer} à fait des TopList: ${vkrz_tracking_vars_top.top_only_title_layer} et ${topListNumber} autres`,
-                                  currentUserProfileUrl,
-                                  "Ranking To Friend Notification",
-                                  `${
-                                    vkrz_tracking_vars_top.top_only_title_layer
-                                  }|${+topListNumber + 1}`
-                                );
-                              }
-                            })();
-                          }
-                        })();
                       } else {
                         // GET FRIEND RANKING, SORT IT AND COMPARE IT…
                         let contenders;
@@ -561,43 +532,19 @@ $(document).ready(function ($) {
                             ranking.data().custom_fields.ranking_r
                           );
 
-                          // COMPARE IT WITH MY RANKING…
-                          const sameRankingFunc = function (obj1, obj2) {
-                            const obj1Keys = Object.keys(obj1);
-                            const obj2Keys = Object.keys(obj2);
-
-                            if (obj1Keys.length !== obj2Keys.length) {
-                              return false;
-                            }
-
-                            for (let objKey of obj1Keys) {
-                              if (obj1[objKey] !== obj2[objKey]) {
-                                if (
-                                  typeof obj1[objKey] == "object" &&
-                                  typeof obj2[objKey] == "object"
-                                ) {
-                                  if (
-                                    !sameRankingFunc(obj1[objKey], obj2[objKey])
-                                  ) {
-                                    return false;
-                                  }
-                                } else {
-                                  return false;
-                                }
-                              }
-                            }
-
-                            return true;
-                          };
-
                           // DEFINE WHICH CASE, SAME RANKING OR NOT…
-                          if (sameRankingFunc(contenders, myContenders))
+                          if (
+                            calcResemblanceFuncHelper(
+                              myContenders,
+                              contenders,
+                              false
+                            ) === "100%"
+                          )
                             notifText = `MATCH TOPLIST! 🤯 toi et ${vkrz_tracking_vars_user.pseudo_user_layer}`;
                           else
                             notifText = `${vkrz_tracking_vars_user.pseudo_user_layer} a terminé un Top que t'as déjà fait!`;
                         });
 
-                        // SEND NOTIFICATION…
                         sendNotification(
                           vkrz_tracking_vars_user.id_user_layer,
                           vkrz_tracking_vars_user.uuiduser_layer,
@@ -605,114 +552,8 @@ $(document).ready(function ($) {
                           friend["uuid"],
                           notifText,
                           link_to_ranking,
-                          "Ranking To Friend Notification",
-                          `${vkrz_tracking_vars_top.top_only_title_layer}|${1}`
+                          "Ranking To Friend Notification"
                         );
-                      }
-                    })();
-                  });
-
-                  // GET ONLY FOLLOWERS…
-                  const isSameFollower = (a, b) => a.userId === b.userId;
-                  const onlyInLeft = (left, right, compareFunc) =>
-                    left.filter(
-                      (leftValue) =>
-                        !right.some((rightValue) =>
-                          compareFunc(leftValue, rightValue)
-                        )
-                    );
-                  let onlyInA = onlyInLeft(followers, friends, isSameFollower),
-                    onlyInB = onlyInLeft(friends, followers, isSameFollower);
-                  followers = [...onlyInA, ...onlyInB];
-
-                  // SEND TO FOLLOWERS NOTIFICATION…
-                  followers.forEach((follower) => {
-                    // CHECK IF HE ALREADY READ THE NOTIFICATION…
-                    (async function () {
-                      const querios = query(
-                        collection(database, "notifications"),
-                        where("uuid", "==", currentUuid),
-                        where(
-                          "notifType",
-                          "==",
-                          "Ranking To Follower Notification"
-                        ),
-                        where("relatedUuid", "==", follower["uuid"]),
-                        where("statut", "==", "nouveau"),
-                        orderBy("createdAt", "desc"),
-                        limit(1)
-                      );
-                      const queriosSnapshot = await getDocs(querios);
-                      let oldNotif;
-                      queriosSnapshot.forEach((data) => {
-                        oldNotif = { id: data.id, ...data.data() };
-                      });
-
-                      if (queriosSnapshot._snapshot.docs.size === 0) {
-                        // ALREADY READ THE NOTIFICATION…
-                        // SEND SIMPLE NOTIFICATION…
-                        sendNotification(
-                          vkrz_tracking_vars_user.id_user_layer,
-                          vkrz_tracking_vars_user.uuiduser_layer,
-                          follower["userId"],
-                          follower["uuid"],
-                          `${vkrz_tracking_vars_user.pseudo_user_layer} à fait une TopList de ${vkrz_tracking_vars_top.top_only_title_layer}`,
-                          link_to_ranking,
-                          "Ranking To Follower Notification",
-                          `${vkrz_tracking_vars_top.top_only_title_layer}|${1}`
-                        );
-                      } // NOT READ THE NOTIFICATION…
-                      else {
-                        (async function () {
-                          // DELETE THE NOTIFICATION ONE…
-                          deleteDoc(
-                            doc(database, "notifications", oldNotif.id)
-                          );
-
-                          const [oldTopTitle, topListNumber] =
-                            oldNotif.extendedData.split("|");
-
-                          // AVOID THE TOPs WHO GOT THE SAME NAME…
-                          let notifMessage;
-                          if (
-                            oldTopTitle ==
-                            vkrz_tracking_vars_top.top_only_title_layer
-                          ) {
-                            notifMessage = `${vkrz_tracking_vars_user.pseudo_user_layer} à fait deux TopList de ${vkrz_tracking_vars_top.top_only_title_layer}`;
-                          } else {
-                            notifMessage = `${vkrz_tracking_vars_user.pseudo_user_layer} à fait deux TopList: ${vkrz_tracking_vars_top.top_only_title_layer} et ${oldTopTitle}`;
-                          }
-
-                          if (oldNotif.notifLink != currentUserProfileUrl) {
-                            // ONLY TWO…
-                            sendNotification(
-                              vkrz_tracking_vars_user.id_user_layer,
-                              vkrz_tracking_vars_user.uuiduser_layer,
-                              follower["userId"],
-                              follower["uuid"],
-                              notifMessage,
-                              currentUserProfileUrl,
-                              "Ranking To Follower Notification",
-                              `${
-                                vkrz_tracking_vars_top.top_only_title_layer
-                              }|${2}`
-                            );
-                          } else {
-                            // SEND COMPOUND NOTIFICATION…
-                            sendNotification(
-                              vkrz_tracking_vars_user.id_user_layer,
-                              vkrz_tracking_vars_user.uuiduser_layer,
-                              follower["userId"],
-                              follower["uuid"],
-                              `${vkrz_tracking_vars_user.pseudo_user_layer} à fait des TopList: ${vkrz_tracking_vars_top.top_only_title_layer} et ${topListNumber} autres`,
-                              currentUserProfileUrl,
-                              "Ranking To Follower Notification",
-                              `${vkrz_tracking_vars_top.top_only_title_layer}|${
-                                +topListNumber + 1
-                              }`
-                            );
-                          }
-                        })();
                       }
                     })();
                   });
@@ -722,10 +563,12 @@ $(document).ready(function ($) {
               return "done";
             }
             async function goToTopListPage() {
-              localStorage.removeItem('twitchGameMode');
+              localStorage.removeItem("twitchGameMode");
               $(location).attr("href", link_to_ranking);
             }
-            notificationsProcess().then(async (result) => await goToTopListPage());
+            notificationsProcess().then(
+              async (result) => await goToTopListPage()
+            );
           }
         })
         .always(function () {
