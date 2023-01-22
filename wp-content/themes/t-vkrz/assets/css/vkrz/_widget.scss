@@ -179,4 +179,7 @@
 
 .similar-tops{
   text-align: center;
+  @media (max-width: 768px) {
+    padding-bottom: 200px !important;
+  }
 }

@@ -87,7 +87,7 @@
                 <span class="va va-crown va-lg"></span>
               </span>
               <div>
-                Vainkeurs les + actifs
+                Vainkeurs les + déters
               </div>
             </a>
           </li>

@@ -269,40 +269,51 @@ if ( defined( 'ABSPATH' ) && ! class_exists( 'Change_WP_Admin_Login' ) ) {
 			return $links;
 		}
 
+
 		public function plugins_loaded() {
+
 			global $pagenow;
 
-			load_plugin_textdomain( 'change-wp-admin-login' );
+			if ( ! is_multisite()
+			     && ( strpos( rawurldecode( $_SERVER['REQUEST_URI'] ), 'wp-signup' ) !== false
+			          || strpos( rawurldecode( $_SERVER['REQUEST_URI'] ), 'wp-activate' ) !== false ) ) {
 
-			if (
-				! is_multisite() && (
-					strpos( $_SERVER['REQUEST_URI'], 'wp-signup' ) !== false ||
-					strpos( $_SERVER['REQUEST_URI'], 'wp-activate' ) !== false
-				)
-			) {
 				wp_die( __( 'This feature is not enabled.', 'change-wp-admin-login' ) );
+
 			}
 
-			$request = parse_url( $_SERVER['REQUEST_URI'] );
+			$request = parse_url( rawurldecode( $_SERVER['REQUEST_URI'] ) );
 
-			if ( (
-					strpos( $_SERVER['REQUEST_URI'], 'wp-login.php' ) !== false ||
-					untrailingslashit( $request['path'] ) === site_url( 'wp-login', 'relative' )
-				) &&
-				! is_admin()
-			) {
+			if ( ( strpos( rawurldecode( $_SERVER['REQUEST_URI'] ), 'wp-login.php' ) !== false
+			       || ( isset( $request['path'] ) && untrailingslashit( $request['path'] ) === site_url( 'wp-login', 'relative' ) ) )
+			     && ! is_admin() ) {
+
 				$this->wp_login_php = true;
+
 				$_SERVER['REQUEST_URI'] = $this->user_trailingslashit( '/' . str_repeat( '-/', 10 ) );
+
 				$pagenow = 'index.php';
-			} elseif (
-				untrailingslashit( $request['path'] ) === home_url( $this->new_login_slug(), 'relative' ) || (
-					! get_option( 'permalink_structure' ) &&
-					isset( $_GET[$this->new_login_slug()] ) &&
-					empty( $_GET[$this->new_login_slug()] )
-			) ) {
+
+			} elseif ( ( isset( $request['path'] ) && untrailingslashit( $request['path'] ) === home_url( $this->new_login_slug(), 'relative' ) )
+			           || ( ! get_option( 'permalink_structure' )
+			                && isset( $_GET[ $this->new_login_slug() ] )
+			                && empty( $_GET[ $this->new_login_slug() ] ) ) ) {
+
 				$pagenow = 'wp-login.php';
+
+			} elseif ( ( strpos( rawurldecode( $_SERVER['REQUEST_URI'] ), 'wp-register.php' ) !== false
+			             || ( isset( $request['path'] ) && untrailingslashit( $request['path'] ) === site_url( 'wp-register', 'relative' ) ) )
+			           && ! is_admin() ) {
+
+				$this->wp_login_php = true;
+
+				$_SERVER['REQUEST_URI'] = $this->user_trailingslashit( '/' . str_repeat( '-/', 10 ) );
+
+				$pagenow = 'index.php';
 			}
+
 		}
+
 
 		public function wp_loaded() {
 			global $pagenow;
@@ -319,7 +330,7 @@ if ( defined( 'ABSPATH' ) && ! class_exists( 'Change_WP_Admin_Login' ) ) {
 				//wp_die( __( 'You must log in to access the admin area.', 'change-wp-admin-login' ) );
 			}
 
-			$request = parse_url( $_SERVER['REQUEST_URI'] );
+			$request = parse_url( rawurldecode( $_SERVER['REQUEST_URI'] ) );
 
 			if (
 				$pagenow === 'wp-login.php' &&

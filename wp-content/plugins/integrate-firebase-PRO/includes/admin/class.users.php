@@ -59,7 +59,7 @@ class FirebaseUsersActions {
                 'password' => $user['user_pass'],
             );
 
-            apply_filters('firebase_create_new_user', $firebase_uid, $user_data);
+            apply_filters('firebase_create_new_user', $user_id, $user_data);
         }
     }
 }

@@ -18,7 +18,19 @@ $(document).ready(function ($) {
         else{
             $('.cta-top3').hide();
         }
-        laucher.html('Préparation du Top en cours...');
+        
+        laucher.html('Regroupement des contenders...');
+        laucher.addClass('btnprepa');
+        var messages = ["Regroupement des contenders...", "Initialisation de ta TopList...", "Activation de l'algo ELO..."];
+        var currentMessage = 0;
+
+        setInterval(function () {
+          currentMessage++;
+          if (currentMessage >= messages.length) {
+            currentMessage = 0;
+          }
+          laucher.html(messages[currentMessage]);
+        }, 2000);
 
         if (!ajaxRunning) {
             ajaxRunning = true;

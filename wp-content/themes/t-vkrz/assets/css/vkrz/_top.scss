@@ -242,6 +242,13 @@
 
         .info-top-col {
             padding: 0 10px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            h5{
+              margin: 0 0 0 5px;
+            }
         }
 
         .avatar img {
@@ -314,12 +321,10 @@
 
         h4 {
             font-size: 13px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            text-align: center;
             margin-bottom: 10px;
             span{
-                margin: 0 5px;
+                margin: 0 2px;
             }
         }
 
@@ -328,6 +333,9 @@
             font-size: 18px;
             text-align: center;
             font-weight: 500;
+            @media (max-width: 768px) {
+              font-size: 15px;
+            }
         }
     }
 }
@@ -412,6 +420,16 @@
 
     .presentationtop{
         padding: 20px 20px 10px 20px;
+        h2{
+          font-weight: 600;
+          font-size: 17px;
+          margin: 0 0 10px 0;
+        }
+        h1{
+          font-size: 22px;
+          line-height: normal;
+          font-family: 'lato';
+        }
     }
     .meetup-img-wrapper {
         min-height: 320px;
@@ -466,16 +484,6 @@
 
     .meetup-header {
         margin-bottom: 10px;
-
-        .card-title {
-            font-size: 22px;
-            line-height: 28px;
-        }
-
-        .card-text {
-            font-size: 28px;
-            line-height: 32px;
-        }
     }
 
     .meetings {
@@ -488,7 +496,7 @@
     }
 
     .card-footer{
-        border-top: 1px solid rgba(255, 255, 255, 0.1);   
+        border-top: 1px solid rgb(42 32 89);
     }
     .infos-card-t {
         justify-content: center;
@@ -510,6 +518,16 @@
             position: relative;
             top: -2px;
             font-size: 12px;
+        }
+
+        .info-numbers{
+          display: flex;
+          flex-direction: column;
+          align-items: start;
+          justify-content: unset;
+          h4{
+            font-size: 0.9rem;
+          }
         }
 
         a {
@@ -564,9 +582,13 @@
                 a {
                     display: inline-block;
                     margin: 0 auto 10px;
-                    text-transform: uppercase;
                     max-width: 350px;
-                    font-weight: 600;
+                    font-weight: 700 !important;
+                    letter-spacing: 1px;
+                    transform: rotate(-2deg);
+                    display: block !important;
+                    font-size: 20px;
+                    font-family: 'lato';
                 }
             }
         }
@@ -605,7 +627,7 @@
     }
 }
 .waiter, .waiter-begin {
-    position: absolute;
+    position: fixed;
     top: 0;
     bottom: 0;
     z-index: 9999;
@@ -952,83 +974,6 @@
         }
     }
     
-    .modes-jeu-twitch {
-        background-position: center;
-        background-size: contain !important;
-        background-repeat: no-repeat;
-        border-radius: 6px;
-    
-        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-    
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-    
-        &__content {
-            max-width: 70%;
-    
-            @media (min-width: 1920px) {
-                max-width: 70%;
-            }
-    
-            &-header {
-                margin: 5rem 0 8rem;
-    
-                h4 {
-                    font-size: 1.2rem;
-                    font-style: italic;
-                    font-weight: 800;
-                    background: radial-gradient(circle at 10% 20%, rgb(163, 175, 243) 0%, rgb(220, 182, 232) 100.2%);
-                    -webkit-background-clip: text;
-                    -webkit-text-fill-color: transparent;
-                    text-transform: uppercase;
-                }
-    
-                h6 {
-                    margin-top: 1rem;
-                    color: #fff;
-                    width: 90%;
-                    margin: 0 auto;
-                }
-            }
-    
-            &-btns {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                gap: 1rem;
-                flex-direction: column;
-    
-                button {
-                    width: 80%;
-                    background-image: linear-gradient(47deg, #c821a6, #8d25c2) !important;
-                    border: transparent 2px solid;
-                    transition: all 0.3s ease 0s;
-                    
-                    &:hover {
-                        transform: translateX(10px) !important;
-                    }
-    
-                    &.selectedGameMode
-                    {
-                        color: #6f63e8;
-                        background: transparent !important;
-                        border: #6f63e8 2px solid;
-                    }
-                }
-            }
-    
-            &-msg {
-                color: #3fd084;
-                font-size: .8rem;
-                margin-top: 1rem;
-                display: block;
-                text-align: center;
-                line-height: 1;
-            }
-        }
-    }
-    
     #begin_t,
     #begin_top3 {
         transition: all 0.3s ease 0s;
@@ -1174,43 +1119,6 @@
     }
 }
 
-.t-sponso-container {
-    position: relative;
-
-    .modes-jeu-twitch {
-        position: absolute;
-        right: -100%;
-        transition: .5s all ease-in-out;
-        top: 12%;
-
-        height: 70%;
-
-        &.out {
-            right: 1%;
-        }
-
-        @media (min-width: 1920px) {
-            width: 286px;
-            top: 9%;
-
-            &.out {
-                right: 16%;
-            }
-        }
-
-        &__content {
-            max-width: 70% !important;
-
-            @media (min-width: 1920px) {
-                padding-top: 2rem;
-                max-width: 90% !important;
-            }
-            
-        }
-        
-    }
-}
-
 body {
     overflow-x: hidden !important;
 }
@@ -1284,4 +1192,147 @@ body {
 
 .top-resume-tool{
     text-align: center;
+}
+
+.imgcado{
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  width: 100%;
+  height: 150px;
+}
+
+.size-less-2{
+  h1{
+    font-size: 1rem;
+  }
+}
+
+.modes-jeu-twitch{
+  background-image: url('../../images/vkrz/twitch-games-banner.png');
+  background-repeat: no-repeat;
+  background-size: cover !important;
+  padding: 20px;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 500px;
+  h4{
+    color: $rose;
+    margin-bottom: 5px;
+    font-family: 'lato';
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    i{
+      color: #fff;
+    }
+  }
+  h5{
+    color: #fff;
+    font-weight: normal;
+    font-size: 1rem;
+  }
+  .modes-jeu-twitch__content-btns{
+    button{
+      width: 100%;
+      min-height: 40px;
+      border: 2px solid $rose;
+      background-color: transparent;
+      color: #fff;
+      font-family: 'lato';
+      font-weight: 700 !important;
+      letter-spacing: 1px;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      transition: all 0.2s ease-in;
+      small{
+        color: $gris;
+        font-size: 0.8rem;
+        font-weight: 500;
+        display: none;
+      }
+      span{
+        margin-left: 5px;
+      }
+      &:hover{
+        background-color: rgba(255, 255, 255, 0.1);
+        small{
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+.btnstarttwitch{
+  display: inline-block;
+  background-color: transparent;
+  background-image: url('../../images/vkrz/twitch-games-banner.png');
+  background-repeat: no-repeat;
+  background-size: cover !important;
+  padding: 10px 20px;
+  color: #fff;
+  font-family: "lato";
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  margin-left: -175px;
+  border: none;
+  width: 350px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  transition: all 0.2s ease-in;
+  i{
+    margin-right: 10px;
+  }
+  .titre-btn-btnstarttwitch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  small{
+    display: none;
+    color: $gris;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: initial;
+    text-align: center;
+  }
+  &:hover{
+    small{
+      display: block;
+    }
+  }
+}
+
+.choosecta{
+  .btnprepa {
+    background: transparent !important;
+    border: 1px dashed #fff !important;
+    font-size: 1rem !important;
+    font-weight: 400 !important;
+  }
+}
+
+.compterequis{
+  text-align: center;
+  em{
+    font-size: 12px;
+    text-align: center;
+    line-height: 16px;
+    display: inline-block;
+    color: $c5;
+  }
 }

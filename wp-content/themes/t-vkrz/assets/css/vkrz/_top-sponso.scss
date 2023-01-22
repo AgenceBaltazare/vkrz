@@ -11,26 +11,37 @@
     .text-rules {
         padding: 0 10px;
     }
-
-    .title-win {
-        background: $rose;
-        border: $rose;
-        border-radius: 3px;
-        text-align: center;
-
-        h4 {
-            padding: 8px;
-            font-size: 15px;
-            font-weight: bold;
-            text-transform: uppercase;
-            text-align: center;
-            line-height: 21px;
-        }
-    }
-
     .icone-cadeau {
         font-size: 30px;
     }
+}
+
+.title-win {
+  h4 {
+    background: $rose;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    padding: 10px 20px;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 800;
+    text-align: center;
+    margin: 0;
+    display: inline-flex;
+    transform: rotate(-2deg);
+    position: relative;
+    top: 10px;
+    z-index: 2;
+    p{
+      margin: 0;
+    }
+    @media (max-width: 768px) {
+      transform: rotate(-1deg);
+      font-size: 14px;
+      top: 5px;
+    }
+  }
 }
 
 .share-text {
@@ -69,7 +80,16 @@
 
 .share-content-sponso,
 .share-top-sponsor {
-    padding: 15px 20px !important;
+  padding: 10px !important;
+  border-top: none;
+  .separate {
+    height: 1px;
+    background-color: rgb(115 103 240);
+    border-radius: 5px;
+    width: 60%;
+    margin: 0 auto 10px;
+    opacity: 0.2;
+  }
 }
 
 .social-media-sponso {
@@ -220,10 +240,6 @@
         line-height: 20px;
     }
 
-    .infos-card-t {
-        margin: 10px 0;
-    }
-
     #form-coupon {
         flex-direction: column;
         width: 100%;
@@ -260,7 +276,12 @@
 
 .buttons-social-media {
     a {
-        margin-right: 10px;
+        margin-right: 5px;
+        border: 2px solid $c5;
+        &:hover{
+          background-color: $c5 !important;
+          color: #fff !important;
+        }
     }
 }
 
@@ -308,4 +329,43 @@
     &:hover {
         box-shadow: 0 8px 25px -8px $c5 !important;
     }
+}
+
+.agagner{
+  text-align: center;
+  padding: 10px 0;
+  .titrewin{
+    background: $c5;
+    padding: 5px 10px;
+    font-weight: 800;
+    color: #fff;
+    border-radius: 10px;
+    font-family: 'Lato';
+    font-size: 22px;
+    transform: rotate(-3deg);
+    margin-bottom: 20px;
+    display: inline-block;
+  }
+  h5 {
+    margin: 10px 0;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  .datefinsponso {
+    padding: 5px;
+    color: $c5;
+  }
+}
+
+.share-content-sponso{
+  p{
+    margin-bottom: 0;
+  }
+}
+.btn-sponsor{
+  max-width: 150px !important;
+  display: inline-block;
 }

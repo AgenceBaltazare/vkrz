@@ -682,32 +682,42 @@
   background: $c6;
   padding: 10px;
   z-index: 99;
-  .btn-wording {
-    border: none;
-    border-radius: 50px !important;
-    letter-spacing: 1px;
-    display: inline-block;
-    height: 40px;
-    width: auto;
-    line-height: 40px;
-    padding: 0 20px !important;
-    font-weight: 600;
-    text-align: center;
-    background: rgba(97, 84, 167, 0.2);
-    border-radius: 40px;
-    color: #fff;
-    margin: 0 1px;
-    padding: 0;
-    &:hover {
-      background: $c5;
-    }
+}
+.btn-wording {
+  border: none;
+  border-radius: 50px !important;
+  letter-spacing: 1px;
+  display: inline-block;
+  height: 40px;
+  width: auto;
+  line-height: 40px;
+  padding: 0 20px !important;
+  font-weight: 600;
+  text-align: center;
+  background: rgba(97, 84, 167, 0.2);
+  border-radius: 40px;
+  color: #fff;
+  margin: 0 1px;
+  padding: 0;
+  &:hover {
+    background: $c5;
   }
-  .btn-wording-rose{
+  @media (max-width: 768px) {
+    font-size: 0.85em;
+  }
+}
+.btn-wording-rose{
+  background: $rose;
+  padding: 0 50px !important;
+  &:hover {
     background: $rose;
-    padding: 0 50px !important;
-    &:hover {
-      background: $rose;
-    }
+    color: #fff;
+  }
+}
+@media (max-width: 768px) {
+  .btn-wording-rose {
+    background: $rose;
+    padding: 0 20px !important;
   }
 }
 
@@ -720,6 +730,10 @@
   flex-direction: column;
   width: auto;
   z-index: 20;
+
+  @media (max-width: 768px) {
+    top: 40%;
+  }
   
   .btn-emoji {
     height: 50px;

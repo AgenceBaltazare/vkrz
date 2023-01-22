@@ -12,6 +12,7 @@
   span {
     display: flex;
     align-items: center;
+    font-weight: bold;
   }
 
   .ico {
@@ -53,6 +54,8 @@
 .blog-detail-wrapper {
   h1 {
     color: $rose;
+    font-family: 'lato';
+    font-weight: 800 !important;
   }
 
   h2 {
@@ -103,8 +106,8 @@
   }
 
   p {
-    line-height: 2rem;
-    font-size: 16px;
+    line-height: 1.5rem;
+    font-size: 1rem;
     font-weight: 400;
   }
 }
@@ -149,6 +152,29 @@
 
     &:hover {
       text-decoration: underline;
+    }
+  }
+}
+
+.page-template-evolution{
+  .intro-archive{
+    h2{
+      font-size: 0.85rem;
+      margin: 10px 10px 0 10px;
+    }
+    .iconarchive {
+      position: absolute;
+      right: -50px;
+      top: 25px;
+      left: auto;
+    }
+  }
+  .basic-pricing{
+    h3{
+      margin: 10px 0 0;
+    }
+    p{
+      margin: 0 !important;
     }
   }
 }

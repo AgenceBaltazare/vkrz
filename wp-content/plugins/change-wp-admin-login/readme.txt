@@ -2,8 +2,8 @@
 Tags:              change wp-login, rename wp-login, wp-admin, login, wp-login, wp-login.php, custom login url
 Contributors:      nunosarmento
 Requires at least: 4.4
-Tested up to:      6.0
-Stable tag:        1.1.0
+Tested up to:      6.1
+Stable tag:        1.1.2
 License:           GPL-2.0+
 
 
@@ -11,9 +11,22 @@ License:           GPL-2.0+
 
 *Change wp-admin login* is a light plugin that allows you easily and safely to change wp-admin to anything you want. It does not rename or change files in core. It simply intercepts page requests and works on any WordPress website. After you activate this plugin the wp-admin directory and wp-login.php page will become unavailable, so you should bookmark or remember the url. Disable this plugin brings your site back exactly to the state it was before.
 
+
+== Support ==
+
+**Like this plugin?** Please [Rate It](https://wordpress.org/support/plugin/change-wp-admin-login/reviews/?filter=5) or [Buy me a coffee](https://ko-fi.com/nunosarmento)
+
+**Have a problem?** Please write a message in the [WordPress Support Forum](https://wordpress.org/support/plugin/change-wp-admin-login/)
+
+
+== How to use the plugin ==
+
 Go under Settings and then click on "Permalinks" and change your URL under "Change wp-admin login".
 
-Example: http://www.example.com/my-login.
+Step 1: Add new login URL
+
+Step 2: Add redirect URL
+
 
 == New Feature ==
 
@@ -21,13 +34,11 @@ Add redirect custom field:
 
 When someone tries to access the wp-login.php page or the wp-admin directory while not logged in will be redirect to the page that you defined on the redirect custom field.
 
-If you leave the redirect field empty the plugin will add a redirect to the homepage.
+If you leave the redirect field empty the plugin will add a default redirect to the homepage.
 
-== How to use the plugin ==
+== Credits ==
 
-Step 1: Add new login URL
-
-Step 2: Add redirect URL
+This plugin was forked/adapted/fixed/updated from this plugin https://wordpress.org/plugins/rename-wp-login/ - @ellatrix thank you for starting the base of my plugin.
 
 
 == Installation ==
@@ -106,3 +117,9 @@ No, BuddyPress has their own wp-admin redirect functions.
 
 = 1.1.0 =
 * Update WordPress API settings
+
+= 1.1.1 =
+* Fix php8 warnings 
+
+= 1.1.2 =
+* More Fixes for php8 warnings 

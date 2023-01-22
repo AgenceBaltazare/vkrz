@@ -9,19 +9,7 @@ if ($get_top_type) {
 }
 switch (get_post_type()) {
   case "tournoi":
-    $get_top_type = get_the_terms(get_the_ID(), 'type');
-    $list_types   = array();
-    if ($get_top_type) {
-      foreach ($get_top_type as $type_top) {
-        array_push($list_types, $type_top->slug);
-      }
-    }
-    if (in_array("sponso", $list_types)) {
-      get_template_part("templates/single/t-sponso");
-    }  
-    else {
-      get_template_part("templates/single/t");
-    }
+    get_template_part("templates/single/t");
     break;
 
   case "classement":

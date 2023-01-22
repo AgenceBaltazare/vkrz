@@ -78,21 +78,24 @@ if ($tops_in_close_cat->have_posts() || $tops_in_large_cat->have_posts()) : ?>
     </h4>
     <div class="similar-list mt-2">
       <div class="row">
-        <?php
-        while ($tops_in_close_cat->have_posts()) : $tops_in_close_cat->the_post();
-          get_template_part('partials/min-t');
-        endwhile;
+        <?php while ($tops_in_close_cat->have_posts()) : $tops_in_close_cat->the_post(); ?>
+          <div class="col-md-3 col-sm-4 col-6">
+            <?php get_template_part('partials/min-t'); ?>
+          </div>
+        <?php endwhile;
         if ($count_similar < 4) :
-          while ($tops_in_large_cat->have_posts()) : $tops_in_large_cat->the_post();
-            get_template_part('partials/min-t');
-          endwhile;
+          while ($tops_in_large_cat->have_posts()) : $tops_in_large_cat->the_post(); ?>
+            <div class="col-md-3 col-sm-4 col-6">
+              <?php get_template_part('partials/min-t'); ?>
+            </div>
+        <?php endwhile;
         endif;
         ?>
       </div>
     </div>
     <div class="gocat">
       <?php $current = get_term_by('term_id', $top_cat_id, 'categorie'); ?>
-      <a class="w-100 btn btn-primary waves-effect" href="<?php echo get_category_link($top_cat_id); ?>">
+      <a class="btn btn-primary waves-effect" href="<?php echo get_category_link($top_cat_id); ?>">
         Voir tous les Tops <span class="text-uppercase ms-1"> <?php echo $top_cat_name; ?> </span> <span class="ico"><?php the_field('icone_cat', 'term_' . $top_cat_id); ?></span>
       </a>
     </div>

@@ -2,8 +2,8 @@
 Contributors: Upperdog, Gesen
 Tags: upload, images, files, media, sanitize,
 Requires at least: 2.9
-Tested up to: 5.6
-Stable tag: 1.3
+Tested up to: 6.1
+Stable tag: 1.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Donate link: https://paypal.me/gesen
@@ -14,7 +14,7 @@ This plugin automatically converts language accent characters to non-accent char
 
 This plugin automatically converts language accent characters in filenames when uploading to the media library. Characters are converted into browser and server friendly, non-accent characters.
 
-= Features =
+== Features ==
 
 * Converts accent characters to non-accent, latin equivalents in Swedish, Danish, German, and more.
 * Removes special characters like exclamation marks, periods, hashtags, and more.
@@ -22,17 +22,17 @@ This plugin automatically converts language accent characters in filenames when 
 * Makes site and server migrations easier thanks to non-accent character filenames.
 * Provides filter hook for developers who want to specify which file types to convert.
 
-= Examples =
+== Examples ==
 
 * Räksmörgås.jpg → raksmorgas.jpg
 * Æblegrød_FTW!.gif → aeblegrod-ftw.gif
 * Château de Ferrières.png → chateau-de-ferrieres.png
 
-= Worth noting =
+== Worth noting ==
 
 The plugin only converts filenames when the files are being uploaded. It can not convert existing files.
 
-= Filter for developers =
+== Filter for developers ==
 
 This filter provides developers a way to specify which file types the plugin should convert. This filter overrides the plugin settings on the media settings page. For a complete list of mime types, see [Wikipedia](http://en.wikipedia.org/wiki/Internet_media_type).
 
@@ -69,6 +69,10 @@ No, this plugin only cleans the filenames of files when they are being uploaded 
 1. Easily choose between cleaning the filenames of all file types or images only.
 
 == Changelog ==
+
+= 1.4 =
+
+* Add support for cleaning filenames when sideloaded (usually when uploaded programmatically) using the wp_handle_sideload_prefilter hook.
 
 = 1.3 =
 

@@ -13,9 +13,9 @@ global $top_infos;
   </div>
   <div class="offcanvas-body">
     <h5 class="offcanvas-title">
-      <span class="va va-backhand-index-pointing-right va-lg"></span>
+      <span class="va va-doigt-droit va-lg"></span>
       Partage ta TopList
-      <span class="va va-backhand-index-pointing-right va-lg va-reverse"></span>
+      <span class="va va-doigt-droit va-lg va-reverse"></span>
       <br>
       <small>Pas besoin de screen ! Une image de ton Top 3 sera ajoutée automatiquement à ton post avec le lien</small>
     </h5>

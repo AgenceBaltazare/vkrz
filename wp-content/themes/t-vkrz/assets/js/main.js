@@ -257,6 +257,12 @@ jQuery(document).ready(function ($) {
       });
     }
 
+    const popUp = document.querySelector('.popup-overlay');
+    const closePopUp = document.querySelector('.close-popup');
+    if (closePopUp){
+      closePopUp.addEventListener('click', () => popUp.classList.add('d-none'));
+    }
+
     // UTM
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);

@@ -19,7 +19,7 @@ $roles = (array) $user->roles;
         </h1>
         <?php if (!is_user_logged_in()) : ?>
           <p>
-            Tu dois Être connecté pour proposer une idée de Top <span class="va va-backhand-index-pointing-right va-2x"></span> &nbsp;<a href="<?php the_permalink(get_page_by_path('connexion')); ?>?redirect=<?php the_permalink(get_page_by_path('Proposition de Tops')); ?>" class="btn">Se connecter/ s'inscrire</a>
+            Tu dois Être connecté pour proposer une idée de Top <span class="va va-doigt-droit va-2x"></span> &nbsp;<a href="<?php the_permalink(get_page_by_path('connexion')); ?>?redirect=<?php the_permalink(get_page_by_path('Proposition de Tops')); ?>" class="btn">Se connecter/ s'inscrire</a>
           </p>
         <?php endif; ?>
       </div>

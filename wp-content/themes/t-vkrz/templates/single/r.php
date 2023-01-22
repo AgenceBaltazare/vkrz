@@ -17,6 +17,7 @@ global $top_datas;
 global $id_top_global;
 global $top_cat_id;
 global $creator_data;
+global $url_ranking;
 $id_top_global = $id_top;
 if ($id_vainkeur) {
   if (is_user_logged_in() && env() != "local") {
@@ -61,8 +62,6 @@ foreach ($user_ranking as $c) :
 endforeach;
 // Info VAINKEURZ
 $vainkeur_data_selected = get_user_infos($uuid_who_did_toplist);
-?>
-<?php
 if (!is_user_logged_in() && !in_array("sponso", $types_top) && get_field('uuid_user_r', $id_ranking) == $uuid_vainkeur) :
   get_template_part('partials/devenir-vainkeur');
 endif;
@@ -74,9 +73,6 @@ endif;
     <div class="classement" data-idranking="<?= $id_ranking ?>">
       <div class="row">
         <div class="col-12">
-          <?php if (get_field('uuid_user_r', $id_ranking) == $uuid_vainkeur && in_array("sponso", $types_top)) : ?>
-            <?php get_template_part('partials/participer'); ?>
-          <?php endif; ?>
           <div class="tournament-heading">
             <h1 class="t-titre-tournoi">
               <div class="text-muted">
@@ -180,7 +176,7 @@ endif;
 
 <!-- Bottom Nav -->
 <div class="share-toplist">
-  <?php $id_toplistmondiale = get_toplist_mondiale($id_top_global);?>
+  <?php $id_toplistmondiale = get_toplist_mondiale($id_top_global); ?>
   <?php if (!in_array('private', $types_top)) : ?>
     <?php if ($already_done) : ?>
       <?php if (get_field('uuid_user_r', $id_ranking) != $uuid_vainkeur) :  ?>
@@ -203,7 +199,6 @@ endif;
   </a>
   <a href="<?php the_permalink($id_toplistmondiale); ?>" class="btn-wording mt-2 mb-1 mt-sm-0 mb-sm-0" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Générée à partir des <?php echo $top_datas['nb_votes']; ?> votes">
     Découvre la TopList mondiale <span class="va va-globe va-lg"></span>
-
     <?php if ($already_done) : ?>
       <span id="ressemblance-mondiale">
         <div class="loader loader--style1" title="0">
@@ -283,5 +278,9 @@ endif;
 <!-- Overlay -->
 <?php get_template_part('partials/recommencer'); ?>
 <!-- /Overlay -->
+
+<?php if (get_field('uuid_user_r', $id_ranking) == $uuid_vainkeur && in_array("sponso", $types_top)) : ?>
+  <?php get_template_part('partials/participer'); ?>
+<?php endif; ?>
 
 <?php get_footer(); ?>

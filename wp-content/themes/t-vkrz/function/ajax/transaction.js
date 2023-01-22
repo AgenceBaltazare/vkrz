@@ -4,6 +4,8 @@ $(document).ready(function ($) {
 
     $(document).on('click', '.ordershop', {}, function (e) {
 
+      $('#waiter-commande').show();
+
         e.preventDefault();
 
         var id_produit  = $(this).data('idproduit');
@@ -42,6 +44,7 @@ $(document).ready(function ($) {
 
                     var currentmoney = parseInt(data['current_money']);
                     $('.money-disponible').html(currentmoney);
+                    $('.modal-shop').modal('hide');
                 }
 
                 if (data['new_badge']) {
@@ -51,6 +54,8 @@ $(document).ready(function ($) {
                         progressBar: true
                     });
                 }
+
+                $('#waiter-commande').hide();
                 
             })
             .always(function () {

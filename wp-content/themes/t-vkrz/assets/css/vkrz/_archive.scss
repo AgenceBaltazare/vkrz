@@ -1,14 +1,15 @@
 .intro-archive {
   text-align: center;
-  margin: 20px 0 30px;
+  margin: 20px auto 30px;
   background: linear-gradient($c3, $c3) 50% 50%/calc(100% - 10px) calc(100% - 10px) no-repeat,
     linear-gradient(270deg, $c5 0%, $rose 100%);
   border-radius: 5px;
   padding: 17px;
   box-sizing: border-box;
-  padding: 20px 0;
+  padding: 20px 20px;
   transform: rotate(-1deg);
   position: relative;
+  max-width: 500px;
 
   .iconarchive {
     position: absolute;
@@ -36,7 +37,10 @@
   h2 {
     font-size: 1rem;
     color: $c5;
-    margin: 10px 0 0 0;
+    margin: 10px 40px 0 60px;
+    @media (max-width: 768px) {
+      margin: 5px 10px 0;
+    }
   }
 
   .infonbtops {

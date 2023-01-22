@@ -3,27 +3,30 @@
  Plugin Name: Change wp-admin login
  Plugin URI: https://wordpress.org/plugins/change-wp-admin-login/
  Description: Change wp-admin login to whatever you want. example: http://www.example.com/my-login. Go under Settings and then click on "Permalinks" and change your URL under "Change wp-admin login".
- Version: 1.1.0
+ Version: 1.1.2
  Author: Nuno Morais Sarmento
  Author URI: https://www.nuno-sarmento.com
  Text Domain: change-wp-admin-login
  Domain Path: /languages
- License: GPL2
 
- Copyright 2019  Nuno Morais Sarmento  (email : hello@nuno-sarmento.com)
+Copyright 2022  Nuno Sarmento (email : hello@nuno-sarmento.com)
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
 
- This program is free software; you can redistribute it and/or modify
- it under the terms of the GNU General Public License, version 2, as
- published by the Free Software Foundation.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
- You should have received a copy of the GNU General Public License
- along with this program; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+// Acknowledgements to Ella van Durpe (https://wordpress.org/plugins/rename-wp-login/), some of whose code was used
+// in the development of this plug-in. This plugin (https://wordpress.org/plugins/rename-wp-login/) don't have any copyright policy.
+
  */
 
  /* Do not access this file directly */

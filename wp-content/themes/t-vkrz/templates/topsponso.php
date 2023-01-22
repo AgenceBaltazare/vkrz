@@ -21,7 +21,7 @@ if ($id_vainkeur) {
   $list_user_tops       = array();
   $list_user_tops_begin = array();
 }
-$tops_in_cat          = new WP_Query(array(
+$tops_sponso            = new WP_Query(array(
   'post_type'                 => 'tournoi',
   'orderby'                   => 'date',
   'order'                     => 'ASC',
@@ -46,146 +46,30 @@ $tops_in_cat          = new WP_Query(array(
   ),
 ));
 ?>
+<div class="my-2">
+  <div class="container-xxl">
+    <div class="intro-archive">
+      <div class="iconarchive">
+        <span class="va va-wrapped-gift va-lg"></span>
+      </div>
+      <h1>
+        Top sponso <span class="infonbtops"><?php echo $tops_sponso->post_count; ?> Tops</span>
+      </h1>
+      <h2>
+        Ici on ne gagne pas à tous les coups - certes - mais on se donne une chance <span class="va va-chance va-lg"></span>
+      </h2>
+    </div>
+  </div>
 
-
-<div class="intro-mobile">
-  <div class="tournament-heading text-center">
-    <h3 class="mb-0 t-titre-tournoi">
-      <span class="ico va va-wrapped-gift va-lg"></span> Tops sponso
-    </h3>
-    <h4 class="mb-0">
-      Ici on ne gagne pas à tous les coups - certes - mais on se donne une chance 🤞
-    </h4>
+  <div class="container-xxl">
+    <section class="row">
+      <?php while ($tops_sponso->have_posts()) : $tops_sponso->the_post(); ?>
+        <div class="col-md-4 col-sm-2 col-12">
+          <?php get_template_part('partials/min-t'); ?>
+        </div>
+      <?php endwhile; ?>
+    </section>
   </div>
 </div>
-
-<section class="grid-to-filtre row match-height mt-2">
-  <?php $i = 1;
-  while ($tops_in_cat->have_posts()) : $tops_in_cat->the_post();
-    $id_top             = get_the_ID();
-    $top_datas          = get_top_data($id_top);
-    $type_top         = "";
-    $state            = "";
-    $illu             = get_the_post_thumbnail_url($id_top, 'medium');
-    if (is_home()) {
-      $class        = "swiper-slide";
-    } elseif (is_single()) {
-      $class        = "col-md-12 col-6";
-    } else {
-      $class        = "col-12";
-    }
-    if (in_array($id_top, $list_user_tops)) {
-      $state = "done";
-    } elseif (in_array($id_top, $list_user_tops_begin)) {
-      $state = "begin";
-    } else {
-      $state = "todo";
-    }
-    $top_info       = get_top_infos($id_top);
-    $get_top_type   = get_the_terms($id_top, 'type');
-    foreach ($get_top_type as $type_top) {
-      $type_top = $type_top->slug;
-    }
-  ?>
-
-    <div class="same-h grid-item col-12 col-md-4">
-      <div class="min-tournoi card scaler">
-        <div class="cov-illu cover" style="background: url(<?php echo $top_info['top_img']; ?>) center center no-repeat; height: 200px;">
-
-          <?php if ($type_top == "sponso") : ?>
-            <span class="badge badge-light-rose ml-0">Top sponso</span>
-          <?php endif; ?>
-          <?php if ($state == "done") : ?>
-            <div class="badge badge-success">Terminé</div>
-          <?php elseif ($state == "begin") : ?>
-            <div class="badge badge-warning">En cours</div>
-          <?php else : ?>
-            <div class="badge badge-primary">A faire</div>
-          <?php endif; ?>
-          <div class="voile">
-            <?php if ($state == "done") : ?>
-              <div class="spoun topsponso">
-                <h5>Voir ma TopList</h5>
-              </div>
-            <?php elseif ($state == "begin") : ?>
-              <div class="spoun topsponso">
-                <h5>Terminer</h5>
-              </div>
-            <?php else : ?>
-              <div class="spoun topsponso">
-                <h5>Participer</h5>
-              </div>
-            <?php endif; ?>
-          </div>
-
-          <div class="info-top row align-items-center justify-content-center">
-            <div class="info-top-col">
-              <div class="infos-card-t info-card-t-v d-flex align-items-center">
-                <div class="d-flex align-items-center mr-10px">
-                  <span class="ico va-high-voltage va va-md"></span>
-                </div>
-                <div class="content-body mt-01">
-                  <h4 class="mb-0">
-                    <?php echo $top_datas['nb_votes']; ?>
-                  </h4>
-                </div>
-              </div>
-            </div>
-
-            <div class="info-top-col">
-              <div class="infos-card-t d-flex align-items-center">
-                <div class="d-flex align-items-center mr-10px">
-                  <span class="ico va va-trophy va-md"></span>
-                </div>
-                <div class="content-body mt-01">
-                  <h4 class="mb-0">
-                    <?php echo $top_datas['nb_tops']; ?>
-                  </h4>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card-body mb-3-hover text-center">
-          <p class="card-text text-primary font-weight-bold">
-
-            <?php
-            foreach (get_the_terms($id_top, 'categorie') as $cat) {
-              $cat_id     = $cat->term_id;
-              $cat_name   = $cat->name;
-            }
-            ?>
-            TOP <?= $top_info['top_number']; ?> <?php the_field('icone_cat', 'term_' . $cat_id); ?> <span class="namecontenders"><?= $top_info['top_title']; ?></span>
-          </p>
-
-          <h3 class="card-title t-rose">
-            <?= $top_info['top_question']; ?>
-          </h3>
-
-          <div class="card-footer a-gagner mt-1 p-1 d-flex flex-column align-items-left justify-content-between">
-
-            <span class="text-muted mb-1 d-block">
-              À gagner
-            </span>
-
-            <div style="background: url(<?= wp_get_attachment_image_url(get_field('cadeau_t_sponso', $id_top), 'large', false); ?>) no-repeat center center / contain; height: 150px;"></div>
-
-            <h2 class="mt-2">
-              <?= the_field('titre_de_la_sponso_t_sponso', $id_top); ?>
-            </h2>
-
-            <small class="text-primary" style="margin-top: -3px;">
-              <?= the_field('fin_de_la_sponso_t_sponso', $id_top); ?>
-            </small>
-          </div>
-        </div>
-        <a href="<?= $top_info['top_url']; ?>" class="stretched-link"></a>
-      </div>
-    </div>
-
-  <?php $i++;
-  endwhile; ?>
-</section>
 
 <?php get_footer(); ?>

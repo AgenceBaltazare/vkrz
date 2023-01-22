@@ -69,7 +69,6 @@ $list_sujets      = array();
 ?>
 
 <div class="my-3">
-
   <div class="container-xxl mt-2">
     <div class="row">
       <div class="col">
@@ -143,13 +142,9 @@ $list_sujets      = array();
       </div>
     </div>
   </div>
-
   <?php if ($tops_in_cat->have_posts()) : $i = 1; ?>
-
     <section class="row match-height mt-4 grid-to-filtre">
-
       <?php while ($tops_in_cat->have_posts()) : $tops_in_cat->the_post();
-
         $id_top             = get_the_ID();
         $get_top_rubrique   = get_the_terms($id_top, 'rubrique');
         $list_des_rubriques = array();
@@ -185,95 +180,7 @@ $list_sujets      = array();
         }
       ?>
         <div class="col-md-3 col-sm-4 col-6 grid-item" data-filter-item="<?php echo $state; ?> <?php echo $list_des_rubriques; ?>" data-filter-name="<?php echo $term_to_search; ?>">
-          <div class="min-tournoi card scaler ehcard">
-            <div class="cov-illu cover" style="background: url(<?php echo $illu; ?>) center center no-repeat">
-              <?php if ($type_top == "sponso") : ?>
-                <span class="badge badge-light-rose ml-0">Top sponso</span>
-              <?php endif; ?>
-              <?php if ($state == "done") : ?>
-                <div class="badge bg-success">Terminé</div>
-              <?php elseif ($state == "begin") : ?>
-                <div class="badge bg-warning">En cours</div>
-              <?php else : ?>
-                <div class="badge bg-primary">A faire</div>
-              <?php endif; ?>
-              <div class="voile">
-                <?php if ($state == "done") : ?>
-                  <div class="spoun">
-                    <h5>Voir ma Toplist</h5>
-                  </div>
-                <?php elseif ($state == "begin") : ?>
-                  <div class="spoun">
-                    <h5>Terminer</h5>
-                  </div>
-                <?php else : ?>
-                  <div class="spoun">
-                    <h5>Faire ma Toplist</h5>
-                  </div>
-                <?php endif; ?>
-              </div>
-              <div class="info-top">
-                <div class="info-top-col">
-                  <div class="infos-card-t info-card-t-v d-flex align-items-center">
-                    <div class="d-flex align-items-center mr-10px">
-                      <span class="ico va-high-voltage va va-md"></span>
-                    </div>
-                    <div class="content-body mt-01">
-                      <h5 class="mb-0">
-                        <?php echo $top_datas['nb_votes']; ?>
-                      </h5>
-                    </div>
-                  </div>
-                </div>
-                <div class="info-top-col">
-                  <div class="infos-card-t d-flex align-items-center">
-                    <div class="d-flex align-items-center mr-10px">
-                      <span class="ico va va-trophy va-md"></span>
-                    </div>
-                    <div class="content-body mt-01">
-                      <h5 class="mb-0">
-                        <?php echo $top_datas['nb_tops']; ?>
-                      </h5>
-                    </div>
-                  </div>
-                </div>
-                <div class="info-top-col hide-xs">
-                  <div class="infos-card-t d-flex align-items-center infos-card-t-c">
-                    <div class="avatar-infomore">
-                      <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator_id; ?>" target="_blank">
-                        <div class="avatar me-50">
-                          <img src="<?php echo $creator_avatar; ?>" alt="<?php echo $creator_pseudo; ?>" width="38" height="38">
-                        </div>
-                      </a>
-                    </div>
-                    <div class="content-body mt-01">
-                      <h5 class="mb-0 link-creator d-flex flex-column text-left">
-                        <span class="text-muted">Créé par</span>
-                        <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator_id; ?>" target="_blank" class="link-to-creator">
-                          <?php echo $creator_pseudo; ?>
-                        </a>
-                      </h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="card-body eh mb-3-hover">
-              <h4 class="card-text text-white">
-                <?php
-                foreach (get_the_terms($id_top, 'categorie') as $cat) {
-                  $cat_id     = $cat->term_id;
-                  $cat_name   = $cat->name;
-                }
-                ?>
-                TOP <?php echo get_field('count_contenders_t', $id_top); ?> <?php the_field('icone_cat', 'term_' . $cat_id); ?> <?php echo get_the_title($id_top); ?>
-              </h4>
-              <h3 class="card-title">
-                <?php the_field('question_t', $id_top); ?>
-              </h3>
-            </div>
-            <a href="<?php the_permalink($id_top); ?>" class="stretched-link"></a>
-          </div>
+          <?php get_template_part('partials/min-t'); ?>
         </div>
       <?php $i++;
       endwhile; ?>

@@ -11,6 +11,18 @@ All notable changes to this project will be documented in this file.
 > - :memo: [Documentation]
 > - :nail_care: [Polish]
 
+## [ 3.23.1 ] - 2023-01-16
+
+#### - :bug: [Bug Fix]
+
+- fix saving firebase uid to user account
+
+## [ 3.23.0 ] - 2023-01-10
+
+#### - :rocket: [New Feature]
+
+- improve show & hidden shortcode for logged in users
+
 ## [ 3.22.0 ] - 2022-11-27
 
 #### - :rocket: [New Feature]

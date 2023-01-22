@@ -1,0 +1,338 @@
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-height: 100%;
+  width: 100%;
+  z-index: 100000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(16, 0, 26, 0.85);
+
+  .popup {
+    display: grid;
+    place-items: center;
+    text-align: center;
+    margin: 0 auto;
+    width: 560px;
+    max-width: 100%;
+    padding: 0 10px 10px 10px;
+    border-radius: 12px;
+    z-index: 1001;
+
+    .popup-body {
+      padding: 15px;
+    }
+
+    .popup-footer {
+      button {
+        font-size: 0.85rem;
+        color: #fff;
+        outline: none;
+        border: none;
+        background: none;
+        margin: 20px 0 0 0;
+      }
+    }
+
+    p {
+      font-size: 1rem;
+      font-weight: 400;
+      margin: 0 0 10px 0;
+
+      @media (max-width: 768px) {
+        font-size: .9rem;
+      }
+    }
+
+    .close-popup {
+      margin-left: auto;
+      background: none;
+      border: none;
+      outline: none;
+      font-size: 3rem;
+      color: #FFF;
+      line-height: 100%;
+      margin-top: -1rem;
+      padding: 0;
+    }
+
+    #close-popup.only-x {
+      position: absolute;
+      top: 18px;
+      right: 10px;
+      font-size: 1.4rem;
+    }
+
+    .rs {
+      width: 100%;
+
+      ul {
+        list-style: none;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        gap: 1rem;
+        width: 100%;
+        padding: 1rem .6rem;
+        margin: 0;
+
+        @media (max-width: 768px) {
+          gap: .8rem;
+          justify-content: space-around;
+          padding: 0.2rem 0.6rem
+        }
+
+        i {
+          display: grid;
+          place-items: center;
+          font-size: 1.6rem;
+          border-radius: 50%;
+          border: $c5 2px solid;
+          width: 50px;
+          height: 50px;
+          transition: .3s all;
+          color: $c5;
+
+          @media (max-width: 768px) {
+            font-size: 1.1rem;
+            width: 40px;
+            height: 40px;
+          }
+
+          &:hover {
+            border: $rose 2px solid;
+            color: $rose !important;
+          }
+        }
+      }
+    }
+
+    hr {
+      border-color: $c5 !important;
+    }
+
+    h6 {
+      color: $c5;
+    }
+  }
+
+  .participate-popup {
+    background: linear-gradient(to bottom right, #230b36ae, #4d1470a3);
+
+    @media (max-width: 768px) {
+      max-width: 90%;
+      width: 90%;
+      padding: .8rem;
+    }
+
+    .popup-body {
+      form {
+        display: flex;
+
+        @media (max-width: 768px) {
+          flex-direction: column;
+        }
+
+        input[type="email"] {
+          background: rgba(255, 255, 255, 0.05);
+          border: 2px solid $rose;
+          padding: 10px;
+          color: #fff;
+          flex: 1;
+          border-radius: 10px 0 0 10px !important;
+          outline: none;
+
+          &::placeholder {
+            color: $rose;
+
+            @media (max-width: 768px) {
+              text-align: center;
+            }
+          }
+
+          @media (max-width: 768px) {
+            border-radius: 5px 5px 0 0 !important;
+          }
+        }
+
+        button {
+          background: $rose;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          border-radius: 0px 10px 10px 0 !important;
+          font-size: .9rem;
+        }
+      }
+
+
+      @media (max-width: 768px) {
+        padding: .8rem;
+      }
+    }
+  }
+
+  .referral-popup {
+    max-width: 420px;
+
+    .close-popup {
+      transition: .3s all;
+      font-size: 2.4rem;
+
+      &:hover {
+        color: $rose;
+      }
+    }
+
+    @media (max-width: 768px) {
+      max-width: unset;
+      width: 90% !important;
+
+      .close-popup {
+        font-size: 1.4rem;
+        margin-top: unset;
+        margin-right: .5rem;
+      }
+
+      .btn {
+        padding: .7rem !important;
+      }
+    }
+
+    .popup-body {
+      padding: unset;
+    }
+  }
+
+  .finish-participate-popup {
+    .popup-body {
+      display: flex;
+      flex-direction: column;
+
+      .datefinmail{
+        span{
+          display: block;
+          text-align: center;
+          font-weight: 800;
+          font-size: 20px;
+        }
+      }
+
+      .bonustop{
+        a{
+          color: $rose;
+          font-weight: bold;
+          .sitesp {
+            transition: all 0.2s ease-in;
+            display: inline-block;
+            padding: 0 20px;
+          }
+          &:hover{
+            .sitesp {
+              padding: 0 5px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .rotate-in-center {
+    -webkit-animation: rotate-in-center 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    animation: rotate-in-center 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  }
+
+  @-webkit-keyframes rotate-in-center {
+    0% {
+      -webkit-transform: rotate(-360deg);
+      transform: rotate(-360deg);
+      opacity: 0;
+    }
+
+    100% {
+      -webkit-transform: rotate(0);
+      transform: rotate(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes rotate-in-center {
+    0% {
+      -webkit-transform: rotate(-360deg);
+      transform: rotate(-360deg);
+      opacity: 0;
+    }
+
+    100% {
+      -webkit-transform: rotate(0);
+      transform: rotate(0);
+      opacity: 1;
+    }
+  }
+
+  .scale-up-center {
+    -webkit-animation: scale-up-center .4s cubic-bezier(.39, .575, .565, 1.000) both;
+    animation: scale-up-center .4s cubic-bezier(.39, .575, .565, 1.000) both
+  }
+
+  @-webkit-keyframes scale-up-center {
+    0% {
+      -webkit-transform: scale(.5);
+      transform: scale(.5)
+    }
+
+    100% {
+      -webkit-transform: scale(1);
+      transform: scale(1)
+    }
+  }
+
+  @keyframes scale-up-center {
+    0% {
+      -webkit-transform: scale(.5);
+      transform: scale(.5)
+    }
+
+    100% {
+      -webkit-transform: scale(1);
+      transform: scale(1)
+    }
+  }
+}
+
+.popup-header{
+  position: relative;
+  top: -30px;
+  h3{
+    background: $c5;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    padding: 10px 20px;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 800;
+    text-align: center;
+    margin: 0;
+    display: inline-flex;
+    transform: rotate(-2deg);
+    position: relative;
+    top: 10px;
+    z-index: 2;
+    @media (max-width: 768px) {
+      font-size: 1rem;
+    }
+  }
+}
+
+.banner-preview {
+  position: relative;
+  max-width: 350px;
+  margin: 30px auto;
+  p.legendbanner{
+    font-size: 0.85rem;
+    color: $gris;
+    margin-top: 10px;
+  }
+}

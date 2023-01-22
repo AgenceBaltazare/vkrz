@@ -360,3 +360,27 @@ input[type="submit"] {
 .offcanvas{
   z-index: 99999999;
 }
+
+table.dataTable thead>tr>th.sorting:before, table.dataTable thead>tr>th.sorting:after{
+  display: none;
+}
+.dataTables_wrapper{
+  table.dataTable thead .sorting_asc {
+    background: transparent !important;
+  }
+}
+.text-right{
+  text-align: right !important;
+}
+table.dataTable tbody th,
+table.dataTable tbody td {
+  font-weight: 600;
+}
+
+.dark-style table.dataTable td{
+  a.btn{
+    color: #fff;
+    font-weight: 700 !important;
+    font-family: "Libre Franklin", sans-serif !important;
+  }
+}
