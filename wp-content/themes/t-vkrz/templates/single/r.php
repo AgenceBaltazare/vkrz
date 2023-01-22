@@ -157,7 +157,7 @@ endif;
 
               <!-- Twitch Game Ranking -->
               <?php if (!isMobile() && is_user_logged_in() && get_userdata($user_id)->twitch_user) : ?>
-                <div id="twitch-games-ranking" class="card d-none" data-idRanking="<?= $id_ranking; ?>"></div>
+                <div class="popup-overlay d-none" id="twitch-games-ranking" data-idRanking="<?= $id_ranking; ?>"></div>
               <?php endif; ?>
               <!-- /Twitch Game Ranking -->
             </div>

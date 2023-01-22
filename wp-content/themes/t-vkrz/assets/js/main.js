@@ -215,7 +215,8 @@ jQuery(document).ready(function ($) {
           ) {
 
             if (e.target !== copyLinkTopList && e.target !== copyLinkTop) {
-              popUp.classList.add("d-none");
+              // popUp.classList.add("d-none");
+              e.target.closest(".popup-overlay").classList.add("d-none");
             }
           }
         });
@@ -230,35 +231,12 @@ jQuery(document).ready(function ($) {
       popUps.forEach((popUp) => {
         if (!popUp.classList.contains("d-none") || popUp.querySelector('.finish-participate-popup')) {
           dealClosePopUp(popUp);
-        } else {
-          const openPopUp                  = document.querySelector('.open-popup');
-          const popUp                      = document.querySelector('.popup-overlay');
-          const closePopUp                 = document.querySelector('.close-popup');
-          const keurzDropDownMenuContainer = document.querySelector('.keurz-dropdown-container');
-          const keurzDropDownMenu          = document.querySelector('.keurz-dropdown');
-
-          if(!localStorage.getItem('referral')) {
-            keurzDropDownMenuContainer.addEventListener('click', () => {
-              document.querySelector('.signs').classList.remove('signs')
-              localStorage.setItem("referral", "hide");
-            });
-          } else {
-            document.querySelector('.signs').classList.remove('signs');
-          }
-
-          openPopUp.addEventListener('click', () => {
-            popUp.classList.remove('d-none');
-            dealClosePopUp(popUp);
-            keurzDropDownMenu.classList.remove('show');
-            keurzDropDownMenu.classList.add('hide');
-          });
-          closePopUp.addEventListener('click', () => popUp.classList.add('d-none'));
         }
       });
     }
 
     const popUp = document.querySelector('.popup-overlay');
-    const closePopUp = document.querySelector('.close-popup');
+    const closePopUp = document.querySelector('.close-popup') || document.querySelector('#close-popup');
     if (closePopUp){
       closePopUp.addEventListener('click', () => popUp.classList.add('d-none'));
     }

@@ -22,19 +22,25 @@ if(document.querySelector('#twitch-games-ranking')) {
   const predictionWinnerTemplate = function(winner, participantsNumber) {
     let wording = "";
     if(+participantsNumber === 2) {
-      wording = `le gagnant est `;
+      wording = `Le gagnant est `;
     } else {
-      wording = `a gagné contre ${+participantsNumber - 1} autres participants`;
+      wording = `A gagné contre ${+participantsNumber - 1} autres participants`;
     }
 
     return `
-      <div class="card-body">
-        <h4 class="card-title">
-          <i class="fab fa-twitch"></i> ${wording}
-        </h4>
-              
-        <div class="twitchGamesWinnerContainer">
-          <span class="twitchGamesWinnerName confetti">${winner}</span>
+      <div class="popup participate-popup scale-up-center popup-twitch-games-ranking">
+        <button class="close-popup only-x" id="close-popup">&times;</button>
+
+        <div class="popup-header">
+          <h3>
+             ${wording} <i class="fab fa-twitch ms-1"></i>
+          </h3>
+        </div>
+
+        <div class="popup-body">
+          <div class="twitchGamesWinnerContainer">
+            <span class="twitchGamesWinnerName confetti">${winner}</span>
+          </div>
         </div>
       </div>
     `
@@ -83,38 +89,44 @@ if(document.querySelector('#twitch-games-ranking')) {
       row.querySelector('td:first-of-type').innerHTML = positionStr;
     })
 
-    return `
-      <div class="card-body">
-        <h4 class="card-title">
-          <i class="fab fa-twitch"></i> Classements des ${participantsNumber} participants
-        </h4>
+    return `      
+      <div class="popup participate-popup scale-up-center">
+        <button class="close-popup only-x" id="close-popup">&times;</button>
 
-        <table class="table table-points" style="margin-top: auto;">
-          <thead>
-            <tr>
-              <th>
-                <span class="text-muted">
-                  Position
-                </span>
-              </th>
+        <div class="popup-header">
+          <h3>
+            Classements des ${participantsNumber} participants <i class="fab fa-twitch ms-1"></i>
+          </h3>
+        </div>
 
-              <th>
-                <span class="text-muted">
-                  Vainkeur
-                </span>
-              </th>
+        <div class="popup-body">
+          <table class="table table-points" style="margin-top: auto;">
+            <thead>
+              <tr>
+                <th>
+                  <span class="text-muted">
+                    Position
+                  </span>
+                </th>
 
-              <th class="text-left">
-                <span class="text-muted">
-                  Points
-                </span>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            ${tbodyDOM.innerHTML}
-          </tbody>
-        </table>
+                <th>
+                  <span class="text-muted">
+                    Vainkeur
+                  </span>
+                </th>
+
+                <th class="text-left">
+                  <span class="text-muted">
+                    Points
+                  </span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              ${tbodyDOM.innerHTML}
+            </tbody>
+          </table>
+        </div> 
       </div> 
     `
   }
