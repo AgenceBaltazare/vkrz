@@ -2662,7 +2662,7 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
 
 .t-sponso-container .twitch-votes-container,
 .t-normal-container .twitch-votes-container {
-  margin-top: -2rem;
+  margin-top: 1rem;
 }
 .t-sponso-container .twitch-votes-container .votes-stats-p,
 .t-normal-container .twitch-votes-container .votes-stats-p {
@@ -3103,40 +3103,6 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   filter: blur(8px);
   -webkit-filter: blur(8px);
 }
-.t-sponso-container .showTwitchBanner,
-.t-normal-container .showTwitchBanner {
-  width: 100px;
-  height: 100px;
-  background-position: center;
-  background-size: contain !important;
-  background-repeat: no-repeat;
-  position: absolute;
-  cursor: pointer;
-  right: -1.5%;
-  bottom: 34%;
-  opacity: 0.6;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: 0.5s all;
-}
-.t-sponso-container .showTwitchBanner i,
-.t-normal-container .showTwitchBanner i {
-  background: radial-gradient(circle at 10% 20%, rgb(163, 175, 243) 0%, rgb(220, 182, 232) 100.2%);
-  -webkit-text-fill-color: transparent;
-  -webkit-background-clip: text;
-  padding-right: 10px;
-  font-size: 2.8rem;
-}
-.t-sponso-container .showTwitchBanner:hover,
-.t-normal-container .showTwitchBanner:hover {
-  opacity: 1;
-}
-.t-sponso-container .showTwitchBanner.alreadySelected,
-.t-normal-container .showTwitchBanner.alreadySelected {
-  opacity: 1;
-  filter: drop-shadow(0px 0px 8px #670552);
-}
 .t-sponso-container #ranking-player,
 .t-normal-container #ranking-player {
   max-width: 100% !important;
@@ -3334,6 +3300,19 @@ body {
 }
 .modes-jeu-twitch .modes-jeu-twitch__content-btns button:hover small {
   display: block;
+}
+.modes-jeu-twitch .modes-jeu-twitch__content-btns button.selectedGameMode {
+  color: #3fd084;
+  background: transparent !important;
+  border: #3fd084 2px solid;
+}
+.modes-jeu-twitch .modes-jeu-twitch__content-msg {
+  color: #3fd084;
+  font-size: 0.8rem;
+  margin-top: 1rem;
+  display: block;
+  text-align: center;
+  line-height: 1;
 }
 
 .btnstarttwitch {
@@ -3593,6 +3572,7 @@ body {
 }
 #twitch-games-ranking .card-title {
   background: radial-gradient(circle at 10% 20%, rgb(163, 175, 243) 0%, rgb(220, 182, 232) 100.2%);
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: bold;
   font-size: 1.1rem;

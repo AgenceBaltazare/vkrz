@@ -105,11 +105,6 @@ $(document).ready(function ($) {
                 .querySelector("#prediction-player")
                 .classList.remove("d-none");
             });
-          document
-            .querySelector("#winner-relancer")
-            .addEventListener("click", () => {
-              window.location.reload();
-            });
 
           const twitchGameResumeObj = {
             idRanking: `${$(".contender_zone").data("id-ranking")}`,

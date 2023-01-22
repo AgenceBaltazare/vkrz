@@ -89,72 +89,80 @@ endif;
           <!-- TopList -->
           <div class="list-classement">
             <div class="row align-items-end justify-content-center">
-              <?php
-              $i = 1;
-              foreach ($user_ranking as $c) :
-                if ($i == 1) {
-                  $classcontender = "col-12 col-md-5";
-                } elseif ($i == 2) {
-                  $classcontender = "col-7 col-md-4";
-                } elseif ($i == 3) {
-                  $classcontender = "col-5 col-md-3";
-                } else {
-                  $classcontender = "col-md-2 col-4";
-                }
-                if ($i >= 4) {
-                  $d = 3;
-                } else {
-                  $d = $i - 1;
-                }
-              ?>
-                <div class="<?php echo $classcontender; ?>">
-                  <div class="animate__jackInTheBox animate__animated animate__delay-<?php echo $d; ?>s contenders_min <?php echo ($top_infos['top_d_rounded']) ? 'rounded' : ''; ?> mb-3">
-                    <div class="illu">
-                      <?php if ($top_infos['top_d_cover']) : ?>
-                        <?php $illu = get_the_post_thumbnail_url($c, 'large'); ?>
-                        <div class="cov-illu" style="background: url(<?php echo $illu; ?>) center center no-repeat"></div>
-                      <?php else : ?>
-                        <?php if (get_field('visuel_instagram_contender', $c)) : ?>
-                          <img src="<?php the_field('visuel_instagram_contender', $c); ?>" alt="" class="img-fluid">
+              <div class="row align-items-end justify-content-center">
+                <?php
+                $i = 1;
+                foreach ($user_ranking as $c) :
+                  if ($i == 1) {
+                    $classcontender = "col-12 col-md-5";
+                  } elseif ($i == 2) {
+                    $classcontender = "col-7 col-md-4";
+                  } elseif ($i == 3) {
+                    $classcontender = "col-5 col-md-3";
+                  } else {
+                    $classcontender = "col-md-2 col-4";
+                  }
+                  if ($i >= 4) {
+                    $d = 3;
+                  } else {
+                    $d = $i - 1;
+                  }
+                ?>
+                  <div class="<?php echo $classcontender; ?>">
+                    <div class="animate__jackInTheBox animate__animated animate__delay-<?php echo $d; ?>s contenders_min <?php echo ($top_infos['top_d_rounded']) ? 'rounded' : ''; ?> mb-3">
+                      <div class="illu">
+                        <?php if ($top_infos['top_d_cover']) : ?>
+                          <?php $illu = get_the_post_thumbnail_url($c, 'large'); ?>
+                          <div class="cov-illu" style="background: url(<?php echo $illu; ?>) center center no-repeat"></div>
                         <?php else : ?>
-                          <?php echo get_the_post_thumbnail($c, 'large', array('class' => 'img-fluid')); ?>
+                          <?php if (get_field('visuel_instagram_contender', $c)) : ?>
+                            <img src="<?php the_field('visuel_instagram_contender', $c); ?>" alt="" class="img-fluid">
+                          <?php else : ?>
+                            <?php echo get_the_post_thumbnail($c, 'large', array('class' => 'img-fluid')); ?>
+                          <?php endif; ?>
                         <?php endif; ?>
-                      <?php endif; ?>
-                    </div>
-                    <div class="name eh2">
-                      <h3 class="mt-2 eh3">
-                        <?php if ($i == 1) : ?>
-                          <span class="ico">🥇</span>
-                        <?php elseif ($i == 2) : ?>
-                          <span class="ico">🥈</span>
-                        <?php elseif ($i == 3) : ?>
-                          <span class="ico">🥉</span>
-                        <?php else : ?>
-                          <span><?php echo $i; ?><br></span>
+                      </div>
+                      <div class="name eh2">
+                        <h3 class="mt-2 eh3">
+                          <?php if ($i == 1) : ?>
+                            <span class="ico">🥇</span>
+                          <?php elseif ($i == 2) : ?>
+                            <span class="ico">🥈</span>
+                          <?php elseif ($i == 3) : ?>
+                            <span class="ico">🥉</span>
+                          <?php else : ?>
+                            <span><?php echo $i; ?><br></span>
+                          <?php endif; ?>
+                          <?php if (!$top_infos['top_d_titre']) : ?>
+                            <?php echo get_the_title($c); ?>
+                          <?php endif; ?>
+                        </h3>
+                        <?php if (get_field('lien_vers_contender', $c)) : ?>
+                          <div class="next-bloc">
+                            <a href="<?php the_field('lien_vers_contender', $c); ?>" class="seemore" target="_blank">
+                              <?php if (get_field('choix_de_licone_contender', $c) == "shop") : ?>
+                                Acheter
+                              <?php elseif (get_field('choix_de_licone_contender', $c) == "info") : ?>
+                                Découvrir
+                              <?php endif; ?>
+                            </a>
+                          </div>
                         <?php endif; ?>
-                        <?php if (!$top_infos['top_d_titre']) : ?>
-                          <?php echo get_the_title($c); ?>
-                        <?php endif; ?>
-                      </h3>
-                      <?php if (get_field('lien_vers_contender', $c)) : ?>
-                        <div class="next-bloc">
-                          <a href="<?php the_field('lien_vers_contender', $c); ?>" class="seemore" target="_blank">
-                            <?php if (get_field('choix_de_licone_contender', $c) == "shop") : ?>
-                              Acheter
-                            <?php elseif (get_field('choix_de_licone_contender', $c) == "info") : ?>
-                              Découvrir
-                            <?php endif; ?>
-                          </a>
-                        </div>
-                      <?php endif; ?>
+                      </div>
                     </div>
                   </div>
-                </div>
-              <?php $i++;
-              endforeach; ?>
+                <?php $i++;
+                endforeach; ?>
+              </div>
+
+              <!-- Twitch Game Ranking -->
+              <?php if (!isMobile() && is_user_logged_in() && get_userdata($user_id)->twitch_user) : ?>
+                <div id="twitch-games-ranking" class="card d-none" data-idRanking="<?= $id_ranking; ?>"></div>
+              <?php endif; ?>
+              <!-- /Twitch Game Ranking -->
             </div>
           </div>
-          <!-- TopList -->
+          <!-- /TopList -->
         </div>
       </div>
     </div>

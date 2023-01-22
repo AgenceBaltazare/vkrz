@@ -420,44 +420,42 @@ get_header();
                   ?>
                 </div>
                 <?php if (!isMobile() && is_user_logged_in() && get_userdata($user_id)->twitch_user) : ?>
-                  <div class="d-none twitch-votes-container row align-items-center justify-content-center" data-twitchChannel="<?= get_userdata($user_id)->twitch_user; ?>" data-top="<?= $top_infos['top_title'] . ' ' . $top_infos['top_number'] . ' ' . $top_infos['top_question'];  ?> " data-topCategory="<?= $top_infos['top_cat_name'] ?>" data-idTop="<?= $id_top; ?>" data-idVainkeur="<?= $id_vainkeur; ?>">
-                    <div class="row">
-                      <div class="col col-sm-4 row justify-content-between align-items-center">
-                        <div class="taper-container animate__animated animate__slideInDown">
-                          <div class="votes-container">
-                            <p>Taper 1</p>
-                            <div class="votes-stats taper-zone d-none" id="votes-stats-1">
-                              <p class="votes-percent" id="votes-percent-1">0%</p>
+                    <div class="d-none twitch-votes-container row align-items-center justify-content-center" data-twitchChannel="<?= get_userdata($user_id)->twitch_user; ?>" data-top="<?= $top_infos['top_title'] . ' ' . $top_infos['top_number'] . ' ' . $top_infos['top_question'];  ?> " data-topCategory="<?= $top_infos['top_cat_name'] ?>" data-idTop="<?= $id_top; ?>" data-idVainkeur="<?= $id_vainkeur; ?>">
+                        <div class="row">
+                          <div class="col col-sm-4 w-100 d-flex justify-content-evenly align-items-center">
+                            <div class="taper-container animate__animated animate__slideInDown">
+                              <div class="votes-container">
+                                <p>Taper 1</p>
+                                <div class="votes-stats taper-zone d-none" id="votes-stats-1">
+                                  <p class="votes-percent" id="votes-percent-1">0%</p>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="votes-stats-container d-none">
+                              <p class="votes-stats-p">
+                                <strong class="votes-number">0</strong> <span class="votes-number-wording">Vote</span> du chat
+                              </p>
+                              <p>
+                                <strong class="votes-number-total">0</strong> votes depuis le début
+                              </p>
+                            </div>
+                            <div class="taper-container animate__animated animate__slideInUp">
+                              <div class="votes-container">
+                                <p>Taper 2</p>
+                                <div class="votes-stats taper-zone d-none" id="votes-stats-2">
+                                  <p class="votes-percent" id="votes-percent-2">0%</p>
+                                </div>
+                              </div>
                             </div>
                           </div>
+                          <div class="col-sm-4 col-12"></div>
                         </div>
-                        <div class="votes-stats-container d-none">
-                          <p class="votes-stats-p">
-                            <strong class="votes-number">0</strong> <span class="votes-number-wording">Vote</span> du chat
-                          </p>
-                          <p>
-                            <strong class="votes-number-total">0</strong> votes depuis le début
-                          </p>
-                        </div>
-                        <div class="taper-container animate__animated animate__slideInUp">
-                          <div class="votes-container">
-                            <p>Taper 2</p>
-                            <div class="votes-stats taper-zone d-none" id="votes-stats-2">
-                              <p class="votes-percent" id="votes-percent-2">0%</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-sm-4 col-12">
-                      </div>
                     </div>
-                  </div>
                   <div class="twitchGamesWinnerContainer">
                     <span class="twitchGamesWinnerName confetti"></span>
                     <div class="buttons">
-                      <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" href="#" class="confirm_delete btn btn-sm btn-outline-dark waves-effect mr-1"> Recommencer</a>
-                      <a href="#" class="btn btn-sm btn-outline-primary waves-effect mr-1" id="winner-continuer"> Continuer</a>
-                      <a href="#" class="btn btn-sm btn-outline-danger waves-effect" id="winner-relancer"> Relancer</a>
+                      <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" href="#" class="confirm_delete btn btn-sm btn-outline-dark waves-effect me-2"> Relancer</a>
+                      <a href="#" class="btn btn-sm btn-outline-primary waves-effect" id="winner-continuer"> Continuer</a>
                     </div>
                   </div>
                   <audio id="winner-sound" style="display: none; width: 0 !important;">
@@ -537,7 +535,7 @@ get_header();
                         </button>
                       </div>
                     </div>
-                    <span class="mode-alert"><i class="far fa-info-circle"></i> Il faut au moins deux participants</span>
+                    <span class="mode-alert"><i class="fas fa-info-circle"></i> Il faut au moins deux participants</span>
                     <div id="participants-overlay" class="mt-2 text-white d-none" data-content="Participants :"></div>
                     <a data-phrase1="Es-tu sûr de vouloir recommencer ?" data-phrase2="Tous les votes de ce Top seront remis à 0" data-id_ranking="<?php echo $id_ranking; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" href="#" class="confirm_delete btn btn-sm btn-outline-dark waves-effect">
                       Annuler
@@ -565,7 +563,7 @@ get_header();
                   <table class="table table-points">
                     <thead>
                       <tr>
-                        <th>
+                        <th class="text-center">
                           <span class="text-muted">
                             Position
                           </span>
@@ -577,7 +575,7 @@ get_header();
                           </span>
                         </th>
 
-                        <th class="text-left">
+                        <th class="text-center">
                           <span class="text-muted">
                             Points
                           </span>
