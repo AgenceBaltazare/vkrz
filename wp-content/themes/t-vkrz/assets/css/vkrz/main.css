@@ -420,6 +420,10 @@ table.dataTable tbody td {
   font-family: "Libre Franklin", sans-serif !important;
 }
 
+.navbar-collapse {
+  flex-grow: 0;
+}
+
 .cover {
   background-size: cover !important;
 }
@@ -1730,6 +1734,10 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   border-radius: 50%;
   width: 120px;
   border: 3px solid #ffffff;
+}
+
+.bg-card {
+  background-color: rgba(97, 84, 167, 0.1) !important;
 }
 
 .page-template-monitor .list-vainkeur-monitor {
@@ -4671,11 +4679,42 @@ select:-webkit-autofill:focus {
   transition: all 0.2s ease-in;
   margin: 0 10px;
   border-radius: 5px;
+  box-shadow: none !important;
+  font-family: "montserrat";
+  transition: all 0.2s ease-in;
+  border-radius: 5px;
+  box-shadow: none !important;
+  font-size: 13px;
+  letter-spacing: 0.15px;
 }
 .content-compte .nav-link:hover {
   background: rgba(255, 255, 255, 0.05);
 }
 .content-compte .nav-link.active {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+}
+
+.detailskeurz .nav-tabs {
+  background: #7367f0;
+}
+.detailskeurz .nav-link {
+  font-weight: 600;
+  color: #fff;
+  padding: 5px 10px;
+  font-family: "montserrat";
+  transition: all 0.2s ease-in;
+  margin: 10px;
+  border-radius: 5px;
+  box-shadow: none !important;
+  font-size: 13px;
+  letter-spacing: 0.15px;
+}
+.detailskeurz .nav-link:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff !important;
+}
+.detailskeurz .nav-link.active {
   background: rgba(255, 255, 255, 0.05);
   color: #fff;
 }

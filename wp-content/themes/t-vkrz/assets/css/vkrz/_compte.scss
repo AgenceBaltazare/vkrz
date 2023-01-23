@@ -506,10 +506,44 @@ select:-webkit-autofill:focus {
     transition: all 0.2s ease-in;
     margin: 0 10px;
     border-radius: 5px;
+    box-shadow: none !important;
+    font-family: 'montserrat';
+    transition: all 0.2s ease-in;
+    border-radius: 5px;
+    box-shadow: none !important;
+    font-size: 13px;
+    letter-spacing: 0.15px;
     &:hover{
       background: rgba(255, 255, 255, 0.05);
     }
     &.active{
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+    }
+  }
+}
+
+.detailskeurz{
+  .nav-tabs{
+    background: $c5;
+  }
+  .nav-link {
+    font-weight: 600;
+    color: #fff;
+    padding: 5px 10px;
+    font-family: 'montserrat';
+    transition: all 0.2s ease-in;
+    margin: 10px;
+    border-radius: 5px;
+    box-shadow: none !important;
+    font-size: 13px;
+    letter-spacing: 0.15px;
+    &:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff !important;
+    }
+
+    &.active {
       background: rgba(255, 255, 255, 0.05);
       color: #fff;
     }

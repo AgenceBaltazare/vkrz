@@ -51,6 +51,8 @@ function get_creator_money($creator_id)
 
 function get_creator_money_for_duplicated($user_id){
 
+    $nb_contenders = 0;
+    
     $list_tops = new WP_Query(array(
         'post_type'              => 'tournoi',
         'orderby'                => 'date',
