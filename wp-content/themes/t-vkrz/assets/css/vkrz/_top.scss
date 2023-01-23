@@ -668,8 +668,8 @@
 .t-normal-container {
 
     .twitch-votes-container {
-        margin-top: -2rem;
-    
+        margin-top: 1rem;
+        
         .votes-stats-p {
             font-size: 1.8rem;
             line-height: 100%;
@@ -680,7 +680,6 @@
             }
     
             & + p {
-    
                 font-size: 1rem;
             }
         }
@@ -1023,45 +1022,6 @@
         -webkit-filter: blur(8px);
     }
 
-    .showTwitchBanner {
-        width: 100px;
-        height: 100px;
-
-        background-position: center;
-        background-size: contain !important;
-        background-repeat: no-repeat;
-        position: absolute;
-
-        cursor: pointer;
-
-        right: -1.5%;
-        bottom: 34%;
-        opacity: .6;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        transition: .5s all;
-
-        i {
-            background: radial-gradient(circle at 10% 20%, rgb(163, 175, 243) 0%, rgb(220, 182, 232) 100.2%);
-            -webkit-text-fill-color: transparent;
-            -webkit-background-clip: text;
-            padding-right: 10px;
-            font-size: 2.8rem;
-        }
-
-        &:hover {
-            opacity: 1;
-        }
-
-        &.alreadySelected {
-            opacity: 1;
-            filter: drop-shadow(0px 0px 8px #670552);
-        }
-    }
-
     #ranking-player {
         h4 {
             color: $c5 !important;
@@ -1265,7 +1225,23 @@ body {
           display: block;
         }
       }
+
+      &.selectedGameMode
+      {
+        color: #3fd084;
+        background: transparent !important;
+        border: #3fd084 2px solid;
+      }
     }
+  }
+
+  .modes-jeu-twitch__content-msg {
+    color: #3fd084;
+    font-size: .8rem;
+    margin-top: 1rem;
+    display: block;
+    text-align: center;
+    line-height: 1;
   }
 }
 
