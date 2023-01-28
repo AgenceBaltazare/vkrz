@@ -59,6 +59,7 @@ if ($id_vainkeur) {
                     </div>
                     <?php
                     $choix_des_tops_room = get_field('liste_des_tops_room');
+                    var_dump($choix_des_tops_room);
                     $tops_in_room        = new WP_Query(array(
                         'ignore_sticky_posts'        => true,
                         'update_post_meta_cache'    => false,

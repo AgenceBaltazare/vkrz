@@ -259,3 +259,52 @@ jQuery(document).ready(function ($) {
     }
   };
 });
+
+
+
+var prefetUsers = new Bloodhound({
+  datumTokenizer: Bloodhound.tokenizers.whitespace,
+  queryTokenizer: Bloodhound.tokenizers.whitespace,
+  prefetch: "http://localhost:8888/vkrz/wp-json/vkrz/v1/get_all_users/"
+});
+var prefetContent = new Bloodhound({
+  datumTokenizer: Bloodhound.tokenizers.whitespace,
+  queryTokenizer: Bloodhound.tokenizers.whitespace,
+  prefetch: "http://localhost:8888/vkrz/wp-json/vkrz/v1/getcontent/"
+});
+
+
+$("#searchmembres").typeahead(
+  {
+    highlight: true,
+    minLength: 1
+  },
+  {
+    name: "result",
+    source: prefetUsers
+  }
+);
+
+$("#searchtops").typeahead(
+  {
+    highlight: true,
+    minLength: 1
+  },
+  {
+    name: "result",
+    source: prefetContent
+  }
+);
+
+$("#typesearch").change(function(){
+  var typesearch = $(this).val();
+  console.log(typesearch);
+  if(typesearch == "Membres"){
+    $('#searchtops').hide();
+    $('#searchmembres').show();
+  }
+  else{
+    $('#searchtops').show();
+    $('#searchmembres').hide();
+  }
+});

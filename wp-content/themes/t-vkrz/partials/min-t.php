@@ -25,14 +25,15 @@ if (is_single()) {
 } elseif (is_page(302768)) {
   $class        = "col-md-4";
 }
-if (in_array($id_top, $list_user_tops)) {
-  $state = "done";
-} elseif (in_array($id_top, $list_user_tops_begin)) {
-  $state = "begin";
-} else {
-  $state = "todo";
+if($list_user_tops){
+  if (in_array($id_top, $list_user_tops)) {
+    $state = "done";
+  } elseif (in_array($id_top, $list_user_tops_begin)) {
+    $state = "begin";
+  } else {
+    $state = "todo";
+  }
 }
-
 ?>
 <div class="min-tournoi card scaler">
   <div class="cov-illu cover" style="background: url(<?php echo $illu; ?>) center center no-repeat">

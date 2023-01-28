@@ -93,7 +93,7 @@ $utm = deal_utm();
 </head>
 
 <?php
-if ($infos_vainkeur['avatar']) {
+if ($infos_vainkeur) {
   $anonyme_avatar_url = $infos_vainkeur['avatar'];
 } else {
   $anonyme_avatar_url = get_bloginfo('template_directory') . '/assets/images/vkrz/avatar-rose.png';

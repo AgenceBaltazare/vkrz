@@ -142,60 +142,61 @@ $list_sujets      = array();
       </div>
     </div>
   </div>
-  <?php if ($tops_in_cat->have_posts()) : $i = 1; ?>
-    <section class="row match-height mt-4 grid-to-filtre">
-      <?php while ($tops_in_cat->have_posts()) : $tops_in_cat->the_post();
-        $id_top             = get_the_ID();
-        $get_top_rubrique   = get_the_terms($id_top, 'rubrique');
-        $list_des_rubriques = array();
-        if ($get_top_rubrique) {
-          foreach ($get_top_rubrique as $rubrique) {
-            $list_des_rubriques = $rubrique->slug;
+  <div class="container-xxl">
+    <?php if ($tops_in_cat->have_posts()) : $i = 1; ?>
+      <section class="row match-height mt-4 grid-to-filtre">
+        <?php while ($tops_in_cat->have_posts()) : $tops_in_cat->the_post();
+          $id_top             = get_the_ID();
+          $get_top_rubrique   = get_the_terms($id_top, 'rubrique');
+          $list_des_rubriques = array();
+          if ($get_top_rubrique) {
+            foreach ($get_top_rubrique as $rubrique) {
+              $list_des_rubriques = $rubrique->slug;
+            }
           }
-        }
-        $top_question   = get_field('question_t', $id_top);
-        $top_title      = get_the_title($id_top);
-        $term_to_search = $top_question . " " . $top_title;
-        $id_top           = get_the_ID();
-        $top_datas        = get_top_data($id_top);
-        $creator_id       = get_post_field('post_author', $id_top);
-        $creator_info     = get_userdata($creator_id);
-        $creator_pseudo   = $creator_info->nickname;
-        $creator_avatar   = get_avatar_url($creator_id, ['size' => '80', 'force_default' => false]);
-        $type_top         = "";
-        $state            = "";
-        $illu             = get_the_post_thumbnail_url($id_top, 'large');
-        $get_top_type = get_the_terms($id_top, 'type');
-        if ($get_top_type) {
-          foreach ($get_top_type as $type_top) {
-            $type_top = $type_top->slug;
+          $top_question   = get_field('question_t', $id_top);
+          $top_title      = get_the_title($id_top);
+          $term_to_search = $top_question . " " . $top_title;
+          $id_top           = get_the_ID();
+          $top_datas        = get_top_data($id_top);
+          $creator_id       = get_post_field('post_author', $id_top);
+          $creator_info     = get_userdata($creator_id);
+          $creator_pseudo   = $creator_info->nickname;
+          $creator_avatar   = get_avatar_url($creator_id, ['size' => '80', 'force_default' => false]);
+          $type_top         = "";
+          $state            = "";
+          $illu             = get_the_post_thumbnail_url($id_top, 'large');
+          $get_top_type = get_the_terms($id_top, 'type');
+          if ($get_top_type) {
+            foreach ($get_top_type as $type_top) {
+              $type_top = $type_top->slug;
+            }
           }
-        }
-        if (in_array($id_top, $list_user_tops)) {
-          $state = "done";
-        } elseif (in_array($id_top, $list_user_tops_begin)) {
-          $state = "begin";
-        } else {
-          $state = "todo";
-        }
-      ?>
-        <div class="col-md-3 col-sm-4 col-6 grid-item" data-filter-item="<?php echo $state; ?> <?php echo $list_des_rubriques; ?>" data-filter-name="<?php echo $term_to_search; ?>">
-          <?php get_template_part('partials/min-t'); ?>
-        </div>
-      <?php $i++;
-      endwhile; ?>
+          if (in_array($id_top, $list_user_tops)) {
+            $state = "done";
+          } elseif (in_array($id_top, $list_user_tops_begin)) {
+            $state = "begin";
+          } else {
+            $state = "todo";
+          }
+        ?>
+          <div class="col-md-3 col-sm-4 col-6 grid-item" data-filter-item="<?php echo $state; ?> <?php echo $list_des_rubriques; ?>" data-filter-name="<?php echo $term_to_search; ?>">
+            <?php get_template_part('partials/min-t'); ?>
+          </div>
+        <?php $i++;
+        endwhile; ?>
 
-    </section>
+      </section>
 
-  <?php else : ?>
+    <?php else : ?>
 
-    <div class="noresult">
-      <h2>
-        <span class="ico va va-woozy-face va-lg"></span> Aucun Top disponible par ici 🤪
-      </h2>
-    </div>
+      <div class="noresult">
+        <h2>
+          <span class="ico va va-woozy-face va-lg"></span> Aucun Top disponible par ici 🤪
+        </h2>
+      </div>
 
-  <?php endif; ?>
+    <?php endif; ?>
+  </div>
 </div>
-
 <?php get_footer(); ?>

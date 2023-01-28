@@ -15,13 +15,6 @@
     };
   }
 
-  // On hiding modal, remove iframe video/audio to stop playing
-  const youTubeModal = document.querySelector('#youTubeModal'),
-    youTubeModalVideo = youTubeModal.querySelector('iframe');
-  youTubeModal.addEventListener('hidden.bs.modal', function () {
-    youTubeModalVideo.setAttribute('src', '');
-  });
-
   // Function to get and auto play youTube video
   const autoPlayYouTubeModal = function () {
     const modalTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="modal"]'));

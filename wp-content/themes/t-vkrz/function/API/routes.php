@@ -81,7 +81,7 @@ add_action('rest_api_init', function () {
     ]
   ));
 
-  // Liste des TopList d'un Top
+  // Liste des TopList d'un VAINKEURZ
   register_rest_route('vkrz/v1', '/getalltoplistbyidvainkeur/(?P<id_vainkeur>\w+)/(?P<page>\w+)', array(
     'methods' => 'GET',
     'callback' => 'get_all_toplist_by_id_vainkeur',
@@ -91,7 +91,7 @@ add_action('rest_api_init', function () {
     ]
   ));
 
-  // Liste des TopList d'un Top
+  // Détection du dodo
   register_rest_route('vkrz/v1', '/getdodo/(?P<critere>\w+)/(?P<duree>\w+)', array(
     'methods' => 'GET',
     'callback' => 'get_the_dodo',
@@ -101,7 +101,7 @@ add_action('rest_api_init', function () {
     ]
   ));
 
-  // Nombre de Shopper
+  // Nombre de Shopper potentiel
   register_rest_route('vkrz/v1', '/getshopper/(?P<keurz>\w+)', array(
     'methods' => 'GET',
     'callback' => 'get_shopper',
@@ -117,6 +117,36 @@ add_action('rest_api_init', function () {
     'args' => [
       'tendance'
     ]
+  ));
+  
+  // ALL VKRZ content
+  register_rest_route('vkrz/v1', '/getcontent/', array(
+    'methods' => 'GET',
+    'callback' => 'get_all_content'
+  ));
+  
+  // Result for searchbar
+  register_rest_route('vkrz/v1', '/searchbar/(?P<recherche>[a-zA-Z0-9-]+)', array(
+    'methods' => 'GET',
+    'callback' => 'get_all_tops_ids_for_search',
+    'args' => [
+      'recherche'
+    ]
+  ));
+  
+  // Result for members
+  register_rest_route('vkrz/v1', '/get_member_search/(?P<recherche>[a-zA-Z0-9-]+)', array(
+    'methods' => 'GET',
+    'callback' => 'get_all_members_ids_for_search',
+    'args' => [
+      'recherche'
+    ]
+  ));
+  
+  // List of all members
+  register_rest_route('vkrz/v1', '/get_all_users/', array(
+    'methods' => 'GET',
+    'callback' => 'get_all_users'
   ));
 
 });

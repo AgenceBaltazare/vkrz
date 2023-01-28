@@ -84,7 +84,7 @@ $vainkeurs = get_best_vainkeur("money", NULL, 20);
                           </td>
 
 
-                          <td class="text-center checking-follower">
+                          <td class="text-right checking-follower">
                             <?php if (get_current_user_id() != $user_id) : ?>
                               <?php if (get_current_user_id() != $user_id && is_user_logged_in()) : ?>
                                 <button type="button" id="followBtn" class="btn waves-effect btn-follow d-none" data-userid="<?= get_current_user_id(); ?>" data-uuid="<?= get_field('uuiduser_user', 'user_' . get_current_user_id()); ?>" data-relatedid="<?= $user_id; ?>" data-relateduuid="<?= get_field('uuiduser_user', 'user_' . $user_id); ?>" data-text="<?= get_the_author_meta('nickname', get_current_user_id()); ?> te guette !" data-url="<?= get_author_posts_url(get_current_user_id()); ?>">

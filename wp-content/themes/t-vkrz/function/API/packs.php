@@ -2,7 +2,6 @@
 
 function get_user_infos_from_api($data)
 {
-
   $uuid_vainkeur = $data['uuiduser'];
   return get_user_infos($uuid_vainkeur, "complete");
 }
@@ -735,13 +734,141 @@ function get_tops_tendance($data){
         if ($url_top) {
           array_push($result, array(
             "id_top"        => $id_top,
-            "tweet"         => "#" . $tendance . " - " . $top_info['top_question'] . " 👉 " . $url_top,
+            "tweet"         => "#" . $tendance . " - " . $top_info['top_question'] . " 👉 " . $url_top
           ));
         }
         $wpdb->insert($table_name, array('id_top' => $id_top, 'tendance' => $tendance));
       }
     }
-
   }
   return $result;
 }
+
+function get_all_content(){
+
+  $list_result        = array();
+  $list_result_unique = array();
+
+  $all_tops = new WP_Query(array(
+    'post_type'                 => 'tournoi',
+    'posts_per_page'            => -1,
+    'ignore_sticky_posts'       => true,
+    'update_post_meta_cache'    => false,
+    'no_found_rows'             => true,
+    'tax_query'                 => array(
+      array(
+        'taxonomy' => 'type',
+        'field'    => 'slug',
+        'terms'    => array('private', 'whitelabel', 'onboarding'),
+        'operator' => 'NOT IN'
+      ),
+    )
+  ));
+  while ($all_tops->have_posts()) : $all_tops->the_post();
+    array_push($list_result, get_the_title());
+  endwhile;
+
+  $all_contenders = new WP_Query(array(
+    'post_type'                 => 'contender',
+    'posts_per_page'            => -1,
+    'ignore_sticky_posts'       => true,
+    'update_post_meta_cache'    => false,
+    'no_found_rows'             => true
+  ));
+  while ($all_contenders->have_posts()) : $all_contenders->the_post();
+    array_push($list_result, get_the_title());
+  endwhile;
+
+  $list_result_unique   = array_values(array_unique($list_result));
+  return $list_result_unique;
+}
+
+function get_all_tops_ids_for_search($data){
+  
+  $recherche      = strval($data['recherche']);
+  $list_result    = array();
+
+  $tops_to_find = new WP_Query(array(
+    'post_type'                 => 'tournoi',
+    'posts_per_page'            => -1,
+    'ignore_sticky_posts'       => true,
+    'update_post_meta_cache'    => false,
+    'no_found_rows'             => true,
+    'tax_query'                 => array(
+      array(
+        'taxonomy' => 'type',
+        'field'    => 'slug',
+        'terms'    => array('private', 'whitelabel', 'onboarding'),
+        'operator' => 'NOT IN'
+      ),
+    ),
+    's'                         => $recherche,
+  ));
+  while ($tops_to_find->have_posts()) : $tops_to_find->the_post();
+    array_push($list_result, get_the_ID());
+  endwhile;
+
+  $contenders_to_find = new WP_Query(array(
+    'post_type'                 => 'contender',
+    'posts_per_page'            => -1,
+    'ignore_sticky_posts'       => true,
+    'update_post_meta_cache'    => false,
+    'no_found_rows'             => true,
+    's'                         => $recherche
+  ));
+  while ($contenders_to_find->have_posts()) : $contenders_to_find->the_post();
+    array_push($list_result, get_field('id_tournoi_c', get_the_ID()));
+  endwhile;
+
+  $list_result_unique   = array_unique($list_result);
+  
+  return $list_result_unique;
+}
+
+function get_all_users(){
+
+  $members_array = array();
+
+  $all_members = new WP_User_Query(
+    array(
+      'role__in' => array('Administrator', 'author', 'Subscriber'),
+      'number'   => 1000,
+      'order' => 'ASC',
+      'orderby' => 'display_name',
+    )
+  );
+  $list_members = $all_members->get_results();
+  if (!empty($list_members)) {
+    foreach ($list_members as $member) {
+      array_push($members_array, $member->nickname);
+    }
+  }
+
+  return $members_array;
+}
+
+function get_all_members_ids_for_search($data){
+
+  $recherche     = $data['recherche'];
+  $members_array = array();
+
+  $all_members = new WP_User_Query(
+    array(
+      'role__in' => array('Administrator', 'author', 'Subscriber'),
+      'number'   => 1000,
+      'order' => 'ASC',
+      'orderby' => 'display_name',
+      's'       => $recherche
+    )
+  );
+  $list_members = $all_members->get_results();
+  if (!empty($list_members)) {
+    foreach ($list_members as $member) {
+      array_push($members_array, $member->user_id);
+    }
+  }
+
+  return $members_array;
+}
+
+

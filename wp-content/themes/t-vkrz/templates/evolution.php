@@ -246,7 +246,7 @@ $level_user = $infos_vainkeur['level_number'];
             <div class="eh">
               <span class="ico-master va va-z-85 va-dragon"></span>
             </div>
-            <h3>Niveau final</h3>
+            <h3>Niveau légendaire</h3>
             <p class="card-text eh2">
               Est-il seulement possible qu'un humain atteigne ce niveau ?
             </p>
