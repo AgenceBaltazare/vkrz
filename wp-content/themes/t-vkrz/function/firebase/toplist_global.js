@@ -146,7 +146,7 @@ let nombrePages = getNombrePages.nb_pages,
               </a>
               <a href="${
                 toplist.toplist_url
-              }" class="btn btn-flat-secondary waves-effect" data-toggle="tooltip" data-placement="top" title="" data-original-title="Juger sa TopList">
+              }#juger" class="btn btn-flat-secondary waves-effect" data-toggle="tooltip" data-placement="top" title="" data-original-title="Juger sa TopList">
                   <span class="ico va va-hache va-lg"></span>
               </a>
             </td>

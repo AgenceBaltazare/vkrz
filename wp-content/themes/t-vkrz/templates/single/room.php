@@ -329,7 +329,7 @@ if ($id_vainkeur) {
                                                                 <a href="<?php the_permalink($id_ranking); ?>" class="btn btn-flat-secondary waves-effect" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir la TopList">
                                                                     <span class="ico ico-reverse va va-eyes va-lg"></span>
                                                                 </a>
-                                                                <a href="<?php the_permalink($id_ranking); ?>#jugement" class="btn btn-flat-secondary waves-effect" data-toggle="tooltip" data-placement="top" title="" data-original-title="Juger la TopList">
+                                                                <a href="<?php the_permalink($id_ranking); ?>#juger" class="btn btn-flat-secondary waves-effect" data-toggle="tooltip" data-placement="top" title="" data-original-title="Juger la TopList">
                                                                     <span class="ico va va-hache va-lg"></span>
                                                                 </a>
                                                             </td>

@@ -291,6 +291,23 @@ jQuery(document).ready(function ($) {
       "wordpress_vainkeurz_user_utm=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 UTC";
       setCookie("wordpress_vainkeurz_user_utm", utm, 365)
     }
+
+    // JUGEMENT TAB
+    if(window.location.href.includes("#juger")) {
+      const jugementsContainer = document.querySelector('.toplist_comments');
+      const jugementInput      = jugementsContainer.querySelector('#comment');
+      const closeBtn           = jugementsContainer.querySelector('.btn-close');
+
+      jugementsContainer.classList.add('show');
+      jugementsContainer.ariaModal = "true";
+      jugementsContainer.role = "dialog";
+      jugementInput.focus();
+      closeBtn.addEventListener('click', () => {
+        jugementsContainer.classList.remove('show');
+        jugementsContainer.ariaModal = "";
+        jugementsContainer.role = "";
+      })
+    }
   };
 });
 

@@ -112,7 +112,6 @@ $(".table-toplist-done").DataTable({
     columns: [
         { orderable: false },
         { orderable: false },
-        { orderable: true },
         { orderable: false }
     ],
     language: {

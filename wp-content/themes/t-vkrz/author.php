@@ -129,7 +129,7 @@ if ($infos_vainkeur_to_watch['user_role'] == "administrator" || $infos_vainkeur_
       <div class="col-xl-9 col-lg-8 col-md-8">
 
         <!-- Stats Users -->
-        <section class="app-user-view">
+        <section id="ancore" class="app-user-view">
           <div class="row match-height">
             <div class="col-sm-4 col-12">
               <div class="card text-center">
@@ -396,7 +396,7 @@ if ($infos_vainkeur_to_watch['user_role'] == "administrator" || $infos_vainkeur_
                             <a class="btn btn-icon btn-label-primary waves-effect" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $top['id_top']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir la TopList mondiale">
                               <span class="va va-globe va-lg"></span>
                             </a>
-                            <a href="<?php the_permalink($top['id_ranking']); ?>" class="btn btn-icon btn-label-primary waves-effect" data-toggle="tooltip" data-placement="top" title="" data-original-title="Juger cette TopList">
+                            <a href="<?php the_permalink($top['id_ranking']); ?>#juger" class="btn btn-icon btn-label-primary waves-effect" data-toggle="tooltip" data-placement="top" title="" data-original-title="Juger cette TopList">
                               <span class="va va-hache va-lg"></span>
                             </a>
                           </div>
@@ -471,7 +471,7 @@ if ($infos_vainkeur_to_watch['user_role'] == "administrator" || $infos_vainkeur_
                               <a class="btn btn-icon btn-label-primary waves-effect" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $top['id_top']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir la TopList mondiale">
                                 <span class="va va-globe va-lg"></span>
                               </a>
-                              <a href="<?php the_permalink($top['id_ranking']); ?>" class="btn btn-icon btn-label-primary waves-effect" data-toggle="tooltip" data-placement="top" title="" data-original-title="Juger cette TopList">
+                              <a href="<?php the_permalink($top['id_ranking']); ?>#juger" class="btn btn-icon btn-label-primary waves-effect" data-toggle="tooltip" data-placement="top" title="" data-original-title="Juger cette TopList">
                                 <span class="va va-hache va-lg"></span>
                               </a>
                             </div>
@@ -492,7 +492,7 @@ if ($infos_vainkeur_to_watch['user_role'] == "administrator" || $infos_vainkeur_
               </button>
             </div>
           <?php endif; ?>
-          <?php if ($has_t_begin) : ?>
+          <?php if (isset($has_t_begin) && $has_t_begin) : ?>
             <div class="tab-pane" id="tab1" aria-labelledby="homeIcon-tab" role="tabpanel">
               <div class="row">
                 <div class="col-12">
@@ -548,7 +548,7 @@ if ($infos_vainkeur_to_watch['user_role'] == "administrator" || $infos_vainkeur_
         </section>
         <!-- /Users TopList -->
 
-        <?php if ($data_t_created['creator_tops']) : ?>
+        <?php if (isset($data_t_created) && $data_t_created['creator_tops']) : ?>
           <!-- Creator Top -->
           <section id="topsducreateur" class="mt-4">
             <div class="card">

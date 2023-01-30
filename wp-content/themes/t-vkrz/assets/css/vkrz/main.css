@@ -7035,7 +7035,8 @@ select:-webkit-autofill:focus {
   -webkit-text-fill-color: #A9A9AC !important;
 }
 #jugement .commentarea-container textarea:focus {
-  outline: none;
+  outline: #7368F0 1px solid;
+  border: #7368F0 1px solid;
 }
 #jugement .commentarea-container button {
   position: absolute;

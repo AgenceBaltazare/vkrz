@@ -148,7 +148,7 @@ if ($infos_vainkeur['user_role'] == "administrator" || $infos_vainkeur['user_rol
         <!-- /Menu compte -->
         
         <!-- Stats Users -->
-        <section class="app-user-view">
+        <section id="ancore" class="app-user-view">
           <div class="row match-height">
             <div class="col-sm-6 col-12">
               <div class="card text-center">
@@ -460,7 +460,7 @@ if ($infos_vainkeur['user_role'] == "administrator" || $infos_vainkeur['user_rol
                             <a class="btn btn-icon btn-label-primary waves-effect" href="<?php the_permalink(get_toplist_mondiale($id_top)); ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir la TopList mondiale">
                               <span class="va va-globe va-lg"></span>
                             </a>
-                            <a href="<?php the_permalink($top['id_ranking']); ?>" class="btn btn-icon btn-label-primary waves-effect" data-toggle="tooltip" data-placement="top" title="" data-original-title="Juger cette TopList">
+                            <a href="<?php the_permalink($top['id_ranking']); ?>#juger" class="btn btn-icon btn-label-primary waves-effect" data-toggle="tooltip" data-placement="top" title="" data-original-title="Juger cette TopList">
                               <span class="va va-hache va-lg"></span>
                             </a>
                           </div>
@@ -537,7 +537,7 @@ if ($infos_vainkeur['user_role'] == "administrator" || $infos_vainkeur['user_rol
                               <a class="btn btn-icon btn-label-primary waves-effect" href="<?php the_permalink(get_toplist_mondiale($id_top)); ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir la TopList mondiale">
                                 <span class="va va-globe va-lg"></span>
                               </a>
-                              <a href="<?php the_permalink($top['id_ranking']); ?>" class="btn btn-icon btn-label-primary waves-effect" data-toggle="tooltip" data-placement="top" title="" data-original-title="Juger cette TopList">
+                              <a href="<?php the_permalink($top['id_ranking']); ?>#juger" class="btn btn-icon btn-label-primary waves-effect" data-toggle="tooltip" data-placement="top" title="" data-original-title="Juger cette TopList">
                                 <span class="va va-hache va-lg"></span>
                               </a>
                             </div>
@@ -589,6 +589,7 @@ if ($infos_vainkeur['user_role'] == "administrator" || $infos_vainkeur['user_rol
                 </thead>
                 <tbody>
                   <?php
+                  if(isset($data_t_created)) :
                   foreach ($data_t_created['creator_tops'] as $item) : ?>
                     <?php if (!in_array($item['top_id'], get_exclude_top())) : ?>
                       <tr>
@@ -627,7 +628,7 @@ if ($infos_vainkeur['user_role'] == "administrator" || $infos_vainkeur['user_rol
                         </td>
                       </tr>
                   <?php endif;
-                  endforeach; ?>
+                  endforeach; endif; ?>
                 </tbody>
               </table>
             </div>
