@@ -23,22 +23,30 @@ $codeparrain = get_field('code_parrain_user', 'user_' . $user_id);
         <!-- User cover -->
 
         <!-- page keurz -->
-        <div class="card text-center">
-          <div class="card-body">
+        <!-- keurz parrain -->
+        <div class="card">
+          <div class="card-body text-center">
             <div class="mb-1">
-              <span class="va va-gem va-5x"></span>
+              <span class="ico4 va va-gem va va-z-85"></span>
             </div>
-            <h3 class="font-weight-bolder my-1">
-              La page KEURZ
-            </h3>
+            <h2 class="font-weight-bolder">
+              <?php if ($infos_vainkeur['money_parrain_vkrz']) : ?>
+                <?php echo number_format($infos_vainkeur['money_parrain_vkrz'], 0, ",", " "); ?>
+              <?php else : ?>
+                -
+              <?php endif; ?>
+            </h2>
             <p class="card-text legende">
-              <a href="<?php the_permalink(get_page_by_path('mon-compte/keurz')); ?>/#tab4" class="btn btn-outline-primary waves-effect w-50" target="_blank">
-                Voir plus de details
-              </a>
+              Collecté en tant que parrain
             </p>
+            <small class="text-primary">Mis à jour tous les 24h</small>
+            <div class="separate my-3"></div>
+            <a href="<?php the_permalink(get_page_by_path('mon-compte/keurz')); ?>/#tab4" class="btn btn-outline-primary waves-effect w-100" target="_blank">
+              Voir le details des KEURZ
+            </a>
           </div>
         </div>
-        <!-- /page keurz -->
+        <!-- /keurz parrain -->
 
       </div>
       <!--/ User Sidebar -->

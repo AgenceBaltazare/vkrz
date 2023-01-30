@@ -64,26 +64,11 @@ if ($id_membre) {
             <?php endif; ?>
           </div>
           <div class="separate my-3"></div>
-          <?php if ($infos_vainkeur['user_role'] == "administrator" || $infos_vainkeur['user_role'] == "author") : ?>
-            <a class="btn btn-outline-primary waves-effect mb-2 w-100" href="<?php the_permalink(get_page_by_path('mon-compte/createur')); ?>">
-              Liste des Tops crées
-            </a>
-          <?php endif; ?>
           <?php if (!is_author() && is_user_logged_in() && !is_page(218587)) : ?>
             <div>
               <a href="<?php echo get_author_posts_url($user_id); ?>" class="w-100 btn btn-outline-primary waves-effect">
                 Accéder au profil public
               </a>
-            </div>
-          <?php endif; ?>
-          <?php if ($infos_vainkeur['id_user'] != $user_id && is_user_logged_in()) : ?>
-            <div class="separate my-3"></div>
-            <div>
-              <button type="button" id="followBtn" class="btn waves-effect d-none btn-follow" data-userid="<?= $user_id; ?>" data-uuid="<?= get_field('uuiduser_user', 'user_' . $user_id); ?>" data-relatedid="<?= $infos_vainkeur['id_user']; ?>" data-relateduuid="<?= get_field('uuiduser_user', 'user_' . $infos_vainkeur['id_user']);  ?>" data-text="<?= wp_get_current_user()->user_login ?> te guette !" data-url="<?= get_author_posts_url($user_id); ?>">
-                <span class="wording">Guetter ce Vainkeur</span>
-                <span class="va va-guetteur-close va va-z-20 emoji"></span>
-                <span class="va va-guetteur va va-z-20 emoji d-none"></span>
-              </button>
             </div>
           <?php endif; ?>
         </div>

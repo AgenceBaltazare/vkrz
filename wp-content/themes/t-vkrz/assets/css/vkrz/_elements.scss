@@ -138,6 +138,14 @@
     padding: 8px;
     border: none;
   }
+
+  .dropdown-item{
+    .text{
+      font-weight: 600;
+      font-size: 0.75rem;
+      text-align: center;
+    }
+  }
 }
 
 .reseauxicons{
@@ -145,4 +153,60 @@
     padding: 0;
     margin: 0;
   }
+}
+
+div.dataTables_wrapper div.dataTables_paginate ul.pagination {
+  margin: 5px 0;
+  white-space: nowrap;
+  justify-content: flex-end;
+}
+div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-link {
+  padding: 0.594rem 0.35rem;
+  min-width: calc(1.938rem + 0px);
+  font-size: 0.75rem;
+  line-height: 1;
+  border-radius: 5px !important;
+  transition: all 0.2s ease-in;
+  &:hover{
+    background-color: $c6 !important;
+  }
+}
+.pagination .page-item.active .page-link {
+  background-color: $c6 !important;
+}
+
+.avg-sessions{
+  p{
+    font-weight: 500;
+    margin-bottom: 5px;
+  }
+}
+
+.top3list{
+  display: flex;
+}
+
+.top-card{
+  h6{
+    font-size: 0.75rem;
+  }
+  .legende{
+    font-size: 0.75rem;
+  }
+}
+
+.table> :not(caption)>*>* {
+  border-bottom: none;
+  border-top-width: 1px;
+}
+
+.valuestat{
+  .text-muted{
+    font-weight: 600;
+  }
+}
+
+.dropdown-item {
+  font-weight: 500;
+  font-size: 0.85rem;
 }

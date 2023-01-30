@@ -30,6 +30,20 @@ $(".table-creator").DataTable({
     },
     order: [],
 });
+$(".table-vainkeurz-recherche").DataTable({
+    autoWidth: false,
+    lengthMenu: [25],
+    searching: false,
+    paging: false,
+    columns: [
+        { orderable: false },
+        { orderable: true },
+        { orderable: true },
+        { orderable: true },
+        { orderable: false },
+    ],
+    order: [],
+});
 $(".table-toplist-room").DataTable({
     autoWidth: false,
     lengthMenu: [25],

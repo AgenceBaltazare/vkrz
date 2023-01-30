@@ -330,11 +330,11 @@
 
         h3{
             color: $c5;
-            font-size: 18px;
+            font-size: 0.95rem;
             text-align: center;
             font-weight: 500;
             @media (max-width: 768px) {
-              font-size: 15px;
+              font-size: 0.85rem;
             }
         }
     }
@@ -428,7 +428,7 @@
         h1{
           font-size: 22px;
           line-height: normal;
-          font-family: 'lato';
+          font-family: $font1;
         }
     }
     .meetup-img-wrapper {
@@ -588,7 +588,7 @@
                     transform: rotate(-2deg);
                     display: block !important;
                     font-size: 20px;
-                    font-family: 'lato';
+                    font-family: $font1;
                 }
             }
         }
@@ -1181,7 +1181,7 @@ body {
   h4{
     color: $rose;
     margin-bottom: 5px;
-    font-family: 'lato';
+    font-family: $font1;
     font-size: 1.2rem;
     text-transform: uppercase;
     i{
@@ -1200,7 +1200,7 @@ body {
       border: 2px solid $rose;
       background-color: transparent;
       color: #fff;
-      font-family: 'lato';
+      font-family: $font1;
       font-weight: 700 !important;
       letter-spacing: 1px;
       padding: 15px;

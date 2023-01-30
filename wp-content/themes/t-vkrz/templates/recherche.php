@@ -142,7 +142,7 @@ get_header();
                 <div class="intro-archive">
                   <?php if (!empty($searching_for_a_vainkeur)) : ?>
                     <h2>
-                      Résultats pour
+                      Recherche pour
                     </h2>
                     <h1>
                       <?php echo $recherche; ?>
@@ -167,12 +167,9 @@ get_header();
               <section id="profile-info">
                 <div class="card">
                   <div class="table-responsive">
-                    <table class="table table-vainkeurz">
+                    <table class="table table-vainkeurz-recherche">
                       <thead>
                         <tr>
-                          <th>
-                            <span class="va va-chequered-flag va-lg"></span>
-                          </th>
                           <th>
                             <span class="va va-lama va-lg"></span> <span class="text-muted">Vainkeur</span>
                           </th>
@@ -199,17 +196,6 @@ get_header();
                           global $vainkeur_data_selected;
                         ?>
                           <tr>
-                            <td>
-                              <?php if ($r == 1) : ?>
-                                <span class="ico va va-medal-1 va-lg"></span>
-                              <?php elseif ($r == 2) : ?>
-                                <span class="ico va va-medal-2 va-lg"></span>
-                              <?php elseif ($r == 3) : ?>
-                                <span class="ico va va-medal-3 va-lg"></span>
-                              <?php else : ?>
-                                #<?php echo $r; ?>
-                              <?php endif; ?>
-                            </td>
                             <td>
                               <?php get_template_part('partials/vainkeur-card'); ?>
                             </td>

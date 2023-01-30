@@ -10,145 +10,41 @@ foreach ($list_user_toplists as $top) {
     array_push($list_t_done, $top);
   }
 }
+if ($infos_vainkeur_to_watch['user_role'] == "administrator" || $infos_vainkeur_to_watch['user_role'] == "author") {
+  if (false === ($data_t_created = get_transient('user_' . $id_membre . '_get_creator_t'))) {
+    $data_t_created = get_creator_t($id_membre);
+    set_transient('user_' . $id_membre . '_get_creator_t', $data_t_created, DAY_IN_SECONDS);
+  } else {
+    $data_t_created = get_transient('user_' . $id_membre . '_get_creator_t');
+  }
+}
 ?>
-
-<div id="user-profile">
-  <div class="row">
-    <div class="col-12">
-      <?php get_template_part('partials/profil'); ?>
-    </div>
-  </div>
-
-  <section id="profile-info">
+<!-- Content wrapper -->
+<div class="content-wrapper content-compte">
+  <!-- Content -->
+  <div class="container-xxl flex-grow-1 container-p-y">
     <div class="row">
-      <div class="col-lg-3 col-12 order-2 order-lg-1">
+      <!-- User Sidebar -->
+      <div class="col-xl-3 col-lg-4 col-md-4">
+        <!-- User cover -->
+        <?php get_template_part('partials/profil-watch'); ?>
+        <!-- User cover -->
 
-        <?php
-        if (get_userdata($id_membre)->description) : ?>
-          <div class="card card-transaction">
-            <div class="card-header">
-              <h4 class="card-title">
-                <span class="ico va va-kissing va-lg"></span> Bio
-              </h4>
-            </div>
-            <div class="card-body">
-              <div class="info-bio">
-                <p class="card-text">
-                  <?php echo get_userdata($id_membre)->description; ?>
-                </p>
-              </div>
-            </div>
+        <!-- User trophées -->
+        <div class="card d-none d-sm-block">
+          <?php $vainkeur_badges = get_the_terms($id_vainkeur, 'badges'); ?>
+          <div class="card-header">
+            <h4 class="card-title">
+              Trophées
+            </h4>
           </div>
-        <?php endif; ?>
-        <?php if (get_userdata($id_membre)->twitch_user || get_userdata($id_membre)->youtube_user || get_userdata($id_membre)->Instagram_user || get_userdata($id_membre)->tiktok_user) : ?>
-          <div class="card card-transaction">
-            <div class="card-header">
-              <h4 class="card-title">
-                <span class="ico va va-lolipop va-lg"></span> Rézeaux
-              </h4>
-            </div>
-            <div class="card-body">
-              <div class="info-bio">
-                <div class="flex-row d-flex align-items-baseline">
-                  <?php if (get_userdata($id_membre)->twitch_user) : ?>
-                    <div class="transaction-item">
-                      <a href="https://www.twitch.tv/<?php echo get_userdata($id_membre)->twitch_user; ?>" target="_blank">
-                        <div class="d-flex align-items-center">
-                          <div class="avatar bg-light-primary rounded">
-                            <div class="avatar-content picto-rs">
-                              <i class="fab fa-twitch"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </a>
-                    </div>
-                  <?php endif; ?>
-                  <?php if (get_userdata($id_membre)->youtube_user) : ?>
-                    <div class="transaction-item">
-                      <a href="https://www.youtube.com/user/<?php echo get_userdata($id_membre)->youtube_user; ?>" target="_blank">
-                        <div class="d-flex align-items-center">
-                          <div class="avatar bg-light-primary rounded">
-                            <div class="avatar-content picto-rs">
-                              <i class="fab fa-youtube"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </a>
-                    </div>
-                  <?php endif; ?>
-                  <?php if (get_userdata($id_membre)->Instagram_user) : ?>
-                    <div class="transaction-item">
-                      <a href="https://www.instagram.com/<?php echo get_userdata($id_membre)->Instagram_user; ?>" target="_blank">
-                        <div class="d-flex align-items-center">
-                          <div class="avatar bg-light-primary rounded">
-                            <div class="avatar-content picto-rs">
-                              <i class="fab fa-instagram"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </a>
-                    </div>
-                  <?php endif; ?>
-                  <?php if (get_userdata($id_membre)->twitter_user) : ?>
-                    <div class="transaction-item">
-                      <a href="https://twitter.com/<?php echo get_userdata($id_membre)->twitter_user; ?>" target="_blank">
-                        <div class="d-flex align-items-center">
-                          <div class="avatar bg-light-primary rounded">
-                            <div class="avatar-content picto-rs">
-                              <i class="fab fa-twitter"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </a>
-                    </div>
-                  <?php endif; ?>
-                  <?php if (get_userdata($id_membre)->snapchat_user) : ?>
-                    <div class="transaction-item">
-                      <a href="https://www.snapchat.com/add/<?php echo get_userdata($id_membre)->snapchat_user; ?>" target="_blank">
-                        <div class="d-flex align-items-center">
-                          <div class="avatar bg-light-primary rounded">
-                            <div class="avatar-content picto-rs">
-                              <i class="fab fa-snapchat-ghost"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </a>
-                    </div>
-                  <?php endif; ?>
-                  <?php if (get_userdata($id_membre)->tiktok_user) : ?>
-                    <div class="transaction-item">
-                      <a href="https://www.tiktok.com/@<?php echo get_userdata($id_membre)->tiktok_user; ?>?" target="_blank">
-                        <div class="d-flex align-items-center">
-                          <div class="avatar bg-light-primary rounded">
-                            <div class="avatar-content picto-rs">
-                              <i class="fab fa-tiktok"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </a>
-                    </div>
-                  <?php endif; ?>
-                </div>
-              </div>
-            </div>
-          </div>
-        <?php endif; ?>
-
-        <?php
-        $vainkeur_badges = get_the_terms($id_vainkeur_to_watch, 'badges');
-        if ($vainkeur_badges) : ?>
-          <div class="card">
-            <div class="card-header">
-              <h4 class="card-title">
-                <span class="ico va va-medal-1 va-lg"></span> Trophées
-              </h4>
-            </div>
-            <div class="card-body">
-              <div class="row">
+          <div class="card-body">
+            <div class="row">
+              <?php if ($vainkeur_badges) : ?>
                 <?php foreach ($vainkeur_badges as $badge) : ?>
                   <div class="col-4 col-sm-6 col-lg-4">
                     <div class="text-center">
-                      <div class="user-level" data-toggle="tooltip" data-placement="top" title="" data-original-title="<?php echo $badge->name; ?> : <?php echo $badge->description; ?>">
+                      <div class="user-level" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="<?php echo $badge->name; ?> : <?php echo $badge->description; ?>">
                         <span class="icomedium">
                           <?php the_field('symbole_badge', 'badges_' . $badge->term_id); ?>
                         </span>
@@ -156,15 +52,28 @@ foreach ($list_user_toplists as $top) {
                     </div>
                   </div>
                 <?php endforeach; ?>
-              </div>
+              <?php else : ?>
+                <div class="col">
+                  <p class="text-muted">
+                    Aucun trophée pour le moment <span class="va va-spiral-eyes va-md"></span>
+                  </p>
+                </div>
+              <?php endif; ?>
+            </div>
+            <div class="mt-4 text-center">
+              <a class="btn btn-outline-primary waves-effect" href="<?php the_permalink(get_page_by_path('trophees')); ?>">
+                Découvrir les trophées
+              </a>
             </div>
           </div>
-        <?php endif; ?>
+        </div>
+        <!-- /User trophées -->
 
-        <div class="card">
+        <!-- User progression -->
+        <div class="card d-none d-sm-block">
           <div class="card-header">
             <h4 class="card-title">
-              <span class="ico va va-hourglass va-lg"></span> Progression
+              Progression
             </h4>
           </div>
           <div class="card-body">
@@ -193,12 +102,9 @@ foreach ($list_user_toplists as $top) {
                 } else {
                   $classbar = "warning";
                 }
-                if ($count_top_done_in_cat > $tops_in_cat) {
-                  $count_top_done_in_cat = $tops_in_cat;
-                }
               ?>
-                <div class="col-12 mt-1 mb-1">
-                  <p class="mb-50">
+                <div class="col-12 mt-1 mb-3">
+                  <p>
                     <span class="ico2">
                       <?php the_field('icone_cat', 'term_' . $cat->term_id); ?>
                     </span>
@@ -208,19 +114,24 @@ foreach ($list_user_toplists as $top) {
                     </small>
                   </p>
                   <div class="progress progress-bar-<?php echo $classbar; ?>" style="height: 6px">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $percent_done_cat; ?>" aria-valuemin="<?php echo $percent_done_cat; ?>" aria-valuemax="100" style="width: <?php echo $percent_done_cat; ?>%"></div>
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="<?php echo $percent_done_cat; ?>" aria-valuemin="<?php echo $percent_done_cat; ?>" aria-valuemax="100" style="width: <?php echo $percent_done_cat; ?>%"></div>
                   </div>
                 </div>
               <?php endforeach; ?>
             </div>
           </div>
         </div>
+        <!-- /User progression -->
       </div>
+      <!--/ User Sidebar -->
 
-      <div id="ancore" class="col-lg-9 col-12 order-1 order-lg-2">
+      <!-- User Content -->
+      <div class="col-xl-9 col-lg-8 col-md-8">
+
+        <!-- Stats Users -->
         <section class="app-user-view">
           <div class="row match-height">
-            <div class="col-sm-3">
+            <div class="col-sm-4 col-12">
               <div class="card text-center">
                 <div class="card-body">
                   <div class="pricing-badge text-right">
@@ -235,114 +146,370 @@ foreach ($list_user_toplists as $top) {
                       <?php echo $infos_vainkeur_to_watch['level']; ?>
                     </span>
                   </div>
-                  <p class="card-text legende mt-2">Niveau</p>
                 </div>
               </div>
             </div>
-            <div class="col-sm-3 col-4">
+            <div class="col-sm-4 col-6">
               <div class="card text-center">
-                <div class="card-body">
-                  <div class="mb-1">
-                    <span class="ico4 va-high-voltage va va-z-30"></span>
+                <div class="card-body card-stats">
+                  <div class="itemstat">
+                    <div>
+                      <span class="iconstats va-mush va va-lg"></span>
+                    </div>
+                    <div class="valuestat">
+                      <?php if ($infos_vainkeur_to_watch['money_vkrz']) : ?>
+                        <?php echo $infos_vainkeur_to_watch['money_vkrz']; ?>
+                      <?php else : ?>
+                        0
+                      <?php endif; ?>
+                      <small class="text-muted mb-0">XP</small>
+                    </div>
                   </div>
-                  <h2 class="font-weight-bolder">
-                    <?php echo $infos_vainkeur_to_watch['nb_vote_vkrz']; ?>
-                  </h2>
-                  <?php if ($infos_vainkeur_to_watch['nb_vote_vkrz'] > 1) : ?>
-                    <p class="card-text legende">Votes</p>
-                  <?php else : ?>
-                    <p class="card-text legende">Vote</p>
-                  <?php endif; ?>
+                </div>
+              </div>
+              <div class="card text-center">
+                <div class="card-body card-stats">
+                  <div class="itemstat">
+                    <div>
+                      <span class="iconstats va-high-voltage va va-lg"></span>
+                    </div>
+                    <div class="valuestat">
+                      <?php if ($infos_vainkeur_to_watch['nb_vote_vkrz']) : ?>
+                        <?php echo $infos_vainkeur_to_watch['nb_vote_vkrz']; ?>
+                      <?php else : ?>
+                        0
+                      <?php endif; ?>
+                      <small class="text-muted mb-0">Votes</small>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="col-sm-3 col-4">
+            <div class="col-sm-4 col-6">
               <div class="card text-center">
-                <div class="card-body">
-                  <div class="mb-1">
-                    <span class="ico4 va va-trophy va-z-30"></span>
+                <div class="card-body card-stats">
+                  <div class="itemstat">
+                    <div>
+                      <span class="iconstats va-gem va va-lg"></span>
+                    </div>
+                    <div class="valuestat">
+                      <?php if ($infos_vainkeur_to_watch['current_money_vkrz']) : ?>
+                        <?php echo $infos_vainkeur_to_watch['current_money_vkrz']; ?>
+                      <?php else : ?>
+                        0
+                      <?php endif; ?>
+                      <small class="text-muted mb-0">KEURZ</small>
+                    </div>
                   </div>
-                  <h2 class="font-weight-bolder">
-                    <?php echo $infos_vainkeur_to_watch['nb_top_vkrz']; ?>
-                  </h2>
-                  <p class="card-text legende">
-                    <?php if ($infos_vainkeur_to_watch['nb_top_vkrz'] > 1) : ?>
-                      Tops terminés
-                    <?php else : ?>
-                      Top terminé
-                    <?php endif; ?>
-                  </p>
                 </div>
               </div>
-            </div>
-            <div class="col-sm-3 col-4">
               <div class="card text-center">
-                <div class="card-body">
-                  <div class="mb-1">
-                    <span class="ico4 va-sm va va-guetteur va-z-30"></span>
+                <div class="card-body card-stats">
+                  <div class="itemstat">
+                    <div>
+                      <span class="iconstats va-trophy va va-lg"></span>
+                    </div>
+                    <div class="valuestat">
+                      <?php if ($infos_vainkeur_to_watch['nb_top_vkrz']) : ?>
+                        <?php echo $infos_vainkeur_to_watch['nb_top_vkrz']; ?>
+                      <?php else : ?>
+                        0
+                      <?php endif; ?>
+                      <small class="text-muted mb-0">TopList</small>
+                    </div>
                   </div>
-                  <h2 class="font-weight-bolder followers-nbr">
-                    -
-                  </h2>
-                  <p class="card-text legende followers-nbr-text">
-                    Guetteur
-                  </p>
                 </div>
               </div>
             </div>
           </div>
         </section>
-        <section id="basic-tabs-components">
-          <div class="tab-content">
-            <div class="tab-pane active" id="tab2" aria-labelledby="profileIcon-tab" role="tabpanel">
-              <div class="row">
-                <div class="col-12">
-
-                  <div class="card text-center loader-list card-voile" data-idtop="<?php echo $id_top; ?>" data-topurl="<?php echo get_permalink($id_top) ?>">
-                    <div class="voile-gif" style="background-image: url(<?php bloginfo('template_directory'); ?>/assets/images/gif/wait-<?php echo rand(1, 7); ?>.gif)"></div>
-                    <div class="card-body">
-                      <div class="content-card">
-                        <div class="loader-block">
-                          <div class="loader loader--style1 w-100 mx-auto text-center" title="0">
-                            <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
-                              <path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z" />
-                              <path fill="#000" d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0C22.32,8.481,24.301,9.057,26.013,10.047z">
-                                <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 20 20" to="360 20 20" dur="0.5s" repeatCount="indefinite" />
-                              </path>
-                            </svg>
-                          </div>
-                        </div>
-                        <h2 class="font-weight-bolder mb-1 mt-1">
-                          <small>Récupération des </small> <br>
-                          <span class="t-violet"><?php echo $infos_vainkeur['nb_top_vkrz']; ?></span> TopList
-                        </h2>
-                      </div>
+        <?php if ($infos_vainkeur_to_watch['user_role'] == "administrator" || $infos_vainkeur_to_watch['user_role'] == "author") : ?>
+          <!-- Stats créateur -->
+          <div class="row match-height">
+            <div class="col-sm-3 col-6">
+              <div class="card text-center">
+                <div class="card-body card-stats">
+                  <div class="itemstat">
+                    <div>
+                      <span class="iconstats va-crossed-swords va va-lg"></span>
                     </div>
-                    <div class="bar-container">
-                      <div class="bar"></div>
-                      <span class="bar-percent">0 %</span>
+                    <div class="valuestat">
+                      <?php echo number_format($data_t_created['creator_nb_tops'], 0, ",", " "); ?>
+                      <small class="text-muted mb-0">
+                        <?php echo ($data_t_created['creator_nb_tops'] > 1) ? "Tops créés" : "Top créé"; ?>
+                      </small>
                     </div>
                   </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3 col-6">
+              <div class="card text-center">
+                <div class="card-body card-stats">
+                  <div class="itemstat">
+                    <div>
+                      <span class="iconstats va-vote-creator va va-lg"></span>
+                    </div>
+                    <div class="valuestat">
+                      <?php echo number_format($data_t_created['creator_all_v'], 0, ",", " "); ?>
+                      <small class="text-muted mb-0">
+                        Votes générés
+                      </small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3 col-6">
+              <div class="card text-center">
+                <div class="card-body card-stats">
+                  <div class="itemstat">
+                    <div>
+                      <span class="iconstats va-toplist-creator va va-lg"></span>
+                    </div>
+                    <div class="valuestat">
+                      <?php echo number_format($data_t_created['creator_all_t'], 0, ",", " "); ?>
+                      <small class="text-muted mb-0">
+                        TopList générées
+                      </small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3 col-6">
+              <div class="card text-center">
+                <div class="card-body card-stats">
+                  <div class="itemstat">
+                    <div>
+                      <span class="iconstats va-hundred va va-lg"></span>
+                    </div>
+                    <div class="valuestat">
+                      <?php echo $data_t_created['finition_globale']; ?> %
+                      <small class="text-muted mb-0">
+                        Taux de finition
+                      </small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /Stats créateur -->
+        <?php endif; ?>
+        <!-- /Stats Users -->
 
-                  <div class="card invoice-list-wrapper list-php">
-                    <div class="card-datatable table-responsive">
-                      <table class="table table-4 table-toplist-done">
+        <!-- Users TopList -->
+        <section class="list-toplist">
+          <div class="card text-center loader-list card-voile" data-idtop="<?php echo $id_top; ?>" data-topurl="<?php echo get_permalink($id_top) ?>">
+            <div class="voile-gif" style="background-image: url(<?php bloginfo('template_directory'); ?>/assets/images/gif/wait-<?php echo rand(1, 7); ?>.gif)"></div>
+            <div class="card-body">
+              <div class="content-card">
+                <div class="loader-block">
+                  <div class="loader loader--style1 w-100 mx-auto text-center" title="0">
+                    <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
+                      <path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z" />
+                      <path fill="#000" d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0C22.32,8.481,24.301,9.057,26.013,10.047z">
+                        <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 20 20" to="360 20 20" dur="0.5s" repeatCount="indefinite" />
+                      </path>
+                    </svg>
+                  </div>
+                </div>
+                <h2 class="font-weight-bolder mb-1 mt-1">
+                  <small>Récupération des </small> <br>
+                  <span class="t-violet"><?php echo $infos_vainkeur_to_watch['nb_top_vkrz']; ?></span> TopList
+                </h2>
+              </div>
+            </div>
+            <div class="bar-container">
+              <div class="bar"></div>
+              <span class="bar-percent">0 %</span>
+            </div>
+          </div>
+          <div class="card invoice-list-wrapper list-php">
+            <div class="table-responsive">
+              <table class="invoice-list-table table table-toplist-done">
+                <thead>
+                  <tr>
+                    <th class="">
+                      <span class="text-muted nb_top_vkrz">
+                        <?php if ($infos_vainkeur_to_watch['nb_top_vkrz'] >= 25) : ?>
+                          Liste des dernières TopList
+                        <?php else : ?>
+                          <span class="t-rose"><?php echo $infos_vainkeur_to_watch['nb_top_vkrz']; ?></span> TopList
+                        <?php endif; ?>
+                      </span>
+                    </th>
+                    <th>
+                      <span class="text-muted">Top3</span>
+                    </th>
+                    <th class="text-right">
+                      <span class="text-muted">Action</span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php
+                  foreach (array_slice($list_t_done, 0, 25) as $top) : ?>
+                    <?php if (!get_field('private_t', $top['id_top']) && get_post_status($top['id_top'])) : ?>
+                      <tr id="top-<?php echo $top['id_ranking']; ?>">
+                        <td>
+                          <?php
+                          global $id_top;
+                          $id_top = $top['id_top'];
+                          get_template_part('partials/top-card');
+                          ?>
+                        </td>
+                        <td>
+                          <div class="top3list">
+                            <?php
+                            $user_top3 = get_user_ranking($top['id_ranking']);
+                            $l = 1;
+                            foreach ($user_top3 as $contender) : ?>
+
+                              <div data-bs-toggle="tooltip" data-bs-popup="tooltip-custom" data-bs-placement="bottom" data-bs-original-title="<?php echo get_the_title($contender); ?>" class="avatartop3 avatar pull-up">
+                                <?php if (get_field('visuel_instagram_contender', $contender)) : ?>
+                                  <img src="<?php the_field('visuel_instagram_contender', $contender); ?>" alt="<?php echo get_the_title($contender); ?>">
+                                <?php else : ?>
+                                  <?php $illu = get_the_post_thumbnail_url($contender, 'thumbnail'); ?>
+                                  <img src="<?php echo $illu; ?>" alt="<?php echo get_the_title($contender); ?>">
+                                <?php endif; ?>
+                              </div>
+
+                            <?php $l++;
+                              if ($l == 4) break;
+                            endforeach; ?>
+                          </div>
+                        </td>
+                        <td class="text-right">
+                          <div class="d-flex align-items-center justify-content-end col-actions">
+                            <?php
+                            if ($top['typetop'] == "top3") {
+                              $wording = "Voir le Top 3";
+                            } else {
+                              $wording = "Voir la TopList";
+                            }
+                            ?>
+                            <a class="btn btn-icon btn-label-primary waves-effect" href="<?php the_permalink($top['id_ranking']); ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="<?php echo $wording; ?>">
+                              <span class="va va-trophy va-lg"></span>
+                            </a>
+                            <a class="btn btn-icon btn-label-primary waves-effect" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $top['id_top']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir la TopList mondiale">
+                              <span class="va va-globe va-lg"></span>
+                            </a>
+                            <a href="<?php the_permalink($top['id_ranking']); ?>" class="btn btn-icon btn-label-primary waves-effect" data-toggle="tooltip" data-placement="top" title="" data-original-title="Juger cette TopList">
+                              <span class="va va-hache va-lg"></span>
+                            </a>
+                          </div>
+                        </td>
+                      </tr>
+                    <?php endif; ?>
+                  <?php endforeach; ?>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <?php if ($infos_vainkeur_to_watch['nb_top_vkrz'] >= 25) : ?>
+            <div class="card invoice-list-wrapper list-js">
+              <div class="table-responsive">
+                <table class="invoice-list-table table fetch-table" data-idVainkeur="<?= $id_vainkeur; ?>">
+                  <thead>
+                    <tr>
+                      <th class="">
+                        <span class="text-muted nb_top_vkrz">
+                          <span class="t-rose"><?php echo $infos_vainkeur_to_watch['nb_top_vkrz']; ?></span> TopList
+                        </span>
+                      </th>
+                      <th>
+                        <span class="text-muted">Podium</span>
+                      </th>
+                      <th class="text-center">
+                        <span class="text-muted">Action</span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    foreach (array_slice($list_t_done, 0, 25) as $top) : ?>
+                      <?php if (!get_field('private_t', $top['id_top'])) : ?>
+                        <tr id="top-<?php echo $top['id_ranking']; ?>">
+                          <td>
+                            <?php
+                            global $id_top;
+                            $id_top = $top['id_top'];
+                            get_template_part('partials/top-card');
+                            ?>
+                          </td>
+                          <td>
+                            <?php
+                            $user_top3 = get_user_ranking($top['id_ranking']);
+                            $l = 1;
+                            foreach ($user_top3 as $contender) : ?>
+                              <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="<?php echo get_the_title($contender); ?>" class="avatartop3 avatar pull-up">
+                                <?php if (get_field('visuel_instagram_contender', $contender)) : ?>
+                                  <img src="<?php the_field('visuel_instagram_contender', $contender); ?>" alt="<?php echo get_the_title($contender); ?>">
+                                <?php else : ?>
+                                  <?php $illu = get_the_post_thumbnail_url($contender, 'thumbnail'); ?>
+                                  <img src="<?php echo $illu; ?>" alt="<?php echo get_the_title($contender); ?>">
+                                <?php endif; ?>
+                              </div>
+                            <?php $l++;
+                              if ($l == 4) break;
+                            endforeach; ?>
+                          </td>
+                          <td>
+                            <div class="d-flex align-items-center col-actions">
+                              <?php
+                              if ($top['typetop'] == "top3") {
+                                $wording = "Voir le Top 3";
+                              } else {
+                                $wording = "Voir la TopList";
+                              }
+                              ?>
+                              <a class="btn btn-icon btn-label-primary waves-effect" href="<?php the_permalink($top['id_ranking']); ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="<?php echo $wording; ?>">
+                                <span class="va va-trophy va-lg"></span>
+                              </a>
+                              <a class="btn btn-icon btn-label-primary waves-effect" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $top['id_top']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir la TopList mondiale">
+                                <span class="va va-globe va-lg"></span>
+                              </a>
+                              <a href="<?php the_permalink($top['id_ranking']); ?>" class="btn btn-icon btn-label-primary waves-effect" data-toggle="tooltip" data-placement="top" title="" data-original-title="Juger cette TopList">
+                                <span class="va va-hache va-lg"></span>
+                              </a>
+                            </div>
+                          </td>
+                        </tr>
+                      <?php endif; ?>
+                    <?php endforeach; ?>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="loadmore-container text-center mt-1">
+              <button type="button" class="btn btn-outline-primary waves-effect waves-float waves-light load_more_toplists" spellcheck="false">
+                Afficher les <?php echo $infos_vainkeur_to_watch['nb_top_vkrz']; ?> TopList
+                <span class="text-muted">
+                  Cela peut prendre quelques instants 🙃
+                </span>
+              </button>
+            </div>
+          <?php endif; ?>
+          <?php if ($has_t_begin) : ?>
+            <div class="tab-pane" id="tab1" aria-labelledby="homeIcon-tab" role="tabpanel">
+              <div class="row">
+                <div class="col-12">
+                  <div class="card invoice-list-wrapper">
+                    <div class="table-responsive">
+                      <table class="invoice-list-table table table-tbegin">
                         <thead>
                           <tr>
                             <th class="">
-                              <span class="text-muted nb_top_vkrz">
-                                <?php if ($infos_vainkeur['nb_top_vkrz'] >= 25) : ?>
-                                  Liste des <span class="t-rose">25</span> dernières TopList
-                                <?php else : ?>
-                                  <span class="t-rose"><?php echo $infos_vainkeur['nb_top_vkrz']; ?></span> TopList
-                                <?php endif; ?>
-                              </span>
+                              <?php if (count($list_t_done) > 1) : ?>
+                                <span class="t-rose"><?php echo count($list_t_begin); ?></span> Tops à terminer
+                              <?php else : ?>
+                                <span class="t-rose"><?php echo count($list_t_begin); ?></span> Top à terminer
+                              <?php endif; ?>
                             </th>
-                            <th>
-                              <span class="text-muted">Podium</span>
-                            </th>
-                            <th class="text-right shorted">
-                              <span class="text-muted">Votes <span class="va va-updown va-z-15"></span></span>
+                            <th class="text-center">
+                              <span class="text-muted">Votes</span>
                             </th>
                             <th class="text-right">
                               <span class="text-muted">Action</span>
@@ -351,175 +518,118 @@ foreach ($list_user_toplists as $top) {
                         </thead>
                         <tbody>
                           <?php
-                          foreach (array_slice($list_t_done, 0, 25) as $r_user) :
-                            $list_type    = array();
-                            $get_top_type = get_the_terms($r_user['id_top'], 'type');
-                            if ($get_top_type) {
-                              foreach ($get_top_type as $type_top) {
-                                array_push($list_type, $type_top->slug);
-                              }
-                            }
-                            if (!in_array('private', $list_type) && !in_array('onboarding', $list_type) && get_post_status($r_user['id_top'])) : ?>
-                              <tr id="top-<?php echo $r_user['id_ranking']; ?>">
-                                <td>
-                                  <?php
-                                  global $id_top;
-                                  $id_top = $r_user['id_top'];
-                                  get_template_part('partials/top-card');
-                                  ?>
-                                </td>
-                                <td>
-                                  <?php
-                                  $user_top3 = get_user_ranking($r_user['id_ranking']);
-                                  $l = 1;
-                                  foreach ($user_top3 as $top) : ?>
-
-                                    <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="<?php echo get_the_title($top); ?>" class="avatartop3 avatar pull-up">
-                                      <?php if (get_field('visuel_instagram_contender', $top)) : ?>
-                                        <img src="<?php the_field('visuel_instagram_contender', $top); ?>" alt="<?php echo get_the_title($top); ?>">
-                                      <?php else : ?>
-                                        <?php $illu = get_the_post_thumbnail_url($top, 'thumbnail'); ?>
-                                        <img src="<?php echo $illu; ?>" alt="<?php echo get_the_title($top); ?>">
-                                      <?php endif; ?>
-                                    </div>
-
-                                  <?php $l++;
-                                    if ($l == 4) break;
-                                  endforeach; ?>
-                                </td>
-                                <td class="text-right">
-                                  <?php echo $r_user['nb_votes']; ?> <span class="ico3 va-high-voltage va va-lg"></span>
-                                </td>
-                                <td class="text-right">
-                                  <?php
-                                  if ($r_user['typetop'] == "top3") {
-                                    $wording = "Voir le Top 3";
-                                  } else {
-                                    $wording = "Voir la TopList";
-                                  }
-                                  ?>
-                                  <a class="btn btn-flat-secondary waves-effect" href="<?php the_permalink($r_user['id_ranking']); ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="<?php echo $wording; ?>">
-                                    <span class="va va-trophy va-lg"></span>
-                                  </a>
-                                  <a class="btn btn-flat-secondary waves-effect" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $r_user['id_top']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir la TopList mondiale">
-                                    <span class="va va-globe va-lg"></span>
-                                  </a>
-                                  <a href="<?php the_permalink($r_user['id_ranking']); ?>" class="btn btn-flat-secondary waves-effect" data-toggle="tooltip" data-placement="top" title="" data-original-title="Juger cette TopList">
-                                    <span class="va va-hache va-lg"></span>
-                                  </a>
-                                </td>
-                              </tr>
-                            <?php endif; ?>
+                          foreach ($list_t_begin as $top) : ?>
+                            <tr id="top-<?php echo $top['id_ranking']; ?>">
+                              <td>
+                                <?php
+                                global $id_top;
+                                $id_top = $top['id_top'];
+                                get_template_part('partials/top-card');
+                                ?>
+                              </td>
+                              <td class="text-center">
+                                <?php echo $top['nb_votes']; ?> <span class="ico3 va-high-voltage va va-lg"></span>
+                              </td>
+                              <td class="text-right">
+                                <a href="<?php the_permalink($top['id_top']); ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Continuer la TopList" class="btn btn-flat-secondary waves-effect">
+                                  <span class="va va-play-button va-lg"></span>
+                                </a>
+                              </td>
+                            </tr>
                           <?php endforeach; ?>
                         </tbody>
                       </table>
                     </div>
                   </div>
-                  <?php if ($infos_vainkeur_to_watch['nb_top_vkrz'] >= 25) : ?>
-                    <div class="card invoice-list-wrapper list-js">
-                      <div class="card-datatable table-responsive">
-                        <table class="table table-4 fetch-table table-toplist-done-js" data-idVainkeur="<?= $id_vainkeur_to_watch; ?>">
-                          <thead>
-                            <tr>
-                              <th class="">
-                                <span class="text-muted nb_top_vkrz">
-                                  <span class="t-rose"><?php echo $infos_vainkeur_to_watch['nb_top_vkrz']; ?></span> TopList
-                                </span>
-                              </th>
-                              <th>
-                                <span class="text-muted">Podium</span>
-                              </th>
-                              <th class="text-right shorted">
-                                <span class="text-muted">Votes <span class="va va-updown va-z-15"></span></span>
-                              </th>
-                              <th class="text-right">
-                                <span class="text-muted">Action</span>
-                              </th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <?php
-                            foreach (array_slice($list_t_done, 0, 25) as $r_user) :
-                              $list_type    = array();
-                              $get_top_type = get_the_terms($r_user['id_top'], 'type');
-                              if ($get_top_type) {
-                                foreach ($get_top_type as $type_top) {
-                                  array_push($list_type, $type_top->slug);
-                                }
-                              }
-                              if (!in_array('private', $list_type) && !in_array('onboarding', $list_type)) : ?>
-                                <tr id="top-<?php echo $r_user['id_ranking']; ?>">
-                                  <td>
-                                    <?php
-                                    global $id_top;
-                                    $id_top = $r_user['id_top'];
-                                    get_template_part('partials/top-card');
-                                    ?>
-                                  </td>
-                                  <td>
-                                    <?php
-                                    $user_top3 = get_user_ranking($r_user['id_ranking']);
-                                    $l = 1;
-                                    foreach ($user_top3 as $top) : ?>
-
-                                      <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="<?php echo get_the_title($top); ?>" class="avatartop3 avatar pull-up">
-                                        <?php if (get_field('visuel_instagram_contender', $top)) : ?>
-                                          <img src="<?php the_field('visuel_instagram_contender', $top); ?>" alt="<?php echo get_the_title($top); ?>">
-                                        <?php else : ?>
-                                          <?php $illu = get_the_post_thumbnail_url($top, 'thumbnail'); ?>
-                                          <img src="<?php echo $illu; ?>" alt="<?php echo get_the_title($top); ?>">
-                                        <?php endif; ?>
-                                      </div>
-
-                                    <?php $l++;
-                                      if ($l == 4) break;
-                                    endforeach; ?>
-                                  </td>
-                                  <td class="text-right">
-                                    <?php echo $r_user['nb_votes']; ?> <span class="ico3 va-high-voltage va va-lg"></span>
-                                  </td>
-                                  <td class="text-right">
-                                    <?php
-                                    if ($r_user['typetop'] == "top3") {
-                                      $wording = "Voir le Top 3";
-                                    } else {
-                                      $wording = "Voir la TopList";
-                                    }
-                                    ?>
-                                    <a class="btn btn-flat-secondary waves-effect" href="<?php the_permalink($r_user['id_ranking']); ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="<?php echo $wording; ?>">
-                                      <span class="va va-trophy va-lg"></span>
-                                    </a>
-                                    <a class="btn btn-flat-secondary waves-effect" href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $r_user['id_top']; ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir la TopList mondiale">
-                                      <span class="va va-globe va-lg"></span>
-                                    </a>
-                                    <a href="<?php the_permalink($r_user['id_ranking']); ?>" class="btn btn-flat-secondary waves-effect" data-toggle="tooltip" data-placement="top" title="" data-original-title="Juger cette TopList">
-                                      <span class="va va-hache va-lg"></span>
-                                    </a>
-                                  </td>
-                                </tr>
-                              <?php endif; ?>
-                            <?php endforeach; ?>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                    <div class="loadmore-container text-center mt-1">
-                      <button type="button" class="btn btn-outline-primary waves-effect waves-float waves-light load_more_toplists" spellcheck="false">
-                        Afficher les <?php echo $infos_vainkeur_to_watch['nb_top_vkrz']; ?> TopList <br>
-                        <span class="text-muted">
-                          Cela peut prendre quelques instants 🙃
-                        </span>
-                      </button>
-                    </div>
-                  <?php endif; ?>
                 </div>
               </div>
             </div>
-          </div>
+          <?php endif; ?>
         </section>
-      </div>
-    </div>
-  </section>
-</div>
+        <!-- /Users TopList -->
 
+        <?php if ($data_t_created['creator_tops']) : ?>
+          <!-- Creator Top -->
+          <section id="topsducreateur" class="mt-4">
+            <div class="card">
+              <div class="table-responsive">
+                <table class="table table-creator">
+                  <thead>
+                    <tr>
+                      <th class="">
+                        <span class="text-muted">
+                          Liste des Tops créés
+                        </span>
+                      </th>
+                      <th class="text-right shorted">
+                        <span class="text-muted">Total des votes <span class="va va-updown va-z-15"></span></span>
+                      </th>
+                      <th class="text-right shorted">
+                        <span class="text-muted">Tops générés <span class="va va-updown va-z-15"></span></span>
+                      </th>
+                      <th class="text-right shorted">
+                        <span class="text-muted">% de finition <span class="va va-updown va-z-15"></span></span>
+                      </th>
+                      <th class="text-right">
+                        <span class="text-muted">Action</span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    foreach ($data_t_created['creator_tops'] as $item) : ?>
+                      <?php if (!in_array($item['top_id'], get_exclude_top())) : ?>
+                        <tr>
+                          <td>
+                            <?php
+                            global $id_top;
+                            $id_top = $item['top_id'];
+                            get_template_part('partials/top-card');
+                            ?>
+                          </td>
+                          <td class="text-right">
+                            <?php echo $item['top_votes']; ?> <span class="ico3 va-high-voltage va va-lg"></span>
+                          </td>
+                          <td class="text-right">
+                            <?php echo $item['top_ranks']; ?> <span class="ico3 va va-trophy va-lg"></span>
+                          </td>
+                          <td class="text-right">
+                            <?php echo $item['top_finition']; ?> %
+                          </td>
+                          <td class="text-right">
+                            <div class="d-flex align-items-center justify-content-end col-actions">
+                              <?php
+                              if ($top['typetop'] == "top3") {
+                                $wording = "Voir le Top 3";
+                              } else {
+                                $wording = "Voir la TopList";
+                              }
+                              ?>
+                              <a class="btn btn-icon btn-label-primary waves-effect" href="<?php the_permalink(get_toplist_mondiale($id_top)); ?>#toplist" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir toutes les TopList">
+                                <span class="ico va va-eyes va-lg"></span>
+                              </a>
+                              <a class="btn btn-icon btn-label-primary waves-effect" href="<?php the_permalink(get_toplist_mondiale($id_top)); ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir la TopList mondiale">
+                                <span class="ico va va-globe va-lg"></span>
+                              </a>
+                            </div>
+                          </td>
+                        </tr>
+                    <?php endif;
+                    endforeach; ?>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+          <!-- /Creator Top -->
+        <?php endif; ?>
+
+      </div>
+      <!-- /User Content -->
+    </div>
+  </div>
+  <!-- /Content -->
+  <div class="content-backdrop fade"></div>
+</div>
+<!-- Content wrapper -->
 <?php get_footer(); ?>

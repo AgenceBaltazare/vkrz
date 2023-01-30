@@ -60,7 +60,7 @@ if (is_single() && get_post_type() == "tournoi") {
         </div>
         <div class="btn-loupe">
           <button class="submitbtn" type="submit">
-            <span class="va va-eyes va-lg"></span>
+            <span class="va va-eyes va-md"></span>
           </button>
         </div>
       </div>

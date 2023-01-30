@@ -109,15 +109,14 @@ body {
 }
 
 .dataTables_filter {
-    text-align: right;
-    padding: 10px;
-    float: right;
-
-    label {
-        max-width: 100%;
-        width: 270px;
-        margin: 0 10px 0 0;
-    }
+  padding: 0 15px 0 0;
+  input{
+    width: 100% !important;
+    height: 40px;
+    font-size: 0.85rem !important;
+    font-weight: 500;
+    margin: 0 !important;
+  }
 }
 
 .pagination {
@@ -381,7 +380,7 @@ table.dataTable tbody td {
   a.btn{
     color: #fff;
     font-weight: 700 !important;
-    font-family: "Libre Franklin", sans-serif !important;
+    font-family: $font1;
   }
 }
 

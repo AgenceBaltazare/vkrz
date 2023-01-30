@@ -62,7 +62,7 @@ get_header(); ?>
           </h4>
           <div class="card-body">
             <p class="card-text text-muted mb-2 text-center">
-              <span class="va va-clapping va-z-20"></span> au vainkeur le plus <span class="va va-fire va-z-15"></span> des <span class="va va-seven va-z-15"></span> derniers jours
+              Voici le dodo, le vainkeur le + <span class="va va-fire va-z-15"></span> des 7 derniers jours
             </p>
             <div class="dodo-box">
               <div class="d-flex align-items-center flex-column">
@@ -94,35 +94,44 @@ get_header(); ?>
                 </div>
                 <div class="separate-top">
                   <a href="<?php the_permalink(get_page_by_path('best-of/best-vainkeurs')); ?>" class="btn btn-flat-dark waves-effect">
-                    <small>Découvre le classement ALL Time des vainkeurs les plus <span class="va va-fire va-z-15"></span></small>
+                    <small>Découvre le classement ALL Time des vainkeurs les plus prolifiques</small>
                   </a>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="card text-center share-bloc">
-          <div class="card-body d-flex align-items-center winbloc">
-            <div class="w-100 btn-group justify-content-center share-t" role="group">
-              <a data-rs-name="discord" href="https://discord.gg/E9H9e8NYp7" class="btn btn-outline-primary waves-effect sociallink" target="_blank">
-                <i class="fab fa-discord"></i>
-              </a>
-              <a data-rs-name="instagram" href="https://www.instagram.com/wearevainkeurz/" class="btn btn-outline-primary waves-effect sociallink" target="_blank">
-                <i class="fab fa-instagram"></i>
-              </a>
-              <a data-rs-name="twitter" href="https://twitter.com/Vainkeurz" target="_blank" class="btn btn-outline-primary waves-effect sociallink">
-                <i class="fab fa-twitter"></i>
-              </a>
-              <a data-rs-name="facebook" href="https://www.facebook.com/vainkeurz" target="_blank" class="btn btn-outline-primary waves-effect sociallink">
-                <i class="fab fa-facebook-f"></i>
-              </a>
+        <div class="card text-center">
+          <div class="card-body">
+            <div class="pricing-badge text-right">
+              <div class="badge badge-pill badge-light-primary">
+                <a href="<?php the_permalink(get_page_by_path('recrutement')); ?>" data-toggle="tooltip" data-popup="tooltip-custom" data-placement="top" data-original-title="Postuler pour devenir créateur">
+                  <span class="va va-raised-fist va-1x"></span>
+                </a>
+              </div>
             </div>
+            <div class="mb-1">
+              <span class="ico4 va va-man-singer va-1x"></span>
+            </div>
+            <h2 class="font-weight-bolder">
+              <?php
+              $user_query = new WP_User_Query(array(
+                'role__in' => array('author', 'administrator'),
+                'count_total'  => true,
+                'has_published_posts' => array('tournoi'),
+              ));
+              echo $user_query->get_total();
+              ?>
+            </h2>
+            <p class="card-text legende">
+              Créateurs de Tops
+            </p>
           </div>
         </div>
       </div>
 
       <div class="col-md-4">
-        <section class="app-user-view">
+        <section class="app-user-view stats-monitor">
           <div class="row match-height">
             <div class="col-sm-12">
               <div class="card text-center">
@@ -175,7 +184,6 @@ get_header(); ?>
                 </div>
               </div>
             </div>
-
             <div class="col-sm-12">
               <div class="row">
                 <div class="col-sm-6 pr-1 pr-md-0">
@@ -202,36 +210,6 @@ get_header(); ?>
                       </h5>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-sm-12">
-              <div class="card text-center">
-                <div class="card-body">
-                  <div class="pricing-badge text-right">
-                    <div class="badge badge-pill badge-light-primary">
-                      <a href="<?php the_permalink(get_page_by_path('recrutement')); ?>" data-toggle="tooltip" data-popup="tooltip-custom" data-placement="top" data-original-title="Postuler pour devenir créateur">
-                        <span class="va va-raised-fist va-1x"></span>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="mb-1">
-                    <span class="ico4 va va-man-singer va-1x"></span>
-                  </div>
-                  <h2 class="font-weight-bolder">
-                    <?php
-                    $user_query = new WP_User_Query(array(
-                      'role__in' => array('author', 'administrator'),
-                      'count_total'  => true,
-                      'has_published_posts' => array('tournoi'),
-                    ));
-                    echo $user_query->get_total();
-                    ?>
-                  </h2>
-                  <p class="card-text legende">
-                    Créateurs de Tops
-                  </p>
                 </div>
               </div>
             </div>

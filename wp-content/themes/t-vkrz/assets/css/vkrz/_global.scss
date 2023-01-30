@@ -30,7 +30,8 @@
 
     body {
         background: transparent;
-        font-family: 'Libre Franklin', sans-serif !important;
+        font-family: $font1;
+        font-weight: 600;
     }
 
     @keyframes gradient {
@@ -132,7 +133,7 @@ html .content.app-content .content-overlay {
 }
 
 .ico2 {
-    width: 45px;
+    width: 30px;
     display: inline-block;
 }
 
@@ -1366,12 +1367,6 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   }
 }
 
-.propose{
-  padding: 9px 10px;
-  font-family: 'lato';
-  font-weight: 700 !important;
-}
-
 .ba-tranparent{
   background: transparent;
 }
@@ -1390,6 +1385,8 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   &:hover {
     background: transparent !important;
     color: $c5;
+    font-size: 0.8rem !important;
+    font-weight: 500;
   }
 }
 
@@ -1401,4 +1398,22 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
 
 .bg-card{
   background-color: rgba(97, 84, 167, 0.1) !important;
+}
+
+.footer{
+  a{
+    font-size: 0.85rem !important;
+    font-weight: 500;
+  }
+  .copyright{
+    font-size: 0.85rem !important;
+    font-weight: 500;
+  }
+}
+
+.table.dataTable{
+  margin: 0 !important;
+  thead{
+      border-bottom: 1px solid $muted;
+  }
 }

@@ -162,7 +162,7 @@
         $id_membre          = $author->ID;
     }
     $uuid_vainkeur          = get_field('uuiduser_user', 'user_' . $id_membre);
-    $infos_vainkeur_to_watch = get_user_infos($uuid_vainkeur, 'complete');
+    $infos_vainkeur_to_watch= get_user_infos($uuid_vainkeur, 'complete');
     $id_vainkeur_to_watch   = $infos_vainkeur_to_watch['id_vainkeur'];
 ?>
     <title>

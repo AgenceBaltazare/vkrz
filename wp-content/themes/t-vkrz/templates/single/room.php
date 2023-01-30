@@ -234,7 +234,7 @@ if ($id_vainkeur) {
                             </h2>
                             <div id="table-bordered">
                                 <div class="card">
-                                    <div class="card-datatable table-responsive">
+                                    <div class="table-responsive">
                                         <table class="table table-toplist-room">
                                             <thead>
                                                 <tr>

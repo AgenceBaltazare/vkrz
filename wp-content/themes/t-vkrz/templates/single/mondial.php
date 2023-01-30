@@ -182,7 +182,7 @@ $count_toplist        = count($list_toplist);
             </div>
           </div>
           <div class="card invoice-list-wrapper table-card-container d-none">
-            <div class="card-datatable table-responsive">
+            <div class="table-responsive">
               <table class="invoice-list-table table table-listuserranks">
                 <thead>
                   <tr>

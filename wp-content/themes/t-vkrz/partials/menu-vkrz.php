@@ -62,6 +62,15 @@
           </li>
         </ul>
       </li>
+      <!-- Rooms -->
+      <li class="menu-item">
+        <a href="<?php the_permalink(get_page_by_path('rooms')); ?>" class="menu-link">
+          <div class="iconmenu">
+            <span class="va va-door va-lg"></span>
+          </div>
+          <div>Rooms</div>
+        </a>
+      </li>
       <!-- Best OF -->
       <li class="menu-item">
         <a href="javascript:void(0)" class="menu-link menu-toggle">
@@ -161,6 +170,16 @@
               </div>
             </a>
           </li>
+          <li class="menu-item">
+            <a href="<?php the_permalink(get_page_by_path('monitor')); ?>" class="menu-link">
+              <span class="iconmenu">
+                <span class="va va-satellite-antenna va-lg"></span>
+              </span>
+              <div>
+                Monitor
+              </div>
+            </a>
+          </li>
         </ul>
       </li>
       <li class="menu-item">
@@ -169,14 +188,6 @@
             <span class="va va-gem va-lg"></span>
           </div>
           <div>Récompenses</div>
-        </a>
-      </li>
-      <li class="menu-item">
-        <a href="<?php the_permalink(get_page_by_path('monitor')); ?>" class="menu-link">
-          <div class="iconmenu">
-            <span class="va va-satellite-antenna va-lg"></span>
-          </div>
-          <div>Monitor</div>
         </a>
       </li>
     </ul>

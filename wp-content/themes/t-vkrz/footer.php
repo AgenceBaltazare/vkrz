@@ -11,8 +11,8 @@ global $id_vainkeur;
 <footer class="content-footer footer bg-footer-theme">
   <div class="container-xxl">
     <div class="footer-container d-flex align-items-center justify-content-between flex-md-row flex-column">
-      <div>
-        <span class="float-md-left d-block d-md-inline-block mt-25">
+      <div class="copyright">
+        <span class="float-md-left d-block d-md-inline-block">
           <span class="me-2">
             VAINKEURZ ©<?php echo date('Y') + 100; ?>
           </span>

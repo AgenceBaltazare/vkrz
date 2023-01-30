@@ -33,7 +33,7 @@ get_header();
                         <span class="text-muted">TopList <span class="va va-updown va-z-15"></span></span>
                       </th>
                       <th class="text-center shorted">
-                        <span class="text-muted">Votes effectués <span class="va va-updown va-z-15"></span></span>
+                        <span class="text-muted">Votes <span class="va va-updown va-z-15"></span></span>
                       </th>
                       <th class="text-center">
                         <span class="text-muted">TopList mondiale</span>

@@ -54,7 +54,7 @@
 .blog-detail-wrapper {
   h1 {
     color: $rose;
-    font-family: 'lato';
+    font-family: $font1;
     font-weight: 800 !important;
   }
 
@@ -105,10 +105,22 @@
     }
   }
 
-  p {
+  p, li {
     line-height: 1.5rem;
-    font-size: 1rem;
-    font-weight: 400;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: $muted;
+    mark{
+      color: $rose;
+    }
+    citation{
+      color: $muted;
+      border-left: 3px solid $muted;
+      display: block;
+      padding: 10px 10px 10px 20px !important;
+      margin: 0 20px 0 20px;
+      background: #ffffff03 !important;
+    }
   }
 }
 

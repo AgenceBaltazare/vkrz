@@ -375,7 +375,7 @@ foreach ($contender_list as $contender) {
             </div>
 
             <div class="card invoice-list-wrapper">
-                <div class="card-datatable table-responsive">
+                <div class="table-responsive">
                     <table class="invoice-list-table table table-tdone">
                         <thead>
                             <tr>

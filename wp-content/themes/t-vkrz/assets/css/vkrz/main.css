@@ -157,14 +157,14 @@ body {
 }
 
 .dataTables_filter {
-  text-align: right;
-  padding: 10px;
-  float: right;
+  padding: 0 15px 0 0;
 }
-.dataTables_filter label {
-  max-width: 100%;
-  width: 270px;
-  margin: 0 10px 0 0;
+.dataTables_filter input {
+  width: 100% !important;
+  height: 40px;
+  font-size: 0.85rem !important;
+  font-weight: 500;
+  margin: 0 !important;
 }
 
 .pagination {
@@ -417,7 +417,7 @@ table.dataTable tbody td {
 .dark-style table.dataTable td a.btn {
   color: #fff;
   font-weight: 700 !important;
-  font-family: "Libre Franklin", sans-serif !important;
+  font-family: "Montserrat", Helvetica, Arial, serif !important;
 }
 
 .navbar-collapse {
@@ -455,7 +455,8 @@ table.dataTable tbody td {
 }
 .dark-style body {
   background: transparent;
-  font-family: "Libre Franklin", sans-serif !important;
+  font-family: "Montserrat", Helvetica, Arial, serif !important;
+  font-weight: 600;
 }
 @-webkit-keyframes gradient {
   0% {
@@ -551,7 +552,7 @@ html .content.app-content .content-overlay {
 }
 
 .ico2 {
-  width: 45px;
+  width: 30px;
   display: inline-block;
 }
 
@@ -1704,12 +1705,6 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   margin: 0 0 -5px 0;
 }
 
-.propose {
-  padding: 9px 10px;
-  font-family: "lato";
-  font-weight: 700 !important;
-}
-
 .ba-tranparent {
   background: transparent;
 }
@@ -1728,6 +1723,8 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
 .btn-label-blanc:hover {
   background: transparent !important;
   color: #7367f0;
+  font-size: 0.8rem !important;
+  font-weight: 500;
 }
 
 .percent50 {
@@ -1738,6 +1735,22 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
 
 .bg-card {
   background-color: rgba(97, 84, 167, 0.1) !important;
+}
+
+.footer a {
+  font-size: 0.85rem !important;
+  font-weight: 500;
+}
+.footer .copyright {
+  font-size: 0.85rem !important;
+  font-weight: 500;
+}
+
+.table.dataTable {
+  margin: 0 !important;
+}
+.table.dataTable thead {
+  border-bottom: 1px solid #7983bb;
 }
 
 .page-template-monitor .list-vainkeur-monitor {
@@ -1771,7 +1784,7 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   font-size: 30px;
 }
 .page-template-monitor .content-monitor h1 {
-  font-size: 80px;
+  font-size: 50px;
   color: #fff;
   font-weight: bold;
   margin-bottom: 10px;
@@ -1822,6 +1835,16 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
 
 .alert-success .alert-heading {
   box-shadow: none;
+}
+
+.stats-monitor .card-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.stats-monitor .card-body h5 {
+  margin: 10px 0 0 0;
 }
 
 .typeform iframe {
@@ -2365,13 +2388,13 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
 }
 .min-tournoi .card-body h3 {
   color: #7367f0;
-  font-size: 18px;
+  font-size: 0.95rem;
   text-align: center;
   font-weight: 500;
 }
 @media (max-width: 768px) {
   .min-tournoi .card-body h3 {
-    font-size: 15px;
+    font-size: 0.85rem;
   }
 }
 
@@ -2450,7 +2473,7 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
 .card-developer-meetup .presentationtop h1 {
   font-size: 22px;
   line-height: normal;
-  font-family: "lato";
+  font-family: "Montserrat", Helvetica, Arial, serif !important;
 }
 .card-developer-meetup .meetup-img-wrapper {
   min-height: 320px;
@@ -2580,7 +2603,7 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   transform: rotate(-2deg);
   display: block !important;
   font-size: 20px;
-  font-family: "lato";
+  font-family: "Montserrat", Helvetica, Arial, serif !important;
 }
 
 .versus img {
@@ -3270,7 +3293,7 @@ body {
 .modes-jeu-twitch h4 {
   color: #f4167f;
   margin-bottom: 5px;
-  font-family: "lato";
+  font-family: "Montserrat", Helvetica, Arial, serif !important;
   font-size: 1.2rem;
   text-transform: uppercase;
 }
@@ -3288,7 +3311,7 @@ body {
   border: 2px solid #f4167f;
   background-color: transparent;
   color: #fff;
-  font-family: "lato";
+  font-family: "Montserrat", Helvetica, Arial, serif !important;
   font-weight: 700 !important;
   letter-spacing: 1px;
   padding: 15px;
@@ -3901,7 +3924,7 @@ body {
   flex-basis: 40%;
 }
 .share-classement-content-box a {
-  font-family: "Lato", sans-serif;
+  font-family: "Montserrat", Helvetica, Arial, serif !important, sans-serif;
   display: inline-block;
   font-size: 18px;
   padding: 0.5em 2em;
@@ -4670,27 +4693,32 @@ select:-webkit-autofill:focus {
 }
 
 .detailskeurz .nav-tabs {
-  background: #7367f0;
+  background: transparent;
+  border-bottom: 1px solid #2a1f70;
 }
 .detailskeurz .nav-link {
   font-weight: 600;
   color: #fff;
-  padding: 5px 10px;
+  padding: 15px 20px;
   font-family: "montserrat";
   transition: all 0.2s ease-in;
-  margin: 10px;
-  border-radius: 5px;
+  margin: 0;
+  border-radius: 0;
   box-shadow: none !important;
   font-size: 13px;
   letter-spacing: 0.15px;
 }
 .detailskeurz .nav-link:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: #2a1f70;
   color: #fff !important;
 }
 .detailskeurz .nav-link.active {
-  background: rgba(255, 255, 255, 0.05);
+  background: #2a1f70 !important;
   color: #fff;
+}
+
+.tab-content {
+  border-radius: 0 0 5px 5px;
 }
 
 .blog h1 {
@@ -4820,7 +4848,7 @@ select:-webkit-autofill:focus {
 
 .blog-detail-wrapper h1 {
   color: #f4167f;
-  font-family: "lato";
+  font-family: "Montserrat", Helvetica, Arial, serif !important;
   font-weight: 800 !important;
 }
 .blog-detail-wrapper h2 {
@@ -4862,10 +4890,22 @@ select:-webkit-autofill:focus {
   max-width: 100%;
   height: auto;
 }
-.apropos p {
+.apropos p, .apropos li {
   line-height: 1.5rem;
-  font-size: 1rem;
-  font-weight: 400;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #7983bb;
+}
+.apropos p mark, .apropos li mark {
+  color: #f4167f;
+}
+.apropos p citation, .apropos li citation {
+  color: #7983bb;
+  border-left: 3px solid #7983bb;
+  display: block;
+  padding: 10px 10px 10px 20px !important;
+  margin: 0 20px 0 20px;
+  background: rgba(255, 255, 255, 0.0117647059) !important;
 }
 
 .space {
@@ -4938,13 +4978,6 @@ select:-webkit-autofill:focus {
   font-weight: 600;
   font-size: 1.1rem;
 }
-.propositions-top-wrapper .form-propositions-card {
-  background: none;
-}
-.propositions-top-wrapper .form-propositions-card .card-body {
-  padding: 0 !important;
-  margin: 1rem 0 2rem;
-}
 .propositions-top-wrapper .form-propositions-card #form-propositions .cta-form-creator {
   align-items: flex-end;
 }
@@ -5002,6 +5035,7 @@ select:-webkit-autofill:focus {
   padding: 1rem;
 }
 .propositions-top-wrapper .deviens-createur-wrapper .heading h3 {
+  font-size: 1.2rem;
   font-weight: bold;
 }
 .propositions-top-wrapper .prop-alert {
@@ -5029,6 +5063,10 @@ select:-webkit-autofill:focus {
   font-weight: bold;
   text-transform: uppercase;
   line-height: 23px;
+}
+
+.connect-btn {
+  padding: 5px 10px;
 }
 
 .topnamebestof {
@@ -5435,7 +5473,7 @@ select:-webkit-autofill:focus {
   font-weight: 800;
   color: #fff;
   border-radius: 10px;
-  font-family: "Lato";
+  font-family: "Montserrat", Helvetica, Arial, serif !important;
   font-size: 22px;
   transform: rotate(-3deg);
   margin-bottom: 20px;
@@ -6346,7 +6384,7 @@ select:-webkit-autofill:focus {
 }
 
 .va-house {
-  background-image: url(../../images/emojis/house_1f3e0.png);
+  background-image: url(../../images/emojis/house.png);
 }
 
 .va-paques {
@@ -6817,6 +6855,46 @@ select:-webkit-autofill:focus {
   background-image: url(../../images/emojis/tear-off-calendar_1f4c6.png);
 }
 
+.va-toplist-creator {
+  background-image: url(../../images/emojis/toplist-creator.png);
+}
+
+.va-vote-creator {
+  background-image: url(../../images/emojis/vote-creator.png);
+}
+
+.va-door {
+  background-image: url(../../images/emojis/door_1f6aa.png);
+}
+
+.va-hut {
+  background-image: url(../../images/emojis/hut_1f6d6.png);
+}
+
+.va-couch {
+  background-image: url(../../images/emojis/couch.png);
+}
+
+.va-temple {
+  background-image: url(../../images/emojis/temple.png);
+}
+
+.va-chato-jap {
+  background-image: url(../../images/emojis/chato-jap.png);
+}
+
+.va-castle {
+  background-image: url(../../images/emojis/castle.png);
+}
+
+.va-planet {
+  background-image: url(../../images/emojis/planet.png);
+}
+
+.va-square {
+  background-image: url(../../images/emojis/square.png);
+}
+
 /***** Icons END *****/
 .parrainage-card .card-header .card-title {
   color: #fff;
@@ -7200,10 +7278,67 @@ select:-webkit-autofill:focus {
   padding: 8px;
   border: none;
 }
+.search .dropdown-item .text {
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-align: center;
+}
 
 .reseauxicons ul {
   padding: 0;
   margin: 0;
+}
+
+div.dataTables_wrapper div.dataTables_paginate ul.pagination {
+  margin: 5px 0;
+  white-space: nowrap;
+  justify-content: flex-end;
+}
+
+div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-link {
+  padding: 0.594rem 0.35rem;
+  min-width: calc(1.938rem + 0px);
+  font-size: 0.75rem;
+  line-height: 1;
+  border-radius: 5px !important;
+  transition: all 0.2s ease-in;
+}
+div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-link:hover {
+  background-color: #2a1f70 !important;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #2a1f70 !important;
+}
+
+.avg-sessions p {
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.top3list {
+  display: flex;
+}
+
+.top-card h6 {
+  font-size: 0.75rem;
+}
+.top-card .legende {
+  font-size: 0.75rem;
+}
+
+.table > :not(caption) > * > * {
+  border-bottom: none;
+  border-top-width: 1px;
+}
+
+.valuestat .text-muted {
+  font-weight: 600;
+}
+
+.dropdown-item {
+  font-weight: 500;
+  font-size: 0.85rem;
 }
 
 .popup-overlay {

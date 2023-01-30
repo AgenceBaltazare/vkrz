@@ -33,12 +33,12 @@ get_header(); ?>
             </li>
             <li class="nav-item">
               <a class="nav-link" id="profileIcon-tab" data-bs-toggle="tab" href="#tab2" aria-controls="profile" role="tab" aria-selected="false">
-                RéZeaux
+                Mes réZeaux
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" id="profileIcon-tab" data-bs-toggle="tab" href="#tab3" aria-controls="profile" role="tab" aria-selected="false">
-                Identifiants
+                Gérer les Identifiants
               </a>
             </li>
           </ul>
