@@ -368,7 +368,7 @@ if (document.querySelector(".toplist_comments")) {
   let topListCommentsLength = topListCommentsQuerySnapshot._snapshot.docs.size;
 
   const commentTemplate = async function (commentId, uuid, content, secondes) {
-    const data = await fetchDataFuncHelper(`http://vainkeurz.local/wp-json/vkrz/v1/getuserinfo/${uuid}`);
+    const data = await fetchDataFuncHelper(`http://localhost:8888/vkrz/wp-json/vkrz/v1/getuserinfo/${uuid}`);
 
     // RETURN THE COMMENT TEMPLATE DIV…
     let deleteOrNot = "";
@@ -387,7 +387,7 @@ if (document.querySelector(".toplist_comments")) {
 
     return `
     <div class="comment-template media d-flex align-items-start mb-2 p-0">
-          <div class="media-left mr-50">
+          <div class="media-left me-2">
             <div class="avatar">
             <a href="${data.profil_url}" class="text-white">
               <span class="avatar-picture" style="background-image: url(${

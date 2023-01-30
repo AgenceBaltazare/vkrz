@@ -10,7 +10,7 @@ const table = document.querySelector(".table-listuserranks"),
   progressBar = calcResemblanceDiv.querySelector(".bar");
 
 const getNombrePages = await fetchDataFuncHelper(
-  `http://vainkeurz.local/wp-json/vkrz/v1/getalltoplistnumberpage/${idTop}`
+  `http://localhost:8888/vkrz/wp-json/vkrz/v1/getalltoplistnumberpage/${idTop}`
 );
 
 let nombrePages = getNombrePages.nb_pages,
@@ -29,7 +29,7 @@ let nombrePages = getNombrePages.nb_pages,
   // FETCH TOPLISTS DATA BY PAGE…
   for (let i = 1; i <= nombrePages; i++) {
     let toplists = await fetchDataFuncHelper(
-      `http://vainkeurz.local/wp-json/vkrz/v1/getalltoplistbyidtop/${idTop}/${i}`
+      `http://localhost:8888/vkrz/wp-json/vkrz/v1/getalltoplistbyidtop/${idTop}/${i}`
     );
 
     toplists.forEach((toplist) => {

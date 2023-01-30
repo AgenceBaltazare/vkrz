@@ -213,9 +213,7 @@ jQuery(document).ready(function ($) {
             e.target.closest(".popup") !== popUp.querySelector(".popup") ||
             e.target === popUp.querySelector("#close-popup")
           ) {
-
-            if (e.target !== copyLinkTopList && e.target !== copyLinkTop) {
-              // popUp.classList.add("d-none");
+            if (e.target !== copyLinkTopList && e.target !== copyLinkTop && e.target === popUp.querySelector("#close-popup")) {
               e.target.closest(".popup-overlay").classList.add("d-none");
             }
           }
@@ -233,6 +231,42 @@ jQuery(document).ready(function ($) {
           dealClosePopUp(popUp);
         }
       });
+
+      // TOP SPONSO POPUP SLIDE DOTS
+      if (document.querySelector('.popup-dots')) {
+        const dots      = document.querySelectorAll('.dot');
+        const slideOne  = document.querySelector('.popup-slide-1');
+        const slideTwo  = document.querySelector('.popup-slide-2');
+        const retourBtn = document.querySelector('.popup-retour');
+
+        dots.forEach(dot => {
+          dot.addEventListener("click", function() {
+            if(!dot.classList.contains('active')) {
+              dots.forEach(dot => dot.classList.remove('active'));
+              dot.classList.add('active');
+
+              if(dot.dataset.slide === "2") {
+                slideOne.classList.add('slide-left');
+                slideTwo.classList.remove('slide-right');
+
+                retourBtn.classList.remove('invisible');
+                retourBtn.addEventListener('click', () => {
+                  dots.forEach(dot => dot.classList.remove('active'));
+                  dots[0].classList.add('active');
+
+                  retourBtn.classList.add('invisible');
+                  slideOne.classList.remove('slide-left');
+                  setTimeout(() => slideTwo.classList.add('slide-right'), 100);
+                })
+              } else {
+                retourBtn.classList.add('invisible');
+                slideOne.classList.remove('slide-left');
+                setTimeout(() => slideTwo.classList.add('slide-right'), 100);
+              }
+            }
+          })
+        })
+      }
     }
 
     const popUp = document.querySelector('.popup-overlay');

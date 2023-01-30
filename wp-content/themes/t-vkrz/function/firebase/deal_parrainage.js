@@ -29,8 +29,8 @@ if (getCookie("wordpress_parrainage_cookies")) {
       referredTo = cookies.referredTo;
 
   if (currentUuid == referral) {
-    referral = await fetchDataFuncHelper(`http://vainkeurz.local/wp-json/vkrz/v1/getuserinfo/${referral}`);
-    referredTo = await fetchDataFuncHelper(`http://vainkeurz.local/wp-json/vkrz/v1/getuserinfo/${referredTo}`);
+    referral = await fetchDataFuncHelper(`http://localhost:8888/vkrz/wp-json/vkrz/v1/getuserinfo/${referral}`);
+    referredTo = await fetchDataFuncHelper(`http://localhost:8888/vkrz/wp-json/vkrz/v1/getuserinfo/${referredTo}`);
 
     // SEND NOTIF
     async function sendNotification(

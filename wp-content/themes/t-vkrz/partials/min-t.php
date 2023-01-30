@@ -86,7 +86,7 @@ if($list_user_tops){
           <div class="infos-card-t d-flex align-items-center infos-card-t-c">
             <div class="avatar-infomore">
               <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator_id; ?>" target="_blank">
-                <div class="avatar me-50">
+                <div class="avatar me-2">
                   <img src="<?php echo $creator_avatar; ?>" alt="<?php echo $creator_pseudo; ?>" width="38" height="38">
                 </div>
               </a>

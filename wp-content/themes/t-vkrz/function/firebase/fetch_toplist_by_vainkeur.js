@@ -18,7 +18,7 @@ const table              = document.querySelector('.fetch-table'),
       barPercent         = document.querySelector(".bar-percent");
 
 
-const data = await getDataAPI(`http://vainkeurz.local/wp-json/vkrz/v1/get_numberpage_vainkeur/${idVainkeur}`);
+const data = await getDataAPI(`http://localhost:8888/vkrz/wp-json/vkrz/v1/get_numberpage_vainkeur/${idVainkeur}`);
 
 let nombrePages            = data.nb_pages,
     nombreTops             = data.total_items,
@@ -71,7 +71,7 @@ loadAllTopListsBtn.addEventListener("click", () => {
     // FETCH TOPLISTS DATA BY PAGE…
     for (let i = 1; i <= nombrePages; i++) {
       let toplists = await getDataAPI(
-        `http://vainkeurz.local/wp-json/vkrz/v1/getalltoplistbyidvainkeur/${idVainkeur}/${i}`
+        `http://localhost:8888/vkrz/wp-json/vkrz/v1/getalltoplistbyidvainkeur/${idVainkeur}/${i}`
       );
 
       toplists.forEach((toplist) => {

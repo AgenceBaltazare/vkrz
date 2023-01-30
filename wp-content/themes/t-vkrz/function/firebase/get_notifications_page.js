@@ -40,7 +40,7 @@ const table = document.querySelector(".table-notifications"),
     const map = new Map();
     await Promise.all(
       notificationsUsersUuids.map(async (uuid) => {
-        await fetch(`http://vainkeurz.local/wp-json/vkrz/v1/getuserinfo/${uuid}`)
+        await fetch(`http://localhost:8888/vkrz/wp-json/vkrz/v1/getuserinfo/${uuid}`)
           .then((response) => response.json())
           .then((data) => map.set(uuid, data));
       })
@@ -56,7 +56,7 @@ const table = document.querySelector(".table-notifications"),
             <div class="media-body">
               <div class="media-heading">
                 <div class="d-flex">
-                  <div class="avatar mr-50">
+                  <div class="avatar me-2">
                     <a href="${notification.data().notifLink}">
                       <span class="avatar-picture" style="background-image: url(${
                         !notification.data().uuid
@@ -66,7 +66,7 @@ const table = document.querySelector(".table-notifications"),
                     </a>
                   </div>
                   <div>
-                    <a class="cart-item-title lead mb-0 text-body" id="readNotification" style="line-height: 0;" href="${
+                    <a class="cart-item-title mb-0 text-body" id="readNotification" style="line-height: 0;" href="${
                       notification.data().notifLink
                     }" data-id="">${notification.data().notifText}</a>
                     <small class="cart-item-by legende">Il y a ${secondsToStrFuncHelper(
@@ -78,7 +78,7 @@ const table = document.querySelector(".table-notifications"),
             </div>
           </td>
           <td class="text-right">
-            <span id="statut" class="badge rounded-pill badge-light-${
+            <span id="statut" class="badge rounded-pill bg-label-${
               notification.data().statut == "nouveau" ? "success" : "primary"
             } me-1" style="text-transform: capitalize;">${
         notification.data().statut

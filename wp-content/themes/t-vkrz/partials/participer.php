@@ -6,12 +6,14 @@ global $id_ranking;
 global $id_vainkeur;
 global $url_ranking;
 global $banner;
+global $top_infos;
 ?>
 <div class="participation-content-sponso mb-4">
-  <?php if (already_play($uuid_vainkeur, $id_top_global)) : ?>
+  <?php if (!already_play($uuid_vainkeur, $id_top_global)) : ?>
     <?php if (get_field('inscription_requise_t_sponso', $id_top_global) && !is_user_logged_in()) : ?>
       <div class="popup-overlay">
         <div class="popup participate-popup inscription-requise-popup scale-up-center">
+          <button class="close-popup only-x" id="close-popup">&times;</button>
           <div class="popup-header">
             <h3>
               Participer au tirage au sort <span class="va va-chance va-lg ms-2"></span>
@@ -29,18 +31,12 @@ global $banner;
               S'inscrire ou se connecter
             </a>
           </div>
-          <div class="popup-footer">
-            <button id="close-popup" class="close-popup">
-              <span class="text-muted">
-                Ne pas participer et juste voir ma TopList
-              </span>
-            </button>
-          </div>
         </div>
       </div>
     <?php else : ?>
       <div class="popup-overlay participate-init">
         <div class="popup participate-popup scale-up-center">
+          <button class="close-popup only-x" id="close-popup">&times;</button>
           <div class="popup-header">
             <h3>
               Participer au tirage au sort <span class="va va-chance va-lg ms-2"></span>
@@ -78,31 +74,211 @@ global $banner;
               </a>
             <?php endif; ?>
           </div>
-          <div class="popup-footer">
-            <button id="close-popup" class="close-popup">
-              <span class="text-muted">
-                Ne pas participer et juste voir ma TopList
-              </span>
-            </button>
-          </div>
         </div>
       </div>
       <div class="popup-overlay participation-confirme d-none">
         <div class="popup participate-popup finish-participate-popup scale-up-center">
           <button class="close-popup only-x" id="close-popup">&times;</button>
-
-          <div class="popup-body">
-            <div class="popup-body__left">
-              <h3>Participation confirmée ! <span class="va va-sign-of-the-horns va-lg"></span></h3>
-
-              <div class="bravo d-block">
+          <div class="popup-header">
+            <h3>
+              Participation confirmée <span class="va va-clapping va-lg ms-2"></span>
+            </h3>
+          </div>
+          <div class="popup-slides">
+            <div class="popup-body popup-slide-1">
+              <div class="datefinmail">
+                <p>
+                  Surveille tes e-mails, le tirage au sort se fera le :
+                  <span><?php the_field('date_fin_de_la_sponso_t_sponso', $id_top_global); ?></span>
+                </p>
+              </div>
+              <div class="separate"></div>
+              <div class="bonustop mt-3">
                 <?php the_field('message_de_confirmation_t_sponso', $id_top_global); ?>
+                <?php if (get_field('lien_de_la_sponso_t_sponso', $id_top_global)) : ?>
+                  <div class="sitesponsorlien">
+                    <a href="<?php the_field('lien_de_la_sponso_t_sponso', $id_top_global); ?>" target="_blank">
+                      <span class="va va-doigt-droit va-lg"></span> <span class="sitesp"><?php the_field('nom_de_la_sponso_t_sponso', $id_top_global); ?></span> <span class="va va-doigt-droit va-reverse va-lg"></span>
+                    </a>
+                  </div>
+                <?php endif; ?>
+              </div>
+
+              <p class="mt-2">Tu veux en faire profiter tes potes ?</p>
+              <button 
+                class="btn-wording-rose btn-wording" 
+                data-bs-toggle="offcanvas" 
+                data-bs-target="#sharetoplist"
+              >
+              Partage ta TopList
+              </button>
+            </div>
+            <div class="popup-share slide-right popup-slide-2">
+              <div class="popup-share-toplist">
+                  <p class="m-0">Partager ma TopList <span class="va va-trophy va-sm ml-50"></span></p>
+
+                  <div class="rs">
+                    <div class="d-flex align-items-center">
+                      <ul>
+                        <li>
+                          <a href="#" class="sharelinkbtn">
+                            <input type="text" value="<?php echo $url_ranking; ?>" class="input_to_share">
+                            <span>
+                              <i class="fa fa-link"></i>
+                            </span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="<?php echo $banner; ?>" download target="_blank">
+                            <span>
+                              <i class="fa fa-download"></i>
+                            </span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $url_ranking; ?>" title="Partager sur Facebook" target="_blank">
+                            <span>
+                              <i class="fab fa-facebook-f"></i>
+                            </span>
+                          </a>
+                        </li>
+                        <li>
+                          <?php if (get_field('tweet_personnalise_t', $id_top_global)) : ?>
+                            <a href="https://twitter.com/intent/tweet?text=<?php the_field('tweet_personnalise_t', $id_top_global); ?>&via=<?php the_field('a_personnalise_t', $id_top_global); ?>&hashtags=<?php the_field('#top_twitter', $id_top_global); ?>&url=<?php echo $url_ranking; ?>" target="_blank" title="Tweet">
+                              <span>
+                                <i class="fab fa-twitter"></i>
+                              </span>
+                            </a>
+                            </a>
+                          <?php else : ?>
+                            <?php if (get_field('@_twitter', $id_top_global)) : ?>
+                              <?php
+                              $arobaseFirstContender  = get_field('info_supplementaire_contender', $first_id_contender);
+                              $arobaseSecondContender = get_field('info_supplementaire_contender', $second_id_contender);
+                              $arobaseThirdContender  = get_field('info_supplementaire_contender', $third_id_contender);
+                              ?>
+                              <a href="https://twitter.com/intent/tweet?text=Voici ma TopList <?php echo $top_infos['top_title']; ?>%0a🥇<?= $arobaseFirstContender ?> 🥈<?= $arobaseSecondContender ?> 🥉<?= $arobaseThirdContender ?>%0a&via=vainkeurz&hashtags=VKRZ&hashtags=<?php echo get_field('#top_twitter', $id_top_global) ?>&url=<?php echo $url_ranking; ?>" target="_blank" title="Tweet">
+                                <span>
+                                  <i class="fab fa-twitter"></i>
+                                </span>
+                              </a>
+                            <?php else :  ?>
+                              <a href="https://twitter.com/intent/tweet?text=Voici ma TopList <?php echo $top_infos['top_title']; ?>&via=vainkeurz&hashtags=VKRZ&url=<?php echo $url_ranking; ?>" target="_blank" title="Tweet">
+                                <span>
+                                  <i class="fab fa-twitter"></i>
+                                </span>
+                              </a>
+                            <?php endif; ?>
+                          <?php endif; ?>
+                        </li>
+                        <li>
+                          <a href="whatsapp://send?text=<?php echo $url_ranking; ?>" data-action="share/whatsapp/share">
+                            <span>
+                              <i class="fab fa-whatsapp"></i>
+                            </span>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+              </div>
+
+              <div class="separate"></div>
+
+              <div class="popup-share-top">
+                <p class="m-0">Partager le Top <span class="va va-medal-1 va-md ml-50"></span></p>
+
+                <div class="rs">
+                  <div class="d-flex align-items-center">
+                    <ul>
+                      <li>
+                        <a href="#" class="sharelinkbtn2">
+                          <input type="text" value="<?php echo $top_infos['top_url']; ?>" class="input_to_share2">
+                          <span>
+                            <i class="fa fa-link"></i>
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $top_infos['top_url']; ?>" title="Partager sur Facebook" target="_blank">
+                          <span>
+                            <i class="fab fa-facebook-f"></i>
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="https://twitter.com/intent/tweet?text=Go faire le TOP <?php echo $top_infos['top_number']; ?> <?php echo $top_infos['top_title']; ?>&via=vainkeurz&hashtags=VKRZ&url=<?php echo $top_infos['top_url']; ?>" target="_blank" title="Tweet">
+                          <span>
+                            <i class="fab fa-twitter"></i>
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="whatsapp://send?text=<?php echo $top_infos['top_url']; ?>" data-action="share/whatsapp/share">
+                          <span>
+                            <i class="fab fa-whatsapp"></i>
+                          </span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
+          </div>
+          <div class="popup-footer">
+            <span class="popup-retour invisible">&leftarrow; Retour</span>
 
-            <div class="popup-body__right">
-              <div class="popup-body__right-top">
-                <p class="m-0"><span class="va va-trophy va-sm mr-50"></span> Partager ma TopList <span class="va va-trophy va-sm ml-50"></span></p>
+            <div class="popup-dots">
+              <div class="dot active" data-slide="1"></div>
+              <div class="dot" data-slide="2"></div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    <?php endif; ?>
+  <?php else : ?>
+    <div class="popup-overlay">
+      <div class="popup participate-popup finish-participate-popup scale-up-center">
+      <button class="close-popup only-x" id="close-popup">&times;</button>
+        <div class="popup-header">
+          <h3>
+            Participation confirmée <span class="va va-clapping va-lg ms-2"></span>
+          </h3>
+        </div>
+        <div class="popup-slides">
+          <div class="popup-body popup-slide-1">
+            <div class="datefinmail">
+              <p>
+                Surveille tes e-mails, le tirage au sort se fera le :
+                <span><?php the_field('date_fin_de_la_sponso_t_sponso', $id_top_global); ?></span>
+              </p>
+            </div>
+            <div class="separate"></div>
+            <div class="bonustop mt-3">
+              <?php the_field('message_de_confirmation_t_sponso', $id_top_global); ?>
+              <?php if (get_field('lien_de_la_sponso_t_sponso', $id_top_global)) : ?>
+                <div class="sitesponsorlien">
+                  <a href="<?php the_field('lien_de_la_sponso_t_sponso', $id_top_global); ?>" target="_blank">
+                    <span class="va va-doigt-droit va-lg"></span> <span class="sitesp"><?php the_field('nom_de_la_sponso_t_sponso', $id_top_global); ?></span> <span class="va va-doigt-droit va-reverse va-lg"></span>
+                  </a>
+                </div>
+              <?php endif; ?>
+            </div>
+
+            <p class="mt-2">Tu veux en faire profiter tes potes ?</p>
+            <button 
+              class="btn-wording-rose btn-wording" 
+              data-bs-toggle="offcanvas" 
+              data-bs-target="#sharetoplist"
+            >
+            Partage ta TopList
+            </button>
+          </div>
+          <div class="popup-share slide-right popup-slide-2">
+            <div class="popup-share-toplist">
+                <p class="m-0">Partager ma TopList <span class="va va-trophy va-sm ml-50"></span></p>
 
                 <div class="rs">
                   <div class="d-flex align-items-center">
@@ -168,87 +344,58 @@ global $banner;
                     </ul>
                   </div>
                 </div>
-              </div>
+            </div>
 
-              <strong>OU</strong>
+            <div class="separate"></div>
 
-              <div class="popup-body__right-bottom">
-                <p class="m-0"><span class="va va-medal-1 va-md mr-50"></span> Partager le Top <span class="va va-medal-1 va-md ml-50"></span></p>
+            <div class="popup-share-top">
+              <p class="m-0">Partager le Top <span class="va va-medal-1 va-md ml-50"></span></p>
 
-                <div class="rs">
-                  <div class="d-flex align-items-center">
-                    <ul>
-                      <li>
-                        <a href="#" class="sharelinkbtn2">
-                          <input type="text" value="<?php echo $top_infos['top_url']; ?>" class="input_to_share2">
-                          <span>
-                            <i class="fa fa-link"></i>
-                          </span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $top_infos['top_url']; ?>" title="Partager sur Facebook" target="_blank">
-                          <span>
-                            <i class="fab fa-facebook-f"></i>
-                          </span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="https://twitter.com/intent/tweet?text=Go faire le TOP <?php echo $top_infos['top_number']; ?> <?php echo $top_infos['top_title']; ?>&via=vainkeurz&hashtags=VKRZ&url=<?php echo $top_infos['top_url']; ?>" target="_blank" title="Tweet">
-                          <span>
-                            <i class="fab fa-twitter"></i>
-                          </span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="whatsapp://send?text=<?php echo $top_infos['top_url']; ?>" data-action="share/whatsapp/share">
-                          <span>
-                            <i class="fab fa-whatsapp"></i>
-                          </span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
+              <div class="rs">
+                <div class="d-flex align-items-center">
+                  <ul>
+                    <li>
+                      <a href="#" class="sharelinkbtn2">
+                        <input type="text" value="<?php echo $top_infos['top_url']; ?>" class="input_to_share2">
+                        <span>
+                          <i class="fa fa-link"></i>
+                        </span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $top_infos['top_url']; ?>" title="Partager sur Facebook" target="_blank">
+                        <span>
+                          <i class="fab fa-facebook-f"></i>
+                        </span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://twitter.com/intent/tweet?text=Go faire le TOP <?php echo $top_infos['top_number']; ?> <?php echo $top_infos['top_title']; ?>&via=vainkeurz&hashtags=VKRZ&url=<?php echo $top_infos['top_url']; ?>" target="_blank" title="Tweet">
+                        <span>
+                          <i class="fab fa-twitter"></i>
+                        </span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="whatsapp://send?text=<?php echo $top_infos['top_url']; ?>" data-action="share/whatsapp/share">
+                        <span>
+                          <i class="fab fa-whatsapp"></i>
+                        </span>
+                      </a>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    <?php endif; ?>
-  <?php else : ?>
-    <div class="popup-overlay">
-      <div class="popup participate-popup finish-participate-popup scale-up-center">
-        <div class="popup-header">
-          <h3>
-            Participation confirmée <span class="va va-clapping va-lg ms-2"></span>
-          </h3>
-        </div>
-        <div class="popup-body">
-          <div class="datefinmail">
-            <p>
-              Surveille tes e-mails, le tirage au sort se fera le :
-              <span><?php the_field('date_fin_de_la_sponso_t_sponso', $id_top_global); ?></span>
-            </p>
-          </div>
-          <div class="separate"></div>
-          <div class="bonustop mt-3">
-            <?php the_field('message_de_confirmation_t_sponso', $id_top_global); ?>
-            <?php if (get_field('lien_de_la_sponso_t_sponso', $id_top_global)) : ?>
-              <div class="sitesponsorlien">
-                <a href="<?php the_field('lien_de_la_sponso_t_sponso', $id_top_global); ?>" target="_blank">
-                  <span class="va va-doigt-droit va-lg"></span> <span class="sitesp"><?php the_field('nom_de_la_sponso_t_sponso', $id_top_global); ?></span> <span class="va va-doigt-droit va-reverse va-lg"></span>
-                </a>
-              </div>
-            <?php endif; ?>
-          </div>
-        </div>
         <div class="popup-footer">
-          <button id="close-popup" class="close-popup">
-            <span class="text-muted">
-              Fermer et voir ma TopList
-            </span>
-          </button>
+          <span class="popup-retour invisible">&leftarrow; Retour</span>
+
+          <div class="popup-dots">
+            <div class="dot active" data-slide="1"></div>
+            <div class="dot" data-slide="2"></div>
+          </div>
         </div>
       </div>
     </div>

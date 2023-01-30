@@ -7365,15 +7365,39 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-link:hover {
   z-index: 1001;
 }
 .popup-overlay .popup .popup-body {
-  padding: 15px;
+  transition: 0.5s;
 }
-.popup-overlay .popup .popup-footer button {
-  font-size: 0.85rem;
-  color: #fff;
-  outline: none;
-  border: none;
-  background: none;
-  margin: 20px 0 0 0;
+.popup-overlay .popup .popup-body p:first-of-type > img {
+  width: 180px;
+}
+.popup-overlay .popup .btn-wording-rose {
+  font-weight: bold;
+  letter-spacing: 0;
+  border-radius: 6px !important;
+  text-transform: uppercase;
+  margin: 0 auto;
+}
+.popup-overlay .popup .popup-footer .popup-dots {
+  margin-top: 0.8rem;
+}
+.popup-overlay .popup .popup-footer .popup-dots .dot {
+  height: 7px;
+  width: 7px;
+  background-color: #806E8B;
+  border-radius: 50%;
+  display: inline-block;
+  padding: 3px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.popup-overlay .popup .popup-footer .popup-dots .dot.active {
+  background-color: #FFF;
+}
+.popup-overlay .popup .popup-footer .popup-retour {
+  display: inline-block;
+  color: #f4167f;
+  font-style: italic;
+  cursor: pointer;
 }
 .popup-overlay .popup p {
   font-size: 1rem;
@@ -7390,17 +7414,25 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-link:hover {
   background: none;
   border: none;
   outline: none;
-  font-size: 3rem;
+  font-size: 0.8rem;
   color: #FFF;
   line-height: 100%;
-  margin-top: -1rem;
-  padding: 0;
 }
 .popup-overlay .popup #close-popup.only-x {
   position: absolute;
-  top: 18px;
-  right: 10px;
-  font-size: 1.4rem;
+  top: -11px;
+  right: -6px;
+  font-size: 1.6rem;
+  font-weight: bold;
+  border-radius: 6px;
+  box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+  background-color: #3d425f;
+  padding: 0.1rem 0.5rem;
+  opacity: 0.6;
+  transition: opacity 0.3s;
+}
+.popup-overlay .popup #close-popup.only-x:hover {
+  opacity: 0.8;
 }
 .popup-overlay .popup .rs {
   width: 100%;
@@ -7410,9 +7442,9 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-link:hover {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  gap: 1rem;
   width: 100%;
-  padding: 1rem 0.6rem;
+  padding: 0.2rem 0.3rem;
+  gap: 0.9rem;
   margin: 0;
 }
 @media (max-width: 768px) {
@@ -7425,27 +7457,24 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-link:hover {
 .popup-overlay .popup .rs ul i {
   display: grid;
   place-items: center;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   border-radius: 50%;
   border: #7367f0 2px solid;
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   transition: 0.3s all;
   color: #7367f0;
 }
 @media (max-width: 768px) {
   .popup-overlay .popup .rs ul i {
-    font-size: 1.1rem;
-    width: 40px;
-    height: 40px;
+    font-size: 1rem;
+    width: 35px;
+    height: 35px;
   }
 }
 .popup-overlay .popup .rs ul i:hover {
   border: #f4167f 2px solid;
   color: #f4167f !important;
-}
-.popup-overlay .popup hr {
-  border-color: #7367f0 !important;
 }
 .popup-overlay .popup h6 {
   color: #7367f0;
@@ -7562,6 +7591,38 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-link:hover {
 }
 .popup-overlay .finish-participate-popup .popup-body .bonustop a:hover .sitesp {
   padding: 0 5px;
+}
+.popup-overlay .popup-slides {
+  position: relative;
+  overflow: hidden;
+}
+.popup-overlay .popup-share {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.5s;
+}
+.popup-overlay .popup-share p {
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  font-style: italic;
+  margin: 12px auto !important;
+}
+@media (max-width: 768px) {
+  .popup-overlay .popup-share p {
+    font-size: 1rem;
+  }
+}
+.popup-overlay .popup-share .separate {
+  margin: 24px auto;
+}
+.popup-overlay .slide-left {
+  transform: translateX(-100%);
+}
+.popup-overlay .slide-right {
+  transform: translateX(150%);
 }
 .popup-overlay .rotate-in-center {
   -webkit-animation: rotate-in-center 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;

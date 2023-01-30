@@ -39,7 +39,7 @@ import {
   await Promise.all(
     notificationsUsersUuids.map(async (uuid) => {
       await fetch(
-        `http://vainkeurz.local/wp-json/vkrz/v1/getuserinfo/${uuid}`
+        `http://localhost:8888/vkrz/wp-json/vkrz/v1/getuserinfo/${uuid}`
       )
         .then((response) => response.json())
         .then((data) => map.set(uuid, data));
