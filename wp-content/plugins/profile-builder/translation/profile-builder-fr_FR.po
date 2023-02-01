@@ -2886,11 +2886,11 @@ msgstr "Avec Profile Builder Pro v2, vous pouvez afficher différents champs dan
 
 #: profile-builder-2.0/assets/misc/plugin-compatibilities.php:237
 msgid "Your account has to be confirmed by an administrator before you can log in."
-msgstr "Votre compte doit être confirmé par un administrateur avant de pouvoir vous connecter."
+msgstr "Ton compte doit être confirmé par un administrateur avant de pouvoir vous connecter."
 
 #: profile-builder-2.0/features/admin-approval/admin-approval.php:216
 msgid "Your account has been successfully created!"
-msgstr "Votre compte à été créé avec succès!"
+msgstr "Ton compte à été créé avec succès!"
 
 #: profile-builder-2.0/features/functions.php:678
 #: profile-builder-2.0/front-end/default-fields/recaptcha/recaptcha.php:374
@@ -4350,7 +4350,7 @@ msgstr "Les utilisateurs ont bien été supprimés !"
 
 #: profile-builder-2.0/features/admin-approval/admin-approval.php:147
 msgid "Your account on %1$s has been approved!"
-msgstr "Votre compte sur %1$s a été approuvé !"
+msgstr "Ton compte sur %1$s a été approuvé !"
 
 #: profile-builder-2.0/features/admin-approval/admin-approval.php:148
 #: profile-builder-2.0/features/admin-approval/admin-approval.php:151
@@ -4359,11 +4359,11 @@ msgstr "approuvé"
 
 #: profile-builder-2.0/features/admin-approval/admin-approval.php:150
 msgid "An administrator has just approved your account on %1$s (%2$s)."
-msgstr "Un administrateur vient d'approuver votre compte sur %1$s (%2$s)."
+msgstr "Un administrateur vient d'approuver Ton compte sur %1$s (%2$s)."
 
 #: profile-builder-2.0/features/admin-approval/admin-approval.php:155
 msgid "Your account on %1$s has been unapproved!"
-msgstr "Votre compte sur %1$s a été refusé !"
+msgstr "Ton compte sur %1$s a été refusé !"
 
 #: profile-builder-2.0/features/admin-approval/admin-approval.php:156
 #: profile-builder-2.0/features/admin-approval/admin-approval.php:159
@@ -4372,15 +4372,15 @@ msgstr "refusé"
 
 #: profile-builder-2.0/features/admin-approval/admin-approval.php:158
 msgid "An administrator has just unapproved your account on %1$s (%2$s)."
-msgstr "Un administrateur vient de refuser votre compte sur %1$s (%2$s)."
+msgstr "Un administrateur vient de refuser Ton compte sur %1$s (%2$s)."
 
 #: profile-builder-2.0/features/admin-approval/admin-approval.php:177
 msgid "<strong>ERROR</strong>: Your account has to be confirmed by an administrator before you can log in."
-msgstr "<strong>ERREUR</strong> : Votre compte doit être confirmé par un administrateur avant que vous ne puissiez vous connecter."
+msgstr "<strong>ERREUR</strong> : Ton compte doit être confirmé par un administrateur avant que vous ne puissiez vous connecter."
 
 #: profile-builder-2.0/features/admin-approval/admin-approval.php:189
 msgid "Your account has to be confirmed by an administrator before you can use the \"Password Recovery\" feature."
-msgstr "Un administrateur doit approuver votre compte avant que vous ne puissiez utiliser la fonctionnalité \"Mot de passe perdu\"."
+msgstr "Un administrateur doit approuver Ton compte avant que vous ne puissiez utiliser la fonctionnalité \"Mot de passe perdu\"."
 
 #: profile-builder-2.0/features/admin-approval/class-admin-approval.php:113
 msgid "delete this user?"
@@ -4551,7 +4551,7 @@ msgstr "La fonctionnalité \"Approbation Admin\" était activée au moment de l'
 
 #: profile-builder-2.0/features/email-confirmation/email-confirmation.php:570
 msgid "[%1$s] Your new account information"
-msgstr "[%1$s] Nouvelles informations à propos de votre compte"
+msgstr "[%1$s] Nouvelles informations à propos de Ton compte"
 
 #: profile-builder-2.0/features/email-confirmation/email-confirmation.php:581
 msgid "Welcome to %1$s!<br/><br/><br/>Your username is:%2$s and password:%3$s"
@@ -4560,7 +4560,7 @@ msgstr "Bienvenue sur %1$s!<br/><br/><br/>Votre nom d'utilisateur est :%2$s <br/
 #: profile-builder-2.0/features/email-confirmation/email-confirmation.php:642
 #: profile-builder-2.0/front-end/register.php:125
 msgid "Before you can access your account, an administrator needs to approve it. You will be notified via email."
-msgstr "Votre compte doit d'abord être approuvé par un administrateur avant que ne ne puissiez y accéder. Un E-mail vous sera envoyé."
+msgstr "Ton compte doit d'abord être approuvé par un administrateur avant que ne ne puissiez y accéder. Un E-mail vous sera envoyé."
 
 #: profile-builder-2.0/features/login-widget/login-widget.php:10
 msgid "This login widget lets you add a login form in the sidebar."
@@ -4636,16 +4636,16 @@ msgstr "Vous serez bientôt redirigé automatiquement. Si vous voyez cette page 
 #: profile-builder-2.0/front-end/class-formbuilder.php:315
 #: profile-builder-2.0/front-end/class-formbuilder.php:322
 msgid "The account %1s has been successfully created!"
-msgstr "Votre compte %1s a bien été créé !"
+msgstr "Ton compte %1s a bien été créé !"
 
 #: profile-builder-2.0/front-end/class-formbuilder.php:318
 #: profile-builder-2.0/front-end/class-formbuilder.php:328
 msgid "Before you can access your account %1s, you need to confirm your email address. Please check your inbox and click the activation link."
-msgstr "Avant que vous ne puissiez accéder à votre compte %1s, vous devez confirmer votre adresse de messagerie. Merci de consulter votre boite de réception et de cliquer sur le lien d'activation."
+msgstr "Avant que vous ne puissiez accéder à Ton compte %1s, vous devez confirmer votre adresse de messagerie. Merci de consulter votre boite de réception et de cliquer sur le lien d'activation."
 
 #: profile-builder-2.0/front-end/class-formbuilder.php:324
 msgid "Before you can access your account %1s, an administrator has to approve it. You will be notified via email."
-msgstr "Votre compte %1s doit d'abord être approuvé par un administrateur avant que ne ne puissiez y accéder. Un E-mail vous sera envoyé."
+msgstr "Ton compte %1s doit d'abord être approuvé par un administrateur avant que ne ne puissiez y accéder. Un E-mail vous sera envoyé."
 
 #: profile-builder-2.0/front-end/class-formbuilder.php:347
 msgid "Your profile has been successfully updated!"
@@ -4710,7 +4710,7 @@ msgstr "Déconnexion"
 
 #: profile-builder-2.0/front-end/recover.php:17
 msgid "Your account has to be confirmed by an administrator before you can use the \"Password Reset\" feature."
-msgstr "Votre compte doit être confirmé par un administrateur avant que vous ne puissiez utiliser la fonctionnalité \"Ré-initialisation du mot de passe\"."
+msgstr "Ton compte doit être confirmé par un administrateur avant que vous ne puissiez utiliser la fonctionnalité \"Ré-initialisation du mot de passe\"."
 
 #: profile-builder-2.0/front-end/recover.php:94
 msgid "Reset Password"
@@ -4730,7 +4730,7 @@ msgstr "Nom d'utilisateur ou adresse de messagerie."
 
 #: profile-builder-2.0/front-end/recover.php:138
 msgid "Get New Password"
-msgstr "Ré-initialiser votre mot de passe"
+msgstr "Ré-initialiser ton mot de passe"
 
 #: profile-builder-2.0/front-end/recover.php:185
 msgid "The username entered wasn't found in the database!"
@@ -4746,7 +4746,7 @@ msgstr "Merci de consulter votre boite de réception pour le lien d'activation."
 
 #: profile-builder-2.0/front-end/recover.php:235
 msgid "Someone requested that the password be reset for the following account: <b>%1$s</b><br/>If this was a mistake, just ignore this email and nothing will happen.<br/>To reset your password, visit the following link:%2$s"
-msgstr "Quelqu'un a demandé que le mot de passe soit ré-initialisé sur le compte suivant: <b>%1$s</b><br/>Si c'est une erreur, ignorez simplement cet e-mail et il ne se passera rien.<br/>Pour ré-initialiser votre mot de passe, cliquez sur le lien suivant:%2$s"
+msgstr "Quelqu'un a demandé que le mot de passe soit ré-initialisé sur le compte suivant: <b>%1$s</b><br/>Si c'est une erreur, ignorez simplement cet e-mail et il ne se passera rien.<br/>Pour ré-initialiser ton mot de passe, cliquez sur le lien suivant:%2$s"
 
 #: profile-builder-2.0/front-end/recover.php:238
 msgid "Password Reset from \"%1$s\""
@@ -5080,7 +5080,7 @@ msgid ""
 "<p>After you activate, you will receive another email with your credentials.</p>\n"
 msgstr ""
 "\n"
-"<p>Pour activer votre compte, merci de cliquer sur le lien suivant :<br/>\n"
+"<p>Pour activer Ton compte, merci de cliquer sur le lien suivant :<br/>\n"
 "{{{activation_link}}}</p>\n"
 "<p>Une fois l'activation réalisée, vous recevrez une autre E-mail avec vos identifiants</p>\n"
 
@@ -5101,7 +5101,7 @@ msgid ""
 msgstr ""
 "<h3>Bienvenu(e) sur {{site_name}}!</h3>\n"
 "<p>Votre nom d'utilisateur est :{{username}} et votre mot de passe :{{password}}</p>\n"
-"<p>Avant que vous ne puissiez accéder à votre compte, un administrateur doit d'abord l'approuver. Vous serez informé par E-mail.</p>\n"
+"<p>Avant que vous ne puissiez accéder à Ton compte, un administrateur doit d'abord l'approuver. Vous serez informé par E-mail.</p>\n"
 
 #: profile-builder-2.0/modules/email-customizer/user-email-customizer.php:132
 msgid "A new account has been created for you on {{site_name}}"
@@ -5115,11 +5115,11 @@ msgid ""
 msgstr ""
 "\n"
 "<h3>Bonne nouvelle !</h3>\n"
-"<p>Un administrateur vient juste d'approuver votre compte {{username}} sur {{site_name}}.</p>\n"
+"<p>Un administrateur vient juste d'approuver Ton compte {{username}} sur {{site_name}}.</p>\n"
 
 #: profile-builder-2.0/modules/email-customizer/user-email-customizer.php:159
 msgid "Your account on {{site_name}} has been approved!"
-msgstr "Votre compte sur {{site_name}} a été approuvé !"
+msgstr "Ton compte sur {{site_name}} a été approuvé !"
 
 #: profile-builder-2.0/modules/email-customizer/user-email-customizer.php:170
 msgid "User Approval Notification"
@@ -5133,11 +5133,11 @@ msgid ""
 msgstr ""
 "\n"
 "<h3>Bonjour,</h3>\n"
-"<p>Un administrateur vient malheureusement de refuser votre compte : {{username}} sur {{site_name}}.</p>\n"
+"<p>Un administrateur vient malheureusement de refuser Ton compte : {{username}} sur {{site_name}}.</p>\n"
 
 #: profile-builder-2.0/modules/email-customizer/user-email-customizer.php:187
 msgid "Your account on {{site_name}} has been unapproved!"
-msgstr "Votre compte sur {{site_name}} a été refusé !"
+msgstr "Ton compte sur {{site_name}} a été refusé !"
 
 #: profile-builder-2.0/modules/email-customizer/user-email-customizer.php:198
 msgid "Unapproved User Notification"

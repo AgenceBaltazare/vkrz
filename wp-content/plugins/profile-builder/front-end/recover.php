@@ -135,7 +135,7 @@ function wppb_create_recover_password_form( $user, $post_data ){
 	echo apply_filters( 'wppb_recover_password_generate_password_input', $recover_input, trim( $username_email ) ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		?>
 	<p class="form-submit">
-		<?php $button_name = __('Get New Password', 'profile-builder'); ?>
+		<?php $button_name = __('Ré-initialiser ton mot de passe', 'profile-builder'); ?>
 		<input name="recover_password" type="submit" id="wppb-recover-password-button" class="<?php echo esc_attr( apply_filters( 'wppb_recover_submit_class', "submit button" ) );?>" value="<?php echo esc_attr( apply_filters('wppb_recover_password_button_name3', $button_name) ); ?>" />
 		<input name="action" type="hidden" id="action" value="recover_password" />
 	</p>
@@ -309,7 +309,7 @@ function wppb_front_end_password_recovery( $atts ){
                 if ($warning != ''){
                     $output .= wppb_password_recovery_warning( $warning, 'wppb_recover_password_displayed_message1' );
                 }else{
-                    $success = sprintf( __( 'Check your email for the confirmation link.', 'profile-builder'), $username_email );
+                    $success = sprintf( __( 'Vérifiez ton e-mail pour le lien de confirmation.', 'profile-builder'), $username_email );
                     $success = apply_filters( 'wppb_recover_password_sent_message1', $success, $username_email );
 
                     if ( $success != 'wppb_recaptcha_error')

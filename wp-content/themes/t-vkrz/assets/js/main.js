@@ -130,12 +130,6 @@ jQuery(document).ready(function ($) {
   });
 
   window.onload = function () {
-    if(document.querySelector('.to-sign')) {
-      if(document.querySelector('.to-sign.connected')) {
-        document.querySelector('.to-sign').classList.add('signs');
-      }
-    }
-
     var copyBtns = document.querySelectorAll(".sharelinkbtn");
     copyBtns.forEach((copyBtn) => {
       copyBtn.addEventListener("click", function (event) {
@@ -177,18 +171,6 @@ jQuery(document).ready(function ($) {
         });
       });
     });
-
-    if(document.querySelector('#wppb-register-user-sign-on')) {
-      const form = document.querySelector('#wppb-register-user-sign-on');
-      form.addEventListener('submit', () => {
-        const formAction = form.getAttribute('action');
-        
-        if(!formAction.includes('codeinvit')) {
-          const codeInvitValue = form.querySelector('#referral').value;
-          form.setAttribute('action', `${formAction}?codeinvit=${codeInvitValue}`)
-        }
-      });
-    }
 
     if(document.querySelector('#copyReferralLink')) {
       const buttons = document.querySelectorAll("#copyReferralLink");
@@ -311,7 +293,17 @@ jQuery(document).ready(function ($) {
   };
 });
 
-
+if(document.querySelector('#wppb-register-user-sign-on')) {
+  const form = document.querySelector('#wppb-register-user-sign-on');
+  form.addEventListener('submit', () => {
+    const formAction = form.getAttribute('action');
+    
+    if(!formAction.includes('codeinvit')) {
+      const codeInvitValue = form.querySelector('#referral').value;
+      form.setAttribute('action', `${formAction}?codeinvit=${codeInvitValue}`)
+    }
+  });
+}
 
 var prefetUsers = new Bloodhound({
   datumTokenizer: Bloodhound.tokenizers.whitespace,

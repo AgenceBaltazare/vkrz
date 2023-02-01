@@ -17,7 +17,6 @@ const table              = document.querySelector('.fetch-table'),
       progressBar        = document.querySelector(".bar"),
       barPercent         = document.querySelector(".bar-percent");
 
-
 const data = await getDataAPI(`http://localhost:8888/vkrz/wp-json/vkrz/v1/get_numberpage_vainkeur/${idVainkeur}`);
 
 let nombrePages            = data.nb_pages,
@@ -109,7 +108,7 @@ loadAllTopListsBtn.addEventListener("click", () => {
                     <span class="va va-globe va-lg"></span>
                   </a>
                   
-                  <a href="${toplist.toplist_link}#juger" class="btn btn-icon btn-label-primary waves-effect" data-toggle="tooltip" data-placement="top" title="${typeTopWording}" data-original-title="Juger cette TopList">
+                  <a href="${toplist.toplist_link}#juger" class="btn btn-icon btn-label-primary waves-effect" data-toggle="tooltip" data-placement="top" title="Juger cette TopList" data-original-title="Juger cette TopList">
                     <span class="va va-hache va-lg"></span>
                   </a>
               </div>

@@ -3632,7 +3632,7 @@ msgstr ""
 
 #: front-end/recover.php:138
 msgid "Get New Password"
-msgstr ""
+msgstr "Ré-initialiser ton mot de passe"
 
 #: front-end/recover.php:184
 msgid "Someone requested that the password be reset for the following account: <b>%1$s</b><br/>If this was a mistake, just ignore this email and nothing will happen.<br/>To reset your password, visit the following link:%2$s"

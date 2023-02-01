@@ -87,7 +87,7 @@ const getPropositions = async function() {
 
           if(currentUserRole === "administrator") {
             topValidOrNot = `<span class="d-none">valider</span>
-            <input type="submit" value="Valider" class="btn btn-primary waves-effect waves-float waves-light valider-proposition-top w-100 mb-50" data-userid=${dataUser.id_user} data-useruuid=${proposition.data().userUuid} data-iddocument="${proposition.id}">
+            <input type="submit" value="Valider" class="btn btn-primary waves-effect waves-float waves-light valider-proposition-top w-100 mb-1" data-userid=${dataUser.id_user} data-useruuid=${proposition.data().userUuid} data-iddocument="${proposition.id}">
             <input type="submit" value="Refuser" class="btn btn-danger waves-effect waves-float waves-light refuser-proposition-top w-100" data-iddocument="${proposition.id}">`
           } else {
             topValidOrNot = `En cours de validation… 🚧`
@@ -339,7 +339,6 @@ const questionTop     = form.querySelector(".question_top");
 const submitBtn       = form.querySelector(".proposer-btn");
 
 // DOM
-const headingTitle    = document.querySelector('.heading-title');
 const propAlert       = document.querySelector('.prop-alert');
 const afterSubmitText = document.querySelector('.merci-proposition');
 
@@ -383,19 +382,6 @@ submitBtn.addEventListener("click", (e) => {
 
         form.classList.add('d-none');
         afterSubmitText.classList.remove('d-none')
-        headingTitle.innerHTML = `
-          Propose <strong id="autre-prop-top" class="cursor-pointer"><u>un autre Top ?</u></strong>
-        `;
-
-        const autrePropTopBtn = document.querySelector('#autre-prop-top');
-        autrePropTopBtn.addEventListener('click', () => {
-          form.classList.remove('d-none');
-          afterSubmitText.classList.add('d-none')
-          headingTitle.innerHTML = `
-            Propose ton <strong>Top</strong>
-          `;
-        })
-
         await getPropositions();
 
         // RESET…

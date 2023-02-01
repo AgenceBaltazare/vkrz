@@ -32,7 +32,7 @@ if ($infos_vainkeur_to_watch['user_role'] == "administrator" || $infos_vainkeur_
 
         <!-- User trophées -->
         <div class="card d-none d-sm-block">
-          <?php $vainkeur_badges = get_the_terms($id_vainkeur, 'badges'); ?>
+          <?php $vainkeur_badges = get_the_terms($id_vainkeur_to_watch, 'badges'); ?>
           <div class="card-header">
             <h4 class="card-title">
               Trophées
@@ -411,7 +411,7 @@ if ($infos_vainkeur_to_watch['user_role'] == "administrator" || $infos_vainkeur_
           <?php if ($infos_vainkeur_to_watch['nb_top_vkrz'] >= 25) : ?>
             <div class="card invoice-list-wrapper list-js">
               <div class="table-responsive">
-                <table class="invoice-list-table table fetch-table" data-idVainkeur="<?= $id_vainkeur; ?>">
+                <table class="invoice-list-table table fetch-table" data-idVainkeur="<?= $id_vainkeur_to_watch; ?>">
                   <thead>
                     <tr>
                       <th class="">

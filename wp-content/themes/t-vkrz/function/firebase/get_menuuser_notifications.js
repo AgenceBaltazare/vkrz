@@ -52,29 +52,24 @@ import {
 
     html += `
       <a 
-        class="d-flex" 
+        class="list-group-item list-group-item-action dropdown-notifications-item"
         id="readNotification" 
         href="${notification.data().notifLink}"
         data-id="${notification.id}"
       >
-        <div class="media d-flex align-items-start test">
-          <div class="media-left">
-            <div class="avatar">                  
-              <span class="avatar-picture" style="background-image: url(${
+        <div class="d-flex">
+          <div class="flex-shrink-0 me-3">
+            <div class="avatar">
+              <img src="${
                 !notification.data().uuid
                   ? anonymeAvatarUrl
                   : map.get(notification.data().uuid).avatar
-              });"></span>
+              }" alt="" class="h-auto rounded-circle">
             </div>
           </div>
-
-          <div class="media-body">
-            <p class="media-heading">
-              <span class="font-weight-bolder">
-                ${notification.data().notifText}
-              </span>
-            </p>
-            <small class="notification-text">Il y a ${secondsToStrFuncHelper(
+          <div class="flex-grow-1">
+            <h6 class="mb-1">${notification.data().notifText}</h6>
+            <small class="notification-text text-muted">Il y a ${secondsToStrFuncHelper(
               secondes
             )}</small>
           </div>

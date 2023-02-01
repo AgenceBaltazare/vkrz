@@ -41,6 +41,10 @@ get_header(); ?>
         </div>
       </div>
 
+      <div class="p-3">
+
+      </div>
+          
       <p class="text-center mt-2">
         <a href="<?php the_permalink(get_page_by_path('mot-de-passe')); ?>">
           <span>Mot de passe oublié ? <span class="ico text-center va va-upside-down-face va-lg"></span></span>

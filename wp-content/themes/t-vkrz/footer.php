@@ -16,7 +16,7 @@ global $id_vainkeur;
           <span class="me-2">
             VAINKEURZ ©<?php echo date('Y') + 100; ?>
           </span>
-          <a class="me-2" href="mailto:weare@vainkeurz.com">contact</a>
+          <a class="me-2" href="mailto:weare@vainkeurz.com">Contact</a>
           <a class="" href="<?php the_permalink(get_page_by_path('ml')); ?>">CGU</a>
         </span>
       </div>
