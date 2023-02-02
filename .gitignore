@@ -48,7 +48,6 @@ wp-content/db.php
 wp-content/wp-rocket-config
 
 #### Spécial
-twitch/
-twitch/*
+
 rooms/*
 rooms/
