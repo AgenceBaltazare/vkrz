@@ -20,7 +20,7 @@ global $id_vainkeur;
           <a class="" href="<?php the_permalink(get_page_by_path('ml')); ?>">CGU</a>
         </span>
       </div>
-      <div>
+      <div class="d-none d-sm-block">
         <span class="float-md-right social-links">
           <a href="https://discord.gg/E9H9e8NYp7" class="btn-footer" target="_blank">
             Discord
@@ -34,8 +34,8 @@ global $id_vainkeur;
             Twitter
           </a>
           <span class="space"></span>
-          <a href="https://www.facebook.com/vainkeurz" target="_blank" class="btn-footer">
-            Facebook
+          <a href="https://www.tiktok.com/@vainkeurz" target="_blank" class="btn-footer">
+            TikTok
           </a>
         </span>
       </div>

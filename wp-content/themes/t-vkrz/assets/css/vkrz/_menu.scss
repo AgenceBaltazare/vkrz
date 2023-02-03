@@ -255,3 +255,26 @@
     width: 60%;
   }
 }
+
+.linktohomemob{
+  position: fixed;
+
+}
+
+@media (max-width: 768px) {
+  .layout-navbar{
+    .container-xxl{
+      padding: 0;
+    }
+  }
+}
+
+.app-brand-mobile{
+  width: 80px;
+  display: block;
+  margin-right: 10px;
+  img{
+    top: 12px;
+    left: 5px;
+  }
+}

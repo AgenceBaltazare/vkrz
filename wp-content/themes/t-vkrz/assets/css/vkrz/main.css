@@ -318,6 +318,27 @@ a.sociallink:hover i {
   justify-content: space-between;
   padding: 0 0 0 155px;
 }
+@media (max-width: 768px) {
+  .menu-inner {
+    justify-content: flex-start;
+    align-items: start !important;
+    padding: 100px 0 0 0;
+  }
+  .menu-inner .propose a {
+    width: 90%;
+  }
+  .menu-inner .menu-item {
+    width: 90% !important;
+  }
+}
+
+.menu-vertical {
+  width: 90%;
+}
+
+.menu-vertical .menu-inner > .menu-item {
+  margin: 0.8rem 0;
+}
 
 .layout-navbar .navbar-dropdown.dropdown-shortcuts .dropdown-shortcuts-item a, .layout-navbar .navbar-dropdown.dropdown-shortcuts .dropdown-shortcuts-item a:hover {
   display: block;
@@ -2119,6 +2140,25 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
     width: 60%;
   }
 }
+.linktohomemob {
+  position: fixed;
+}
+
+@media (max-width: 768px) {
+  .layout-navbar .container-xxl {
+    padding: 0;
+  }
+}
+.app-brand-mobile {
+  width: 80px;
+  display: block;
+  margin-right: 10px;
+}
+.app-brand-mobile img {
+  top: 12px;
+  left: 5px;
+}
+
 .single-tournoi .tournoi-content {
   text-align: center;
   position: relative;
@@ -7341,6 +7381,47 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-link:hover {
   font-size: 0.85rem;
 }
 
+.btn-log {
+  padding: 10px;
+  font-weight: 700 !important;
+}
+
+.rezo-menu {
+  margin: 50px 0.875rem 0;
+  width: 90%;
+}
+.rezo-menu a {
+  height: 50px;
+}
+.rezo-menu a i {
+  font-size: 1.2rem;
+}
+
+.fermerrecherche {
+  text-align: center;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: absolute;
+  bottom: 50px;
+  width: 100%;
+  left: -5px;
+  font-size: 0.8rem;
+}
+
+#waiter-recherche .search .search-group {
+  justify-content: start;
+  height: 60px;
+}
+#waiter-recherche .submitbtn {
+  background-color: #2a1f70;
+  padding: 8px;
+  border: none;
+  width: 100%;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
 .popup-overlay {
   position: fixed;
   top: 0;
@@ -7946,7 +8027,7 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-link:hover {
     z-index: 3;
   }
   .logo {
-    max-width: 60px !important;
+    max-width: 120px !important;
     transition: all 0.3s ease-in-out;
   }
   .cat-min .card-header {

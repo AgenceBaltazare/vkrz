@@ -15,6 +15,15 @@ if (is_single() && get_post_type() == "tournoi") {
   global $infos_vainkeur_to_watch;
 }
 ?>
+
+<div class="d-sm-none d-block">
+  <a href="<?php bloginfo('url'); ?>" class="app-brand-mobile">
+    <span class="logo">
+      <img src="<?php bloginfo('template_directory'); ?>/assets/images/vkrz/logo-vkrz.png" alt="VAINKEURZ logo" class="img-fluid">
+    </span>
+  </a>
+</div>
+
 <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
   <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
     <i class="ti ti-menu-2 ti-sm"></i>
@@ -45,18 +54,18 @@ if (is_single() && get_post_type() == "tournoi") {
     </ul>
   </div>
 
-  <div class="search">
+  <div class="search d-none d-sm-block">
     <form action="<?php the_permalink(435459); ?>" method="GET">
       <div class="search-group">
         <div class="select-search">
-          <select class="selectpicker" name="typesearch" id="typesearch">
+          <select class="selectpicker typesearch" name="typesearch">
             <option>Tops</option>
             <option>Membres</option>
           </select>
         </div>
         <div class="input-search">
-          <input id="searchmembres" name="member_to_search" type="text" class="form-control typeahead-prefetch" autocomplete="off" placeholder="Recherche un vainkeur...">
-          <input id="searchtops" name="term_to_search" type="text" class="form-control typeahead-prefetch" autocomplete="off" placeholder="Recherche des Tops...">
+          <input id="searchmembres" name="member_to_search" type="text" class="searchmembres form-control typeahead-prefetch" autocomplete="off" placeholder="Recherche un vainkeur...">
+          <input id="searchtops" name="term_to_search" type="text" class="searchtops form-control typeahead-prefetch" autocomplete="off" placeholder="Recherche des Tops...">
         </div>
         <div class="btn-loupe">
           <button class="submitbtn" type="submit">
@@ -69,14 +78,14 @@ if (is_single() && get_post_type() == "tournoi") {
 
   <div class="menu-user-div">
     <ul class="navbar-nav flex-row align-items-center ms-auto">
-      <!-- Search -->
-      <li class="nav-item navbar-search-wrapper me-2 me-xl-0 d-block d-sm-none">
-        <a class="nav-link search-toggler" href="javascript:void(0);">
-          <span class="va va-loupe va-lg"></span>
+
+      <!-- Search mobile  -->
+      <li class="nav-item me-2 me-xl-0 d-block d-sm-none">
+        <a class="nav-link opensearch" href="#">
+          <span class="va va-z-20 va va-loupe"></span>
         </a>
       </li>
-
-      <!-- /Search -->
+      <!-- /Search mobile  -->
 
       <!-- Statisques  -->
       <li class="nav-item dropdown-shortcuts navbar-dropdown dropdown me-2 me-xl-0">
@@ -207,7 +216,7 @@ if (is_single() && get_post_type() == "tournoi") {
           </div>
         </div>
       </li>
-      <!-- Statisques -->
+      <!-- /Statisques -->
 
       <?php if (is_user_logged_in()) : ?>
 
@@ -269,8 +278,13 @@ if (is_single() && get_post_type() == "tournoi") {
       <?php else : ?>
         <!-- Connexion / Inscription -->
         <li class="nav-item me-2 ms-1">
-          <a class="nav-link btn btn-rose waves-effect waves-light" href="<?php the_permalink(get_page_by_path('se-connecter')); ?>">
-            Connexion / Inscription
+          <a class="nav-link btn btn-rose waves-effect waves-light btn-log" href="<?php the_permalink(get_page_by_path('se-connecter')); ?>">
+            <span class="d-block d-sm-none">
+              Mon compte
+            </span>
+            <span class="d-none d-sm-block">
+              Connexion / Inscription
+            </span>
           </a>
         </li>
         <!-- Connexion / Inscription -->
@@ -278,17 +292,11 @@ if (is_single() && get_post_type() == "tournoi") {
 
       <!-- Proposer Top -->
       <li class="nav-item ms-2 d-none d-sm-block">
-        <a class="nav-link btn btn-primary waves-effect waves-light propose" href="<?php the_permalink(get_page_by_path(('proposition-de-tops'))); ?>">
+        <a class="nav-link btn btn-primary waves-effect waves-light btn-log" href="<?php the_permalink(get_page_by_path(('proposition-de-tops'))); ?>">
           Propose tes Tops
         </a>
       </li>
       <!--/ Proposer Top -->
     </ul>
   </div>
-</div>
-
-<!-- Search Small Screens -->
-<div class="navbar-search-wrapper search-input-wrapper container-xxl d-none">
-  <input type="text" class="form-control search-input border-0" placeholder="Search..." aria-label="Search..." />
-  <i class="ti ti-x ti-sm search-toggler cursor-pointer"></i>
 </div>

@@ -1,5 +1,5 @@
 <aside id="layout-menu" class="layout-menu-horizontal menu-horizontal menu bg-menu-theme flex-grow-0">
-  <div class="container-xxl d-flex h-100">
+  <div class="container-xxl d-flex">
     <ul class="menu-inner">
       <!-- Catégories de Tops -->
       <li class="menu-item">
@@ -62,7 +62,7 @@
           </li>
         </ul>
       </li>
-      <!-- Rooms -->
+      <!-- Rooms
       <li class="menu-item">
         <a href="<?php the_permalink(get_page_by_path('rooms')); ?>" class="menu-link">
           <div class="iconmenu">
@@ -71,6 +71,7 @@
           <div>Rooms</div>
         </a>
       </li>
+      -->
       <!-- Best OF -->
       <li class="menu-item">
         <a href="javascript:void(0)" class="menu-link menu-toggle">
@@ -190,6 +191,27 @@
           <div>Récompenses</div>
         </a>
       </li>
+      <li class="menu-item d-block d-sm-none propose">
+        <a class="menu-link btn btn-primary waves-effect waves-light btn-log" href="<?php the_permalink(get_page_by_path(('proposition-de-tops'))); ?>">
+          Propose tes Tops
+        </a>
+      </li>
     </ul>
+  </div>
+  <div class="d-block d-sm-none">
+    <div class="btn-group rezo-menu" role="group">
+      <a href="https://discord.gg/E9H9e8NYp7" class="btn btn-outline-primary waves-effect">
+        <i class="fab fa-discord"></i>
+      </a>
+      <a href="https://www.instagram.com/wearevainkeurz/" class="btn btn-outline-primary waves-effect">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://twitter.com/Vainkeurz" class="btn btn-outline-primary waves-effect">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="https://www.tiktok.com/@vainkeurz" class="btn btn-outline-primary waves-effect">
+        <i class="fab fa-tiktok"></i>
+      </a>
+    </div>
   </div>
 </aside>

@@ -210,3 +210,46 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-link {
   font-weight: 500;
   font-size: 0.85rem;
 }
+
+.btn-log{
+  padding: 10px;
+  font-weight: 700 !important;
+}
+
+.rezo-menu{
+  margin: 50px 0.875rem 0;
+  width: 90%;
+  a{
+    height: 50px;
+    i{
+      font-size: 1.2rem;
+    }
+  }
+}
+
+.fermerrecherche{
+  text-align: center;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: absolute;
+  bottom: 50px;
+  width: 100%;
+  left: -5px;
+  font-size: 0.8rem;
+}
+
+#waiter-recherche{
+  .search .search-group {
+    justify-content: start;
+    height: 60px;
+  }
+  .submitbtn{
+    background-color: #2a1f70;
+    padding: 8px;
+    border: none;
+    width: 100%;
+    border-radius: 5px;
+    margin-top: 5px;
+  }
+}

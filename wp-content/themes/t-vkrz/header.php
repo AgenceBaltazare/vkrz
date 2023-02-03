@@ -155,7 +155,7 @@ if ($infos_vainkeur) {
             <!-- Content -->
             <?php if (get_post_type() == "classement" || get_post_type() == "toplist-mondiale") : ?>
               <div class="container-fluid flex-grow-1 p-0">
-            <?php else : ?>
-              <div class="container-xxl flex-grow-1 p-0">
-            <?php endif; ?>
-              <div class="row g-4 mb-3">
+              <?php else : ?>
+                <div class="container-xxl flex-grow-1 p-0">
+                <?php endif; ?>
+                <div class="row g-4 mb-3">

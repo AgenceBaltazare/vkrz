@@ -284,6 +284,25 @@ a.sociallink:hover {
 .menu-inner {
     justify-content: space-between;
     padding: 0 0 0 155px;
+    @media (max-width: 768px) {
+      justify-content: flex-start;
+      align-items: start !important;
+      padding: 100px 0 0 0;
+      .propose{
+        a{
+          width: 90%;
+        }
+      }
+      .menu-item{
+        width: 90% !important;
+      }
+    }
+}
+.menu-vertical{
+  width: 90%;
+}
+.menu-vertical .menu-inner>.menu-item {
+  margin: 0.8rem 0;
 }
 
 .layout-navbar .navbar-dropdown.dropdown-shortcuts .dropdown-shortcuts-item a, .layout-navbar .navbar-dropdown.dropdown-shortcuts .dropdown-shortcuts-item a:hover {

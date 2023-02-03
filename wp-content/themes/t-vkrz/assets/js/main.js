@@ -339,15 +339,23 @@ $("#searchtops").typeahead(
   }
 );
 
-$("#typesearch").change(function(){
+$(".typesearch").change(function(){
   var typesearch = $(this).val();
   console.log(typesearch);
   if(typesearch == "Membres"){
-    $('#searchtops').hide();
-    $('#searchmembres').show();
+    $('.searchtops').hide();
+    $('.searchmembres').show();
   }
   else{
-    $('#searchtops').show();
-    $('#searchmembres').hide();
+    $('.searchtops').show();
+    $('.searchmembres').hide();
   }
+});
+
+$(".opensearch").on("click", function(){
+  $('#waiter-recherche').fadeIn();
+});
+
+$(".fermerrecherche").on("click", function(){
+  $('#waiter-recherche').fadeOut();
 });
