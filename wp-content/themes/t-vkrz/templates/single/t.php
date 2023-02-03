@@ -62,7 +62,7 @@ get_header();
           <div class="card animate__animated animate__flipInX card-developer-meetup">
             <div class="meetup-img-wrapper rounded-top text-left" style="background-image: url(<?php echo $top_infos['top_img']; ?>);">
               <?php if ($type_top != "sponso") : ?>
-                <span class="badge badge-light-primary">Créé le <?php echo $top_infos['top_date']; ?></span>
+                <span class="badge bg-label-primary">Créé le <?php echo $top_infos['top_date']; ?></span>
               <?php endif; ?>
               <div class="list-unstyled m-0 d-flex align-items-center avatar-group my-3 list-contenders">
                 <?php $contenders_t = new WP_Query(array(
