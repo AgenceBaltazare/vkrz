@@ -1774,6 +1774,19 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   border-bottom: 1px solid #7983bb;
 }
 
+.dark-style .shepherd-element {
+  background: #2a1f70 !important;
+}
+
+.dark-style .shepherd-element .shepherd-content .shepherd-header {
+  background: #2a1f70 !important;
+}
+
+.dark-style .shepherd-arrow:before {
+  border-color: #2a1f70 !important;
+  background: #2a1f70 !important;
+}
+
 .page-template-monitor .list-vainkeur-monitor {
   line-height: 14px;
 }

@@ -29,6 +29,10 @@ function load_css_js()
     wp_enqueue_style('typeahead', get_template_directory_uri() . '/assets/vendor/libs/typeahead-js/typeahead.css', array(), null);
     wp_enqueue_style('page-profile', get_template_directory_uri() . '/assets/vendor/css/pages/page-profile.css', array(), null);
 
+    if (get_post_type() == "classement") {
+      wp_enqueue_style('shepherd', get_template_directory_uri() . '/assets/vendor/css/shepherd.css', array(), null);
+    }
+
     if (is_page(array(27800, 27795, 27792, 27794, 443448))) {
       wp_enqueue_style('account', get_template_directory_uri() . '/assets/css/vkrz/login.css', array(), filemtime(get_template_directory() . '/assets/css/vkrz/login.css'));
     }
@@ -85,6 +89,11 @@ function load_css_js()
     //wp_enqueue_script('forms-typeahead', get_template_directory_uri() . '/assets/js/forms-typeahead.js', array(), null, true);
     wp_enqueue_script('ui-popover', get_template_directory_uri() . '/assets/js/ui-popover.js', array(), null, true);
     wp_enqueue_script('ui-modals', get_template_directory_uri() . '/assets/js/ui-modals.js', array(), null, true);
+
+    if (!get_field("toplist_tour", $_COOKIE["wordpress_vainkeurz_id_cookie"]) && get_post_type() == "classement") {
+      wp_enqueue_script('shepherd', get_template_directory_uri() . '/assets/vendor/js/shepherd.js', array(), null, true);
+      wp_enqueue_script('ui-tour', get_template_directory_uri() . '/assets/js/ui-tour.js', array(), null, true);
+    }
 
     // Twitch
     if (!isMobile() && is_user_logged_in() && get_userdata(get_user_logged_id())->twitch_user && get_post_type() == 'tournoi') {

@@ -1417,3 +1417,14 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
       border-bottom: 1px solid $muted;
   }
 }
+
+.dark-style .shepherd-element {
+    background: $c6 !important;
+}
+.dark-style .shepherd-element .shepherd-content .shepherd-header {
+    background: $c6 !important;
+}
+.dark-style .shepherd-arrow:before {
+    border-color: $c6 !important;
+    background: $c6 !important;
+}

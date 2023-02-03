@@ -104,3 +104,10 @@ function vkzr_new_jugement()
 {
     do_jugement($_POST['id_ranking'], $_POST['id_vainkeur'], $_POST['todo']);
 }
+
+add_action('wp_ajax_vkrz_toplist_tour', 'vkrz_toplist_tour');
+add_action('wp_ajax_nopriv_vkrz_toplist_tour', 'vkrz_toplist_tour');
+function vkrz_toplist_tour()
+{
+    toplist_tour($_POST['id_vainkeur']);
+}

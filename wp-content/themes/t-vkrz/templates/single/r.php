@@ -192,7 +192,7 @@ endif;
           Voir ma TopList
         </a>
       <?php else : ?>
-        <button class="btn-wording-rose btn-wording bubbly-button" data-bs-toggle="offcanvas" data-bs-target="#sharetoplist">
+        <button class="btn-wording-rose btn-wording bubbly-button partage-toplist-tour" data-bs-toggle="offcanvas" data-bs-target="#sharetoplist">
           Partage ta TopList
         </button>
       <?php endif; ?>
@@ -205,7 +205,7 @@ endif;
   <a href="<?php the_permalink($id_toplistmondiale); ?>#toplist" class="btn-wording" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Voir les <?php echo $top_datas['nb_tops']; ?> TopList">
     <span class="va va-trophy va-lg"></span> <?php echo $top_datas['nb_tops']; ?>
   </a>
-  <a href="<?php the_permalink($id_toplistmondiale); ?>" class="btn-wording mt-2 mb-1 mt-sm-0 mb-sm-0" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Générée à partir des <?php echo $top_datas['nb_votes']; ?> votes">
+  <a href="<?php the_permalink($id_toplistmondiale); ?>" class="btn-wording mt-2 mb-1 mt-sm-0 mb-sm-0 decouvre-toplist-mondiale-tour" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Générée à partir des <?php echo $top_datas['nb_votes']; ?> votes">
     Découvre la TopList mondiale <span class="va va-globe va-lg"></span>
     <?php if ($already_done) : ?>
       <span id="ressemblance-mondiale">
@@ -240,7 +240,7 @@ endif;
       <span class="va va-recommencer va-lg"></span>
     </a>
   <?php endif; ?>
-  <button class="btn-emoji btn-emoji-wording" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Juge cette TopList">
+  <button class="btn-emoji btn-emoji-wording juger-tour" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Juge cette TopList">
     <div data-bs-toggle="offcanvas" data-bs-target="#jugement" aria-controls="offcanvasScroll" class="divfill">
       <span class="va va-hache va-lg"></span>
       <div class="value jugements-nbr">
