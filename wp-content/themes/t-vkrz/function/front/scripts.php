@@ -28,6 +28,7 @@ function load_css_js()
     wp_enqueue_style('bootstrap-select', get_template_directory_uri() . '/assets/vendor/libs/bootstrap-select/bootstrap-select.css', array(), null);
     wp_enqueue_style('typeahead', get_template_directory_uri() . '/assets/vendor/libs/typeahead-js/typeahead.css', array(), null);
     wp_enqueue_style('page-profile', get_template_directory_uri() . '/assets/vendor/css/pages/page-profile.css', array(), null);
+    wp_enqueue_style('plyr', get_template_directory_uri() . '/assets/vendor//libs/plyr/plyr.css', array(), null);
 
     if (is_page(array(27800, 27795, 27792, 27794, 443448))) {
       wp_enqueue_style('account', get_template_directory_uri() . '/assets/css/vkrz/login.css', array(), filemtime(get_template_directory() . '/assets/css/vkrz/login.css'));
@@ -73,7 +74,7 @@ function load_css_js()
     wp_enqueue_script('bootstrap5', get_template_directory_uri() . '/assets/vendor/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js', array(), null, true);
     wp_enqueue_script('autoFocus', get_template_directory_uri() . '/assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js', array(), null, true);
     wp_enqueue_script('sweetalert2', get_template_directory_uri() . '/assets/vendor/libs/sweetalert2/sweetalert2.js', array(), null, true);
-    wp_enqueue_script('mainthemejs', get_template_directory_uri() . '/assets/vendor/js/main.js', array(), null, true);
+    wp_enqueue_script('mainthezmejs', get_template_directory_uri() . '/assets/vendor/js/main.js', array(), null, true);
     wp_enqueue_script('bloodhound', get_template_directory_uri() . '/assets/vendor/libs/bloodhound/bloodhound.js', array(), null, true);
     wp_enqueue_script('typeahead-js', get_template_directory_uri() . '/assets/vendor/libs/typeahead-js/typeahead.js', array(), null, true);
     wp_enqueue_script('bootstrap-select', get_template_directory_uri() . '/assets/vendor/libs/bootstrap-select/bootstrap-select.js', array(), null, true);
@@ -128,6 +129,9 @@ function load_css_js()
     }
     if (is_page(get_page_by_path('monitor'))) {
       wp_enqueue_script('monitor', get_template_directory_uri() . '/function/ajax/monitor.js', array(), filemtime(get_template_directory() . '/function/ajax/monitor.js'), true);
+    }
+    if (is_page(get_page_by_path('communaute'))) {
+      wp_enqueue_script('plyr', get_template_directory_uri() . '/assets/vendor/libs/plyr/plyr.js', array(), null, true);
     }
 
     // VAINKEURZ Custom

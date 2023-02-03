@@ -1,0 +1,22 @@
+.all-content-embed{
+  h3{
+    transform: rotate(-1deg);
+    span{
+      background: rgba(255, 255, 255, 0.05);
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 20px;
+      margin: 60px 0 20px 0;
+      text-transform: uppercase;
+      font-weight: 600;
+      display: inline-block;
+    }
+  }
+  .embed{
+    .list-content-embed{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+}

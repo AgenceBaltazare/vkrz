@@ -4477,6 +4477,7 @@ select:-webkit-autofill:focus {
   background: #7367f0;
   border-radius: 0;
   margin: 0;
+  padding: 0;
 }
 .alert-account p {
   margin: 0 20px 0 0;
@@ -4486,6 +4487,10 @@ select:-webkit-autofill:focus {
     text-align: center;
     margin: 0;
   }
+}
+.alert-account .btn-outline-white:hover {
+  background: #fff;
+  color: #7367f0 !important;
 }
 
 .user-profile-header {
@@ -7838,6 +7843,25 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-link:hover {
 }
 .modal-shop .modal-footer {
   justify-content: center !important;
+}
+
+.all-content-embed h3 {
+  transform: rotate(-1deg);
+}
+.all-content-embed h3 span {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 20px;
+  margin: 60px 0 20px 0;
+  text-transform: uppercase;
+  font-weight: 600;
+  display: inline-block;
+}
+.all-content-embed .embed .list-content-embed {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .paquesresult {
