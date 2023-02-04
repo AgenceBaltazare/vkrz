@@ -6939,6 +6939,10 @@ select:-webkit-autofill:focus {
   background-image: url(../../images/emojis/square.png);
 }
 
+.va-play {
+  background-image: url(../../images/emojis/play.png);
+}
+
 /***** Icons END *****/
 .parrainage-card .card-header .card-title {
   color: #fff;
@@ -7845,10 +7849,8 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-link:hover {
   justify-content: center !important;
 }
 
-.all-content-embed h3 {
+.titre-section {
   transform: rotate(-1deg);
-}
-.all-content-embed h3 span {
   background: rgba(255, 255, 255, 0.05);
   padding: 10px 20px;
   border-radius: 5px;
@@ -7858,10 +7860,85 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-link:hover {
   font-weight: 600;
   display: inline-block;
 }
-.all-content-embed .embed .list-content-embed {
+
+.caption-frame {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: start;
+  padding: 10px 0;
+}
+.caption-frame ul {
+  margin: 0 auto;
+  padding-left: 10px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #2a1f70;
+  border-radius: 5px;
+  transform: rotate(-2deg);
+  position: relative;
+  top: -15px;
+  padding: 2px;
+}
+.caption-frame ul li {
+  display: inline-block;
+  list-style-type: none;
+  margin-right: 10px;
+}
+.caption-frame ul li h4 {
+  font-weight: 800;
+  color: #fff;
+  border-radius: 10px;
+  font-family: "Montserrat", Helvetica, Arial, serif !important;
+  font-size: 1.1rem;
+  margin: 0 !important;
+  display: inline-block;
+}
+.caption-frame ul li span {
+  color: #fff !important;
+  margin-right: 5px;
+}
+.caption-frame ul li a {
+  background: transparent;
+  border: none !important;
+  color: #fff !important;
+}
+.caption-frame ul li a:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+iframe {
+  width: 100% !important;
+  min-width: 100% !important;
+}
+
+.rounded {
+  border-radius: 5px;
+}
+
+.lauch_embed {
+  position: relative;
+}
+.lauch_embed .play {
+  position: absolute;
+  top: 0;
+  display: flex;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.1);
+  cursor: pointer !important;
+}
+.lauch_embed .play img {
+  width: 50px;
+  height: auto;
+  transition: all 0.2s ease-in;
+}
+.lauch_embed .play:hover img {
+  transform: scale(1.2);
 }
 
 .paquesresult {
