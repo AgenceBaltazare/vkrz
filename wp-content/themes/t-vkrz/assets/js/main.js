@@ -359,3 +359,46 @@ $(".opensearch").on("click", function(){
 $(".fermerrecherche").on("click", function(){
   $('#waiter-recherche').fadeOut();
 });
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(";");
+  for (let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == " ") {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+if (getCookie("wordpress_toastr_cookies")) {
+  // GET COOKIES DATA
+  const cookies        = JSON.parse(getCookie("wordpress_toastr_cookies")),
+        toastr_text    = cookies.toastr_text,
+        toastr_icon    = cookies.toastr_icon,
+        toastr_type    = cookies.toastr_type;
+
+  // DEFINE TYPE
+  const options = {
+    "closeButton": false,
+    "newestOnTop": false,
+    "progressBar": true,
+    "preventDuplicates": true,
+    "timeOut": "3000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+  }
+  if(toastr_type === "badge") {
+    toastr.success(`Tu obtiens le trophée ${toastr_text} ${toastr_icon}`, 'Nouveau trophée', options);
+  } else if (toastr_type === "niveau") {
+    toastr.success(`Tu passes au niveau ${toastr_icon}`, `Félicitations ${vainkeurPseudo !== "Lama2Lombre" ? vainkeurPseudo : ""}`, options);
+  }
+
+  // REMOVE COOKIE
+  document.cookie = "wordpress_toastr_cookies=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 UTC";
+}

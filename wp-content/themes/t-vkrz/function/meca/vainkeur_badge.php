@@ -6,7 +6,7 @@ function update_vainkeur_badge($id_vainkeur, $badge_name) {
     $badge           = get_term_by('name', $badge_name, 'badges');
 
     if ($vainkeur_badges == false || (is_array($vainkeur_badges) && !in_array($badge, $vainkeur_badges))) {
-        
+
         wp_set_post_terms($id_vainkeur, $badge_name, 'badges', true);
         
         // Increase user total money
@@ -16,6 +16,17 @@ function update_vainkeur_badge($id_vainkeur, $badge_name) {
 
         $user_money_dispo  = get_field('money_disponible_vkrz', $id_vainkeur);
         update_field('money_disponible_vkrz', $user_money_dispo + $recompense_badge, $id_vainkeur);
+
+        $arr_cookie_options = array(
+            'expires' => time() + 60 * 60 * 24 * 365,
+            'path' => '/',
+          );
+          $arr_cookies_data = array(
+            "toastr_text"   => $badge_name,
+            "toastr_icon"   => get_field('symbole_badge', 'badges_' . $badge->term_id),
+            "toastr_type"   => "badge",
+          );
+          setcookie("wordpress_toastr_cookies", json_encode($arr_cookies_data), $arr_cookie_options);
         
     }
 

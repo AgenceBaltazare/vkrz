@@ -28,6 +28,7 @@ function load_css_js()
     wp_enqueue_style('bootstrap-select', get_template_directory_uri() . '/assets/vendor/libs/bootstrap-select/bootstrap-select.css', array(), null);
     wp_enqueue_style('typeahead', get_template_directory_uri() . '/assets/vendor/libs/typeahead-js/typeahead.css', array(), null);
     wp_enqueue_style('page-profile', get_template_directory_uri() . '/assets/vendor/css/pages/page-profile.css', array(), null);
+    wp_enqueue_style('toastr-css', get_template_directory_uri() . '/assets/vendor/libs/toastr/toastr.css', array(), null);
 
     if (is_page(array(27800, 27795, 27792, 27794, 443448))) {
       wp_enqueue_style('account', get_template_directory_uri() . '/assets/css/vkrz/login.css', array(), filemtime(get_template_directory() . '/assets/css/vkrz/login.css'));
@@ -80,6 +81,8 @@ function load_css_js()
     wp_enqueue_script('tagify-js', get_template_directory_uri() . '/assets/vendor/libs/tagify/tagify.js', array(), null, true);
     wp_enqueue_script('cleave', get_template_directory_uri() . '/assets/vendor/libs/cleavejs/cleave.js', array(), null, true);
     wp_enqueue_script('cleave-phone', get_template_directory_uri() . '/assets/vendor/libs/cleavejs/cleave-phone.js', array(), null, true);
+    wp_enqueue_script('toastr-js', get_template_directory_uri() . '/assets/vendor/libs/toastr/toastr.js', array(), null, true);
+
     //wp_enqueue_script('forms-selects', get_template_directory_uri() . '/assets/js/forms-selects.js', array(), null, true);
     //wp_enqueue_script('forms-tagify', get_template_directory_uri() . '/assets/js/forms-tagify.js', array(), null, true);
     //wp_enqueue_script('forms-typeahead', get_template_directory_uri() . '/assets/js/forms-typeahead.js', array(), null, true);

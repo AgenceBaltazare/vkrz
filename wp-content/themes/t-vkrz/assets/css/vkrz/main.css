@@ -1774,6 +1774,11 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   border-bottom: 1px solid #7983bb;
 }
 
+#toast-container > .toast-success {
+  background-image: url("http://localhost:8888/vkrz/wp-content/themes/t-vkrz/assets/images/vkrz/lama.svg") !important;
+  background-size: 10% 50%;
+}
+
 .page-template-monitor .list-vainkeur-monitor {
   line-height: 14px;
 }

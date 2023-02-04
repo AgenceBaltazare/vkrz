@@ -48,11 +48,7 @@ $(document).ready(function ($) {
                 }
 
                 if (data['new_badge']) {
-                    toastr['success']('Tu obtiens le trophée Shopper 🛍', 'Nouveau trophée', {
-                        closeButton: true,
-                        tapToDismiss: false,
-                        progressBar: true
-                    });
+
                 }
 
                 $('#waiter-commande').hide();

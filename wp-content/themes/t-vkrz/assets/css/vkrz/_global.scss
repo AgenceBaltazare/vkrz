@@ -1417,3 +1417,8 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
       border-bottom: 1px solid $muted;
   }
 }
+
+#toast-container > .toast-success {
+    background-image: url("http://localhost:8888/vkrz/wp-content/themes/t-vkrz/assets/images/vkrz/lama.svg")!important;
+    background-size: 10% 50%;
+}

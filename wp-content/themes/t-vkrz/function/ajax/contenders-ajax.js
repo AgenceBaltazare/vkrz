@@ -310,15 +310,13 @@ $(document).ready(function ($) {
           if (data.level_up !== undefined && data.level_up) {
             $(".dropdown-user-link .user-niveau").html(data.user_level_icon);
 
-            toastr["success"](
-              "Tu passes au niveau " + data.level_emoji,
-              "Félicitations",
-              {
-                closeButton: true,
-                tapToDismiss: false,
-                progressBar: true,
-              }
-            );
+            function setCookie(cname, cvalue, exdays) {
+              const d = new Date();
+              d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+              let expires = "Expires=" + d.toUTCString();
+              document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+            }
+            setCookie("wordpress_toastr_cookies", JSON.stringify({"toastr_text": null, "toastr_icon":data.level_emoji, "toastr_type":"niveau"}), 365);
 
             window.dataLayer.push({
               event: "track_event",
