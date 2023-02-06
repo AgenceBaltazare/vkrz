@@ -375,7 +375,6 @@ function getCookie(cname) {
   }
   return "";
 }
-
 if (getCookie("wordpress_toastr_cookies")) {
   // GET COOKIES DATA
   const cookies        = JSON.parse(getCookie("wordpress_toastr_cookies")),
@@ -401,4 +400,41 @@ if (getCookie("wordpress_toastr_cookies")) {
 
   // REMOVE COOKIE
   document.cookie = "wordpress_toastr_cookies=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 UTC";
+}
+
+if (document.querySelector('.save-top')) {
+  const saveTopsBtns = document.querySelectorAll('.save-top'); 
+
+  saveTopsBtns.forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      const idTop      = btn.dataset.idtop;
+      const idVainkeur = btn.dataset.idvainkeur;
+
+      if(btn instanceof HTMLAnchorElement) {
+        e.preventDefault();
+
+        const btnText    = btn.textContent;
+        const topCard    = btn.closest(".min-tournoi.card");
+
+        if(btnText.includes("Un")) {
+          btn.textContent = "Save Top";
+          topCard?.classList.remove('saved-top');
+        } else {
+          btn.textContent = "Unsave Top";
+          topCard?.classList.add('saved-top');
+        }
+      } 
+      // else if (btn instanceof HTMLInputElement) {}
+
+      $.ajax({
+        method: "POST",
+        url: vkrz_ajaxurl,
+        data: {
+          action: "deal_vkrz_save_top",
+          id_top: idTop,
+          id_vainkeur: idVainkeur,
+        },
+      });
+    })
+  })
 }

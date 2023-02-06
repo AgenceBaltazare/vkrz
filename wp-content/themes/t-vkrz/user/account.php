@@ -636,6 +636,91 @@ if ($infos_vainkeur['user_role'] == "administrator" || $infos_vainkeur['user_rol
         </section>
         <!-- /Creator Top -->
 
+        <!-- Saved Top -->
+        <section id="savedtop" class="mt-4">
+          <div class="card">
+            <div class="table-responsive">
+              <table class="table table-savedtops">
+                    <thead>
+                      <tr>
+                        <th class="text-left">
+                          <span class="text-muted">Liste des Tops enregistrés</span>
+                        </th>
+                        <th class="text-center shorted">
+                          <span class="text-muted">TopList</span>
+                        </th>
+                        <th class="text-center shorted">
+                          <span class="text-muted">Enregistré</span>
+                        </th>
+                        <th class="text-center">
+                          <span class="text-muted">TopList mondiale</span>
+                        </th>
+                        <th class="text-right">
+                          <span class="text-muted">Conçu par</span>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+
+                      $saved_tops = array();
+                      if (get_field('saved_tops', $id_vainkeur)) :
+                        $saved_tops = json_decode(get_field('saved_tops', $id_vainkeur));
+
+                        foreach ($saved_tops as $top) :
+                        $id_top                 = $top;
+                        $id_resume              = get_resume_id($id_top);
+                        $nb_ranks               = intval(get_field('nb_tops_resume', $id_resume));
+                        ?>
+                          <tr>
+                            <td>
+                              <?php get_template_part('partials/top-card'); ?>
+                            </td>
+
+                            <td class="text-center">
+                              <a href="<?php the_permalink(get_page_by_path('liste-des-tops')); ?>?id_top=<?php echo $id_top; ?>" class="btn btn-flat-secondary waves-effect text-white" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir toutes les TopList">
+                                <?php echo $nb_ranks; ?>&nbsp;<span class="ico va-trophy va va-lg"></span>
+                              </a>
+                            </td>
+
+                            <td class="text-center">
+                              <label class="switch switch-primary">
+                                <input type="checkbox" class="switch-input save-top" data-idtop="<?= $id_top; ?>" data-idvainkeur="<?= $id_vainkeur; ?>" checked />
+                                <span class="switch-toggle-slider">
+                                  <span class="switch-on">
+                                    <i class="ti ti-check"></i>
+                                  </span>
+                                  <span class="switch-off">
+                                    <i class="ti ti-x"></i>
+                                  </span>
+                                </span>
+                              </label>
+                            </td>
+
+                            <td class="text-center">
+                              <a href="<?php the_permalink(get_page_by_path('elo')); ?>?id_top=<?php echo $id_top; ?>" class="btn btn-label-primary waves-effect" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir la TopList mondiale">
+                                Voir <span class="ms-2 va-globe va va-lg"></span>
+                              </a>
+                            </td>
+
+                            <td class="text-right">
+                              <?php
+                              global $vainkeur_data_selected;
+                              $creator_id             = get_post_field('post_author', $id_top);
+                              $creator_uuiduser       = get_field('uuiduser_user', 'user_' . $creator_id);
+                              $vainkeur_data_selected = get_user_infos($creator_uuiduser);
+                              ?>
+                              <?php get_template_part('partials/vainkeur-card'); ?>
+                            </td>
+                          </tr>
+                      <?php endforeach; endif; ?>
+                    </tbody>
+                  </table>
+              </div>
+          </div>
+        </section>
+        <!-- /Saved Top -->
+
       </div>
       <!-- /User Content -->
     </div>

@@ -3,10 +3,12 @@ global $user_tops;
 global $list_user_tops;
 global $list_user_tops_begin;
 global $id_top;
+global $id_vainkeur;
 $class            = "";
 $id_top           = get_the_ID();
 $top_datas        = get_top_data($id_top);
 $top_info         = get_top_infos($id_top);
+$is_top_saved     = check_top_saved($id_top, $id_vainkeur);
 $creator_id       = get_post_field('post_author', $id_top);
 $creator_info     = get_userdata($creator_id);
 $creator_pseudo   = $creator_info->nickname;
@@ -35,7 +37,7 @@ if($list_user_tops){
   }
 }
 ?>
-<div class="min-tournoi card scaler">
+<div class="min-tournoi card scaler <?php echo $is_top_saved ? 'saved-top': ''?>">
   <div class="cov-illu cover" style="background: url(<?php echo $illu; ?>) center center no-repeat">
     <?php if ($type_top == "sponso") : ?>
       <span class="badge badge-light-rose ml-0">Top sponso</span>
@@ -103,6 +105,18 @@ if($list_user_tops){
         </div>
       <?php endif; ?>
     </div>
+
+    <?php 
+    if(is_user_logged_in() ) :
+      $wording = "";
+      if($is_top_saved) {
+        $wording = "Unsave Top";
+      } else {
+        $wording = "Save Top";
+      }
+    ?>
+      <a href="" class="save-top" data-idtop="<?= $id_top; ?>" data-idvainkeur="<?= $id_vainkeur; ?>"><?= $wording; ?></a>
+    <?php endif; ?>
   </div>
   <div class="card-body eh mb-3-hover">
     <h4 class="card-text text-white">

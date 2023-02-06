@@ -154,6 +154,7 @@
     -o-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
     padding: 0;
+    position: relative;
 
     .cov-illu {
         min-height: 120px;
@@ -275,8 +276,43 @@
         }
     }
 
+    .save-top {
+        position: absolute;
+        left: 5px;
+        visibility: hidden;
+        opacity: 0;
+        background-color: #04CFE7;
+        border-radius: 8px 8px 0 0;
+        padding: .2rem .6rem;
+        color: white;
+        font-size: .8rem;
+        line-height: 100%;
+        transition: .3s all;
+    }
+
+    @keyframes slideTop {
+        0% {
+            top: 0;
+        }
+        100% {
+            visibility: visible;
+            opacity: 1;
+            top: -20px;
+        }
+    }
+
+    &.saved-top {
+        .save-top {
+            animation: slideTop .3s both linear;
+        }
+    }
+
     &:hover {
         transform: scale(1.05);
+
+        .save-top {
+            animation: slideTop .3s forwards linear;
+        }
 
         .info-top {
             opacity: 1;

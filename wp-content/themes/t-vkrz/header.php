@@ -104,6 +104,7 @@ if ($infos_vainkeur) {
     currentUserProfileUrl = "<?php echo get_author_posts_url($user_id); ?>",
     anonymeAvatarUrl = "<?php echo $anonyme_avatar_url; ?>",
     vainkeurPseudo = "<?php echo $infos_vainkeur['pseudo']; ?>",
+    idVainkeurTour = "<?php echo $id_vainkeur; ?>",
     currentUuid = "<?php echo $uuid_vainkeur; ?>",
     currentUserRole = "<?php echo $infos_vainkeur['user_role']; ?>";
 </script>

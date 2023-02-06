@@ -66,6 +66,18 @@ function get_top_infos($id_top, $id_ranking = false)
   return $result;
 }
 
+function check_top_saved($id_top, $id_vainkeur) {
+  $saved_tops = array();
+  if (get_field('saved_tops', $id_vainkeur)) {
+    $saved_tops = json_decode(get_field('saved_tops', $id_vainkeur));
+  }
+  
+  if (in_array($id_top, $saved_tops)) 
+    return true;
+  else 
+    return false;
+}
+
 function get_top_data($id_top)
 {
 
