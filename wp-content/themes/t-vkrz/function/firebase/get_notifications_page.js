@@ -81,11 +81,7 @@ const table = document.querySelector(".table-notifications"),
             </div>
           </td>
           <td class="text-right">
-            <span id="statut" class="badge rounded-pill bg-label-${
-              notification.data().statut == "nouveau" ? "success" : "primary"
-            } me-1" style="text-transform: capitalize;">${
-        notification.data().statut
-      }</span>
+            <span id="statut" class="badge bg-label-${notification.data().statut == "nouveau" ? "success" : "primary"} me-1" style="text-transform: capitalize;">${notification.data().statut}</span>
           </td>
           <td class="text-right">
             <a

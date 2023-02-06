@@ -100,7 +100,17 @@ if ($id_membre) {
         <?php if ($infos_vainkeur['id_user'] != $user_id && is_user_logged_in()) : ?>
           <div class="separate my-3"></div>
           <div>
-            <button type="button" id="followBtn" class="btn waves-effect d-none btn-follow" data-userid="<?= $user_id; ?>" data-uuid="<?= get_field('uuiduser_user', 'user_' . $user_id); ?>" data-relatedid="<?= $infos_vainkeur['id_user']; ?>" data-relateduuid="<?= get_field('uuiduser_user', 'user_' . $infos_vainkeur['id_user']);  ?>" data-text="<?= wp_get_current_user()->user_login ?> te guette !" data-url="<?= get_author_posts_url($user_id); ?>">
+            <button 
+              type="button" 
+              id="followBtn" 
+              class="btn waves-effect d-none btn-follow" 
+              data-userid="<?= $user_id; ?>" 
+              data-uuid="<?= get_field('uuiduser_user', 'user_' . $user_id); ?>" 
+              data-relatedid="<?= $infos_vainkeur['id_user']; ?>" 
+              data-relateduuid="<?= get_field('uuiduser_user', 'user_' . $infos_vainkeur['id_user']);  ?>" 
+              data-text="<?= wp_get_current_user()->user_login ?> te guette !" 
+              data-url="<?= get_author_posts_url($user_id); ?>"
+            >
               <span class="wording">Guetter ce Vainkeur</span>
               <span class="va va-guetteur-close va va-z-20 emoji"></span>
             </button>

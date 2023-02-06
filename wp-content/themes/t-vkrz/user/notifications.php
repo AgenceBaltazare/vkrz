@@ -30,17 +30,17 @@ get_header();
 
         <!-- Détails des KEURZ -->
         <section class="detailskeurz">
-          <div class="mb-2">
+          <div class="mb-3">
 
-            <button type="button" class="btn btn-outline-primary mr-1 notifs_statut_all" spellcheck="false">
-              All
+            <button type="button" class="btn btn-outline-primary me-2 notifs_statut_all" spellcheck="false">
+              Tout
             </button>
 
-            <button type="button" class="btn btn-outline-success mr-1 notifs_statut_nouveau " spellcheck="false">
+            <button type="button" class="btn btn-outline-success me-3 notifs_statut_nouveau " spellcheck="false">
               Nouveau
             </button>
 
-            <button type="button" class="btn btn-flat-secondary mr-1 notifs_read_all " spellcheck="false">
+            <button type="button" class="btn rounded-pill btn-outline-dark notifs_read_all " spellcheck="false">
               Mettre tout en "vu"
             </button>
           </div>

@@ -293,18 +293,6 @@ jQuery(document).ready(function ($) {
   };
 });
 
-if(document.querySelector('#wppb-register-user-sign-on')) {
-  const form = document.querySelector('#wppb-register-user-sign-on');
-  form.addEventListener('submit', () => {
-    const formAction = form.getAttribute('action');
-    
-    if(!formAction.includes('codeinvit')) {
-      const codeInvitValue = form.querySelector('#referral').value;
-      form.setAttribute('action', `${formAction}?codeinvit=${codeInvitValue}`)
-    }
-  });
-}
-
 var prefetUsers = new Bloodhound({
   datumTokenizer: Bloodhound.tokenizers.whitespace,
   queryTokenizer: Bloodhound.tokenizers.whitespace,

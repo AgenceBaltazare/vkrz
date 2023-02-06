@@ -64,8 +64,8 @@ if (is_single() && get_post_type() == "tournoi") {
           </select>
         </div>
         <div class="input-search">
-          <input id="searchmembres" name="member_to_search" type="text" class="searchmembres form-control typeahead-prefetch" autocomplete="off" placeholder="Recherche un vainkeur...">
-          <input id="searchtops" name="term_to_search" type="text" class="searchtops form-control typeahead-prefetch" autocomplete="off" placeholder="Recherche des Tops...">
+          <input id="searchmembres" name="member_to_search" type="text" minlength="3" class="searchmembres form-control typeahead-prefetch" autocomplete="off" placeholder="Recherche un vainkeur...">
+          <input id="searchtops" name="term_to_search" type="text" minlength="3" class="searchtops form-control typeahead-prefetch" autocomplete="off" placeholder="Recherche des Tops...">
         </div>
         <div class="btn-loupe">
           <button class="submitbtn" type="submit">
