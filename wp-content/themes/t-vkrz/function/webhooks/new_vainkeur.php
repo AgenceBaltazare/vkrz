@@ -95,15 +95,7 @@ function new_vainkeur($user_id){
 
             update_field('uuiduser_user', $uuid_vainkeur, 'user_' . $user_id);
             update_field('id_vainkeur_user', $id_vainkeur, 'user_' . $user_id);
-
-            // Set uniq code for parrainage
-            $uniqcodeparrain = generate_codeparrain($user_id);
-            update_field('code_parrain_user', $uniqcodeparrain, 'user_' . $user_id);
-
-            // DEAL REFERRAL CODE IF HE USED ONE
-            if(isset($_GET['codeinvit']) && $_GET['codeinvit']) {
-                deal_referral($_GET['codeinvit'], $id_vainkeur, 200);
-            }
+            
         }
     }
 

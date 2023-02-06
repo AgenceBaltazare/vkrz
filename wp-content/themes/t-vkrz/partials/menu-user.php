@@ -193,7 +193,7 @@ if (is_single() && get_post_type() == "tournoi") {
                       <span class="iconstats va-guetteur va va-lg"></span>
                     </div>
                     <div class="valuestat">
-                      <span class="followers-account-nbr"></span>
+                      <span class="followers-account-nbr">-</span>
                       <small class="text-muted mb-0 followers-account-nbr-text">Guetteurs</small>
                     </div>
                   </div>
@@ -206,7 +206,15 @@ if (is_single() && get_post_type() == "tournoi") {
                       <span class="iconstats va-love-people  va va-lg"></span>
                     </div>
                     <div class="valuestat">
-                      0
+                      <?php 
+                        $referrals = array();
+                        if(get_field('referral_from_me', $infos_vainkeur["id_vainkeur"])) {
+                          $referrals = json_decode(get_field('referral_from_me', $infos_vainkeur["id_vainkeur"]));
+                          echo count($referrals);
+                        } else {
+                          echo 0;
+                        }
+                      ?>
                       <small class="text-muted mb-0">Parrainage</small>
                     </div>
                   </div>

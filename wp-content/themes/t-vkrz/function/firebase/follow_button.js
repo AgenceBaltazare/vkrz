@@ -89,10 +89,10 @@ function checkGuetterButton() {
                         createdAt: new Date(),
                       }
                     );
-                    console.log("Notification sent with ID: ", newFollow.id);
+                    // console.log("Notification sent with ID: ", newFollow.id);
                     followBtn.setAttribute("data-documentId", newFollow.id);
                   } else {
-                    console.log("FOUND IN FIRESTORE…");
+                    console.error("FOUND IN FIRESTORE…");
                   }
                 } catch (error) {
                   console.error("Error adding document: ", error);
@@ -194,7 +194,7 @@ function checkGuetterButton() {
                         createdAt: new Date(),
                       }
                     );
-                    console.log("Notification sent with ID: ", newFollow.id);
+                    // console.log("Notification sent with ID: ", newFollow.id);
                     followBtn.setAttribute("data-documentId", newFollow.id);
                   }
                 } catch (error) {
@@ -255,7 +255,7 @@ if (document.querySelector(".followers-nbr")) {
     querySnapshot._snapshot.docs.size <= 1 ? "Guetteur" : "Guetteurs";
 }
 
-// ACCOUNT PAGE…
+// ACCOUNT PAGE & NAVBAR…
 if (document.querySelector(".followers-account-nbr")) {
   let q = query(
     collection(database, "notifications"),
@@ -264,10 +264,11 @@ if (document.querySelector(".followers-account-nbr")) {
   );
   let querySnapshot = await getDocs(q);
 
-  document.querySelector(".followers-account-nbr").textContent =
-    querySnapshot._snapshot.docs.size;
-  document.querySelector(".followers-account-nbr-text").textContent =
-    querySnapshot._snapshot.docs.size <= 1 ? "Guetteur" : "Guetteurs";
+  const numbersDOM = document.querySelectorAll(".followers-account-nbr");
+  numbersDOM.forEach(el => el.textContent = querySnapshot._snapshot.docs.size)
+
+  const numbersTextDOM = document.querySelectorAll(".followers-account-nbr-text");
+  numbersTextDOM.forEach(el => el.textContent = querySnapshot._snapshot.docs.size <= 1 ? "Guetteur" : "Guetteurs")
 }
 
 export { checkGuetterButton };

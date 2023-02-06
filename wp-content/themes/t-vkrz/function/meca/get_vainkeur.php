@@ -16,13 +16,19 @@ function get_vainkeur(){
     if(is_user_logged_in()){
 
         global $user_id;
-        $user_id        = get_user_logged_id();
-        $uuiduser       = get_field('uuiduser_user', 'user_'.$user_id);
-        $id_vainkeur    = get_field('id_vainkeur_user', 'user_' . $user_id);
+        $user_id           = get_user_logged_id();
+        $uuiduser          = get_field('uuiduser_user', 'user_'.$user_id);
+        $id_vainkeur       = get_field('id_vainkeur_user', 'user_' . $user_id);
 
+        $uniqcodeparrain   = get_field('code_parrain_user', 'user_' . $user_id);
+        $empty_uuid        = false;
+        $empty_id_vainkeur = false;
+        
         if($uuiduser == ""){
             $uuiduser   = uniqidReal();
             update_field('uuiduser_user', $uuiduser, 'user_' . $user_id);
+
+            $empty_uuid = true;
         }
 
         if ($id_vainkeur == "") {
@@ -69,8 +75,42 @@ function get_vainkeur(){
             }
 
             update_field('id_vainkeur_user', $id_vainkeur, 'user_' . $user_id);
+    
+            $empty_id_vainkeur = true;
         }
-        
+
+        // SET UNIQ CODE FOR PARRAINAGE
+        if($uniqcodeparrain == "") {
+            $uniqcodeparrain = generate_codeparrain($user_id);
+            update_field('code_parrain_user', $uniqcodeparrain, 'user_' . $user_id);
+        }
+
+        // SEND PARRAINAGE NOTIFICATION
+        if($empty_uuid && $empty_id_vainkeur && get_userdata($user_id)->referral)  {
+
+            $referral_code    = get_userdata($user_id)->referral;
+
+            deal_referral($referral_code, $id_vainkeur, 200);
+            $pere_id_vainkeur = check_codeparrain($referral_code);
+            $pere_uuid        = get_field("uuid_user_vkrz", $pere_id_vainkeur);
+            $pere_infos       = get_user_infos($pere_uuid);
+            $enfant_infos     = get_user_infos($uuiduser);
+
+            $notification              = new stdClass();
+            $notification->notifLink   = $enfant_infos["profil_url"];
+            $notification->notifText   = $enfant_infos['pseudo'] . " a utilisé ton code de parrainage!";
+            $notification->notifType   = "Parrainage";
+            $notification->relatedId   = $pere_infos["id_user"];
+            $notification->relatedUuid = $pere_uuid;
+            $notification->userId      = $user_id;
+            $notification->uuid        = $uuiduser;
+            $notification->createdAt   = time();
+            $notification->statut      = "nouveau";
+
+            apply_filters('firebase_save_data_to_database', "firestore", "notifications", uniqid(), $notification);
+
+        }
+
     } 
     else {
 
