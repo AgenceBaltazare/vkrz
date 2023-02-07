@@ -169,6 +169,11 @@ class Firebase_Shortcode {
    * @return string
    */
   public static function firebase_show_func($atts, $content) {
+
+    if (!is_user_logged_in()) {
+      return '';
+    }
+
     $class_name = "";
     if (isset($atts['class'])) {
       $class_name = $atts['class'];
@@ -188,6 +193,11 @@ class Firebase_Shortcode {
    * @return string
    */
   public static function firebase_show_not_login_func($atts, $content) {
+
+    if (is_user_logged_in()) {
+      return '';
+    }
+
     $class_name = "";
     if (isset($atts['class'])) {
       $class_name = $atts['class'];
