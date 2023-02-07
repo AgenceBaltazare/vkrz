@@ -8,8 +8,7 @@ $user_query = new WP_User_Query(
         'meta_query' => array(
           array(
             'key'     => 'maj_user',
-            'value'   => 'aa',
-            'compare' => '=',
+            'compare' => 'NOT EXISTS',
           ),
         )
     )
