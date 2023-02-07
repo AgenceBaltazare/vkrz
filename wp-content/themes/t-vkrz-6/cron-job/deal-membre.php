@@ -8,7 +8,8 @@ $user_query = new WP_User_Query(
         'meta_query' => array(
           array(
             'key'     => 'maj_user',
-            'compare' => 'EXISTS',
+            'value'   => 'aa',
+            'compare' => '=',
           ),
         )
     )
@@ -17,9 +18,7 @@ $users = $user_query->get_results();
 foreach ($users as $user) {
     
     $user_id = $user->ID;
-    update_field('maj_user', 'aa', 'user_' . $user_id);
 
-    /*
     $uuiduser = get_field('uuiduser_user', 'user_'.$user_id);
 
     $user_infos  = get_user_infos($uuiduser);
@@ -41,7 +40,9 @@ foreach ($users as $user) {
 
     apply_filters('firebase_save_data_to_database', "firestore", "utilizateurs", get_userdata($user_id)->user_login, $utilisateur);
 
+    update_field('maj_user', 'donefire', 'user_' . $user_id);
+
     $u++;
-    */
+    
 }
 echo $u;
