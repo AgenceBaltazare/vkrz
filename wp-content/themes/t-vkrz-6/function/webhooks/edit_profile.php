@@ -14,7 +14,7 @@ function edit_profile( $http_request, $form_name, $user_id ){
         "no_found_rows"          => false,
         "author__in"             => $user_id,
     ));
-    if($vainkeur->have_posts()){
+    if($vainkeur->have_posts()) {
         $vainkeur_id = $vainkeur->posts[0];
 
         if (!get_vainkeur_badge($vainkeur_id, "Connecté")) {
@@ -27,6 +27,16 @@ function edit_profile( $http_request, $form_name, $user_id ){
                 update_vainkeur_badge($vainkeur_id, "Connecté");
             }
         }
+
+        // SEND/UPDATE USER TO FIREBASE
+        $utilisateur                   = new stdClass();
+        $utilisateur->Twitch           = get_userdata($user_id)->twitch_user;
+        $utilisateur->YouTube          = get_userdata($user_id)->youtube_user;
+        $utilisateur->Instagram        = get_userdata($user_id)->Instagram_user;
+        $utilisateur->TikTok           = get_userdata($user_id)->tiktok_user;
+        $utilisateur->Twitter          = get_userdata($user_id)->twitter_user;
+
+        apply_filters('firebase_save_data_to_database', "firestore", "utilizateurs", get_userdata($user_id)->user_login, $utilisateur);
 
     }
 
