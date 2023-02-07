@@ -17,9 +17,8 @@ $users = $user_query->get_results();
 foreach ($users as $user) {
     
     $user_id = $user->ID;
-    update_field('maj_user', '', 'user_' . $user_id);
+    update_field('maj_user', 'aa', 'user_' . $user_id);
 
-    echo $user_id;
     /*
     $uuiduser = get_field('uuiduser_user', 'user_'.$user_id);
 
