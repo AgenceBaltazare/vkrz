@@ -64,8 +64,8 @@ if (is_single() && get_post_type() == "tournoi") {
           </select>
         </div>
         <div class="input-search">
-          <input id="searchmembres" name="member_to_search" type="text" class="searchmembres form-control typeahead-prefetch" autocomplete="off" placeholder="Recherche un vainkeur...">
-          <input id="searchtops" name="term_to_search" type="text" class="searchtops form-control typeahead-prefetch" autocomplete="off" placeholder="Recherche des Tops...">
+          <input id="searchmembres" name="member_to_search" type="text" minlength="3" class="searchmembres form-control typeahead-prefetch" autocomplete="off" placeholder="Recherche un vainkeur...">
+          <input id="searchtops" name="term_to_search" type="text" minlength="3" class="searchtops form-control typeahead-prefetch" autocomplete="off" placeholder="Recherche des Tops...">
         </div>
         <div class="btn-loupe">
           <button class="submitbtn" type="submit">
@@ -193,7 +193,7 @@ if (is_single() && get_post_type() == "tournoi") {
                       <span class="iconstats va-guetteur va va-lg"></span>
                     </div>
                     <div class="valuestat">
-                      <span class="followers-account-nbr"></span>
+                      <span class="followers-account-nbr">-</span>
                       <small class="text-muted mb-0 followers-account-nbr-text">Guetteurs</small>
                     </div>
                   </div>
@@ -206,7 +206,15 @@ if (is_single() && get_post_type() == "tournoi") {
                       <span class="iconstats va-love-people  va va-lg"></span>
                     </div>
                     <div class="valuestat">
-                      0
+                      <?php 
+                        $referrals = array();
+                        if(get_field('referral_from_me', $infos_vainkeur["id_vainkeur"])) {
+                          $referrals = json_decode(get_field('referral_from_me', $infos_vainkeur["id_vainkeur"]));
+                          echo count($referrals);
+                        } else {
+                          echo 0;
+                        }
+                      ?>
                       <small class="text-muted mb-0">Parrainage</small>
                     </div>
                   </div>

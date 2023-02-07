@@ -72,20 +72,6 @@ function deal_referral($referral, $id_vainkeur, $keurz)
     if (!in_array($id_vainkeur, $referral_from_me)) {
       array_push($referral_from_me, $id_vainkeur);
       update_field('referral_from_me', json_encode($referral_from_me), $referral);
-
-      // NOTIFICATION PROCESS…
-      $my_uuid                = get_field('uuid_user_vkrz', $id_vainkeur);
-      $referredTo             = get_field('uuid_user_vkrz', $referral);
-
-      $arr_cookie_options = array(
-        'expires' => time() + 60 * 60 * 24 * 365,
-        'path' => '/',
-      );
-      $arr_cookies_data = array(
-        "referral" => $my_uuid,
-        "referredTo" => $referredTo,
-      );
-      setcookie("wordpress_parrainage_cookies", json_encode($arr_cookies_data), $arr_cookie_options);
     }
   }
 }
