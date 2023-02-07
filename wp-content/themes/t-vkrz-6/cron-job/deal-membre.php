@@ -4,7 +4,7 @@ include __DIR__ . '/../../../../wp-load.php';
 $u=1;
 $user_query = new WP_User_Query(
     array(
-        'number' => -1
+        'number' => 2000
     )
 );
 $users = $user_query->get_results();
