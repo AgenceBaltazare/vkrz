@@ -4,13 +4,21 @@ include __DIR__ . '/../../../../wp-load.php';
 $u=1;
 $user_query = new WP_User_Query(
     array(
-        'number' => 2000
+        'number' => 2000,
+        'meta_query' => array(
+          array(
+            'key'     => 'maj_user',
+            'compare' => 'EXISTS',
+          ),
+        )
     )
 );
 $users = $user_query->get_results();
 foreach ($users as $user) {
     
     $user_id     = $user->ID;
+    update_field('maj_user', '', 'user_' . $user_id);
+    /*
     $uuiduser = get_field('uuiduser_user', 'user_'.$user_id);
 
     $user_infos  = get_user_infos($uuiduser);
@@ -33,5 +41,6 @@ foreach ($users as $user) {
     apply_filters('firebase_save_data_to_database', "firestore", "utilizateurs", get_userdata($user_id)->user_login, $utilisateur);
 
     $u++;
+    */
 }
 echo $u;
