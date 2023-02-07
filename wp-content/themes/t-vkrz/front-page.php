@@ -92,6 +92,30 @@ if ($id_vainkeur) {
                   <div class="play">
                     <img src="<?php bloginfo('template_directory'); ?>/assets/images/emojis/play.png">
                   </div>
+                  <div class="caption-frame">
+                    <ul>
+                      <li>
+                        <h4>
+                          Drey
+                        </h4>
+                      </li>
+                      <li>
+                        <a href="" class="btn">
+                          <i class="fab fa-instagram"></i>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="" class="btn">
+                          <i class="fab fa-instagram"></i>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="" class="btn">
+                          <i class="fab fa-tiktok"></i>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
                 <div class="modal-video hide" id="frame1">
                   <div class="container-xxl">
@@ -104,30 +128,6 @@ if ($id_vainkeur) {
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="caption-frame">
-                <ul>
-                  <li>
-                    <h4>
-                      Drey
-                    </h4>
-                  </li>
-                  <li>
-                    <a href="" class="btn">
-                      <i class="fab fa-instagram"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="" class="btn">
-                      <i class="fab fa-instagram"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="" class="btn">
-                      <i class="fab fa-tiktok"></i>
-                    </a>
-                  </li>
-                </ul>
               </div>
             </div>
           </div>
