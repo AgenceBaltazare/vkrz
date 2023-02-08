@@ -20,7 +20,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: $c6;
+    background: #fff;
     border-radius: 5px;
     transform: rotate(-2deg);
     position: relative;
@@ -32,21 +32,21 @@
       margin-right: 10px;
       h4 {
         font-weight: 800;
-        color: #fff;
+        color: $c6;
         border-radius: 10px;
         font-family: "Montserrat", Helvetica, Arial, serif !important;
         font-size: 1.1rem;
         margin: 0 !important;
-        display: inline-block;
+        display: inline-block;@
       }
       span{
-        color: #fff !important;
+        color: $c6 !important;
         margin-right: 5px;
       }
       a{
         background: transparent;
         border: none !important;
-        color: #fff !important;
+        color: $c6 !important;
         &:hover{
           background: rgba(255, 255, 255, 0.1) !important;
         }

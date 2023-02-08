@@ -7878,7 +7878,7 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-link:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #2a1f70;
+  background: #fff;
   border-radius: 5px;
   transform: rotate(-2deg);
   position: relative;
@@ -7892,7 +7892,7 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-link:hover {
 }
 .caption-frame ul li h4 {
   font-weight: 800;
-  color: #fff;
+  color: #2a1f70;
   border-radius: 10px;
   font-family: "Montserrat", Helvetica, Arial, serif !important;
   font-size: 1.1rem;
@@ -7900,13 +7900,13 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-link:hover {
   display: inline-block;
 }
 .caption-frame ul li span {
-  color: #fff !important;
+  color: #2a1f70 !important;
   margin-right: 5px;
 }
 .caption-frame ul li a {
   background: transparent;
   border: none !important;
-  color: #fff !important;
+  color: #2a1f70 !important;
 }
 .caption-frame ul li a:hover {
   background: rgba(255, 255, 255, 0.1) !important;
