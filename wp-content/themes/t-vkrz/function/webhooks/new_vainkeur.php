@@ -95,7 +95,50 @@ function new_vainkeur($user_id){
 
             update_field('uuiduser_user', $uuid_vainkeur, 'user_' . $user_id);
             update_field('id_vainkeur_user', $id_vainkeur, 'user_' . $user_id);
+
+            // SEND/UPDATE USER TO FIREBASE
+            $user_infos  = get_user_infos($uuid_vainkeur);
+
+            $utilisateur                   = new stdClass();
+            $utilisateur->Pseudo           = $user_infos['pseudo'];
+            $utilisateur->Image            = $user_infos['avatar'];
+            $utilisateur->Email            = $user_infos['user_email'];
+            $utilisateur->UUID             = $user_infos['uuid_vainkeur'];
+            $utilisateur->idVainkeur       = $user_infos['id_vainkeur'];
+            $utilisateur->level            = $user_infos['level_number'];
+            $utilisateur->role             = $user_infos['user_role'];
+            $utilisateur->Twitch           = get_userdata($user_id)->twitch_user;
+            $utilisateur->YouTube          = get_userdata($user_id)->youtube_user;
+            $utilisateur->Instagram        = get_userdata($user_id)->Instagram_user;
+            $utilisateur->TikTok           = get_userdata($user_id)->tiktok_user;
+            $utilisateur->Twitter          = get_userdata($user_id)->twitter_user;
+            $utilisateur->RegistrationDate = date("d-m-Y H:i:s", strtotime(get_userdata( $user_id )->user_registered));
             
+            apply_filters('firebase_save_data_to_database', "firestore", "utilizateurs", get_userdata($user_id)->user_login, $utilisateur);
+            
+            // IF HE'S REGISTRED WITH A REFERRAL CODE
+            if($_GET['codeinvit']) {
+                $referral_code    = $_GET['codeinvit'];
+
+                deal_referral($referral_code, $id_vainkeur, 200);
+                $pere_id_vainkeur = check_codeparrain($referral_code);
+                $pere_uuid        = get_field("uuid_user_vkrz", $pere_id_vainkeur);
+                $pere_infos       = get_user_infos($pere_uuid);
+    
+                $notification              = new stdClass();
+                $notification->notifLink   = $user_infos["profil_url"];
+                $notification->notifText   = $user_infos['pseudo'] . " a utilisé ton code de parrainage!";
+                $notification->notifType   = "Parrainage";
+                $notification->relatedId   = $pere_infos["id_user"];
+                $notification->relatedUuid = $pere_uuid;
+                $notification->userId      = $user_id;
+                $notification->uuid        = $uuid_vainkeur;
+                $notification->createdAt   = time();
+                $notification->statut      = "nouveau";
+    
+                apply_filters('firebase_save_data_to_database', "firestore", "notifications", uniqid(), $notification);
+            }
+        
         }
     }
 
@@ -121,3 +164,26 @@ function new_vainkeur($user_id){
     <?php
     echo ob_get_clean();
 }
+
+// SEND/UPDATE USER TO FIREBASE
+add_action( 'set_user_role', function( $user_id ) 
+{
+    
+    add_action( 'profile_update', function( $user_id )
+    {
+        $uuid_vainkeur = get_field('uuiduser_user', 'user_' . $user_id);
+
+        $user_infos    = get_user_infos($uuid_vainkeur);
+
+        $utilisateur       = new stdClass();
+        $utilisateur->role = $user_infos['user_role'];
+
+        apply_filters('firebase_save_data_to_database', "firestore", "utilizateurs", get_userdata($user_id)->user_login, $utilisateur);
+    } );
+
+} );
+
+add_action( 'delete_user', function($user_id) {
+    apply_filters('firebase_delete_data_from_database', 'firestore', "utilizateurs", get_userdata($user_id)->user_login);
+} );
+
