@@ -45,12 +45,7 @@ function load_css_js()
     wp_enqueue_style('main', get_template_directory_uri() . '/assets/css/vkrz/main.css', array(), filemtime(get_template_directory() . '/assets/css/vkrz/main.css'));
 
   // SCRIPTS //
-
-    // Users interractions
-    if (isset($_COOKIE["wordpress_parrainage_cookies"]) && !empty($_COOKIE["wordpress_parrainage_cookies"])) {
-      wp_enqueue_script('deal_parrainage', get_template_directory_uri() . '/function/firebase/deal_parrainage.js', array(), filemtime(get_template_directory() . '/function/firebase/deal_parrainage.js'), false);
-    }
-
+  
     // Helpers
     wp_enqueue_script('helpers', get_template_directory_uri() . '/assets/vendor/js/helpers.js', array(), null, false);
     wp_enqueue_script('config', get_template_directory_uri() . '/assets/js/config.js', array(), null, false);

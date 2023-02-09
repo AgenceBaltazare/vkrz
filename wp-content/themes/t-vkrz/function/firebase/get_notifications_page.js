@@ -47,8 +47,11 @@ const table = document.querySelector(".table-notifications"),
     );
 
     notifsQuerySnapshot.forEach((notification) => {
-      let secondes =
-        new Date().getTime() - notification.data().createdAt.seconds * 1000;
+      let secondes;
+      if(notification.data().createdAt.seconds) 
+        secondes = new Date().getTime() - notification.data().createdAt.seconds * 1000;
+      else 
+        secondes = new Date().getTime() -  notification.data().createdAt * 1000;
 
       html += `
         <tr role="row" class="odd" id="row" data-id="${notification.id}">
@@ -78,11 +81,7 @@ const table = document.querySelector(".table-notifications"),
             </div>
           </td>
           <td class="text-right">
-            <span id="statut" class="badge rounded-pill bg-label-${
-              notification.data().statut == "nouveau" ? "success" : "primary"
-            } me-1" style="text-transform: capitalize;">${
-        notification.data().statut
-      }</span>
+            <span id="statut" class="badge bg-label-${notification.data().statut == "nouveau" ? "success" : "primary"} me-1" style="text-transform: capitalize;">${notification.data().statut}</span>
           </td>
           <td class="text-right">
             <a

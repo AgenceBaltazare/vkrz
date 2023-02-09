@@ -227,8 +227,8 @@ if ($infos_vainkeur['user_role'] == "administrator" || $infos_vainkeur['user_rol
                       <span class="iconstats va-guetteur va va-lg"></span>
                     </div>
                     <div class="valuestat">
-                      <span class="followers-account-nbr">0</span>
-                      <small class="text-muted mb-0">Guetteur</small>
+                      <span class="followers-account-nbr">-</span>
+                      <small class="text-muted mb-0 followers-account-nbr-text">Guetteur</small>
                     </div>
                   </div>
                 </div>
@@ -276,8 +276,16 @@ if ($infos_vainkeur['user_role'] == "administrator" || $infos_vainkeur['user_rol
                       <span class="iconstats va-love-people va va-lg"></span>
                     </div>
                     <div class="valuestat">
-                      <span class="followers-account-nbr">
-                        0
+                      <span class="">
+                        <?php 
+                          $referrals = array();
+                          if(get_field('referral_from_me', $infos_vainkeur["id_vainkeur"])) {
+                            $referrals = json_decode(get_field('referral_from_me', $infos_vainkeur["id_vainkeur"]));
+                            echo count($referrals);
+                          } else {
+                            echo 0;
+                          }
+                        ?>
                       </span>
                       <small class="text-muted mb-0">Parrainage</small>
                     </div>

@@ -7,17 +7,6 @@
   letter-spacing: 2px;
   margin: 20px 0 5px;
 }
-
-@-webkit-keyframes rotating
-
-/* Safari and Chrome */ {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 @keyframes rotating {
   from {
     transform: rotate(0deg);

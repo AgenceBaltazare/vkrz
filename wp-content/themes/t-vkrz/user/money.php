@@ -222,6 +222,7 @@ $vainkeur_badges = get_the_terms($infos_vainkeur['id_vainkeur'], 'badges');
                   <tbody class="nobold">
                     <?php
                     $enfants = json_decode(get_field('referral_from_me', $id_vainkeur));
+                    if( $enfants ) :
                     foreach ($enfants as $referral) :
                       $referral_uuid          = get_field('uuid_user_vkrz', $referral);
                       $infos_referral         = get_user_infos($referral_uuid, 'complete');
@@ -287,9 +288,10 @@ $vainkeur_badges = get_the_terms($infos_vainkeur['id_vainkeur'], 'badges');
                               </th>
                             </tr>
                     <?php endforeach;
-                        endif;
-                      endfor;
-                    endforeach; ?>
+                          endif;
+                        endfor;
+                      endforeach; 
+                    endif; ?>
                     <tr>
                       <th>
                         <span class="text-info">

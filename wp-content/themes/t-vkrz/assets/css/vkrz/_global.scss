@@ -718,15 +718,11 @@ html .content {
     background-color: $rose;
     transition: all 0.2s ease-in;
     width: 100%;
+    line-height: 100%;
+
     &:hover{
-        background-color: rgba(255, 255, 255, 0.1);
+        background-color: #B0177F;
         color: #ffffff !important;
-        .va-guetteur-close{
-          display: none;
-        }
-        .va-guetteur{
-          display: block !important;
-        }
     }
     .wording{
         font-size: 11px;
@@ -734,8 +730,8 @@ html .content {
         margin: 0 5px 0 0;
     }
 
-    @media (max-width: 1600px) {
-      .wording{
+    @media (max-width: 768px) {
+      .wording {
           display: none;
       }
     }
@@ -745,7 +741,7 @@ html .content {
 .unfollowBtn{
     background: #6819b9 !important;
     &:hover {
-      background-color: rgba(255, 255, 255, 0.1) !important;
+      background-color: #B0177F !important;
       color: #ffffff !important;
   
       .notsee {
@@ -1419,6 +1415,6 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
 }
 
 #toast-container > .toast-success {
-    background-image: url("http://localhost:8888/vkrz/wp-content/themes/t-vkrz/assets/images/vkrz/lama.svg")!important;
+    background-image: url("https://vainkeurz.com/wp-content/themes/t-vkrz-6/assets/images/vkrz/logo-vkrz.png")!important;
     background-size: 10% 50%;
 }

@@ -90,7 +90,7 @@ import {
     const map = new Map();
     await Promise.all(
       listUuids.map(async (uuid) => {
-        await fetch(`http://localhost:8888/vkrz/wp-json/vkrz/v1/getuserinfo/${uuid}`)
+        await fetch(`http://vainkeurz.local/wp-json/vkrz/v1/getuserinfo/${uuid}`)
           .then((res) => res.json())
           .then((response) => map.set(uuid, response));
       })
@@ -150,32 +150,36 @@ import {
       // FOLLOW OR UNFOLLOW BUTTON… 🤹
       if (item.extra.friend || item.extra.following) {
         followOrUnfollowDiv = `
-        <a href="" 
-          data-documentId="${item["extra"]["id"]}" 
-          data-relatedid="${map.get(item.uuid).id_user}"
-          class="unfollowBtns dropdown-item"
-          data-amigo=${item.extra.friend ? true : false}
-          data-following=${item.extra.following ? true : false}
-        >
-          <span class="ico-action va va-cross va-z-20"></span> 
-          Ne plus guetter
-        </a>
+        <li>
+          <a href="" 
+            data-documentId="${item["extra"]["id"]}" 
+            data-relatedid="${map.get(item.uuid).id_user}"
+            class="unfollowBtns dropdown-item"
+            data-amigo=${item.extra.friend ? true : false}
+            data-following=${item.extra.following ? true : false}
+          >
+            <span class="ico-action va va-cross va-z-20"></span> 
+            Ne plus guetter
+          </a>
+        </li>
       `;
       } else {
         followOrUnfollowDiv = `
-        <a 
-          href="" 
-          data-userid=${currentUserId}
-          data-uuid=${currentUuid}
-          data-relatedid=${map.get(item.uuid).id_user}
-          data-relateduuid="${map.get(item.uuid).uuid_vainkeur}"
-          data-text="${vainkeurPseudo} te guette !"
-          data-url="${currentUserProfileUrl}"
-          class="followBtns dropdown-item"
-        >
-          <span class="ico-action va va-star-struck va-z-20"></span> 
-          Guetter aussi
-        </a>
+        <li>
+          <a 
+            href="" 
+            data-userid=${currentUserId}
+            data-uuid=${currentUuid}
+            data-relatedid=${map.get(item.uuid).id_user}
+            data-relateduuid="${map.get(item.uuid).uuid_vainkeur}"
+            data-text="${vainkeurPseudo} te guette !"
+            data-url="${currentUserProfileUrl}"
+            class="followBtns dropdown-item"
+          >
+            <span class="ico-action va va-star-struck va-z-20"></span> 
+            Guetter aussi
+          </a>
+        </li>
     `;
       }
 
@@ -184,7 +188,7 @@ import {
         <td>
           <div class="vainkeur-card">
               <a href="${map.get(item["uuid"]).profil_url}" class="btn btn-flat-primary waves-effect">
-                  <span class="avatar">
+                  <span class="avatar me-1">
                       <span class="avatar-picture" style="background-image: url(${map.get(item["uuid"]).avatar});"></span>
                   </span>
                   <span class="championname">
@@ -209,29 +213,23 @@ import {
         ${relationDiv}
 
         <td class="text-right">
-          ${map.get(item["uuid"]).nb_top_vkrz
-        } <span class="ico va va-trophy va-lg"></span>
+          ${map.get(item["uuid"]).nb_top_vkrz} <span class="ico va va-trophy va-lg"></span>
         </td>
 
         <td class="text-right">
-          <div class="dropdown">
-            <a class="btn btn-sm btn-icon px-0" data-toggle="dropdown">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical font-medium-2">
-                <circle cx="12" cy="12" r="1"></circle>
-                <circle cx="12" cy="5" r="1"></circle>
-                <circle cx="12" cy="19" r="1"></circle>
-              </svg>
+          <div class="d-inline-block">
+            <a href="javascript:;" class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="true">
+              <i class="text-primary ti ti-dots-vertical"></i>
             </a>
-
-            <div class="dropdown-menu dropdown-menu-right">
-              <a href="${map.get(item["uuid"]).profil_url
-        }" class="dropdown-item">
-                <span class="ico-action va va-eyes va-z-20"></span> Voir ses TopList
-              </a>
+            <ul class="dropdown-menu dropdown-menu-end m-0" data-popper-placement="bottom-end">
+              <li>
+                <a href="${map.get(item["uuid"]).profil_url}" class="dropdown-item">
+                  <span class="ico-action va va-eyes va-z-20"></span> Voir ses TopList
+                </a>
+              </li>
 
               ${followOrUnfollowDiv}
-            </div>
-
+            </ul>
           </div>
         </td>
       </tr>

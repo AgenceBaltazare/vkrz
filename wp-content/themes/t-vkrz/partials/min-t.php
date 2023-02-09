@@ -115,7 +115,7 @@ if($list_user_tops){
         $wording = "Save Top";
       }
     ?>
-      <a href="" class="save-top" data-idtop="<?= $id_top; ?>" data-idvainkeur="<?= $id_vainkeur; ?>"><?= $wording; ?></a>
+      <a href="" class="save-top save-top-mobile" data-idtop="<?= $id_top; ?>" data-idvainkeur="<?= $id_vainkeur; ?>"><?= $wording; ?></a>
     <?php endif; ?>
   </div>
   <div class="card-body eh mb-3-hover">

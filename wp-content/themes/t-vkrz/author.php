@@ -184,6 +184,19 @@ if ($infos_vainkeur_to_watch['user_role'] == "administrator" || $infos_vainkeur_
                   </div>
                 </div>
               </div>
+              <div class="card text-center">
+                <div class="card-body card-stats">
+                  <div class="itemstat">
+                    <div>
+                      <span class="iconstats va-guetteur va va-lg"></span>
+                    </div>
+                    <div class="valuestat">
+                      <span class="followers-nbr">-</span>
+                      <small class="text-muted mb-0 followers-nbr-text">Guetteur</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="col-sm-4 col-6">
               <div class="card text-center">
@@ -216,6 +229,29 @@ if ($infos_vainkeur_to_watch['user_role'] == "administrator" || $infos_vainkeur_
                         0
                       <?php endif; ?>
                       <small class="text-muted mb-0">TopList</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card text-center">
+                <div class="card-body card-stats">
+                  <div class="itemstat">
+                    <div>
+                      <span class="iconstats va-love-people va va-lg"></span>
+                    </div>
+                    <div class="valuestat">
+                      <span class="">
+                        <?php 
+                          $referrals = array();
+                          if(get_field('referral_from_me', $infos_vainkeur["id_vainkeur"])) {
+                            $referrals = json_decode(get_field('referral_from_me', $infos_vainkeur["id_vainkeur"]));
+                            echo count($referrals);
+                          } else {
+                            echo 0;
+                          }
+                        ?>
+                      </span>
+                      <small class="text-muted mb-0">Parrainage</small>
                     </div>
                   </div>
                 </div>
