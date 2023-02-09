@@ -31,6 +31,7 @@ if ($id_ranking) {
 $url_top            = get_the_permalink($id_top);
 $top_datas          = get_top_data($id_top);
 $top_infos          = get_top_infos($id_top);
+$is_top_saved       = check_top_saved($id_top, $id_vainkeur);
 $creator_id         = get_post_field('post_author', $id_top);
 $creator_uuiduser   = get_field('uuiduser_user', 'user_' . $creator_id);
 $creator_data       = get_user_infos($creator_uuiduser);
@@ -64,6 +65,19 @@ get_header();
               <?php if ($type_top != "sponso") : ?>
                 <span class="badge bg-label-primary">Créé le <?php echo $top_infos['top_date']; ?></span>
               <?php endif; ?>
+
+              <?php 
+              if(is_user_logged_in() ) :
+                $wording = "";
+                if($is_top_saved) {
+                  $wording = "Unsave Top";
+                } else {
+                  $wording = "Save Top";
+                }
+              ?>
+                <a href="#" class="badge bg-info save-top" data-idtop="<?= $id_top; ?>" data-idvainkeur="<?= $id_vainkeur; ?>"><?= $wording; ?></a>
+              <?php endif; ?>
+
               <div class="list-unstyled m-0 d-flex align-items-center avatar-group my-3 list-contenders">
                 <?php $contenders_t = new WP_Query(array(
                   'post_type' => 'contender', 'orderby' => 'date', 'posts_per_page' => '-1',

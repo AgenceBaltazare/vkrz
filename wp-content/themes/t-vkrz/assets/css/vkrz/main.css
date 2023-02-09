@@ -2205,6 +2205,7 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
 .min-tournoi {
   transition: all 0.2s ease-in-out;
   padding: 0;
+  position: relative;
 }
 .min-tournoi .cov-illu {
   min-height: 120px;
@@ -2307,8 +2308,70 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
 .min-tournoi .info-top .content-body .link-to-creator {
   color: #fff;
 }
+.min-tournoi .save-top {
+  position: absolute;
+  display: inline-block;
+  left: 5px;
+  visibility: hidden;
+  opacity: 0;
+  background-color: #04CFE7;
+  border-radius: 8px 8px 0 0;
+  padding: 0.2rem 0.6rem;
+  color: white;
+  font-size: 0.8rem;
+  line-height: 100%;
+  transition: 0.3s all;
+}
+@media (max-width: 768px) {
+  .min-tournoi .save-top {
+    animation: unset !important;
+    visibility: visible;
+    opacity: 1;
+    left: unset;
+    top: 7.5px;
+    right: 0;
+    z-index: 9999;
+    width: 45%;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 0.6rem;
+    padding: 5px;
+  }
+}
+@keyframes slideTop {
+  0% {
+    top: 0;
+  }
+  100% {
+    visibility: visible;
+    opacity: 1;
+    top: -20px;
+  }
+}
+.min-tournoi.saved-top .save-top {
+  animation: slideTop 0.3s both linear;
+}
+@media (max-width: 768px) {
+  .min-tournoi.saved-top .save-top {
+    animation: unset !important;
+    visibility: visible;
+    opacity: 1;
+    left: unset;
+    top: 7.5px;
+    right: 0;
+    z-index: 9999;
+    width: 45%;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 0.6rem;
+    padding: 5px;
+  }
+}
 .min-tournoi:hover {
   transform: scale(1.05);
+}
+.min-tournoi:hover .save-top {
+  animation: slideTop 0.3s forwards linear;
 }
 .min-tournoi:hover .info-top {
   opacity: 1;

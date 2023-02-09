@@ -104,3 +104,10 @@ function vkzr_new_jugement()
 {
     do_jugement($_POST['id_ranking'], $_POST['id_vainkeur'], $_POST['todo']);
 }
+
+add_action('wp_ajax_deal_vkrz_save_top', 'deal_vkrz_save_top');
+add_action('wp_ajax_nopriv_deal_vkrz_save_top', 'deal_vkrz_save_top');
+function deal_vkrz_save_top()
+{
+    deal_save_top($_POST['id_top'], $_POST['id_vainkeur']);
+}
