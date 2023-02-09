@@ -11,17 +11,6 @@
   letter-spacing: 2px;
   margin: 20px 0 5px;
 }
-
-@-webkit-keyframes rotating
-
-/* Safari and Chrome */ {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 @keyframes rotating {
   from {
     transform: rotate(0deg);
@@ -293,10 +282,6 @@ a.sociallink:hover i {
   color: rgb(255, 255, 255) !important;
 }
 
-.dark-layout input.form-control:-ms-input-placeholder, .dark-layout .custom-file-label:-ms-input-placeholder, .dark-layout textarea.form-control:-ms-input-placeholder, .dark-layout input.form-control:-ms-input-placeholder, .dark-layout .custom-file-label:-ms-input-placeholder, .dark-layout textarea.form-control:-ms-input-placeholder {
-  color: rgb(255, 255, 255) !important;
-}
-
 .dark-layout input.form-control::placeholder,
 .dark-layout .custom-file-label::placeholder,
 .dark-layout textarea.form-control::placeholder,
@@ -471,24 +456,12 @@ table.dataTable tbody td {
 
 .dark-style {
   background: linear-gradient(35deg, #0c0a27 40%, #230b36 100%) fixed;
-  -webkit-animation: gradient 15s ease infinite;
-          animation: gradient 15s ease infinite;
+  animation: gradient 15s ease infinite;
 }
 .dark-style body {
   background: transparent;
   font-family: "Montserrat", Helvetica, Arial, serif !important;
   font-weight: 600;
-}
-@-webkit-keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
 }
 @keyframes gradient {
   0% {
@@ -626,23 +599,9 @@ html .content {
 
 .lele2 {
   width: 0;
-  -webkit-animation-name: appear2;
-          animation-name: appear2;
+  animation-name: appear2;
   overflow: hidden;
-  -webkit-animation: appear2 3s infinite ease-in-out;
-          animation: appear2 3s infinite ease-in-out;
-}
-
-@-webkit-keyframes appear2 {
-  20%, 100% {
-    width: 0;
-  }
-  0% {
-    width: 0;
-  }
-  5% {
-    width: auto;
-  }
+  animation: appear2 3s infinite ease-in-out;
 }
 
 @keyframes appear2 {
@@ -659,20 +618,7 @@ html .content {
 .lele1 {
   width: auto;
   overflow: hidden;
-  -webkit-animation: appear 3s infinite ease-in-out;
-          animation: appear 3s infinite ease-in-out;
-}
-
-@-webkit-keyframes appear {
-  20%, 100% {
-    width: auto;
-  }
-  0% {
-    width: auto;
-  }
-  5% {
-    width: 0;
-  }
+  animation: appear 3s infinite ease-in-out;
 }
 
 @keyframes appear {
@@ -1188,9 +1134,6 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
 .dataTables_filter input::-moz-placeholder {
   color: rgba(255, 255, 255, 0.8);
 }
-.dataTables_filter input:-ms-input-placeholder {
-  color: rgba(255, 255, 255, 0.8);
-}
 .dataTables_filter input::placeholder {
   color: rgba(255, 255, 255, 0.8);
 }
@@ -1386,7 +1329,6 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   text-align: center;
   -webkit-user-select: none;
   -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
   background-color: transparent;
   border: 1px solid transparent;
@@ -1398,7 +1340,6 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   overflow: hidden;
   -webkit-user-select: none;
   -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
   line-height: 1;
@@ -1506,7 +1447,6 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   padding: 22px;
   background-color: #30ACFD;
   border-radius: 100%;
-  -webkit-animation: sk-scaleout 1s infinite ease-in-out;
   animation: sk-scaleout 1s infinite ease-in-out;
 }
 @media (max-width: 794px) {
@@ -1514,15 +1454,6 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
     inset: 0;
     bottom: -6px;
     padding: 12px;
-  }
-}
-@-webkit-keyframes sk-scaleout {
-  0% {
-    -webkit-transform: scale(0);
-  }
-  100% {
-    -webkit-transform: scale(1.1);
-    opacity: 0;
   }
 }
 @keyframes sk-scaleout {
@@ -1693,7 +1624,6 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
 .ba-deg {
   background: linear-gradient(150deg, #0c0a27, #471867, #0c0a27, #230b36, #0c0a27);
   background-size: 400% 400%;
-  -webkit-animation: gradient 15s ease infinite;
   animation: gradient 15s ease infinite;
 }
 
@@ -1770,7 +1700,7 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
 }
 
 #toast-container > .toast-success {
-  background-image: url("http://localhost:8888/vkrz/wp-content/themes/t-vkrz/assets/images/vkrz/lama.svg") !important;
+  background-image: url("https://vainkeurz.com/wp-content/themes/t-vkrz-6/assets/images/vkrz/logo-vkrz.png") !important;
   background-size: 10% 50%;
 }
 
@@ -2069,10 +1999,6 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   background: linear-gradient(to bottom right, #6F1CB5, #5E16BF) !important;
 }
 .rechercher-form .rechercher-input::-moz-placeholder {
-  font-size: 12px;
-  color: #CEBBE4 !important;
-}
-.rechercher-form .rechercher-input:-ms-input-placeholder {
   font-size: 12px;
   color: #CEBBE4 !important;
 }
@@ -2648,26 +2574,7 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
 .versus img {
   border-radius: 0 !important;
   max-width: 30px;
-  -webkit-animation: tilt-n-move-shaking 0.5s infinite;
-          animation: tilt-n-move-shaking 0.5s infinite;
-}
-
-@-webkit-keyframes tilt-n-move-shaking {
-  0% {
-    transform: translate(0, 0) rotate(0deg);
-  }
-  25% {
-    transform: translate(1px, 1px) rotate(1deg);
-  }
-  50% {
-    transform: translate(0, 0) rotate(0eg);
-  }
-  75% {
-    transform: translate(-1px, 1px) rotate(-1deg);
-  }
-  100% {
-    transform: translate(0, 0) rotate(0deg);
-  }
+  animation: tilt-n-move-shaking 0.5s infinite;
 }
 
 @keyframes tilt-n-move-shaking {
@@ -2709,8 +2616,7 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   left: 0;
   background: linear-gradient(150deg, #0c0a27, #471867, #0c0a27, #230b36, #0c0a27);
   background-size: 400% 400%;
-  -webkit-animation: gradient 15s ease infinite;
-          animation: gradient 15s ease infinite;
+  animation: gradient 15s ease infinite;
   padding-top: 200px;
   text-align: center;
   display: none;
@@ -2814,8 +2720,7 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
 .t-sponso-container #countdown .counter.hide,
 .t-normal-container #countdown .counter.hide {
   transform: translate(-50%, -50%) scale(0);
-  -webkit-animation: hide 0.2s ease-out;
-          animation: hide 0.2s ease-out;
+  animation: hide 0.2s ease-out;
 }
 .t-sponso-container #countdown .counter .nums,
 .t-normal-container #countdown .counter .nums {
@@ -2836,27 +2741,11 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
 .t-sponso-container #countdown .counter .nums span.in,
 .t-normal-container #countdown .counter .nums span.in {
   transform: translate(-50%, -50%) rotate(0deg);
-  -webkit-animation: goIn 0.5s ease-in-out;
-          animation: goIn 0.5s ease-in-out;
+  animation: goIn 0.5s ease-in-out;
 }
 .t-sponso-container #countdown .counter .nums span.out,
 .t-normal-container #countdown .counter .nums span.out {
-  -webkit-animation: goOut 0.5s ease-in-out;
-          animation: goOut 0.5s ease-in-out;
-}
-@-webkit-keyframes goIn {
-  0% {
-    transform: translate(-50%, -50%) rotate(120deg);
-  }
-  30% {
-    transform: translate(-50%, -50%) rotate(-20deg);
-  }
-  60% {
-    transform: translate(-50%, -50%) rotate(10deg);
-  }
-  90%, 100% {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
+  animation: goOut 0.5s ease-in-out;
 }
 @keyframes goIn {
   0% {
@@ -2870,17 +2759,6 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   }
   90%, 100% {
     transform: translate(-50%, -50%) rotate(0deg);
-  }
-}
-@-webkit-keyframes goOut {
-  0%, 30% {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  60% {
-    transform: translate(-50%, -50%) rotate(20deg);
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(-120deg);
   }
 }
 @keyframes goOut {
@@ -2909,16 +2787,7 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
 .t-sponso-container #countdown .final.show,
 .t-normal-container #countdown .final.show {
   transform: translate(-50%, -50%) scale(1);
-  -webkit-animation: show 0.3s ease-in;
-          animation: show 0.3s ease-in;
-}
-@-webkit-keyframes hide {
-  0% {
-    transform: translate(-50%, -50%) scale(1);
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(0);
-  }
+  animation: show 0.3s ease-in;
 }
 @keyframes hide {
   0% {
@@ -2947,8 +2816,7 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
 .t-sponso-container .twitchGamesWinnerContainer.show,
 .t-normal-container .twitchGamesWinnerContainer.show {
   transform: translate(-50%, -50%) scale(1);
-  -webkit-animation: show 0.3s ease-in;
-          animation: show 0.3s ease-in;
+  animation: show 0.3s ease-in;
 }
 .t-sponso-container .twitchGamesWinnerName,
 .t-normal-container .twitchGamesWinnerName {
@@ -2962,8 +2830,7 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
 .t-normal-container .twitchGamesWinnerName.confetti > .particle {
   opacity: 0;
   position: absolute;
-  -webkit-animation: confetti 3s ease-in infinite;
-          animation: confetti 3s ease-in infinite;
+  animation: confetti 3s ease-in infinite;
 }
 .t-sponso-container .twitchGamesWinnerName.confetti > .particle.c1,
 .t-normal-container .twitchGamesWinnerName.confetti > .particle.c1 {
@@ -2992,25 +2859,6 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   right: -10%;
   top: -70%;
 }
-@-webkit-keyframes confetti {
-  0% {
-    opacity: 0;
-    transform: translateY(0%) rotate(0deg);
-  }
-  10% {
-    opacity: 1;
-  }
-  35% {
-    transform: translateY(-800%) rotate(270deg);
-  }
-  80% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(2000%) rotate(1440deg);
-  }
-}
 @keyframes confetti {
   0% {
     opacity: 0;
@@ -3028,17 +2876,6 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   100% {
     opacity: 0;
     transform: translateY(2000%) rotate(1440deg);
-  }
-}
-@-webkit-keyframes show {
-  0% {
-    transform: translate(-50%, -50%) scale(0);
-  }
-  80% {
-    transform: translate(-50%, -50%) scale(1.4);
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(1);
   }
 }
 @keyframes show {
@@ -3106,22 +2943,7 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
 .t-normal-container #begin_top3.pulsate {
   background-image: linear-gradient(47deg, #c821a6, #8d25c2) !important;
   border: transparent 2px solid !important;
-  -webkit-animation: pulsate 2s infinite !important;
-          animation: pulsate 2s infinite !important;
-}
-@-webkit-keyframes pulsate {
-  0% {
-    transform: scale(1);
-    box-shadow: none;
-  }
-  50% {
-    transform: scale(1.05);
-    box-shadow: 0 1rem 4rem rgba(0, 0, 0, 0.25);
-  }
-  100% {
-    transform: scale(1);
-    box-shadow: none;
-  }
+  animation: pulsate 2s infinite !important;
 }
 @keyframes pulsate {
   0% {
@@ -3139,25 +2961,9 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
 }
 .t-sponso-container .beforeDelete,
 .t-normal-container .beforeDelete {
-  -webkit-animation-name: delete;
-          animation-name: delete;
-  -webkit-animation-duration: 4s;
-          animation-duration: 4s;
+  animation-name: delete;
+  animation-duration: 4s;
   transition: all 0.2s;
-}
-@-webkit-keyframes delete {
-  25% {
-    color: #EA5455;
-    visibility: visible;
-  }
-  50% {
-    color: #fff;
-    visibility: visible;
-  }
-  75% {
-    color: #EA5455;
-    visibility: visible;
-  }
 }
 @keyframes delete {
   25% {
@@ -3359,13 +3165,17 @@ body {
   align-items: center;
   justify-content: center;
   font-size: 1.2rem;
-  transition: all 0.2s ease-in;
+  transition: all 0.3s;
 }
 .modes-jeu-twitch .modes-jeu-twitch__content-btns button small {
   color: #A9A9AC;
   font-size: 0.8rem;
   font-weight: 500;
-  display: none;
+  display: block;
+  height: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s all;
 }
 .modes-jeu-twitch .modes-jeu-twitch__content-btns button span {
   margin-left: 5px;
@@ -3374,7 +3184,9 @@ body {
   background-color: rgba(255, 255, 255, 0.1);
 }
 .modes-jeu-twitch .modes-jeu-twitch__content-btns button:hover small {
-  display: block;
+  opacity: 1;
+  visibility: visible;
+  height: 100%;
 }
 .modes-jeu-twitch .modes-jeu-twitch__content-btns button.selectedGameMode {
   color: #3fd084;
@@ -3658,8 +3470,7 @@ body {
 }
 .popup-twitch-games-ranking .twitchGamesWinnerContainer.show {
   transform: translate(-50%, -50%) scale(1);
-  -webkit-animation: show 0.3s ease-in;
-          animation: show 0.3s ease-in;
+  animation: show 0.3s ease-in;
 }
 .popup-twitch-games-ranking .twitchGamesWinnerName {
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
@@ -3671,8 +3482,7 @@ body {
 .popup-twitch-games-ranking .twitchGamesWinnerName.confetti > .particle {
   opacity: 0;
   position: absolute;
-  -webkit-animation: confetti 3s ease-in infinite;
-          animation: confetti 3s ease-in infinite;
+  animation: confetti 3s ease-in infinite;
 }
 .popup-twitch-games-ranking .twitchGamesWinnerName.confetti > .particle.c1 {
   background-color: #d13447;
@@ -3781,25 +3591,11 @@ body {
 }
 .bubbly-button:focus:before {
   display: block;
-  -webkit-animation: topBubbles ease-in-out 0.75s forwards;
-          animation: topBubbles ease-in-out 0.75s forwards;
+  animation: topBubbles ease-in-out 0.75s forwards;
 }
 .bubbly-button:focus:after {
   display: block;
-  -webkit-animation: bottomBubbles ease-in-out 0.75s forwards;
-          animation: bottomBubbles ease-in-out 0.75s forwards;
-}
-@-webkit-keyframes topBubbles {
-  0% {
-    background-position: 5% 90%, 10% 90%, 10% 90%, 15% 90%, 25% 90%, 25% 90%, 40% 90%, 55% 90%, 70% 90%;
-  }
-  50% {
-    background-position: 0% 80%, 0% 20%, 10% 40%, 20% 0%, 30% 30%, 22% 50%, 50% 50%, 65% 20%, 90% 30%;
-  }
-  100% {
-    background-position: 0% 70%, 0% 10%, 10% 30%, 20% -10%, 30% 20%, 22% 40%, 50% 40%, 65% 10%, 90% 20%;
-    background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
-  }
+  animation: bottomBubbles ease-in-out 0.75s forwards;
 }
 @keyframes topBubbles {
   0% {
@@ -3810,18 +3606,6 @@ body {
   }
   100% {
     background-position: 0% 70%, 0% 10%, 10% 30%, 20% -10%, 30% 20%, 22% 40%, 50% 40%, 65% 10%, 90% 20%;
-    background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
-  }
-}
-@-webkit-keyframes bottomBubbles {
-  0% {
-    background-position: 10% -10%, 30% 10%, 55% -10%, 70% -10%, 85% -10%, 70% -10%, 70% 0%;
-  }
-  50% {
-    background-position: 0% 80%, 20% 80%, 45% 60%, 60% 100%, 75% 70%, 95% 60%, 105% 0%;
-  }
-  100% {
-    background-position: 0% 90%, 20% 90%, 45% 70%, 60% 110%, 75% 80%, 95% 70%, 110% 10%;
     background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
   }
 }
@@ -4291,8 +4075,7 @@ body {
 .dark-layout #user-profile .profile-header .navbar {
   background: linear-gradient(50deg, #0c0a27, #471867, #0c0a27, #0c0a27);
   background-size: 400% 400%;
-  -webkit-animation: gradient 60s ease infinite;
-          animation: gradient 60s ease infinite;
+  animation: gradient 60s ease infinite;
 }
 @keyframes gradient {
   0% {
@@ -4356,9 +4139,6 @@ textarea {
   transition: all 0.2s ease-in-out;
 }
 .wppb-user-forms input[type=text]::-moz-placeholder, .wppb-user-forms input[type=email]::-moz-placeholder, .wppb-user-forms input[type=password]::-moz-placeholder, .wppb-user-forms textarea::-moz-placeholder {
-  color: rgba(255, 255, 255, 0.8);
-}
-.wppb-user-forms input[type=text]:-ms-input-placeholder, .wppb-user-forms input[type=email]:-ms-input-placeholder, .wppb-user-forms input[type=password]:-ms-input-placeholder, .wppb-user-forms textarea:-ms-input-placeholder {
   color: rgba(255, 255, 255, 0.8);
 }
 .wppb-user-forms input[type=text]::placeholder,
@@ -4541,7 +4321,6 @@ select:-webkit-autofill:focus {
   display: block;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
   border-radius: 0.358rem;
   -webkit-appearance: button;
@@ -4633,9 +4412,6 @@ select:-webkit-autofill:focus {
   color: #fff;
 }
 .dataTables_filter input::-moz-placeholder {
-  color: #7367f0 !important;
-}
-.dataTables_filter input:-ms-input-placeholder {
   color: #7367f0 !important;
 }
 .dataTables_filter input::placeholder {
@@ -4867,8 +4643,7 @@ select:-webkit-autofill:focus {
 .dodo .basic-pricing {
   background: linear-gradient(150deg, #0c0a27, #471867, #0c0a27, #230b36, #0c0a27);
   background-size: 400% 400%;
-  -webkit-animation: gradient 15s ease infinite;
-          animation: gradient 15s ease infinite;
+  animation: gradient 15s ease infinite;
 }
 .dodo .ico-masterclass {
   font-size: 185px;
@@ -5044,9 +4819,6 @@ select:-webkit-autofill:focus {
 .propositions-top-wrapper .form-propositions-card #form-propositions input::-moz-placeholder, .propositions-top-wrapper .form-propositions-card #form-propositions select::-moz-placeholder {
   color: rgba(128, 128, 128, 0.694) !important;
 }
-.propositions-top-wrapper .form-propositions-card #form-propositions input:-ms-input-placeholder, .propositions-top-wrapper .form-propositions-card #form-propositions select:-ms-input-placeholder {
-  color: rgba(128, 128, 128, 0.694) !important;
-}
 .propositions-top-wrapper .form-propositions-card #form-propositions input::placeholder, .propositions-top-wrapper .form-propositions-card #form-propositions select::placeholder {
   color: rgba(128, 128, 128, 0.694) !important;
 }
@@ -5058,7 +4830,7 @@ select:-webkit-autofill:focus {
     flex-direction: column;
   }
   .propositions-top-wrapper .form-propositions-card #form-propositions .form-input,
-.propositions-top-wrapper .form-propositions-card #form-propositions .proposer-btn {
+  .propositions-top-wrapper .form-propositions-card #form-propositions .proposer-btn {
     width: 100%;
   }
 }
@@ -5718,12 +5490,6 @@ select:-webkit-autofill:focus {
   color: #000;
   opacity: 40%;
 }
-.t-marqueblanche .coupon-content form input:-ms-input-placeholder {
-  font-family: "Cormorant";
-  font-size: 20px;
-  color: #000;
-  opacity: 40%;
-}
 .t-marqueblanche .coupon-content form input::placeholder {
   font-family: "Cormorant";
   font-size: 20px;
@@ -5870,7 +5636,7 @@ select:-webkit-autofill:focus {
     background: none;
   }
   .t-marqueblanche .coupon-content form,
-.t-marqueblanche .coupon-content button {
+  .t-marqueblanche .coupon-content button {
     width: 300px;
   }
   .t-marqueblanche .social-media-marqueblanche-resultat {
@@ -5916,12 +5682,6 @@ select:-webkit-autofill:focus {
   padding: 15px 30px;
 }
 .t-marqueblanche .form-popup .form-container input::-moz-placeholder {
-  font-family: "Cormorant";
-  font-size: 20px;
-  color: #000;
-  opacity: 40%;
-}
-.t-marqueblanche .form-popup .form-container input:-ms-input-placeholder {
   font-family: "Cormorant";
   font-size: 20px;
   color: #000;
@@ -7081,9 +6841,6 @@ select:-webkit-autofill:focus {
 #jugement .commentarea-container textarea::-moz-placeholder {
   -webkit-text-fill-color: #A9A9AC !important;
 }
-#jugement .commentarea-container textarea:-ms-input-placeholder {
-  -webkit-text-fill-color: #A9A9AC !important;
-}
 #jugement .commentarea-container textarea::placeholder {
   -webkit-text-fill-color: #A9A9AC !important;
 }
@@ -7228,8 +6985,7 @@ select:-webkit-autofill:focus {
 .bg-deg {
   background: linear-gradient(150deg, #0c0a27, #471867, #0c0a27, #230b36, #0c0a27);
   background-size: 400% 400%;
-  -webkit-animation: gradient 15s ease infinite;
-          animation: gradient 15s ease infinite;
+  animation: gradient 15s ease infinite;
 }
 
 @keyframes gradient {
@@ -7247,15 +7003,6 @@ select:-webkit-autofill:focus {
   height: 100%;
   width: 100%;
 }
-
-@-webkit-keyframes rotating {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 @keyframes rotating {
   from {
     transform: rotate(0deg);
@@ -7265,7 +7012,6 @@ select:-webkit-autofill:focus {
   }
 }
 .rotating span {
-  -webkit-animation: rotating 2s linear infinite;
   animation: rotating 2s linear infinite;
 }
 
@@ -7310,11 +7056,6 @@ select:-webkit-autofill:focus {
   font-weight: 600;
 }
 .search .typeahead-prefetch::-moz-placeholder {
-  font-size: 13px;
-  font-family: "montserrat";
-  font-weight: 600;
-}
-.search .typeahead-prefetch:-ms-input-placeholder {
   font-size: 13px;
   font-family: "montserrat";
   font-weight: 600;
@@ -7604,17 +7345,11 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-link:hover {
 .popup-overlay .participate-popup .popup-body form input[type=email]::-moz-placeholder {
   color: #f4167f;
 }
-.popup-overlay .participate-popup .popup-body form input[type=email]:-ms-input-placeholder {
-  color: #f4167f;
-}
 .popup-overlay .participate-popup .popup-body form input[type=email]::placeholder {
   color: #f4167f;
 }
 @media (max-width: 768px) {
   .popup-overlay .participate-popup .popup-body form input[type=email]::-moz-placeholder {
-    text-align: center;
-  }
-  .popup-overlay .participate-popup .popup-body form input[type=email]:-ms-input-placeholder {
     text-align: center;
   }
   .popup-overlay .participate-popup .popup-body form input[type=email]::placeholder {
@@ -7720,18 +7455,7 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-link:hover {
   transform: translateX(150%);
 }
 .popup-overlay .rotate-in-center {
-  -webkit-animation: rotate-in-center 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   animation: rotate-in-center 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-}
-@-webkit-keyframes rotate-in-center {
-  0% {
-    transform: rotate(-360deg);
-    opacity: 0;
-  }
-  100% {
-    transform: rotate(0);
-    opacity: 1;
-  }
 }
 @keyframes rotate-in-center {
   0% {
@@ -7744,16 +7468,7 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-link:hover {
   }
 }
 .popup-overlay .scale-up-center {
-  -webkit-animation: scale-up-center 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
   animation: scale-up-center 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
-}
-@-webkit-keyframes scale-up-center {
-  0% {
-    transform: scale(0.5);
-  }
-  100% {
-    transform: scale(1);
-  }
 }
 @keyframes scale-up-center {
   0% {
@@ -8033,7 +7748,7 @@ iframe {
     display: inline-block;
   }
   .share-content-sponso,
-.share-top-sponsor {
+  .share-top-sponsor {
     display: none !important;
   }
   .single-tournoi .content-intro {
@@ -8067,7 +7782,7 @@ iframe {
     flex-direction: row;
   }
   .single-tournoi .link-contender .contender_zone img,
-.single-tournoi .link-contender .contender_zone .cov-illu {
+  .single-tournoi .link-contender .contender_zone .cov-illu {
     width: 50%;
   }
   .single-tournoi .link-contender .contender_zone .title-contender {
@@ -8106,7 +7821,7 @@ iframe {
     margin-top: 15px;
   }
   .user-avatar-section .content-avatar-name .ml-2,
-.user-avatar-section .content-avatar-name .mr-1 {
+  .user-avatar-section .content-avatar-name .mr-1 {
     margin: 0 !important;
   }
   .user-avatar-section .content-avatar-name .btn {
@@ -8218,15 +7933,6 @@ iframe {
     font-weight: bold;
     letter-spacing: 1px;
   }
-  #ecommerce-header .ecommerce-searchbar #search_form input:-ms-input-placeholder {
-    color: #7367f0 !important;
-    font-size: 0.8rem;
-    line-height: 1;
-    text-transform: none;
-    border-radius: 0.358rem;
-    font-weight: bold;
-    letter-spacing: 1px;
-  }
   #ecommerce-header .ecommerce-searchbar #search_form input::placeholder {
     color: #7367f0 !important;
     font-size: 0.8rem;
@@ -8303,12 +8009,12 @@ iframe {
     font-size: 14px;
   }
   .dropdown-notification,
-.dropdown-cart {
+  .dropdown-cart {
     width: 25%;
     text-align: center;
   }
   .dropdown-notification a,
-.dropdown-cart a {
+  .dropdown-cart a {
     font-size: 12px;
   }
   .contenders-containers {
@@ -8340,7 +8046,7 @@ iframe {
     right: 5px !important;
   }
   .swal2-header,
-.swal2-content {
+  .swal2-content {
     padding: 0;
   }
   .single-tournoi .menuvkrzmobilehide {

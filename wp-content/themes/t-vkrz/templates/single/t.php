@@ -348,11 +348,11 @@ get_header();
               Choisis un mode de jeu que tes viewers votent dans ta TopList <span class="va va-doigt-droit va-md"></span>
             </h5>
             <a class="btn btn-outline-blanc waves-effect" href="https://vainkeurz.com/twitch/" target="_blank">En savoir plus sur les extensions</a>
-            <button type="button" class="btn btn-label-blanc ba-tranparent waves-effect" data-bs-dismiss="offcanvas">Annuler</button>
+            <button type="button" class="btn btn-label-blanc ba-tranparent waves-effect cancel-or-go" data-bs-dismiss="offcanvas">Annuler</button>
           </div>
           <div class="col-md-4">
             <div class="modes-jeu-twitch__content-btns">
-              <button type="button" id="voteParticipatif" class="mb-3 btn btn-gradient-primary modeGameTwitchBtn">
+              <button type="button" id="voteParticipatif" class="mb-3 btn btn-gradient-primary modeGameTwitchBtn" >
                 <div>
                   Vote Participatif <span class="va va-heart-hands va-lg"></span>
                 </div>
@@ -360,7 +360,7 @@ get_header();
                   <small>Les viewvers votent en écrivant 1 ou 2 dans chaque duel selon leur propre avis. Tu vois en live le résultat et tu choisis de le suivre ou pas</small>
                 </div>
               </button>
-              <button type="button" id="votePrediction" class="mb-3 btn btn-gradient-primary modeGameTwitchBtn" spellcheck="false">
+              <button type="button" id="votePrediction" class="mb-3 btn btn-gradient-primary modeGameTwitchBtn" >
                 <div>
                   Élimination directe <span class="va va-skull va-lg"></span>
                 </div>
@@ -368,7 +368,7 @@ get_header();
                   <small>A chaque nouveau duel, tes viewvers doivent deviner ton choix. Ceux qui se trompent sont éliminés et à la fin il n'en restera qu'un</small>
                 </div>
               </button>
-              <button type="button" id="votePoints" class="btn btn-gradient-primary modeGameTwitchBtn" spellcheck="false">
+              <button type="button" id="votePoints" class="btn btn-gradient-primary modeGameTwitchBtn" >
                 <div>Match aux points <span class="va va-hundred va-lg"></span></div>
                 <div>
                   <small>Tes viewvers marquent 1 point à chaque fois qu'il devine bien ton choix. Le gagnant est celui qui a le plus scoré à la fin de la TopList</small>
