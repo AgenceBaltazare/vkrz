@@ -70,6 +70,7 @@ if(document.querySelector('.modes-jeu-twitch')) {
     document.querySelector('#begin_t')?.classList.add('pulsate');
     document.querySelector('#begin_top3')?.classList.add('pulsate');
     document.querySelectorAll('.twitch-icon-tbegin')?.forEach(icon => icon.classList.remove('d-none'));
+    document.querySelector('.cancel-or-go').textContent = 'Aller lancer le Top'
   }
 
   gameModesBtns.forEach(button => {
@@ -77,6 +78,7 @@ if(document.querySelector('.modes-jeu-twitch')) {
       document.querySelector('#begin_t')?.classList.add('pulsate'); // MAKE THE BEGIN TOP BUTTON MOVE…
       document.querySelector('#begin_top3')?.classList.add('pulsate'); // MAKE THE BEGIN TOP BUTTON MOVE…
       document.querySelectorAll('.twitch-icon-tbegin')?.forEach(icon => icon.classList.remove('d-none'));
+      document.querySelector('.cancel-or-go').textContent = 'Aller lancer le Top'
       gameModesBtns.forEach(btn => { 
         if(btn !== button) btn.classList.remove('selectedGameMode')
       })
@@ -88,6 +90,7 @@ if(document.querySelector('.modes-jeu-twitch')) {
         localStorage.removeItem('twitchGameMode');
 
         localStorage.setItem('twitchGameMode', button.id);
+        setTimeout(() => bootstrap.Offcanvas.getInstance(gameModesBanner).hide(), 2000)
       } else {
         gameModesSpan.classList.add('d-none');
 
@@ -96,6 +99,8 @@ if(document.querySelector('.modes-jeu-twitch')) {
         document.querySelectorAll('.twitch-icon-tbegin')?.forEach(icon => icon.classList.add('d-none'));
 
         localStorage.removeItem('twitchGameMode');
+
+        document.querySelector('.cancel-or-go').textContent = 'Annuler'
       }
     })
   })
