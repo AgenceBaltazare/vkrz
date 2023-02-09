@@ -7661,6 +7661,18 @@ iframe {
   transform: scale(1.2);
 }
 
+.modal-iframe {
+  max-height: 90vh;
+}
+.modal-iframe iframe {
+  width: 100%;
+  height: 80vh;
+}
+
+.modal-title {
+  margin-bottom: 15px;
+}
+
 .paquesresult {
   text-align: center;
   padding: 40px 0;

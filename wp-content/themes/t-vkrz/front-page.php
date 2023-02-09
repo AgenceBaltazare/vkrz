@@ -3,6 +3,7 @@ global $user_tops;
 global $list_user_tops;
 global $list_user_tops_begin;
 global $id_vainkeur;
+$id_home = get_the_ID();
 get_header();
 if ($id_vainkeur) {
   if (is_user_logged_in() && env() != "local") {
@@ -22,6 +23,10 @@ if ($id_vainkeur) {
   $list_user_tops       = array();
   $list_user_tops_begin = array();
 }
+$live_vedette     = get_field('twitch_home', $id_home);
+$live_vedette     = $live_vedette[0];
+$youtube_vedette  = get_field('youtube_home', $id_home);
+$youtube_vedette  = $youtube_vedette[0];
 ?>
 <div class="my-3">
   <div class="container-xxl">
@@ -42,11 +47,57 @@ if ($id_vainkeur) {
           <h3 class="titre-section">
             Dernière Interview TopList
           </h3>
-          <div class="content-box">
-            <a href="">
-              <img src="<?php bloginfo('template_directory'); ?>/assets/images/events/toplist.png" class="img-fluid rounded" alt="">
-            </a>
-          </div>
+          <?php
+          $toplist_interview = new WP_Query(array(
+            'ignore_sticky_posts'     => true,
+            'update_post_meta_cache'  => false,
+            'no_found_rows'           => true,
+            'post_type'               => 'commu',
+            'orderby'                 => 'date',
+            'order'                   => 'DESC',
+            'posts_per_page'          => 1,
+            'meta_query' => array(
+              array(
+                'key'     => 'plateforme_commu',
+                'value'   => 'toplist',
+                'compare' => '=',
+              ),
+            ),
+          ));
+          while ($toplist_interview->have_posts()) : $toplist_interview->the_post(); ?>
+            <div class="content-box">
+              <a href="#" data-bs-toggle="modal" data-bs-target="#toplist-<?php the_ID(); ?>">
+                <?php
+                if (has_post_thumbnail()) {
+                  the_post_thumbnail('large', array('class' => 'img-fluid rounded', 'alt' => get_the_title()));
+                }
+                ?>
+              </a>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="toplist-<?php the_ID(); ?>" tabindex="-1" aria-hidden="true">
+              <div class="modal-dialog modal-fullscreen" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="modalFullTitle">
+                      <?php the_title(); ?>
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="modal-iframe">
+                      <?php the_field('video_video_commu'); ?>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Fermer</button>
+                    <!--<button type="button" class="btn btn-primary">Voir toutes les interviews</button>-->
+                  </div>
+                </div>
+              </div>
+            </div>
+          <?php endwhile;
+          wp_reset_query(); ?>
         </div>
         <div class="bloc">
           <h3 class="titre-section">
@@ -87,8 +138,12 @@ if ($id_vainkeur) {
                 C'était en live Twitch !
               </h3>
               <div class="post-frame">
-                <div class="lauch_embed" data-modal="frame1">
-                  <img src="<?php bloginfo('template_directory'); ?>/assets/images/events/drey.png" class="img-fluid rounded" alt="">
+                <a href="#" class="lauch_embed" data-bs-toggle="modal" data-bs-target="#vedette-<?php echo $live_vedette; ?>">
+                  <?php
+                  $cover      = get_the_post_thumbnail_url($live_vedette, 'large');
+                  $id_membre  = get_field('selection_du_streamer_commu', $live_vedette);
+                  ?>
+                  <img src="<?php echo $cover; ?>" alt="" class="img-fluid rounded">
                   <div class="play">
                     <img src="<?php bloginfo('template_directory'); ?>/assets/images/emojis/play.png">
                   </div>
@@ -96,7 +151,9 @@ if ($id_vainkeur) {
                     <ul>
                       <li>
                         <h4>
-                          Drey
+                          <?php echo get_the_title($live_vedette); ?>
+                          <br>
+                          <?php echo get_userdata($id_membre[0])->twitch_user; ?>
                         </h4>
                       </li>
                       <li>
@@ -110,20 +167,31 @@ if ($id_vainkeur) {
                         </a>
                       </li>
                       <li>
-                        <a href="" class="btn">
+                        <a href="<?php echo get_userdata($id_membre[0])->tiktok_user; ?>" class="btn">
                           <i class="fab fa-tiktok"></i>
                         </a>
                       </li>
                     </ul>
                   </div>
-                </div>
-                <div class="modal-video hide" id="frame1">
-                  <div class="container-xxl">
-                    <div class="row">
-                      <div class="col">
-                        <div style="width:100%;height:0px;position:relative;padding-bottom:56.250%;">
-                          <iframe src="https://streamable.com/e/14mxdn" frameborder="0" width="100%" height="100%" allowfullscreen style="width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden;"></iframe>
+                </a>
+                <!-- Modal -->
+                <div class="modal fade" id="vedette-<?php echo $live_vedette; ?>" tabindex="-1" aria-hidden="true">
+                  <div class="modal-dialog modal-fullscreen" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="modalFullTitle">
+                          <?php the_title(); ?>
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="modal-iframe">
+                          <?php the_field('video_video_commu', $live_vedette); ?>
                         </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Fermer</button>
+                        <!--<button type="button" class="btn btn-primary">Voir toutes les interviews</button>-->
                       </div>
                     </div>
                   </div>
@@ -219,5 +287,4 @@ if ($id_vainkeur) {
     </div>
   </div>
 </div>
-
 <?php get_footer(); ?>

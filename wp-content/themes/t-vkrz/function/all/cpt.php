@@ -105,7 +105,7 @@ function cpt_init() {
         'has_archive' => true,
         'hierarchical' => false,
         'menu_position' => null,
-        'menu_icon' => 'dashicons-heart',
+        'menu_icon' => 'dashicons-awards',
         'show_in_rest' => true,
         'supports' => array('title', 'author')
     );
@@ -341,6 +341,39 @@ function cpt_init() {
         'supports' => array('title', 'author', 'thumbnail')
     );
     register_post_type('room', $args);
+
+    // Commu
+    $labels = array(
+      'name' => 'Commu',
+      'singular_name' => 'Commu',
+      'add_new' => 'Ajouter une commu',
+      'add_new_item' => 'Ajouter une commu',
+      'edit_item' => 'Editer une commu',
+      'new_item' => 'Nouveau commu',
+      'all_items' => 'Tous les commus',
+      'view_item' => 'Voir commu',
+      'search_items' => 'Chercher une commu',
+      'not_found' =>  'Aucune commu trouvée',
+      'not_found_in_trash' => 'Aucune commu trouvée dans la corbeille',
+      'menu_name' => 'Communauté'
+    );
+    $args = array(
+      'labels' => $labels,
+      'public' => true,
+      'publicly_queryable' => false,
+      'show_ui' => true,
+      'show_in_menu' => true,
+      'query_var' => true,
+      'rewrite' => array('slug' => 'commu'),
+      'map_meta_cap' => true,
+      'has_archive' => true,
+      'hierarchical' => false,
+      'menu_position' => null,
+      'menu_icon' => 'dashicons-heart',
+      'show_in_rest' => false,
+      'supports' => array('title', 'author', 'thumbnail')
+    );
+    register_post_type('commu', $args);
 
 }
 add_action( 'init', 'cpt_init' );
