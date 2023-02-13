@@ -156,3 +156,29 @@ function publish_top_to_discord($post_id){
   to_discord("newTop", $data);
 }
 add_action('publish_tournoi', 'publish_top_to_discord');
+
+function divi_engine_move_admin_bar_bottom() {
+  echo '<style>
+  body {
+  margin-top: -28px;
+  padding-bottom: 28px;
+  }
+  body.admin-bar #wphead {
+     padding-top: 0;
+  }
+  body.admin-bar #footer {
+     padding-bottom: 28px;
+  }
+  #wpadminbar {
+      top: auto !important;
+      bottom: 0;
+  }
+  #wpadminbar .quicklinks .menupop ul {
+      bottom: 28px;
+  }
+  </style>';
+}
+// Action to add CSS on WP admin
+add_action( 'admin_head', 'divi_engine_move_admin_bar_bottom' );
+// action to add CSS to frontend
+add_action( 'wp_head', 'divi_engine_move_admin_bar_bottom' );

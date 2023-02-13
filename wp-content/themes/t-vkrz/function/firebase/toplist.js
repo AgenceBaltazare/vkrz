@@ -368,7 +368,7 @@ if (document.querySelector(".toplist_comments")) {
   let topListCommentsLength = topListCommentsQuerySnapshot._snapshot.docs.size;
 
   const commentTemplate = async function (commentId, uuid, content, secondes) {
-    const data = await fetchDataFuncHelper(`http://localhost:8888/vkrz/wp-json/vkrz/v1/getuserinfo/${uuid}`);
+    const data = await fetchDataFuncHelper(`http://vainkeurz.local/wp-json/vkrz/v1/getuserinfo/${uuid}`);
 
     // RETURN THE COMMENT TEMPLATE DIV…
     let deleteOrNot = "";

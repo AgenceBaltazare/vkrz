@@ -40,7 +40,7 @@ const table = document.querySelector(".table-notifications"),
     const map = new Map();
     await Promise.all(
       notificationsUsersUuids.map(async (uuid) => {
-        await fetch(`http://localhost:8888/vkrz/wp-json/vkrz/v1/getuserinfo/${uuid}`)
+        await fetch(`http://vainkeurz.local/wp-json/vkrz/v1/getuserinfo/${uuid}`)
           .then((response) => response.json())
           .then((data) => map.set(uuid, data));
       })
