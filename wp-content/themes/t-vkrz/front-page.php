@@ -23,10 +23,9 @@ if ($id_vainkeur) {
   $list_user_tops       = array();
   $list_user_tops_begin = array();
 }
-$live_vedette     = get_field('twitch_home', $id_home);
-$live_vedette     = $live_vedette[0];
-$youtube_vedette  = get_field('youtube_home', $id_home);
-$youtube_vedette  = $youtube_vedette[0];
+global $commu_id;
+global $cover_commu;
+global $id_membre;
 ?>
 <div class="my-3">
   <div class="container-xxl">
@@ -64,14 +63,9 @@ $youtube_vedette  = $youtube_vedette[0];
               ),
             ),
           ));
-            while ($toplist_interview->have_posts()) : $toplist_interview->the_post(); ?>
+          while ($toplist_interview->have_posts()) : $toplist_interview->the_post(); ?>
             <div class="content-box d-flex justify-content-center align-items-center">
-              <a 
-               href="#"
-               data-bs-toggle="modal" 
-               data-bs-target="#toplist-<?php the_ID(); ?>" 
-               data-target="#toplist-<?php the_ID(); ?>"
-               >
+              <a href="#" data-bs-toggle="modal" data-bs-target="#toplist-<?php the_ID(); ?>" data-target="#toplist-<?php the_ID(); ?>">
                 <?php
                 if (has_post_thumbnail()) {
                   the_post_thumbnail('large', array('class' => 'img-fluid rounded', 'alt' => get_the_title()));
@@ -84,11 +78,7 @@ $youtube_vedette  = $youtube_vedette[0];
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-body">
-                    <a 
-                      href="javascript:void(0);" 
-                      class="btn-close text-white" 
-                      data-bs-dismiss="modal"  
-                      aria-label="Close">
+                    <a href="javascript:void(0);" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close">
                     </a>
                     <div class="modal-iframe">
                       <p class="text-white text-large fw-bold mb-3 text-center"><?php the_title() ?></p>
@@ -139,63 +129,11 @@ $youtube_vedette  = $youtube_vedette[0];
               <h3 class="titre-section">
                 C'était en live Twitch !
               </h3>
-              <div class="post-frame">
-                <a href="#" class="lauch_embed" data-bs-toggle="modal" data-bs-target="#vedette-<?php echo $live_vedette; ?>">
-                  <?php
-                  $cover      = get_the_post_thumbnail_url($live_vedette, 'large');
-                  $id_membre  = get_field('selection_du_streamer_commu', $live_vedette);
-                  ?>
-                  <img src="<?php echo $cover; ?>" alt="" class="img-fluid rounded">
-                  <div class="play">
-                    <img src="<?php bloginfo('template_directory'); ?>/assets/images/emojis/play.png">
-                  </div>
-                  <div class="caption-frame">
-                    <ul>
-                      <li>
-                        <h4>
-                          <?php echo get_the_title($live_vedette); ?>
-                          <br>
-                          <?php echo get_userdata($id_membre[0])->twitch_user; ?>
-                        </h4>
-                      </li>
-                      <li>
-                        <a href="" class="btn">
-                          <i class="fab fa-instagram"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="" class="btn">
-                          <i class="fab fa-instagram"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="<?php echo get_userdata($id_membre[0])->tiktok_user; ?>" class="btn">
-                          <i class="fab fa-tiktok"></i>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </a>
-                <!-- Modal -->
-                <div class="modal modal-transparent fade" id="vedette-<?php echo $live_vedette; ?>" tabindex="-1" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-body">
-                        <a 
-                          href="javascript:void(0);" 
-                          class="btn-close text-white" 
-                          data-bs-dismiss="modal"  
-                          aria-label="Close">
-                        </a>
-                        <div class="modal-iframe">
-                          <p class="text-white text-large fw-bold mb-3 text-center"><?= get_the_title($live_vedette); ?></p>
-                          <?php the_field('video_video_commu', $live_vedette); ?>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <?php
+              $commu_id     = get_field('twitch_home', $id_home);
+              $commu_id     = $commu_id[0];
+              get_template_part('partials/commu');
+              ?>
             </div>
           </div>
           <div class="col-md-6">
@@ -203,63 +141,11 @@ $youtube_vedette  = $youtube_vedette[0];
               <h3 class="titre-section">
                 Sur Youtube
               </h3>
-              <div class="post-frame">
-                <a href="#" class="lauch_embed" data-bs-toggle="modal" data-bs-target="#vedette-<?php echo $youtube_vedette; ?>">
-                  <?php
-                  $cover      = get_the_post_thumbnail_url($youtube_vedette, 'large');
-                  $id_membre  = get_field('selection_du_streamer_commu', $youtube_vedette);
-                  ?>
-                  <img src="<?php echo $cover; ?>" alt="" class="img-fluid rounded">
-                  <div class="play">
-                    <img src="<?php bloginfo('template_directory'); ?>/assets/images/emojis/play.png">
-                  </div>
-                  <div class="caption-frame">
-                    <ul>
-                      <li>
-                        <h4>
-                          <?php echo get_the_title($youtube_vedette); ?>
-                          <br>
-                          <?php echo get_userdata($id_membre[0])->twitch_user; ?>
-                        </h4>
-                      </li>
-                      <li>
-                        <a href="" class="btn">
-                          <i class="fab fa-instagram"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="" class="btn">
-                          <i class="fab fa-instagram"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="<?php echo get_userdata($id_membre[0])->tiktok_user; ?>" class="btn">
-                          <i class="fab fa-tiktok"></i>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </a>
-                <!-- Modal -->
-                <div class="modal modal-transparent fade" id="vedette-<?php echo $youtube_vedette; ?>" tabindex="-1" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-body">
-                        <a 
-                          href="javascript:void(0);" 
-                          class="btn-close text-white" 
-                          data-bs-dismiss="modal"  
-                          aria-label="Close">
-                        </a>
-                        <div class="modal-iframe">
-                          <p class="text-white text-large fw-bold mb-3 text-center"><?= get_the_title($youtube_vedette); ?></p>
-                          <?php the_field('video_video_commu', $youtube_vedette); ?>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <?php
+              $commu_id     = get_field('youtube_home', $id_home);
+              $commu_id     = $commu_id[0];
+              get_template_part('partials/commu');
+              ?>
             </div>
           </div>
         </div>

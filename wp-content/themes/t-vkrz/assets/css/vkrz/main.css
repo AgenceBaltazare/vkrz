@@ -7656,49 +7656,21 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-link:hover {
 }
 
 .caption-frame {
-  display: flex;
-  align-items: center;
-  justify-content: start;
   padding: 10px 0;
-}
-.caption-frame ul {
-  margin: 0 auto;
-  padding-left: 10px !important;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #fff;
-  border-radius: 5px;
-  transform: rotate(-2deg);
-  position: relative;
-  top: -15px;
-  padding: 2px;
 }
-.caption-frame ul li {
-  display: inline-block;
-  list-style-type: none;
-  margin-right: 10px;
-}
-.caption-frame ul li h4 {
-  font-weight: 800;
-  color: #2a1f70;
-  border-radius: 10px;
+.caption-frame h4 {
+  font-weight: 600;
+  color: #fff;
   font-family: "Montserrat", Helvetica, Arial, serif !important;
-  font-size: 1.1rem;
-  margin: 0 !important;
-  display: inline-block;
+  font-size: 0.8rem;
+  margin: 0 10px 0 0 !important;
+  text-transform: uppercase;
 }
-.caption-frame ul li span {
-  color: #2a1f70 !important;
-  margin-right: 5px;
-}
-.caption-frame ul li a {
-  background: transparent;
-  border: none !important;
-  color: #2a1f70 !important;
-}
-.caption-frame ul li a:hover {
-  background: rgba(255, 255, 255, 0.1) !important;
+.caption-frame a {
+  margin-left: 2px;
 }
 
 iframe {

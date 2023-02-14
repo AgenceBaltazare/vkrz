@@ -10,48 +10,20 @@
   display: inline-block;
 }
 .caption-frame{
+  padding: 10px 0;
   display: flex;
   align-items: center;
-  justify-content: start;
-  padding: 10px 0;
-  ul{
-    margin: 0 auto;
-    padding-left: 10px !important;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #fff;
-    border-radius: 5px;
-    transform: rotate(-2deg);
-    position: relative;
-    top: -15px;
-    padding: 2px;
-    li{
-      display: inline-block;
-      list-style-type: none;
-      margin-right: 10px;
-      h4 {
-        font-weight: 800;
-        color: $c6;
-        border-radius: 10px;
-        font-family: "Montserrat", Helvetica, Arial, serif !important;
-        font-size: 1.1rem;
-        margin: 0 !important;
-        display: inline-block;
-      }
-      span{
-        color: $c6 !important;
-        margin-right: 5px;
-      }
-      a{
-        background: transparent;
-        border: none !important;
-        color: $c6 !important;
-        &:hover{
-          background: rgba(255, 255, 255, 0.1) !important;
-        }
-      }
-    }
+  justify-content: center;
+  h4 {
+    font-weight: 600;
+    color: #fff;
+    font-family: "Montserrat", Helvetica, Arial, serif !important;
+    font-size: 0.8rem;
+    margin: 0 10px 0 0 !important;
+    text-transform: uppercase;
+  }
+  a{
+    margin-left: 2px;
   }
 }
 iframe {
