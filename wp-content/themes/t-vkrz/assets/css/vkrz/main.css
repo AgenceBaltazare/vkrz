@@ -1704,6 +1704,17 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   background-size: 10% 50%;
 }
 
+.dark-layout .modal-transparent.modal .modal-content,
+.dark-layout .modal-transparent.modal .modal-body,
+.dark-layout .modal-transparent.modal .modal-footer {
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
+
+.dark-layout .modal-transparent.modal {
+  background: rgba(12, 10, 39, 0.8);
+}
+
 .page-template-monitor .list-vainkeur-monitor {
   line-height: 14px;
 }

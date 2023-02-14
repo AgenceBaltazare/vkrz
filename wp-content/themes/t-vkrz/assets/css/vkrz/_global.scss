@@ -1418,3 +1418,13 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
     background-image: url("https://vainkeurz.com/wp-content/themes/t-vkrz-6/assets/images/vkrz/logo-vkrz.png")!important;
     background-size: 10% 50%;
 }
+
+.dark-layout .modal-transparent.modal .modal-content,
+.dark-layout .modal-transparent.modal .modal-body,
+.dark-layout .modal-transparent.modal .modal-footer {
+    background-color: transparent!important;
+    border-color: transparent!important;
+}
+.dark-layout .modal-transparent.modal {
+    background: rgba(#0C0A27, .8);
+}

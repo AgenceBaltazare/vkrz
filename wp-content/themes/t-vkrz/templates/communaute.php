@@ -7,8 +7,8 @@ get_header(); ?>
   <div class="all-content-embed">
     <div class="container-xxl">
       <div class="row">
-        <div class="col-3">
-          <h3>
+        <div class="col-md-3 col">
+          <h3 class="titre-section">
             <span>
               <i class="va va-smiling-face-with-heart-eyes va-lg"></i> Prochains RDV
             </span>
@@ -41,9 +41,9 @@ get_header(); ?>
             </ul>
           </div>
         </div>
-        <div class="col-9">
+        <div class="col-md-9 col">
           <div class="text-center">
-            <h3>
+            <h3 class="titre-section">
               <span>
                 Les dernières <em class="t-rose">TopList</em> sur l'internet <i class="va va-smiling-face-with-heart-eyes va-lg"></i>
               </span>
@@ -171,7 +171,7 @@ get_header(); ?>
       </div>
       <div class="row">
         <div class="col-12">
-          <h3>
+          <h3 class="titre-section">
             <span>Interview TopList</span>
           </h3>
           <div class="row">
@@ -336,7 +336,7 @@ get_header(); ?>
       </div>
       <div class="row">
         <div class="col-12">
-          <h3>
+          <h3 class="titre-section">
             <span>Ca se voit sur Youtube</span>
           </h3>
           <div class="row">
