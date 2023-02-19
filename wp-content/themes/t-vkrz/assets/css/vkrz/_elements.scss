@@ -253,3 +253,101 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-link {
     margin-top: 5px;
   }
 }
+
+.cat-min{
+  h4{
+    font-size: 0.85rem;
+  }
+}
+
+.toplist-min{
+  border: 2px solid #261341;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  position: relative;
+  .voilecover {
+    border-radius: 10px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0.15;
+    background-size: cover;
+  }
+  .toplist-min-header{
+    display: flex;
+    flex-direction: column;
+    padding: 20px 10px 10px;
+  }
+  .toplist-min-ranking{
+    margin-bottom: 10px;
+    position: relative;
+    h6{
+      font-size: 0.75rem;
+      margin-bottom: 5px;
+    }
+    .list-contenders{
+      justify-content: center;
+    }
+  }
+  .toplist-min-footer{
+    border-top: 2px solid #261341;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 2px;
+  }
+  .toplist-min-vainkeur, .juger-min{
+    transform: scale(0.9);
+  }
+}
+
+.juger-min{
+  a{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    i {
+      width: 25px !important;
+      height: 25px !important;
+      margin: 0 auto;
+      display: block;
+    }
+  
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 600;
+    margin: 0 0 1px 0;
+  }
+}
+
+.dodo-user{
+.vainkeur-card {
+    a {
+      border: 2px solid #261341 !important;
+      transition: all 0.2s ease-in;
+      &:hover{
+        background-color: transparent !important;
+        border: 2px solid $c6 !important;
+      }
+    }
+  }
+}
+
+
+.creatornametop{
+  display: flex;
+  flex-direction: row !important;
+  h4{
+    margin: 0 5px 0 2px !important;
+  }
+}
+
+.scale08{
+  transform: scale(0.8);
+}
+
+.info-creator{
+  border-top: 1px solid #110a27;
+}

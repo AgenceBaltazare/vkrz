@@ -537,3 +537,12 @@ function get_top_done_by_current_vainkeur($id_top, $id_vainkeur, $list_t_already
 
     return $already_done;
 }
+
+function get_user_by_id($id_user){
+  $user_search = new WP_User_Query(array(
+    'number' => 1,
+    'include' => array($id_user)
+  ));
+  $user = $user_search->get_results();
+  return $user[0];
+}

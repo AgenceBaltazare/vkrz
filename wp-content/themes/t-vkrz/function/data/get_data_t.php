@@ -130,3 +130,33 @@ function get_exclude_top()
 
   return $tops->posts;
 }
+
+function get_state($state, $type_top){
+  
+  $state_infos = array();
+
+  if ($state == "done"){
+    $state_infos['label'] = 'Terminé';
+    $state_infos['bg'] = 'bg-success';
+    $state_infos['wording'] = 'Voir ma Toplist';
+  } 
+  elseif ($state == "begin") {
+    $state_infos['label'] = 'En cours';
+    $state_infos['bg'] = 'bg-warning';
+    $state_infos['wording'] = 'Continuer ma TopList';
+  }
+  else{
+    if ($type_top == "sponso") {
+      $state_infos['label'] = 'À faire';
+      $state_infos['bg'] = 'bg-primary';
+      $state_infos['wording'] = 'Participer';
+    } 
+    else{
+      $state_infos['label'] = 'À faire';
+      $state_infos['bg'] = 'bg-primary';
+      $state_infos['wording'] = 'Faire ma Toplist';
+    }
+  }
+  
+  return $state_infos;
+}

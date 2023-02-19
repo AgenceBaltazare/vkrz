@@ -168,9 +168,9 @@
 
 .min-tournoi .cov-illu .badge-light-rose {
     position: absolute;
-    right: auto;
     left: 5px;
-    top: 5px;
+    left: auto;
+    top: 35px;
     z-index: 3;
 }
 
@@ -347,7 +347,7 @@
     display: inline-block;
   }
   h5 {
-    margin: 10px 0;
+    margin: 10px;
 
     p {
       margin: 0;

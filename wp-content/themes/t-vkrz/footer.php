@@ -17,7 +17,7 @@ global $id_vainkeur;
             VAINKEURZ ©<?php echo date('Y') + 100; ?>
           </span>
           <a class="me-2" href="mailto:weare@vainkeurz.com">Contact</a>
-          <a class="" href="<?php the_permalink(get_page_by_path('ml')); ?>">CGU</a>
+          <a href="<?php the_permalink(get_page_by_path('ml')); ?>">CGU</a>
         </span>
       </div>
       <div class="d-none d-sm-block">
@@ -90,5 +90,4 @@ global $id_vainkeur;
 
 <?php wp_footer(); ?>
 </body>
-
 </html>

@@ -244,7 +244,7 @@ $count_toplist        = count($list_toplist);
     </div>
   </a>
   <a href="#commentaires" class="btn-emoji btn-emoji-wording" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Commente le Top">
-    <span class="va va-writing-hand va-lg"></span>
+    <span class="va va-comment va-lg"></span>
     <div class="value">
       <?php echo $top_datas['nb_comments']; ?>
     </div>

@@ -626,10 +626,10 @@ if ($infos_vainkeur['user_role'] == "administrator" || $infos_vainkeur['user_rol
                               $wording = "Voir la TopList";
                             }
                             ?>
-                            <a class="btn btn-icon btn-label-primary waves-effect" href="<?php the_permalink(get_toplist_mondiale($id_top)); ?>#toplist" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir toutes les TopList">
+                            <a class="btn btn-icon btn-label-primary waves-effect" href="<?php the_permalink(get_toplist_mondiale($id_top)); ?>#toplist" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Voir toutes les TopList">
                               <span class="ico va va-eyes va-lg"></span>
                             </a>
-                            <a class="btn btn-icon btn-label-primary waves-effect" href="<?php the_permalink(get_toplist_mondiale($id_top)); ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir la TopList mondiale">
+                            <a class="btn btn-icon btn-label-primary waves-effect" href="<?php the_permalink(get_toplist_mondiale($id_top)); ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Voir la TopList mondiale">
                               <span class="ico va va-globe va-lg"></span>
                             </a>
                           </div>

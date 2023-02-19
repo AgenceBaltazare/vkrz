@@ -53,7 +53,7 @@ get_header(); ?>
                   <div class="d-flex justify-content-between align-items-center">
                     <a href="<?php the_permalink(); ?>#comments">
                       <div class="d-flex align-items-center">
-                        <span class="va va-writing-hand va-lg me-2"></span>
+                        <span class="va va-comment va-lg me-2"></span>
                         <span class="text-body">
                           <?= get_comments_number() >= 1 ?  get_comments_number() . ' Commentaires' : get_comments_number() . ' Commentaire' ?></span>
                       </div>

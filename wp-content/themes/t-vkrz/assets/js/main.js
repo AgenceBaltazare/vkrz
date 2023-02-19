@@ -409,22 +409,22 @@ if (document.querySelector('.save-top')) {
     btn.addEventListener('click', function(e) {
       const idTop      = btn.dataset.idtop;
       const idVainkeur = btn.dataset.idvainkeur;
+      const btnstatut   = btn.dataset.statut;
 
-      if(btn instanceof HTMLAnchorElement) {
-        e.preventDefault();
+      e.preventDefault();
 
-        const btnText    = btn.textContent;
-        const topCard    = btn.closest(".min-tournoi.card");
-
-        if(btnText.includes("Un")) {
-          btn.textContent = "Save Top";
-          topCard?.classList.remove('saved-top');
-        } else {
-          btn.textContent = "Unsave Top";
-          topCard?.classList.add('saved-top');
-        }
-      } 
-      // else if (btn instanceof HTMLInputElement) {}
+      if(btnstatut == "saved") {
+        btn.dataset.statut = "notsaved";
+        btn.classList.remove('saved');
+        btn.classList.add('notsaved');
+        btn.dataset.statut = "notsaved";
+        btn.querySelector('span').innerHTML = "Ajouter aux favoris";
+      } else {
+        btn.dataset.statut = "saved";
+        btn.classList.remove('notsaved');
+        btn.classList.add('saved');
+        btn.querySelector('span').innerHTML = "Retirer des favoris";
+      }
 
       $.ajax({
         method: "POST",

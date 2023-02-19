@@ -2214,14 +2214,18 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
 }
 
 .min-tournoi {
-  transition: all 0.2s ease-in-out;
   padding: 0;
+  position: relative;
+  border-radius: 5px;
+}
+.min-tournoi .min-tournoi-content {
+  overflow: hidden;
   position: relative;
 }
 .min-tournoi .cov-illu {
   min-height: 120px;
-  border-radius: 5px 5px 0 0;
   position: relative;
+  border-radius: 5px;
 }
 .min-tournoi .cov-illu .badge {
   position: absolute;
@@ -2229,160 +2233,82 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   top: 5px;
   z-index: 2;
 }
-.min-tournoi .cov-illu .voile {
+.min-tournoi .voile {
   position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  opacity: 0.2;
-  background: rgb(12, 10, 39);
-  background: linear-gradient(200deg, rgb(12, 10, 39) 0%, rgba(12, 10, 39, 0) 100%);
-  transition: all 0.2s ease-in-out;
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  flex-direction: column;
-  z-index: 1;
-  padding: 40px 0 0 0;
-}
-.min-tournoi .cov-illu .voile .spoun {
-  display: none;
-  text-align: center;
-}
-.min-tournoi .cov-illu .voile .spoun i {
-  font-size: 40px;
-  color: #fff;
-}
-.min-tournoi .cov-illu .voile .spoun h5 {
-  font-weight: 700;
-  text-transform: uppercase;
-  color: #fff;
-  text-align: center;
-}
-.min-tournoi .cov-illu .voile .spoun.topsponso h5 {
-  font-size: 1.8rem;
-  letter-spacing: 0.5px;
-  position: relative;
-  top: 40px;
-}
-.min-tournoi .info-top {
-  display: flex;
-  text-align: center;
-  position: absolute;
-  bottom: 0;
-  left: 20px;
-  right: 20px;
-  padding: 5px 10px;
-  z-index: 99;
+  top: -2px;
+  right: -2px;
+  left: -2px;
+  bottom: -2px;
   opacity: 0;
+  background: #0a0921;
+  transition: all 0.2s ease-in-out;
+  z-index: 1;
+  padding-top: 40px;
+}
+.min-tournoi .voile .spoun {
+  text-align: center;
+  margin: 20px;
+  position: relative;
+}
+.min-tournoi .voile .spoun a {
+  position: absolute;
+  top: -150px;
+  left: 0;
+  right: 0;
   transition: all 0.2s ease-in;
-  align-items: flex-end;
-  justify-content: center;
+  display: inline-block;
+  transform: rotate(2deg);
 }
-.min-tournoi .info-top h5 {
-  font-size: 12px;
-  font-weight: 600;
-}
-.min-tournoi .info-top .avatar-infomore {
-  margin-right: 5px;
-}
-.min-tournoi .info-top .mr-10px {
-  margin-right: 5px;
-}
-.min-tournoi .info-top .info-top-col {
-  padding: 0 10px;
+.min-tournoi .stats-top {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  padding: 10px;
+  border-top: 1px solid #110a27;
+  justify-content: space-around;
 }
-.min-tournoi .info-top .info-top-col h5 {
-  margin: 0 0 0 5px;
+.min-tournoi .stats-top h5 {
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-right: 5px;
 }
-.min-tournoi .info-top .avatar img {
-  width: 20px;
-  height: 20px;
-}
-.min-tournoi .info-top h4 {
-  font-size: 12px;
-}
-.min-tournoi .info-top .content-body .link-creator {
-  font-size: 9px;
-}
-.min-tournoi .info-top .content-body .link-creator span {
-  text-align: left;
-  margin: 0;
-  position: relative;
-  top: 4px;
-}
-.min-tournoi .info-top .content-body .link-to-creator {
-  color: #fff;
+.min-tournoi .stats-top i {
+  width: 20px !important;
 }
 .min-tournoi .save-top {
+  cursor: pointer;
   position: absolute;
-  display: inline-block;
-  left: 5px;
-  visibility: hidden;
-  opacity: 0;
-  background-color: #04CFE7;
-  border-radius: 8px 8px 0 0;
-  padding: 0.2rem 0.6rem;
-  color: white;
-  font-size: 0.8rem;
-  line-height: 100%;
-  transition: 0.3s all;
+  top: 10px !important;
+  left: 5px !important;
+  right: auto !important;
+  padding: 0;
+  z-index: 99 !important;
+  display: none;
 }
-@media (max-width: 768px) {
-  .min-tournoi .save-top {
-    animation: unset !important;
-    visibility: visible;
-    opacity: 1;
-    left: unset;
-    top: 7.5px;
-    right: 0;
-    z-index: 9999;
-    width: 45%;
-    border-radius: 6px;
-    text-align: center;
-    font-size: 0.6rem;
-    padding: 5px;
-  }
+.min-tournoi .save-top i {
+  width: 20px !important;
+  height: 20px !important;
 }
-@keyframes slideTop {
-  0% {
-    top: 0;
-  }
-  100% {
-    visibility: visible;
-    opacity: 1;
-    top: -20px;
-  }
+.min-tournoi .save-top span {
+  display: none;
+  margin: 0 0 0 5px;
+  color: #fdf3bd;
+  font-size: 10px;
 }
-.min-tournoi.saved-top .save-top {
-  animation: slideTop 0.3s both linear;
+.min-tournoi .save-top:hover span {
+  display: block;
 }
-@media (max-width: 768px) {
-  .min-tournoi.saved-top .save-top {
-    animation: unset !important;
-    visibility: visible;
-    opacity: 1;
-    left: unset;
-    top: 7.5px;
-    right: 0;
-    z-index: 9999;
-    width: 45%;
-    border-radius: 6px;
-    text-align: center;
-    font-size: 0.6rem;
-    padding: 5px;
-  }
-}
-.min-tournoi:hover {
-  transform: scale(1.05);
+.min-tournoi .infohide {
+  position: absolute;
+  bottom: -200px;
+  z-index: 9999;
+  right: 0;
+  left: 0;
+  transition: all 0.2s ease-in;
 }
 .min-tournoi:hover .save-top {
-  animation: slideTop 0.3s forwards linear;
+  display: flex !important;
+  align-items: center;
 }
 .min-tournoi:hover .info-top {
   opacity: 1;
@@ -2390,17 +2316,14 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
 .min-tournoi:hover .cov-illu .badge {
   display: none;
 }
-.min-tournoi:hover .cov-illu .voile {
-  position: absolute;
+.min-tournoi:hover .spoun a {
   top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  opacity: 0.9;
-  background: rgb(12, 10, 39);
 }
-.min-tournoi:hover .cov-illu .voile .spoun {
-  display: block;
+.min-tournoi:hover .voile {
+  opacity: 0.98;
+}
+.min-tournoi:hover .infohide {
+  bottom: 10px;
 }
 .min-tournoi .card-title {
   margin: 0;
@@ -2598,6 +2521,8 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
 }
 .card-developer-meetup .infos-card-t .info-numbers h4 {
   font-size: 0.9rem;
+  position: relative;
+  top: 5px;
 }
 .card-developer-meetup .infos-card-t a {
   color: #fff;
@@ -2626,22 +2551,21 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
 }
 .card-developer-meetup .card-cta .choosecta {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
 }
 .card-developer-meetup .card-cta .choosecta .cta-begin {
   display: flex;
   flex-direction: column;
-  margin: 0 20px;
+  margin: 0 10px;
+  width: 100%;
 }
 .card-developer-meetup .card-cta .choosecta .cta-begin a {
   display: inline-block;
   margin: 0 auto 10px;
   max-width: 350px;
-  font-weight: 700 !important;
+  font-weight: 600 !important;
   letter-spacing: 1px;
-  transform: rotate(-2deg);
-  display: block !important;
-  font-size: 20px;
+  font-size: 18px;
   font-family: "Montserrat", Helvetica, Arial, serif !important;
 }
 
@@ -3190,8 +3114,9 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  width: 100%;
+  width: 80%;
   height: 150px;
+  margin: 0 auto;
 }
 
 .size-less-2 h1 {
@@ -3338,6 +3263,33 @@ body {
   line-height: 16px;
   display: inline-block;
   color: #7367f0;
+}
+
+.data-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.data-top h5 {
+  margin: 0;
+}
+.data-top i {
+  width: 20px;
+  height: 20px;
+}
+
+.notsaved .va-avis {
+  display: none;
+}
+.notsaved .va-star {
+  display: block;
+}
+
+.saved .va-avis {
+  display: block;
+}
+.saved .va-star {
+  display: none;
 }
 
 .list-share {
@@ -5220,9 +5172,9 @@ select:-webkit-autofill:focus {
 
 .min-tournoi .cov-illu .badge-light-rose {
   position: absolute;
-  right: auto;
   left: 5px;
-  top: 5px;
+  left: auto;
+  top: 35px;
   z-index: 3;
 }
 
@@ -5370,7 +5322,7 @@ select:-webkit-autofill:focus {
   display: inline-block;
 }
 .agagner h5 {
-  margin: 10px 0;
+  margin: 10px;
 }
 .agagner h5 p {
   margin: 0;
@@ -6365,6 +6317,18 @@ select:-webkit-autofill:focus {
   background-image: url(../../images/emojis/vkrzteam.png);
 }
 
+.va-confetti {
+  background-image: url(../../images/emojis/confetti.png);
+}
+
+.va-keycap-digit-three {
+  background-image: url(../../images/emojis/keycap-digit-three.png);
+}
+
+.va-micro {
+  background-image: url(../../images/emojis/micro.png);
+}
+
 .va-ninja {
   background-image: url(../../images/emojis/ninja_1f977.png);
 }
@@ -6557,6 +6521,10 @@ select:-webkit-autofill:focus {
   background-image: url(../../images/emojis/glowing-star_1f31f.png);
 }
 
+.va-star {
+  background-image: url(../../images/emojis/star_2b50.png);
+}
+
 .va-hundred {
   background-image: url(../../images/emojis/hundred-points_1f4af.png);
 }
@@ -6605,6 +6573,10 @@ select:-webkit-autofill:focus {
   background-image: url(../../images/emojis/stopwatch_23f1-fe0f.png);
 }
 
+.va-stopwatch-check {
+  background-image: url(../../images/emojis/stopwatch-check.png);
+}
+
 .va-light-bulb {
   background-image: url(../../images/emojis/light-bulb_1f4a1.png);
 }
@@ -6621,7 +6593,7 @@ select:-webkit-autofill:focus {
   background-image: url(../../images/emojis/prince_1f934.png);
 }
 
-.va-speech-balloon {
+.va-comment {
   background-image: url(../../images/emojis/speech-balloon_1f4ac.png);
 }
 
@@ -6671,6 +6643,14 @@ select:-webkit-autofill:focus {
 
 .va-wrapped-gift {
   background-image: url(../../images/emojis/wrapped-gift_1f381.png);
+}
+
+.va-calendar-saved {
+  background-image: url(../../images/icon/savetop.svg);
+}
+
+.va-calendar-tosaved {
+  background-image: url(../../images/icon/topsaved.svg);
 }
 
 .va-placard {
@@ -7249,6 +7229,94 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-link:hover {
   width: 100%;
   border-radius: 5px;
   margin-top: 5px;
+}
+
+.cat-min h4 {
+  font-size: 0.85rem;
+}
+
+.toplist-min {
+  border: 2px solid #261341;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  position: relative;
+}
+.toplist-min .voilecover {
+  border-radius: 10px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0.15;
+  background-size: cover;
+}
+.toplist-min .toplist-min-header {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 10px 10px;
+}
+.toplist-min .toplist-min-ranking {
+  margin-bottom: 10px;
+  position: relative;
+}
+.toplist-min .toplist-min-ranking h6 {
+  font-size: 0.75rem;
+  margin-bottom: 5px;
+}
+.toplist-min .toplist-min-ranking .list-contenders {
+  justify-content: center;
+}
+.toplist-min .toplist-min-footer {
+  border-top: 2px solid #261341;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 2px;
+}
+.toplist-min .toplist-min-vainkeur, .toplist-min .juger-min {
+  transform: scale(0.9);
+}
+
+.juger-min a {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 600;
+  margin: 0 0 1px 0;
+}
+.juger-min a i {
+  width: 25px !important;
+  height: 25px !important;
+  margin: 0 auto;
+  display: block;
+}
+
+.dodo-user .vainkeur-card a {
+  border: 2px solid #261341 !important;
+  transition: all 0.2s ease-in;
+}
+.dodo-user .vainkeur-card a:hover {
+  background-color: transparent !important;
+  border: 2px solid #2a1f70 !important;
+}
+
+.creatornametop {
+  display: flex;
+  flex-direction: row !important;
+}
+.creatornametop h4 {
+  margin: 0 5px 0 2px !important;
+}
+
+.scale08 {
+  transform: scale(0.8);
+}
+
+.info-creator {
+  border-top: 1px solid #110a27;
 }
 
 .popup-overlay {
@@ -7893,16 +7961,14 @@ iframe {
   }
   .min-tournoi .cov-illu .badge {
     position: absolute;
-    left: 5px;
-    right: auto;
     top: 5px;
     z-index: 9;
   }
   .min-tournoi .cov-illu .badge-light-rose {
     position: absolute;
-    right: auto;
-    left: 5px;
-    top: 30px;
+    top: 35px;
+    right: 5px;
+    left: auto;
     z-index: 3;
   }
   .logo {

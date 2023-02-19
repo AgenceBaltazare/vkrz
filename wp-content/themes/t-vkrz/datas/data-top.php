@@ -151,7 +151,7 @@ foreach ($contender_list as $contender) {
                                     </div>
                                 </div>
                                 <div class="ico-stats mb-1">
-                                    <span class="va va-speech-balloon va-2x"></span>
+                                    <span class="va va-comment va-2x"></span>
                                 </div>
                                 <h2 class="font-weight-bolder">
                                     <?php echo $top_datas['nb_comments']; ?>

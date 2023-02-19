@@ -29,8 +29,8 @@ $utm = deal_utm();
 
 <head>
   <!--[if lt IE 9]>
-    <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+  <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
   <link rel="profile" href="http://gmpg.org/xfn/11">
   <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -83,7 +83,7 @@ $utm = deal_utm();
     window.dataLayer = window.dataLayer || [];
   </script>
 
-  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-rqn26AG5Pj86AF4SO72RK5fyefcQ/x32DNQfChxWvbXIyXFePlEktwD18fEz+kQU" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/3d246b0c48.js" crossorigin="anonymous"></script>
 
   <?php wp_head(); ?>
 

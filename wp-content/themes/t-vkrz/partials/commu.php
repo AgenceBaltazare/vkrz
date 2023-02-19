@@ -57,23 +57,23 @@ $id_membre    = get_field('selection_du_streamer_commu', $commu_id);
             </a>
           <?php endif; ?>
         <?php else : ?>
-          <?php if (get_field('twitch_commu_ano')) : ?>
-            <a href="<?php the_field('twitch_commu_ano'); ?>" target="_blank" class="btn btn-icon btn-label-primary waves-effect">
+          <?php if (get_field('twitch_commu_ano', $commu_id)) : ?>
+            <a href="<?php the_field('twitch_commu_ano', $commu_id); ?>" target="_blank" class="btn btn-icon btn-label-primary waves-effect">
               <i class="fab fa-twitch"></i>
             </a>
           <?php endif; ?>
-          <?php if (get_field('youtube_commu_ano')) : ?>
-            <a href="<?php the_field('youtube_commu_ano'); ?>" target="_blank" class="btn btn-icon btn-label-primary waves-effect">
+          <?php if (get_field('youtube_commu_ano', $commu_id)) : ?>
+            <a href="<?php the_field('youtube_commu_ano', $commu_id); ?>" target="_blank" class="btn btn-icon btn-label-primary waves-effect">
               <i class="fab fa-youtube"></i>
             </a>
           <?php endif; ?>
-          <?php if (get_field('instagram_commu_ano')) : ?>
-            <a href="<?php the_field('instagram_commu_ano'); ?>" target="_blank" class="btn btn-icon btn-label-primary waves-effect">
+          <?php if (get_field('instagram_commu_ano', $commu_id)) : ?>
+            <a href="<?php the_field('instagram_commu_ano', $commu_id); ?>" target="_blank" class="btn btn-icon btn-label-primary waves-effect">
               <i class="fab fa-instagram"></i>
             </a>
           <?php endif; ?>
-          <?php if (get_field('tiktok_commu_ano')) : ?>
-            <a href="<?php the_field('tiktok_commu_ano'); ?>" target="_blank" class="btn btn-icon btn-label-primary waves-effect">
+          <?php if (get_field('tiktok_commu_ano', $commu_id)) : ?>
+            <a href="<?php the_field('tiktok_commu_ano', $commu_id); ?>" target="_blank" class="btn btn-icon btn-label-primary waves-effect">
               <i class="fab fa-tiktok"></i>
             </a>
           <?php endif; ?>

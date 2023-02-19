@@ -5,7 +5,6 @@ function load_css_js()
   // CSS //
 
     // Icons
-    wp_enqueue_style('fontawesome', get_template_directory_uri() . '/assets/vendor/fonts/fontawesome.css', array(), null);
     wp_enqueue_style('tabler-icons', get_template_directory_uri() . '/assets/vendor/fonts/tabler-icons.css', array(), null);
     wp_enqueue_style('flag-icons', get_template_directory_uri() . '/assets/vendor/fonts/flag-icons.css', array(), null);
 

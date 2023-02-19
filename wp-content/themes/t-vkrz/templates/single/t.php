@@ -33,8 +33,7 @@ $top_datas          = get_top_data($id_top);
 $top_infos          = get_top_infos($id_top);
 $is_top_saved       = check_top_saved($id_top, $id_vainkeur);
 $creator_id         = get_post_field('post_author', $id_top);
-$creator_uuiduser   = get_field('uuiduser_user', 'user_' . $creator_id);
-$creator_data       = get_user_infos($creator_uuiduser);
+$creator_info       = get_user_infos(get_field('uuiduser_user', 'user_' . $creator_id));
 $id_top_global      = $id_top;
 $get_top_type       = get_the_terms($id_top, 'type');
 if ($get_top_type) {
@@ -52,7 +51,7 @@ get_header();
   <?php if (!$id_ranking) : ?>
     <div class="content-intro container mt-4">
       <div class="row justify-content-center">
-        <div class="col-md-8 order-1 order-sm-0">
+        <div class="col-xl-8 order-1 order-sm-0">
           <?php if ($type_top == "sponso") : ?>
             <div class="title-win d-none d-sm-block">
               <h4>
@@ -64,18 +63,6 @@ get_header();
             <div class="meetup-img-wrapper rounded-top text-left" style="background-image: url(<?php echo $top_infos['top_img']; ?>);">
               <?php if ($type_top != "sponso") : ?>
                 <span class="badge bg-label-primary">Créé le <?php echo $top_infos['top_date']; ?></span>
-              <?php endif; ?>
-
-              <?php 
-              if(is_user_logged_in() ) :
-                $wording = "";
-                if($is_top_saved) {
-                  $wording = "Unsave Top";
-                } else {
-                  $wording = "Save Top";
-                }
-              ?>
-                <a href="#" class="badge bg-info save-top" data-idtop="<?= $id_top; ?>" data-idvainkeur="<?= $id_vainkeur; ?>"><?= $wording; ?></a>
               <?php endif; ?>
 
               <div class="list-unstyled m-0 d-flex align-items-center avatar-group my-3 list-contenders">
@@ -118,12 +105,12 @@ get_header();
               <?php if ($top_infos['top_number'] <= 10) : ?>
                 <div class="choosecta">
                   <div class="cta-begin cta-complet">
-                    <a href="#" id="begin_t" data-typetop="complet" data-top="<?php echo $id_top; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-uuiduser="<?php echo $uuid_vainkeur; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
+                    <a href="#" id="begin_t" data-typetop="complet" data-top="<?php echo $id_top; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-uuiduser="<?php echo $uuid_vainkeur; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-rose waves-effect waves-float waves-light laucher_t">
                       <i class="fab fa-twitch twitch-icon-tbegin d-none"></i>&nbsp;
                       <?php if ($type_top == "sponso") : ?>
-                        Participer
+                        Participer au Top sponso
                       <?php else : ?>
-                        Top Complet
+                        Lancer ta TopList
                       <?php endif; ?>
                     </a>
                     <small class="text-muted">
@@ -134,7 +121,7 @@ get_header();
                       <?php if ($top_infos['top_number'] < 3) : ?>
                         Un seul vote suffira pour finir ce Top
                       <?php else : ?>
-                        Prévoir entre <?php echo $min; ?> et <?php echo $max; ?> votes pour finir ton Top du 1er au dernier
+                        <?php echo $min; ?> et <?php echo $max; ?> votes pour ta TopList du 1er au <?php echo $top_infos['top_number']; ?><sup>ème</sup>
                       <?php endif; ?>
                     </small>
                   </div>
@@ -143,9 +130,9 @@ get_header();
                 <div class="choosecta flex-row-reverse">
                   <?php if ($type_top != "sponso") : ?>
                     <div class="cta-begin cta-complet">
-                      <a href="#" id="begin_t" data-typetop="complet" data-top="<?php echo $id_top; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-uuiduser="<?php echo $uuid_vainkeur; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
+                      <a href="#" id="begin_t" data-typetop="complet" data-top="<?php echo $id_top; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-uuiduser="<?php echo $uuid_vainkeur; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-rose waves-effect waves-float waves-light laucher_t">
                         <i class="fab fa-twitch twitch-icon-tbegin d-none"></i>&nbsp;
-                        Top Complet
+                        Lancer le Top complet
                       </a>
                       <small class="text-muted">
                         <?php
@@ -155,18 +142,18 @@ get_header();
                         <?php if ($top_infos['top_number'] < 3) : ?>
                           Un seul vote suffira pour finir ce Top
                         <?php else : ?>
-                          Prévoir entre <?php echo $min; ?> et <?php echo $max; ?> votes pour finir ton Top du 1er au dernier
+                          Entre <?php echo $min; ?> et <?php echo $max; ?> votes pour ta TopList du 1<sup>er</sup> au <?php echo $top_infos['top_number']; ?><sup>ème</sup>
                         <?php endif; ?>
                       </small>
                     </div>
                   <?php endif; ?>
                   <div class="cta-begin cta-top3">
-                    <a href="#" id="begin_top3" data-typetop="top3" data-top="<?php echo $id_top; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-uuiduser="<?php echo $uuid_vainkeur; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-primary waves-effect waves-float waves-light laucher_t">
+                    <a href="#" id="begin_top3" data-typetop="top3" data-top="<?php echo $id_top; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-uuiduser="<?php echo $uuid_vainkeur; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-rose waves-effect waves-float waves-light laucher_t">
                       <i class="fab fa-twitch twitch-icon-tbegin d-none"></i>&nbsp;
                       <?php if ($type_top == "sponso") : ?>
-                        Participer
+                        Participer au Top sponso
                       <?php else : ?>
-                        Top 3
+                        Faire juste le Top3
                       <?php endif; ?>
                     </a>
                     <small class="text-muted">
@@ -175,7 +162,7 @@ get_header();
                       $min = (floor($top_infos['top_number'] / 2)) + ((round($top_infos['top_number'] / 2)) - 1) + 3;
                       $moy = ($max + $min) / 2;
                       ?>
-                      Prévoir environ <?php echo round($moy); ?> votes pour juste faire ton podium
+                      Prévoir environ <?php echo round($moy); ?> votes
                     </small>
                   </div>
                 </div>
@@ -211,33 +198,46 @@ get_header();
                     </div>
                   </div>
                   <div class="col">
-                    <div class="infos-card-t d-flex align-items-center infos-card-t-c">
-                      <div class="">
-                        <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator_id; ?>" target="_blank">
-                          <div class="avatar avatar-t-single">
-                            <img src="<?php echo $creator_data['avatar']; ?>" alt="Avatar" width="38" height="38">
-                          </div>
-                        </a>
+                    <div class="infos-card-t d-flex align-items-center">
+                      <div class="me-1">
+                        <span class="ico va va-comment va-2x"></span>
                       </div>
-                      <div class="content-body text-left">
-                        <small class="text-muted text-left">Conçu par</small>
-                        <h4 class="link-creator">
-                          <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator_id; ?>" target="_blank" class="link-to-creator">
-                            <?php echo $creator_data['pseudo']; ?>
-                            <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="niveau">
-                              <?php echo $creator_data['level']; ?>
-                            </span>
-                            <?php if ($creator_data['user_role']  == "administrator") : ?>
-                              <span class="ico va va-vkrzteam va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ">
-                              </span>
-                            <?php endif; ?>
-                            <?php if ($creator_data['user_role']  == "administrator" || $creator_data['user_role'] == "author") : ?>
-                              <span class="ico va va-man-singer va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops">
-                              </span>
-                            <?php endif; ?>
-                          </a>
+                      <div class="info-numbers">
+                        <h4>
+                          <?php echo $top_datas['nb_comments']; ?>
                         </h4>
+                        <?php if ($top_datas['nb_comments'] > 1) : ?>
+                          <small class="text-muted">Commentaires</small>
+                        <?php else : ?>
+                          <small class="text-muted">Commentaire</small>
+                        <?php endif; ?>
                       </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="vainkeur-card">
+                      <a href="<?php the_permalink(218587); ?>?creator_id=<?php echo $creator_id; ?>" class="btn btn-flat-primary waves-effect">
+                        <span class="avatar">
+                          <span class="avatar-picture" style="background-image: url(<?php echo $creator_info['avatar']; ?>);"></span>
+                        </span>
+                        <span class="championname">
+                          <small class="text-muted">
+                            Conçu par
+                          </small>
+                          <div class="creatornametop">
+                            <h4><?php echo $creator_info['pseudo']; ?></h4>
+                            <span class="medailles">
+                              <?php echo $creator_info['level']; ?>
+                              <?php if ($creator_info['user_role'] == "administrator") : ?>
+                                <span class="va va-vkrzteam va-z-15" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ"></span>
+                              <?php endif; ?>
+                              <?php if ($creator_info['user_role'] == "administrator" || $creator_info['user_role'] == "author") : ?>
+                                <span class="va va-man-singer va-z-15" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops"></span>
+                              <?php endif; ?>
+                            </span>
+                          </div>
+                        </span>
+                      </a>
                     </div>
                   </div>
                 <?php else : ?>
@@ -366,7 +366,7 @@ get_header();
           </div>
           <div class="col-md-4">
             <div class="modes-jeu-twitch__content-btns">
-              <button type="button" id="voteParticipatif" class="mb-3 btn btn-gradient-primary modeGameTwitchBtn" >
+              <button type="button" id="voteParticipatif" class="mb-3 btn btn-gradient-primary modeGameTwitchBtn">
                 <div>
                   Vote Participatif <span class="va va-heart-hands va-lg"></span>
                 </div>
@@ -374,7 +374,7 @@ get_header();
                   <small>Les viewvers votent en écrivant 1 ou 2 dans chaque duel selon leur propre avis. Tu vois en live le résultat et tu choisis de le suivre ou pas</small>
                 </div>
               </button>
-              <button type="button" id="votePrediction" class="mb-3 btn btn-gradient-primary modeGameTwitchBtn" >
+              <button type="button" id="votePrediction" class="mb-3 btn btn-gradient-primary modeGameTwitchBtn">
                 <div>
                   Élimination directe <span class="va va-skull va-lg"></span>
                 </div>
@@ -382,7 +382,7 @@ get_header();
                   <small>A chaque nouveau duel, tes viewvers doivent deviner ton choix. Ceux qui se trompent sont éliminés et à la fin il n'en restera qu'un</small>
                 </div>
               </button>
-              <button type="button" id="votePoints" class="btn btn-gradient-primary modeGameTwitchBtn" >
+              <button type="button" id="votePoints" class="btn btn-gradient-primary modeGameTwitchBtn">
                 <div>Match aux points <span class="va va-hundred va-lg"></span></div>
                 <div>
                   <small>Tes viewvers marquent 1 point à chaque fois qu'il devine bien ton choix. Le gagnant est celui qui a le plus scoré à la fin de la TopList</small>
@@ -434,37 +434,37 @@ get_header();
                   ?>
                 </div>
                 <?php if (!isMobile() && is_user_logged_in() && get_userdata($user_id)->twitch_user) : ?>
-                    <div class="d-none twitch-votes-container row align-items-center justify-content-center" data-twitchChannel="<?= get_userdata($user_id)->twitch_user; ?>" data-top="<?= $top_infos['top_title'] . ' ' . $top_infos['top_number'] . ' ' . $top_infos['top_question'];  ?> " data-topCategory="<?= $top_infos['top_cat_name'] ?>" data-idTop="<?= $id_top; ?>" data-idVainkeur="<?= $id_vainkeur; ?>">
-                        <div class="row">
-                          <div class="col col-sm-4 w-100 d-flex justify-content-evenly align-items-center">
-                            <div class="taper-container animate__animated animate__slideInDown">
-                              <div class="votes-container">
-                                <p>Taper 1</p>
-                                <div class="votes-stats taper-zone d-none" id="votes-stats-1">
-                                  <p class="votes-percent" id="votes-percent-1">0%</p>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="votes-stats-container d-none">
-                              <p class="votes-stats-p">
-                                <strong class="votes-number">0</strong> <span class="votes-number-wording">Vote</span> du chat
-                              </p>
-                              <p>
-                                <strong class="votes-number-total">0</strong> votes depuis le début
-                              </p>
-                            </div>
-                            <div class="taper-container animate__animated animate__slideInUp">
-                              <div class="votes-container">
-                                <p>Taper 2</p>
-                                <div class="votes-stats taper-zone d-none" id="votes-stats-2">
-                                  <p class="votes-percent" id="votes-percent-2">0%</p>
-                                </div>
-                              </div>
+                  <div class="d-none twitch-votes-container row align-items-center justify-content-center" data-twitchChannel="<?= get_userdata($user_id)->twitch_user; ?>" data-top="<?= $top_infos['top_title'] . ' ' . $top_infos['top_number'] . ' ' . $top_infos['top_question'];  ?> " data-topCategory="<?= $top_infos['top_cat_name'] ?>" data-idTop="<?= $id_top; ?>" data-idVainkeur="<?= $id_vainkeur; ?>">
+                    <div class="row">
+                      <div class="col col-sm-4 w-100 d-flex justify-content-evenly align-items-center">
+                        <div class="taper-container animate__animated animate__slideInDown">
+                          <div class="votes-container">
+                            <p>Taper 1</p>
+                            <div class="votes-stats taper-zone d-none" id="votes-stats-1">
+                              <p class="votes-percent" id="votes-percent-1">0%</p>
                             </div>
                           </div>
-                          <div class="col-sm-4 col-12"></div>
                         </div>
+                        <div class="votes-stats-container d-none">
+                          <p class="votes-stats-p">
+                            <strong class="votes-number">0</strong> <span class="votes-number-wording">Vote</span> du chat
+                          </p>
+                          <p>
+                            <strong class="votes-number-total">0</strong> votes depuis le début
+                          </p>
+                        </div>
+                        <div class="taper-container animate__animated animate__slideInUp">
+                          <div class="votes-container">
+                            <p>Taper 2</p>
+                            <div class="votes-stats taper-zone d-none" id="votes-stats-2">
+                              <p class="votes-percent" id="votes-percent-2">0%</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-4 col-12"></div>
                     </div>
+                  </div>
                   <div class="twitchGamesWinnerContainer">
                     <span class="twitchGamesWinnerName confetti"></span>
                     <div class="buttons">
