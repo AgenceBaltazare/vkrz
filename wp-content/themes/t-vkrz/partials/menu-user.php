@@ -301,7 +301,7 @@ if (is_single() && get_post_type() == "tournoi") {
       <!-- Proposer Top -->
       <li class="nav-item ms-2 d-none d-sm-block">
         <a class="nav-link btn btn-primary waves-effect waves-light btn-log" href="<?php the_permalink(get_page_by_path(('proposition-de-tops'))); ?>">
-          Propose tes Tops
+          Créer ton Top
         </a>
       </li>
       <!--/ Proposer Top -->

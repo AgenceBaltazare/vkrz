@@ -1428,3 +1428,23 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
 .dark-layout .modal-transparent.modal {
     background: rgba(#0C0A27, .8);
 }
+
+.tooltip-inner {
+    background: #261c61cd!important;
+}
+.bs-tooltip-auto[data-popper-placement^=top] .tooltip-arrow::before
+{
+    border-top-color: #261c61cd!important;
+}
+.bs-tooltip-auto[data-popper-placement^=left] .tooltip-arrow::before
+{
+    border-left-color: #261c61cd!important;
+}
+.bs-tooltip-auto[data-popper-placement^=right] .tooltip-arrow::before
+{
+    border-right-color: #261c61cd!important;
+}
+.bs-tooltip-auto[data-popper-placement^=bottom] .tooltip-arrow::before
+{
+    border-right-color: #261c61cd!important;
+}

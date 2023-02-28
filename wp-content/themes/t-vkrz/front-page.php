@@ -197,4 +197,11 @@ global $id_membre;
     </div>
   </div>
 </div>
+
+<?php 
+
+    // echo "<h1 style='text-align:center;'>" . get_current_user_id() . "</h1>";
+
+?>
+
 <?php get_footer(); ?>

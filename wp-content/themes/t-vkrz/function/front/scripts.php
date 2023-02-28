@@ -106,6 +106,12 @@ function load_css_js()
       wp_enqueue_script('similar', get_template_directory_uri() . '/function/ajax/similar.js', array(), filemtime(get_template_directory() . '/function/ajax/similar.js'), true);
       wp_enqueue_script('toplist', get_template_directory_uri() . '/function/firebase/toplist.js', array(), filemtime(get_template_directory() . '/function/firebase/toplist.js'), true);
     }
+    // CREATE TOP
+    if (is_page('Créer un Top')) {
+      wp_enqueue_style('cropper-min', get_template_directory_uri() . '/assets/vendor/libs/cropper/cropper.min.css', array(), null);
+      wp_enqueue_script('cropper-min', get_template_directory_uri() . '/assets/vendor/libs/cropper/cropper.min.js', array(), filemtime(get_template_directory() . '/assets/vendor/libs/cropper/cropper.min.js'), true );
+      wp_enqueue_script('create-top', get_template_directory_uri() . '/function/firebase/create-top.js', array(), filemtime(get_template_directory() . '/function/firebase/create-top.js'), true );
+    }
     if (is_user_logged_in()) {
       wp_enqueue_script('get_menuuser_notifications', get_template_directory_uri() . '/function/firebase/get_menuuser_notifications.js', array(), filemtime(get_template_directory() . '/function/firebase/get_menuuser_notifications.js'), true);
     }

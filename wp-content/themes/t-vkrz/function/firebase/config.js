@@ -36,6 +36,13 @@ switch (location.hostname) {
 const app = initializeApp(firebaseConfig);
 
 import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "https://cdnjs.cloudflare.com/ajax/libs/firebase/9.8.1/firebase-storage.min.js";
+
+import {
   getFirestore,
   collection,
   doc,
@@ -189,6 +196,18 @@ const fetchDataFuncHelper = async function (url) {
   }
 }
 
+const generateUniqueId = function () {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  const timestamp = Date.now();
+  let id = `${timestamp}-`;
+  for (let i = 0; i < 16; i++) {
+    const randomIndex = Math.floor(Math.random() * chars.length);
+    id += chars[randomIndex];
+  }
+  
+  return id;
+}
+
 export {
   getFirestore,
   collection,
@@ -207,5 +226,10 @@ export {
   secondsToStrFuncHelper,
   fetchDataFuncHelper,
   sortContendersFuncHelper,
-  calcResemblanceFuncHelper
+  calcResemblanceFuncHelper,
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+  generateUniqueId
 };

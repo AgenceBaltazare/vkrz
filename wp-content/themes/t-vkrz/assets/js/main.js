@@ -440,7 +440,7 @@ if (document.querySelector('.save-top')) {
 }
 
 if (document.querySelector('.modal')) {
-  document.querySelectorAll('.modal').forEach(function(modal) {
+  document.querySelectorAll('.modal.transparent').forEach(function(modal) {
     modal.addEventListener('hidden.bs.modal', function(e) {
       let modal  = e.currentTarget
       let iframe = modal.querySelector('iframe');

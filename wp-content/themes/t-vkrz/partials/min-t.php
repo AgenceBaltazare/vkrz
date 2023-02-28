@@ -16,6 +16,8 @@ $creator_avatar   = get_avatar_url($creator_id, ['size' => '80', 'force_default'
 $type_top         = "";
 $state            = "";
 $illu             = get_the_post_thumbnail_url($id_top, 'large');
+if(!$illu && get_field('visuel_externe_top_firebase', $id_top)) 
+  $illu = get_field('visuel_externe_top_firebase', $id_top);
 $get_top_type     = get_the_terms($id_top, 'type');
 if ($get_top_type) {
   foreach ($get_top_type as $type_top) {

@@ -34,4 +34,6 @@ function update_count_contenders($post_id){
     );
 
     update_field('count_contenders_t', $contenders->post_count + $current_post, $top_id);
+
+    return $top_id . " - " . $contenders->post_count;
 }

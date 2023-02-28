@@ -378,6 +378,9 @@ submitBtn.addEventListener("click", (e) => {
               userData: currentUserData,
             }
           },
+          success: function(data) {
+            console.log(data);
+          }
         });
 
         form.classList.add('d-none');

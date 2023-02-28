@@ -178,7 +178,11 @@ function divi_engine_move_admin_bar_bottom() {
   }
   </style>';
 }
-// Action to add CSS on WP admin
 add_action( 'admin_head', 'divi_engine_move_admin_bar_bottom' );
-// action to add CSS to frontend
 add_action( 'wp_head', 'divi_engine_move_admin_bar_bottom' );
+
+function add_subscriber_post_capabilities() {
+  $role = get_role( 'subscriber' );
+  $role->add_cap( 'create_posts' );
+}
+add_action( 'admin_init', 'add_subscriber_post_capabilities' );

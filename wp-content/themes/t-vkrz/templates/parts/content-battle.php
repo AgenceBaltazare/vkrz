@@ -12,6 +12,8 @@ extract($battle_vars);
                 <?php else : ?>
                     <?php if (get_field('visuel_instagram_contender', $contender_1)) : ?>
                         <img src="<?php the_field('visuel_instagram_contender', $contender_1); ?>" alt="" class="img-fluid contender-1-votes-twitch">
+                    <?php elseif (get_field('visuel_firebase_contender', $contender_1)) : ?>
+                        <img src="<?php the_field('visuel_firebase_contender', $contender_1); ?>" alt="" class="img-fluid contender-1-votes-twitch">
                     <?php else : ?>
                         <?php echo get_the_post_thumbnail($contender_1, 'full', array('class' => 'img-fluid contender-1-votes-twitch')); ?>
                     <?php endif; ?>
@@ -85,6 +87,8 @@ extract($battle_vars);
                 <?php else : ?>
                     <?php if (get_field('visuel_instagram_contender', $contender_2)) : ?>
                         <img src="<?php the_field('visuel_instagram_contender', $contender_2); ?>" alt="" class="img-fluid contender-2-votes-twitch">
+                    <?php elseif (get_field('visuel_firebase_contender', $contender_2)) : ?>
+                        <img src="<?php the_field('visuel_firebase_contender', $contender_2); ?>" alt="" class="img-fluid contender-2-votes-twitch">
                     <?php else : ?>
                         <?php echo get_the_post_thumbnail($contender_2, 'full', array('class' => 'img-fluid contender-2-votes-twitch')); ?>
                     <?php endif; ?>

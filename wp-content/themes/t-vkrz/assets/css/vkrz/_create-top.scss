@@ -1,0 +1,411 @@
+$distance: 18rem;
+
+.create-top-page {
+  display: grid;
+  place-items: center;
+
+  .create-top-wrapper {
+    border-radius: 12px;
+    border: 1px solid #261C61;
+    padding: 2rem 2rem .9rem;
+    position: relative;
+
+    .must-log-in {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-2deg);
+      text-align: center;
+
+      font-size: 1.3rem;
+      
+      .connect-btn {
+        margin-top: 1rem;
+        padding: .8rem;
+        font-size: .8rem;
+        text-transform: uppercase;
+      }
+    }
+
+    .create-top-steps {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: $distance;
+
+      @media (max-width: 768px) {
+        $distance: 5.1rem;
+        gap: $distance;
+      }
+
+      padding: 1rem;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+
+      .step {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        color: #fff;
+        background: transparent;
+        border: 1px solid #FFF;
+        cursor: pointer;
+
+        @media (max-width: 768px) {
+          width: 70px;
+          height: 70px;
+        }
+
+        strong {
+          font-size: 1.7rem;
+        }
+        span {
+          font-size: .9rem;
+        }
+      }
+      .step.activefinal {
+        color: green;
+        border-color: green;
+      }
+      .step.active {
+        color: green;
+        border-color: green;
+      }
+      .step.active::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 100%;
+        width: $distance;
+
+        @media (max-width: 768px) {
+          $distance: 5.1rem;
+          width: $distance;
+        }
+
+        height: 2px;
+        background-color: green;
+      }
+    }
+
+    .create-top-content {
+      padding: 1rem 2rem;
+
+      .top-form-wrapper,
+      .contenders-form-wrapper {
+        width: 100%;
+        transition: .4s all;
+      }
+
+      .form-group {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        gap: 1rem;
+        margin-bottom: 0!important;
+      }
+
+      input[type="text"], .top-category {
+        width: 100%;
+        border: 0;
+        outline: 0;
+        background: transparent;
+        margin: .5rem 0;
+        border-radius: 6px;
+        padding: .9rem 0 .9rem 1rem;
+        border: 1px solid #261C61;
+        color: #FFF;
+      }
+      input[type="text"]::placeholder {
+        color: rgb(168, 162, 162);
+      }
+      .top-category {
+        padding: .9rem 1rem;
+
+        &:required:invalid {
+          color: rgb(168, 162, 162);
+        }
+        option[value=""][disabled] {
+          display: none;
+        }
+        option {
+          color: #FFF!important;
+        }
+      }
+
+      .image-upload-wrapper {
+        margin-top: .5rem;
+        margin-bottom: 1rem;
+        $defaultColor: #261C61;
+        
+        position: relative;
+        width: 100%;
+        height: 100%;
+        
+        &:after {
+          content: attr(data-text);
+          position: absolute;
+          top: 0;
+          left: 0;
+          display: block;
+          padding: 1rem;
+          pointer-events: none;
+          z-index: 7;
+          color: #999;
+          border-radius: 5px 10px 10px 5px;
+          font-weight: 300;
+          border: 1px solid #261C61;
+          width: 100%;
+        }
+        
+        &:before {
+          content: 'Télécharger';
+          font-size: 0.8rem;
+          position: absolute;
+          top: 0;
+          right: 0;
+          display: inline-block;
+          background: $defaultColor;
+          color: #fff;
+          font-weight: 700;
+          z-index: 8;
+          padding: 1.2rem 1.8rem;
+          text-transform: uppercase;
+          pointer-events: none;
+          border-radius: 0 5px 5px 0;
+          transition: .3s all;
+        }
+        
+        &:hover {
+          &:before {
+            background: darken($defaultColor, 10%);
+          }
+        }
+        input {
+          opacity: 0;
+          height: 100%;
+          z-index: 99;
+          display: block;
+          cursor: pointer;
+          width: 100%;
+        }
+      }
+    }
+
+    .contenders-form-wrapper  {
+
+      .form-control {
+        font-size: 1rem;
+        font-weight: bold;
+        line-height: 1.1;
+        display: grid;
+        grid-template-columns: 1em auto;
+        gap: 0.8em;
+        background: unset;
+        border: 0;
+        color: #999;
+      }
+      
+      .form-control + .form-control {
+        margin-top: .5em;
+      }
+      
+      .form-control:focus-within {
+        color: #3925a7;
+      }
+      
+      input[type="radio"] {
+        /* Add if not using autoprefixer */
+        -webkit-appearance: none;
+        /* Remove most all native input styles */
+        appearance: none;
+        /* For iOS < 15 */
+        /* Not removed via appearance */
+        margin: 0;
+      
+        font: inherit;
+        color: currentColor;
+        width: 1.15em;
+        height: 1.15em;
+        border: 0.15em solid currentColor;
+        border-radius: 50%;
+        transform: translateY(-0.075em);
+      
+        display: grid;
+        place-content: center;
+      }
+      
+      input[type="radio"]::before {
+        content: "";
+        width: 0.65em;
+        height: 0.65em;
+        border-radius: 50%;
+        transform: scale(0);
+        transition: 120ms transform ease-in-out;
+        box-shadow: inset 1em 1em #3925a7;
+        background-color: CanvasText;
+      }
+      
+      input[type="radio"]:checked::before {
+        transform: scale(1);
+      }
+      
+      input[type="radio"]:focus {
+        outline: max(2px, 0.15em) solid currentColor;
+        outline-offset: max(2px, 0.15em);
+      }
+    }
+
+    fieldset {
+      border: 1px solid #261C61 !important;
+      margin: 1rem;
+      padding: 1rem;
+
+      legend {
+        float: unset;
+        width: unset;
+        margin: 0 1rem;
+        padding: .4rem .7rem;
+        font-size: 1.1rem;
+        color: #999;
+      }
+    }
+
+    .top-banner-wrapper,
+    .contenders-images {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: .5rem;
+      width: 100%;
+
+      div {
+        position: relative;
+
+        img:not(.checkmark) {
+          object-fit: cover;
+          filter: blur(1px);
+        }
+
+        div {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+
+          display: flex;
+          flex-direction: column;
+
+          .checkmark {
+            width: 30px;
+            margin: 0 auto;
+          }
+
+          span {
+            font-size: .8rem;
+          }
+        }
+      }
+    }
+
+    .hidden {
+      opacity: 0;
+      visibility: hidden;
+      display: none;
+    }
+    .show {
+      opacity: 1;
+      visibility: visible;
+      display: block;
+    }
+
+    .paginate-disable {
+      pointer-events: none;
+      background-color: gray !important;
+      opacity: .8;
+    }
+    .disable {
+      pointer-events: none;
+      opacity: .5;
+    }
+
+    .alert {
+      text-align: center;
+      margin: 2rem 0;
+      font-size: .9rem;
+      color: #c64143;
+  
+      i {
+        font-size: .8rem;
+      }
+    }
+  }
+
+  .finish-wrapper {
+    font-size: 1.2rem;
+    padding: 1rem;
+    text-align: center;
+
+    img {
+      display: block;
+      margin: 1rem auto 2rem;
+    }
+
+    p:last-of-type {
+      font-style: italic;
+      color: #9999998b;
+      font-size: .9rem;
+    }
+  }
+
+  .preview {
+    overflow: hidden;
+    width: 200px;
+    height: 200px;
+    margin: 2rem;
+    border: 1px solid red;
+  }
+
+  canvas {
+    max-width: 100% !important;
+  } 
+
+  .btn-wrapper {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 100%;
+  }
+
+  .contender-group-input {
+    margin: 1rem;
+
+    label {
+      font-size: 1.1rem;
+      color: #999;
+    }
+  }
+
+  .modal {
+
+    .modal-body {
+      padding: .5rem!important;
+    }
+  }
+
+  .cropper-container {
+    margin-left: -13px!important;
+  }
+
+  .disable-create-top {
+    pointer-events: none;
+    filter: blur(4px);
+  }
+}
