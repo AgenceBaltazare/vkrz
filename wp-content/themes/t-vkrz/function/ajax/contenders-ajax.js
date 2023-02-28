@@ -392,7 +392,7 @@ $(document).ready(function ($) {
           maj_elo_firebase(id_winner, id_looser);
 
           if (!data.is_next_duel) {
-            $(".waiter").show();
+            $("#waiter-toplist").show();
 
             maj_firebase_finish_top(id_top, id_vainkeur, id_ranking);
 

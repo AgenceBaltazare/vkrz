@@ -351,3 +351,9 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-link {
 .info-creator{
   border-top: 1px solid #110a27;
 }
+
+.btn-wording{
+  &:hover{
+    color: #fff;
+  }
+}

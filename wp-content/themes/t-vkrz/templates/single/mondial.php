@@ -40,7 +40,7 @@ $count_toplist        = count($list_toplist);
   <div class="container-xxl m-auto">
     <div class="row zindex-2 position-relative">
       <div class="col-md-8 offset-md-2">
-        <div class="infotoplistmondiale tournament-heading">
+        <div class="infotoplistmondiale tournament-heading mb-3">
           <h1 class="t-titre-tournoi">
             <div class="text-muted">
               TopList Mondiale <?php echo $top_infos['top_cat_icon']; ?> <?php echo $top_infos['top_title']; ?>

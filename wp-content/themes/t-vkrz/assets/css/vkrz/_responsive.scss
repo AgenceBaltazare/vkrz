@@ -41,6 +41,47 @@
 
 @media (max-width: 768px) {
 
+    .classement{
+      padding-top: 30px;
+      .ico {
+        width: auto !important;
+        img {
+            max-width: 30px;
+            position: relative;
+            top: -17px;
+            margin: 0 0 -15px !important;
+            z-index: 10;
+            height: auto !important;
+            width: 30px !important;
+          }
+      }
+    }
+
+    .single-tournoi{
+      .infos-toplist {
+          bottom: 20px;
+          top: auto !important;
+          left: 0;
+          right: 0;
+          position: fixed;
+          right: 0;
+          top: 20%;
+          text-align: center;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          padding: 20px;
+
+          a {
+            margin: 0 10px !important;
+          }
+        }
+    }
+
+    .menu-user-div{
+      padding-right: 20px;
+    }
+
     .tournoi-content{
       padding: 20px;
     }
@@ -127,17 +168,6 @@
                     height: auto;
                     position: relative;
                     z-index: 33;
-                }
-
-                &:before {
-                    content: "";
-                    height: 2px;
-                    width: 100%;
-                    display: block;
-                    background-color: $rose;
-                    position: absolute;
-                    top: 50%;
-                    transform: rotate(-18deg);
                 }
             }
 

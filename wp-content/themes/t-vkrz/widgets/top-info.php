@@ -51,25 +51,23 @@ global $creator_data;
         ?>
         <span class="va va-birthday-cake va-md"></span> Créé <span class="t-violet"><?php echo $info_date; ?></span> par :
       </h4>
-      <div class="employee-task d-flex justify-content-between align-items-center">
-        <a href="<?php echo esc_url(get_author_posts_url($creator_data['id_user'])); ?>" class="d-flex flex-row link-to-creator">
-          <div class="avatar me-2">
-            <img src="<?php echo $creator_data['avatar']; ?>" class="circle" width="42" height="42" alt="Avatar">
-          </div>
-          <div class="my-auto">
-            <h4 class="mb-0">
-              <?php echo $creator_data['pseudo']; ?> <br>
-              <span class="ico" data-toggle="tooltip" data-placement="top" title="" data-original-title="niveau">
-                <?php echo $creator_data['level']; ?>
-              </span>
-              <?php if ($creator_data['user_role']  == "administrator") : ?>
-                <span class="ico va va-vkrzteam va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ"></span>
+      <div class="vainkeur-card">
+        <a href="<?php echo esc_url(get_author_posts_url($creator_data['id_user'])); ?>" class="btn btn-flat-primary waves-effect">
+          <span class="avatar">
+            <span class="avatar-picture" style="background-image: url(<?php echo $creator_data['avatar']; ?>);"></span>
+          </span>
+          <span class="championname">
+            <h4><?php echo $creator_data['pseudo']; ?></h4>
+            <span class="medailles">
+              <?php echo $creator_data['level']; ?>
+              <?php if ($creator_data['user_role'] == "administrator") : ?>
+                <span class="va va-vkrzteam va-z-15" data-toggle="tooltip" data-placement="top" title="" data-original-title="TeamVKRZ"></span>
               <?php endif; ?>
-              <?php if ($creator_data['user_role']  == "administrator" || $creator_data['user_role'] == "author") : ?>
-                <span class="ico va va-man-singer va-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops"></span>
+              <?php if ($creator_data['user_role'] == "administrator" || $creator_data['user_role'] == "author") : ?>
+                <span class="va va-man-singer va-z-15" data-toggle="tooltip" data-placement="top" title="" data-original-title="Créateur de Tops"></span>
               <?php endif; ?>
-            </h4>
-          </div>
+            </span>
+          </span>
         </a>
       </div>
     </div>

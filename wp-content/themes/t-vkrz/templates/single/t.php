@@ -624,10 +624,10 @@ get_header();
     $creator_uuiduser = get_field('uuiduser_user', 'user_' . $creator_id);
     $creator_data = get_user_infos($creator_uuiduser);
     ?>
-    <button class="btn-emoji btn-avatar" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Top créé par <?php echo $creator_data['pseudo']; ?>" style="background-image: url(<?php echo $creator_data['avatar']; ?>);">
+    <a class="btn-emoji btn-avatar" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Top créé par <?php echo $creator_data['pseudo']; ?>" style="background-image: url(<?php echo $creator_data['avatar']; ?>);">
       <div data-bs-toggle="offcanvas" data-bs-target="#infostop" aria-controls="offcanvasScroll" class="divfill">
       </div>
-    </button>
+    </a>
   </div>
   <!-- /Right Nav -->
 

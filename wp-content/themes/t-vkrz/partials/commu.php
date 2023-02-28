@@ -82,15 +82,15 @@ $id_membre    = get_field('selection_du_streamer_commu', $commu_id);
     </div>
   </div>
   <!-- Modal -->
-  <div class="modal modal-transparent fade" id="vedette-<?php echo $live_vedette; ?>" tabindex="-1" aria-hidden="true">
+  <div class="modal modal-transparent fade" id="vedette-<?php echo $commu_id; ?>" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-body">
           <a href="javascript:void(0);" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close">
           </a>
           <div class="modal-iframe">
-            <p class="text-white text-large fw-bold mb-3 text-center"><?= get_the_title($live_vedette); ?></p>
-            <?php the_field('video_video_commu', $live_vedette); ?>
+            <p class="text-white text-large fw-bold mb-3 text-center"><?= get_the_title($commu_id); ?></p>
+            <?php the_field('video_video_commu', $commu_id); ?>
           </div>
         </div>
       </div>

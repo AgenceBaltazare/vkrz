@@ -94,18 +94,18 @@ endif;
                 $i = 1;
                 foreach ($user_ranking as $c) :
                   if ($i == 1) {
-                    $classcontender = "col-12 col-md-5";
+                    $classcontender = "col-8 col-offset-2 col-md-5";
                   } elseif ($i == 2) {
-                    $classcontender = "col-7 col-md-4";
+                    $classcontender = "col-6 col-md-4";
                   } elseif ($i == 3) {
-                    $classcontender = "col-5 col-md-3";
+                    $classcontender = "col-6 col-md-3";
                   } else {
-                    $classcontender = "col-md-2 col-4";
+                    $classcontender = "col-5 col-offset-1 col-sm-4 col-sm-offset-0 col-md-3";
                   }
                   if ($i >= 4) {
-                    $d = 3;
+                    $d = 0;
                   } else {
-                    $d = $i - 1;
+                    $d = 4 - $i;
                   }
                 ?>
                   <div class="<?php echo $classcontender; ?>">
@@ -125,11 +125,11 @@ endif;
                       <div class="name eh2">
                         <h3 class="mt-2 eh3">
                           <?php if ($i == 1) : ?>
-                            <span class="ico">🥇</span>
+                            <span class="ico">🥇</span><br>
                           <?php elseif ($i == 2) : ?>
-                            <span class="ico">🥈</span>
+                            <span class="ico">🥈</span><br>
                           <?php elseif ($i == 3) : ?>
-                            <span class="ico">🥉</span>
+                            <span class="ico">🥉</span><br>
                           <?php else : ?>
                             <span><?php echo $i; ?><br></span>
                           <?php endif; ?>
