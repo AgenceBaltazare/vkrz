@@ -41,6 +41,10 @@
 
 @media (max-width: 768px) {
 
+    .tournoi-content{
+      padding: 20px;
+    }
+
     .intro-archive {
       max-width: 80%;
       margin: 40px auto;
@@ -110,11 +114,6 @@
     }
 
     .single-tournoi {
-
-        .content-intro {
-            margin: 20px 0;
-            padding: 0;
-        }
 
         .tournoi-content .contenders-containers {
 
@@ -503,11 +502,6 @@
         .menuvkrzmobilehide {
             transition: all 0.2s ease-in;
             display: none;
-        }
-
-        .tournoi-content {
-            text-align: center;
-            padding: 0 0 40px 0;
         }
     }
 

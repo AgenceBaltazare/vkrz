@@ -7824,6 +7824,9 @@ iframe {
   }
 }
 @media (max-width: 768px) {
+  .tournoi-content {
+    padding: 20px;
+  }
   .intro-archive {
     max-width: 80%;
     margin: 40px auto;
@@ -7876,10 +7879,6 @@ iframe {
   .share-content-sponso,
   .share-top-sponsor {
     display: none !important;
-  }
-  .single-tournoi .content-intro {
-    margin: 20px 0;
-    padding: 0;
   }
   .single-tournoi .tournoi-content .contenders-containers .versus {
     margin: 5px auto;
@@ -8176,10 +8175,6 @@ iframe {
   .single-tournoi .menuvkrzmobilehide {
     transition: all 0.2s ease-in;
     display: none;
-  }
-  .single-tournoi .tournoi-content {
-    text-align: center;
-    padding: 0 0 40px 0;
   }
   .mobile-navbar .icons-navbar {
     display: flex;
