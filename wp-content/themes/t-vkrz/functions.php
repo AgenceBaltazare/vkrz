@@ -153,7 +153,11 @@ function publish_top_to_discord($post_id){
       'top_author_url' => esc_url(get_author_posts_url($creator_id))
   ];
 
-  to_discord("newTop", $data);
+  $data = json_encode($data);
+
+  // to_discord("newTop", $data);
+
+  system("/usr/local/bin/node ./index.js '/discord' 'newTop' '$data'"); 
 }
 add_action('publish_tournoi', 'publish_top_to_discord');
 

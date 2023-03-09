@@ -202,6 +202,20 @@ global $id_membre;
 
     // echo "<h1 style='text-align:center;'>" . get_current_user_id() . "</h1>";
 
+    // $data = json_encode($data);
+
+    // to_discord("newTop", $data);
+
+    // Use ls command to shell_exec
+    // function
+    // 2>&1
+    $output = shell_exec('/usr/local/bin/node "/Users/adil/Local Sites/vainkeurz/app/public/wp-content/themes/t-vkrz/index.js" 2>&1 "/discord" "newTop" "{"a":1,"b":2,"c":3,"d":4,"e":5}"'); 
+    // shell_exec("/usr/local/bin/node /Users/adil/Local Sites/vainkeurz/app/public/wp-content/themes/t-vkrz/index.js '/discord' 'newTop' '{'a':1,'b':2,'c':3,'d':4,'e':5}'"); 
+      
+    // Display the list of all file
+    // and directory
+    echo "<pre>$output</pre>";
+
 ?>
 
 <?php get_footer(); ?>

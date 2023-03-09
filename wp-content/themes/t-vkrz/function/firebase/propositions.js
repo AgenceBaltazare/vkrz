@@ -367,21 +367,23 @@ submitBtn.addEventListener("click", (e) => {
 
         let currentUserData = await fetchDataFuncHelper(`http://vainkeurz.local/wp-json/vkrz/v1/getuserinfo/${currentUuid}`);
         
-        $.ajax({
-          method: "POST",
-          url: vkrz_ajaxurl,
-          data: {
-            action: "vkrz_to_discord",
-            typeMessage: "topIdea",
+        const data = { 
+          typeMessage: "topIdea",
             data: {
-              proposition: `${themeTopPropose.value} | ${questionTop.value}`,
-              userData: currentUserData,
+              proposition: `${themeTopPropose.value} - ${questionTop.value}`,
+              userData: currentUserData
             }
+         };
+      
+        await fetch('http://vainkeurz.local:3002/discord', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
           },
-          success: function(data) {
-            console.log(data);
-          }
-        });
+          body: JSON.stringify(data)
+        })
+          .then((response) => console.log(response))
+          .catch((error) => console.error(error));
 
         form.classList.add('d-none');
         afterSubmitText.classList.remove('d-none')

@@ -444,8 +444,6 @@ soumettreContenders.addEventListener('click', async (e) => {
 
     let currentUserData = await fetchDataFuncHelper(`http://vainkeurz.local/wp-json/vkrz/v1/getuserinfo/${currentUuid}`);
 
-    console.log(topBannerWrapper.querySelector("#previewTopBanner").src)
-
     const data = { 
       typeMessage: "newTopCreated",
         data: {
