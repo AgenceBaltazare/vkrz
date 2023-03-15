@@ -62,7 +62,7 @@
           </li>
         </ul>
       </li>
-      <!-- Rooms
+      Rooms
       <li class="menu-item">
         <a href="<?php the_permalink(get_page_by_path('rooms')); ?>" class="menu-link">
           <div class="iconmenu">
@@ -71,7 +71,6 @@
           <div>Rooms</div>
         </a>
       </li>
-      -->
       <!-- Best OF -->
       <li class="menu-item">
         <a href="javascript:void(0)" class="menu-link menu-toggle">
