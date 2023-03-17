@@ -475,7 +475,7 @@ if(document.querySelector('.display_battle') && localStorage.getItem('twitchGame
         preditcionParticipantsNumber.textContent = Object.keys(users).length;
   
         // ADD TO THE TABLE…
-        userListItem = `<div class="card-element" id="${username}">${username}</div>`;
+        userListItem = `<div class="card-element" id="vkrz-${username}">${username}</div>`;
         participantsDOM.insertAdjacentHTML("afterbegin", userListItem);
   
         if(Object.keys(users).length >= 2) $('.mode-alert').animate({ opacity: 0 }); // REMOVE THE ALERT IF THERE IS MORE THAN 2 PARTICIPANTS…
@@ -490,7 +490,7 @@ if(document.querySelector('.display_battle') && localStorage.getItem('twitchGame
         winnerAlready === false &&
         (message === "1" || message === "2")
       ) {
-        document.querySelector(`#prediction-player #${username}`).classList.add('text-primary');
+        document.querySelector(`#prediction-player #vkrz-${username}`).classList.add('text-primary');
         preditcionParticipantsVotedNumber.textContent = +preditcionParticipantsVotedNumber.textContent + 1;
   
         if (message === "1") {
@@ -553,7 +553,7 @@ if(document.querySelector('.display_battle') && localStorage.getItem('twitchGame
         }
   
         userListItem = `
-          <tr id="${username}">
+          <tr id="vkrz-${username}">
             <td>${positionStr}</td>
             <td>${username}</td>
             <td data-order="0">0</td>
@@ -572,7 +572,7 @@ if(document.querySelector('.display_battle') && localStorage.getItem('twitchGame
         (message === "1" || message === "2")
       ) 
       {
-        document.querySelector(`#ranking-player #${username} td:nth-of-type(2)`).classList.add('voted');
+        document.querySelector(`#ranking-player #vkrz-${username} td:nth-of-type(2)`).classList.add('voted');
         pointsParticipantsVotedNumber.textContent = +pointsParticipantsVotedNumber.textContent + 1;
         // let speech = new SpeechSynthesisUtterance(`${username} a bien voté!`)
         // window.speechSynthesis.speak(speech)

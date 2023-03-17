@@ -96,7 +96,7 @@ $(document).ready(function ($) {
           for (let user of toFilter) {
             user[1]["voted"] = false;
             user[1]["side"]  = "0";
-            document.querySelector(`#prediction-player #${user[0]}`).classList.remove('text-primary')
+            document.querySelector(`#prediction-player #vkrz-${user[0]}`).classList.remove('text-primary')
           }
 
           if(passed.length === 0) {
@@ -113,7 +113,7 @@ $(document).ready(function ($) {
               elimines.innerHTML = `<span class="va va-unknow va-lg"></span> ${Object.keys(losers).length} ${Object.keys(losers).length > 1 ? 'Eliminés' : 'Eliminé'}`;
 
               for(const [key, loser] of Object.entries(nonPassed)) {
-                let target = document.querySelector(`#prediction-player #${loser[0]}`)
+                let target = document.querySelector(`#prediction-player #vkrz-${loser[0]}`)
                 target.classList.remove('text-primary');
                 target.classList.add('beforeDelete');
                 setTimeout(() => {
@@ -147,7 +147,7 @@ $(document).ready(function ($) {
         sameVoteGroupObj = Object.fromEntries(sameVoteGroup);
 
         for (const vainkeurPlusOne of Object.keys(sameVoteGroupObj)) {
-          const vainkeurPlusOneDOM                = document.querySelector(`#ranking-player #${vainkeurPlusOne}`),
+          const vainkeurPlusOneDOM                = document.querySelector(`#ranking-player #vkrz-${vainkeurPlusOne}`),
                 vainkeurPlusOneDOMpoints          = vainkeurPlusOneDOM.querySelector('td:last-of-type');
 
           vainkeurPlusOneDOMpoints.innerHTML = `${+vainkeurPlusOneDOMpoints.dataset.order + 1} &uarr;`
@@ -157,7 +157,7 @@ $(document).ready(function ($) {
 
         if(notSameVoteGroup.length > 0) {
           for (let vainkeurMinusOne of Object.keys(notSameVoteGroupObj)) {
-            const vainkeurMinusOneDOM                 = document.querySelector(`#ranking-player #${vainkeurMinusOne}`),
+            const vainkeurMinusOneDOM                 = document.querySelector(`#ranking-player #vkrz-${vainkeurMinusOne}`),
                   vainkeurMinusOneDOMpoints           = vainkeurMinusOneDOM.querySelector('td:last-of-type');
 
             vainkeurMinusOneDOMpoints.innerHTML = vainkeurMinusOneDOMpoints.dataset.order;
