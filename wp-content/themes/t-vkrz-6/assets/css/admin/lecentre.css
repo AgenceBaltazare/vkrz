@@ -6,19 +6,7 @@ html {
 body {
   background: linear-gradient(50deg, #210951, #471867, #210951, #210951);
   background-size: 400% 400%;
-  -webkit-animation: gradient 60s ease infinite;
-          animation: gradient 60s ease infinite;
-}
-@-webkit-keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+  animation: gradient 60s ease infinite;
 }
 @keyframes gradient {
   0% {

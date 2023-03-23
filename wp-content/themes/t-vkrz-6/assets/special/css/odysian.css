@@ -285,9 +285,6 @@ html .name h5 span {
 .single-classement #form-coupon input[type=email]::-moz-placeholder, .page-template-elo-mondial #form-coupon input[type=email]::-moz-placeholder {
   color: #fff;
 }
-.single-classement #form-coupon input[type=email]:-ms-input-placeholder, .page-template-elo-mondial #form-coupon input[type=email]:-ms-input-placeholder {
-  color: #fff;
-}
 .single-classement #form-coupon input[type=email]::placeholder,
 .page-template-elo-mondial #form-coupon input[type=email]::placeholder {
   color: #fff;
@@ -321,7 +318,7 @@ html .name h5 span {
 }
 @media (max-width: 768px) {
   .single-classement .participation-content-sponso h1,
-.page-template-elo-mondial .participation-content-sponso h1 {
+  .page-template-elo-mondial .participation-content-sponso h1 {
     font-size: 22px;
     line-height: 28px;
   }

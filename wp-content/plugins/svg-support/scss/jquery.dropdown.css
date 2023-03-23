@@ -1,26 +1,10 @@
 @charset "UTF-8";
-@-webkit-keyframes iui-fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
 @keyframes iui-fadeIn {
   0% {
     opacity: 0;
   }
   100% {
     opacity: 1;
-  }
-}
-@-webkit-keyframes iui-fadeOut {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
   }
 }
 @keyframes iui-fadeOut {
@@ -41,7 +25,6 @@
 .dropdown-multiple.active .dropdown-main,
 .dropdown-single.active .dropdown-main {
   display: block;
-  -webkit-animation: iui-fadeIn 0.2s ease-in forwards;
   animation: iui-fadeIn 0.2s ease-in forwards;
 }
 
@@ -79,7 +62,6 @@
   cursor: pointer;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
   background-image: none;
   border: 1px solid #ccc;
@@ -333,6 +315,5 @@
   padding: 0 5px;
   border-radius: 5px;
   color: #999;
-  -webkit-animation: iui-fadeIn 0.2s ease-in forwards;
   animation: iui-fadeIn 0.2s ease-in forwards;
 }/*# sourceMappingURL=jquery.dropdown.css.map */

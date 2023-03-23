@@ -23,6 +23,7 @@ $utm = deal_utm();
 ?>
 <!DOCTYPE html>
 <html class="loading dark-layout" lang="fr" data-layout="dark-layout" data-textdirection="ltr">
+
 <head>
   <!--[if lt IE 9]>
     <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -131,6 +132,22 @@ if ($infos_vainkeur['avatar']) {
 </script>
 
 <body <?php body_class($list_body_class); ?> data-open="click" data-menu="vertical-menu-modern" data-col="">
+
+  <div class="alert alert-v2 d-flex align-items-center text-center alert-dismissible" role="alert">
+    <div class="row">
+      <div class="col-12 col-sm-6">
+        <p class="mb-1 mb-sm-0 mr-0 mr-sm-2">
+          Ça te dit de tester la prochaine version de VAINKEURZ ?
+        </p>
+      </div>
+      <div class="col-6 col-sm-3">
+        <a href="<?php the_permalink(); ?>" class="btnv2 yesv2"><i class="va va-pouce-haut va-lg"></i> Ô que ouiiii</a>
+      </div>
+      <div class="col-6 col-sm-3">
+        <a href="#" class="btnv2 nov2" data-bs-dismiss="alert" aria-label="Close" spellcheck="false"><i class="va va-pouce-bas va-lg"></i> pas du tout</a>
+      </div>
+    </div>
+  </div>
 
   <?php if ($infos_vainkeur['user_role'] != "administrator" && env() != "local") : ?>
     <!-- Google Tag Manager (noscript) -->

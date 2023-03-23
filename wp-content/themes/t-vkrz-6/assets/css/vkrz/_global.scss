@@ -1606,3 +1606,49 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
         left: -50px;
     }
 }
+
+.alert-v2{
+  background: $rose;
+  padding: 10px;
+  position: fixed;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 99999999;
+  border-radius: 0;
+  justify-content: center;
+  margin: 0;
+  p{
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.85rem;
+    @media (max-width: 768px) {
+      font-size: 1rem;
+      margin-bottom: 0;
+    }
+  }
+  .row{
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    @media (max-width: 768px) {
+      width: auto;
+    }
+  }
+}
+
+.btnv2{
+  background: #fff;
+  display: block;
+  margin: 0 10px;
+  color: $rose;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease-in-out;
+  &:hover{
+    background: #fff;
+    color: $rose;
+  }
+}
