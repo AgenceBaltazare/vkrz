@@ -65,6 +65,29 @@ get_header();
                 <span class="badge bg-label-primary">Créé le <?php echo $top_infos['top_date']; ?></span>
               <?php endif; ?>
 
+              <?php 
+              if(is_user_logged_in() ) :
+                $wording = "";
+                if (!$is_top_saved) {
+                  $wordingfav = "Ajouter aux favoris";
+                  $statutfav  = "notsaved";
+                  $iconfav    = "star";
+                } else {
+                  $wordingfav = "Retirer des favoris";
+                  $statutfav  = "saved";
+                  $iconfav    = "avis";
+                }
+              ?>
+               <div class="badge save-top <?= $statutfav; ?>" data-idtop="<?= $id_top; ?>" data-idvainkeur="<?= $id_vainkeur; ?>">
+               <span>
+                    <?php echo $wordingfav; ?>
+                  </span>
+                  <i class="va va-md va-star"></i>
+                  <i class="va va-md va-avis"></i>
+  
+                </div>
+              <?php endif; ?>
+
               <div class="list-unstyled m-0 d-flex align-items-center avatar-group my-3 list-contenders">
                 <?php $contenders_t = new WP_Query(array(
                   'post_type' => 'contender', 'orderby' => 'date', 'posts_per_page' => '-1',

@@ -30,7 +30,7 @@ global $id_membre;
 <div class="my-3">
   <div class="container-xxl">
     <div class="row">
-      <div class="col-md-3 col">
+      <div class="col-md-3 col-12">
         <div class="bloc">
           <h3 class="titre-section">
             C'est koi une <span class="t-rose">TopList</span> <i class="va va-monocle va-z-20"></i>
@@ -126,7 +126,7 @@ global $id_membre;
           wp_reset_query(); ?>
         </div>
       </div>
-      <div class="col-md-8 col offset-md-1">
+      <div class="col-md-8 col-12 offset-md-1">
         <div class="row">
           <div class="col-md-6">
             <div class="bloc">
@@ -408,4 +408,4 @@ global $id_membre;
     </div>
   </div>
 </div>
-<?php get_footer(); ?>1
+<?php get_footer(); ?>

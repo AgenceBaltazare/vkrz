@@ -356,7 +356,7 @@ if ($infos_vainkeur['user_role'] == "administrator" || $infos_vainkeur['user_rol
                         <span class="iconstats va-hundred va va-lg"></span>
                       </div>
                       <div class="valuestat">
-                        <?php echo $data_t_created['finition_globale']; ?> %
+                        <?php echo is_nan($data_t_created['finition_globale']) ? '0' : $data_t_created['finition_globale']; ?> %
                         <small class="text-muted mb-0">
                           Taux de finition
                         </small>

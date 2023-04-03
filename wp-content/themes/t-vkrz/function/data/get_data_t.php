@@ -154,7 +154,7 @@ function get_state($state, $type_top){
     else{
       $state_infos['label'] = 'À faire';
       $state_infos['bg'] = 'bg-primary';
-      $state_infos['wording'] = 'Faire ma Toplist';
+      $state_infos['wording'] = 'Faire ma TopList';
     }
   }
   

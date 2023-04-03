@@ -402,28 +402,28 @@ if (getCookie("wordpress_toastr_cookies")) {
   document.cookie = "wordpress_toastr_cookies=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 UTC";
 }
 
-if (document.querySelector('.save-top')) {
-  const saveTopsBtns = document.querySelectorAll('.save-top'); 
+if (document.querySelector(".save-top")) {
+  const saveTopsBtns = document.querySelectorAll(".save-top");
 
-  saveTopsBtns.forEach(btn => {
-    btn.addEventListener('click', function(e) {
-      const idTop      = btn.dataset.idtop;
+  saveTopsBtns.forEach((btn) => {
+    btn.addEventListener("click", function (e) {
+      const idTop = btn.dataset.idtop;
       const idVainkeur = btn.dataset.idvainkeur;
-      const btnstatut   = btn.dataset.statut;
+      const btnstatut = btn.dataset.statut;
 
-      e.preventDefault();
-
-      if(btnstatut == "saved") {
+      if (btnstatut == "saved") {
         btn.dataset.statut = "notsaved";
-        btn.classList.remove('saved');
-        btn.classList.add('notsaved');
+        btn.classList.remove("saved");
+        btn.classList.add("notsaved");
         btn.dataset.statut = "notsaved";
-        btn.querySelector('span').innerHTML = "Ajouter aux favoris";
+        if (btn.querySelector("span"))
+          btn.querySelector("span").innerHTML = "Ajouter aux favoris";
       } else {
         btn.dataset.statut = "saved";
-        btn.classList.remove('notsaved');
-        btn.classList.add('saved');
-        btn.querySelector('span').innerHTML = "Retirer des favoris";
+        btn.classList.remove("notsaved");
+        btn.classList.add("saved");
+        if (btn.querySelector("span"))
+          btn.querySelector("span").innerHTML = "Retirer des favoris";
       }
 
       $.ajax({
@@ -434,17 +434,21 @@ if (document.querySelector('.save-top')) {
           id_top: idTop,
           id_vainkeur: idVainkeur,
         },
+        success: function (response) {
+          // console.log(response);
+        },
       });
-    })
-  })
+    });
+  });
 }
 
-if (document.querySelector('.modal')) {
-  document.querySelectorAll('.modal').forEach(function(modal) {
-    modal.addEventListener('hidden.bs.modal', function(e) {
-      let modal  = e.currentTarget
-      let iframe = modal.querySelector('iframe');
-      iframe.src = modal.querySelector('iframe').src;
+if (document.querySelector(".modal")) {
+  document.querySelectorAll(".modal").forEach(function (modal) {
+    modal.addEventListener("hidden.bs.modal", function (e) {
+      let modal = e.currentTarget;
+      let iframe = modal.querySelector("iframe");
+      if(iframe && iframe.src)
+        iframe.src = modal.querySelector("iframe").src;
     });
   });
 }

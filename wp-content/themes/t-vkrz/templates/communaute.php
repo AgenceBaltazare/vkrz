@@ -7,7 +7,7 @@ get_header(); ?>
   <div class="all-content-embed">
     <div class="container-xxl">
       <div class="row">
-        <div class="col-md-3 col">
+        <div class="col-md-3 col-12">
           <h3 class="titre-section">
             <span>
               <i class="va va-smiling-face-with-heart-eyes va-lg"></i> Prochains RDV
@@ -41,7 +41,7 @@ get_header(); ?>
             </ul>
           </div>
         </div>
-        <div class="col-md-9 col">
+        <div class="col-md-9 col-12">
           <div class="text-center">
             <h3 class="titre-section">
               <span>
