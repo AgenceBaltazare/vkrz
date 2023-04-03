@@ -1720,6 +1720,10 @@ table.dataTable thead .sorting, table.dataTable thead .sorting:before, table.dat
   padding: 0;
 }
 
+.top_started {
+  display: none;
+}
+
 .page-template-monitor .list-vainkeur-monitor {
   line-height: 14px;
 }

@@ -2,6 +2,35 @@
 
 add_action('rest_api_init', function () {
 
+  // // // // // // // // // // //
+
+  // All flammes
+  register_rest_route('vkrz/v1', '/allflammes/', array(
+    'methods' => 'GET',
+    'callback' => 'get_allflammes'
+  ));
+
+  // Init classement 
+  register_rest_route('vkrz/v1', '/initclassement/(?P<id_top>\w+)/(?P<id_user>\w+)', array(
+    'methods' => 'GET',
+    'callback' => 'init_new_classement',
+    'args' => [
+      'id_top',
+      'id_user'
+    ]
+  ));
+  
+  // GET classement 
+  register_rest_route('vkrz/v1', '/getranking/(?P<id_ranking>\w+)', array(
+    'methods' => 'GET',
+    'callback' => 'get_ranking_json',
+    'args' => [
+      'id_ranking'
+    ]
+  ));
+
+  // // // // // // // // // // //
+
   // GET STATS
   register_rest_route('vkrz/v1', '/stats/(?P<date>\w+)', array(
     'methods' => 'GET',
