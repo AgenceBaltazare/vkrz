@@ -111,3 +111,10 @@ function deal_vkrz_save_top()
 {
     deal_save_top($_POST['id_top'], $_POST['id_vainkeur']);
 }
+
+add_action('wp_ajax_save_ranking', 'save_ranking');
+add_action('wp_ajax_nopriv_save_ranking', 'save_ranking');
+function save_ranking()
+{
+    save_ranking_to_wp($_POST['ranking'], $_POST['id_ranking']);
+}

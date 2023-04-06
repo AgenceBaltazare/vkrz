@@ -15,144 +15,158 @@ launchTopListBtns.forEach(btn => {
 
   btn.addEventListener('click', async (e) => {
 
-    // const TOP = await fetchDataFuncHelper(`http://localhost:8888/vkrz/wp-json/vkrz/v1/initclassement/${id_top}/${id_user}/`);
+    const TOP = await fetchDataFuncHelper(`http://localhost:8888/vkrz/wp-json/vkrz/v1/initclassement/${id_top}/${id_user}/`);
 
-    const TOP = {
-      "ranking": [
-          {
-              "id": 0,
-              "id_wp": 99,
-              "cover": "http://localhost:8888/vkrz/wp-content/uploads/2022/06/atal-300x200.png",
-              "elo": "1275",
-              "c_name": "numéro 0",
-              "more_to": [],
-              "less_to": [],
-              "place": 0,
-              "ratio": 0
-          },
-          {
-              "id": 1,
-              "id_wp": 10,
-              "cover": "http://localhost:8888/vkrz/wp-content/uploads/2022/06/liberte-300x200.png",
-              "elo": "1268",
-              "c_name": "numéro 1",
-              "more_to": [],
-              "less_to": [],
-              "place": 0,
-              "ratio": 0
-          },
-          {
-              "id": 2,
-              "id_wp": 20,
-              "cover": "http://localhost:8888/vkrz/wp-content/uploads/2022/06/siege-de-boralus-300x200.png",
-              "elo": "1250",
-              "c_name": "numéro 2",
-              "more_to": [],
-              "less_to": [],
-              "place": 0,
-              "ratio": 0
-          },
-          {
-              "id": 3,
-              "id_wp": 30,
-              "cover": "http://localhost:8888/vkrz/wp-content/uploads/2022/06/manoir-300x200.png",
-              "elo": "1223",
-              "c_name": "numéro 3",
-              "more_to": [],
-              "less_to": [],
-              "place": 0,
-              "ratio": 0
-          },
-          {
-              "id": 4,
-              "id_wp": 40,
-              "cover": "http://localhost:8888/vkrz/wp-content/uploads/2022/06/om-300x200.png",
-              "elo": "1219",
-              "c_name": "numéro 4",
-              "more_to": [],
-              "less_to": [],
-              "place": 0,
-              "ratio": 0
-          },
-          {
-              "id": 5,
-              "id_wp": 50,
-              "cover": "http://localhost:8888/vkrz/wp-content/uploads/2022/06/trefonds-300x200.png",
-              "elo": "1207",
-              "c_name": "numéro 5",
-              "more_to": [],
-              "less_to": [],
-              "place": 0,
-              "ratio": 0
-          },
-          {
-              "id": 6,
-              "id_wp": 60,
-              "cover": "http://localhost:8888/vkrz/wp-content/uploads/2022/06/filon-300x200.png",
-              "elo": "1200",
-              "c_name": "numéro 6",
-              "more_to": [],
-              "less_to": [],
-              "place": 0,
-              "ratio": 0
-          },
-          {
-              "id": 7,
-              "id_wp": 70,
-              "cover": "http://localhost:8888/vkrz/wp-content/uploads/2022/06/sepra-300x200.png",
-              "elo": "1180",
-              "c_name": "numéro 7",
-              "more_to": [],
-              "less_to": [],
-              "place": 0,
-              "ratio": 0
-          },
-          {
-              "id": 8,
-              "id_wp": 80,
-              "cover": "http://localhost:8888/vkrz/wp-content/uploads/2022/06/repos-300x200.png",
-              "elo": "1168",
-              "c_name": "numéro 8",
-              "more_to": [],
-              "less_to": [],
-              "place": 0,
-              "ratio": 0
-          },
-          {
-              "id": 9,
-              "id_wp": 90,
-              "cover": "http://localhost:8888/vkrz/wp-content/uploads/2022/06/tol-300x200.png",
-              "elo": "1123",
-              "c_name": "numéro 9",
-              "more_to": [],
-              "less_to": [],
-              "place": 0,
-              "ratio": 0
-          },
-          {
-              "id": 10,
-              "id_wp": 100,
-              "cover": "http://localhost:8888/vkrz/wp-content/uploads/2022/06/sanctu-300x200.png",
-              "elo": "1087",
-              "c_name": "numéro 10",
-              "more_to": [],
-              "less_to": [],
-              "place": 0,
-              "ratio": 0
-          }
-      ]
-    }
+    console.log(TOP)
+    // const TOP = {
+    //   "ranking": [
+    //       {
+    //           "id": 0,
+    //           "id_wp": 99,
+    //           "cover": "http://localhost:8888/vkrz/wp-content/uploads/2022/06/atal-300x200.png",
+    //           "elo": "1275",
+    //           "c_name": "numéro 0",
+    //           "more_to": [],
+    //           "less_to": [],
+    //           "place": 0,
+    //           "ratio": 0
+    //       },
+    //       {
+    //           "id": 1,
+    //           "id_wp": 10,
+    //           "cover": "http://localhost:8888/vkrz/wp-content/uploads/2022/06/liberte-300x200.png",
+    //           "elo": "1268",
+    //           "c_name": "numéro 1",
+    //           "more_to": [],
+    //           "less_to": [],
+    //           "place": 0,
+    //           "ratio": 0
+    //       },
+    //       {
+    //           "id": 2,
+    //           "id_wp": 20,
+    //           "cover": "http://localhost:8888/vkrz/wp-content/uploads/2022/06/siege-de-boralus-300x200.png",
+    //           "elo": "1250",
+    //           "c_name": "numéro 2",
+    //           "more_to": [],
+    //           "less_to": [],
+    //           "place": 0,
+    //           "ratio": 0
+    //       },
+    //       {
+    //           "id": 3,
+    //           "id_wp": 30,
+    //           "cover": "http://localhost:8888/vkrz/wp-content/uploads/2022/06/manoir-300x200.png",
+    //           "elo": "1223",
+    //           "c_name": "numéro 3",
+    //           "more_to": [],
+    //           "less_to": [],
+    //           "place": 0,
+    //           "ratio": 0
+    //       },
+    //       {
+    //           "id": 4,
+    //           "id_wp": 40,
+    //           "cover": "http://localhost:8888/vkrz/wp-content/uploads/2022/06/om-300x200.png",
+    //           "elo": "1219",
+    //           "c_name": "numéro 4",
+    //           "more_to": [],
+    //           "less_to": [],
+    //           "place": 0,
+    //           "ratio": 0
+    //       },
+    //       {
+    //           "id": 5,
+    //           "id_wp": 50,
+    //           "cover": "http://localhost:8888/vkrz/wp-content/uploads/2022/06/trefonds-300x200.png",
+    //           "elo": "1207",
+    //           "c_name": "numéro 5",
+    //           "more_to": [],
+    //           "less_to": [],
+    //           "place": 0,
+    //           "ratio": 0
+    //       },
+    //       // {
+    //       //     "id": 6,
+    //       //     "id_wp": 60,
+    //       //     "cover": "http://localhost:8888/vkrz/wp-content/uploads/2022/06/filon-300x200.png",
+    //       //     "elo": "1200",
+    //       //     "c_name": "numéro 6",
+    //       //     "more_to": [],
+    //       //     "less_to": [],
+    //       //     "place": 0,
+    //       //     "ratio": 0
+    //       // },
+    //       // {
+    //       //     "id": 7,
+    //       //     "id_wp": 70,
+    //       //     "cover": "http://localhost:8888/vkrz/wp-content/uploads/2022/06/sepra-300x200.png",
+    //       //     "elo": "1180",
+    //       //     "c_name": "numéro 7",
+    //       //     "more_to": [],
+    //       //     "less_to": [],
+    //       //     "place": 0,
+    //       //     "ratio": 0
+    //       // },
+    //       // {
+    //       //     "id": 8,
+    //       //     "id_wp": 80,
+    //       //     "cover": "http://localhost:8888/vkrz/wp-content/uploads/2022/06/repos-300x200.png",
+    //       //     "elo": "1168",
+    //       //     "c_name": "numéro 8",
+    //       //     "more_to": [],
+    //       //     "less_to": [],
+    //       //     "place": 0,
+    //       //     "ratio": 0
+    //       // },
+    //       // {
+    //       //     "id": 9,
+    //       //     "id_wp": 90,
+    //       //     "cover": "http://localhost:8888/vkrz/wp-content/uploads/2022/06/tol-300x200.png",
+    //       //     "elo": "1123",
+    //       //     "c_name": "numéro 9",
+    //       //     "more_to": [],
+    //       //     "less_to": [],
+    //       //     "place": 0,
+    //       //     "ratio": 0
+    //       // },
+    //       // {
+    //       //     "id": 10,
+    //       //     "id_wp": 100,
+    //       //     "cover": "http://localhost:8888/vkrz/wp-content/uploads/2022/06/sanctu-300x200.png",
+    //       //     "elo": "1087",
+    //       //     "c_name": "numéro 10",
+    //       //     "more_to": [],
+    //       //     "less_to": [],
+    //       //     "place": 0,
+    //       //     "ratio": 0
+    //       // },
+    //       // {
+    //       //   "id": 11,
+    //       //   "id_wp": 110,
+    //       //   "cover": "http://localhost:8888/vkrz/wp-content/uploads/2022/06/sepra-300x200.png",
+    //       //   "elo": "1087",
+    //       //   "c_name": "numéro 11",
+    //       //   "more_to": [],
+    //       //   "less_to": [],
+    //       //   "place": 0,
+    //       //   "ratio": 0
+    //       // }
+    //   ]
+    // }
 
     // console.log(TOP)
 
+
+
     // DECLARE VARIABLES
     const typeTop = btn.dataset.typetop;
-    let timelineVotes = 0;
-    let timelineMain = 1;
-    let listWR = [];
-    let listLR = [];
-    let contenders = TOP.ranking;
-    let alreadyVoted = false;
+    let timelineVotes = 0,
+        timelineMain = 1,
+        listWR = [],
+        listLR = [],
+        contenders = TOP.ranking,
+        alreadyVoted = false;
 
     // ALGORITHM FUNCTIONS
     function get_contenders_top_3_2(contenders) {
@@ -196,43 +210,70 @@ launchTopListBtns.forEach(btn => {
       return listInf3;
     }
 
-    function get_steps(timelineVotes) {
-
-      var randomInt = Math.floor(Math.random() * 4) + 3;
-
-      const currentStep = timelineVotes * 5 + randomInt;
-
-      if (currentStep >= 100) {
-        const currentStep = "98";
+    function get_steps(contenders) {
+      const typetop = typeTop;
+      const list_contenders = contenders;
+      const nb_contenders = list_contenders.length;
+      let counter = 0;
+    
+      if (typetop === "top3") {
+        let inf_1 = 0;
+        let inf_2 = 0;
+        let inf_3 = 0;
+        const fact_inf_1 = 50 / (nb_contenders - 1);
+        const fact_inf_2 = 25 / (nb_contenders - 2);
+        const fact_inf_3 = 25 / (nb_contenders - 3);
+    
+        list_contenders.forEach((contender) => {
+          if (contender["less_to"].length >= 1) {
+            inf_1++;
+          }
+          if (contender["less_to"].length >= 2) {
+            inf_2++;
+          }
+          if (contender["less_to"].length >= 3) {
+            inf_3++;
+          }
+        });
+    
+        const current_step = Math.round(
+          inf_1 * fact_inf_1 + inf_2 * fact_inf_2 + inf_3 * fact_inf_3
+        );
+    
+        return current_step;
+      } else {
+        list_contenders.forEach((contender) => {
+          counter +=
+            contender["more_to"].length + contender["less_to"].length;
+        });
+        const current_step = Math.round(
+          (counter * 100) / ((nb_contenders - 1) * nb_contenders)
+        );
+    
+        return current_step;
       }
-
-      return currentStep;
     }
 
     function do_vote(idWinner, idLooser) {
-
-      let alreadySupTo = [];
-      let alreadyInfTo = [];
-      let listContenders = contenders;
-
-      let listSupToL = [];
-      let listInfToV = [];
+      let listContenders = contenders,
+          alreadySupTo   = [],
+          alreadyInfTo   = [],
+          listSupToL     = [],
+          listInfToV     = [];
 
       listContenders.forEach((contender, key) => {
         if (contender.more_to.includes(idWinner)) {
-          alreadySupTo.push(idWinner);
+          alreadySupTo.push(contender.id_wp);
         }
         if (contender.less_to.includes(idLooser)) {
-          alreadyInfTo.push(idLooser);
+          alreadyInfTo.push(contender.id_wp);
         }
       });
 
       if (idWinner) {
         alreadySupTo.push(idWinner);
 
-        // console.log("idLooser : ", idLooser)
         listSupToL = contenders.find(item => item.id_wp == idLooser).more_to;
-        // console.log("listSupToL after  : ", listSupToL)
 
         if (timelineMain === 1) {
           listWR.push(idWinner);
@@ -254,10 +295,7 @@ launchTopListBtns.forEach(btn => {
 
         toUpSupTo.push(idLooser);
 
-        // console.log("listSupToL : ", listSupToL)
-        // console.log("toUpSupTo : ", toUpSupTo)
         let totalSupTo = [...listSupToL, ...toUpSupTo];
-        // console.log("totalSupTo : ", totalSupTo)
         contenders.find(item => item.id_wp == k).more_to = [...new Set(totalSupTo)];
 
         let countSupOf = contenders.find(item => item.id_wp == k).more_to.length;
@@ -275,10 +313,7 @@ launchTopListBtns.forEach(btn => {
 
         toUpInfTo.push(idWinner);
 
-        console.log("listInfToV : ", listInfToV)
-        console.log("toUpInfTo : ", toUpInfTo)
         let totalInfTo = [...listInfToV, ...toUpInfTo];
-        console.log("totalInfTo : ", totalInfTo)
         contenders.find(item => item.id_wp == k).less_to = [...new Set(totalInfTo)];
 
         let countSupOf = contenders.find(item => item.id_wp == k).more_to.length;
@@ -294,25 +329,20 @@ launchTopListBtns.forEach(btn => {
       contenders = listContenders;
 
       timelineVotes++;
-
-      // console.log("timelineVotes", timelineVotes)
-      // console.log("timeline Main", timelineMain)
     }
 
     function check_battle_2(contenders, list) {
-      let list_contenders = contenders;
-      let list_inf_of_c1  = [];
-      let list_inf_of_c2  = [];
-      let list_sup_of_c1  = [];
-      let list_sup_of_c2  = [];
-      let battle          = false;
-      let nb_list         = list.length;
-      let nextDuel        = [];
-      let key_c1, key_c1_wp;
-      let key_c2, key_c2_wp;
+      let list_contenders = contenders,
+          list_inf_of_c1  = [],
+          list_inf_of_c2  = [],
+          list_sup_of_c1  = [],
+          list_sup_of_c2  = [],
+          battle          = false,
+          nb_list         = list.length,
+          nextDuel        = [],
+          key_c1, key_c1_wp,
+          key_c2, key_c2_wp;
 
-      // console.log(list, "LISTE SUR CHECK BATTLE 2")
-    
       for(let m = 0; m < nb_list; m++) {
     
         if(!battle) {
@@ -355,18 +385,16 @@ launchTopListBtns.forEach(btn => {
     }
 
     function check_battle_4(contenders, list, spaire) {
-      let list_contenders = contenders;
-      let list_inf_of_c1  = [];
-      let list_inf_of_c2  = [];
-      let list_sup_of_c1  = [];
-      let list_sup_of_c2  = [];
-      let battle          = false;
-      let nb_list         = list.length;
-      let nextDuel        = [];
-      let key_c1, key_c1_wp;
-      let key_c2, key_c2_wp;
-
-      // console.log("LIST WINNERZ", list)
+      let list_contenders = contenders,
+          list_inf_of_c1  = [],
+          list_inf_of_c2  = [],
+          list_sup_of_c1  = [],
+          list_sup_of_c2  = [],
+          battle          = false,
+          nb_list         = list.length,
+          nextDuel        = [],
+          key_c1, key_c1_wp,
+          key_c2, key_c2_wp;
 
       for(let m = 0; m < nb_list; m++) {
     
@@ -375,7 +403,6 @@ launchTopListBtns.forEach(btn => {
           for (let i = 0; i < list_contenders.length; i++) {
             let contender = list_contenders[i];
           
-            // console.log(((timelineVotes + 1) - spaire) - nb_list, "-- SEARCH C1 ->", contender.id_wp)
             if (contender.id_wp == list[((timelineVotes + 1) - spaire) - nb_list]) {
               key_c1 = contender.id;
               key_c1_wp = contender.id_wp;
@@ -383,7 +410,6 @@ launchTopListBtns.forEach(btn => {
               list_sup_of_c1 = contender.less_to;
             }
 
-            // console.log(((timelineVotes + 2) - spaire) - nb_list, "-- SEARCH C2 ->", contender.id_wp)
             if (contender.id_wp == list[((timelineVotes + 2) - spaire) - nb_list]) {
               key_c2 = contender.id;
               key_c2_wp = contender.id_wp;
@@ -395,10 +421,6 @@ launchTopListBtns.forEach(btn => {
           let c1_less_more = list_inf_of_c1.concat(list_sup_of_c1);
           let c2_less_more = list_inf_of_c2.concat(list_sup_of_c2);
 
-          // console.log(key_c1, "key_c1", key_c2, "key_c2")
-          // console.log(key_c1_wp, "key_c1_wp", key_c2_wp, "key_c2_wp")
-          // console.log(c1_less_more, "c1_less_more", c2_less_more, "c2_less_more")
-    
           if(c2_less_more.includes(key_c1) || c1_less_more.includes(key_c2) || (key_c1 == key_c2)) {
             battle = false;
             timelineVotes++;
@@ -420,8 +442,6 @@ launchTopListBtns.forEach(btn => {
       let list_contenders = contenders
       list_contenders = list_contenders.sort((a, b) => a.ratio - b.ratio);
 
-      console.log(list_contenders, "sorted");
-    
       let list = list_contenders;
       let list_inf_of_c1 = [];
       let list_inf_of_c2 = [];
@@ -459,10 +479,6 @@ launchTopListBtns.forEach(btn => {
                 let c1_less_more = list_inf_of_c1.concat(list_sup_of_c1);
                 let c2_less_more = list_inf_of_c2.concat(list_sup_of_c2);
 
-                // console.log(key_c1, "key_c1", key_c2, "key_c2")
-                // console.log(key_c1_wp, "key_c1_wp", key_c2_wp, "key_c2_wp")
-                // console.log(c1_less_more, "c1_less_more", c2_less_more, "c2_less_more")
-    
                 if (c2_less_more.includes(key_c1_wp) || c1_less_more.includes(key_c2_wp) || (key_c1 == key_c2)) {
                     battle = false;
                 } else {
@@ -501,7 +517,6 @@ launchTopListBtns.forEach(btn => {
         if (timelineMain === 1) {
 
           if (timelineVotes === halfInf) {
-            console.log(timelineVotes, halfInf)
             timelineMain = 2;
           } else {
             let keyC1 = nbContenders - (1 + timelineVotes);
@@ -509,8 +524,6 @@ launchTopListBtns.forEach(btn => {
 
             nextDuel.push(contenders.find(item => item.id == keyC1).id_wp);
             nextDuel.push(contenders.find(item => item.id == keyC2).id_wp);
-
-            console.log("keyC1", keyC1, "keyC2", keyC2);
           }
 
         }
@@ -527,8 +540,6 @@ launchTopListBtns.forEach(btn => {
             let keyC2 = listInf1[random - 1];
             nextDuel.push(keyC1);
             nextDuel.push(keyC2);
-
-            // console.log("keyC1", keyC1, "keyC2", keyC2);
           }
         }
 
@@ -562,9 +573,8 @@ launchTopListBtns.forEach(btn => {
             nextDuel.push(keyC2);
           }
         }
-      } else {
-        // TOP COMPLET
-
+      } else if(typeTop === "complet")  {
+        
         if (nbContenders >= 10) {
           if (timelineVotes === nbContenders - 5) {
             timelineMain = 2;
@@ -591,8 +601,6 @@ launchTopListBtns.forEach(btn => {
           nextDuel = [];
           nextDuel = check_battle_2(contenders, listLR);
 
-          // console.log(nextDuel, "Next duel")
-
           if (nextDuel.some(item => item === undefined)) {
             timelineMain = 3;
           }
@@ -606,7 +614,6 @@ launchTopListBtns.forEach(btn => {
           for (let key in contenders) {
               let contender = contenders[key];
       
-              // console.log(listLR[nb_loosers], listWR[listWR.length - spaire])
               if (contender.id_wp == listLR[listWR.length - spaire]) {
                   key_c1 = key;
                   key_c1_wp = String(contender.id_wp);
@@ -614,7 +621,6 @@ launchTopListBtns.forEach(btn => {
                   list_sup_of_c1 = contender.less_to;
               }
               
-              // console.log(listWR, listWR[listWR.length - spaire])
               if (contender.id_wp == listWR[nb_loosers]) {
                   key_c2 = key;
                   key_c2_wp = String(contender.id_wp);
@@ -623,25 +629,15 @@ launchTopListBtns.forEach(btn => {
               }
           }
       
-          // console.log(listWR.length - spaire, "listWR.length - spaire");
-          // console.log(listWR.length, "listWR.length");
-
           let c1_less_more = list_inf_of_c1.concat(list_sup_of_c1);
           let c2_less_more = list_inf_of_c2.concat(list_sup_of_c2);
 
-          // console.log(key_c1_wp, key_c2_wp, "key_c1_wp, key_c2_wp")
-          // console.log(c1_less_more, "c1_less_more", c2_less_more, "c2_less_more")
-          // console.log("spaire", spaire)
           if (c2_less_more.includes(key_c1_wp) || c1_less_more.includes(key_c2_wp) || (key_c1 == key_c2)) {
               timelineMain = 4;
           } else {
-              // nextDuel = [];
-              console.log(key_c1_wp, key_c2_wp);
-
               nextDuel.push(key_c1_wp);
               nextDuel.push(key_c2_wp);
           }
-          console.log(nextDuel)
         }
 
         if (timelineMain === 4) {
@@ -649,25 +645,18 @@ launchTopListBtns.forEach(btn => {
           nextDuel = [];
           nextDuel = check_battle_4(contenders, listWR, spaire);
 
-          // console.log(nextDuel, "nextDuel timeline 4")
-        
           if (nextDuel.some(item => item === undefined)) {
 
-            console.log("nextDuel.some(item => item === undefined)")
-        
             timelineMain = 5;
 
             nextDuel = [];
             nextDuel = check_battle_5(contenders);
         
-            if (nextDuel.some(item => item === undefined)) {
+            if (nextDuel.some(item => item === undefined) || nextDuel.some(item => isNaN(item))) {
 
               console.log("FINISH TIMELINE MAIN 4")
         
-              let is_nextDuel = false;
-              if (!get_field('done_r', id_ranking)) {
-                finish_the_top(id_ranking, current_id_vainkeur, id_top, nbContenders);
-              }
+              isNextDuel = false;
             }
           }
 
@@ -680,47 +669,39 @@ launchTopListBtns.forEach(btn => {
           nextDuel = [];
           nextDuel = check_battle_5(contenders);
       
-          if (nextDuel.some(item => item === undefined)) {
+          if (nextDuel.some(item => item === undefined) || nextDuel.some(item => isNaN(item))) {
 
             console.log("FINISH TIMELINE MAIN 5")
 
-            console.log(contenders)
-      
-            let is_nextDuel = false;
-            if (!get_field('done_r', id_ranking)) {
-              finish_the_top(id_ranking, current_id_vainkeur, id_top, nbContenders);
-            }
+            isNextDuel = false;
           }
         }
           
         if (timelineMain === 6) {
 
           timelineMain = 6;
-          update_field('timelineMain', 6, id_ranking);
       
-          let key_c_1 = nbContenders - (2 + timelineVotes);
-          let key_c_2 = nbContenders - (1 + timelineVotes);
-      
-          nextDuel.push(list_contenders[key_c_1]['id_wp']);
-          nextDuel.push(list_contenders[key_c_2]['id_wp']);
+          let keyC1 = nbContenders - (2 + timelineVotes);
+          let keyC2 = nbContenders - (1 + timelineVotes);
+
+          nextDuel.push(contenders.find(item => item.id == keyC1).id_wp);
+          nextDuel.push(contenders.find(item => item.id == keyC2).id_wp);
         }
       
         if (timelineMain === 7) {
       
           timelineMain = 7;
-          update_field('timelineMain', 7, id_ranking);
       
-          nextDuel = check_battle_5(id_ranking);
+          nextDuel = [];
+          nextDuel = check_battle_5(contenders);
       
-          if (nextDuel.length !== 2) {
+          if (nextDuel.some(item => item === undefined) || nextDuel.some(item => isNaN(item))) {
+
+            console.log("FINISH TIMELINE MAIN 7")
       
-            let is_nextDuel = false;
-            if (!get_field('done_r', id_ranking)) {
-              finish_the_top(id_ranking, current_id_vainkeur, id_top, nbContenders);
-            }
+            isNextDuel = false;
           }
         }
-        
       }
 
       if (isNextDuel) {
@@ -730,24 +711,35 @@ launchTopListBtns.forEach(btn => {
         contender2 = nextDuel[val2];
       }
       else {
-        
-        const ranking = [];
-        contenders.sort((a, b) => (a.place < b.place) ? 1 : -1);
-        contenders.forEach((c) => {
-          if (ranking.length < 3) ranking.push(c.id_wp);
-          
-        });
 
-        // apiCreateRanking(ID_TOP, ranking, timelineVotes).then(function (r) {
-        //   setTimeout(() => {
-        //     window.location = BASE_RELPATH + "/result/?r=" + r.public_id;
-        //   }, 2000);
+        console.log("C'EST FINI !!!", contenders)
+        
+        // const ranking = [];
+        // contenders.sort((a, b) => (a.place < b.place) ? 1 : -1);
+
+        // contenders.forEach((c) => {
+        //   if (ranking.length < 3) ranking.push(c.id_wp);
+          
         // });
+
+        contenders = listContenders;
+
+        $.ajax({
+          method: "POST",
+          url: vkrz_ajaxurl,
+          data: {
+            action: "save_ranking",
+            ranking: contenders,
+            id_ranking: TOP.id_ranking
+          },
+        })
+        .done(function( msg ) {
+          console.log(msg);
+          window.location.replace(TOP.url_ranking);
+        });
       }
 
-      let currentStep = get_steps(timelineVotes);
-
-      contenders = listContenders;
+      let currentStep = get_steps(contenders);
 
       return {
         isNextDuel,
@@ -755,12 +747,7 @@ launchTopListBtns.forEach(btn => {
         contender2,
         timelineMain,
         timelineVotes,
-        // currentStep,
-        // nbUserVotes,
-        // nbContenders,
-        // idTop,
-        // idRanking,
-        // userId
+        currentStep,
       };
     }
 

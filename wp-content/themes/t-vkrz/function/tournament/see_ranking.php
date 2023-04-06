@@ -1,6 +1,6 @@
 <?php
 function get_user_ranking($id_ranking, $dimension = false){
-
+    
     $list_contenders = get_field('ranking_r', $id_ranking);
     $typetop         = get_field('type_top_r', $id_ranking);
     $result          = array();
