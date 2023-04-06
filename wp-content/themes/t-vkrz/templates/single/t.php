@@ -154,7 +154,7 @@ get_header();
                   <div class="choosecta flex-row-reverse">
                     <?php if ($type_top != "sponso") : ?>
                       <div class="cta-begin cta-complet">
-                        <a href="#" id="begin_t" data-typetop="complet" data-top="<?php echo $id_top; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-uuiduser="<?php echo $uuid_vainkeur; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-rose waves-effect waves-float waves-light laucher_t">
+                        <a href="#" id="begin_t" data-typetop="complet" data-top="<?php echo $id_top; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-uuiduser="<?php echo $uuid_vainkeur; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-rose waves-effect waves-float waves-light laucher_t begin_t_js">
                           <i class="fab fa-twitch twitch-icon-tbegin d-none"></i>&nbsp;
                           Lancer le Top complet
                         </a>
@@ -172,7 +172,7 @@ get_header();
                       </div>
                     <?php endif; ?>
                     <div class="cta-begin cta-top3">
-                      <a href="#" id="begin_top3" data-typetop="top3" data-top="<?php echo $id_top; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-uuiduser="<?php echo $uuid_vainkeur; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-rose waves-effect waves-float waves-light laucher_t">
+                      <a href="#" id="begin_top3" data-typetop="top3" data-top="<?php echo $id_top; ?>" data-id_vainkeur="<?php echo $id_vainkeur; ?>" data-uuiduser="<?php echo $uuid_vainkeur; ?>" class="w-100 animate__jello animate__animated animate__delay-1s btn btn-max btn-rose waves-effect waves-float waves-light laucher_t begin_t_js">
                         <i class="fab fa-twitch twitch-icon-tbegin d-none"></i>&nbsp;
                         <?php if ($type_top == "sponso") : ?>
                           Participer au Top sponso
@@ -460,7 +460,7 @@ get_header();
                                 <div class="illu">
                                   <img id="cover_contender_1" src="" alt="" class="img-fluid contender-1-votes-twitch">
                                 </div>
-                                <h2 id="name_contender_2" class="title-contender"></h2>
+                                <h2 id="name_contender_1" class="title-contender"></h2>
                               </div>
                           </div>
                           <!-- get_field('lien_vers_contender', $contender_1)/ -->

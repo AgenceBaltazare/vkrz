@@ -76,16 +76,12 @@ function init_new_classement ($data) {
     update_field('id_tournoi_r', $id_top, $id_ranking);
     update_field('ranking_r', $list_contenders, $id_ranking);
 
-    array_push(
-      $classement_array,
-      array(
-        'id_ranking' => $id_ranking,
-        'url_ranking' => get_the_permalink($id_ranking),
-        'ranking'    => $list_contenders
-      )
+    return array(
+      'state'       => 'Nouveau classement créé',
+      'id_ranking' => $id_ranking,
+      'url_ranking' => get_the_permalink($id_ranking),
+      'ranking'    => $list_contenders
     );
-
-    return $classement_array;
   }
   else{
     return array(
