@@ -15,7 +15,17 @@ launchTopListBtns.forEach(btn => {
 
   btn.addEventListener('click', async (e) => {
 
-    const TOP = await fetchDataFuncHelper(`http://localhost:8888/vkrz/wp-json/vkrz/v1/initclassement/${id_top}/${id_user}/`);
+    const typetop = e.target.dataset.typetop;
+
+    console.log("id_top", id_top);
+    console.log('typetop', typetop);
+    console.log("iduser", iduser);
+    console.log("uuiduser", uuiduser);
+    console.log('id_vainkeur', id_vainkeur);
+
+    const TOP = await fetchDataFuncHelper(
+      `http://localhost:8888/vkrz/wp-json/vkrz/v1/initclassement/${id_top}/${iduser}/${uuiduser}/${id_vainkeur}/${typetop}/`
+    );
 
     console.log(TOP)
     // const TOP = {
@@ -712,6 +722,7 @@ launchTopListBtns.forEach(btn => {
       }
       else {
 
+        document.getElementById("waiter-toplist").style.display = "block";
         console.log("C'EST FINI !!!", contenders)
         
         // const ranking = [];
@@ -730,7 +741,8 @@ launchTopListBtns.forEach(btn => {
           data: {
             action: "save_ranking",
             ranking: contenders,
-            id_ranking: TOP.id_ranking
+            id_ranking: TOP.id_ranking,
+            nbvotes: timelineVotes
           },
         })
         .done(function( msg ) {

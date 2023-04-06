@@ -11,12 +11,15 @@ add_action('rest_api_init', function () {
   ));
 
   // Init classement 
-  register_rest_route('vkrz/v1', '/initclassement/(?P<id_top>\w+)/(?P<id_user>\w+)', array(
+  register_rest_route('vkrz/v1', '/initclassement/(?P<id_top>\w+)/(?P<iduser>\w+)/(?P<uuiduser>\w+)/(?P<id_vainkeur>\w+)/(?P<typetop>\w+)', array(
     'methods' => 'GET',
     'callback' => 'init_new_classement',
     'args' => [
       'id_top',
-      'id_user'
+      'iduser',
+      'uuiduser',
+      'id_vainkeur',
+      'typetop',
     ]
   ));
   

@@ -1,5 +1,5 @@
 <?php
-function begin_t($id_top, $uuiduser, $typetop, $id_vainkeur)
+function begin_t($id_top, $iduser, $uuiduser, $typetop, $id_vainkeur)
 {
 
     $utm = "";
@@ -20,10 +20,6 @@ function begin_t($id_top, $uuiduser, $typetop, $id_vainkeur)
         'samesite' => 'Lax'
     );
     setcookie("wordpress_vainkeur_ready_to_be_create_cookie", $uuiduser, $arr_cookie_options);
-
-    if(is_user_logged_in()){
-        $id_vainkeur = get_vainkeur_id_by_author();
-    }
 
     if(!$id_vainkeur){
         $new_vainkeur_entry = array(
@@ -73,50 +69,73 @@ function begin_t($id_top, $uuiduser, $typetop, $id_vainkeur)
         delete_transient('user_' . get_current_user_id() . '_get_user_tops');
     }
 
-    // Création d'un CPT classement
+  // Création d'un CPT classement
+  $classement = new WP_Query(array(
+    'ignore_sticky_posts'     => true,
+    'update_post_meta_cache'  => false,
+    'no_found_rows'           => true,
+    'post_type'               => 'classement',
+    'posts_per_page'          => 1,
+    'meta_query' => array(
+      'relation' => 'AND',
+      array(
+        'key'     => 'id_tournoi_r',
+        'value'   => $id_top,
+        'compare' => '=',
+      ),
+      array(
+        'key'     => 'uuid_user_r',
+        'value'   => $uuiduser,
+        'compare' => '=',
+      ),
+    ),
+  ));
+  if (!$classement->have_posts()) {
     $new_ranking = array(
-        'post_type'   => 'classement',
-        'post_title'  => $title_rank,
-        'post_status' => 'publish',
+      'post_type'   => 'classement',
+      'post_title'  => $title_rank,
+      'post_status' => 'publish',
+      'post_author' => $iduser,
     );
     $id_ranking  = wp_insert_post($new_ranking);
 
     $list_contenders = array();
 
     $contenders = new WP_Query(
-        array(
-            'post_type'      => 'contender',
-            'posts_per_page' => -1,
-            'meta_key'       => 'ELO_c',
-            'orderby'        => 'meta_value_num',
-            'order'          => 'DESC',
-            'ignore_sticky_posts'    => true,
-            'update_post_meta_cache' => false,
-            'no_found_rows'          => true,
-            'meta_query'     => array(
-                array(
-                    'key'     => 'id_tournoi_c',
-                    'value'   => $id_top,
-                    'compare' => '=',
-                )
-            )
+      array(
+        'post_type'      => 'contender',
+        'posts_per_page' => -1,
+        'meta_key'       => 'ELO_c',
+        'orderby'        => 'meta_value_num',
+        'order'          => 'DESC',
+        'ignore_sticky_posts'    => true,
+        'update_post_meta_cache' => false,
+        'no_found_rows'          => true,
+        'meta_query'     => array(
+          array(
+            'key'     => 'id_tournoi_c',
+            'value'   => $id_top,
+            'compare' => '=',
+          )
         )
+      )
     );
     $i = 0;
     while ($contenders->have_posts()) : $contenders->the_post();
 
-        array_push($list_contenders, array(
-            "id"                => $i,
-            "id_wp"             => get_the_ID(),
-            "elo"               => get_field('ELO_c'),
-            "c_name"            => get_the_title(),
-            "more_to"           => array(),
-            "less_to"           => array(),
-            "place"             => 0,
-            "ratio"             => 0,
-        ));
+      array_push($list_contenders, array(
+        "id"                => $i,
+        "id_wp"             => get_the_ID(),
+        "elo"               => get_field('ELO_c'),
+        "c_name"            => get_the_title(),
+        "cover"             => get_the_post_thumbnail_url(get_the_ID(), 'full'),
+        "more_to"           => array(),
+        "less_to"           => array(),
+        "place"             => 0,
+        "ratio"             => 0,
+      ));
 
-        $i++;
+      $i++;
     endwhile;
 
     wp_set_post_terms($id_ranking, $type_top, 'type');
@@ -133,13 +152,28 @@ function begin_t($id_top, $uuiduser, $typetop, $id_vainkeur)
     update_field('utm_campaign_r', $utm, $id_ranking);
 
     if (is_user_logged_in()) {
-        global $user_id;
-        if ($user_id && !get_field('uuiduser_user', 'user_' . $user_id) && $uuiduser) {
-            update_field('uuiduser_user', $uuiduser, 'user_' . $user_id);
-        }
+      global $user_id;
+      if ($user_id && !get_field('uuiduser_user', 'user_' . $user_id) && $uuiduser) {
+        update_field('uuiduser_user', $uuiduser, 'user_' . $user_id);
+      }
     }
 
     increase_top_resume($id_ranking, 'new');
-
-    return $id_ranking;
+    return array(
+      'state'       => 'Nouveau classement créé',
+      'id_ranking' => $id_ranking,
+      'url_ranking' => get_the_permalink($id_ranking),
+      'ranking'    => $list_contenders,
+      'author'      => $iduser
+    );
+  }
+  else{
+    return array(
+      'state'       => 'Vous avez déjà un classement',
+      'author'      => $iduser,
+      'id_ranking'  => $classement->posts[0]->ID,
+      'url_ranking' => get_the_permalink($classement->posts[0]->ID),
+      'ranking'     => get_field('ranking_r', $classement->posts[0]->ID)
+    );
+  }
 }
