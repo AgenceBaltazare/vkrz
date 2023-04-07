@@ -206,7 +206,7 @@ if(document.querySelector('.classement')) {
 
   setTimeout(async () => {
     const rankingQuery = query(
-      collection(database, "wpClassement"),
+      collection(database, "topLists"),
       where("ID", "==", +idRanking),
     );
     const rankingQuerySnapshot = await getDocs(rankingQuery);
@@ -216,8 +216,8 @@ if(document.querySelector('.classement')) {
         eloArr     = [],
         myTypeTopRanking;
     rankingQuerySnapshot.forEach(ranking => {
-      rankingArr = sortContendersFuncHelper(ranking.data().custom_fields.ranking_r);
-      myTypeTopRanking = ranking.data().custom_fields.type_top_r;
+      rankingArr = sortContendersFuncHelper(ranking.data().ranking_r);
+      myTypeTopRanking = ranking.data().type_top_r;
     });
 
     let top3 = false;
@@ -228,7 +228,7 @@ if(document.querySelector('.classement')) {
         const documentReference = doc(database, "wpContender", (contender.id_wp).toString());
         const documentSnap      = await getDoc(documentReference);
     
-        eloArr.push({place: index, elo: +documentSnap.data().custom_fields.ELO_c, id_wp: contender.id_wp})
+        eloArr.push({place: index, elo: +documentSnap.data().ELO_c, id_wp: contender.id_wp})
     
         eloArr = eloArr.sort((a, b) => b.elo - a.elo)
         eloArr.forEach((contender, index) => contender.place = index);
@@ -249,7 +249,7 @@ if (document.querySelector(".vs-resemblance")) {
   const topUrl          = cardResemblance.dataset.topurl;
 
   const rankingQuery = query(
-    collection(database, "wpClassement"),
+    collection(database, "topLists"),
     where("ID", "==", +idRanking),
   );
   const rankingQuerySnapshot = await getDocs(rankingQuery);
@@ -257,10 +257,10 @@ if (document.querySelector(".vs-resemblance")) {
   if (rankingQuerySnapshot._snapshot.docs.size === 1) {
     // CHECK IF I ALREADY DID THE RANKING…
     const myRankingQuery = query(
-      collection(database, "wpClassement"),
-      where("custom_fields.id_tournoi_r", "==", idTop),
-      where("custom_fields.uuid_user_r", "==", currentUuid),
-      where("custom_fields.done_r", "==", "done")
+      collection(database, "topLists"),
+      where("id_tournoi_r", "==", idTop),
+      where("uuid_user_r", "==", currentUuid),
+      where("done_r", "==", "done")
     );
     const myRankingQuerySnapshot = await getDocs(myRankingQuery);
 
@@ -271,24 +271,24 @@ if (document.querySelector(".vs-resemblance")) {
       let myRankingArr = [],
           myRankingUrl;
       myRankingQuerySnapshot.forEach((ranking) => {
-        myRankingArr = sortContendersFuncHelper(ranking.data().custom_fields.ranking_r);
+        myRankingArr = sortContendersFuncHelper(ranking.data().ranking_r);
         myRankingUrl = ranking.data().permalink;
 
-        myTypeTopRanking = ranking.data().custom_fields.type_top_r;
+        myTypeTopRanking = ranking.data().type_top_r;
       });
 
       // GET THE RANKING OF THE OTHER VAINKEUR FROM FIRESTORE…
-      const rankingQuery = doc(database, "wpClassement", idRanking);
+      const rankingQuery = doc(database, "topLists", idRanking);
       const rankingQuerySnapshot = await getDoc(rankingQuery);
 
       if (rankingQuerySnapshot.exists()) {
         // FOUND IN FIRESTORE…
         let othersRankingArr = [];
         othersRankingArr = sortContendersFuncHelper(
-          rankingQuerySnapshot.data().custom_fields.ranking_r
+          rankingQuerySnapshot.data().ranking_r
         );
         otherTypeTopRanking =
-          rankingQuerySnapshot.data().custom_fields.type_top_r;
+          rankingQuerySnapshot.data().type_top_r;
 
         // CHECK IF WE HAVE THE SAME TYPE TOP RANKING BEFORE COMPARE…
         let top3 = false;

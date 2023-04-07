@@ -496,18 +496,18 @@ $(document).ready(function ($) {
                     (async function () {
                       // CHECK IF THE FRIEND ALREADY PASSED THE TOP OR NOT…
                       const didRankingQuery = query(
-                        collection(database, "wpClassement"),
+                        collection(database, "topLists"),
                         where(
-                          "custom_fields.uuid_user_r",
+                          "uuid_user_r",
                           "==",
                           friend["uuid"]
                         ),
                         where(
-                          "custom_fields.id_tournoi_r",
+                          "id_tournoi_r",
                           "==",
                           vkrz_tracking_vars_top.top_id_top_layer.toString()
                         ),
-                        where("custom_fields.done_r", "==", "done")
+                        where("done_r", "==", "done")
                       );
                       const didRankingQuerySnapshot = await getDocs(
                         didRankingQuery
@@ -520,7 +520,7 @@ $(document).ready(function ($) {
                         let contenders;
                         didRankingQuerySnapshot.forEach((ranking) => {
                           contenders = sortContendersFuncHelper(
-                            ranking.data().custom_fields.ranking_r
+                            ranking.data().ranking_r
                           );
 
                           // DEFINE WHICH CASE, SAME RANKING OR NOT…

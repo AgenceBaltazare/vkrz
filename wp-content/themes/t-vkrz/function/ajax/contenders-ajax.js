@@ -2,6 +2,8 @@ import {
   collection,
   getDocs,
   addDoc,
+  setDoc,
+  doc,
   query,
   where,
   database,
@@ -24,8 +26,8 @@ launchTopListBtns.forEach(btn => {
     console.log('id_vainkeur', id_vainkeur);
 
     const TOP = await fetchDataFuncHelper(
-      `https://proto.vainkeurz.com/wp-json/vkrz/v1/initclassement/${id_top}/${iduser}/${uuiduser}/${id_vainkeur}/${typetop}/`
-      // `http://localhost:8888/vkrz/wp-json/vkrz/v1/initclassement/${id_top}/${iduser}/${uuiduser}/${id_vainkeur}/${typetop}/`
+      // `https://proto.vainkeurz.com/wp-json/vkrz/v1/initclassement/${id_top}/${iduser}/${uuiduser}/${id_vainkeur}/${typetop}/`
+      `http://localhost:8888/vkrz/wp-json/vkrz/v1/initclassement/${id_top}/${iduser}/${uuiduser}/${id_vainkeur}/${typetop}/`
     );
 
     console.log(TOP)
@@ -746,9 +748,37 @@ launchTopListBtns.forEach(btn => {
             nbvotes: timelineVotes
           },
         })
-        .done(function( msg ) {
-          console.log(msg);
-          window.location.replace(TOP.url_ranking);
+        .done(async function( msg ) {
+
+          console.log({
+            done_r: "done",
+            id_tournoi_r: String(id_top),
+            id_vainkeur_r: String(id_vainkeur),
+            nb_votes_r: String(timelineVotes),
+            timeline_main: String(timelineMain),
+            ranking_r: contenders,
+            uuid_user_r: uuiduser
+          })
+
+          console.log()
+
+          try {
+            await setDoc(doc(database, "topLists", String(TOP.id_ranking)), {
+              done_r: "done",
+              id_tournoi_r: id_top,
+              id_vainkeur_r: id_vainkeur,
+              nb_votes_r: timelineVotes,
+              timeline_main: timelineMain,
+              ranking_r: contenders,
+              uuid_user_r: uuiduser
+            });
+            console.log("Document successfully written!")
+            console.log(msg);
+            window.location.replace(TOP.url_ranking);
+          } catch (error) {
+            console.error("Error adding document: ", error);
+          }
+          
         });
       }
 

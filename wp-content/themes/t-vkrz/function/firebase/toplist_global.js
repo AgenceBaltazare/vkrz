@@ -226,10 +226,10 @@ let nombrePages = getNombrePages.nb_pages,
 
         // GET ACTUAL USER RANKING…
         const actualUserRankingQuery = query(
-          collection(database, "wpClassement"),
-          where("custom_fields.id_tournoi_r", "==", idTop),
-          where("custom_fields.done_r", "==", "done"),
-          where("custom_fields.uuid_user_r", "==", currentUuid)
+          collection(database, "topLists"),
+          where("id_tournoi_r", "==", idTop),
+          where("done_r", "==", "done"),
+          where("uuid_user_r", "==", currentUuid)
         );
         const actualUserRankingQuerySnapshot = await getDocs(
           actualUserRankingQuery
@@ -243,8 +243,8 @@ let nombrePages = getNombrePages.nb_pages,
             eloArr       = [],
             myTypeTopRankingMondiale;
           actualUserRankingQuerySnapshot.forEach(ranking => {
-            rankingArr = sortContendersFuncHelper(ranking.data().custom_fields.ranking_r)
-            myTypeTopRankingMondiale = ranking.data().custom_fields.type_top_r;
+            rankingArr = sortContendersFuncHelper(ranking.data().ranking_r)
+            myTypeTopRankingMondiale = ranking.data().type_top_r;
           });
 
           let top3Mondiale = false;
@@ -255,7 +255,7 @@ let nombrePages = getNombrePages.nb_pages,
                 const documentReference = doc(database, "wpContender", (contender.id_wp).toString());
                 const documentSnap      = await getDoc(documentReference);
 
-                eloArr.push({place: index, elo: +documentSnap.data().custom_fields.ELO_c, id_wp: contender.id_wp})
+                eloArr.push({place: index, elo: +documentSnap.data().ELO_c, id_wp: contender.id_wp})
 
                 eloArr = eloArr.sort((a, b) => b.elo - a.elo)
                 eloArr.forEach((contender, index) => contender.place = index);
@@ -273,16 +273,16 @@ let nombrePages = getNombrePages.nb_pages,
           let myContenders = [];
           actualUserRankingQuerySnapshot.forEach((ranking) => {
             myContenders = sortContendersFuncHelper(
-              ranking.data().custom_fields.ranking_r
+              ranking.data().ranking_r
             );
-            myTypeTopRanking = ranking.data().custom_fields.type_top_r;
+            myTypeTopRanking = ranking.data().type_top_r;
           });
 
           // USERS RANKS…
           const usersRanksQuery = query(
-            collection(database, "wpClassement"),
-            where("custom_fields.id_tournoi_r", "==", idTop),
-            where("custom_fields.done_r", "==", "done")
+            collection(database, "topLists"),
+            where("id_tournoi_r", "==", idTop),
+            where("done_r", "==", "done")
           );
           const usersRanksQuerySnapshot = await getDocs(usersRanksQuery);
           console.log(
@@ -292,11 +292,11 @@ let nombrePages = getNombrePages.nb_pages,
 
           let index = 0;
           usersRanksQuerySnapshot.forEach((ranking) => {
-            let uuid = ranking.data().custom_fields.uuid_user_r,
+            let uuid = ranking.data().uuid_user_r,
               contenders = [];
-            contenders = sortContendersFuncHelper(ranking.data().custom_fields.ranking_r);
+            contenders = sortContendersFuncHelper(ranking.data().ranking_r);
 
-            otherTypeTopRanking = ranking.data().custom_fields.type_top_r;
+            otherTypeTopRanking = ranking.data().type_top_r;
 
             let row = document.querySelector(`.uuid${uuid}`);
 
