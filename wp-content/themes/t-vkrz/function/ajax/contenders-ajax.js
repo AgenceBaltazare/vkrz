@@ -25,6 +25,7 @@ launchTopListBtns.forEach(btn => {
 
     const TOP = await fetchDataFuncHelper(
       `https://proto.vainkeurz.com/wp-json/vkrz/v1/initclassement/${id_top}/${iduser}/${uuiduser}/${id_vainkeur}/${typetop}/`
+      // `http://localhost:8888/vkrz/wp-json/vkrz/v1/initclassement/${id_top}/${iduser}/${uuiduser}/${id_vainkeur}/${typetop}/`
     );
 
     console.log(TOP)
@@ -599,6 +600,8 @@ launchTopListBtns.forEach(btn => {
 
         if (timelineMain === 1) {
 
+          nextDuel = [];      
+
           let keyC1 = nbContenders - (1 + timelineVotes);
           let keyC2 = nbContenders - (6 + timelineVotes);
 
@@ -617,6 +620,8 @@ launchTopListBtns.forEach(btn => {
         }
 
         if (timelineMain === 3) {
+
+          nextDuel = [];
           let nb_loosers = listLR.length - 1;
       
           let key_c1, key_c2, list_inf_of_c1, list_sup_of_c1, list_inf_of_c2, list_sup_of_c2, key_c1_wp, key_c2_wp;
@@ -645,8 +650,8 @@ launchTopListBtns.forEach(btn => {
           if (c2_less_more.includes(key_c1_wp) || c1_less_more.includes(key_c2_wp) || (key_c1 == key_c2)) {
               timelineMain = 4;
           } else {
-              nextDuel.push(key_c1_wp);
-              nextDuel.push(key_c2_wp);
+              nextDuel.push(+key_c1_wp);
+              nextDuel.push(+key_c2_wp);
           }
         }
 
@@ -674,8 +679,6 @@ launchTopListBtns.forEach(btn => {
 
         if (timelineMain === 5) {
 
-          timelineMain = 5;
-
           nextDuel = [];
           nextDuel = check_battle_5(contenders);
       
@@ -689,8 +692,8 @@ launchTopListBtns.forEach(btn => {
           
         if (timelineMain === 6) {
 
-          timelineMain = 6;
-      
+          nextDuel = [];      
+
           let keyC1 = nbContenders - (2 + timelineVotes);
           let keyC2 = nbContenders - (1 + timelineVotes);
 
@@ -699,9 +702,7 @@ launchTopListBtns.forEach(btn => {
         }
       
         if (timelineMain === 7) {
-      
-          timelineMain = 7;
-      
+            
           nextDuel = [];
           nextDuel = check_battle_5(contenders);
       
