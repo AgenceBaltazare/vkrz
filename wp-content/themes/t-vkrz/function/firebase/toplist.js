@@ -201,7 +201,7 @@ if(document.querySelector('#twitch-games-ranking')) {
 }
 
 // RESSEMBLANCE MONDIALE…
-if(document.querySelector('.classement')) {
+if(document.querySelector('.classementt')) {
   const idRanking = document.querySelector('.classement').dataset.idranking;
 
   setTimeout(async () => {

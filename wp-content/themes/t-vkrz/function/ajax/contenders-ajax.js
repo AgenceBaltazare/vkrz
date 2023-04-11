@@ -643,10 +643,6 @@ launchTopListBtns.forEach(btn => {
 
         if (timelineMain === 3) {
 
-          console.log("contenders.length : ", contenders.length)
-          console.log("contenders.length - spaire : ", contenders.length - spaire)
-          console.log("listLR[contenders.length - spaire] : ", listLR[contenders.length - spaire])
-
           nextDuel = [];
           let nb_loosers = listLR.length - 1;
       
@@ -774,20 +770,9 @@ launchTopListBtns.forEach(btn => {
         })
         .done(async function( msg ) {
 
-          console.log({
-            done_r: "done",
-            id_tournoi_r: String(id_top),
-            id_vainkeur_r: String(id_vainkeur),
-            nb_votes_r: String(timelineVotes),
-            timeline_main: String(timelineMain),
-            ranking_r: contenders,
-            uuid_user_r: uuiduser
-          })
-
-          console.log()
-
           try {
             await setDoc(doc(database, "topLists", String(TOP.id_ranking)), {
+              ID: +TOP.id_ranking,
               done_r: "done",
               id_tournoi_r: id_top,
               id_vainkeur_r: id_vainkeur,
