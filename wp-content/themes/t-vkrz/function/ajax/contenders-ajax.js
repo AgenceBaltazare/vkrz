@@ -30,7 +30,7 @@ launchTopListBtns.forEach(btn => {
       `http://localhost:8888/vkrz/wp-json/vkrz/v1/initclassement/${id_top}/${iduser}/${uuiduser}/${id_vainkeur}/${typetop}/`
     );
 
-    console.log(TOP)
+    // console.log(TOP)
     // const TOP = {
     //   "ranking": [
     //       {
@@ -99,61 +99,61 @@ launchTopListBtns.forEach(btn => {
     //           "place": 0,
     //           "ratio": 0
     //       },
-    //       // {
-    //       //     "id": 6,
-    //       //     "id_wp": 60,
-    //       //     "cover": "http://localhost:8888/vkrz/wp-content/uploads/2022/06/filon-300x200.png",
-    //       //     "elo": "1200",
-    //       //     "c_name": "numéro 6",
-    //       //     "more_to": [],
-    //       //     "less_to": [],
-    //       //     "place": 0,
-    //       //     "ratio": 0
-    //       // },
-    //       // {
-    //       //     "id": 7,
-    //       //     "id_wp": 70,
-    //       //     "cover": "http://localhost:8888/vkrz/wp-content/uploads/2022/06/sepra-300x200.png",
-    //       //     "elo": "1180",
-    //       //     "c_name": "numéro 7",
-    //       //     "more_to": [],
-    //       //     "less_to": [],
-    //       //     "place": 0,
-    //       //     "ratio": 0
-    //       // },
-    //       // {
-    //       //     "id": 8,
-    //       //     "id_wp": 80,
-    //       //     "cover": "http://localhost:8888/vkrz/wp-content/uploads/2022/06/repos-300x200.png",
-    //       //     "elo": "1168",
-    //       //     "c_name": "numéro 8",
-    //       //     "more_to": [],
-    //       //     "less_to": [],
-    //       //     "place": 0,
-    //       //     "ratio": 0
-    //       // },
-    //       // {
-    //       //     "id": 9,
-    //       //     "id_wp": 90,
-    //       //     "cover": "http://localhost:8888/vkrz/wp-content/uploads/2022/06/tol-300x200.png",
-    //       //     "elo": "1123",
-    //       //     "c_name": "numéro 9",
-    //       //     "more_to": [],
-    //       //     "less_to": [],
-    //       //     "place": 0,
-    //       //     "ratio": 0
-    //       // },
-    //       // {
-    //       //     "id": 10,
-    //       //     "id_wp": 100,
-    //       //     "cover": "http://localhost:8888/vkrz/wp-content/uploads/2022/06/sanctu-300x200.png",
-    //       //     "elo": "1087",
-    //       //     "c_name": "numéro 10",
-    //       //     "more_to": [],
-    //       //     "less_to": [],
-    //       //     "place": 0,
-    //       //     "ratio": 0
-    //       // },
+    //       {
+    //           "id": 6,
+    //           "id_wp": 60,
+    //           "cover": "http://localhost:8888/vkrz/wp-content/uploads/2022/06/filon-300x200.png",
+    //           "elo": "1200",
+    //           "c_name": "numéro 6",
+    //           "more_to": [],
+    //           "less_to": [],
+    //           "place": 0,
+    //           "ratio": 0
+    //       },
+    //       {
+    //           "id": 7,
+    //           "id_wp": 70,
+    //           "cover": "http://localhost:8888/vkrz/wp-content/uploads/2022/06/sepra-300x200.png",
+    //           "elo": "1180",
+    //           "c_name": "numéro 7",
+    //           "more_to": [],
+    //           "less_to": [],
+    //           "place": 0,
+    //           "ratio": 0
+    //       },
+    //       {
+    //           "id": 8,
+    //           "id_wp": 80,
+    //           "cover": "http://localhost:8888/vkrz/wp-content/uploads/2022/06/repos-300x200.png",
+    //           "elo": "1168",
+    //           "c_name": "numéro 8",
+    //           "more_to": [],
+    //           "less_to": [],
+    //           "place": 0,
+    //           "ratio": 0
+    //       },
+    //       {
+    //           "id": 9,
+    //           "id_wp": 90,
+    //           "cover": "http://localhost:8888/vkrz/wp-content/uploads/2022/06/tol-300x200.png",
+    //           "elo": "1123",
+    //           "c_name": "numéro 9",
+    //           "more_to": [],
+    //           "less_to": [],
+    //           "place": 0,
+    //           "ratio": 0
+    //       },
+    //       {
+    //           "id": 10,
+    //           "id_wp": 100,
+    //           "cover": "http://localhost:8888/vkrz/wp-content/uploads/2022/06/sanctu-300x200.png",
+    //           "elo": "1087",
+    //           "c_name": "numéro 10",
+    //           "more_to": [],
+    //           "less_to": [],
+    //           "place": 0,
+    //           "ratio": 0
+    //       },
     //       // {
     //       //   "id": 11,
     //       //   "id_wp": 110,
@@ -164,13 +164,33 @@ launchTopListBtns.forEach(btn => {
     //       //   "less_to": [],
     //       //   "place": 0,
     //       //   "ratio": 0
+    //       // },
+    //       // {
+    //       //   "id": 12,
+    //       //   "id_wp": 120,
+    //       //   "cover": "http://localhost:8888/vkrz/wp-content/uploads/2022/06/sepra-300x200.png",
+    //       //   "elo": "1087",
+    //       //   "c_name": "numéro 12",
+    //       //   "more_to": [],
+    //       //   "less_to": [],
+    //       //   "place": 0,
+    //       //   "ratio": 0
+    //       // },
+    //       // {
+    //       //   "id": 13,
+    //       //   "id_wp": 130,
+    //       //   "cover": "http://localhost:8888/vkrz/wp-content/uploads/2022/06/sepra-300x200.png",
+    //       //   "elo": "1087",
+    //       //   "c_name": "numéro 13",
+    //       //   "more_to": [],
+    //       //   "less_to": [],
+    //       //   "place": 0,
+    //       //   "ratio": 0
     //       // }
     //   ]
     // }
 
     // console.log(TOP)
-
-
 
     // DECLARE VARIABLES
     const typeTop = btn.dataset.typetop;
@@ -623,6 +643,10 @@ launchTopListBtns.forEach(btn => {
 
         if (timelineMain === 3) {
 
+          console.log("contenders.length : ", contenders.length)
+          console.log("contenders.length - spaire : ", contenders.length - spaire)
+          console.log("listLR[contenders.length - spaire] : ", listLR[contenders.length - spaire])
+
           nextDuel = [];
           let nb_loosers = listLR.length - 1;
       
@@ -631,14 +655,14 @@ launchTopListBtns.forEach(btn => {
           for (let key in contenders) {
               let contender = contenders[key];
       
-              if (contender.id_wp == listLR[listWR.length - spaire]) {
+              if (contender.id_wp == listLR[contenders.length - spaire - 1]) {
                   key_c1 = key;
                   key_c1_wp = String(contender.id_wp);
                   list_inf_of_c1 = contender.more_to;
                   list_sup_of_c1 = contender.less_to;
               }
               
-              if (contender.id_wp == listWR[nb_loosers]) {
+              if (contender.id_wp == listWR[contenders.length - 10]) {
                   key_c2 = key;
                   key_c2_wp = String(contender.id_wp);
                   list_inf_of_c2 = contender.more_to;
@@ -878,6 +902,8 @@ launchTopListBtns.forEach(btn => {
 
           const duel = do_user_ranking(contenderIdWinner, contenderIdLooser);
           console.log(duel, contenders)
+          console.log("LIST WINNERZ", listWR);
+          console.log("LIST LOOSERS", listLR);
 
           if (!duel.isNextDuel) return;
 
