@@ -52,9 +52,10 @@ function begin_t($id_top, $iduser, $uuiduser, $typetop, $id_vainkeur)
     }
 
     $get_top_type = get_the_terms($id_top, 'type');
-    foreach ($get_top_type as $type_top) {
-        $type_top = $type_top->slug;
-    }
+    if($get_top_type)
+      foreach ($get_top_type as $type_top) {
+          $type_top = $type_top->slug;
+      }
 
     // Ajout du Top dans la liste des Tops commencé du Vainkeur
     $user_list_top_begin    = array();

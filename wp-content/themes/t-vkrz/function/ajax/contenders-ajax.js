@@ -27,10 +27,11 @@ launchTopListBtns.forEach(btn => {
 
     const TOP = await fetchDataFuncHelper(
       // `https://proto.vainkeurz.com/wp-json/vkrz/v1/initclassement/${id_top}/${iduser}/${uuiduser}/${id_vainkeur}/${typetop}/`
-      `http://localhost:8888/vkrz/wp-json/vkrz/v1/initclassement/${id_top}/${iduser}/${uuiduser}/${id_vainkeur}/${typetop}/`
+      // `http://localhost:8888/vkrz/wp-json/vkrz/v1/initclassement/${id_top}/${iduser}/${uuiduser}/${id_vainkeur}/${typetop}/`
+      `http://localhost:10004/wp-json/vkrz/v1/initclassement/${id_top}/${iduser}/${uuiduser}/${id_vainkeur}/${typetop}/`
     );
 
-    // console.log(TOP)
+    console.log(TOP)
     // const TOP = {
     //   "ranking": [
     //       {

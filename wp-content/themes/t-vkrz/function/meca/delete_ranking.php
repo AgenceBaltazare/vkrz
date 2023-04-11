@@ -46,6 +46,7 @@ function delete_real_ranking($id_ranking, $id_vainkeur){
 
     // Delete ranking from firestore
     apply_filters('firebase_delete_data_from_database', 'firestore', 'wpClassement', $id_ranking_to_supp);
+    apply_filters('firebase_delete_data_from_database', 'firestore', 'topLists', $id_ranking_to_supp);
     
     // Save to firebase
     wp_update_post(array('ID' => $id_vainkeur));
