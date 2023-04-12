@@ -59,14 +59,6 @@ const sortContendersFuncHelper = function (ranking) {
     contendersArrIDs    = [];
 
   for (let contender of ranking) {
-    delete contender.c_name;
-    delete contender.elo;
-    delete contender.id;
-    delete contender.less_to;
-    delete contender.more_to;
-    delete contender.ratio;
-    delete contender.image;
-
     contendersArr.push(contender);
     contendersArrPlaces.push(contender.place);
 

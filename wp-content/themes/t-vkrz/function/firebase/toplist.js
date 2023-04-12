@@ -15,6 +15,7 @@ import {
   calcResemblanceFuncHelper,
 } from "./config.js";
 
+// TWITCH GAMES RANKING
 if(document.querySelector('#twitch-games-ranking')) {
   const twitchGamesRankingContainer = document.querySelector('#twitch-games-ranking'),
         idRanking                   = twitchGamesRankingContainer.dataset.idranking;
@@ -242,7 +243,8 @@ if(document.querySelector('.classement')) {
   }, 1000)
 }
 
-if (document.querySelector(".vs-resemblance")) {
+// RESSEMBLANCE D'UNE TOPLIST AVEC UNE AUTRE…
+if (document.querySelector(".vs-resemblance") || document.querySelector(".page-resultat")) {
   const cardResemblance = document.querySelector(".vs-resemblance");
   const idTop           = cardResemblance.dataset.idtop;
   const idRanking       = cardResemblance.dataset.idranking;
@@ -255,6 +257,69 @@ if (document.querySelector(".vs-resemblance")) {
   const rankingQuerySnapshot = await getDocs(rankingQuery);
 
   if (rankingQuerySnapshot._snapshot.docs.size === 1) {
+    // PAGE RESULTAT…
+    if(document.querySelector(".page-resultat")) {
+      let rankingArr = [];
+
+      rankingQuerySnapshot.forEach((ranking) => rankingArr = sortContendersFuncHelper(ranking.data().ranking_r) );
+
+      console.log(rankingArr)
+
+      const generateTopList = function (userRankings) {
+        const topListContainer = document.querySelector(".page-resultat-ranking-js");
+        let i = 1;
+      
+        userRankings.forEach((c) => {
+          let classContender;
+          let d;
+          let rankingIcon;
+      
+          if (i === 1) {
+            classContender = "col-8 col-offset-2 col-md-5";
+            rankingIcon = '🥇';
+          } else if (i === 2) {
+            classContender = "col-6 col-md-4";
+            rankingIcon = '🥈';
+          } else if (i === 3) {
+            classContender = "col-6 col-md-3";
+            rankingIcon = '🥉';
+          } else {
+            classContender = "col-5 col-offset-1 col-sm-4 col-sm-offset-0 col-md-3";
+            rankingIcon = i;
+          }
+      
+          if (i >= 4) {
+            d = 0;
+          } else {
+            d = 4 - i;
+          }
+      
+          // You'll need to adapt this part according to the data structure of your user rankings.
+          const contenderHTML = `
+            <div class="${classContender}">
+                <div class="animate__jackInTheBox animate__animated animate__delay-${d}s contenders_min mb-3">
+                <div class="illu">
+                  <img src="${c.cover}" alt="${c.c_name}" class="img-fluid">
+                </div>
+
+                <div class="name eh2">
+                  <h3 class="mt-2 eh3">
+                    ${rankingIcon}&nbsp;
+                    ${c.c_name}
+                  </h3>
+                </div>
+              </div>
+            </div>
+          `;
+      
+          topListContainer.insertAdjacentHTML("beforeend", contenderHTML);
+          i++;
+        });
+      }
+
+      generateTopList(rankingArr);
+    }
+
     // CHECK IF I ALREADY DID THE RANKING…
     const myRankingQuery = query(
       collection(database, "topLists"),
@@ -326,8 +391,8 @@ if (document.querySelector(".vs-resemblance")) {
   }
 }
 
+// TOPLIST JUDGEMENTS…
 if (document.querySelector(".toplist_comments")) {
-  // TOPLIST COMMENTS…
   const toplistCommentsCard = document.querySelector(".toplist_comments"),
         sendCommentBtn      = toplistCommentsCard.querySelector("#send_comment_btn"),
         idRanking           = toplistCommentsCard.dataset.idranking,

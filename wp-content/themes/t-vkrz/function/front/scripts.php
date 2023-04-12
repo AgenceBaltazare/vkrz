@@ -101,7 +101,7 @@ function load_css_js()
     if (get_post_type() == 'toplist-mondiale') {
       wp_enqueue_script('toplist_global', get_template_directory_uri() . '/function/firebase/toplist_global.js', array(), filemtime(get_template_directory() . '/function/firebase/toplist_global.js'), true);
     }
-    if (get_post_type() == "classement") {
+    if (get_post_type() == "classement" || is_page('Resultat')) {
       wp_enqueue_script('similar', get_template_directory_uri() . '/function/ajax/similar.js', array(), filemtime(get_template_directory() . '/function/ajax/similar.js'), true);
       wp_enqueue_script('toplist', get_template_directory_uri() . '/function/firebase/toplist.js', array(), filemtime(get_template_directory() . '/function/firebase/toplist.js'), true);
     }

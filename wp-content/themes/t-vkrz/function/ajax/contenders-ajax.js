@@ -27,8 +27,8 @@ launchTopListBtns.forEach(btn => {
 
     const TOP = await fetchDataFuncHelper(
       // `https://proto.vainkeurz.com/wp-json/vkrz/v1/initclassement/${id_top}/${iduser}/${uuiduser}/${id_vainkeur}/${typetop}/`
-      // `http://localhost:8888/vkrz/wp-json/vkrz/v1/initclassement/${id_top}/${iduser}/${uuiduser}/${id_vainkeur}/${typetop}/`
-      `http://localhost:10004/wp-json/vkrz/v1/initclassement/${id_top}/${iduser}/${uuiduser}/${id_vainkeur}/${typetop}/`
+      `http://localhost:8888/vkrz/wp-json/vkrz/v1/initclassement/${id_top}/${iduser}/${uuiduser}/${id_vainkeur}/${typetop}/`
+      // `http://localhost:10004/wp-json/vkrz/v1/initclassement/${id_top}/${iduser}/${uuiduser}/${id_vainkeur}/${typetop}/`
     );
 
     console.log(TOP)
@@ -784,7 +784,8 @@ launchTopListBtns.forEach(btn => {
             });
             console.log("Document successfully written!")
             console.log(msg);
-            window.location.replace(TOP.url_ranking);
+            // window.location.replace(TOP.url_ranking);
+            window.location.replace(`http://localhost:8888/vkrz/resultat/?id_ranking=${TOP.id_ranking}`);
           } catch (error) {
             console.error("Error adding document: ", error);
           }
