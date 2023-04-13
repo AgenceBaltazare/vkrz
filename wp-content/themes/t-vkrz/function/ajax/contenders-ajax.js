@@ -24,11 +24,14 @@ launchTopListBtns.forEach(btn => {
     console.log('id_vainkeur', id_vainkeur);
 
     const TOP = await fetchDataFuncHelper(
-      `https://proto.vainkeurz.com/wp-json/vkrz/v1/initclassement/${id_top}/${iduser}/${uuiduser}/${id_vainkeur}/${typetop}/`
-      // `http://localhost:8888/vkrz/wp-json/vkrz/v1/initclassement/${id_top}/${iduser}/${uuiduser}/${id_vainkeur}/${typetop}/`
+      // `https://proto.vainkeurz.com/wp-json/vkrz/v1/initclassement/${id_top}/${iduser}/${uuiduser}/${id_vainkeur}/${typetop}/`
+      `http://localhost:8888/vkrz/wp-json/vkrz/v1/initclassement/${id_top}/${iduser}/${uuiduser}/${id_vainkeur}/${typetop}/`
     );
 
-    // console.log(TOP)
+
+    console.log(`http://localhost:8888/vkrz/wp-json/vkrz/v1/initclassement/${id_top}/${iduser}/${uuiduser}/${id_vainkeur}/${typetop}/`
+    )
+    console.log(TOP)
     // const TOP = {
     //   "ranking": [
     //       {

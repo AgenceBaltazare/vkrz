@@ -117,6 +117,8 @@ endif;
                         <?php else : ?>
                           <?php if (get_field('visuel_instagram_contender', $c)) : ?>
                             <img src="<?php the_field('visuel_instagram_contender', $c); ?>" alt="" class="img-fluid">
+                          <?php elseif (get_field('visuel_firebase_contender', $c)) : ?>
+                            <img src="<?php the_field('visuel_firebase_contender', $c); ?>" alt="" class="img-fluid">
                           <?php else : ?>
                             <?php echo get_the_post_thumbnail($c, 'large', array('class' => 'img-fluid')); ?>
                           <?php endif; ?>

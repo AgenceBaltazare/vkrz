@@ -130,6 +130,9 @@ function publish_top_to_discord($post_id){
   $top_question       = str_replace("'", "&rsquo;", $top_question);
   $top_visuel         = $top_infos_to_send['top_img'];
 
+  if(!$top_visuel)
+  $top_visuel = get_field('visuel_externe_top_firebase', $id_top);
+
   $creator_id         = get_post_field('post_author', $id_top);
   $creator_data       = get_user_by('ID', $creator_id);
   $creator_name       = $creator_data->nickname;

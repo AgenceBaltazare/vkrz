@@ -61,7 +61,15 @@ get_header();
             </div>
           <?php endif; ?>
           <div class="card animate__animated animate__flipInX card-developer-meetup">
-            <div class="meetup-img-wrapper rounded-top text-left" style="background-image: url(<?php echo $top_infos['top_img']; ?>);">
+            <?php 
+              $top_visuel;
+              if($top_infos['top_img']) {
+                $top_visuel = $top_infos['top_img'];
+              } elseif (get_field('visuel_externe_top_firebase', $id_top)) {
+                $top_visuel = get_field('visuel_externe_top_firebase', $id_top);
+              }
+            ?>
+            <div class="meetup-img-wrapper rounded-top text-left" style="background-image: url(<?php echo $top_visuel; ?>);">
               <?php if ($type_top != "sponso") : ?>
                 <span class="badge bg-label-primary">Créé le <?php echo $top_infos['top_date']; ?></span>
               <?php endif; ?>
@@ -105,6 +113,8 @@ get_header();
                   <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-custom-class="tooltip-danger" data-bs-placement="top" class="avatar pull-up" aria-label="<?php echo get_the_title(get_the_id()); ?>" data-bs-original-title="<?php echo get_the_title(get_the_id()); ?>">
                     <?php if (get_field('visuel_instagram_contender', get_the_id())) : ?>
                       <img src="<?php the_field('visuel_instagram_contender', get_the_id()); ?>" alt="<?php echo get_the_title(get_the_id()); ?>" height="32" width="32">
+                    <?php elseif (get_field('visuel_firebase_contender', get_the_id())) : ?>
+                      <img src="<?php the_field('visuel_firebase_contender', get_the_id()); ?>" alt="<?php echo get_the_title(get_the_id()); ?>" height="32" width="32">
                     <?php else : ?>
                       <?php $illu = get_the_post_thumbnail_url(get_the_id(), 'thumbnail'); ?>
                       <img src="<?php echo $illu; ?>" alt="<?php echo get_the_title(get_the_id()); ?>" height="32" width="32">

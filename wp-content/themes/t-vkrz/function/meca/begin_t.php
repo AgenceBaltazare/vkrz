@@ -123,12 +123,18 @@ function begin_t($id_top, $iduser, $uuiduser, $typetop, $id_vainkeur)
     $i = 0;
     while ($contenders->have_posts()) : $contenders->the_post();
 
+      if(get_the_post_thumbnail_url(get_the_ID(), 'full')) {
+        $cover = get_the_post_thumbnail_url(get_the_ID(), 'full');
+      } elseif ( get_field('visuel_firebase_contender', get_the_ID()) ) {
+        $cover = get_field('visuel_firebase_contender', get_the_ID());
+      }
+
       array_push($list_contenders, array(
         "id"                => $i,
         "id_wp"             => get_the_ID(),
         "elo"               => get_field('ELO_c'),
         "c_name"            => get_the_title(),
-        "cover"             => get_the_post_thumbnail_url(get_the_ID(), 'full'),
+        "cover"             => $cover,
         "more_to"           => array(),
         "less_to"           => array(),
         "place"             => 0,

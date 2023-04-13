@@ -18,7 +18,11 @@ $nb_contenders        = count($list_contenders);
                         if ($contender['place'] == $j) : ?>
 
                             <li data-toggle="tooltip" data-popup="tooltip-custom" data-placement="top" data-original-title="<?php echo get_the_title($contender['id_wp']); ?>" class="avatar pull-up">
-                                <?php $illu = get_the_post_thumbnail_url($contender['id_wp'], 'medium'); ?>
+                                <?php 
+                                $illu = get_the_post_thumbnail_url($contender['id_wp'], 'medium'); 
+                                if(!$illu)
+                                    $illu = get_field('visuel_firebase_contender', $contender['id_wp']);
+                                ?>
                                 <div class="avatar-content">
                                     <img src="<?php echo $illu; ?>" alt="Avatar">
                                 </div>

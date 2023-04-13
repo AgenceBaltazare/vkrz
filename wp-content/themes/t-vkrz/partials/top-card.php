@@ -17,7 +17,11 @@ else{
 <a href="<?php the_permalink($id_top); ?>" class="top-card">
     <div class="d-flex align-items-center">
         <div class="avatar">
-            <?php $minia = get_the_post_thumbnail_url($id_top, 'large'); ?>
+            <?php
+             $minia = get_the_post_thumbnail_url($id_top, 'large');
+             if(!$minia)
+                $minia = get_field('visuel_externe_top_firebase', $id_top);
+            ?>
             <span class="avatar-picture avatar-top" style="background-image: url(<?php echo $minia; ?>);"></span>
         </div>
         <div class="font-weight-bold topnamebestof">

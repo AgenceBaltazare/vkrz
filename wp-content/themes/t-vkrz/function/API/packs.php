@@ -103,6 +103,61 @@ function add_contender_from_api()
   }
 }
 
+function add_contender_from_api_create_top()
+{
+  $url_visual  = $_POST['contenderURL'];
+  $pseudo      = $_POST['contenderName'];
+  $id_top      = $_POST['idTop'];
+
+  if ($url_visual) {
+
+    $new_contender = array(
+      'post_type'   => 'contender',
+      'post_title'  => $pseudo,
+      'post_status' => 'publish',
+    );
+    $id_new_contender  = wp_insert_post($new_contender);
+
+    update_field('visuel_firebase_contender', $url_visual, $id_new_contender);
+    update_field('id_tournoi_c', $id_top, $id_new_contender);
+    update_field('ELO_c', '1200', $id_new_contender);
+
+    if ($id_new_contender) {
+      // return "Nouveau contender dans le Top " . get_the_title($id_top);
+
+      return update_count_contenders($id_new_contender);
+    }
+  }
+}
+
+function add_top_from_api()
+{
+  $topTitle       = $_POST['topTitle'];
+  $topCategory    = $_POST['topCategory'];
+  $topQuestion    = $_POST['topQuestion'];
+  $topDescription = $_POST['topDescription'];
+  $topBanner      = $_POST['topBanner'];
+  $topAuthor      = $_POST['topAuthor'];
+
+  // Create the new post
+  $new_post = array(
+    'post_title'  => $topTitle,
+    'post_status' => 'draft',
+    'post_type'   => 'tournoi',
+    'post_author' => intval($topAuthor),
+  );
+  $post_id = wp_insert_post( $new_post );
+
+
+  wp_set_object_terms( $post_id, intval( $topCategory ), 'categorie' );
+
+  update_field('question_t', $topQuestion, $post_id);
+  update_field('precision_t', $topDescription, $post_id);
+  update_field('visuel_externe_top_firebase', $topBanner, $post_id);
+
+  return [$post_id, get_permalink($post_id)];
+}
+
 function get_stats($data)
 {
   $date = $data['date'];

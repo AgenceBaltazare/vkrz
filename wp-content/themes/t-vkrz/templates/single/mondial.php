@@ -108,6 +108,8 @@ $count_toplist        = count($list_toplist);
                     <?php else : ?>
                       <?php if (get_field('visuel_instagram_contender', $c["id"])) : ?>
                         <img src="<?php the_field('visuel_instagram_contender', $c["id"]); ?>" alt="" class="img-fluid">
+                      <?php elseif (get_field('visuel_firebase_contender', $c["id"])) : ?>
+                          <img src="<?php the_field('visuel_firebase_contender', $c["id"]); ?>" alt="" class="img-fluid">
                       <?php else : ?>
                         <?php echo get_the_post_thumbnail($c["id"], 'large', array('class' => 'img-fluid')); ?>
                       <?php endif; ?>

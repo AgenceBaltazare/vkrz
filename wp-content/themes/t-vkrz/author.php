@@ -406,6 +406,8 @@ if ($infos_vainkeur_to_watch['user_role'] == "administrator" || $infos_vainkeur_
                               <div data-bs-toggle="tooltip" data-bs-popup="tooltip-custom" data-bs-placement="bottom" data-bs-original-title="<?php echo get_the_title($contender); ?>" class="avatartop3 avatar pull-up">
                                 <?php if (get_field('visuel_instagram_contender', $contender)) : ?>
                                   <img src="<?php the_field('visuel_instagram_contender', $contender); ?>" alt="<?php echo get_the_title($contender); ?>">
+                                <?php elseif (get_field('visuel_firebase_contender', $contender)) : ?>
+                                    <img src="<?php the_field('visuel_firebase_contender', $contender); ?>" alt="<?php echo get_the_title($contender); ?>">
                                 <?php else : ?>
                                   <?php $illu = get_the_post_thumbnail_url($contender, 'thumbnail'); ?>
                                   <img src="<?php echo $illu; ?>" alt="<?php echo get_the_title($contender); ?>">
@@ -483,6 +485,8 @@ if ($infos_vainkeur_to_watch['user_role'] == "administrator" || $infos_vainkeur_
                               <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom" data-original-title="<?php echo get_the_title($contender); ?>" class="avatartop3 avatar pull-up">
                                 <?php if (get_field('visuel_instagram_contender', $contender)) : ?>
                                   <img src="<?php the_field('visuel_instagram_contender', $contender); ?>" alt="<?php echo get_the_title($contender); ?>">
+                                <?php elseif (get_field('visuel_firebase_contender', $contender)) : ?>
+                                    <img src="<?php the_field('visuel_firebase_contender', $contender); ?>" alt="<?php echo get_the_title($contender); ?>">
                                 <?php else : ?>
                                   <?php $illu = get_the_post_thumbnail_url($contender, 'thumbnail'); ?>
                                   <img src="<?php echo $illu; ?>" alt="<?php echo get_the_title($contender); ?>">

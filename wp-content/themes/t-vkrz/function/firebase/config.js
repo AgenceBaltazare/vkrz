@@ -36,6 +36,13 @@ switch (location.hostname) {
 const app = initializeApp(firebaseConfig);
 
 import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "https://cdnjs.cloudflare.com/ajax/libs/firebase/9.8.1/firebase-storage.min.js";
+
+import {
   getFirestore,
   collection,
   doc,
@@ -59,14 +66,6 @@ const sortContendersFuncHelper = function (ranking) {
     contendersArrIDs    = [];
 
   for (let contender of ranking) {
-    delete contender.c_name;
-    delete contender.elo;
-    delete contender.id;
-    delete contender.less_to;
-    delete contender.more_to;
-    delete contender.ratio;
-    delete contender.image;
-
     contendersArr.push(contender);
     contendersArrPlaces.push(contender.place);
 
@@ -159,25 +158,25 @@ const secondsToStrFuncHelper = function (secondes) {
   let temp = Math.floor(secondes / 1000);
   let years = Math.floor(temp / 31536000);
   if (years) {
-    return years + " ans" + numberEnding(years);
+    return years + " year" + numberEnding(years) + " ago";
   }
   let days = Math.floor((temp %= 31536000) / 86400);
   if (days) {
-    return days + " jour" + numberEnding(days);
+    return days + " day" + numberEnding(days) + " ago";
   }
   let hours = Math.floor((temp %= 86400) / 3600);
   if (hours) {
-    return hours + " heure" + numberEnding(hours);
+    return hours + " hour" + numberEnding(hours) + " ago";
   }
   let minutes = Math.floor((temp %= 3600) / 60);
   if (minutes) {
-    return minutes + " minute" + numberEnding(minutes);
+    return minutes + " minute" + numberEnding(minutes) + " ago";
   }
   let seconds = temp % 60;
   if (seconds) {
-    return seconds + " seconde" + numberEnding(seconds);
+    return seconds + " seconde" + numberEnding(seconds) + " ago";
   }
-  return "moins d'une seconde"; //'just now' //or other string you like;
+  return "just now"; //'just now' //or other string you like;
 };
 
 const fetchDataFuncHelper = async function (url) {
@@ -187,6 +186,18 @@ const fetchDataFuncHelper = async function (url) {
   } catch (error) {
     console.log(error);
   }
+}
+
+const generateUniqueId = function () {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  const timestamp = Date.now();
+  let id = `${timestamp}-`;
+  for (let i = 0; i < 16; i++) {
+    const randomIndex = Math.floor(Math.random() * chars.length);
+    id += chars[randomIndex];
+  }
+  
+  return id;
 }
 
 export {
@@ -207,5 +218,10 @@ export {
   secondsToStrFuncHelper,
   fetchDataFuncHelper,
   sortContendersFuncHelper,
-  calcResemblanceFuncHelper
+  calcResemblanceFuncHelper,
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+  generateUniqueId
 };

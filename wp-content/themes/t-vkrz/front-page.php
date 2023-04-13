@@ -324,6 +324,8 @@ global $id_membre;
                   $top_id                  = get_field('id_tournoi_r', $id_ranking);
                   $vainkeur_data_selected  = get_user_infos($uuiduser);
                   $top_cover               = wp_get_attachment_image_src(get_field('cover_t', $top_id), 'large');
+                  if(!$top_cover[0]) 
+                    $top_visuel = get_field('visuel_externe_top_firebase', $top_id);
                 ?>
                   <div class="toplist-min">
                     <div class="toplist-min-header">
@@ -344,6 +346,8 @@ global $id_membre;
                             <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-custom-class="tooltip-danger" data-bs-placement="top" class="avatar pull-up" aria-label="<?php echo get_the_title($top); ?>" data-bs-original-title="<?php echo get_the_title($top); ?>">
                               <?php if (get_field('visuel_instagram_contender', $top)) : ?>
                                 <img src="<?php the_field('visuel_instagram_contender', $top); ?>" alt="<?php echo get_the_title($top); ?>" height="32" width="32">
+                              <?php elseif (get_field('visuel_firebase_contender', $top)) : ?>
+                                <img src="<?php the_field('visuel_firebase_contender', $top); ?>" alt="<?php echo get_the_title($top); ?>" height="32" width="32">
                               <?php else : ?>
                                 <?php $illu = get_the_post_thumbnail_url($top, 'thumbnail'); ?>
                                 <img src="<?php echo $illu; ?>" alt="<?php echo get_the_title($top); ?>" height="32" width="32">

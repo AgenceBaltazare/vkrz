@@ -55,14 +55,20 @@
     foreach ($user_top3 as $top) {
         if ($l == 1) {
             $picture_contender_1 = get_the_post_thumbnail_url($top, 'medium');
+            if(!$picture_contender_1 && get_field('visuel_firebase_contender', $top))
+                $picture_contender_1 = get_field('visuel_firebase_contender', $top);
             $name_contender_1    = get_the_title($top);
             $name_contender_1    = str_replace("&rsquo;", "'", $name_contender_1);
         } elseif ($l == 2) {
             $picture_contender_2 = get_the_post_thumbnail_url($top, 'medium');
+            if(!$picture_contender_2 && get_field('visuel_firebase_contender', $top))
+                $picture_contender_2 = get_field('visuel_firebase_contender', $top);
             $name_contender_2    = get_the_title($top);
             $name_contender_2    = str_replace("&rsquo;", "'", $name_contender_2);
         } elseif ($l == 3) {
             $picture_contender_3 = get_the_post_thumbnail_url($top, 'medium');
+            if(!$picture_contender_3 && get_field('visuel_firebase_contender', $top))
+                $picture_contender_3 = get_field('visuel_firebase_contender', $top);
             $name_contender_3    = get_the_title($top);
             $name_contender_3    = str_replace("&rsquo;", "'", $name_contender_3);
         }
